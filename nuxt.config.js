@@ -10,8 +10,8 @@ export default defineNuxtConfig({
             }
         }],
         'nuxt-quasar-ui',
-        '@pinia/nuxt',
         'nuxt-icon',
-        '@nuxt/ui'
+        '@nuxt/ui',
+        '@pinia/nuxt',
     ]
 })
