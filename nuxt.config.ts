@@ -25,6 +25,13 @@ export default defineNuxtConfig({
       '@nuxt/ui',
    ],
 
+   quasar: {
+      plugins: ['Notify'],
+      extras: {
+         fontIcons: ['material-icons']
+      }
+   },
+
    vite: {
       css: {
          preprocessorOptions: {
