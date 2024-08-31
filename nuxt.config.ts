@@ -4,9 +4,19 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
    devtools: { enabled: true },
 
+   app: {
+      pageTransition: {
+         // Name options are: 'bounce', 'fade', 'page', 'custom',
+         // Mode options are: 'out-in','in-out',
+         name: 'bounce',
+         mode: 'out-in',
+      },
+   },
+
    css: [
       '@/assets/scss/main.scss',
       '@/assets/css/main.css',
+      '@mdi/font/css/materialdesignicons.min.css',
    ],
 
    googleFonts: {
@@ -31,6 +41,15 @@ export default defineNuxtConfig({
          fontIcons: ['material-icons']
       }
    },
+
+   runtimeConfig: {
+      public: {
+         API_KEY: process.env.API_KEY,
+      },
+   },
+
+   // Disable SSR
+   ssr: false,
 
    vite: {
       css: {
