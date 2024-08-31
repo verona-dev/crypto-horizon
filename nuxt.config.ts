@@ -9,18 +9,28 @@ export default defineNuxtConfig({
       '@/assets/css/main.css',
    ],
 
-
-   modules: [['@nuxtjs/google-fonts', {
+   googleFonts: {
       families: {
-         'Poppins': [400, 500, 600, 700]
-      }
-   }], 'nuxt-quasar-ui', 'nuxt-icon', '@nuxt/ui', '@pinia/nuxt', "@nuxt/icon"],
+         Poppins: [400, 500, 600, 700]
+      },
+   },
+
+   modules: [
+      'nuxt-quasar-ui',
+      '@nuxtjs/google-fonts',
+      '@nuxt/icon',
+      'nuxt-icon',
+      '@nuxt/ui',
+      '@pinia/nuxt',
+   ],
 
    vite: {
       css: {
          preprocessorOptions: {
             scss: {
-               additionalData: `@import "@/assets/scss/_colors.scss"; @import "@/assets/scss/_variables.scss";`,
+               additionalData:
+                  `@import "@/assets/scss/_colors.scss"; 
+                  @import "@/assets/scss/_variables.scss";`,
             },
          },
       },
