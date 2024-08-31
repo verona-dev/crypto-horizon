@@ -1,0 +1,60 @@
+// Page
+.page-enter-active,
+.page-leave-active {
+    transition: all 0.4s;
+}
+
+.page-enter-from,
+.page-leave-to {
+    opacity: 0;
+    filter: blur(1rem);
+}
+
+// Fade
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 0.9s;
+
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+    filter: blur(1rem);
+}
+
+// Bounce
+.bounce-enter-active,
+.bounce-leave-active {
+    transition: all 0.15s;
+}
+
+.bounce-enter-from,
+.bounce-leave-to {
+    opacity: 0;
+    filter: blur(0.1rem);
+}
+
+// Layout
+.layout-enter-active,
+.layout-leave-active {
+    transition: all 0.4s;
+}
+
+.layout-enter-from,
+.layout-leave-to {
+    filter: grayscale(1);
+}
+
+// Custom
+.custom-enter-active {
+    transition: all .3s ease;
+}
+.custom-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.custom-enter,
+.custom-leave-to {
+    transform: translateX(10px);
+    opacity: 0;
+}
