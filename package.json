@@ -29,6 +29,7 @@
         "less": "4.2.0",
         "pinia": "2.1.7",
         "quasar": "2.14.2",
+        "radix-vue": "1.9.5",
         "sass-loader": "16.0.1"
     }
 }

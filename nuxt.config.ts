@@ -16,12 +16,13 @@ export default defineNuxtConfig({
    },
 
    modules: [
-      'nuxt-quasar-ui',
       '@nuxtjs/google-fonts',
       '@nuxt/icon',
       'nuxt-icon',
-      '@nuxt/ui',
       '@pinia/nuxt',
+      'nuxt-quasar-ui',
+      'radix-vue/nuxt',
+      '@nuxt/ui',
    ],
 
    vite: {
