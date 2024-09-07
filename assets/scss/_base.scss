@@ -8,10 +8,10 @@ html, body, div, span, applet, object, iframe, blockquote, pre, a, abbr, acronym
 }
 
 #__nuxt {
-    width: 100%;
+    //width: 100%;
 }
 
 body {
-    background: var(--color-body-background);
-    font-family: system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    background: var(--color-gray_dark);
+    font-family: Roboto, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
