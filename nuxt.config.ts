@@ -29,6 +29,7 @@ export default defineNuxtConfig({
       '@nuxtjs/google-fonts',
       '@nuxt/icon',
       'nuxt-icon',
+      '@nuxt/image',
       '@pinia/nuxt',
       'nuxt-quasar-ui',
       'radix-vue/nuxt',
