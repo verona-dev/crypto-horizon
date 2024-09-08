@@ -2,7 +2,7 @@
     <div class='welcome'>
         <h1>Crypto App</h1>
         
-        <div class='logo-container'>
+        <div class='illustrations-container'>
             <NuxtLink to='/market'>
                 <q-img
                     :src='market'
@@ -46,15 +46,15 @@ import defi from 'assets/illustrations/btc-tree.svg';
             text-transform: uppercase;
         }
         
-        .logo-container {
+        .illustrations-container {
             align-items: center;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-evenly;
             width: 100%;
             
             a {
                 height: 100%;
-                width: 35%;
+                width: 30%;
                 max-width: 700px;
             }
             

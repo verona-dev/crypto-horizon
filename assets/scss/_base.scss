@@ -7,6 +7,12 @@ html, body, div, span, applet, object, iframe, blockquote, pre, a, abbr, acronym
     vertical-align: baseline;
 }
 
+/*
+#__nuxt {
+    width: 100%;
+}
+*/
+
 body {
     background: var(--color-gray_dark);
     font-family:
@@ -31,5 +37,5 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 85vh;
 }
