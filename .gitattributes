@@ -1,1 +1,4 @@
 * text=auto eol=lf
+* linguist-vendored
+*.js linguist-vendored=true
+*.html linguist-detectable=true

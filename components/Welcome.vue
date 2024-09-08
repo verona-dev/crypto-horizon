@@ -49,12 +49,12 @@ import defi from 'assets/illustrations/btc-tree.svg';
         .logo-container {
             align-items: center;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-evenly;
             width: 100%;
             
             a {
                 height: 100%;
-                width: 35%;
+                width: 30%;
                 max-width: 700px;
             }
             
