@@ -1,5 +1,7 @@
 <template>
-    <Welcome />
+    <div class='page'>
+        <Welcome />
+    </div>
 </template>
 
 <script setup>
