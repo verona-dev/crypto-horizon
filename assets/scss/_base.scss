@@ -21,7 +21,12 @@ body {
 ;
 }
 
-.page {
+a {
+    text-align: center;
+}
+
+.page,
+.component {
     display: flex;
     flex-direction: column;
     justify-content: center;

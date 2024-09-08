@@ -29,10 +29,6 @@ export default defineNuxtConfig({
             ital: [100]
          },
          Inter: '200..700',
-         'Crimson Pro': {
-            wght: '200..900',
-            ital: '200..700',
-         }
       },
       base64: true,
       outputDir: 'assets',
@@ -66,6 +62,10 @@ export default defineNuxtConfig({
 
    // Disable SSR
    ssr: false,
+
+   ui: {
+      global: true
+   },
 
    vite: {
       css: {
