@@ -3,3 +3,4 @@
 *.js linguist-vendored=true
 *.ts linguist-vendored=false
 *.html linguist-detectable=false
+*.scss linguist-detectable=false
