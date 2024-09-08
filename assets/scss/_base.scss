@@ -7,11 +7,29 @@ html, body, div, span, applet, object, iframe, blockquote, pre, a, abbr, acronym
     vertical-align: baseline;
 }
 
-#__nuxt {
-    width: 100%;
+body {
+    background: var(--color-gray_dark);
+    font-family:
+        Raleway,
+        Roboto,
+        system-ui,
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        "Noto Sans",
+        sans-serif
+;
 }
 
-body {
-    background: var(--color-body-background);
-    font-family: system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+a {
+    text-align: center;
+}
+
+.page,
+.component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
