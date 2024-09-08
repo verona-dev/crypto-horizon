@@ -1,24 +1,24 @@
 <template>
     <div class='welcome'>
-        <h1>Welcome to crypto-app</h1>
+        <h1>Crypto App</h1>
         
         <div class='logo-container'>
-            <q-img
-                :src='market'
-                alt='logo'
-            />
-            <q-img
-                :src='defi'
-                alt='logo'
-            />
+            <NuxtLink to='/market'>
+                <q-img
+                    :src='market'
+                    alt='logo'
+                />
+                <h2>Market</h2>
+            </NuxtLink>
+            
+            <NuxtLink to='/defi'>
+                <q-img
+                    :src='defi'
+                    alt='logo'
+                />
+                <h2>Defi</h2>
+            </NuxtLink>
         </div>
-        
-<!--        <q-img
-            src='https://aibc.world/wp-content/uploads/2024/04/btc.webp'
-            alt='logo'
-            format='webp'
-            width='75%'
-        />-->
     </div>
 </template>
 
@@ -40,18 +40,37 @@ import defi from 'assets/illustrations/btc-tree.svg';
             color: var(--color-pink_cabaret);
         }
         
+        h2 {
+            font-family: 'Roboto', serif;
+            margin: 10px 0;
+            text-transform: uppercase;
+        }
+        
         .logo-container {
             align-items: center;
-            //height: 50%;
             display: flex;
-            justify-content: space-evenly;
-            //margin-bottom: 100px;
+            justify-content: space-around;
             width: 100%;
             
-            .q-img {
-                border-radius: 8px;
+            a {
                 height: 100%;
-                width: 40%;
+                width: 35%;
+                max-width: 700px;
+            }
+            
+            .q-img {
+                border: 2px solid transparent;
+                border-radius: 6px;
+                height: 100%;
+                transition: all 300ms ease-in-out;
+                width: 100%;
+                
+                &:hover {
+                    border: 2px solid var(--color-aqua);
+                    opacity: 0.85;
+                    transition: all 200ms ease-in-out;
+                    transform: scale(1.03);
+                }
             }
         }
     }
