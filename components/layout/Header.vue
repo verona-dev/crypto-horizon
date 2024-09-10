@@ -3,6 +3,12 @@
         <h2>
             <NuxtLink to='/'>Crypto App</NuxtLink>
         </h2>
+        
+        <q-spinner-bars
+            v-if='loading'
+            size="3em"
+        />
+        
         <nav>
             <ul>
                 <li>
@@ -16,10 +22,18 @@
 </template>
 
 <script setup>
+    // CoinsStore
+    import { storeToRefs } from 'pinia';
+    import { useCoinsStore } from '~/stores/CoinsStore';
+    const CoinsStore = useCoinsStore();
+    
+    // State
+    const { loading } = storeToRefs(CoinsStore);
 </script>
 
 <style scoped lang='scss'>
     header {
+        align-items: center;
         border-bottom: 1px solid var(--color-pink_cabaret);
         padding: 1em;
         display: flex;
@@ -27,6 +41,10 @@
         
         a:hover {
             color: var(--color-pink_cabaret);
+        }
+        
+        .q-spinner {
+            color: var(--color-purple);
         }
         
         nav {
