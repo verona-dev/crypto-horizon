@@ -1,30 +1,25 @@
 import { defineStore } from 'pinia';
-import { useFetch } from '#app';
+import { useCoincapApiFetch } from '~/composables/apiCoincap';
 
 export const useCoinsStore = defineStore('CoinsStore', {
     state: () => ({
-        coins: [],
         loading: false,
+        coins: [],
     }),
+    
     actions: {
-        async searchCoins(coins, contract) {
-            try {
+        async fetchCoins() {
             this.loading = true;
-                const { data } = await useFetch(`https://coins.llama.fi/prices/current/${coins}:${contract}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                })
-                
-                if(!data) return;
-                
-                console.log(data)
-                
+            
+            try {
+                const { data }  = await useCoincapApiFetch('/assets');
                 this.coins = data;
-            } catch (err) {
-                console.error(err)
-            } finally {
+                console.log(JSON.parse(JSON.stringify(this.coins)));
+            }
+            catch(error) {
+                console.log(error);
+            }
+            finally {
                 this.loading = false;
             }
         },

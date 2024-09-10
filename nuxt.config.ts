@@ -57,7 +57,7 @@ export default defineNuxtConfig({
 
    runtimeConfig: {
       public: {
-         API_KEY: process.env.API_KEY,
+         API_COINCAP_URL: process.env.API_COINCAP_URL,
       },
    },
 

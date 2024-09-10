@@ -9,8 +9,7 @@
         >
             Fetch
         </UButton>
-        
-        {{ computedNames }}
+        {{coins[0]?.id}}
     </div>
 </template>
 
@@ -18,24 +17,21 @@
     import { ref } from 'vue';
     // CoinsStore
     import { storeToRefs } from 'pinia';
-    import { useCoinsStore } from '@/stores/CoinsStore';
+    import { useCoinsStore } from '~/stores/CoinsStore';
     const CoinsStore = useCoinsStore();
     
     // State
-    const { coins, loading } = storeToRefs(CoinsStore);
-    const computedNames = computed(() => coins[0]?.name);
-    const searchedCoins = ref('ethereum');
-    console.log(searchedCoins);
-    const contract = ref('0xdF574c24545E5FfEcb9a659c229253D4111d87e1,coingecko:ethereum');
+    const { loading, coins } = storeToRefs(CoinsStore);
     
     // Methods
-    const { searchCoins } = CoinsStore;
+    const { fetchCoins } = CoinsStore;
     const fetchTokens = async () => {
-        console.log(searchedCoins.value, contract.value);
-        const { data } = await searchCoins(searchedCoins.value, contract.value);
-        console.log(data);
-        coins.value = data;
+        await fetchCoins();
     };
+    
+    onMounted(async() => {
+        await fetchTokens();
+    });
 </script>
 
 <style scoped lang='scss'>
