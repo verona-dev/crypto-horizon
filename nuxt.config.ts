@@ -21,7 +21,7 @@ export default defineNuxtConfig({
    ],
 
    colorMode: {
-      preference: 'light', // default value of $colorMode.preference
+      preference: 'dark', // default value of $colorMode.preference
       fallback: 'light', // fallback value if not system preference found
       hid: 'nuxt-color-mode-script',
       globalName: '__NUXT_COLOR_MODE__',
@@ -81,6 +81,10 @@ export default defineNuxtConfig({
 
    // Disable SSR
    ssr: false,
+
+   tailwindcss: {
+      configPath: '@/tailwind.config.ts',
+   },
 
    ui: {
       global: true
