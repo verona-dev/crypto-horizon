@@ -20,6 +20,16 @@ export default defineNuxtConfig({
       '@mdi/font/css/materialdesignicons.min.css',
    ],
 
+   colorMode: {
+      preference: 'system', // default value of $colorMode.preference
+      fallback: 'light', // fallback value if not system preference found
+      hid: 'nuxt-color-mode-script',
+      globalName: '__NUXT_COLOR_MODE__',
+      classPrefix: '',
+      classSuffix: '-mode',
+      storageKey: 'nuxt-color-mode'
+   },
+
    googleFonts: {
       families: {
          Roboto: true,
@@ -38,6 +48,7 @@ export default defineNuxtConfig({
    },
 
    modules: [
+      '@nuxtjs/color-mode',
       '@nuxtjs/google-fonts',
       '@nuxt/icon',
       'nuxt-icon',
@@ -47,6 +58,13 @@ export default defineNuxtConfig({
       'radix-vue/nuxt',
       '@nuxt/ui',
    ],
+
+   postcss: {
+      plugins: {
+         tailwindcss: {},
+         autoprefixer: {},
+      },
+   },
 
    quasar: {
       plugins: ['Notify'],
