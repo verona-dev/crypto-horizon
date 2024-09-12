@@ -14,7 +14,6 @@ export const useCoinsStore = defineStore('CoinsStore', {
             try {
                 const { data }  = await useCoincapApiFetch('/assets');
                 this.coins = data;
-                console.log(JSON.parse(JSON.stringify(this.coins)));
             }
             catch(error) {
                 console.log(error);
