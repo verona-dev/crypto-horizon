@@ -12,6 +12,17 @@
         <nav>
             <ul>
                 <li>
+                    <div class='ml-10'>
+                        <span class='mr-5'>Color mode</span>
+                        <select v-model='$colorMode.preference'>
+                            <option value='system'>System</option>
+                            <option value='light'>Light</option>
+                            <option value='dark'>Dark</option>
+                            <option value='sepia'>Sepia</option>
+                        </select>
+                    </div>
+                </li>
+                <li>
                     <NuxtLink to='/market'>Market</NuxtLink></li>
                 <li>
                     <NuxtLink to='/defi'>Defi</NuxtLink>
@@ -48,7 +59,7 @@
         }
         
         nav {
-            width: 200px;
+            width: 500px;
             
             ul {
                 height: 100%;
