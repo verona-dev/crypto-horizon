@@ -26,9 +26,11 @@ export default defineNuxtConfig({
       hid: 'nuxt-color-mode-script',
       globalName: '__NUXT_COLOR_MODE__',
       classPrefix: '',
-      classSuffix: '-mode',
+      classSuffix: '',
       storageKey: 'nuxt-color-mode'
    },
+
+   compatibilityDate: '2024-07-23',
 
    googleFonts: {
       families: {

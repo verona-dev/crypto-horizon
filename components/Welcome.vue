@@ -1,11 +1,10 @@
 <template>
     <div class='welcome'>
-        <h1>Crypto App</h1>
-        
         <div class='illustrations-container'>
             <NuxtLink to='/market'>
                 <q-img
                     :src='market'
+                    no-spinner
                     alt='logo'
                 />
                 <h2>Market</h2>
@@ -14,6 +13,7 @@
             <NuxtLink to='/defi'>
                 <q-img
                     :src='defi'
+                    no-spinner
                     alt='logo'
                 />
                 <h2>Defi</h2>
