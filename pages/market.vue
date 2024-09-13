@@ -11,11 +11,7 @@
                 :filter='filter'
                 :sort='sort'
                 :loading='loading'
-                class='table w-full'
-                :ui="{
-                    th: { base: 'sticky top-0' },
-                    wrapper: { base: '' },
-                }"
+                class='table'
             >
                 <template #loading-state>
                     <div class="flex items-center justify-center h-32">
@@ -38,7 +34,11 @@
                     </tr>
                 </template>
             </UTable>
-            <div class='table-footer'>
+            
+            <div
+                v-if='coins.length'
+                 class='table-footer'
+            >
                 <div class='results-info'>
                     <span class="text-sm leading-5">
                         Showing {{ pageFrom }} to {{ pageTo }} of {{ pageTotal }}
@@ -51,13 +51,17 @@
                     :total='pageTotal'
                     :ui="{
                         wrapper: 'flex items-center gap-1',
-                        rounded: '!rounded-full min-w-[32px] justify-center',
-                        default: {
-                           activeButton: {
-                              variant: 'outline'
-                           }
-                     }}"
+                        rounded: 'min-w-[32px] justify-center',
+                     }"
+                    :active-button='{ variant: "outline" }'
+                    :inactive-button='{ color: "gray" }'
                     class='pagination'
+                    show-first
+                    show-last
+                    :first-button='{ icon: "i-material-symbols:first-page", label: "First", color: "gray" }'
+                    :last-button='{ icon: "i-material-symbols:last-page", trailing: true, label: "Last", color: "gray" }'
+                    :prev-button='{ color: "gray" }'
+                    :next-button='{ color: "gray" }'
                 />
             </div>
         </UCard>
@@ -179,11 +183,10 @@
 
 <style scoped lang='scss'>
     .market {
+        background-color: #fff;
         margin: 0 auto;
         
         .card {
-            background-color: transparent;
-            
             .table {
                 
                 table {
@@ -200,7 +203,6 @@
             
             .table-footer {
                 align-items: center;
-                border: 1px solid var(--color-pink_french);
                 display: flex;
                 justify-content: space-between;
                 padding: 20px;

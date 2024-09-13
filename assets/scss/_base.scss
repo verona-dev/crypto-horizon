@@ -7,12 +7,6 @@ html, body, div, span, applet, object, iframe, blockquote, pre, a, abbr, acronym
     vertical-align: baseline;
 }
 
-/*
-#__nuxt {
-    width: 100%;
-}
-*/
-
 body {
     background: var(--color-offwhite);
     font-family:
@@ -27,11 +21,12 @@ body {
 ;
 }
 
-.dark-mode body {
+.dark body {
     background: var(--color-gray_dark);
     color: var(--color-offwhite);
 }
-.sepia-mode body {
+
+.sepia body {
     background-color: #f1e7d0;
     color: #433422;
 }

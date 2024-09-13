@@ -49,6 +49,10 @@ export default defineNuxtConfig({
       fontsDir: 'fonts',
    },
 
+   icon: {
+      componentName: 'NuxtIcon'
+   },
+
    modules: [
       '@nuxtjs/color-mode',
       '@nuxtjs/google-fonts',
