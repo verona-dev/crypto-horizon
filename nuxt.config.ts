@@ -20,6 +20,18 @@ export default defineNuxtConfig({
       '@mdi/font/css/materialdesignicons.min.css',
    ],
 
+   colorMode: {
+      preference: 'dark', // default value of $colorMode.preference
+      fallback: 'light', // fallback value if not system preference found
+      hid: 'nuxt-color-mode-script',
+      globalName: '__NUXT_COLOR_MODE__',
+      classPrefix: '',
+      classSuffix: '',
+      storageKey: 'nuxt-color-mode'
+   },
+
+   compatibilityDate: '2024-07-23',
+
    googleFonts: {
       families: {
          Roboto: true,
@@ -37,7 +49,12 @@ export default defineNuxtConfig({
       fontsDir: 'fonts',
    },
 
+   icon: {
+      componentName: 'NuxtIcon'
+   },
+
    modules: [
+      '@nuxtjs/color-mode',
       '@nuxtjs/google-fonts',
       '@nuxt/icon',
       'nuxt-icon',
@@ -47,6 +64,13 @@ export default defineNuxtConfig({
       'radix-vue/nuxt',
       '@nuxt/ui',
    ],
+
+   postcss: {
+      plugins: {
+         tailwindcss: {},
+         autoprefixer: {},
+      },
+   },
 
    quasar: {
       plugins: ['Notify'],
@@ -63,6 +87,10 @@ export default defineNuxtConfig({
 
    // Disable SSR
    ssr: false,
+
+   tailwindcss: {
+      configPath: '@/tailwind.config.ts',
+   },
 
    ui: {
       global: true

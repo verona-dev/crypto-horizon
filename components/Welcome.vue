@@ -1,11 +1,10 @@
 <template>
     <div class='welcome'>
-        <h1>Crypto App</h1>
-        
         <div class='illustrations-container'>
             <NuxtLink to='/market'>
                 <q-img
                     :src='market'
+                    no-spinner
                     alt='logo'
                 />
                 <h2>Market</h2>
@@ -14,6 +13,7 @@
             <NuxtLink to='/defi'>
                 <q-img
                     :src='defi'
+                    no-spinner
                     alt='logo'
                 />
                 <h2>Defi</h2>
@@ -62,13 +62,13 @@ import defi from 'assets/illustrations/btc-tree.svg';
                 border: 2px solid transparent;
                 border-radius: 6px;
                 height: 100%;
-                transition: all 300ms ease-in-out;
+                transition: all 200ms ease-in-out;
                 width: 100%;
                 
                 &:hover {
                     border: 2px solid var(--color-aqua);
                     opacity: 0.85;
-                    transition: all 200ms ease-in-out;
+                    transition: all 100ms ease-in-out;
                     transform: scale(1.03);
                 }
             }

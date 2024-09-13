@@ -7,14 +7,8 @@ html, body, div, span, applet, object, iframe, blockquote, pre, a, abbr, acronym
     vertical-align: baseline;
 }
 
-/*
-#__nuxt {
-    width: 100%;
-}
-*/
-
 body {
-    background: var(--color-gray_dark);
+    background: var(--color-offwhite);
     font-family:
         Raleway,
         Roboto,
@@ -25,7 +19,16 @@ body {
         "Noto Sans",
         sans-serif
 ;
+}
+
+.dark body {
+    background: var(--color-gray_dark);
     color: var(--color-offwhite);
+}
+
+.sepia body {
+    background-color: #f1e7d0;
+    color: #433422;
 }
 
 a {
@@ -38,5 +41,5 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 85vh;
+    height: 90vh;
 }
