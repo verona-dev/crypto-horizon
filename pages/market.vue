@@ -1,7 +1,7 @@
 <template>
     <div class='market component'>
         <UCard class='card'>
-            <div class='flex px-3 py-3.5 border-b border-gray-200 dark:border-gray-700'>
+            <div class='flex py-6'>
                 <UInput v-model='filter' placeholder='Filter...' />
             </div>
             
@@ -51,7 +51,7 @@
                     :total='pageTotal'
                     :ui="{
                         wrapper: 'flex items-center gap-1',
-                        rounded: 'min-w-[32px] justify-center',
+                        rounded: '!rounded-full min-w-[32px] justify-center',
                      }"
                     :active-button='{ variant: "outline" }'
                     :inactive-button='{ color: "gray" }'
@@ -62,6 +62,7 @@
                     :last-button='{ icon: "i-material-symbols:last-page", trailing: true, label: "Last", color: "gray" }'
                     :prev-button='{ color: "gray" }'
                     :next-button='{ color: "gray" }'
+                    
                 />
             </div>
         </UCard>
@@ -183,15 +184,13 @@
 
 <style scoped lang='scss'>
     .market {
-        background-color: #fff;
         margin: 0 auto;
         
         .card {
+            
             .table {
                 
                 table {
-                    //height: 600px;
-                    
                     thead {
                         color: red !important;
                         th {
@@ -209,10 +208,7 @@
                 width: 100%;
                 
                 .results-info {
-                    color: var(--color-pink_french);
-                }
-                
-                .pagination {
+                    color: var(--color-aqua);
                 }
             }
         }

@@ -1,6 +1,6 @@
 export default defineAppConfig({
    ui: {
-      primary: 'pink-french',
+      primary: 'pinkFrench',
       gray: 'customGray',
 
       card: {
@@ -34,7 +34,7 @@ export default defineAppConfig({
          default: {
             size: 'sm',
             activeButton: {
-               color: 'primary',
+               color: 'aqua',
             },
             inactiveButton: {
                color: 'white',

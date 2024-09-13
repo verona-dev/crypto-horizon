@@ -11,6 +11,7 @@ export default {
     theme: {
         extend: {
             colors: {
+                aqua: '#02D0BD',
                 green: {
                     50: '#EFFDF5',
                     100: '#D9FBE8',
@@ -50,7 +51,7 @@ export default {
                     900: '#415466',
                     950: '#364655',
                 },
-                'blue-scooter': {
+                blueScooter: {
                     '50': '#edfcfe',
                     '100': '#d1f7fc',
                     '200': '#a9edf8',
@@ -63,7 +64,7 @@ export default {
                     '900': '#1a4a5f',
                     '950': '#0b3041',
                 },
-                'blue-picton': {
+                bluePicton: {
                     '50': '#f1f8fe',
                     '100': '#e3effb',
                     '200': '#c0e0f7',
@@ -76,7 +77,7 @@ export default {
                     '900': '#144266',
                     '950': '#0e2a43',
                 },
-                'pink-french': {
+                pinkFrench: {
                     '50': '#fef1f7',
                     '100': '#fee5f0',
                     '200': '#ffcbe3',
