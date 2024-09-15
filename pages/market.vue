@@ -49,10 +49,10 @@
                     v-model='page'
                     :page-count='pageCount'
                     :total='pageTotal'
-                    :ui="{
-                        wrapper: 'flex items-center gap-1',
-                        rounded: '!rounded-full min-w-[32px] justify-center',
-                     }"
+                    :ui='{
+                        wrapper: "flex items-center gap-1",
+                        rounded: "!rounded-full min-w-[32px] justify-center",
+                     }'
                     :active-button='{ variant: "outline" }'
                     :inactive-button='{ color: "gray" }'
                     class='pagination'

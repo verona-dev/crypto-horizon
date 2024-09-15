@@ -1,41 +1,62 @@
 <template>
     <section class='theme-selector'>
-        <select v-model='$colorMode.preference'>
-            <option value='light'>Light</option>
-            <option value='dark'>Dark</option>
-        </select>
+        <UPopover
+            :open='show'
+            :popper='{ arrow: true }'
+        >
+            <UButton
+                leading-icon='i-solar:palette-round-bold-duotone'
+                size='xl'
+                variant='ghost'
+            />
+            
+            <template #panel>
+                <UTabs
+                    :items='themes'
+                    @change='onChange'
+                />
+            </template>
+        </UPopover>
     </section>
 </template>
 
 <script setup>
     import { ref } from 'vue';
-    const colorMode = useColorMode()
+    const colorMode = useColorMode();
+    const toast = useToast();
     
-    const enabled = ref(false);
+    const show = ref(false);
+    const themes = [
+        {
+            label: 'System',
+            icon: 'i-material-symbols-light:add-to-home-screen-rounded',
+            value: 'system',
+        },
+        {
+            label: 'Light',
+            icon: 'i-material-symbols:light-mode-rounded',
+            value: 'light',
+        },
+        {
+            label: 'Dark',
+            icon: 'i-material-symbols:nights-stay',
+            value: 'dark',
+        },
+    ];
     
-    watch(enabled, () => {
-        if (enabled.value) {
-            colorMode.preference = 'dark';
-        } else {
-            colorMode.preference = 'light';
-        }
-        checkTheme();
-    });
-    
-    const checkTheme = () => {
-        if (colorMode.preference === 'dark') {
-            enabled.value = true;
-        } else {
-            enabled.value = false;
-        }
+    const onChange = index => {
+        colorMode.preference = themes[index].value;
+        
+        toast.add({
+            title: `${colorMode.preference.charAt(0).toUpperCase() + colorMode.preference.slice(1)} theme active.`,
+            icon: 'i-fxemoji:artistpalette',
+            timeout: 3000,
+        });
     };
-    
-    onMounted(() => {
-        console.log(colorMode.preference);
-    });
 </script>
 
 <style scoped lang='scss'>
     .theme-selector {
+        width: min-content;
     }
 </style>

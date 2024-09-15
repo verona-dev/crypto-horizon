@@ -7,11 +7,6 @@
         <nav>
             <ul>
                 <li>
-                    <div class='ml-10'>
-                        <ThemeSelector />
-                    </div>
-                </li>
-                <li>
                     <NuxtLink to='/market'>Market</NuxtLink></li>
                 <li>
                     <NuxtLink to='/defi'>Defi</NuxtLink>
@@ -38,7 +33,7 @@
         }
         
         nav {
-            width: 500px;
+            width: 200px;
             
             ul {
                 height: 100%;
