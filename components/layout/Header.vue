@@ -8,13 +8,7 @@
             <ul>
                 <li>
                     <div class='ml-10'>
-                        <span class='mr-5'>Color mode</span>
-                        <select v-model='$colorMode.preference'>
-                            <option value='system'>System</option>
-                            <option value='light'>Light</option>
-                            <option value='dark'>Dark</option>
-                            <option value='sepia'>Sepia</option>
-                        </select>
+                        <ThemeSelector />
                     </div>
                 </li>
                 <li>
@@ -56,3 +50,6 @@
         }
     }
 </style>
+<script setup>
+    import ThemeSelector from '~/components/ThemeSelector.vue';
+</script>
