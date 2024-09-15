@@ -1,6 +1,6 @@
 <template>
     <div class='welcome'>
-        <div class='illustrations-container'>
+        <section class='illustrations-container'>
             <NuxtLink to='/market'>
                 <q-img
                     :src='market'
@@ -18,7 +18,7 @@
                 />
                 <h2>Defi</h2>
             </NuxtLink>
-        </div>
+        </section>
     </div>
 </template>
 
