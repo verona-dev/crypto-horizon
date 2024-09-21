@@ -2,5 +2,6 @@ import { useApiFetch } from '~/composables/apiFetch';
 const { API_COINCAP_URL } = useRuntimeConfig().public;
 
 export function useCoincapApiFetch(route) {
+    // TODO: remove redirect
     return useApiFetch(API_COINCAP_URL, route, { redirect: 'follow' });
 }

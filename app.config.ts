@@ -85,9 +85,9 @@ export default defineAppConfig({
       },
 
       table :{
-         // wrapper: 'relative overflow-x-auto',
-         // base: 'min-w-full table-fixed',
-         // divide: 'divide-y divide-gray-300 dark:divide-gray-700',
+         wrapper: 'relative overflow-x-auto',
+         base: 'min-w-full table-fixed',
+         divide: 'divide-y divide-gray-300 dark:divide-gray-700',
          thead: 'relative',
          tbody: 'divide-y divide-gray-200 dark:divide-gray-800',
          caption: 'sr-only',

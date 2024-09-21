@@ -184,17 +184,22 @@
 
 <style scoped lang='scss'>
     .market {
-        margin: 0 auto;
         
         .card {
+            width: 1500px !important;
             
             .table {
+                width: 100% !important;
                 
                 table {
+                    
                     thead {
                         color: red !important;
+                        width: 100% !important;
+                        
                         th {
                             color: red !important;
+                            width: 100% !important;
                         }
                     }
                 }
