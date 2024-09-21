@@ -54,15 +54,16 @@ export default defineNuxtConfig({
    },
 
    modules: [
-      '@nuxtjs/color-mode',
-      '@nuxtjs/google-fonts',
-      '@nuxt/icon',
-      'nuxt-icon',
-      '@nuxt/image',
-      '@pinia/nuxt',
-      'nuxt-quasar-ui',
-      'radix-vue/nuxt',
-      '@nuxt/ui',
+     '@nuxtjs/color-mode',
+     '@nuxtjs/google-fonts',
+     '@nuxt/icon',
+     'nuxt-icon',
+     '@nuxt/image',
+     '@pinia/nuxt',
+     'nuxt-quasar-ui',
+     'radix-vue/nuxt',
+     '@nuxt/ui',
+     'shadcn-nuxt',
    ],
 
    postcss: {

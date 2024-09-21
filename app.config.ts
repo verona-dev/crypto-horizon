@@ -1,7 +1,7 @@
 export default defineAppConfig({
    ui: {
-      primary: 'pinkFrench',
-      gray: 'customGray',
+      primary: 'green',
+      gray: 'cool',
       green: 'customGreen',
       aqua: 'aqua',
 
@@ -84,6 +84,7 @@ export default defineAppConfig({
          },
       },
 
+      /*
       table :{
          wrapper: 'relative overflow-x-auto',
          base: 'min-w-full table-fixed',
@@ -164,6 +165,7 @@ export default defineAppConfig({
             },
          },
       },
+      */
 
       tabs: {
          wrapper: 'relative space-y-0',

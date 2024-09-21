@@ -185,10 +185,10 @@
     .market {
         
         .card {
-            width: 1500px !important;
+            //width: 1500px !important;
             
             .table {
-                width: 100% !important;
+                //width: 100% !important;
                 
                 table {
                     
