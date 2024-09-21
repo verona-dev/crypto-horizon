@@ -159,7 +159,6 @@
     //     },
     // ];
     
-    
     // Methods
     const { fetchCoins } = CoinsStore;
     const fetchTokens = async () => {
