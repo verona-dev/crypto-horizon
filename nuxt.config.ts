@@ -62,7 +62,6 @@ export default defineNuxtConfig({
      '@pinia/nuxt',
      'nuxt-quasar-ui',
      'radix-vue/nuxt',
-     '@nuxt/ui',
      'shadcn-nuxt',
    ],
 
@@ -91,10 +90,6 @@ export default defineNuxtConfig({
 
    tailwindcss: {
       configPath: '@/tailwind.config.ts',
-   },
-
-   ui: {
-      global: true
    },
 
    vite: {

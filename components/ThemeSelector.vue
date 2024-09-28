@@ -1,6 +1,6 @@
 <template>
     <section class='theme-selector'>
-        <UPopover
+<!--        <UPopover
             :open='show'
             :popper='{ arrow: true }'
         >
@@ -16,7 +16,7 @@
                     @change='onChange'
                 />
             </template>
-        </UPopover>
+        </UPopover>-->
     </section>
 </template>
 

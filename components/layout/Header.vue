@@ -45,6 +45,3 @@
         }
     }
 </style>
-<script setup>
-    import ThemeSelector from '~/components/ThemeSelector.vue';
-</script>
