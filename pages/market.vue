@@ -1,6 +1,8 @@
 <template>
     <div class='market component'>
         <h2>Market</h2>
+        <Button label="Check" icon="pi pi-check" />
+    
     </div>
 
 </template>

@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config'
+import Aura from '@primevue/themes/aura';
 
 export default defineNuxtConfig({
    devtools: { enabled: true },
@@ -54,13 +55,14 @@ export default defineNuxtConfig({
    },
 
    modules: [
-     '@nuxtjs/color-mode',
-     '@nuxtjs/google-fonts',
-     '@nuxt/icon',
-     'nuxt-icon',
-     '@nuxt/image',
-     '@pinia/nuxt',
-     'radix-vue/nuxt',
+      '@nuxtjs/color-mode',
+      '@nuxtjs/google-fonts',
+      '@nuxt/icon',
+      'nuxt-icon',
+      '@nuxt/image',
+      '@pinia/nuxt',
+      'radix-vue/nuxt',
+      '@primevue/nuxt-module',
    ],
 
    postcss: {
@@ -68,6 +70,17 @@ export default defineNuxtConfig({
          tailwindcss: {},
          autoprefixer: {},
       },
+   },
+
+   primevue: {
+      usePrimeVue: true,
+      options: {
+         ripple: true,
+         inputVariant: 'filled',
+         theme: {
+            preset: Aura
+         }
+      }
    },
 
    runtimeConfig: {
