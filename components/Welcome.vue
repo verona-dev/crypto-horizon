@@ -2,18 +2,16 @@
     <div class='welcome'>
         <section class='illustrations-container'>
             <NuxtLink to='/market'>
-                <q-img
+                <img
                     :src='market'
-                    no-spinner
                     alt='logo'
                 />
                 <h2>Market</h2>
             </NuxtLink>
             
             <NuxtLink to='/defi'>
-                <q-img
+                <img
                     :src='defi'
-                    no-spinner
                     alt='logo'
                 />
                 <h2>Defi</h2>

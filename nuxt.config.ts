@@ -60,7 +60,6 @@ export default defineNuxtConfig({
      'nuxt-icon',
      '@nuxt/image',
      '@pinia/nuxt',
-     'nuxt-quasar-ui',
      'radix-vue/nuxt',
    ],
 
@@ -69,13 +68,6 @@ export default defineNuxtConfig({
          tailwindcss: {},
          autoprefixer: {},
       },
-   },
-
-   quasar: {
-      plugins: ['Notify'],
-      extras: {
-         fontIcons: ['material-icons']
-      }
    },
 
    runtimeConfig: {
