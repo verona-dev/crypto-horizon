@@ -19,6 +19,7 @@ export default defineNuxtConfig({
       '@/assets/scss/main.scss',
       '@/assets/css/main.css',
       '@mdi/font/css/materialdesignicons.min.css',
+      'primeicons/primeicons.css',
    ],
 
    colorMode: {
@@ -78,7 +79,7 @@ export default defineNuxtConfig({
          ripple: true,
          inputVariant: 'filled',
          theme: {
-            preset: Aura
+            preset: Aura,
          }
       }
    },

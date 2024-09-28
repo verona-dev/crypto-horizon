@@ -2,7 +2,10 @@
     <div class='market component'>
         <h2>Market</h2>
         <Button label="Check" icon="pi pi-check" />
-    
+        <IconField>
+            <InputIcon class="pi pi-search" />
+            <InputText v-model="value1" placeholder="Search" />
+        </IconField>
     </div>
 
 </template>
