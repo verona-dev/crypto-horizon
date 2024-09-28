@@ -1,71 +1,6 @@
 <template>
     <div class='market component'>
-        <UCard class='card'>
-            <div class='flex py-6'>
-                <UInput v-model='filter' placeholder='Filter...' />
-            </div>
-            
-            <UTable
-                :rows='filteredRows'
-                :columns='columns'
-                :filter='filter'
-                :sort='sort'
-                :loading='loading'
-                class='table'
-            >
-                <template #loading-state>
-                    <div class="flex items-center justify-center h-32">
-                        <i class="loader --6" />
-                    </div>
-                </template>
-                
-                <template #row='props'>
-                    <tr>
-                        <td>{{ props.row.rank }}</td>
-                        <td>{{ props.row.name }}</td>
-                        <td>
-                            <Icon :name='getIcon(props.row.symbol)' />
-                            {{ props.row.symbol }}
-                        </td>
-                        <td>{{ props.row.priceUsd }}</td>
-                        <td>{{ props.row.changePercent24Hr }}</td>
-                        <td>{{ props.row.marketCapUsd }}</td>
-                        <td>{{ props.row.volumeUsd24Hr }}</td>
-                    </tr>
-                </template>
-            </UTable>
-            
-            <div
-                v-if='coins.length'
-                 class='table-footer'
-            >
-                <div class='results-info'>
-                    <span class="text-sm leading-5">
-                        Showing {{ pageFrom }} to {{ pageTo }} of {{ pageTotal }}
-                    </span>
-                </div>
-                
-                <UPagination
-                    v-model='page'
-                    :page-count='pageCount'
-                    :total='pageTotal'
-                    :ui='{
-                        wrapper: "flex items-center gap-1",
-                        rounded: "!rounded-full min-w-[32px] justify-center",
-                     }'
-                    :active-button='{ variant: "outline" }'
-                    :inactive-button='{ color: "gray" }'
-                    class='pagination'
-                    show-first
-                    show-last
-                    :first-button='{ icon: "i-material-symbols:first-page", label: "First", color: "gray" }'
-                    :last-button='{ icon: "i-material-symbols:last-page", trailing: true, label: "Last", color: "gray" }'
-                    :prev-button='{ color: "gray" }'
-                    :next-button='{ color: "gray" }'
-                    
-                />
-            </div>
-        </UCard>
+        <h2>Market</h2>
     </div>
 
 </template>
@@ -79,15 +14,6 @@
     
     // State
     const { loading, coins } = storeToRefs(CoinsStore);
-    const page = ref(1);
-    const pageCount = ref(10);
-    const pageTotal = computed(() => coins.value?.length);
-    const pageFrom = computed(() => (page.value - 1) * pageCount.value + 1);
-    const pageTo = computed(() => Math.min(page.value * pageCount.value, pageTotal.value))
-    
-    const rows = computed(() => {
-        return coins.value?.slice((page.value - 1) * pageCount.value, (page.value) * pageCount.value)
-    });
     
     const tokenIcon = computed(() => `cryptocurrency-color:${coins?.value[0]?.symbol.toLowerCase()}`);
     
@@ -122,21 +48,6 @@
             label: 'Volume (24Hr)',
         },
     ]
-    
-    // Filter
-    const filter = ref('');
-    const filteredRows = computed(() => {
-        return rows.value.filter(row => {
-            return row.name.toLowerCase().includes(filter.value.toLowerCase()) ||
-                row.symbol?.toLowerCase().includes(filter.value.toLowerCase());
-        })
-    });
-    
-    // Sort
-    const sort = ref({
-        column: '' as const,
-        direction: 'desc' as const
-    })
     
     // const rows = [
     //     {
