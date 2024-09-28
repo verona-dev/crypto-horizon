@@ -62,7 +62,6 @@ export default defineNuxtConfig({
      '@pinia/nuxt',
      'nuxt-quasar-ui',
      'radix-vue/nuxt',
-     'shadcn-nuxt',
    ],
 
    postcss: {
