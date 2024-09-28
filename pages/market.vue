@@ -1,7 +1,7 @@
 <template>
     <div class='market component'>
         <h2>Market</h2>
-        <Button label="Check" icon="pi pi-check" />
+
         <IconField>
             <InputIcon class="pi pi-search" />
             <InputText v-model="value1" placeholder="Search" />
@@ -16,6 +16,7 @@
     import { storeToRefs } from 'pinia';
     import { useCoinsStore } from '~/stores/CoinsStore';
     const CoinsStore = useCoinsStore();
+    
     
     // State
     const { loading, coins } = storeToRefs(CoinsStore);

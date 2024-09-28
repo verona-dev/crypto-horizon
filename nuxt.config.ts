@@ -52,14 +52,14 @@ export default defineNuxtConfig({
    },
 
    icon: {
-      componentName: 'NuxtIcon'
+      // componentName: 'NuxtIcon'
    },
 
    modules: [
       '@nuxtjs/color-mode',
       '@nuxtjs/google-fonts',
       '@nuxt/icon',
-      'nuxt-icon',
+      // 'nuxt-icon',
       '@nuxt/image',
       '@pinia/nuxt',
       'radix-vue/nuxt',
@@ -74,9 +74,10 @@ export default defineNuxtConfig({
    },
 
    primevue: {
+      autoImport: true,
       usePrimeVue: true,
       options: {
-         ripple: true,
+         ripple: false,
          inputVariant: 'filled',
          theme: {
             preset: Aura,

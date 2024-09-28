@@ -6,8 +6,6 @@
     </NuxtLayout>
     
     <ThemeSelector />
-    
-    <UNotifications />
 </template>
 
 <script setup>
@@ -22,6 +20,6 @@ import ThemeSelector from '~/components/ThemeSelector.vue';
        position: absolute;
        right: 0;
        text-align: center;
-       top: 25px;
+       top: 15px;
    }
 </style>
