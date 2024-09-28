@@ -23,7 +23,6 @@
 <script setup>
     import { ref } from 'vue';
     const colorMode = useColorMode();
-    const toast = useToast();
     
     const show = ref(false);
     const themes = [
