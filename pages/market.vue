@@ -27,7 +27,6 @@
         {
             key: 'rank',
             label: 'Rank',
-            class: 'bg-red-500/50 dark:bg-red-400/50 animate-pulse'
         },
         {
             key: 'name',

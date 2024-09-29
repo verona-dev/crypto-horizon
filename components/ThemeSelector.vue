@@ -3,7 +3,6 @@
         <Button
             @click='togglePopover'
             aria-label='Theme'
-            severity='success'
             outlined
             raised
         >
@@ -31,7 +30,6 @@
                             @click='onChange(theme.value)'
                             class='w-24	flex flex-col items-center justify-center gap-2'
                         >
-<!--                            <InputIcon :class="theme.icon" />-->
                             <i :class="theme.icon_pi"></i>
                             <div>{{ theme.label }}</div>
                         </Tab>
@@ -45,7 +43,6 @@
 <script setup>
     import { ref } from 'vue';
     const colorMode = useColorMode();
-    console.log(colorMode.preference);
     
     const popover = ref();
     
@@ -83,11 +80,11 @@
             return 'pi pi-moon';
         }
     });
-    const getIconStyle = () => {
+    const getSeverity = computed(() => {
         if(colorMode.preference === 'dark') {
             return 'secondary';
         }
-    };
+    });
 </script>
 
 <style scoped lang='scss'>
