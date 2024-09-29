@@ -1,36 +1,26 @@
 <template>
     <section class='theme-selector'>
-<!--        <UPopover
-            :open='show'
-            :popper='{ arrow: true }'
-        >
-            <UButton
-                leading-icon='i-solar:palette-round-bold-duotone'
-                size='xl'
-                variant='ghost'
-            />
-            
-            <template #panel>
-                <UTabs
-                    :items='themes'
-                    @change='onChange'
-                />
-            </template>
-        </UPopover>-->
-        
         <Button
-            ref='show'
-            type='button'
-            @click='toggle'
+            @click='togglePopover'
+            aria-label='Theme'
+            severity='success'
+            outlined
+            raised
         >
             <template #icon>
-                <Icon name='i-solar:palette-round-bold-duotone' />
+                <InputIcon :class="getIcon" />
+<!--                <Icon name='i-solar:palette-round-bold-duotone' />-->
+<!--                <InputIcon class="pi pi-search" />-->
+<!--                <i class="uil-github"></i>-->
             </template>
         </Button>
         
-        <Popover ref='show'>
-            <div class='flex flex-col gap-4'>
-                <h3>Popover Content</h3>
+        <Popover
+            class='w-80'
+            ref='popover'
+        >
+            <div class='flex flex-col items-center justify-center gap-4 py-4'>
+                <h3>Theme</h3>
                 
                 <Tabs :value="colorMode.preference">
                     <TabList>
@@ -39,20 +29,13 @@
                             :key="theme.value"
                             :value="theme.value"
                             @click='onChange(theme.value)'
+                            class='w-24	flex flex-col items-center justify-center gap-2'
                         >
-                            {{ theme.label }}
+<!--                            <InputIcon :class="theme.icon" />-->
+                            <i :class="theme.icon_pi"></i>
+                            <div>{{ theme.label }}</div>
                         </Tab>
                     </TabList>
-                    
-                    <TabPanels>
-                        <TabPanel
-                            v-for="theme in themes"
-                            :key="theme.content"
-                            :value="theme.value"
-                        >
-                            <p class="m-0">{{ theme.icon }}</p>
-                        </TabPanel>
-                    </TabPanels>
                 </Tabs>
             </div>
         </Popover>
@@ -64,28 +47,47 @@
     const colorMode = useColorMode();
     console.log(colorMode.preference);
     
-    const show = ref();
-    const toggle = event => show.value.toggle(event);
+    const popover = ref();
     
     const themes = [
         {
             label: 'System',
             icon: 'i-material-symbols-light:add-to-home-screen-rounded',
+            icon_pi: 'pi pi-desktop',
             value: 'system',
         },
         {
             label: 'Light',
             icon: 'i-material-symbols:light-mode-rounded',
+            icon_pi: 'pi pi-sun',
             value: 'light',
         },
         {
             label: 'Dark',
             icon: 'i-material-symbols:nights-stay',
+            icon_pi: 'pi pi-moon',
             value: 'dark',
         },
     ];
     
     const onChange = theme => colorMode.preference = theme;
+    const togglePopover = event => popover.value.toggle(event);
+    const getIcon = computed(() => {
+        if(colorMode.preference === 'system') {
+            return 'pi pi-desktop';
+        }
+        if(colorMode.preference === 'light') {
+            return 'pi pi-sun';
+        }
+        if(colorMode.preference === 'dark') {
+            return 'pi pi-moon';
+        }
+    });
+    const getIconStyle = () => {
+        if(colorMode.preference === 'dark') {
+            return 'secondary';
+        }
+    };
 </script>
 
 <style scoped lang='scss'>
