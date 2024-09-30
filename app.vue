@@ -6,6 +6,8 @@
     </NuxtLayout>
     
     <ThemeSelector />
+    
+    <UNotifications />
 </template>
 
 <script setup>

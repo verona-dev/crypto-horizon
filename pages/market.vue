@@ -19,19 +19,29 @@
                     </div>
                 </template>
                 
+<!--
                 <template #row='props'>
                     <tr>
                         <td>{{ props.row.rank }}</td>
                         <td>{{ props.row.name }}</td>
-                        <td>
-                            <Icon :name='getIcon(props.row.symbol)' />
-                            {{ props.row.symbol }}
-                        </td>
+                        <td>{{ props.row.symbol }}</td>
                         <td>{{ props.row.priceUsd }}</td>
                         <td>{{ props.row.changePercent24Hr }}</td>
                         <td>{{ props.row.marketCapUsd }}</td>
                         <td>{{ props.row.volumeUsd24Hr }}</td>
                     </tr>
+                </template>
+                -->
+                
+                <template #name-data="{ row }">
+                    <span class='row-name'>
+                        <Icon
+                            :name='getIcon(row.symbol)'
+                            size='25'
+                        />
+                        <p>{{ row.name }}</p>
+                    </span>
+                    
                 </template>
             </UTable>
             
@@ -62,7 +72,6 @@
                     :last-button='{ icon: "i-material-symbols:last-page", trailing: true, label: "Last", color: "gray" }'
                     :prev-button='{ color: "gray" }'
                     :next-button='{ color: "gray" }'
-                
                 />
             </div>
         </UCard>
@@ -71,10 +80,11 @@
 </template>
 
 <script setup lang='ts'>
-    import { ref } from 'vue';
+    import {ref} from 'vue';
     // CoinsStore
-    import { storeToRefs } from 'pinia';
-    import { useCoinsStore } from '~/stores/CoinsStore';
+    import {storeToRefs} from 'pinia';
+    import {useCoinsStore} from '~/stores/CoinsStore';
+    
     const CoinsStore = useCoinsStore();
     
     // State
@@ -89,12 +99,10 @@
         return coins.value?.slice((page.value - 1) * pageCount.value, (page.value) * pageCount.value)
     });
     
-    const tokenIcon = computed(() => `cryptocurrency-color:${coins?.value[0]?.symbol.toLowerCase()}`);
-    
     const columns = [
         {
             key: 'rank',
-            label: 'Rank',
+            label: '#',
             class: 'bg-red-500/50 dark:bg-red-400/50 animate-pulse'
         },
         {
@@ -160,6 +168,7 @@
     // ];
     
     // Methods
+    const getIcon = symbol => `cryptocurrency-color:${symbol.toLowerCase()}`;
     const { fetchCoins } = CoinsStore;
     const fetchTokens = async () => {
         const data = await fetchCoins();
@@ -168,12 +177,6 @@
             console.log('data');
             console.log('fetched');
         }
-    };
-    
-    const getIcon = symbol => {
-        const icon = `cryptocurrency-color:${symbol.toLowerCase()}`;
-        console.log(icon);
-        return icon;
     };
     
     onMounted(async() => {
@@ -189,6 +192,12 @@
             
             .table {
                 //width: 100% !important;
+                
+                .row-name {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
                 
                 table {
                     
