@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config'
-import Aura from '@primevue/themes/aura';
 
 export default defineNuxtConfig({
    devtools: { enabled: true },
@@ -19,7 +18,6 @@ export default defineNuxtConfig({
       '@/assets/scss/main.scss',
       '@/assets/css/main.css',
       '@mdi/font/css/materialdesignicons.min.css',
-      'primeicons/primeicons.css',
    ],
 
    colorMode: {
@@ -76,7 +74,6 @@ export default defineNuxtConfig({
       '@nuxt/image',
       '@pinia/nuxt',
       'radix-vue/nuxt',
-      '@primevue/nuxt-module',
    ],
 
    postcss: {
@@ -84,18 +81,6 @@ export default defineNuxtConfig({
          tailwindcss: {},
          autoprefixer: {},
       },
-   },
-
-   primevue: {
-      autoImport: true,
-      usePrimeVue: true,
-      options: {
-         ripple: false,
-         inputVariant: 'filled',
-         theme: {
-            preset: Aura,
-         }
-      }
    },
 
    runtimeConfig: {

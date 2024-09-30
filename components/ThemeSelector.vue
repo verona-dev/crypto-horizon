@@ -1,6 +1,6 @@
 <template>
     <section class='theme-selector'>
-        <Button
+<!--        <Button
             @click='togglePopover'
             aria-label='Theme'
             outlined
@@ -8,9 +8,9 @@
         >
             <template #icon>
                 <InputIcon :class="getIcon" />
-<!--                <Icon name='i-solar:palette-round-bold-duotone' />-->
-<!--                <InputIcon class="pi pi-search" />-->
-<!--                <i class="uil-github"></i>-->
+&lt;!&ndash;                <Icon name='i-solar:palette-round-bold-duotone' />&ndash;&gt;
+&lt;!&ndash;                <InputIcon class="pi pi-search" />&ndash;&gt;
+&lt;!&ndash;                <i class="uil-github"></i>&ndash;&gt;
             </template>
         </Button>
         
@@ -36,7 +36,7 @@
                     </TabList>
                 </Tabs>
             </div>
-        </Popover>
+        </Popover>-->
     </section>
 </template>
 

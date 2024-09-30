@@ -16,7 +16,6 @@
         "@nuxtjs/color-mode": "3.4.4",
         "@nuxtjs/google-fonts": "3.0.0-1",
         "@nuxtjs/tailwindcss": "6.12.1",
-        "@primevue/nuxt-module": "4.0.7",
         "autoprefixer": "10.4.20",
         "eslint": "8.56.0",
         "nuxt": "3.13.0",
@@ -31,10 +30,8 @@
         "@formkit/auto-animate": "0.8.1",
         "@mdi/font": "7.4.47",
         "@pinia/nuxt": "0.5.1",
-        "@primevue/themes": "4.0.7",
         "less": "4.2.0",
         "pinia": "2.1.7",
-        "primeicons": "7.0.0",
         "radix-vue": "1.9.5",
         "sass-loader": "16.0.1"
     }

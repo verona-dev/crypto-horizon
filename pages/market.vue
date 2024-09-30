@@ -1,17 +1,12 @@
 <template>
     <div class='market component'>
         <h2>Market</h2>
-
-        <IconField>
-            <InputIcon class="pi pi-search" />
-            <InputText v-model="value1" placeholder="Search" />
-        </IconField>
     </div>
 
 </template>
 
 <script setup lang='ts'>
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
     // CoinsStore
     import { storeToRefs } from 'pinia';
     import { useCoinsStore } from '~/stores/CoinsStore';
