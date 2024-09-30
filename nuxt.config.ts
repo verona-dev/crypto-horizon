@@ -2,7 +2,7 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
-   devtools: { enabled: true },
+   devtools: { enabled: false },
 
    app: {
       layout: 'default',
@@ -67,10 +67,8 @@ export default defineNuxtConfig({
    },
 
    modules: [
-      '@nuxtjs/color-mode',
       '@nuxtjs/google-fonts',
-      '@nuxt/icon',
-      // 'nuxt-icon',
+      '@nuxt/ui',
       '@nuxt/image',
       '@pinia/nuxt',
       'radix-vue/nuxt',

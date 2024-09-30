@@ -49,6 +49,7 @@ export default defineAppConfig({
          position: 'bottom-0 right-0'
       },
 
+/*
       pagination: {
          wrapper: 'flex items-center -space-x-px',
          base: '',
@@ -83,6 +84,7 @@ export default defineAppConfig({
             },
          },
       },
+      */
 
       /*
       table :{
@@ -167,6 +169,7 @@ export default defineAppConfig({
       },
       */
 
+/*
       tabs: {
          wrapper: 'relative space-y-0',
          container: 'relative w-full',
@@ -201,6 +204,7 @@ export default defineAppConfig({
             },
          },
       }
+*/
 
    }
 })
