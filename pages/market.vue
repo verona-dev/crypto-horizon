@@ -1,9 +1,14 @@
 <template>
-    <div class='market component'>
-        <UCard class='card'>
-            <div class='flex py-6'>
+    <div class='market'>
+        <h1 class="text-3xl font-bold underline !text-green-500">
+            Hello Market!
+        </h1>
+        <UCard
+            class='card'
+        >
+<!--            <div class='flex py-6'>
                 <UInput v-model='filter' placeholder='Filter...' />
-            </div>
+            </div>-->
             
             <UTable
                 :rows='filteredRows'
@@ -13,14 +18,7 @@
                 :loading='loading'
                 class='table'
             >
-                <template #loading-state>
-                    <div class="flex items-center justify-center h-32">
-                        <i class="loader --6" />
-                    </div>
-                </template>
-                
-<!--
-                <template #row='props'>
+<!--                <template #row='props'>
                     <tr>
                         <td>{{ props.row.rank }}</td>
                         <td>{{ props.row.name }}</td>
@@ -31,17 +29,40 @@
                         <td>{{ props.row.volumeUsd24Hr }}</td>
                     </tr>
                 </template>
-                -->
+-->
+                <template #loading-state>
+                    <div class='flex items-center justify-center h-32'>
+                        <i class='loader --6' />
+                    </div>
+                </template>
+
                 
-                <template #name-data="{ row }">
-                    <span class='row-name'>
+                <template #name-data='{ row }'>
+                    <span class='row-name w-[300px]'>
                         <Icon
                             :name='getIcon(row.symbol)'
                             size='25'
                         />
                         <p>{{ row.name }}</p>
                     </span>
-                    
+                </template>
+                
+                <template #priceUsd-data='{ row }'>
+                    <span>${{ parseFloat(row.priceUsd).toFixed(2) }}</span>
+                </template>
+                
+                <template #changePercent24Hr-data='{ row }'>
+                    <span class='text-red-500' :class='getChangeClass(row.changePercent24Hr)'>
+                        {{ parseFloat(row.changePercent24Hr).toFixed(2) }}%
+                    </span>
+                </template>
+                
+                <template #marketCapUsd-data='{ row }'>
+                    <span>{{ parseFloat(row.marketCapUsd).toFixed(0) }}</span>
+                </template>
+                
+                <template #volumeUsd24Hr-data='{ row }'>
+                    <span>{{ Math.trunc(row.volumeUsd24Hr) }}</span>
                 </template>
             </UTable>
             
@@ -119,7 +140,7 @@
         },
         {
             key: 'changePercent24Hr',
-            label: 'Change % (24Hr)',
+            label: '24h %',
         },
         {
             key: 'marketCapUsd',
@@ -169,13 +190,26 @@
     
     // Methods
     const getIcon = symbol => `cryptocurrency-color:${symbol.toLowerCase()}`;
+    const getChangeClass = change => {
+        if(Math.sign(change) === -1) {
+            return '!text-red-500';
+        }
+        
+        else if(Math.sign(change) === 0){
+            return '!text-gray-500';
+        }
+        
+        else {
+            return '!text-green-500';
+        }
+    };
+    
     const { fetchCoins } = CoinsStore;
+    
     const fetchTokens = async () => {
         const data = await fetchCoins();
         if(data) {
             coins.value = data;
-            console.log('data');
-            console.log('fetched');
         }
     };
     
@@ -186,12 +220,20 @@
 
 <style scoped lang='scss'>
     .market {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        height: 85vh;
         
         .card {
-            //width: 1500px !important;
+            //width: 1200px !important;
             
             .table {
                 //width: 100% !important;
+                //height: 600px !important;
+                width: 1200px !important;
                 
                 .row-name {
                     display: flex;
@@ -210,6 +252,14 @@
                             width: 100% !important;
                         }
                     }
+                }
+                
+                .positive {
+                    color: green;
+                }
+                
+                .negative {
+                    color: red;
                 }
             }
             

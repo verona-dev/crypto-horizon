@@ -15,8 +15,8 @@ export default defineNuxtConfig({
    },
 
    css: [
-      '@/assets/scss/main.scss',
       '@/assets/css/main.css',
+      '@/assets/scss/main.scss',
       '@mdi/font/css/materialdesignicons.min.css',
    ],
 
@@ -91,7 +91,7 @@ export default defineNuxtConfig({
    ssr: false,
 
    tailwindcss: {
-      configPath: '@/tailwind.config.ts',
+      configPath: '@/tailwind.config.js',
    },
 
    vite: {
