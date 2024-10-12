@@ -1,14 +1,14 @@
 <template>
-    <div class='market'>
+    <div class='market page'>
         <h1 class="text-3xl font-bold underline !text-green-500">
             Hello Market!
         </h1>
         <UCard
             class='card'
         >
-<!--            <div class='flex py-6'>
-                <UInput v-model='filter' placeholder='Filter...' />
-            </div>-->
+            <!--            <div class='flex py-6'>
+                            <UInput v-model='filter' placeholder='Filter...' />
+                        </div>-->
             
             <UTable
                 :rows='filteredRows'
@@ -17,34 +17,39 @@
                 :sort='sort'
                 :loading='loading'
                 class='table'
+                :ui='{
+                    base: "h-full",
+                    // tbody: "w-full h-full",
+                }'
             >
-<!--                <template #row='props'>
-                    <tr>
-                        <td>{{ props.row.rank }}</td>
-                        <td>{{ props.row.name }}</td>
-                        <td>{{ props.row.symbol }}</td>
-                        <td>{{ props.row.priceUsd }}</td>
-                        <td>{{ props.row.changePercent24Hr }}</td>
-                        <td>{{ props.row.marketCapUsd }}</td>
-                        <td>{{ props.row.volumeUsd24Hr }}</td>
-                    </tr>
+                <!--
+                <template #row='props'>
+                <tr>
+                <td>{{ props.row.rank }}</td>
+                <td>{{ props.row.name }}</td>
+                <td>{{ props.row.symbol }}</td>
+                <td>{{ props.row.priceUsd }}</td>
+                <td>{{ props.row.changePercent24Hr }}</td>
+                <td>{{ props.row.marketCapUsd }}</td>
+                <td>{{ props.row.volumeUsd24Hr }}</td>
+                </tr>
                 </template>
--->
+                -->
                 <template #loading-state>
                     <div class='flex items-center justify-center h-32'>
                         <i class='loader --6' />
                     </div>
                 </template>
-
                 
                 <template #name-data='{ row }'>
-                    <span class='row-name w-[300px]'>
+                    <p class='row-name w-[300px]'>
                         <Icon
                             :name='getIcon(row.symbol)'
                             size='25'
                         />
-                        <p>{{ row.name }}</p>
-                    </span>
+                        <span>{{ row.name }}</span>
+                        <span class='text-gray-500 dark:text-gray-400 text-sm'>{{ row.symbol }}</span>
+                    </p>
                 </template>
                 
                 <template #priceUsd-data='{ row }'>
@@ -66,35 +71,37 @@
                 </template>
             </UTable>
             
-            <div
-                v-if='coins.length'
-                class='table-footer'
-            >
-                <div class='results-info'>
-                    <span class="text-sm leading-5">
-                        Showing {{ pageFrom }} to {{ pageTo }} of {{ pageTotal }}
-                    </span>
-                </div>
-                
-                <UPagination
-                    v-model='page'
-                    :page-count='pageCount'
-                    :total='pageTotal'
-                    :ui='{
+            <template #footer>
+                <div
+                    v-if='coins.length'
+                    class='table-footer'
+                >
+                    <div class='results-info'>
+                        <span class="text-sm leading-5">
+                            Showing {{ pageFrom }} to {{ pageTo }} of {{ pageTotal }}
+                        </span>
+                    </div>
+                    
+                    <UPagination
+                        v-model='page'
+                        :page-count='pageCount'
+                        :total='pageTotal'
+                        :ui='{
                         wrapper: "flex items-center gap-1",
                         rounded: "!rounded-full min-w-[32px] justify-center",
                      }'
-                    :active-button='{ variant: "outline" }'
-                    :inactive-button='{ color: "gray" }'
-                    class='pagination'
-                    show-first
-                    show-last
-                    :first-button='{ icon: "i-material-symbols:first-page", label: "First", color: "gray" }'
-                    :last-button='{ icon: "i-material-symbols:last-page", trailing: true, label: "Last", color: "gray" }'
-                    :prev-button='{ color: "gray" }'
-                    :next-button='{ color: "gray" }'
-                />
-            </div>
+                        :active-button='{ variant: "outline" }'
+                        :inactive-button='{ color: "gray" }'
+                        class='pagination'
+                        show-first
+                        show-last
+                        :first-button='{ icon: "i-material-symbols:first-page", label: "First", color: "gray" }'
+                        :last-button='{ icon: "i-material-symbols:last-page", trailing: true, label: "Last", color: "gray" }'
+                        :prev-button='{ color: "gray" }'
+                        :next-button='{ color: "gray" }'
+                    />
+                </div>
+            </template>
         </UCard>
     </div>
 
@@ -129,10 +136,6 @@
         {
             key: 'name',
             label: 'Name',
-        },
-        {
-            key: 'symbol',
-            label: 'Symbol',
         },
         {
             key: 'priceUsd',
@@ -220,20 +223,22 @@
 
 <style scoped lang='scss'>
     .market {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 20px;
-        height: 85vh;
+        gap: 30px;
         
         .card {
-            //width: 1200px !important;
+            border:1px solid coral;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            height: 850px;
+            width: 1200px !important;
             
             .table {
-                //width: 100% !important;
-                //height: 600px !important;
-                width: 1200px !important;
+                border:1px solid darkgreen;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 700px;
                 
                 .row-name {
                     display: flex;
@@ -267,11 +272,11 @@
                 align-items: center;
                 display: flex;
                 justify-content: space-between;
-                padding: 20px;
-                width: 100%;
+                height: 75px;
+                padding: 20px 0;
                 
                 .results-info {
-                    color: var(--color-aqua);
+                    //color: var(--color-aqua);
                 }
             }
         }

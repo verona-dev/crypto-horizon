@@ -6,7 +6,11 @@
         color: var(--color-primary_dark);
     }
 
-    p, span {
+    p {
+        color: var(--color-primary_dark);
+    }
+
+    .theme-selector span {
         color: var(--color-primary_dark);
     }
 }
@@ -19,7 +23,11 @@
         color: var(--color-secondary_light);
     }
 
-    p, span {
+    p {
+        color: var(--color-secondary_light);
+    }
+
+    .theme-selector span {
         color: var(--color-secondary_light);
     }
 }
