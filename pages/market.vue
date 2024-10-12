@@ -22,7 +22,6 @@
                     // tbody: "w-full h-full",
                 }'
             >
-                
                 <!--
                 <template #row='props'>
                 <tr>
