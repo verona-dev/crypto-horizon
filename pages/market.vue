@@ -6,9 +6,11 @@
         <UCard
             class='card'
         >
-            <!--            <div class='flex py-6'>
-                            <UInput v-model='filter' placeholder='Filter...' />
-                        </div>-->
+            <!--
+                <div class='flex py-6'>
+                <UInput v-model='filter' placeholder='Filter...' />
+                </div>
+            -->
             
             <UTable
                 :rows='filteredRows'
@@ -17,43 +19,65 @@
                 :sort='sort'
                 :loading='loading'
                 class='table'
-                :ui='{
-                    base: "h-full",
-                    // tbody: "w-full h-full",
-                }'
+                :ui="{
+                    // base: 'w-full',
+                    // tbody: 'w-full h-full',
+                    tr: {
+                        base: '',
+                        // selected: 'bg-gray-50 dark:bg-gray-800/50',
+                        // active: 'hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer',
+                    },
+                    th: {
+                        base: '',
+                        // padding: 'px-4 py-3.5',
+                        color: 'text-gray-900 dark:text-white',
+                        font: 'font-semibold',
+                        size: 'text-sm',
+                    },
+                    td: {
+                        base: 'whitespace-nowrap text-center',
+                        // padding: 'px-4 py-4',
+                        color: 'text-gray-500 dark:text-gray-200',
+                        font: '',
+                        size: 'text-sm',
+                      },
+                }"
             >
                 <!--
-                <template #row='props'>
-                <tr>
-                <td>{{ props.row.rank }}</td>
-                <td>{{ props.row.name }}</td>
-                <td>{{ props.row.symbol }}</td>
-                <td>{{ props.row.priceUsd }}</td>
-                <td>{{ props.row.changePercent24Hr }}</td>
-                <td>{{ props.row.marketCapUsd }}</td>
-                <td>{{ props.row.volumeUsd24Hr }}</td>
-                </tr>
-                </template>
+                    <template #row='props'>
+                    <tr>
+                    <td>{{ props.row.rank }}</td>
+                    <td>{{ props.row.name }}</td>
+                    <td>{{ props.row.symbol }}</td>
+                    <td>{{ props.row.priceUsd }}</td>
+                    <td>{{ props.row.changePercent24Hr }}</td>
+                    <td>{{ props.row.marketCapUsd }}</td>
+                    <td>{{ props.row.volumeUsd24Hr }}</td>
+                    </tr>
+                    </template>
                 -->
-                <template #loading-state>
-                    <div class='flex items-center justify-center h-32'>
-                        <i class='loader --6' />
-                    </div>
-                </template>
+                
+                <!--
+                    <template #loading-state>
+                        <div class='flex items-center justify-center h-32'>
+                            <i class='loader &#45;&#45;6' />
+                        </div>
+                    </template>
+                -->
                 
                 <template #name-data='{ row }'>
-                    <p class='row-name w-[300px]'>
+                    <div class='row-name text-left'>
                         <Icon
                             :name='getIcon(row.symbol)'
                             size='25'
                         />
-                        <span>{{ row.name }}</span>
+                        <p>{{ row.name }}</p>
                         <span class='text-gray-500 dark:text-gray-400 text-sm'>{{ row.symbol }}</span>
-                    </p>
+                    </div>
                 </template>
                 
                 <template #priceUsd-data='{ row }'>
-                    <span>${{ parseFloat(row.priceUsd).toFixed(2) }}</span>
+                    <span>{{ formatPrice(row.priceUsd) }}</span>
                 </template>
                 
                 <template #changePercent24Hr-data='{ row }'>
@@ -63,11 +87,11 @@
                 </template>
                 
                 <template #marketCapUsd-data='{ row }'>
-                    <span>{{ parseFloat(row.marketCapUsd).toFixed(0) }}</span>
+                    <span>{{ formatNumber(row.marketCapUsd) }}</span>
                 </template>
                 
                 <template #volumeUsd24Hr-data='{ row }'>
-                    <span>{{ Math.trunc(row.volumeUsd24Hr) }}</span>
+                    <span>{{ formatNumber(row.volumeUsd24Hr) }}</span>
                 </template>
             </UTable>
             
@@ -131,27 +155,32 @@
         {
             key: 'rank',
             label: '#',
-            class: 'bg-red-500/50 dark:bg-red-400/50 animate-pulse'
+            class: 'w-16 bg-red-500/50 dark:bg-red-400/50 animate-pulse'
         },
         {
             key: 'name',
             label: 'Name',
+            class: 'w-96 text-left'
         },
         {
             key: 'priceUsd',
-            label: 'Price (USD)',
+            label: 'Price',
+            class: 'w-36'
         },
         {
             key: 'changePercent24Hr',
             label: '24h %',
+            class: 'w-36'
         },
         {
             key: 'marketCapUsd',
-            label: 'Market Cap (USD)',
+            label: 'Market Cap',
+            class: 'w-44'
         },
         {
             key: 'volumeUsd24Hr',
-            label: 'Volume (24Hr)',
+            label: 'Volume (24h)',
+            class: 'w-36'
         },
     ]
     
@@ -192,7 +221,9 @@
     // ];
     
     // Methods
+    const { fetchCoins } = CoinsStore;
     const getIcon = symbol => `cryptocurrency-color:${symbol.toLowerCase()}`;
+    
     const getChangeClass = change => {
         if(Math.sign(change) === -1) {
             return '!text-red-500';
@@ -207,7 +238,25 @@
         }
     };
     
-    const { fetchCoins } = CoinsStore;
+    const formatPrice = number => {
+        const options = {
+            minimumFractionDigits: 2,
+            style: "currency",
+            currency: "USD"
+        };
+        
+        return parseFloat(number).toLocaleString('en-US', options);
+    };
+    
+    const formatNumber = number => {
+        const options = {
+            minimumFractionDigits: 0,
+            style: "currency",
+            currency: "USD"
+        };
+        
+        return parseInt(number).toLocaleString('en-US', options);
+    };
     
     const fetchTokens = async () => {
         const data = await fetchCoins();
@@ -226,37 +275,25 @@
         gap: 30px;
         
         .card {
-            border:1px solid coral;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            height: 850px;
+            //border: 1px solid coral;
+            //display: flex;
+            //flex-direction: column;
+            //justify-content: space-evenly;
+            //height: 850px;
             width: 1200px !important;
             
             .table {
-                border:1px solid darkgreen;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                //border: 1px solid darkgreen;
+                //display: flex;
+                //justify-content: center;
+                //align-items: center;
                 height: 700px;
+                width: 100%;
                 
                 .row-name {
-                    display: flex;
                     align-items: center;
+                    display: flex;
                     gap: 8px;
-                }
-                
-                table {
-                    
-                    thead {
-                        color: red !important;
-                        width: 100% !important;
-                        
-                        th {
-                            color: red !important;
-                            width: 100% !important;
-                        }
-                    }
                 }
                 
                 .positive {
