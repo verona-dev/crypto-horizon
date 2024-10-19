@@ -46,3 +46,12 @@ p {
     align-items: center;
     height: calc(100vh - 65px);
 }
+
+.custom-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    align-content: center;
+}

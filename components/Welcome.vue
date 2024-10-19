@@ -2,7 +2,7 @@
     <div class='welcome'>
         <section class='illustrations-container'>
             <NuxtLink to='/market'>
-                <NuxtImg :src='market' alt="Image" />
+                <NuxtImg :src='pink' alt="Image" />
                 <h2>Market</h2>
             </NuxtLink>
             
@@ -17,6 +17,7 @@
 <script setup>
 const market = 'btc-circle.svg';
 const defi = 'btc-tree.svg';
+const pink = 'btc-pink.svg';
 </script>
 
 <style scoped lang='scss'>
@@ -27,23 +28,21 @@ const defi = 'btc-tree.svg';
         justify-content: center;
         
         h2 {
-            //color: var(--color-pink_cabaret);
-            font-family: 'Roboto', serif;
-            margin: 10px 0;
+            margin: 20px 0;
             text-transform: uppercase;
         }
         
         .illustrations-container {
             display: flex;
             justify-content: space-evenly;
-            width: 1200px;
+            width: 1400px;
             
             img {
-                width: 500px;
                 border-radius: 6px;
+                height: 500px;
+                object-fit: cover;
                 transition: all 200ms ease-in-out;
-                object-fit: contain;
-                
+                width: 600px;
                 
                 &:hover {
                     opacity: 0.85;

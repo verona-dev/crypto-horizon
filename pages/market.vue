@@ -29,14 +29,14 @@
                     },
                     th: {
                         base: '',
-                        // padding: 'px-4 py-3.5',
+                        padding: 'px-4 py-3.5',
                         color: 'text-gray-900 dark:text-white',
                         font: 'font-semibold',
                         size: 'text-sm',
                     },
                     td: {
                         base: 'whitespace-nowrap text-center',
-                        // padding: 'px-4 py-4',
+                        padding: 'px-0 py-4',
                         color: 'text-gray-500 dark:text-gray-200',
                         font: '',
                         size: 'text-sm',
@@ -64,6 +64,10 @@
                         </div>
                     </template>
                 -->
+                
+                <template #rank-data='{ row }'>
+                    <span>{{ row.rank }}</span>
+                </template>
                 
                 <template #name-data='{ row }'>
                     <div class='row-name text-left'>
@@ -272,22 +276,11 @@
 
 <style scoped lang='scss'>
     .market {
-        gap: 30px;
         
         .card {
-            //border: 1px solid coral;
-            //display: flex;
-            //flex-direction: column;
-            //justify-content: space-evenly;
-            //height: 850px;
             width: 1200px !important;
             
             .table {
-                //border: 1px solid darkgreen;
-                //display: flex;
-                //justify-content: center;
-                //align-items: center;
-                height: 700px;
                 width: 100%;
                 
                 .row-name {
@@ -311,10 +304,6 @@
                 justify-content: space-between;
                 height: 75px;
                 padding: 20px 0;
-                
-                .results-info {
-                    //color: var(--color-aqua);
-                }
             }
         }
     }
