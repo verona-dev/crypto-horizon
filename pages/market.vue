@@ -233,15 +233,6 @@
     //         marketCapUsd: '1107527973266',
     //         volumeUsd24Hr: '22479085366',
     //     },
-    //     {
-    //         rank: 2,
-    //         name: 'Ethereum',
-    //         symbol: 'ETH',
-    //         priceUsd: '4000',
-    //         changePercent24Hr: '1',
-    //         marketCapUsd: '22479085366',
-    //         volumeUsd24Hr: '22479085366',
-    //     },
     // ];
     
     // Methods
