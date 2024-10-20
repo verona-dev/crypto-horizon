@@ -1,9 +1,9 @@
 <template>
     <div class='welcome'>
         <section class='illustrations-container'>
-            <NuxtLink to='/market'>
-                <NuxtImg :src='market' alt="Image" />
-                <h2>Market</h2>
+            <NuxtLink to='/coins'>
+                <NuxtImg :src='coins' alt="Image" />
+                <h2>Coins</h2>
             </NuxtLink>
             
             <NuxtLink to='/defi'>
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-const market = 'btc-pink.svg';
+const coins = 'btc-pink.svg';
 const defi = 'btc-tree.svg';
 </script>
 

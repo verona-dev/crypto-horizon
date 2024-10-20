@@ -7,7 +7,7 @@
         <nav>
             <ul>
                 <li>
-                    <NuxtLink to='/market'>Market</NuxtLink></li>
+                    <NuxtLink to='/coins'>Coins</NuxtLink></li>
                 <li>
                     <NuxtLink to='/defi'>Defi</NuxtLink>
                 </li>

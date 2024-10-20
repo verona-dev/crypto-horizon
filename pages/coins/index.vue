@@ -1,5 +1,5 @@
 <template>
-    <div class='market page'>
+    <div class='coins page'>
         <UCard
             class='card'
             :ui="{
@@ -17,7 +17,20 @@
                 </div>
             -->
             
+            <template #header>
+                <div class='flex items-center justify-center gap-2'>
+                    <h2>Coins</h2>
+                    <UButton
+                        leading-icon='marketeq:up-trend'
+                        size='xl'
+                        color='pink'
+                        variant='ghost'
+                    />
+                </div>
+            </template>
+            
             <UTable
+                @select="onRowClick"
                 :rows='filteredRows'
                 :columns='columns'
                 :filter='filter'
@@ -84,10 +97,6 @@
                     </div>
                 </template>
                 
-                <template #caption>
-                    <caption class='py-6 text-gray-900 dark:text-white'>Market</caption>
-                </template>
-                
                 <template #rank-data='{ row }'>
                     <span>{{ row.rank }}</span>
                 </template>
@@ -135,7 +144,7 @@
                         :page-count='pageCount'
                         :total='pageTotal'
                         :ui='{
-                            wrapper: "flex items-center gap-1",
+                            wrapper: "py-4 flex items-center gap-1",
                             rounded: "!rounded-full min-w-[32px] justify-center",
                          }'
                         :active-button='{ variant: "outline" }'
@@ -155,12 +164,13 @@
 
 </template>
 
-<script setup lang='ts'>
+<script setup>
     import {ref} from 'vue';
+    import { formatNumber, formatPrice } from '~/utils/formatUtils.js';
+    import { getIcon } from '~/utils/styleUtils';
     // CoinsStore
     import {storeToRefs} from 'pinia';
     import {useCoinsStore} from '~/stores/CoinsStore';
-    
     const CoinsStore = useCoinsStore();
     
     // State
@@ -219,8 +229,8 @@
     
     // Sort
     const sort = ref({
-        column: '' as const,
-        direction: 'desc' as const
+        column: '',
+        direction: 'desc'
     })
     
     // const rows = [
@@ -236,8 +246,16 @@
     // ];
     
     // Methods
-    const { fetchCoins } = CoinsStore;
-    const getIcon = symbol => `cryptocurrency-color:${symbol.toLowerCase()}`;
+    const {
+        fetchCoins,
+        setActiveCoin
+    } = CoinsStore;
+    
+    const onRowClick = row => {
+        console.log(row)
+        setActiveCoin(row)
+        navigateTo(`/coins/${row.symbol}`)
+    };
     
     const getTrendColor = change => {
         if(Math.sign(change) === -1) {
@@ -253,26 +271,6 @@
         }
     };
     
-    const formatPrice = number => {
-        const options = {
-            minimumFractionDigits: 2,
-            style: "currency",
-            currency: "USD"
-        };
-        
-        return parseFloat(number).toLocaleString('en-US', options);
-    };
-    
-    const formatNumber = number => {
-        const options = {
-            minimumFractionDigits: 0,
-            style: "currency",
-            currency: "USD"
-        };
-        
-        return parseInt(number).toLocaleString('en-US', options);
-    };
-    
     const fetchTokens = async () => {
         const data = await fetchCoins();
         if(data) {
@@ -286,10 +284,10 @@
 </script>
 
 <style scoped lang='scss'>
-    .market {
+    .coins {
         
         .card {
-            height: 864px;
+            height: 884px;
             
             width: 1200px !important;
             
@@ -315,7 +313,6 @@
                 align-items: center;
                 display: flex;
                 justify-content: space-between;
-                padding: 10px 0;
             }
         }
     }
