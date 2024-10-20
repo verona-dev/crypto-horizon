@@ -1,10 +1,15 @@
 <template>
     <div class='market page'>
-        <h1 class="text-3xl font-bold underline !text-green-500">
-            Hello Market!
-        </h1>
         <UCard
             class='card'
+            :ui="{
+                base: '',
+                background: 'bg-white dark:bg-gray-900',
+                body: {
+                    base: '',
+                    padding: '',
+                },
+            }"
         >
             <!--
                 <div class='flex py-6'>
@@ -20,12 +25,11 @@
                 :loading='loading'
                 class='table'
                 :ui="{
-                    // base: 'w-full',
-                    // tbody: 'w-full h-full',
+                    wrapper: 'h-full',
+                    base: 'w-full',
+                    tbody: 'h-full',
                     tr: {
-                        base: '',
-                        // selected: 'bg-gray-50 dark:bg-gray-800/50',
-                        // active: 'hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer',
+                        base: 'h-16',
                     },
                     th: {
                         base: '',
@@ -40,7 +44,12 @@
                         color: 'text-gray-500 dark:text-gray-200',
                         font: '',
                         size: 'text-sm',
-                      },
+                    },
+                    emptyState: {
+                        wrapper: 'flex flex-col items-center justify-center',
+                        label: 'text-sm text-center text-gray-900 dark:text-white',
+                        icon: 'w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4',
+                    },
                 }"
             >
                 <!--
@@ -50,7 +59,7 @@
                     <td>{{ props.row.name }}</td>
                     <td>{{ props.row.symbol }}</td>
                     <td>{{ props.row.priceUsd }}</td>
-                    <td>{{ props.row.changePercent24Hr }}</td>
+                    <td>{{ props.row.changePercent24Hr }}</td>s
                     <td>{{ props.row.marketCapUsd }}</td>
                     <td>{{ props.row.volumeUsd24Hr }}</td>
                     </tr>
@@ -58,12 +67,26 @@
                 -->
                 
                 <!--
-                    <template #loading-state>
-                        <div class='flex items-center justify-center h-32'>
-                            <i class='loader &#45;&#45;6' />
-                        </div>
-                    </template>
+                <template #loading-state>
+                    <div class='flex items-center justify-center h-32'>
+                        <i class="loader &#45;&#45;6" />
+                    </div>
+                </template>
                 -->
+                
+                <template #empty-state>
+                    <div class='h-full flex flex-col items-center'>
+                        <Icon
+                            name='iconoir:database-xmark'
+                            size='32'
+                        />
+                        <p>No items.</p>
+                    </div>
+                </template>
+                
+                <template #caption>
+                    <caption class='py-6 text-gray-900 dark:text-white'>Market</caption>
+                </template>
                 
                 <template #rank-data='{ row }'>
                     <span>{{ row.rank }}</span>
@@ -85,7 +108,7 @@
                 </template>
                 
                 <template #changePercent24Hr-data='{ row }'>
-                    <span class='text-red-500' :class='getChangeClass(row.changePercent24Hr)'>
+                    <span class='text-red-500' :class='getTrendColor(row.changePercent24Hr)'>
                         {{ parseFloat(row.changePercent24Hr).toFixed(2) }}%
                     </span>
                 </template>
@@ -100,10 +123,7 @@
             </UTable>
             
             <template #footer>
-                <div
-                    v-if='coins.length'
-                    class='table-footer'
-                >
+                <div class='card-footer'>
                     <div class='results-info'>
                         <span class="text-sm leading-5">
                             Showing {{ pageFrom }} to {{ pageTo }} of {{ pageTotal }}
@@ -115,9 +135,9 @@
                         :page-count='pageCount'
                         :total='pageTotal'
                         :ui='{
-                        wrapper: "flex items-center gap-1",
-                        rounded: "!rounded-full min-w-[32px] justify-center",
-                     }'
+                            wrapper: "flex items-center gap-1",
+                            rounded: "!rounded-full min-w-[32px] justify-center",
+                         }'
                         :active-button='{ variant: "outline" }'
                         :inactive-button='{ color: "gray" }'
                         class='pagination'
@@ -228,7 +248,7 @@
     const { fetchCoins } = CoinsStore;
     const getIcon = symbol => `cryptocurrency-color:${symbol.toLowerCase()}`;
     
-    const getChangeClass = change => {
+    const getTrendColor = change => {
         if(Math.sign(change) === -1) {
             return '!text-red-500';
         }
@@ -278,6 +298,8 @@
     .market {
         
         .card {
+            height: 864px;
+            
             width: 1200px !important;
             
             .table {
@@ -298,12 +320,11 @@
                 }
             }
             
-            .table-footer {
+            .card-footer {
                 align-items: center;
                 display: flex;
                 justify-content: space-between;
-                height: 75px;
-                padding: 20px 0;
+                padding: 10px 0;
             }
         }
     }

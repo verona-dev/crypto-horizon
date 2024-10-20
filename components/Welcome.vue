@@ -2,7 +2,7 @@
     <div class='welcome'>
         <section class='illustrations-container'>
             <NuxtLink to='/market'>
-                <NuxtImg :src='pink' alt="Image" />
+                <NuxtImg :src='market' alt="Image" />
                 <h2>Market</h2>
             </NuxtLink>
             
@@ -15,9 +15,8 @@
 </template>
 
 <script setup>
-const market = 'btc-circle.svg';
+const market = 'btc-pink.svg';
 const defi = 'btc-tree.svg';
-const pink = 'btc-pink.svg';
 </script>
 
 <style scoped lang='scss'>
