@@ -2,7 +2,7 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
-   devtools: { enabled: true },
+   devtools: { enabled: false },
 
    app: {
       layout: 'default',
@@ -15,14 +15,14 @@ export default defineNuxtConfig({
    },
 
    css: [
-      '@/assets/scss/main.scss',
       '@/assets/css/main.css',
+      '@/assets/scss/main.scss',
       '@mdi/font/css/materialdesignicons.min.css',
    ],
 
    colorMode: {
       preference: 'system', // default value of $colorMode.preference
-      fallback: 'light', // fallback value if not system preference found
+      fallback: 'light',
       hid: 'nuxt-color-mode-script',
       globalName: '__NUXT_COLOR_MODE__',
       classPrefix: '',
@@ -50,19 +50,28 @@ export default defineNuxtConfig({
    },
 
    icon: {
-      componentName: 'NuxtIcon'
+      // componentName: 'NuxtIcon'
+   },
+
+   image: {
+      dir: 'assets/illustrations',
+      screens: {
+         'xs': 320,
+         'sm': 640,
+         'md': 768,
+         'lg': 1024,
+         'xl': 1280,
+         'xxl': 1536,
+         '2xl': 1536
+      },
    },
 
    modules: [
-      '@nuxtjs/color-mode',
       '@nuxtjs/google-fonts',
-      '@nuxt/icon',
-      'nuxt-icon',
+      '@nuxt/ui',
       '@nuxt/image',
       '@pinia/nuxt',
-      'nuxt-quasar-ui',
       'radix-vue/nuxt',
-      '@nuxt/ui',
    ],
 
    postcss: {
@@ -70,13 +79,6 @@ export default defineNuxtConfig({
          tailwindcss: {},
          autoprefixer: {},
       },
-   },
-
-   quasar: {
-      plugins: ['Notify'],
-      extras: {
-         fontIcons: ['material-icons']
-      }
    },
 
    runtimeConfig: {
@@ -89,11 +91,7 @@ export default defineNuxtConfig({
    ssr: false,
 
    tailwindcss: {
-      configPath: '@/tailwind.config.ts',
-   },
-
-   ui: {
-      global: true
+      configPath: '@/tailwind.config.js',
    },
 
    vite: {

@@ -1,5 +1,5 @@
 <template>
-    <div class='defi component'>
+    <div class='defi page'>
         <h1>Coming Soon...</h1>
     </div>
 </template>

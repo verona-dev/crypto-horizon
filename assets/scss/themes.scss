@@ -1,9 +1,33 @@
 .dark body {
     background: var(--color-gray_dark);
-    color: var(--color-offwhite);
+    color: var(--color-primary_dark);
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--color-primary_dark);
+    }
+
+    p {
+        color: var(--color-primary_dark);
+    }
+
+    .theme-selector span {
+        color: var(--color-primary_dark);
+    }
 }
 
 .light body {
-    background-color: #f1e7d0;
-    color: #433422;
+    background-color: var(--color-offwhite);
+    color: var(--color-primary_light);
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--color-secondary_light);
+    }
+
+    p {
+        color: var(--color-secondary_light);
+    }
+
+    .theme-selector span {
+        color: var(--color-secondary_light);
+    }
 }

@@ -22,6 +22,6 @@ import ThemeSelector from '~/components/ThemeSelector.vue';
        position: absolute;
        right: 0;
        text-align: center;
-       top: 25px;
+       top: 10px;
    }
 </style>

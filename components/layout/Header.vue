@@ -1,7 +1,7 @@
 <template>
     <header>
         <h2>
-            <NuxtLink to='/'>Crypto App</NuxtLink>
+            <NuxtLink to='/'>Crypto Horizon</NuxtLink>
         </h2>
         
         <nav>
@@ -45,6 +45,3 @@
         }
     }
 </style>
-<script setup>
-    import ThemeSelector from '~/components/ThemeSelector.vue';
-</script>

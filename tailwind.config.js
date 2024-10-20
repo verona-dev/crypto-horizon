@@ -7,10 +7,39 @@ export default {
         "./plugins/**/*.{js,ts}",
         "./app.vue",
         "./error.vue",
+        "./src/**/*.{html,js}"
     ],
     theme: {
+        screens: {
+            sm: '640px',
+            md: '768px',
+            lg: '1024px',
+            xl: '1280px',
+        },
+        fontFamily: {
+            'sans': ['Helvetica', 'Arial', 'sans-serif'],
+        },
         extend: {
             colors: {
+                primary: 'hsl(215, 27.9%, 16.9%)',
+                'primary-foreground': 'hsl(0, 0%, 100%)',
+                secondary: 'hsl(215, 30%, 90%)',
+                'secondary-foreground': 'hsl(0, 0%, 0%)',
+                muted: 'hsl(177, 30%, 85%)',
+                'muted-foreground': 'hsl(215, 5%, 35%)',
+                accent: 'hsl(177, 30%, 80%)',
+                'accent-foreground': 'hsl(215, 5%, 15%)',
+                destructive: 'hsl(0, 100%, 30%)',
+                'destructive-foreground': 'hsl(215, 5%, 90%)',
+                background: 'hsl(215, 100%, 95%)',
+                foreground: 'hsl(215, 5%, 10%)',
+                card: 'hsl(215, 50%, 90%)',
+                'card-foreground': 'hsl(215, 5%, 15%)',
+                popover: 'hsl(215, 100%, 95%)',
+                'popover-foreground': 'hsl(215, 100%, 10%)',
+                border: 'hsl(215, 30%, 50%)',
+                input: 'hsl(215, 30%, 19%)',
+                ring: 'hsl(215, 27.9%, 16.9%)',
                 aqua: '#02D0BD',
                 customGreen: {
                     50: '#EFFDF5',
@@ -90,10 +119,6 @@ export default {
                     '900': '#8c0f33',
                     '950': '#560119',
                 },
-                
-            },
-            fontFamily: {
-                'sans': ['Helvetica', 'Arial', 'sans-serif'],
             },
         },
     },

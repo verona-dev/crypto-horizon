@@ -7,7 +7,8 @@
             <UButton
                 leading-icon='i-solar:palette-round-bold-duotone'
                 size='xl'
-                variant='ghost'
+                :color='color'
+                variant='outline'
             />
             
             <template #panel>
@@ -26,6 +27,15 @@
     const toast = useToast();
     
     const show = ref(false);
+    const color = computed(() => {
+        if (colorMode.preference === 'dark') {
+            return 'green';
+        }
+        if (colorMode.preference === 'light') {
+            return 'indigo';
+        }
+    });
+    
     const themes = [
         {
             label: 'System',
@@ -48,7 +58,7 @@
         colorMode.preference = themes[index].value;
         
         toast.add({
-            title: `${colorMode.preference.charAt(0).toUpperCase() + colorMode.preference.slice(1)} theme active.`,
+            title: `${colorMode.preference.charAt(0).toUpperCase() + colorMode.preference.slice(1)} theme selected.`,
             icon: 'i-fxemoji:artistpalette',
             timeout: 3000,
         });
