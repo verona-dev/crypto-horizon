@@ -9,7 +9,7 @@ export const useCoinsStore = defineStore('CoinsStore', {
     }),
     
     actions: {
-        async fetchCoins() {
+        async fetchCoincapCoins() {
             this.loading = true;
             
             try {
