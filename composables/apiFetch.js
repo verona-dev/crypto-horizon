@@ -1,11 +1,13 @@
-export const useApiFetch = (baseURL, route, options) => {
+const { API_COINCAP_URL } = useRuntimeConfig().public;
+
+export const useCoincapApiFetch = (route) => {
     return $fetch(route, {
-        baseURL: baseURL,
+        baseURL: API_COINCAP_URL,
         method: 'GET',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        ...options
+        redirect: 'follow',
     });
 }

@@ -1,20 +1,29 @@
 import { defineStore } from 'pinia';
-import { useCoincapApiFetch } from '~/composables/apiCoincap';
+import {
+    useCoincapApiFetchCoins,
+    useCoincapApiFetchCoin,
+} from '~/composables/apiCoincap';
+import {
+    formatCoin,
+    formatTableCoins,
+} from '~/utils/formatUtils.js';
 
 export const useCoinsStore = defineStore('CoinsStore', {
     state: () => ({
         loading: false,
         coins: [],
-        activeCoin: null,
+        coin: {},
     }),
     
     actions: {
         async fetchCoincapCoins() {
             this.loading = true;
+            this.coins = [];
             
             try {
-                const { data }  = await useCoincapApiFetch('/assets');
-                this.coins = data;
+                const { data }  = await useCoincapApiFetchCoins();
+                this.coins = formatTableCoins(data);
+                console.log(JSON.parse(JSON.stringify(this.coins[0])));
             }
             catch(error) {
                 console.log(error);
@@ -24,13 +33,14 @@ export const useCoinsStore = defineStore('CoinsStore', {
             }
         },
         
-        async setActiveCoin(symbol) {
+        async fetchCoincapCoin(coin) {
             this.loading = true;
+            this.coin = {};
             
             try {
-                this.activeCoin = symbol;
-                // const { data }  = await useCoincapApiFetch(`/assets/${symbol}`);
-                // this.activeCoin = data;
+                const { data }  = await useCoincapApiFetchCoin(coin);
+                this.coin = formatCoin(data);
+                console.log(JSON.parse(JSON.stringify(this.coin)));
             }
             catch(error) {
                 console.log(error);

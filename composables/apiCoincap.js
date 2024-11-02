@@ -1,6 +1,10 @@
-import { useApiFetch } from '~/composables/apiFetch';
-const { API_COINCAP_URL } = useRuntimeConfig().public;
+import { useCoincapApiFetch } from '~/composables/apiFetch';
+const assets = '/assets';
 
-export function useCoincapApiFetch(route) {
-    return useApiFetch(API_COINCAP_URL, route, { redirect: 'follow' });
+export function useCoincapApiFetchCoins() {
+    return useCoincapApiFetch(assets);
+}
+
+export function useCoincapApiFetchCoin(coin) {
+    return useCoincapApiFetch(`${assets}/${coin}`);
 }

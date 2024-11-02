@@ -31,7 +31,7 @@
             
             <UTable
                 @select="onRowClick"
-                :rows='formattedCoins'
+                :rows='rows'
                 :columns='columns'
                 :filter='filter'
                 :sort='sort'
@@ -146,8 +146,6 @@
 
 <script setup>
     import {ref, onMounted } from 'vue';
-    import { formatNumber, formatPrice } from '~/utils/formatUtils.js';
-    import { getIcon } from '~/utils/styleUtils';
     // CoinsStore
     import {storeToRefs} from 'pinia';
     import {useCoinsStore} from '~/stores/CoinsStore';
@@ -165,24 +163,6 @@
     const pageFrom = computed(() => (page.value - 1) * pageCount.value + 1);
     const pageTo = computed(() => Math.min(page.value * pageCount.value, pageTotal.value))
     const pageTotal = computed(() => coins.value?.length);
-    
-    const formattedCoins = computed(() =>{
-        return rows.value.map(row => ({
-            ...row,
-            changePercent24Hr: parseFloat(row.changePercent24Hr).toFixed(2),
-            explorer: row.explorer,
-            icon: getIcon(row.symbol),
-            id: row.id,
-            marketCap: formatNumber(row.marketCapUsd),
-            maxSupply: formatNumber(row.maxSupply),
-            name: row.name,
-            price: formatPrice(row.priceUsd),
-            supply: formatNumber(row.supply),
-            symbol: row.symbol,
-            trend: getTrendColor(row.changePercent24Hr),
-            volume: formatNumber(row.volumeUsd24Hr),
-        }))
-    });
     
     // Filter
     /*
@@ -247,34 +227,11 @@
     // ];
     
     // Methods
-    const {
-        fetchCoincapCoins,
-        setActiveCoin
-    } = CoinsStore;
+    const { fetchCoincapCoins } = CoinsStore;
     
-    const onRowClick = row => {
-        console.log(row)
-        setActiveCoin(row)
-        navigateTo(`/coins/${row.symbol}`)
-    };
+    const onRowClick = row => navigateTo(`/coins/${row.id.toLowerCase()}`);
     
-    const getTrendColor = change => {
-        if(Math.sign(change) === -1) {
-            return '!text-red-500';
-        }
-        
-        else if(Math.sign(change) === 0){
-            return '!text-gray-500';
-        }
-        
-        else {
-            return '!text-green-500';
-        }
-    };
-    
-    onMounted(async() => {
-        await fetchCoincapCoins();
-    });
+    onMounted(async() => await fetchCoincapCoins());
 </script>
 
 <style scoped lang='scss'>
