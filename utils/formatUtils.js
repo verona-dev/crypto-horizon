@@ -1,4 +1,5 @@
-import { getIcon } from '~/utils/styleUtils.js';
+import { getIcon, getTrendColor } from '~/utils/styleUtils.js';
+
 const formatNumber = number => {
     const options = {
         minimumFractionDigits: 0,

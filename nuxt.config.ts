@@ -83,7 +83,7 @@ export default defineNuxtConfig({
 
    runtimeConfig: {
       public: {
-         API_COINCAP_URL: process.env.API_COINCAP_URL,
+         coingecko_api_key: process.env.COINGECKO_API_KEY
       },
    },
 

@@ -1,10 +1,10 @@
-import { useCoincapApiFetch } from '~/composables/apiFetch';
+import { useCoincapApi } from '~/composables/apiFetch';
 const assets = '/assets';
 
-export function useCoincapApiFetchCoins() {
-    return useCoincapApiFetch(assets);
+export function useCoincapFetchCoins() {
+    return useCoincapApi(assets);
 }
 
-export function useCoincapApiFetchCoin(coin) {
-    return useCoincapApiFetch(`${assets}/${coin}`);
+export function useCoincapFetchCoin(coin) {
+    return useCoincapApi(`${assets}/${coin}`);
 }
