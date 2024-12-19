@@ -54,7 +54,7 @@ export default defineNuxtConfig({
    },
 
    image: {
-      dir: 'assets/illustrations',
+      // dir: 'assets/images',
       screens: {
          'xs': 320,
          'sm': 640,
@@ -63,6 +63,9 @@ export default defineNuxtConfig({
          'xl': 1280,
          'xxl': 1536,
          '2xl': 1536
+      },
+      vercel: {
+         sizes: [320, 640, 768, 1024, 1280, 1536, 2048, 3840],
       },
    },
 
