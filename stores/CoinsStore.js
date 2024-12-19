@@ -1,20 +1,24 @@
 import { defineStore } from 'pinia';
-import { useCoincapApiFetch } from '~/composables/apiCoincap';
+import { useCoincapFetchCoin, useCoincapFetchCoins } from '~/composables/apiCoincap';
+import { useCoingeckoHistoricalChartData } from '~/composables/apiCoingecko';
+import { formatCoin, formatTableCoins, } from '~/utils/formatUtils.js';
 
 export const useCoinsStore = defineStore('CoinsStore', {
     state: () => ({
         loading: false,
         coins: [],
-        activeCoin: null,
+        coin: {},
+        coinChartData: {},
     }),
     
     actions: {
-        async fetchCoins() {
+        async fetchCoincapCoins() {
             this.loading = true;
+            this.coins = [];
             
             try {
-                const { data }  = await useCoincapApiFetch('/assets');
-                this.coins = data;
+                const { data }  = await useCoincapFetchCoins();
+                this.coins = formatTableCoins(data);
             }
             catch(error) {
                 console.log(error);
@@ -24,13 +28,30 @@ export const useCoinsStore = defineStore('CoinsStore', {
             }
         },
         
-        async setActiveCoin(symbol) {
+        async fetchCoingeckoHistoricalChartData(coin, days) {
             this.loading = true;
             
             try {
-                this.activeCoin = symbol;
-                // const { data }  = await useCoincapApiFetch(`/assets/${symbol}`);
-                // this.activeCoin = data;
+                this.coinChartData = await useCoingeckoHistoricalChartData(coin, days);
+                console.log(JSON.parse(JSON.stringify(this.coinChartData)));
+            }
+            catch (error) {
+                console.log(error);
+            }
+            finally {
+                this.loading = false;
+            }
+            
+            },
+        
+        async fetchCoincapCoin(coin) {
+            this.loading = true;
+            this.coin = {};
+            
+            try {
+                const { data }  = await useCoincapFetchCoin(coin);
+                this.coin = formatCoin(data);
+                console.log(this.coin);
             }
             catch(error) {
                 console.log(error);

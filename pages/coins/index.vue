@@ -31,29 +31,25 @@
             
             <UTable
                 @select="onRowClick"
-                :rows='filteredRows'
+                :rows='rows'
                 :columns='columns'
                 :filter='filter'
                 :sort='sort'
                 :loading='loading'
                 class='table'
                 :ui="{
-                    wrapper: 'h-full',
-                    base: 'w-full',
-                    tbody: 'h-full',
                     tr: {
                         base: 'h-16',
                     },
                     th: {
-                        base: '',
+                        base: 'text-left',
                         padding: 'px-4 py-3.5',
                         color: 'text-gray-900 dark:text-white',
                         font: 'font-semibold',
                         size: 'text-sm',
                     },
                     td: {
-                        base: 'whitespace-nowrap text-center',
-                        padding: 'px-0 py-4',
+                        base: 'whitespace-nowrap',
                         color: 'text-gray-500 dark:text-gray-200',
                         font: '',
                         size: 'text-sm',
@@ -97,14 +93,10 @@
                     </div>
                 </template>
                 
-                <template #rank-data='{ row }'>
-                    <span>{{ row.rank }}</span>
-                </template>
-                
                 <template #name-data='{ row }'>
-                    <div class='row-name text-left'>
+                    <div class='row-name'>
                         <Icon
-                            :name='getIcon(row.symbol)'
+                            :name='row.icon'
                             size='25'
                         />
                         <p>{{ row.name }}</p>
@@ -112,22 +104,10 @@
                     </div>
                 </template>
                 
-                <template #priceUsd-data='{ row }'>
-                    <span>{{ formatPrice(row.priceUsd) }}</span>
-                </template>
-                
                 <template #changePercent24Hr-data='{ row }'>
-                    <span class='text-red-500' :class='getTrendColor(row.changePercent24Hr)'>
-                        {{ parseFloat(row.changePercent24Hr).toFixed(2) }}%
+                    <span :class='row.trend'>
+                        {{ row.changePercent24Hr }}%
                     </span>
-                </template>
-                
-                <template #marketCapUsd-data='{ row }'>
-                    <span>{{ formatNumber(row.marketCapUsd) }}</span>
-                </template>
-                
-                <template #volumeUsd24Hr-data='{ row }'>
-                    <span>{{ formatNumber(row.volumeUsd24Hr) }}</span>
                 </template>
             </UTable>
             
@@ -165,9 +145,7 @@
 </template>
 
 <script setup>
-    import {ref} from 'vue';
-    import { formatNumber, formatPrice } from '~/utils/formatUtils.js';
-    import { getIcon } from '~/utils/styleUtils';
+    import {ref, onMounted } from 'vue';
     // CoinsStore
     import {storeToRefs} from 'pinia';
     import {useCoinsStore} from '~/stores/CoinsStore';
@@ -175,15 +153,33 @@
     
     // State
     const { loading, coins } = storeToRefs(CoinsStore);
-    const page = ref(1);
-    const pageCount = ref(10);
-    const pageTotal = computed(() => coins.value?.length);
-    const pageFrom = computed(() => (page.value - 1) * pageCount.value + 1);
-    const pageTo = computed(() => Math.min(page.value * pageCount.value, pageTotal.value))
-    
     const rows = computed(() => {
         return coins.value?.slice((page.value - 1) * pageCount.value, (page.value) * pageCount.value)
     });
+    
+    // Pagination
+    const page = ref(1);
+    const pageCount = ref(10);
+    const pageFrom = computed(() => (page.value - 1) * pageCount.value + 1);
+    const pageTo = computed(() => Math.min(page.value * pageCount.value, pageTotal.value))
+    const pageTotal = computed(() => coins.value?.length);
+    
+    // Filter
+    /*
+    const filter = ref('');
+    const filteredRows = computed(() => {
+        return rows.value.filter(row => {
+            return row.name.toLowerCase().includes(filter.value.toLowerCase()) ||
+                row.symbol?.toLowerCase().includes(filter.value.toLowerCase());
+        })
+    });
+    */
+    
+    // Sort
+    const sort = ref({
+        column: '',
+        direction: 'desc'
+    })
     
     const columns = [
         {
@@ -197,7 +193,7 @@
             class: 'w-96 text-left'
         },
         {
-            key: 'priceUsd',
+            key: 'price',
             label: 'Price',
             class: 'w-36'
         },
@@ -207,31 +203,16 @@
             class: 'w-36'
         },
         {
-            key: 'marketCapUsd',
+            key: 'marketCap',
             label: 'Market Cap',
             class: 'w-44'
         },
         {
-            key: 'volumeUsd24Hr',
+            key: 'volume',
             label: 'Volume (24h)',
             class: 'w-36'
         },
     ]
-    
-    // Filter
-    const filter = ref('');
-    const filteredRows = computed(() => {
-        return rows.value.filter(row => {
-            return row.name.toLowerCase().includes(filter.value.toLowerCase()) ||
-                row.symbol?.toLowerCase().includes(filter.value.toLowerCase());
-        })
-    });
-    
-    // Sort
-    const sort = ref({
-        column: '',
-        direction: 'desc'
-    })
     
     // const rows = [
     //     {
@@ -246,49 +227,17 @@
     // ];
     
     // Methods
-    const {
-        fetchCoins,
-        setActiveCoin
-    } = CoinsStore;
+    const { fetchCoincapCoins } = CoinsStore;
     
-    const onRowClick = row => {
-        console.log(row)
-        setActiveCoin(row)
-        navigateTo(`/coins/${row.symbol}`)
-    };
+    const onRowClick = row => navigateTo(`/coins/${row.id.toLowerCase()}`);
     
-    const getTrendColor = change => {
-        if(Math.sign(change) === -1) {
-            return '!text-red-500';
-        }
-        
-        else if(Math.sign(change) === 0){
-            return '!text-gray-500';
-        }
-        
-        else {
-            return '!text-green-500';
-        }
-    };
-    
-    const fetchTokens = async () => {
-        const data = await fetchCoins();
-        if(data) {
-            coins.value = data;
-        }
-    };
-    
-    onMounted(async() => {
-        await fetchTokens();
-    });
+    onMounted(async() => await fetchCoincapCoins());
 </script>
 
 <style scoped lang='scss'>
     .coins {
-        
         .card {
             height: 884px;
-            
             width: 1200px !important;
             
             .table {

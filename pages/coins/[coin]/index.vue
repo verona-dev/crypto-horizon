@@ -1,95 +1,114 @@
 <template>
     <div class='single-coin page'>
-        <div class='coin-card'>
-            <UCard v-if='activeCoin'>
-                <div class='coin-header'>
-                    <div class='name'>
-                        <Icon
-                            :name='getIcon(activeCoin.symbol)'
-                            size='25'
-                        />
-                        <h1>{{ activeCoin.name }}</h1>
-                    </div>
-                    
-                    <div class='price'>
-                        <h1>{{ formatPrice(activeCoin.priceUsd) }}</h1>
-                    </div>
+        <UCard
+            v-if='coin'
+            class='coin-card'
+        >
+            <div class='coin-header'>
+                <div class='name'>
+                    <Icon
+                        v-if='coin.icon'
+                        :name='coin.icon'
+                        size='25'
+                    />
+                    <h1>{{ coin.name }}</h1>
                 </div>
                 
-                <div class='coin-stats'>
-                    <UCard class='card'>
-                        <p>Market Cap</p>
-                        {{ formatNumber(activeCoin?.marketCapUsd) }}
-                    </UCard>
-                    
-                    <UCard class='card'>
-                        <p>Volume</p>
-                        {{ formatNumber(activeCoin?.volumeUsd24Hr) }}
-                    </UCard>
-                    
-                    <UCard class='card'>
-                        <p>Total Supply</p>
-                        {{ formatNumber(activeCoin?.supply) }}
-                    </UCard>
-                    
-                    <UCard class='card'>
-                        <p>Max Supply</p>
-                        {{ formatNumber(activeCoin?.maxSupply) }}
-                    </UCard>
+                <div class='price'>
+                    <h1>{{ coin.price }}</h1>
                 </div>
-            </UCard>
-        </div>
+            </div>
+            
+            <div class='coin-stats'>
+                <UCard class='card'>
+                    <h3>Market Cap</h3>
+                    {{ coin?.marketCap }}
+                </UCard>
+                
+                <UCard class='card'>
+                    <h3>Volume</h3>
+                    {{ coin?.volume }}
+                </UCard>
+                
+                <UCard v-if='coin.supply' class='card'>
+                    <h3>Total Supply</h3>
+                    {{ coin?.supply }}
+                </UCard>
+                
+                <UCard v-if='coin.explorer' class='card'>
+                    <h3>Explorer</h3>
+                    <NuxtLink
+                        :href='coin?.explorer'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        class='text-indigo-400 hover:text-indigo-500'
+                    >
+                        {{ coin?.explorer }}
+                    </NuxtLink>
+                </UCard>
+            </div>
+        </UCard>
     </div>
 </template>
 
 <script setup lang='ts'>
-    import {ref} from 'vue';
-    import { formatNumber, formatPrice } from '~/utils/formatUtils.js';
-    import { getIcon } from '~/utils/styleUtils';
+    // Router
+    import {useRoute} from 'vue-router';
+    const route = useRoute();
     // CoinsStore
     import {storeToRefs} from 'pinia';
     import {useCoinsStore} from '~/stores/CoinsStore';
     const CoinsStore = useCoinsStore();
     
     // State
-    const { loading, coins, activeCoin } = storeToRefs(CoinsStore);
+    const { coin } = storeToRefs(CoinsStore);
     
+    // Methods
+    const {
+        fetchCoincapCoin,
+        fetchCoingeckoHistoricalChartData,
+    } = CoinsStore;
+    
+    onMounted(async() => {
+        await fetchCoincapCoin(route.params.coin)
+        await fetchCoingeckoHistoricalChartData(route.params.coin, 1)
+    });
 </script>
 
 <style scoped lang='scss'>
-.single-coin {
-    
-    .coin-card {
-        width: 1000px;
+    .single-coin {
         
-        .coin-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+        .coin-card {
+            width: 1000px;
             
-            .name {
+            .coin-header {
                 display: flex;
+                flex-direction: column;
                 align-items: center;
                 gap: 10px;
                 
-                h1 {
-                    font-size: 2rem;
-                    color: var(--color-pink_cabaret);
+                .name {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    
+                    h1 {
+                        font-size: 2rem;
+                        color: var(--color-pink_cabaret);
+                    }
+                }
+            }
+            
+            .coin-stats {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                
+                .card {
+                    margin: 25px;
+                    width: 300px;
                 }
             }
         }
-        
-        .coin-stats {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            
-            .card {
-                margin: 25px;
-                width: 300px;
-            }
-        }
     }
-}
 </style>
