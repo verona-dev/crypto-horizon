@@ -51,6 +51,7 @@ export const useCoinsStore = defineStore('CoinsStore', {
             try {
                 const { data }  = await useCoincapFetchCoin(coin);
                 this.coin = formatCoin(data);
+                console.log(this.coin);
             }
             catch(error) {
                 console.log(error);
