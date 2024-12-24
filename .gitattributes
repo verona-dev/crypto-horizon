@@ -4,3 +4,5 @@
 ; *.ts linguist-vendored=false
 ; *.html linguist-detectable=false
 ; *.scss linguist-detectable=false
+
+test
