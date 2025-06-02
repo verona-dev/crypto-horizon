@@ -1,10 +1,9 @@
 @import url('keyframes.css');
-@import "tailwindcss";
-@import "@nuxt/ui";
+@import '@nuxt/ui';
+@import 'tailwindcss';
 
-/*@tailwind base;*/
-/*@tailwind utilities;*/
-/*@tailwind components;*/
+@import 'tailwindcss/preflight';
+@tailwind utilities;
 
 
 h1, h2, h3, h4, h5, h6 {
