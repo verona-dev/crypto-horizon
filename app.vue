@@ -2,12 +2,14 @@
     <NuxtLoadingIndicator />
     
     <NuxtLayout>
-        <NuxtPage />
+        <UApp>
+            <NuxtPage />
+        </UApp>
     </NuxtLayout>
     
     <ThemeSelector />
     
-    <UNotifications />
+<!--    <UNotifications />-->
 </template>
 
 <script setup>
