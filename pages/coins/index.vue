@@ -29,6 +29,7 @@
                 </div>
             </template>
             
+            <!--
             <UTable
                 @select="onRowClick"
                 :rows='rows'
@@ -61,7 +62,7 @@
                     },
                 }"
             >
-                <!--
+                &lt;!&ndash;
                     <template #row='props'>
                     <tr>
                     <td>{{ props.row.rank }}</td>
@@ -73,15 +74,15 @@
                     <td>{{ props.row.volumeUsd24Hr }}</td>
                     </tr>
                     </template>
-                -->
+                &ndash;&gt;
                 
-                <!--
+                &lt;!&ndash;
                 <template #loading-state>
                     <div class='flex items-center justify-center h-32'>
                         <i class="loader &#45;&#45;6" />
                     </div>
                 </template>
-                -->
+                &ndash;&gt;
                 
                 <template #empty-state>
                     <div class='h-full flex flex-col items-center'>
@@ -110,6 +111,7 @@
                     </span>
                 </template>
             </UTable>
+            -->
             
             <template #footer>
                 <div class='card-footer'>

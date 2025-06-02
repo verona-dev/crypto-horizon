@@ -17,7 +17,6 @@ export default defineNuxtConfig({
    css: [
       '@/assets/css/main.css',
       '@/assets/scss/main.scss',
-      '@mdi/font/css/materialdesignicons.min.css',
    ],
 
    colorMode: {
@@ -76,13 +75,6 @@ export default defineNuxtConfig({
       '@pinia/nuxt',
    ],
 
-   postcss: {
-      plugins: {
-         tailwindcss: {},
-         autoprefixer: {},
-      },
-   },
-
    runtimeConfig: {
       public: {
          coingecko_api_key: process.env.COINGECKO_API_KEY
@@ -92,9 +84,9 @@ export default defineNuxtConfig({
    // Disable SSR
    ssr: false,
 
-   tailwindcss: {
+/*   tailwindcss: {
       configPath: '@/tailwind.config.js',
-   },
+   },*/
 
    vite: {
       css: {
