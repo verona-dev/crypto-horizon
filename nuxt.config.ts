@@ -17,7 +17,6 @@ export default defineNuxtConfig({
    css: [
       '@/assets/css/main.css',
       '@/assets/scss/main.scss',
-      '@mdi/font/css/materialdesignicons.min.css',
    ],
 
    colorMode: {
@@ -74,15 +73,7 @@ export default defineNuxtConfig({
       '@nuxt/ui',
       '@nuxt/image',
       '@pinia/nuxt',
-      'radix-vue/nuxt',
    ],
-
-   postcss: {
-      plugins: {
-         tailwindcss: {},
-         autoprefixer: {},
-      },
-   },
 
    runtimeConfig: {
       public: {
@@ -93,17 +84,17 @@ export default defineNuxtConfig({
    // Disable SSR
    ssr: false,
 
-   tailwindcss: {
+/*   tailwindcss: {
       configPath: '@/tailwind.config.js',
-   },
+   },*/
 
    vite: {
       css: {
          preprocessorOptions: {
             scss: {
                additionalData:
-                  `@import "@/assets/scss/_colors.scss"; 
-                  @import "@/assets/scss/_variables.scss";`,
+                  `@use "@/assets/scss/_colors.scss"; 
+                  @use "@/assets/scss/_variables.scss";`,
             },
          },
       },
