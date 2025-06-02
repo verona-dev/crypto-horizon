@@ -1,6 +1,9 @@
 @import url('keyframes.css');
+@import "tailwindcss";
+@import "@nuxt/ui";
+
 /*@tailwind base;*/
-@tailwind utilities;
+/*@tailwind utilities;*/
 /*@tailwind components;*/
 
 
