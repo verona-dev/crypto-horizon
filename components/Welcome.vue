@@ -2,12 +2,12 @@
     <div class='welcome'>
         <section class='illustrations-container'>
             <NuxtLink to='/coins'>
-                <NuxtImg :src='coins' alt="Image" />
+                <NuxtImg src='btc-pink.svg' alt="Image" width="1536" />
                 <h2>Coins</h2>
             </NuxtLink>
             
             <NuxtLink to='/defi'>
-                <NuxtImg :src='defi' alt="Image" />
+                <NuxtImg src='btc-tree.svg' alt="Image" width="1536" />
                 <h2>Defi</h2>
             </NuxtLink>
         </section>
@@ -15,8 +15,8 @@
 </template>
 
 <script setup>
-const coins = 'btc-pink.svg';
-const defi = 'btc-tree.svg';
+// const coins = 'btc-pink.svg';
+// const defi = 'btc-tree.svg';
 </script>
 
 <style scoped lang='scss'>
