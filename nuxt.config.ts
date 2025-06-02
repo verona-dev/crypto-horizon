@@ -74,7 +74,6 @@ export default defineNuxtConfig({
       '@nuxt/ui',
       '@nuxt/image',
       '@pinia/nuxt',
-      'radix-vue/nuxt',
    ],
 
    postcss: {
