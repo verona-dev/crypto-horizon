@@ -13,7 +13,7 @@
                 v-bind="$attrs"
                 class="focus:shadow-[0_0_0_2px] focus:shadow-green hover:bg-mauve block select-none rounded-[6px] p-3 text-[15px] leading-none no-underline outline-none transition-colors"
             >
-                <div class="text-green mb-[5px] font-medium leading-[1.2]">
+                <div class="mb-[5px] font-medium leading-[1.2]">
                     {{ props.title }}
                 </div>
                 <p class="text-mauve my-0 leading-[1.4]">

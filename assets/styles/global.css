@@ -50,6 +50,10 @@
         @apply text-center;
     }
     
+    button {
+        @apply cursor-pointer;
+    }
+    
     .page {
         @apply flex flex-col justify-center items-center content-center;
         height: calc(100vh - 100px);
