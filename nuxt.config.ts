@@ -84,10 +84,6 @@ export default defineNuxtConfig({
    // Disable SSR
    ssr: false,
 
-/*   tailwindcss: {
-      configPath: '@/tailwind.config.js',
-   },*/
-
    vite: {
       css: {
          preprocessorOptions: {
