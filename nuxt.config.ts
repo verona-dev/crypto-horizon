@@ -15,11 +15,11 @@ export default defineNuxtConfig({
    },
 
    css: [
-      '@/assets/styles/css/index.css',
+      '@/assets/styles/index.css',
    ],
 
    colorMode: {
-      preference: 'dark', // default value of $colorMode.preference
+      preference: 'system', // default value of $colorMode.preference
       fallback: 'light',
       hid: 'nuxt-color-mode-script',
       globalName: '__NUXT_COLOR_MODE__',
@@ -43,7 +43,7 @@ export default defineNuxtConfig({
       },
       base64: true,
       outputDir: 'assets',
-      stylePath: 'google-fonts.css',
+      stylePath: 'fonts/google-fonts.css',
       fontsDir: 'fonts',
    },
 

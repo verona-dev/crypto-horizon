@@ -7,7 +7,7 @@
         </UApp>
     </NuxtLayout>
     
-<!--    <ThemeSelector />-->
+    <ThemeSelector />
     
 <!--    <UNotifications />-->
 </template>
