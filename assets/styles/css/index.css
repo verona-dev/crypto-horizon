@@ -1,10 +1,8 @@
-/*@import url('keyframes.css');*/
 @import 'tailwindcss';
 @import './base.css';
 @import './colors.css';
 @import './themes.css';
 @import './transitions.css';
-@import './keyframes.css';
 
 
 /* Desktop */
