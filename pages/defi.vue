@@ -1,6 +1,7 @@
 <template>
     <div class='defi page'>
-        <h1 class='text-pink-500 text-7xl font-bold'>Coming Soon...</h1>
+        <h1 class='text-pink-500'>Coming Soon...</h1>
+        <MazBtn class='mt-8'>Click me!</MazBtn>
     </div>
 </template>
 
@@ -9,11 +10,5 @@
 </script>
 
 <style scoped>
-    .defi {
-        h1 {
-            //font-size: 3em;
-            //animation: 3000ms fadeIn forwards;
-            //opacity: 0;
-        }
-    }
+    .defi {}
 </style>

@@ -1,8 +1,6 @@
 <template>
     <header>
-        <h2>
-            <NuxtLink to='/public'>Crypto Horizon</NuxtLink>
-        </h2>
+        <NuxtLink to='/'>Crypto Horizon</NuxtLink>
         
         <nav>
             <ul>

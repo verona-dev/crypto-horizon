@@ -35,37 +35,6 @@
         --background: red;
         --foreground: black;
         --card: var(--color-zinc-50);
-        --card-foreground: var(--color-zinc-950);
-        --popover: var(--color-zinc-50);
-        --popover-foreground: var(--color-zinc-950);
-        --primary: var(--color-blue-700);
-        --primary-foreground: var(--color-zinc-50);
-
-        --secondary-foreground: var(--color-zinc-50);
-        --muted: var(--color-zinc-100);
-        --muted-foreground: var(--color-zinc-600);
-        --accent: var(--color-zinc-200);
-        --accent-foreground: var(--color-zinc-900);
-        --info: var(--color-sky-300);
-        --info-foreground: var(--color-sky-950);
-        --success: var(--color-green-300);
-        --success-foreground: var(--color-green-950);
-        --warning: var(--color-amber-300);
-        --warning-foreground: var(--color-amber-950);
-        --error: var(--color-red-700);
-        --error-foreground: var(--color-zinc-50);
-        --border: var(--color-zinc-200);
-        --input: var(--color-zinc-200);
-        --outline: var(--color-blue-600);
-        --radius: 0.5rem;
-
-        --secondary: var(--color-pink-500);
-        --secondary-hover: var(--color-pink-400);
-        --tooltip-card: #44424a;
-        --tooltip-ribbon: #86baab;
-
-        --color-active: #5cecc0;
-        --color-salmon: #dc8272;
     }
 
     .dark {

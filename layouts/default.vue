@@ -1,5 +1,5 @@
 <template>
-    <New />
+    <Navigation />
     
     <main>
         <slot />
@@ -7,6 +7,5 @@
 </template>
 
 <script setup>
-    import Header from '~/components/Header.vue';
-    import New from '~/components/New.vue';
+    import Navigation from '~/components/Navigation.vue';
 </script>

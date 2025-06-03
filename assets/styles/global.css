@@ -1,11 +1,7 @@
 
 @layer base {
     * {
-        @apply border-border;
-    }
-
-    *:focus-visible {
-        @apply outline-outline;
+        @apply m-0;
     }
 
     html {
@@ -14,81 +10,37 @@
 
     body {
         @apply bg-background text-foreground;
-    }
-
-    button {
-        @apply cursor-pointer;
-    }
-
-    html,
-    body {
-        @apply m-0;
-    }
-
-    #__nuxt {
-     /*   height: 100vh;
-        width: 100%;*/
-    }
-
-    body {
-        background-color: var(--color-background);
-        
-        font-family:
-            Raleway,
-            Roboto,
-            system-ui,
-            "Segoe UI",
-            "Helvetica Neue",
-            Arial,
-            "Noto Sans",
-            sans-serif;
-    }
-
-    .coins {
-        font-family:
-            system-ui,
-            Roboto,
-            sans-serif;
-    }
-
-    a {
-        /*text-align: center;*/
-    }
-
-    p {
-        /*font-size: 1rem;*/
+        font-family: Raleway, Roboto, sans-serif;
     }
 }
 
 @layer components {
-    h1, h2, h3, h4, h5, h6 {
-        display: block;
-        font-weight: bold;
-        margin: 0;
-    }
-
     h1 {
-        font-size: 2em;
+        @apply text-7xl font-bold;
     }
 
     h2 {
-        font-size: 1.5em;
+        @apply text-5xl;
     }
 
     h3 {
-        font-size: 1.17em;
+        @apply text-4xl;
     }
 
     h4 {
-        font-size: 1em;
+        @apply text-3xl;
     }
 
     h5 {
-        font-size: .83em;
+        @apply text-2xl;
     }
 
     h6 {
-        font-size: .67em;
+        @apply text-xl;
+    }
+    
+    a {
+        @apply text-center;
     }
     
     .page {
