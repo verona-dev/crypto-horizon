@@ -3,38 +3,45 @@
     * {
         @apply m-0;
     }
-
+    
     html {
         @apply scheme-light dark:scheme-dark;
     }
-
+    
     body {
         @apply bg-background text-foreground;
         font-family: Raleway, Roboto, sans-serif;
     }
+    
+    /*
+    #__nuxt {
+        height: 100vh;
+        width: 100%;
+    }
+    */
 }
 
 @layer components {
     h1 {
         @apply text-7xl font-bold;
     }
-
+    
     h2 {
         @apply text-5xl;
     }
-
+    
     h3 {
         @apply text-4xl;
     }
-
+    
     h4 {
         @apply text-3xl;
     }
-
+    
     h5 {
         @apply text-2xl;
     }
-
+    
     h6 {
         @apply text-xl;
     }
@@ -45,7 +52,7 @@
     
     .page {
         @apply flex flex-col justify-center items-center content-center;
-        height: calc(100vh - 65px);
+        height: calc(100vh - 100px);
     }
     
     .custom-flex {

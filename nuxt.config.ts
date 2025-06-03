@@ -73,6 +73,7 @@ export default defineNuxtConfig({
       '@nuxt/image',
       '@pinia/nuxt',
       'maz-ui/nuxt',
+      '@nuxtjs/color-mode',
    ],
 
    runtimeConfig: {
