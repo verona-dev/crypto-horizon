@@ -72,6 +72,7 @@ export default defineNuxtConfig({
       '@nuxt/ui',
       '@nuxt/image',
       '@pinia/nuxt',
+      'maz-ui/nuxt',
    ],
 
    runtimeConfig: {
