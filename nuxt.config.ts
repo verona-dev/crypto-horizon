@@ -49,7 +49,9 @@ export default defineNuxtConfig({
    },
 
    icon: {
-      componentName: 'NuxtIcon'
+      componentName: 'NuxtIcon',
+      mode: 'svg',
+      cssLayer: 'base'
    },
 
    image: {
