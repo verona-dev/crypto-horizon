@@ -20,7 +20,7 @@ export default defineNuxtConfig({
    ],
 
    colorMode: {
-      preference: 'dark', // default value of $colorMode.preference
+      preference: 'base', // default value of $colorMode.preference
       fallback: 'base',
       hid: 'nuxt-color-mode-script',
       globalName: '__NUXT_COLOR_MODE__',
@@ -49,7 +49,7 @@ export default defineNuxtConfig({
    },
 
    icon: {
-      // componentName: 'NuxtIcon'
+      componentName: 'NuxtIcon'
    },
 
    image: {
@@ -69,12 +69,13 @@ export default defineNuxtConfig({
    },
 
    modules: [
-      '@nuxtjs/google-fonts',
-      '@nuxt/image',
-      '@pinia/nuxt',
-      'maz-ui/nuxt',
-      '@nuxtjs/color-mode',
-      'radix-vue/nuxt',
+     '@nuxtjs/google-fonts',
+     '@nuxt/image',
+     '@pinia/nuxt',
+     'maz-ui/nuxt',
+     '@nuxtjs/color-mode',
+     'radix-vue/nuxt',
+     '@nuxt/icon',
    ],
 
    runtimeConfig: {

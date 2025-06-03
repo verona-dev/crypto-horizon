@@ -1,4 +1,4 @@
-/*@import 'maz-ui/styles';*/
+@import 'maz-ui/styles';
 @import 'tailwindcss';
 @import './global.css';
 @import './colors.css';
