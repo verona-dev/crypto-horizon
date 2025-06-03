@@ -32,8 +32,8 @@
 
 @layer base {
     :root {
-        --background: var(--color-zinc-50);
-        --foreground: var(--color-zinc-950);
+        --background: red;
+        --foreground: black;
         --card: var(--color-zinc-50);
         --card-foreground: var(--color-zinc-950);
         --popover: var(--color-zinc-50);
@@ -69,35 +69,8 @@
     }
 
     .dark {
-        --background: var(--color-zinc-800); /* #27272a */
-        --foreground: var(--color-zinc-50);
-        --card: #3b3c4e;
-        /*--card: var(--color-slate-800);*/
-        --card-foreground: var(--color-zinc-50);
-        --popover: var(--color-zinc-950);
-        --popover-foreground: var(--color-zinc-50);
-        --primary: var(--color-blue-700);
-        --primary-foreground: var(--color-zinc-50);
-        --secondary: var(--color-pink-500);
-        --secondary-foreground: var(--color-zinc-950);
-        --muted: var(--color-zinc-900);
-        --muted-foreground: var(--color-zinc-400);
-        --accent: #d3fbd8; /* Snowy Mint */
-        --accent-foreground: var(--color-zinc-100);
-        --info: var(--color-sky-300);
-        --info-foreground: var(--color-sky-950);
-        --success: var(--color-green-300);
-        --success-foreground: var(--color-green-950);
-        --warning: var(--color-amber-300);
-        --warning-foreground: var(--color-amber-950);
-        --error: var(--color-red-800);
-        --error-foreground: var(--color-zinc-50);
-        --border: var(--color-zinc-800);
-        --input: var(--color-zinc-800);
-        --outline: var(--color-blue-600);
-        --radius: 0.5rem;
-        --active: var(--color-pink-400);
-        --active-foreground: var(--color-zinc-50);
+        --background: var(--color-gray_dark); /* #27272a */
+        --foreground: white;
     }
 }
 
@@ -134,4 +107,5 @@
     .theme-selector span {
         color: var(--color-secondary_light);
     }
-}*/
+}
+*/
