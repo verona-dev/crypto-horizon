@@ -5,7 +5,7 @@ export default defineNuxtConfig({
    devtools: { enabled: false },
 
    app: {
-      layout: 'default',
+      layout: 'Layout',
       pageTransition: {
          // Name options are: 'bounce', 'fade', 'page', 'custom',
          // Mode options are: 'out-in','in-out',
@@ -15,8 +15,7 @@ export default defineNuxtConfig({
    },
 
    css: [
-      '@/assets/css/main.css',
-      '@/assets/scss/main.scss',
+      '@/assets/styles/index.css',
    ],
 
    colorMode: {
@@ -44,7 +43,7 @@ export default defineNuxtConfig({
       },
       base64: true,
       outputDir: 'assets',
-      stylePath: 'google-fonts.css',
+      stylePath: 'fonts/google-fonts.css',
       fontsDir: 'fonts',
    },
 
@@ -83,20 +82,4 @@ export default defineNuxtConfig({
 
    // Disable SSR
    ssr: false,
-
-/*   tailwindcss: {
-      configPath: '@/tailwind.config.js',
-   },*/
-
-   vite: {
-      css: {
-         preprocessorOptions: {
-            scss: {
-               additionalData:
-                  `@use "@/assets/scss/_colors.scss"; 
-                  @use "@/assets/scss/_variables.scss";`,
-            },
-         },
-      },
-   },
 })

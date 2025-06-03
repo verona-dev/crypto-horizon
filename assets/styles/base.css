@@ -1,0 +1,106 @@
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    *:focus-visible {
+        @apply outline-outline;
+    }
+
+    html {
+        @apply scheme-light dark:scheme-dark;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+
+    button {
+        @apply cursor-pointer;
+    }
+
+    html,
+    body {
+        @apply m-0;
+    }
+
+    #__nuxt {
+        //height: 100vh;
+        //width: 100%;
+    }
+
+    body {
+        background: var(--color-offwhite);
+        font-family:
+            Raleway,
+            Roboto,
+            system-ui,
+            "Segoe UI",
+            "Helvetica Neue",
+            Arial,
+            "Noto Sans",
+            sans-serif;
+    }
+
+    .coins {
+        font-family:
+            system-ui,
+            Roboto,
+            sans-serif;
+    }
+
+    a {
+        //text-align: center;
+    }
+
+    p {
+        //font-size: 1rem;
+    }
+}
+
+@layer components {
+    h1, h2, h3, h4, h5, h6 {
+        display: block;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.17em;
+    }
+
+    h4 {
+        font-size: 1em;
+    }
+
+    h5 {
+        font-size: .83em;
+    }
+
+    h6 {
+        font-size: .67em;
+    }
+    
+    .page {
+        @apply flex flex-col justify-center items-center content-center;
+        height: calc(100vh - 65px);
+    }
+    
+    .custom-flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        align-content: center;
+    }
+}

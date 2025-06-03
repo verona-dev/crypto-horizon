@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+@import './base.css';
+@import './colors.css';
+@import './themes.css';
+@import './transitions.css';
+
+
+/* Desktop */
+@media (min-width: 1024px) {}
+
+/* Mobile */
+@media (max-width: 1023px) {}

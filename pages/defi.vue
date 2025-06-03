@@ -1,6 +1,6 @@
 <template>
     <div class='defi page'>
-        <h1 class='text-red-500 text-7xl font-bold'>Coming Soon...</h1>
+        <h1 class='text-pink-500 text-7xl font-bold'>Coming Soon...</h1>
     </div>
 </template>
 
