@@ -20,7 +20,7 @@ export default defineNuxtConfig({
    ],
 
    colorMode: {
-      preference: 'base', // default value of $colorMode.preference
+      preference: 'dark', // default value of $colorMode.preference
       fallback: 'base',
       hid: 'nuxt-color-mode-script',
       globalName: '__NUXT_COLOR_MODE__',
@@ -50,7 +50,7 @@ export default defineNuxtConfig({
 
    icon: {
       componentName: 'NuxtIcon',
-      mode: 'svg',
+      mode: 'css',
       cssLayer: 'base'
    },
 
