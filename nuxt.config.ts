@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { defineNuxtConfig } from 'nuxt/config'
+import { defineNuxtConfig } from 'nuxt/config';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
    devtools: { enabled: false },
@@ -69,7 +70,6 @@ export default defineNuxtConfig({
 
    modules: [
       '@nuxtjs/google-fonts',
-      '@nuxt/ui',
       '@nuxt/image',
       '@pinia/nuxt',
       'maz-ui/nuxt',
@@ -83,4 +83,10 @@ export default defineNuxtConfig({
 
    // Disable SSR
    ssr: false,
-})
+
+   vite: {
+      plugins: [
+         tailwindcss(),
+      ],
+   },
+});
