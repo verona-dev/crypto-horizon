@@ -16,13 +16,14 @@
         "@nuxtjs/google-fonts": "3.2.0",
         "eslint": "^9.28.0",
         "nuxt": "^3.17.4",
+        "typescript": "5.0.4",
         "vue": "latest",
         "vue-router": "^4.5.1",
-        "typescript": "5.0.4",
         "vue-tsc": "1.6.4"
     },
     "dependencies": {
         "@pinia/nuxt": "^0.11.0",
+        "maz-ui": "3.50.1",
         "npm-check-updates": "18.0.1",
         "pinia": "^3.0.2"
     }
