@@ -49,7 +49,9 @@ export default defineNuxtConfig({
    },
 
    icon: {
-      // componentName: 'NuxtIcon'
+      componentName: 'NuxtIcon',
+      mode: 'css',
+      cssLayer: 'base'
    },
 
    image: {
@@ -69,11 +71,13 @@ export default defineNuxtConfig({
    },
 
    modules: [
-      '@nuxtjs/google-fonts',
-      '@nuxt/image',
-      '@pinia/nuxt',
-      'maz-ui/nuxt',
-      '@nuxtjs/color-mode',
+     '@nuxtjs/google-fonts',
+     '@nuxt/image',
+     '@pinia/nuxt',
+     'maz-ui/nuxt',
+     '@nuxtjs/color-mode',
+     'radix-vue/nuxt',
+     '@nuxt/icon',
    ],
 
    runtimeConfig: {
