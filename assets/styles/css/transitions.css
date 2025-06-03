@@ -1,4 +1,4 @@
-// Page
+/*Page*/
 .page-enter-active,
 .page-leave-active {
     transition: all 0.4s;
@@ -10,7 +10,7 @@
     filter: blur(1rem);
 }
 
-// Fade
+/*Fade*/
 .fade-enter-active,
 .fade-leave-active {
     transition: all 0.9s;
@@ -23,7 +23,7 @@
     filter: blur(1rem);
 }
 
-// Bounce
+/*Bounce*/
 .bounce-enter-active,
 .bounce-leave-active {
     transition: all 0.15s;
@@ -35,7 +35,7 @@
     filter: blur(0.1rem);
 }
 
-// Layout
+/*Layout*/
 .layout-enter-active,
 .layout-leave-active {
     transition: all 0.4s;
@@ -46,7 +46,7 @@
     filter: grayscale(1);
 }
 
-// Custom
+/*Custom*/
 .custom-enter-active {
     transition: all .3s ease;
 }

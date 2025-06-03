@@ -5,7 +5,7 @@ export default defineNuxtConfig({
    devtools: { enabled: false },
 
    app: {
-      layout: 'default',
+      layout: 'Layout',
       pageTransition: {
          // Name options are: 'bounce', 'fade', 'page', 'custom',
          // Mode options are: 'out-in','in-out',
@@ -16,7 +16,6 @@ export default defineNuxtConfig({
 
    css: [
       '@/assets/styles/css/main.css',
-      '@/assets/styles/scss/main.scss',
    ],
 
    colorMode: {
@@ -85,14 +84,16 @@ export default defineNuxtConfig({
    ssr: false,
 
    vite: {
+      /*
       css: {
          preprocessorOptions: {
             scss: {
                additionalData:
-                  `@use "@/assets/styles/scss/_colors.scss"; 
-                  @use "@/assets/styles/scss/_variables.scss";`,
+                  `@use "@/assets/styles/css/_colors.scss";
+                  @use "@/assets/styles/css/_variables.scss";`,
             },
          },
       },
+      */
    },
 })
