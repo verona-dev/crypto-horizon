@@ -57,20 +57,6 @@
     p {
         //font-size: 1rem;
     }
-
-/*    .page {
-        @apply flex flex-col justify-center items-center content-center;
-        height: calc(100vh - 65px);
-    }*/
-
-    .custom-flex {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-        align-content: center;
-    }
 }
 
 @layer components {
@@ -102,5 +88,19 @@
 
     h6 {
         font-size: .67em;
+    }
+    
+    .page {
+        @apply flex flex-col justify-center items-center content-center;
+        height: calc(100vh - 65px);
+    }
+    
+    .custom-flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        align-content: center;
     }
 }
