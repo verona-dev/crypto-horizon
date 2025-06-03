@@ -19,7 +19,7 @@ export default defineNuxtConfig({
    ],
 
    colorMode: {
-      preference: 'system', // default value of $colorMode.preference
+      preference: 'dark', // default value of $colorMode.preference
       fallback: 'light',
       hid: 'nuxt-color-mode-script',
       globalName: '__NUXT_COLOR_MODE__',
@@ -82,18 +82,4 @@ export default defineNuxtConfig({
 
    // Disable SSR
    ssr: false,
-
-   vite: {
-      /*
-      css: {
-         preprocessorOptions: {
-            scss: {
-               additionalData:
-                  `@use "@/assets/styles/css/_colors.scss";
-                  @use "@/assets/styles/css/_variables.scss";`,
-            },
-         },
-      },
-      */
-   },
 })
