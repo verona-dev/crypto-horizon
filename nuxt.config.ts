@@ -74,6 +74,7 @@ export default defineNuxtConfig({
       '@pinia/nuxt',
       'maz-ui/nuxt',
       '@nuxtjs/color-mode',
+      'radix-vue/nuxt',
    ],
 
    runtimeConfig: {

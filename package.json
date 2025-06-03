@@ -27,6 +27,7 @@
         "maz-ui": "3.50.1",
         "npm-check-updates": "18.0.1",
         "pinia": "^3.0.2",
+        "radix-vue": "1.9.17",
         "tailwindcss": "4.1.8"
     }
 }
