@@ -15,8 +15,8 @@ export default defineNuxtConfig({
    },
 
    css: [
-      '@/assets/css/main.css',
-      '@/assets/scss/main.scss',
+      '@/assets/styles/css/main.css',
+      '@/assets/styles/scss/main.scss',
    ],
 
    colorMode: {
@@ -89,8 +89,8 @@ export default defineNuxtConfig({
          preprocessorOptions: {
             scss: {
                additionalData:
-                  `@use "@/assets/scss/_colors.scss"; 
-                  @use "@/assets/scss/_variables.scss";`,
+                  `@use "@/assets/styles/scss/_colors.scss"; 
+                  @use "@/assets/styles/scss/_variables.scss";`,
             },
          },
       },

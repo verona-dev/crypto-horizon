@@ -1,6 +1,11 @@
 @import url('keyframes.css');
 @import 'tailwindcss';
-@import '@nuxt/ui';
+/*@import 'module.d.mts';*/
+
+.page {
+    @apply flex flex-col justify-center items-center content-center;
+    height: calc(100vh - 65px);
+}
 
 /* Desktop */
 @media (min-width: 1024px) {}
