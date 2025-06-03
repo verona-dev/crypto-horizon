@@ -1,103 +1,24 @@
+@import 'tailwindcss';
+@import 'tailwindcss/index';
 @variant dark (&:where(.dark, .dark *));
 
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --color-card: var(--card);
-    --color-card-foreground: var(--card-foreground);
-    --color-popover: var(--popover);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-primary: var(--primary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-secondary: var(--secondary);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-muted: var(--muted);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-accent: var(--accent);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-info: var(--info);
-    --color-info-foreground: var(--info-foreground);
-    --color-success: var(--success);
-    --color-success-foreground: var(--success-foreground);
-    --color-warning: var(--warning);
-    --color-warning-foreground: var(--warning-foreground);
-    --color-error: var(--error);
-    --color-error-foreground: var(--error-foreground);
-    --color-border: var(--border);
-    --color-input: var(--input);
-    --color-outline: var(--outline);
-    --color-active: var(--active);
-    --color-active-foreground: var(--active-foreground);
 }
 
 @layer base {
     :root {
-        --background: var(--color-zinc-50);
-        --foreground: var(--color-zinc-950);
-        --card: var(--color-zinc-50);
-        --card-foreground: var(--color-zinc-950);
-        --popover: var(--color-zinc-50);
-        --popover-foreground: var(--color-zinc-950);
-        --primary: var(--color-blue-700);
-        --primary-foreground: var(--color-zinc-50);
-
-        --secondary-foreground: var(--color-zinc-50);
-        --muted: var(--color-zinc-100);
-        --muted-foreground: var(--color-zinc-600);
-        --accent: var(--color-zinc-200);
-        --accent-foreground: var(--color-zinc-900);
-        --info: var(--color-sky-300);
-        --info-foreground: var(--color-sky-950);
-        --success: var(--color-green-300);
-        --success-foreground: var(--color-green-950);
-        --warning: var(--color-amber-300);
-        --warning-foreground: var(--color-amber-950);
-        --error: var(--color-red-700);
-        --error-foreground: var(--color-zinc-50);
-        --border: var(--color-zinc-200);
-        --input: var(--color-zinc-200);
-        --outline: var(--color-blue-600);
-        --radius: 0.5rem;
-
-        --secondary: var(--color-pink-500);
-        --secondary-hover: var(--color-pink-400);
-        --tooltip-card: #44424a;
-        --tooltip-ribbon: #86baab;
-
-        --color-active: #5cecc0;
-        --color-salmon: #dc8272;
+        --background: var(--color-zinc-100);
+        --foreground: black;
+        --card: var(--color-pink-800);
     }
 
     .dark {
-        --background: var(--color-zinc-800); /* #27272a */
+        --background: var(--color-gray_dark); /* #27272a */
         --foreground: var(--color-zinc-50);
-        --card: #3b3c4e;
-        /*--card: var(--color-slate-800);*/
-        --card-foreground: var(--color-zinc-50);
-        --popover: var(--color-zinc-950);
-        --popover-foreground: var(--color-zinc-50);
-        --primary: var(--color-blue-700);
-        --primary-foreground: var(--color-zinc-50);
-        --secondary: var(--color-pink-500);
-        --secondary-foreground: var(--color-zinc-950);
-        --muted: var(--color-zinc-900);
-        --muted-foreground: var(--color-zinc-400);
-        --accent: #d3fbd8; /* Snowy Mint */
-        --accent-foreground: var(--color-zinc-100);
-        --info: var(--color-sky-300);
-        --info-foreground: var(--color-sky-950);
-        --success: var(--color-green-300);
-        --success-foreground: var(--color-green-950);
-        --warning: var(--color-amber-300);
-        --warning-foreground: var(--color-amber-950);
-        --error: var(--color-red-800);
-        --error-foreground: var(--color-zinc-50);
-        --border: var(--color-zinc-800);
-        --input: var(--color-zinc-800);
-        --outline: var(--color-blue-600);
-        --radius: 0.5rem;
-        --active: var(--color-pink-400);
-        --active-foreground: var(--color-zinc-50);
+        --card: var(--color-pink-400);
     }
 }
 
@@ -134,4 +55,5 @@
     .theme-selector span {
         color: var(--color-secondary_light);
     }
-}*/
+}
+*/

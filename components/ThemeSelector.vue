@@ -65,8 +65,15 @@
     };
 </script>
 
-<style scoped lang='scss'>
+<style scoped>
     .theme-selector {
         width: min-content;
+        left: 0;
+        margin-left: auto;
+        margin-right: auto;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 10px;
     }
 </style>

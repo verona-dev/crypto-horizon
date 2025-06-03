@@ -1,11 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { defineNuxtConfig } from 'nuxt/config'
+import { defineNuxtConfig } from 'nuxt/config';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
    devtools: { enabled: false },
 
    app: {
-      layout: 'Layout',
+      layout: 'default',
       pageTransition: {
          // Name options are: 'bounce', 'fade', 'page', 'custom',
          // Mode options are: 'out-in','in-out',
@@ -19,8 +20,8 @@ export default defineNuxtConfig({
    ],
 
    colorMode: {
-      preference: 'system', // default value of $colorMode.preference
-      fallback: 'light',
+      preference: 'dark', // default value of $colorMode.preference
+      fallback: 'base',
       hid: 'nuxt-color-mode-script',
       globalName: '__NUXT_COLOR_MODE__',
       classPrefix: '',
@@ -69,9 +70,10 @@ export default defineNuxtConfig({
 
    modules: [
       '@nuxtjs/google-fonts',
-      '@nuxt/ui',
       '@nuxt/image',
       '@pinia/nuxt',
+      'maz-ui/nuxt',
+      '@nuxtjs/color-mode',
    ],
 
    runtimeConfig: {
@@ -82,4 +84,10 @@ export default defineNuxtConfig({
 
    // Disable SSR
    ssr: false,
-})
+
+   vite: {
+      plugins: [
+         tailwindcss(),
+      ],
+   },
+});

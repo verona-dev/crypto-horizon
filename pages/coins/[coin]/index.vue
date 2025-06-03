@@ -75,7 +75,7 @@
     });
 </script>
 
-<style scoped lang='scss'>
+<style scoped>
     .single-coin {
         
         .coin-card {

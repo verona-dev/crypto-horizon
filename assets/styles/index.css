@@ -1,5 +1,6 @@
+/*@import 'maz-ui/styles';*/
 @import 'tailwindcss';
-@import './base.css';
+@import './global.css';
 @import './colors.css';
 @import './themes.css';
 @import './transitions.css';

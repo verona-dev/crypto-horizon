@@ -1,10 +1,11 @@
 <template>
-    <Header />
+    <Navigation />
+    
     <main>
         <slot />
     </main>
 </template>
 
 <script setup>
-    import Header from '~/components/layout/Header.vue';
+    import Navigation from '~/components/Navigation.vue';
 </script>

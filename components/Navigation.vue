@@ -1,8 +1,6 @@
 <template>
     <header>
-        <h2>
-            <NuxtLink to='/'>Crypto Horizon</NuxtLink>
-        </h2>
+        <NuxtLink to='/'>Crypto Horizon</NuxtLink>
         
         <nav>
             <ul>
@@ -16,7 +14,7 @@
     </header>
 </template>
 
-<style scoped lang='scss'>
+<style>
     header {
         align-items: center;
         border-bottom: 1px solid var(--color-pink_cabaret);
