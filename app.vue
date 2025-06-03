@@ -16,7 +16,7 @@
 import ThemeSelector from '~/components/ThemeSelector.vue';
 </script>
 
-<style lang='scss'>
+<style>
    .theme-selector {
        left: 0;
        margin-left: auto;

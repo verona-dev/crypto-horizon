@@ -8,7 +8,7 @@
 
 </script>
 
-<style scoped lang='scss'>
+<style scoped>
     .defi {
         h1 {
             //font-size: 3em;

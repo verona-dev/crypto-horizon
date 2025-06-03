@@ -16,7 +16,7 @@
     </header>
 </template>
 
-<style scoped lang='scss'>
+<style scoped>
     header {
         align-items: center;
         border-bottom: 1px solid var(--color-pink_cabaret);

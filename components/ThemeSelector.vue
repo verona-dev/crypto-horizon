@@ -65,7 +65,7 @@
     };
 </script>
 
-<style scoped lang='scss'>
+<style scoped>
     .theme-selector {
         width: min-content;
     }

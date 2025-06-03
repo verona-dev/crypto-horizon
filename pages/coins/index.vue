@@ -236,7 +236,7 @@
     onMounted(async() => await fetchCoincapCoins());
 </script>
 
-<style scoped lang='scss'>
+<style scoped>
     .coins {
         .card {
             height: 884px;

@@ -19,7 +19,7 @@
 // const defi = 'btc-tree.svg';
 </script>
 
-<style scoped lang='scss'>
+<style scoped>
     .welcome {
         align-items: center;
         display: flex;
