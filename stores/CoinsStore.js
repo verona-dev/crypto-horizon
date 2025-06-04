@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { useCoincapFetchCoin, useCoincapFetchCoins } from '~/composables/apiCoincap';
+import { useCoincapFetchCoin, useCoincapFetchMarket } from '~/composables/apiCoincap';
 import { useCoingeckoHistoricalChartData } from '~/composables/apiCoingecko';
 import { formatCoin, formatTableCoins, } from '~/utils/formatUtils.js';
 
@@ -12,13 +12,16 @@ export const useCoinsStore = defineStore('CoinsStore', {
     }),
     
     actions: {
-        async fetchCoincapCoins() {
+        async fetchCoincapMarket() {
             this.loading = true;
             this.coins = [];
             
             try {
-                const { data }  = await useCoincapFetchCoins();
-                this.coins = formatTableCoins(data);
+                const { data }  = await useCoincapFetchMarket();
+                this.coins = data;
+                console.log(this.coins);
+                // this.coins = formatTableCoins(data);
+                console.log(JSON.parse(JSON.stringify(this.coins)));
             }
             catch(error) {
                 console.log(error);

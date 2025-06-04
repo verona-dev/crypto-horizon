@@ -1,15 +1,15 @@
 <template>
     <div class='coins page'>
-        This is coins page
+        <CryptocurrenciesTable />
     </div>
 </template>
 
 <script setup>
     import {ref, onMounted } from 'vue';
-    // CoinsStore
     import {storeToRefs} from 'pinia';
     import {useCoinsStore} from '~/stores/CoinsStore';
     const CoinsStore = useCoinsStore();
+    import CryptocurrenciesTable from '~/components/CryptocurrenciesTable.vue';
     
     // State
     const { loading, coins } = storeToRefs(CoinsStore);
@@ -87,11 +87,11 @@
     // ];
     
     // Methods
-    const { fetchCoincapCoins } = CoinsStore;
+    const { fetchCoincapMarket } = CoinsStore;
     
     const onRowClick = row => navigateTo(`/cryptocurrencies/${row.id.toLowerCase()}`);
     
-    onMounted(async() => await fetchCoincapCoins());
+    onMounted(async() => await fetchCoincapMarket());
 </script>
 
 <style scoped>
