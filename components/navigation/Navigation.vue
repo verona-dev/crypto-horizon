@@ -65,7 +65,7 @@
                             <li>
                                 <NavigationMenuLink as-child>
                                     <NuxtLink
-                                        to='/coins'
+                                        to='/cryptocurrencies'
                                         class='block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
                                     >
                                         <div class='text-sm font-medium leading-none'>Cryptocurrencies</div>
@@ -109,9 +109,4 @@
    ul {
        background-color: var(--background) !important;
    }
-   
-/*   li:hover button,
-   a:hover {
-       color: var(--color-secondary) !important;
-   }*/
 </style>

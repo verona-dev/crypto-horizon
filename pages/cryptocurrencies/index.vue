@@ -89,7 +89,7 @@
     // Methods
     const { fetchCoincapCoins } = CoinsStore;
     
-    const onRowClick = row => navigateTo(`/coins/${row.id.toLowerCase()}`);
+    const onRowClick = row => navigateTo(`/cryptocurrencies/${row.id.toLowerCase()}`);
     
     onMounted(async() => await fetchCoincapCoins());
 </script>

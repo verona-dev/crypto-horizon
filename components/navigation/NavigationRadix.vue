@@ -66,7 +66,7 @@
                             </li>
                             
                             <NavigationRadixItem
-                                href='/coins'
+                                href='/cryptocurrencies'
                                 title='Coins'
                             >
                                 Check the coins.
