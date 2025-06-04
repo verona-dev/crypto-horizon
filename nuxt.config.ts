@@ -20,7 +20,7 @@ export default defineNuxtConfig({
    ],
 
    colorMode: {
-      preference: 'base', // default value of $colorMode.preference
+      preference: 'dark', // default value of $colorMode.preference
       fallback: 'base',
       hid: 'nuxt-color-mode-script',
       globalName: '__NUXT_COLOR_MODE__',
@@ -71,13 +71,14 @@ export default defineNuxtConfig({
    },
 
    modules: [
-     '@nuxtjs/google-fonts',
-     '@nuxt/image',
-     '@pinia/nuxt',
-     'maz-ui/nuxt',
-     '@nuxtjs/color-mode',
-     'radix-vue/nuxt',
-     '@nuxt/icon',
+      '@nuxtjs/google-fonts',
+      '@nuxt/image',
+      '@pinia/nuxt',
+      'maz-ui/nuxt',
+      '@nuxtjs/color-mode',
+      'radix-vue/nuxt',
+      '@nuxt/icon',
+      'shadcn-nuxt',
    ],
 
    runtimeConfig: {
@@ -86,7 +87,11 @@ export default defineNuxtConfig({
       },
    },
 
-   // Disable SSR
+   shadcn: {
+      prefix: '',
+      componentDir: './components/ui'
+   },
+
    ssr: false,
 
    vite: {

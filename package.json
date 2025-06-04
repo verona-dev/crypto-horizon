@@ -17,6 +17,7 @@
         "@nuxtjs/google-fonts": "3.2.0",
         "eslint": "^9.28.0",
         "nuxt": "^3.17.4",
+        "shadcn-nuxt": "2.2.0",
         "typescript": "^5.0.4",
         "vue": "latest",
         "vue-router": "^4.5.1",
@@ -26,10 +27,17 @@
         "@iconify-json/bitcoin-icons": "1.2.2",
         "@pinia/nuxt": "^0.11.0",
         "@tailwindcss/vite": "4.1.8",
+        "@vueuse/core": "13.3.0",
+        "class-variance-authority": "0.7.1",
+        "clsx": "2.1.1",
+        "lucide-vue-next": "0.513.0",
         "maz-ui": "3.50.1",
         "npm-check-updates": "18.0.1",
         "pinia": "^3.0.2",
         "radix-vue": "1.9.17",
-        "tailwindcss": "4.1.8"
+        "reka-ui": "2.3.0",
+        "tailwind-merge": "3.3.0",
+        "tailwindcss": "4.1.8",
+        "tw-animate-css": "1.3.4"
     }
 }
