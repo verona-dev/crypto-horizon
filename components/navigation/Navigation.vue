@@ -1,140 +1,112 @@
-<script setup lang="ts">
-    import { Icon } from '@iconify/vue';
-    import { ref } from 'vue';
+<script setup lang='ts'>
     import {
+        NavigationMenu,
         NavigationMenuContent,
-        NavigationMenuIndicator,
         NavigationMenuItem,
         NavigationMenuLink,
         NavigationMenuList,
-        NavigationMenuRoot,
         NavigationMenuTrigger,
-        NavigationMenuViewport,
-    } from 'radix-vue';
-    import NavigationItem from './NavigationItem.vue';
+        navigationMenuTriggerStyle,
+    } from '@/components/ui/navigation-menu'
     
-    const currentTrigger = ref('');
+    const defiItems: { title: string, href: string, description: string }[] = [
+        {
+            title: 'What',
+            href: '/defi',
+            description:
+                'What is Defi?',
+        },
+        {
+            title: 'When',
+            href: '/defi',
+            description:
+                'When to Defi?',
+        },
+        {
+            title: 'Where',
+            href: '/defi',
+            description:
+                'Where to Defi',
+        },
+        {
+            title: 'How',
+            href: '/defi',
+            description: 'How to Defi?',
+        },
+    ]
 </script>
 
 <template>
-    <NavigationMenuRoot
-        v-model='currentTrigger'
-        class='relative z-[1] flex w-full justify-center'
-    >
-        <MazCardSpotlight color='secondary'>
-            <NavigationMenuList class='center flex list-none rounded-[6px]'>
+    <NavigationMenu>
+        <MazCardSpotlight color='secondary' :padding='false'>
+            <NavigationMenuList>
                 <!--  Logo  -->
                 <NavigationMenuItem>
-                    <NavigationMenuLink
-                        class='focus:shadow-green-300 block select-none rounded-[4px] py-4 px-4 text-[15px] font-medium leading-none no-underline outline-none focus:shadow-[0_0_0_2px]'
-                        href='/'
-                    >
+                    <NavigationMenuLink href='/' :class='navigationMenuTriggerStyle()'>
                         Crypto Horizon
                     </NavigationMenuLink>
                 </NavigationMenuItem>
                 
                 <!--  Markets  -->
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger
-                        class='focus:shadow-green-300 group flex select-none items-center justify-between gap-[2px] rounded-[4px] py-4 px-4 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]'
-                    >
-                        Markets
-                        <Icon
-                            icon='radix-icons:caret-down'
-                            class='text-green10 relative top-[1px] transition-transform duration-[250ms] ease-in group-data-[state=open]:-rotate-180'
-                        />
-                    </NavigationMenuTrigger>
-                    
-                    <NavigationMenuContent
-                        class='data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight absolute top-0 left-0 w-full sm:w-auto'
-                    >
-                        <ul class='one m-0 grid list-none gap-x-[10px] p-[22px] sm:w-[500px] sm:grid-cols-[0.75fr_1fr]'>
-                            <li class='row-span-3 grid'>
-                                <NavigationMenuLink as-child>
-                                    <a
-                                        class='focus:shadow-green7 from-green9 to-teal9 flex h-full w-full select-none flex-col justify-end rounded-[6px] bg-gradient-to-b p-[25px] no-underline outline-none focus:shadow-[0_0_0_2px]'
-                                        href='/'
-                                    >
-                                        <img
-                                            class='w-16'
-                                            src='https://www.radix-vue.com/logo.svg'
-                                        >
-                                        <div class='mt-4 mb-[7px] text-[18px] font-medium leading-[1.2] text-white'>Radix Primitives</div>
-                                        <p class='text-mauve4 text-[14px] leading-[1.3]'>Unstyled, accessible components for Vue.</p>
-                                    </a>
-                                </NavigationMenuLink>
+                    <NavigationMenuTrigger>Markets</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                        <ul class='grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[minmax(0,.75fr)_minmax(0,1fr)]'>
+                            
+                            <!--  Markets Logo  -->
+                            <li class='row-span-3'>
+                                <NuxtIcon
+                                    name='bitcoin-icons:bitcoin-circle-outline'
+                                    size='150'
+                                />
                             </li>
                             
-                            <NavigationItem
-                                href='https://stitches.dev/'
-                                title='Stitches'
-                            >
-                                CSS-in-JS with best-in-class developer experience.
-                            </NavigationItem>
-                            <NavigationItem
-                                href='/colors'
-                                title='Colors'
-                            >
-                                Beautiful, thought-out palettes with auto dark mode.
-                            </NavigationItem>
-                            <NavigationItem
-                                href='https://icons.radix-ui.com/'
-                                title='Icons'
-                            >
-                                A crisp set of 15x15 icons, balanced and consistent.
-                            </NavigationItem>
+                            <!--  Markets - Cryptocurrencies -->
+                            <li>
+                                <NavigationMenuLink as-child>
+                                    <NuxtLink
+                                        to='/cryptocurrencies'
+                                        class='block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
+                                    >
+                                        <div class='text-sm font-medium leading-none'>Cryptocurrencies</div>
+                                        <p class='line-clamp-2 text-sm leading-snug text-muted-foreground'>
+                                            Check the market.
+                                        </p>
+                                    </NuxtLink>
+                                </NavigationMenuLink>
+                            </li>
                         </ul>
                     </NavigationMenuContent>
                 </NavigationMenuItem>
                 
                 <!--  Defi  -->
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger
-                        class='focus:shadow-green-300 group flex select-none items-center justify-between gap-[2px] rounded-[4px] py-4 px-4 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]'
-                    >
-                        Defi
-                        <Icon
-                            icon='radix-icons:caret-down'
-                            class='text-green10 relative top-[1px] transition-transform duration-[250ms] ease-in group-data-[state=open]:-rotate-180'
-                        />
-                    </NavigationMenuTrigger>
-                    
-                    <NavigationMenuContent class='data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight absolute top-0 left-0 w-full sm:w-auto'>
-                        <ul class='m-0 grid list-none gap-x-[10px] p-[22px] sm:w-[600px] sm:grid-flow-col sm:grid-rows-3'>
-                            <NavigationItem
-                                title='Introduction'
-                                href='/docs/primitives/overview/introduction'
-                            >
-                                Build high-quality, accessible design systems and web apps.
-                            </NavigationItem>
-                            <NavigationItem
-                                title='Getting started'
-                                href='/docs/primitives/overview/getting-started'
-                            >
-                                A quick tutorial to get you up and running with Radix Primitives.
-                            </NavigationItem>
-                            <NavigationItem
-                                title='Styling'
-                                href='/docs/primitives/guides/styling'
-                            >
-                                Unstyled and compatible with any styling solution.
-                            </NavigationItem>
+                    <NavigationMenuTrigger>Defi</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                        <ul class='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] '>
+                            <li v-for='item in defiItems' :key='item.title'>
+                                <NavigationMenuLink as-child>
+                                    <NuxtLink
+                                        :to='item.href'
+                                        class='block w-full select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
+                                    >
+                                        <div class='text-sm font-medium leading-none'>{{ item.title }}</div>
+                                        <p class='line-clamp-2 text-sm leading-snug text-muted-foreground'>
+                                            {{ item.description }}
+                                        </p>
+                                    </NuxtLink>
+                                </NavigationMenuLink>
+                            </li>
                         </ul>
                     </NavigationMenuContent>
                 </NavigationMenuItem>
-                
-                <NavigationMenuIndicator
-                    class='data-[state=hidden]:opacity-0 duration-200 data-[state=visible]:animate-fadeIn data-[state=hidden]:animate-fadeOut top-full z-[1] flex h-[10px] items-end justify-center overflow-hidden transition-[all,transform_250ms_ease]'
-                >
-                    <div class='relative top-[70%] h-[10px] w-[10px] rotate-[45deg] rounded-tl-[2px]' />
-                </NavigationMenuIndicator>
             </NavigationMenuList>
         </MazCardSpotlight>
-        
-        <div class='perspective-[2000px] absolute top-full left-0 flex w-full justify-center'>
-            <NavigationMenuViewport
-                class='data-[state=open]:animate-scaleIn data-[state=closed]:animate-scaleOut relative mt-[10px] h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-[10px] transition-[width,_height] duration-300 sm:w-[var(--radix-navigation-menu-viewport-width)]'
-            />
-        </div>
-    </NavigationMenuRoot>
+    </NavigationMenu>
 </template>
+
+<style>
+   ul {
+       background-color: var(--background) !important;
+   }
+</style>

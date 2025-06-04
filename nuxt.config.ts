@@ -71,13 +71,14 @@ export default defineNuxtConfig({
    },
 
    modules: [
-     '@nuxtjs/google-fonts',
-     '@nuxt/image',
-     '@pinia/nuxt',
-     'maz-ui/nuxt',
-     '@nuxtjs/color-mode',
-     'radix-vue/nuxt',
-     '@nuxt/icon',
+      '@nuxtjs/google-fonts',
+      '@nuxt/image',
+      '@pinia/nuxt',
+      'maz-ui/nuxt',
+      '@nuxtjs/color-mode',
+      'radix-vue/nuxt',
+      '@nuxt/icon',
+      'shadcn-nuxt',
    ],
 
    runtimeConfig: {
@@ -86,7 +87,11 @@ export default defineNuxtConfig({
       },
    },
 
-   // Disable SSR
+   shadcn: {
+      prefix: '',
+      componentDir: './components/ui'
+   },
+
    ssr: false,
 
    vite: {
