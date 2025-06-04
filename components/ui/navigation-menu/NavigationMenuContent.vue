@@ -18,7 +18,6 @@
 </script>
 
 <template>
-    
     <NavigationMenuContent
         data-slot="navigation-menu-content"
         v-bind="forwarded"

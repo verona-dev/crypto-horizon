@@ -42,9 +42,11 @@
             <NavigationMenuList>
                 <!--  Logo  -->
                 <NavigationMenuItem>
-                    <NavigationMenuLink href='/' :class='navigationMenuTriggerStyle()'>
-                        Crypto Horizon
-                    </NavigationMenuLink>
+                    <NuxtLink to="/" :class="navigationMenuTriggerStyle()">
+                        <NavigationMenuLink >
+                            Crypto Horizon
+                        </NavigationMenuLink>
+                    </NuxtLink>
                 </NavigationMenuItem>
                 
                 <!--  Markets  -->
@@ -106,7 +108,7 @@
 </template>
 
 <style>
-   ul {
-       background-color: var(--background) !important;
-   }
+    ul {
+        background-color: var(--background) !important;
+    }
 </style>
