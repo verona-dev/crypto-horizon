@@ -21,7 +21,7 @@ const forwardedProps = useForwardProps(delegatedProps)
   <NavigationMenuTrigger
     data-slot="navigation-menu-trigger"
     v-bind="forwardedProps"
-    :class="cn(navigationMenuTriggerStyle(), 'group', props.class)"
+    :class="`${cn(navigationMenuTriggerStyle())} group ${props.class} hover:text-secondary`"
   >
     <slot />
     <ChevronDown
