@@ -20,7 +20,7 @@ export default defineNuxtConfig({
    ],
 
    colorMode: {
-      preference: 'dark', // default value of $colorMode.preference
+      preference: 'base', // default value of $colorMode.preference
       fallback: 'base',
       hid: 'nuxt-color-mode-script',
       globalName: '__NUXT_COLOR_MODE__',

@@ -66,22 +66,10 @@
                             </li>
                             
                             <NavigationItem
-                                href='https://stitches.dev/'
-                                title='Stitches'
+                                href='/coins'
+                                title='Coins'
                             >
-                                CSS-in-JS with best-in-class developer experience.
-                            </NavigationItem>
-                            <NavigationItem
-                                href='/colors'
-                                title='Colors'
-                            >
-                                Beautiful, thought-out palettes with auto dark mode.
-                            </NavigationItem>
-                            <NavigationItem
-                                href='https://icons.radix-ui.com/'
-                                title='Icons'
-                            >
-                                A crisp set of 15x15 icons, balanced and consistent.
+                                Check the coins.
                             </NavigationItem>
                         </ul>
                     </NavigationMenuContent>
@@ -103,21 +91,9 @@
                         <ul class='m-0 grid list-none gap-x-[10px] p-[22px] sm:w-[600px] sm:grid-flow-col sm:grid-rows-3'>
                             <NavigationItem
                                 title='Introduction'
-                                href='/docs/primitives/overview/introduction'
+                                href='/defi'
                             >
-                                Build high-quality, accessible design systems and web apps.
-                            </NavigationItem>
-                            <NavigationItem
-                                title='Getting started'
-                                href='/docs/primitives/overview/getting-started'
-                            >
-                                A quick tutorial to get you up and running with Radix Primitives.
-                            </NavigationItem>
-                            <NavigationItem
-                                title='Styling'
-                                href='/docs/primitives/guides/styling'
-                            >
-                                Unstyled and compatible with any styling solution.
+                                What? Where? When?
                             </NavigationItem>
                         </ul>
                     </NavigationMenuContent>
