@@ -14,29 +14,30 @@
         background-even
         selected-key="id"
         :headers="[
-      { label: 'Rank', key: 'rank', align: 'center', width: '2rem', sortable: false },
-      { label: 'Name', key: 'name' },
-      { label: 'Symbol', key: 'symbol' },
-      { label: 'Price', key: 'priceUsd', align: 'center', classes: 'maz-font-bold' },
-      { label: 'Market Cap', key: 'marketCapUsd', align: 'center' },
-      { label: 'Volume (24Hr)', key: 'volumeUsd24Hr', align: 'center' },
-      { label: 'Change (24Hr)', key: 'changePercent24Hr', align: 'center' },
-    ]"
+          { label: 'Rank', key: 'rank', align: 'center', sortable: false },
+          { label: 'Name', key: 'name', sortable: false },
+          { label: 'Symbol', key: 'symbol', sortable: false },
+          { label: 'Price', key: 'price', align: 'center', classes: 'maz-font-bold', sortable: false },
+          { label: 'Market Cap', key: 'marketCap', align: 'center', sortable: false },
+          { label: 'Supply', key: 'supply', align: 'center', sortable: false },
+          { label: 'Volume (24Hr)', key: 'volume', align: 'center', sortable: false },
+          { label: 'Change (24Hr)', key: 'changePercent24Hr', align: 'center', sortable: false },
+        ]"
         :rows="coins"
     >
-        <template #cell-index="{ value }">
-            <span class="maz-text-base">{{value}}</span>
-        </template>
-        
         <template #cell-name="{ row, value }">
             <div class="maz-flex maz-items-center maz-gap-2">
-                <MazAvatar :src="row.logoUrl" size="0.5rem"></MazAvatar>
+                <NuxtIcon
+                    :name='row.icon'
+                    size='25'
+                />
                 <span>{{value}}</span>
             </div>
         </template>
-        
-        <template #cell-type="{ value }">
-            <MazBadge :color="value === 'CUP' ? 'primary' : 'secondary'">{{value}}</MazBadge>
+                <template #cell-changePercent24Hr="{ row, value }">
+            <div :class='row.trend'>
+                <span>{{value}}</span>
+            </div>
         </template>
         
         <!--

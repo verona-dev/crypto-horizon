@@ -18,10 +18,10 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             this.coins = [];
             
             try {
-                const data  = await useFetchCoinLoreData('global');
-                console.log('data: ', data);
-                // this.coins = formatTableCoins(data);
-                // console.log(JSON.parse(JSON.stringify(this.coins)));
+                const response  = await useFetchCoinLoreData('tickers');
+                console.log('data: ', response.data[0]);
+                this.coins = formatTableCoins(response.data);
+                console.log(JSON.parse(JSON.stringify(this.coins[0])));
             } catch(error) {
                 console.log(error);
             } finally {
