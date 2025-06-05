@@ -1,22 +1,24 @@
 <template>
     <MazTable
+        :headers='[
+          { label: "Rank", key: "rank", align: "center", sortable: false, classes: "w-24", },
+          { label: "Name", key: "name", sortable: false, classes: "w-72", },
+          { label: "Symbol", key: "symbol", sortable: false, classes: "w-24", },
+          { label: "Price", key: "price", align: "center", sortable: false, classes: "w-32",},
+          { label: "Market Cap", key: "marketCap", align: "center", sortable: false, classes: "w-32", },
+          { label: "Volume (24Hr)", key: "volume", align: "center", sortable: false, classes: "w-32", },
+          { label: "Circ. Supply", key: "c_supply", align: "center", sortable: false, classes: "w-32", },
+          { label: "Change (24Hr)", key: "changePercent24Hr", align: "center", sortable: false, classes: "w-32", },
+        ]'
+        :rows='rows'
+        class='my-20'
+        :loading='loading'
+        color='secondary'
         hoverable
         background-even
-        :headers="[
-          { label: 'Rank', key: 'rank', align: 'center', sortable: false, classes: 'w-24', },
-          { label: 'Name', key: 'name', sortable: false, classes: 'w-72', },
-          { label: 'Symbol', key: 'symbol', sortable: false, classes: 'w-24', },
-          { label: 'Price', key: 'price', align: 'center', sortable: false, classes: 'w-32',},
-          { label: 'Market Cap', key: 'marketCap', align: 'center', sortable: false, classes: 'w-32', },
-          { label: 'Volume (24Hr)', key: 'volume', align: 'center', sortable: false, classes: 'w-32', },
-          { label: 'Circ. Supply', key: 'c_supply', align: 'center', sortable: false, classes: 'w-32', },
-          { label: 'Change (24Hr)', key: 'changePercent24Hr', align: 'center', sortable: false, classes: 'w-32', },
-        ]"
-        :rows="rows"
-        class='my-20'
     >
-        <template #cell-name="{ row, value }">
-            <div class="maz-flex maz-items-center maz-gap-2">
+        <template #cell-name='{ row, value }'>
+            <div class='maz-flex maz-items-center maz-gap-2'>
                 <NuxtIcon
                     :name='row.icon'
                     size='25'
@@ -25,7 +27,7 @@
             </div>
         </template>
         
-        <template #cell-changePercent24Hr="{ row, value }">
+        <template #cell-changePercent24Hr='{ row, value }'>
             <div :class='row.trend'>
                 <span>{{value}}</span>
             </div>
@@ -46,7 +48,7 @@
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State
-    const { coins } = storeToRefs(CryptocurrenciesStore);
+    const { loading, coins } = storeToRefs(CryptocurrenciesStore);
     
     // Pagination
     const page = ref(1);
@@ -113,6 +115,19 @@
 <style>
     .m-table {
         //width: 1200px !important;
+        //height: 800px;
+        
+        thead {
+        
+        }
+        
+   
+    }
+    tbody {
+        height: 800px;
+    }
+    .m-table-wrapper {
+        //height: 800px;
     }
     
     th span {}

@@ -66,7 +66,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             this.coin = {};
             
             try {
-                const { data }  = await useCoincapFetchCoin(coin);
+                const { data }  = useCoincapFetchCoin(coin);
                 this.coin = formatCoin(data);
                 console.log(this.coin);
             }
