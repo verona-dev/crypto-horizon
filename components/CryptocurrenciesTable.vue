@@ -14,6 +14,7 @@
         class='my-20'
         :loading='loading'
         color='secondary'
+        title='Cryptocurrencies - TOP 100'
         pagination
         :page='page'
         :page-size='pageSize'
@@ -136,6 +137,10 @@
     
     tbody {
         height: 800px;
+        
+        td {
+            padding: 20px 0 !important;
+        }
     }
     
     h4 {
