@@ -1,38 +1,60 @@
 import { getIcon, getTrendColor } from '~/utils/styleUtils.js';
 
-const formatNumber = number => {
-    const options = {
-        minimumFractionDigits: 0,
-        style: "currency",
-        currency: "USD"
-    };
-    
-    return parseInt(number).toLocaleString('en-US', options);
-};
-
 const formatPrice = number => {
     const options = {
         minimumFractionDigits: 2,
-        style: "currency",
-        currency: "USD"
+        style: 'currency',
+        currency: 'USD'
     };
     
     return parseFloat(number).toLocaleString('en-US', options);
 };
 
+const formatNumber = (number) => {
+    if (number === null || number === undefined) return '-';
+    
+    const absNumber = Math.abs(number);
+    let formattedNumber;
+    let suffix = '';
+    
+    if (absNumber >= 1_000_000_000_000) {
+        // Trillions
+        formattedNumber = (number / 1_000_000_000_000).toFixed(2);
+        suffix = 't';
+    } else if (absNumber >= 1_000_000_000) {
+        // Billions
+        formattedNumber = (number / 1_000_000_000).toFixed(2);
+        suffix = 'b';
+    } else if (absNumber >= 1_000_000) {
+        // Millions
+        formattedNumber = (number / 1_000_000).toFixed(2);
+        suffix = 'm';
+    } else if (absNumber >= 1_000) {
+        // Thousands
+        formattedNumber = (number / 1_000).toFixed(2);
+        suffix = 'k';
+    } else {
+        // Less than thousand, show the number
+        formattedNumber = number.toFixed(2);
+    }
+    
+    return `$${formattedNumber}${suffix}`;
+};
+
 const formatTableCoins = coins => {
-    return coins?.map(row => ({
-        changePercent24Hr: parseFloat(row.changePercent24Hr).toFixed(2),
-        explorer: row.explorer,
-        icon: getIcon(row.symbol),
-        id: row.id,
-        marketCap: formatNumber(row.marketCapUsd),
-        name: row.name,
-        price: formatPrice(row.priceUsd),
-        supply: formatNumber(row.supply),
-        symbol: row.symbol,
-        trend: getTrendColor(row.changePercent24Hr),
-        volume: formatNumber(row.volumeUsd24Hr),
+    return coins?.map(coin => ({
+        changePercent24Hr: parseFloat(coin.percent_change_24h).toFixed(2),
+        explorer: coin.explorer,
+        icon: getIcon(coin.symbol),
+        id: coin.id,
+        marketCap: formatNumber(coin.market_cap_usd),
+        name: coin.name,
+        price: formatPrice(coin.price_usd),
+        rank: coin.rank,
+        c_supply: formatNumber(coin.csupply),
+        symbol: coin.symbol,
+        trend: getTrendColor(coin.percent_change_24h),
+        volume: formatNumber(coin.volume24),
     }))
 }
 

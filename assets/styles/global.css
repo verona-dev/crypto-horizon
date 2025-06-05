@@ -1,3 +1,6 @@
+/*  Fonts  */
+@import '@fontsource/ibm-plex-mono';
+@import '@fontsource-variable/noto-sans';
 
 @layer base {
     * {
@@ -11,6 +14,11 @@
     body {
         @apply bg-background text-foreground;
         font-family: Raleway, Roboto, sans-serif;
+    }
+    
+    main {
+        @apply flex flex-1 flex-col justify-center items-center content-center mx-auto;
+        min-height: calc(100vh - 200px);
     }
     
     /*
@@ -54,17 +62,8 @@
         @apply cursor-pointer;
     }
     
-    .page {
-        @apply flex flex-col justify-center items-center content-center;
-        height: calc(100vh - 200px);
-    }
-    
-    .custom-flex {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-        align-content: center;
+    .m-table {
+        font-family: 'IBM Plex Mono', monospace;
+        font-family: 'Noto Sans Variable', sans-serif;
     }
 }

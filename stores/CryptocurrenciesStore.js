@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia';
-import { useCoincapFetchCoin, useCoincapFetchCoins } from '~/composables/apiCoincap';
+import { useCoincapFetchCoin, useFetchCoincapData } from '~/composables/apiCoincap';
+import { useFetchCoinLoreData } from '~/composables/apiCoinLore.js';
 import { useCoingeckoHistoricalChartData } from '~/composables/apiCoingecko';
 import { formatCoin, formatTableCoins, } from '~/utils/formatUtils.js';
 
-export const useCoinsStore = defineStore('CoinsStore', {
+export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     state: () => ({
         loading: false,
         coins: [],
@@ -12,18 +13,16 @@ export const useCoinsStore = defineStore('CoinsStore', {
     }),
     
     actions: {
-        async fetchCoincapCoins() {
+        async fetchCoinLoreMarket() {
             this.loading = true;
             this.coins = [];
             
             try {
-                const { data }  = await useCoincapFetchCoins();
-                this.coins = formatTableCoins(data);
-            }
-            catch(error) {
+                const response  = await useFetchCoinLoreData('tickers');
+                this.coins = formatTableCoins(response.data);
+            } catch(error) {
                 console.log(error);
-            }
-            finally {
+            } finally {
                 this.loading = false;
             }
         },
@@ -42,14 +41,14 @@ export const useCoinsStore = defineStore('CoinsStore', {
                 this.loading = false;
             }
             
-            },
+        },
         
         async fetchCoincapCoin(coin) {
             this.loading = true;
             this.coin = {};
             
             try {
-                const { data }  = await useCoincapFetchCoin(coin);
+                const { data }  = useCoincapFetchCoin(coin);
                 this.coin = formatCoin(data);
                 console.log(this.coin);
             }
@@ -57,6 +56,20 @@ export const useCoinsStore = defineStore('CoinsStore', {
                 console.log(error);
             }
             finally {
+                this.loading = false;
+            }
+        },
+        
+        async fetchCoincapMarket() {
+            this.loading = true;
+            this.coins = [];
+            
+            try {
+                const { data }  = await useFetchCoincapData('assets');
+                this.coins = formatTableCoins(data);
+            } catch(error) {
+                console.log(error);
+            } finally {
                 this.loading = false;
             }
         },

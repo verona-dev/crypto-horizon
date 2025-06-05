@@ -1,5 +1,5 @@
 <template>
-    <div class='single-coin page'>
+    <div class='single-coin'>
         <UCard
             v-if='coin'
             class='coin-card'
@@ -55,19 +55,19 @@
     // Router
     import {useRoute} from 'vue-router';
     const route = useRoute();
-    // CoinsStore
+    // CryptocurrenciesStore
     import {storeToRefs} from 'pinia';
-    import {useCoinsStore} from '~/stores/CoinsStore';
-    const CoinsStore = useCoinsStore();
+    import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
+    const CoinsStore = useCryptocurrenciesStore();
     
     // State
-    const { coin } = storeToRefs(CoinsStore);
+    const { coin } = storeToRefs(CryptocurrenciesStore);
     
     // Methods
     const {
         fetchCoincapCoin,
         fetchCoingeckoHistoricalChartData,
-    } = CoinsStore;
+    } = CryptocurrenciesStore;
     
     onMounted(async() => {
         await fetchCoincapCoin(route.params.coin)
