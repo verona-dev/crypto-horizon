@@ -13,7 +13,7 @@ const forwardedProps = useForwardProps(delegatedProps)
 
 <template>
   <NavigationMenuList
-    data-slot="navigation-menu-list"
+    data-slot='navigation-menu-list'
     v-bind="forwardedProps"
     :class="
       cn(

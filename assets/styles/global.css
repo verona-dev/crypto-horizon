@@ -66,4 +66,15 @@
         font-family: 'IBM Plex Mono', monospace;
         font-family: 'Noto Sans Variable', sans-serif;
     }
+    
+    .m-card-spotlight {
+        border-radius: 0 !important;
+        width: 100% !important;
+        
+        .inner {
+            border-radius: 0 !important;
+        }
+    }
+    
+    
 }
