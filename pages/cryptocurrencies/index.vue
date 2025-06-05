@@ -15,9 +15,9 @@
     const { coins } = storeToRefs(CryptocurrenciesStore);
     
     // Methods
-    const { fetchCoincapMarket } = CryptocurrenciesStore;
+    const { fetchCoinLoreMarket } = CryptocurrenciesStore;
     
     const onRowClick = row => navigateTo(`/cryptocurrencies/${row.id.toLowerCase()}`);
     
-    onMounted(() => fetchCoincapMarket());
+    onMounted(() => fetchCoinLoreMarket());
 </script>
