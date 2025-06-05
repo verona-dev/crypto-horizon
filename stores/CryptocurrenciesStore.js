@@ -18,7 +18,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             
             try {
                 const { data }  = await useFetchCoincapData('assets');
-                console.log('data: ', data);
+                // console.log('data: ', data);
                 this.coins = formatTableCoins(data);
                 console.log(JSON.parse(JSON.stringify(this.coins)));
             } catch(error) {
