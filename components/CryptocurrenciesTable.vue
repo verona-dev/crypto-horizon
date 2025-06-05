@@ -10,10 +10,13 @@
           { label: "Circ. Supply", key: "c_supply", align: "center", sortable: false, classes: "w-32", },
           { label: "Change (24Hr)", key: "changePercent24Hr", align: "center", sortable: false, classes: "w-32", },
         ]'
-        :rows='rows'
+        :rows='coins'
         class='my-20'
         :loading='loading'
         color='secondary'
+        pagination
+        :page='page'
+        :page-size='pageSize'
         hoverable
         background-even
     >
@@ -23,7 +26,11 @@
                     :name='row.icon'
                     size='25'
                 />
-                <span>{{value}}</span>
+                
+                <div class='flex flex-col'>
+                    <span>{{value}}</span>
+                    <span class='text-sm text-gray-400'>{{ row.symbol }}</span>
+                </div>
             </div>
         </template>
         
@@ -124,7 +131,7 @@
 
 <style>
     .m-table {
-        //width: 1200px !important;
+        width: 1200px !important;
     }
     
     tbody {
@@ -133,5 +140,9 @@
     
     h4 {
         color: var(--maz-color-muted);
+    }
+    
+    .m-select-list {
+        max-height: fit-content !important;
     }
 </style>
