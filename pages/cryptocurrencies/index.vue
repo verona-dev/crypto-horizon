@@ -1,5 +1,5 @@
 <template>
-    <div class='cryptocurrencies page'>
+    <div class='cryptocurrencies'>
         <CryptocurrenciesTable />
     </div>
 </template>

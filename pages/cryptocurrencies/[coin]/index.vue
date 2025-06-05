@@ -1,5 +1,5 @@
 <template>
-    <div class='single-coin page'>
+    <div class='single-coin'>
         <UCard
             v-if='coin'
             class='coin-card'
