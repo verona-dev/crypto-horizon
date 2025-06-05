@@ -1,6 +1,5 @@
 <template>
     <MazTable
-        size="sm"
         v-model="selectedIds"
         v-model:search-query="searchQuery"
         v-model:page="page"
@@ -19,8 +18,8 @@
           { label: 'Symbol', key: 'symbol', sortable: false },
           { label: 'Price', key: 'price', align: 'center', classes: 'maz-font-bold', sortable: false },
           { label: 'Market Cap', key: 'marketCap', align: 'center', sortable: false },
-          { label: 'Supply', key: 'supply', align: 'center', sortable: false },
           { label: 'Volume (24Hr)', key: 'volume', align: 'center', sortable: false },
+          { label: 'Circulating Supply', key: 'c_supply', align: 'center', sortable: false },
           { label: 'Change (24Hr)', key: 'changePercent24Hr', align: 'center', sortable: false },
         ]"
         :rows="coins"

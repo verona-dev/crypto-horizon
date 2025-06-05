@@ -1,15 +1,5 @@
 import { getIcon, getTrendColor } from '~/utils/styleUtils.js';
 
-const formatNumber = number => {
-    const options = {
-        minimumFractionDigits: 0,
-        style: 'currency',
-        currency: 'USD'
-    };
-    
-    return parseInt(number).toLocaleString('en-US', options);
-};
-
 const formatPrice = number => {
     const options = {
         minimumFractionDigits: 2,
@@ -20,7 +10,7 @@ const formatPrice = number => {
     return parseFloat(number).toLocaleString('en-US', options);
 };
 
-const formatMarketCap = (number) => {
+const formatNumber = (number) => {
     if (number === null || number === undefined) return '-';
     
     const absNumber = Math.abs(number);
@@ -57,11 +47,11 @@ const formatTableCoins = coins => {
         explorer: coin.explorer,
         icon: getIcon(coin.symbol),
         id: coin.id,
-        marketCap: formatMarketCap(coin.market_cap_usd),
+        marketCap: formatNumber(coin.market_cap_usd),
         name: coin.name,
         price: formatPrice(coin.price_usd),
         rank: coin.rank,
-        supply: formatNumber(coin.tsupply),
+        c_supply: formatNumber(coin.csupply),
         symbol: coin.symbol,
         trend: getTrendColor(coin.percent_change_24h),
         volume: formatNumber(coin.volume24),
