@@ -33,6 +33,16 @@
             </div>
         </template>
         
+        <template #no-results>
+            <div class='flex flex-col justify-center items-center'>
+                <h4>Fetching data...</h4>
+                
+                <div class='flex items-center justify-center h-32'>
+                    <MazSpinner color='secondary' size='4em' />
+                </div>
+            </div>
+        </template>
+        
         <!--
         <template #actions>
             <MazBtn fab size="xs" color="secondary" icon="trash" />
@@ -115,20 +125,13 @@
 <style>
     .m-table {
         //width: 1200px !important;
-        //height: 800px;
-        
-        thead {
-        
-        }
-        
-   
     }
+    
     tbody {
         height: 800px;
     }
-    .m-table-wrapper {
-        //height: 800px;
-    }
     
-    th span {}
+    h4 {
+        color: var(--maz-color-muted);
+    }
 </style>

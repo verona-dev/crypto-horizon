@@ -19,25 +19,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             
             try {
                 const response  = await useFetchCoinLoreData('tickers');
-                console.log('data: ', response.data[0]);
                 this.coins = formatTableCoins(response.data);
-                console.log(JSON.parse(JSON.stringify(this.coins[0])));
-            } catch(error) {
-                console.log(error);
-            } finally {
-                this.loading = false;
-            }
-        },
-        
-        async fetchCoincapMarket() {
-            this.loading = true;
-            this.coins = [];
-            
-            try {
-                const { data }  = await useFetchCoincapData('assets');
-                // console.log('data: ', data);
-                this.coins = formatTableCoins(data);
-                console.log(JSON.parse(JSON.stringify(this.coins)));
             } catch(error) {
                 console.log(error);
             } finally {
@@ -74,6 +56,20 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 console.log(error);
             }
             finally {
+                this.loading = false;
+            }
+        },
+        
+        async fetchCoincapMarket() {
+            this.loading = true;
+            this.coins = [];
+            
+            try {
+                const { data }  = await useFetchCoincapData('assets');
+                this.coins = formatTableCoins(data);
+            } catch(error) {
+                console.log(error);
+            } finally {
                 this.loading = false;
             }
         },
