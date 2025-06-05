@@ -1,6 +1,6 @@
-const getIcon = symbol => `cryptocurrency-color:${symbol?.toLowerCase()}`;
+export const getIcon = symbol => `cryptocurrency-color:${symbol?.toLowerCase()}`;
 
-const getTrendColor = change => {
+export const getTrendColor = change => {
     if(Math.sign(change) === -1) {
         return '!text-red-400';
     }
@@ -12,9 +12,4 @@ const getTrendColor = change => {
     else {
         return '!text-emerald-400';
     }
-};
-
-export {
-    getIcon,
-    getTrendColor,
 };

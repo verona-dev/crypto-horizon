@@ -34,7 +34,7 @@ const formatNumber = (number) => {
         formattedNumber = (number / 1_000).toFixed(2);
         suffix = 'k';
     } else {
-        // Less than thousand, just show the number
+        // Less than thousand, show the number
         formattedNumber = number.toFixed(2);
     }
     
