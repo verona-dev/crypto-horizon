@@ -7,12 +7,12 @@
 <script setup>
     import {ref, onMounted } from 'vue';
     import {storeToRefs} from 'pinia';
-    import {useCoinsStore} from '~/stores/CoinsStore';
-    const CoinsStore = useCoinsStore();
+    import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore.js';
+    const CryptocurrenciesStore = useCryptocurrenciesStore();
     import CryptocurrenciesTable from '~/components/CryptocurrenciesTable.vue';
     
     // State
-    const { loading, coins } = storeToRefs(CoinsStore);
+    const { loading, coins } = storeToRefs(CryptocurrenciesStore);
     const rows = computed(() => {
         return coins.value?.slice((page.value - 1) * pageCount.value, (page.value) * pageCount.value)
     });
@@ -87,11 +87,11 @@
     // ];
     
     // Methods
-    const { fetchCoincapMarket } = CoinsStore;
+    const { fetchCoincapMarket } = CryptocurrenciesStore;
     
     const onRowClick = row => navigateTo(`/cryptocurrencies/${row.id.toLowerCase()}`);
     
-    onMounted(async() => await fetchCoincapMarket());
+    onMounted(() => fetchCoincapMarket());
 </script>
 
 <style scoped>
