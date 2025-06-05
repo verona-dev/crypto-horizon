@@ -111,4 +111,18 @@
     ul {
         background-color: var(--background) !important;
     }
+    
+    nav {
+        position: relative;
+        left: calc((100vw - 101%) / 2);
+    }
+    
+    .m-card-spotlight {
+        border-radius: 0 !important;
+        width: 100% !important;
+        
+        .inner {
+            border-radius: 0 !important;
+        }
+    }
 </style>
