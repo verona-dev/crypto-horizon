@@ -10,7 +10,7 @@ const getTrendColor = change => {
     }
     
     else {
-        return '!text-emerald-500';
+        return '!text-emerald-400';
     }
 };
 
