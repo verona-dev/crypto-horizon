@@ -1,3 +1,6 @@
+/*  Fonts  */
+@import '@fontsource/ibm-plex-mono';
+@import '@fontsource-variable/noto-sans';
 
 @layer base {
     * {
@@ -57,5 +60,10 @@
     
     button {
         @apply cursor-pointer;
+    }
+    
+    .m-table {
+        font-family: 'IBM Plex Mono', monospace;
+        font-family: 'Noto Sans Variable', sans-serif;
     }
 }
