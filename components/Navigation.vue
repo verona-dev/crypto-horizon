@@ -7,7 +7,7 @@
         NavigationMenuList,
         NavigationMenuTrigger,
         navigationMenuTriggerStyle,
-    } from '@/components/ui/navigation-menu'
+    } from '~/components/ui/navigation-menu'
     
     const defiItems: { title: string, href: string, description: string }[] = [
         {
