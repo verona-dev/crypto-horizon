@@ -1,49 +1,70 @@
 <template>
     <MazTable
         :headers='[
-          { label: "Rank", key: "rank", align: "center", sortable: false, classes: "w-24", },
-          { label: "Name", key: "name", sortable: false, classes: "w-72", },
-          { label: "Symbol", key: "symbol", sortable: false, classes: "w-24", },
-          { label: "Price", key: "price", align: "center", sortable: false, classes: "w-32",},
-          { label: "Market Cap", key: "marketCap", align: "center", sortable: false, classes: "w-32", },
-          { label: "Volume (24Hr)", key: "volume", align: "center", sortable: false, classes: "w-32", },
-          { label: "Circ. Supply", key: "c_supply", align: "center", sortable: false, classes: "w-32", },
-          { label: "Change (24Hr)", key: "changePercent24Hr", align: "center", sortable: false, classes: "w-32", },
+          { label: "Rank", key: "rank", align: "center", sortable: false, classes: "", },
+          { label: "Name", key: "name", sortable: false, classes: "", },
+          { label: "Price", key: "price", align: "center", sortable: false, classes: "",},
+          { label: "Market Cap", key: "marketCap", align: "center", sortable: false, classes: "", },
+          { label: "Volume (24Hr)", key: "volume", align: "center", sortable: false, classes: "", },
+          { label: "Circ. Supply", key: "c_supply", align: "center", sortable: false, classes: "", },
+          { label: "Change (24Hr)", key: "changePercent24Hr", align: "center", sortable: false, classes: "", },
         ]'
         :rows='coins'
-        class='my-20'
+        class='my-20 xl:w-[1200px]'
         :loading='loading'
         color='secondary'
-        title='Cryptocurrencies - TOP 100'
         pagination
         :page='page'
-        :page-size='pageSize'
+        :page-size='pageCount'
         hoverable
         background-even
     >
+        <template #title>
+<!--            <h5 class=''>Top 100 Crypto Currencies by Market Cap</h5>-->
+            <MazAnimatedText
+                tag='h5'
+                text='Top 100 Crypto Currencies by '
+                last-word='Market Cap'
+                :delay='1000'
+                :duration='2000'
+                direction='up'
+                :column-gap='0.5'
+                :row-gap='0.5'
+            />
+        </template>
+        
         <template #cell-name='{ row, value }'>
-            <div class='maz-flex maz-items-center maz-gap-2'>
+            <div class='flex items-center gap-2'>
                 <NuxtIcon
                     :name='row.icon'
-                    size='25'
+                    size='30'
                 />
                 
                 <div class='flex flex-col'>
                     <span>{{value}}</span>
-                    <span class='text-sm text-gray-400'>{{ row.symbol }}</span>
+                    <MazAnimatedText
+                        tag='span'
+                        :text='row.symbol'
+                        :delay='1000'
+                        :duration='2000'
+                        direction='up'
+                        :column-gap='0.5'
+                        :row-gap='0.5'
+                    />
+<!--                    <span class='text-sm text-gray-400'>{{ row.symbol }}</span>-->
                 </div>
             </div>
         </template>
         
         <template #cell-changePercent24Hr='{ row, value }'>
             <div :class='row.trend'>
-                <span>{{value}}</span>
+                <span>{{value}}&#37;</span>
             </div>
         </template>
         
         <template #no-results>
-            <div class='flex flex-col justify-center items-center'>
-                <h4>Fetching data...</h4>
+            <div class='h-[800px] flex flex-col justify-center items-center'>
+                <h4 class='fetching'>Fetching data...</h4>
                 
                 <div class='flex items-center justify-center h-32'>
                     <MazSpinner color='secondary' size='4em' />
@@ -60,17 +81,19 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue';
-    import {storeToRefs} from 'pinia';
+    import { storeToRefs } from 'pinia';
     import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State
     const { loading, coins } = storeToRefs(CryptocurrenciesStore);
+    // Methods
+    const { fetchCoinLoreData } = CryptocurrenciesStore;
+    onMounted(() => fetchCoinLoreData('tickers'));
     
     // Pagination
     const page = ref(1);
-    const pageCount = ref(20);
+    const pageCount = ref(10);
     const pageFrom = computed(() => (page.value - 1) * pageCount.value + 1);
     const pageTo = computed(() => Math.min(page.value * pageCount.value, pageTotal.value))
     const pageTotal = computed(() => coins.value?.length);
@@ -128,26 +151,38 @@
             class: 'w-36'
         },
     ];
+    
+    const onRowClick = row => navigateTo(`/cryptocurrencies/${row.id.toLowerCase()}`);
 </script>
 
 <style>
     .m-table {
-        width: 1200px !important;
-    }
-    
-    tbody {
-        height: 800px;
-        
-        td {
-            padding: 20px 0 !important;
+        .m-table-header {
+            justify-content: center;
+            padding: 50px 0;
         }
-    }
-    
-    h4 {
-        color: var(--maz-color-muted);
-    }
-    
-    .m-select-list {
-        max-height: fit-content !important;
+        
+        thead {
+            background-color: var(--tertiary);
+            height: 75px;
+        }
+        
+        tbody {
+            td {
+                padding: 20px 0 !important;
+            }
+        }
+        
+        .m-select-list {
+            max-height: fit-content !important;
+        }
+        
+        .m-table-footer {
+            padding: 20px;
+        }
+        
+        h4.fetching {
+            color: var(--maz-color-muted);
+        }
     }
 </style>

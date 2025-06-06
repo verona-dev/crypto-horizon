@@ -1,23 +1,11 @@
 <template>
     <div class='cryptocurrencies'>
+        <CryptocurrenciesGlobal />
         <CryptocurrenciesTable />
     </div>
 </template>
 
 <script setup>
-    import { onMounted } from 'vue';
-    import { storeToRefs } from 'pinia';
-    import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';
-    const CryptocurrenciesStore = useCryptocurrenciesStore();
-    import CryptocurrenciesTable from '~/components/CryptocurrenciesTable.vue';
-    
-    // State
-    const { coins } = storeToRefs(CryptocurrenciesStore);
-    
-    // Methods
-    const { fetchCoinLoreMarket } = CryptocurrenciesStore;
-    
-    const onRowClick = row => navigateTo(`/cryptocurrencies/${row.id.toLowerCase()}`);
-    
-    onMounted(() => fetchCoinLoreMarket());
+    import CryptocurrenciesGlobal from '~/components/markets/CryptocurrenciesGlobal.vue';
+    import CryptocurrenciesTable from '~/components/markets/CryptocurrenciesTable.vue';
 </script>

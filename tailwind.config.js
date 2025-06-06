@@ -17,7 +17,7 @@ export default {
             xl: '1280px',
         },
         fontFamily: {
-            'sans': ['Helvetica', 'Arial', 'sans-serif'],
+            // 'sans': ['Helvetica', 'Arial', 'sans-serif'],
         },
         extend: {
             colors: {

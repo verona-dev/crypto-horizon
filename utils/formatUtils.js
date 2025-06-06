@@ -17,28 +17,30 @@ const formatNumber = (number) => {
     let formattedNumber;
     let suffix = '';
     
+    const floor = (num) => Math.floor(num * 100) / 100;
+    
     if (absNumber >= 1_000_000_000_000) {
         // Trillions
-        formattedNumber = (number / 1_000_000_000_000).toFixed(2);
+        formattedNumber = floor(number / 1_000_000_000_000);
         suffix = 't';
     } else if (absNumber >= 1_000_000_000) {
         // Billions
-        formattedNumber = (number / 1_000_000_000).toFixed(2);
+        formattedNumber = floor(number / 1_000_000_000);
         suffix = 'b';
     } else if (absNumber >= 1_000_000) {
         // Millions
-        formattedNumber = (number / 1_000_000).toFixed(2);
+        formattedNumber = floor(number / 1_000_000);
         suffix = 'm';
     } else if (absNumber >= 1_000) {
         // Thousands
-        formattedNumber = (number / 1_000).toFixed(2);
+        formattedNumber = floor(number / 1_000);
         suffix = 'k';
     } else {
         // Less than thousand, show the number
-        formattedNumber = number.toFixed(2);
+        formattedNumber = floor(number);
     }
-    
-    return `$${formattedNumber}${suffix}`;
+
+    return `$${formattedNumber.toFixed(2)}${suffix}`;
 };
 
 const formatTableCoins = coins => {

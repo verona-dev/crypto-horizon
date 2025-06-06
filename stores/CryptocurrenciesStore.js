@@ -6,20 +6,30 @@ import { formatCoin, formatTableCoins, } from '~/utils/formatUtils.js';
 
 export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     state: () => ({
-        loading: false,
         coins: [],
         coin: {},
         coinChartData: {},
+        globalMarket: [],
+        loading: false,
     }),
     
     actions: {
-        async fetchCoinLoreMarket() {
+        async fetchCoinLoreData(route) {
             this.loading = true;
-            this.coins = [];
+            
+            const response  = await useFetchCoinLoreData(route);
             
             try {
-                const response  = await useFetchCoinLoreData('tickers');
-                this.coins = formatTableCoins(response.data);
+                if(route === 'tickers') {
+                    this.coins = [];
+                    this.coins = formatTableCoins(response.data);
+                }
+                
+                if(route === 'global') {
+                    this.globalMarket = [];
+                    this.globalMarket = response[0];
+                }
+                
             } catch(error) {
                 console.log(error);
             } finally {

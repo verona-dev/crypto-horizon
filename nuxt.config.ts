@@ -31,23 +31,6 @@ export default defineNuxtConfig({
 
    compatibilityDate: '2024-07-23',
 
-   googleFonts: {
-      families: {
-         Roboto: true,
-         'Josefin+Sans': true,
-         Lato: [100, 300],
-         Raleway: {
-            wght: [100, 400],
-            ital: [100]
-         },
-         Inter: '200..700',
-      },
-      base64: true,
-      outputDir: 'assets',
-      stylePath: 'fonts/google-fonts.css',
-      fontsDir: 'fonts',
-   },
-
    icon: {
       componentName: 'NuxtIcon',
       mode: 'css',
@@ -71,12 +54,10 @@ export default defineNuxtConfig({
    },
 
    modules: [
-      '@nuxtjs/google-fonts',
       '@nuxt/image',
       '@pinia/nuxt',
       'maz-ui/nuxt',
       '@nuxtjs/color-mode',
-      'radix-vue/nuxt',
       '@nuxt/icon',
       'shadcn-nuxt',
    ],
