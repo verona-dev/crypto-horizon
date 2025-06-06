@@ -1,8 +1,8 @@
 <template>
-    <section class='cryptocurrencies'>
+    <div class='cryptocurrencies'>
         <CryptocurrenciesGlobal />
         <CryptocurrenciesTable />
-    </section>
+    </div>
 </template>
 
 <script setup>
