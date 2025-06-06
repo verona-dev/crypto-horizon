@@ -10,7 +10,7 @@
           { label: "Change (24Hr)", key: "changePercent24Hr", align: "center", sortable: false, classes: "", },
         ]'
         :rows='coins'
-        class='my-20'
+        class='my-20 xl:w-[1200px]'
         :loading='loading'
         color='secondary'
         pagination
@@ -22,6 +22,7 @@
         <template #title>
             <h5 class=''>Top 100 Crypto Currencies by Market Cap</h5>
         </template>
+        
         <template #cell-name='{ row, value }'>
             <div class='flex items-center gap-2'>
                 <NuxtIcon
@@ -44,7 +45,7 @@
         
         <template #no-results>
             <div class='h-[800px] flex flex-col justify-center items-center'>
-                <h4>Fetching data...</h4>
+                <h4 class='fetching'>Fetching data...</h4>
                 
                 <div class='flex items-center justify-center h-32'>
                     <MazSpinner color='secondary' size='4em' />
@@ -138,11 +139,14 @@
 
 <style>
     .m-table {
-        width: 1200px !important;
-        
         .m-table-header {
             justify-content: center;
             padding: 50px 0;
+        }
+        
+        thead {
+            background-color: var(--tertiary);
+            height: 75px;
         }
         
         tbody {
@@ -154,9 +158,13 @@
         .m-select-list {
             max-height: fit-content !important;
         }
-    }
-    
-    h4 {
-        color: var(--maz-color-muted);
+        
+        .m-table-footer {
+            padding: 20px;
+        }
+        
+        h4.fetching {
+            color: var(--maz-color-muted);
+        }
     }
 </style>
