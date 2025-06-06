@@ -1,14 +1,14 @@
 <template>
     <MazTable
         :headers='[
-          { label: "Rank", key: "rank", align: "center", sortable: false, classes: "w-24", },
-          { label: "Name", key: "name", sortable: false, classes: "w-72", },
-          { label: "Symbol", key: "symbol", sortable: false, classes: "w-24", },
-          { label: "Price", key: "price", align: "center", sortable: false, classes: "w-32",},
-          { label: "Market Cap", key: "marketCap", align: "center", sortable: false, classes: "w-32", },
-          { label: "Volume (24Hr)", key: "volume", align: "center", sortable: false, classes: "w-32", },
-          { label: "Circ. Supply", key: "c_supply", align: "center", sortable: false, classes: "w-32", },
-          { label: "Change (24Hr)", key: "changePercent24Hr", align: "center", sortable: false, classes: "w-32", },
+          { label: "Rank", key: "rank", align: "center", sortable: false, classes: "", },
+          { label: "Name", key: "name", sortable: false, classes: "", },
+          { label: "Symbol", key: "symbol", align: "center", sortable: false, classes: "", },
+          { label: "Price", key: "price", align: "center", sortable: false, classes: "",},
+          { label: "Market Cap", key: "marketCap", align: "center", sortable: false, classes: "", },
+          { label: "Volume (24Hr)", key: "volume", align: "center", sortable: false, classes: "", },
+          { label: "Circ. Supply", key: "c_supply", align: "center", sortable: false, classes: "", },
+          { label: "Change (24Hr)", key: "changePercent24Hr", align: "center", sortable: false, classes: "", },
         ]'
         :rows='coins'
         class='my-20'
@@ -24,10 +24,10 @@
             <h3 class='uppercase'>Cryptocurrencies - TOP 100</h3>
         </template>
         <template #cell-name='{ row, value }'>
-            <div class='maz-flex maz-items-center maz-gap-2'>
+            <div class='flex items-center gap-2'>
                 <NuxtIcon
                     :name='row.icon'
-                    size='25'
+                    size='30'
                 />
                 
                 <div class='flex flex-col'>
@@ -143,7 +143,7 @@
         
         tbody {
             td {
-                padding: 20px 0 !important;
+                //padding: 20px 0 !important;
             }
         }
         
