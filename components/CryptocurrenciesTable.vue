@@ -3,7 +3,6 @@
         :headers='[
           { label: "Rank", key: "rank", align: "center", sortable: false, classes: "", },
           { label: "Name", key: "name", sortable: false, classes: "", },
-          { label: "Symbol", key: "symbol", align: "center", sortable: false, classes: "", },
           { label: "Price", key: "price", align: "center", sortable: false, classes: "",},
           { label: "Market Cap", key: "marketCap", align: "center", sortable: false, classes: "", },
           { label: "Volume (24Hr)", key: "volume", align: "center", sortable: false, classes: "", },
@@ -21,7 +20,7 @@
         background-even
     >
         <template #title>
-            <h3 class='uppercase'>Cryptocurrencies - TOP 100</h3>
+            <h5 class=''>Top 100 Crypto Currencies by Market Cap</h5>
         </template>
         <template #cell-name='{ row, value }'>
             <div class='flex items-center gap-2'>
@@ -39,7 +38,7 @@
         
         <template #cell-changePercent24Hr='{ row, value }'>
             <div :class='row.trend'>
-                <span>{{value}}</span>
+                <span>{{value}}&#37;</span>
             </div>
         </template>
         
@@ -143,7 +142,7 @@
         
         tbody {
             td {
-                //padding: 20px 0 !important;
+                padding: 20px 0 !important;
             }
         }
         
