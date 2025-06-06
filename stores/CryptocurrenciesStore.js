@@ -13,13 +13,17 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     }),
     
     actions: {
-        async fetchCoinLoreMarket() {
+        async fetchCoinLoreData(route) {
             this.loading = true;
             this.coins = [];
             
             try {
-                const response  = await useFetchCoinLoreData('tickers');
-                this.coins = formatTableCoins(response.data);
+                const response  = await useFetchCoinLoreData(route);
+                
+                if(route === 'tickers') {
+                    this.coins = formatTableCoins(response.data);
+                }
+                
             } catch(error) {
                 console.log(error);
             } finally {

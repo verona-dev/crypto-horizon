@@ -61,13 +61,16 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue';
+    import { onMounted, ref } from 'vue';
     import {storeToRefs} from 'pinia';
     import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State
     const { loading, coins } = storeToRefs(CryptocurrenciesStore);
+    // Methods
+    const { fetchCoinLoreData } = CryptocurrenciesStore;
+    onMounted(() => fetchCoinLoreData('tickers'));
     
     // Pagination
     const page = ref(1);
@@ -129,6 +132,8 @@
             class: 'w-36'
         },
     ];
+    
+    const onRowClick = row => navigateTo(`/cryptocurrencies/${row.id.toLowerCase()}`);
 </script>
 
 <style>
