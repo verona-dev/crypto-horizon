@@ -14,13 +14,15 @@
         class='my-20'
         :loading='loading'
         color='secondary'
-        title='Cryptocurrencies - TOP 100'
         pagination
         :page='page'
-        :page-size='pageSize'
+        :page-size='pageCount'
         hoverable
         background-even
     >
+        <template #title>
+            <h3 class='uppercase'>Cryptocurrencies - TOP 100</h3>
+        </template>
         <template #cell-name='{ row, value }'>
             <div class='maz-flex maz-items-center maz-gap-2'>
                 <NuxtIcon
@@ -42,7 +44,7 @@
         </template>
         
         <template #no-results>
-            <div class='flex flex-col justify-center items-center'>
+            <div class='h-[800px] flex flex-col justify-center items-center'>
                 <h4>Fetching data...</h4>
                 
                 <div class='flex items-center justify-center h-32'>
@@ -70,7 +72,7 @@
     
     // Pagination
     const page = ref(1);
-    const pageCount = ref(20);
+    const pageCount = ref(10);
     const pageFrom = computed(() => (page.value - 1) * pageCount.value + 1);
     const pageTo = computed(() => Math.min(page.value * pageCount.value, pageTotal.value))
     const pageTotal = computed(() => coins.value?.length);
@@ -133,21 +135,24 @@
 <style>
     .m-table {
         width: 1200px !important;
-    }
-    
-    tbody {
-        height: 800px;
         
-        td {
-            padding: 20px 0 !important;
+        .m-table-header {
+            justify-content: center;
+            padding: 50px 0;
+        }
+        
+        tbody {
+            td {
+                padding: 20px 0 !important;
+            }
+        }
+        
+        .m-select-list {
+            max-height: fit-content !important;
         }
     }
     
     h4 {
         color: var(--maz-color-muted);
-    }
-    
-    .m-select-list {
-        max-height: fit-content !important;
     }
 </style>

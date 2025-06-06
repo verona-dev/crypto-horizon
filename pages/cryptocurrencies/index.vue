@@ -1,7 +1,7 @@
 <template>
-    <div class='cryptocurrencies'>
+    <section class='cryptocurrencies'>
         <CryptocurrenciesTable />
-    </div>
+    </section>
 </template>
 
 <script setup>
