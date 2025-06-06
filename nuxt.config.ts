@@ -58,7 +58,6 @@ export default defineNuxtConfig({
       '@pinia/nuxt',
       'maz-ui/nuxt',
       '@nuxtjs/color-mode',
-      'radix-vue/nuxt',
       '@nuxt/icon',
       'shadcn-nuxt',
    ],
