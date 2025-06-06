@@ -20,7 +20,17 @@
         background-even
     >
         <template #title>
-            <h5 class=''>Top 100 Crypto Currencies by Market Cap</h5>
+<!--            <h5 class=''>Top 100 Crypto Currencies by Market Cap</h5>-->
+            <MazAnimatedText
+                tag='h5'
+                text='Top 100 Crypto Currencies by '
+                last-word='Market Cap'
+                :delay='1000'
+                :duration='2000'
+                direction='up'
+                :column-gap='0.5'
+                :row-gap='0.5'
+            />
         </template>
         
         <template #cell-name='{ row, value }'>
@@ -32,7 +42,16 @@
                 
                 <div class='flex flex-col'>
                     <span>{{value}}</span>
-                    <span class='text-sm text-gray-400'>{{ row.symbol }}</span>
+                    <MazAnimatedText
+                        tag='span'
+                        :text='row.symbol'
+                        :delay='1000'
+                        :duration='2000'
+                        direction='up'
+                        :column-gap='0.5'
+                        :row-gap='0.5'
+                    />
+<!--                    <span class='text-sm text-gray-400'>{{ row.symbol }}</span>-->
                 </div>
             </div>
         </template>
