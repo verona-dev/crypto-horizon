@@ -1,7 +1,6 @@
 <template>
-    <section>
-        <MazTable
-            :headers='[
+    <MazTable
+        :headers='[
           { label: "Rank", key: "rank", align: "center", sortable: false, classes: "", },
           { label: "Name", key: "name", sortable: false, classes: "", },
           { label: "Price", key: "price", align: "center", sortable: false, classes: "",},
@@ -10,76 +9,73 @@
           { label: "Circ. Supply", key: "c_supply", align: "center", sortable: false, classes: "", },
           { label: "Change (24Hr)", key: "changePercent24Hr", align: "center", sortable: false, classes: "", },
         ]'
-            :rows='coins'
-            class='my-20 xl:w-[1200px] mx-auto'
-            :loading='loading'
-            color='secondary'
-            pagination
-            :page='page'
-            :page-size='pageCount'
-            hoverable
-            background-even
-        >
-            <template #title>
-                <!--            <h5 class=''>Top 100 Crypto Currencies by Market Cap</h5>-->
-                <MazAnimatedText
-                    tag='h5'
-                    text='Top 100 Crypto Currencies by '
-                    last-word='Market Cap'
-                    :delay='1000'
-                    :duration='2000'
-                    direction='up'
-                    :column-gap='0.5'
-                    :row-gap='0.5'
+        :rows='coins'
+        class='my-20 xl:w-[1200px] mx-auto'
+        :loading='loading'
+        color='secondary'
+        pagination
+        :page='page'
+        :page-size='pageCount'
+        hoverable
+        background-even
+    >
+        <template #title>
+            <MazAnimatedText
+                tag='h5'
+                text='Top 100 Crypto Currencies by '
+                last-word='Market Cap'
+                :delay='1000'
+                :duration='2000'
+                direction='up'
+                :column-gap='0.5'
+                :row-gap='0.5'
+            />
+        </template>
+        
+        <template #cell-name='{ row, value }'>
+            <div class='flex items-center gap-2'>
+                <NuxtIcon
+                    :name='row.icon'
+                    size='30'
                 />
-            </template>
-            
-            <template #cell-name='{ row, value }'>
-                <div class='flex items-center gap-2'>
-                    <NuxtIcon
-                        :name='row.icon'
-                        size='30'
+                
+                <div class='flex flex-col'>
+                    <span>{{value}}</span>
+                    <MazAnimatedText
+                        tag='span'
+                        :text='row.symbol'
+                        :delay='1000'
+                        :duration='2000'
+                        direction='up'
+                        :column-gap='0.5'
+                        :row-gap='0.5'
                     />
-                    
-                    <div class='flex flex-col'>
-                        <span>{{value}}</span>
-                        <MazAnimatedText
-                            tag='span'
-                            :text='row.symbol'
-                            :delay='1000'
-                            :duration='2000'
-                            direction='up'
-                            :column-gap='0.5'
-                            :row-gap='0.5'
-                        />
-                        <!--                    <span class='text-sm text-gray-400'>{{ row.symbol }}</span>-->
-                    </div>
                 </div>
-            </template>
-            
-            <template #cell-changePercent24Hr='{ row, value }'>
-                <div :class='row.trend'>
-                    <span>{{value}}&#37;</span>
+            </div>
+        </template>
+        
+        <template #cell-changePercent24Hr='{ row, value }'>
+            <div :class='row.trend'>
+                <span>{{value}}&#37;</span>
+            </div>
+        </template>
+        
+        <template #no-results>
+            <div class='h-[800px] flex flex-col justify-center items-center'>
+                <h4 class='fetching'>Fetching data...</h4>
+                
+                <div class='flex items-center justify-center h-32'>
+                    <MazSpinner color='secondary' size='4em' />
                 </div>
-            </template>
-            
-            <template #no-results>
-                <div class='h-[800px] flex flex-col justify-center items-center'>
-                    <h4 class='fetching'>Fetching data...</h4>
-                    
-                    <div class='flex items-center justify-center h-32'>
-                        <MazSpinner color='secondary' size='4em' />
-                    </div>
-                </div>
-            </template>
-            
-            <!--
-            <template #actions>
-                <MazBtn fab size="xs" color="secondary" icon="trash" />
-            </template>
-            -->
-        </MazTable>
-    </section>
+            </div>
+        </template>
+        
+        <!--
+        <template #actions>
+            <MazBtn fab size="xs" color="secondary" icon="trash" />
+        </template>
+        -->
+    </MazTable>
 </template>
 
 <script setup>

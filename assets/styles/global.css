@@ -17,7 +17,7 @@
     }
     
     main {
-        @apply md:max-w-5xl xl:max-w-7xl flex flex-1 flex-col mx-auto;
+        @apply sm:max-w-5xl flex flex-1 flex-col mx-auto;
         min-height: calc(100vh - 200px);
     }
     

@@ -1,6 +1,9 @@
 <template>
-    <CryptocurrenciesGlobal />
-    <CryptocurrenciesTable />
+    <section>
+        <CryptocurrenciesGlobal />
+        <CryptocurrenciesTable />
+    </section>
+    
 </template>
 
 <script setup>
