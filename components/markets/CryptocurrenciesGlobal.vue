@@ -64,11 +64,23 @@
                 <CardTitle>Dominance</CardTitle>
             </CardHeader>
             <CardContent>
-                <CardDescription>BTC Dominance Index</CardDescription>
+                <CardDescription class='flex'>
+                    <NuxtIcon
+                        name='cryptocurrency-color:btc'
+                        size='20'
+                    />
+                    <span class='ml-2'>BTC Dominance Index</span>
+                </CardDescription>
                 <p>{{ globalMarket.btc_d }}&#37;</p>
             </CardContent>
             <CardContent>
-                <CardDescription>ETH Dominance Index</CardDescription>
+                <CardDescription class='flex'>
+                    <NuxtIcon
+                        name='cryptocurrency-color:eth'
+                        size='20'
+                    />
+                    <span class='ml-2'>ETH Dominance Index</span>
+                </CardDescription>
                 <p>{{ globalMarket.eth_d }}&#37;</p>
             </CardContent>
         </Card>
@@ -80,7 +92,6 @@
         Card,
         CardContent,
         CardDescription,
-        CardFooter,
         CardHeader,
         CardTitle,
     } from '@/components/ui/card';
