@@ -19,7 +19,8 @@
             </CardHeader>
             <CardContent>
                 <CardDescription>Total number of coins</CardDescription>
-                <p>{{ globalMarket.coins_count }}</p>
+                <p v-if='globalMarket.coins_count'>{{ globalMarket.coins_count }}</p>
+                <p v-else>&#8208;</p>
             </CardContent>
             
             <Separator />
@@ -38,7 +39,8 @@
             </CardHeader>
             <CardContent>
                 <CardDescription>Total exchange pairs</CardDescription>
-                <p>{{ globalMarket.active_markets }}</p>
+                <p v-if='globalMarket.active_markets'>{{ globalMarket.active_markets }}</p>
+                <p v-else>&#8208;</p>
             </CardContent>
         </Card>
         
@@ -57,15 +59,18 @@
             </CardHeader>
             <CardContent>
                 <CardDescription>Total crypto market cap</CardDescription>
-                <p>{{ totalMarketCap }}</p>
+                <p v-if='globalMarket?.total_mcap'>{{ formatNumber(globalMarket?.total_mcap) }}</p>
+                <p v-else>&#8208;</p>
             </CardContent>
             <CardContent>
                 <CardDescription>ATH total market cap</CardDescription>
-                <p>{{ athMarketCap }}</p>
+                <p v-if='globalMarket?.mcap_ath'>{{ formatNumber(globalMarket.mcap_ath) }}</p>
+                <p v-else>&#8208;</p>
             </CardContent>
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-                <p :class='marketCapTrendChange'>{{ globalMarket.mcap_change }}&#37;</p>
+                <p v-if='globalMarket?.mcap_change' :class='marketCapChangeStyle'>{{ globalMarket?.mcap_change }}&#37;</p>
+                <p v-else>&#8208;</p>
             </CardContent>
         </Card>
         
@@ -84,15 +89,18 @@
             </CardHeader>
             <CardContent>
                 <CardDescription>Total trading volume for last 24h</CardDescription>
-                <p>{{ totalVolume }}</p>
+                <p v-if='globalMarket?.total_volume'>{{ formatNumber(globalMarket?.total_volume) }}</p>
+                <p v-else>&#8208;</p>
             </CardContent>
             <CardContent>
                 <CardDescription>ATH total trading volume</CardDescription>
-                <p>{{ athVolume }}</p>
+                <p v-if='globalMarket?.volume_ath'>{{ formatNumber(globalMarket?.volume_ath) }}</p>
+                <p v-else>&#8208;</p>
             </CardContent>
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-                <p :class='changeVolumeTrend'>{{ globalMarket.volume_change }}&#37;</p>
+                <p v-if='globalMarket.volume_change' :class='volumeChangeStyle'>{{ globalMarket.volume_change }}&#37;</p>
+                <p v-else>&#8208;</p>
             </CardContent>
         </Card>
         
@@ -117,7 +125,8 @@
                     />
                     <span class='ml-2'>BTC Dominance Index</span>
                 </CardDescription>
-                <p>{{ globalMarket.btc_d }}&#37;</p>
+                <p v-if='globalMarket.btc_d'>{{ globalMarket.btc_d }}&#37;</p>
+                <p v-else>&#8208;</p>
             </CardContent>
             <CardContent>
                 <CardDescription class='flex'>
@@ -127,7 +136,8 @@
                     />
                     <span class='ml-2'>ETH Dominance Index</span>
                 </CardDescription>
-                <p>{{ globalMarket.eth_d }}&#37;</p>
+                <p v-if='globalMarket.eth_d'>{{ globalMarket.eth_d }}&#37;</p>
+                <p v-else>&#8208;</p>
             </CardContent>
         </Card>
     </MazAnimatedElement>
@@ -153,13 +163,8 @@
     const { fetchCoinLoreData } = CryptocurrenciesStore;
     onMounted(() => fetchCoinLoreData('global'));
     
-    const totalMarketCap = computed(() => formatNumber(globalMarket.value?.total_mcap));
-    const athMarketCap = computed(() => formatNumber(globalMarket.value?.mcap_ath));
-    const marketCapTrendChange = computed(() => getTrendColor(globalMarket.value?.mcap_change));
-    
-    const totalVolume = computed(() => formatNumber(globalMarket.value?.total_volume));
-    const athVolume = computed(() => formatNumber(globalMarket.value?.volume_ath));
-    const changeVolumeTrend = computed(() => getTrendColor(globalMarket.volume?.volume_change));
+    const marketCapChangeStyle = computed(() => getTrendColor(globalMarket.value?.mcap_change));
+    const volumeChangeStyle = computed(() => getTrendColor(globalMarket.volume?.volume_change));
 </script>
 
 <style>
