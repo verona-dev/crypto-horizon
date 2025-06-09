@@ -37,11 +37,16 @@
         <Card class='card'>
             <CardHeader>
                 <CardTitle>Volume</CardTitle>
-                <CardDescription>Total crypto volume</CardDescription>
             </CardHeader>
             <CardContent>
+                <CardDescription>Total volume</CardDescription>
                 {{ totalVolume }}
             </CardContent>
+              <CardContent>
+                <CardDescription>All time high volume</CardDescription>
+                {{ athVolume }}
+            </CardContent>
+            
         </Card>
         
         <Card class='card'>
@@ -76,8 +81,9 @@
     onMounted(() => fetchCoinLoreData('global'));
     
     const totalMarketCap = computed(() => formatNumber(globalMarket.value?.total_mcap));
-    const totalVolume = computed(() => formatNumber(globalMarket.value?.total_volume));
     const athMarketCap = computed(() => formatNumber(globalMarket.value?.mcap_ath));
+    const totalVolume = computed(() => formatNumber(globalMarket.value?.total_volume));
+    const athVolume = computed(() => formatNumber(globalMarket.value?.volume_ath));
 </script>
 
 <style>
