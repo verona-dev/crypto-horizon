@@ -67,7 +67,10 @@
     }
     
     .m-table {
-        font-family: 'IBM Plex Mono', monospace;
         font-family: 'Noto Sans Variable', sans-serif;
+    }
+    
+    .m-table-header {
+        font-family: 'IBM Plex Mono', monospace;
     }
 }
