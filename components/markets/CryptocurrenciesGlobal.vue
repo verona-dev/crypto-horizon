@@ -1,55 +1,159 @@
 <template>
-    <section class='w-3/4 cryptocurrencies-global flex flex-wrap gap-6'>
-        <Card class='card'>
+    <MazAnimatedElement
+        direction='down'
+        :duration='2000'
+        class='cryptocurrencies-global flex flex-wrap justify-center my-20'
+    >
+        <Card class='card justify-between'>
             <CardHeader>
-                <CardTitle>Coins</CardTitle>
-                <CardDescription>Total crypto assets</CardDescription>
+                <CardTitle>
+                    <MazAnimatedText
+                        tag='h4'
+                        text=''
+                        last-word='Assets'
+                        :delay='500'
+                        :duration='2000'
+                        direction='left'
+                    />
+                </CardTitle>
+                <Separator />
             </CardHeader>
+            
             <CardContent>
-                {{ globalMarket.coins_count }}
+                <CardDescription>Total number of coins</CardDescription>
+                <p v-if='globalMarket.coins_count'>{{ globalMarket.coins_count }}</p>
+                <p v-else>&#8208;</p>
+            </CardContent>
+            
+            <CardHeader>
+                <CardTitle>
+                    <MazAnimatedText
+                        tag='h4'
+                        text=''
+                        last-word='Markets'
+                        :delay='500'
+                        :duration='2000'
+                        direction='left'
+                    />
+                </CardTitle>
+                <Separator />
+            </CardHeader>
+            
+            <CardContent>
+                <CardDescription>Total exchange pairs</CardDescription>
+                <p v-if='globalMarket.active_markets'>{{ globalMarket.active_markets }}</p>
+                <p v-else>&#8208;</p>
             </CardContent>
         </Card>
         
         <Card class='card'>
             <CardHeader>
-                <CardTitle>Markets</CardTitle>
-                <CardDescription>Active crypto markets</CardDescription>
+                <CardTitle>
+                    <MazAnimatedText
+                        tag='h4'
+                        text=''
+                        last-word='Market Cap'
+                        :delay='500'
+                        :duration='2000'
+                        direction='left'
+                    />
+                </CardTitle>
+                <Separator />
             </CardHeader>
+            
             <CardContent>
-                {{ globalMarket.active_markets }}
-            </CardContent>
-        </Card>
-        
-        <Card class='card'>
-            <CardHeader>
-                <CardTitle>Market Cap</CardTitle>
                 <CardDescription>Total crypto market cap</CardDescription>
-            </CardHeader>
+                <p v-if='globalMarket?.total_mcap'>{{ formatNumber(globalMarket?.total_mcap) }}</p>
+                <p v-else>&#8208;</p>
+            </CardContent>
+            
             <CardContent>
-                {{ totalMarketCap }}
+                <CardDescription>ATH total market cap</CardDescription>
+                <p v-if='globalMarket?.mcap_ath'>{{ formatNumber(globalMarket.mcap_ath) }}</p>
+                <p v-else>&#8208;</p>
+            </CardContent>
+            
+            <CardContent>
+                <CardDescription>Change for last 24h</CardDescription>
+                <p v-if='globalMarket?.mcap_change' :class='marketCapTrendStyle'>{{ globalMarket?.mcap_change }}&#37;</p>
+                <p v-else>&#8208;</p>
             </CardContent>
         </Card>
         
         <Card class='card'>
             <CardHeader>
-                <CardTitle>Volume</CardTitle>
-                <CardDescription>Total crypto volume</CardDescription>
+                <CardTitle>
+                    <MazAnimatedText
+                        tag='h4'
+                        text=''
+                        last-word='Volume'
+                        :delay='500'
+                        :duration='2000'
+                        direction='left'
+                    />
+                </CardTitle>
+                <Separator />
             </CardHeader>
+            
             <CardContent>
-                {{ totalVolume }}
+                <CardDescription>Total trading volume for last 24h</CardDescription>
+                <p v-if='globalMarket?.total_volume'>{{ formatNumber(globalMarket?.total_volume) }}</p>
+                <p v-else>&#8208;</p>
+            </CardContent>
+            
+            <CardContent>
+                <CardDescription>ATH total trading volume</CardDescription>
+                <p v-if='globalMarket?.volume_ath'>{{ formatNumber(globalMarket?.volume_ath) }}</p>
+                <p v-else>&#8208;</p>
+            </CardContent>
+            
+            <CardContent>
+                <CardDescription>Change for last 24h</CardDescription>
+                <p v-if='globalMarket.volume_change' :class='volumeChangeStyle'>{{ globalMarket.volume_change }}&#37;</p>
+                <p v-else>&#8208;</p>
             </CardContent>
         </Card>
         
         <Card class='card'>
             <CardHeader>
-                <CardTitle>BTC Dominance</CardTitle>
-                <CardDescription>BTC Dominance Index</CardDescription>
+                <CardTitle>
+                    <MazAnimatedText
+                        tag='h4'
+                        text=''
+                        last-word='Dominance'
+                        :delay='500'
+                        :duration='2000'
+                        direction='left'
+                    />
+                </CardTitle>
+                <Separator />
             </CardHeader>
+            
             <CardContent>
-                {{ globalMarket.btc_d }}&#37;
+                <CardDescription class='flex'>
+                    <NuxtIcon
+                        name='cryptocurrency-color:btc'
+                        size='20'
+                    />
+                    <span class='ml-2'>BTC Dominance Index</span>
+                </CardDescription>
+                <p v-if='globalMarket.btc_d'>{{ globalMarket.btc_d }}&#37;</p>
+                <p v-else>&#8208;</p>
+            </CardContent>
+            
+            <CardContent>
+                <CardDescription class='flex'>
+                    <NuxtIcon
+                        name='cryptocurrency-color:eth'
+                        size='20'
+                    />
+                    <span class='ml-2'>ETH Dominance Index</span>
+                </CardDescription>
+                <p v-if='globalMarket.eth_d'>{{ globalMarket.eth_d }}&#37;</p>
+                <p v-else>&#8208;</p>
             </CardContent>
         </Card>
-    </section>
+    </MazAnimatedElement>
 </template>
 
 <script setup>
@@ -57,29 +161,32 @@
         Card,
         CardContent,
         CardDescription,
-        CardFooter,
         CardHeader,
         CardTitle,
     } from '@/components/ui/card';
+    import { Separator } from '@/components/ui/separator';
     
     import { storeToRefs } from 'pinia';
     import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     import { formatNumber } from '~/utils/formatUtils.js';
+    import { getTrendColor } from '~/utils/styleUtils.js';
     
     const { globalMarket } = storeToRefs(CryptocurrenciesStore);
     const { fetchCoinLoreData } = CryptocurrenciesStore;
     onMounted(() => fetchCoinLoreData('global'));
     
-    const totalMarketCap = computed(() => formatNumber(globalMarket.value?.total_mcap));
-    const totalVolume = computed(() => formatNumber(globalMarket.value?.total_volume));
+    const marketCapTrendStyle = computed(() => getTrendColor(globalMarket.value?.mcap_change));
+    const volumeChangeStyle = computed(() => getTrendColor(globalMarket.volume?.volume_change));
 </script>
 
 <style>
     .cryptocurrencies-global {
         .card {
-            width: 300px;
-            height: 300px;
+            border-color: var(--card-border);
+            min-height: 300px;
+            margin: 25px;
+            width: 250px;
         }
     }
 </style>

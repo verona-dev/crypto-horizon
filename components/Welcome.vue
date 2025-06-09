@@ -2,12 +2,12 @@
     <div class='welcome'>
         <section class='illustrations-container'>
             <NuxtLink to='/cryptocurrencies'>
-                <NuxtImg src='btc-pink.svg' alt="Image" width="1536" />
+                <NuxtImg src='btc-pink.svg' alt='Image' width='1536' />
                 <h2>Markets</h2>
             </NuxtLink>
             
             <NuxtLink to='/defi'>
-                <NuxtImg src='btc-tree.svg' alt="Image" width="1536" />
+                <NuxtImg src='btc-tree.svg' alt='Image' width='1536' />
                 <h2>Defi</h2>
             </NuxtLink>
         </section>
@@ -38,10 +38,10 @@
             
             img {
                 border-radius: 6px;
-                height: 500px;
+                height: 400px;
                 object-fit: cover;
                 transition: all 200ms ease-in-out;
-                width: 600px;
+                width: 500px;
                 
                 &:hover {
                     opacity: 0.85;

@@ -1,5 +1,5 @@
 <template>
-    <div class='cryptocurrencies'>
+    <div>
         <CryptocurrenciesGlobal />
         <CryptocurrenciesTable />
     </div>

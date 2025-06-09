@@ -10,7 +10,7 @@
           { label: "Change (24Hr)", key: "changePercent24Hr", align: "center", sortable: false, classes: "", },
         ]'
         :rows='coins'
-        class='my-20 xl:w-[1200px]'
+        class='my-20 xl:w-[1200px] mx-auto'
         :loading='loading'
         color='secondary'
         pagination
@@ -20,7 +20,6 @@
         background-even
     >
         <template #title>
-<!--            <h5 class=''>Top 100 Crypto Currencies by Market Cap</h5>-->
             <MazAnimatedText
                 tag='h5'
                 text='Top 100 Crypto Currencies by '
@@ -51,7 +50,6 @@
                         :column-gap='0.5'
                         :row-gap='0.5'
                     />
-<!--                    <span class='text-sm text-gray-400'>{{ row.symbol }}</span>-->
                 </div>
             </div>
         </template>

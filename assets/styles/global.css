@@ -17,8 +17,12 @@
     }
     
     main {
-        @apply flex flex-1 flex-col justify-center items-center content-center mx-auto;
+        @apply flex flex-1 flex-col mx-auto;
         min-height: calc(100vh - 200px);
+    }
+    
+    section {
+        @apply sm:max-w-7xl my-20 m-auto;
     }
     
     /*
@@ -63,7 +67,10 @@
     }
     
     .m-table {
-        font-family: 'IBM Plex Mono', monospace;
         font-family: 'Noto Sans Variable', sans-serif;
+    }
+    
+    .m-table-header {
+        font-family: 'IBM Plex Mono', monospace;
     }
 }

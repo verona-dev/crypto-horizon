@@ -37,7 +37,7 @@
 </script>
 
 <template>
-    <NavigationMenu>
+    <NavigationMenu disableHoverTrigger>
         <MazCardSpotlight color='secondary' :padding='false'>
             <NavigationMenuList>
                 <!--  Logo  -->
