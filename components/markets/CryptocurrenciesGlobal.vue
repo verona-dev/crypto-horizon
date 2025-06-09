@@ -4,7 +4,7 @@
         :duration='2000'
         class='cryptocurrencies-global flex flex-wrap justify-center my-20'
     >
-        <Card class='card'>
+        <Card class='card justify-between'>
             <CardHeader>
                 <CardTitle>
                     <MazAnimatedText
@@ -16,14 +16,14 @@
                         direction='left'
                     />
                 </CardTitle>
+                <Separator />
             </CardHeader>
+            
             <CardContent>
                 <CardDescription>Total number of coins</CardDescription>
                 <p v-if='globalMarket.coins_count'>{{ globalMarket.coins_count }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
-            
-            <Separator />
             
             <CardHeader>
                 <CardTitle>
@@ -36,7 +36,9 @@
                         direction='left'
                     />
                 </CardTitle>
+                <Separator />
             </CardHeader>
+            
             <CardContent>
                 <CardDescription>Total exchange pairs</CardDescription>
                 <p v-if='globalMarket.active_markets'>{{ globalMarket.active_markets }}</p>
@@ -56,20 +58,24 @@
                         direction='left'
                     />
                 </CardTitle>
+                <Separator />
             </CardHeader>
+            
             <CardContent>
                 <CardDescription>Total crypto market cap</CardDescription>
                 <p v-if='globalMarket?.total_mcap'>{{ formatNumber(globalMarket?.total_mcap) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
+            
             <CardContent>
                 <CardDescription>ATH total market cap</CardDescription>
                 <p v-if='globalMarket?.mcap_ath'>{{ formatNumber(globalMarket.mcap_ath) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
+            
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-                <p v-if='globalMarket?.mcap_change' :class='marketCapChangeStyle'>{{ globalMarket?.mcap_change }}&#37;</p>
+                <p v-if='globalMarket?.mcap_change' :class='marketCapTrendStyle'>{{ globalMarket?.mcap_change }}&#37;</p>
                 <p v-else>&#8208;</p>
             </CardContent>
         </Card>
@@ -86,17 +92,21 @@
                         direction='left'
                     />
                 </CardTitle>
+                <Separator />
             </CardHeader>
+            
             <CardContent>
                 <CardDescription>Total trading volume for last 24h</CardDescription>
                 <p v-if='globalMarket?.total_volume'>{{ formatNumber(globalMarket?.total_volume) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
+            
             <CardContent>
                 <CardDescription>ATH total trading volume</CardDescription>
                 <p v-if='globalMarket?.volume_ath'>{{ formatNumber(globalMarket?.volume_ath) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
+            
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
                 <p v-if='globalMarket.volume_change' :class='volumeChangeStyle'>{{ globalMarket.volume_change }}&#37;</p>
@@ -116,7 +126,9 @@
                         direction='left'
                     />
                 </CardTitle>
+                <Separator />
             </CardHeader>
+            
             <CardContent>
                 <CardDescription class='flex'>
                     <NuxtIcon
@@ -128,6 +140,7 @@
                 <p v-if='globalMarket.btc_d'>{{ globalMarket.btc_d }}&#37;</p>
                 <p v-else>&#8208;</p>
             </CardContent>
+            
             <CardContent>
                 <CardDescription class='flex'>
                     <NuxtIcon
@@ -163,14 +176,14 @@
     const { fetchCoinLoreData } = CryptocurrenciesStore;
     onMounted(() => fetchCoinLoreData('global'));
     
-    const marketCapChangeStyle = computed(() => getTrendColor(globalMarket.value?.mcap_change));
+    const marketCapTrendStyle = computed(() => getTrendColor(globalMarket.value?.mcap_change));
     const volumeChangeStyle = computed(() => getTrendColor(globalMarket.volume?.volume_change));
 </script>
 
 <style>
     .cryptocurrencies-global {
         .card {
-            border-color: var(--border);
+            border-color: var(--card-border);
             min-height: 300px;
             margin: 25px;
             width: 250px;
