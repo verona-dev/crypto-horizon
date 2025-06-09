@@ -38,10 +38,10 @@
             
             img {
                 border-radius: 6px;
-                height: 500px;
+                height: 400px;
                 object-fit: cover;
                 transition: all 200ms ease-in-out;
-                width: 600px;
+                width: 500px;
                 
                 &:hover {
                     opacity: 0.85;
