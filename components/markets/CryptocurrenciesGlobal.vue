@@ -2,12 +2,13 @@
     <MazAnimatedElement
         direction='down'
         :duration='2000'
-        class='cryptocurrencies-global grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+        class='cryptocurrencies-global flex flex-wrap justify-center my-20'
     >
         <Card class='card'>
             <CardHeader>
                 <CardTitle>
                     <MazAnimatedText
+                        tag='h4'
                         text=''
                         last-word='Assets'
                         :delay='500'
@@ -17,15 +18,16 @@
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <CardDescription>Total</CardDescription>
+                <CardDescription>Total number of coins</CardDescription>
                 <p>{{ globalMarket.coins_count }}</p>
             </CardContent>
-        </Card>
-        
-        <Card class='card'>
+            
+            <Separator />
+            
             <CardHeader>
                 <CardTitle>
                     <MazAnimatedText
+                        tag='h4'
                         text=''
                         last-word='Markets'
                         :delay='500'
@@ -35,7 +37,7 @@
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <CardDescription>Active markets</CardDescription>
+                <CardDescription>Total exchange pairs</CardDescription>
                 <p>{{ globalMarket.active_markets }}</p>
             </CardContent>
         </Card>
@@ -44,6 +46,7 @@
             <CardHeader>
                 <CardTitle>
                     <MazAnimatedText
+                        tag='h4'
                         text=''
                         last-word='Market Cap'
                         :delay='500'
@@ -53,16 +56,16 @@
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <CardDescription>Total</CardDescription>
+                <CardDescription>Total crypto market cap</CardDescription>
                 <p>{{ totalMarketCap }}</p>
             </CardContent>
             <CardContent>
-                <CardDescription>All time high</CardDescription>
+                <CardDescription>ATH total market cap</CardDescription>
                 <p>{{ athMarketCap }}</p>
             </CardContent>
             <CardContent>
-                <CardDescription>Change %</CardDescription>
-                <p :class='marketCapTrendChange'>{{ globalMarket.mcap_change }}</p>
+                <CardDescription>Change for last 24h</CardDescription>
+                <p :class='marketCapTrendChange'>{{ globalMarket.mcap_change }}&#37;</p>
             </CardContent>
         </Card>
         
@@ -70,6 +73,7 @@
             <CardHeader>
                 <CardTitle>
                     <MazAnimatedText
+                        tag='h4'
                         text=''
                         last-word='Volume'
                         :delay='500'
@@ -79,16 +83,16 @@
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <CardDescription>Total</CardDescription>
+                <CardDescription>Total trading volume for last 24h</CardDescription>
                 <p>{{ totalVolume }}</p>
             </CardContent>
             <CardContent>
-                <CardDescription>All time high</CardDescription>
+                <CardDescription>ATH total trading volume</CardDescription>
                 <p>{{ athVolume }}</p>
             </CardContent>
             <CardContent>
-                <CardDescription>Change %</CardDescription>
-                <p :class='changeVolumeTrend'>{{ globalMarket.volume_change }}</p>
+                <CardDescription>Change for last 24h</CardDescription>
+                <p :class='changeVolumeTrend'>{{ globalMarket.volume_change }}&#37;</p>
             </CardContent>
         </Card>
         
@@ -96,6 +100,7 @@
             <CardHeader>
                 <CardTitle>
                     <MazAnimatedText
+                        tag='h4'
                         text=''
                         last-word='Dominance'
                         :delay='500'
@@ -136,6 +141,7 @@
         CardHeader,
         CardTitle,
     } from '@/components/ui/card';
+    import { Separator } from '@/components/ui/separator';
     
     import { storeToRefs } from 'pinia';
     import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';
@@ -159,9 +165,10 @@
 <style>
     .cryptocurrencies-global {
         .card {
-            width: 275px;
-            height: 300px;
             border-color: var(--border);
+            min-height: 300px;
+            margin: 25px;
+            width: 250px;
         }
     }
 </style>
