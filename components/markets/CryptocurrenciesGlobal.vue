@@ -186,7 +186,7 @@
             border-color: var(--card-border);
             min-height: 300px;
             margin: 25px;
-            width: 250px;
+            width: 300px;
         }
     }
 </style>
