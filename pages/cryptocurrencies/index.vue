@@ -1,8 +1,6 @@
 <template>
-    <div class='cryptocurrencies'>
-        <CryptocurrenciesGlobal />
-        <CryptocurrenciesTable />
-    </div>
+    <CryptocurrenciesGlobal />
+    <CryptocurrenciesTable />
 </template>
 
 <script setup>
