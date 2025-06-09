@@ -17,12 +17,12 @@
     }
     
     main {
-        @apply sm:max-w-5xl flex flex-1 flex-col mx-auto;
+        @apply flex flex-1 flex-col mx-auto;
         min-height: calc(100vh - 200px);
     }
     
     section {
-        @apply my-20 m-auto;
+        @apply sm:max-w-7xl my-20 m-auto;
     }
     
     /*

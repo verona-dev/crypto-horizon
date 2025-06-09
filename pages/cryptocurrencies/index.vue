@@ -1,9 +1,8 @@
 <template>
-    <section>
+    <div>
         <CryptocurrenciesGlobal />
         <CryptocurrenciesTable />
-    </section>
-    
+    </div>
 </template>
 
 <script setup>
