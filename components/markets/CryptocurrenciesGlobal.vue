@@ -2,12 +2,19 @@
     <MazAnimatedElement
         direction='down'
         :duration='2000'
-        v-if='globalMarket'
         class='cryptocurrencies-global grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
     >
         <Card class='card'>
             <CardHeader>
-                <CardTitle>Assets</CardTitle>
+                <CardTitle>
+                    <MazAnimatedText
+                        text=''
+                        last-word='Assets'
+                        :delay='500'
+                        :duration='2000'
+                        direction='left'
+                    />
+                </CardTitle>
             </CardHeader>
             <CardContent>
                 <CardDescription>Total</CardDescription>
@@ -17,7 +24,15 @@
         
         <Card class='card'>
             <CardHeader>
-                <CardTitle>Markets</CardTitle>
+                <CardTitle>
+                    <MazAnimatedText
+                        text=''
+                        last-word='Markets'
+                        :delay='500'
+                        :duration='2000'
+                        direction='left'
+                    />
+                </CardTitle>
             </CardHeader>
             <CardContent>
                 <CardDescription>Active markets</CardDescription>
@@ -27,7 +42,15 @@
         
         <Card class='card'>
             <CardHeader>
-                <CardTitle>Market Cap</CardTitle>
+                <CardTitle>
+                    <MazAnimatedText
+                        text=''
+                        last-word='Market Cap'
+                        :delay='500'
+                        :duration='2000'
+                        direction='left'
+                    />
+                </CardTitle>
             </CardHeader>
             <CardContent>
                 <CardDescription>Total</CardDescription>
@@ -47,13 +70,11 @@
             <CardHeader>
                 <CardTitle>
                     <MazAnimatedText
-                        text='Volume'
-                        last-word=''
-                        :delay='1000'
+                        text=''
+                        last-word='Volume'
+                        :delay='500'
                         :duration='2000'
-                        direction='up'
-                        :column-gap='0.5'
-                        :row-gap='0.5'
+                        direction='left'
                     />
                 </CardTitle>
             </CardHeader>
@@ -73,7 +94,15 @@
         
         <Card class='card'>
             <CardHeader>
-                <CardTitle>Dominance</CardTitle>
+                <CardTitle>
+                    <MazAnimatedText
+                        text=''
+                        last-word='Dominance'
+                        :delay='500'
+                        :duration='2000'
+                        direction='left'
+                    />
+                </CardTitle>
             </CardHeader>
             <CardContent>
                 <CardDescription class='flex'>
