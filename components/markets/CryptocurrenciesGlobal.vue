@@ -1,5 +1,5 @@
 <template>
-    <section class='w-3/4 cryptocurrencies-global flex flex-wrap gap-6'>
+    <section class='cryptocurrencies-global flex flex-wrap gap-6'>
         <Card class='card'>
             <CardHeader>
                 <CardTitle>Coins</CardTitle>
@@ -23,10 +23,14 @@
         <Card class='card'>
             <CardHeader>
                 <CardTitle>Market Cap</CardTitle>
-                <CardDescription>Total crypto market cap</CardDescription>
             </CardHeader>
             <CardContent>
-                {{ totalMarketCap }}
+                <CardDescription>Total</CardDescription>
+                <p>{{ totalMarketCap }}</p>
+            </CardContent>
+            <CardContent>
+                <CardDescription>All time high</CardDescription>
+                <p>{{ athMarketCap }}</p>
             </CardContent>
         </Card>
         
@@ -73,13 +77,14 @@
     
     const totalMarketCap = computed(() => formatNumber(globalMarket.value?.total_mcap));
     const totalVolume = computed(() => formatNumber(globalMarket.value?.total_volume));
+    const athMarketCap = computed(() => formatNumber(globalMarket.value?.mcap_ath));
 </script>
 
 <style>
     .cryptocurrencies-global {
         .card {
-            width: 300px;
-            height: 300px;
+            width: 335px;
+            height: 225px;
         }
     }
 </style>
