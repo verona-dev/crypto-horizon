@@ -2,12 +2,12 @@
     <div class='welcome'>
         <section class='illustrations-container'>
             <NuxtLink to='/cryptocurrencies'>
-                <NuxtImg src='btc-pink.svg' alt="Image" width="1536" />
+                <NuxtImg src='btc-pink.svg' alt='Image' width='1536' />
                 <h2>Markets</h2>
             </NuxtLink>
             
             <NuxtLink to='/defi'>
-                <NuxtImg src='btc-tree.svg' alt="Image" width="1536" />
+                <NuxtImg src='btc-tree.svg' alt='Image' width='1536' />
                 <h2>Defi</h2>
             </NuxtLink>
         </section>
