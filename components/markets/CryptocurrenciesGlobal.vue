@@ -1,22 +1,25 @@
 <template>
     <section class='cryptocurrencies-global flex flex-wrap gap-6'>
-        <Card class='card'>
+        <Card
+            v-if='globalMarket'
+            class='card'
+        >
             <CardHeader>
-                <CardTitle>Coins</CardTitle>
-                <CardDescription>Total crypto assets</CardDescription>
+                <CardTitle>Assets</CardTitle>
             </CardHeader>
             <CardContent>
-                {{ globalMarket.coins_count }}
+                <CardDescription>Total</CardDescription>
+                <p>{{ globalMarket.coins_count }}</p>
             </CardContent>
         </Card>
         
         <Card class='card'>
             <CardHeader>
                 <CardTitle>Markets</CardTitle>
-                <CardDescription>Active crypto markets</CardDescription>
             </CardHeader>
             <CardContent>
-                {{ globalMarket.active_markets }}
+                <CardDescription>Active markets</CardDescription>
+                <p>{{ globalMarket.active_markets }}</p>
             </CardContent>
         </Card>
         
@@ -32,6 +35,10 @@
                 <CardDescription>All time high</CardDescription>
                 <p>{{ athMarketCap }}</p>
             </CardContent>
+            <CardContent>
+                <CardDescription>Change %</CardDescription>
+                <p :class='marketCapTrendChange'>{{ globalMarket.mcap_change }}</p>
+            </CardContent>
         </Card>
         
         <Card class='card'>
@@ -39,23 +46,30 @@
                 <CardTitle>Volume</CardTitle>
             </CardHeader>
             <CardContent>
-                <CardDescription>Total volume</CardDescription>
-                {{ totalVolume }}
+                <CardDescription>Total</CardDescription>
+                <p>{{ totalVolume }}</p>
             </CardContent>
-              <CardContent>
-                <CardDescription>All time high volume</CardDescription>
-                {{ athVolume }}
+            <CardContent>
+                <CardDescription>All time high</CardDescription>
+                <p>{{ athVolume }}</p>
             </CardContent>
-            
+            <CardContent>
+                <CardDescription>Change %</CardDescription>
+                <p :class='changeVolumeTrend'>{{ globalMarket.volume_change }}</p>
+            </CardContent>
         </Card>
         
         <Card class='card'>
             <CardHeader>
-                <CardTitle>BTC Dominance</CardTitle>
-                <CardDescription>BTC Dominance Index</CardDescription>
+                <CardTitle>Dominance</CardTitle>
             </CardHeader>
             <CardContent>
-                {{ globalMarket.btc_d }}&#37;
+                <CardDescription>BTC Dominance Index</CardDescription>
+                <p>{{ globalMarket.btc_d }}&#37;</p>
+            </CardContent>
+            <CardContent>
+                <CardDescription>ETH Dominance Index</CardDescription>
+                <p>{{ globalMarket.eth_d }}&#37;</p>
             </CardContent>
         </Card>
     </section>
@@ -75,6 +89,7 @@
     import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     import { formatNumber } from '~/utils/formatUtils.js';
+    import { getTrendColor } from '~/utils/styleUtils.js';
     
     const { globalMarket } = storeToRefs(CryptocurrenciesStore);
     const { fetchCoinLoreData } = CryptocurrenciesStore;
@@ -82,15 +97,18 @@
     
     const totalMarketCap = computed(() => formatNumber(globalMarket.value?.total_mcap));
     const athMarketCap = computed(() => formatNumber(globalMarket.value?.mcap_ath));
+    const marketCapTrendChange = computed(() => getTrendColor(globalMarket.value?.mcap_change));
+    
     const totalVolume = computed(() => formatNumber(globalMarket.value?.total_volume));
     const athVolume = computed(() => formatNumber(globalMarket.value?.volume_ath));
+    const changeVolumeTrend = computed(() => getTrendColor(globalMarket.volume?.volume_change));
 </script>
 
 <style>
     .cryptocurrencies-global {
         .card {
-            width: 335px;
-            height: 225px;
+            width: 275px;
+            height: 300px;
         }
     }
 </style>
