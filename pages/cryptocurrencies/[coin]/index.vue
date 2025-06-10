@@ -1,5 +1,7 @@
 <template>
     <div class='single-coin'>
+        This is single coin page
+<!--
         <UCard
             v-if='coin'
             class='coin-card'
@@ -48,6 +50,7 @@
                 </UCard>
             </div>
         </UCard>
+        -->
     </div>
 </template>
 
@@ -58,20 +61,15 @@
     // CryptocurrenciesStore
     import {storeToRefs} from 'pinia';
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
-    const CoinsStore = useCryptocurrenciesStore();
+    // const CoinsStore = useCryptocurrenciesStore();
     
     // State
-    const { coin } = storeToRefs(CryptocurrenciesStore);
+    // const { coin } = storeToRefs(CryptocurrenciesStore);
     
-    // Methods
-    const {
-        fetchCoincapCoin,
-        fetchCoingeckoHistoricalChartData,
-    } = CryptocurrenciesStore;
     
     onMounted(async() => {
-        await fetchCoincapCoin(route.params.coin)
-        await fetchCoingeckoHistoricalChartData(route.params.coin, 1)
+        // await fetchCoincapCoin(route.params.coin)
+        // await fetchCoingeckoHistoricalChartData(route.params.coin, 1)
     });
 </script>
 

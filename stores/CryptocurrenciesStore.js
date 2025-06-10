@@ -14,12 +14,12 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     }),
     
     actions: {
-        async fetchCoinLoreData(route) {
+        async fetchCoinLoreData(route, options) {
             this.loading = true;
             
-            const response  = await useFetchCoinLoreData(route);
-            
             try {
+                const response = await useFetchCoinLoreData(route, options);
+                
                 if(route === 'tickers') {
                     this.coins = [];
                     this.coins = formatTableCoins(response.data);
