@@ -66,11 +66,6 @@
     // State
     // const { coin } = storeToRefs(CryptocurrenciesStore);
     
-    // Methods
-    const {
-        fetchCoincapCoin,
-        fetchCoingeckoHistoricalChartData,
-    } = CryptocurrenciesStore;
     
     onMounted(async() => {
         // await fetchCoincapCoin(route.params.coin)
