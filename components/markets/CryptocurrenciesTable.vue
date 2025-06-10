@@ -13,16 +13,13 @@
         class='my-20 xl:w-[1200px] mx-auto'
         :loading='loading'
         color='secondary'
-        pagination
-        :page='page'
-        :page-size='pageCount'
         hoverable
         background-even
     >
         <template #title>
             <MazAnimatedText
                 tag='h5'
-                text='Top 100 Crypto Currencies by '
+                text='Top 20 Crypto Currencies by '
                 last-word='Market Cap'
                 :delay='1000'
                 :duration='2000'
@@ -32,33 +29,34 @@
             />
         </template>
         
-        <template #cell-name='{ row, value }'>
-            <div class='flex items-center gap-2'>
-                <NuxtIcon
-                    :name='row.icon'
-                    size='30'
-                />
-                
-                <div class='flex flex-col'>
-                    <span>{{value}}</span>
-                    <MazAnimatedText
-                        tag='span'
-                        :text='row.symbol'
-                        :delay='1000'
-                        :duration='2000'
-                        direction='up'
-                        :column-gap='0.5'
-                        :row-gap='0.5'
+        <MazTableRow
+            v-for="(row) in coins"
+            :key="row.id"
+            @click="onRowClick(row)"
+        >
+            <MazTableCell>{{ row.rank }}</MazTableCell>
+            <MazTableCell>
+                <div class='flex items-center gap-2'>
+                    <NuxtIcon
+                        :name='row.icon'
+                        size='30'
                     />
+                    
+                    <div class='flex flex-col items-start'>
+                        <span>{{ row.name }}</span>
+                        <span>{{ row.symbol }}</span>
+                    </div>
                 </div>
-            </div>
-        </template>
-        
-        <template #cell-changePercent24Hr='{ row, value }'>
-            <div :class='row.trend'>
-                <span>{{value}}&#37;</span>
-            </div>
-        </template>
+            </MazTableCell>
+            <MazTableCell>{{ row.price }}</MazTableCell>
+            <MazTableCell>{{ row.marketCap }}</MazTableCell>
+            <MazTableCell>{{ row.volume }}</MazTableCell>
+            <MazTableCell>{{ row.c_supply }}</MazTableCell>
+            <MazTableCell>
+                <div :class='row.trend'>
+                    <span>{{ row.changePercent24Hr }}&#37;</span>
+                </div></MazTableCell>
+        </MazTableRow>
         
         <template #no-results>
             <div class='h-[800px] flex flex-col justify-center items-center'>
@@ -87,14 +85,24 @@
     const { loading, coins } = storeToRefs(CryptocurrenciesStore);
     // Methods
     const { fetchCoinLoreData } = CryptocurrenciesStore;
-    onMounted(() => fetchCoinLoreData('tickers'));
+    onMounted(() => fetchCoinLoreData('tickers', { limit: 20 }));
+    const onRowClick = row => navigateTo(`/cryptocurrencies/${row.id.toLowerCase()}`);
     
     // Pagination
-    const page = ref(1);
-    const pageCount = ref(10);
-    const pageFrom = computed(() => (page.value - 1) * pageCount.value + 1);
-    const pageTo = computed(() => Math.min(page.value * pageCount.value, pageTotal.value))
-    const pageTotal = computed(() => coins.value?.length);
+    /*
+    const page = ref(1); // current page
+    const pageSize = ref(10); // number of items per page
+    const totalPages = computed(() => coins.value?.length / pageSize);
+    const pageTotal = computed(() => rows.value?.length);
+    const totalItems = computed(() => coins.value?.length);
+    
+    const rows = computed(() => {
+        return coins.value?.slice((page.value - 1) * pageCount.value, (page.value) * pageCount.value)
+    });
+    
+    const pageFrom = computed(() => (page.value - 1) * pageSize.value + 1);
+    const pageTo = computed(() => Math.min(page.value * pageSize.value, totalItems.value))
+    */
     
     // Filter
     /*
@@ -105,52 +113,13 @@
                 row.symbol?.toLowerCase().includes(filter.value.toLowerCase());
         })
     });
-    */
     
-    // Sort
+        // Sort
     const sort = ref({
         column: '',
         direction: 'desc'
     });
-    
-    const rows = computed(() => {
-        return coins.value?.slice((page.value - 1) * pageCount.value, (page.value) * pageCount.value)
-    });
-    
-    const columns = [
-        {
-            key: 'rank',
-            label: '#',
-            class: 'w-16 bg-red-500/50 dark:bg-red-400/50 animate-pulse'
-        },
-        {
-            key: 'name',
-            label: 'Name',
-            class: 'w-96 text-left'
-        },
-        {
-            key: 'price',
-            label: 'Price',
-            class: 'w-36'
-        },
-        {
-            key: 'changePercent24Hr',
-            label: '24h %',
-            class: 'w-36'
-        },
-        {
-            key: 'marketCap',
-            label: 'Market Cap',
-            class: 'w-44'
-        },
-        {
-            key: 'volume',
-            label: 'Volume (24h)',
-            class: 'w-36'
-        },
-    ];
-    
-    const onRowClick = row => navigateTo(`/cryptocurrencies/${row.id.toLowerCase()}`);
+    */
 </script>
 
 <style>
@@ -158,6 +127,10 @@
         .m-table-header {
             justify-content: center;
             padding: 50px 0;
+        }
+        
+        .m-table-cell {
+            text-align: center;
         }
         
         thead {
