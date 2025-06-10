@@ -2,7 +2,9 @@ import { defineEventHandler } from 'h3';
 
 export default defineEventHandler(async (event) => {
     const route = event.context.params.route;
-    const apiUrl = `https://api.coinlore.net/api/${route}`;
+    const queryEvent = getQuery(event);
+    const query = new URLSearchParams(queryEvent).toString();
+    const apiUrl = `https://api.coinlore.net/api/${route}?${query}`;
     
     try {
         const response = await fetch(apiUrl, {
