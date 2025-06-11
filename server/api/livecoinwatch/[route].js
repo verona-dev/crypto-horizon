@@ -12,6 +12,7 @@ export default defineEventHandler(async (event) => {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + livecoinwatch_api_key
             },
+            method: 'POST',
         });
         
         if (!response.ok) {
