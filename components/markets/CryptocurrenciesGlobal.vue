@@ -173,8 +173,8 @@
     import { getTrendColor } from '~/utils/styleUtils.js';
     
     const { globalMarket } = storeToRefs(CryptocurrenciesStore);
-    const { fetchCoinLoreData } = CryptocurrenciesStore;
-    onMounted(() => fetchCoinLoreData('global'));
+    const { fetchCoinLore } = CryptocurrenciesStore;
+    onMounted(() => fetchCoinLore('global'));
     
     const marketCapTrendStyle = computed(() => getTrendColor(globalMarket.value?.mcap_change));
     const volumeChangeStyle = computed(() => getTrendColor(globalMarket.volume?.volume_change));

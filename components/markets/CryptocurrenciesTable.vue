@@ -85,11 +85,11 @@
     const { loading, coins } = storeToRefs(CryptocurrenciesStore);
     // Methods
     const {
-        fetchCoinLoreData,
+        fetchCoinLore,
         setActiveCoin,
     } = CryptocurrenciesStore;
     
-    onMounted(() => fetchCoinLoreData('tickers', { limit: 20 }));
+    onMounted(() => fetchCoinLore('tickers', { limit: 20 }));
     
     const onRowClick = row => {
         setActiveCoin(row.symbol);

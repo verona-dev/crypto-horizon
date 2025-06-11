@@ -3,10 +3,12 @@ import { useCoincapFetchCoin, useFetchCoincapData } from '~/composables/apiCoinc
 import { useFetchCoinLoreData } from '~/composables/apiCoinLore.js';
 import { useCoingeckoHistoricalChartData } from '~/composables/apiCoingecko';
 import { formatCoin, formatTableCoins, } from '~/utils/formatUtils.js';
+import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 
 export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     state: () => ({
         coins: [],
+        activeSymbol: null,
         coin: {},
         coinChartData: {},
         globalMarket: [],
@@ -14,7 +16,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     }),
     
     actions: {
-        async fetchCoinLoreData(route, options) {
+        async fetchCoinLore(route, options) {
             this.loading = true;
             
             try {
@@ -37,8 +39,26 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async setActiveCoin(coin) {
-            this.coin = coin;
+        async fetchLiveCoinWatch(route) {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchLiveCoinWatch(route);
+                
+                if(route === '/coins/single') {
+                    this.coin = {};
+                    this.coin = response;
+                }
+            } catch(error) {
+                console.log(error);
+            } finally {
+                this.loading = false;
+            }
+        },
+        
+        async setActiveCoin(symbol) {
+            this.activeSymbol = symbol;
+            await this.fetchLiveCoinWatch('/coins/single');
         },
         
         async fetchCoingeckoHistoricalChartData(coin, days) {
