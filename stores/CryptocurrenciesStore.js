@@ -37,6 +37,10 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
+        async setActiveCoin(coin) {
+            this.coin = coin;
+        },
+        
         async fetchCoingeckoHistoricalChartData(coin, days) {
             this.loading = true;
             
@@ -60,7 +64,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             try {
                 const { data }  = useCoincapFetchCoin(coin);
                 this.coin = formatCoin(data);
-                console.log(this.coin);
             }
             catch(error) {
                 console.log(error);
