@@ -66,6 +66,7 @@ export default defineNuxtConfig({
       public: {
          coingecko_api_key: process.env.COINGECKO_API_KEY,
          coincap_api_key: process.env.COINCAP_API_KEY,
+         livecoinwatch_api_key: process.env.LIVECOINWATCH_API_KEY,
       },
    },
 
