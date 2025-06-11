@@ -46,7 +46,6 @@ const formatNumber = (number) => {
 const formatTableCoins = coins => {
     return coins?.map(coin => ({
         changePercent24Hr: parseFloat(coin.percent_change_24h).toFixed(2),
-        explorer: coin.explorer,
         icon: getIcon(coin.symbol),
         id: coin.id,
         marketCap: formatNumber(coin.market_cap_usd),
