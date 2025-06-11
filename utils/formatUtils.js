@@ -51,6 +51,7 @@ const formatTableCoins = coins => {
         id: coin.id,
         marketCap: formatNumber(coin.market_cap_usd),
         name: coin.name,
+        nameId: coin.nameid,
         price: formatPrice(coin.price_usd),
         rank: coin.rank,
         c_supply: formatNumber(coin.csupply),
