@@ -1,18 +1,23 @@
-import { defineEventHandler } from 'h3';
-const { livecoinwatch_api_key } = useRuntimeConfig().public;
+import { defineEventHandler, readBody, createError } from 'h3';
 
 export default defineEventHandler(async (event) => {
-    const route = event.context.params.route;
+    const { livecoinwatch_api_key } = useRuntimeConfig().public;
+    
+    const route = Array.isArray(event.context.params.route)
+       ? event.context.params.route.join('/')
+       : event.context.params.route;
+    const body = await readBody(event);
     const apiUrl = `https://api.livecoinwatch.com/${route}`;
     
     try {
         const response = await fetch(apiUrl, {
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + livecoinwatch_api_key
+                'x-api-key': livecoinwatch_api_key,
             },
-            method: 'POST',
+            body: JSON.stringify(body),
         });
         
         if (!response.ok) {
