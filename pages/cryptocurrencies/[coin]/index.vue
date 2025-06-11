@@ -1,6 +1,6 @@
 <template>
     <div class='single-coin custom-flex'>
-        This is single coin page
+        This is single coin page {{ coin }}
     </div>
 </template>
 
