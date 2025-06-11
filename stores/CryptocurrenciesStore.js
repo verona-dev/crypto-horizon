@@ -3,6 +3,7 @@ import { useCoincapFetchCoin, useFetchCoincapData } from '~/composables/apiCoinc
 import { useFetchCoinLoreData } from '~/composables/apiCoinLore.js';
 import { useCoingeckoHistoricalChartData } from '~/composables/apiCoingecko';
 import { formatCoin, formatTableCoins, } from '~/utils/formatUtils.js';
+import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 
 export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     state: () => ({
@@ -14,7 +15,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     }),
     
     actions: {
-        async fetchCoinLoreData(route, options) {
+        async fetchCoinLore(route, options) {
             this.loading = true;
             
             try {
@@ -37,6 +38,30 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
+        async fetchLiveCoinWatch(route, options) {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchLiveCoinWatch(route, options);
+                
+                if(route === 'coins/single') {
+                    this.coin = {};
+                    this.coin = response;
+                }
+            } catch(error) {
+                console.log(error);
+            } finally {
+                this.loading = false;
+            }
+        },
+        
+        async setActiveCoin(symbol) {
+            await this.fetchLiveCoinWatch('coins/single', { code: symbol });
+        },
+        
+        
+        
+        // Old, remove
         async fetchCoingeckoHistoricalChartData(coin, days) {
             this.loading = true;
             
@@ -60,7 +85,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             try {
                 const { data }  = useCoincapFetchCoin(coin);
                 this.coin = formatCoin(data);
-                console.log(this.coin);
             }
             catch(error) {
                 console.log(error);

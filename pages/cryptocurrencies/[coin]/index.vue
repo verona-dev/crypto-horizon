@@ -1,75 +1,25 @@
 <template>
-    <div class='single-coin'>
-        This is single coin page
-<!--
-        <UCard
-            v-if='coin'
-            class='coin-card'
-        >
-            <div class='coin-header'>
-                <div class='name'>
-                    <Icon
-                        v-if='coin.icon'
-                        :name='coin.icon'
-                        size='25'
-                    />
-                    <h1>{{ coin.name }}</h1>
-                </div>
-                
-                <div class='price'>
-                    <h1>{{ coin.price }}</h1>
-                </div>
-            </div>
-            
-            <div class='coin-stats'>
-                <UCard class='card'>
-                    <h3>Market Cap</h3>
-                    {{ coin?.marketCap }}
-                </UCard>
-                
-                <UCard class='card'>
-                    <h3>Volume</h3>
-                    {{ coin?.volume }}
-                </UCard>
-                
-                <UCard v-if='coin.supply' class='card'>
-                    <h3>Total Supply</h3>
-                    {{ coin?.supply }}
-                </UCard>
-                
-                <UCard v-if='coin.explorer' class='card'>
-                    <h3>Explorer</h3>
-                    <NuxtLink
-                        :href='coin?.explorer'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        class='text-indigo-400 hover:text-indigo-500'
-                    >
-                        {{ coin?.explorer }}
-                    </NuxtLink>
-                </UCard>
-            </div>
-        </UCard>
-        -->
+    <div class='single-coin custom-flex'>
+        This is single coin page {{ coin }}
     </div>
 </template>
 
-<script setup lang='ts'>
+<script setup>
     // Router
     import {useRoute} from 'vue-router';
     const route = useRoute();
     // CryptocurrenciesStore
     import {storeToRefs} from 'pinia';
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
-    // const CoinsStore = useCryptocurrenciesStore();
+    const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State
-    // const { coin } = storeToRefs(CryptocurrenciesStore);
+    const { coin } = storeToRefs(CryptocurrenciesStore);
+    // Methods
+    const { setActiveCoin } = CryptocurrenciesStore;
     
-    
-    onMounted(async() => {
-        // await fetchCoincapCoin(route.params.coin)
-        // await fetchCoingeckoHistoricalChartData(route.params.coin, 1)
+    onMounted(() => {
+        setActiveCoin(route.params.coin);
     });
 </script>
 

@@ -1,17 +1,23 @@
-import { defineEventHandler } from 'h3';
+import { defineEventHandler, readBody, createError } from 'h3';
 
 export default defineEventHandler(async (event) => {
-    const { coincap_api_key } = useRuntimeConfig().public;
-    const route = event.context.params.route || 'assets';
-    const apiUrl = `https://rest.coincap.io/v3/${route}`;
+    const { livecoinwatch_api_key } = useRuntimeConfig().public;
+    
+    const route = Array.isArray(event.context.params.route)
+       ? event.context.params.route.join('/')
+       : event.context.params.route;
+    const body = await readBody(event);
+    const apiUrl = `https://api.livecoinwatch.com/${route}`;
     
     try {
         const response = await fetch(apiUrl, {
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + coincap_api_key
+                'x-api-key': livecoinwatch_api_key,
             },
+            body: JSON.stringify(body),
         });
         
         if (!response.ok) {

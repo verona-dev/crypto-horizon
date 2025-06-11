@@ -73,4 +73,12 @@
     .m-table-header {
         font-family: 'IBM Plex Mono', monospace;
     }
+    
+    .custom-flex {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 100px;
+    }
 }

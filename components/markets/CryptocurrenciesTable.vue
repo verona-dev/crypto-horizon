@@ -84,9 +84,14 @@
     // State
     const { loading, coins } = storeToRefs(CryptocurrenciesStore);
     // Methods
-    const { fetchCoinLoreData } = CryptocurrenciesStore;
-    onMounted(() => fetchCoinLoreData('tickers', { limit: 20 }));
-    const onRowClick = row => navigateTo(`/cryptocurrencies/${row.id.toLowerCase()}`);
+    const {
+        fetchCoinLore,
+        setActiveCoin,
+    } = CryptocurrenciesStore;
+    
+    onMounted(() => fetchCoinLore('tickers', { limit: 20 }));
+    
+    const onRowClick = row => navigateTo(`/cryptocurrencies/${row.symbol}`);
     
     // Pagination
     /*
