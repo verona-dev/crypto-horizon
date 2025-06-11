@@ -1,7 +1,7 @@
 import { defineEventHandler } from 'h3';
-const { coincap_api_key } = useRuntimeConfig().public;
 
 export default defineEventHandler(async (event) => {
+    const { coincap_api_key } = useRuntimeConfig().public;
     const route = event.context.params.route || 'assets';
     const apiUrl = `https://rest.coincap.io/v3/${route}`;
     
