@@ -91,10 +91,7 @@
     
     onMounted(() => fetchCoinLore('tickers', { limit: 20 }));
     
-    const onRowClick = row => {
-        setActiveCoin(row.symbol);
-        return navigateTo(`/cryptocurrencies/${row.symbol}`);
-    };
+    const onRowClick = row => navigateTo(`/cryptocurrencies/${row.symbol}`);
     
     // Pagination
     /*
