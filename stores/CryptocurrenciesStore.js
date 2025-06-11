@@ -8,7 +8,6 @@ import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     state: () => ({
         coins: [],
-        activeSymbol: null,
         coin: {},
         coinChartData: {},
         globalMarket: [],
@@ -39,13 +38,13 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async fetchLiveCoinWatch(route) {
+        async fetchLiveCoinWatch(route, options) {
             this.loading = true;
             
             try {
-                const response = await useFetchLiveCoinWatch(route);
+                const response = await useFetchLiveCoinWatch(route, options);
                 
-                if(route === '/coins/single') {
+                if(route === 'coins/single') {
                     this.coin = {};
                     this.coin = response;
                 }
@@ -57,10 +56,12 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         },
         
         async setActiveCoin(symbol) {
-            this.activeSymbol = symbol;
-            await this.fetchLiveCoinWatch('/coins/single');
+            await this.fetchLiveCoinWatch('coins/single', { code: symbol });
         },
         
+        
+        
+        // Old, remove
         async fetchCoingeckoHistoricalChartData(coin, days) {
             this.loading = true;
             
