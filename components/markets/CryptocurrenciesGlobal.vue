@@ -75,7 +75,7 @@
             
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-                <p v-if='globalMarket?.mcap_change' :class='marketCapTrendStyle'>{{ globalMarket?.mcap_change }}&#37;</p>
+                <p v-if='globalMarket?.mcap_change' :class='marketCapStyle'>{{ globalMarket.mcap_change }}&#37;</p>
                 <p v-else>&#8208;</p>
             </CardContent>
         </Card>
@@ -176,7 +176,7 @@
     const { fetchCoinLore } = CryptocurrenciesStore;
     onMounted(() => fetchCoinLore('global'));
     
-    const marketCapTrendStyle = computed(() => getTrendColor(globalMarket.value?.mcap_change));
+    const marketCapStyle = computed(() => getTrendColor(globalMarket.value?.mcap_change));
     const volumeChangeStyle = computed(() => getTrendColor(globalMarket.volume?.volume_change));
 </script>
 
