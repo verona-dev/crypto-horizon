@@ -56,7 +56,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         },
         
         async setActiveCoin(symbol) {
-            await this.fetchLiveCoinWatch('coins/single', { code: symbol });
+            await this.fetchLiveCoinWatch('coins/single', { code: symbol, meta: true });
         },
         
         

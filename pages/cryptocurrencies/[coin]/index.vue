@@ -1,6 +1,33 @@
 <template>
     <div class='single-coin custom-flex'>
-        This is single coin page {{ coin }}
+        <div
+            v-if='loading'
+            class='flex items-center'
+        >
+            <MazSpinner
+                color='secondary'
+                size='4em'
+            />
+            <h3 class='ml-4'>Loading...</h3>
+        </div>
+        
+        <div v-else>
+            <div v-if='coin'>
+                <h2>{{ coin.name }}</h2>
+                <img :src='coin.png64' alt='logo'>
+                <p>Rank: {{ coin.rank }}</p>
+                <p>Price: {{ coin.rate }}</p>
+                <p>Symbol {{ coin.symbol }}</p>
+                <p>Created {{ coin.age }} days ago</p>
+                <p>ATH {{ coin.allTimeHighUSD }}</p>
+                <p>Hour change {{ coin.delta?.hour }}</p>
+                <p>Day change {{ coin.delta?.day }}</p>
+                <p>Week change {{ coin.delta?.week }}</p>
+                <p>Month change {{ coin.delta?.month }}</p>
+                <p>Markets {{ coin.markets }}</p>
+                <p>Pairs {{ coin.pairs }}</p>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -14,7 +41,7 @@
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State
-    const { coin } = storeToRefs(CryptocurrenciesStore);
+    const { coin, loading } = storeToRefs(CryptocurrenciesStore);
     // Methods
     const { setActiveCoin } = CryptocurrenciesStore;
     
@@ -23,40 +50,8 @@
     });
 </script>
 
-<style scoped>
+<style>
     .single-coin {
-        
-        .coin-card {
-            width: 1000px;
-            
-            .coin-header {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-                
-                .name {
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    
-                    h1 {
-                        font-size: 2rem;
-                        color: var(--color-pink_cabaret);
-                    }
-                }
-            }
-            
-            .coin-stats {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                
-                .card {
-                    margin: 25px;
-                    width: 300px;
-                }
-            }
-        }
+    
     }
 </style>
