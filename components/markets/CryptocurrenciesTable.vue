@@ -30,9 +30,9 @@
         </template>
         
         <MazTableRow
-            v-for="(row) in coins"
-            :key="row.id"
-            @click="onRowClick(row)"
+            v-for='(row) in coins'
+            :key='row.id'
+            @click='onRowClick(row)'
         >
             <MazTableCell>{{ row.rank }}</MazTableCell>
             <MazTableCell>
@@ -135,6 +135,7 @@
         }
         
         .m-table-cell {
+            font-size: 0.9rem !important;
             text-align: center;
         }
         
