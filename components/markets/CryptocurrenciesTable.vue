@@ -10,7 +10,7 @@
           { label: "Change (24Hr)", key: "changePercent24Hr", align: "center", sortable: false, classes: "", },
         ]'
         :rows='coins'
-        class='my-20 xl:w-[1200px] mx-auto'
+        class='my-20 w-[1000px] xl:w-[1200px] mx-auto'
         :loading='loading'
         color='secondary'
         hoverable
