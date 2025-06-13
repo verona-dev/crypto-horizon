@@ -1,16 +1,17 @@
 import { getIcon, getTrendColor } from '~/utils/styleUtils.js';
 
-const formatPrice = number => {
+const formatPriceRounded = number => {
     const options = {
-        minimumFractionDigits: 2,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
         style: 'currency',
         currency: 'USD'
     };
     
-    return parseFloat(number).toLocaleString('en-US', options);
+    return Number(number).toLocaleString('en-US', options);
 };
 
-const formatNumber = (number) => {
+const formatPriceWithSuffix = (number) => {
     if (number === null || number === undefined) return '-';
     
     const absNumber = Math.abs(number);
@@ -48,38 +49,37 @@ const formatTableCoins = coins => {
         changePercent24Hr: parseFloat(coin.percent_change_24h).toFixed(2),
         icon: getIcon(coin.symbol),
         id: coin.id,
-        marketCap: formatNumber(coin.market_cap_usd),
+        marketCap: formatPriceWithSuffix(coin.market_cap_usd),
         name: coin.name,
         nameId: coin.nameid,
-        price: formatPrice(coin.price_usd),
+        price: formatPriceRounded(coin.price_usd),
         rank: coin.rank,
-        c_supply: formatNumber(coin.csupply),
+        c_supply: formatPriceWithSuffix(coin.csupply),
         symbol: coin.symbol,
         trend: getTrendColor(coin.percent_change_24h),
-        volume: formatNumber(coin.volume24),
+        volume: formatPriceWithSuffix(coin.volume),
     }))
 }
 
 
 const formatCoin = coin => {
     return {
-        changePercent24Hr: parseFloat(coin.changePercent24Hr).toFixed(2),
-        explorer: coin.explorer,
-        icon: getIcon(coin.symbol),
-        id: coin.id,
-        marketCap: formatNumber(coin.marketCapUsd),
-        name: coin.name,
-        price: formatPrice(coin.priceUsd),
-        supply: formatNumber(coin.supply),
-        symbol: coin.symbol,
+        ...coin,
+        allTimeHighUSD: formatPriceRounded(coin.allTimeHighUSD),
+        cap: formatPriceWithSuffix(coin.cap),
+        circulatingSupply: formatPriceWithSuffix(coin.circulatingSupply),
+        liquidity: formatPriceWithSuffix(coin.liquidity),
+        maxSupply: formatPriceWithSuffix(coin.maxSupply),
+        rate: formatPriceRounded(coin.rate),
+        totalSupply: formatPriceWithSuffix(coin.totalSupply),
         trend: getTrendColor(coin.changePercent24Hr),
-        volume: formatNumber(coin.volumeUsd24Hr),
+        volume: formatPriceWithSuffix(coin.volume),
     }
 }
 
 export {
-    formatNumber,
-    formatPrice,
+    formatPriceWithSuffix,
+    formatPriceRounded,
     formatTableCoins,
     formatCoin,
 };
