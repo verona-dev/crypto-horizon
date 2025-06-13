@@ -57,7 +57,7 @@ const formatTableCoins = coins => {
         c_supply: formatPriceWithSuffix(coin.csupply),
         symbol: coin.symbol,
         trend: getTrendColor(coin.percent_change_24h),
-        volume: formatPriceWithSuffix(coin.volume),
+        volume: formatPriceWithSuffix(coin.volume24),
     }))
 }
 
