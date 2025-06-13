@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { useCoincapFetchCoin, useFetchCoincapData } from '~/composables/apiCoincap';
 import { useFetchCoinLoreData } from '~/composables/apiCoinLore.js';
 import { useCoingeckoHistoricalChartData } from '~/composables/apiCoingecko';
-import { formatCoin, formatTableCoins, } from '~/utils/formatUtils.js';
+import { formatCoin, formatCoinsTable, } from '~/utils/formatUtils.js';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 
 export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
@@ -23,7 +23,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 
                 if(route === 'tickers') {
                     this.coins = [];
-                    this.coins = formatTableCoins(response.data);
+                    this.coins = formatCoinsTable(response.data);
                 }
                 
                 if(route === 'global') {
@@ -100,7 +100,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             
             try {
                 const { data }  = await useFetchCoincapData('assets');
-                this.coins = formatTableCoins(data);
+                this.coins = formatCoinsTable(data);
             } catch(error) {
                 console.log(error);
             } finally {

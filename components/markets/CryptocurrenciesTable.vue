@@ -84,10 +84,7 @@
     // State
     const { loading, coins } = storeToRefs(CryptocurrenciesStore);
     // Methods
-    const {
-        fetchCoinLore,
-        setActiveCoin,
-    } = CryptocurrenciesStore;
+    const { fetchCoinLore, } = CryptocurrenciesStore;
     
     onMounted(() => fetchCoinLore('tickers', { limit: 20 }));
     
