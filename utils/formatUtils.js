@@ -71,7 +71,7 @@ const formatCoin = coin => {
         circulatingSupply: formatNumber(coin?.circulatingSupply, false),
         liquidity: formatNumber(coin?.liquidity),
         maxSupply: formatNumber(coin?.maxSupply),
-        rate: formatPriceRounded(coin?.rate),
+        rate: formatPriceRounded(coin?.rate, 0, 2),
         totalSupply: formatNumber(coin?.totalSupply),
         trend: getTrendColor(coin?.changePercent24Hr),
         volume: formatNumber(coin?.volume),

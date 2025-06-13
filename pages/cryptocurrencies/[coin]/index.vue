@@ -17,10 +17,19 @@
                 class='w-4xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm'
             >
                 <CardHeader>
-                    <div class='flex flex-col mt-3'>
-                        <h1>{{ coin.name }}</h1>
+                    <div class='flex flex-col'>
+                        <div class='flex my-5'>
+                            <NuxtImg
+                                :src='coin.webp64'
+                                alt='symbol'
+                                width='64'
+                                height='64'
+                                class='mr-6'
+                            />
+                            <h1>{{ coin.name }}</h1>
+                        </div>
                         
-                        <div class='flex items-center ml-1 mt-4'>
+                        <div class='flex items-center ml-4 my-5'>
                             <span class=''>{{ activeSymbol }}</span>
                             
                             <MazBadge
@@ -65,8 +74,6 @@
                     <p>Pairs {{ coin.pairs }}</p>
                 </CardContent>
             </Card>
-            
-            <img :src='coin.png64' alt='logo'>
         </div>
     </div>
 </template>
