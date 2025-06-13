@@ -18,6 +18,7 @@
             >
                 <CardHeader>
                     <div class='flex flex-col'>
+                        <!--  Logo + Name  -->
                         <div class='flex my-5'>
                             <NuxtImg
                                 :src='coin.webp64'
@@ -29,6 +30,7 @@
                             <h1>{{ coin.name }}</h1>
                         </div>
                         
+                        <!--  Symbol + Rank  -->
                         <div class='flex items-center ml-4 my-5'>
                             <span class=''>{{ activeSymbol }}</span>
                             
@@ -44,13 +46,46 @@
                         </div>
                     </div>
                     
+                    <!--  Coin price  -->
                     <CardDescription class='text-foreground my-4'>
                         <h2>{{ coin.rate }}</h2>
                     </CardDescription>
-                    
-                    <Separator class='my-4' />
-                
                 </CardHeader>
+                
+                <Separator class='my-4' />
+                
+                <!--  Socials  -->
+                <CardContent>
+                    <template v-for='(link, name) in coin.links' :key='name'>
+                        <MazBadge
+                            v-if='link'
+                            :key='name'
+                            color='secondary'
+                            outline
+                        >
+                            {{ name }}: {{ link }}
+                        </MazBadge>
+                    </template>
+                </CardContent>
+                
+                <CardContent>
+                    <template v-for='(link, name) in coin.links' :key='name'>
+                        <NuxtLink
+                            v-if='link && name'
+                            :to='link'
+                            external
+                            target='_blank'
+                        >
+                            <NuxtIcon
+                                v-if='name'
+                                :key='name'
+                                :name="`fa-brands:${name}`"
+                                size='35'
+                                class='mr-4'
+                            />
+                        </NuxtLink>
+                    </template>
+                </CardContent>
                 
                 <CardContent>
                     <p>Created {{ coin.age }} days ago</p>
@@ -97,20 +132,29 @@
     
     // State
     const { coin, loading } = storeToRefs(CryptocurrenciesStore);
+    const activeSymbol = computed(() => route.params.coin);
     // Methods
     const { setActiveCoin } = CryptocurrenciesStore;
-    
-    const activeSymbol = computed(() => route.params.coin);
     
     onMounted(() => {
         setActiveCoin(route.params.coin);
     });
 </script>
 
-<style>
+<style scoped>
     .single-coin {
         span {
             color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
+        }
+        
+        .iconify {
+            transition: all .15s ease-in-out;
+            
+            &:hover {
+                color: var(--secondary);
+                scale: 1.15;
+                transition: all .15s ease-in-out;
+            }
         }
     }
 </style>
