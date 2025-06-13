@@ -46,18 +46,18 @@ const formatPriceWithSuffix = (number) => {
 
 const formatTableCoins = coins => {
     return coins?.map(coin => ({
-        changePercent24Hr: parseFloat(coin.percent_change_24h).toFixed(2),
-        icon: getIcon(coin.symbol),
-        id: coin.id,
-        marketCap: formatPriceWithSuffix(coin.market_cap_usd),
-        name: coin.name,
-        nameId: coin.nameid,
-        price: formatPriceRounded(coin.price_usd, 0, 2),
-        rank: coin.rank,
-        c_supply: formatPriceWithSuffix(coin.csupply),
-        symbol: coin.symbol,
-        trend: getTrendColor(coin.percent_change_24h),
-        volume: formatPriceWithSuffix(coin.volume24),
+        changePercent24Hr: parseFloat(coin?.percent_change_24h).toFixed(2),
+        icon: getIcon(coin?.symbol),
+        id: coin?.id,
+        marketCap: formatPriceWithSuffix(coin?.market_cap_usd),
+        name: coin?.name,
+        nameId: coin?.nameid,
+        price: formatPriceRounded(coin?.price_usd, 0, 2),
+        rank: coin?.rank,
+        c_supply: formatPriceWithSuffix(coin?.csupply),
+        symbol: coin?.symbol,
+        trend: getTrendColor(coin?.percent_change_24h),
+        volume: formatPriceWithSuffix(coin?.volume24),
     }))
 }
 
@@ -65,15 +65,15 @@ const formatTableCoins = coins => {
 const formatCoin = coin => {
     return {
         ...coin,
-        allTimeHighUSD: formatPriceRounded(coin.allTimeHighUSD),
-        cap: formatPriceWithSuffix(coin.cap),
-        circulatingSupply: formatPriceWithSuffix(coin.circulatingSupply),
-        liquidity: formatPriceWithSuffix(coin.liquidity),
-        maxSupply: formatPriceWithSuffix(coin.maxSupply),
-        rate: formatPriceRounded(coin.rate),
-        totalSupply: formatPriceWithSuffix(coin.totalSupply),
-        trend: getTrendColor(coin.changePercent24Hr),
-        volume: formatPriceWithSuffix(coin.volume),
+        allTimeHighUSD: formatPriceRounded(coin?.allTimeHighUSD),
+        cap: formatPriceWithSuffix(coin?.cap),
+        circulatingSupply: formatPriceWithSuffix(coin?.circulatingSupply),
+        liquidity: formatPriceWithSuffix(coin?.liquidity),
+        maxSupply: formatPriceWithSuffix(coin?.maxSupply),
+        rate: formatPriceRounded(coin?.rate),
+        totalSupply: formatPriceWithSuffix(coin?.totalSupply),
+        trend: getTrendColor(coin?.changePercent24Hr),
+        volume: formatPriceWithSuffix(coin?.volume),
     }
 }
 
