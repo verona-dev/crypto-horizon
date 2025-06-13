@@ -17,22 +17,23 @@
                 class='w-4xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm'
             >
                 <CardHeader>
-                    <CardTitle class='flex items-center my-4'>
+                    <div class='flex flex-col mt-3'>
                         <h1>{{ coin.name }}</h1>
                         
-                        <div class='mt-3 flex items-center'>
-                            <h4 class='mx-6'>&nbsp;{{ coin.symbol }}</h4>
+                        <div class='flex items-center ml-1 mt-4'>
+                            <span class=''>{{ activeSymbol }}</span>
+                            
                             <MazBadge
                                 color='gray'
                                 size='1rem'
                                 rounded-size='md'
                                 outline
-                                class='ml-4'
+                                class='ml-2'
                             >
                                 #{{ coin.rank }}
                             </MazBadge>
                         </div>
-                    </CardTitle>
+                    </div>
                     
                     <CardDescription class='text-foreground my-4'>
                         <h2>{{ coin.rate }}</h2>
@@ -46,7 +47,7 @@
                     <p>Created {{ coin.age }} days ago</p>
                     <p>Market Cap: {{ coin.cap }}</p>
                     <p>ATH {{ coin.allTimeHighUSD }}</p>
-                    <p>Circulating Supply: {{ coin.circulatingSupply }}</p>
+                    <p>Circulating Supply: {{ coin.circulatingSupply }} {{ activeSymbol }}</p>
                     <p>Total Supply: {{ coin.totalSupply }}</p>
                     <p>Max Supply: {{ coin.maxSupply }}</p>
                 </CardContent>
@@ -57,6 +58,9 @@
                     <p>Day change {{ coin.delta?.day }}</p>
                     <p>Week change {{ coin.delta?.week }}</p>
                     <p>Month change {{ coin.delta?.month }}</p>
+                </CardContent>
+                
+                <CardContent>
                     <p>Markets {{ coin.markets }}</p>
                     <p>Pairs {{ coin.pairs }}</p>
                 </CardContent>
@@ -72,7 +76,6 @@
         Card,
         CardContent,
         CardDescription,
-        CardFooter,
         CardHeader,
         CardTitle,
     } from '@/components/ui/card';
@@ -90,6 +93,8 @@
     // Methods
     const { setActiveCoin } = CryptocurrenciesStore;
     
+    const activeSymbol = computed(() => route.params.coin);
+    
     onMounted(() => {
         setActiveCoin(route.params.coin);
     });
@@ -97,6 +102,8 @@
 
 <style>
     .single-coin {
-    
+        span {
+            color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
+        }
     }
 </style>
