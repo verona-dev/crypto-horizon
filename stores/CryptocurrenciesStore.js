@@ -46,7 +46,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 
                 if(route === 'coins/single') {
                     this.coin = {};
-                    this.coin = response;
+                    this.coin = formatCoin(response);
                 }
             } catch(error) {
                 console.log(error);
