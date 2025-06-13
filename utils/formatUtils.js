@@ -66,7 +66,7 @@ const formatCoinsTable = coins => {
 const formatCoin = coin => {
     return {
         ...coin,
-        allTimeHighUSD: formatPriceRounded(coin?.allTimeHighUSD),
+        allTimeHighUSD: formatPriceRounded(coin?.allTimeHighUSD, 0, 2),
         cap: formatNumber(coin?.cap),
         circulatingSupply: formatNumber(coin?.circulatingSupply, false),
         liquidity: formatNumber(coin?.liquidity),
