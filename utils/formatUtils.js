@@ -1,9 +1,9 @@
 import { getIcon, getTrendColor } from '~/utils/styleUtils.js';
 
-const formatPriceRounded = number => {
+const formatPriceRounded = (number, min = 0, max = 0) => {
     const options = {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
+        minimumFractionDigits: min,
+        maximumFractionDigits: max,
         style: 'currency',
         currency: 'USD'
     };
@@ -52,7 +52,7 @@ const formatTableCoins = coins => {
         marketCap: formatPriceWithSuffix(coin.market_cap_usd),
         name: coin.name,
         nameId: coin.nameid,
-        price: formatPriceRounded(coin.price_usd),
+        price: formatPriceRounded(coin.price_usd, 0, 2),
         rank: coin.rank,
         c_supply: formatPriceWithSuffix(coin.csupply),
         symbol: coin.symbol,
