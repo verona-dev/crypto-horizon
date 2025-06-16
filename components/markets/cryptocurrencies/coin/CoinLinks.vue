@@ -1,8 +1,8 @@
 <template>
     <!--  Links  -->
     <CardContent class='flex items-start'>
-        <div class='links w-[250px] m-4 p-6'>
-            <h3 class='mb-4'>Links:</h3>
+        <div class='links flex-1 m-4 p-6'>
+            <h3 class='mb-4'>Official</h3>
             
             <!--  Website  -->
             <NuxtLink
@@ -10,6 +10,7 @@
                 :to='links.website'
                 external
                 target='_blank'
+                class='flex my-2'
             >
                 <div class='link-item flex py-3'>
                     <NuxtIcon
@@ -27,6 +28,7 @@
                 :to='links.whitepaper'
                 external
                 target='_blank'
+                class='flex my-2'
             >
                 <div class='link-item flex py-3'>
                     <NuxtIcon
@@ -40,8 +42,8 @@
         </div>
         
         <!--  Socials  -->
-        <div class='socials w-[250px] m-4 p-6'>
-            <h3 class='mb-4'>Socials:</h3>
+        <div class='socials flex-1 m-4 p-6'>
+            <h3 class='mb-4'>Social Networks</h3>
             
             <div
                 v-for='(link, name) in links?.socials'
@@ -82,7 +84,6 @@
         links: {
             type: Object,
             default: () => ({}),
-            required: true,
         }
     });
     
@@ -103,6 +104,7 @@
             color: var(--secondary);
             scale: 1.05;
             transition: all .15s ease-in-out;
+            text-decoration: underline;
         }
     }
 </style>
