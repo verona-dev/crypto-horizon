@@ -2,7 +2,7 @@
     <!--  Links  -->
     <CardContent class='flex items-start'>
         <div class='links flex-1 m-4 p-6'>
-            <h3 class='mb-6'>Official</h3>
+            <h5 class='mb-6'>Official</h5>
             
             <!--  Website  -->
             <NuxtLink
@@ -43,7 +43,7 @@
         
         <!--  Socials  -->
         <div class='socials flex-1 m-4 p-6'>
-            <h3 class='mb-6'>Social Networks</h3>
+            <h5 class='mb-6'>Social Networks</h5>
             
             <div
                 v-for='(link, name) in links?.socials'
