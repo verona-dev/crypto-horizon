@@ -12,7 +12,7 @@
                 target='_blank'
                 class='flex my-2'
             >
-                <div class='link-item flex py-3'>
+                <div class='link-item flex items-center py-3'>
                     <NuxtIcon
                         name='radix-icons:link-2'
                         size='25'
@@ -30,7 +30,7 @@
                 target='_blank'
                 class='flex my-2'
             >
-                <div class='link-item flex py-3'>
+                <div class='link-item flex items-center py-3'>
                     <NuxtIcon
                         name='radix-icons:reader'
                         size='25'
@@ -57,7 +57,7 @@
                     target='_blank'
                     class=''
                 >
-                    <div class='link-item flex py-3'>
+                    <div class='link-item flex items-center py-3'>
                         <NuxtIcon
                             v-if='name'
                             :key='name'
