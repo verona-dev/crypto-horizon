@@ -56,7 +56,7 @@
                 
                 <!--  Socials  -->
                 <CardContent>
-                    <template v-for='(link, name) in coin.links' :key='name'>
+                    <template v-for='(link, name) in coin.links?.socials' :key='name'>
                         <MazBadge
                             v-if='link'
                             :key='name'
@@ -69,7 +69,7 @@
                 </CardContent>
                 
                 <CardContent>
-                    <template v-for='(link, name) in coin.links' :key='name'>
+                    <template v-for='(link, name) in coin.links?.socials' :key='name'>
                         <NuxtLink
                             v-if='link && name'
                             :to='link'
