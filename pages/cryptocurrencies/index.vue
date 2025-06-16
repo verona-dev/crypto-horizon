@@ -1,11 +1,11 @@
 <template>
     <div>
-        <CryptocurrenciesGlobal />
-        <CryptocurrenciesTable />
+        <MarketOverview />
+        <CoinsTable />
     </div>
 </template>
 
 <script setup>
-    import CryptocurrenciesGlobal from '~/components/markets/CryptocurrenciesGlobal.vue';
-    import CryptocurrenciesTable from '~/components/markets/CryptocurrenciesTable.vue';
+    import MarketOverview from '~/components/markets/cryptocurrencies/MarketOverview.vue';
+    import CoinsTable from '~/components/markets/cryptocurrencies/CoinsTable.vue';
 </script>

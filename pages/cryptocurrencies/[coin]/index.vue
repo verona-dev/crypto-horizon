@@ -13,87 +13,32 @@
         
         <div v-else>
             <Card
-                v-if='coin?.name'
-                class='w-4xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm'
+                v-if='coin && coin?.name'
+                class='w-4xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border my-10 py-6 shadow-sm'
             >
-                <CardHeader>
-                    <div class='flex flex-col'>
-                        <!--  Logo + Name  -->
-                        <div class='flex my-5'>
-                            <NuxtImg
-                                :src='coin.webp64'
-                                alt='symbol'
-                                width='64'
-                                height='64'
-                                class='mr-6'
-                            />
-                            <h1>{{ coin.name }}</h1>
-                        </div>
-                        
-                        <!--  Symbol + Rank  -->
-                        <div class='flex items-center ml-4 my-5'>
-                            <span class=''>{{ activeSymbol }}</span>
-                            
-                            <MazBadge
-                                color='gray'
-                                size='1rem'
-                                rounded-size='md'
-                                outline
-                                class='ml-2'
-                            >
-                                #{{ coin.rank }}
-                            </MazBadge>
-                        </div>
-                    </div>
-                    
-                    <!--  Coin price  -->
-                    <CardDescription class='text-foreground my-4'>
-                        <h2>{{ coin.rate }}</h2>
-                    </CardDescription>
-                </CardHeader>
+                <!--  Header  -->
+                <CoinHeader
+                    :coin='coin'
+                    :activeSymbol='activeSymbol'
+                />
                 
                 <Separator class='my-4' />
                 
-                <!--  Socials  -->
-                <CardContent>
-                    <template v-for='(link, name) in coin.links' :key='name'>
-                        <MazBadge
-                            v-if='link'
-                            :key='name'
-                            color='secondary'
-                            outline
-                        >
-                            {{ name }}: {{ link }}
-                        </MazBadge>
-                    </template>
-                </CardContent>
+                <!--  Links  -->
+                <CoinLinks
+                    v-if='coin.links'
+                    :links='coin.links'
+                />
                 
-                <CardContent>
-                    <template v-for='(link, name) in coin.links' :key='name'>
-                        <NuxtLink
-                            v-if='link && name'
-                            :to='link'
-                            external
-                            target='_blank'
-                        >
-                            <NuxtIcon
-                                v-if='name'
-                                :key='name'
-                                :name="`fa-brands:${name}`"
-                                size='35'
-                                class='mr-4'
-                            />
-                        </NuxtLink>
-                    </template>
-                </CardContent>
+                <Separator class='my-4' />
                 
                 <CardContent>
                     <p>Created {{ coin.age }} days ago</p>
                     <p>Market Cap: {{ coin.cap }}</p>
                     <p>ATH {{ coin.allTimeHighUSD }}</p>
                     <p>Circulating Supply: {{ coin.circulatingSupply }} {{ activeSymbol }}</p>
-                    <p>Total Supply: {{ coin.totalSupply }}</p>
-                    <p>Max Supply: {{ coin.maxSupply }}</p>
+                    <p>Total Supply: {{ coin.totalSupply }}   {{ activeSymbol }}</p>
+                    <p>Max Supply: {{ coin.maxSupply }}  {{ activeSymbol }}</p>
                 </CardContent>
                 
                 <CardContent>
@@ -114,13 +59,8 @@
 </template>
 
 <script setup>
-    import {
-        Card,
-        CardContent,
-        CardDescription,
-        CardHeader,
-        CardTitle,
-    } from '@/components/ui/card';
+    import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
+    import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
     
     // Router
     import {useRoute} from 'vue-router';
@@ -140,21 +80,3 @@
         setActiveCoin(route.params.coin);
     });
 </script>
-
-<style scoped>
-    .single-coin {
-        span {
-            color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
-        }
-        
-        .iconify {
-            transition: all .15s ease-in-out;
-            
-            &:hover {
-                color: var(--secondary);
-                scale: 1.15;
-                transition: all .15s ease-in-out;
-            }
-        }
-    }
-</style>
