@@ -60,6 +60,8 @@
                     :links='coin.links'
                 />
                 
+                <Separator class='my-4' />
+                
                 <CardContent>
                     <p>Created {{ coin.age }} days ago</p>
                     <p>Market Cap: {{ coin.cap }}</p>
@@ -114,3 +116,11 @@
         setActiveCoin(route.params.coin);
     });
 </script>
+
+<style scoped>
+    .single-coin {
+        span {
+            color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
+        }
+    }
+</style>
