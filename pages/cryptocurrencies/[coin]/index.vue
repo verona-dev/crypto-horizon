@@ -67,8 +67,8 @@
                     <p>Market Cap: {{ coin.cap }}</p>
                     <p>ATH {{ coin.allTimeHighUSD }}</p>
                     <p>Circulating Supply: {{ coin.circulatingSupply }} {{ activeSymbol }}</p>
-                    <p>Total Supply: {{ coin.totalSupply }}</p>
-                    <p>Max Supply: {{ coin.maxSupply }}</p>
+                    <p>Total Supply: {{ coin.totalSupply }}   {{ activeSymbol }}</p>
+                    <p>Max Supply: {{ coin.maxSupply }}  {{ activeSymbol }}</p>
                 </CardContent>
                 
                 <CardContent>
