@@ -41,7 +41,7 @@ const formatNumber = (number, usePrefix = true, useSuffix = true) => {
         // Less than thousand, show the number
         formattedNumber = floor(number);
     }
-
+    
     return `${prefix}${formattedNumber.toFixed(2)}${suffix}`;
 };
 
@@ -69,6 +69,7 @@ const formatCoin = coin => {
         allTimeHighUSD: formatPriceRounded(coin?.allTimeHighUSD, 0, 2),
         cap: formatNumber(coin?.cap),
         circulatingSupply: formatNumber(coin?.circulatingSupply, false),
+        links: extractLinks(coin?.links),
         liquidity: formatNumber(coin?.liquidity),
         maxSupply: formatNumber(coin?.maxSupply),
         rate: formatPriceRounded(coin?.rate, 0, 2),
@@ -77,6 +78,26 @@ const formatCoin = coin => {
         volume: formatNumber(coin?.volume),
     }
 }
+
+const extractLinks = (externalLinks) => {
+    let links = {
+        socials: {},
+    };
+    
+    for (let key in externalLinks) {
+        if (externalLinks.hasOwnProperty(key)) {
+            if(key === 'website' || key === 'whitepaper') {
+                links[key] = externalLinks[key];
+            } else {
+                if(externalLinks[key] !== null) {
+                    links.socials[key] = externalLinks[key];
+                }
+            }
+        }
+    }
+    
+    return links;
+};
 
 export {
     formatNumber,
