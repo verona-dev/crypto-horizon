@@ -4,15 +4,19 @@
         <div class='links'>
             <h3>Links:</h3>
             
-            <template v-for='(link, name) in links' :key='name'>
-                <MazBadge
-                    v-if='link'
-                    color='secondary'
-                    outline
-                >
-                    {{ name }}: {{ link }}
-                </MazBadge>
-            </template>
+            <MazBadge
+                color='gray'
+                outline
+            >
+                <span>Website: {{ links.website }}</span>
+            </MazBadge>
+            
+            <MazBadge
+                color='gray'
+                outline
+            >
+                <span>Whitepaper: {{ links.whitepaper }}</span>
+            </MazBadge>
         </div>
     </CardContent>
     
@@ -44,7 +48,7 @@
                         
                         <p>{{ name }}</p>
                     </div>
-                    
+                
                 </NuxtLink>
             </div>
         </div>
