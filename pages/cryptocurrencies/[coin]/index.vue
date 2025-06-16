@@ -13,7 +13,7 @@
         
         <div v-else>
             <Card
-                v-if='coin?.name'
+                v-if='coin && coin?.name'
                 class='w-4xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm'
             >
                 <CardHeader>
@@ -32,7 +32,7 @@
                         
                         <!--  Symbol + Rank  -->
                         <div class='flex items-center ml-4 my-5'>
-                            <span class=''>{{ activeSymbol }}</span>
+                            <span>{{ activeSymbol }}</span>
                             
                             <MazBadge
                                 color='gray'
@@ -54,38 +54,11 @@
                 
                 <Separator class='my-4' />
                 
-                <!--  Socials  -->
-                <CardContent>
-                    <template v-for='(link, name) in coin.links?.socials' :key='name'>
-                        <MazBadge
-                            v-if='link'
-                            :key='name'
-                            color='secondary'
-                            outline
-                        >
-                            {{ name }}: {{ link }}
-                        </MazBadge>
-                    </template>
-                </CardContent>
-                
-                <CardContent>
-                    <template v-for='(link, name) in coin.links?.socials' :key='name'>
-                        <NuxtLink
-                            v-if='link && name'
-                            :to='link'
-                            external
-                            target='_blank'
-                        >
-                            <NuxtIcon
-                                v-if='name'
-                                :key='name'
-                                :name="`fa-brands:${name}`"
-                                size='35'
-                                class='mr-4'
-                            />
-                        </NuxtLink>
-                    </template>
-                </CardContent>
+                <!--  Links  -->
+                <CoinLinks
+                    v-if='coin.links'
+                    :links='coin.links'
+                />
                 
                 <CardContent>
                     <p>Created {{ coin.age }} days ago</p>
@@ -121,6 +94,7 @@
         CardHeader,
         CardTitle,
     } from '@/components/ui/card';
+    import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     
     // Router
     import {useRoute} from 'vue-router';
@@ -140,21 +114,3 @@
         setActiveCoin(route.params.coin);
     });
 </script>
-
-<style scoped>
-    .single-coin {
-        span {
-            color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
-        }
-        
-        .iconify {
-            transition: all .15s ease-in-out;
-            
-            &:hover {
-                color: var(--secondary);
-                scale: 1.15;
-                transition: all .15s ease-in-out;
-            }
-        }
-    }
-</style>
