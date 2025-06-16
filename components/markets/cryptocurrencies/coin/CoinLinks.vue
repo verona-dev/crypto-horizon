@@ -1,29 +1,47 @@
 <template>
     <!--  Links  -->
-    <CardContent>
-        <div class='links'>
-            <h3>Links:</h3>
+    <CardContent class='flex items-start'>
+        <div class='links w-[250px] m-4 p-6'>
+            <h3 class='mb-4'>Links:</h3>
             
-            <MazBadge
-                color='gray'
-                outline
+            <!--  Website  -->
+            <NuxtLink
+                v-if='links.website'
+                :to='links.website'
+                external
+                target='_blank'
             >
-                <span>Website: {{ links.website }}</span>
-            </MazBadge>
+                <div class='link-item flex py-3'>
+                    <NuxtIcon
+                        name='radix-icons:link-2'
+                        size='25'
+                        class='w-[50px]'
+                    />
+                    <p>Website</p>
+                </div>
+            </NuxtLink>
             
-            <MazBadge
-                color='gray'
-                outline
+            <!--  Whitepaper  -->
+            <NuxtLink
+                v-if='links.whitepaper'
+                :to='links.whitepaper'
+                external
+                target='_blank'
             >
-                <span>Whitepaper: {{ links.whitepaper }}</span>
-            </MazBadge>
+                <div class='link-item flex py-3'>
+                    <NuxtIcon
+                        name='radix-icons:reader'
+                        size='25'
+                        class='w-[50px]'
+                    />
+                    <p>Whitepaper</p>
+                </div>
+            </NuxtLink>
         </div>
-    </CardContent>
-    
-    <!--  Socials  -->
-    <CardContent>
+        
+        <!--  Socials  -->
         <div class='socials w-[250px] m-4 p-6'>
-            <h3>Socials:</h3>
+            <h3 class='mb-4'>Socials:</h3>
             
             <div
                 v-for='(link, name) in links?.socials'
@@ -37,7 +55,7 @@
                     target='_blank'
                     class=''
                 >
-                    <div class='social-item flex p-3'>
+                    <div class='link-item flex py-3'>
                         <NuxtIcon
                             v-if='name'
                             :key='name'
@@ -72,18 +90,19 @@
 </script>
 
 <style scoped>
+    .links,
     .socials {
-        border: 1px dashed orange;
+        border: 1px dashed gray;
+    }
+    
+    .link-item {
+        color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
+        transition: all .15s ease-in-out;
         
-        .social-item {
-            color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
+        &:hover {
+            color: var(--secondary);
+            scale: 1.05;
             transition: all .15s ease-in-out;
-            
-            &:hover {
-                color: var(--secondary);
-                scale: 1.05;
-                transition: all .15s ease-in-out;
-            }
         }
     }
 </style>
