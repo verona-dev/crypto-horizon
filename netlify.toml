@@ -1,0 +1,9 @@
+
+[build]
+command = "npm run build"
+publish = "out"
+
+[images]
+remote_images = [
+  "https://lcw.nyc3.cdn.digitaloceanspaces.com/.*"
+]
