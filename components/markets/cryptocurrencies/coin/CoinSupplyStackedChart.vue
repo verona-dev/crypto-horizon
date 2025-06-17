@@ -1,6 +1,6 @@
 
 <template>
-    <div class='my-20'>
+    <div class='my-6'>
         <Bar
             :data='chartData'
             :options='chartOptions'
@@ -32,8 +32,8 @@
         datasets: [
             {
                 label: 'Supply',
-                backgroundColor: ['#ccb7a8',  '#e18037', '#41B883'],
-                data: [maxSupply.value, totalSupply.value, remainingSupply.value]
+                backgroundColor: ['#4188da',  '#E46651', '#41B883'],
+                data: [maxSupply.value, totalSupply.value, remainingSupply.value],
             }
         ]
     });
@@ -45,7 +45,7 @@
         scales: {
             x: {
                 ticks: {
-                    display: false
+                    display: true
                 }
             },
         },

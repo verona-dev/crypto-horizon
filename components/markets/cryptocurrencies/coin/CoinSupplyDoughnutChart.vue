@@ -1,9 +1,5 @@
 
 <template>
-    <MazAnimatedElement direction="up" :duration="2000">
-        <h6 class='text-center uppercase'>Max Supply: {{ maxSupply.toLocaleString() }}</h6>
-    </MazAnimatedElement>
-    
     <div class='my-6'>
         <Doughnut
             :data='chartData'
@@ -36,7 +32,7 @@
         datasets: [
             {
                 backgroundColor: ['#41B883', '#E46651'],
-                data: [totalSupply.value, remainingSupply.value]
+                data: [totalSupply.value, remainingSupply.value],
             }
         ],
     });
