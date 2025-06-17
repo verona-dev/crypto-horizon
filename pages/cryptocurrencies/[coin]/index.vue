@@ -31,10 +31,9 @@
                 <Separator class='my-4' />
                 
                 <CoinSupply
-                    :totalSupply='coin.totalSupplyChart'
-                    :maxSupply='coin.maxSupplyChart'
+                    v-if='coin.maxSupplyChart'
+                    :coin='coin'
                 />
-                <Separator class='my-4' />
                 
                 <CardContent>
                     <p>Created {{ coin.age }} days ago</p>
