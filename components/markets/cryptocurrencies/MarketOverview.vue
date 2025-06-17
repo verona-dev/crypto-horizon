@@ -130,26 +130,26 @@
             </CardHeader>
             
             <CardContent>
-                <CardDescription class='flex'>
+                <CardDescription class='flex items-center'>
                     <NuxtIcon
                         name='cryptocurrency-color:btc'
                         size='20'
                     />
                     <span class='ml-2'>BTC Dominance Index</span>
                 </CardDescription>
-                <p v-if='globalMarket.btc_d'>{{ globalMarket.btc_d }}&#37;</p>
+                <p v-if='globalMarket.btc_d' class='ml-7'>{{ globalMarket.btc_d }}&#37;</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
             <CardContent>
-                <CardDescription class='flex'>
+                <CardDescription class='flex items-center'>
                     <NuxtIcon
                         name='cryptocurrency-color:eth'
                         size='20'
                     />
                     <span class='ml-2'>ETH Dominance Index</span>
                 </CardDescription>
-                <p v-if='globalMarket.eth_d'>{{ globalMarket.eth_d }}&#37;</p>
+                <p v-if='globalMarket.eth_d' class='ml-7'>{{ globalMarket.eth_d }}&#37;</p>
                 <p v-else>&#8208;</p>
             </CardContent>
         </Card>

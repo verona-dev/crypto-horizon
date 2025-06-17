@@ -4,6 +4,7 @@
             <!-- Logo  -->
             <div class='logo w-[300px] flex justify-center items-center'>
                 <NuxtImg
+                    v-if='coin.webp64'
                     :src='coin.webp64'
                     alt='symbol'
                     width='100'
