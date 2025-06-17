@@ -9,7 +9,7 @@
 </template>
 
 <script lang='ts' setup>
-    import { Bar, Doughnut } from 'vue-chartjs';
+    import { Bar } from 'vue-chartjs';
     
     const props = defineProps({
         totalSupply: {
@@ -41,18 +41,6 @@
     const chartOptions = ref({
         indexAxis: 'y',
         responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-            x: {
-                ticks: {
-                    display: true
-                }
-            },
-        },
-        plugins: {
-            legend: {
-                display: true,
-            }
-        }
+        maintainAspectRatio: true,
     });
 </script>
