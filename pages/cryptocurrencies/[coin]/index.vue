@@ -21,7 +21,6 @@
                     :coin='coin'
                     :activeSymbol='activeSymbol'
                 />
-                
                 <Separator class='my-4' />
                 
                 <!--  Links  -->
@@ -29,7 +28,12 @@
                     v-if='coin.links'
                     :links='coin.links'
                 />
+                <Separator class='my-4' />
                 
+                <CoinSupply
+                    :totalSupply='coin.totalSupplyChart'
+                    :maxSupply='coin.maxSupplyChart'
+                />
                 <Separator class='my-4' />
                 
                 <CardContent>
@@ -61,6 +65,7 @@
 <script setup>
     import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
+    import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
     
     // Router
     import {useRoute} from 'vue-router';
