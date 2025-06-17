@@ -72,8 +72,10 @@ const formatCoin = coin => {
         links: extractLinks(coin?.links),
         liquidity: formatNumber(coin?.liquidity),
         maxSupply: formatNumber(coin?.maxSupply, false),
+        maxSupplyChart: coin?.maxSupply,
         rate: formatPriceRounded(coin?.rate, 0, 2),
         totalSupply: formatNumber(coin?.totalSupply, false),
+        totalSupplyChart: coin?.totalSupply,
         trend: getTrendColor(coin?.changePercent24Hr),
         volume: formatNumber(coin?.volume),
     }

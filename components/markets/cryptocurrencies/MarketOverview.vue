@@ -137,7 +137,7 @@
                     />
                     <span class='ml-2'>BTC Dominance Index</span>
                 </CardDescription>
-                <p v-if='globalMarket.btc_d' class='ml-7'>{{ globalMarket.btc_d }}&#37;</p>
+                <p v-if='globalMarket.btc_d' class='ml-6'>{{ globalMarket.btc_d }}&#37;</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
@@ -149,7 +149,7 @@
                     />
                     <span class='ml-2'>ETH Dominance Index</span>
                 </CardDescription>
-                <p v-if='globalMarket.eth_d' class='ml-7'>{{ globalMarket.eth_d }}&#37;</p>
+                <p v-if='globalMarket.eth_d' class='ml-6'>{{ globalMarket.eth_d }}&#37;</p>
                 <p v-else>&#8208;</p>
             </CardContent>
         </Card>
