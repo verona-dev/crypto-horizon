@@ -91,11 +91,6 @@
 </script>
 
 <style scoped>
-    .links,
-    .socials {
-        border: 1px dashed gray;
-    }
-    
     .link-item {
         color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
         transition: all .15s ease-in-out;
