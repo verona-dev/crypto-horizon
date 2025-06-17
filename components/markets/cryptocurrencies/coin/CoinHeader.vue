@@ -35,6 +35,8 @@
             </div>
         </div>
     </CardHeader>
+    
+    <Separator class='my-4' />
 </template>
 
 <script setup>

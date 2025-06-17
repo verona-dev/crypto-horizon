@@ -21,14 +21,12 @@
                     :coin='coin'
                     :activeSymbol='activeSymbol'
                 />
-                <Separator class='my-4' />
                 
                 <!--  Links  -->
                 <CoinLinks
                     v-if='coin.links'
                     :links='coin.links'
                 />
-                <Separator class='my-4' />
                 
                 <CoinSupply
                     v-if='coin.maxSupplyChart'
