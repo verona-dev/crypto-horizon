@@ -23,7 +23,7 @@
             />
         </TabsContent>
         <TabsContent value='password' class='min-h-[500px] w-11/12 mx-auto'>
-            <CoinSupplyStackedChart
+            <CoinSupplyStackedBars
                 :totalSupply='coin.totalSupplyChart'
                 :maxSupply='coin.maxSupplyChart'
             />
@@ -35,7 +35,7 @@
 
 <script setup>
     import CoinSupplyDoughnutChart from '~/components/markets/cryptocurrencies/coin/CoinSupplyDoughnutChart.vue';
-    import CoinSupplyStackedChart from '~/components/markets/cryptocurrencies/coin/CoinSupplyStackedChart.vue';
+    import CoinSupplyStackedBars from '~/components/markets/cryptocurrencies/coin/CoinSupplyStackedBars.vue';
     
     const props = defineProps({
         coin: {

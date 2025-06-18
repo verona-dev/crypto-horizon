@@ -32,7 +32,7 @@
         datasets: [
             {
                 label: 'Supply',
-                backgroundColor: ['#f99052',  '#fef0ca', '#41B883'],
+                backgroundColor: ['#00b1f5',  '#fef0ca', '#41B883'],
                 data: [maxSupply.value, totalSupply.value, remainingSupply.value],
             }
         ]
