@@ -27,17 +27,11 @@
         </MazAnimatedElement>
         
         <TabsContent value='doughnut-chart' class='min-h-[500px] w-6/12 mx-auto'>
-            <CoinSupplyDoughnutChart
-                :totalSupply='coin.totalSupplyChart'
-                :maxSupply='coin.maxSupplyChart'
-            />
+            <CoinSupplyDoughnutChart :coin="coin" />
         </TabsContent>
         
         <TabsContent value='stacked-bars' class='min-h-[500px] w-11/12 mx-auto'>
-            <CoinSupplyStackedBars
-                :totalSupply='coin.totalSupplyChart'
-                :maxSupply='coin.maxSupplyChart'
-            />
+            <CoinSupplyStackedBars :coin="coin" />
         </TabsContent>
     </Tabs>
     

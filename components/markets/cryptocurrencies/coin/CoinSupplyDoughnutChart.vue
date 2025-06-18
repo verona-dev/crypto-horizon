@@ -12,38 +12,50 @@
     import { Doughnut } from 'vue-chartjs';
     
     const props = defineProps({
-        totalSupply: {
-            type: Number,
-            default: 0,
+        coin: {
+            type: Object,
+            default: (() => {}),
             required: true,
-        },
-        maxSupply: {
-            type: Number,
-            default: 0,
-            required: true,
-        },
+        }
     });
     
-    const { totalSupply, maxSupply } = toRefs(props);
-    const remainingSupply = computed(() => maxSupply.value - totalSupply.value);
+    const { coin } = toRefs(props);
+    const remainingSupply = computed(() => coin.value.maxSupplyChart - coin.value.totalSupplyChart);
     
-    const chartData = ref({
-        labels: ['Total Supply', 'Remaining Supply'],
+    const chartContent = computed(() => {
+        // If coin has max supply
+        if (coin.value.maxSupplyChart) {
+            return {
+                labels: ['Total Supply', 'Remaining Supply'],
+                data: [coin.value.totalSupplyChart, remainingSupply.value]
+            };
+        } else {
+            // If coin does not max supply
+            return {
+                labels: ['Total Supply', 'Circulating Supply'],
+                data: [coin.value.totalSupplyChart, coin.value.circulatingSupplyChart]
+            };
+        }
+    });
+    
+    const chartData = ref(({
+        labels: chartContent.value?.labels,
         datasets: [
             {
                 backgroundColor: ['#fef0ca', '#41B883'],
-                data: [totalSupply.value, remainingSupply.value],
+                data: chartContent.value?.data,
                 cutout: '50%',
                 hoverOffset: 20,
-            }
+            },
         ],
-    });
+    }));
     
     const chartOptions = ref({
         responsive: true,
         maintainAspectRatio: true,
         plugins: {
             legend: {
+                display: true,
                 labels: {
                     font: {
                         size: 18
