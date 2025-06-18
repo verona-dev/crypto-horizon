@@ -1,7 +1,7 @@
 
 <template>
     <div class='my-6'>
-        <Doughnut
+        <Bar
             :data='chartData'
             :options='chartOptions'
         />
@@ -9,7 +9,7 @@
 </template>
 
 <script lang='ts' setup>
-    import { Doughnut } from 'vue-chartjs';
+    import { Bar } from 'vue-chartjs';
     
     const props = defineProps({
         coin: {
@@ -26,41 +26,44 @@
         // If coin has max supply
         if (coin.value.maxSupplyChart) {
             return {
-                labels: ['Total Supply', 'Remaining Supply'],
-                data: [coin.value.totalSupplyChart, remainingSupply.value]
+                labels: ['Max Supply', 'Total Supply', 'Remaining Supply'],
+                data: [coin.value.maxSupplyChart, coin.value.totalSupplyChart, remainingSupply.value],
+                backgroundColor: ['#00b1f5',  '#fef0ca', '#41B883'],
             };
         } else {
             // If coin does not max supply
             return {
                 labels: ['Total Supply', 'Circulating Supply'],
-                data: [coin.value.totalSupplyChart, coin.value.circulatingSupplyChart]
+                data: [coin.value.totalSupplyChart, coin.value.circulatingSupplyChart],
+                backgroundColor: ['#fef0ca', '#41B883'],
             };
         }
     });
     
-    const chartData = ref(({
+    const chartData = ref({
         labels: chartContent.value?.labels,
         datasets: [
             {
-                backgroundColor: ['#fef0ca', '#41B883'],
+                label: 'Supply',
+                backgroundColor: chartContent.value?.backgroundColor,
                 data: chartContent.value?.data,
-                cutout: '50%',
-                hoverOffset: 20,
-            },
+            }
         ],
-    }));
+    });
     
     const chartOptions = ref({
-        responsive: true,
+        barThickness: 70,
+        indexAxis: 'y',
         maintainAspectRatio: true,
+        responsive: true,
         plugins: {
             legend: {
                 labels: {
                     font: {
                         size: 18
-                    }
+                    },
                 }
-            }
+            },
         },
     });
 </script>

@@ -21,7 +21,7 @@
                         color='info'
                         size='1rem'
                         rounded-size='md'
-                        class='ml-4 mt-4'
+                        class='ml-4'
                     >
                         #{{ coin.rank }}
                     </MazBadge>

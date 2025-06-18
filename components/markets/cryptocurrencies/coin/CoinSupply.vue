@@ -1,32 +1,29 @@
 <template>
+    <CoinSupplyProgressBar
+        v-if='coin.maxSupplyChart'
+        :coin='coin'
+    />
+
     <Tabs
-        default-value='account'
+        default-value='doughnut-chart'
         class='self-center w-full'
     >
         <TabsList class='self-center my-10 p-6'>
-            <TabsTrigger value='account' class='m-10'>
+            <TabsTrigger value='doughnut-chart' class='m-10'>
                 Doughnut Chart
             </TabsTrigger>
-            <TabsTrigger value='password' class='m-10'>
+            
+            <TabsTrigger value='stacked-bars' class='m-10'>
                 Stacked Bars
             </TabsTrigger>
         </TabsList>
         
-        <MazAnimatedElement direction='up' :duration='2000'>
-            <p class='text-center uppercase'>Max Supply: {{ coin.maxSupplyChart?.toLocaleString() }}</p>
-        </MazAnimatedElement>
-        
-        <TabsContent value='account' class='min-h-[500px] w-6/12 mx-auto'>
-            <CoinSupplyDoughnutChart
-                :totalSupply='coin.totalSupplyChart'
-                :maxSupply='coin.maxSupplyChart'
-            />
+        <TabsContent value='doughnut-chart' class='min-h-[500px] w-6/12 mx-auto'>
+            <CoinSupplyDoughnutChart :coin="coin" />
         </TabsContent>
-        <TabsContent value='password' class='min-h-[500px] w-11/12 mx-auto'>
-            <CoinSupplyStackedChart
-                :totalSupply='coin.totalSupplyChart'
-                :maxSupply='coin.maxSupplyChart'
-            />
+        
+        <TabsContent value='stacked-bars' class='min-h-[500px] w-11/12 mx-auto'>
+            <CoinSupplyStackedBars :coin="coin" />
         </TabsContent>
     </Tabs>
     
@@ -34,8 +31,9 @@
 </template>
 
 <script setup>
+    import CoinSupplyProgressBar from '~/components/markets/cryptocurrencies/coin/CoinSupplyProgressBar.vue';
     import CoinSupplyDoughnutChart from '~/components/markets/cryptocurrencies/coin/CoinSupplyDoughnutChart.vue';
-    import CoinSupplyStackedChart from '~/components/markets/cryptocurrencies/coin/CoinSupplyStackedChart.vue';
+    import CoinSupplyStackedBars from '~/components/markets/cryptocurrencies/coin/CoinSupplyStackedBars.vue';
     
     const props = defineProps({
         coin: {

@@ -69,6 +69,7 @@ const formatCoin = coin => {
         allTimeHighUSD: formatPriceRounded(coin?.allTimeHighUSD, 0, 2),
         cap: formatNumber(coin?.cap),
         circulatingSupply: formatNumber(coin?.circulatingSupply, false),
+        circulatingSupplyChart: coin?.circulatingSupply,
         links: extractLinks(coin?.links),
         liquidity: formatNumber(coin?.liquidity),
         maxSupply: formatNumber(coin?.maxSupply, false),
