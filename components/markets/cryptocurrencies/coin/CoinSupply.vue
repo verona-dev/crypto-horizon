@@ -1,4 +1,9 @@
 <template>
+    <CoinSupplyProgressBar
+        v-if='coin.maxSupplyChart'
+        :coin='coin'
+    />
+
     <Tabs
         default-value='doughnut-chart'
         class='self-center w-full'
@@ -13,15 +18,6 @@
             </TabsTrigger>
         </TabsList>
         
-        <MazAnimatedElement direction='up' :duration='2000'>
-            <p
-                v-if='coin.maxSupplyChart'
-                class='text-center uppercase'
-            >
-                Max Supply: {{ coin.maxSupplyChart?.toLocaleString() }}
-            </p>
-        </MazAnimatedElement>
-        
         <TabsContent value='doughnut-chart' class='min-h-[500px] w-6/12 mx-auto'>
             <CoinSupplyDoughnutChart :coin="coin" />
         </TabsContent>
@@ -35,6 +31,7 @@
 </template>
 
 <script setup>
+    import CoinSupplyProgressBar from '~/components/markets/cryptocurrencies/coin/CoinSupplyProgressBar.vue';
     import CoinSupplyDoughnutChart from '~/components/markets/cryptocurrencies/coin/CoinSupplyDoughnutChart.vue';
     import CoinSupplyStackedBars from '~/components/markets/cryptocurrencies/coin/CoinSupplyStackedBars.vue';
     
