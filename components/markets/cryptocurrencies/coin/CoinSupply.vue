@@ -8,11 +8,7 @@
                 Doughnut Chart
             </TabsTrigger>
             
-            <TabsTrigger
-                v-if='coin.maxSupplyChart'
-                value='stacked-bars'
-                class='m-10'
-            >
+            <TabsTrigger value='stacked-bars' class='m-10'>
                 Stacked Bars
             </TabsTrigger>
         </TabsList>

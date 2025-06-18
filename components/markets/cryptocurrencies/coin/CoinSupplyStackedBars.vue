@@ -12,28 +12,41 @@
     import { Bar } from 'vue-chartjs';
     
     const props = defineProps({
-        totalSupply: {
-            type: Number,
-            default: 0,
+        coin: {
+            type: Object,
+            default: (() => {}),
             required: true,
-        },
-        maxSupply: {
-            type: Number,
-            default: 0,
-            required: true,
-        },
+        }
     });
     
-    const { totalSupply, maxSupply } = toRefs(props);
-    const remainingSupply = computed(() => maxSupply.value - totalSupply.value);
+    const { coin } = toRefs(props);
+    const remainingSupply = computed(() => coin.value.maxSupplyChart - coin.value.totalSupplyChart);
+    
+    const chartContent = computed(() => {
+        // If coin has max supply
+        if (coin.value.maxSupplyChart) {
+            return {
+                labels: ['Max Supply', 'Total Supply', 'Remaining Supply'],
+                data: [coin.value.maxSupplyChart, coin.value.totalSupplyChart, remainingSupply.value],
+                backgroundColor: ['#00b1f5',  '#fef0ca', '#41B883'],
+            };
+        } else {
+            // If coin does not max supply
+            return {
+                labels: ['Total Supply', 'Circulating Supply'],
+                data: [coin.value.totalSupplyChart, coin.value.circulatingSupplyChart],
+                backgroundColor: ['#fef0ca', '#41B883'],
+            };
+        }
+    });
     
     const chartData = ref({
-        labels: ['Max Supply', 'Total Supply', 'Remaining Supply', ],
+        labels: chartContent.value?.labels,
         datasets: [
             {
                 label: 'Supply',
-                backgroundColor: ['#00b1f5',  '#fef0ca', '#41B883'],
-                data: [maxSupply.value, totalSupply.value, remainingSupply.value],
+                backgroundColor: chartContent.value?.backgroundColor,
+                data: chartContent.value?.data,
             }
         ],
     });
@@ -42,6 +55,7 @@
         barThickness: 70,
         indexAxis: 'y',
         maintainAspectRatio: true,
+        responsive: true,
         plugins: {
             legend: {
                 labels: {
@@ -51,6 +65,5 @@
                 }
             },
         },
-        responsive: true,
     });
 </script>

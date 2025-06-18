@@ -55,7 +55,6 @@
         maintainAspectRatio: true,
         plugins: {
             legend: {
-                display: true,
                 labels: {
                     font: {
                         size: 18
