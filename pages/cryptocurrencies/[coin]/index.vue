@@ -28,6 +28,7 @@
                     :links='coin.links'
                 />
                 
+                <!--  Supply  -->
                 <CoinSupply
                     v-if='coin.maxSupplyChart'
                     :coin='coin'

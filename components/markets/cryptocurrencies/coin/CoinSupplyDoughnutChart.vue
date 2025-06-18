@@ -31,7 +31,7 @@
         labels: ['Total Supply', 'Remaining Supply'],
         datasets: [
             {
-                backgroundColor: ['#E46651', '#41B883'],
+                backgroundColor: ['#fef0ca', '#41B883'],
                 data: [totalSupply.value, remainingSupply.value],
                 cutout: '50%',
             }
@@ -41,5 +41,14 @@
     const chartOptions = ref({
         responsive: true,
         maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        size: 18
+                    }
+                }
+            }
+        },
     });
 </script>

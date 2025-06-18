@@ -32,7 +32,7 @@
         datasets: [
             {
                 label: 'Supply',
-                backgroundColor: ['#4188da',  '#E46651', '#41B883'],
+                backgroundColor: ['#f99052',  '#fef0ca', '#41B883'],
                 data: [maxSupply.value, totalSupply.value, remainingSupply.value],
             }
         ]
@@ -42,5 +42,14 @@
         indexAxis: 'y',
         responsive: true,
         maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        size: 18
+                    },
+                }
+            }
+        }
     });
 </script>
