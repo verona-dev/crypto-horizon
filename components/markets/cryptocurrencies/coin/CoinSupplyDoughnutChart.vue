@@ -34,6 +34,7 @@
                 backgroundColor: ['#fef0ca', '#41B883'],
                 data: [totalSupply.value, remainingSupply.value],
                 cutout: '50%',
+                hoverOffset: 20,
             }
         ],
     });

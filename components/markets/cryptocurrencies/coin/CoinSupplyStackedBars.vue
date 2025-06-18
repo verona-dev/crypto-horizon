@@ -35,12 +35,12 @@
                 backgroundColor: ['#00b1f5',  '#fef0ca', '#41B883'],
                 data: [maxSupply.value, totalSupply.value, remainingSupply.value],
             }
-        ]
+        ],
     });
     
     const chartOptions = ref({
+        barThickness: 70,
         indexAxis: 'y',
-        responsive: true,
         maintainAspectRatio: true,
         plugins: {
             legend: {
@@ -49,7 +49,8 @@
                         size: 18
                     },
                 }
-            }
-        }
+            },
+        },
+        responsive: true,
     });
 </script>
