@@ -29,10 +29,7 @@
                 />
                 
                 <!--  Supply  -->
-                <CoinSupply
-                    v-if='coin.maxSupplyChart'
-                    :coin='coin'
-                />
+                <CoinSupply :coin='coin' />
                 
                 <CardContent>
                     <p>Created {{ coin.age }} days ago</p>

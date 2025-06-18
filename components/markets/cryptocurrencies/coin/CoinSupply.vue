@@ -1,28 +1,39 @@
 <template>
     <Tabs
-        default-value='account'
+        default-value='doughnut-chart'
         class='self-center w-full'
     >
         <TabsList class='self-center my-10 p-6'>
-            <TabsTrigger value='account' class='m-10'>
+            <TabsTrigger value='doughnut-chart' class='m-10'>
                 Doughnut Chart
             </TabsTrigger>
-            <TabsTrigger value='password' class='m-10'>
+            
+            <TabsTrigger
+                v-if='coin.maxSupplyChart'
+                value='stacked-bars'
+                class='m-10'
+            >
                 Stacked Bars
             </TabsTrigger>
         </TabsList>
         
         <MazAnimatedElement direction='up' :duration='2000'>
-            <p class='text-center uppercase'>Max Supply: {{ coin.maxSupplyChart?.toLocaleString() }}</p>
+            <p
+                v-if='coin.maxSupplyChart'
+                class='text-center uppercase'
+            >
+                Max Supply: {{ coin.maxSupplyChart?.toLocaleString() }}
+            </p>
         </MazAnimatedElement>
         
-        <TabsContent value='account' class='min-h-[500px] w-6/12 mx-auto'>
+        <TabsContent value='doughnut-chart' class='min-h-[500px] w-6/12 mx-auto'>
             <CoinSupplyDoughnutChart
                 :totalSupply='coin.totalSupplyChart'
                 :maxSupply='coin.maxSupplyChart'
             />
         </TabsContent>
-        <TabsContent value='password' class='min-h-[500px] w-11/12 mx-auto'>
+        
+        <TabsContent value='stacked-bars' class='min-h-[500px] w-11/12 mx-auto'>
             <CoinSupplyStackedBars
                 :totalSupply='coin.totalSupplyChart'
                 :maxSupply='coin.maxSupplyChart'
