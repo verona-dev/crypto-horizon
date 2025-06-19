@@ -66,13 +66,13 @@
             
             <CardContent>
                 <CardDescription>Total crypto market cap</CardDescription>
-                <p v-if='globalMarket?.total_mcap'>{{ formatNumber(globalMarket?.total_mcap) }}</p>
+                <p v-if='globalMarket?.total_mcap'>{{ formatNumberWithOptions(globalMarket?.total_mcap) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
             <CardContent>
                 <CardDescription>ATH total market cap</CardDescription>
-                <p v-if='globalMarket?.mcap_ath'>{{ formatNumber(globalMarket.mcap_ath) }}</p>
+                <p v-if='globalMarket?.mcap_ath'>{{ formatNumberWithOptions(globalMarket.mcap_ath) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
@@ -101,13 +101,13 @@
             
             <CardContent>
                 <CardDescription>Total trading volume for last 24h</CardDescription>
-                <p v-if='globalMarket?.total_volume'>{{ formatNumber(globalMarket?.total_volume) }}</p>
+                <p v-if='globalMarket?.total_volume'>{{ formatNumberWithOptions(globalMarket?.total_volume) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
             <CardContent>
                 <CardDescription>ATH total trading volume</CardDescription>
-                <p v-if='globalMarket?.volume_ath'>{{ formatNumber(globalMarket?.volume_ath) }}</p>
+                <p v-if='globalMarket?.volume_ath'>{{ formatNumberWithOptions(globalMarket?.volume_ath) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
@@ -134,7 +134,7 @@
                 <Separator />
             </CardHeader>
             
-            <CardContent class='flex align-center'>
+            <CardContent class='flex items-center'>
                 <NuxtIcon
                     name='cryptocurrency-color:btc'
                     size='30'
@@ -151,7 +151,7 @@
                 </div>
             </CardContent>
             
-            <CardContent class='flex align-center'>
+            <CardContent class='flex items-center'>
                 <NuxtIcon
                     name='cryptocurrency-color:eth'
                     size='30'
@@ -184,7 +184,7 @@
     import { storeToRefs } from 'pinia';
     import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
-    import { formatNumber } from '~/utils/formatUtils.js';
+    import { formatNumberWithOptions } from '~/utils/formatUtils.js';
     import { getTrendColor } from '~/utils/styleUtils.js';
     
     const { globalMarket } = storeToRefs(CryptocurrenciesStore);
