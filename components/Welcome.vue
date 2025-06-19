@@ -3,12 +3,12 @@
         <section class='illustrations-container'>
             <NuxtLink to='/cryptocurrencies'>
                 <NuxtImg src='btc-pink.svg' alt='Image' width='1536' />
-                <h2>Markets</h2>
+                <h3>Markets</h3>
             </NuxtLink>
             
             <NuxtLink to='/defi'>
                 <NuxtImg src='btc-tree.svg' alt='Image' width='1536' />
-                <h2>Defi</h2>
+                <h3>Defi</h3>
             </NuxtLink>
         </section>
     </div>
@@ -26,7 +26,7 @@
         flex-direction: column;
         justify-content: center;
         
-        h2 {
+        h3 {
             margin: 20px 0;
             text-transform: uppercase;
         }
@@ -34,7 +34,7 @@
         .illustrations-container {
             display: flex;
             justify-content: space-evenly;
-            width: 1400px;
+            width: 80%;
             
             img {
                 border-radius: 6px;
