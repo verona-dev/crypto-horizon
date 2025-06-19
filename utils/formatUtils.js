@@ -1,17 +1,23 @@
 import { getIcon, getTrendColor } from '~/utils/styleUtils.js';
 
-const formatPriceRounded = (number, min = 0, max = 0) => {
+const formatPrice = (number, min = 2, max = 2) => {
+    if (number == null || isNaN(number)) return '-';
+    
+    const factor = Math.pow(10, max);
+    const truncatedNumber = Math.floor(Number(number) * factor) / factor;
+    
     const options = {
         minimumFractionDigits: min,
         maximumFractionDigits: max,
         style: 'currency',
-        currency: 'USD'
+        currency: 'USD',
     };
     
-    return Number(number).toLocaleString('en-US', options);
+    return truncatedNumber.toLocaleString('en-US', options);
 };
 
-const formatNumber = (number, usePrefix = true, useSuffix = true) => {
+
+const formatNumberWithOptions = (number, usePrefix = true, useSuffix = true) => {
     if (number === null || number === undefined) return '-';
     
     const absNumber = Math.abs(number);
@@ -50,15 +56,15 @@ const formatCoinsTable = coins => {
         changePercent24Hr: parseFloat(coin?.percent_change_24h).toFixed(2),
         icon: getIcon(coin?.symbol),
         id: coin?.id,
-        marketCap: formatNumber(coin?.market_cap_usd),
+        marketCap: formatNumberWithOptions(coin?.market_cap_usd),
         name: coin?.name,
         nameId: coin?.nameid,
-        price: formatPriceRounded(coin?.price_usd, 0, 2),
+        price: formatPrice(coin?.price_usd, 2, 2),
         rank: coin?.rank,
-        c_supply: formatNumber(coin?.csupply),
+        c_supply: formatNumberWithOptions(coin?.csupply, false),
         symbol: coin?.symbol,
         trend: getTrendColor(coin?.percent_change_24h),
-        volume: formatNumber(coin?.volume24),
+        volume: formatNumberWithOptions(coin?.volume24),
     }))
 }
 
@@ -66,19 +72,19 @@ const formatCoinsTable = coins => {
 const formatCoin = coin => {
     return {
         ...coin,
-        allTimeHighUSD: formatPriceRounded(coin?.allTimeHighUSD, 0, 2),
-        cap: formatNumber(coin?.cap),
-        circulatingSupply: formatNumber(coin?.circulatingSupply, false),
+        allTimeHighUSD: formatPrice(coin?.allTimeHighUSD, 0, 2),
+        cap: formatNumberWithOptions(coin?.cap),
+        circulatingSupply: formatNumberWithOptions(coin?.circulatingSupply, false),
         circulatingSupplyChart: coin?.circulatingSupply,
         links: extractLinks(coin?.links),
-        liquidity: formatNumber(coin?.liquidity),
-        maxSupply: formatNumber(coin?.maxSupply, false),
+        liquidity: formatNumberWithOptions(coin?.liquidity),
+        maxSupply: formatNumberWithOptions(coin?.maxSupply, false),
         maxSupplyChart: coin?.maxSupply,
-        rate: formatPriceRounded(coin?.rate, 0, 2),
-        totalSupply: formatNumber(coin?.totalSupply, false),
+        rate: formatPrice(coin?.rate, 2, 4),
+        totalSupply: formatNumberWithOptions(coin?.totalSupply, false),
         totalSupplyChart: coin?.totalSupply,
         trend: getTrendColor(coin?.changePercent24Hr),
-        volume: formatNumber(coin?.volume),
+        volume: formatNumberWithOptions(coin?.volume),
     }
 }
 
@@ -103,8 +109,8 @@ const extractLinks = (externalLinks) => {
 };
 
 export {
-    formatNumber,
-    formatPriceRounded,
+    formatNumberWithOptions,
+    formatPrice,
     formatCoinsTable,
     formatCoin,
 };

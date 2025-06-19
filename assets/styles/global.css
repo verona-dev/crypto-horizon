@@ -22,7 +22,7 @@
     }
     
     section {
-        @apply sm:max-w-7xl my-20 m-auto;
+        @apply md:max-w-7xl my-20 m-auto;
     }
     
     /*

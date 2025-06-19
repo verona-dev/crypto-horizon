@@ -19,12 +19,14 @@
                 <Separator />
             </CardHeader>
             
+            <!--  Assets  -->
             <CardContent>
                 <CardDescription>Total number of coins</CardDescription>
-                <p v-if='globalMarket.coins_count'>{{ globalMarket.coins_count }}</p>
+                <p v-if='marketOverview.coins_count'>{{ marketOverview.coins_count }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
+            <!--  Markets  -->
             <CardHeader>
                 <CardTitle>
                     <MazAnimatedText
@@ -41,11 +43,12 @@
             
             <CardContent>
                 <CardDescription>Total exchange pairs</CardDescription>
-                <p v-if='globalMarket.active_markets'>{{ globalMarket.active_markets }}</p>
+                <p v-if='marketOverview.active_markets'>{{ marketOverview.active_markets }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
         </Card>
         
+        <!--  Market Cap  -->
         <Card class='card'>
             <CardHeader>
                 <CardTitle>
@@ -63,23 +66,24 @@
             
             <CardContent>
                 <CardDescription>Total crypto market cap</CardDescription>
-                <p v-if='globalMarket?.total_mcap'>{{ formatNumber(globalMarket?.total_mcap) }}</p>
+                <p v-if='marketOverview?.total_mcap'>{{ formatNumberWithOptions(marketOverview?.total_mcap) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
             <CardContent>
                 <CardDescription>ATH total market cap</CardDescription>
-                <p v-if='globalMarket?.mcap_ath'>{{ formatNumber(globalMarket.mcap_ath) }}</p>
+                <p v-if='marketOverview?.mcap_ath'>{{ formatNumberWithOptions(marketOverview.mcap_ath) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-                <p v-if='globalMarket?.mcap_change' :class='marketCapStyle'>{{ globalMarket.mcap_change }}&#37;</p>
+                <p v-if='marketOverview?.mcap_change' :class='marketCapStyle'>{{ marketOverview.mcap_change }}&#37;</p>
                 <p v-else>&#8208;</p>
             </CardContent>
         </Card>
         
+        <!--  Volume  -->
         <Card class='card'>
             <CardHeader>
                 <CardTitle>
@@ -97,23 +101,24 @@
             
             <CardContent>
                 <CardDescription>Total trading volume for last 24h</CardDescription>
-                <p v-if='globalMarket?.total_volume'>{{ formatNumber(globalMarket?.total_volume) }}</p>
+                <p v-if='marketOverview?.total_volume'>{{ formatNumberWithOptions(marketOverview?.total_volume) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
             <CardContent>
                 <CardDescription>ATH total trading volume</CardDescription>
-                <p v-if='globalMarket?.volume_ath'>{{ formatNumber(globalMarket?.volume_ath) }}</p>
+                <p v-if='marketOverview?.volume_ath'>{{ formatNumberWithOptions(marketOverview?.volume_ath) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-                <p v-if='globalMarket.volume_change' :class='volumeChangeStyle'>{{ globalMarket.volume_change }}&#37;</p>
+                <p v-if='marketOverview.volume_change' :class='volumeChangeStyle'>{{ marketOverview.volume_change }}&#37;</p>
                 <p v-else>&#8208;</p>
             </CardContent>
         </Card>
         
+        <!--  Dominance  -->
         <Card class='card'>
             <CardHeader>
                 <CardTitle>
@@ -129,28 +134,38 @@
                 <Separator />
             </CardHeader>
             
-            <CardContent>
-                <CardDescription class='flex items-center'>
-                    <NuxtIcon
-                        name='cryptocurrency-color:btc'
-                        size='20'
-                    />
-                    <span class='ml-2'>BTC Dominance Index</span>
-                </CardDescription>
-                <p v-if='globalMarket.btc_d' class='ml-6'>{{ globalMarket.btc_d }}&#37;</p>
-                <p v-else>&#8208;</p>
+            <CardContent class='flex items-center'>
+                <NuxtIcon
+                    name='cryptocurrency-color:btc'
+                    size='30'
+                    class='mr-4'
+                />
+                
+                <div class='flex flex-col'>
+                    <CardDescription class='flex items-center'>
+                        BTC Dominance Index
+                    </CardDescription>
+                    
+                    <p v-if='marketOverview.btc_d'>{{ marketOverview.btc_d }}&#37;</p>
+                    <p v-else>&#8208;</p>
+                </div>
             </CardContent>
             
-            <CardContent>
-                <CardDescription class='flex items-center'>
-                    <NuxtIcon
-                        name='cryptocurrency-color:eth'
-                        size='20'
-                    />
-                    <span class='ml-2'>ETH Dominance Index</span>
-                </CardDescription>
-                <p v-if='globalMarket.eth_d' class='ml-6'>{{ globalMarket.eth_d }}&#37;</p>
-                <p v-else>&#8208;</p>
+            <CardContent class='flex items-center'>
+                <NuxtIcon
+                    name='cryptocurrency-color:eth'
+                    size='30'
+                    class='mr-4'
+                />
+                
+                <div class='flex flex-col'>
+                    <CardDescription class='flex items-center'>
+                        ETH Dominance Index
+                    </CardDescription>
+                    
+                    <p v-if='marketOverview.eth_d'>{{ marketOverview.eth_d }}&#37;</p>
+                    <p v-else>&#8208;</p>
+                </div>
             </CardContent>
         </Card>
     </MazAnimatedElement>
@@ -169,15 +184,16 @@
     import { storeToRefs } from 'pinia';
     import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
-    import { formatNumber } from '~/utils/formatUtils.js';
+    import { formatNumberWithOptions } from '~/utils/formatUtils.js';
     import { getTrendColor } from '~/utils/styleUtils.js';
     
-    const { globalMarket } = storeToRefs(CryptocurrenciesStore);
+    const { marketOverview } = storeToRefs(CryptocurrenciesStore);
     const { fetchCoinLore } = CryptocurrenciesStore;
     onMounted(() => fetchCoinLore('global'));
     
-    const marketCapStyle = computed(() => getTrendColor(globalMarket.value?.mcap_change));
-    const volumeChangeStyle = computed(() => getTrendColor(globalMarket.volume?.volume_change));
+    const marketCapStyle = computed(() => getTrendColor(marketOverview.value?.mcap_change));
+    const volumeChangeStyle = computed(() => getTrendColor(marketOverview.value?.volume_change));
+
 </script>
 
 <style>
