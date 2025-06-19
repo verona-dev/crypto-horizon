@@ -55,7 +55,7 @@ const formatCoinsTable = coins => {
         nameId: coin?.nameid,
         price: formatPriceRounded(coin?.price_usd, 0, 2),
         rank: coin?.rank,
-        c_supply: formatNumber(coin?.csupply),
+        c_supply: formatNumber(coin?.csupply, false),
         symbol: coin?.symbol,
         trend: getTrendColor(coin?.percent_change_24h),
         volume: formatNumber(coin?.volume24),
