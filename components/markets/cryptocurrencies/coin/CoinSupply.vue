@@ -18,7 +18,7 @@
             </TabsTrigger>
         </TabsList>
         
-        <TabsContent value='doughnut-chart' class='min-h-[500px] w-6/12 mx-auto'>
+        <TabsContent value='doughnut-chart' class='min-h-[500px] w-1/2 mx-auto'>
             <CoinSupplyDoughnutChart :coin="coin" />
         </TabsContent>
         
