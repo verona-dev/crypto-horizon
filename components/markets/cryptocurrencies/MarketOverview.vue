@@ -19,12 +19,14 @@
                 <Separator />
             </CardHeader>
             
+            <!--  Assets  -->
             <CardContent>
                 <CardDescription>Total number of coins</CardDescription>
                 <p v-if='globalMarket.coins_count'>{{ globalMarket.coins_count }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
+            <!--  Markets  -->
             <CardHeader>
                 <CardTitle>
                     <MazAnimatedText
@@ -46,6 +48,7 @@
             </CardContent>
         </Card>
         
+        <!--  Market Cap  -->
         <Card class='card'>
             <CardHeader>
                 <CardTitle>
@@ -80,6 +83,7 @@
             </CardContent>
         </Card>
         
+        <!--  Volume  -->
         <Card class='card'>
             <CardHeader>
                 <CardTitle>
@@ -114,6 +118,7 @@
             </CardContent>
         </Card>
         
+        <!--  Dominance  -->
         <Card class='card'>
             <CardHeader>
                 <CardTitle>
@@ -177,7 +182,8 @@
     onMounted(() => fetchCoinLore('global'));
     
     const marketCapStyle = computed(() => getTrendColor(globalMarket.value?.mcap_change));
-    const volumeChangeStyle = computed(() => getTrendColor(globalMarket.volume?.volume_change));
+    const volumeChangeStyle = computed(() => getTrendColor(globalMarket.value?.volume_change));
+
 </script>
 
 <style>
