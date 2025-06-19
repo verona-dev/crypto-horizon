@@ -22,7 +22,7 @@
             <!--  Assets  -->
             <CardContent>
                 <CardDescription>Total number of coins</CardDescription>
-                <p v-if='globalMarket.coins_count'>{{ globalMarket.coins_count }}</p>
+                <p v-if='marketOverview.coins_count'>{{ marketOverview.coins_count }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
@@ -43,7 +43,7 @@
             
             <CardContent>
                 <CardDescription>Total exchange pairs</CardDescription>
-                <p v-if='globalMarket.active_markets'>{{ globalMarket.active_markets }}</p>
+                <p v-if='marketOverview.active_markets'>{{ marketOverview.active_markets }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
         </Card>
@@ -66,19 +66,19 @@
             
             <CardContent>
                 <CardDescription>Total crypto market cap</CardDescription>
-                <p v-if='globalMarket?.total_mcap'>{{ formatNumberWithOptions(globalMarket?.total_mcap) }}</p>
+                <p v-if='marketOverview?.total_mcap'>{{ formatNumberWithOptions(marketOverview?.total_mcap) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
             <CardContent>
                 <CardDescription>ATH total market cap</CardDescription>
-                <p v-if='globalMarket?.mcap_ath'>{{ formatNumberWithOptions(globalMarket.mcap_ath) }}</p>
+                <p v-if='marketOverview?.mcap_ath'>{{ formatNumberWithOptions(marketOverview.mcap_ath) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-                <p v-if='globalMarket?.mcap_change' :class='marketCapStyle'>{{ globalMarket.mcap_change }}&#37;</p>
+                <p v-if='marketOverview?.mcap_change' :class='marketCapStyle'>{{ marketOverview.mcap_change }}&#37;</p>
                 <p v-else>&#8208;</p>
             </CardContent>
         </Card>
@@ -101,19 +101,19 @@
             
             <CardContent>
                 <CardDescription>Total trading volume for last 24h</CardDescription>
-                <p v-if='globalMarket?.total_volume'>{{ formatNumberWithOptions(globalMarket?.total_volume) }}</p>
+                <p v-if='marketOverview?.total_volume'>{{ formatNumberWithOptions(marketOverview?.total_volume) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
             <CardContent>
                 <CardDescription>ATH total trading volume</CardDescription>
-                <p v-if='globalMarket?.volume_ath'>{{ formatNumberWithOptions(globalMarket?.volume_ath) }}</p>
+                <p v-if='marketOverview?.volume_ath'>{{ formatNumberWithOptions(marketOverview?.volume_ath) }}</p>
                 <p v-else>&#8208;</p>
             </CardContent>
             
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-                <p v-if='globalMarket.volume_change' :class='volumeChangeStyle'>{{ globalMarket.volume_change }}&#37;</p>
+                <p v-if='marketOverview.volume_change' :class='volumeChangeStyle'>{{ marketOverview.volume_change }}&#37;</p>
                 <p v-else>&#8208;</p>
             </CardContent>
         </Card>
@@ -146,7 +146,7 @@
                         BTC Dominance Index
                     </CardDescription>
                     
-                    <p v-if='globalMarket.btc_d'>{{ globalMarket.btc_d }}&#37;</p>
+                    <p v-if='marketOverview.btc_d'>{{ marketOverview.btc_d }}&#37;</p>
                     <p v-else>&#8208;</p>
                 </div>
             </CardContent>
@@ -163,7 +163,7 @@
                         ETH Dominance Index
                     </CardDescription>
                     
-                    <p v-if='globalMarket.eth_d'>{{ globalMarket.eth_d }}&#37;</p>
+                    <p v-if='marketOverview.eth_d'>{{ marketOverview.eth_d }}&#37;</p>
                     <p v-else>&#8208;</p>
                 </div>
             </CardContent>
@@ -187,12 +187,12 @@
     import { formatNumberWithOptions } from '~/utils/formatUtils.js';
     import { getTrendColor } from '~/utils/styleUtils.js';
     
-    const { globalMarket } = storeToRefs(CryptocurrenciesStore);
+    const { marketOverview } = storeToRefs(CryptocurrenciesStore);
     const { fetchCoinLore } = CryptocurrenciesStore;
     onMounted(() => fetchCoinLore('global'));
     
-    const marketCapStyle = computed(() => getTrendColor(globalMarket.value?.mcap_change));
-    const volumeChangeStyle = computed(() => getTrendColor(globalMarket.value?.volume_change));
+    const marketCapStyle = computed(() => getTrendColor(marketOverview.value?.mcap_change));
+    const volumeChangeStyle = computed(() => getTrendColor(marketOverview.value?.volume_change));
 
 </script>
 

@@ -10,7 +10,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         coins: [],
         coin: {},
         coinChartData: {},
-        globalMarket: [],
+        marketOverview: [],
         loading: false,
     }),
     
@@ -27,8 +27,8 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 }
                 
                 if(route === 'global') {
-                    this.globalMarket = [];
-                    this.globalMarket = response[0];
+                    this.marketOverview = [];
+                    this.marketOverview = response[0];
                 }
                 
             } catch(error) {
