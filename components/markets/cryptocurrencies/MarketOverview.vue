@@ -134,28 +134,38 @@
                 <Separator />
             </CardHeader>
             
-            <CardContent>
-                <CardDescription class='flex items-center'>
-                    <NuxtIcon
-                        name='cryptocurrency-color:btc'
-                        size='20'
-                    />
-                    <span class='ml-2'>BTC Dominance Index</span>
-                </CardDescription>
-                <p v-if='globalMarket.btc_d' class='ml-6'>{{ globalMarket.btc_d }}&#37;</p>
-                <p v-else>&#8208;</p>
+            <CardContent class='flex align-center'>
+                <NuxtIcon
+                    name='cryptocurrency-color:btc'
+                    size='30'
+                    class='mr-4'
+                />
+                
+                <div class='flex flex-col'>
+                    <CardDescription class='flex items-center'>
+                        BTC Dominance Index
+                    </CardDescription>
+                    
+                    <p v-if='globalMarket.btc_d'>{{ globalMarket.btc_d }}&#37;</p>
+                    <p v-else>&#8208;</p>
+                </div>
             </CardContent>
             
-            <CardContent>
-                <CardDescription class='flex items-center'>
-                    <NuxtIcon
-                        name='cryptocurrency-color:eth'
-                        size='20'
-                    />
-                    <span class='ml-2'>ETH Dominance Index</span>
-                </CardDescription>
-                <p v-if='globalMarket.eth_d' class='ml-6'>{{ globalMarket.eth_d }}&#37;</p>
-                <p v-else>&#8208;</p>
+            <CardContent class='flex align-center'>
+                <NuxtIcon
+                    name='cryptocurrency-color:eth'
+                    size='30'
+                    class='mr-4'
+                />
+                
+                <div class='flex flex-col'>
+                    <CardDescription class='flex items-center'>
+                        ETH Dominance Index
+                    </CardDescription>
+                    
+                    <p v-if='globalMarket.eth_d'>{{ globalMarket.eth_d }}&#37;</p>
+                    <p v-else>&#8208;</p>
+                </div>
             </CardContent>
         </Card>
     </MazAnimatedElement>
