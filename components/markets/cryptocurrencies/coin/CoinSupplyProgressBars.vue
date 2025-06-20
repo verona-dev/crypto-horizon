@@ -72,10 +72,9 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                            <span class='text-sm'>The best approximation of the maximum amount of coins that will exist in the forthcoming
-                               lifespan of the cryptocurrency, minus any coins that have been verifiably burned. This is
-                               also known as the theoretical max number of coins that can be minted, minus any coins
-                               that have been verifiably burned.
+                            <span class='text-sm'>
+                                Total supply = Total coins created - coins that have been burned (if any)
+                                It is comparable to outstanding shares in the stock market.
                             </span>
                             </HoverCardContent>
                         </HoverCard>
