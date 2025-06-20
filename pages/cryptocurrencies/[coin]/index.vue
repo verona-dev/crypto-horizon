@@ -22,6 +22,22 @@
                     :activeSymbol='activeSymbol'
                 />
                 
+                <CardContent>
+                    <p>Created {{ coin.age }} days ago</p>
+                    <p>All-time high {{ coin.allTimeHighUSD }}</p>
+                    <p>Markets {{ coin.markets }}</p>
+                    <p>Pairs {{ coin.pairs }}</p>
+                </CardContent>
+                
+                <CardContent>
+                    <p>Hour change {{ coin.delta?.hour }}</p>
+                    <p>Day change {{ coin.delta?.day }}</p>
+                    <p>Week change {{ coin.delta?.week }}</p>
+                    <p>Month change {{ coin.delta?.month }}</p>
+                </CardContent>
+                
+                <Separator />
+                
                 <!--  Links  -->
                 <CoinLinks
                     v-if='coin.links'
@@ -30,28 +46,6 @@
                 
                 <!--  Supply  -->
                 <CoinSupply :coin='coin' />
-                
-                <CardContent>
-                    <p>Created {{ coin.age }} days ago</p>
-                    <p>Market Cap: {{ coin.cap }}</p>
-                    <p>ATH {{ coin.allTimeHighUSD }}</p>
-                    <p>Circulating Supply: {{ coin.circulatingSupply }} {{ activeSymbol }}</p>
-                    <p>Total Supply: {{ coin.totalSupply }}   {{ activeSymbol }}</p>
-                    <p>Max Supply: {{ coin.maxSupply }}  {{ activeSymbol }}</p>
-                </CardContent>
-                
-                <CardContent>
-                    <p>Volume: {{ coin.volume }}</p>
-                    <p>Hour change {{ coin.delta?.hour }}</p>
-                    <p>Day change {{ coin.delta?.day }}</p>
-                    <p>Week change {{ coin.delta?.week }}</p>
-                    <p>Month change {{ coin.delta?.month }}</p>
-                </CardContent>
-                
-                <CardContent>
-                    <p>Markets {{ coin.markets }}</p>
-                    <p>Pairs {{ coin.pairs }}</p>
-                </CardContent>
             </Card>
         </div>
     </div>
