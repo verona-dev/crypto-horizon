@@ -1,5 +1,5 @@
 <template>
-    <CoinSupplyProgressBar
+    <CoinSupplyProgressBars
         v-if='coin.maxSupplyChart'
         :coin='coin'
     />
@@ -31,10 +31,10 @@
 </template>
 
 <script setup>
-    import CoinSupplyProgressBar from '~/components/markets/cryptocurrencies/coin/CoinSupplyProgressBar.vue';
+    import CoinSupplyProgressBars from '~/components/markets/cryptocurrencies/coin/CoinSupplyProgressBars.vue';
     import CoinSupplyDoughnutChart from '~/components/markets/cryptocurrencies/coin/CoinSupplyDoughnutChart.vue';
     import CoinSupplyStackedBars from '~/components/markets/cryptocurrencies/coin/CoinSupplyStackedBars.vue';
-    
+
     const props = defineProps({
         coin: {
             type: Object,
