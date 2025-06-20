@@ -14,13 +14,29 @@
         <div v-else>
             <Card
                 v-if='coin && coin?.name'
-                class='w-4xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border my-10 py-6 shadow-sm'
+                class='w-7xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border my-10 py-6 shadow-sm'
             >
                 <!--  Header  -->
                 <CoinHeader
                     :coin='coin'
                     :activeSymbol='activeSymbol'
                 />
+                
+                <CardContent>
+                    <p>Created {{ coin.age }} days ago</p>
+                    <p>All-time high {{ coin.allTimeHighUSD }}</p>
+                    <p>Markets {{ coin.markets }}</p>
+                    <p>Pairs {{ coin.pairs }}</p>
+                </CardContent>
+                
+                <CardContent>
+                    <p>Hour change {{ coin.delta?.hour }}</p>
+                    <p>Day change {{ coin.delta?.day }}</p>
+                    <p>Week change {{ coin.delta?.week }}</p>
+                    <p>Month change {{ coin.delta?.month }}</p>
+                </CardContent>
+                
+                <Separator />
                 
                 <!--  Links  -->
                 <CoinLinks
@@ -30,28 +46,6 @@
                 
                 <!--  Supply  -->
                 <CoinSupply :coin='coin' />
-                
-                <CardContent>
-                    <p>Created {{ coin.age }} days ago</p>
-                    <p>Market Cap: {{ coin.cap }}</p>
-                    <p>ATH {{ coin.allTimeHighUSD }}</p>
-                    <p>Circulating Supply: {{ coin.circulatingSupply }} {{ activeSymbol }}</p>
-                    <p>Total Supply: {{ coin.totalSupply }}   {{ activeSymbol }}</p>
-                    <p>Max Supply: {{ coin.maxSupply }}  {{ activeSymbol }}</p>
-                </CardContent>
-                
-                <CardContent>
-                    <p>Volume: {{ coin.volume }}</p>
-                    <p>Hour change {{ coin.delta?.hour }}</p>
-                    <p>Day change {{ coin.delta?.day }}</p>
-                    <p>Week change {{ coin.delta?.week }}</p>
-                    <p>Month change {{ coin.delta?.month }}</p>
-                </CardContent>
-                
-                <CardContent>
-                    <p>Markets {{ coin.markets }}</p>
-                    <p>Pairs {{ coin.pairs }}</p>
-                </CardContent>
             </Card>
         </div>
     </div>

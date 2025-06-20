@@ -1,9 +1,14 @@
 <template>
-    <CoinSupplyProgressBar
+    <CoinSupplyProgressBars
         v-if='coin.maxSupplyChart'
         :coin='coin'
     />
-
+    
+    <p>Circulating Supply: {{ coin.circulatingSupply }} {{ coin.symbol }}</p>
+    <p>Total Supply: {{ coin.totalSupply }}   {{ coin.symbol }}</p>
+    <p>Max Supply: {{ coin.maxSupply }}  {{ coin.symbol }}</p>
+    <p>Volume: {{ coin.volume }}</p>
+    
     <Tabs
         default-value='doughnut-chart'
         class='self-center w-full'
@@ -31,7 +36,7 @@
 </template>
 
 <script setup>
-    import CoinSupplyProgressBar from '~/components/markets/cryptocurrencies/coin/CoinSupplyProgressBar.vue';
+    import CoinSupplyProgressBars from '~/components/markets/cryptocurrencies/coin/CoinSupplyProgressBars.vue';
     import CoinSupplyDoughnutChart from '~/components/markets/cryptocurrencies/coin/CoinSupplyDoughnutChart.vue';
     import CoinSupplyStackedBars from '~/components/markets/cryptocurrencies/coin/CoinSupplyStackedBars.vue';
     
