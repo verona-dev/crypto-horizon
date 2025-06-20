@@ -2,10 +2,10 @@
     <MazAnimatedElement
         direction='up'
         :duration='2000'
-        class='flex flex-col'
+        class='my-6 flex flex-col'
     >
         <!--  Max Supply  -->
-        <div class='my-7 flex items-center justify-center'>
+        <div class='my-6 flex items-center justify-center'>
             <MazCircularProgressBar
                 :percentage='100'
                 :duration='3500'
@@ -17,26 +17,44 @@
                 </template>
             </MazCircularProgressBar>
             
-            <div class='flex flex-col w-[300px]'>
-                <h4 class='ml-6'>Max Supply</h4>
+            <div class='flex flex-col w-[350px]'>
+                <h5 class='ml-6'>Max Supply</h5>
                 <p class='ml-6 mt-2'>{{ coin.maxSupplyChart?.toLocaleString() }} {{ symbol }}</p>
             </div>
         </div>
         
-        <!--  Total Supply  -->
-        <div class='my-7 flex items-center justify-center'>
-            <MazCircularProgressBar
-                :percentage='remainingSupplyPercentage'
-                :duration='2500'
-                suffix='%'
-                auto-color
-            />
+        <div class='my-6 flex flex-col lg:flex-row justify-evenly'>
+            <!--  Total Supply  -->
+            <div class='flex items-center justify-center'>
+                <MazCircularProgressBar
+                    :percentage='totalSupplyPercentage'
+                    :duration='2500'
+                    suffix='%'
+                    auto-color
+                />
+                
+                <div class='flex flex-col w-[350px]'>
+                    <h4 class='ml-6'>Total Supply</h4>
+                    <p class='ml-6 mt-2'>{{ coin.totalSupplyChart?.toLocaleString() }} {{ symbol }}</p>
+                </div>
+            </div>
             
-            <div class='flex flex-col w-[300px]'>
-                <h4 class='ml-6'>Total Supply</h4>
-                <p class='ml-6 mt-2'>{{ coin.totalSupplyChart?.toLocaleString() }} {{ symbol }}</p>
+            <!--  Circulating Supply  -->
+            <div class='my-6 flex items-center justify-center'>
+                <MazCircularProgressBar
+                    :percentage='circulatingSupplyPercentage'
+                    :duration='2500'
+                    suffix='%'
+                    auto-color
+                />
+                
+                <div class='flex flex-col w-[350px]'>
+                    <h5 class='ml-6'>Circulating Supply</h5>
+                    <p class='ml-6 mt-2'>{{ coin.circulatingSupplyChart?.toLocaleString() }} {{ symbol }}</p>
+                </div>
             </div>
         </div>
+
     </MazAnimatedElement>
 </template>
 
@@ -52,7 +70,9 @@
     });
     
     const { coin } = toRefs(props);
+    console.log(coin.value.circulatingSupplyChart);
     
-    const remainingSupplyPercentage = computed(() => (coin.value.totalSupplyChart / coin.value.maxSupplyChart) * 100);
+    const totalSupplyPercentage = computed(() => (coin.value.totalSupplyChart / coin.value.maxSupplyChart) * 100);
+    const circulatingSupplyPercentage = computed(() => (coin.value.circulatingSupplyChart / coin.value.maxSupplyChart) * 100);
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
