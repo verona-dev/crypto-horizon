@@ -17,8 +17,8 @@
                 </template>
             </MazCircularProgressBar>
             
-            <div class='flex flex-col w-[350px]'>
-                <div class='ml-6 flex items-center'>
+            <div class='ml-6 flex flex-col w-[350px]'>
+                <div class='flex items-center'>
                     <h5>Max Supply</h5>
                     
                     <HoverCard
@@ -28,8 +28,8 @@
                         <HoverCardTrigger>
                             <NuxtIcon
                                 name='radix-icons:info-circled'
-                                size='30'
-                                class='flex ml-2'
+                                size='25'
+                                class='flex ml-2 mt-1'
                             />
                         </HoverCardTrigger>
                         <HoverCardContent class='hover-card-content'>
@@ -40,9 +40,9 @@
                             </span>
                         </HoverCardContent>
                     </HoverCard>
-                
                 </div>
-                <p class='ml-6 mt-2'>{{ coin.maxSupplyChart?.toLocaleString() }} {{ symbol }}</p>
+                
+                <p class='mt-2'>{{ coin.maxSupplyChart?.toLocaleString() }} {{ symbol }}</p>
             </div>
         </div>
         
@@ -56,9 +56,32 @@
                     auto-color
                 />
                 
-                <div class='flex flex-col w-[350px]'>
-                    <h4 class='ml-6'>Total Supply</h4>
-                    <p class='ml-6 mt-2'>{{ coin.totalSupplyChart?.toLocaleString() }} {{ symbol }}</p>
+                <div class='ml-6 flex flex-col w-[350px]'>
+                    <div class='flex items-center'>
+                        <h4>Total Supply</h4>
+                        
+                        <HoverCard
+                            openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                            <span class='text-sm'>The best approximation of the maximum amount of coins that will exist in the forthcoming
+                               lifespan of the cryptocurrency, minus any coins that have been verifiably burned. This is
+                               also known as the theoretical max number of coins that can be minted, minus any coins
+                               that have been verifiably burned.
+                            </span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <p class='mt-2'>{{ coin.totalSupplyChart?.toLocaleString() }} {{ symbol }}</p>
                 </div>
             </div>
             
@@ -71,9 +94,9 @@
                     auto-color
                 />
                 
-                <div class='flex flex-col w-[350px]'>
-                    <h5 class='ml-6'>Circulating Supply</h5>
-                    <p class='ml-6 mt-2'>{{ coin.circulatingSupplyChart?.toLocaleString() }} {{ symbol }}</p>
+                <div class='ml-6 flex flex-col w-[350px]'>
+                    <h5>Circulating Supply</h5>
+                    <p class='mt-2'>{{ coin.circulatingSupplyChart?.toLocaleString() }} {{ symbol }}</p>
                 </div>
             </div>
         </div>
@@ -107,5 +130,11 @@
 <style>
     .hover-card-content {
         background: var(--input) !important;
+    }
+</style>
+
+<style scoped>
+    a {
+        color: var(--maz-color-muted);
     }
 </style>
