@@ -18,7 +18,30 @@
             </MazCircularProgressBar>
             
             <div class='flex flex-col w-[350px]'>
-                <h5 class='ml-6'>Max Supply</h5>
+                <div class='ml-6 flex items-center'>
+                    <h5>Max Supply</h5>
+                    
+                    <HoverCard
+                        openDelay='200'
+                        class='flex'
+                    >
+                        <HoverCardTrigger>
+                            <NuxtIcon
+                                name='radix-icons:info-circled'
+                                size='30'
+                                class='flex ml-2'
+                            />
+                        </HoverCardTrigger>
+                        <HoverCardContent class='hover-card-content'>
+                            <span class='text-sm'>The best approximation of the maximum amount of coins that will exist in the forthcoming
+                               lifespan of the cryptocurrency, minus any coins that have been verifiably burned. This is
+                               also known as the theoretical max number of coins that can be minted, minus any coins
+                               that have been verifiably burned.
+                            </span>
+                        </HoverCardContent>
+                    </HoverCard>
+                
+                </div>
                 <p class='ml-6 mt-2'>{{ coin.maxSupplyChart?.toLocaleString() }} {{ symbol }}</p>
             </div>
         </div>
@@ -54,12 +77,17 @@
                 </div>
             </div>
         </div>
-
+    
     </MazAnimatedElement>
 </template>
 
 <script setup>
     import { formatNumberWithOptions } from '~/utils/formatUtils.js';
+    import {
+        HoverCard,
+        HoverCardContent,
+        HoverCardTrigger,
+    } from '@/components/ui/hover-card';
     
     const props = defineProps({
         coin: {
@@ -70,9 +98,14 @@
     });
     
     const { coin } = toRefs(props);
-    console.log(coin.value.circulatingSupplyChart);
     
     const totalSupplyPercentage = computed(() => (coin.value.totalSupplyChart / coin.value.maxSupplyChart) * 100);
     const circulatingSupplyPercentage = computed(() => (coin.value.circulatingSupplyChart / coin.value.maxSupplyChart) * 100);
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
+
+<style>
+    .hover-card-content {
+        background: var(--input) !important;
+    }
+</style>
