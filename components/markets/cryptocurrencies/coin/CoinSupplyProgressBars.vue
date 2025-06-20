@@ -93,8 +93,29 @@
                     auto-color
                 />
                 
-                <div class='ml-6 flex flex-col w-[350px]'>
-                    <h5>Circulating Supply</h5>
+                <div class='ml-6 flex flex-col w-[375px]'>
+                    <div class='flex items-center'>
+                        <h5>Circulating Supply</h5>
+                        
+                        <HoverCard
+                            openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                            <span class='text-sm'>
+                                The amount of coins that are circulating in the market and are in public hands. It is analogous to the flowing shares in the stock market.
+                            </span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
                     <p class='mt-2'>{{ coin.circulatingSupplyChart?.toLocaleString() }} {{ symbol }}</p>
                 </div>
             </div>
