@@ -19,11 +19,11 @@
         </TabsList>
         
         <TabsContent value='doughnut-chart' class='min-h-[500px] w-1/2 mx-auto'>
-            <CoinSupplyDoughnutChart :coin="coin" />
+            <CoinSupplyDoughnutChart :coin='coin' />
         </TabsContent>
         
         <TabsContent value='stacked-bars' class='min-h-[500px] w-11/12 mx-auto'>
-            <CoinSupplyStackedBars :coin="coin" />
+            <CoinSupplyStackedBars :coin='coin' />
         </TabsContent>
     </Tabs>
     
@@ -44,5 +44,4 @@
     });
     
     const { coin } = toRefs(props);
-    console.log(coin.value);
 </script>

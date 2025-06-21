@@ -72,7 +72,8 @@ const formatCoinsTable = coins => {
 const formatCoin = coin => {
     return {
         ...coin,
-        allTimeHighUSD: formatPrice(coin?.allTimeHighUSD, 0, 2),
+        allTimeHighUSD: coin?.allTimeHighUSD,
+        allTimeHighUSDFormatted: formatPrice(coin?.allTimeHighUSD, 2, 2),
         circulatingSupply: coin?.circulatingSupply,
         circulatingSupplyFormatted: formatNumberWithOptions(coin?.circulatingSupply, false),
         exchanges: coin?.exchanges,
