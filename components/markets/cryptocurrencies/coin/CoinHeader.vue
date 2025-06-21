@@ -19,9 +19,9 @@
                     
                     <MazBadge
                         color='info'
-                        size='1rem'
+                        size='1.25rem'
                         rounded-size='md'
-                        class='ml-4'
+                        class='ml-8 mt-2'
                     >
                         #{{ coin.rank }}
                     </MazBadge>
