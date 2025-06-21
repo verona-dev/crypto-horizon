@@ -86,9 +86,7 @@
                     <p class='mt-2'>&#36;{{ coin.volume?.toLocaleString() }}</p>
                 </div>
             </div>
-        </div>
-        
-        <div class='flex flex-col lg:flex-row flex-wrap justify-center'>
+            
             <!--  Total Supply  -->
             <div class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
