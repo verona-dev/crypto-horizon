@@ -6,9 +6,9 @@
         >
             <MazSpinner
                 color='secondary'
-                size='4em'
+                size='3em'
             />
-            <h3 class='ml-4'>Loading...</h3>
+            <h4 class='ml-4'>Loading...</h4>
         </div>
         
         <div v-else>
