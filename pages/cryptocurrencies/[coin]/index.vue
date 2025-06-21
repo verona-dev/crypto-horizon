@@ -24,7 +24,7 @@
                 
                 <CardContent class='my-6 flex justify-evenly'>
                     <!--  Market Cap Progress  -->
-                    <CoinMarketCapProgressBar :marketCap='coin.marketCap'/>
+                    <CoinMarketCap :marketCap='coin.marketCap'/>
                     
                     <!--  Overview Table  -->
                     <CoinOverview :coin='coin' />
@@ -57,7 +57,7 @@
     // CryptocurrenciesStore
     import {storeToRefs} from 'pinia';
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
-    import CoinMarketCapProgressBar from '~/components/markets/cryptocurrencies/coin/CoinMarketCapProgressBar.vue';
+    import CoinMarketCap from '~/components/markets/cryptocurrencies/coin/CoinMarketCap.vue';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State
