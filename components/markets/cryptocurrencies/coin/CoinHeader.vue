@@ -1,7 +1,5 @@
 <template>
     <CardHeader class='my-6 flex items-center justify-evenly w-3/4 mx-auto'>
-        
-        
         <div class='header-content flex items-center'>
             <div class='mr-10'>
                 <!-- Logo  -->
@@ -35,9 +33,6 @@
                 <!--  Coin price  -->
                 <h4 class='text-foreground mt-4'>{{ coin.rate }}</h4>
             </div>
-        
-        
-        
         </div>
         
         <CoinMarketCapProgressBar :marketCap='coin.marketCap'/>
