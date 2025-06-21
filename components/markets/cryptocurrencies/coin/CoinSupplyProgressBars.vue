@@ -9,6 +9,7 @@
             <MazCircularProgressBar
                 :percentage='100'
                 :duration='3500'
+                size='230px'
             >
                 <template #default>
                     <h6>
@@ -42,7 +43,9 @@
                     </HoverCard>
                 </div>
                 
-                <p class='mt-2'>{{ coin.maxSupplyChart?.toLocaleString() }} {{ symbol }}</p>
+                <p class='mt-2'>
+                    <span class='mr-2'>{{ symbol }}</span>{{ coin.maxSupplyChart?.toLocaleString() }}
+                </p>
             </div>
         </div>
         
@@ -80,7 +83,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ coin.totalSupplyChart?.toLocaleString() }} {{ symbol }}</p>
+                    <p class='mt-2'><span class='mr-2'>{{ symbol }}</span>{{ coin.totalSupplyChart?.toLocaleString() }}</p>
                 </div>
             </div>
             
@@ -116,7 +119,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ coin.circulatingSupplyChart?.toLocaleString() }} {{ symbol }}</p>
+                    <p class='mt-2'><span class='mr-2'>{{ symbol }}</span>{{ coin.circulatingSupplyChart?.toLocaleString() }}</p>
                 </div>
             </div>
         </div>
