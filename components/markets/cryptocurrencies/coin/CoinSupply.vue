@@ -1,17 +1,9 @@
 <template>
-    <CoinSupplyProgressBars
-        v-if='coin.maxSupplyChart'
-        :coin='coin'
-    />
-    
-    <p>Circulating Supply: {{ coin.circulatingSupply }} {{ coin.symbol }}</p>
-    <p>Total Supply: {{ coin.totalSupply }}   {{ coin.symbol }}</p>
-    <p>Max Supply: {{ coin.maxSupply }}  {{ coin.symbol }}</p>
-    <p>Volume: {{ coin.volume }}</p>
+    <CoinSupplyProgressBars :coin='coin' />
     
     <Tabs
         default-value='doughnut-chart'
-        class='self-center w-full'
+        class='my-6 self-center w-full'
     >
         <TabsList class='self-center my-10 p-6'>
             <TabsTrigger value='doughnut-chart' class='m-10'>
@@ -24,15 +16,13 @@
         </TabsList>
         
         <TabsContent value='doughnut-chart' class='min-h-[500px] w-1/2 mx-auto'>
-            <CoinSupplyDoughnutChart :coin="coin" />
+            <CoinSupplyDoughnutChart :coin='coin' />
         </TabsContent>
         
         <TabsContent value='stacked-bars' class='min-h-[500px] w-11/12 mx-auto'>
-            <CoinSupplyStackedBars :coin="coin" />
+            <CoinSupplyStackedBars :coin='coin' />
         </TabsContent>
     </Tabs>
-    
-    <Separator class='my-4' />
 </template>
 
 <script setup>

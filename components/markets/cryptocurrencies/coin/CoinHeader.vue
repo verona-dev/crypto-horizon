@@ -1,8 +1,8 @@
 <template>
-    <CardHeader>
-        <div class='flex items-center'>
-            <!-- Logo  -->
-            <div class='logo w-[300px] flex justify-center items-center'>
+    <CardHeader class='my-6 flex justify-center items-center'>
+        <div class='header-content flex items-center'>
+            <div class='mr-10'>
+                <!-- Logo  -->
                 <NuxtImg
                     v-if='coin.webp64'
                     :src='coin.webp64'
@@ -12,16 +12,16 @@
                 />
             </div>
             
-            <div class='header-content flex flex-col flex-1 p-6'>
+            <div>
                 <!--  Name + Rank  -->
                 <div class='flex items-center'>
                     <h2>{{ coin.name }}</h2>
                     
                     <MazBadge
                         color='info'
-                        size='1rem'
+                        size='1.25rem'
                         rounded-size='md'
-                        class='ml-4'
+                        class='ml-8 mt-2'
                     >
                         #{{ coin.rank }}
                     </MazBadge>
@@ -31,7 +31,7 @@
                 <p class='ml-1 mt-2'>{{ activeSymbol }}</p>
                 
                 <!--  Coin price  -->
-                <h4 class='text-foreground mt-8'>{{ coin.rate }}</h4>
+                <h4 class='text-foreground mt-4'>{{ coin.rate }}</h4>
             </div>
         </div>
     </CardHeader>
@@ -57,9 +57,7 @@
 </script>
 
 <style scoped>
-    .header-content {
-        p {
-            color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
-        }
+    p {
+        color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
     }
 </style>

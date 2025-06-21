@@ -12,7 +12,7 @@
     }
     
     body {
-        @apply bg-background text-foreground;
+        @apply bg-background text-foreground overflow-x-hidden;
         font-family: 'IBM Plex Mono', monospace;
     }
     
@@ -85,5 +85,13 @@
         justify-content: center;
         align-items: center;
         margin-bottom: 100px;
+    }
+    
+    .hover-card-content {
+        background: var(--input) !important;
+    }
+    
+    .info-icon {
+        color: var(--maz-color-muted);
     }
 }

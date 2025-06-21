@@ -20,20 +20,20 @@
     });
     
     const { coin } = toRefs(props);
-    const remainingSupply = computed(() => coin.value.maxSupplyChart - coin.value.totalSupplyChart);
+    const remainingSupply = computed(() => coin.value.maxSupply - coin.value.totalSupply);
     
     const chartContent = computed(() => {
         // If coin has max supply
-        if (coin.value.maxSupplyChart) {
+        if (coin.value.maxSupply) {
             return {
                 labels: ['Total Supply', 'Remaining Supply'],
-                data: [coin.value.totalSupplyChart, remainingSupply.value]
+                data: [coin.value.totalSupply, remainingSupply.value]
             };
         } else {
-            // If coin does not max supply
+            // If coin does not have max supply
             return {
                 labels: ['Total Supply', 'Circulating Supply'],
-                data: [coin.value.totalSupplyChart, coin.value.circulatingSupplyChart]
+                data: [coin.value.totalSupply, coin.value.circulatingSupply]
             };
         }
     });

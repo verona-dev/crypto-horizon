@@ -6,15 +6,15 @@
         >
             <MazSpinner
                 color='secondary'
-                size='4em'
+                size='3em'
             />
-            <h3 class='ml-4'>Loading...</h3>
+            <h4 class='ml-4'>Loading...</h4>
         </div>
         
         <div v-else>
             <Card
                 v-if='coin && coin?.name'
-                class='w-7xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border my-10 py-6 shadow-sm'
+                class='lg:w-7xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border my-10 py-6 shadow-sm'
             >
                 <!--  Header  -->
                 <CoinHeader
@@ -22,21 +22,15 @@
                     :activeSymbol='activeSymbol'
                 />
                 
-                <CardContent>
-                    <p>Created {{ coin.age }} days ago</p>
-                    <p>All-time high {{ coin.allTimeHighUSD }}</p>
-                    <p>Markets {{ coin.markets }}</p>
-                    <p>Pairs {{ coin.pairs }}</p>
+                <CardContent class='my-6 flex justify-evenly'>
+                    <!--  Market Cap Progress  -->
+                    <CoinMarketCap :marketCap='coin.marketCap'/>
+                    
+                    <!--  Overview Table  -->
+                    <CoinOverview :coin='coin' />
                 </CardContent>
                 
-                <CardContent>
-                    <p>Hour change {{ coin.delta?.hour }}</p>
-                    <p>Day change {{ coin.delta?.day }}</p>
-                    <p>Week change {{ coin.delta?.week }}</p>
-                    <p>Month change {{ coin.delta?.month }}</p>
-                </CardContent>
-                
-                <Separator />
+                <Separator class='my-4' />
                 
                 <!--  Links  -->
                 <CoinLinks
@@ -52,8 +46,9 @@
 </template>
 
 <script setup>
-    import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
+    import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
+    import CoinOverview from '@/components/markets/cryptocurrencies/coin/CoinOverview.vue';
     import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
     
     // Router
@@ -62,6 +57,7 @@
     // CryptocurrenciesStore
     import {storeToRefs} from 'pinia';
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
+    import CoinMarketCap from '~/components/markets/cryptocurrencies/coin/CoinMarketCap.vue';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State

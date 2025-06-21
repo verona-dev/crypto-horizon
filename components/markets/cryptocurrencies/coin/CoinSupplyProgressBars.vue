@@ -2,63 +2,64 @@
     <MazAnimatedElement
         direction='up'
         :duration='2000'
-        class='my-6 flex flex-col'
+        class='my-12 flex flex-col'
     >
-        <!--  Max Supply  -->
-        <div class='my-6 flex items-center justify-center'>
-            <MazCircularProgressBar
-                :percentage='100'
-                :duration='3500'
+        <div class='flex flex-col lg:flex-row flex-wrap justify-center'>
+            <!--  Max Supply  -->
+            <div
+                v-if='coin.maxSupply'
+                class='my-10 flex items-center justify-center w-full'
             >
-                <template #default>
-                    <h6>
-                        {{ formatNumberWithOptions(coin.maxSupplyChart, false) }}
-                    </h6>
-                </template>
-            </MazCircularProgressBar>
-            
-            <div class='ml-6 flex flex-col w-[350px]'>
-                <div class='flex items-center'>
-                    <h5>Max Supply</h5>
-                    
-                    <HoverCard
-                        openDelay='200'
-                        class='flex'
-                    >
-                        <HoverCardTrigger>
-                            <NuxtIcon
-                                name='radix-icons:info-circled'
-                                size='25'
-                                class='flex ml-2 mt-1'
-                            />
-                        </HoverCardTrigger>
-                        <HoverCardContent class='hover-card-content'>
-                            <span class='text-sm'>The best approximation of the maximum amount of coins that will exist in the forthcoming
-                               lifespan of the cryptocurrency, minus any coins that have been verifiably burned. This is
-                               also known as the theoretical max number of coins that can be minted, minus any coins
-                               that have been verifiably burned.
-                            </span>
-                        </HoverCardContent>
-                    </HoverCard>
-                </div>
-                
-                <p class='mt-2'>{{ coin.maxSupplyChart?.toLocaleString() }} {{ symbol }}</p>
-            </div>
-        </div>
-        
-        <div class='my-6 flex flex-col lg:flex-row justify-evenly'>
-            <!--  Total Supply  -->
-            <div class='flex items-center justify-center'>
                 <MazCircularProgressBar
+                    :percentage='100'
+                    :duration='2000'
+                >
+                    <template #default>
+                        <h6>{{ formatNumberWithOptions(coin.maxSupply, false) }}</h6>
+                    </template>
+                </MazCircularProgressBar>
+                
+                <div class='ml-6 flex flex-col w-[375px]'>
+                    <div class='flex items-center'>
+                        <h5>Max Supply</h5>
+                        
+                        <HoverCard
+                            openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>The best approximation of the maximum amount of coins that will exist in the forthcoming
+                                   lifespan of the cryptocurrency, minus any coins that have been verifiably burned. This is
+                                   also known as the theoretical max number of coins that can be minted, minus any coins
+                                   that have been verifiably burned.
+                                </span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <p class='mt-2'>{{ coin.maxSupply?.toLocaleString() }} {{ symbol }}</p>
+                </div>
+            </div>
+            
+            <!--  Total Supply  -->
+            <div class='my-10 flex items-center justify-center'>
+                <MazCircularProgressBar
+                    v-if='coin.maxSupply'
                     :percentage='totalSupplyPercentage'
-                    :duration='2500'
+                    :duration='3000'
                     suffix='%'
-                    auto-color
                 />
                 
-                <div class='ml-6 flex flex-col w-[350px]'>
+                <div class='ml-6 flex flex-col w-[375px]'>
                     <div class='flex items-center'>
-                        <h4>Total Supply</h4>
+                        <h5>Total Supply</h5>
                         
                         <HoverCard
                             openDelay='200'
@@ -80,17 +81,20 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ coin.totalSupplyChart?.toLocaleString() }} {{ symbol }}</p>
+                    <p class='mt-2'>{{ coin.totalSupplyFormatted }} {{ symbol }}</p>
                 </div>
             </div>
             
             <!--  Circulating Supply  -->
-            <div class='my-6 flex items-center justify-center'>
+            <div
+                v-if='coin.circulatingSupply'
+                class='my-10 flex items-center justify-center'
+            >
                 <MazCircularProgressBar
+                    v-if='coin.maxSupply'
                     :percentage='circulatingSupplyPercentage'
-                    :duration='2500'
+                    :duration='3500'
                     suffix='%'
-                    auto-color
                 />
                 
                 <div class='ml-6 flex flex-col w-[375px]'>
@@ -116,11 +120,91 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ coin.circulatingSupplyChart?.toLocaleString() }} {{ symbol }}</p>
+                    <p class='mt-2'>{{ coin.circulatingSupplyFormatted }} {{ symbol }}</p>
+                </div>
+            </div>
+            
+            <!--  Volume 24h  -->
+            <div
+                v-if='coin.volume'
+                class='my-10 flex items-center justify-center'
+            >
+                <MazCircularProgressBar
+                    :percentage='100'
+                    :duration='2500'
+                >
+                    <template #default>
+                        <h6>{{ formatNumberWithOptions(coin.volume, true) }}</h6>
+                    </template>
+                </MazCircularProgressBar>
+                
+                <div class='ml-6 flex flex-col w-[375px]'>
+                    <div class='flex items-center'>
+                        <h5>Volume 24h</h5>
+                        
+                        <HoverCard
+                            openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>A measure of how much of a cryptocurrency was traded in the last 24 hours.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <p class='mt-2'>&#36;{{ coin.volume?.toLocaleString() }}</p>
+                </div>
+            </div>
+            
+            <!--  Liquidity 24h  -->
+            <div
+                v-if='coin.liquidity'
+                class='my-10 flex items-center justify-center'
+            >
+                <MazCircularProgressBar
+                    :percentage='100'
+                    :duration='3500'
+                >
+                    <template #default>
+                        <h6>{{ formatNumberWithOptions(coin.liquidity, true) }}</h6>
+                    </template>
+                </MazCircularProgressBar>
+                
+                <div class='ml-6 flex flex-col w-[375px]'>
+                    <div class='flex items-center'>
+                        <h5>Liquidity 24h</h5>
+                        
+                        <HoverCard
+                            openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>
+                                    How easily you can buy or sell a cryptocurrency without significantly affecting its price.
+                                    A ±2% orderbook depth.
+                                </span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <p class='mt-2'>&#36;{{ coin.liquidity?.toLocaleString() }}</p>
                 </div>
             </div>
         </div>
-    
     </MazAnimatedElement>
 </template>
 
@@ -142,16 +226,10 @@
     
     const { coin } = toRefs(props);
     
-    const totalSupplyPercentage = computed(() => (coin.value.totalSupplyChart / coin.value.maxSupplyChart) * 100);
-    const circulatingSupplyPercentage = computed(() => (coin.value.circulatingSupplyChart / coin.value.maxSupplyChart) * 100);
+    const totalSupplyPercentage = computed(() => (coin.value?.totalSupply / coin.value?.maxSupply) * 100);
+    const circulatingSupplyPercentage = computed(() => (coin.value?.circulatingSupply / coin.value?.maxSupply) * 100);
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
-
-<style>
-    .hover-card-content {
-        background: var(--input) !important;
-    }
-</style>
 
 <style scoped>
     a {
