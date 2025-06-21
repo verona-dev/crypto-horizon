@@ -56,9 +56,7 @@
                     :duration='2500'
                 >
                     <template #default>
-                        <h6>
-                            {{ formatNumberWithOptions(coin.volume, true) }}
-                        </h6>
+                        <h6>{{ formatNumberWithOptions(coin.volume, true) }}</h6>
                     </template>
                 </MazCircularProgressBar>
                 

@@ -4,11 +4,6 @@
         :coin='coin'
     />
     
-    <p>Circulating Supply: {{ coin.circulatingSupplyFormatted }} {{ coin.symbol }}</p>
-    <p>Total Supply: {{ coin.totalSupplyFormatted }}   {{ coin.symbol }}</p>
-    <p>Max Supply: {{ coin.maxSupplyFormatted }}  {{ coin.symbol }}</p>
-    <p>Volume: {{ coin.volumeFormatted }}</p>
-    
     <Tabs
         default-value='doughnut-chart'
         class='self-center w-full'
@@ -33,6 +28,14 @@
     </Tabs>
     
     <Separator class='my-4' />
+    
+    <!--
+        <p>Circulating Supply: {{ coin.circulatingSupplyFormatted }} {{ coin.symbol }}</p>
+        <p>Total Supply: {{ coin.totalSupplyFormatted }}   {{ coin.symbol }}</p>
+        <p>Max Supply: {{ coin.maxSupplyFormatted }}  {{ coin.symbol }}</p>
+        <p>Volume: {{ coin.volumeFormatted }}</p>
+    -->
+
 </template>
 
 <script setup>
