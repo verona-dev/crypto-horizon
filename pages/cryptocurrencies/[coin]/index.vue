@@ -28,7 +28,6 @@
                     <p>Markets {{ coin.markets }}</p>
                     <p>Pairs {{ coin.pairs }}</p>
                     <p>Exchanges {{ coin.exchanges }}</p>
-                    <p>Market Cap {{ coin.marketCapFormatted }}</p>
                 </CardContent>
                 
                 <Separator />

@@ -2,18 +2,18 @@
     <!--  Market Cap  -->
     <div
         v-if='marketCap'
-        class='my-10 flex items-center justify-center'
+        class='flex flex-col items-center'
     >
         <MazCircularProgressBar
             :percentage='100'
-            :duration='2000'
+            :duration='1500'
         >
             <template #default>
                 <h6>{{ formatNumberWithOptions(marketCap, true) }}</h6>
             </template>
         </MazCircularProgressBar>
         
-        <div class='ml-6 flex flex-col w-[375px]'>
+        <div class='mt-6 flex flex-col'>
             <div class='flex items-center'>
                 <h5>Market Cap</h5>
                 
