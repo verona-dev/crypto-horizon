@@ -29,7 +29,6 @@
                     <p>Pairs {{ coin.pairs }}</p>
                     <p>Exchanges {{ coin.exchanges }}</p>
                     <p>Market Cap {{ coin.marketCapFormatted }}</p>
-                    <p>Liquidity {{ coin.liquidityFormatted }}</p>
                 </CardContent>
                 
                 <Separator />
@@ -48,8 +47,8 @@
 </template>
 
 <script setup>
-    import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
+    import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
     
     // Router

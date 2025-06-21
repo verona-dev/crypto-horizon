@@ -33,6 +33,8 @@
                 <!--  Coin price  -->
                 <h4 class='text-foreground mt-8'>{{ coin.rate }}</h4>
             </div>
+            
+            <CoinMarketCapProgressBar :marketCap='coin.marketCap'/>
         </div>
     </CardHeader>
     
@@ -41,6 +43,7 @@
 
 <script setup>
     import { defineProps, toRefs } from 'vue';
+    import CoinMarketCapProgressBar from '~/components/markets/cryptocurrencies/coin/CoinMarketCapProgressBar.vue';
     
     const props = defineProps({
         coin: {
