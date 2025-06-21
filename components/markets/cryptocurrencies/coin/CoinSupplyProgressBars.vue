@@ -8,7 +8,7 @@
             <!--  Max Supply  -->
             <div
                 v-if='coin.maxSupply'
-                class='my-10 flex items-center justify-center'
+                class='my-10 flex items-center justify-center w-full'
             >
                 <MazCircularProgressBar
                     :percentage='100'
@@ -45,45 +45,6 @@
                     </div>
                     
                     <p class='mt-2'>{{ coin.maxSupply?.toLocaleString() }} {{ symbol }}</p>
-                </div>
-            </div>
-            
-            <!--  Volume 24h  -->
-            <div
-                v-if='coin.volume'
-                class='my-10 flex items-center justify-center'
-            >
-                <MazCircularProgressBar
-                    :percentage='100'
-                    :duration='2500'
-                >
-                    <template #default>
-                        <h6>{{ formatNumberWithOptions(coin.volume, true) }}</h6>
-                    </template>
-                </MazCircularProgressBar>
-                
-                <div class='ml-6 flex flex-col w-[375px]'>
-                    <div class='flex items-center'>
-                        <h5>Volume 24h</h5>
-                        
-                        <HoverCard
-                            openDelay='200'
-                            class='flex'
-                        >
-                            <HoverCardTrigger>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2 mt-1'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>A measure of how much of a cryptocurrency was traded in the last 24 hours.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </div>
-                    
-                    <p class='mt-2'>&#36;{{ coin.volume?.toLocaleString() }}</p>
                 </div>
             </div>
             
@@ -160,6 +121,45 @@
                     </div>
                     
                     <p class='mt-2'>{{ coin.circulatingSupplyFormatted }} {{ symbol }}</p>
+                </div>
+            </div>
+            
+            <!--  Volume 24h  -->
+            <div
+                v-if='coin.volume'
+                class='my-10 flex items-center justify-center'
+            >
+                <MazCircularProgressBar
+                    :percentage='100'
+                    :duration='2500'
+                >
+                    <template #default>
+                        <h6>{{ formatNumberWithOptions(coin.volume, true) }}</h6>
+                    </template>
+                </MazCircularProgressBar>
+                
+                <div class='ml-6 flex flex-col w-[375px]'>
+                    <div class='flex items-center'>
+                        <h5>Volume 24h</h5>
+                        
+                        <HoverCard
+                            openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>A measure of how much of a cryptocurrency was traded in the last 24 hours.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <p class='mt-2'>&#36;{{ coin.volume?.toLocaleString() }}</p>
                 </div>
             </div>
             

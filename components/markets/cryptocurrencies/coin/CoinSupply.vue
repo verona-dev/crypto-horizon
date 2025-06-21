@@ -3,7 +3,7 @@
     
     <Tabs
         default-value='doughnut-chart'
-        class='self-center w-full'
+        class='my-6 self-center w-full'
     >
         <TabsList class='self-center my-10 p-6'>
             <TabsTrigger value='doughnut-chart' class='m-10'>
