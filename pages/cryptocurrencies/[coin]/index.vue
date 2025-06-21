@@ -27,6 +27,9 @@
                     <p>All-time high {{ coin.allTimeHighUSD }}</p>
                     <p>Markets {{ coin.markets }}</p>
                     <p>Pairs {{ coin.pairs }}</p>
+                    <p>Exchanges {{ coin.exchanges }}</p>
+                    <p>Market Cap {{ coin.marketCapFormatted }}</p>
+                    <p>Liquidity {{ coin.liquidityFormatted }}</p>
                 </CardContent>
                 
                 <CardContent>
