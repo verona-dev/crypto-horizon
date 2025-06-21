@@ -1,5 +1,5 @@
 <template>
-    <CardHeader class='my-6 flex items-center justify-evenly w-3/4 mx-auto'>
+    <CardHeader class='my-6 flex items-center justify-evenly w-full mx-auto'>
         <div class='header-content flex items-center'>
             <div class='mr-10'>
                 <!-- Logo  -->
