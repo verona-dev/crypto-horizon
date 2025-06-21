@@ -118,7 +118,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'><span class='mr-2'>{{ symbol }}</span>{{ coin.circulatingSupplyChart?.toLocaleString() }}</p>
+                    <p class='mt-2'><span class='mr-2'>{{ symbol }}</span>{{ coin.circulatingSupply?.toLocaleString() }}</p>
                 </div>
             </div>
         </div>
@@ -145,7 +145,7 @@
     const { coin } = toRefs(props);
     
     const totalSupplyPercentage = computed(() => (coin.value.totalSupply / coin.value.maxSupply) * 100);
-    const circulatingSupplyPercentage = computed(() => (coin.value.circulatingSupplyChart / coin.value.maxSupply) * 100);
+    const circulatingSupplyPercentage = computed(() => (coin.value.circulatingSupply / coin.value.maxSupply) * 100);
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
 

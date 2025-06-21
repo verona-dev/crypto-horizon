@@ -33,7 +33,7 @@
             // If coin does not max supply
             return {
                 labels: ['Total Supply', 'Circulating Supply'],
-                data: [coin.value.totalSupply, coin.value.circulatingSupplyChart]
+                data: [coin.value.totalSupply, coin.value.circulatingSupply]
             };
         }
     });

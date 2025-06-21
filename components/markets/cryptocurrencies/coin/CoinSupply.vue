@@ -4,7 +4,7 @@
         :coin='coin'
     />
     
-    <p>Circulating Supply: {{ coin.circulatingSupply }} {{ coin.symbol }}</p>
+    <p>Circulating Supply: {{ coin.circulatingSupplyFormatted }} {{ coin.symbol }}</p>
     <p>Total Supply: {{ coin.totalSupplyFormatted }}   {{ coin.symbol }}</p>
     <p>Max Supply: {{ coin.maxSupplyFormatted }}  {{ coin.symbol }}</p>
     <p>Volume: {{ coin.volumeFormatted }}</p>

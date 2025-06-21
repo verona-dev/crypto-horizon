@@ -27,14 +27,14 @@
         if (coin.value.maxSupply) {
             return {
                 labels: ['Max Supply', 'Total Supply', 'Circulating Supply', 'Remaining Supply'],
-                data: [coin.value.maxSupply, coin.value.totalSupply, coin.value.circulatingSupplyChart, remainingSupply.value],
+                data: [coin.value.maxSupply, coin.value.totalSupply, coin.value.circulatingSupply, remainingSupply.value],
                 backgroundColor: ['#00b1f5',  '#fef0ca', '#e787c0', '#41B883'],
             };
         } else {
             // If coin does not have max supply
             return {
                 labels: ['Total Supply', 'Circulating Supply'],
-                data: [coin.value.totalSupply, coin.value.circulatingSupplyChart],
+                data: [coin.value.totalSupply, coin.value.circulatingSupply],
                 backgroundColor: ['#fef0ca', '#e787c0'],
             };
         }
