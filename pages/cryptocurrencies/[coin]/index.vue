@@ -22,15 +22,15 @@
                     :activeSymbol='activeSymbol'
                 />
                 
-                <CardContent>
-                    <p>Created {{ coin.age }} days ago</p>
-                    <p>All-time high {{ coin.allTimeHighUSD }}</p>
-                    <p>Markets {{ coin.markets }}</p>
-                    <p>Pairs {{ coin.pairs }}</p>
-                    <p>Exchanges {{ coin.exchanges }}</p>
+                <CardContent class='flex justify-evenly py-6 px-12'>
+                    <!--  Overview Table  -->
+                    <CoinOverview :coin='coin' />
+                    
+                    <!--  Market Cap Progress  -->
+                    <CoinMarketCapProgressBar :marketCap='coin.marketCap'/>
                 </CardContent>
                 
-                <Separator />
+                <Separator class='my-4' />
                 
                 <!--  Links  -->
                 <CoinLinks
@@ -48,6 +48,7 @@
 <script setup>
     import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
     import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
+    import CoinOverview from '@/components/markets/cryptocurrencies/coin/CoinOverview.vue';
     import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
     
     // Router
@@ -56,6 +57,7 @@
     // CryptocurrenciesStore
     import {storeToRefs} from 'pinia';
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
+    import CoinMarketCapProgressBar from '~/components/markets/cryptocurrencies/coin/CoinMarketCapProgressBar.vue';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State
