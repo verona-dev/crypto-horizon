@@ -1,5 +1,5 @@
 <template>
-    <CardHeader class='my-6 flex items-center justify-evenly w-full mx-auto'>
+    <CardHeader class='my-6 flex justify-center items-center'>
         <div class='header-content flex items-center'>
             <div class='mr-10'>
                 <!-- Logo  -->
@@ -34,8 +34,6 @@
                 <h4 class='text-foreground mt-4'>{{ coin.rate }}</h4>
             </div>
         </div>
-        
-        <CoinMarketCapProgressBar :marketCap='coin.marketCap'/>
     </CardHeader>
     
     <Separator class='my-4' />
@@ -43,7 +41,6 @@
 
 <script setup>
     import { defineProps, toRefs } from 'vue';
-    import CoinMarketCapProgressBar from '~/components/markets/cryptocurrencies/coin/CoinMarketCapProgressBar.vue';
     
     const props = defineProps({
         coin: {

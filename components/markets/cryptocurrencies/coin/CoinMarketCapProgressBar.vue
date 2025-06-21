@@ -2,7 +2,7 @@
     <!--  Market Cap  -->
     <div
         v-if='marketCap'
-        class='flex items-center justify-center'
+        class='coin-market-cap-progress-bar flex items-center'
     >
         <MazCircularProgressBar
             :percentage='100'
