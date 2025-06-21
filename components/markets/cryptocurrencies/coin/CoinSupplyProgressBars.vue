@@ -4,17 +4,15 @@
         :duration='2000'
         class='my-6 flex flex-col'
     >
-        <div class='my-6 flex flex-col lg:flex-row justify-evenly'>
+        <div class='flex flex-col lg:flex-row justify-evenly'>
             <!--  Max Supply  -->
-            <div class='flex items-center justify-center'>
+            <div class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2000'
                 >
                     <template #default>
-                        <h6>
-                            {{ formatNumberWithOptions(coin.maxSupply, false) }}
-                        </h6>
+                        <h6>{{ formatNumberWithOptions(coin.maxSupply, false) }}</h6>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -34,11 +32,11 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                            <span class='text-sm'>The best approximation of the maximum amount of coins that will exist in the forthcoming
-                               lifespan of the cryptocurrency, minus any coins that have been verifiably burned. This is
-                               also known as the theoretical max number of coins that can be minted, minus any coins
-                               that have been verifiably burned.
-                            </span>
+                                <span class='text-sm'>The best approximation of the maximum amount of coins that will exist in the forthcoming
+                                   lifespan of the cryptocurrency, minus any coins that have been verifiably burned. This is
+                                   also known as the theoretical max number of coins that can be minted, minus any coins
+                                   that have been verifiably burned.
+                                </span>
                             </HoverCardContent>
                         </HoverCard>
                     </div>
@@ -48,7 +46,7 @@
             </div>
             
             <!--  Volume  -->
-            <div class='flex items-center justify-center'>
+            <div class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2500'
@@ -84,9 +82,9 @@
             </div>
         </div>
         
-        <div class='my-6 flex flex-col lg:flex-row justify-evenly'>
+        <div class='flex flex-col lg:flex-row justify-evenly'>
             <!--  Total Supply  -->
-            <div class='flex items-center justify-center'>
+            <div class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
                     :percentage='totalSupplyPercentage'
                     :duration='3000'
@@ -96,7 +94,7 @@
                 
                 <div class='ml-6 flex flex-col w-[375px]'>
                     <div class='flex items-center'>
-                        <h4>Total Supply</h4>
+                        <h5>Total Supply</h5>
                         
                         <HoverCard
                             openDelay='200'
@@ -123,7 +121,7 @@
             </div>
             
             <!--  Circulating Supply  -->
-            <div class='my-6 flex items-center justify-center'>
+            <div class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
                     :percentage='circulatingSupplyPercentage'
                     :duration='3500'
@@ -158,7 +156,6 @@
                 </div>
             </div>
         </div>
-    
     </MazAnimatedElement>
 </template>
 
