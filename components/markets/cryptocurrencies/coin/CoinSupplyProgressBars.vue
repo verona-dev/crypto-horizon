@@ -4,9 +4,12 @@
         :duration='2000'
         class='my-6 flex flex-col'
     >
-        <div class='flex flex-col lg:flex-row flex-wrap justify-evenly'>
+        <div class='flex flex-col lg:flex-row flex-wrap justify-center'>
             <!--  Max Supply  -->
-            <div class='my-10 flex items-center justify-center'>
+            <div
+                v-if='coin.maxSupply'
+                class='my-10 flex items-center justify-center'
+            >
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2000'
@@ -41,12 +44,15 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ coin.maxSupply.toLocaleString() }} {{ symbol }}</p>
+                    <p class='mt-2'>{{ coin.maxSupply?.toLocaleString() }} {{ symbol }}</p>
                 </div>
             </div>
             
             <!--  Volume  -->
-            <div class='my-10 flex items-center justify-center'>
+            <div
+                v-if='coin.volume'
+                class='my-10 flex items-center justify-center'
+            >
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2500'
@@ -82,10 +88,11 @@
             </div>
         </div>
         
-        <div class='flex flex-col lg:flex-row flex-wrap justify-evenly'>
+        <div class='flex flex-col lg:flex-row flex-wrap justify-center'>
             <!--  Total Supply  -->
             <div class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
+                    v-if='coin.maxSupply'
                     :percentage='totalSupplyPercentage'
                     :duration='3000'
                     suffix='%'
@@ -121,8 +128,12 @@
             </div>
             
             <!--  Circulating Supply  -->
-            <div class='my-10 flex items-center justify-center'>
+            <div
+                v-if='coin.circulatingSupply'
+                class='my-10 flex items-center justify-center'
+            >
                 <MazCircularProgressBar
+                    v-if='coin.maxSupply'
                     :percentage='circulatingSupplyPercentage'
                     :duration='3500'
                     suffix='%'
@@ -176,9 +187,10 @@
     });
     
     const { coin } = toRefs(props);
+    console.log(coin.value);
     
-    const totalSupplyPercentage = computed(() => (coin.value.totalSupply / coin.value.maxSupply) * 100);
-    const circulatingSupplyPercentage = computed(() => (coin.value.circulatingSupply / coin.value.maxSupply) * 100);
+    const totalSupplyPercentage = computed(() => (coin.value?.totalSupply / coin.value?.maxSupply) * 100);
+    const circulatingSupplyPercentage = computed(() => (coin.value?.circulatingSupply / coin.value?.maxSupply) * 100);
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
 

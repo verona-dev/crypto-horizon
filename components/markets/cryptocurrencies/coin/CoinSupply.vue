@@ -1,8 +1,5 @@
 <template>
-    <CoinSupplyProgressBars
-        v-if='coin.maxSupply'
-        :coin='coin'
-    />
+    <CoinSupplyProgressBars :coin='coin' />
     
     <Tabs
         default-value='doughnut-chart'
