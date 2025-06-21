@@ -225,7 +225,6 @@
     });
     
     const { coin } = toRefs(props);
-    console.log(coin.value);
     
     const totalSupplyPercentage = computed(() => (coin.value?.totalSupply / coin.value?.maxSupply) * 100);
     const circulatingSupplyPercentage = computed(() => (coin.value?.circulatingSupply / coin.value?.maxSupply) * 100);
