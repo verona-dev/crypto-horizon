@@ -1,7 +1,7 @@
 <template>
-    <CardContent class='flex'>
+    <CardContent class='my-6 flex justify-evenly'>
         <!--  Official  -->
-        <div class='links flex-1 m-4 p-6'>
+        <div class='links m-4 p-6'>
             <h4 class='mb-6'>Official</h4>
             
             <!--  Website  -->
@@ -42,7 +42,7 @@
         </div>
         
         <!--  Socials  -->
-        <div class='socials flex-1 m-4 p-6'>
+        <div class='socials m-4 p-6'>
             <h4 class='mb-6'>Social Networks</h4>
             
             <div
