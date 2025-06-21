@@ -22,12 +22,12 @@
                     :activeSymbol='activeSymbol'
                 />
                 
-                <CardContent class='flex justify-evenly py-6 px-12'>
-                    <!--  Overview Table  -->
-                    <CoinOverview :coin='coin' />
-                    
+                <CardContent class='my-6 flex justify-evenly'>
                     <!--  Market Cap Progress  -->
                     <CoinMarketCapProgressBar :marketCap='coin.marketCap'/>
+                    
+                    <!--  Overview Table  -->
+                    <CoinOverview :coin='coin' />
                 </CardContent>
                 
                 <Separator class='my-4' />

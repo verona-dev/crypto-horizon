@@ -1,8 +1,6 @@
 <template>
-    <div v-if='coin' class='coin-overview'>
-        <Table>
-            <TableCaption>Coin Information</TableCaption>
-            
+    <div v-if='coin' class='coin-overview w-96'>
+        <Table class='text-lg'>
             <TableBody>
                 <TableRow>
                     <TableCell>Created</TableCell>
@@ -33,7 +31,6 @@
     import {
         Table,
         TableBody,
-        TableCaption,
         TableCell,
         TableRow,
     } from '@/components/ui/table';
