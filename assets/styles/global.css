@@ -90,4 +90,8 @@
     .hover-card-content {
         background: var(--input) !important;
     }
+    
+    .info-icon {
+        color: var(--maz-color-muted);
+    }
 }

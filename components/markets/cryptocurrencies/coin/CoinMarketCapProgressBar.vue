@@ -22,7 +22,7 @@
                     openDelay='200'
                     class='flex'
                 >
-                    <HoverCardTrigger>
+                    <HoverCardTrigger class='info-icon'>
                         <NuxtIcon
                             name='radix-icons:info-circled'
                             size='25'
@@ -56,9 +56,3 @@
     
     const { marketCap } = toRefs(props);
 </script>
-
-<style scoped>
-    a {
-        color: var(--maz-color-muted);
-    }
-</style>
