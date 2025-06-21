@@ -1,21 +1,21 @@
 <template>
-    <div v-if='coin' class='coin-overview w-96'>
+    <div class='coin-overview w-96'>
         <Table class='text-lg'>
             <TableBody>
                 <!--  Created  -->
-                <TableRow>
+                <TableRow v-if='coin.age'>
                     <TableCell>Created</TableCell>
                     <TableCell>{{ coin.age }} days ago</TableCell>
                 </TableRow>
                 
                 <!--  ATH  -->
-                <TableRow>
+                <TableRow v-if='coin.allTimeHighUSD'>
                     <TableCell>All-time high</TableCell>
                     <TableCell>{{ coin.allTimeHighUSDFormatted }}</TableCell>
                 </TableRow>
                 
                 <!--  Markets  -->
-                <TableRow>
+                <TableRow v-if='coin.markets'>
                     <TableCell class='flex items-center'>
                         Markets
                         
@@ -36,7 +36,7 @@
                 </TableRow>
                 
                 <!--  Pairs  -->
-                <TableRow>
+                <TableRow v-if='coin.pairs'>
                     <TableCell class='flex items-center'>
                         Pairs
                         
@@ -57,7 +57,7 @@
                 </TableRow>
                 
                 <!--  Exchanges  -->
-                <TableRow>
+                <TableRow v-if='coin.exchanges'>
                     <TableCell class='flex items-center'>
                         Exchanges
                         
@@ -99,10 +99,3 @@
     });
     const { coin } = toRefs(props);
 </script>
-
-<style scoped>
-    td {
-        //display: flex;
-        //align-items: center;
-    }
-</style>
