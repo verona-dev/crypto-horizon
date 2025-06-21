@@ -58,7 +58,22 @@
                 
                 <!--  Exchanges  -->
                 <TableRow>
-                    <TableCell>Exchanges</TableCell>
+                    <TableCell class='flex items-center'>
+                        Exchanges
+                        
+                        <HoverCard openDelay='200'>
+                            <HoverCardTrigger class='info-icon'>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>The number of exchanges the coin is present at.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </TableCell>
                     <TableCell>{{ coin.exchanges }}</TableCell>
                 </TableRow>
             </TableBody>
