@@ -4,7 +4,7 @@
         :duration='2000'
         class='my-6 flex flex-col'
     >
-        <div class='flex flex-col lg:flex-row justify-evenly'>
+        <div class='flex flex-col lg:flex-row flex-wrap justify-evenly'>
             <!--  Max Supply  -->
             <div class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
@@ -82,7 +82,7 @@
             </div>
         </div>
         
-        <div class='flex flex-col lg:flex-row justify-evenly'>
+        <div class='flex flex-col lg:flex-row flex-wrap justify-evenly'>
             <!--  Total Supply  -->
             <div class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
