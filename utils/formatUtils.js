@@ -30,19 +30,19 @@ const formatNumberWithOptions = (number, usePrefix = true, useSuffix = true) => 
     if (absNumber >= 1_000_000_000_000) {
         // Trillions
         formattedNumber = floor(number / 1_000_000_000_000);
-        useSuffix && (suffix = 't');
+        useSuffix && (suffix = 'T');
     } else if (absNumber >= 1_000_000_000) {
         // Billions
         formattedNumber = floor(number / 1_000_000_000);
-        useSuffix && (suffix = 'b');
+        useSuffix && (suffix = 'B');
     } else if (absNumber >= 1_000_000) {
         // Millions
         formattedNumber = floor(number / 1_000_000);
-        useSuffix && (suffix = 'm');
+        useSuffix && (suffix = 'M');
     } else if (absNumber >= 1_000) {
         // Thousands
         formattedNumber = floor(number / 1_000);
-        useSuffix && (suffix = 'k');
+        useSuffix && (suffix = 'K');
     } else {
         // Less than thousand, show the number
         formattedNumber = floor(number);
@@ -73,11 +73,14 @@ const formatCoin = coin => {
     return {
         ...coin,
         allTimeHighUSD: formatPrice(coin?.allTimeHighUSD, 0, 2),
-        cap: formatNumberWithOptions(coin?.cap),
         circulatingSupply: coin?.circulatingSupply,
         circulatingSupplyFormatted: formatNumberWithOptions(coin?.circulatingSupply, false),
+        exchanges: coin?.exchanges,
         links: extractLinks(coin?.links),
-        liquidity: formatNumberWithOptions(coin?.liquidity),
+        liquidity: coin?.liquidity,
+        liquidityFormatted: formatNumberWithOptions(coin?.liquidity),
+        marketCap: coin?.cap,
+        marketCapFormatted: formatNumberWithOptions(coin?.cap),
         maxSupply: coin?.maxSupply,
         maxSupplyFormatted: formatNumberWithOptions(coin?.maxSupply, false),
         rate: formatPrice(coin?.rate, 2, 4),
