@@ -14,7 +14,7 @@
         <div v-else>
             <Card
                 v-if='coin && coin?.name'
-                class='w-7xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border my-10 py-6 shadow-sm'
+                class='lg:w-7xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border my-10 py-6 shadow-sm'
             >
                 <!--  Header  -->
                 <CoinHeader
