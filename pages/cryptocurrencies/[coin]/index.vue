@@ -32,13 +32,6 @@
                     <p>Liquidity {{ coin.liquidityFormatted }}</p>
                 </CardContent>
                 
-                <CardContent>
-                    <p>Hour change {{ coin.delta?.hour }}</p>
-                    <p>Day change {{ coin.delta?.day }}</p>
-                    <p>Week change {{ coin.delta?.week }}</p>
-                    <p>Month change {{ coin.delta?.month }}</p>
-                </CardContent>
-                
                 <Separator />
                 
                 <!--  Links  -->
