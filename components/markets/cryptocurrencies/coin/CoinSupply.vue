@@ -26,8 +26,6 @@
             <CoinSupplyStackedBars :coin='coin' />
         </TabsContent>
     </Tabs>
-    
-    <Separator class='my-4' />
 </template>
 
 <script setup>

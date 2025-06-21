@@ -1,5 +1,6 @@
 <template>
-    <CardContent class='flex items-start'>
+    <CardContent class='flex'>
+        <!--  Official  -->
         <div class='links flex-1 m-4 p-6'>
             <h4 class='mb-6'>Official</h4>
             
