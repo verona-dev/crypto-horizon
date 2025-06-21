@@ -2,7 +2,7 @@
     <MazAnimatedElement
         direction='up'
         :duration='2000'
-        class='my-6 flex flex-col'
+        class='my-12 flex flex-col'
     >
         <div class='flex flex-col lg:flex-row flex-wrap justify-center'>
             <!--  Max Supply  -->
@@ -48,7 +48,7 @@
                 </div>
             </div>
             
-            <!--  Volume  -->
+            <!--  Volume 24h  -->
             <div
                 v-if='coin.volume'
                 class='my-10 flex items-center justify-center'
@@ -94,7 +94,6 @@
                     :percentage='totalSupplyPercentage'
                     :duration='3000'
                     suffix='%'
-                    auto-color
                 />
                 
                 <div class='ml-6 flex flex-col w-[375px]'>
@@ -135,7 +134,6 @@
                     :percentage='circulatingSupplyPercentage'
                     :duration='3500'
                     suffix='%'
-                    auto-color
                 />
                 
                 <div class='ml-6 flex flex-col w-[375px]'>
@@ -162,6 +160,48 @@
                     </div>
                     
                     <p class='mt-2'>{{ coin.circulatingSupplyFormatted }} {{ symbol }}</p>
+                </div>
+            </div>
+            
+            <!--  Liquidity 24h  -->
+            <div
+                v-if='coin.liquidity'
+                class='my-10 flex items-center justify-center'
+            >
+                <MazCircularProgressBar
+                    :percentage='100'
+                    :duration='3500'
+                >
+                    <template #default>
+                        <h6>{{ formatNumberWithOptions(coin.liquidity, true) }}</h6>
+                    </template>
+                </MazCircularProgressBar>
+                
+                <div class='ml-6 flex flex-col w-[375px]'>
+                    <div class='flex items-center'>
+                        <h5>Liquidity 24h</h5>
+                        
+                        <HoverCard
+                            openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>
+                                    How easily you can buy or sell a cryptocurrency without significantly affecting its price.
+                                    A ±2% orderbook depth.
+                                </span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <p class='mt-2'>&#36;{{ coin.liquidity?.toLocaleString() }}</p>
                 </div>
             </div>
         </div>
