@@ -43,9 +43,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>
-                        <span class='mr-2'>{{ symbol }}</span>{{ coin.maxSupply?.toLocaleString() }}
-                    </p>
+                    <p class='mt-2'>{{ coin.maxSupply.toLocaleString() }} {{ symbol }}</p>
                 </div>
             </div>
             
@@ -120,7 +118,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'><span class='mr-2'>{{ symbol }}</span>{{ coin.totalSupply?.toLocaleString() }}</p>
+                    <p class='mt-2'>{{ coin.totalSupplyFormatted }} {{ symbol }}</p>
                 </div>
             </div>
             
@@ -156,7 +154,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'><span class='mr-2'>{{ symbol }}</span>{{ coin.circulatingSupply?.toLocaleString() }}</p>
+                    <p class='mt-2'>{{ coin.circulatingSupplyFormatted }} {{ symbol }}</p>
                 </div>
             </div>
         </div>
