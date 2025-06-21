@@ -7,7 +7,6 @@
         <MazCircularProgressBar
             :percentage='100'
             :duration='1500'
-            size='125px'
         >
             <template #default>
                 <h6>{{ formatNumberWithOptions(marketCap, true) }}</h6>
