@@ -20,11 +20,11 @@
     });
     
     const { coin } = toRefs(props);
-    const remainingSupply = computed(() => coin.value.maxSupplyChart - coin.value.totalSupply);
+    const remainingSupply = computed(() => coin.value.maxSupply - coin.value.totalSupply);
     
     const chartContent = computed(() => {
         // If coin has max supply
-        if (coin.value.maxSupplyChart) {
+        if (coin.value.maxSupply) {
             return {
                 labels: ['Total Supply', 'Remaining Supply'],
                 data: [coin.value.totalSupply, remainingSupply.value]

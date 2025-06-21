@@ -1,12 +1,12 @@
 <template>
     <CoinSupplyProgressBars
-        v-if='coin.maxSupplyChart'
+        v-if='coin.maxSupply'
         :coin='coin'
     />
     
     <p>Circulating Supply: {{ coin.circulatingSupply }} {{ coin.symbol }}</p>
     <p>Total Supply: {{ coin.totalSupplyFormatted }}   {{ coin.symbol }}</p>
-    <p>Max Supply: {{ coin.maxSupply }}  {{ coin.symbol }}</p>
+    <p>Max Supply: {{ coin.maxSupplyFormatted }}  {{ coin.symbol }}</p>
     <p>Volume: {{ coin.volumeFormatted }}</p>
     
     <Tabs

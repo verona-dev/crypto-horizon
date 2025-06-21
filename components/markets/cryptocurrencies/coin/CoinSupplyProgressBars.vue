@@ -12,7 +12,7 @@
             >
                 <template #default>
                     <h6>
-                        {{ formatNumberWithOptions(coin.maxSupplyChart, false) }}
+                        {{ formatNumberWithOptions(coin.maxSupply, false) }}
                     </h6>
                 </template>
             </MazCircularProgressBar>
@@ -43,7 +43,7 @@
                 </div>
                 
                 <p class='mt-2'>
-                    <span class='mr-2'>{{ symbol }}</span>{{ coin.maxSupplyChart?.toLocaleString() }}
+                    <span class='mr-2'>{{ symbol }}</span>{{ coin.maxSupply?.toLocaleString() }}
                 </p>
             </div>
         </div>
@@ -144,8 +144,8 @@
     
     const { coin } = toRefs(props);
     
-    const totalSupplyPercentage = computed(() => (coin.value.totalSupply / coin.value.maxSupplyChart) * 100);
-    const circulatingSupplyPercentage = computed(() => (coin.value.circulatingSupplyChart / coin.value.maxSupplyChart) * 100);
+    const totalSupplyPercentage = computed(() => (coin.value.totalSupply / coin.value.maxSupply) * 100);
+    const circulatingSupplyPercentage = computed(() => (coin.value.circulatingSupplyChart / coin.value.maxSupply) * 100);
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
 
