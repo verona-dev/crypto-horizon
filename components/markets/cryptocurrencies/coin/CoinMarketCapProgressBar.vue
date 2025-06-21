@@ -1,6 +1,9 @@
 <template>
-    <!--  Max Supply  -->
-    <div class='my-10 flex items-center justify-center'>
+    <!--  Market Cap  -->
+    <div
+        v-if='marketCap'
+        class='my-10 flex items-center justify-center'
+    >
         <MazCircularProgressBar
             :percentage='100'
             :duration='2000'
@@ -45,12 +48,12 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     
     const props = defineProps({
-        marketCap: null,
-        default: null,
+        marketCap: Number,
+        default: 0,
+        required: true,
     });
     
     const { marketCap } = toRefs(props);
-    console.log(marketCap.value);
 </script>
 
 <style scoped>
