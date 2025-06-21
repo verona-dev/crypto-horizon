@@ -4,47 +4,87 @@
         :duration='2000'
         class='my-6 flex flex-col'
     >
-        <!--  Max Supply  -->
-        <div class='my-6 flex items-center justify-center'>
-            <MazCircularProgressBar
-                :percentage='100'
-                :duration='3500'
-            >
-                <template #default>
-                    <h6>
-                        {{ formatNumberWithOptions(coin.maxSupply, false) }}
-                    </h6>
-                </template>
-            </MazCircularProgressBar>
-            
-            <div class='ml-6 flex flex-col w-[350px]'>
-                <div class='flex items-center'>
-                    <h5>Max Supply</h5>
-                    
-                    <HoverCard
-                        openDelay='200'
-                        class='flex'
-                    >
-                        <HoverCardTrigger>
-                            <NuxtIcon
-                                name='radix-icons:info-circled'
-                                size='25'
-                                class='flex ml-2 mt-1'
-                            />
-                        </HoverCardTrigger>
-                        <HoverCardContent class='hover-card-content'>
+        <div class='my-6 flex flex-col lg:flex-row justify-evenly'>
+            <!--  Max Supply  -->
+            <div class='flex items-center justify-center'>
+                <MazCircularProgressBar
+                    :percentage='100'
+                    :duration='2000'
+                >
+                    <template #default>
+                        <h6>
+                            {{ formatNumberWithOptions(coin.maxSupply, false) }}
+                        </h6>
+                    </template>
+                </MazCircularProgressBar>
+                
+                <div class='ml-6 flex flex-col w-[375px]'>
+                    <div class='flex items-center'>
+                        <h5>Max Supply</h5>
+                        
+                        <HoverCard
+                            openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
                             <span class='text-sm'>The best approximation of the maximum amount of coins that will exist in the forthcoming
                                lifespan of the cryptocurrency, minus any coins that have been verifiably burned. This is
                                also known as the theoretical max number of coins that can be minted, minus any coins
                                that have been verifiably burned.
                             </span>
-                        </HoverCardContent>
-                    </HoverCard>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <p class='mt-2'>
+                        <span class='mr-2'>{{ symbol }}</span>{{ coin.maxSupply?.toLocaleString() }}
+                    </p>
                 </div>
+            </div>
+            
+            <!--  Volume  -->
+            <div class='flex items-center justify-center'>
+                <MazCircularProgressBar
+                    :percentage='100'
+                    :duration='2500'
+                >
+                    <template #default>
+                        <h6>
+                            {{ formatNumberWithOptions(coin.volume, true) }}
+                        </h6>
+                    </template>
+                </MazCircularProgressBar>
                 
-                <p class='mt-2'>
-                    <span class='mr-2'>{{ symbol }}</span>{{ coin.maxSupply?.toLocaleString() }}
-                </p>
+                <div class='ml-6 flex flex-col w-[375px]'>
+                    <div class='flex items-center'>
+                        <h5>Volume 24h</h5>
+                        
+                        <HoverCard
+                            openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>A measure of how much of a cryptocurrency was traded in the last 24 hours.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <p class='mt-2'>&#36;{{ coin.volume?.toLocaleString() }}</p>
+                </div>
             </div>
         </div>
         
@@ -53,12 +93,12 @@
             <div class='flex items-center justify-center'>
                 <MazCircularProgressBar
                     :percentage='totalSupplyPercentage'
-                    :duration='2500'
+                    :duration='3000'
                     suffix='%'
                     auto-color
                 />
                 
-                <div class='ml-6 flex flex-col w-[350px]'>
+                <div class='ml-6 flex flex-col w-[375px]'>
                     <div class='flex items-center'>
                         <h4>Total Supply</h4>
                         
@@ -90,7 +130,7 @@
             <div class='my-6 flex items-center justify-center'>
                 <MazCircularProgressBar
                     :percentage='circulatingSupplyPercentage'
-                    :duration='2500'
+                    :duration='3500'
                     suffix='%'
                     auto-color
                 />
