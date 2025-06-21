@@ -182,12 +182,6 @@
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
 
-<style>
-    .hover-card-content {
-        background: var(--input) !important;
-    }
-</style>
-
 <style scoped>
     a {
         color: var(--maz-color-muted);

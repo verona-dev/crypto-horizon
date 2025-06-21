@@ -86,4 +86,8 @@
         align-items: center;
         margin-bottom: 100px;
     }
+    
+    .hover-card-content {
+        background: var(--input) !important;
+    }
 }
