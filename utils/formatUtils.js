@@ -81,10 +81,11 @@ const formatCoin = coin => {
         maxSupply: formatNumberWithOptions(coin?.maxSupply, false),
         maxSupplyChart: coin?.maxSupply,
         rate: formatPrice(coin?.rate, 2, 4),
-        totalSupply: formatNumberWithOptions(coin?.totalSupply, false),
-        totalSupplyChart: coin?.totalSupply,
+        totalSupplyFormatted: formatNumberWithOptions(coin?.totalSupply, false),
+        totalSupply: coin?.totalSupply,
         trend: getTrendColor(coin?.changePercent24Hr),
-        volume: formatNumberWithOptions(coin?.volume),
+        volume: coin?.volume,
+        volumeFormatted: formatNumberWithOptions(coin?.volume),
     }
 }
 

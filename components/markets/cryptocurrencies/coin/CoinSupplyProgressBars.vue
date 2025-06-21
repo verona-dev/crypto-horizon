@@ -9,7 +9,6 @@
             <MazCircularProgressBar
                 :percentage='100'
                 :duration='3500'
-                size='230px'
             >
                 <template #default>
                     <h6>
@@ -83,7 +82,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'><span class='mr-2'>{{ symbol }}</span>{{ coin.totalSupplyChart?.toLocaleString() }}</p>
+                    <p class='mt-2'><span class='mr-2'>{{ symbol }}</span>{{ coin.totalSupply?.toLocaleString() }}</p>
                 </div>
             </div>
             
@@ -145,7 +144,7 @@
     
     const { coin } = toRefs(props);
     
-    const totalSupplyPercentage = computed(() => (coin.value.totalSupplyChart / coin.value.maxSupplyChart) * 100);
+    const totalSupplyPercentage = computed(() => (coin.value.totalSupply / coin.value.maxSupplyChart) * 100);
     const circulatingSupplyPercentage = computed(() => (coin.value.circulatingSupplyChart / coin.value.maxSupplyChart) * 100);
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>

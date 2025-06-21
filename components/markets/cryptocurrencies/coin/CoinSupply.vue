@@ -5,9 +5,9 @@
     />
     
     <p>Circulating Supply: {{ coin.circulatingSupply }} {{ coin.symbol }}</p>
-    <p>Total Supply: {{ coin.totalSupply }}   {{ coin.symbol }}</p>
+    <p>Total Supply: {{ coin.totalSupplyFormatted }}   {{ coin.symbol }}</p>
     <p>Max Supply: {{ coin.maxSupply }}  {{ coin.symbol }}</p>
-    <p>Volume: {{ coin.volume }}</p>
+    <p>Volume: {{ coin.volumeFormatted }}</p>
     
     <Tabs
         default-value='doughnut-chart'
@@ -49,4 +49,5 @@
     });
     
     const { coin } = toRefs(props);
+    console.log(coin.value);
 </script>
