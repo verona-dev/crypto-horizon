@@ -30,7 +30,7 @@
                 data: [coin.value.totalSupply, remainingSupply.value]
             };
         } else {
-            // If coin does not max supply
+            // If coin does not have max supply
             return {
                 labels: ['Total Supply', 'Circulating Supply'],
                 data: [coin.value.totalSupply, coin.value.circulatingSupply]
