@@ -34,53 +34,54 @@
             :key='row.id'
         >
             <MazTableCell>
-                <NuxtLink :to="`/cryptocurrencies/${row.symbol}`" class="w-full">
+                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`' class='w-full'>
                     {{ row.rank }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to="`/cryptocurrencies/${row.symbol}`" class="w-full">
+                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`' class='w-full'>
                     <div class='flex items-center gap-2'>
                         <NuxtIcon
                             :name='row.icon'
                             size='30'
                         />
                         
-                        <div class='flex flex-col items-start'>
-                            <span>{{ row.name }}</span>
-                            <span>{{ row.symbol }}</span>
+                        <div class='flex'>
+                            <div class='mr-2'>{{ row.name }}</div>
+                            <div class='text-muted'>{{ row.symbol }}</div>
                         </div>
                     </div>
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to="`/cryptocurrencies/${row.symbol}`" class="w-full">
+                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`' class='w-full'>
                     {{ row.price }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to="`/cryptocurrencies/${row.symbol}`" class="w-full">
+                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`' class='w-full'>
                     {{ row.marketCap }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to="`/cryptocurrencies/${row.symbol}`" class="w-full">
+                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`' class='w-full'>
                     {{ row.volume }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to="`/cryptocurrencies/${row.symbol}`" class="w-full">
+                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`' class='w-full'>
                     {{ row.c_supply }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to="`/cryptocurrencies/${row.symbol}`" class="w-full">
+                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`' class='w-full'>
                     <div :class='row.trend'>
-                        <span>{{ row.changePercent24Hr }}&#37;</span>
+                        {{ row.changePercent24Hr }}&#37;
                     </div>
                 </NuxtLink>
             </MazTableCell>
         </MazTableRow>
+        
         <template #no-results>
             <div class='h-[800px] flex flex-col justify-center items-center'>
                 <h4 class='fetching'>Fetching data...</h4>
