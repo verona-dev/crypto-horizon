@@ -5,7 +5,7 @@
           { label: "Name", key: "name", sortable: false, classes: "", },
           { label: "Price", key: "price", align: "center", sortable: false, classes: "",},
           { label: "Market Cap", key: "marketCap", align: "center", sortable: false, classes: "", },
-          { label: "24h Volume", key: "volume", align: "center", sortable: false, classes: "", },
+          { label: "Volume (24h)", key: "volume", align: "center", sortable: false, classes: "", },
           { label: "Circ. Supply", key: "c_supply", align: "center", sortable: false, classes: "", },
           { label: "24h %", key: "changePercent24Hr", align: "center", sortable: false, classes: "", },
         ]'
@@ -48,7 +48,7 @@
                         
                         <div class='flex'>
                             <div class='mr-2'>{{ row.name }}</div>
-                            <div class='text-muted'>{{ row.symbol }}</div>
+                            <div class='text-maz-muted'>{{ row.symbol }}</div>
                         </div>
                     </div>
                 </NuxtLink>
