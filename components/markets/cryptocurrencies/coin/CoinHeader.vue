@@ -31,7 +31,7 @@
                 <p class='ml-1 mt-2'>{{ activeSymbol }}</p>
                 
                 <!--  Coin price  -->
-                <h4 class='text-foreground mt-4'>{{ coin.rate }}</h4>
+                <h4 class='text-foreground mt-4'>{{ coin.rateFormatted }}</h4>
             </div>
         </div>
     </CardHeader>
