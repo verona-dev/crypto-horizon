@@ -1,5 +1,4 @@
 <template>
-    <!--  Market Cap  -->
     <div
         v-if='marketCap'
         class='coin-market-cap-progress-bar flex items-center'

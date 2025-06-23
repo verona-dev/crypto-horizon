@@ -28,6 +28,12 @@
                     
                     <!--  Overview Table  -->
                     <CoinOverview :coin='coin' />
+                    
+                    <!--  Converter  -->
+                    <CoinConverter
+                        :coin='coin'
+                        :activeSymbol='activeSymbol'
+                    />
                 </CardContent>
                 
                 <Separator class='my-4' />
@@ -46,6 +52,7 @@
 </template>
 
 <script setup>
+    import CoinConverter from '~/components/markets/cryptocurrencies/coin/CoinConverter.vue';
     import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
     import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     import CoinOverview from '@/components/markets/cryptocurrencies/coin/CoinOverview.vue';
