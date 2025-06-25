@@ -23,7 +23,15 @@
                 />
                 
                 <CardContent class='px-20 my-10 flex justify-around'>
-                    <div class='left flex flex-col'>
+                    <div class='left'>
+                        <!--  Links  -->
+                        <CoinLinks
+                            v-if='coin.links'
+                            :links='coin.links'
+                        />
+                    </div>
+                    
+                    <div class='right flex flex-col'>
                         <!--  Market Cap Progress  -->
                         <CoinMarketCap :marketCap='coin.marketCap'/>
                         
@@ -37,14 +45,6 @@
                         <CoinConverter
                             :coin='coin'
                             :activeSymbol='activeSymbol'
-                        />
-                    </div>
-                    
-                    <div class='right'>
-                        <!--  Links  -->
-                        <CoinLinks
-                            v-if='coin.links'
-                            :links='coin.links'
                         />
                     </div>
                 </CardContent>
