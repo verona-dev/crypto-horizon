@@ -2,13 +2,13 @@
     <MazAnimatedElement
         direction='up'
         :duration='2000'
-        class='my-12 flex flex-col'
+        class='flex flex-col'
     >
         <div class='flex flex-col lg:flex-row flex-wrap justify-center'>
             <!--  Max Supply  -->
             <div
                 v-if='coin.maxSupply'
-                class='my-10 flex items-center justify-center w-full'
+                class='flex items-center justify-center w-full'
             >
                 <MazCircularProgressBar
                     :percentage='100'
