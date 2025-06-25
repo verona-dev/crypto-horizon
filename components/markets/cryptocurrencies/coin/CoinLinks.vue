@@ -1,5 +1,5 @@
 <template>
-    <CardContent class='my-6 flex justify-evenly'>
+    <div class='coin-links'>
         <!--  Official  -->
         <div class='links m-4 p-6'>
             <h4 class='mb-6'>Official</h4>
@@ -72,9 +72,7 @@
                 </NuxtLink>
             </div>
         </div>
-    </CardContent>
-    
-    <Separator class='my-4' />
+    </div>
 </template>
 
 <script setup>
