@@ -95,13 +95,17 @@
 <style scoped>
     .link-item {
         color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
-        transition: all .15s ease-in-out;
+        /*
+        transition: all .15s ease-out;
+        */
         
         &:hover {
             color: var(--secondary);
-            scale: 1.05;
-            transition: all .15s ease-in-out;
             text-decoration: underline;
+            /*
+            scale: 1.05;
+            transition: all .15s ease-out;
+            */
         }
     }
 </style>
