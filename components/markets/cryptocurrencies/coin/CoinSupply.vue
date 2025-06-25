@@ -1,28 +1,30 @@
 <template>
-    <CoinSupplyProgressBars :coin='coin' />
-    
-    <Tabs
-        default-value='doughnut-chart'
-        class='my-6 self-center w-full'
-    >
-        <TabsList class='self-center my-10 p-6'>
-            <TabsTrigger value='doughnut-chart' class='m-10'>
-                Doughnut Chart
-            </TabsTrigger>
+    <CardContent class='my-10 flex flex-col lg:flex-row flex-wrap justify-center'>
+        <CoinSupplyProgressBars :coin='coin' />
+        
+        <Tabs
+            default-value='doughnut-chart'
+            class='my-6 self-center w-3/4'
+        >
+            <TabsList class='self-center my-10 p-6'>
+                <TabsTrigger value='doughnut-chart' class='m-10'>
+                    Doughnut Chart
+                </TabsTrigger>
+                
+                <TabsTrigger value='stacked-bars' class='m-10'>
+                    Stacked Bars
+                </TabsTrigger>
+            </TabsList>
             
-            <TabsTrigger value='stacked-bars' class='m-10'>
-                Stacked Bars
-            </TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value='doughnut-chart' class='min-h-[500px] w-1/2 mx-auto'>
-            <CoinSupplyDoughnutChart :coin='coin' />
-        </TabsContent>
-        
-        <TabsContent value='stacked-bars' class='min-h-[500px] w-11/12 mx-auto'>
-            <CoinSupplyStackedBars :coin='coin' />
-        </TabsContent>
-    </Tabs>
+            <TabsContent value='doughnut-chart' class='min-h-[500px] w-1/2 mx-auto'>
+                <CoinSupplyDoughnutChart :coin='coin' />
+            </TabsContent>
+            
+            <TabsContent value='stacked-bars' class='min-h-[500px] w-11/12 mx-auto'>
+                <CoinSupplyStackedBars :coin='coin' />
+            </TabsContent>
+        </Tabs>
+    </CardContent>
 </template>
 
 <script setup>

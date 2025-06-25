@@ -14,7 +14,7 @@
         <div v-else>
             <Card
                 v-if='coin && coin?.name'
-                class='lg:w-7xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border my-10 py-6 shadow-sm'
+                class='lg:w-6xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border my-10 py-6 shadow-sm'
             >
                 <!--  Header  -->
                 <CoinHeader
@@ -22,27 +22,34 @@
                     :activeSymbol='activeSymbol'
                 />
                 
-                <CardContent class='my-6 flex justify-evenly'>
-                    <!--  Market Cap Progress  -->
-                    <CoinMarketCap :marketCap='coin.marketCap'/>
+                <CardContent class='px-20 my-10 flex justify-around'>
+                    <div class='left'>
+                        <!--  Links  -->
+                        <CoinLinks
+                            v-if='coin.links'
+                            :links='coin.links'
+                        />
+                    </div>
                     
-                    <!--  Overview Table  -->
-                    <CoinOverview :coin='coin' />
-                    
-                    <!--  Converter  -->
-                    <CoinConverter
-                        :coin='coin'
-                        :activeSymbol='activeSymbol'
-                    />
+                    <div class='right flex flex-col'>
+                        <!--  Market Cap Progress  -->
+                        <CoinMarketCap :marketCap='coin.marketCap'/>
+                        
+                        <!--  Overview Table  -->
+                        <CoinOverview
+                            :coin='coin'
+                            class='my-20'
+                        />
+                        
+                        <!--  Converter  -->
+                        <CoinConverter
+                            :coin='coin'
+                            :activeSymbol='activeSymbol'
+                        />
+                    </div>
                 </CardContent>
                 
                 <Separator class='my-4' />
-                
-                <!--  Links  -->
-                <CoinLinks
-                    v-if='coin.links'
-                    :links='coin.links'
-                />
                 
                 <!--  Supply  -->
                 <CoinSupply :coin='coin' />
