@@ -13,9 +13,10 @@
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2000'
+                    size='150px'
                 >
                     <template #default>
-                        <h6>{{ formatNumberWithOptions(coin.maxSupply, false) }}</h6>
+                        <p>{{ formatNumberWithOptions(coin.maxSupply, false) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -55,7 +56,12 @@
                     :percentage='totalSupplyPercentage'
                     :duration='3000'
                     suffix='%'
-                />
+                    size='150px'
+                >
+                    <template #default>
+                        <p>{{ Math.floor(totalSupplyPercentage) }}&#37;</p>
+                    </template>
+                </MazCircularProgressBar>
                 
                 <div class='ml-6 flex flex-col w-[375px]'>
                     <div class='flex items-center'>
@@ -95,7 +101,12 @@
                     :percentage='circulatingSupplyPercentage'
                     :duration='3500'
                     suffix='%'
-                />
+                    size='150px'
+                >
+                    <template #default>
+                        <p>{{ Math.floor(circulatingSupplyPercentage) }}&#37;</p>
+                    </template>
+                </MazCircularProgressBar>
                 
                 <div class='ml-6 flex flex-col w-[375px]'>
                     <div class='flex items-center'>
@@ -132,9 +143,10 @@
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2500'
+                    size='150px'
                 >
                     <template #default>
-                        <h6>{{ formatNumberWithOptions(coin.volume, true) }}</h6>
+                        <p>{{ formatNumberWithOptions(coin.volume, true) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -171,9 +183,10 @@
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='3500'
+                    size='150px'
                 >
                     <template #default>
-                        <h6>{{ formatNumberWithOptions(coin.liquidity, true) }}</h6>
+                        <p>{{ formatNumberWithOptions(coin.liquidity, true) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
