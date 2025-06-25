@@ -1,5 +1,7 @@
 <template>
-    <div class='coin-converter'>
+    <div class='coin-converter my-6 flex flex-col'>
+        <h6 class='mb-2'>{{ activeSymbol }} to USD converter</h6>
+        
         <MazInput
             v-model.number='coinInput'
             color='info'
@@ -87,31 +89,19 @@
 </script>
 
 <style>
-    .coin-converter {
-        width: 250px;
-    }
-    
-    .m-input {
-        
-        .m-input-wrapper {
-            /*background-color: #fff !important;*/
-            //border-top-left-radius: 0 !important;
-        }
-    }
-    
     .coin-input {
         .m-input-wrapper {
-            /*background-color: #fff !important;*/
             border-bottom-left-radius: 0 !important;
             border-bottom-right-radius: 0 !important;
+            width: 100%;
         }
     }
     
     .usd-input {
         .m-input-wrapper {
-            /*background-color: #fff !important;*/
             border-top-left-radius: 0 !important;
             border-top-right-radius: 0 !important;
+            width: 100%;
         }
     }
 </style>

@@ -1,8 +1,8 @@
 <template>
     <div class='coin-links'>
-        <!--  Official  -->
-        <div class='links m-4 p-6'>
-            <h4 class='mb-6'>Official</h4>
+        <!--  Website  -->
+        <div class='links mt-10'>
+            <h4 class='mb-6'>Website</h4>
             
             <!--  Website  -->
             <NuxtLink
@@ -10,9 +10,9 @@
                 :to='links.website'
                 external
                 target='_blank'
-                class='flex my-2'
+                class='flex'
             >
-                <div class='link-item flex items-center py-3'>
+                <div class='link-item flex items-center'>
                     <NuxtIcon
                         name='radix-icons:link-2'
                         size='25'
@@ -41,14 +41,14 @@
             </NuxtLink>
         </div>
         
-        <!--  Socials  -->
-        <div class='socials m-4 p-6'>
-            <h4 class='mb-6'>Social Networks</h4>
+        <!--  Community  -->
+        <div class='socials mt-20'>
+            <h4 class='mb-6'>Community</h4>
             
             <div
                 v-for='(link, name) in links?.socials'
                 :key='name'
-                class='flex items-center justify-start my-2'
+                class='flex items-center justify-start'
             >
                 <NuxtLink
                     v-if='link && name'
