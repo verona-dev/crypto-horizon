@@ -185,14 +185,14 @@
     import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     import { formatNumberWithOptions } from '~/utils/formatUtils.js';
-    import { getTrendColor } from '~/utils/styleUtils.js';
+    import { getTextColor } from '~/utils/styleUtils.js';
     
     const { marketOverview } = storeToRefs(CryptocurrenciesStore);
     const { fetchCoinLore } = CryptocurrenciesStore;
     onMounted(() => fetchCoinLore('global'));
     
-    const marketCapStyle = computed(() => getTrendColor(marketOverview.value?.mcap_change));
-    const volumeChangeStyle = computed(() => getTrendColor(marketOverview.value?.volume_change));
+    const marketCapStyle = computed(() => getTextColor(marketOverview.value?.mcap_change));
+    const volumeChangeStyle = computed(() => getTextColor(marketOverview.value?.volume_change));
 
 </script>
 

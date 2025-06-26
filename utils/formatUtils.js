@@ -1,4 +1,4 @@
-import { getIcon, getTrendColor } from '~/utils/styleUtils.js';
+import { getIcon, getTextColor } from '~/utils/styleUtils.js';
 
 const formatPrice = (number, min = 2, max = 2) => {
     if (number == null || isNaN(number)) return '-';
@@ -63,7 +63,7 @@ const formatCoinsTable = coins => {
         rank: coin?.rank,
         c_supply: formatNumberWithOptions(coin?.csupply, false),
         symbol: coin?.symbol,
-        trend: getTrendColor(coin?.percent_change_24h),
+        trend: getTextColor(coin?.percent_change_24h),
         volume: formatNumberWithOptions(coin?.volume24),
     }))
 }
@@ -88,7 +88,7 @@ const formatCoin = coin => {
         rateFormatted: formatPrice(coin?.rate, 0, 2),
         totalSupply: coin?.totalSupply,
         totalSupplyFormatted: formatNumberWithOptions(coin?.totalSupply, false),
-        trend: getTrendColor(coin?.changePercent24Hr),
+        trend: getTextColor(coin?.changePercent24Hr),
         volume: coin?.volume,
         volumeFormatted: formatNumberWithOptions(coin?.volume),
     }
