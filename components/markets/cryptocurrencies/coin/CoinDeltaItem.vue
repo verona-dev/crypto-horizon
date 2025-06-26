@@ -1,5 +1,6 @@
 <template>
     <HoverCard
+        v-if='delta'
         openDelay='200'
         class='flex'
     >
@@ -9,7 +10,7 @@
                 :class='getTrendColor(delta)'
             >
                 <CardTitle class='flex flex-col items-center'>
-                    <p>1h</p>
+                    <p>{{title}}</p>
                 </CardTitle>
                 
                 <CardContent class='flex justify-center'>
@@ -38,6 +39,11 @@
             required: true,
             default: 0,
         },
+        title: {
+            type: String,
+            required: true,
+            default: '',
+        },
         description: {
             type: String,
             required: true,
@@ -45,5 +51,5 @@
         },
     });
     
-    const { delta, description } = toRefs(props);
+    const { delta, title, description } = toRefs(props);
 </script>

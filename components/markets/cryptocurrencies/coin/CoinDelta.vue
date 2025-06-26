@@ -22,7 +22,6 @@
 
 <script setup>
     import { getDeltaPercentage } from '~/utils/formatUtils.js';
-    import { getTrendColor } from '~/utils/styleUtils.js';
     import CoinDeltaItem from '~/components/markets/cryptocurrencies/coin/CoinDeltaItem.vue';
     
     const props = defineProps({
