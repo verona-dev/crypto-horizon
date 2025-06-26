@@ -1,19 +1,24 @@
 <template>
     <CardContent class='px-20 my-10 flex justify-around'>
-        This is coin delta
-        
-        <!-- 1h  -->
+        <!--  1h  -->
         <CoinDeltaItem
             :delta='delta1h'
             title='1h'
             description='Rate of change in the last hour.'
         />
         
-        <!-- 24h  -->
+        <!--  24h  -->
         <CoinDeltaItem
             :delta='delta24h'
             title='24h'
             description='Rate of change in the last 24 hours.'
+        />
+        
+        <!--  7d  -->
+        <CoinDeltaItem
+            :delta='delta7d'
+            title='7d'
+            description='Rate of change in the last 7 days.'
         />
     </CardContent>
     
@@ -35,4 +40,5 @@
     const { coin } = toRefs(props);
     const delta1h = computed(() => getDeltaPercentage(coin.value?.delta.hour, coin.value?.rate))
     const delta24h = computed(() => getDeltaPercentage(coin.value?.delta.day, coin.value?.rate));
+    const delta7d = computed(() => getDeltaPercentage(coin.value?.delta.week, coin.value?.rate))
 </script>
