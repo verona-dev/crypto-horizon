@@ -1,5 +1,8 @@
 <template>
-    <CardContent class='px-20 my-10 flex justify-around'>
+    <CardContent
+        v-if='coin'
+        class='px-20 my-10 flex justify-evenly'
+    >
         <!--  1h  -->
         <CoinDeltaItem
             :delta='delta1h'
@@ -27,6 +30,13 @@
             title='30d'
             description='Rate of change in the last 30 days.'
         />
+        
+        <!--  1y  -->
+        <CoinDeltaItem
+            :delta='delta1y'
+            title='1y'
+            description='Rate of change in the last 365 days.'
+        />
     </CardContent>
     
     <Separator class='my-4' />
@@ -49,4 +59,5 @@
     const delta24h = computed(() => getDeltaPercentage(coin.value?.delta.day, coin.value?.rate));
     const delta7d = computed(() => getDeltaPercentage(coin.value?.delta.week, coin.value?.rate));
     const delta1m = computed(() => getDeltaPercentage(coin.value?.delta.month, coin.value?.rate));
+    const delta1y = computed(() => getDeltaPercentage(coin.value?.delta.year, coin.value?.rate))
 </script>
