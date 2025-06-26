@@ -89,19 +89,25 @@
 </script>
 
 <style>
-    .coin-input {
+    .coin-converter {
         .m-input-wrapper {
-            border-bottom-left-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
-            width: 100%;
+            background-color: transparent !important;
         }
-    }
-    
-    .usd-input {
-        .m-input-wrapper {
-            border-top-left-radius: 0 !important;
-            border-top-right-radius: 0 !important;
-            width: 100%;
+        
+        .coin-input {
+            .m-input-wrapper {
+                border-bottom-left-radius: 0 !important;
+                border-bottom-right-radius: 0 !important;
+                width: 100%;
+            }
+        }
+        
+        .usd-input {
+            .m-input-wrapper {
+                border-top-left-radius: 0 !important;
+                border-top-right-radius: 0 !important;
+                width: 100%;
+            }
         }
     }
 </style>
