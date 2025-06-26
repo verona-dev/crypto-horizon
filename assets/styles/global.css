@@ -91,7 +91,7 @@
     }
     
     .hover-card-content {
-        background: var(--card-small) !important;
+        background: var(--accent) !important;
     }
     
     .info-icon {

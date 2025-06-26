@@ -22,7 +22,7 @@
                     :activeSymbol='activeSymbol'
                 />
                 
-                <CoinDelta />
+                <CoinDelta :coin='coin' />
                 
                 <CardContent class='px-20 my-10 flex justify-around'>
                     <div class='left'>
