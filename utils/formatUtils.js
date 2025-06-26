@@ -114,10 +114,15 @@ const extractLinks = (externalLinks) => {
     return links;
 };
 
+const getDeltaPercentage = (delta, currentPrice) => {
+    return (delta - 1) * 100;
+};
+
 export {
     formatNumberWithOptions,
     formatPrice,
     formatCoinsTable,
     formatCoin,
+    getDeltaPercentage,
 };
 
