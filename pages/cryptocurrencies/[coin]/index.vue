@@ -22,8 +22,6 @@
                     :activeSymbol='activeSymbol'
                 />
                 
-                <CoinDelta :coin='coin' />
-                
                 <CardContent class='px-20 my-10 flex justify-around'>
                     <div class='left'>
                         <!--  Links  -->
@@ -52,6 +50,9 @@
                 </CardContent>
                 
                 <Separator class='my-4' />
+                
+                <!--  Delta  -->
+                <CoinDelta :coin='coin' />
                 
                 <!--  Supply  -->
                 <CoinSupply :coin='coin' />
