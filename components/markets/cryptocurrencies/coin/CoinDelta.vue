@@ -47,7 +47,6 @@
 </template>
 
 <script setup>
-    import { getDeltaPercentage } from '~/utils/formatUtils.js';
     import CoinDeltaItem from '~/components/markets/cryptocurrencies/coin/CoinDeltaItem.vue';
     
     const props = defineProps({
