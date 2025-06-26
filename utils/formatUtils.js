@@ -85,7 +85,7 @@ const formatCoin = coin => {
         maxSupply: coin?.maxSupply,
         maxSupplyFormatted: formatNumberWithOptions(coin?.maxSupply, false),
         rate: coin?.rate,
-        rateFormatted: formatPrice(coin?.rate, 2, 4),
+        rateFormatted: formatPrice(coin?.rate, 0, 2),
         totalSupply: coin?.totalSupply,
         totalSupplyFormatted: formatNumberWithOptions(coin?.totalSupply, false),
         trend: getTrendColor(coin?.changePercent24Hr),
