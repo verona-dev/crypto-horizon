@@ -51,6 +51,9 @@
                 
                 <Separator class='my-4' />
                 
+                <!--  Delta  -->
+                <CoinDelta :coin='coin' />
+                
                 <!--  Supply  -->
                 <CoinSupply :coin='coin' />
             </Card>
@@ -60,6 +63,7 @@
 
 <script setup>
     import CoinConverter from '~/components/markets/cryptocurrencies/coin/CoinConverter.vue';
+    import CoinDelta from '~/components/markets/cryptocurrencies/coin/CoinDelta.vue';
     import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
     import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     import CoinOverview from '@/components/markets/cryptocurrencies/coin/CoinOverview.vue';

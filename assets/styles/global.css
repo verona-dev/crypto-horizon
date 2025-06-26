@@ -63,7 +63,7 @@
     }
     
     span {
-        @apply text-lg;
+        @apply text-sm lg:text-lg;
     }
     
     a {
@@ -91,10 +91,16 @@
     }
     
     .hover-card-content {
-        background: var(--input) !important;
+        background: var(--card-small) !important;
     }
     
     .info-icon {
         color: var(--maz-color-muted);
     }
 }
+
+/* Desktop */
+@media (min-width: 1024px) {}
+
+/* Mobile */
+@media (max-width: 1023px) {}

@@ -76,8 +76,6 @@
 </template>
 
 <script setup>
-    import { CardContent } from '@/components/ui/card';
-    
     import { defineProps, toRefs } from 'vue';
     
     const props = defineProps({

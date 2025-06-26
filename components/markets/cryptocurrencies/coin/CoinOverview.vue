@@ -24,7 +24,7 @@
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
                                     size='25'
-                                    class='flex ml-2 mt-1'
+                                    class='flex ml-2'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
@@ -45,7 +45,7 @@
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
                                     size='25'
-                                    class='flex ml-2 mt-1'
+                                    class='flex ml-2'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
@@ -66,7 +66,7 @@
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
                                     size='25'
-                                    class='flex ml-2 mt-1'
+                                    class='flex ml-2'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>

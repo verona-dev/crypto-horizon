@@ -10,11 +10,12 @@
           { label: "24h %", key: "changePercent24Hr", align: "center", sortable: false, classes: "", },
         ]'
         :rows='coins'
-        class='my-20 w-[800px] xl:w-[1000px] mx-auto'
+        class='my-20 px-6'
         :loading='loading'
         color='secondary'
         hoverable
         background-even
+        elevation
     >
         <template #title>
             <MazAnimatedText
@@ -46,7 +47,7 @@
                             size='30'
                         />
                         
-                        <div class='flex'>
+                        <div class='flex flex-col xl:flex-row items-start'>
                             <div class='mr-2'>{{ row.name }}</div>
                             <div class='text-maz-muted'>{{ row.symbol }}</div>
                         </div>
