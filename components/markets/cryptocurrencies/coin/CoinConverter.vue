@@ -71,7 +71,7 @@
             }
             
             if(type === 'usd') {
-                coinInput.value = Math.round((inputValue / coinPrice.value) * 100) / 100;
+                coinInput.value = Math.round((inputValue / coinPrice.value) * 10000) / 10000;
             }
         }
     };
