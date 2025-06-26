@@ -1,7 +1,11 @@
 <template>
+    <CardTitle class='flex flex-col items-center'>
+        <p>Rate of Change</p>
+    </CardTitle>
+    
     <CardContent
         v-if='coin'
-        class='px-20 my-10 flex justify-evenly'
+        class='px-20 my-10 flex justify-center'
     >
         <!--  1h  -->
         <CoinDeltaItem

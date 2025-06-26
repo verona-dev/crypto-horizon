@@ -1,12 +1,11 @@
 <template>
     <HoverCard
         v-if='delta'
-        openDelay='200'
-        class='flex'
+        openDelay='350'
     >
-        <HoverCardTrigger class='info-icon'>
+        <HoverCardTrigger>
             <Card
-                class='text-card-foreground gap-1 py-5 px-0'
+                class='w-32 mx-4 text-card-foreground gap-3 py-5'
                 :class='getTrendColor(delta)'
             >
                 <CardTitle class='flex flex-col items-center'>
@@ -20,9 +19,9 @@
                     />
                 </CardContent>
                 
-                <CardFooter>
-                    <h6>{{ delta.toFixed(2) }}&#37;</h6>
-                </CardFooter>
+                <CardContent>
+                    <span>{{ delta.toFixed(2) }}&#37;</span>
+                </CardContent>
             </Card>
         </HoverCardTrigger>
         
