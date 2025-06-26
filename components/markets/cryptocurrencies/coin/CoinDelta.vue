@@ -20,6 +20,13 @@
             title='7d'
             description='Rate of change in the last 7 days.'
         />
+        
+        <!--  30d  -->
+        <CoinDeltaItem
+            :delta='delta1m'
+            title='30d'
+            description='Rate of change in the last 30 days.'
+        />
     </CardContent>
     
     <Separator class='my-4' />
@@ -38,7 +45,8 @@
     });
     
     const { coin } = toRefs(props);
-    const delta1h = computed(() => getDeltaPercentage(coin.value?.delta.hour, coin.value?.rate))
+    const delta1h = computed(() => getDeltaPercentage(coin.value?.delta.hour, coin.value?.rate));
     const delta24h = computed(() => getDeltaPercentage(coin.value?.delta.day, coin.value?.rate));
-    const delta7d = computed(() => getDeltaPercentage(coin.value?.delta.week, coin.value?.rate))
+    const delta7d = computed(() => getDeltaPercentage(coin.value?.delta.week, coin.value?.rate));
+    const delta1m = computed(() => getDeltaPercentage(coin.value?.delta.month, coin.value?.rate));
 </script>
