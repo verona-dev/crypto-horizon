@@ -66,6 +66,10 @@
         @apply text-sm lg:text-lg;
     }
     
+    .m-animated-text span {
+        @apply text-3xl;
+    }
+    
     a {
         @apply text-center;
     }
