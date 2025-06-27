@@ -2,7 +2,8 @@
 export async function useFetchCoingecko(route, options)  {
     try {
         return await $fetch(`/api/coingecko/${route}`, {
-            query: { vs_currency: 'usd' }
+            query: { vs_currency: 'usd' },
+            ...options
         });
     } catch(error) {
         console.error('Error fetching CoinLore data', error);
