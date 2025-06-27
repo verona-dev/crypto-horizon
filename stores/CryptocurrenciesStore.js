@@ -7,6 +7,7 @@ import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     state: () => ({
         coins: [],
+        coinsList: [],
         coin: {},
         coinChartData: {},
         marketOverview: [],
@@ -67,6 +68,13 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 if(route === 'coins/markets') {
                     this.coins = [];
                     this.coins = formatCoinsTable(response);
+                    console.log(this.coins[0]);
+                }
+                
+                if(route === 'coins/list') {
+                    this.coinsList = [];
+                    this.coinList = response;
+                    console.log(this.coinList);
                 }
             }
             catch(error) {
