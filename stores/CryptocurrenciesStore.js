@@ -67,8 +67,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 if(route === 'coins/markets') {
                     this.coins = [];
                     this.coins = formatCoinsTable(response);
-                    console.log(response[0]);
-                    console.log(this.coins[0]);
                 }
             }
             catch(error) {

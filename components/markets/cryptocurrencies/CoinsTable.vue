@@ -1,8 +1,8 @@
 <template>
     <MazTable
         :headers='[
-          { label: "#", key: "rank", align: "center", sortable: false, classes: "", },
-          { label: "Name", key: "name", sortable: false, classes: "", },
+          { label: "#", key: "rank", align: "center", sortable: false, classes: "w-20", },
+          { label: "Name", key: "name", sortable: false, classes: "w-92", },
           { label: "Price", key: "price", align: "center", sortable: false, classes: "",},
           { label: "Market Cap", key: "marketCap", align: "center", sortable: false, classes: "", },
           { label: "Volume (24h)", key: "volume", align: "center", sortable: false, classes: "", },
@@ -20,7 +20,7 @@
         <template #title>
             <MazAnimatedText
                 tag='h5'
-                text='Top 20 Crypto Currencies by '
+                text='Top 100 Crypto Currencies by '
                 last-word='Market Cap'
                 :delay='1000'
                 :duration='2000'
@@ -35,16 +35,18 @@
             :key='row.id'
         >
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`' class='w-full'>
+                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`'>
                     {{ row.rank }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`' class='w-full'>
+                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`'>
                     <div class='flex items-center gap-2'>
-                        <NuxtIcon
-                            :name='row.icon'
-                            size='30'
+                        <NuxtImg
+                            :src='row.image'
+                            width='35'
+                            class='ml-2 mr-2'
+                            alt='coin logo'
                         />
                         
                         <div class='flex flex-col xl:flex-row items-start'>
@@ -55,27 +57,27 @@
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`' class='w-full'>
+                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`'>
                     {{ row.price }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`' class='w-full'>
+                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`'>
                     {{ row.marketCap }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`' class='w-full'>
+                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`'>
                     {{ row.volume }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`' class='w-full'>
+                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`'>
                     {{ row.c_supply }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`' class='w-full'>
+                <NuxtLink :to='`/cryptocurrencies/${row.symbol}`'>
                     <div :class='row.trend'>
                         {{ row.changePercent24Hr }}&#37;
                     </div>
