@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
     const apiUrl = `https://api.coingecko.com/api/v3/${route}?${query}`;
     const storage = useStorage();
     const cacheKey = 'coingecko-list';
-    const cacheTTL = 60 * 60 * 6;
+    const cacheTTL = 60 * 60 * 24 * 7;
     let data;
     
     try {
