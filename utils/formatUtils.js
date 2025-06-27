@@ -16,7 +16,6 @@ const formatPrice = (number, min = 2, max = 2) => {
     return truncatedNumber.toLocaleString('en-US', options);
 };
 
-
 const formatNumberWithOptions = (number, usePrefix = true, useSuffix = true) => {
     if (number === null || number === undefined) return '-';
     
@@ -53,21 +52,20 @@ const formatNumberWithOptions = (number, usePrefix = true, useSuffix = true) => 
 
 const formatCoinsTable = coins => {
     return coins?.map(coin => ({
-        changePercent24Hr: parseFloat(coin?.percent_change_24h).toFixed(2),
+        ...coin,
+        changePercent24Hr: coin?.price_change_percentage_24h.toFixed(2),
+        c_supply: formatNumberWithOptions(coin?.circulating_supply, false),
         icon: getIcon(coin?.symbol),
         id: coin?.id,
-        marketCap: formatNumberWithOptions(coin?.market_cap_usd),
+        marketCap: formatNumberWithOptions(coin?.market_cap),
         name: coin?.name,
-        nameId: coin?.nameid,
-        price: formatPrice(coin?.price_usd, 2, 2),
-        rank: coin?.rank,
-        c_supply: formatNumberWithOptions(coin?.csupply, false),
-        symbol: coin?.symbol,
-        trend: getTextColor(coin?.percent_change_24h),
-        volume: formatNumberWithOptions(coin?.volume24),
+        price: formatPrice(coin?.current_price, 2, 2),
+        rank: coin?.market_cap_rank,
+        symbol: coin?.symbol.toUpperCase(),
+        trend: getTextColor(coin?.price_change_percentage_24h),
+        volume: formatNumberWithOptions(coin?.total_volume),
     }))
-}
-
+};
 
 const formatCoin = coin => {
     return {
@@ -92,7 +90,7 @@ const formatCoin = coin => {
         volume: coin?.volume,
         volumeFormatted: formatNumberWithOptions(coin?.volume),
     }
-}
+};
 
 const extractLinks = (externalLinks) => {
     let links = {

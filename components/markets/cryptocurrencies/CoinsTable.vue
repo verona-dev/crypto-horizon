@@ -109,9 +109,12 @@
     // State
     const { loading, coins } = storeToRefs(CryptocurrenciesStore);
     // Methods
-    const { fetchCoinLore, } = CryptocurrenciesStore;
+    const { fetchCoinLore, fetchCoingecko } = CryptocurrenciesStore;
     
-    onMounted(() => fetchCoinLore('tickers', { limit: 20 }));
+    onMounted(() => {
+        // fetchCoinLore('tickers', { limit: 20 });
+        fetchCoingecko('coins/markets');
+    });
     
     // Pagination
     /*

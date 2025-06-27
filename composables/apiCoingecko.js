@@ -1,7 +1,7 @@
 
-export async function useFetchCoingecko()  {
+export async function useFetchCoingecko(route, options)  {
     try {
-        return await $fetch('/api/coingecko/coins/markets', {
+        return await $fetch(`/api/coingecko/${route}`, {
             query: { vs_currency: 'usd' }
         });
     } catch(error) {
