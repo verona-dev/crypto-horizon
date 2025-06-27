@@ -5,21 +5,19 @@
         class='cryptocurrencies-global flex flex-wrap justify-center my-20'
     >
         <Card class='card justify-between'>
+            <!--  Assets  -->
             <CardHeader>
-                <CardTitle>
                     <MazAnimatedText
-                        tag='h4'
+                        tag='h2'
                         text=''
                         last-word='Assets'
                         :delay='500'
                         :duration='2000'
                         direction='left'
                     />
-                </CardTitle>
                 <Separator />
             </CardHeader>
             
-            <!--  Assets  -->
             <CardContent>
                 <CardDescription>Total number of coins</CardDescription>
                 <p v-if='marketOverview.coins_count'>{{ marketOverview.coins_count }}</p>

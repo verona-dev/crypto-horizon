@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia';
 import { useFetchCoinLoreData } from '~/composables/apiCoinLore.js';
-import { useCoingeckoHistoricalChartData } from '~/composables/apiCoingecko';
+import { useFetchCoingecko } from '~/composables/apiCoingecko';
 import { formatCoin, formatCoinsTable, } from '~/utils/formatUtils.js';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 
 export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     state: () => ({
         coins: [],
+        coinsList: [],
         coin: {},
         coinChartData: {},
         marketOverview: [],
@@ -58,8 +59,33 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             await this.fetchLiveCoinWatch('coins/single', { code: symbol, meta: true });
         },
         
+        async fetchCoingecko(route, options) {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko(route, options);
+                
+                if(route === 'coins/markets') {
+                    this.coins = [];
+                    this.coins = formatCoinsTable(response);
+                    console.log(this.coins[0]);
+                }
+                
+                if(route === 'coins/list') {
+                    this.coinsList = [];
+                    this.coinList = response;
+                    console.log(this.coinList);
+                }
+            }
+            catch(error) {
+                console.error(error);
+            }
+            finally {
+                this.loading = false;
+            }
+        },
         
-        // Old, remove
+        /*
         async fetchCoingeckoHistoricalChartData(coin, days) {
             this.loading = true;
             
@@ -73,7 +99,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             finally {
                 this.loading = false;
             }
-            
         },
+        */
     },
 });

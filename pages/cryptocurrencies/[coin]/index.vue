@@ -82,9 +82,10 @@
     const { coin, loading } = storeToRefs(CryptocurrenciesStore);
     const activeSymbol = computed(() => route.params.coin);
     // Methods
-    const { setActiveCoin } = CryptocurrenciesStore;
+    const { setActiveCoin, fetchCoingecko } = CryptocurrenciesStore;
     
     onMounted(() => {
         setActiveCoin(route.params.coin);
+        fetchCoingecko('coins/list');
     });
 </script>
