@@ -14,7 +14,6 @@
     const props = defineProps({
         coin: {
             type: Object,
-            default: (() => {}),
             required: true,
         }
     });
@@ -23,9 +22,9 @@
     const remainingSupply = computed(() => coin.value.maxSupply - coin.value.totalSupply);
     
     const chartContent = computed(() => {
-        const labels: string[] = [];
-        const data: number[] = [];
-        const backgroundColor: string[] = [];
+        const labels = [];
+        const data = [];
+        const backgroundColor = [];
         
         // If coin has max supply
         if (coin.value.maxSupply) {
@@ -50,16 +49,22 @@
                 data.push(remainingSupply.value);
                 backgroundColor.push('#41B883');
             }
-            
-            return { labels, data, backgroundColor };
         } else {
             // If coin does not have max supply
-            return {
-                labels: ['Total Supply', 'Circulating Supply'],
-                data: [coin.value.totalSupply, coin.value.circulatingSupply],
-                backgroundColor: ['#fef0ca', '#e787c0'],
-            };
+            if(coin.value.totalSupply) {
+                labels.push('Total Supply');
+                data.push(coin.value.totalSupply);
+                backgroundColor.push('#fef0ca');
+            }
+            
+            if(coin.value.circulatingSupply) {
+                labels.push('Circulating Supply');
+                data.push(coin.value.circulatingSupply);
+                backgroundColor.push('#e787c0');
+            }
         }
+        
+        return { labels, data, backgroundColor };
     });
     
     const chartData = ref({
