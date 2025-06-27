@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { useFetchCoinLoreData } from '~/composables/apiCoinLore.js';
-import { useCoingeckoHistoricalChartData } from '~/composables/apiCoingecko';
+import { useFetchCoingecko } from '~/composables/apiCoingecko';
 import { formatCoin, formatCoinsTable, } from '~/utils/formatUtils.js';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 
@@ -58,6 +58,28 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             await this.fetchLiveCoinWatch('coins/single', { code: symbol, meta: true });
         },
         
+        async fetchCoingecko(route, options) {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko(route, options);
+                
+                if(route === 'coins/markets') {
+                    this.coins = [];
+                    this.coins = formatCoinsTable(response);
+                    console.log(response[0]);
+                    console.log(this.coins[0]);
+                }
+            }
+            catch(error) {
+                console.error(error);
+            }
+            finally {
+                this.loading = false;
+            }
+        },
+        
+        /*
         async fetchCoingeckoHistoricalChartData(coin, days) {
             this.loading = true;
             
@@ -72,5 +94,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 this.loading = false;
             }
         },
+        */
     },
 });
