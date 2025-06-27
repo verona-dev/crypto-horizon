@@ -58,8 +58,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             await this.fetchLiveCoinWatch('coins/single', { code: symbol, meta: true });
         },
         
-        
-        // Old, remove
         async fetchCoingeckoHistoricalChartData(coin, days) {
             this.loading = true;
             
@@ -73,7 +71,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             finally {
                 this.loading = false;
             }
-            
         },
     },
 });
