@@ -7,8 +7,17 @@ export default defineEventHandler(async (event) => {
     const queryEvent = getQuery(event);
     const query = new URLSearchParams(queryEvent).toString();
     const apiUrl = `https://api.coingecko.com/api/v3/${route}?${query}`;
+    const storage = useStorage();
+    const cacheKey = 'coingecko-list';
+    const cacheTTL = 60 * 60 * 6;
+    let data;
     
     try {
+        if(route === 'coins/list'){
+            data = await storage.getItem(cacheKey);
+            if (data) return data;
+        }
+        
         const response = await fetch(apiUrl, {
             method: 'GET',
             headers: {
@@ -26,11 +35,22 @@ export default defineEventHandler(async (event) => {
             });
         }
         
-        return await response.json();
+        data = await response.json();
+        
+        // Cache data for 'coins/list' route
+        if (route === 'coins/list') {
+            await storage.setItem(cacheKey, data, cacheTTL);
+        }
+        
+        return data;
     } catch(error) {
-        throw createError({
-            statusCode: 500,
-            statusMessage: 'Failed to fetch CoinGecko data',
-        });
+        if (error.statusCode) {
+            throw error;
+        } else {
+            throw createError({
+                statusCode: 500,
+                statusMessage: 'Failed to fetch CoinGecko data',
+            });
+        }
     }
 });
