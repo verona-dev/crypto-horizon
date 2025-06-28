@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { useFetchCoinLoreData } from '~/composables/apiCoinLore.js';
-import { useFetchCoingecko } from '~/composables/apiCoingecko';
+import { useFetchCoingecko, resolveSymbolToId } from '~/composables/apiCoingecko';
 import { formatCoin, formatCoinsTable, } from '~/utils/formatUtils.js';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 
@@ -9,6 +9,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         coins: [],
         coinsList: [],
         coin: {},
+        coinCg: {},
         coinChartData: {},
         marketOverview: [],
         loading: false,
@@ -68,19 +69,37 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 if(route === 'coins/markets') {
                     this.coins = [];
                     this.coins = formatCoinsTable(response);
-                    console.log(this.coins[0]);
-                }
-                
-                if(route === 'coins/list') {
-                    this.coinsList = [];
-                    this.coinList = response;
-                    console.log(this.coinList);
                 }
             }
             catch(error) {
                 console.error(error);
             }
             finally {
+                this.loading = false;
+            }
+        },
+        
+        async fetchCoinBySymbol(symbol) {
+            console.log(symbol);
+            this.loading = true;
+            this.coinCg = {};
+            
+            try {
+                const cgId = await resolveSymbolToId(symbol);
+                if (!cgId) {
+                    this.error = 'Coin not found';
+                    return;
+                }
+                const data = await useFetchCoingecko(`coins/${cgId}`, {
+                    query: { localization: false, tickers: false }
+                });
+                
+                this.coinCg = data;
+                console.log(this.coinCg);
+                
+            } catch (error) {
+                console.error(error);
+            } finally {
                 this.loading = false;
             }
         },
