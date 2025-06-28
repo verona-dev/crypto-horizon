@@ -42,7 +42,7 @@
             <MazTableCell>
                 <NuxtLink :to='`/cryptocurrencies/${row.symbol}`'>
                     <div class='flex items-center gap-2'>
-                        <NuxtImg
+                        <NuxtPicture
                             :src='row.image'
                             width='35'
                             class='ml-2 mr-2'
@@ -111,10 +111,9 @@
     // State
     const { loading, coins } = storeToRefs(CryptocurrenciesStore);
     // Methods
-    const { fetchCoinLore, fetchCoingecko } = CryptocurrenciesStore;
+    const { fetchCoingecko } = CryptocurrenciesStore;
     
     onMounted(() => {
-        // fetchCoinLore('tickers', { limit: 20 });
         fetchCoingecko('coins/markets');
     });
     
