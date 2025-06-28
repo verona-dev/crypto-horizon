@@ -42,7 +42,7 @@
             <MazTableCell>
                 <NuxtLink :to='`/cryptocurrencies/${row.symbol}`'>
                     <div class='flex items-center gap-2'>
-                        <NuxtPicture
+                        <NuxtImg
                             :src='row.image'
                             width='35'
                             class='ml-2 mr-2'
