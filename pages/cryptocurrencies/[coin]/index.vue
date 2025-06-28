@@ -81,11 +81,13 @@
     // State
     const { coin, loading } = storeToRefs(CryptocurrenciesStore);
     const activeSymbol = computed(() => route.params.coin);
+    const symbol = computed(() => route.params.coin.toLowerCase());
     // Methods
-    const { setActiveCoin, fetchCoingecko } = CryptocurrenciesStore;
+    const { setActiveCoin, fetchCoinBySymbol } = CryptocurrenciesStore;
     
     onMounted(() => {
         setActiveCoin(route.params.coin);
-        fetchCoingecko('coins/list');
+        fetchCoinBySymbol(symbol.value);
+        console.log(symbol.value);
     });
 </script>
