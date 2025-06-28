@@ -1,5 +1,6 @@
 
 [images]
 remote_images = [
-  "https://lcw.nyc3.cdn.digitaloceanspaces.com/.*"
+  "https://lcw.nyc3.cdn.digitaloceanspaces.com/.*",
+  "https://coin-images.coingecko.com/.*"
 ]
