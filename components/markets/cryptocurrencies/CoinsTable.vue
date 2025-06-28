@@ -115,6 +115,7 @@
     
     onMounted(() => {
         fetchCoingecko('coins/markets');
+        // fetchCoingecko('coins/list');
     });
     
     // Pagination

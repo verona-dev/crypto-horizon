@@ -6,11 +6,21 @@ export async function useFetchCoingecko(route, options)  {
             ...options
         });
     } catch(error) {
-        console.error('Error fetching CoinLore data', error);
+        console.error('Error fetching CoinGecko data', error);
     }
 }
 
-
+export async function resolveSymbolToId(symbol) {
+    console.log(symbol);
+    try {
+        const { id } = await $fetch(`/api/coingecko/resolve`, {
+            query: { symbol }
+        });
+        return id;
+    } catch(error) {
+        console.error('Error fetching CoinGecko data', error);
+    }
+}
 
 /*
 export const useCoingeckoHistoricalChartData = (coin, days) => {
