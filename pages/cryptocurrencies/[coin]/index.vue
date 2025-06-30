@@ -32,7 +32,7 @@
                         <!--  Market Cap Progress  -->
                         <CoinMarketCap :marketCap='coin.liveCoinWatch.marketCap'/>
                         
-                        <!--  Overview Table  -->
+                        <!--  Overview  -->
                         <CoinOverview
                             :coin='coin'
                             class='my-20'
