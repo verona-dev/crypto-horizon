@@ -3,19 +3,19 @@
         <Table class='text-lg'>
             <TableBody>
                 <!--  Created  -->
-                <TableRow v-if='coin.age'>
+                <TableRow v-if='liveCoinWatch.age'>
                     <TableCell>Created</TableCell>
-                    <TableCell>{{ coin.age }} days ago</TableCell>
+                    <TableCell>{{ liveCoinWatch.age }} days ago</TableCell>
                 </TableRow>
                 
                 <!--  ATH  -->
-                <TableRow v-if='coin.allTimeHighUSD'>
+                <TableRow v-if='liveCoinWatch.allTimeHighUSD'>
                     <TableCell>All-time high</TableCell>
-                    <TableCell>{{ coin.allTimeHighUSDFormatted }}</TableCell>
+                    <TableCell>{{ liveCoinWatch.allTimeHighUSDFormatted }}</TableCell>
                 </TableRow>
                 
                 <!--  Markets  -->
-                <TableRow v-if='coin.markets'>
+                <TableRow v-if='liveCoinWatch.markets'>
                     <TableCell class='flex items-center'>
                         Markets
                         
@@ -32,11 +32,11 @@
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
-                    <TableCell>{{ coin.markets }}</TableCell>
+                    <TableCell>{{ liveCoinWatch.markets }}</TableCell>
                 </TableRow>
                 
                 <!--  Pairs  -->
-                <TableRow v-if='coin.pairs'>
+                <TableRow v-if='liveCoinWatch.pairs'>
                     <TableCell class='flex items-center'>
                         Pairs
                         
@@ -53,11 +53,11 @@
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
-                    <TableCell>{{ coin.pairs }}</TableCell>
+                    <TableCell>{{ liveCoinWatch.pairs }}</TableCell>
                 </TableRow>
                 
                 <!--  Exchanges  -->
-                <TableRow v-if='coin.exchanges'>
+                <TableRow v-if='liveCoinWatch.exchanges'>
                     <TableCell class='flex items-center'>
                         Exchanges
                         
@@ -74,7 +74,15 @@
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
-                    <TableCell>{{ coin.exchanges }}</TableCell>
+                    <TableCell>{{ liveCoinWatch.exchanges }}</TableCell>
+                </TableRow>
+                
+                <!--  Hashing algorithm  -->
+                <TableRow v-if='coinGecko.hashing_algorithm'>
+                    <TableCell class='flex items-center'>
+                        Hashing algorithm
+                    </TableCell>
+                    <TableCell>{{ coinGecko.hashing_algorithm }}</TableCell>
                 </TableRow>
             </TableBody>
         </Table>
@@ -94,8 +102,9 @@
         coin: {
             type: Object,
             required: true,
-            default: () => ({}),
         }
     });
     const { coin } = toRefs(props);
+    const liveCoinWatch = toRef(coin.value.liveCoinWatch);
+    const coinGecko = toRef(coin.value.coingecko);
 </script>

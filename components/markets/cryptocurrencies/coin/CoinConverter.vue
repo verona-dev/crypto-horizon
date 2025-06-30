@@ -1,6 +1,6 @@
 <template>
     <div class='coin-converter my-6 flex flex-col'>
-        <h6 class='mb-2'>{{ activeSymbol }} to USD converter</h6>
+        <h6 class='mb-2'>{{ coin.symbol }} to USD converter</h6>
         
         <MazInput
             v-model.number='coinInput'
@@ -11,7 +11,7 @@
             @change='resetOnInvalidNumber'
         >
             <template #left-icon>
-                {{ activeSymbol }}
+                {{ coin.symbol }}
             </template>
         </MazInput>
         
@@ -38,18 +38,14 @@
         coin: {
             type: Object,
             required: true,
-            default: () => ({}),
         },
-        activeSymbol: {
-            type: String,
-            default: '',
-        }
     });
     
-    const { coin, activeSymbol } = toRefs(props);
+    const { coin } = toRefs(props);
     const coinPrice = computed(() => {
-        if (coin.value?.rate == null) return 0;
-        return Math.round(coin.value.rate * 100) / 100;
+        const rate = coin.value?.liveCoinWatch?.rate;
+        if (rate == null) return 0;
+        return Math.round(rate * 100) / 100;
     });
     const coinInput = ref(1);
     const usdInput = ref(coinPrice.value);
