@@ -1,14 +1,14 @@
 <template>
-    <CardHeader class='my-6 flex justify-center items-center'>
+    <CardHeader v-if='coin' class='my-6 flex justify-center items-center'>
         <div class='header-content flex items-center'>
             <div class='mr-10'>
                 <!-- Logo  -->
                 <NuxtImg
-                    v-if='coin.liveCoinWatch.webp64'
-                    :src='coin.liveCoinWatch.webp64'
+                    v-if='coin.coingecko?.image?.large'
+                    :src='coin.coingecko.image.large'
                     alt='symbol'
-                    width='100'
-                    height='100'
+                    width='150'
+                    height='150'
                 />
             </div>
             
@@ -45,7 +45,7 @@
     const props = defineProps({
         coin: {
             type: Object,
-            default: () => ({}),
+            required: true,
         },
     });
     
