@@ -39,9 +39,7 @@
                         />
                         
                         <!--  Converter  -->
-                        <CoinConverter
-                            :coin='coin.liveCoinWatch'
-                        />
+                        <CoinConverter :coin='coin' />
                     </div>
                 </CardContent>
                 
