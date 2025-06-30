@@ -75,9 +75,9 @@
     // State
     const { coin, loading } = storeToRefs(CryptocurrenciesStore);
     // Methods
-    const { setActiveCoin } = CryptocurrenciesStore;
+    const { setCoin } = CryptocurrenciesStore;
     
     onMounted(() => {
-        setActiveCoin(route.params.coin);
+        setCoin(route.params.coin);
     });
 </script>
