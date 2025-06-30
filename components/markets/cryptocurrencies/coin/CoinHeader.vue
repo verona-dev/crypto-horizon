@@ -41,7 +41,7 @@
         >
             <Accordion type='single' collapsible>
                 <AccordionItem value="item-1">
-                    <AccordionTrigger>Description</AccordionTrigger>
+                    <AccordionTrigger>What is {{ coinGecko.name }}</AccordionTrigger>
                     <AccordionContent>{{ coinGecko.description.en }}</AccordionContent>
                 </AccordionItem>
             </Accordion>
