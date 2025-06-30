@@ -10,18 +10,6 @@ export async function useFetchCoingecko(route, options)  {
     }
 }
 
-export async function resolveSymbolToId(symbol) {
-    console.log(symbol);
-    try {
-        const { id } = await $fetch(`/api/coingecko/resolve`, {
-            query: { symbol }
-        });
-        return id;
-    } catch(error) {
-        console.error('Error fetching CoinGecko data', error);
-    }
-}
-
 /*
 export const useCoingeckoHistoricalChartData = (coin, days) => {
     const params = new URLSearchParams();

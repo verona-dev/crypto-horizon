@@ -99,33 +99,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         },
         
         /*
-            async fetchCoinBySymbol(symbol) {
-                console.log(symbol);
-                this.loading = true;
-                this.coinCg = {};
-                
-                try {
-                    const cgId = await resolveSymbolToId(symbol);
-                    if (!cgId) {
-                        this.error = 'Coin not found';
-                        return;
-                    }
-                    const data = await useFetchCoingecko(`coins/${cgId}`, {
-                        query: { localization: false, tickers: false }
-                    });
-                    
-                    this.coinCg = data;
-                    console.log(this.coinCg);
-                    
-                } catch (error) {
-                    console.error(error);
-                } finally {
-                    this.loading = false;
-                }
-            },
-        */
-        
-        /*
         async fetchCoingeckoHistoricalChartData(coin, days) {
             this.loading = true;
             
