@@ -13,38 +13,34 @@
         
         <div v-else>
             <Card
-                v-if='coin && coin?.name'
+                v-if='coin && coin.liveCoinWatch.name'
                 class='lg:w-6xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border my-10 py-6 shadow-sm'
             >
                 <!--  Header  -->
-                <CoinHeader
-                    :coin='coin'
-                    :activeSymbol='activeSymbol'
-                />
+                <CoinHeader :coin='coin' />
                 
                 <CardContent class='px-20 my-10 flex justify-around'>
                     <div class='left'>
                         <!--  Links  -->
                         <CoinLinks
-                            v-if='coin.links'
-                            :links='coin.links'
+                            v-if='coin.liveCoinWatch.links'
+                            :links='coin.liveCoinWatch.links'
                         />
                     </div>
                     
                     <div class='right flex flex-col'>
                         <!--  Market Cap Progress  -->
-                        <CoinMarketCap :marketCap='coin.marketCap'/>
+                        <CoinMarketCap :marketCap='coin.liveCoinWatch.marketCap'/>
                         
                         <!--  Overview Table  -->
                         <CoinOverview
-                            :coin='coin'
+                            :coin='coin.liveCoinWatch'
                             class='my-20'
                         />
                         
                         <!--  Converter  -->
                         <CoinConverter
-                            :coin='coin'
-                            :activeSymbol='activeSymbol'
+                            :coin='coin.liveCoinWatch'
                         />
                     </div>
                 </CardContent>
@@ -52,10 +48,10 @@
                 <Separator class='my-4' />
                 
                 <!--  Delta  -->
-                <CoinDelta :coin='coin' />
+                <CoinDelta :coin='coin.liveCoinWatch' />
                 
                 <!--  Supply  -->
-                <CoinSupply :coin='coin' />
+                <CoinSupply :coin='coin.liveCoinWatch' />
             </Card>
         </div>
     </div>
@@ -80,14 +76,10 @@
     
     // State
     const { coin, loading } = storeToRefs(CryptocurrenciesStore);
-    const activeSymbol = computed(() => route.params.coin);
-    const symbol = computed(() => route.params.coin.toLowerCase());
     // Methods
-    const { setActiveCoin, fetchCoinBySymbol } = CryptocurrenciesStore;
+    const { setActiveCoin } = CryptocurrenciesStore;
     
     onMounted(() => {
         setActiveCoin(route.params.coin);
-        fetchCoinBySymbol(symbol.value);
-        console.log(symbol.value);
     });
 </script>
