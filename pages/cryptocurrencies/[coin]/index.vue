@@ -34,7 +34,7 @@
                         
                         <!--  Overview Table  -->
                         <CoinOverview
-                            :coin='coin.liveCoinWatch'
+                            :coin='coin'
                             class='my-20'
                         />
                         
