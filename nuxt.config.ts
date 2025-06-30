@@ -34,7 +34,12 @@ export default defineNuxtConfig({
    icon: {
       componentName: 'NuxtIcon',
       mode: 'css',
-      cssLayer: 'base'
+      cssLayer: 'base',
+      serverBundle: {
+         collections: {
+            'cryptocurrency-color': ['btc', 'eth'], 
+         },
+      },
    },
 
    image: {
