@@ -4,8 +4,8 @@
             <div class='mr-10'>
                 <!-- Logo  -->
                 <NuxtImg
-                    v-if='coin.webp64'
-                    :src='coin.webp64'
+                    v-if='coin.liveCoinWatch.webp64'
+                    :src='coin.liveCoinWatch.webp64'
                     alt='symbol'
                     width='100'
                     height='100'
@@ -15,7 +15,7 @@
             <div>
                 <!--  Name + Rank  -->
                 <div class='flex items-center'>
-                    <h2>{{ coin.name }}</h2>
+                    <h2>{{ coin.liveCoinWatch.name }}</h2>
                     
                     <MazBadge
                         color='info'
@@ -23,15 +23,15 @@
                         rounded-size='md'
                         class='ml-8 mt-2'
                     >
-                        #{{ coin.rank }}
+                        #{{ coin.liveCoinWatch.rank }}
                     </MazBadge>
                 </div>
                 
                 <!-- Symbol  -->
-                <p class='ml-1 mt-2'>{{ activeSymbol }}</p>
+                <p class='ml-1 mt-2'>{{ coin.symbol }} {{ coin.liveCoinWatch.symbol }}</p>
                 
                 <!--  Coin price  -->
-                <h4 class='text-foreground mt-4'>{{ coin.rateFormatted }}</h4>
+                <h4 class='text-foreground mt-4'>{{ coin.liveCoinWatch.rateFormatted }}</h4>
             </div>
         </div>
     </CardHeader>
@@ -47,13 +47,9 @@
             type: Object,
             default: () => ({}),
         },
-        activeSymbol: {
-            type: String,
-            default: '',
-        }
     });
     
-    const { coin, activeSymbol } = toRefs(props);
+    const { coin } = toRefs(props);
 </script>
 
 <style scoped>
