@@ -10,7 +10,6 @@
         "postinstall": "nuxt prepare"
     },
     "devDependencies": {
-        "@iconify-json/cryptocurrency-color": "^1.2.2",
         "@nuxt/icon": "1.13.0",
         "@nuxt/image": "^1.10.0",
         "@nuxtjs/color-mode": "3.5.2",
