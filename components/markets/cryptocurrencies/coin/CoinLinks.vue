@@ -1,7 +1,7 @@
 <template>
     <div class='coin-links'>
         <!--  Websites  -->
-        <div class='links mt-10'>
+        <div class='coin-link-container'>
             <h4>Websites</h4>
             
             <!--  Homepage  -->
@@ -60,7 +60,7 @@
         </div>
         
         <!--  Community  -->
-        <div v-if='livecoinwatchLinks?.socials' class='socials mt-20'>
+        <div v-if='livecoinwatchLinks?.socials' class='coin-link-container'>
             <h4>Community</h4>
             
             <div
@@ -92,7 +92,7 @@
         </div>
         
         <!--  Explorers  -->
-        <div v-if='coingeckoLinks?.blockchain_site' class='explorers mt-20'>
+        <div v-if='coingeckoLinks?.blockchain_site' class='coin-link-container'>
             <h4>Explorers</h4>
             
             <div
@@ -125,6 +125,36 @@
                 </NuxtLink>
             </div>
         </div>
+        
+        <!--  Github  -->
+        <div v-if='coingeckoLinks.repos_url?.github' class='coin-link-container'>
+            <h4>Github</h4>
+            
+            <div
+                v-for='link in coingeckoLinks.repos_url.github'
+                :key='link'
+                class='flex items-center justify-start'
+            >
+                <NuxtLink
+                    v-if='link'
+                    :to='link'
+                    external
+                    target='_blank'
+                    class=''
+                >
+                    <div class='link-item flex items-center py-3'>
+                        <NuxtIcon
+                            name='radix-icons:github-logo'
+                            size='25'
+                            class='w-[50px]'
+                        />
+                        
+                        <p>{{ link }}</p>
+                    </div>
+                
+                </NuxtLink>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -147,6 +177,10 @@
 
 <style scoped>
     .coin-links {
+        .coin-link-container {
+            margin-bottom: 100px;
+        }
+        
         .link-item {
             color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
             
