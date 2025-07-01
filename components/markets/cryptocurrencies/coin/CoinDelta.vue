@@ -1,6 +1,6 @@
 <template>
     <CardTitle class='flex flex-col items-center'>
-        <p>Rate of Change</p>
+        <h6>Rate of Change</h6>
     </CardTitle>
     
     <CardContent
