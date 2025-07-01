@@ -43,7 +43,7 @@
     
     const { coin } = toRefs(props);
     const coinPrice = computed(() => {
-        const rate = coin.value?.liveCoinWatch?.rate;
+        const rate = coin.value?.livecoinwatch?.rate;
         if (rate == null) return 0;
         return Math.round(rate * 100) / 100;
     });
@@ -87,7 +87,7 @@
 <style>
     .coin-converter {
         .m-input-wrapper {
-            background-color: transparent !important;
+            background-color: var(--accent-foreground) !important;
         }
         
         .coin-input {

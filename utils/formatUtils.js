@@ -1,4 +1,4 @@
-import { getIcon, getTextColor } from '~/utils/styleUtils.js';
+import { getTextColor } from '~/utils/styleUtils.js';
 
 const formatPrice = (number, min = 2, max = 2) => {
     if (number == null || isNaN(number)) return '-';
@@ -55,7 +55,7 @@ const formatCoinsTable = coins => {
         ...coin,
         changePercent24Hr: coin?.price_change_percentage_24h.toFixed(2),
         c_supply: formatNumberWithOptions(coin?.circulating_supply, false),
-        icon: getIcon(coin?.symbol),
+        icon: coin?.symbol,
         id: coin?.id,
         marketCap: formatNumberWithOptions(coin?.market_cap),
         name: coin?.name,
@@ -67,7 +67,17 @@ const formatCoinsTable = coins => {
     }))
 };
 
-const formatCoin = coin => {
+const formatCoingeckoCoin = coin => {
+    return {
+        ...coin,
+        rateFormatted: formatPrice(coin?.market_data.current_price.usd, 0, 2),
+        ath_formatted: formatPrice(coin?.market_data.ath.usd, 2, 2),
+        ath_change_percentage: coin?.market_data.ath_change_percentage.usd.toFixed(2),
+        ath_change_percentage_trend: getTextColor(coin?.market_data.ath_change_percentage.usd),
+    }
+};
+
+const formatLivecoinwatchCoin = coin => {
     return {
         ...coin,
         allTimeHighUSD: coin?.allTimeHighUSD,
@@ -120,7 +130,8 @@ export {
     formatNumberWithOptions,
     formatPrice,
     formatCoinsTable,
-    formatCoin,
+    formatCoingeckoCoin,
+    formatLivecoinwatchCoin,
     getDeltaPercentage,
 };
 

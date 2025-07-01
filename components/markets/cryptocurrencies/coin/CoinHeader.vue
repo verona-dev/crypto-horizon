@@ -4,7 +4,7 @@
             <div class='mr-10'>
                 <!-- Logo  -->
                 <NuxtImg
-                    v-if='coinGecko?.image?.large'
+                    v-if='coingecko?.image?.large'
                     :src='coin.coingecko.image.large'
                     alt='symbol'
                     width='150'
@@ -15,7 +15,7 @@
             <div>
                 <!--  Name + Rank  -->
                 <div class='flex items-center'>
-                    <h2>{{ liveCoinWatch.name }}</h2>
+                    <h2>{{ coingecko.name }}</h2>
                     
                     <MazBadge
                         color='info'
@@ -23,28 +23,19 @@
                         rounded-size='md'
                         class='ml-8 mt-2'
                     >
-                        #{{ liveCoinWatch.rank }}
+                        #{{ coingecko.market_cap_rank }}
                     </MazBadge>
                 </div>
                 
                 <!-- Symbol  -->
-                <p class='ml-1 mt-2'>{{ coin.symbol }} {{ liveCoinWatch.symbol }}</p>
+                <div class='ml-1 mt-2'>
+                    <p class='inline mr-3'>{{ coin.symbol }}</p>
+                    <p v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</p>
+                </div>
                 
                 <!--  Coin price  -->
-                <h4 class='text-foreground mt-4'>{{ liveCoinWatch.rateFormatted }}</h4>
+                <h4 class='text-foreground mt-4'>{{ coingecko.rateFormatted }}</h4>
             </div>
-        </div>
-        
-        <div
-            v-if='coinGecko.description'
-            class='w-[500px] self-center'
-        >
-            <Accordion type='single' collapsible>
-                <AccordionItem value="item-1">
-                    <AccordionTrigger>What is {{ coinGecko.name }}</AccordionTrigger>
-                    <AccordionContent>{{ coinGecko.description.en }}</AccordionContent>
-                </AccordionItem>
-            </Accordion>
         </div>
     </CardHeader>
     
@@ -52,7 +43,6 @@
 </template>
 
 <script setup>
-    import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
     import { defineProps, toRefs } from 'vue';
     
     const props = defineProps({
@@ -63,8 +53,8 @@
     });
     
     const { coin } = toRefs(props);
-    const liveCoinWatch = toRef(coin.value.liveCoinWatch);
-    const coinGecko = toRef(coin.value.coingecko);
+    const livecoinwatch = toRef(coin.value.livecoinwatch);
+    const coingecko = toRef(coin.value.coingecko);
 </script>
 
 <style scoped>

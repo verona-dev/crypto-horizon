@@ -13,24 +13,27 @@
         
         <div v-else>
             <Card
-                v-if='coin && coin.liveCoinWatch.name'
+                v-if='coin && coin.livecoinwatch.name'
                 class='lg:w-6xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border my-10 py-6 shadow-sm'
             >
                 <!--  Header  -->
                 <CoinHeader :coin='coin' />
                 
-                <CardContent class='px-20 my-10 flex justify-around'>
+                <!--  Info  -->
+                <CoinInfo :coin='coin' />
+                
+                <CardContent class='my-10 flex justify-evenly'>
                     <div class='left'>
                         <!--  Links  -->
                         <CoinLinks
-                            v-if='coin.liveCoinWatch.links'
-                            :links='coin.liveCoinWatch.links'
+                            :livecoinwatchLinks='coin.livecoinwatch.links'
+                            :coingeckoLinks='coin.coingecko.links'
                         />
                     </div>
                     
                     <div class='right flex flex-col'>
                         <!--  Market Cap Progress  -->
-                        <CoinMarketCap :marketCap='coin.liveCoinWatch.marketCap'/>
+                        <CoinMarketCap :marketCap='coin.livecoinwatch.marketCap'/>
                         
                         <!--  Overview  -->
                         <CoinOverview
@@ -46,10 +49,10 @@
                 <Separator class='my-4' />
                 
                 <!--  Delta  -->
-                <CoinDelta :coin='coin.liveCoinWatch' />
+                <CoinDelta :coin='coin.livecoinwatch' />
                 
                 <!--  Supply  -->
-                <CoinSupply :coin='coin.liveCoinWatch' />
+                <CoinSupply :coin='coin.livecoinwatch' />
             </Card>
         </div>
     </div>
@@ -59,6 +62,7 @@
     import CoinConverter from '~/components/markets/cryptocurrencies/coin/CoinConverter.vue';
     import CoinDelta from '~/components/markets/cryptocurrencies/coin/CoinDelta.vue';
     import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
+    import CoinInfo from '@/components/markets/cryptocurrencies/coin/CoinInfo.vue';
     import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     import CoinOverview from '@/components/markets/cryptocurrencies/coin/CoinOverview.vue';
     import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
