@@ -15,7 +15,7 @@
             <div>
                 <!--  Name + Rank  -->
                 <div class='flex items-center'>
-                    <h2>{{ livecoinwatch.name }}</h2>
+                    <h2>{{ coingecko.name }}</h2>
                     
                     <MazBadge
                         color='info'
@@ -23,15 +23,18 @@
                         rounded-size='md'
                         class='ml-8 mt-2'
                     >
-                        #{{ livecoinwatch.rank }}
+                        #{{ coingecko.market_cap_rank }}
                     </MazBadge>
                 </div>
                 
                 <!-- Symbol  -->
-                <p class='ml-1 mt-2'>{{ coin.symbol }} {{ livecoinwatch.symbol }}</p>
+                <div class='ml-1 mt-2'>
+                    <p class='inline mr-3'>{{ coin.symbol }}</p>
+                    <p v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</p>
+                </div>
                 
                 <!--  Coin price  -->
-                <h4 class='text-foreground mt-4'>{{ livecoinwatch.rateFormatted }}</h4>
+                <h4 class='text-foreground mt-4'>{{ coingecko.rateFormatted }}</h4>
             </div>
         </div>
     </CardHeader>
