@@ -10,7 +10,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         coinsList: [],
         coin: {
             coingecko: {},
-            liveCoinWatch: {},
+            livecoinwatch: {},
             symbol: '',
         },
         coinCg: {},
@@ -88,8 +88,8 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 const response = await useFetchLiveCoinWatch(route, options);
                 
                 if(route === 'coins/single') {
-                    this.coin.liveCoinWatch = formatCoin(response);
-                    console.log(this.coin);
+                    this.coin.livecoinwatch = formatCoin(response);
+                    console.log(JSON.parse(JSON.stringify(this.coin.coingecko)));
                 }
             } catch(error) {
                 console.log(error);

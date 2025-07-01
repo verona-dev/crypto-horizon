@@ -15,7 +15,7 @@
             <div>
                 <!--  Name + Rank  -->
                 <div class='flex items-center'>
-                    <h2>{{ liveCoinWatch.name }}</h2>
+                    <h2>{{ livecoinwatch.name }}</h2>
                     
                     <MazBadge
                         color='info'
@@ -23,15 +23,15 @@
                         rounded-size='md'
                         class='ml-8 mt-2'
                     >
-                        #{{ liveCoinWatch.rank }}
+                        #{{ livecoinwatch.rank }}
                     </MazBadge>
                 </div>
                 
                 <!-- Symbol  -->
-                <p class='ml-1 mt-2'>{{ coin.symbol }} {{ liveCoinWatch.symbol }}</p>
+                <p class='ml-1 mt-2'>{{ coin.symbol }} {{ livecoinwatch.symbol }}</p>
                 
                 <!--  Coin price  -->
-                <h4 class='text-foreground mt-4'>{{ liveCoinWatch.rateFormatted }}</h4>
+                <h4 class='text-foreground mt-4'>{{ livecoinwatch.rateFormatted }}</h4>
             </div>
         </div>
     </CardHeader>
@@ -50,7 +50,7 @@
     });
     
     const { coin } = toRefs(props);
-    const liveCoinWatch = toRef(coin.value.liveCoinWatch);
+    const livecoinwatch = toRef(coin.value.livecoinwatch);
     const coingecko = toRef(coin.value.coingecko);
 </script>
 
