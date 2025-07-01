@@ -19,6 +19,9 @@
                 <!--  Header  -->
                 <CoinHeader :coin='coin' />
                 
+                <!--  Info  -->
+                <CoinInfo :coin='coin' />
+                
                 <CardContent class='px-20 my-10 flex justify-around'>
                     <div class='left'>
                         <!--  Links  -->
@@ -59,6 +62,7 @@
     import CoinConverter from '~/components/markets/cryptocurrencies/coin/CoinConverter.vue';
     import CoinDelta from '~/components/markets/cryptocurrencies/coin/CoinDelta.vue';
     import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
+    import CoinInfo from '@/components/markets/cryptocurrencies/coin/CoinInfo.vue';
     import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     import CoinOverview from '@/components/markets/cryptocurrencies/coin/CoinOverview.vue';
     import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
