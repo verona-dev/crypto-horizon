@@ -1,10 +1,10 @@
 <template>
     <CardContent v-if='coingecko' class='px-20 my-10 flex flex-col'>
         <!--  Description  -->
-        <div v-if='coingecko.description' class=''>
-            <Accordion type='single' collapsible class=''>
-                <AccordionItem value='item-1'>
-                    <AccordionTrigger class='w-full'>
+        <div v-if='coingecko.description' class='bg-accent-foreground'>
+            <Accordion type='single' collapsible class='py-2 px-8'>
+                <AccordionItem value='item-1' class=''>
+                    <AccordionTrigger class=''>
                         <p>What is {{ coingecko.name }}</p>
                     </AccordionTrigger>
                     <AccordionContent v-html='coingecko.description.en'></AccordionContent>
@@ -13,10 +13,10 @@
         </div>
         
         <!--  Categories  -->
-        <div v-if='coingecko.categories' class='categories'>
-            <Accordion type='single' collapsible class=''>
+        <div v-if='coingecko.categories' class='bg-accent-foreground'>
+            <Accordion type='single' collapsible class='py-2 px-8'>
                 <AccordionItem value='item-1'>
-                    <AccordionTrigger class='w-full'>
+                    <AccordionTrigger class=''>
                         <p class=''>Categories</p>
                     </AccordionTrigger>
                     <AccordionContent>
