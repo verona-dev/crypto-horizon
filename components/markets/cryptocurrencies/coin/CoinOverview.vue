@@ -1,5 +1,5 @@
 <template>
-    <div class='coin-overview w-96'>
+    <div class='coin-overview'>
         <Table class='text-lg'>
             <TableBody>
                 <!--  Genesis  -->
@@ -11,7 +11,10 @@
                 <!--  ATH  -->
                 <TableRow v-if='livecoinwatch.allTimeHighUSD'>
                     <TableCell>All-time high</TableCell>
-                    <TableCell>{{ coingecko.allTimeHighFormatted }}</TableCell>
+                    <TableCell>
+                        {{ coingecko.ath_formatted }}
+                        <span :class='coingecko.ath_change_percentage_trend'>{{ coingecko.ath_change_percentage }}&#37;</span>
+                    </TableCell>
                 </TableRow>
                 
                 <!--  Markets  -->
