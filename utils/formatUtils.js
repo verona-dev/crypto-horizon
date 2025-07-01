@@ -1,4 +1,4 @@
-import { getIcon, getTextColor } from '~/utils/styleUtils.js';
+import { getTextColor } from '~/utils/styleUtils.js';
 
 const formatPrice = (number, min = 2, max = 2) => {
     if (number == null || isNaN(number)) return '-';
@@ -55,7 +55,7 @@ const formatCoinsTable = coins => {
         ...coin,
         changePercent24Hr: coin?.price_change_percentage_24h.toFixed(2),
         c_supply: formatNumberWithOptions(coin?.circulating_supply, false),
-        icon: getIcon(coin?.symbol),
+        icon: coin?.symbol,
         id: coin?.id,
         marketCap: formatNumberWithOptions(coin?.market_cap),
         name: coin?.name,

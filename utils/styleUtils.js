@@ -1,4 +1,3 @@
-export const getIcon = symbol => `cryptocurrency-color:${symbol?.toLowerCase()}`;
 
 export const getTextColor = change => {
     if(Math.sign(change) === -1) {
@@ -19,3 +18,5 @@ export const getBorderColor = change => {
         return '!border-emerald-400';
     }
 };
+
+// export const getIcon = symbol => `cryptocurrency-color:${symbol?.toLowerCase()}`;
