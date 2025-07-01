@@ -37,7 +37,7 @@ export default defineNuxtConfig({
       cssLayer: 'base',
       serverBundle: {
          collections: {
-            'cryptocurrency-color': ['btc', 'eth'], 
+            'token-branded': ['btc', 'eth'],
          },
       },
    },

@@ -134,8 +134,8 @@
             
             <CardContent class='flex items-center'>
                 <NuxtIcon
-                    name='cryptocurrency-color:btc'
-                    size='30'
+                    name='token-branded:btc'
+                    size='50'
                     class='mr-4'
                 />
                 
@@ -151,8 +151,8 @@
             
             <CardContent class='flex items-center'>
                 <NuxtIcon
-                    name='cryptocurrency-color:eth'
-                    size='30'
+                    name='token-branded:eth'
+                    size='50'
                     class='mr-4'
                 />
                 
