@@ -3,15 +3,15 @@
         <Table class='text-lg'>
             <TableBody>
                 <!--  Genesis  -->
-                <TableRow v-if='coinGecko.genesis_date'>
+                <TableRow v-if='coingecko.genesis_date'>
                     <TableCell>Created</TableCell>
-                    <TableCell>{{ dayjs(coinGecko.genesis_date).format('DD.MM.YYYY') }}</TableCell>
+                    <TableCell>{{ dayjs(coingecko.genesis_date).format('DD.MM.YYYY') }}</TableCell>
                 </TableRow>
                 
                 <!--  ATH  -->
                 <TableRow v-if='livecoinwatch.allTimeHighUSD'>
                     <TableCell>All-time high</TableCell>
-                    <TableCell>{{ livecoinwatch.allTimeHighUSDFormatted }}</TableCell>
+                    <TableCell>{{ coingecko.allTimeHighFormatted }}</TableCell>
                 </TableRow>
                 
                 <!--  Markets  -->
@@ -78,11 +78,11 @@
                 </TableRow>
                 
                 <!--  Hashing algorithm  -->
-                <TableRow v-if='coinGecko.hashing_algorithm'>
+                <TableRow v-if='coingecko.hashing_algorithm'>
                     <TableCell class='flex items-center'>
                         Hashing algorithm
                     </TableCell>
-                    <TableCell>{{ coinGecko.hashing_algorithm }}</TableCell>
+                    <TableCell>{{ coingecko.hashing_algorithm }}</TableCell>
                 </TableRow>
             </TableBody>
         </Table>
@@ -107,5 +107,5 @@
     });
     const { coin } = toRefs(props);
     const livecoinwatch = toRef(coin.value.livecoinwatch);
-    const coinGecko = toRef(coin.value.coingecko);
+    const coingecko = toRef(coin.value.coingecko);
 </script>
