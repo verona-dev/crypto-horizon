@@ -77,24 +77,35 @@
         <div v-if='coingeckoLinks?.blockchain_site' class='explorers mt-20'>
             <h4>Explorers</h4>
             
-            <NuxtLink
+            <div
                 v-for='link in coingeckoLinks.blockchain_site'
-                :to='link'
-                external
-                target='_blank'
-                class='flex'
+                :key='link'
+                class='my-4'
             >
-                <div class='link-item flex items-center my-2'>
+                <NuxtLink
+                    :to='link'
+                    external
+                    target='_blank'
+                    class='inline-flex items-center'
+                >
                     <MazBadge
-                        rounded-size='md'
+                        rounded-size='lg'
                         color='gray'
-                        size='0.8rem'
+                        size='0.7rem'
                         outline
+                        class='link-item badge-item'
                     >
-                        {{ link }}
+                        <div class='py-1.5 pr-4 flex items-center'>
+                            <NuxtIcon
+                                name='radix-icons:globe'
+                                size='20'
+                                class='w-[50px]'
+                            />
+                            {{ link }}
+                        </div>
                     </MazBadge>
-                </div>
-            </NuxtLink>
+                </NuxtLink>
+            </div>
         </div>
     </div>
 </template>
@@ -120,11 +131,19 @@
     .coin-links {
         .link-item {
             color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
+            
+            &:hover {
+                color: var(--secondary);
+                text-decoration: underline;
+            }
+        }
+        
+        .badge-item:hover {
+            border: 1px solid var(--secondary);
         }
         
         h4 {
             margin-bottom: 24px;
         }
     }
-
 </style>

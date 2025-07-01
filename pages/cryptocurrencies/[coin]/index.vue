@@ -22,7 +22,7 @@
                 <!--  Info  -->
                 <CoinInfo :coin='coin' />
                 
-                <CardContent class='px-20 my-10 flex justify-around'>
+                <CardContent class='my-10 flex justify-evenly'>
                     <div class='left'>
                         <!--  Links  -->
                         <CoinLinks
