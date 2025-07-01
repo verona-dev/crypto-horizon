@@ -26,8 +26,8 @@
                     <div class='left'>
                         <!--  Links  -->
                         <CoinLinks
-                            v-if='coin.livecoinwatch.links'
-                            :links='coin.livecoinwatch.links'
+                            :livecoinwatchLinks='coin.livecoinwatch.links'
+                            :coingeckoLinks='coin.coingecko.links'
                         />
                     </div>
                     
