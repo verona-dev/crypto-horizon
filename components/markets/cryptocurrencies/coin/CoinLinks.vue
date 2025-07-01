@@ -1,10 +1,10 @@
 <template>
     <div class='coin-links'>
-        <!--  Website  -->
-        <div v-if='livecoinwatchLinks?.website' class='links mt-10'>
-            <h4>Website</h4>
+        <!--  Websites  -->
+        <div class='links mt-10'>
+            <h4>Websites</h4>
             
-            <!--  Website  -->
+            <!--  Homepage  -->
             <NuxtLink
                 v-if='livecoinwatchLinks.website'
                 :to='livecoinwatchLinks.website'
@@ -28,15 +28,33 @@
                 :to='livecoinwatchLinks.whitepaper'
                 external
                 target='_blank'
-                class='flex my-2'
+                class='flex mt-4'
             >
-                <div class='link-item flex items-center py-3'>
+                <div class='link-item flex items-center'>
                     <NuxtIcon
                         name='radix-icons:reader'
                         size='25'
                         class='w-[50px]'
                     />
                     <p>Whitepaper</p>
+                </div>
+            </NuxtLink>
+            
+            <!--  Forum  -->
+            <NuxtLink
+                v-if='coingeckoLinks.official_forum_url'
+                :to='coingeckoLinks.official_forum_url'
+                external
+                target='_blank'
+                class='flex mt-4'
+            >
+                <div class='link-item flex items-center'>
+                    <NuxtIcon
+                        name='radix-icons:chat-bubble'
+                        size='25'
+                        class='w-[50px]'
+                    />
+                    <p>Official Forum</p>
                 </div>
             </NuxtLink>
         </div>
