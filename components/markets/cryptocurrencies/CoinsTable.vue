@@ -51,7 +51,7 @@
                         
                         <div class='flex flex-col xl:flex-row items-start'>
                             <div class='mr-2'>{{ row.name }}</div>
-                            <div class='text-maz-muted'>{{ row.id }}</div>
+                            <div class='text-maz-muted'>{{ row.symbol }}</div>
                         </div>
                     </div>
                 </NuxtLink>
