@@ -67,7 +67,14 @@ const formatCoinsTable = coins => {
     }))
 };
 
-const formatCoin = coin => {
+const formatCoingeckoCoin = coin => {
+    return {
+        ...coin,
+        rateFormatted: formatPrice(coin?.market_data.current_price.usd, 0, 2),
+    }
+};
+
+const formatLivecoinwatchCoin = coin => {
     return {
         ...coin,
         allTimeHighUSD: coin?.allTimeHighUSD,
@@ -120,7 +127,8 @@ export {
     formatNumberWithOptions,
     formatPrice,
     formatCoinsTable,
-    formatCoin,
+    formatCoingeckoCoin,
+    formatLivecoinwatchCoin,
     getDeltaPercentage,
 };
 
