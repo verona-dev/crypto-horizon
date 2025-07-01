@@ -18,7 +18,7 @@
                         size='25'
                         class='w-[50px]'
                     />
-                    <p>Website</p>
+                    <p>Homepage</p>
                 </div>
             </NuxtLink>
             
