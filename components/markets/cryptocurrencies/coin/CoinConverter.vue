@@ -87,7 +87,7 @@
 <style>
     .coin-converter {
         .m-input-wrapper {
-            background-color: transparent !important;
+            background-color: var(--accent-foreground) !important;
         }
         
         .coin-input {
