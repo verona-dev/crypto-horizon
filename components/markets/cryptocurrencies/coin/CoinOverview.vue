@@ -2,10 +2,10 @@
     <div class='coin-overview w-96'>
         <Table class='text-lg'>
             <TableBody>
-                <!--  Created  -->
-                <TableRow v-if='livecoinwatch.age'>
+                <!--  Genesis  -->
+                <TableRow v-if='coinGecko.genesis_date'>
                     <TableCell>Created</TableCell>
-                    <TableCell>{{ livecoinwatch.age }} days ago</TableCell>
+                    <TableCell>{{ dayjs(coinGecko.genesis_date).format('DD.MM.YYYY') }}</TableCell>
                 </TableRow>
                 
                 <!--  ATH  -->
@@ -97,6 +97,7 @@
         TableRow,
     } from '@/components/ui/table';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
+    import dayjs from 'dayjs';
     
     const props = defineProps({
         coin: {
