@@ -89,7 +89,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 
                 if(route === 'coins/single') {
                     this.coin.livecoinwatch = formatLivecoinwatchCoin(response);
-                    console.log(JSON.parse(JSON.stringify(this.coin.coingecko)));
+                    // console.log(JSON.parse(JSON.stringify(this.coin.coingecko)));
                 }
             } catch(error) {
                 console.log(error);

@@ -71,7 +71,9 @@ const formatCoingeckoCoin = coin => {
     return {
         ...coin,
         rateFormatted: formatPrice(coin?.market_data.current_price.usd, 0, 2),
-        allTimeHighFormatted: formatPrice(coin?.market_data.ath.usd, 2, 2),
+        ath_formatted: formatPrice(coin?.market_data.ath.usd, 2, 2),
+        ath_change_percentage: coin?.market_data.ath_change_percentage.usd.toFixed(2),
+        ath_change_percentage_trend: getTextColor(coin?.market_data.ath_change_percentage.usd),
     }
 };
 
