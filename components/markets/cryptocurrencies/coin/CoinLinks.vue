@@ -1,7 +1,7 @@
 <template>
-    <div class='coin-links'>
+    <div class='coin-links flex flex-col'>
         <!--  Websites  -->
-        <div class='coin-link-container'>
+        <div class='coin-link-container mb-28 flex flex-col justify-center items-center xl:justify-start xl:items-start'>
             <h4>Websites</h4>
             
             <!--  Homepage  -->
@@ -63,11 +63,10 @@
                     </div>
                 </NuxtLink>
             </div>
-
         </div>
         
         <!--  Community  -->
-        <div v-if='livecoinwatchLinks?.socials' class='coin-link-container'>
+        <div v-if='livecoinwatchLinks?.socials' class='coin-link-container mb-28 flex flex-col justify-center items-center xl:justify-start xl:items-start'>
             <h4>Community</h4>
             
             <div
@@ -99,7 +98,7 @@
         </div>
         
         <!--  Explorers  -->
-        <div v-if='coingeckoLinks?.blockchain_site' class='coin-link-container'>
+        <div v-if='coingeckoLinks?.blockchain_site' class='coin-link-container mb-28 flex flex-col justify-center items-center xl:justify-start xl:items-start'>
             <h4>Explorers</h4>
             
             <div
@@ -134,7 +133,7 @@
         </div>
         
         <!--  Github  -->
-        <div v-if='coingeckoLinks.repos_url?.github' class='coin-link-container'>
+        <div v-if='coingeckoLinks.repos_url?.github' class='coin-link-container mb-28 flex flex-col justify-center items-center xl:justify-start xl:items-start'>
             <h4>Github Repositories</h4>
             
             <div
@@ -156,7 +155,7 @@
                             class='w-[50px]'
                         />
                         
-                        <p>{{ link }}</p>
+                        <p class='text-sm'>{{ link }}</p>
                     </div>
                 
                 </NuxtLink>
@@ -184,10 +183,6 @@
 
 <style scoped>
     .coin-links {
-        .coin-link-container {
-            margin-bottom: 100px;
-        }
-        
         .link-item {
             color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
             
