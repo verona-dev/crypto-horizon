@@ -5,7 +5,7 @@
     
     <CardContent
         v-if='coin'
-        class='px-20 my-10 flex justify-center'
+        class='px-20 my-10 flex justify-center flex-wrap'
     >
         <!--  1h  -->
         <CoinDeltaItem
