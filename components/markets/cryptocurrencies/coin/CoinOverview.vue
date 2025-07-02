@@ -10,10 +10,16 @@
                 
                 <!--  ATH  -->
                 <TableRow v-if='livecoinwatch.allTimeHighUSD'>
-                    <TableCell>All-time high</TableCell>
                     <TableCell>
-                        {{ coingecko.ath_formatted }}
-                        <span :class='coingecko.ath_change_percentage_trend'>{{ coingecko.ath_change_percentage }}&#37;</span>
+                        <span class='block'>All-time high</span>
+                        {{ dayjs(coingecko.market_data.ath_date.usd).format('DD.MM.YYYY') }}
+                    </TableCell>
+                    
+                    <TableCell>
+                        <span class='block'>{{ coingecko.ath_formatted }}</span>
+                        <span :class='coingecko.ath_change_percentage_trend'>
+                            {{ coingecko.ath_change_percentage }}&#37;
+                        </span>
                     </TableCell>
                 </TableRow>
                 
