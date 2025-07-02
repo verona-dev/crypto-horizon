@@ -41,22 +41,29 @@
             </NuxtLink>
             
             <!--  Forum  -->
-            <NuxtLink
-                v-if='coingeckoLinks.official_forum_url'
-                :to='coingeckoLinks.official_forum_url'
-                external
-                target='_blank'
-                class='flex mt-4'
+            <div
+                v-for='(link, name) in coingeckoLinks.official_forum_url'
+                :key='name'
+                class='flex items-center justify-start'
             >
-                <div class='link-item flex items-center'>
-                    <NuxtIcon
-                        name='radix-icons:chat-bubble'
-                        size='25'
-                        class='w-[50px]'
-                    />
-                    <p>Official Forum</p>
-                </div>
-            </NuxtLink>
+                <NuxtLink
+                    v-if='link'
+                    :to='link'
+                    external
+                    target='_blank'
+                    class='flex mt-4'
+                >
+                    <div class='link-item flex items-center'>
+                        <NuxtIcon
+                            name='radix-icons:chat-bubble'
+                            size='25'
+                            class='w-[50px]'
+                        />
+                        <p>Official Forum</p>
+                    </div>
+                </NuxtLink>
+            </div>
+
         </div>
         
         <!--  Community  -->
