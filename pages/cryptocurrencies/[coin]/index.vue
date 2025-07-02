@@ -1,5 +1,5 @@
 <template>
-    <div class='single-coin custom-flex'>
+    <div class='single-coin xl:custom-flex'>
         <div
             v-if='loading'
             class='flex items-center'
@@ -14,7 +14,7 @@
         <div v-else>
             <Card
                 v-if='coin && coin.livecoinwatch.name'
-                class='lg:w-6xl bg-card text-card-foreground flex flex-col gap-6 rounded-xl border my-10 py-6 shadow-sm'
+                class='bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-20 shadow-sm'
             >
                 <!--  Header  -->
                 <CoinHeader :coin='coin' />
@@ -22,7 +22,7 @@
                 <!--  Info  -->
                 <CoinInfo :coin='coin' />
                 
-                <CardContent class='my-10 flex justify-evenly'>
+                <CardContent class='my-10 flex flex-col justify-center items-center xl:flex-row xl:justify-evenly'>
                     <div class='left'>
                         <!--  Links  -->
                         <CoinLinks
