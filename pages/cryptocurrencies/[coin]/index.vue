@@ -31,7 +31,7 @@
                         />
                     </div>
                     
-                    <div class='right flex flex-col'>
+                    <div class='right flex flex-col items-center xl:items-around'>
                         <!--  Market Cap Progress  -->
                         <CoinMarketCap :marketCap='coin.livecoinwatch.marketCap'/>
                         
