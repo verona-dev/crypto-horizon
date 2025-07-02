@@ -1,5 +1,5 @@
 <template>
-    <div class='single-coin custom-flex'>
+    <div class='single-coin bg-card custom-flex'>
         <div
             v-if='loading'
             class='flex items-center'
@@ -14,7 +14,7 @@
         <div v-else>
             <Card
                 v-if='coin && coin.livecoinwatch.name'
-                class='bg-card 2xl:max-w-[1500px] text-card-foreground flex flex-col gap-6 rounded-xl border py-20 shadow-sm'
+                class='2xl:max-w-[1500px] text-card-foreground flex flex-col gap-6 rounded-xl border py-20 shadow-sm'
             >
                 <!--  Header  -->
                 <CoinHeader :coin='coin' />
@@ -22,7 +22,7 @@
                 <!--  Info  -->
                 <CoinInfo :coin='coin' />
                 
-                <CardContent class='my-10 flex flex-col xl:flex-row xl:justify-evenly'>
+                <CardContent class='my-10 flex flex-col lg:flex-row lg:justify-evenly'>
                     <div class='left'>
                         <!--  Links  -->
                         <CoinLinks
@@ -31,7 +31,7 @@
                         />
                     </div>
                     
-                    <div class='right flex flex-col items-center xl:items-around'>
+                    <div class='right flex flex-col items-center lg:items-around'>
                         <!--  Market Cap Progress  -->
                         <CoinMarketCap :marketCap='coin.livecoinwatch.marketCap'/>
                         
