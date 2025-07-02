@@ -1,7 +1,7 @@
 <template>
-    <CardHeader v-if='coin' class='my-6 flex flex-col justify-center items-center'>
-        <div class='header-content flex items-center'>
-            <div class='mr-10'>
+    <CardHeader v-if='coin' class='flex justify-center items-center'>
+        <div class='flex flex-col xl:flex-row items-center'>
+            <div class='m-10'>
                 <!-- Logo  -->
                 <NuxtImg
                     v-if='coingecko?.image?.large'
