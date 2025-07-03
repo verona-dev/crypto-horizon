@@ -101,13 +101,10 @@
         <div v-if='coingeckoLinks?.blockchain_site' class='coin-link-container mb-28 flex flex-col justify-center items-center lg:justify-start lg:items-start'>
             <h4>Explorers</h4>
             
-            <div
-                v-for='link in coingeckoLinks.blockchain_site'
-                :key='link'
-                class='my-4'
-            >
+            <div class='flex items-center'>
+                <!--  Main Explorer  -->
                 <NuxtLink
-                    :to='link'
+                    :to='explorers[0].href'
                     external
                     target='_blank'
                     class='inline-flex items-center'
@@ -125,10 +122,39 @@
                                 size='20'
                                 class='w-[50px]'
                             />
-                            {{ link }}
+                            {{ explorers[0].name }}
                         </div>
                     </MazBadge>
                 </NuxtLink>
+                
+                <!--  All Explorers  -->
+                <MazDropdown trigger='click'>
+                    <template #dropdown>
+                        <div
+                            v-for='explorer in explorers'
+                            :key='explorer'
+                            class='min-w-44'
+                        >
+                            <NuxtLink
+                                :to='explorer.href'
+                                external
+                                target='_blank'
+                            >
+                                <MazBtn
+                                    color='transparent'
+                                    style='--justify:start'
+                                    class='w-full'
+                                >
+                                    <NuxtIcon
+                                        name='radix-icons:globe'
+                                        size='20'
+                                    />
+                                    {{ explorer.name }}
+                                </MazBtn>
+                            </NuxtLink>
+                        </div>
+                    </template>
+                </MazDropdown>
             </div>
         </div>
         
@@ -179,6 +205,25 @@
     });
     
     const { livecoinwatchLinks, coingeckoLinks } = toRefs(props);
+    
+    const extractNameFromUrl = url => {
+        try {
+            const hostname = new URL(url).hostname.replace(/^www\./, '');
+            const rootName = hostname.split('.')[0];
+            return rootName.charAt(0).toUpperCase() + rootName.slice(1);
+        } catch (e) {
+            console.error('Invalid URL', e);
+            return null;
+        }
+    };
+    
+    const explorers = computed(() => {
+        const sites = coingeckoLinks.value?.blockchain_site || [];
+        return sites.map(href => ({
+            name: extractNameFromUrl(href),
+            href,
+        }));
+    });
 </script>
 
 <style scoped>
