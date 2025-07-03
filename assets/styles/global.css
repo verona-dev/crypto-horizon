@@ -104,6 +104,12 @@
     .custom-separator {
         background: var(--card-border) !important;
     }
+    
+    .vertical-separator {
+        width: 1px;
+        height: 50px;
+        background: var(--card-border) !important;
+    }
 }
 
 /* Desktop */
