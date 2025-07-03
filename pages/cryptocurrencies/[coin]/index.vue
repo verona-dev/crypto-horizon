@@ -43,6 +43,9 @@
                         
                         <!--  Converter  -->
                         <CoinConverter :coin='coin' />
+                        
+                        <!--  Community Sentiment  -->
+                        <CoinSentiment :coin='coin' />
                     </div>
                 </CardContent>
                 
@@ -65,6 +68,7 @@
     import CoinInfo from '@/components/markets/cryptocurrencies/coin/CoinInfo.vue';
     import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     import CoinOverview from '@/components/markets/cryptocurrencies/coin/CoinOverview.vue';
+    import CoinSentiment from '@/components/markets/cryptocurrencies/coin/CoinSentiment.vue';
     import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
     
     // Router
