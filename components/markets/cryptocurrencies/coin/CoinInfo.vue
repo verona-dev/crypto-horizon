@@ -57,9 +57,3 @@
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
 </script>
-
-<style scoped>
-    .custom-separator {
-        background: var(--card-border);
-    }
-</style>

@@ -25,7 +25,7 @@
             </Card>
         </HoverCardTrigger>
         
-        <HoverCardContent class='hover-card-content'>
+        <HoverCardContent side='top' class='hover-card-content'>
             <span class='text-sm'>{{ description }}</span>
         </HoverCardContent>
     </HoverCard>
