@@ -124,7 +124,7 @@
                     </MazBadge>
                 </NuxtLink>
                 
-                <Separator orientation='vertical' class='separator' />
+                <div class='vertical-separator'></div>
                 
                 <!--  All Explorers - Dropdown menu  -->
                 <MazDropdown trigger='click'>
@@ -190,7 +190,6 @@
 </template>
 
 <script setup>
-    import { Separator } from '@/components/ui/separator';
     import { defineProps, toRefs } from 'vue';
     
     const props = defineProps({
@@ -246,12 +245,12 @@
             .main-explorer-badge {
                 background-color: var(--accent-foreground) !important;
                 border: 1px solid transparent;
-                height: 50px;
                 border-top-right-radius: 0 !important;
                 border-bottom-right-radius: 0 !important;
+                height: 50px;
                 
                 &:hover {
-                    border: 1px solid var(--secondary) !important;
+                    background-color: var(--accent) !important;
                 }
             }
             
@@ -273,9 +272,11 @@
             .menu {
                 background-color: var(--accent-foreground) !important;
                 
+                /*
                 .m-btn:hover {
                     border: 1px solid var(--secondary) !important;
                 }
+                */
             }
         }
     }
