@@ -98,7 +98,10 @@
         </div>
         
         <!--  Explorers  -->
-        <div v-if='coingeckoLinks?.blockchain_site' class='coin-link-container mb-28 flex flex-col justify-center items-center lg:justify-start lg:items-start'>
+        <div
+            v-if='coingeckoLinks?.blockchain_site'
+            class='explorers coin-link-container mb-28 flex flex-col justify-center items-center lg:justify-start lg:items-start'
+        >
             <h4>Explorers</h4>
             
             <div class='flex items-center'>
@@ -109,13 +112,7 @@
                     target='_blank'
                     class='inline-flex items-center'
                 >
-                    <MazBadge
-                        rounded-size='lg'
-                        color='gray'
-                        size='0.7rem'
-                        outline
-                        class='link-item badge-item'
-                    >
+                    <MazBadge class='main-explorer-badge'>
                         <div class='py-1.5 pr-4 flex items-center'>
                             <NuxtIcon
                                 name='radix-icons:globe'
@@ -127,7 +124,9 @@
                     </MazBadge>
                 </NuxtLink>
                 
-                <!--  All Explorers  -->
+                <Separator orientation='vertical' class='separator' />
+                
+                <!--  All Explorers - Dropdown menu  -->
                 <MazDropdown trigger='click'>
                     <template #dropdown>
                         <div
@@ -191,6 +190,7 @@
 </template>
 
 <script setup>
+    import { Separator } from '@/components/ui/separator';
     import { defineProps, toRefs } from 'vue';
     
     const props = defineProps({
@@ -226,7 +226,7 @@
     });
 </script>
 
-<style scoped>
+<style>
     .coin-links {
         .link-item {
             color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
@@ -237,12 +237,46 @@
             }
         }
         
-        .badge-item:hover {
-            border: 1px solid var(--secondary);
-        }
-        
         h4 {
             margin-bottom: 24px;
+        }
+        
+        .explorers {
+            /* Main explorer */
+            .main-explorer-badge {
+                background-color: var(--accent-foreground) !important;
+                border: 1px solid transparent;
+                height: 50px;
+                border-top-right-radius: 0 !important;
+                border-bottom-right-radius: 0 !important;
+                
+                &:hover {
+                    border: 1px solid var(--secondary) !important;
+                }
+            }
+            
+            /* Dropdown icon */
+            .m-dropdown__wrapper {
+                .m-btn {
+                    background-color: var(--accent-foreground) !important;
+                    border-top-left-radius: 0 !important;
+                    border-bottom-left-radius: 0 !important;
+                    height: 50px;
+                    
+                    &:hover {
+                        background-color: var(--accent) !important;
+                    }
+                }
+            }
+            
+            /* Dropdown menu */
+            .menu {
+                background-color: var(--accent-foreground) !important;
+                
+                .m-btn:hover {
+                    border: 1px solid var(--secondary) !important;
+                }
+            }
         }
     }
 </style>
