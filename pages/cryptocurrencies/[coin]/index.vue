@@ -45,7 +45,10 @@
                         <CoinConverter :coin='coin' />
                         
                         <!--  Community Sentiment  -->
-                        <CoinSentiment :coin='coin' />
+                        <CoinSentiment
+                            :sentimentUp='coin.coingecko.sentiment_votes_up_percentage'
+                            :sentimentDown='coin.coingecko.sentiment_votes_down_percentage'
+                        />
                     </div>
                 </CardContent>
                 
