@@ -20,7 +20,7 @@
                             size='20'
                             class='w-[50px]'
                         />
-                        {{ explorers[0].name }}
+                        <p>{{ explorers[0].name }}</p>
                     </div>
                 </MazBadge>
             </NuxtLink>
