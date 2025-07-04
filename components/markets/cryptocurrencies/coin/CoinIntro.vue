@@ -10,6 +10,9 @@
             
             <!--  Converter  -->
             <CoinConverter :coin='coin' />
+            
+            <!--  Explorers  -->
+            <CoinExplorers :coingeckoLinks='coingecko.links'/>
         </div>
         
         <div class='right'>
@@ -23,6 +26,7 @@
 <script setup>
     import CoinConverter from '~/components/markets/cryptocurrencies/coin/CoinConverter.vue';
     import CoinSentiment from '~/components/markets/cryptocurrencies/coin/CoinSentiment.vue';
+    import CoinExplorers from '~/components/markets/cryptocurrencies/coin/CoinExplorers.vue';
     
     const props = defineProps({
         coin: {
@@ -33,5 +37,4 @@
     
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
-
 </script>
