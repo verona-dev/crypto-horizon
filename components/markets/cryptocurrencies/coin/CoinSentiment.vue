@@ -9,10 +9,10 @@
             <h6>Community sentiment</h6>
         </div>
         
-        <div class='flex items-center w-96 mt-5'>
+        <div class='flex items-center mt-5'>
             <div class='flex items-center text-chart-2'>
                 <NuxtIcon
-                    name='iconoir:stat-up'
+                    name='iconoir:thumbs-up'
                     size='35'
                     class='mr-2'
                 />
@@ -27,7 +27,7 @@
             <div class='flex items-center text-chart-5'>
                 <p>{{ Math.ceil(sentimentDown) }}&#37;</p>
                 <NuxtIcon
-                    name='iconoir:stat-down'
+                    name='iconoir:thumbs-down'
                     size='35'
                     class='ml-2'
                 />
