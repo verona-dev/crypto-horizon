@@ -47,8 +47,8 @@
     const { coin } = toRefs(props);
     const coinPrice = computed(() => {
         const rate = coin.value?.coingecko.market_data.current_price.usd;
-        // if (rate == null) return 0;
-        // return Math.round(rate * 100) / 100;
+        if (rate == null) return 0;
+        return Math.round(rate * 100) / 100;
     });
     const coinInput = ref(1);
     const usdInput = ref(coinPrice.value);
