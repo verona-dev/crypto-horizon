@@ -1,7 +1,7 @@
 <template>
     <div
-        class='coin-converter max-w-sm flex flex-col'
         v-if='coin'
+        class='coin-converter flex flex-col'
     >
         <h6>{{ coin.symbol }} to USD converter</h6>
         

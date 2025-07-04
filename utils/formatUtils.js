@@ -81,6 +81,9 @@ const formatCoingeckoCoin = coin => {
                 usd: coin?.market_data.ath_change_percentage.usd.toFixed(2)
             },
             ath_change_percentage_trend: getTextColor(coin?.market_data.ath_change_percentage.usd),
+            current_price: {
+                usd: coin?.market_data.current_price.usd.toFixed(2),
+            },
         },
     }
 };

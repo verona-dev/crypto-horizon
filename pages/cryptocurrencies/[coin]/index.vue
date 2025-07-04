@@ -28,10 +28,8 @@
                         :livecoinwatchLinks='coin.livecoinwatch.links'
                         :coingeckoLinks='coin.coingecko.links'
                     />
+                    
                     <div class='right flex flex-col items-center lg:items-around'>
-                        <!--  Market Cap Progress  -->
-                        <CoinMarketCap :marketCap='coin.livecoinwatch.marketCap'/>
-                        
                         <!--  Overview  -->
                         <CoinOverview
                             :coin='coin'
