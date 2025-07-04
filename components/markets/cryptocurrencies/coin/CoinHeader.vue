@@ -21,10 +21,40 @@
                         color='info'
                         size='1.25rem'
                         rounded-size='md'
-                        class='ml-8 mt-2'
+                        class='ml-8 mt-1'
+                        outline
                     >
-                        #{{ coingecko.market_cap_rank }}
+                        &#35;{{ coingecko.market_cap_rank }}
                     </MazBadge>
+                    
+                    <HoverCard
+                        openDelay='200'
+                        class='flex'
+                    >
+                        <HoverCardTrigger class='info-icon'>
+                            <MazBadge
+                                color='theme'
+                                size='1.25rem'
+                                rounded-size='md'
+                                class='ml-8 mt-1'
+                                outline
+                            >
+                                <div class='flex items-center'>
+                                    <NuxtIcon
+                                        name='iconoir:star-solid'
+                                        size='25'
+                                        class='mr-2'
+                                    />
+                                    {{ watchlist_portfolio }}
+                                </div>
+                            </MazBadge>
+                        </HoverCardTrigger>
+                        <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>
+                                    {{ watchlist_portfolio }} watchlists on Coingecko include {{ coin.symbol }}
+                                </span>
+                        </HoverCardContent>
+                    </HoverCard>
                 </div>
                 
                 <!-- Symbol  -->
@@ -44,7 +74,8 @@
 
 <script setup>
     import { defineProps, toRefs } from 'vue';
-    import { formatPrice } from '~/utils/formatUtils.js';
+    import { formatNumberWithOptions, formatPrice } from '~/utils/formatUtils.js';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     
     const props = defineProps({
         coin: {
@@ -56,10 +87,15 @@
     const { coin } = toRefs(props);
     const livecoinwatch = toRef(coin.value.livecoinwatch);
     const coingecko = toRef(coin.value.coingecko);
+    const watchlist_portfolio = computed(() => formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true));
 </script>
 
 <style scoped>
     p {
         color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
+    }
+    
+    span.iconify {
+        color: oklch(0.828 0.189 84.429) !important;
     }
 </style>

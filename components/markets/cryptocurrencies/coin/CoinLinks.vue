@@ -99,7 +99,7 @@
         
         <!--  Github  -->
         <div v-if='coingeckoLinks.repos_url?.github.length' class='coin-link-container flex flex-col justify-center items-center lg:justify-start lg:items-start'>
-            <h4>Github Repositories</h4>
+            <h4>Github</h4>
             
             <div
                 v-for='link in coingeckoLinks.repos_url.github'
