@@ -22,7 +22,7 @@
     }
     
     section {
-        @apply md:max-w-6xl my-20 m-auto;
+        @apply my-10 m-auto;
     }
     
     /*
