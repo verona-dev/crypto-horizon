@@ -1,7 +1,7 @@
 <template>
     <div
         v-if='coingeckoLinks?.blockchain_site'
-        class='coin-explorers w-sm'
+        class='coin-explorers'
     >
         <h6>Explorers</h6>
         
