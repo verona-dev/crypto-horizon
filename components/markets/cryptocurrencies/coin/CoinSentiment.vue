@@ -1,5 +1,5 @@
 <template>
-    <div class='coin-sentiment m-5'>
+    <div class='coin-sentiment max-w-sm'>
         <div class='flex items-center'>
             <NuxtIcon
                 name='iconoir:user-love'

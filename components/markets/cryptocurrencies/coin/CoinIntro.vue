@@ -1,14 +1,20 @@
 <template>
     <section class='coin-intro'>
-        <!--  Community Sentiment  -->
-        <CoinSentiment
-            v-if='coingecko'
-            :sentimentUp='coingecko.sentiment_votes_up_percentage'
-            :sentimentDown='coingecko.sentiment_votes_down_percentage'
-        />
+        <div class='left'>
+            <!--  Community Sentiment  -->
+            <CoinSentiment
+                v-if='coingecko'
+                :sentimentUp='coingecko.sentiment_votes_up_percentage'
+                :sentimentDown='coingecko.sentiment_votes_down_percentage'
+            />
+            
+            <!--  Converter  -->
+            <CoinConverter :coin='coin' />
+        </div>
         
-        <!--  Converter  -->
-        <CoinConverter :coin='coin' />
+        <div class='right'>
+        
+        </div>
     </section>
     
     <Separator class='my-4' />

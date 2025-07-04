@@ -1,5 +1,5 @@
 <template>
-    <div class='coin-converter m-5 flex flex-col'>
+    <div class='coin-converter max-w-sm flex flex-col'>
         <h6 class='mb-2'>{{ coin.symbol }} to USD converter</h6>
         
         <MazInput
