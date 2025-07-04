@@ -127,12 +127,16 @@
                 <div class='vertical-separator'></div>
                 
                 <!--  All Explorers - Dropdown menu  -->
-                <MazDropdown trigger='click'>
+                <MazDropdown
+                    trigger='click'
+                    v-model:open='isOpen'
+                >
                     <template #dropdown>
                         <div
                             v-for='explorer in explorers'
                             :key='explorer'
                             class='min-w-44'
+                            @click='isOpen = false'
                         >
                             <NuxtLink
                                 :to='explorer.href'
@@ -204,6 +208,7 @@
     });
     
     const { livecoinwatchLinks, coingeckoLinks } = toRefs(props);
+    const isOpen = ref(false);
     
     const extractNameFromUrl = url => {
         try {
