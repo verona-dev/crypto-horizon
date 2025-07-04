@@ -8,7 +8,7 @@
             :duration='1500'
         >
             <template #default>
-                <h6>{{ formatNumberWithOptions(marketCap, true) }}</h6>
+                <h6 class='m-0'>{{ formatNumberWithOptions(marketCap, true) }}</h6>
             </template>
         </MazCircularProgressBar>
         
