@@ -1,11 +1,15 @@
 <template>
-    <section class='coin-links gap-y-20 lg:gap-0'>
-        <!--  Overview Table  -->
-        <CoinOverviewTable :coin='coin' />
-        
-        <!--  Delta  -->
-        <CoinDelta :livecoinwatch='livecoinwatch' />
+    <section class='coin-links'>
+        <div class='flex gap-y-20 gap-x-36 flex-col xl:flex-row'>
+            <!--  Overview Table  -->
+            <CoinOverviewTable :coin='coin' />
+            
+            <!--  Delta  -->
+            <CoinDelta :coin='coin' />
+        </div>
     </section>
+    
+    <Separator class='my-4' />
 </template>
 
 <script setup>
@@ -18,5 +22,4 @@
         }
     });
     const { coin } = toRefs(props);
-    const { livecoinwatch } = toRefs(props);
 </script>

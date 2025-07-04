@@ -1,5 +1,5 @@
 <template>
-    <section class='coin-intro'>
+    <section class='coin-intro lg:flex-row lg:items-baseline'>
         <!--  Left  -->
         <div class='left flex flex-col justify-center gap-16'>
             <!--  Market Cap Progress  -->

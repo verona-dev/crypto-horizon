@@ -1,5 +1,5 @@
 <template>
-    <section class='coin-links gap-y-20 lg:gap-0'>
+    <section class='coin-links lg:flex-row gap-y-20 lg:gap-0 lg:items-baseline'>
         <!--  Websites  -->
         <div class='coin-link-container flex flex-col justify-center items-center lg:justify-start lg:items-start'>
             <h4>Websites</h4>

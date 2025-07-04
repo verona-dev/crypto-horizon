@@ -22,7 +22,7 @@
     }
     
     section {
-        @apply my-10 lg:my-20 flex flex-col lg:flex-row items-center lg:items-baseline lg:justify-around;
+        @apply my-10 lg:my-20 flex flex-col items-center lg:justify-around;
     }
     
     /*
