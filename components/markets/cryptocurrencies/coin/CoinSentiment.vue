@@ -2,8 +2,8 @@
     <section class='my-20'>
         <div class='flex items-center'>
             <NuxtIcon
-                name='iconoir:community'
-                size='45'
+                name='iconoir:user-love'
+                size='50'
                 class='mr-4'
             />
             <h6>Community sentiment</h6>
