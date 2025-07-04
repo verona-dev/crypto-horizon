@@ -76,10 +76,12 @@ const formatCoingeckoCoin = coin => {
                 ...coin.market_data.ath,
                 usd: formatPrice(coin.market_data.ath.usd, 2, 2)
             },
-            ath_change_percentage: coin?.market_data.ath_change_percentage.usd.toFixed(2),
+            ath_change_percentage: {
+                ...coin.market_data.ath_change_percentage,
+                usd: coin?.market_data.ath_change_percentage.usd.toFixed(2)
+            },
+            ath_change_percentage_trend: getTextColor(coin?.market_data.ath_change_percentage.usd),
         },
-        ath_change_percentage: coin?.market_data.ath_change_percentage.usd.toFixed(2),
-        ath_change_percentage_trend: getTextColor(coin?.market_data.ath_change_percentage.usd),
     }
 };
 
