@@ -7,7 +7,7 @@
         <div class='flex flex-col lg:flex-row flex-wrap justify-center'>
             <!--  Max Supply  -->
             <div
-                v-if='coin.maxSupply'
+                v-if='maxSupply'
                 class='flex items-center justify-center w-full'
             >
                 <MazCircularProgressBar
@@ -50,7 +50,10 @@
             </div>
             
             <!--  Total Supply  -->
-            <div class='my-10 flex items-center justify-center'>
+            <div
+                v-if='totalSupply'
+                class='my-10 flex items-center justify-center'
+            >
                 <MazCircularProgressBar
                     :percentage='totalSupplyPercentage'
                     :duration='3000'
@@ -93,18 +96,18 @@
             
             <!--  Circulating Supply  -->
             <div
-                v-if='coin.circulatingSupply'
+                v-if='circulatingSupply'
                 class='my-10 flex items-center justify-center'
             >
                 <MazCircularProgressBar
-                    v-if='coin.maxSupply'
                     :percentage='circulatingSupplyPercentage'
                     :duration='3500'
                     suffix='%'
                     size='150px'
                 >
                     <template #default>
-                        <p>{{ Math.floor(circulatingSupplyPercentage) }}&#37;</p>
+                        <p v-if='maxSupply'>{{ Math.floor(circulatingSupplyPercentage) }}&#37;</p>
+                        <p v-else>{{ coin.circulatingSupplyFormatted}}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -241,6 +244,8 @@
     
     const maxSupply = computed(() => coin.value?.maxSupply);
     const totalSupply = computed(() => coin.value?.totalSupply);
+    const circulatingSupply = computed(() => coin.value?.circulatingSupply);
+    
     const totalSupplyPercentage = computed(() => (coin.value?.totalSupply / coin.value?.maxSupply) * 100);
     const circulatingSupplyPercentage = computed(() => (coin.value?.circulatingSupply / coin.value?.maxSupply) * 100);
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
