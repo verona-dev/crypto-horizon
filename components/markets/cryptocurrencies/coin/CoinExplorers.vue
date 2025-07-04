@@ -1,7 +1,7 @@
 <template>
     <div
         v-if='coingeckoLinks?.blockchain_site'
-        class='coin-explorers coin-link-container flex flex-col justify-center items-center lg:justify-start lg:items-start'
+        class='coin-explorers'
     >
         <h6>Explorers</h6>
         
