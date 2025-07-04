@@ -6,11 +6,15 @@
 </template>
 
 <script setup>
-const props = defineProps({
-    coin: {
-        type: Object,
-        required: true
-    }
-});
-const { coin } = toRefs(props);
+    const props = defineProps({
+        coin: {
+            type: Object,
+            required: true
+        }
+    });
+    const { coin } = toRefs(props);
 </script>
+
+<style scoped>
+    .coin-chart {}
+</style>
