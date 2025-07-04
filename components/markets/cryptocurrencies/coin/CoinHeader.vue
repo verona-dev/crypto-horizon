@@ -34,7 +34,7 @@
                 </div>
                 
                 <!--  Coin price  -->
-                <h4 class='text-foreground mt-4'>{{ coingecko.market_data.current_price.usd }}</h4>
+                <h4 class='text-foreground mt-4'>{{ formatPrice(coingecko.market_data.current_price.usd, 2, 2) }}</h4>
             </div>
         </section>
     </CardHeader>
@@ -44,6 +44,7 @@
 
 <script setup>
     import { defineProps, toRefs } from 'vue';
+    import { formatPrice } from '~/utils/formatUtils.js';
     
     const props = defineProps({
         coin: {
