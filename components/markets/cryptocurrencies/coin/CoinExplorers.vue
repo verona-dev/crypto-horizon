@@ -1,7 +1,7 @@
 <template>
     <div
         v-if='coingeckoLinks?.blockchain_site'
-        class='coin-explorers'
+        class='coin-explorers w-sm'
     >
         <h6>Explorers</h6>
         
@@ -11,9 +11,9 @@
                 :to='explorers[0].href'
                 external
                 target='_blank'
-                class='inline-flex items-center'
+                class='inline-flex items-center flex-1'
             >
-                <MazBadge class='main-explorer-badge'>
+                <MazBadge class='main-explorer-badge w-full'>
                     <div class='py-1.5 pr-4 flex items-center'>
                         <NuxtIcon
                             name='radix-icons:globe'
@@ -36,7 +36,6 @@
                     <div
                         v-for='explorer in explorers'
                         :key='explorer'
-                        class='min-w-44'
                         @click='isOpen = false'
                     >
                         <NuxtLink

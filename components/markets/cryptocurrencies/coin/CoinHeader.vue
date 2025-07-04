@@ -1,7 +1,7 @@
 <template>
     <CardHeader v-if='coin' class='flex justify-center items-center'>
-        <div class='flex flex-col lg:flex-row items-center'>
-            <div class='m-10'>
+        <section class='flex flex-col lg:flex-row items-center gap-y-10 lg:gap-y-0 gap-x-10'>
+            <div class=''>
                 <!-- Logo  -->
                 <NuxtImg
                     v-if='coingecko?.image?.large'
@@ -36,7 +36,7 @@
                 <!--  Coin price  -->
                 <h4 class='text-foreground mt-4'>{{ coingecko.market_data.current_price.usd }}</h4>
             </div>
-        </div>
+        </section>
     </CardHeader>
     
     <Separator class='my-4' />

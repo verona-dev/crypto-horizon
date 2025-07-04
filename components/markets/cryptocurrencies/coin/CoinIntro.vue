@@ -1,6 +1,7 @@
 <template>
     <section class='coin-intro flex flex-col lg:flex-row justify-around'>
-        <div class='left flex flex-col gap-20'>
+        <!--  Left  -->
+        <div class='left flex flex-col justify-center gap-20'>
             <!--  Community Sentiment  -->
             <CoinSentiment
                 v-if='coingecko'
@@ -15,10 +16,12 @@
             <CoinExplorers :coingeckoLinks='coingecko.links'/>
         </div>
         
+        <!--  Middle  -->
         <div class='middle'>
             middle
         </div>
         
+        <!--  Right  -->
         <div class='right'>
             right side
         </div>
