@@ -52,14 +52,14 @@
             <!--  Total Supply  -->
             <div class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
-                    v-if='coin.maxSupply'
                     :percentage='totalSupplyPercentage'
                     :duration='3000'
                     suffix='%'
                     size='150px'
                 >
                     <template #default>
-                        <p>{{ Math.floor(totalSupplyPercentage) }}&#37;</p>
+                        <p v-if='maxSupply'>{{ Math.floor(totalSupplyPercentage) }}&#37;</p>
+                        <p v-else>{{ coin.totalSupplyFormatted }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -239,6 +239,8 @@
     
     const { coin } = toRefs(props);
     
+    const maxSupply = computed(() => coin.value?.maxSupply);
+    const totalSupply = computed(() => coin.value?.totalSupply);
     const totalSupplyPercentage = computed(() => (coin.value?.totalSupply / coin.value?.maxSupply) * 100);
     const circulatingSupplyPercentage = computed(() => (coin.value?.circulatingSupply / coin.value?.maxSupply) * 100);
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
