@@ -16,9 +16,9 @@
                     </TableCell>
                     
                     <TableCell>
-                        <span class='block'>{{ coingecko.ath_formatted }}</span>
+                        <span class='block'>{{ coingecko.market_data.ath.usd }}</span>
                         <span :class='coingecko.ath_change_percentage_trend'>
-                            {{ coingecko.ath_change_percentage }}&#37;
+                            {{ coingecko.market_data.ath_change_percentage }}&#37;
                         </span>
                     </TableCell>
                 </TableRow>

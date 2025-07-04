@@ -34,7 +34,7 @@
                 </div>
                 
                 <!--  Coin price  -->
-                <h4 class='text-foreground mt-4'>{{ coingecko.rateFormatted }}</h4>
+                <h4 class='text-foreground mt-4'>{{ coingecko.market_data.current_price.usd }}</h4>
             </div>
         </div>
     </CardHeader>
