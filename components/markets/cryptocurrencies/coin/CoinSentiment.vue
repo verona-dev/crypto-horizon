@@ -1,5 +1,5 @@
 <template>
-    <section class='my-20'>
+    <div class='coin-sentiment m-5'>
         <div class='flex items-center'>
             <NuxtIcon
                 name='iconoir:user-love'
@@ -33,7 +33,7 @@
                 />
             </div>
         </div>
-    </section>
+    </div>
 </template>
 
 <script setup>

@@ -19,33 +19,29 @@
                 <!--  Header  -->
                 <CoinHeader :coin='coin' />
                 
-                <CardContent class='my-10 flex flex-col lg:flex-row lg:justify-evenly'>
-                    <div class='left'>
-                        <!--  Links  -->
-                        <CoinLinks
-                            :livecoinwatchLinks='coin.livecoinwatch.links'
-                            :coingeckoLinks='coin.coingecko.links'
-                        />
-                    </div>
+                <CardContent class='flex flex-col'>
+                    <!--  Intro  -->
+                    <CoinIntro :coin='coin'/>
                     
-                    <div class='right flex flex-col items-center lg:items-around'>
-                        <!--  Market Cap Progress  -->
-                        <CoinMarketCap :marketCap='coin.livecoinwatch.marketCap'/>
+                    <div class='flex flex-col lg:flex-row lg:justify-evenly'>
+                        <div class='left'>
+                            <!--  Links  -->
+                            <CoinLinks
+                                :livecoinwatchLinks='coin.livecoinwatch.links'
+                                :coingeckoLinks='coin.coingecko.links'
+                            />
+                        </div>
                         
-                        <!--  Overview  -->
-                        <CoinOverview
-                            :coin='coin'
-                            class='my-20'
-                        />
-                        
-                        <!--  Converter  -->
-                        <CoinConverter :coin='coin' />
-                        
-                        <!--  Community Sentiment  -->
-                        <CoinSentiment
-                            :sentimentUp='coin.coingecko.sentiment_votes_up_percentage'
-                            :sentimentDown='coin.coingecko.sentiment_votes_down_percentage'
-                        />
+                        <div class='right flex flex-col items-center lg:items-around'>
+                            <!--  Market Cap Progress  -->
+                            <CoinMarketCap :marketCap='coin.livecoinwatch.marketCap'/>
+                            
+                            <!--  Overview  -->
+                            <CoinOverview
+                                :coin='coin'
+                                class='my-20'
+                            />
+                        </div>
                     </div>
                 </CardContent>
                 
@@ -67,14 +63,14 @@
 </template>
 
 <script setup>
-    import CoinConverter from '~/components/markets/cryptocurrencies/coin/CoinConverter.vue';
-    import CoinDelta from '~/components/markets/cryptocurrencies/coin/CoinDelta.vue';
+    import CoinConverter from '@/components/markets/cryptocurrencies/coin/CoinConverter.vue';
+    import CoinDelta from '@/components/markets/cryptocurrencies/coin/CoinDelta.vue';
     import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
-    import CoinDescription from '~/components/markets/cryptocurrencies/coin/CoinDescription.vue';
+    import CoinIntro from '@/components/markets/cryptocurrencies/coin/CoinIntro.vue';
+    import CoinDescription from '@/components/markets/cryptocurrencies/coin/CoinDescription.vue';
     import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     import CoinOverview from '@/components/markets/cryptocurrencies/coin/CoinOverview.vue';
-    import CoinSentiment from '@/components/markets/cryptocurrencies/coin/CoinSentiment.vue';
-    import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
+    import CoinSupply from '@/components/markets/cryptocurrencies/coin/CoinSupply.vue';
     
     // Router
     import {useRoute} from 'vue-router';
