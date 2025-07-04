@@ -30,16 +30,8 @@
                     />
                     
                     <!--  Overview  -->
-                    <CoinOverview
-                        :coin='coin'
-                        class='my-20'
-                    />
+                    <CoinOverview :coin='coin' />
                 </CardContent>
-                
-                <Separator class='my-4' />
-                
-                <!--  Delta  -->
-                <CoinDelta :coin='coin.livecoinwatch' />
                 
                 <!--  Supply  -->
                 <CoinSupply :coin='coin.livecoinwatch' />
@@ -54,7 +46,6 @@
 </template>
 
 <script setup>
-    import CoinDelta from '@/components/markets/cryptocurrencies/coin/CoinDelta.vue';
     import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
     import CoinIntro from '@/components/markets/cryptocurrencies/coin/CoinIntro.vue';
     import CoinDescription from '@/components/markets/cryptocurrencies/coin/CoinDescription.vue';

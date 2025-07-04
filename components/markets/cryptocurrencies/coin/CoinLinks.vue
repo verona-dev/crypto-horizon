@@ -66,7 +66,7 @@
         </div>
         
         <!--  Community  -->
-        <div v-if='livecoinwatchLinks?.socials' class='coin-link-container flex flex-col justify-center items-center lg:justify-start lg:items-start'>
+        <div v-if='livecoinwatchLinks?.socials && Object.keys(livecoinwatchLinks.socials).length' class='coin-link-container flex flex-col justify-center items-center lg:justify-start lg:items-start'>
             <h4>Community</h4>
             
             <div
@@ -98,7 +98,7 @@
         </div>
         
         <!--  Github  -->
-        <div v-if='coingeckoLinks.repos_url?.github' class='coin-link-container flex flex-col justify-center items-center lg:justify-start lg:items-start'>
+        <div v-if='coingeckoLinks.repos_url?.github.length' class='coin-link-container flex flex-col justify-center items-center lg:justify-start lg:items-start'>
             <h4>Github Repositories</h4>
             
             <div

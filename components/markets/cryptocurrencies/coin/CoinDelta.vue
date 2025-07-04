@@ -50,17 +50,19 @@
     import CoinDeltaItem from '~/components/markets/cryptocurrencies/coin/CoinDeltaItem.vue';
     
     const props = defineProps({
-        coin: {
+        livecoinwatch: {
             type: Object,
             required: true,
             default: () => ({}),
         },
     });
     
+    const { livecoinwatch } = toRefs(props);
+    
     const { coin } = toRefs(props);
-    const delta1h = computed(() => getDeltaPercentage(coin.value?.delta.hour, coin.value?.rate));
-    const delta24h = computed(() => getDeltaPercentage(coin.value?.delta.day, coin.value?.rate));
-    const delta7d = computed(() => getDeltaPercentage(coin.value?.delta.week, coin.value?.rate));
-    const delta1m = computed(() => getDeltaPercentage(coin.value?.delta.month, coin.value?.rate));
-    const delta1y = computed(() => getDeltaPercentage(coin.value?.delta.year, coin.value?.rate))
+    const delta1h = computed(() => getDeltaPercentage(livecoinwatch.value?.delta.hour, livecoinwatch.value?.rate));
+    const delta24h = computed(() => getDeltaPercentage(livecoinwatch.value?.delta.day, livecoinwatch.value?.rate));
+    const delta7d = computed(() => getDeltaPercentage(livecoinwatch.value?.delta.week, livecoinwatch.value?.rate));
+    const delta1m = computed(() => getDeltaPercentage(livecoinwatch.value?.delta.month, livecoinwatch.value?.rate));
+    const delta1y = computed(() => getDeltaPercentage(livecoinwatch.value?.delta.year, livecoinwatch.value?.rate))
 </script>
