@@ -1,6 +1,6 @@
 <template>
     <CardHeader v-if='coin' class='flex justify-center items-center'>
-        <section class='flex flex-col lg:flex-row items-center gap-y-10 lg:gap-y-0 gap-x-10'>
+        <section class='my-10 flex flex-col lg:flex-row items-center gap-y-10 lg:gap-y-0 gap-x-10'>
             <div class=''>
                 <!-- Logo  -->
                 <NuxtImg

@@ -22,7 +22,7 @@
     }
     
     section {
-        @apply my-20;
+        @apply my-10 lg:my-20 flex flex-col lg:flex-row items-center lg:items-baseline lg:justify-around;
     }
     
     /*
@@ -47,7 +47,7 @@
     }
     
     h4 {
-        @apply text-4xl;
+        @apply text-4xl mb-6;
     }
     
     h5 {
@@ -59,11 +59,11 @@
     }
     
     p {
-        @apply text-xl;
+        @apply text-lg;
     }
     
     span {
-        @apply text-sm lg:text-lg;
+        @apply text-sm;
     }
     
     .m-animated-text span {

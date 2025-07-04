@@ -23,25 +23,20 @@
                     <!--  Intro  -->
                     <CoinIntro :coin='coin'/>
                     
-                    <div class='flex flex-col lg:flex-row lg:justify-evenly'>
-                        <div class='left'>
-                            <!--  Links  -->
-                            <CoinLinks
-                                :livecoinwatchLinks='coin.livecoinwatch.links'
-                                :coingeckoLinks='coin.coingecko.links'
-                            />
-                        </div>
+                    <!--  Links  -->
+                    <CoinLinks
+                        :livecoinwatchLinks='coin.livecoinwatch.links'
+                        :coingeckoLinks='coin.coingecko.links'
+                    />
+                    <div class='right flex flex-col items-center lg:items-around'>
+                        <!--  Market Cap Progress  -->
+                        <CoinMarketCap :marketCap='coin.livecoinwatch.marketCap'/>
                         
-                        <div class='right flex flex-col items-center lg:items-around'>
-                            <!--  Market Cap Progress  -->
-                            <CoinMarketCap :marketCap='coin.livecoinwatch.marketCap'/>
-                            
-                            <!--  Overview  -->
-                            <CoinOverview
-                                :coin='coin'
-                                class='my-20'
-                            />
-                        </div>
+                        <!--  Overview  -->
+                        <CoinOverview
+                            :coin='coin'
+                            class='my-20'
+                        />
                     </div>
                 </CardContent>
                 

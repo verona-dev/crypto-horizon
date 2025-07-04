@@ -1,5 +1,5 @@
 <template>
-    <section class='coin-intro flex flex-col lg:flex-row justify-around'>
+    <section class='coin-intro'>
         <!--  Left  -->
         <div class='left max-w-[350px] flex flex-col justify-center gap-20'>
             <!--  Explorers  -->
@@ -16,14 +16,9 @@
             />
         </div>
         
-        <!--  Middle  -->
-        <div class='middle'>
-            middle
-        </div>
-        
         <!--  Right  -->
         <div class='right'>
-            right side
+            Coin chart
         </div>
     </section>
     

@@ -1,7 +1,7 @@
 <template>
-    <div class='coin-links flex flex-col'>
+    <section class='coin-links gap-y-20 lg:gap-0'>
         <!--  Websites  -->
-        <div class='coin-link-container mb-28 flex flex-col justify-center items-center lg:justify-start lg:items-start'>
+        <div class='coin-link-container flex flex-col justify-center items-center lg:justify-start lg:items-start'>
             <h4>Websites</h4>
             
             <!--  Homepage  -->
@@ -66,7 +66,7 @@
         </div>
         
         <!--  Community  -->
-        <div v-if='livecoinwatchLinks?.socials' class='coin-link-container mb-28 flex flex-col justify-center items-center lg:justify-start lg:items-start'>
+        <div v-if='livecoinwatchLinks?.socials' class='coin-link-container flex flex-col justify-center items-center lg:justify-start lg:items-start'>
             <h4>Community</h4>
             
             <div
@@ -98,7 +98,7 @@
         </div>
         
         <!--  Github  -->
-        <div v-if='coingeckoLinks.repos_url?.github' class='coin-link-container mb-28 flex flex-col justify-center items-center lg:justify-start lg:items-start'>
+        <div v-if='coingeckoLinks.repos_url?.github' class='coin-link-container flex flex-col justify-center items-center lg:justify-start lg:items-start'>
             <h4>Github Repositories</h4>
             
             <div
@@ -126,7 +126,10 @@
                 </NuxtLink>
             </div>
         </div>
-    </div>
+    </section>
+    
+    <Separator class='my-4' />
+
 </template>
 
 <script setup>
@@ -153,10 +156,6 @@
                 color: var(--secondary);
                 text-decoration: underline;
             }
-        }
-        
-        h4 {
-            margin-bottom: 24px;
         }
     }
 </style>

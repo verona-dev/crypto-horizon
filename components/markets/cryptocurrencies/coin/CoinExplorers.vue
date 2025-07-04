@@ -60,7 +60,6 @@
             </MazDropdown>
         </div>
     </div>
-
 </template>
 
 <script setup>
