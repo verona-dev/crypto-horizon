@@ -55,7 +55,7 @@
     }
     
     h6 {
-        @apply text-2xl;
+        @apply text-2xl mb-4;
     }
     
     p {
@@ -106,9 +106,9 @@
     }
     
     .vertical-separator {
-        width: 1px;
-        height: 50px;
         background: var(--card-border) !important;
+        height: 50px;
+        width: 1px;
     }
 }
 

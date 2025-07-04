@@ -14,7 +14,7 @@
         <div v-else>
             <Card
                 v-if='coin && coin.livecoinwatch.name'
-                class='2xl:max-w-[1500px] text-card-foreground flex flex-col gap-6 rounded-xl border py-20 shadow-sm'
+                class='2xl:max-w-[1500px] text-card-foreground flex flex-col'
             >
                 <!--  Header  -->
                 <CoinHeader :coin='coin' />

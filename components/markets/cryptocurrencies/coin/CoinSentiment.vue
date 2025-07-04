@@ -4,12 +4,12 @@
             <NuxtIcon
                 name='iconoir:user-love'
                 size='50'
-                class='mr-4'
+                class='mr-4 mb-5'
             />
             <h6>Community sentiment</h6>
         </div>
         
-        <div class='flex items-center mt-5'>
+        <div class='flex items-center'>
             <div class='flex items-center text-chart-2'>
                 <NuxtIcon
                     name='iconoir:thumbs-up'

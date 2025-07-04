@@ -1,22 +1,23 @@
 <template>
-    <section class='coin-intro'>
+    <section class='coin-intro flex flex-col lg:flex-row justify-around'>
         <div class='left'>
             <!--  Community Sentiment  -->
             <CoinSentiment
                 v-if='coingecko'
                 :sentimentUp='coingecko.sentiment_votes_up_percentage'
                 :sentimentDown='coingecko.sentiment_votes_down_percentage'
+                class='my-6'
             />
             
             <!--  Converter  -->
-            <CoinConverter :coin='coin' />
+            <CoinConverter :coin='coin' class='my-6' />
             
             <!--  Explorers  -->
             <CoinExplorers :coingeckoLinks='coingecko.links'/>
         </div>
         
         <div class='right'>
-        
+        right side
         </div>
     </section>
     
