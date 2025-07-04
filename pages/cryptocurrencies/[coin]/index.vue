@@ -14,40 +14,26 @@
         <div v-else>
             <Card
                 v-if='coin && coin.livecoinwatch.name'
-                class='2xl:max-w-[1500px] text-card-foreground flex flex-col gap-6 rounded-xl border py-20 shadow-sm'
+                class='2xl:max-w-[1500px] gap-0 text-card-foreground flex flex-col rounded-none'
             >
                 <!--  Header  -->
                 <CoinHeader :coin='coin' />
                 
-                <!--  Info  -->
-                <CoinInfo :coin='coin' />
-                
-                <CardContent class='my-10 flex flex-col lg:flex-row lg:justify-evenly'>
-                    <div class='left'>
-                        <!--  Links  -->
-                        <CoinLinks
-                            :livecoinwatchLinks='coin.livecoinwatch.links'
-                            :coingeckoLinks='coin.coingecko.links'
-                        />
-                    </div>
+                <CardContent class='flex flex-col'>
+                    <!--  Intro  -->
+                    <CoinIntro :coin='coin'/>
+                    
+                    <!--  Links  -->
+                    <CoinLinks
+                        :livecoinwatchLinks='coin.livecoinwatch.links'
+                        :coingeckoLinks='coin.coingecko.links'
+                    />
                     
                     <div class='right flex flex-col items-center lg:items-around'>
-                        <!--  Market Cap Progress  -->
-                        <CoinMarketCap :marketCap='coin.livecoinwatch.marketCap'/>
-                        
                         <!--  Overview  -->
                         <CoinOverview
                             :coin='coin'
                             class='my-20'
-                        />
-                        
-                        <!--  Converter  -->
-                        <CoinConverter :coin='coin' />
-                        
-                        <!--  Community Sentiment  -->
-                        <CoinSentiment
-                            :sentimentUp='coin.coingecko.sentiment_votes_up_percentage'
-                            :sentimentDown='coin.coingecko.sentiment_votes_down_percentage'
                         />
                     </div>
                 </CardContent>
@@ -59,20 +45,25 @@
                 
                 <!--  Supply  -->
                 <CoinSupply :coin='coin.livecoinwatch' />
+                
+                <Separator class='my-4' />
+                
+                <!--  Info  -->
+                <CoinDescription :coin='coin' />
             </Card>
         </div>
     </div>
 </template>
 
 <script setup>
-    import CoinConverter from '~/components/markets/cryptocurrencies/coin/CoinConverter.vue';
-    import CoinDelta from '~/components/markets/cryptocurrencies/coin/CoinDelta.vue';
+    import CoinConverter from '@/components/markets/cryptocurrencies/coin/CoinConverter.vue';
+    import CoinDelta from '@/components/markets/cryptocurrencies/coin/CoinDelta.vue';
     import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
-    import CoinInfo from '@/components/markets/cryptocurrencies/coin/CoinInfo.vue';
+    import CoinIntro from '@/components/markets/cryptocurrencies/coin/CoinIntro.vue';
+    import CoinDescription from '@/components/markets/cryptocurrencies/coin/CoinDescription.vue';
     import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     import CoinOverview from '@/components/markets/cryptocurrencies/coin/CoinOverview.vue';
-    import CoinSentiment from '@/components/markets/cryptocurrencies/coin/CoinSentiment.vue';
-    import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
+    import CoinSupply from '@/components/markets/cryptocurrencies/coin/CoinSupply.vue';
     
     // Router
     import {useRoute} from 'vue-router';

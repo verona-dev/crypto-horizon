@@ -1,5 +1,5 @@
 <template>
-    <CardContent v-if='coingecko' class='px-20 my-10 flex flex-col'>
+    <section v-if='coingecko' class='my-10 flex flex-col'>
         <!--  Description  -->
         <div v-if='coingecko.description' class='bg-accent-foreground rounded-t-md'>
             <Accordion type='single' collapsible class='py-3 px-6'>
@@ -39,9 +39,7 @@
                 </AccordionItem>
             </Accordion>
         </div>
-    </CardContent>
-    
-    <Separator class='my-4' />
+    </section>
 </template>
 
 <script setup>

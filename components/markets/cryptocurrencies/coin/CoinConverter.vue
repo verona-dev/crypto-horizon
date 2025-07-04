@@ -1,6 +1,9 @@
 <template>
-    <div class='coin-converter my-6 flex flex-col'>
-        <h6 class='mb-2'>{{ coin.symbol }} to USD converter</h6>
+    <div
+        v-if='coin'
+        class='coin-converter flex flex-col'
+    >
+        <h6>{{ coin.symbol }} to USD converter</h6>
         
         <MazInput
             v-model.number='coinInput'
@@ -43,7 +46,7 @@
     
     const { coin } = toRefs(props);
     const coinPrice = computed(() => {
-        const rate = coin.value?.livecoinwatch?.rate;
+        const rate = coin.value?.coingecko.market_data.current_price.usd;
         if (rate == null) return 0;
         return Math.round(rate * 100) / 100;
     });

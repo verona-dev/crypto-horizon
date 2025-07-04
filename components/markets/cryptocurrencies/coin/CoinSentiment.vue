@@ -1,22 +1,22 @@
 <template>
-    <section class='my-20'>
+    <div class='coin-sentiment'>
         <div class='flex items-center'>
             <NuxtIcon
-                name='iconoir:community'
-                size='45'
-                class='mr-4'
+                name='iconoir:user-love'
+                size='50'
+                class='mr-4 mb-5'
             />
             <h6>Community sentiment</h6>
         </div>
         
-        <div class='flex items-center w-96 mt-5'>
+        <div class='flex items-center'>
             <div class='flex items-center text-chart-2'>
                 <NuxtIcon
-                    name='iconoir:stat-up'
+                    name='iconoir:thumbs-up'
                     size='35'
                     class='mr-2'
                 />
-                <p>{{ Math.floor(sentimentUp) }}&#37;</p>
+                <p>{{ Math.floor(sentimentUp) || 50 }}&#37;</p>
             </div>
             
             <Progress
@@ -25,15 +25,15 @@
             />
             
             <div class='flex items-center text-chart-5'>
-                <p>{{ Math.ceil(sentimentDown) }}&#37;</p>
+                <p>{{ Math.ceil(sentimentDown) || 50 }}&#37;</p>
                 <NuxtIcon
-                    name='iconoir:stat-down'
+                    name='iconoir:thumbs-down'
                     size='35'
                     class='ml-2'
                 />
             </div>
         </div>
-    </section>
+    </div>
 </template>
 
 <script setup>
@@ -51,7 +51,7 @@
     });
     
     const { sentimentUp, sentimentDown } = toRefs(props);
-    const sentiment = computed(() => sentimentUp.value || 50);
+    const sentiment = computed(() => sentimentUp.value);
 </script>
 
 <style>
