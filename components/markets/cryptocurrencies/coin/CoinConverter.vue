@@ -14,7 +14,7 @@
             @change='resetOnInvalidNumber'
         >
             <template #left-icon>
-                {{ coin.symbol }}
+                <span class='min-w-12'>{{ coin.symbol }}</span>
             </template>
         </MazInput>
         
@@ -27,7 +27,7 @@
             @change='resetOnInvalidNumber'
         >
             <template #left-icon>
-                USD
+                <span class='min-w-12'>USD</span>
             </template>
         </MazInput>
     </div>

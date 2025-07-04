@@ -1,6 +1,6 @@
 <template>
     <div class='flex flex-col items-center'>
-        <h6>Overview</h6>
+        <h4>Overview</h4>
         <Table class='text-lg'>
             <TableBody>
                 <!--  Genesis  -->

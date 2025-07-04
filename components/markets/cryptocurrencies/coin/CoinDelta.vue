@@ -3,7 +3,7 @@
         v-if='coin'
         class='flex flex-col items-center justify-center'
     >
-        <h6>Rate of Change</h6>
+        <h4>Rate of Change</h4>
         
         <div class='flex items-center'>
             <!--  1h  -->
