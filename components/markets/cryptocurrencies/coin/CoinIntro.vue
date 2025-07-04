@@ -21,7 +21,7 @@
         
         <!--  Right  -->
         <div class='right'>
-            Coin chart
+            <CoinChart :coin='coin' />
         </div>
     </section>
     
@@ -29,6 +29,7 @@
 </template>
 
 <script setup>
+    import CoinChart from '@/components/markets/cryptocurrencies/coin/CoinChart.vue';
     import CoinConverter from '~/components/markets/cryptocurrencies/coin/CoinConverter.vue';
     import CoinExplorers from '~/components/markets/cryptocurrencies/coin/CoinExplorers.vue';
     import CoinSentiment from '~/components/markets/cryptocurrencies/coin/CoinSentiment.vue';
