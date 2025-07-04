@@ -60,7 +60,7 @@
                 <Separator class='my-4' />
                 
                 <!--  Info  -->
-                <CoinInfo :coin='coin' />
+                <CoinDescription :coin='coin' />
             </Card>
         </div>
     </div>
@@ -70,7 +70,7 @@
     import CoinConverter from '~/components/markets/cryptocurrencies/coin/CoinConverter.vue';
     import CoinDelta from '~/components/markets/cryptocurrencies/coin/CoinDelta.vue';
     import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
-    import CoinInfo from '@/components/markets/cryptocurrencies/coin/CoinInfo.vue';
+    import CoinDescription from '~/components/markets/cryptocurrencies/coin/CoinDescription.vue';
     import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     import CoinOverview from '@/components/markets/cryptocurrencies/coin/CoinOverview.vue';
     import CoinSentiment from '@/components/markets/cryptocurrencies/coin/CoinSentiment.vue';
