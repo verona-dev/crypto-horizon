@@ -19,9 +19,6 @@
                 <!--  Header  -->
                 <CoinHeader :coin='coin' />
                 
-                <!--  Info  -->
-                <CoinInfo :coin='coin' />
-                
                 <CardContent class='my-10 flex flex-col lg:flex-row lg:justify-evenly'>
                     <div class='left'>
                         <!--  Links  -->
@@ -59,6 +56,11 @@
                 
                 <!--  Supply  -->
                 <CoinSupply :coin='coin.livecoinwatch' />
+                
+                <Separator class='my-4' />
+                
+                <!--  Info  -->
+                <CoinInfo :coin='coin' />
             </Card>
         </div>
     </div>
