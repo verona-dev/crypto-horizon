@@ -6,13 +6,13 @@
         <h6>Contracts</h6>
         
         <div class='flex items-center'>
-            <!--  First Contract  -->
+            <!--  Main Contract  -->
             <MazBadge
-                class='w-full'
+                class='main-badge w-full'
                 color='info'
             >
                 <div class='py-1.5 pr-4 flex items-center'>
-                    <p>{{ platforms[0].chain }}</p>
+<!--                    <p>{{ platforms[0].chain }}</p>-->
                 </div>
             </MazBadge>
             
@@ -26,12 +26,14 @@
         coin: Object,
         required: true,
     });
+    // CryptocurrenciesStore
+    import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
+    const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     const { coin } = toRefs(props);
-    const platforms = Object.entries(coin.value.platforms).map(([key, value]) => ({
-        'chain': key,
-        'contract': value
-    }));
+
+    
+    // coin list with market data
 </script>
 
 <style scoped>

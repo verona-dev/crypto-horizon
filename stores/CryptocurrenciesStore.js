@@ -88,7 +88,11 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             this.loading = true;
             
             try {
-                const response = await useFetchCoingecko('coins/markets', options);
+                const response = await useFetchCoingecko('coins/markets', {
+                    query: {
+                        ids: 'bitcoin'
+                    }
+                });
                 
                 if(response) {
                     this.contractCoins = response;
@@ -142,22 +146,5 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 this.loading = false;
             }
         },
-        
-        /*
-        async fetchCoingeckoHistoricalChartData(coin, days) {
-            this.loading = true;
-            
-            try {
-                this.coinChartData = await useCoingeckoHistoricalChartData(coin, days);
-                console.log(JSON.parse(JSON.stringify(this.coinChartData)));
-            }
-            catch (error) {
-                console.log(error);
-            }
-            finally {
-                this.loading = false;
-            }
-        },
-        */
     },
 });

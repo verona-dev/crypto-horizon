@@ -64,9 +64,18 @@
     // State
     const { coin, loading } = storeToRefs(CryptocurrenciesStore);
     // Methods
-    const { setCoin } = CryptocurrenciesStore;
+    const { setCoin, getCoingeckoCoinsShortMarketData } = CryptocurrenciesStore;
+    
+   /*
+    const platforms = Object.entries(coin.value?.platforms).map(([key, value]) => ({
+        'chain': key,
+        'contract': value
+    }));
+    console.log(platforms[0].chain);
+    */
     
     onMounted(() => {
         setCoin(route.params.coin);
+        getCoingeckoCoinsShortMarketData();
     });
 </script>
