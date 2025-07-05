@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { useFetchCoinLoreData } from '~/composables/apiCoinLore.js';
 import { useFetchCoingecko } from '~/composables/apiCoingecko';
-import { formatLivecoinwatchCoin, formatCoinsTable, formatCoingeckoCoin } from '~/utils/formatUtils.js';
+import { formatCoingeckoCoin, formatCoinsTable, formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 
 export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
@@ -21,35 +21,35 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     
     actions: {
         async setCoin(coinId) {
-            await this.fetchCoingeckoCoin(coinId);
+            await this.getCoingeckoCoin(`coins/${coinId}`);
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
             await this.fetchLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
         },
         
-        async fetchCoingecko(route, options) {
+        async getCoingeckoMarkets(options) {
             this.loading = true;
             
             try {
-                const response = await useFetchCoingecko(route, options);
+                const response = await useFetchCoingecko('coins/markets', options);
                 
-                if(route === 'coins/markets') {
+                if(response) {
                     this.coins = [];
                     this.coins = formatCoinsTable(response);
                 }
             }
             catch(error) {
-                console.error(error);
+                console.error(error)
             }
             finally {
                 this.loading = false;
             }
         },
         
-        async fetchCoingeckoCoin(coinId) {
+        async getCoingeckoCoin(route) {
             this.loading = true;
             
             try {
-                const response = await useFetchCoingecko(`coins/${coinId}`);
+                const response = await useFetchCoingecko(route);
                 
                 if(response) {
                     this.coin.coingecko = formatCoingeckoCoin(response);
@@ -60,6 +60,15 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
             finally {
                 this.loading = false;
+            }
+        },
+        
+        async getCoingeckoContractListCoins(options) {
+            try {
+                return await useFetchCoingecko('coins/markets', options);
+            }
+            catch(error) {
+                console.error(error);
             }
         },
         
@@ -98,22 +107,5 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 this.loading = false;
             }
         },
-        
-        /*
-        async fetchCoingeckoHistoricalChartData(coin, days) {
-            this.loading = true;
-            
-            try {
-                this.coinChartData = await useCoingeckoHistoricalChartData(coin, days);
-                console.log(JSON.parse(JSON.stringify(this.coinChartData)));
-            }
-            catch (error) {
-                console.log(error);
-            }
-            finally {
-                this.loading = false;
-            }
-        },
-        */
     },
 });

@@ -13,7 +13,7 @@
                 target='_blank'
                 class='inline-flex items-center flex-1'
             >
-                <MazBadge class='main-explorer-badge w-full'>
+                <MazBadge class='main-badge w-full'>
                     <div class='py-1.5 pr-4 flex items-center'>
                         <NuxtIcon
                             name='radix-icons:globe'
@@ -92,46 +92,3 @@
         }));
     });
 </script>
-
-<style>
-    .coin-explorers {
-        /* Main explorer */
-        .main-explorer-badge {
-            background-color: var(--accent-foreground) !important;
-            border: 1px solid transparent !important;
-            border-top-right-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
-            height: 50px;
-            
-            &:hover {
-                background-color: var(--accent) !important;
-            }
-        }
-        
-        /* Dropdown icon */
-        .m-dropdown__wrapper {
-            .m-btn {
-                background-color: var(--accent-foreground) !important;
-                border-top-left-radius: 0 !important;
-                border-bottom-left-radius: 0 !important;
-                height: 50px;
-                
-                &:hover {
-                    background-color: var(--accent) !important;
-                }
-            }
-        }
-        
-        /* Dropdown menu */
-        .menu {
-            background-color: var(--accent-foreground) !important;
-            
-            /*
-            .m-btn:hover {
-                border: 1px solid var(--secondary) !important;
-            }
-            */
-        }
-    }
-
-</style>

@@ -25,7 +25,7 @@
                         <h5>Max Supply</h5>
                         
                         <HoverCard
-                            openDelay='200'
+                            :openDelay='200'
                             class='flex'
                         >
                             <HoverCardTrigger>
@@ -71,7 +71,7 @@
                         <h5>Total Supply</h5>
                         
                         <HoverCard
-                            openDelay='200'
+                            :openDelay='200'
                             class='flex'
                         >
                             <HoverCardTrigger>
@@ -116,7 +116,7 @@
                         <h5>Circulating Supply</h5>
                         
                         <HoverCard
-                            openDelay='200'
+                            :openDelay='200'
                             class='flex'
                         >
                             <HoverCardTrigger>
@@ -158,7 +158,7 @@
                         <h5>Volume 24h</h5>
                         
                         <HoverCard
-                            openDelay='200'
+                            :openDelay='200'
                             class='flex'
                         >
                             <HoverCardTrigger>
@@ -198,7 +198,7 @@
                         <h5>Liquidity 24h</h5>
                         
                         <HoverCard
-                            openDelay='200'
+                            :openDelay='200'
                             class='flex'
                         >
                             <HoverCardTrigger>

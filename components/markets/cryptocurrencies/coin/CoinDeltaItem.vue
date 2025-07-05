@@ -1,7 +1,7 @@
 <template>
     <HoverCard
         v-if='delta'
-        openDelay='350'
+        :openDelay='350'
     >
         <HoverCardTrigger>
             <Card

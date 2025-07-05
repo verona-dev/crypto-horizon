@@ -17,18 +17,31 @@
                 <div class='flex items-center'>
                     <h2>{{ coingecko.name }}</h2>
                     
-                    <MazBadge
-                        color='info'
-                        size='1.25rem'
-                        rounded-size='md'
-                        class='ml-8 mt-1'
-                        outline
-                    >
-                        &#35;{{ coingecko.market_cap_rank }}
-                    </MazBadge>
-                    
                     <HoverCard
-                        openDelay='200'
+                        :openDelay='200'
+                        class='flex'
+                    >
+                        <HoverCardTrigger class='info-icon'>
+                            <MazBadge
+                                color='info'
+                                size='1.25rem'
+                                rounded-size='md'
+                                class='ml-8 mt-1 cursor-default'
+                                outline
+                            >
+                                &#35;{{ coingecko.market_cap_rank }}
+                            </MazBadge>
+                        </HoverCardTrigger>
+                        <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>
+                                    Coin rank by market cap
+                                </span>
+                        </HoverCardContent>
+                    </HoverCard>
+                    
+                    <!--  Portfolio watchlist  -->
+                    <HoverCard
+                        :openDelay='200'
                         class='flex'
                     >
                         <HoverCardTrigger class='info-icon'>
@@ -36,7 +49,7 @@
                                 color='theme'
                                 size='1.25rem'
                                 rounded-size='md'
-                                class='ml-8 mt-1'
+                                class='ml-8 mt-1 cursor-default'
                                 outline
                             >
                                 <div class='flex items-center'>

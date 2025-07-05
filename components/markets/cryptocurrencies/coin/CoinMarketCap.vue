@@ -17,7 +17,7 @@
                 <h5>Market Cap</h5>
                 
                 <HoverCard
-                    openDelay='200'
+                    :openDelay='200'
                     class='flex'
                 >
                     <HoverCardTrigger class='info-icon'>
