@@ -81,7 +81,7 @@
         'value': value
     }));
     
-    console.log('contracts: ' ,contracts);
+    // console.log('contracts: ' ,contracts);
     
     contracts.forEach(contract => ids.push(contract.name));
     
