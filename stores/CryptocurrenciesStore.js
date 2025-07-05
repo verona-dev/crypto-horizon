@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { useFetchCoinLoreData } from '~/composables/apiCoinLore.js';
 import { useFetchCoingecko } from '~/composables/apiCoingecko';
-import { formatLivecoinwatchCoin, formatCoinsTable, formatCoingeckoCoin } from '~/utils/formatUtils.js';
+import { formatCoingeckoCoin, formatCoinsTable, formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 
 export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
@@ -84,22 +84,12 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoingeckoCoinsShortMarketData(options) {
-            this.loading = true;
-            
+        async getCoingeckoContractListCoins(options) {
             try {
-                const response = await useFetchCoingecko('coins/markets', options);
-                
-                if(response) {
-                    this.contractCoins = response;
-                    console.log(this.contractCoins);
-                }
+                return await useFetchCoingecko('coins/markets', options);
             }
             catch(error) {
                 console.error(error);
-            }
-            finally {
-                this.loading = false;
             }
         },
         
