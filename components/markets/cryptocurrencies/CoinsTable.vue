@@ -111,11 +111,10 @@
     // State
     const { loading, coins } = storeToRefs(CryptocurrenciesStore);
     // Methods
-    const { fetchCoingecko } = CryptocurrenciesStore;
+    const { getCoingeckoMarkets } = CryptocurrenciesStore;
     
     onMounted(() => {
-        fetchCoingecko('coins/markets');
-        // fetchCoingecko('coins/list');
+        getCoingeckoMarkets();
     });
     
     // Pagination

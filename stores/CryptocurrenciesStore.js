@@ -13,6 +13,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             livecoinwatch: {},
             symbol: '',
         },
+        contractCoins: [],
         coinCg: {},
         coinChartData: {},
         loading: false,
@@ -21,10 +22,11 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     
     actions: {
         async setCoin(coinId) {
-            await this.fetchCoingeckoCoin(coinId);
+            await this.getCoingeckoCoin(`coins/${coinId}`);
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
             await this.fetchLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
         },
+        
         
         async fetchCoingecko(route, options) {
             this.loading = true;
@@ -38,6 +40,43 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 }
             }
             catch(error) {
+                console.error(error)
+            }
+            finally {
+                this.loading = false;
+            }
+        },
+        
+        async getCoingeckoMarkets(options) {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko('coins/markets', options);
+                
+                if(response) {
+                    this.coins = [];
+                    this.coins = formatCoinsTable(response);
+                }
+            }
+            catch(error) {
+                console.error(error)
+            }
+            finally {
+                this.loading = false;
+            }
+        },
+        
+        async getCoingeckoCoin(route) {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko(route);
+                
+                if(response) {
+                    this.coin.coingecko = formatCoingeckoCoin(response);
+                }
+            }
+            catch(error) {
                 console.error(error);
             }
             finally {
@@ -45,14 +84,15 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async fetchCoingeckoCoin(coinId) {
+        async getCoingeckoCoinsShortMarketData(options) {
             this.loading = true;
             
             try {
-                const response = await useFetchCoingecko(`coins/${coinId}`);
+                const response = await useFetchCoingecko('coins/markets', options);
                 
                 if(response) {
-                    this.coin.coingecko = formatCoingeckoCoin(response);
+                    this.contractCoins = response;
+                    console.log(this.contractCoins);
                 }
             }
             catch(error) {
@@ -67,7 +107,11 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             this.loading = true;
             
             try {
-                const response = await useFetchCoinLoreData(route, options);
+                const response = await useFetchCoinLoreData(route, {
+                    query: {
+                        ids: 'bitcoin,aptos'
+                    }
+                });
                 
                 if(route === 'global') {
                     this.marketOverview = [];

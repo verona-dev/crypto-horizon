@@ -59,7 +59,6 @@
     // CryptocurrenciesStore
     import {storeToRefs} from 'pinia';
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
-    import CoinMarketCap from '~/components/markets/cryptocurrencies/coin/CoinMarketCap.vue';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State
