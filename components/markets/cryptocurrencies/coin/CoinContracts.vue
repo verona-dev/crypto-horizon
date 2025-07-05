@@ -1,6 +1,5 @@
 <template>
     <div
-        v-if='platforms'
         class='coin-contracts'
     >
         <h6>Contracts</h6>

@@ -88,11 +88,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             this.loading = true;
             
             try {
-                const response = await useFetchCoingecko('coins/markets', {
-                    query: {
-                        ids: 'bitcoin'
-                    }
-                });
+                const response = await useFetchCoingecko('coins/markets', options);
                 
                 if(response) {
                     this.contractCoins = response;
@@ -111,11 +107,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             this.loading = true;
             
             try {
-                const response = await useFetchCoinLoreData(route, {
-                    query: {
-                        ids: 'bitcoin,aptos'
-                    }
-                });
+                const response = await useFetchCoinLoreData(route, options);
                 
                 if(route === 'global') {
                     this.marketOverview = [];
