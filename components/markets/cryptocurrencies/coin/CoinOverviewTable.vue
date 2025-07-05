@@ -29,7 +29,7 @@
                     <TableCell class='flex items-center'>
                         Markets
                         
-                        <HoverCard openDelay='200'>
+                        <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='info-icon'>
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
@@ -50,7 +50,7 @@
                     <TableCell class='flex items-center'>
                         Pairs
                         
-                        <HoverCard openDelay='200'>
+                        <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='info-icon'>
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
@@ -71,7 +71,7 @@
                     <TableCell class='flex items-center'>
                         Exchanges
                         
-                        <HoverCard openDelay='200'>
+                        <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='info-icon'>
                                 <NuxtIcon
                                     name='radix-icons:info-circled'

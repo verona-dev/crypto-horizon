@@ -18,7 +18,7 @@
                     <h2>{{ coingecko.name }}</h2>
                     
                     <HoverCard
-                        openDelay='200'
+                        :openDelay='200'
                         class='flex'
                     >
                         <HoverCardTrigger class='info-icon'>
@@ -41,7 +41,7 @@
                     
                     <!--  Portfolio watchlist  -->
                     <HoverCard
-                        openDelay='200'
+                        :openDelay='200'
                         class='flex'
                     >
                         <HoverCardTrigger class='info-icon'>
