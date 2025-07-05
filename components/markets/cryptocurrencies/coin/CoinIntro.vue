@@ -15,6 +15,9 @@
             <!--  Explorers  -->
             <CoinExplorers :coingeckoLinks='coingecko.links'/>
             
+            <!--  Contracts  -->
+            <CoinContracts :coin='coingecko' />
+            
             <!--  Converter  -->
             <CoinConverter :coin='coin' />
         </div>
@@ -30,6 +33,7 @@
 
 <script setup>
     import CoinChart from '@/components/markets/cryptocurrencies/coin/CoinChart.vue';
+    import CoinContracts from '@/components/markets/cryptocurrencies/coin/CoinContracts.vue';
     import CoinConverter from '~/components/markets/cryptocurrencies/coin/CoinConverter.vue';
     import CoinExplorers from '~/components/markets/cryptocurrencies/coin/CoinExplorers.vue';
     import CoinSentiment from '~/components/markets/cryptocurrencies/coin/CoinSentiment.vue';
