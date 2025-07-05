@@ -62,25 +62,11 @@
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State
-    const { coin, loading, contracts } = storeToRefs(CryptocurrenciesStore);
+    const { coin, loading } = storeToRefs(CryptocurrenciesStore);
     // Methods
-    const { setCoin, getCoingeckoContractListCoins } = CryptocurrenciesStore;
-    
-   /*
-    const platforms = Object.entries(coin.value?.platforms).map(([key, value]) => ({
-        'chain': key,
-        'contract': value
-    }));
-    console.log(platforms[0].chain);
-    */
+    const { setCoin } = CryptocurrenciesStore;
     
     onMounted(() => {
         setCoin(route.params.coin);
-        
- /*       getCoingeckoCoinsShortMarketData({
-            query: {
-                ids: 'bitcoin,aptos'
-            }
-        });*/
     });
 </script>

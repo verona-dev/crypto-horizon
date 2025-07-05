@@ -13,7 +13,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             livecoinwatch: {},
             symbol: '',
         },
-        contractCoins: [],
         coinCg: {},
         coinChartData: {},
         loading: false,
@@ -25,26 +24,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             await this.getCoingeckoCoin(`coins/${coinId}`);
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
             await this.fetchLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
-        },
-        
-        
-        async fetchCoingecko(route, options) {
-            this.loading = true;
-            
-            try {
-                const response = await useFetchCoingecko(route, options);
-                
-                if(route === 'coins/markets') {
-                    this.coins = [];
-                    this.coins = formatCoinsTable(response);
-                }
-            }
-            catch(error) {
-                console.error(error)
-            }
-            finally {
-                this.loading = false;
-            }
         },
         
         async getCoingeckoMarkets(options) {
