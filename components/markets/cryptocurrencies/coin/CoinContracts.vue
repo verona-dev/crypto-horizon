@@ -1,6 +1,6 @@
 <template>
     <div
-        v-if='contracts'
+        v-if='contracts.length'
         class='coin-contracts'
     >
         <h6>Contracts</h6>
@@ -28,6 +28,7 @@
             <MazDropdown
                 trigger='click'
                 class='contracts-dropdown'
+                position='bottom right'
             >
                 <template #dropdown>
                     <div
@@ -74,23 +75,25 @@
     
     const { coin } = toRefs(props);
     const { getCoingeckoContractListCoins } = CryptocurrenciesStore;
-    let ids = [];
+    let chains = [];
     
-    const contracts = Object.entries(coin.value.platforms).map(([key, value]) => ({
+    const contracts = Object.entries(coin.value?.platforms)
+        .filter(([key, value]) => key.trim() !== '' && value.trim() !== '')
+        .map(([key, value]) => ({
         'name': key,
         'value': value
     }));
     
-    // console.log('contracts: ' ,contracts);
+    console.log('contracts: ' ,contracts);
     
-    contracts.forEach(contract => ids.push(contract.name));
+    contracts.forEach(contract => chains.push(contract.name));
     
-    // console.log('ids: ', ids);
+    console.log('ids: ', chains);
     
     // coin list with market data
     onMounted(async() => {
         const response = await getCoingeckoContractListCoins({
-            query: { ids }
+            query: { ids: chains }
         });
         // if(response) console.log('getCoingeckoContractListCoins: ', response);
     });
