@@ -32,6 +32,7 @@
                 trigger='click'
                 v-model:open='isOpen'
                 position='bottom right'
+                class='explorers-dropdown'
             >
                 <template #dropdown>
                     <div
