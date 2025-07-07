@@ -6,7 +6,6 @@ export default defineEventHandler(async (event) => {
     const route = event.context.params?.route || '';
     const queryEvent = getQuery(event);
     const query = new URLSearchParams(queryEvent).toString();
-    console.log(query);
     const apiUrl = `https://api.coingecko.com/api/v3/${route}?${query}`;
     
     try {
