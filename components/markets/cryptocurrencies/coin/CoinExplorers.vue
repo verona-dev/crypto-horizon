@@ -31,6 +31,7 @@
             <MazDropdown
                 trigger='click'
                 v-model:open='isOpen'
+                position='bottom right'
             >
                 <template #dropdown>
                     <div
