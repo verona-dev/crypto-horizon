@@ -56,7 +56,11 @@
                                     @click='onCopyLink'
                                     class='flex items-center justify-center cursor-pointer'
                                 >
-                                    Copy link
+                                    <NuxtIcon
+                                        name='radix-icons:copy'
+                                        size='20'
+                                        class='w-[50px]'
+                                    />
                                 </div>
                             </div>
                         </MazBtn>
