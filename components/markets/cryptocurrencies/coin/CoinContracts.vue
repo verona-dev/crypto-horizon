@@ -52,7 +52,10 @@
                                     </div>
                                 </div>
                                 
-                                <div class='flex items-center justify-center'>
+                                <div
+                                    @click='onCopyLink'
+                                    class='flex items-center justify-center cursor-pointer'
+                                >
                                     Copy link
                                 </div>
                             </div>
@@ -90,6 +93,10 @@
     
     console.log('ids: ', chains);
     
+    const onCopyLink = () => {
+        console.log('copied');
+    };
+    
     // coin list with market data
     onMounted(async() => {
         const response = await getCoingeckoContractListCoins({
@@ -100,7 +107,7 @@
 </script>
 
 <style>
-    .menu {
-        width: 100px !important;
+    .m-btn {
+        cursor: auto !important;
     }
 </style>
