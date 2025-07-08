@@ -47,7 +47,7 @@
                                     
                                     <div class='flex flex-col items-start'>
                                         <span class='capitalize'>{{ contract.name }}</span>
-                                        <span>{{ contract.value.slice(0, 15) + '...' }}</span>
+                                        <span>{{ contract.value.slice(0, 7) + '...' + contract.value.slice(-7) }}</span>
                                     </div>
                                 </div>
                                 
@@ -101,8 +101,10 @@
     console.log('ids: ', chains);
     
     const onCopyLink = contract => {
+        navigator.clipboard.writeText(contract);
+        
         toast('Contract copied to clipboard', {
-            duration: Infinity,
+            duration: 2500,
             icon: () =>
                 h(resolveComponent('NuxtIcon'), {
                     name: 'iconoir:check-circle-solid',
@@ -111,11 +113,9 @@
                 }),
             action: {
                 label: 'OK',
-                onClick: () => {},
             },
         });
     };
-    
     
     // coin list with market data
     onMounted(async() => {
