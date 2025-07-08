@@ -2,7 +2,7 @@
     <div class='single-coin bg-card custom-flex'>
         <div
             v-if='loading'
-            class='flex items-center'
+            class='flex items-center h-[75vh]'
         >
             <MazSpinner
                 color='secondary'
