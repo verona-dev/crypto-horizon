@@ -8,7 +8,7 @@
                 color='secondary'
                 size='3em'
             />
-            <h4 class='ml-4'>Loading...</h4>
+            <h4 class='ml-4 mb-0'>Loading...</h4>
         </div>
         
         <div v-else>
