@@ -34,7 +34,6 @@
                     <div
                         v-for='contract in contracts'
                         :key='contract'
-                        class=''
                     >
                         <MazBtn
                             block
@@ -53,7 +52,7 @@
                                 </div>
                                 
                                 <div
-                                    @click='onCopyLink'
+                                    @click='onCopyLink(contract.value)'
                                     class='flex items-center justify-center cursor-pointer'
                                 >
                                     <NuxtIcon
@@ -72,6 +71,10 @@
 </template>
 
 <script setup>
+    import { toast } from 'vue-sonner';
+    import { h, resolveComponent } from 'vue';
+    
+    
     const props = defineProps({
         coin: [],
         required: true,
@@ -87,9 +90,9 @@
     const contracts = Object.entries(coin.value?.platforms)
         .filter(([key, value]) => key.trim() !== '' && value.trim() !== '')
         .map(([key, value]) => ({
-        'name': key,
-        'value': value
-    }));
+            'name': key,
+            'value': value
+        }));
     
     console.log('contracts: ' ,contracts);
     
@@ -97,9 +100,22 @@
     
     console.log('ids: ', chains);
     
-    const onCopyLink = () => {
-        console.log('copied');
+    const onCopyLink = contract => {
+        toast('Contract copied to clipboard', {
+            duration: Infinity,
+            icon: () =>
+                h(resolveComponent('NuxtIcon'), {
+                    name: 'iconoir:check-circle-solid',
+                    size: 30,
+                    class: 'w-[50px]',
+                }),
+            action: {
+                label: 'OK',
+                onClick: () => {},
+            },
+        });
     };
+    
     
     // coin list with market data
     onMounted(async() => {
@@ -113,5 +129,22 @@
 <style>
     .m-btn {
         cursor: auto !important;
+    }
+    
+    [data-sonner-toast] {
+        background-color: var(--card-small) !important;
+        border-radius: 8px !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+        display: flex !important;
+        justify-content: space-around !important;
+    }
+    
+    [data-icon] {
+        color: var(--chart-2) !important;
+        margin-right: 10px !important;
+    }
+    
+    [data-button] {
+        margin: 0 !important;
     }
 </style>
