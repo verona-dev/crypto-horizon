@@ -7,7 +7,6 @@
             
             <!--  Community Sentiment  -->
             <CoinSentiment
-                v-if='coingecko'
                 :sentimentUp='coingecko.sentiment_votes_up_percentage'
                 :sentimentDown='coingecko.sentiment_votes_down_percentage'
             />
