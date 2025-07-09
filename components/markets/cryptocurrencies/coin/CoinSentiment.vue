@@ -1,5 +1,8 @@
 <template>
-    <div class='coin-sentiment'>
+    <div
+        v-if='sentimentUp'
+        class='coin-sentiment'
+    >
         <div class='flex items-center'>
             <NuxtIcon
                 name='iconoir:user-love'
@@ -16,16 +19,16 @@
                     size='35'
                     class='mr-2'
                 />
-                <p>{{ Math.floor(sentimentUp) || 50 }}&#37;</p>
+                <p>{{ Math.floor(sentimentUp) || 0 }}&#37;</p>
             </div>
             
             <Progress
-                v-model='sentiment'
+                v-model='sentimentUp'
                 class='mx-4'
             />
             
             <div class='flex items-center text-chart-5'>
-                <p>{{ Math.ceil(sentimentDown) || 50 }}&#37;</p>
+                <p>{{ Math.ceil(sentimentDown) }}&#37;</p>
                 <NuxtIcon
                     name='iconoir:thumbs-down'
                     size='35'
@@ -51,7 +54,6 @@
     });
     
     const { sentimentUp, sentimentDown } = toRefs(props);
-    const sentiment = computed(() => sentimentUp.value);
 </script>
 
 <style>

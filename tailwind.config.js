@@ -41,6 +41,9 @@ export default {
                 input: 'hsl(215, 30%, 19%)',
                 ring: 'hsl(215, 27.9%, 16.9%)',
                 aqua: '#02D0BD',
+                colors: {
+                    warning: 'var(--color-warning)',
+                },
                 customGreen: {
                     50: '#EFFDF5',
                     100: '#D9FBE8',

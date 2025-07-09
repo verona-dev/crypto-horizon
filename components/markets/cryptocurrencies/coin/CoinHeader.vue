@@ -1,16 +1,14 @@
 <template>
-    <CardHeader v-if='coin' class='flex justify-center items-center'>
+    <CardHeader v-if='coin' class='flex flex-col justify-center items-center'>
         <section class='my-10 flex flex-col lg:flex-row items-center gap-y-10 lg:gap-y-0 gap-x-10'>
-            <div class=''>
-                <!-- Logo  -->
-                <NuxtImg
-                    v-if='coingecko?.image?.large'
-                    :src='coin.coingecko.image.large'
-                    alt='symbol'
-                    width='150'
-                    height='150'
-                />
-            </div>
+            <!-- Logo  -->
+            <NuxtImg
+                v-if='coingecko?.image?.large'
+                :src='coin.coingecko.image.large'
+                alt='symbol'
+                width='150'
+                height='150'
+            />
             
             <div>
                 <!--  Name + Rank  -->
@@ -79,7 +77,11 @@
                 <!--  Coin price  -->
                 <h4 class='text-foreground mt-4'>{{ formatPrice(coingecko.market_data.current_price.usd, 2, 2) }}</h4>
             </div>
+        
         </section>
+        <CoinPublicNotice
+            :public-notice='coingecko.public_notice'
+        />
     </CardHeader>
     
     <Separator class='my-4' />
@@ -89,10 +91,11 @@
     import { defineProps, toRefs } from 'vue';
     import { formatNumberWithOptions, formatPrice } from '~/utils/formatUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
+    import CoinPublicNotice from '~/components/markets/cryptocurrencies/coin/CoinPublicNotice.vue';
     
     const props = defineProps({
         coin: {
-            type: Object,
+            type: String,
             required: true,
         },
     });
