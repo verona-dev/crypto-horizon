@@ -1,26 +1,39 @@
 <template>
     <div
-        v-if='contracts.length'
+        v-if='platforms.length'
         class='coin-contracts'
     >
         <h6>Contracts</h6>
         
         <div class='flex items-center'>
             <!--  Main Contract  -->
-            <NuxtLink
-                to=''
-                target='_blank'
-                class='inline-flex items-center flex-1'
+            <MazBadge
+                class='main-badge w-full'
+                color='info'
             >
-                <MazBadge
-                    class='main-badge w-full'
-                    color='info'
-                >
-                    <div class='py-1.5 pr-4 flex items-center'>
-                        <p class='capitalize'>{{ contracts[0].name }}</p>
+                <div class='flex items-center'>
+                    <NuxtImg
+                        v-if='platformImageMap.find(platform => platform.name === platforms[0].name)?.image'
+                        :src='platformImageMap.find(platform => platform.name === platforms[0].name).image'
+                        width='30'
+                        height='30'
+                        class='mr-2'
+                    />
+                    
+                    <p class='capitalize'>{{ platforms[0].name }}</p>
+                    
+                    <div
+                        @click='onCopyLink(platforms[0].value)'
+                        class='flex items-center justify-center cursor-pointer'
+                    >
+                        <NuxtIcon
+                            name='radix-icons:copy'
+                            size='20'
+                            class='w-[50px]'
+                        />
                     </div>
-                </MazBadge>
-            </NuxtLink>
+                </div>
+            </MazBadge>
             
             <div class='vertical-separator'></div>
             
@@ -32,7 +45,7 @@
             >
                 <template #dropdown>
                     <div
-                        v-for='contract in contracts'
+                        v-for='contract in platforms'
                         :key='contract'
                     >
                         <MazBtn
@@ -43,7 +56,21 @@
                         >
                             <div class='flex justify-between items-center w-full gap-x-12'>
                                 <div class='flex items-center gap-4'>
-                                    <NuxtIcon name='radix-icons:globe' size='20' />
+                                    <div class='flex w-12'>
+                                        <NuxtImg
+                                            v-if='platformImageMap.find(platform => platform.name === contract.name)?.image'
+                                            :src='platformImageMap.find(platform => platform.name === contract.name).image'
+                                            width='20'
+                                            height='20'
+                                        />
+                                        
+                                        <NuxtIcon
+                                            v-else
+                                            name='bitcoin-icons:block-outline'
+                                            size='25'
+                                            class='self-start'
+                                        />
+                                    </div>
                                     
                                     <div class='flex flex-col items-start'>
                                         <span class='capitalize'>{{ contract.name }}</span>
@@ -73,32 +100,41 @@
 <script setup>
     import { toast } from 'vue-sonner';
     import { h, resolveComponent } from 'vue';
-    
+    // CryptocurrenciesStore
+    import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore';
     
     const props = defineProps({
         coin: [],
         required: true,
     });
-    // CryptocurrenciesStore
-    import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     const { coin } = toRefs(props);
-    const { getCoingeckoContractListCoins } = CryptocurrenciesStore;
-    let chains = [];
+    const { getCoingeckoCoinListSummary } = CryptocurrenciesStore;
+    let platformsList = ref([]);
+    const platformsSummary = ref([]);
     
-    const contracts = Object.entries(coin.value?.platforms)
+    const platforms = Object.entries(coin.value?.platforms)
         .filter(([key, value]) => key.trim() !== '' && value.trim() !== '')
         .map(([key, value]) => ({
             'name': key,
             'value': value
         }));
     
-    console.log('contracts: ' ,contracts);
+    platforms.forEach(contract => platformsList.value.push(contract.name));
     
-    contracts.forEach(contract => chains.push(contract.name));
-    
-    console.log('ids: ', chains);
+    const platformImageMap = computed(() => {
+        return platformsList.value.map(name => {
+            const platformData = platformsSummary.value.find(obj => obj.id === name);
+            return {
+                name,
+                image: platformData?.image || null,
+            };
+        });
+    });
+    watch(platformImageMap, (newVal) => {
+        console.log('platformImageMap updated:', newVal);
+    }, { immediate: true });
     
     const onCopyLink = contract => {
         navigator.clipboard.writeText(contract);
@@ -119,10 +155,9 @@
     
     // coin list with market data
     onMounted(async() => {
-        const response = await getCoingeckoContractListCoins({
-            query: { ids: chains }
+        platformsSummary.value = await getCoingeckoCoinListSummary({
+            query: { ids: platformsList.value }
         });
-        // if(response) console.log('getCoingeckoContractListCoins: ', response);
     });
 </script>
 
