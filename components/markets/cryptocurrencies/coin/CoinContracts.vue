@@ -51,11 +51,11 @@
                         <MazBtn
                             block
                             justify='start'
-                            class='h-20 p-4'
+                            class='my-1'
                             color='transparent'
                         >
-                            <div class='flex justify-between items-center w-full gap-x-12'>
-                                <div class='flex items-center gap-4'>
+                            <div class='py-1 flex justify-between items-center w-full gap-x-4'>
+                                <div class='flex items-center'>
                                     <div class='flex w-12'>
                                         <NuxtImg
                                             v-if='platformImageMap.find(platform => platform.name === contract.name)?.image'
@@ -72,9 +72,9 @@
                                         />
                                     </div>
                                     
-                                    <div class='flex flex-col items-start'>
-                                        <span class='capitalize font-bold'>{{ contract.name }}</span>
-                                        <span>{{ contract.value.slice(0, 7) + '...' + contract.value.slice(-7) }}</span>
+                                    <div class='flex items-center'>
+                                        <span class='capitalize font-bold mr-4'>{{ contract.name }}</span>
+                                        <span>{{ contract.value.slice(0, 5) + '...' + contract.value.slice(-5) }}</span>
                                     </div>
                                 </div>
                                 
@@ -82,11 +82,7 @@
                                     @click='onCopyLink(contract)'
                                     class='flex items-center justify-center cursor-pointer'
                                 >
-                                    <NuxtIcon
-                                        name='radix-icons:copy'
-                                        size='20'
-                                        class='w-[50px]'
-                                    />
+                                    <NuxtIcon name='radix-icons:copy' size='20' />
                                 </div>
                             </div>
                         </MazBtn>
@@ -137,7 +133,7 @@
         navigator.clipboard.writeText(contract.value);
         
         toast(`${capitalize(contract.name)} contract copied to clipboard`, {
-            duration: Infinity,
+            duration: 2500,
             icon: () =>
                 h(resolveComponent('NuxtIcon'), {
                     name: 'iconoir:check-circle-solid',
@@ -161,26 +157,5 @@
 <style>
     .m-btn {
         cursor: auto !important;
-    }
-    
-    [data-sonner-toast] {
-        background-color: var(--card-small) !important;
-        border-radius: 8px !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-        display: flex !important;
-        justify-content: space-around !important;
-        min-width: 425px !important;
-    }
-    
-    [data-icon] {
-        color: var(--chart-2) !important;
-    }
-    
-    [data-title] {
-        margin-left: 10px !important;
-    }
-    
-    [data-button] {
-        margin: 0 !important;
     }
 </style>
