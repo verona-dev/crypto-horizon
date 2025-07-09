@@ -1,0 +1,22 @@
+
+/*  Sonner  */
+[data-sonner-toast] {
+    background-color: var(--card-small) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    min-width: 425px !important;
+}
+
+[data-icon] {
+    color: var(--chart-2) !important;
+}
+
+[data-title] {
+    margin-left: 10px !important;
+}
+
+[data-button] {
+    margin: 0 !important;
+}
