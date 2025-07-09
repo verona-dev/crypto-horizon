@@ -34,6 +34,7 @@
     --color-accent-foreground: var(--accent-foreground);
     --color-destructive: var(--destructive);
     --color-destructive-foreground: var(--destructive-foreground);
+    --color-warning: var(--warning);
     --color-border: var(--border);
     --color-input: var(--input);
     --color-ring: var(--ring);
@@ -136,6 +137,7 @@
     --border: oklch(0.274 0.006 286.033);
     --input: oklch(0.274 0.006 286.033);
     --ring: oklch(0.442 0.017 285.786);
+    --warning: oklch(83.7% 0.128 66.29);
 
     --chart-1: oklch(0.488 0.243 264.376);
     --chart-2: oklch(0.696 0.17 162.48);
