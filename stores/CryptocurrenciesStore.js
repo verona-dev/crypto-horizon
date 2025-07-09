@@ -63,7 +63,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoingeckoContractListCoins(options) {
+        async getCoingeckoCoinListSummary(options) {
             try {
                 return await useFetchCoingecko('coins/markets', options);
             }

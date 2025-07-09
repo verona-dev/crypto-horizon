@@ -3,6 +3,7 @@
 @import './global.css';
 @import './colors.css';
 @import './transitions.css';
+@import './shadcn.css';
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
