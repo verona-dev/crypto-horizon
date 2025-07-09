@@ -23,7 +23,7 @@
                     <p class='capitalize'>{{ platforms[0].value.slice(0, 5) + '...' + platforms[0].value.slice(-5) }}</p>
                     
                     <div
-                        @click='onCopyLink(platforms[0].value)'
+                        @click='onCopyLink(platforms[0])'
                         class='flex items-center justify-center cursor-pointer'
                     >
                         <NuxtIcon
@@ -73,13 +73,13 @@
                                     </div>
                                     
                                     <div class='flex flex-col items-start'>
-                                        <span class='capitalize'>{{ contract.name }}</span>
+                                        <span class='capitalize font-bold'>{{ contract.name }}</span>
                                         <span>{{ contract.value.slice(0, 7) + '...' + contract.value.slice(-7) }}</span>
                                     </div>
                                 </div>
                                 
                                 <div
-                                    @click='onCopyLink(contract.value)'
+                                    @click='onCopyLink(contract)'
                                     class='flex items-center justify-center cursor-pointer'
                                 >
                                     <NuxtIcon
@@ -132,15 +132,12 @@
             };
         });
     });
-    watch(platformImageMap, (newVal) => {
-        console.log('platformImageMap updated:', newVal);
-    }, { immediate: true });
     
     const onCopyLink = contract => {
-        navigator.clipboard.writeText(contract);
+        navigator.clipboard.writeText(contract.value);
         
-        toast('Contract copied to clipboard', {
-            duration: 2500,
+        toast(`${capitalize(contract.name)} contract copied to clipboard`, {
+            duration: Infinity,
             icon: () =>
                 h(resolveComponent('NuxtIcon'), {
                     name: 'iconoir:check-circle-solid',
@@ -172,11 +169,15 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
         display: flex !important;
         justify-content: space-around !important;
+        min-width: 425px !important;
     }
     
     [data-icon] {
         color: var(--chart-2) !important;
-        margin-right: 10px !important;
+    }
+    
+    [data-title] {
+        margin-left: 10px !important;
     }
     
     [data-button] {
