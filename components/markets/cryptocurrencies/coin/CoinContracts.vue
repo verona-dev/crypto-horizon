@@ -11,7 +11,7 @@
                 class='main-badge w-full'
                 color='info'
             >
-                <div class='flex items-center'>
+                <div class='flex items-center w-3/4 justify-around'>
                     <NuxtImg
                         v-if='platformImageMap.find(platform => platform.name === platforms[0].name)?.image'
                         :src='platformImageMap.find(platform => platform.name === platforms[0].name).image'
@@ -20,7 +20,7 @@
                         class='mr-2'
                     />
                     
-                    <p class='capitalize'>{{ platforms[0].name }}</p>
+                    <p class='capitalize'>{{ platforms[0].value.slice(0, 5) + '...' + platforms[0].value.slice(-5) }}</p>
                     
                     <div
                         @click='onCopyLink(platforms[0].value)'
