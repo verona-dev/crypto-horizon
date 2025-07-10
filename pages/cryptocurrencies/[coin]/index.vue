@@ -64,9 +64,9 @@
     // State
     const { coin, loading } = storeToRefs(CryptocurrenciesStore);
     // Methods
-    const { setCoin } = CryptocurrenciesStore;
+    const { getCoin } = CryptocurrenciesStore;
     
     onMounted(() => {
-        setCoin(route.params.coin);
+        getCoin(route.params.coin);
     });
 </script>
