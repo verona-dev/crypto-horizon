@@ -1,18 +1,18 @@
 <template>
-    <div class='coin-chart'>
+    <div v-if='chartData' class='coin-chart'>
         This is coin chart
-        {{ coin.coingecko.name}}
     </div>
 </template>
 
 <script setup>
     const props = defineProps({
-        coin: {
+        chartData: {
             type: Object,
             required: true
         }
     });
-    const { coin } = toRefs(props);
+    const { chartData } = toRefs(props);
+    console.log(chartData.value);
 </script>
 
 <style scoped>

@@ -23,7 +23,7 @@
         
         <!--  Right  -->
         <div class='right'>
-            <CoinChart :coin='coin' />
+            <CoinChart :chartData='coin.chart' />
         </div>
     </section>
     
