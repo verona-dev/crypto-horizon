@@ -6,7 +6,7 @@
         </h6>
         
         <!--  Description  -->
-        <div v-if='coingecko.description' class='bg-accent-foreground rounded-t-md'>
+        <div v-if='coingecko.description.length' class='bg-accent-foreground rounded-t-md'>
             <Accordion type='single' collapsible class='py-3 px-6'>
                 <AccordionItem value='item-1' class=''>
                     <AccordionTrigger class=''>
