@@ -8,8 +8,16 @@ export default defineEventHandler(async (event) => {
     const query = new URLSearchParams(queryEvent).toString();
     const apiUrl = `https://api.coingecko.com/api/v3/${route}?${query}`;
     
+    const storage = useStorage();
+    const cacheKey = `coingecko-${route}-${query}`;
+    const cacheTTL = 60 * 5;
+    let data;
+    
     try {
-       
+        data = await storage.getItem(cacheKey);
+        
+        if (data) return data;
+        
         const response = await fetch(apiUrl, {
             method: 'GET',
             headers: {
@@ -27,7 +35,11 @@ export default defineEventHandler(async (event) => {
             });
         }
         
-        return await response.json();
+        data = await response.json();
+        
+        await storage.setItem(cacheKey, data, cacheTTL);
+        
+        return data;
     } catch(error) {
         if (error.statusCode) {
             throw error;
