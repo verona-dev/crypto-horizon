@@ -46,7 +46,7 @@
             });
         });
         
-        console.log(JSON.parse(JSON.stringify(myData.value)));
+        // console.log(JSON.parse(JSON.stringify(myData.value)));
     });
 </script>
 
