@@ -22,16 +22,13 @@
         </div>
         
         <!--  Right  -->
-        <div class='right'>
-            <CoinChart :chartData='coin.chart' />
-        </div>
+        <div class='right'></div>
     </section>
     
     <Separator class='my-4' />
 </template>
 
 <script setup>
-    import CoinChart from '@/components/markets/cryptocurrencies/coin/CoinChart.vue';
     import CoinContracts from '@/components/markets/cryptocurrencies/coin/CoinContracts.vue';
     import CoinConverter from '~/components/markets/cryptocurrencies/coin/CoinConverter.vue';
     import CoinExplorers from '~/components/markets/cryptocurrencies/coin/CoinExplorers.vue';
