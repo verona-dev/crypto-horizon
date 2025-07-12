@@ -69,8 +69,9 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             try {
                 const response = await useFetchCoingecko(`coins/${id}/market_chart`, {
                     query: {
-                        days: 6,
+                        days: 7,
                         interval: 'daily',
+                        precision: 0,
                     }
                 });
                 
