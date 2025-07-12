@@ -12,18 +12,18 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             coingecko: {},
             livecoinwatch: {},
             symbol: '',
+            chart: {},
         },
-        coinCg: {},
-        coinChartData: {},
         loading: false,
         marketOverview: [],
     }),
     
     actions: {
-        async setCoin(coinId) {
+        async getCoin(coinId) {
             await this.getCoingeckoCoin(`coins/${coinId}`);
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
             await this.fetchLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
+            await this.getCoingeckoChart(coinId);
         },
         
         async getCoingeckoMarkets(options) {
@@ -53,6 +53,30 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 
                 if(response) {
                     this.coin.coingecko = formatCoingeckoCoin(response);
+                }
+            }
+            catch(error) {
+                console.error(error);
+            }
+            finally {
+                this.loading = false;
+            }
+        },
+        
+        async getCoingeckoChart(id) {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko(`coins/${id}/market_chart`, {
+                    query: {
+                        days: 7,
+                        interval: 'daily',
+                        precision: 0,
+                    }
+                });
+                
+                if(response) {
+                    this.coin.chart = response;
                 }
             }
             catch(error) {

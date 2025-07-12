@@ -1,67 +1,97 @@
 <template>
     <section class='coin-links lg:flex-row gap-y-20 lg:gap-0 lg:items-baseline'>
-        <!--  Websites  -->
         <div class='coin-link-container flex flex-col justify-center items-center lg:justify-start lg:items-start'>
-            <h4>Websites</h4>
-            
-            <!--  Homepage  -->
-            <NuxtLink
-                v-if='livecoinwatchLinks.website'
-                :to='livecoinwatchLinks.website'
-                external
-                target='_blank'
-                class='flex'
-            >
-                <div class='link-item flex items-center'>
-                    <NuxtIcon
-                        name='radix-icons:link-2'
-                        size='25'
-                        class='w-[50px]'
-                    />
-                    <p>Homepage</p>
-                </div>
-            </NuxtLink>
-            
-            <!--  Whitepaper  -->
-            <NuxtLink
-                v-if='livecoinwatchLinks.whitepaper'
-                :to='livecoinwatchLinks.whitepaper'
-                external
-                target='_blank'
-                class='flex mt-4'
-            >
-                <div class='link-item flex items-center'>
-                    <NuxtIcon
-                        name='radix-icons:reader'
-                        size='25'
-                        class='w-[50px]'
-                    />
-                    <p>Whitepaper</p>
-                </div>
-            </NuxtLink>
-            
-            <!--  Forum  -->
-            <div
-                v-for='(link, name) in coingeckoLinks.official_forum_url'
-                :key='name'
-                class='flex items-center justify-start'
-            >
+            <!--  Websites  -->
+            <div class='websites'>
+                <h4>Websites</h4>
+                
+                <!--  Homepage  -->
                 <NuxtLink
-                    v-if='link'
-                    :to='link'
+                    v-if='livecoinwatchLinks.website'
+                    :to='livecoinwatchLinks.website'
+                    external
+                    target='_blank'
+                    class='flex'
+                >
+                    <div class='link-item flex items-center'>
+                        <NuxtIcon
+                            name='radix-icons:home'
+                            size='25'
+                            class='w-[50px]'
+                        />
+                        <p>Homepage</p>
+                    </div>
+                </NuxtLink>
+                
+                <!--  Whitepaper  -->
+                <NuxtLink
+                    v-if='livecoinwatchLinks.whitepaper'
+                    :to='livecoinwatchLinks.whitepaper'
                     external
                     target='_blank'
                     class='flex mt-4'
                 >
                     <div class='link-item flex items-center'>
                         <NuxtIcon
-                            name='radix-icons:chat-bubble'
+                            name='iconoir:open-book'
                             size='25'
                             class='w-[50px]'
                         />
-                        <p>Official Forum</p>
+                        <p>Whitepaper</p>
                     </div>
                 </NuxtLink>
+                
+                <!--  Forum  -->
+                <div
+                    v-for='(link, name) in coingeckoLinks.official_forum_url'
+                    :key='name'
+                    class='flex items-center justify-start'
+                >
+                    <NuxtLink
+                        v-if='link'
+                        :to='link'
+                        external
+                        target='_blank'
+                        class='flex mt-4'
+                    >
+                        <div class='link-item flex items-center'>
+                            <NuxtIcon
+                                name='radix-icons:chat-bubble'
+                                size='25'
+                                class='w-[50px]'
+                            />
+                            <p>Official Forum</p>
+                        </div>
+                    </NuxtLink>
+                </div>
+            </div>
+            
+            <!--  Chat  -->
+            <div v-if='coingeckoLinks.chat_url.length' class='chat my-20'>
+                <h4>Chat</h4>
+                
+                <div
+                    v-for='chat in coingeckoLinks.chat_url'
+                    :key='chat'
+                    class='flex items-center justify-start'
+                >
+                    <NuxtLink
+                        v-if='chat'
+                        :to='chat'
+                        external
+                        target='_blank'
+                        class='flex mt-4'
+                    >
+                        <div class='link-item flex items-center'>
+                            <NuxtIcon
+                                name='iconoir:chat-lines'
+                                size='25'
+                                class='w-[50px]'
+                            />
+                            <p>{{ chat }}</p>
+                        </div>
+                    </NuxtLink>
+                </div>
             </div>
         </div>
         
@@ -115,7 +145,7 @@
                 >
                     <div class='link-item flex items-center py-3'>
                         <NuxtIcon
-                            name='radix-icons:github-logo'
+                            name='iconoir:github'
                             size='25'
                             class='w-[50px]'
                         />

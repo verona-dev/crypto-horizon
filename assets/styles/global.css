@@ -47,7 +47,7 @@
     }
     
     h4 {
-        @apply text-4xl mb-6;
+        @apply text-4xl mb-3;
     }
     
     h5 {
