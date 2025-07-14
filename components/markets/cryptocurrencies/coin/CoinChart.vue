@@ -55,19 +55,26 @@
             {
                 label: 'Price',
                 data: prices.value,
-                borderColor: '#4eec4e',
+                
+                // Line
+                borderColor: '#01c929',
+                borderWidth: 2,
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
                     const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
+                    gradient.addColorStop(0.05, '#006200');
                     gradient.addColorStop(0.1, '#1a4d1a');
-                    gradient.addColorStop(0.4, '#0d290d');
-                    gradient.addColorStop(1.0, 'rgba(0, 0, 0, 0)');
+                    gradient.addColorStop(0.5, '#0d290d');
+                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
                     return gradient;
                 },
                 fill: true,
                 tension: 0.5,
-                pointRadius: 5,
-                pointHoverRadius: 10,
+                
+                // Point
+                pointRadius: 0,
+                pointHoverRadius: 5,
+                pointBackgroundColor: '#fff',
             },
         ],
     }));
