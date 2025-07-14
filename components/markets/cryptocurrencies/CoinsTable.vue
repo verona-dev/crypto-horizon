@@ -95,7 +95,9 @@
             </div>
         </template>
         
+        
         <!--
+        TODO: Add coin to watchlist
         <template #actions>
             <MazBtn fab size="xs" color="secondary" icon="trash" />
         </template>
