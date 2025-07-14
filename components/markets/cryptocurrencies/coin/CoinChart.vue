@@ -56,6 +56,7 @@
         labels: labels.value,
         datasets: [
             {
+                label: 'Price',
                 data: prices.value,
                 
                 // Line
@@ -76,7 +77,7 @@
                 // Point
                 pointRadius: 0,
                 pointHoverRadius: 5,
-                pointBackgroundColor: '#fff',
+                pointBackgroundColor: '#01c929',
             },
         ],
     }));
@@ -109,8 +110,13 @@
                 },
                 beginAtZero: false,
                 grid: {
-                    color: 'oklch(0.274 0.006 286.033)',
+                    color: 'rgba(78,135,176,0.35)',
                 },
+                ticks: {
+                    callback: function(value) {
+                        return formatNumberWithOptions(value);
+                    }
+                }
             },
         },
     };
