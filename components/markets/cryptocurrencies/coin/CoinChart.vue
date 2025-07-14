@@ -95,15 +95,21 @@
             tooltip: {
                 enabled: true,
                 backgroundColor: 'oklch(0.21 0.006 285.885)',
-                padding: 18,
+                padding: 24,
                 caretPadding: 8,
                 caretSize: 8,
                 cornerRadius: 8,
                 displayColors: false, // disable the color box
+                titleMarginBottom: 16,
                 callbacks: {
                     title: function(context) {
-                        const timestampMs = Number(context[0]?.label); // this.getLabelForValue converted it to String
+                        const timestampMs = Number(context[0]?.label); // scales.x.ticks.callback() this.getLabelForValue converted it to String
                         return dayjs(timestampMs).format('MMM D, YYYY, HH:mm:ss');
+                    },
+                    label: function(context) {
+                        const price = context.parsed.y;
+                        return `Price: $${price.toFixed(2)}`;
+                        
                     }
                 },
             },
