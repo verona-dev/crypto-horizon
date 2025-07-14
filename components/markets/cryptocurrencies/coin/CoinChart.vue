@@ -75,6 +75,11 @@
     const options = {
         responsive: true,
         maintainAspectRatio: false,
+        interaction: {
+            mode: 'nearest',
+            axis: 'x',
+            intersect: false,
+        },
         plugins: {
             tooltip: {
                 enabled: true,
