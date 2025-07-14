@@ -5,6 +5,7 @@
             :data='data'
             :options='options'
             :height='500'
+            :type='"customLineChart"'
         />
     </div>
 </template>
@@ -12,6 +13,7 @@
 <script setup>
     import dayjs from 'dayjs';
     import { Line } from 'vue-chartjs';
+    import CustomLineChart from '~/utils/CustomLineChart.js';
     
     import {
         Chart as ChartJS,
@@ -27,6 +29,7 @@
     } from 'chart.js';
     
     ChartJS.register(
+        CustomLineChart,
         LineController,
         LineElement,
         PointElement,
@@ -53,7 +56,6 @@
         labels: labels.value,
         datasets: [
             {
-                label: 'Price',
                 data: prices.value,
                 
                 // Line

@@ -64,7 +64,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 
                 if (chartResponse) {
                     this.coin.chart = chartResponse;
-                    console.log(JSON.parse(JSON.stringify(this.coin.chart.prices)));
                 }
             }
             catch(error) {
