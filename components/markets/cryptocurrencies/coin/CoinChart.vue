@@ -49,15 +49,16 @@
     });
     const { chartData } = toRefs(props);
     
-    const labels = computed(() => chartData.value?.prices?.map(item => dayjs(item[0]).format('D. MMM')));
+    const timestamps = computed(() => chartData.value?.prices?.map(item => item[0]));
+    // const labels = computed(() => chartData.value?.prices?.map(item => dayjs(item[0]).format('D. MMM')));
     const prices = computed(() => chartData.value?.prices?.map(item => item[1]));
     
     const data = computed(() => ({
-        labels: labels.value,
+        labels: timestamps.value, // x-axis
         datasets: [
             {
                 label: 'Price',
-                data: prices.value,
+                data: prices.value, // y-axis
                 
                 // Line
                 borderColor: '#01c929',
@@ -102,6 +103,13 @@
             x: {
                 title: {
                     display: false,
+                },
+                ticks: {
+                    maxTicksLimit: 8,
+                    callback: function(value) {
+                        const label = this.getLabelForValue(value);
+                        return dayjs(label).format('D. MMM');
+                    }
                 },
             },
             y: {
