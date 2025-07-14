@@ -1,5 +1,5 @@
 <template>
-    <div class='coin-chart w-10/12 my-20 mx-auto'>
+    <div v-if='chartData.prices' class='coin-chart w-10/12 my-20 mx-auto'>
         <Line
             v-if='data.datasets?.length'
             :data='data'

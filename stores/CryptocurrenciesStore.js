@@ -20,10 +20,9 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     
     actions: {
         async getCoin(coinId) {
-            await this.getCoingeckoCoin(`coins/${coinId}`);
+            await this.getCoingeckoCoin(coinId);
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
             await this.fetchLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
-            await this.getCoingeckoChart(coinId);
         },
         
         async getCoingeckoMarkets(options) {
@@ -45,38 +44,27 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoingeckoCoin(route) {
+        async getCoingeckoCoin(coinId) {
             this.loading = true;
             
             try {
-                const response = await useFetchCoingecko(route);
+                const [coinResponse, chartResponse] = await Promise.all([
+                    useFetchCoingecko(`coins/${coinId}`),
+                    useFetchCoingecko(`coins/${coinId}/market_chart`, {
+                        query: {
+                            days: 7,
+                            interval: 'daily',
+                            precision: 0,
+                        }
+                    })
+                ]);
                 
-                if(response) {
-                    this.coin.coingecko = formatCoingeckoCoin(response);
+                if (coinResponse) {
+                    this.coin.coingecko = formatCoingeckoCoin(coinResponse);
                 }
-            }
-            catch(error) {
-                console.error(error);
-            }
-            finally {
-                this.loading = false;
-            }
-        },
-        
-        async getCoingeckoChart(id) {
-            this.loading = true;
-            
-            try {
-                const response = await useFetchCoingecko(`coins/${id}/market_chart`, {
-                    query: {
-                        days: 7,
-                        interval: 'daily',
-                        precision: 0,
-                    }
-                });
                 
-                if(response) {
-                    this.coin.chart = response;
+                if (chartResponse) {
+                    this.coin.chart = chartResponse;
                 }
             }
             catch(error) {
