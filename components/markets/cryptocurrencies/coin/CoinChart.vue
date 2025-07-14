@@ -16,16 +16,16 @@
     import CustomLineChart from '~/utils/CustomLineChart.js';
     
     import {
+        CategoryScale,
         Chart as ChartJS,
+        Filler,
+        Legend,
+        LinearScale,
         LineController,
         LineElement,
         PointElement,
-        LinearScale,
-        CategoryScale,
-        Filler,
         Title,
         Tooltip,
-        Legend,
     } from 'chart.js';
     
     ChartJS.register(
@@ -94,6 +94,18 @@
         plugins: {
             tooltip: {
                 enabled: true,
+                backgroundColor: 'oklch(0.21 0.006 285.885)',
+                padding: 18,
+                caretPadding: 8,
+                caretSize: 8,
+                cornerRadius: 8,
+                displayColors: false, // disable the color box
+                callbacks: {
+                    title: function(context) {
+                        const timestampMs = Number(context[0]?.label); // this.getLabelForValue converted it to String
+                        return dayjs(timestampMs).format('MMM D, YYYY, HH:mm:ss');
+                    }
+                },
             },
             legend: {
                 display: false,
