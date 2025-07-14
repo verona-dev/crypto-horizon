@@ -53,8 +53,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                     useFetchCoingecko(`coins/${coinId}/market_chart`, {
                         query: {
                             days: 7,
-                            interval: 'daily',
-                            precision: 0,
+                            precision: 2,
                         }
                     })
                 ]);
@@ -110,8 +109,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 
                 if(route === 'coins/single') {
                     this.coin.livecoinwatch = formatLivecoinwatchCoin(response);
-                    // console.log(JSON.parse(JSON.stringify(this.coin.coingecko)));
-                    // console.log(JSON.parse(JSON.stringify(this.coin.livecoinwatch)));
                 }
             } catch(error) {
                 console.log(error);
