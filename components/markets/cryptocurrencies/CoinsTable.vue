@@ -1,5 +1,6 @@
 <template>
     <MazTable
+        v-if='!loading'
         :headers='[
           { label: "#", key: "rank", align: "center", sortable: false, classes: "w-20", },
           { label: "Name", key: "name", sortable: false, classes: "w-92", },
@@ -11,7 +12,6 @@
         ]'
         :rows='coins'
         class='my-20 px-6'
-        :loading='loading'
         color='secondary'
         hoverable
         background-even
@@ -95,7 +95,9 @@
             </div>
         </template>
         
+        
         <!--
+        TODO: Add coin to watchlist
         <template #actions>
             <MazBtn fab size="xs" color="secondary" icon="trash" />
         </template>

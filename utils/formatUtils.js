@@ -47,7 +47,7 @@ const formatNumberWithOptions = (number, usePrefix = true, useSuffix = true) => 
         formattedNumber = floor(number);
     }
     
-    return `${prefix}${formattedNumber.toFixed(2)}${suffix}`;
+    return `${prefix}${formattedNumber}${suffix}`;
 };
 
 const formatCoinsTable = coins => {
