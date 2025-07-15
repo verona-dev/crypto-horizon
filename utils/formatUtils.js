@@ -1,19 +1,32 @@
 import { getTextColor } from '~/utils/styleUtils.js';
 
-const formatPrice = (number, min = 2, max = 2) => {
-    if (number == null || isNaN(number)) return '-';
+const formatPrice = (value, {
+       locale = 'en-US',
+       currency = 'USD',
+       minimumFractionDigits = 2,
+       maximumFractionDigits = 2,
+       compact = false,
+       truncate = false,
+   } = {}
+) => {
+    if (value == null || isNaN(value)) return '-';
     
-    const factor = Math.pow(10, max);
-    const truncatedNumber = Math.floor(Number(number) * factor) / factor;
+    let num = Number(value);
+    
+    if (truncate) {
+        const factor = Math.pow(10, maximumFractionDigits);
+        num = Math.sign(num) * Math.floor(Math.abs(num) * factor) / factor;
+    }
     
     const options = {
-        minimumFractionDigits: min,
-        maximumFractionDigits: max,
         style: 'currency',
-        currency: 'USD',
+        currency,
+        notation: compact ? 'compact' : 'standard',
+        minimumFractionDigits: Math.abs(num) > 10000 ? 0 : minimumFractionDigits,
+        maximumFractionDigits: Math.abs(num) > 10000 ? 0 : maximumFractionDigits,
     };
     
-    return truncatedNumber.toLocaleString('en-US', options);
+    return new Intl.NumberFormat(locale, options).format(num);
 };
 
 const formatNumberWithOptions = (number, usePrefix = true, useSuffix = true) => {
