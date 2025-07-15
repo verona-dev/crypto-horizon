@@ -1,17 +1,27 @@
 <template>
     <div v-if='chartData.prices' class='coin-chart w-10/12 my-20 mx-auto'>
-        <Line
-            v-if='data.datasets?.length'
-            :data='data'
-            :options='options'
-            :height='400'
-            :type='"customLineChart"'
-        />
+        <Tabs default-value='price' class='mb-10'>
+            <TabsList class='mx-auto w-72 py-6'>
+                <TabsTrigger value='price' class='py-5'>Price</TabsTrigger>
+                <TabsTrigger value='mcap' class='py-5'>Market Cap</TabsTrigger>
+            </TabsList>
+        </Tabs>
+        
+        <div>
+            <Line
+                v-if='data.datasets?.length'
+                :data='data'
+                :options='options'
+                :height='400'
+                :type='"customLineChart"'
+            />
+        </div>
     </div>
 </template>
 
 <script setup>
     import dayjs from 'dayjs';
+    import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
     import { Line } from 'vue-chartjs';
     import CustomLineChart from '~/utils/CustomLineChart.js';
     
