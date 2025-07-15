@@ -75,7 +75,7 @@
                 </div>
                 
                 <!--  Coin price  -->
-                <h4 class='text-foreground mt-4'>{{ formatPrice(coingecko.market_data.current_price.usd, 2, 2) }}</h4>
+                <h4 class='text-foreground mt-4'>{{ price }}</h4>
             </div>
         
         </section>
@@ -84,7 +84,7 @@
         />
     </CardHeader>
     
-<!--    <Separator class='my-4' />-->
+    <!--    <Separator class='my-4' />-->
 </template>
 
 <script setup>
@@ -104,6 +104,11 @@
     const livecoinwatch = toRef(coin.value.livecoinwatch);
     const coingecko = toRef(coin.value.coingecko);
     const watchlist_portfolio = computed(() => formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true));
+    const price = computed(() => formatPrice(coingecko.value?.market_data?.current_price.usd, {
+        truncate: true,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+    }));
 </script>
 
 <style scoped>
