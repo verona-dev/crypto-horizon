@@ -50,8 +50,8 @@
     const { chartData } = toRefs(props);
     
     const timestamps = computed(() => chartData.value?.prices?.map(item => item[0]));
-    // const labels = computed(() => chartData.value?.prices?.map(item => dayjs(item[0]).format('D. MMM')));
     const prices = computed(() => chartData.value?.prices?.map(item => item[1]));
+    const volumes = computed(() => chartData.value?.total_volumes.map(item => item[1]));
     
     const data = computed(() => ({
         labels: timestamps.value, // x-axis
@@ -95,7 +95,12 @@
             tooltip: {
                 enabled: true,
                 backgroundColor: 'oklch(0.21 0.006 285.885)',
-                padding: 24,
+                padding: {
+                    top: 24,
+                    right: 28,
+                    bottom: 24,
+                    left: 28
+                },
                 caretPadding: 8,
                 caretSize: 8,
                 cornerRadius: 8,
@@ -109,17 +114,23 @@
                     size: 14,
                     weight: 'bold',
                 },
+                bodySpacing: 6,
                 callbacks: {
                     title: function(context) {
-                        const timestampMs = Number(context[0]?.label); // scales.x.ticks.callback() this.getLabelForValue converted it to String
-                        return dayjs(timestampMs).format('MMM D, YYYY, HH:mm:ss');
+                        const timestamps = Number(context[0]?.label); // scales.x.ticks.callback() this.getLabelForValue converted it to String
+                        return dayjs(timestamps).format('MMM D, YYYY, HH:mm:ss');
                     },
                     label: function(context) {
+                        const index = context.dataIndex;
                         const price = formatPrice(context.parsed.y, {
                             truncate: true,
                         });
-                        return `Price: ${price}`;
+                        const volume = formatPrice(volumes.value[index]);
                         
+                        return [
+                            `Price: ${price}`,
+                            `Vol: ${volume}`,
+                        ];
                     }
                 },
             },
