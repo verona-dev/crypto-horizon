@@ -107,8 +107,10 @@
                         return dayjs(timestampMs).format('MMM D, YYYY, HH:mm:ss');
                     },
                     label: function(context) {
-                        const price = context.parsed.y;
-                        return `Price: $${price.toFixed(2)}`;
+                        const price = formatPrice(context.parsed.y, {
+                            truncate: true,
+                        });
+                        return `Price: ${price}`;
                         
                     }
                 },

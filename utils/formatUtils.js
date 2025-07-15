@@ -12,6 +12,7 @@ const formatPrice = (value, {
     if (value == null || isNaN(value)) return '-';
     
     let num = Number(value);
+    
     if (truncate) {
         const factor = Math.pow(10, maximumFractionDigits);
         num = Math.sign(num) * Math.floor(Math.abs(num) * factor) / factor;
@@ -21,8 +22,8 @@ const formatPrice = (value, {
         style: 'currency',
         currency,
         notation: compact ? 'compact' : 'standard',
-        minimumFractionDigits,
-        maximumFractionDigits,
+        minimumFractionDigits: Math.abs(num) > 10000 ? 0 : minimumFractionDigits,
+        maximumFractionDigits: Math.abs(num) > 10000 ? 0 : maximumFractionDigits,
     };
     
     return new Intl.NumberFormat(locale, options).format(num);
