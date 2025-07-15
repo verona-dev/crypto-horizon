@@ -4,7 +4,7 @@
             v-if='data.datasets?.length'
             :data='data'
             :options='options'
-            :height='500'
+            :height='400'
             :type='"customLineChart"'
         />
     </div>
@@ -101,6 +101,14 @@
                 cornerRadius: 8,
                 displayColors: false, // disable the color box
                 titleMarginBottom: 16,
+                titleFont: {
+                    size: 14,
+                    weight: 'normal',
+                },
+                bodyFont: {
+                    size: 14,
+                    weight: 'bold',
+                },
                 callbacks: {
                     title: function(context) {
                         const timestampMs = Number(context[0]?.label); // scales.x.ticks.callback() this.getLabelForValue converted it to String
@@ -133,6 +141,7 @@
                 },
             },
             y: {
+                position: 'right',
                 title: {
                     display: false,
                 },
@@ -144,7 +153,8 @@
                     callback: function(value) {
                         return formatNumberWithOptions(value);
                     }
-                }
+                },
+                offset: true,
             },
         },
     };
