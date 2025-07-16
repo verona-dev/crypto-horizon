@@ -11,14 +11,21 @@
             </TabsList>
         </Tabs>
         
-        <div>
-            <Line
-                v-if='data.datasets?.length'
-                :data='data'
-                :options='options'
-                :height='400'
-                :type='"customLineChart"'
-            />
+        <div class='chart-container'>
+            <div v-if='loading' class='spinner-container'>
+                <MazSpinner class='spinner' />
+            </div>
+            
+            <div>
+                <Line
+                    ref='chartRef'
+                    v-if='data.datasets?.length'
+                    :data='data'
+                    :options='options'
+                    :height='400'
+                    :type='"customLineChart"'
+                />
+            </div>
         </div>
     </div>
 </template>
@@ -70,12 +77,13 @@
     
     const activeTab = ref('price');
     const activeData = computed(() => activeTab.value === 'price' ? prices.value : mCaps.value);
+    const loading = ref(false);
+    const chartRef = ref(null);
     
     const data = computed(() => ({
         labels: timestamps.value, // x-axis
         datasets: [
             {
-                label: activeTab === 'price' ? 'Price' : 'Market Cap',
                 data: activeData.value, // y-axis
                 
                 // Line
@@ -101,6 +109,20 @@
         ],
     }));
     
+    watch(activeData, () => {
+        const chartInstance = chartRef.value.chart;
+        
+        if (chartInstance) {
+            loading.value = true;
+            
+            chartInstance.update();
+            
+            setTimeout(() => {
+                loading.value = false;
+            }, 600);
+        }
+    }, { deep: true })
+    
     const options = {
         responsive: true,
         maintainAspectRatio: false,
@@ -108,6 +130,9 @@
             mode: 'nearest',
             axis: 'x',
             intersect: false,
+        },
+        animation: {
+            duration: 1000,
         },
         plugins: {
             tooltip: {
@@ -189,3 +214,23 @@
         },
     };
 </script>
+
+<style scoped>
+    .chart-container {
+        position: relative;
+        
+        .spinner-container {
+            background-color: rgba(0, 0, 0, 0.75);
+            border-radius: 12px;
+            height: 400px;
+            
+            position: absolute !important;
+            left: 0 !important;
+            right: 0 !important;
+            
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+    }
+</style>
