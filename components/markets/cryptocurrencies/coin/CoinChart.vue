@@ -1,6 +1,10 @@
 <template>
     <div v-if='chartData.prices' class='coin-chart w-10/12 my-20 mx-auto'>
-        <Tabs default-value='price' class='mb-10'>
+        <Tabs
+            v-model='activeTab'
+            default-value='price'
+            class='mb-10'
+        >
             <TabsList class='mx-auto w-72 py-6'>
                 <TabsTrigger value='price' class='py-5'>Price</TabsTrigger>
                 <TabsTrigger value='mcap' class='py-5'>Market Cap</TabsTrigger>
@@ -57,18 +61,22 @@
             required: true
         }
     });
-    const { chartData } = toRefs(props);
     
+    const { chartData } = toRefs(props);
     const timestamps = computed(() => chartData.value?.prices?.map(item => item[0]));
     const prices = computed(() => chartData.value?.prices?.map(item => item[1]));
-    const volumes = computed(() => chartData.value?.total_volumes.map(item => item[1]));
+    const volumes = computed(() => chartData.value?.total_volumes?.map(item => item[1]));
+    const mCaps = computed(() => chartData.value?.market_caps?.map(item => item[1]));
+    
+    const activeTab = ref('price');
+    const activeData = computed(() => activeTab.value === 'price' ? prices.value : mCaps.value);
     
     const data = computed(() => ({
         labels: timestamps.value, // x-axis
         datasets: [
             {
-                label: 'Price',
-                data: prices.value, // y-axis
+                label: activeTab === 'price' ? 'Price' : 'Market Cap',
+                data: activeData.value, // y-axis
                 
                 // Line
                 borderColor: '#01c929',
@@ -132,13 +140,14 @@
                     },
                     label: function(context) {
                         const index = context.dataIndex;
-                        const price = formatPrice(context.parsed.y, {
+                        const amount = formatPrice(context.parsed.y, {
                             truncate: true,
                         });
                         const volume = formatPrice(volumes.value[index]);
+                        const label = activeTab.value === 'price' ? 'Price' : 'Market Cap';
                         
                         return [
-                            `Price: ${price}`,
+                            `${label}: ${amount}`,
                             `Vol: ${volume}`,
                         ];
                     }
