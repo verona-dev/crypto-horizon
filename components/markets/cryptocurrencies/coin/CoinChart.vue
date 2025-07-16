@@ -1,20 +1,31 @@
 <template>
     <div v-if='chartData.prices' class='coin-chart w-10/12 my-20 mx-auto'>
-        <Tabs default-value='price' class='mb-10'>
+        <Tabs
+            v-model='activeTab'
+            default-value='price'
+            class='mb-10'
+        >
             <TabsList class='mx-auto w-72 py-6'>
                 <TabsTrigger value='price' class='py-5'>Price</TabsTrigger>
                 <TabsTrigger value='mcap' class='py-5'>Market Cap</TabsTrigger>
             </TabsList>
         </Tabs>
         
-        <div>
-            <Line
-                v-if='data.datasets?.length'
-                :data='data'
-                :options='options'
-                :height='400'
-                :type='"customLineChart"'
-            />
+        <div class='chart-container'>
+            <div v-if='loading' class='spinner-container'>
+                <MazSpinner class='spinner' />
+            </div>
+            
+            <div>
+                <Line
+                    ref='chartRef'
+                    v-if='data.datasets?.length'
+                    :data='data'
+                    :options='options'
+                    :height='400'
+                    :type='"customLineChart"'
+                />
+            </div>
         </div>
     </div>
 </template>
@@ -57,18 +68,23 @@
             required: true
         }
     });
-    const { chartData } = toRefs(props);
     
+    const { chartData } = toRefs(props);
     const timestamps = computed(() => chartData.value?.prices?.map(item => item[0]));
     const prices = computed(() => chartData.value?.prices?.map(item => item[1]));
-    const volumes = computed(() => chartData.value?.total_volumes.map(item => item[1]));
+    const volumes = computed(() => chartData.value?.total_volumes?.map(item => item[1]));
+    const mCaps = computed(() => chartData.value?.market_caps?.map(item => item[1]));
+    
+    const activeTab = ref('price');
+    const activeData = computed(() => activeTab.value === 'price' ? prices.value : mCaps.value);
+    const loading = ref(false);
+    const chartRef = ref(null);
     
     const data = computed(() => ({
         labels: timestamps.value, // x-axis
         datasets: [
             {
-                label: 'Price',
-                data: prices.value, // y-axis
+                data: activeData.value, // y-axis
                 
                 // Line
                 borderColor: '#01c929',
@@ -93,6 +109,20 @@
         ],
     }));
     
+    watch(activeData, () => {
+        const chartInstance = chartRef.value.chart;
+        
+        if (chartInstance) {
+            loading.value = true;
+            
+            chartInstance.update();
+            
+            setTimeout(() => {
+                loading.value = false;
+            }, 600);
+        }
+    }, { deep: true })
+    
     const options = {
         responsive: true,
         maintainAspectRatio: false,
@@ -100,6 +130,9 @@
             mode: 'nearest',
             axis: 'x',
             intersect: false,
+        },
+        animation: {
+            duration: 1000,
         },
         plugins: {
             tooltip: {
@@ -132,13 +165,14 @@
                     },
                     label: function(context) {
                         const index = context.dataIndex;
-                        const price = formatPrice(context.parsed.y, {
+                        const amount = formatPrice(context.parsed.y, {
                             truncate: true,
                         });
                         const volume = formatPrice(volumes.value[index]);
+                        const label = activeTab.value === 'price' ? 'Price' : 'Market Cap';
                         
                         return [
-                            `Price: ${price}`,
+                            `${label}: ${amount}`,
                             `Vol: ${volume}`,
                         ];
                     }
@@ -180,3 +214,23 @@
         },
     };
 </script>
+
+<style scoped>
+    .chart-container {
+        position: relative;
+        
+        .spinner-container {
+            background-color: rgba(0, 0, 0, 0.75);
+            border-radius: 12px;
+            height: 400px;
+            
+            position: absolute !important;
+            left: 0 !important;
+            right: 0 !important;
+            
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+    }
+</style>
