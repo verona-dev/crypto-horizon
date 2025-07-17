@@ -60,7 +60,7 @@
                     size='150px'
                 >
                     <template #default>
-                        <p>{{ formatPrice(maxSupply, { compact: true, showCurrency: false }) }}&nbsp;{{ symbol }}</p>
+                        <p>{{ formatPrice(maxSupply, { compact: true, showCurrency: false }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -106,7 +106,7 @@
                 >
                     <template #default>
                         <p v-if='maxSupply'>{{ Math.floor(totalSupplyPercentage) }}&#37;</p>
-                        <p v-else>{{ coin.totalSupplyFormatted }}</p>
+                        <p v-else>{{ formatPrice(totalSupply, { compact: true, showCurrency: false, decimals: 1  }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -134,7 +134,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ coin.totalSupplyFormatted }} {{ symbol }}</p>
+                    <p class='mt-2'>{{ formatPrice(totalSupply, { compact: true, showCurrency: false, decimals: 1  }) }} {{ symbol }}</p>
                 </div>
             </div>
             
