@@ -129,38 +129,48 @@
                     <Separator />
                 </CardHeader>
                 
-                <CardContent class='flex items-center'>
-                    <NuxtIcon
-                        name='token-branded:btc'
-                        size='50'
-                        class='mr-4'
-                    />
-                    
-                    <div class='flex flex-col'>
-                        <CardDescription class='flex items-center'>
-                            BTC Dominance Index
-                        </CardDescription>
+                <CardContent>
+                    <NuxtLink
+                        to='/cryptocurrencies/bitcoin'
+                        class='flex items-center'
+                    >
+                        <NuxtIcon
+                            name='token-branded:btc'
+                            size='50'
+                            class='mr-4 mb-1'
+                        />
                         
-                        <p v-if='marketOverview.btc_d'>{{ marketOverview.btc_d }}&#37;</p>
-                        <p v-else>&#8208;</p>
-                    </div>
+                        <div class='flex flex-col items-start'>
+                            <CardDescription>
+                                BTC Dominance Index
+                            </CardDescription>
+                            
+                            <p v-if='marketOverview.btc_d'>{{ marketOverview.btc_d }}&#37;</p>
+                            <p v-else>&#8208;</p>
+                        </div>
+                    </NuxtLink>
                 </CardContent>
                 
-                <CardContent class='flex items-center'>
-                    <NuxtIcon
-                        name='token-branded:eth'
-                        size='50'
-                        class='mr-4'
-                    />
-                    
-                    <div class='flex flex-col'>
-                        <CardDescription class='flex items-center'>
-                            ETH Dominance Index
-                        </CardDescription>
+                <CardContent>
+                    <NuxtLink
+                        to='/cryptocurrencies/ethereum'
+                        class='flex items-center'
+                    >
+                        <NuxtIcon
+                            name='token-branded:eth'
+                            size='50'
+                            class='mr-4'
+                        />
                         
-                        <p v-if='marketOverview.eth_d'>{{ marketOverview.eth_d }}&#37;</p>
-                        <p v-else>&#8208;</p>
-                    </div>
+                        <div class='flex flex-col items-start'>
+                            <CardDescription>
+                                ETH Dominance Index
+                            </CardDescription>
+                            
+                            <p v-if='marketOverview.eth_d'>{{ marketOverview.eth_d }}&#37;</p>
+                            <p v-else>&#8208;</p>
+                        </div>
+                    </NuxtLink>
                 </CardContent>
             </Card>
         </div>
