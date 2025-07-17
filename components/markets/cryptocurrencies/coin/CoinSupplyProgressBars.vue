@@ -16,7 +16,7 @@
                     size='150px'
                 >
                     <template #default>
-                        <h6 class='m-0'>{{ formatPrice(marketCap, { compact: true, decimals: 1 }) }}</h6>
+                        <p>{{ formatPrice(marketCap, { compact: true, decimals: 1 }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
