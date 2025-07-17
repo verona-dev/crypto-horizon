@@ -96,11 +96,10 @@
         <CoinPublicNotice :public-notice='coingecko.public_notice' />
     </CardHeader>
     
-    <!--    <Separator class='my-4' />-->
+    <Separator class='my-4' />
 </template>
 
 <script setup>
-    import { defineProps, toRefs } from 'vue';
     import { formatNumberWithOptions, formatPrice } from '~/utils/formatUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import CoinPublicNotice from '~/components/markets/cryptocurrencies/coin/CoinPublicNotice.vue';
