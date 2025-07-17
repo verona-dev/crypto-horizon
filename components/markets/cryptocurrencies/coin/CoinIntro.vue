@@ -39,5 +39,4 @@
     
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
-    const livecoinwatch = toRef(coin.value.livecoinwatch);
 </script>
