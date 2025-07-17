@@ -73,9 +73,7 @@
                 
                 <CardContent>
                     <CardDescription>Change for last 24h</CardDescription>
-                    <p v-if='marketOverview?.mcap_change' :class='marketCapStyle'>{{
-                            marketOverview.mcap_change
-                                                                                  }}&#37;</p>
+                    <p v-if='marketOverview?.mcap_change' :class='marketCapStyle'>{{ marketOverview.mcap_change }}&#37;</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
             </Card>
