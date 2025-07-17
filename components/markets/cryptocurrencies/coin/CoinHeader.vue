@@ -95,14 +95,14 @@
     
     const props = defineProps({
         coin: {
-            type: String,
+            type: Object,
             required: true,
         },
     });
     
     const { coin } = toRefs(props);
-    const livecoinwatch = toRef(coin.value.livecoinwatch);
-    const coingecko = toRef(coin.value.coingecko);
+    const livecoinwatch = toRef(coin.value?.livecoinwatch);
+    const coingecko = toRef(coin.value?.coingecko);
     const watchlist_portfolio = computed(() => formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true));
     const price = computed(() => formatPrice(coingecko.value?.market_data?.current_price.usd, {
         truncate: true,
