@@ -16,7 +16,7 @@
                     size='150px'
                 >
                     <template #default>
-                        <h6 class='m-0'>{{ formatNumberWithOptions(marketCap, true) }}</h6>
+                        <h6 class='m-0'>{{ formatPrice(marketCap, { compact: true, decimals: 1 }) }}</h6>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -269,7 +269,7 @@
 </template>
 
 <script setup>
-    import { formatNumberWithOptions } from '~/utils/formatUtils.js';
+    import { formatNumberWithOptions, formatPrice } from '~/utils/formatUtils.js';
     import {
         HoverCard,
         HoverCardContent,
@@ -287,6 +287,7 @@
     const { coin } = toRefs(props);
     
     const marketCap = computed(() => coin.value?.marketCap);
+    console.log(marketCap.value);
     const maxSupply = computed(() => coin.value?.maxSupply);
     const totalSupply = computed(() => coin.value?.totalSupply);
     const circulatingSupply = computed(() => coin.value?.circulatingSupply);
