@@ -78,14 +78,14 @@
                 <h4 class='text-foreground mt-4'>{{ formatPrice(currentPrice, { truncate: true }) }}</h4>
                 
                 <!--  Price high 24h + low 24h -->
-                <div class='mt-14'>
+                <div class='mt-14 w-[450px]'>
                     <Progress
                         v-model='progress'
-                        :indicatorColor="progressColor"
+                        :indicatorColor='progressColor'
                     />
                     <div class='flex justify-between'>
-                        <p>{{ formatPrice(low24h) }}</p>
-                        <p class=''>24h Range</p>
+                        <p>{{ formatPrice(low24hComputed) }}</p>
+                        <p>24h Range</p>
                         <p>{{ formatPrice(high24hComputed) }}</p>
                     </div>
                 
@@ -93,9 +93,7 @@
             </div>
         </section>
         
-        <CoinPublicNotice
-            :public-notice='coingecko.public_notice'
-        />
+        <CoinPublicNotice :public-notice='coingecko.public_notice' />
     </CardHeader>
     
     <!--    <Separator class='my-4' />-->
@@ -119,15 +117,24 @@
     const livecoinwatch = toRef(coin.value?.livecoinwatch);
     const coingecko = toRef(coin.value?.coingecko);
     const watchlist_portfolio = formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true);
-    const currentPrice = coingecko.value?.market_data?.current_price.usd;
-    const high24h = coingecko.value?.market_data?.high_24h?.usd;
+    const currentPrice = computed(() => coingecko.value?.market_data?.current_price?.usd);
+    const high24h = computed(() => coingecko.value?.market_data?.high_24h?.usd);
     const high24hComputed = computed(() => {
         // Coingecko Api has delays in updating the high24h value therefore the current price can temporarily be above the high24h
-        if(currentPrice > high24h) return currentPrice;
-        return high24h;
+        if(currentPrice.value > high24h.value) return currentPrice;
+        return high24h.value;
     });
-    const low24h = coingecko.value?.market_data?.low_24h?.usd;
-    const progress = computed(() => ((currentPrice - low24h) / (high24hComputed.value - low24h)) * 100);
+    const low24h = computed(() => coingecko.value?.market_data?.low_24h?.usd);
+    const low24hComputed = computed(() => {
+        // Coingecko Api has delays in updating the low24h value therefore the current price can temporarily be under the low24h
+        if(currentPrice.value < low24h.value) return currentPrice;
+        return low24h.value;
+    });
+    const progress = computed(() => {
+        const range = high24hComputed.value - low24hComputed.value;
+        if (range < 0.005) return 99; // for stablecoins, since range can be as low as .001
+        return ((currentPrice.value - low24hComputed.value) / range) * 100;
+    });
     const progressColor = computed(() => {
         if(progress.value < 25) return '#E32D2D';
         else if(progress.value < 50) return 'linear-gradient(90deg, #E32D2D 75%, #EBAA28 100%)';
