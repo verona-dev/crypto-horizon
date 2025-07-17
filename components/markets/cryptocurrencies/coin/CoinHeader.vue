@@ -122,20 +122,12 @@
     const currentPrice = coingecko.value?.market_data?.current_price.usd;
     const high24h = coingecko.value?.market_data?.high_24h?.usd;
     const high24hComputed = computed(() => {
-        if(currentPrice > high24h) {
-            return currentPrice;
-        }
+        // Coingecko Api has delays in updating the high24h value therefore the current price can temporarily be above the high24h
+        if(currentPrice > high24h) return currentPrice;
         return high24h;
     });
     const low24h = coingecko.value?.market_data?.low_24h?.usd;
-    const progress = computed(() => {
-        // Coingecko Api has delays in updating the high24h value therefore the current price can temporarily be above the high24h
-        if (currentPrice > high24h) {
-            return ((currentPrice - low24h) / (currentPrice - low24h)) * 100;
-        } else {
-            return ((currentPrice - low24h) / (high24h - low24h)) * 100;
-        }
-    });
+    const progress = computed(() => ((currentPrice - low24h) / (high24hComputed.value - low24h)) * 100);
     const progressColor = computed(() => {
         if(progress.value < 25) return '#E32D2D';
         else if(progress.value < 50) return 'linear-gradient(90deg, #E32D2D 75%, #EBAA28 100%)';
