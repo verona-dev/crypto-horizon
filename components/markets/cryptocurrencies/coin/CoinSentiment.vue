@@ -57,11 +57,13 @@
 </script>
 
 <style>
-    .progress-root {
-        background-color: var(--chart-5);
-    }
-    
-    .progress-indicator {
-        background-color: var(--chart-2);
+    .coin-sentiment {
+        .progress-root {
+            background-color: var(--chart-5);
+        }
+        
+        .progress-indicator {
+            background-color: var(--chart-2);
+        }
     }
 </style>
