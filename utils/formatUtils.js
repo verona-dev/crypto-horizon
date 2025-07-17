@@ -9,6 +9,7 @@ const formatPrice = (value, {
        compact = false,
        truncate = false,
        decimals = 0,
+       roundingMode = 'floor'
    } = {}
 ) => {
     if (value == null || isNaN(value)) return '-';
@@ -27,6 +28,7 @@ const formatPrice = (value, {
         notation: compact ? 'compact' : 'standard',
         minimumFractionDigits: Math.abs(num) > 10000 ? decimals : minimumFractionDigits,
         maximumFractionDigits: Math.abs(num) > 10000 ? decimals : maximumFractionDigits,
+        roundingMode,
     };
     
     return new Intl.NumberFormat(locale, options).format(num);
