@@ -3,27 +3,32 @@ import { getTextColor } from '~/utils/styleUtils.js';
 const formatPrice = (value, {
        locale = 'en-US',
        currency = 'USD',
+       showCurrency = true,
        minimumFractionDigits = 2,
        maximumFractionDigits = 2,
        compact = false,
        truncate = false,
+       decimals = 0,
+       roundingMode = 'floor'
    } = {}
 ) => {
     if (value == null || isNaN(value)) return '-';
     
     let num = Number(value);
     
+    // truncate for stablecoins to display $0.99 instead of $1
     if (truncate) {
         const factor = Math.pow(10, maximumFractionDigits);
         num = Math.sign(num) * Math.floor(Math.abs(num) * factor) / factor;
     }
     
     const options = {
-        style: 'currency',
+        style: showCurrency ? 'currency' : 'decimal',
         currency,
         notation: compact ? 'compact' : 'standard',
-        minimumFractionDigits: Math.abs(num) > 10000 ? 0 : minimumFractionDigits,
-        maximumFractionDigits: Math.abs(num) > 10000 ? 0 : maximumFractionDigits,
+        minimumFractionDigits: Math.abs(num) > 10000 ? decimals : minimumFractionDigits,
+        maximumFractionDigits: Math.abs(num) > 10000 ? decimals : maximumFractionDigits,
+        roundingMode,
     };
     
     return new Intl.NumberFormat(locale, options).format(num);

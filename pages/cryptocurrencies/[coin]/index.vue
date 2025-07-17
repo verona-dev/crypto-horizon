@@ -19,13 +19,10 @@
                 <!--  Header  -->
                 <CoinHeader :coin='coin' />
                 
-                <!--  Chart  -->
-                <CoinChart :chartData='coin.chart' />
+                <!--  Intro + Chart  -->
+                <CoinIntro :coin='coin'/>
                 
                 <CardContent class='flex flex-col'>
-                    <!--  Intro  -->
-                    <CoinIntro :coin='coin'/>
-                    
                     <!--  Links  -->
                     <CoinLinks
                         :livecoinwatchLinks='coin.livecoinwatch.links'
@@ -62,7 +59,6 @@
     // CryptocurrenciesStore
     import {storeToRefs} from 'pinia';
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
-    import CoinChart from '~/components/markets/cryptocurrencies/coin/CoinChart.vue';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State

@@ -4,16 +4,11 @@
         
         <Tabs
             default-value='doughnut-chart'
-            class='my-6 self-center w-3/4'
+            class='my-10 self-center w-3/4'
         >
-            <TabsList class='self-center my-10 p-6'>
-                <TabsTrigger value='doughnut-chart' class='m-10'>
-                    Doughnut Chart
-                </TabsTrigger>
-                
-                <TabsTrigger value='stacked-bars' class='m-10'>
-                    Stacked Bars
-                </TabsTrigger>
+            <TabsList class='mx-auto w-96 my-10 py-6'>
+                <TabsTrigger value='doughnut-chart'>Doughnut Chart</TabsTrigger>
+                <TabsTrigger value='stacked-bars'>Stacked Bars</TabsTrigger>
             </TabsList>
             
             <TabsContent value='doughnut-chart' class='min-h-[500px] w-1/2 mx-auto'>

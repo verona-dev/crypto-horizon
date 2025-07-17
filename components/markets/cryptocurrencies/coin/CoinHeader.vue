@@ -1,5 +1,5 @@
 <template>
-    <CardHeader v-if='coin' class='flex flex-col justify-center items-center'>
+    <CardHeader v-if='coin' class='coin-header flex flex-col justify-center items-center'>
         <section class='my-10 flex flex-col lg:flex-row items-center gap-y-10 lg:gap-y-0 gap-x-10'>
             <!-- Logo  -->
             <NuxtImg
@@ -75,46 +75,80 @@
                 </div>
                 
                 <!--  Coin price  -->
-                <h4 class='text-foreground mt-4'>{{ price }}</h4>
+                <h4 class='text-foreground mt-4'>{{ formatPrice(currentPrice, { truncate: true }) }}</h4>
+                
+                <!--  Price high 24h + low 24h -->
+                <div class='mt-14 w-[450px]'>
+                    <Progress
+                        v-model='progress'
+                        :indicatorColor='progressColor'
+                    />
+                    <div class='flex justify-between'>
+                        <p>{{ formatPrice(low24hComputed) }}</p>
+                        <p>24h Range</p>
+                        <p>{{ formatPrice(high24hComputed) }}</p>
+                    </div>
+                
+                </div>
             </div>
-        
         </section>
-        <CoinPublicNotice
-            :public-notice='coingecko.public_notice'
-        />
+        
+        <CoinPublicNotice :public-notice='coingecko.public_notice' />
     </CardHeader>
     
-    <!--    <Separator class='my-4' />-->
+    <Separator class='my-4' />
 </template>
 
 <script setup>
-    import { defineProps, toRefs } from 'vue';
     import { formatNumberWithOptions, formatPrice } from '~/utils/formatUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import CoinPublicNotice from '~/components/markets/cryptocurrencies/coin/CoinPublicNotice.vue';
+    import { Progress } from '~/components/ui/progress/index.js';
     
     const props = defineProps({
         coin: {
-            type: String,
+            type: Object,
             required: true,
         },
     });
     
     const { coin } = toRefs(props);
-    const livecoinwatch = toRef(coin.value.livecoinwatch);
-    const coingecko = toRef(coin.value.coingecko);
-    const watchlist_portfolio = computed(() => formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true));
-    const price = computed(() => formatPrice(coingecko.value?.market_data?.current_price.usd, {
-        truncate: true,
-    }));
+    const livecoinwatch = toRef(coin.value?.livecoinwatch);
+    const coingecko = toRef(coin.value?.coingecko);
+    const watchlist_portfolio = formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true);
+    const currentPrice = computed(() => coingecko.value?.market_data?.current_price?.usd);
+    const high24h = computed(() => coingecko.value?.market_data?.high_24h?.usd);
+    const high24hComputed = computed(() => {
+        // Coingecko Api has delays in updating the high24h value therefore the current price can temporarily be above the high24h
+        if(currentPrice.value > high24h.value) return currentPrice;
+        return high24h.value;
+    });
+    const low24h = computed(() => coingecko.value?.market_data?.low_24h?.usd);
+    const low24hComputed = computed(() => {
+        // Coingecko Api has delays in updating the low24h value therefore the current price can temporarily be under the low24h
+        if(currentPrice.value < low24h.value) return currentPrice;
+        return low24h.value;
+    });
+    const progress = computed(() => {
+        const range = high24hComputed.value - low24hComputed.value;
+        if (range < 0.005) return 99; // for stablecoins, since range can be as low as .001
+        return ((currentPrice.value - low24hComputed.value) / range) * 100;
+    });
+    const progressColor = computed(() => {
+        if(progress.value < 25) return '#E32D2D';
+        else if(progress.value < 50) return 'linear-gradient(90deg, #E32D2D 75%, #EBAA28 100%)';
+        return 'linear-gradient(90deg, #E32D2D 0%, #EBAA28 50%, #1AC914 100%)';
+    });
 </script>
 
 <style scoped>
-    p {
-        color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
-    }
-    
-    span.iconify {
-        color: oklch(0.828 0.189 84.429) !important;
+    .coin-header {
+        p {
+            color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
+        }
+        
+        span.iconify {
+            color: oklch(0.828 0.189 84.429) !important;
+        }
     }
 </style>

@@ -24,7 +24,7 @@
     const props = defineProps({
         publicNotice: {
             type: String,
-            required: true,
+            default: null,
         }
     });
     
@@ -32,7 +32,7 @@
     
     const publicNoticeFormatted = computed(() => {
         let text = publicNotice.value;
-        if (text.endsWith('.')) {
+        if (text?.endsWith('.')) {
             text = text.slice(0, -1);
         }
         return text.replace(/<a /g, '<a class="underline" ');

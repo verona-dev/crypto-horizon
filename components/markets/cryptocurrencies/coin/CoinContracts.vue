@@ -100,7 +100,7 @@
     import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore';
     
     const props = defineProps({
-        coin: [],
+        coin: Object,
         required: true,
     });
     const CryptocurrenciesStore = useCryptocurrenciesStore();
