@@ -13,6 +13,7 @@ const formatPrice = (value, {
     
     let num = Number(value);
     
+    // truncate for stablecoins to display $0.99 instead of $1
     if (truncate) {
         const factor = Math.pow(10, maximumFractionDigits);
         num = Math.sign(num) * Math.floor(Math.abs(num) * factor) / factor;
