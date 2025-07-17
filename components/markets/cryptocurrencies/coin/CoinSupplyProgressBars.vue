@@ -151,7 +151,7 @@
                 >
                     <template #default>
                         <p v-if='maxSupply'>{{ Math.floor(circulatingSupplyPercentage) }}&#37;</p>
-                        <p v-else>{{ coin.circulatingSupplyFormatted}}</p>
+                        <p v-else>{{ formatPrice(circulatingSupply, { compact: true, showCurrency: false, decimals: 1  }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -178,7 +178,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ coin.circulatingSupplyFormatted }} {{ symbol }}</p>
+                    <p class='mt-2'>{{ circulatingSupplyFormatted }} {{ symbol }}</p>
                 </div>
             </div>
             
@@ -288,11 +288,14 @@
     
     const marketCap = computed(() => coin.value?.marketCap);
     const maxSupply = computed(() => coin.value?.maxSupply);
-    const totalSupply = computed(() => coin.value?.totalSupply);
-    const circulatingSupply = computed(() => coin.value?.circulatingSupply);
     
+    const totalSupply = computed(() => coin.value?.totalSupply);
     const totalSupplyPercentage = computed(() => (coin.value?.totalSupply / coin.value?.maxSupply) * 100);
+    
+    const circulatingSupply = computed(() => coin.value?.circulatingSupply);
+    const circulatingSupplyFormatted = formatPrice(circulatingSupply.value, { compact: true, showCurrency: false, decimals: 1  });
     const circulatingSupplyPercentage = computed(() => (coin.value?.circulatingSupply / coin.value?.maxSupply) * 100);
+    
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
 
