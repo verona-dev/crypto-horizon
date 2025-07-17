@@ -224,7 +224,7 @@
             
             <!--  Liquidity 24h  -->
             <div
-                v-if='coin.liquidity'
+                v-if='liquidity'
                 class='my-10 flex items-center justify-center'
             >
                 <MazCircularProgressBar
@@ -233,7 +233,7 @@
                     size='150px'
                 >
                     <template #default>
-                        <p>{{ formatNumberWithOptions(coin.liquidity, true) }}</p>
+                        <p>{{ formatPrice(liquidity, { compact: true, decimals: 2 }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -261,7 +261,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>&#36;{{ coin.liquidity?.toLocaleString() }}</p>
+                    <p class='mt-2'>{{ formatPrice(liquidity) }}</p>
                 </div>
             </div>
         </div>
@@ -295,6 +295,7 @@
     const circulatingSupplyPercentage = computed(() => (coin.value?.circulatingSupply / coin.value?.maxSupply) * 100);
     
     const volume = computed(() => coin.value?.volume);
+    const liquidity = computed(() => coin.value?.liquidity);
     
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
