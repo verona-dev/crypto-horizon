@@ -1,5 +1,5 @@
 <template>
-    <div v-if='chartData.prices' class='coin-chart w-10/12 my-20 mx-auto'>
+    <div v-if='chartData.prices' class='coin-chart'>
         <Tabs
             v-model='activeTab'
             default-value='price'
@@ -84,6 +84,7 @@
         labels: timestamps.value, // x-axis
         datasets: [
             {
+                label: 'Last 7 days',
                 data: activeData.value, // y-axis
                 
                 // Line
@@ -179,7 +180,7 @@
                 },
             },
             legend: {
-                display: false,
+                display: true,
             },
         },
         scales: {
