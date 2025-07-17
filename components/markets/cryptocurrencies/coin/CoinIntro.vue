@@ -1,5 +1,5 @@
 <template>
-    <section class='coin-intro lg:flex-row lg:items-baseline'>
+    <section class='coin-intro flex flex-col xl:flex-row gap-30 xl:gap-0 xl:justify-evenly'>
         <!--  Left  -->
         <div class='left flex flex-col justify-center gap-16'>
             <!--  Community Sentiment  -->
@@ -19,7 +19,10 @@
         </div>
         
         <!--  Right  -->
-        <div class='right'></div>
+        <div class='right w-10/12 xl:w-1/2'>
+            <!--  Chart  -->
+            <CoinChart :chartData='coin.chart' />
+        </div>
     </section>
     
     <Separator class='my-4' />
@@ -30,6 +33,8 @@
     import CoinConverter from '~/components/markets/cryptocurrencies/coin/CoinConverter.vue';
     import CoinExplorers from '~/components/markets/cryptocurrencies/coin/CoinExplorers.vue';
     import CoinSentiment from '~/components/markets/cryptocurrencies/coin/CoinSentiment.vue';
+    import CoinChart from '~/components/markets/cryptocurrencies/coin/CoinChart.vue';
+    
     const props = defineProps({
         coin: {
             type: Object,
