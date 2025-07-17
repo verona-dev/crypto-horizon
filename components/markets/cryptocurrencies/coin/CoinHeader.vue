@@ -1,5 +1,5 @@
 <template>
-    <CardHeader v-if='coin' class='flex flex-col justify-center items-center'>
+    <CardHeader v-if='coin' class='coin-header flex flex-col justify-center items-center'>
         <section class='my-10 flex flex-col lg:flex-row items-center gap-y-10 lg:gap-y-0 gap-x-10'>
             <!-- Logo  -->
             <NuxtImg
@@ -75,7 +75,21 @@
                 </div>
                 
                 <!--  Coin price  -->
-                <h4 class='text-foreground mt-4'>{{ price }}</h4>
+                <h4 class='text-foreground mt-4'>{{ formatPrice(currentPrice, { truncate: true }) }}</h4>
+                
+                <!--  Price high 24h + low 24h -->
+                <div class='mt-14'>
+                    <Progress
+                        v-model='progress'
+                        :indicatorColor="progressColor"
+                    />
+                    <div class='flex justify-between'>
+                        <p>{{ formatPrice(low24h) }}</p>
+                        <p class=''>24h Range</p>
+                        <p>{{ formatPrice(high24hComputed) }}</p>
+                    </div>
+                
+                </div>
             </div>
         </section>
         
@@ -92,6 +106,7 @@
     import { formatNumberWithOptions, formatPrice } from '~/utils/formatUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import CoinPublicNotice from '~/components/markets/cryptocurrencies/coin/CoinPublicNotice.vue';
+    import { Progress } from '~/components/ui/progress/index.js';
     
     const props = defineProps({
         coin: {
@@ -103,18 +118,39 @@
     const { coin } = toRefs(props);
     const livecoinwatch = toRef(coin.value?.livecoinwatch);
     const coingecko = toRef(coin.value?.coingecko);
-    const watchlist_portfolio = computed(() => formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true));
-    const price = computed(() => formatPrice(coingecko.value?.market_data?.current_price.usd, {
-        truncate: true,
-    }));
+    const watchlist_portfolio = formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true);
+    const currentPrice = coingecko.value?.market_data?.current_price.usd;
+    const high24h = coingecko.value?.market_data?.high_24h?.usd;
+    const high24hComputed = computed(() => {
+        if(currentPrice > high24h) {
+            return currentPrice;
+        }
+        return high24h;
+    });
+    const low24h = coingecko.value?.market_data?.low_24h?.usd;
+    const progress = computed(() => {
+        // Coingecko Api has delays in updating the high24h value therefore the current price can temporarily be above the high24h
+        if (currentPrice > high24h) {
+            return ((currentPrice - low24h) / (currentPrice - low24h)) * 100;
+        } else {
+            return ((currentPrice - low24h) / (high24h - low24h)) * 100;
+        }
+    });
+    const progressColor = computed(() => {
+        if(progress.value < 25) return '#E32D2D';
+        else if(progress.value < 50) return 'linear-gradient(90deg, #E32D2D 75%, #EBAA28 100%)';
+        return 'linear-gradient(90deg, #E32D2D 0%, #EBAA28 50%, #1AC914 100%)';
+    });
 </script>
 
 <style scoped>
-    p {
-        color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
-    }
-    
-    span.iconify {
-        color: oklch(0.828 0.189 84.429) !important;
+    .coin-header {
+        p {
+            color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
+        }
+        
+        span.iconify {
+            color: oklch(0.828 0.189 84.429) !important;
+        }
     }
 </style>
