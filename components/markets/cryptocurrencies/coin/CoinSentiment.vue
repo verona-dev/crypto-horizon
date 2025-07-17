@@ -45,11 +45,9 @@
     const props = defineProps({
         sentimentUp: {
             type: Number,
-            required: true,
         },
         sentimentDown: {
             type: Number,
-            required: true,
         },
     });
     
