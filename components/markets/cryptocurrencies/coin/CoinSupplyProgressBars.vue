@@ -106,7 +106,7 @@
                 >
                     <template #default>
                         <p v-if='maxSupply'>{{ Math.floor(totalSupplyPercentage) }}&#37;</p>
-                        <p v-else>{{ formatPrice(totalSupply, { compact: true, showCurrency: false, decimals: 1  }) }}</p>
+                        <p v-else>{{ formatPrice(totalSupply, { compact: true, showCurrency: false, decimals: 2  }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -134,7 +134,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ formatPrice(totalSupply, { compact: true, showCurrency: false, decimals: 1  }) }} {{ symbol }}</p>
+                    <p class='mt-2'>{{ formatPrice(totalSupply, { showCurrency: false }) }} {{ symbol }}</p>
                 </div>
             </div>
             
@@ -178,7 +178,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ circulatingSupplyFormatted }} {{ symbol }}</p>
+                    <p class='mt-2'>{{ formatPrice(circulatingSupply, { showCurrency: false }) }} {{ symbol }}</p>
                 </div>
             </div>
             
@@ -269,7 +269,6 @@
 </template>
 
 <script setup>
-    import { formatNumberWithOptions, formatPrice } from '~/utils/formatUtils.js';
     import {
         HoverCard,
         HoverCardContent,
@@ -293,7 +292,6 @@
     const totalSupplyPercentage = computed(() => (coin.value?.totalSupply / coin.value?.maxSupply) * 100);
     
     const circulatingSupply = computed(() => coin.value?.circulatingSupply);
-    const circulatingSupplyFormatted = formatPrice(circulatingSupply.value, { compact: true, showCurrency: false, decimals: 1  });
     const circulatingSupplyPercentage = computed(() => (coin.value?.circulatingSupply / coin.value?.maxSupply) * 100);
     
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
