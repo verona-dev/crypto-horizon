@@ -16,7 +16,7 @@
                     size='150px'
                 >
                     <template #default>
-                        <p>{{ formatPrice(marketCap, { compact: true, decimals: 1 }) }}</p>
+                        <p>{{ formatPrice(marketCap, { compact: true, decimals: 2 }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -45,7 +45,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>&#36;{{ marketCap.toLocaleString() }}</p>
+                    <p class='mt-2'>{{ formatPrice(marketCap) }}</p>
                 </div>
             </div>
             
@@ -151,7 +151,7 @@
                 >
                     <template #default>
                         <p v-if='maxSupply'>{{ Math.floor(circulatingSupplyPercentage) }}&#37;</p>
-                        <p v-else>{{ formatPrice(circulatingSupply, { compact: true, showCurrency: false, decimals: 1  }) }}</p>
+                        <p v-else>{{ formatPrice(circulatingSupply, { compact: true, showCurrency: false, decimals: 2  }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -184,7 +184,7 @@
             
             <!--  Volume 24h  -->
             <div
-                v-if='coin.volume'
+                v-if='volume'
                 class='my-10 flex items-center justify-center'
             >
                 <MazCircularProgressBar
@@ -193,7 +193,7 @@
                     size='150px'
                 >
                     <template #default>
-                        <p>{{ formatNumberWithOptions(coin.volume, true) }}</p>
+                        <p>{{ formatPrice(volume, { compact: true, decimals: 2 }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -218,7 +218,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>&#36;{{ coin.volume?.toLocaleString() }}</p>
+                    <p class='mt-2'>{{ formatPrice(volume) }}</p>
                 </div>
             </div>
             
@@ -293,6 +293,8 @@
     
     const circulatingSupply = computed(() => coin.value?.circulatingSupply);
     const circulatingSupplyPercentage = computed(() => (coin.value?.circulatingSupply / coin.value?.maxSupply) * 100);
+    
+    const volume = computed(() => coin.value?.volume);
     
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
