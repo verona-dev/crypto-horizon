@@ -77,8 +77,8 @@
                 <!--  Coin price  -->
                 <h4 class='text-foreground mt-4'>{{ price }}</h4>
             </div>
-        
         </section>
+        
         <CoinPublicNotice
             :public-notice='coingecko.public_notice'
         />
