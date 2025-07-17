@@ -6,8 +6,8 @@
             class='mb-10'
         >
             <TabsList class='mx-auto w-72 py-6'>
-                <TabsTrigger value='price' class='py-5'>Price</TabsTrigger>
-                <TabsTrigger value='mcap' class='py-5'>Market Cap</TabsTrigger>
+                <TabsTrigger value='price'>Price</TabsTrigger>
+                <TabsTrigger value='mcap'>Market Cap</TabsTrigger>
             </TabsList>
         </Tabs>
         
