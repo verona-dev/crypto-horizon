@@ -60,7 +60,7 @@
                     size='150px'
                 >
                     <template #default>
-                        <p>{{ formatNumberWithOptions(coin.maxSupply, false) }}</p>
+                        <p>{{ formatPrice(maxSupply, { compact: true, showCurrency: false }) }}&nbsp;{{ symbol }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -89,7 +89,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ coin.maxSupply?.toLocaleString() }} {{ symbol }}</p>
+                    <p class='mt-2'>{{ formatPrice(maxSupply, { showCurrency: false }) }} {{ symbol }}</p>
                 </div>
             </div>
             
@@ -287,7 +287,6 @@
     const { coin } = toRefs(props);
     
     const marketCap = computed(() => coin.value?.marketCap);
-    console.log(marketCap.value);
     const maxSupply = computed(() => coin.value?.maxSupply);
     const totalSupply = computed(() => coin.value?.totalSupply);
     const circulatingSupply = computed(() => coin.value?.circulatingSupply);

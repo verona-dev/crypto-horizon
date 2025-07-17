@@ -3,6 +3,7 @@ import { getTextColor } from '~/utils/styleUtils.js';
 const formatPrice = (value, {
        locale = 'en-US',
        currency = 'USD',
+       showCurrency = true,
        minimumFractionDigits = 2,
        maximumFractionDigits = 2,
        compact = false,
@@ -21,7 +22,7 @@ const formatPrice = (value, {
     }
     
     const options = {
-        style: 'currency',
+        style: showCurrency ? 'currency' : 'decimal',
         currency,
         notation: compact ? 'compact' : 'standard',
         minimumFractionDigits: Math.abs(num) > 10000 ? decimals : minimumFractionDigits,
