@@ -4,11 +4,11 @@ const formatNumber = (value, {
        locale = 'en-US',
        style = 'currency',
        currency = 'USD',
+       decimals = 0,
        minimumFractionDigits = 2,
        maximumFractionDigits = 2,
        compact = false,
        truncate = false,
-       decimals = 0,
        roundingMode = 'floor',
    } = {}
 ) => {
@@ -17,11 +17,12 @@ const formatNumber = (value, {
     let num = Number(value);
     
     let options = {
+        locale,
         style,
         currency,
-        notation: compact ? 'compact' : 'standard',
         minimumFractionDigits: Math.abs(num) > 10000 ? decimals : minimumFractionDigits,
         maximumFractionDigits: Math.abs(num) > 10000 ? decimals : maximumFractionDigits,
+        notation: compact ? 'compact' : 'standard',
         roundingMode,
     };
     
@@ -32,7 +33,6 @@ const formatNumber = (value, {
     }
     
     if(style === 'percent') {
-        options.style = 'percent';
         num = num / 100;
     }
     

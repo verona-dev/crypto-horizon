@@ -77,7 +77,7 @@
                 <!--  Coin price  -->
                 <h4 class='text-foreground mt-4'>{{ formatNumber(currentPrice, { truncate: true }) }}</h4>
                 
-                <!--  Price high 24h + low 24h -->
+                <!--  Price 24h range -->
                 <div class='mt-14 w-[450px]'>
                     <Progress
                         v-model='progress'
