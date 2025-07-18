@@ -1,18 +1,10 @@
 <template>
-    <section
-        v-if='coin'
+    <div
         class='coin-delta flex flex-col items-center justify-center'
     >
-        <h4>Rate of Change</h4>
+        <h6>Rate of Change</h6>
         
         <div class='flex items-center'>
-            <!--  1h  -->
-            <CoinDeltaItem
-                :delta='delta1h'
-                title='1h'
-                description='Rate of change in the last hour.'
-            />
-            
             <!--  24h  -->
             <CoinDeltaItem
                 :delta='delta24h'
@@ -29,7 +21,7 @@
             
             <!--  30d  -->
             <CoinDeltaItem
-                :delta='delta1m'
+                :delta='delta30d'
                 title='30d'
                 description='Rate of change in the last 30 days.'
             />
@@ -41,26 +33,28 @@
                 description='Rate of change in the last 365 days.'
             />
         </div>
-    </section>
-    
-    <Separator class='my-4' />
+    </div>
 </template>
 
 <script setup>
     import CoinDeltaItem from '~/components/markets/cryptocurrencies/coin/CoinDeltaItem.vue';
     
     const props = defineProps({
-        coin: {
+        marketData: {
             type: Object,
             required: true,
-            default: () => ({}),
         },
     });
     
-    const { coin } = toRefs(props);
-    const delta1h = computed(() => getDeltaPercentage(coin.value?.livecoinwatch?.delta.hour, coin.value?.rate));
-    const delta24h = computed(() => getDeltaPercentage(coin.value?.livecoinwatch?.delta.day, coin.value?.rate));
-    const delta7d = computed(() => getDeltaPercentage(coin.value?.livecoinwatch?.delta.week, coin.value?.rate));
-    const delta1m = computed(() => getDeltaPercentage(coin.value?.livecoinwatch?.delta.month, coin.value?.rate));
-    const delta1y = computed(() => getDeltaPercentage(coin.value?.livecoinwatch?.delta.year, coin.value?.rate))
+    const { marketData } = toRefs(props);
+    
+    const delta24h = marketData.value?.price_change_percentage_24h;
+    const delta7d = marketData.value?.price_change_percentage_7d;
+    const delta30d = marketData.value?.price_change_percentage_30d;
+    const delta1y = marketData.value?.price_change_percentage_1y;
+    
+    // const delta24h = computed(() => getDeltaPercentage(marketData.value?.livecoinwatch?.delta.day, coin.value?.rate));
+    // const delta7d = computed(() => getDeltaPercentage(marketData.value?.livecoinwatch?.delta.week, coin.value?.rate));
+    // const delta1m = computed(() => getDeltaPercentage(marketData.value?.livecoinwatch?.delta.month, coin.value?.rate));
+    // const delta1y = computed(() => getDeltaPercentage(marketData.value?.livecoinwatch?.delta.year, coin.value?.rate))
 </script>
