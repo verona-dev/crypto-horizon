@@ -23,9 +23,6 @@
                 <CoinIntro :coin='coin'/>
                 
                 <CardContent class='flex flex-col'>
-                    <!--  Delta  -->
-                    <CoinDelta :coin='coin' />
-                    
                     <!--  Links  -->
                     <CoinLinks
                         :livecoinwatchLinks='coin.livecoinwatch.links'
