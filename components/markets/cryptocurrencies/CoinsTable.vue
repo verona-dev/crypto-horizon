@@ -11,7 +11,7 @@
           { label: "24h %", key: "changePercent24Hr", align: "center", sortable: false, classes: "", },
         ]'
         :rows='coins'
-        class='my-20 px-6'
+        class='my-20 px-6 mx-auto'
         color='secondary'
         hoverable
         background-even
@@ -155,6 +155,8 @@
 
 <style>
     .m-table {
+        max-width: 1500px !important;
+        
         .m-table-header {
             justify-content: center;
             padding: 50px 0;
