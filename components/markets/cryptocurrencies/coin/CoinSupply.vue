@@ -4,9 +4,9 @@
         
         <Tabs
             default-value='doughnut-chart'
-            class='my-10 self-center w-3/4'
+            class='my-10 self-center w-1/2'
         >
-            <TabsList class='mx-auto w-96 my-10 py-6'>
+            <TabsList class=''>
                 <TabsTrigger value='doughnut-chart'>Doughnut Chart</TabsTrigger>
                 <TabsTrigger value='stacked-bars'>Stacked Bars</TabsTrigger>
             </TabsList>
