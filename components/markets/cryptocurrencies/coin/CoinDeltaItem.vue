@@ -5,7 +5,7 @@
     >
         <HoverCardTrigger>
             <Card
-                class='w-32 m-4 py-4 gap-2 text-card-foreground bg-accent-foreground'
+                class='w-28 m-4 py-4 gap-2 text-card-foreground bg-accent-foreground'
                 :class="[getTextColor(delta), getBorderColor(delta)]"
             >
                 <CardTitle class='flex flex-col items-center'>
@@ -15,7 +15,7 @@
                 <CardContent class='flex justify-center'>
                     <NuxtIcon
                         name='radix-icons:bar-chart'
-                        size='40'
+                        size='30'
                     />
                 </CardContent>
                 
