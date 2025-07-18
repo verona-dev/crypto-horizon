@@ -74,21 +74,32 @@
                     <p v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</p>
                 </div>
                 
-                <!--  Coin price  -->
-                <h4 class='text-foreground mt-4'>{{ formatPrice(currentPrice, { truncate: true }) }}</h4>
+                <!--  Coin price + Trend  -->
+                <div class='mt-4 flex items-center'>
+                    <h4 class='text-foreground'>{{ formatNumber(currentPrice, { truncate: true }) }}</h4>
+                    
+                    <div class='ml-4 mb-2 flex items-center'>
+                        <NuxtIcon
+                            :name='getPriceChangeIcon()'
+                            size='35'
+                            :class='getTextColor(priceChangePercentage7d)'
+                        />
+                        <p :class='getTextColor(priceChangePercentage7d)'>{{ priceChangePercentage7dFormatted }}&#40;7d&#41;</p>
+                    </div>
+                </div>
                 
-                <!--  Price high 24h + low 24h -->
+                
+                <!--  Price 24h range -->
                 <div class='mt-14 w-[450px]'>
                     <Progress
                         v-model='progress'
                         :indicatorColor='progressColor'
                     />
                     <div class='flex justify-between'>
-                        <p>{{ formatPrice(low24hComputed) }}</p>
+                        <p>{{ formatNumber(low24hComputed) }}</p>
                         <p>24h Range</p>
-                        <p>{{ formatPrice(high24hComputed) }}</p>
+                        <p>{{ formatNumber(high24hComputed) }}</p>
                     </div>
-                
                 </div>
             </div>
         </section>
@@ -100,7 +111,7 @@
 </template>
 
 <script setup>
-    import { formatNumberWithOptions, formatPrice } from '~/utils/formatUtils.js';
+    import { formatNumberWithOptions, formatNumber } from '~/utils/formatUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import CoinPublicNotice from '~/components/markets/cryptocurrencies/coin/CoinPublicNotice.vue';
     import { Progress } from '~/components/ui/progress/index.js';
@@ -117,6 +128,8 @@
     const coingecko = toRef(coin.value?.coingecko);
     const watchlist_portfolio = formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true);
     const currentPrice = computed(() => coingecko.value?.market_data?.current_price?.usd);
+    const priceChangePercentage7d = coingecko.value?.market_data?.price_change_percentage_7d;
+    const priceChangePercentage7dFormatted = formatNumber(priceChangePercentage7d, { style: 'percent', truncate: true });
     const high24h = computed(() => coingecko.value?.market_data?.high_24h?.usd);
     const high24hComputed = computed(() => {
         // Coingecko Api has delays in updating the high24h value therefore the current price can temporarily be above the high24h
@@ -139,6 +152,8 @@
         else if(progress.value < 50) return 'linear-gradient(90deg, #E32D2D 75%, #EBAA28 100%)';
         return 'linear-gradient(90deg, #E32D2D 0%, #EBAA28 50%, #1AC914 100%)';
     });
+    
+    const getPriceChangeIcon = () => priceChangePercentage7d > 0 ? 'iconoir:nav-arrow-up-solid' : 'iconoir:nav-arrow-down-solid';
 </script>
 
 <style scoped>

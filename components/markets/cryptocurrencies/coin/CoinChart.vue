@@ -5,7 +5,7 @@
             default-value='price'
             class='mb-10'
         >
-            <TabsList class='mx-auto w-72 py-6'>
+            <TabsList>
                 <TabsTrigger value='price'>Price</TabsTrigger>
                 <TabsTrigger value='mcap'>Market Cap</TabsTrigger>
             </TabsList>
@@ -88,7 +88,7 @@
                 data: activeData.value, // y-axis
                 
                 // Line
-                borderColor: '#01c929',
+                borderColor: '#3fc45a',
                 borderWidth: 2,
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
@@ -166,10 +166,10 @@
                     },
                     label: function(context) {
                         const index = context.dataIndex;
-                        const amount = formatPrice(context.parsed.y, {
+                        const amount = formatNumber(context.parsed.y, {
                             truncate: true,
                         });
-                        const volume = formatPrice(volumes.value[index]);
+                        const volume = formatNumber(volumes.value[index]);
                         const label = activeTab.value === 'price' ? 'Price' : 'Market Cap';
                         
                         return [
@@ -180,7 +180,9 @@
                 },
             },
             legend: {
-                display: true,
+                labels: {
+                    color: 'oklch(0.705 0.015 286.067)',
+                }
             },
         },
         scales: {
@@ -189,6 +191,7 @@
                     display: false,
                 },
                 ticks: {
+                    color: 'oklch(0.705 0.015 286.067)',
                     maxTicksLimit: 8,
                     callback: function(value) {
                         const label = this.getLabelForValue(value);
@@ -206,6 +209,7 @@
                     color: 'rgba(78,135,176,0.35)',
                 },
                 ticks: {
+                    color: 'oklch(0.705 0.015 286.067)',
                     callback: function(value) {
                         return formatNumberWithOptions(value);
                     }

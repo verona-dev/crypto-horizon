@@ -3,9 +3,6 @@
         <div class='flex gap-y-20 gap-x-36 flex-col xl:flex-row'>
             <!--  Overview Table  -->
             <CoinOverviewTable :coin='coin' />
-            
-            <!--  Delta  -->
-            <CoinDelta :coin='coin' />
         </div>
     </section>
     

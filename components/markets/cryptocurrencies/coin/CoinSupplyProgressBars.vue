@@ -16,7 +16,7 @@
                     size='150px'
                 >
                     <template #default>
-                        <p>{{ formatPrice(marketCap, { compact: true, decimals: 2 }) }}</p>
+                        <p>{{ formatNumber(marketCap, { compact: true, decimals: 2 }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -45,7 +45,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ formatPrice(marketCap) }}</p>
+                    <p class='mt-2'>{{ formatNumber(marketCap) }}</p>
                 </div>
             </div>
             
@@ -60,7 +60,7 @@
                     size='150px'
                 >
                     <template #default>
-                        <p>{{ formatPrice(maxSupply, { compact: true, showCurrency: false }) }}</p>
+                        <p>{{ formatNumber(maxSupply, { compact: true, style: 'decimal' }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -89,7 +89,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ formatPrice(maxSupply, { showCurrency: false }) }} {{ symbol }}</p>
+                    <p class='mt-2'>{{ formatNumber(maxSupply, { style: 'decimal' }) }} {{ symbol }}</p>
                 </div>
             </div>
             
@@ -106,7 +106,7 @@
                 >
                     <template #default>
                         <p v-if='maxSupply'>{{ Math.floor(totalSupplyPercentage) }}&#37;</p>
-                        <p v-else>{{ formatPrice(totalSupply, { compact: true, showCurrency: false, decimals: 2  }) }}</p>
+                        <p v-else>{{ formatNumber(totalSupply, { compact: true, style: 'decimal', decimals: 2  }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -134,7 +134,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ formatPrice(totalSupply, { showCurrency: false }) }} {{ symbol }}</p>
+                    <p class='mt-2'>{{ formatNumber(totalSupply, { style: 'decimal' }) }} {{ symbol }}</p>
                 </div>
             </div>
             
@@ -151,7 +151,7 @@
                 >
                     <template #default>
                         <p v-if='maxSupply'>{{ Math.floor(circulatingSupplyPercentage) }}&#37;</p>
-                        <p v-else>{{ formatPrice(circulatingSupply, { compact: true, showCurrency: false, decimals: 2  }) }}</p>
+                        <p v-else>{{ formatNumber(circulatingSupply, { compact: true, style: 'decimal', decimals: 2  }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -178,7 +178,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ formatPrice(circulatingSupply, { showCurrency: false }) }} {{ symbol }}</p>
+                    <p class='mt-2'>{{ formatNumber(circulatingSupply, { style: 'decimal' }) }} {{ symbol }}</p>
                 </div>
             </div>
             
@@ -193,7 +193,7 @@
                     size='150px'
                 >
                     <template #default>
-                        <p>{{ formatPrice(volume, { compact: true, decimals: 2 }) }}</p>
+                        <p>{{ formatNumber(volume, { compact: true, decimals: 2 }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -218,7 +218,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ formatPrice(volume) }}</p>
+                    <p class='mt-2'>{{ formatNumber(volume) }}</p>
                 </div>
             </div>
             
@@ -233,7 +233,7 @@
                     size='150px'
                 >
                     <template #default>
-                        <p>{{ formatPrice(liquidity, { compact: true, decimals: 2 }) }}</p>
+                        <p>{{ formatNumber(liquidity, { compact: true, decimals: 2 }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -261,7 +261,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ formatPrice(liquidity) }}</p>
+                    <p class='mt-2'>{{ formatNumber(liquidity) }}</p>
                 </div>
             </div>
         </div>
@@ -274,6 +274,7 @@
         HoverCardContent,
         HoverCardTrigger,
     } from '@/components/ui/hover-card';
+    import { formatNumber } from '~/utils/formatUtils.js';
     
     const props = defineProps({
         coin: {

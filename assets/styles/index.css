@@ -115,7 +115,9 @@
 }
 
 .dark {
-    --background: var(--color-gray_dark);
+    --background: oklch(0.17 0.008 285.489);
+    --background-2:  #0D1217;
+    --background-3:  #222531;
     /*--background: oklch(0.141 0.005 285.823); zinc-default */
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.141 0.005 285.823);

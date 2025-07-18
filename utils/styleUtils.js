@@ -19,4 +19,7 @@ export const getBorderColor = change => {
     }
 };
 
+export const getTrendIcon = (number) => number > 0 ? 'iconoir:nav-arrow-up-solid' : 'iconoir:nav-arrow-down-solid';
+
+
 // export const getIcon = symbol => `cryptocurrency-color:${symbol?.toLowerCase()}`;
