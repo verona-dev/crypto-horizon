@@ -75,7 +75,7 @@
                 </div>
                 
                 <!--  Coin price  -->
-                <h4 class='text-foreground mt-4'>{{ formatPrice(currentPrice, { truncate: true }) }}</h4>
+                <h4 class='text-foreground mt-4'>{{ formatNumber(currentPrice, { truncate: true }) }}</h4>
                 
                 <!--  Price high 24h + low 24h -->
                 <div class='mt-14 w-[450px]'>
@@ -84,11 +84,10 @@
                         :indicatorColor='progressColor'
                     />
                     <div class='flex justify-between'>
-                        <p>{{ formatPrice(low24hComputed) }}</p>
+                        <p>{{ formatNumber(low24hComputed) }}</p>
                         <p>24h Range</p>
-                        <p>{{ formatPrice(high24hComputed) }}</p>
+                        <p>{{ formatNumber(high24hComputed) }}</p>
                     </div>
-                
                 </div>
             </div>
         </section>
@@ -100,7 +99,7 @@
 </template>
 
 <script setup>
-    import { formatNumberWithOptions, formatPrice } from '~/utils/formatUtils.js';
+    import { formatNumberWithOptions, formatNumber } from '~/utils/formatUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import CoinPublicNotice from '~/components/markets/cryptocurrencies/coin/CoinPublicNotice.vue';
     import { Progress } from '~/components/ui/progress/index.js';
@@ -117,6 +116,9 @@
     const coingecko = toRef(coin.value?.coingecko);
     const watchlist_portfolio = formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true);
     const currentPrice = computed(() => coingecko.value?.market_data?.current_price?.usd);
+    const priceChangePercentage24h = coingecko.value?.market_data?.price_change_percentage_24h;
+    console.log(priceChangePercentage24h);
+    console.log(formatNumber(priceChangePercentage24h, {style: 'percent', truncate: true, }));
     const high24h = computed(() => coingecko.value?.market_data?.high_24h?.usd);
     const high24hComputed = computed(() => {
         // Coingecko Api has delays in updating the high24h value therefore the current price can temporarily be above the high24h

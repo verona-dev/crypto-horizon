@@ -166,10 +166,10 @@
                     },
                     label: function(context) {
                         const index = context.dataIndex;
-                        const amount = formatPrice(context.parsed.y, {
+                        const amount = formatNumber(context.parsed.y, {
                             truncate: true,
                         });
-                        const volume = formatPrice(volumes.value[index]);
+                        const volume = formatNumber(volumes.value[index]);
                         const label = activeTab.value === 'price' ? 'Price' : 'Market Cap';
                         
                         return [

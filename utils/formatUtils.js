@@ -1,20 +1,29 @@
 import { getTextColor } from '~/utils/styleUtils.js';
 
-const formatPrice = (value, {
+const formatNumber = (value, {
        locale = 'en-US',
+       style = 'currency',
        currency = 'USD',
-       showCurrency = true,
        minimumFractionDigits = 2,
        maximumFractionDigits = 2,
        compact = false,
        truncate = false,
        decimals = 0,
-       roundingMode = 'floor'
+       roundingMode = 'floor',
    } = {}
 ) => {
     if (value == null || isNaN(value)) return '-';
     
     let num = Number(value);
+    
+    let options = {
+        style,
+        currency,
+        notation: compact ? 'compact' : 'standard',
+        minimumFractionDigits: Math.abs(num) > 10000 ? decimals : minimumFractionDigits,
+        maximumFractionDigits: Math.abs(num) > 10000 ? decimals : maximumFractionDigits,
+        roundingMode,
+    };
     
     // truncate for stablecoins to display $0.99 instead of $1
     if (truncate) {
@@ -22,14 +31,10 @@ const formatPrice = (value, {
         num = Math.sign(num) * Math.floor(Math.abs(num) * factor) / factor;
     }
     
-    const options = {
-        style: showCurrency ? 'currency' : 'decimal',
-        currency,
-        notation: compact ? 'compact' : 'standard',
-        minimumFractionDigits: Math.abs(num) > 10000 ? decimals : minimumFractionDigits,
-        maximumFractionDigits: Math.abs(num) > 10000 ? decimals : maximumFractionDigits,
-        roundingMode,
-    };
+    if(style === 'percent') {
+        options.style = 'percent';
+        num = num / 100;
+    }
     
     return new Intl.NumberFormat(locale, options).format(num);
 };
@@ -77,7 +82,7 @@ const formatCoinsTable = coins => {
         id: coin?.id,
         marketCap: formatNumberWithOptions(coin?.market_cap),
         name: coin?.name,
-        price: formatPrice(coin?.current_price, 2, 2),
+        price: formatNumber(coin?.current_price, 2, 2),
         rank: coin?.market_cap_rank,
         symbol: coin?.symbol.toUpperCase(),
         trend: getTextColor(coin?.price_change_percentage_24h),
@@ -92,7 +97,7 @@ const formatCoingeckoCoin = coin => {
             ...coin.market_data,
             ath: {
                 ...coin.market_data.ath,
-                usd: formatPrice(coin.market_data.ath.usd, 2, 2)
+                usd: formatNumber(coin.market_data.ath.usd, 2, 2)
             },
             ath_change_percentage: {
                 ...coin.market_data.ath_change_percentage,
@@ -107,7 +112,7 @@ const formatLivecoinwatchCoin = coin => {
     return {
         ...coin,
         allTimeHighUSD: coin?.allTimeHighUSD,
-        allTimeHighUSDFormatted: formatPrice(coin?.allTimeHighUSD, 2, 2),
+        allTimeHighUSDFormatted: formatNumber(coin?.allTimeHighUSD, 2, 2),
         circulatingSupply: coin?.circulatingSupply,
         circulatingSupplyFormatted: formatNumberWithOptions(coin?.circulatingSupply, false),
         exchanges: coin?.exchanges,
@@ -119,7 +124,7 @@ const formatLivecoinwatchCoin = coin => {
         maxSupply: coin?.maxSupply,
         maxSupplyFormatted: formatNumberWithOptions(coin?.maxSupply, false),
         rate: coin?.rate,
-        rateFormatted: formatPrice(coin?.rate, 0, 2),
+        rateFormatted: formatNumber(coin?.rate, 0, 2),
         totalSupply: coin?.totalSupply,
         totalSupplyFormatted: formatNumberWithOptions(coin?.totalSupply, false),
         trend: getTextColor(coin?.changePercent24Hr),
@@ -156,7 +161,7 @@ const capitalize = word => word.charAt(0).toUpperCase() + word.slice(1);
 
 export {
     formatNumberWithOptions,
-    formatPrice,
+    formatNumber,
     formatCoinsTable,
     formatCoingeckoCoin,
     formatLivecoinwatchCoin,
