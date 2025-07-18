@@ -5,7 +5,7 @@
             default-value='price'
             class='mb-10'
         >
-            <TabsList class='mx-auto w-72 py-6'>
+            <TabsList>
                 <TabsTrigger value='price'>Price</TabsTrigger>
                 <TabsTrigger value='mcap'>Market Cap</TabsTrigger>
             </TabsList>
