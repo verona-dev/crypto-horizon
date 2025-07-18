@@ -23,6 +23,9 @@
                 <CoinIntro :coin='coin'/>
                 
                 <CardContent class='flex flex-col'>
+                    <!--  Delta  -->
+                    <CoinDelta :coin='coin' />
+                    
                     <!--  Links  -->
                     <CoinLinks
                         :livecoinwatchLinks='coin.livecoinwatch.links'
@@ -59,6 +62,7 @@
     // CryptocurrenciesStore
     import {storeToRefs} from 'pinia';
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
+    import CoinDelta from '~/components/markets/cryptocurrencies/coin/CoinDelta.vue';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State

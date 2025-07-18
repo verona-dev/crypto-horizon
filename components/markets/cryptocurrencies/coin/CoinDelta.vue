@@ -1,7 +1,7 @@
 <template>
-    <div
+    <section
         v-if='coin'
-        class='flex flex-col items-center justify-center'
+        class='coin-delta flex flex-col items-center justify-center'
     >
         <h4>Rate of Change</h4>
         
@@ -41,7 +41,9 @@
                 description='Rate of change in the last 365 days.'
             />
         </div>
-    </div>
+    </section>
+    
+    <Separator class='my-4' />
 </template>
 
 <script setup>
