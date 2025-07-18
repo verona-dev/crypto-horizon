@@ -88,7 +88,7 @@
                 data: activeData.value, // y-axis
                 
                 // Line
-                borderColor: '#01c929',
+                borderColor: '#3fc45a',
                 borderWidth: 2,
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
