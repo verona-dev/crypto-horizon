@@ -180,7 +180,9 @@
                 },
             },
             legend: {
-                display: true,
+                labels: {
+                    color: 'oklch(0.705 0.015 286.067)',
+                }
             },
         },
         scales: {
@@ -189,6 +191,7 @@
                     display: false,
                 },
                 ticks: {
+                    color: 'oklch(0.705 0.015 286.067)',
                     maxTicksLimit: 8,
                     callback: function(value) {
                         const label = this.getLabelForValue(value);
@@ -206,6 +209,7 @@
                     color: 'rgba(78,135,176,0.35)',
                 },
                 ticks: {
+                    color: 'oklch(0.705 0.015 286.067)',
                     callback: function(value) {
                         return formatNumberWithOptions(value);
                     }
