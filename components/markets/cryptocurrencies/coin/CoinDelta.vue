@@ -5,6 +5,13 @@
         <h6>Rate of Change</h6>
         
         <div class='flex items-center'>
+            <!--  1h  -->
+            <CoinDeltaItem
+                :delta='delta1h'
+                title='1h'
+                description='Rate of change in the last hour.'
+            />
+            
             <!--  24h  -->
             <CoinDeltaItem
                 :delta='delta24h'
@@ -48,6 +55,7 @@
     
     const { marketData } = toRefs(props);
     
+    const delta1h = marketData.value?.price_change_percentage_1h_in_currency?.usd;
     const delta24h = marketData.value?.price_change_percentage_24h;
     const delta7d = marketData.value?.price_change_percentage_7d;
     const delta30d = marketData.value?.price_change_percentage_30d;
