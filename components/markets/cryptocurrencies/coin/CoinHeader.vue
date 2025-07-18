@@ -74,8 +74,20 @@
                     <p v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</p>
                 </div>
                 
-                <!--  Coin price  -->
-                <h4 class='text-foreground mt-4'>{{ formatNumber(currentPrice, { truncate: true }) }}</h4>
+                <!--  Coin price + Trend  -->
+                <div class='mt-4 flex items-center'>
+                    <h4 class='text-foreground'>{{ formatNumber(currentPrice, { truncate: true }) }}</h4>
+                    
+                    <div class='ml-4 mb-2 flex items-center'>
+                        <NuxtIcon
+                            :name='getPriceChangeIcon()'
+                            size='35'
+                            :class='getTextColor(priceChangePercentage7d)'
+                        />
+                        <p :class='getTextColor(priceChangePercentage7d)'>{{ priceChangePercentage7dFormatted }}&#40;7d&#41;</p>
+                    </div>
+                </div>
+                
                 
                 <!--  Price 24h range -->
                 <div class='mt-14 w-[450px]'>
@@ -116,9 +128,8 @@
     const coingecko = toRef(coin.value?.coingecko);
     const watchlist_portfolio = formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true);
     const currentPrice = computed(() => coingecko.value?.market_data?.current_price?.usd);
-    const priceChangePercentage24h = coingecko.value?.market_data?.price_change_percentage_24h;
-    console.log(priceChangePercentage24h);
-    console.log(formatNumber(priceChangePercentage24h, {style: 'percent', truncate: true, }));
+    const priceChangePercentage7d = coingecko.value?.market_data?.price_change_percentage_7d;
+    const priceChangePercentage7dFormatted = formatNumber(priceChangePercentage7d, { style: 'percent', truncate: true });
     const high24h = computed(() => coingecko.value?.market_data?.high_24h?.usd);
     const high24hComputed = computed(() => {
         // Coingecko Api has delays in updating the high24h value therefore the current price can temporarily be above the high24h
@@ -141,6 +152,8 @@
         else if(progress.value < 50) return 'linear-gradient(90deg, #E32D2D 75%, #EBAA28 100%)';
         return 'linear-gradient(90deg, #E32D2D 0%, #EBAA28 50%, #1AC914 100%)';
     });
+    
+    const getPriceChangeIcon = () => priceChangePercentage7d > 0 ? 'iconoir:nav-arrow-up-solid' : 'iconoir:nav-arrow-down-solid';
 </script>
 
 <style scoped>
