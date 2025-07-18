@@ -1,5 +1,5 @@
 <template>
-    <div class='single-coin bg-card custom-flex'>
+    <div class='single-coin custom-flex'>
         <div
             v-if='loading'
             class='flex items-center h-[75vh]'
@@ -14,7 +14,7 @@
         <div v-else>
             <Card
                 v-if='coin && coin.livecoinwatch.name'
-                class='2xl:max-w-[1500px] border-none flex flex-col rounded-none'
+                class='2xl:max-w-[1500px] bg-background border-none flex flex-col rounded-none'
             >
                 <!--  Header  -->
                 <CoinHeader :coin='coin' />
