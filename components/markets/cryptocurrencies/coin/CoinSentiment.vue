@@ -1,8 +1,5 @@
 <template>
-    <div
-        v-if='sentimentUp'
-        class='coin-sentiment'
-    >
+    <div v-if='sentimentUp' class='coin-sentiment'>
         <div class='flex items-center'>
             <NuxtIcon
                 name='iconoir:user-love'

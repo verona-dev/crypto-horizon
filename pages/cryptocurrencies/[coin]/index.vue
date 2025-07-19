@@ -19,16 +19,14 @@
                 <!--  Header  -->
                 <CoinHeader :coin='coin' />
                 
-                <CardContent class='flex flex-col'>
-                    <!--  Intro + Chart  -->
-                    <CoinIntro :coin='coin'/>
-                    
-                    <!--  Links  -->
-                    <CoinLinks
-                        :livecoinwatchLinks='coin.livecoinwatch.links'
-                        :coingeckoLinks='coin.coingecko.links'
-                    />
-                </CardContent>
+                <!--  Intro + Chart  -->
+                <CoinIntro :coin='coin'/>
+                
+                <!--  Links  -->
+                <CoinLinks
+                    :livecoinwatchLinks='coin.livecoinwatch.links'
+                    :coingeckoLinks='coin.coingecko.links'
+                />
                 
                 <!--  Supply  -->
                 <CoinSupply :coin='coin.livecoinwatch' />

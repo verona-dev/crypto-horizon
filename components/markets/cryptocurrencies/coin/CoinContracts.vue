@@ -1,8 +1,5 @@
 <template>
-    <div
-        v-if='platforms.length'
-        class='coin-contracts'
-    >
+    <div v-if='platforms.length' class='coin-contracts'>
         <h6>Contracts</h6>
         
         <div class='flex items-center'>
