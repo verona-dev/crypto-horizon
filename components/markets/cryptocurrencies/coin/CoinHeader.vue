@@ -105,7 +105,7 @@
                     </div>
                     
                     <!--  Price change % in BTC  -->
-                    <div class='price-in-btc flex items-center'>
+                    <div v-if='not_bitcoin' class='price-in-btc flex items-center'>
                         <p class='text-sm'>{{ current_price_in_btc }} BTC</p>
                         
                         <div class='ml-3 flex items-center'>
@@ -172,6 +172,7 @@
     const coingecko = toRef(coin.value?.coingecko);
     const watchlist_portfolio = formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true);
     
+    const not_bitcoin = coin.value?.symbol !== 'BTC';
     const current_price = coingecko.value?.market_data?.current_price?.usd;
     const current_price_in_btc = coingecko.value?.market_data?.current_price?.btc;
     
