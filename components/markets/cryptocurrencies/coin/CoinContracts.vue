@@ -151,7 +151,7 @@
     });
 </script>
 
-<style>
+<style scoped>
     .m-btn {
         cursor: auto !important;
     }
