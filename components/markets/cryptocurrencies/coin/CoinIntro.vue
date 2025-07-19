@@ -1,7 +1,7 @@
 <template>
-    <section class='coin-intro flex flex-col xl:flex-row gap-30 xl:gap-0 xl:justify-evenly'>
+    <section class='coin-intro flex flex-col xl:flex-row gap-30 xl:gap-0 justify-evenly items-start'>
         <!--  Left  -->
-        <div class='left flex flex-col justify-center gap-18'>
+        <div class='left flex flex-col gap-18 border-r py-10 px-20'>
             <!--  Overview Table  -->
             <CoinOverviewTable :coin='coin' />
             
@@ -22,7 +22,7 @@
         </div>
         
         <!--  Right  -->
-        <div class='right w-10/12 xl:w-1/2 flex flex-col gap-24'>
+        <div class='right flex flex-col gap-28'>
             <!--  Chart  -->
             <CoinChart :chartData='coin.chart' />
             
