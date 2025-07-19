@@ -2,6 +2,9 @@
     <section class='coin-intro flex flex-col xl:flex-row gap-30 xl:gap-0 xl:justify-evenly'>
         <!--  Left  -->
         <div class='left flex flex-col justify-center gap-16'>
+            <!--  Overview Table  -->
+            <CoinOverviewTable :coin='coin' />
+            
             <!--  Community Sentiment  -->
             <CoinSentiment
                 :sentimentUp='coingecko.sentiment_votes_up_percentage'
@@ -38,6 +41,7 @@
     import CoinSentiment from '~/components/markets/cryptocurrencies/coin/CoinSentiment.vue';
     import CoinChart from '~/components/markets/cryptocurrencies/coin/CoinChart.vue';
     import CoinDelta from '~/components/markets/cryptocurrencies/coin/CoinDelta.vue';
+    import CoinOverviewTable from '~/components/markets/cryptocurrencies/coin/CoinOverviewTable.vue';
     
     const props = defineProps({
         coin: {
