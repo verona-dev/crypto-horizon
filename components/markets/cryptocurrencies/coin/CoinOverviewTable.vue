@@ -18,9 +18,22 @@
                     
                     <TableCell>
                         <p class='block'>{{ coingecko.market_data.ath.usd }}</p>
-                        <p :class='coingecko.market_data.ath_change_percentage_trend'>
-                            {{ coingecko.market_data.ath_change_percentage.usd }}&#37;
-                        </p>
+                        <div class='flex items-center'>
+                            <p :class='coingecko.market_data.ath_change_percentage_trend'>{{ coingecko.market_data.ath_change_percentage.usd }}&#37;</p>
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='info-icon'>
+                                    <NuxtIcon
+                                        name='radix-icons:info-circled'
+                                        size='25'
+                                        class='flex ml-2'
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent class='hover-card-content'>
+                                    <span class='text-sm'>Current price compared to all time high</span>
+                                </HoverCardContent>
+                            </HoverCard>
+                        </div>
                     </TableCell>
                 </TableRow>
                 
