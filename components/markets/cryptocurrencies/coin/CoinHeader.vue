@@ -77,30 +77,17 @@
                 <!--  Coin price + Trend  -->
                 <div class='mt-4'>
                     <div class='flex items-center'>
-                        <h4 class='text-foreground'>{{ formatNumber(currentPrice, { truncate: true }) }}</h4>
+                        <h4 class='text-foreground'>{{ formatNumber(current_price, { truncate: true }) }}</h4>
                         
                         <!--  Price change % in USD $  -->
                         <div class='ml-4 mb-2 flex items-center'>
                             <NuxtIcon
-                                :name='getTrendIcon(priceChangePercentage7d)'
+                                :name='getTrendIcon(price_change_percentage_7d)'
                                 size='35'
-                                :class='getTextColor(priceChangePercentage7d)'
+                                :class='getTextColor(price_change_percentage_7d)'
                             />
-                            <p :class='getTextColor(priceChangePercentage7d)'>{{ priceChangePercentage7dFormatted }}&#40;7d&#41;</p>
-                        </div>
-                    </div>
-                    
-                    <!--  Price change % in BTC  -->
-                    <div class='price-in-btc flex items-center'>
-                        <p>{{ currentPriceInBtc }} BTC</p>
-                        
-                        <div class='ml-3 flex items-center'>
-                            <NuxtIcon
-                                :name='getTrendIcon(price_change_percentage_7d_in_btc)'
-                                size='35'
-                                :class='getTextColor(price_change_percentage_7d_in_btc)'
-                            />
-                            <p :class='getTextColor(price_change_percentage_7d_in_btc)'>{{ price_change_percentage_7d_in_btc_formatted }}&#40;7d&#41;</p>
+                            
+                            <p :class='getTextColor(price_change_percentage_7d)'>{{ price_change_percentage_7d_formatted }}&#40;7d&#41;</p>
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='info-icon'>
@@ -111,7 +98,35 @@
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent class='hover-card-content'>
-                                    <span class='text-sm'>Price change in percent compared to Bitcoin BTC</span>
+                                    <span class='text-sm'>Price change percent in USD $</span>
+                                </HoverCardContent>
+                            </HoverCard>
+                        </div>
+                    </div>
+                    
+                    <!--  Price change % in BTC  -->
+                    <div class='price-in-btc flex items-center'>
+                        <p class='text-sm'>{{ current_price_in_btc }} BTC</p>
+                        
+                        <div class='ml-3 flex items-center'>
+                            <NuxtIcon
+                                :name='getTrendIcon(price_change_percentage_7d_in_btc)'
+                                size='25'
+                                :class='getTextColor(price_change_percentage_7d_in_btc)'
+                            />
+                            
+                            <p :class='[getTextColor(price_change_percentage_7d_in_btc), "text-sm"]'>{{ price_change_percentage_7d_in_btc_formatted }}&#40;7d&#41;</p>
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='info-icon'>
+                                    <NuxtIcon
+                                        name='radix-icons:info-circled'
+                                        size='25'
+                                        class='flex ml-2'
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent class='hover-card-content'>
+                                    <span class='text-sm'>Price change percent compared to Bitcoin BTC</span>
                                 </HoverCardContent>
                             </HoverCard>
                         </div>
@@ -122,12 +137,12 @@
                 <div class='mt-14 w-[450px]'>
                     <Progress
                         v-model='progress'
-                        :indicatorColor='progressColor'
+                        :indicatorColor='progress_color'
                     />
                     <div class='flex justify-between'>
-                        <p>{{ formatNumber(low24hComputed) }}</p>
+                        <p>{{ formatNumber(low_24h_computed) }}</p>
                         <p>24h Range</p>
-                        <p>{{ formatNumber(high24hComputed) }}</p>
+                        <p>{{ formatNumber(high_24h_computed) }}</p>
                     </div>
                 </div>
             </div>
@@ -157,42 +172,38 @@
     const coingecko = toRef(coin.value?.coingecko);
     const watchlist_portfolio = formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true);
     
-    const currentPrice = computed(() => coingecko.value?.market_data?.current_price?.usd);
-    const currentPriceInBtc = coingecko.value?.market_data?.current_price?.btc;
+    const current_price = computed(() => coingecko.value?.market_data?.current_price?.usd);
+    const current_price_in_btc = coingecko.value?.market_data?.current_price?.btc;
     
-    const priceChangePercentage7d = coingecko.value?.market_data?.price_change_percentage_7d;
-    console.log(priceChangePercentage7d);
-    const priceChangePercentage7dFormatted = formatNumber(priceChangePercentage7d, { style: 'percent', truncate: true });
-    console.log(priceChangePercentage7dFormatted);
+    const price_change_percentage_7d = coingecko.value?.market_data?.price_change_percentage_7d;
+    const price_change_percentage_7d_formatted = formatNumber(price_change_percentage_7d, { style: 'percent', truncate: true });
     const price_change_percentage_7d_in_btc = coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc;
     const price_change_percentage_7d_in_btc_formatted = formatNumber(coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc, { style: 'percent', truncate: true });
    
-    const high24h = computed(() => coingecko.value?.market_data?.high_24h?.usd);
-    const high24hComputed = computed(() => {
+    const high_24h = computed(() => coingecko.value?.market_data?.high_24h?.usd);
+    const high_24h_computed = computed(() => {
         // Coingecko Api has delays in updating the high24h value therefore the current price can temporarily be above the high24h
-        if(currentPrice.value > high24h.value) return currentPrice;
-        return high24h.value;
+        if(current_price.value > high_24h.value) return current_price;
+        return high_24h.value;
     });
     
-    const low24h = computed(() => coingecko.value?.market_data?.low_24h?.usd);
-    const low24hComputed = computed(() => {
+    const low_24h = computed(() => coingecko.value?.market_data?.low_24h?.usd);
+    const low_24h_computed = computed(() => {
         // Coingecko Api has delays in updating the low24h value therefore the current price can temporarily be under the low24h
-        if(currentPrice.value < low24h.value) return currentPrice;
-        return low24h.value;
+        if(current_price.value < low_24h.value) return current_price;
+        return low_24h.value;
     });
     
     const progress = computed(() => {
-        const range = high24hComputed.value - low24hComputed.value;
+        const range = high_24h_computed.value - low_24h_computed.value;
         if (range < 0.005) return 99; // for stablecoins, since range can be as low as .001
-        return ((currentPrice.value - low24hComputed.value) / range) * 100;
+        return ((current_price.value - low_24h_computed.value) / range) * 100;
     });
-    const progressColor = computed(() => {
+    const progress_color = computed(() => {
         if(progress.value < 25) return '#E32D2D';
         else if(progress.value < 50) return 'linear-gradient(90deg, #E32D2D 75%, #EBAA28 100%)';
         return 'linear-gradient(90deg, #E32D2D 0%, #EBAA28 50%, #1AC914 100%)';
     });
-    
-    const getPriceChangeIcon = () => priceChangePercentage7d > 0 ? 'iconoir:nav-arrow-up-solid' : 'iconoir:nav-arrow-down-solid';
 </script>
 
 <style scoped>
