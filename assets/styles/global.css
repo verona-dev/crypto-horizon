@@ -22,7 +22,7 @@
     }
     
     section {
-        @apply my-10 lg:my-20 flex flex-col items-center lg:justify-around;
+        @apply my-10 flex flex-col items-center lg:justify-around;
     }
     
     /*
