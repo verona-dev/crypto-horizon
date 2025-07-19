@@ -91,3 +91,9 @@
         }));
     });
 </script>
+
+<style scoped>
+    .m-btn {
+        cursor: pointer !important;
+    }
+</style>
