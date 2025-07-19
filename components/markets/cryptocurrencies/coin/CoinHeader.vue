@@ -87,7 +87,7 @@
                                 :class='getTextColor(price_change_percentage_7d)'
                             />
                             
-                            <p :class='getTextColor(price_change_percentage_7d)'>{{ price_change_percentage_7d_formatted }}&#40;7d&#41;</p>
+                            <p :class='getTextColor(price_change_percentage_7d)'>{{ price_change_percentage_7d_label }}&#40;7d&#41;</p>
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='info-icon'>
@@ -115,7 +115,7 @@
                                 :class='getTextColor(price_change_percentage_7d_in_btc)'
                             />
                             
-                            <p :class='[getTextColor(price_change_percentage_7d_in_btc), "text-sm"]'>{{ price_change_percentage_7d_in_btc_formatted }}&#40;7d&#41;</p>
+                            <p :class='[getTextColor(price_change_percentage_7d_in_btc), "text-sm"]'>{{ price_change_percentage_7d_in_btc_label }}&#40;7d&#41;</p>
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='info-icon'>
@@ -172,32 +172,32 @@
     const coingecko = toRef(coin.value?.coingecko);
     const watchlist_portfolio = formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true);
     
-    const current_price = computed(() => coingecko.value?.market_data?.current_price?.usd);
+    const current_price = coingecko.value?.market_data?.current_price?.usd;
     const current_price_in_btc = coingecko.value?.market_data?.current_price?.btc;
     
     const price_change_percentage_7d = coingecko.value?.market_data?.price_change_percentage_7d;
-    const price_change_percentage_7d_formatted = formatNumber(price_change_percentage_7d, { style: 'percent', truncate: true });
+    const price_change_percentage_7d_label = formatNumber(price_change_percentage_7d, { style: 'percent', truncate: true });
     const price_change_percentage_7d_in_btc = coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc;
-    const price_change_percentage_7d_in_btc_formatted = formatNumber(coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc, { style: 'percent', truncate: true });
+    const price_change_percentage_7d_in_btc_label = formatNumber(coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc, { style: 'percent', truncate: true });
    
-    const high_24h = computed(() => coingecko.value?.market_data?.high_24h?.usd);
+    const high_24h = coingecko.value?.market_data?.high_24h?.usd;
     const high_24h_computed = computed(() => {
         // Coingecko Api has delays in updating the high24h value therefore the current price can temporarily be above the high24h
-        if(current_price.value > high_24h.value) return current_price;
-        return high_24h.value;
+        if(current_price > high_24h) return current_price;
+        return high_24h;
     });
     
-    const low_24h = computed(() => coingecko.value?.market_data?.low_24h?.usd);
+    const low_24h = coingecko.value?.market_data?.low_24h?.usd;
     const low_24h_computed = computed(() => {
         // Coingecko Api has delays in updating the low24h value therefore the current price can temporarily be under the low24h
-        if(current_price.value < low_24h.value) return current_price;
-        return low_24h.value;
+        if(current_price < low_24h) return current_price;
+        return low_24h;
     });
     
     const progress = computed(() => {
         const range = high_24h_computed.value - low_24h_computed.value;
         if (range < 0.005) return 99; // for stablecoins, since range can be as low as .001
-        return ((current_price.value - low_24h_computed.value) / range) * 100;
+        return ((current_price - low_24h_computed.value) / range) * 100;
     });
     const progress_color = computed(() => {
         if(progress.value < 25) return '#E32D2D';
