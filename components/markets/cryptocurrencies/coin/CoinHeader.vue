@@ -75,19 +75,36 @@
                 </div>
                 
                 <!--  Coin price + Trend  -->
-                <div class='mt-4 flex items-center'>
-                    <h4 class='text-foreground'>{{ formatNumber(currentPrice, { truncate: true }) }}</h4>
+                <div class='mt-4'>
+                    <div class='flex items-center'>
+                        <h4 class='text-foreground'>{{ formatNumber(currentPrice, { truncate: true }) }}</h4>
+                        
+                        <!--  Price change % in USD $  -->
+                        <div class='ml-4 mb-2 flex items-center'>
+                            <NuxtIcon
+                                :name='getTrendIcon(priceChangePercentage7d)'
+                                size='35'
+                                :class='getTextColor(priceChangePercentage7d)'
+                            />
+                            <p :class='getTextColor(priceChangePercentage7d)'>{{ priceChangePercentage7dFormatted }}&#40;7d&#41;</p>
+                        </div>
+                    </div>
                     
-                    <div class='ml-4 mb-2 flex items-center'>
-                        <NuxtIcon
-                            :name='getPriceChangeIcon()'
-                            size='35'
-                            :class='getTextColor(priceChangePercentage7d)'
-                        />
-                        <p :class='getTextColor(priceChangePercentage7d)'>{{ priceChangePercentage7dFormatted }}&#40;7d&#41;</p>
+                    <!--  Price change % in BTC  -->
+                    <div class='price-in-btc flex items-center'>
+                        <p>{{ currentPriceInBtc }} BTC</p>
+                        
+                        <div class='ml-3 flex items-center'>
+                            <NuxtIcon
+                                :name='getTrendIcon(price_change_percentage_7d_in_btc)'
+                                size='35'
+                                :class='getTextColor(price_change_percentage_7d_in_btc)'
+                            />
+                            <p :class='getTextColor(price_change_percentage_7d_in_btc)'>{{ price_change_percentage_7d_in_btc_formatted }}&#40;7d&#41;</p>
+
+                        </div>
                     </div>
                 </div>
-                
                 
                 <!--  Price 24h range -->
                 <div class='mt-14 w-[450px]'>
@@ -127,21 +144,31 @@
     const livecoinwatch = toRef(coin.value?.livecoinwatch);
     const coingecko = toRef(coin.value?.coingecko);
     const watchlist_portfolio = formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true);
+    
     const currentPrice = computed(() => coingecko.value?.market_data?.current_price?.usd);
+    const currentPriceInBtc = coingecko.value?.market_data?.current_price?.btc;
+    
     const priceChangePercentage7d = coingecko.value?.market_data?.price_change_percentage_7d;
+    console.log(priceChangePercentage7d);
     const priceChangePercentage7dFormatted = formatNumber(priceChangePercentage7d, { style: 'percent', truncate: true });
+    console.log(priceChangePercentage7dFormatted);
+    const price_change_percentage_7d_in_btc = coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc;
+    const price_change_percentage_7d_in_btc_formatted = formatNumber(coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc, { style: 'percent', truncate: true });
+   
     const high24h = computed(() => coingecko.value?.market_data?.high_24h?.usd);
     const high24hComputed = computed(() => {
         // Coingecko Api has delays in updating the high24h value therefore the current price can temporarily be above the high24h
         if(currentPrice.value > high24h.value) return currentPrice;
         return high24h.value;
     });
+    
     const low24h = computed(() => coingecko.value?.market_data?.low_24h?.usd);
     const low24hComputed = computed(() => {
         // Coingecko Api has delays in updating the low24h value therefore the current price can temporarily be under the low24h
         if(currentPrice.value < low24h.value) return currentPrice;
         return low24h.value;
     });
+    
     const progress = computed(() => {
         const range = high24hComputed.value - low24hComputed.value;
         if (range < 0.005) return 99; // for stablecoins, since range can be as low as .001
@@ -162,8 +189,10 @@
             color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
         }
         
-        span.iconify {
-            color: oklch(0.828 0.189 84.429) !important;
+        .m-badge {
+            span.iconify {
+                color: oklch(0.828 0.189 84.429) !important;
+            }
         }
     }
 </style>
