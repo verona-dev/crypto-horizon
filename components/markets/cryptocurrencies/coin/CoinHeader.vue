@@ -101,7 +101,19 @@
                                 :class='getTextColor(price_change_percentage_7d_in_btc)'
                             />
                             <p :class='getTextColor(price_change_percentage_7d_in_btc)'>{{ price_change_percentage_7d_in_btc_formatted }}&#40;7d&#41;</p>
-
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='info-icon'>
+                                    <NuxtIcon
+                                        name='radix-icons:info-circled'
+                                        size='25'
+                                        class='flex ml-2'
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent class='hover-card-content'>
+                                    <span class='text-sm'>Price change in percent compared to Bitcoin BTC</span>
+                                </HoverCardContent>
+                            </HoverCard>
                         </div>
                     </div>
                 </div>
