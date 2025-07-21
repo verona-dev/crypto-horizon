@@ -1,11 +1,18 @@
 <template>
-    <div v-if='coingeckoLinks?.blockchain_site' class='coin-explorers'>
-        <h6>Explorers</h6>
+    <div v-if='links?.blockchain_site' class='coin-explorers'>
+        <div class='flex items-center mb-4'>
+            <NuxtIcon
+                name='bitcoin-icons:node-hardware-outline'
+                size='43'
+                class='mr-3 min-w-14'
+            />
+            <h5>Explorers</h5>
+        </div>
         
         <div class='flex items-center'>
             <!--  Main Explorer  -->
             <NuxtLink
-                :to='explorers[0].href'
+                :to='main_explorer_link'
                 external
                 target='_blank'
                 class='inline-flex items-center flex-1'
@@ -17,7 +24,7 @@
                             size='20'
                             class='w-[50px]'
                         />
-                        <p>{{ explorers[0].name }}</p>
+                        <p>{{ main_explorer_name }}</p>
                     </div>
                 </MazBadge>
             </NuxtLink>
@@ -63,13 +70,13 @@
 
 <script setup>
     const props = defineProps({
-        coingeckoLinks: {
+        links: {
             type: Object,
             required: true,
         }
     });
     
-    const { coingeckoLinks } = toRefs(props);
+    const { links } = toRefs(props);
     const isOpen = ref(false);
     
     const extractNameFromUrl = url => {
@@ -84,12 +91,15 @@
     };
     
     const explorers = computed(() => {
-        const sites = coingeckoLinks.value?.blockchain_site || [];
+        const sites = links.value?.blockchain_site || [];
         return sites.map(href => ({
             name: extractNameFromUrl(href),
             href,
         }));
     });
+    
+    const main_explorer_link = explorers.value[0].href;
+    const main_explorer_name = explorers.value[0].name;
 </script>
 
 <style scoped>

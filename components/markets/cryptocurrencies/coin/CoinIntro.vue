@@ -1,7 +1,7 @@
 <template>
     <section class='coin-intro flex flex-col xl:flex-row gap-30 xl:gap-0 justify-evenly xl:items-start'>
         <!--  Left  -->
-        <div class='left flex flex-col gap-18 xl:border-r py-10 px-20 md:w-[800px] xl:w-auto'>
+        <div class='left flex flex-col gap-24 xl:gap-18 xl:border-r pt-0 xl:py-10 px-20 md:w-[800px] xl:w-auto'>
             <!--  Overview  -->
             <CoinOverviewTable :coin='coin' />
             
@@ -12,7 +12,7 @@
             />
             
             <!--  Explorers  -->
-            <CoinExplorers :coingeckoLinks='coingecko.links'/>
+            <CoinExplorers :links='coingecko.links'/>
             
             <!--  Contracts  -->
             <CoinContracts :coin='coingecko' />
