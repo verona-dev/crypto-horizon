@@ -6,7 +6,7 @@
         </h6>
         
         <!--  Description  -->
-        <div v-if='coingecko.description.length' class='bg-accent-foreground rounded-t-md'>
+        <div v-show='description' class='bg-accent-foreground rounded-t-md'>
             <Accordion type='single' collapsible class='py-3 px-6'>
                 <AccordionItem value='item-1' class=''>
                     <AccordionTrigger class=''>
@@ -14,13 +14,11 @@
                     </AccordionTrigger>
                     
                     <AccordionContent class='py-6'>
-                        {{ coingecko.description.en }}
+                        {{ description }}
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>
         </div>
-        
-<!--        <Separator class='custom-separator'/>-->
         
         <!--  Categories  -->
         <div v-if='coingecko.categories' class='bg-accent-foreground rounded-b-md'>
@@ -59,10 +57,11 @@
     
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
+    const description = coingecko.value?.description?.en;
 </script>
 
 <style scoped>
-h6 {
-    text-transform: capitalize;
-}
+    h6 {
+        text-transform: capitalize;
+    }
 </style>
