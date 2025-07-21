@@ -1,6 +1,13 @@
 <template>
-    <div v-if='platforms.length' class='coin-contracts'>
-        <h6>Contracts</h6>
+    <div v-if='platforms_list.length' class='coin-contracts'>
+        <div class='flex items-center mb-4'>
+            <NuxtIcon
+                name='bitcoin-icons:sign-outline'
+                size='43'
+                class='mr-3 min-w-14'
+            />
+            <h5>Contracts</h5>
+        </div>
         
         <div class='flex items-center'>
             <!--  Main Contract  -->
@@ -39,6 +46,7 @@
                 trigger='click'
                 class='contracts-dropdown'
                 position='bottom right'
+                :disabled='disable_dropdown'
             >
                 <template #dropdown>
                     <div
@@ -104,8 +112,9 @@
     
     const { coin } = toRefs(props);
     const { getCoingeckoCoinListSummary } = CryptocurrenciesStore;
-    let platformsList = ref([]);
-    const platformsSummary = ref([]);
+    const platforms_list = ref([]);
+    const platforms_summary = ref([]);
+    const disable_dropdown = computed(() => platforms_list.value?.length === 1);
     
     const platforms = Object.entries(coin.value?.platforms)
         .filter(([key, value]) => key.trim() !== '' && value.trim() !== '')
@@ -114,11 +123,11 @@
             'value': value
         }));
     
-    platforms.forEach(contract => platformsList.value.push(contract.name));
+    platforms.forEach(contract => platforms_list.value.push(contract.name));
     
     const platformImageMap = computed(() => {
-        return platformsList.value.map(name => {
-            const platformData = platformsSummary.value.find(obj => obj.id === name);
+        return platforms_list.value.map(name => {
+            const platformData = platforms_summary.value.find(obj => obj.id === name);
             return {
                 name,
                 image: platformData?.image || null,
@@ -129,7 +138,7 @@
     const onCopyLink = contract => {
         navigator.clipboard.writeText(contract.value);
         
-        toast(`${capitalize(contract.name)} contract copied to clipboard`, {
+        toast(`${coin.value?.name} (${capitalize(contract.name)}) contract copied to clipboard`, {
             duration: 2500,
             icon: () =>
                 h(resolveComponent('NuxtIcon'), {
@@ -145,8 +154,8 @@
     
     // coin list with market data
     onMounted(async() => {
-        platformsSummary.value = await getCoingeckoCoinListSummary({
-            query: { ids: platformsList.value }
+        platforms_summary.value = await getCoingeckoCoinListSummary({
+            query: { ids: platforms_list.value }
         });
     });
 </script>
