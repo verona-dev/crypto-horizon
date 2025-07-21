@@ -1,21 +1,19 @@
 <template>
     <section v-if='coingecko' class='flex lg:flex-col items-stretch px-20'>
-        <h6>About
+        <h5 class='mb-6'>About
             <span>{{ coingecko.id }}</span>
             <span class='ml-2'>&#40;{{ coin.symbol }}&#41;</span>
-        </h6>
+        </h5>
         
         <!--  Description  -->
         <div v-show='description' class='bg-accent-foreground rounded-t-md'>
             <Accordion type='single' collapsible class='py-3 px-6'>
                 <AccordionItem value='item-1' class=''>
-                    <AccordionTrigger class=''>
+                    <AccordionTrigger>
                         <p>What is {{ coingecko.name }}</p>
                     </AccordionTrigger>
                     
-                    <AccordionContent class='py-6'>
-                        {{ description }}
-                    </AccordionContent>
+                    <AccordionContent class='py-6'>{{ description }}</AccordionContent>
                 </AccordionItem>
             </Accordion>
         </div>
@@ -24,7 +22,7 @@
         <div v-if='coingecko.categories' class='bg-accent-foreground rounded-b-md'>
             <Accordion type='single' collapsible class='py-3 px-6'>
                 <AccordionItem value='item-1'>
-                    <AccordionTrigger class=''>
+                    <AccordionTrigger>
                         <p>Categories</p>
                     </AccordionTrigger>
                     
