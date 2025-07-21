@@ -69,7 +69,7 @@
                 </div>
                 
                 <!-- Symbol  -->
-                <div class='ml-1 mt-2'>
+                <div class='ml-1 mt-2 text-muted-custom'>
                     <p class='inline mr-3'>{{ coin.symbol }}</p>
                     <p v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</p>
                 </div>
@@ -134,7 +134,7 @@
                 </div>
                 
                 <!--  Price 24h range -->
-                <div class='mt-14 w-[450px]'>
+                <div class='mt-14 w-[450px] text-muted-custom'>
                     <Progress
                         v-model='progress'
                         :indicatorColor='progress_color'
@@ -209,10 +209,6 @@
 
 <style scoped>
     .coin-header {
-        p {
-            color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
-        }
-        
         .m-badge {
             span.iconify {
                 color: oklch(0.828 0.189 84.429) !important;
