@@ -2,9 +2,9 @@
     <div v-if='sentimentUp' class='coin-sentiment'>
         <div class='flex items-center mb-4'>
             <NuxtIcon
-                name='iconoir:user-love'
-                size='50'
-                class='mr-3'
+                name='bitcoin-icons:podcast-outline'
+                size='45'
+                class='mr-3 min-w-14'
             />
             <h5>Community sentiment</h5>
         </div>
@@ -12,11 +12,11 @@
         <div class='flex items-center'>
             <div class='flex items-center text-chart-2'>
                 <NuxtIcon
-                    name='iconoir:thumbs-up'
-                    size='35'
+                    name='bitcoin-icons:rocket-outline'
+                    size='40'
                     class='mr-2'
                 />
-                <p>{{ Math.floor(sentimentUp) || 0 }}&#37;</p>
+                <p>{{ sentiment_up_label }}</p>
             </div>
             
             <Progress
@@ -25,10 +25,10 @@
             />
             
             <div class='flex items-center text-chart-5'>
-                <p>{{ Math.ceil(sentimentDown) }}&#37;</p>
+                <p>{{ sentiment_down_label }}</p>
                 <NuxtIcon
                     name='iconoir:thumbs-down'
-                    size='35'
+                    size='30'
                     class='ml-2'
                 />
             </div>
@@ -49,6 +49,19 @@
     });
     
     const { sentimentUp, sentimentDown } = toRefs(props);
+    
+    const sentiment_up_label = formatNumber(sentimentUp.value, {
+        style: 'percent',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+    }) || 0;
+    
+    const sentiment_down_label = formatNumber(sentimentDown.value, {
+        style: 'percent',
+        roundingMode: 'ceil',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+    });
 </script>
 
 <style>
