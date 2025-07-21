@@ -15,7 +15,7 @@
 @media (max-width: 1023px) {}
 
 @theme inline {
-    --color-background: var(--background);
+    --color-background: var(--background-2);
     --color-foreground: var(--foreground);
     --color-card: var(--card);
     --color-card-small: var(--card-small);
