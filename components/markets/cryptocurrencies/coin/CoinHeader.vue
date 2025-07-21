@@ -87,7 +87,7 @@
                                 :class='getTextColor(price_change_percentage_7d)'
                             />
                             
-                            <p :class='getTextColor(price_change_percentage_7d)'>{{ price_change_percentage_7d_label }}</p>
+                            <p :class='getTextColor(price_change_percentage_7d)'>{{ price_change_percentage_7d_label }}&#40;7d&#41;</p>
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='info-icon'>
