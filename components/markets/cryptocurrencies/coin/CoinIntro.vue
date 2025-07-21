@@ -3,7 +3,7 @@
         <!--  Left  -->
         <div class='left flex flex-col gap-24 xl:gap-18 xl:border-r pt-0 xl:py-10 px-20 md:w-[800px] xl:w-auto'>
             <!--  Overview  -->
-            <CoinOverviewTable :coin='coin' />
+            <CoinOverview :coin='coin' />
             
             <!--  Community Sentiment  -->
             <CoinSentiment
@@ -41,7 +41,7 @@
     import CoinSentiment from '~/components/markets/cryptocurrencies/coin/CoinSentiment.vue';
     import CoinChart from '~/components/markets/cryptocurrencies/coin/CoinChart.vue';
     import CoinDelta from '~/components/markets/cryptocurrencies/coin/CoinDelta.vue';
-    import CoinOverviewTable from '~/components/markets/cryptocurrencies/coin/CoinOverviewTable.vue';
+    import CoinOverview from '~/components/markets/cryptocurrencies/coin/CoinOverview.vue';
     
     const props = defineProps({
         coin: {
