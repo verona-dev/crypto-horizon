@@ -1,14 +1,14 @@
 <template>
     <section class='coin-intro flex flex-col xl:flex-row gap-30 xl:gap-0 justify-evenly xl:items-start'>
         <!--  Left  -->
-        <div class='left flex flex-col gap-18 xl:border-r py-10 px-20'>
+        <div class='left flex flex-col gap-18 xl:border-r py-10 px-20 md:w-[800px] xl:w-auto'>
             <!--  Overview  -->
             <CoinOverviewTable :coin='coin' />
             
             <!--  Community Sentiment  -->
             <CoinSentiment
-                :sentimentUp='coingecko.sentiment_votes_up_percentage'
-                :sentimentDown='coingecko.sentiment_votes_down_percentage'
+                :sentimentUp='sentiment_up_percentage'
+                :sentimentDown='sentiment_down_percentage'
             />
             
             <!--  Explorers  -->
@@ -52,4 +52,7 @@
     
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
+    
+    const sentiment_up_percentage = coingecko.value?.sentiment_votes_up_percentage;
+    const sentiment_down_percentage = coingecko.value?.sentiment_votes_down_percentage;
 </script>
