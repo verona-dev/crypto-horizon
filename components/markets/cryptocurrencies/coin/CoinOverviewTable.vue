@@ -4,7 +4,7 @@
             <NuxtIcon
                 name='bitcoin-icons:sign-outline'
                 size='55'
-                class='mr-2'
+                class='mr-2 min-w-14'
             />
             <h5>Overview</h5>
         </div>
@@ -12,15 +12,15 @@
         <Table class='text-md'>
             <TableBody>
                 <!--  Genesis  -->
-                <TableRow v-if='coingecko.genesis_date'>
+                <TableRow v-if='genesis_date'>
                     <TableCell>Created</TableCell>
-                    <TableCell>{{ dayjs(coingecko.genesis_date).format('DD.MM.YYYY') }}</TableCell>
+                    <TableCell>{{ genesis_date_label }}</TableCell>
                 </TableRow>
                 
                 <!--  ATH  -->
-                <TableRow v-if='livecoinwatch.allTimeHighUSD'>
+                <TableRow v-if='ath'>
                     <TableCell>
-                        All-time high
+                        All-Time High
                         
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='info-icon'>
@@ -31,23 +31,32 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Current price compared to all time high.</span>
+                                <span class='text-sm'>All-time high and Price Change from All-Time High &#40;&#37;&#41;.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
                     
                     <TableCell class='flex flex-col !items-end'>
-                        <div>
-                            <span class='mr-3'>{{ coingecko.market_data.ath.usd }}</span>
-                            <span :class='coingecko.market_data.ath_change_percentage_trend'>{{ coingecko.market_data.ath_change_percentage.usd }}&#37;</span>
-                        </div>
+                        <span>{{ ath }}</span>
                         
-                        <span>{{ dayjs(coingecko.market_data.ath_date.usd).format('DD.MM.YYYY') }}</span>
+                        <div class='flex items-center text-sm'>
+                            <NuxtIcon
+                                :name='getTrendIcon(ath_change_percentage)'
+                                size='20'
+                                :class='getTextColor(ath_change_percentage)'
+                            />
+                            
+                            <span :class='getTextColor(ath_change_percentage)'>{{ ath_change_percentage_label }}</span>
+                        </div>
+                            
+                            
+                            <span class='text-muted-custom text-sm'>{{ ath_date_label }}</span>
+                        
                     </TableCell>
                 </TableRow>
                 
                 <!--  Markets  -->
-                <TableRow v-if='livecoinwatch.markets'>
+                <TableRow v-if='markets'>
                     <TableCell>
                         Markets
                         
@@ -64,11 +73,11 @@
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
-                    <TableCell>{{ livecoinwatch.markets }}</TableCell>
+                    <TableCell>{{ markets }}</TableCell>
                 </TableRow>
                 
                 <!--  Pairs  -->
-                <TableRow v-if='livecoinwatch.pairs'>
+                <TableRow v-if='pairs'>
                     <TableCell>
                         Pairs
                         
@@ -85,11 +94,11 @@
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
-                    <TableCell>{{ livecoinwatch.pairs }}</TableCell>
+                    <TableCell>{{ pairs }}</TableCell>
                 </TableRow>
                 
                 <!--  Exchanges  -->
-                <TableRow v-if='livecoinwatch.exchanges'>
+                <TableRow v-if='exchanges'>
                     <TableCell>
                         Exchanges
                         
@@ -106,13 +115,13 @@
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
-                    <TableCell>{{ livecoinwatch.exchanges }}</TableCell>
+                    <TableCell>{{ exchanges }}</TableCell>
                 </TableRow>
                 
                 <!--  Hashing algorithm  -->
-                <TableRow v-if='coingecko.hashing_algorithm'>
-                    <TableCell>Hashing algorithm</TableCell>
-                    <TableCell>{{ coingecko.hashing_algorithm }}</TableCell>
+                <TableRow v-if='hashing_algorithm'>
+                    <TableCell>Hashing Algorithm</TableCell>
+                    <TableCell>{{ hashing_algorithm }}</TableCell>
                 </TableRow>
             </TableBody>
         </Table>
@@ -134,6 +143,19 @@
     const { coin } = toRefs(props);
     const livecoinwatch = toRef(coin.value.livecoinwatch);
     const coingecko = toRef(coin.value.coingecko);
+    
+    const genesis_date = coingecko.value?.genesis_date;
+    const genesis_date_label = dayjs(genesis_date).format('DD.MM.YYYY');
+    
+    const markets = livecoinwatch.value?.markets;
+    const pairs = livecoinwatch.value?.pairs;
+    const exchanges = livecoinwatch.value?.exchanges;
+    const hashing_algorithm = coingecko.value?.hashing_algorithm;
+    
+    const ath = coingecko.value?.market_data?.ath.usd;
+    const ath_date_label = dayjs(coingecko.value?.market_data?.ath_date.usd).format('DD.MM.YYYY');
+    const ath_change_percentage = coingecko.value?.market_data?.ath_change_percentage?.usd;
+    const ath_change_percentage_label = formatNumber(ath_change_percentage, { style: 'percent', truncate: true });
 </script>
 
 <style scoped>
