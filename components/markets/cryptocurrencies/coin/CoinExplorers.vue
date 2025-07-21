@@ -2,7 +2,7 @@
     <div v-if='links?.blockchain_site' class='coin-explorers'>
         <div class='flex items-center mb-4'>
             <NuxtIcon
-                name='bitcoin-icons:node-hardware-outline'
+                name='bitcoin-icons:block-outline'
                 size='43'
                 class='mr-3 min-w-14'
             />
