@@ -109,7 +109,6 @@
         }
         
         .m-dropdown.explorers-dropdown {
-            .m-dropdown__wrapper {}
             .menu {
                 background-color: var(--accent-foreground) !important;
                 width: 200px !important;
