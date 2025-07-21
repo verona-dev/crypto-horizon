@@ -3,7 +3,7 @@
         <div class='flex items-center mb-4'>
             <NuxtIcon
                 name='bitcoin-icons:block-outline'
-                size='43'
+                size='42'
                 class='mr-3 min-w-14'
             />
             <h5>Explorers</h5>
