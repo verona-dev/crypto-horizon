@@ -1,12 +1,12 @@
 <template>
     <div v-if='sentimentUp' class='coin-sentiment'>
-        <div class='flex items-center'>
+        <div class='flex items-center mb-4'>
             <NuxtIcon
                 name='iconoir:user-love'
                 size='50'
-                class='mr-4 mb-5'
+                class='mr-3'
             />
-            <h6>Community sentiment</h6>
+            <h5>Community sentiment</h5>
         </div>
         
         <div class='flex items-center'>
