@@ -20,6 +20,12 @@
                     </TableCell>
                 </TableRow>
                 
+                <!--  Origin  -->
+                <TableRow v-if='country_origin'>
+                    <TableCell>Origin Country</TableCell>
+                    <TableCell >{{ country_origin }}</TableCell>
+                </TableRow>
+                
                 <!--  ATH  -->
                 <TableRow v-if='ath_price'>
                     <TableCell>
@@ -201,10 +207,7 @@
     const generis_date_from_now = dayjs(genesis_date).fromNow();
     const genesis_date_label = dayjs(genesis_date).format('MMM D, YYYY');
     
-    const markets = livecoinwatch.value?.markets;
-    const pairs = livecoinwatch.value?.pairs;
-    const exchanges = livecoinwatch.value?.exchanges;
-    const hashing_algorithm = coingecko.value?.hashing_algorithm;
+    const country_origin = coingecko.value?.country_origin;
     
     const ath_price = coingecko.value?.market_data?.ath?.usd;
     const ath_date = coingecko.value?.market_data?.ath_date?.usd;
@@ -223,6 +226,11 @@
     const atl_change_percentage_label = formatNumber(atl_change_percentage, {
         style: 'percent', compact: true, decimals: 2,
     });
+    
+    const markets = livecoinwatch.value?.markets;
+    const pairs = livecoinwatch.value?.pairs;
+    const exchanges = livecoinwatch.value?.exchanges;
+    const hashing_algorithm = coingecko.value?.hashing_algorithm;
 </script>
 
 <style scoped>
