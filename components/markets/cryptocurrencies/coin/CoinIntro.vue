@@ -1,7 +1,7 @@
 <template>
-    <section class='coin-intro flex flex-col xl:flex-row gap-30 xl:gap-0 justify-evenly items-start'>
+    <section class='coin-intro flex flex-col xl:flex-row gap-30 xl:gap-0 justify-evenly xl:items-start'>
         <!--  Left  -->
-        <div class='left flex flex-col gap-18 border-r py-10 px-20'>
+        <div class='left flex flex-col gap-18 xl:border-r py-10 px-20'>
             <!--  Overview  -->
             <CoinOverviewTable :coin='coin' />
             
