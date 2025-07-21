@@ -87,7 +87,7 @@
                                 :class='getTextColor(price_change_percentage_7d)'
                             />
                             
-                            <p :class='getTextColor(price_change_percentage_7d)'>{{ price_change_percentage_7d_label }}&#40;7d&#41;</p>
+                            <p :class='getTextColor(price_change_percentage_7d)'>{{ price_change_percentage_7d_label }}</p>
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='info-icon'>
@@ -98,7 +98,7 @@
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent class='hover-card-content'>
-                                    <span class='text-sm'>Price change percent in USD $</span>
+                                    <span class='text-sm'>Price change percent in $USD</span>
                                 </HoverCardContent>
                             </HoverCard>
                         </div>
@@ -106,7 +106,7 @@
                     
                     <!--  Price change % in BTC  -->
                     <div v-if='not_bitcoin' class='price-in-btc flex items-center'>
-                        <p class='text-sm'>{{ current_price_in_btc }} BTC</p>
+                        <p class='text-sm text-muted-custom'>{{ current_price_in_btc }} BTC</p>
                         
                         <div class='ml-3 flex items-center'>
                             <NuxtIcon
@@ -134,7 +134,7 @@
                 </div>
                 
                 <!--  Price 24h range -->
-                <div class='mt-14 w-[450px] text-muted-custom'>
+                <div class='mt-8 w-[450px] text-muted-custom'>
                     <Progress
                         v-model='progress'
                         :indicatorColor='progress_color'
