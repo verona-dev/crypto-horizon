@@ -107,12 +107,5 @@
         .m-btn {
             cursor: pointer !important;
         }
-        
-        .m-dropdown.explorers-dropdown {
-            .menu {
-                background-color: var(--accent-foreground) !important;
-                width: 200px !important;
-            }
-        }
     }
 </style>
