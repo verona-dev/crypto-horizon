@@ -22,7 +22,7 @@
     }
     
     section {
-        @apply my-10 lg:my-20 flex flex-col items-center lg:justify-around;
+        @apply my-10 flex flex-col items-center lg:justify-around;
     }
     
     /*
@@ -55,7 +55,7 @@
     }
     
     h6 {
-        @apply text-2xl mb-4;
+        @apply text-2xl;
     }
     
     p {
@@ -136,19 +136,17 @@
     
     /* Dropdown menus */
     .m-dropdown.explorers-dropdown {
-        .m-dropdown__wrapper {}
         .menu {
             background-color: var(--accent-foreground) !important;
-            /*height: 210px;*/
             width: 200px !important;
         }
     }
     
     .m-dropdown.contracts-dropdown {
-        .m-dropdown__wrapper {}
         .menu {
             background-color: var(--accent-foreground) !important;
-            /*height: 340px;*/
+            height: 375px !important;
+            width: 375px !important;
         }
     }
 }

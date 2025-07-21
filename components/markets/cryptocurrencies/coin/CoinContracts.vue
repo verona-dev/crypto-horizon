@@ -1,15 +1,20 @@
 <template>
-    <div
-        v-if='platforms.length'
-        class='coin-contracts'
-    >
-        <h6>Contracts</h6>
+    <div v-if='platforms_list.length' class='coin-contracts'>
+        <div class='flex items-center mb-4'>
+            <NuxtIcon
+                name='bitcoin-icons:sign-outline'
+                size='45'
+                class='mr-3 min-w-14'
+            />
+            <h5>Contracts</h5>
+        </div>
         
         <div class='flex items-center'>
             <!--  Main Contract  -->
             <MazBadge
-                class='main-badge w-full'
+                class='main-badge w-full cursor-pointer'
                 color='info'
+                @click='onCopyLink(platforms[0])'
             >
                 <div class='flex items-center w-3/4 justify-around'>
                     <NuxtImg
@@ -22,10 +27,7 @@
                     
                     <p class='capitalize'>{{ platforms[0].value.slice(0, 5) + '...' + platforms[0].value.slice(-5) }}</p>
                     
-                    <div
-                        @click='onCopyLink(platforms[0])'
-                        class='flex items-center justify-center cursor-pointer'
-                    >
+                    <div class='flex items-center justify-center'>
                         <NuxtIcon
                             name='radix-icons:copy'
                             size='20'
@@ -42,6 +44,7 @@
                 trigger='click'
                 class='contracts-dropdown'
                 position='bottom right'
+                :disabled='disable_dropdown'
             >
                 <template #dropdown>
                     <div
@@ -53,10 +56,12 @@
                             justify='start'
                             class='my-1'
                             color='transparent'
+                            @click='onCopyLink(contract)'
                         >
-                            <div class='py-1 flex justify-between items-center w-full gap-x-4'>
+                            <div class='py-1 flex justify-between items-center w-full'>
                                 <div class='flex items-center'>
-                                    <div class='flex w-12'>
+                                    <!--  Logo  -->
+                                    <div class='logo-container flex w-12'>
                                         <NuxtImg
                                             v-if='platformImageMap.find(platform => platform.name === contract.name)?.image'
                                             :src='platformImageMap.find(platform => platform.name === contract.name).image'
@@ -72,16 +77,15 @@
                                         />
                                     </div>
                                     
-                                    <div class='flex items-center'>
-                                        <span class='capitalize font-bold mr-4'>{{ contract.name }}</span>
-                                        <span>{{ contract.value.slice(0, 5) + '...' + contract.value.slice(-5) }}</span>
+                                    <!--  Name + Contract  -->
+                                    <div class='flex flex-col items-start'>
+                                        <span class='capitalize font-bold'>{{ contract.name }}</span>
+                                        <span>{{ contract.value.slice(0, 6) + '...' + contract.value.slice(-6) }}</span>
                                     </div>
                                 </div>
                                 
-                                <div
-                                    @click='onCopyLink(contract)'
-                                    class='flex items-center justify-center cursor-pointer'
-                                >
+                                <!--  Copy contract  -->
+                                <div class='flex items-center justify-center cursor-pointer'>
                                     <NuxtIcon name='radix-icons:copy' size='20' />
                                 </div>
                             </div>
@@ -107,8 +111,9 @@
     
     const { coin } = toRefs(props);
     const { getCoingeckoCoinListSummary } = CryptocurrenciesStore;
-    let platformsList = ref([]);
-    const platformsSummary = ref([]);
+    const platforms_list = ref([]);
+    const platforms_summary = ref([]);
+    const disable_dropdown = computed(() => platforms_list.value?.length === 1);
     
     const platforms = Object.entries(coin.value?.platforms)
         .filter(([key, value]) => key.trim() !== '' && value.trim() !== '')
@@ -117,11 +122,11 @@
             'value': value
         }));
     
-    platforms.forEach(contract => platformsList.value.push(contract.name));
+    platforms.forEach(contract => platforms_list.value.push(contract.name));
     
     const platformImageMap = computed(() => {
-        return platformsList.value.map(name => {
-            const platformData = platformsSummary.value.find(obj => obj.id === name);
+        return platforms_list.value.map(name => {
+            const platformData = platforms_summary.value.find(obj => obj.id === name);
             return {
                 name,
                 image: platformData?.image || null,
@@ -131,8 +136,8 @@
     
     const onCopyLink = contract => {
         navigator.clipboard.writeText(contract.value);
-        
-        toast(`${capitalize(contract.name)} contract copied to clipboard`, {
+
+        toast(`${coin.value?.name} (${capitalize(contract.name)}) contract copied to clipboard`, {
             duration: 2500,
             icon: () =>
                 h(resolveComponent('NuxtIcon'), {
@@ -148,14 +153,8 @@
     
     // coin list with market data
     onMounted(async() => {
-        platformsSummary.value = await getCoingeckoCoinListSummary({
-            query: { ids: platformsList.value }
+        platforms_summary.value = await getCoingeckoCoinListSummary({
+            query: { ids: platforms_list.value }
         });
     });
 </script>
-
-<style>
-    .m-btn {
-        cursor: auto !important;
-    }
-</style>

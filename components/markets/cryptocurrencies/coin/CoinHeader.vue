@@ -69,7 +69,7 @@
                 </div>
                 
                 <!-- Symbol  -->
-                <div class='ml-1 mt-2'>
+                <div class='ml-1 mt-2 text-muted-custom'>
                     <p class='inline mr-3'>{{ coin.symbol }}</p>
                     <p v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</p>
                 </div>
@@ -98,15 +98,15 @@
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent class='hover-card-content'>
-                                    <span class='text-sm'>Price change percent in USD $</span>
+                                    <span class='text-sm'>Price change percent in $USD</span>
                                 </HoverCardContent>
                             </HoverCard>
                         </div>
                     </div>
                     
                     <!--  Price change % in BTC  -->
-                    <div class='price-in-btc flex items-center'>
-                        <p class='text-sm'>{{ current_price_in_btc }} BTC</p>
+                    <div v-if='not_bitcoin' class='price-in-btc flex items-center'>
+                        <p class='text-sm text-muted-custom'>{{ current_price_in_btc }} BTC</p>
                         
                         <div class='ml-3 flex items-center'>
                             <NuxtIcon
@@ -134,7 +134,7 @@
                 </div>
                 
                 <!--  Price 24h range -->
-                <div class='mt-14 w-[450px]'>
+                <div class='mt-8 w-[450px] text-muted-custom'>
                     <Progress
                         v-model='progress'
                         :indicatorColor='progress_color'
@@ -172,6 +172,7 @@
     const coingecko = toRef(coin.value?.coingecko);
     const watchlist_portfolio = formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true);
     
+    const not_bitcoin = coin.value?.symbol !== 'BTC';
     const current_price = coingecko.value?.market_data?.current_price?.usd;
     const current_price_in_btc = coingecko.value?.market_data?.current_price?.btc;
     
@@ -208,10 +209,6 @@
 
 <style scoped>
     .coin-header {
-        p {
-            color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
-        }
-        
         .m-badge {
             span.iconify {
                 color: oklch(0.828 0.189 84.429) !important;

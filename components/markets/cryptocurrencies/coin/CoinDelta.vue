@@ -1,7 +1,5 @@
 <template>
-    <div
-        class='coin-delta flex flex-col items-center justify-center'
-    >
+    <div class='coin-delta flex flex-col items-center justify-center'>
         <h6>Rate of Change</h6>
         
         <div class='flex items-center'>
@@ -54,15 +52,9 @@
     });
     
     const { marketData } = toRefs(props);
-    
     const delta1h = marketData.value?.price_change_percentage_1h_in_currency?.usd;
     const delta24h = marketData.value?.price_change_percentage_24h;
     const delta7d = marketData.value?.price_change_percentage_7d;
     const delta30d = marketData.value?.price_change_percentage_30d;
     const delta1y = marketData.value?.price_change_percentage_1y;
-    
-    // const delta24h = computed(() => getDeltaPercentage(marketData.value?.livecoinwatch?.delta.day, coin.value?.rate));
-    // const delta7d = computed(() => getDeltaPercentage(marketData.value?.livecoinwatch?.delta.week, coin.value?.rate));
-    // const delta1m = computed(() => getDeltaPercentage(marketData.value?.livecoinwatch?.delta.month, coin.value?.rate));
-    // const delta1y = computed(() => getDeltaPercentage(marketData.value?.livecoinwatch?.delta.year, coin.value?.rate))
 </script>

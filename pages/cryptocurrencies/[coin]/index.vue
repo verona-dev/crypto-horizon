@@ -22,16 +22,11 @@
                 <!--  Intro + Chart  -->
                 <CoinIntro :coin='coin'/>
                 
-                <CardContent class='flex flex-col'>
-                    <!--  Links  -->
-                    <CoinLinks
-                        :livecoinwatchLinks='coin.livecoinwatch.links'
-                        :coingeckoLinks='coin.coingecko.links'
-                    />
-                    
-                    <!--  Overview  -->
-                    <CoinOverview :coin='coin' />
-                </CardContent>
+                <!--  Links  -->
+                <CoinLinks
+                    :livecoinwatchLinks='coin.livecoinwatch.links'
+                    :coingeckoLinks='coin.coingecko.links'
+                />
                 
                 <!--  Supply  -->
                 <CoinSupply :coin='coin.livecoinwatch' />
@@ -50,7 +45,6 @@
     import CoinIntro from '@/components/markets/cryptocurrencies/coin/CoinIntro.vue';
     import CoinDescription from '@/components/markets/cryptocurrencies/coin/CoinDescription.vue';
     import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
-    import CoinOverview from '@/components/markets/cryptocurrencies/coin/CoinOverview.vue';
     import CoinSupply from '@/components/markets/cryptocurrencies/coin/CoinSupply.vue';
     
     // Router
@@ -59,7 +53,6 @@
     // CryptocurrenciesStore
     import {storeToRefs} from 'pinia';
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
-    import CoinDelta from '~/components/markets/cryptocurrencies/coin/CoinDelta.vue';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State

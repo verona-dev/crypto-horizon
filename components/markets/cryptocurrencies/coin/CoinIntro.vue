@@ -1,15 +1,18 @@
 <template>
-    <section class='coin-intro flex flex-col xl:flex-row gap-30 xl:gap-0 xl:justify-evenly'>
+    <section class='coin-intro flex flex-col xl:flex-row gap-30 xl:gap-0 justify-evenly xl:items-start'>
         <!--  Left  -->
-        <div class='left flex flex-col justify-center gap-16'>
+        <div class='left flex flex-col gap-24 xl:gap-18 xl:border-r pt-0 xl:py-10 px-20 md:w-[800px] xl:w-auto'>
+            <!--  Overview  -->
+            <CoinOverview :coin='coin' />
+            
             <!--  Community Sentiment  -->
             <CoinSentiment
-                :sentimentUp='coingecko.sentiment_votes_up_percentage'
-                :sentimentDown='coingecko.sentiment_votes_down_percentage'
+                :sentimentUp='sentiment_up_percentage'
+                :sentimentDown='sentiment_down_percentage'
             />
             
             <!--  Explorers  -->
-            <CoinExplorers :coingeckoLinks='coingecko.links'/>
+            <CoinExplorers :links='coingecko.links'/>
             
             <!--  Contracts  -->
             <CoinContracts :coin='coingecko' />
@@ -19,7 +22,7 @@
         </div>
         
         <!--  Right  -->
-        <div class='right w-10/12 xl:w-1/2 flex flex-col gap-24 xl:gap-16'>
+        <div class='right flex flex-col gap-28'>
             <!--  Chart  -->
             <CoinChart :chartData='coin.chart' />
             
@@ -38,6 +41,7 @@
     import CoinSentiment from '~/components/markets/cryptocurrencies/coin/CoinSentiment.vue';
     import CoinChart from '~/components/markets/cryptocurrencies/coin/CoinChart.vue';
     import CoinDelta from '~/components/markets/cryptocurrencies/coin/CoinDelta.vue';
+    import CoinOverview from '~/components/markets/cryptocurrencies/coin/CoinOverview.vue';
     
     const props = defineProps({
         coin: {
@@ -48,4 +52,7 @@
     
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
+    
+    const sentiment_up_percentage = coingecko.value?.sentiment_votes_up_percentage;
+    const sentiment_down_percentage = coingecko.value?.sentiment_votes_down_percentage;
 </script>

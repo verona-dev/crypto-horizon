@@ -1,12 +1,16 @@
 <template>
-    <div
-        v-if='coin'
-        class='coin-converter flex flex-col'
-    >
-        <h6>{{ coin.symbol }} to USD converter</h6>
+    <div v-if='coin_price' class='coin-converter flex flex-col'>
+        <div class='flex items-center mb-4'>
+            <NuxtIcon
+                name='bitcoin-icons:exchange-outline'
+                size='45'
+                class='mr-3 min-w-14'
+            />
+            <h5>{{ coin_symbol }} to USD converter</h5>
+        </div>
         
         <MazInput
-            v-model.number='coinInput'
+            v-model.number='coin_input'
             color='info'
             rounded-size='md'
             class='coin-input'
@@ -14,12 +18,12 @@
             @change='resetOnInvalidNumber'
         >
             <template #left-icon>
-                <span class='min-w-12'>{{ coin.symbol }}</span>
+                <span class='min-w-12'>{{ coin_symbol }}</span>
             </template>
         </MazInput>
         
         <MazInput
-            v-model.number='usdInput'
+            v-model.number='usd_input'
             color='info'
             rounded-size='md'
             class='usd-input'
@@ -45,13 +49,14 @@
     });
     
     const { coin } = toRefs(props);
-    const coinPrice = computed(() => {
+    const coin_symbol = coin.value?.symbol;
+    const coin_price = computed(() => {
         const rate = coin.value?.coingecko.market_data.current_price.usd;
         if (rate == null) return 0;
         return Math.round(rate * 100) / 100;
     });
-    const coinInput = ref(1);
-    const usdInput = ref(coinPrice.value);
+    const coin_input = ref(1);
+    const usd_input = ref(coin_price.value || 1);
     
     const isNumberValid = (event: any) => {
         const input = event.target?.value;
@@ -66,11 +71,11 @@
             const inputValue = parseFloat(event.target.value);
             
             if (type === 'coin') {
-                usdInput.value = Math.round(inputValue * coinPrice.value * 100) / 100;
+                usd_input.value = Math.round(inputValue * coin_price.value * 100) / 100;
             }
             
             if(type === 'usd') {
-                coinInput.value = Math.round((inputValue / coinPrice.value) * 10000) / 10000;
+                coin_input.value = Math.round((inputValue / coin_price.value) * 10000) / 10000;
             }
         }
     };
@@ -82,8 +87,8 @@
     };
     
     const resetInputs = () => {
-        coinInput.value = 1;
-        usdInput.value = coinPrice.value;
+        coin_input.value = 1;
+        usd_input.value = coin_price.value;
     };
 </script>
 
