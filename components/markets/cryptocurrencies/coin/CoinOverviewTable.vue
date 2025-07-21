@@ -1,10 +1,10 @@
 <template>
     <div class='flex flex-col'>
-        <div class='flex items-center'>
+        <div class='flex items-center mb-4'>
             <NuxtIcon
-                name='iconoir:user-love'
+                name='bitcoin-icons:sign-outline'
                 size='50'
-                class='mr-4 mb-5'
+                class=''
             />
             <h6>Overview</h6>
         </div>
