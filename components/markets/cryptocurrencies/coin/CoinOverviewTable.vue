@@ -3,10 +3,10 @@
         <div class='flex items-center mb-4'>
             <NuxtIcon
                 name='bitcoin-icons:sign-outline'
-                size='50'
-                class=''
+                size='55'
+                class='mr-2'
             />
-            <h6>Overview</h6>
+            <h5>Overview</h5>
         </div>
         
         <Table class='text-md'>
@@ -20,34 +20,35 @@
                 <!--  ATH  -->
                 <TableRow v-if='livecoinwatch.allTimeHighUSD'>
                     <TableCell>
-                        <span class='block'>All-time high</span>
-                        <span>{{ dayjs(coingecko.market_data.ath_date.usd).format('DD.MM.YYYY') }}</span>
+                        All-time high
+                        
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='info-icon'>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>Current price compared to all time high.</span>
+                            </HoverCardContent>
+                        </HoverCard>
                     </TableCell>
                     
-                    <TableCell>
-                        <span class='block'>{{ coingecko.market_data.ath.usd }}</span>
-                        <div class='flex items-center'>
+                    <TableCell class='flex flex-col !items-end'>
+                        <div>
+                            <span class='mr-3'>{{ coingecko.market_data.ath.usd }}</span>
                             <span :class='coingecko.market_data.ath_change_percentage_trend'>{{ coingecko.market_data.ath_change_percentage.usd }}&#37;</span>
-                            
-                            <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='info-icon'>
-                                    <NuxtIcon
-                                        name='radix-icons:info-circled'
-                                        size='25'
-                                        class='flex ml-2'
-                                    />
-                                </HoverCardTrigger>
-                                <HoverCardContent class='hover-card-content'>
-                                    <span class='text-sm'>Current price compared to all time high.</span>
-                                </HoverCardContent>
-                            </HoverCard>
                         </div>
+                        
+                        <span>{{ dayjs(coingecko.market_data.ath_date.usd).format('DD.MM.YYYY') }}</span>
                     </TableCell>
                 </TableRow>
                 
                 <!--  Markets  -->
                 <TableRow v-if='livecoinwatch.markets'>
-                    <TableCell class='flex items-center'>
+                    <TableCell>
                         Markets
                         
                         <HoverCard :openDelay='200'>
@@ -68,7 +69,7 @@
                 
                 <!--  Pairs  -->
                 <TableRow v-if='livecoinwatch.pairs'>
-                    <TableCell class='flex items-center'>
+                    <TableCell>
                         Pairs
                         
                         <HoverCard :openDelay='200'>
@@ -89,7 +90,7 @@
                 
                 <!--  Exchanges  -->
                 <TableRow v-if='livecoinwatch.exchanges'>
-                    <TableCell class='flex items-center'>
+                    <TableCell>
                         Exchanges
                         
                         <HoverCard :openDelay='200'>
@@ -110,9 +111,7 @@
                 
                 <!--  Hashing algorithm  -->
                 <TableRow v-if='coingecko.hashing_algorithm'>
-                    <TableCell class='flex items-center'>
-                        Hashing algorithm
-                    </TableCell>
+                    <TableCell>Hashing algorithm</TableCell>
                     <TableCell>{{ coingecko.hashing_algorithm }}</TableCell>
                 </TableRow>
             </TableBody>
@@ -138,5 +137,12 @@
 </script>
 
 <style scoped>
-
+    [data-slot='table-row'] {
+        display: flex;
+        justify-content: space-between;
+    }
+    [data-slot='table-cell'] {
+        display: flex;
+        align-items: center;
+    }
 </style>
