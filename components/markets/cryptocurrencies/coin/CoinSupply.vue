@@ -4,18 +4,18 @@
         
         <Tabs
             default-value='doughnut-chart'
-            class='my-10 self-center w-1/2'
+            class='my-10 self-center w-full xl:w-1/2'
         >
             <TabsList class=''>
                 <TabsTrigger value='doughnut-chart'>Doughnut Chart</TabsTrigger>
                 <TabsTrigger value='stacked-bars'>Stacked Bars</TabsTrigger>
             </TabsList>
             
-            <TabsContent value='doughnut-chart' class='min-h-[500px] w-1/2 mx-auto'>
+            <TabsContent value='doughnut-chart' class='min-h-[500px] xl:w-1/2 mx-auto'>
                 <CoinSupplyDoughnutChart :coin='coin' />
             </TabsContent>
             
-            <TabsContent value='stacked-bars' class='min-h-[500px] w-11/12 mx-auto'>
+            <TabsContent value='stacked-bars' class='min-h-[500px] xl:w-11/12 mx-auto'>
                 <CoinSupplyStackedBars :coin='coin' />
             </TabsContent>
         </Tabs>
