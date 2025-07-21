@@ -108,7 +108,6 @@
             cursor: pointer !important;
         }
         
-        /* Dropdown menus */
         .m-dropdown.explorers-dropdown {
             .m-dropdown__wrapper {}
             .menu {
