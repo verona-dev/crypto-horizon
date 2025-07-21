@@ -21,7 +21,7 @@
                 </TableRow>
                 
                 <!--  ATH  -->
-                <TableRow v-if='ath'>
+                <TableRow v-if='ath_price'>
                     <TableCell>
                         All-Time High
                         
@@ -40,21 +40,26 @@
                     </TableCell>
                     
                     <TableCell class='flex flex-col !items-end'>
-                        <span>{{ ath }}</span>
-                        
-                        <div class='flex items-center text-sm'>
-                            <NuxtIcon
-                                :name='getTrendIcon(ath_change_percentage)'
-                                size='20'
-                                :class='getTextColor(ath_change_percentage)'
-                            />
+                        <!--  ATH Price  -->
+                        <div class='flex items-center'>
+                            <span>{{ ath_price }}</span>
                             
-                            <span :class='getTextColor(ath_change_percentage)'>{{ ath_change_percentage_label }}</span>
+                            <div class='ml-2 flex items-center text-sm'>
+                                
+                                <NuxtIcon
+                                    :name='getTrendIcon(ath_change_percentage)'
+                                    size='20'
+                                    :class='getTextColor(ath_change_percentage)'
+                                />
+                                <span :class='getTextColor(ath_change_percentage)'>{{ ath_change_percentage_label }}</span>
+                            </div>
                         </div>
-                            
-                            
-                            <span class='text-muted-custom text-sm'>{{ ath_date_label }}</span>
                         
+                        <!--  ATH Date -->
+                        <div class='text-muted-custom text-sm'>
+                            <span>{{ ath_date_label }}</span>
+                            <span>&#40;{{ ath_date_from_now }}&#41;</span>
+                        </div>
                     </TableCell>
                 </TableRow>
                 
@@ -158,8 +163,10 @@
     const exchanges = livecoinwatch.value?.exchanges;
     const hashing_algorithm = coingecko.value?.hashing_algorithm;
     
-    const ath = coingecko.value?.market_data?.ath.usd;
-    const ath_date_label = dayjs(coingecko.value?.market_data?.ath_date.usd).format('DD.MM.YYYY');
+    const ath_price = coingecko.value?.market_data?.ath.usd;
+    const ath_date = coingecko.value?.market_data?.ath_date.usd;
+    const ath_date_from_now = dayjs(ath_date).fromNow();
+    const ath_date_label = dayjs(coingecko.value?.market_data?.ath_date.usd).format('MMM D, YYYY');
     const ath_change_percentage = coingecko.value?.market_data?.ath_change_percentage?.usd;
     const ath_change_percentage_label = formatNumber(ath_change_percentage, { style: 'percent', truncate: true });
 </script>
