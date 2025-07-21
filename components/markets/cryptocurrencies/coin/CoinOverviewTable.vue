@@ -1,7 +1,15 @@
 <template>
-    <div class='flex flex-col items-center'>
-        <h4>Overview</h4>
-        <Table class='text-lg'>
+    <div class='flex flex-col'>
+        <div class='flex items-center'>
+            <NuxtIcon
+                name='iconoir:user-love'
+                size='50'
+                class='mr-4 mb-5'
+            />
+            <h6>Overview</h6>
+        </div>
+        
+        <Table class='text-md'>
             <TableBody>
                 <!--  Genesis  -->
                 <TableRow v-if='coingecko.genesis_date'>
@@ -12,14 +20,14 @@
                 <!--  ATH  -->
                 <TableRow v-if='livecoinwatch.allTimeHighUSD'>
                     <TableCell>
-                        <p class='block'>All-time high</p>
-                        {{ dayjs(coingecko.market_data.ath_date.usd).format('DD.MM.YYYY') }}
+                        <span class='block'>All-time high</span>
+                        <span>{{ dayjs(coingecko.market_data.ath_date.usd).format('DD.MM.YYYY') }}</span>
                     </TableCell>
                     
                     <TableCell>
-                        <p class='block'>{{ coingecko.market_data.ath.usd }}</p>
+                        <span class='block'>{{ coingecko.market_data.ath.usd }}</span>
                         <div class='flex items-center'>
-                            <p :class='coingecko.market_data.ath_change_percentage_trend'>{{ coingecko.market_data.ath_change_percentage.usd }}&#37;</p>
+                            <span :class='coingecko.market_data.ath_change_percentage_trend'>{{ coingecko.market_data.ath_change_percentage.usd }}&#37;</span>
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='info-icon'>
@@ -30,7 +38,7 @@
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent class='hover-card-content'>
-                                    <span class='text-sm'>Current price compared to all time high</span>
+                                    <span class='text-sm'>Current price compared to all time high.</span>
                                 </HoverCardContent>
                             </HoverCard>
                         </div>
