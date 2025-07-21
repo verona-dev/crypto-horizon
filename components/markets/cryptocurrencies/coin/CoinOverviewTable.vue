@@ -14,7 +14,10 @@
                 <!--  Genesis  -->
                 <TableRow v-if='genesis_date'>
                     <TableCell>Created</TableCell>
-                    <TableCell>{{ genesis_date_label }}</TableCell>
+                    <TableCell class='flex flex-col'>
+                        {{ genesis_date_label }}
+                        <span class='text-sm text-muted-custom'>{{ generis_date_from_now }}</span>
+                    </TableCell>
                 </TableRow>
                 
                 <!--  ATH  -->
@@ -130,6 +133,8 @@
 
 <script setup>
     import dayjs from 'dayjs';
+    import relativeTime from 'dayjs/plugin/relativeTime';
+    dayjs.extend(relativeTime);
     import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     
@@ -145,6 +150,7 @@
     const coingecko = toRef(coin.value.coingecko);
     
     const genesis_date = coingecko.value?.genesis_date;
+    const generis_date_from_now = dayjs(genesis_date).fromNow();
     const genesis_date_label = dayjs(genesis_date).format('DD.MM.YYYY');
     
     const markets = livecoinwatch.value?.markets;
@@ -160,6 +166,7 @@
 
 <style scoped>
     [data-slot='table-row'] {
+        align-items: baseline;
         display: flex;
         justify-content: space-between;
     }
