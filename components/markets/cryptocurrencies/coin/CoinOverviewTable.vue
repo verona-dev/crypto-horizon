@@ -2,8 +2,8 @@
     <div class='flex flex-col'>
         <div class='flex items-center mb-4'>
             <NuxtIcon
-                name='bitcoin-icons:sign-outline'
-                size='45'
+                name='bitcoin-icons:grid-outline'
+                size='43'
                 class='mr-2 min-w-14'
             />
             <h5>Overview</h5>
