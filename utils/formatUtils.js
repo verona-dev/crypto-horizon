@@ -14,7 +14,7 @@ const formatNumber = (value, {
 ) => {
     if (value == null || isNaN(value)) return '-';
     
-    let num = Number(value);
+    let num = Math.abs(Number(value));
     
     let options = {
         locale,
