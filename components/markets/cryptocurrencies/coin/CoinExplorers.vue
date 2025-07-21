@@ -102,8 +102,19 @@
     const main_explorer_name = explorers.value[0].name;
 </script>
 
-<style scoped>
-    .m-btn {
-        cursor: pointer !important;
+<style>
+    .coin-explorers {
+        .m-btn {
+            cursor: pointer !important;
+        }
+        
+        /* Dropdown menus */
+        .m-dropdown.explorers-dropdown {
+            .m-dropdown__wrapper {}
+            .menu {
+                background-color: var(--accent-foreground) !important;
+                width: 200px !important;
+            }
+        }
     }
 </style>
