@@ -160,8 +160,21 @@
     });
 </script>
 
-<style scoped>
-    .m-btn {
-        cursor: auto !important;
+<style>
+    .coin-contracts {
+        .m-btn {
+            cursor: auto !important;
+        }
+        
+        .m-dropdown.contracts-dropdown {
+            .m-dropdown__wrapper {}
+            .menu {
+                background-color: var(--accent-foreground) !important;
+                height: 475px !important;
+                width: 350px !important;
+                display: flex;
+                justify-content: space-evenly;
+            }
+        }
     }
 </style>

@@ -133,24 +133,6 @@
             }
         }
     }
-    
-    /* Dropdown menus */
-    .m-dropdown.explorers-dropdown {
-        .m-dropdown__wrapper {}
-        .menu {
-            background-color: var(--accent-foreground) !important;
-            /*height: 210px;*/
-            width: 200px !important;
-        }
-    }
-    
-    .m-dropdown.contracts-dropdown {
-        .m-dropdown__wrapper {}
-        .menu {
-            background-color: var(--accent-foreground) !important;
-            /*height: 340px;*/
-        }
-    }
 }
 
 /* Desktop */
