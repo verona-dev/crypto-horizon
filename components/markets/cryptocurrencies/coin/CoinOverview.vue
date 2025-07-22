@@ -249,8 +249,8 @@
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='flex items-center'>
                                 <NuxtIcon
-                                    name='iconoir:git-commit'
-                                    size='30'
+                                    name='radix-icons:commit'
+                                    size='25'
                                     class='flex ml-2 text-yellow-400'
                                 />
                             </HoverCardTrigger>
@@ -260,6 +260,27 @@
                         </HoverCard>
                     </TableCell>
                     <TableCell>{{ github_commits }}</TableCell>
+                </TableRow>
+                
+                <!--  Github Contributors  -->
+                <TableRow v-if='github_contributors'>
+                    <TableCell>
+                        Contributors
+                        
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex items-center'>
+                                <NuxtIcon
+                                    name='iconoir:github'
+                                    size='22'
+                                    class='flex ml-2 text-yellow-400'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>Github contributors.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </TableCell>
+                    <TableCell>{{ github_contributors }}</TableCell>
                 </TableRow>
             </TableBody>
         </Table>
@@ -328,6 +349,9 @@
         style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
     });
     const github_commits = formatNumber(coingecko.value?.developer_data?.commit_count_4_weeks, {
+        style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
+    });
+    const github_contributors = formatNumber(coingecko.value?.developer_data?.pull_request_contributors, {
         style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
     });
 </script>
