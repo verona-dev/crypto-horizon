@@ -6,10 +6,7 @@
     >
         <div class='flex flex-col lg:flex-row flex-wrap justify-center'>
             <!--  Market Cap  -->
-            <div
-                v-if='marketCap'
-                class='my-10 flex items-center justify-center'
-            >
+            <div v-if='marketCap' class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2500'
@@ -50,10 +47,7 @@
             </div>
             
             <!--  Max Supply  -->
-            <div
-                v-if='maxSupply'
-                class='my-10 flex items-center justify-center'
-            >
+            <div v-if='maxSupply' class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2500'
@@ -94,10 +88,7 @@
             </div>
             
             <!--  Total Supply  -->
-            <div
-                v-if='totalSupply'
-                class='my-10 flex items-center justify-center'
-            >
+            <div v-if='totalSupply' class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
                     :percentage='totalSupplyPercentage'
                     :duration='3000'
@@ -139,10 +130,7 @@
             </div>
             
             <!--  Circulating Supply  -->
-            <div
-                v-if='circulatingSupply'
-                class='my-10 flex items-center justify-center'
-            >
+            <div v-if='circulatingSupply' class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
                     :percentage='circulatingSupplyPercentage'
                     :duration='3000'
@@ -183,10 +171,7 @@
             </div>
             
             <!--  Volume 24h  -->
-            <div
-                v-if='volume'
-                class='my-10 flex items-center justify-center'
-            >
+            <div v-if='volume' class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='3500'
@@ -223,10 +208,7 @@
             </div>
             
             <!--  Liquidity 24h  -->
-            <div
-                v-if='liquidity'
-                class='my-10 flex items-center justify-center'
-            >
+            <div v-if='liquidity' class='my-10 flex items-center justify-center'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='3500'

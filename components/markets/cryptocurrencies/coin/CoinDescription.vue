@@ -7,7 +7,7 @@
         
         <!--  Description  -->
         <Accordion
-            v-show='description'
+            v-if='description'
             type='single'
             collapsible class='py-3 px-6 bg-muted rounded-t-md'
         >
