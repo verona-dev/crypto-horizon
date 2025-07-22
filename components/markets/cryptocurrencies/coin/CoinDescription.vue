@@ -1,7 +1,7 @@
 <template>
     <section v-if='coingecko' class='flex lg:flex-col items-stretch px-20'>
         <h5 class='mb-6'>About
-            <span>{{ coingecko.id }}</span>
+            <span class='capitalize'>{{ coingecko.id }}</span>
             <span class='ml-2'>&#40;{{ coin.symbol }}&#41;</span>
         </h5>
         
