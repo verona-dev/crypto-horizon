@@ -175,7 +175,7 @@
                     <TableCell>{{ exchanges }}</TableCell>
                 </TableRow>
                 
-                <!--  Hashing algorithm  -->
+                <!--  Hashing Algorithm  -->
                 <TableRow v-if='hashing_algorithm'>
                     <TableCell>Hashing Algorithm</TableCell>
                     <TableCell>{{ hashing_algorithm }}</TableCell>
@@ -199,11 +199,26 @@
                     </TableCell>
                 </TableRow>
                 
-                <!--  Forks  -->
-                <TableRow v-if='forks'>
-                    <TableCell>Forks</TableCell>
-                    <TableCell>{{ forks }}</TableCell>
+                <!--  Github Forks  -->
+                <TableRow v-if='github_forks'>
+                    <TableCell>Github Forks</TableCell>
+                    <TableCell>{{ github_forks }}</TableCell>
                 </TableRow>
+                
+                <!--  Github Stars  -->
+                <TableRow v-if='github_stars'>
+                    <TableCell>
+                        Github
+                        <NuxtIcon
+                            name='iconoir:star-solid'
+                            size='20'
+                            class='flex ml-2 text-yellow-500'
+                        />
+                    </TableCell>
+                    <TableCell>{{ github_stars }}</TableCell>
+                </TableRow>
+            
+            
             </TableBody>
         </Table>
     </div>
@@ -264,7 +279,8 @@
     const ico_end_label = dayjs(ico_end).format('MMM D, YYYY');;
     const ico_end_from_now = dayjs(ico_end).fromNow();
     
-    const forks = formatNumber(coingecko.value?.developer_data?.forks, { style: 'decimal', });
+    const github_forks = formatNumber(coingecko.value?.developer_data?.forks, { style: 'decimal' });
+    const github_stars = formatNumber(coingecko.value?.developer_data?.stars, { style: 'decimal' });
 </script>
 
 <style scoped>
