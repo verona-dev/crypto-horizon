@@ -83,7 +83,7 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>All-Time Low and Price Change from All-Time Low &#40;&#37;&#41;.</span>
+                                <span class='text-sm'>All-Time Low and change in price&#40;&#37;&#41; relative to the coin’s all-time low.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
@@ -180,6 +180,22 @@
                     <TableCell>Hashing Algorithm</TableCell>
                     <TableCell>{{ hashing_algorithm }}</TableCell>
                 </TableRow>
+                
+                <!--  Ico  -->
+                <TableRow v-if='ico_start'>
+                    <TableCell>Ico Start</TableCell>
+                    <TableCell class='text-muted-custom'>{{ ico_start }}</TableCell>
+                </TableRow>
+                
+                <TableRow v-if='ico_end'>
+                    <TableCell>Ico End</TableCell>
+                    <TableCell class='text-muted-custom'>{{ ico_end }}</TableCell>
+                </TableRow>
+                
+                <TableRow v-if='ico_description'>
+                    <TableCell>Ico Description</TableCell>
+                    <TableCell class='text-sm'>{{ ico_description }}</TableCell>
+                </TableRow>
             </TableBody>
         </Table>
     </div>
@@ -231,6 +247,11 @@
     const pairs = livecoinwatch.value?.pairs;
     const exchanges = livecoinwatch.value?.exchanges;
     const hashing_algorithm = coingecko.value?.hashing_algorithm;
+    
+    const ico = coingecko.value?.ico_data;
+    const ico_start = dayjs(ico.ico_start_date).format('MMM D, YYYY');
+    const ico_end = dayjs(ico.ico_end_date).format('MMM D, YYYY');;
+    const ico_description = ico.short_desc;
 </script>
 
 <style scoped>
