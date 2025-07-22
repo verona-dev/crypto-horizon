@@ -19,6 +19,12 @@
             
             <!--  Converter  -->
             <CoinConverter :coin='coin' />
+            
+            <!--  Links  -->
+            <CoinLinks
+                :livecoinwatchLinks='coin.livecoinwatch.links'
+                :coingeckoLinks='coin.coingecko.links'
+            />
         </div>
         
         <!--  Right  -->
@@ -42,6 +48,7 @@
     import CoinChart from '~/components/markets/cryptocurrencies/coin/CoinChart.vue';
     import CoinDelta from '~/components/markets/cryptocurrencies/coin/CoinDelta.vue';
     import CoinOverview from '~/components/markets/cryptocurrencies/coin/CoinOverview.vue';
+    import CoinLinks from '~/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     
     const props = defineProps({
         coin: {
