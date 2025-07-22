@@ -6,12 +6,6 @@
                 <!--  Overview  -->
                 <CoinOverview :coin='coin' />
                 
-                <!--  Community Sentiment  -->
-                <CoinSentiment
-                    :sentimentUp='sentiment_up_percentage'
-                    :sentimentDown='sentiment_down_percentage'
-                />
-                
                 <!--  Explorers  -->
                 <CoinExplorers :links='coingecko.links'/>
                 
@@ -35,6 +29,12 @@
                 
                 <!--  Delta  -->
                 <CoinDelta :marketData='coingecko.market_data' />
+                
+                <!--  Community Sentiment  -->
+                <CoinSentiment
+                    :sentimentUp='sentiment_up_percentage'
+                    :sentimentDown='sentiment_down_percentage'
+                />
             </div>
         </section>
         

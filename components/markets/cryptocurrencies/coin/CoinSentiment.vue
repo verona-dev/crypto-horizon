@@ -1,5 +1,5 @@
 <template>
-    <div v-if='sentimentUp' class='coin-sentiment'>
+    <div v-if='sentimentUp' class='coin-sentiment w-2/3'>
         <div class='flex items-center mb-4'>
             <NuxtIcon
                 name='bitcoin-icons:podcast-outline'
