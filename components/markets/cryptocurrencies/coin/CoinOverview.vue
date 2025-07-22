@@ -228,8 +228,8 @@
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='flex items-center'>
                                 <NuxtIcon
-                                    name='iconoir:star-solid'
-                                    size='20'
+                                    name='iconoir:star'
+                                    size='22'
                                     class='flex ml-2 text-yellow-500'
                                 />
                             </HoverCardTrigger>
@@ -250,7 +250,7 @@
                             <HoverCardTrigger class='flex items-center'>
                                 <NuxtIcon
                                     name='iconoir:git-pull-request'
-                                    size='25'
+                                    size='23'
                                     class='flex ml-2 text-yellow-400'
                                 />
                             </HoverCardTrigger>
