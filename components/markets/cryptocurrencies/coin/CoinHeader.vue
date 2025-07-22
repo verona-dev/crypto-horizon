@@ -33,10 +33,7 @@
                     
                     <div class='mt-2'>
                         <!--  Rank  -->
-                        <HoverCard
-                            :openDelay='200'
-                            class='flex'
-                        >
+                        <HoverCard :openDelay='200' class='flex'>
                             <HoverCardTrigger class='info-icon'>
                                 <MazBadge
                                     color='info'
@@ -54,10 +51,7 @@
                         </HoverCard>
                         
                         <!--  Portfolio watchlist  -->
-                        <HoverCard
-                            :openDelay='200'
-                            class='flex'
-                        >
+                        <HoverCard :openDelay='200' class='flex'>
                             <HoverCardTrigger class='info-icon'>
                                 <MazBadge
                                     color='theme'
