@@ -321,8 +321,12 @@
     const ico_end_label = dayjs(ico_end).format('MMM D, YYYY');;
     const ico_end_from_now = dayjs(ico_end).fromNow();
     
-    const github_forks = formatNumber(coingecko.value?.developer_data?.forks, { style: 'decimal' });
-    const github_stars = formatNumber(coingecko.value?.developer_data?.stars, { style: 'decimal' });
+    const github_forks = formatNumber(coingecko.value?.developer_data?.forks, {
+        style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
+    });
+    const github_stars = formatNumber(coingecko.value?.developer_data?.stars, {
+        style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
+    });
     const github_commits = formatNumber(coingecko.value?.developer_data?.commit_count_4_weeks, {
         style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
     });
