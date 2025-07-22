@@ -19,8 +19,8 @@
                 <!--  Header  -->
                 <CoinHeader :coin='coin' />
                 
-                <!--  Intro + Chart  -->
-                <CoinIntro :coin='coin'/>
+                <!--  Intro + Chart + Links  -->
+                <CoinBody :coin='coin'/>
                 
                 <!--  Supply  -->
                 <CoinSupply :coin='coin.livecoinwatch' />
@@ -28,7 +28,7 @@
                 <Separator class='my-4' />
                 
                 <!--  Info  -->
-                <CoinDescription :coin='coin' />
+                <CoinFooter :coin='coin' />
             </Card>
         </div>
     </div>
@@ -36,10 +36,9 @@
 
 <script setup>
     import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
-    import CoinIntro from '@/components/markets/cryptocurrencies/coin/CoinIntro.vue';
-    import CoinDescription from '@/components/markets/cryptocurrencies/coin/CoinDescription.vue';
-    import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
+    import CoinBody from '~/components/markets/cryptocurrencies/coin/CoinBody.vue';
     import CoinSupply from '@/components/markets/cryptocurrencies/coin/CoinSupply.vue';
+    import CoinFooter from '~/components/markets/cryptocurrencies/coin/CoinFooter.vue';
     
     // Router
     import {useRoute} from 'vue-router';
