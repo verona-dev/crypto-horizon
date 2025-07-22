@@ -242,7 +242,7 @@
                 </TableRow>
                 
                 <!--  Github Issues  -->
-                <TableRow v-if='github_issues'>
+                <TableRow v-if='github_issues_label'>
                     <TableCell>
                         Issues
                         
@@ -259,11 +259,11 @@
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
-                    <TableCell>{{ github_issues }}</TableCell>
+                    <TableCell>{{ github_issues_label }}</TableCell>
                 </TableRow>
                 
                 <!--  Github Commits  -->
-                <TableRow v-if='github_commits'>
+                <TableRow v-if='github_commits_label'>
                     <TableCell>
                         Commits
                         
@@ -280,12 +280,12 @@
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
-                    <TableCell>{{ github_commits }}</TableCell>
+                    <TableCell>{{ github_commits_label }}</TableCell>
                 </TableRow>
                 
                 
                 <!--  Github Contributors  -->
-                <TableRow v-if='github_contributors'>
+                <TableRow v-if='github_contributors_label'>
                     <TableCell>
                         Contributors
                         
@@ -302,7 +302,7 @@
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
-                    <TableCell>{{ github_contributors }}</TableCell>
+                    <TableCell>{{ github_contributors_label }}</TableCell>
                 </TableRow>
             </TableBody>
         </Table>
@@ -372,13 +372,16 @@
     const github_stars_label = github_stars > 0 && formatNumber(github_stars, {
         style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
     });
-    const github_commits = formatNumber(coingecko.value?.developer_data?.commit_count_4_weeks, {
+    const github_commits = coingecko.value?.developer_data?.commit_count_4_weeks;
+    const github_commits_label = github_commits > 0 && formatNumber(github_commits, {
         style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
     });
-    const github_contributors = formatNumber(coingecko.value?.developer_data?.pull_request_contributors, {
+    const github_contributors = coingecko.value?.developer_data?.pull_request_contributors;
+    const github_contributors_label = github_contributors > 0 && formatNumber(github_contributors, {
         style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
     });
-    const github_issues = formatNumber(coingecko.value?.developer_data?.total_issues, {
+    const github_issues = coingecko.value?.developer_data?.total_issues;
+    const github_issues_label = github_issues > 0 && formatNumber(github_issues, {
         style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
     });
 </script>
