@@ -16,13 +16,10 @@
                 v-if='coin && coin.livecoinwatch.name'
                 class='2xl:max-w-[1500px] bg-background border-none flex flex-col rounded-none'
             >
-                <!--  Header  -->
                 <CoinHeader :coin='coin' />
                 
-                <!--  Intro + Chart + Links  -->
                 <CoinBody :coin='coin'/>
                 
-                <!--  Info  -->
                 <CoinFooter :coin='coin' />
             </Card>
         </div>
