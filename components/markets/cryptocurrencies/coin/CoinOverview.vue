@@ -201,7 +201,21 @@
                 
                 <!--  Github Forks  -->
                 <TableRow v-if='github_forks'>
-                    <TableCell>Github Forks</TableCell>
+                    <TableCell>
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex items-center'>
+                                Github
+                                <NuxtIcon
+                                    name='iconoir:git-fork'
+                                    size='25'
+                                    class='flex ml-2 text-yellow-500'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>Github forks.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </TableCell>
                     <TableCell>{{ github_forks }}</TableCell>
                 </TableRow>
                 
@@ -217,8 +231,20 @@
                     </TableCell>
                     <TableCell>{{ github_stars }}</TableCell>
                 </TableRow>
-            
-            
+                
+                <!--  Github Commits  -->
+                <TableRow v-if='github_commits'>
+                    <TableCell>
+                        Github
+                        <NuxtIcon
+                            name='iconoir:git-commit'
+                            size='25'
+                            class='flex ml-2 text-yellow-500'
+                        />
+                    </TableCell>
+                    <TableCell>{{ github_commits }}</TableCell>
+                </TableRow>
+                
             </TableBody>
         </Table>
     </div>
@@ -281,6 +307,7 @@
     
     const github_forks = formatNumber(coingecko.value?.developer_data?.forks, { style: 'decimal' });
     const github_stars = formatNumber(coingecko.value?.developer_data?.stars, { style: 'decimal' });
+    const github_commits = formatNumber(coingecko.value?.developer_data?.commit_count_4_weeks, { style: 'decimal' });
 </script>
 
 <style scoped>
