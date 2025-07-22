@@ -17,7 +17,6 @@ const formatNumber = (value, {
     let num = Math.abs(Number(value));
     
     let options = {
-        locale,
         style,
         currency,
         minimumFractionDigits: Math.abs(num) > 10000 ? decimals : minimumFractionDigits,
