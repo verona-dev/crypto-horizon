@@ -9,7 +9,7 @@
             <h5>Contracts</h5>
         </div>
         
-        <div class='flex items-center'>
+        <div class='flex items-center rounded-md border border-card-border'>
             <!--  Main Contract  -->
             <MazBadge
                 class='main-badge w-full cursor-pointer'

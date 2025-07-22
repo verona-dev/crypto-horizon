@@ -6,7 +6,7 @@
             default-value='doughnut-chart'
             class='my-10 self-center w-full xl:w-1/2'
         >
-            <TabsList class=''>
+            <TabsList>
                 <TabsTrigger value='doughnut-chart'>Doughnut Chart</TabsTrigger>
                 <TabsTrigger value='stacked-bars'>Stacked Bars</TabsTrigger>
             </TabsList>

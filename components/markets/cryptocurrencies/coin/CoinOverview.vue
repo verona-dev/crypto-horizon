@@ -83,7 +83,7 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>All-Time Low and Price Change from All-Time Low &#40;&#37;&#41;.</span>
+                                <span class='text-sm'>All-Time Low and change in price&#40;&#37;&#41; relative to the coin’s all-time low.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
@@ -175,10 +175,134 @@
                     <TableCell>{{ exchanges }}</TableCell>
                 </TableRow>
                 
-                <!--  Hashing algorithm  -->
+                <!--  Hashing Algorithm  -->
                 <TableRow v-if='hashing_algorithm'>
                     <TableCell>Hashing Algorithm</TableCell>
                     <TableCell>{{ hashing_algorithm }}</TableCell>
+                </TableRow>
+                
+                <!--  Ico Start  -->
+                <TableRow v-if='ico_start'>
+                    <TableCell>Ico Start</TableCell>
+                    <TableCell class='flex flex-col'>
+                        {{ ico_start_label }}
+                        <span class='text-sm text-muted-custom'>{{ ico_start_from_now }}</span>
+                    </TableCell>
+                </TableRow>
+                
+                <!--  Ico End  -->
+                <TableRow v-if='ico_end'>
+                    <TableCell>Ico End</TableCell>
+                    <TableCell class='flex- flex-col'>
+                        {{ ico_end_label }}
+                        <span class='text-sm text-muted-custom'>{{ ico_end_from_now }}</span>
+                    </TableCell>
+                </TableRow>
+                
+                <!--  Github Forks  -->
+                <TableRow v-if='github_forks_label'>
+                    <TableCell  class='text-color-warning'>
+                        Forks
+                        
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex items-center'>
+                                <NuxtIcon
+                                    name='iconoir:git-fork'
+                                    size='25'
+                                    class='flex ml-2 text-yellow-500'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>Github forks.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </TableCell>
+                    <TableCell>{{ github_forks_label }}</TableCell>
+                </TableRow>
+                
+                <!--  Github Stars  -->
+                <TableRow v-if='github_stars_label'>
+                    <TableCell>
+                        Stars
+                        
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex items-center'>
+                                <NuxtIcon
+                                    name='iconoir:star'
+                                    size='22'
+                                    class='flex ml-2 text-yellow-500'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>Github stars.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </TableCell>
+                    <TableCell>{{ github_stars_label }}</TableCell>
+                </TableRow>
+                
+                <!--  Github Issues  -->
+                <TableRow v-if='github_issues_label'>
+                    <TableCell>
+                        Issues
+                        
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex items-center'>
+                                <NuxtIcon
+                                    name='iconoir:git-pull-request'
+                                    size='23'
+                                    class='flex ml-2 text-yellow-400'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>Github issues.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </TableCell>
+                    <TableCell>{{ github_issues_label }}</TableCell>
+                </TableRow>
+                
+                <!--  Github Commits  -->
+                <TableRow v-if='github_commits_label'>
+                    <TableCell>
+                        Commits
+                        
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex items-center'>
+                                <NuxtIcon
+                                    name='radix-icons:commit'
+                                    size='25'
+                                    class='flex ml-2 text-yellow-400'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>Github commits in the last 30 days.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </TableCell>
+                    <TableCell>{{ github_commits_label }}</TableCell>
+                </TableRow>
+                
+                
+                <!--  Github Contributors  -->
+                <TableRow v-if='github_contributors_label'>
+                    <TableCell>
+                        Contributors
+                        
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex items-center'>
+                                <NuxtIcon
+                                    name='iconoir:github'
+                                    size='22'
+                                    class='flex ml-2 text-yellow-400'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>Github contributors.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </TableCell>
+                    <TableCell>{{ github_contributors_label }}</TableCell>
                 </TableRow>
             </TableBody>
         </Table>
@@ -231,6 +355,35 @@
     const pairs = livecoinwatch.value?.pairs;
     const exchanges = livecoinwatch.value?.exchanges;
     const hashing_algorithm = coingecko.value?.hashing_algorithm;
+    
+    const ico = coingecko.value?.ico_data;
+    const ico_start = ico?.ico_start_date;
+    const ico_start_label = dayjs(ico_start).format('MMM D, YYYY');
+    const ico_start_from_now = dayjs(ico_start).fromNow();
+    const ico_end = ico?.ico_end_date;
+    const ico_end_label = dayjs(ico_end).format('MMM D, YYYY');;
+    const ico_end_from_now = dayjs(ico_end).fromNow();
+    
+    const github_forks = coingecko.value?.developer_data?.forks;
+    const github_forks_label = github_forks > 0 && formatNumber(github_forks, {
+        style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
+    });
+    const github_stars = coingecko.value?.developer_data?.stars;
+    const github_stars_label = github_stars > 0 && formatNumber(github_stars, {
+        style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
+    });
+    const github_commits = coingecko.value?.developer_data?.commit_count_4_weeks;
+    const github_commits_label = github_commits > 0 && formatNumber(github_commits, {
+        style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
+    });
+    const github_contributors = coingecko.value?.developer_data?.pull_request_contributors;
+    const github_contributors_label = github_contributors > 0 && formatNumber(github_contributors, {
+        style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
+    });
+    const github_issues = coingecko.value?.developer_data?.total_issues;
+    const github_issues_label = github_issues > 0 && formatNumber(github_issues, {
+        style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
+    });
 </script>
 
 <style scoped>

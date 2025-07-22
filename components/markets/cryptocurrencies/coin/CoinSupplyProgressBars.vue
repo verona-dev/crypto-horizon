@@ -2,14 +2,11 @@
     <MazAnimatedElement
         direction='up'
         :duration='2000'
-        class='flex flex-col'
+        class=''
     >
-        <div class='flex flex-col lg:flex-row flex-wrap justify-center'>
+        <div class='flex flex-wrap justify-center gap-10 xl:gap-20'>
             <!--  Market Cap  -->
-            <div
-                v-if='marketCap'
-                class='my-10 flex items-center justify-center'
-            >
+            <div v-if='marketCap' class='progress-bar-container'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2500'
@@ -20,9 +17,9 @@
                     </template>
                 </MazCircularProgressBar>
                 
-                <div class='ml-6 flex flex-col w-[375px]'>
+                <div class='ml-6 flex flex-col'>
                     <div class='flex items-center'>
-                        <h5>Market Cap</h5>
+                        <h6>Market Cap</h6>
                         
                         <HoverCard
                             :openDelay='200'
@@ -39,7 +36,7 @@
                                 <span class='text-sm'>
                                     The total market value of a cryptocurrency's circulating supply.
                                     It is analogous to the free-float capitalization in the stock market.
-                                    Market cap = Current price x Circulating supply
+                                    Market cap = Current price x Circulating supply.
                                 </span>
                             </HoverCardContent>
                         </HoverCard>
@@ -50,10 +47,7 @@
             </div>
             
             <!--  Max Supply  -->
-            <div
-                v-if='maxSupply'
-                class='my-10 flex items-center justify-center'
-            >
+            <div v-if='maxSupply' class='progress-bar-container'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2500'
@@ -64,9 +58,9 @@
                     </template>
                 </MazCircularProgressBar>
                 
-                <div class='ml-6 flex flex-col w-[375px]'>
+                <div class='ml-6 flex flex-col]'>
                     <div class='flex items-center'>
-                        <h5>Max Supply</h5>
+                        <h6>Max Supply</h6>
                         
                         <HoverCard
                             :openDelay='200'
@@ -94,10 +88,7 @@
             </div>
             
             <!--  Total Supply  -->
-            <div
-                v-if='totalSupply'
-                class='my-10 flex items-center justify-center'
-            >
+            <div v-if='totalSupply' class='progress-bar-container'>
                 <MazCircularProgressBar
                     :percentage='totalSupplyPercentage'
                     :duration='3000'
@@ -110,9 +101,9 @@
                     </template>
                 </MazCircularProgressBar>
                 
-                <div class='ml-6 flex flex-col w-[375px]'>
+                <div class='ml-6 flex flex-col'>
                     <div class='flex items-center'>
-                        <h5>Total Supply</h5>
+                        <h6>Total Supply</h6>
                         
                         <HoverCard
                             :openDelay='200'
@@ -139,10 +130,7 @@
             </div>
             
             <!--  Circulating Supply  -->
-            <div
-                v-if='circulatingSupply'
-                class='my-10 flex items-center justify-center'
-            >
+            <div v-if='circulatingSupply' class='progress-bar-container'>
                 <MazCircularProgressBar
                     :percentage='circulatingSupplyPercentage'
                     :duration='3000'
@@ -155,9 +143,9 @@
                     </template>
                 </MazCircularProgressBar>
                 
-                <div class='ml-6 flex flex-col w-[375px]'>
+                <div class='ml-6 flex flex-col'>
                     <div class='flex items-center'>
-                        <h5>Circulating Supply</h5>
+                        <h6>Circulating Supply</h6>
                         
                         <HoverCard
                             :openDelay='200'
@@ -183,10 +171,7 @@
             </div>
             
             <!--  Volume 24h  -->
-            <div
-                v-if='volume'
-                class='my-10 flex items-center justify-center'
-            >
+            <div v-if='volume' class='progress-bar-container'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='3500'
@@ -197,9 +182,9 @@
                     </template>
                 </MazCircularProgressBar>
                 
-                <div class='ml-6 flex flex-col w-[375px]'>
+                <div class='ml-6 flex flex-col'>
                     <div class='flex items-center'>
-                        <h5>Volume 24h</h5>
+                        <h6>Volume 24h</h6>
                         
                         <HoverCard
                             :openDelay='200'
@@ -223,10 +208,7 @@
             </div>
             
             <!--  Liquidity 24h  -->
-            <div
-                v-if='liquidity'
-                class='my-10 flex items-center justify-center'
-            >
+            <div v-if='liquidity' class='progress-bar-container'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='3500'
@@ -237,9 +219,9 @@
                     </template>
                 </MazCircularProgressBar>
                 
-                <div class='ml-6 flex flex-col w-[375px]'>
+                <div class='ml-6 flex flex-col'>
                     <div class='flex items-center'>
-                        <h5>Liquidity 24h</h5>
+                        <h6>Liquidity 24h</h6>
                         
                         <HoverCard
                             :openDelay='200'

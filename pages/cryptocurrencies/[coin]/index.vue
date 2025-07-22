@@ -1,9 +1,6 @@
 <template>
     <div class='single-coin custom-flex'>
-        <div
-            v-if='loading'
-            class='flex items-center h-[75vh]'
-        >
+        <div v-if='loading' class='flex items-center h-[75vh]'>
             <MazSpinner
                 color='secondary'
                 size='3em'
@@ -16,25 +13,11 @@
                 v-if='coin && coin.livecoinwatch.name'
                 class='2xl:max-w-[1500px] bg-background border-none flex flex-col rounded-none'
             >
-                <!--  Header  -->
                 <CoinHeader :coin='coin' />
                 
-                <!--  Intro + Chart  -->
-                <CoinIntro :coin='coin'/>
+                <CoinBody :coin='coin'/>
                 
-                <!--  Links  -->
-                <CoinLinks
-                    :livecoinwatchLinks='coin.livecoinwatch.links'
-                    :coingeckoLinks='coin.coingecko.links'
-                />
-                
-                <!--  Supply  -->
-                <CoinSupply :coin='coin.livecoinwatch' />
-                
-                <Separator class='my-4' />
-                
-                <!--  Info  -->
-                <CoinDescription :coin='coin' />
+                <CoinFooter :coin='coin' />
             </Card>
         </div>
     </div>
@@ -42,10 +25,8 @@
 
 <script setup>
     import CoinHeader from '@/components/markets/cryptocurrencies/coin/CoinHeader.vue';
-    import CoinIntro from '@/components/markets/cryptocurrencies/coin/CoinIntro.vue';
-    import CoinDescription from '@/components/markets/cryptocurrencies/coin/CoinDescription.vue';
-    import CoinLinks from '@/components/markets/cryptocurrencies/coin/CoinLinks.vue';
-    import CoinSupply from '@/components/markets/cryptocurrencies/coin/CoinSupply.vue';
+    import CoinBody from '~/components/markets/cryptocurrencies/coin/CoinBody.vue';
+    import CoinFooter from '~/components/markets/cryptocurrencies/coin/CoinFooter.vue';
     
     // Router
     import {useRoute} from 'vue-router';
