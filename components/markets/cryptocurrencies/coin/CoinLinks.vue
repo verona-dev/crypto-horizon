@@ -1,8 +1,8 @@
 <template>
-    <section class='coin-links flex flex-wrap gap-10'>
+    <section class='coin-links flex flex-wrap items-start gap-10'>
         <!-- Websites -->
-        <div class='group flex flex-col'>
-            <h4 class='mb-4'>Websites</h4>
+        <div class='websites'>
+            <h5 class='mb-4'>Websites</h5>
             
             <NuxtLink
                 v-if='livecoinwatchLinks.website'
@@ -41,8 +41,8 @@
         </div>
         
         <!-- Chat -->
-        <div v-if='coingeckoLinks.chat_url.length' class='group flex flex-col '>
-            <h4 class='mb-4'>Chat</h4>
+        <div v-if='coingeckoLinks.chat_url.length' class='chat'>
+            <h5 class='mb-4'>Chat</h5>
             
             <div v-for='chat in coingeckoLinks.chat_url' :key='chat'>
                 <NuxtLink
@@ -59,8 +59,8 @@
         </div>
         
         <!-- Community -->
-        <div v-if='livecoinwatchLinks?.socials && Object.keys(livecoinwatchLinks.socials).length' class='group flex flex-col'>
-            <h4 class='mb-4'>Community</h4>
+        <div v-if='livecoinwatchLinks?.socials && Object.keys(livecoinwatchLinks.socials).length' class='community'>
+            <h5 class='mb-4'>Community</h5>
             
             <div
                 v-for='(link, name) in livecoinwatchLinks.socials'
@@ -80,8 +80,8 @@
         </div>
         
         <!-- Github -->
-        <div v-if='coingeckoLinks.repos_url?.github.length' class='group flex flex-col'>
-            <h4 class='mb-4'>Github</h4>
+        <div v-if='coingeckoLinks.repos_url?.github.length' class='github'>
+            <h5 class='mb-4'>Github</h5>
             
             <div v-for='link in coingeckoLinks.repos_url.github' :key='link'>
                 <NuxtLink
@@ -97,9 +97,6 @@
             </div>
         </div>
     </section>
-    
-    <Separator class='my-4' />
-
 </template>
 
 <script setup>
@@ -117,13 +114,8 @@
     const { livecoinwatchLinks, coingeckoLinks } = toRefs(props);
 </script>
 
-<style>
+<style scoped>
     .coin-links {
-        .group {
-            border: 1px solid yellow;
-            min-width: 400px;
-        }
-        
         .link-item {
             color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
             
