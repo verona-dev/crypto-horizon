@@ -242,12 +242,19 @@
                 <!--  Github Commits  -->
                 <TableRow v-if='github_commits'>
                     <TableCell>
-                        Github
-                        <NuxtIcon
-                            name='iconoir:git-commit'
-                            size='25'
-                            class='flex ml-2 text-yellow-500'
-                        />
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex items-center'>
+                                Github
+                                <NuxtIcon
+                                    name='iconoir:git-commit'
+                                    size='27'
+                                    class='flex ml-2 text-yellow-500'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>Github commits.</span>
+                            </HoverCardContent>
+                        </HoverCard>
                     </TableCell>
                     <TableCell>{{ github_commits }}</TableCell>
                 </TableRow>
