@@ -37,6 +37,9 @@
                 <CoinDelta :marketData='coingecko.market_data' />
             </div>
         </section>
+        
+        <!--  Supply  -->
+        <CoinSupply :coin='coin.livecoinwatch' />
     </CardContent>
     
     <Separator class='my-4' />
@@ -51,6 +54,7 @@
     import CoinDelta from '~/components/markets/cryptocurrencies/coin/CoinDelta.vue';
     import CoinOverview from '~/components/markets/cryptocurrencies/coin/CoinOverview.vue';
     import CoinLinks from '~/components/markets/cryptocurrencies/coin/CoinLinks.vue';
+    import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
     
     const props = defineProps({
         coin: {
