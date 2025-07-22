@@ -9,7 +9,7 @@
             <h5>Explorers</h5>
         </div>
         
-        <div class='flex items-center'>
+        <div class='flex items-center rounded-md border border-card-border'>
             <!--  Main Explorer  -->
             <NuxtLink
                 :to='main_explorer_link'
