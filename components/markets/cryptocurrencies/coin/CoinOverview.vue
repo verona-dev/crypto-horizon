@@ -241,6 +241,27 @@
                     <TableCell>{{ github_stars }}</TableCell>
                 </TableRow>
                 
+                <!--  Github Issues  -->
+                <TableRow v-if='github_issues'>
+                    <TableCell>
+                        Issues
+                        
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex items-center'>
+                                <NuxtIcon
+                                    name='iconoir:git-pull-request'
+                                    size='25'
+                                    class='flex ml-2 text-yellow-400'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>Github issues.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </TableCell>
+                    <TableCell>{{ github_issues }}</TableCell>
+                </TableRow>
+                
                 <!--  Github Commits  -->
                 <TableRow v-if='github_commits'>
                     <TableCell>
@@ -261,6 +282,7 @@
                     </TableCell>
                     <TableCell>{{ github_commits }}</TableCell>
                 </TableRow>
+                
                 
                 <!--  Github Contributors  -->
                 <TableRow v-if='github_contributors'>
@@ -352,6 +374,9 @@
         style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
     });
     const github_contributors = formatNumber(coingecko.value?.developer_data?.pull_request_contributors, {
+        style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
+    });
+    const github_issues = formatNumber(coingecko.value?.developer_data?.total_issues, {
         style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
     });
 </script>
