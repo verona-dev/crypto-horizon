@@ -168,7 +168,6 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import CoinPublicNotice from '~/components/markets/cryptocurrencies/coin/CoinPublicNotice.vue';
     import { Progress } from '~/components/ui/progress/index.js';
-    import dayjs from 'dayjs';
     
     const props = defineProps({
         coin: {
