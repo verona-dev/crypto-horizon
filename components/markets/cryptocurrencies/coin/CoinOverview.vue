@@ -201,10 +201,11 @@
                 
                 <!--  Github Forks  -->
                 <TableRow v-if='github_forks'>
-                    <TableCell>
+                    <TableCell  class='text-color-warning'>
+                        Forks
+                        
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='flex items-center'>
-                                Github
                                 <NuxtIcon
                                     name='iconoir:git-fork'
                                     size='25'
@@ -222,9 +223,10 @@
                 <!--  Github Stars  -->
                 <TableRow v-if='github_stars'>
                     <TableCell>
+                        Stars
+                        
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='flex items-center'>
-                                Github
                                 <NuxtIcon
                                     name='iconoir:star-solid'
                                     size='20'
@@ -242,23 +244,23 @@
                 <!--  Github Commits  -->
                 <TableRow v-if='github_commits'>
                     <TableCell>
+                        Commits
+                        
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='flex items-center'>
-                                Github
                                 <NuxtIcon
                                     name='iconoir:git-commit'
-                                    size='27'
-                                    class='flex ml-2 text-yellow-500'
+                                    size='30'
+                                    class='flex ml-2 text-yellow-400'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Github commits.</span>
+                                <span class='text-sm'>Github commits in the last 30 days.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
                     <TableCell>{{ github_commits }}</TableCell>
                 </TableRow>
-            
             </TableBody>
         </Table>
     </div>
@@ -321,7 +323,9 @@
     
     const github_forks = formatNumber(coingecko.value?.developer_data?.forks, { style: 'decimal' });
     const github_stars = formatNumber(coingecko.value?.developer_data?.stars, { style: 'decimal' });
-    const github_commits = formatNumber(coingecko.value?.developer_data?.commit_count_4_weeks, { style: 'decimal' });
+    const github_commits = formatNumber(coingecko.value?.developer_data?.commit_count_4_weeks, {
+        style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
+    });
 </script>
 
 <style scoped>
