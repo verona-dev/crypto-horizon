@@ -11,61 +11,65 @@
             />
             
             <div>
-                <!--  Name + Rank  -->
+                <!--  Name  -->
                 <div class='flex items-center'>
                     <h2>{{ coingecko.name }}</h2>
                     
-                    <HoverCard
-                        :openDelay='200'
-                        class='flex'
-                    >
-                        <HoverCardTrigger class='info-icon'>
-                            <MazBadge
-                                color='info'
-                                size='1.25rem'
-                                rounded-size='md'
-                                class='ml-8 mt-1 cursor-default'
-                                outline
-                            >
-                                &#35;{{ coingecko.market_cap_rank }}
-                            </MazBadge>
-                        </HoverCardTrigger>
-                        <HoverCardContent class='hover-card-content'>
+                    <div class='mt-2'>
+                        <!--  Rank  -->
+                        <HoverCard
+                            :openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger class='info-icon'>
+                                <MazBadge
+                                    color='info'
+                                    size='1.25rem'
+                                    rounded-size='md'
+                                    class='ml-8 cursor-default self-center'
+                                    outline
+                                >
+                                    &#35;{{ coingecko.market_cap_rank }}
+                                </MazBadge>
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
                                 <span class='text-sm'>
                                     Coin rank by market cap
                                 </span>
-                        </HoverCardContent>
-                    </HoverCard>
-                    
-                    <!--  Portfolio watchlist  -->
-                    <HoverCard
-                        :openDelay='200'
-                        class='flex'
-                    >
-                        <HoverCardTrigger class='info-icon'>
-                            <MazBadge
-                                color='theme'
-                                size='1.25rem'
-                                rounded-size='md'
-                                class='ml-8 mt-1 cursor-default'
-                                outline
-                            >
-                                <div class='flex items-center'>
-                                    <NuxtIcon
-                                        name='iconoir:star-solid'
-                                        size='25'
-                                        class='mr-2'
-                                    />
-                                    {{ watchlist_portfolio }}
-                                </div>
-                            </MazBadge>
-                        </HoverCardTrigger>
-                        <HoverCardContent class='hover-card-content'>
+                            </HoverCardContent>
+                        </HoverCard>
+                        
+                        <!--  Portfolio watchlist  -->
+                        <HoverCard
+                            :openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger class='info-icon'>
+                                <MazBadge
+                                    color='theme'
+                                    size='1.25rem'
+                                    rounded-size='md'
+                                    class='ml-8 cursor-default'
+                                    outline
+                                >
+                                    <div class='flex items-center'>
+                                        <NuxtIcon
+                                            name='iconoir:star-solid'
+                                            size='25'
+                                            class='mr-2'
+                                        />
+                                        {{ watchlist_portfolio }}
+                                    </div>
+                                </MazBadge>
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
                                 <span class='text-sm'>
                                     {{ watchlist_portfolio }} watchlists on Coingecko include {{ coin.symbol }}
                                 </span>
-                        </HoverCardContent>
-                    </HoverCard>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
                 </div>
                 
                 <!-- Symbol  -->
@@ -145,6 +149,11 @@
                         <p>{{ formatNumber(high_24h_computed) }}</p>
                     </div>
                 </div>
+                
+                <!--  Description -->
+                <h6>
+                    {{ ico_description }}
+                </h6>
             </div>
         </section>
         
@@ -159,6 +168,7 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import CoinPublicNotice from '~/components/markets/cryptocurrencies/coin/CoinPublicNotice.vue';
     import { Progress } from '~/components/ui/progress/index.js';
+    import dayjs from 'dayjs';
     
     const props = defineProps({
         coin: {
@@ -205,6 +215,8 @@
         else if(progress.value < 50) return 'linear-gradient(90deg, #E32D2D 75%, #EBAA28 100%)';
         return 'linear-gradient(90deg, #E32D2D 0%, #EBAA28 50%, #1AC914 100%)';
     });
+    
+    const ico_description = coingecko.value?.ico_data?.short_desc;
 </script>
 
 <style scoped>
