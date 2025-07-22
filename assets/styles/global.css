@@ -150,6 +150,11 @@
             width: 375px !important;
         }
     }
+    
+    /* Coin supply progress bars */
+    .progress-bar-container {
+        @apply flex flex-col xl:flex-row items-center;
+    }
 }
 
 /* Desktop */
