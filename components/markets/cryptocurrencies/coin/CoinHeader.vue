@@ -49,9 +49,7 @@
                                 </MazBadge>
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>
-                                    Coin rank by market cap
-                                </span>
+                                <span class='text-sm'>Coin rank by market cap.</span>
                             </HoverCardContent>
                         </HoverCard>
                         
@@ -79,13 +77,10 @@
                                 </MazBadge>
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>
-                                    {{ watchlist_portfolio }} watchlists on Coingecko include {{ coin.symbol }}
-                                </span>
+                                <span class='text-sm'>{{ watchlist_portfolio }} watchlists on Coingecko include {{ coin.symbol }}.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </div>
-                
                 </div>
                 
                 <!-- Symbol  -->
