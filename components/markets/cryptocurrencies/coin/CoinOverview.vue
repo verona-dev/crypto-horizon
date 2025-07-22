@@ -222,12 +222,19 @@
                 <!--  Github Stars  -->
                 <TableRow v-if='github_stars'>
                     <TableCell>
-                        Github
-                        <NuxtIcon
-                            name='iconoir:star-solid'
-                            size='20'
-                            class='flex ml-2 text-yellow-500'
-                        />
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex items-center'>
+                                Github
+                                <NuxtIcon
+                                    name='iconoir:star-solid'
+                                    size='20'
+                                    class='flex ml-2 text-yellow-500'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>Github stars.</span>
+                            </HoverCardContent>
+                        </HoverCard>
                     </TableCell>
                     <TableCell>{{ github_stars }}</TableCell>
                 </TableRow>
@@ -244,7 +251,7 @@
                     </TableCell>
                     <TableCell>{{ github_commits }}</TableCell>
                 </TableRow>
-                
+            
             </TableBody>
         </Table>
     </div>
