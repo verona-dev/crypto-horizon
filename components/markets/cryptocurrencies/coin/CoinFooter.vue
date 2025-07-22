@@ -1,5 +1,5 @@
 <template>
-    <CardFooter class='coin-footer w-full'>
+    <CardFooter class='coin-footer'>
         <CoinDescription :coin='coin' />
     </CardFooter>
 </template>
