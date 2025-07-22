@@ -200,7 +200,7 @@
                 </TableRow>
                 
                 <!--  Github Forks  -->
-                <TableRow v-if='github_forks'>
+                <TableRow v-if='github_forks_label'>
                     <TableCell  class='text-color-warning'>
                         Forks
                         
@@ -217,11 +217,11 @@
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
-                    <TableCell>{{ github_forks }}</TableCell>
+                    <TableCell>{{ github_forks_label }}</TableCell>
                 </TableRow>
                 
                 <!--  Github Stars  -->
-                <TableRow v-if='github_stars'>
+                <TableRow v-if='github_stars_label'>
                     <TableCell>
                         Stars
                         
@@ -238,7 +238,7 @@
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
-                    <TableCell>{{ github_stars }}</TableCell>
+                    <TableCell>{{ github_stars_label }}</TableCell>
                 </TableRow>
                 
                 <!--  Github Issues  -->
@@ -364,10 +364,12 @@
     const ico_end_label = dayjs(ico_end).format('MMM D, YYYY');;
     const ico_end_from_now = dayjs(ico_end).fromNow();
     
-    const github_forks = formatNumber(coingecko.value?.developer_data?.forks, {
+    const github_forks = coingecko.value?.developer_data?.forks;
+    const github_forks_label = github_forks > 0 && formatNumber(github_forks, {
         style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
     });
-    const github_stars = formatNumber(coingecko.value?.developer_data?.stars, {
+    const github_stars = coingecko.value?.developer_data?.stars;
+    const github_stars_label = github_stars > 0 && formatNumber(github_stars, {
         style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
     });
     const github_commits = formatNumber(coingecko.value?.developer_data?.commit_count_4_weeks, {
