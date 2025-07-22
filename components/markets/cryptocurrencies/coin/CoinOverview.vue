@@ -181,15 +181,22 @@
                     <TableCell>{{ hashing_algorithm }}</TableCell>
                 </TableRow>
                 
-                <!--  Ico  -->
+                <!--  Ico Start  -->
                 <TableRow v-if='ico_start'>
                     <TableCell>Ico Start</TableCell>
-                    <TableCell class='text-muted-custom'>{{ ico_start }}</TableCell>
+                    <TableCell class='flex flex-col'>
+                        {{ ico_start_label }}
+                        <span class='text-sm text-muted-custom'>{{ ico_start_from_now }}</span>
+                    </TableCell>
                 </TableRow>
                 
+                <!--  Ico End  -->
                 <TableRow v-if='ico_end'>
                     <TableCell>Ico End</TableCell>
-                    <TableCell class='text-muted-custom'>{{ ico_end }}</TableCell>
+                    <TableCell class='flex- flex-col'>
+                        {{ ico_end_label }}
+                        <span class='text-sm text-muted-custom'>{{ ico_end_from_now }}</span>
+                    </TableCell>
                 </TableRow>
             </TableBody>
         </Table>
@@ -244,9 +251,12 @@
     const hashing_algorithm = coingecko.value?.hashing_algorithm;
     
     const ico = coingecko.value?.ico_data;
-    const ico_start = dayjs(ico.ico_start_date).format('MMM D, YYYY');
-    const ico_end = dayjs(ico.ico_end_date).format('MMM D, YYYY');;
-    const ico_description = ico.short_desc;
+    const ico_start = ico?.ico_start_date;
+    const ico_start_label = dayjs(ico_start).format('MMM D, YYYY');
+    const ico_start_from_now = dayjs(ico_start).fromNow();
+    const ico_end = ico?.ico_end_date;
+    const ico_end_label = dayjs(ico_end).format('MMM D, YYYY');;
+    const ico_end_from_now = dayjs(ico_end).fromNow();
 </script>
 
 <style scoped>
