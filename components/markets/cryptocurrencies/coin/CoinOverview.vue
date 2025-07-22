@@ -191,11 +191,6 @@
                     <TableCell>Ico End</TableCell>
                     <TableCell class='text-muted-custom'>{{ ico_end }}</TableCell>
                 </TableRow>
-                
-                <TableRow v-if='ico_description'>
-                    <TableCell>Ico Description</TableCell>
-                    <TableCell class='text-sm'>{{ ico_description }}</TableCell>
-                </TableRow>
             </TableBody>
         </Table>
     </div>
