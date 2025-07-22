@@ -1,5 +1,5 @@
 <template>
-    <div v-if='coingecko' class='flex lg:flex-col items-stretch px-20 w-full'>
+    <div v-if='coingecko' class='flex flex-col items-stretch px-20 w-full'>
         <h5 class='mb-6'>About
             <span class='capitalize'>{{ coingecko.id }}</span>
             <span class='ml-2'>&#40;{{ coin.symbol }}&#41;</span>
@@ -7,7 +7,7 @@
         
         <!--  Description  -->
         <Accordion
-            v-if='description'
+            v-show='description'
             type='single'
             collapsible class='py-3 px-6 bg-muted rounded-t-md'
         >
