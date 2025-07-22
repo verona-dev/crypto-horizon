@@ -12,9 +12,6 @@
                 <!--  Contracts  -->
                 <CoinContracts :coin='coingecko' />
                 
-                <!--  Converter  -->
-                <CoinConverter :coin='coin' />
-                
                 <!--  Links  -->
                 <CoinLinks
                     :livecoinwatchLinks='coin.livecoinwatch.links'
@@ -23,7 +20,7 @@
             </div>
             
             <!--  Right  -->
-            <div class='right flex flex-col gap-28'>
+            <div class='right flex flex-col gap-20'>
                 <!--  Chart  -->
                 <CoinChart :chartData='coin.chart' />
                 
@@ -35,6 +32,9 @@
                     :sentimentUp='sentiment_up_percentage'
                     :sentimentDown='sentiment_down_percentage'
                 />
+                
+                <!--  Converter  -->
+                <CoinConverter :coin='coin' />
             </div>
         </section>
         
