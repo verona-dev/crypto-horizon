@@ -1,6 +1,6 @@
 <template>
     <div class='coin-delta flex flex-col items-center justify-center'>
-        <h6>Rate of Change</h6>
+        <h6 class='mb-6'>Rate of Change</h6>
         
         <div class='flex items-center'>
             <!--  1h  -->
