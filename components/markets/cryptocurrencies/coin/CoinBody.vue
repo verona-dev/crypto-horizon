@@ -38,6 +38,8 @@
             </div>
         </section>
         
+        <Separator />
+        
         <!--  Supply  -->
         <CoinSupply :coin='coin.livecoinwatch' />
     </CardContent>
