@@ -11,9 +11,25 @@
             />
             
             <div>
-                <!--  Name  -->
                 <div class='flex items-center'>
-                    <h2>{{ coingecko.name }}</h2>
+                    <!--  Name  -->
+                    <div class='flex items-center'>
+                        <h2>{{ coingecko.name }}</h2>
+                        
+                        <!--  Ico Description -->
+                        <HoverCard v-if='ico_description' :openDelay='200'>
+                            <HoverCardTrigger class='info-icon'>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-2'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>{{ ico_description }}.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
                     
                     <div class='mt-2'>
                         <!--  Rank  -->
@@ -69,7 +85,7 @@
                             </HoverCardContent>
                         </HoverCard>
                     </div>
-                    
+                
                 </div>
                 
                 <!-- Symbol  -->
@@ -78,7 +94,7 @@
                     <p v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</p>
                 </div>
                 
-                <!--  Coin price + Trend  -->
+                <!--  Coin price  -->
                 <div class='mt-4'>
                     <div class='flex items-center'>
                         <h4 class='text-foreground'>{{ formatNumber(current_price, { truncate: true }) }}</h4>
@@ -102,7 +118,7 @@
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent class='hover-card-content'>
-                                    <span class='text-sm'>Price change percent in $USD</span>
+                                    <span class='text-sm'>Price change&#40;&#37;&#41; in USD&#40;&#36;&#41;.</span>
                                 </HoverCardContent>
                             </HoverCard>
                         </div>
@@ -130,7 +146,7 @@
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent class='hover-card-content'>
-                                    <span class='text-sm'>Price change percent compared to Bitcoin BTC</span>
+                                    <span class='text-sm'>Current price in BTC and price change&#40;&#37;&#41; compared to Bitcoin&#40;BTC&#41;.</span>
                                 </HoverCardContent>
                             </HoverCard>
                         </div>
@@ -149,11 +165,6 @@
                         <p>{{ formatNumber(high_24h_computed) }}</p>
                     </div>
                 </div>
-                
-                <!--  Description -->
-                <h6>
-                    {{ ico_description }}
-                </h6>
             </div>
         </section>
         
@@ -190,7 +201,7 @@
     const price_change_percentage_7d_label = formatNumber(price_change_percentage_7d, { style: 'percent', truncate: true });
     const price_change_percentage_7d_in_btc = coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc;
     const price_change_percentage_7d_in_btc_label = formatNumber(coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc, { style: 'percent', truncate: true });
-   
+    
     const high_24h = coingecko.value?.market_data?.high_24h?.usd;
     const high_24h_computed = computed(() => {
         // Coingecko Api has delays in updating the high24h value therefore the current price can temporarily be above the high24h
