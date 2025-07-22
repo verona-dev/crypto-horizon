@@ -198,6 +198,12 @@
                         <span class='text-sm text-muted-custom'>{{ ico_end_from_now }}</span>
                     </TableCell>
                 </TableRow>
+                
+                <!--  Forks  -->
+                <TableRow v-if='forks'>
+                    <TableCell>Forks</TableCell>
+                    <TableCell>{{ forks }}</TableCell>
+                </TableRow>
             </TableBody>
         </Table>
     </div>
@@ -257,6 +263,8 @@
     const ico_end = ico?.ico_end_date;
     const ico_end_label = dayjs(ico_end).format('MMM D, YYYY');;
     const ico_end_from_now = dayjs(ico_end).fromNow();
+    
+    const forks = formatNumber(coingecko.value?.developer_data?.forks, { style: 'decimal', });
 </script>
 
 <style scoped>
