@@ -48,35 +48,12 @@
 <script setup>
     import dayjs from 'dayjs';
     import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-    import { Line } from 'vue-chartjs';
-    import CustomLineChart from '~/utils/CustomLineChart.js';
-    
-    import {
-        CategoryScale,
-        Chart as ChartJS,
-        Filler,
-        Legend,
-        LinearScale,
-        LineController,
-        LineElement,
-        PointElement,
-        Title,
-        Tooltip,
-    } from 'chart.js';
     import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
     
-    ChartJS.register(
-        CustomLineChart,
-        LineController,
-        LineElement,
-        PointElement,
-        LinearScale,
-        CategoryScale,
-        Filler,
-        Title,
-        Tooltip,
-        Legend
-    );
+    import { Line } from 'vue-chartjs';
+    import CustomLineChart from '~/utils/CustomLineChart.js';
+    import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
+    ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
     
     const props = defineProps({
         coin: {
