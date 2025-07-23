@@ -104,7 +104,7 @@
                 data: activeData.value, // y-axis
                 
                 // Line
-                borderColor: '#3fc45a',
+                borderColor: 'oklch(0.657 0.163 153.606)',
                 borderWidth: 2,
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
@@ -121,7 +121,7 @@
                 // Point
                 pointRadius: 0,
                 pointHoverRadius: 5,
-                pointBackgroundColor: '#01c929',
+                pointBackgroundColor: '#3fc45a',
             },
         ],
     }));
