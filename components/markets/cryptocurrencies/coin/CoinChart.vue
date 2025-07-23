@@ -63,13 +63,14 @@
     );
     
     const props = defineProps({
-        chartData: {
+        coin: {
             type: Object,
             required: true
         }
     });
     
-    const { chartData } = toRefs(props);
+    const { coin } = toRefs(props);
+    const chartData = ref(coin.value?.chart);
     const timestamps = computed(() => chartData.value?.prices?.map(item => item[0]));
     const prices = computed(() => chartData.value?.prices?.map(item => item[1]));
     const volumes = computed(() => chartData.value?.total_volumes?.map(item => item[1]));

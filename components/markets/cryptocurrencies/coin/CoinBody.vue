@@ -22,7 +22,7 @@
             <!--  Right  -->
             <div class='right flex flex-col gap-20'>
                 <!--  Chart  -->
-                <CoinChart :chartData='coin.chart' />
+                <CoinChart :coin='coin' />
                 
                 <!--  Delta  -->
                 <CoinDelta :marketData='coingecko.market_data' />
