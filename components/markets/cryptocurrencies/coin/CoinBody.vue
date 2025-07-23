@@ -44,7 +44,7 @@
         <CoinSupply :coin='coin.livecoinwatch' />
     </CardContent>
     
-    <Separator class='my-4' />
+<!--    <Separator class='my-4' />-->
 </template>
 
 <script setup>

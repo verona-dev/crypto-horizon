@@ -2,7 +2,7 @@
     <div class='my-10 flex flex-col lg:flex-row flex-wrap justify-center'>
         <Drawer>
             <!--  Open Drawer  -->
-            <DrawerTrigger>Show Supply Charts</DrawerTrigger>
+            <DrawerTrigger>Supply Charts</DrawerTrigger>
             
             <DrawerContent>
                 <DrawerHeader>
