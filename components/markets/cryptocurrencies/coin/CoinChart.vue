@@ -8,50 +8,31 @@
             <TabsList>
                 <TabsTrigger value='price'>Price</TabsTrigger>
                 <TabsTrigger value='mcap'>Market Cap</TabsTrigger>
-                <TabsTrigger value='supply'>Supply</TabsTrigger>
+                <TabsTrigger value='supply'>
+                    <CoinSupply
+                        :coin='coin.livecoinwatch'
+                        :isOpen='isDrawerOpen'
+                        @onOpenDrawer='onOpenDrawer'
+                    />
+                </TabsTrigger>
             </TabsList>
             
-            <TabsContent v-if='activeData' value='price'>
-                <div class='chart-container'>
-                    <div v-if='loading' class='spinner-container'>
-                        <MazSpinner class='spinner' />
-                    </div>
-                    
-                    <div>
-                        <Line
-                            ref='chartRef'
-                            v-if='data.datasets?.length'
-                            :data='data'
-                            :options='options'
-                            :height='400'
-                            :type='"customLineChart"'
-                        />
-                    </div>
+            <div class='chart-container'>
+                <div v-if='loading' class='spinner-container'>
+                    <MazSpinner class='spinner' />
                 </div>
-            </TabsContent>
-            
-            <TabsContent v-if='activeData' value='mcap'>
-                <div class='chart-container'>
-                    <div v-if='loading' class='spinner-container'>
-                        <MazSpinner class='spinner' />
-                    </div>
-                    
-                    <div>
-                        <Line
-                            ref='chartRef'
-                            v-if='data.datasets?.length'
-                            :data='data'
-                            :options='options'
-                            :height='400'
-                            :type='"customLineChart"'
-                        />
-                    </div>
+                
+                <div>
+                    <Line
+                        ref='chartRef'
+                        v-if='data.datasets?.length'
+                        :data='data'
+                        :options='options'
+                        :height='400'
+                        :type='"customLineChart"'
+                    />
                 </div>
-            </TabsContent>
-            
-            <TabsContent value='supply'>
-                <CoinSupply :coin='coin.livecoinwatch' />
-            </TabsContent>
+            </div>
         </Tabs>
     </div>
 </template>
@@ -107,6 +88,18 @@
     const activeData = computed(() => activeTab.value === 'price' ? prices.value : mCaps.value);
     const loading = ref(false);
     const chartRef = ref(null);
+    const isDrawerOpen = ref(false);
+    
+    const onOpenDrawer = emittedValue => {
+        isDrawerOpen.value = emittedValue;
+    };
+    
+    watch(isDrawerOpen, () => {
+        // Switch to the price tab once the supply drawer is closed
+        if(activeTab.value === 'supply' && isDrawerOpen.value === false) {
+            activeTab.value = 'price';
+        }
+    });
     
     const data = computed(() => ({
         labels: timestamps.value, // x-axis
@@ -150,7 +143,7 @@
                 loading.value = false;
             }, 600);
         }
-    }, { deep: true })
+    }, { deep: true });
     
     const options = {
         responsive: true,

@@ -1,12 +1,13 @@
 <template>
-    <Drawer>
+    <Drawer v-model:open='localIsOpen'>
         <!--  Open Drawer  -->
-        <DrawerTrigger>
+        <DrawerTrigger class='flex items-center'>
             <NuxtIcon
                 name='bitcoin-icons:pie-chart-outline'
-                size='75'
-                class='bg-yellow-500'
+                size='50'
+                class=''
             />
+            Supply
         </DrawerTrigger>
         
         <DrawerContent>
@@ -18,6 +19,7 @@
             <DrawerFooter>
                 <CoinSupplyProgressBars :coin='coin' />
                 
+                <!--
                 <Tabs
                     default-value='doughnut-chart'
                     class='my-10 self-center w-full xl:w-1/2'
@@ -35,6 +37,7 @@
                         <CoinSupplyStackedBars :coin='coin' />
                     </TabsContent>
                 </Tabs>
+                -->
                 
                 <!--  Close Drawer  -->
                 <DrawerClose>
@@ -63,10 +66,22 @@
     const props = defineProps({
         coin: {
             type: Object,
-            default: () => ({}),
             required: true,
-        }
+        },
+        isOpen: Boolean,
     });
     
-    const { coin } = toRefs(props);
+    const { coin, isOpen } = toRefs(props);
+    const localIsOpen = ref(isOpen.value);
+    const emit = defineEmits(['onOpenDrawer']);
+    
+    watch(() => isOpen, value => {
+        localIsOpen.value = value;
+        console.log('localIsOpen: ', localIsOpen.value);
+    });
+    
+    watch(localIsOpen, value => {
+        emit('onOpenDrawer', value);
+        console.log('child: ', value);
+    });
 </script>
