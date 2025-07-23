@@ -1,9 +1,9 @@
 <template>
     <Drawer v-model:open='isOpen'>
         <DrawerContent>
-            <DrawerHeader>
-                <DrawerTitle>Title</DrawerTitle>
-                <DrawerDescription>Subtitle.</DrawerDescription>
+            <DrawerHeader class='mx-auto'>
+                <DrawerTitle class='my-10'>Coin Supply</DrawerTitle>
+<!--                <DrawerDescription class='mx-auto'>Subtitle.</DrawerDescription>-->
             </DrawerHeader>
             
             <DrawerFooter>
