@@ -1,5 +1,5 @@
 <template>
-    <div class='single-coin custom-flex'>
+    <div class='single-coin bg-background custom-flex'>
         <div v-if='loading' class='flex items-center h-[75vh]'>
             <MazSpinner
                 color='secondary'
@@ -11,7 +11,7 @@
         <div v-else>
             <Card
                 v-if='coin && coin.livecoinwatch.name'
-                class='2xl:max-w-[1500px] bg-background border-none flex flex-col rounded-none'
+                class='bg-background border-none flex flex-col rounded-none'
             >
                 <CoinHeader :coin='coin' />
                 
