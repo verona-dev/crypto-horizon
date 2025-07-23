@@ -1,6 +1,6 @@
 <template>
-    <CardContent class='coin-body'>
-        <section class='coin-intro flex flex-col xl:flex-row gap-30 xl:gap-0 justify-evenly xl:items-start'>
+    <CardContent class='coin-body px-0'>
+        <section class='coin-intro flex flex-col xl:flex-row gap-30 justify-evenly xl:items-start'>
             <!--  Left  -->
             <div class='left flex flex-col gap-24 xl:gap-18 xl:border-r pt-0 xl:py-10 px-20 md:w-[800px] xl:w-auto'>
                 <!--  Overview  -->
@@ -22,7 +22,7 @@
             <!--  Right  -->
             <div class='right flex flex-col gap-20'>
                 <!--  Chart  -->
-                <CoinChart :chartData='coin.chart' />
+                <CoinChart :coin='coin' />
                 
                 <!--  Delta  -->
                 <CoinDelta :marketData='coingecko.market_data' />
@@ -39,12 +39,7 @@
         </section>
         
         <Separator />
-        
-        <!--  Supply  -->
-        <CoinSupply :coin='coin.livecoinwatch' />
     </CardContent>
-    
-    <Separator class='my-4' />
 </template>
 
 <script setup>

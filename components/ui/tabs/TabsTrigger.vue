@@ -16,12 +16,13 @@ const forwardedProps = useForwardProps(delegatedProps)
     data-slot="tabs-trigger"
     v-bind="forwardedProps"
     :class="cn(
-      `py-5 data-[state=active]:bg-background dark:data-[state=active]:bg-chart-2
-      text-foreground dark:text-muted-foreground dark:data-[state=active]:text-foreground
-      focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring
-      inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 text-sm font-medium
+      `w-72 py-6 px-2 mx-1 data-[state=active]:bg-background dark:data-[state=active]:bg-accent-foreground hover:bg-accent-foreground
+      text-foreground dark:text-muted-foreground dark:data-[state=active]:text-secondary
+      border dark:data-[state=active]:border-secondary focus-visible:border-ring
+      focus-visible:ring-ring/50 focus-visible:outline-ring
+      inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md text-sm font-medium
       whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px]
-      focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm
+      focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-xl
       [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4`,
       props.class,
     )"

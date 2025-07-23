@@ -1,39 +1,67 @@
 <template>
-    <CardContent class='my-10 flex flex-col lg:flex-row flex-wrap justify-center'>
-        <CoinSupplyProgressBars :coin='coin' />
-        
-        <Tabs
-            default-value='doughnut-chart'
-            class='my-10 self-center w-full xl:w-1/2'
-        >
-            <TabsList>
-                <TabsTrigger value='doughnut-chart'>Doughnut Chart</TabsTrigger>
-                <TabsTrigger value='stacked-bars'>Stacked Bars</TabsTrigger>
-            </TabsList>
+    <Drawer v-model:open='isOpen'>
+        <DrawerContent>
+            <DrawerHeader class='mx-auto'>
+                <DrawerTitle class='my-10'>Coin Supply</DrawerTitle>
+<!--                <DrawerDescription class='mx-auto'>Subtitle.</DrawerDescription>-->
+            </DrawerHeader>
             
-            <TabsContent value='doughnut-chart' class='min-h-[500px] xl:w-1/2 mx-auto'>
-                <CoinSupplyDoughnutChart :coin='coin' />
-            </TabsContent>
-            
-            <TabsContent value='stacked-bars' class='min-h-[500px] xl:w-11/12 mx-auto'>
-                <CoinSupplyStackedBars :coin='coin' />
-            </TabsContent>
-        </Tabs>
-    </CardContent>
+            <DrawerFooter>
+                <CoinSupplyProgressBars :coin='coin' />
+                
+                <!--
+                <Tabs
+                    default-value='doughnut-chart'
+                    class='my-10 self-center w-full xl:w-1/2'
+                >
+                    <TabsList>
+                        <TabsTrigger value='doughnut-chart'>Doughnut Chart</TabsTrigger>
+                        <TabsTrigger value='stacked-bars'>Stacked Bars</TabsTrigger>
+                    </TabsList>
+                    
+                    <TabsContent value='doughnut-chart' class='min-h-[500px] xl:w-1/2 mx-auto'>
+                        <CoinSupplyDoughnutChart :coin='coin' />
+                    </TabsContent>
+                    
+                    <TabsContent value='stacked-bars' class='min-h-[500px] xl:w-11/12 mx-auto'>
+                        <CoinSupplyStackedBars :coin='coin' />
+                    </TabsContent>
+                </Tabs>
+                -->
+                
+                <!--  Close Drawer  -->
+                <DrawerClose>
+                        Close
+                </DrawerClose>
+            </DrawerFooter>
+        </DrawerContent>
+    </Drawer>
 </template>
 
 <script setup>
     import CoinSupplyProgressBars from '~/components/markets/cryptocurrencies/coin/CoinSupplyProgressBars.vue';
     import CoinSupplyDoughnutChart from '~/components/markets/cryptocurrencies/coin/CoinSupplyDoughnutChart.vue';
     import CoinSupplyStackedBars from '~/components/markets/cryptocurrencies/coin/CoinSupplyStackedBars.vue';
+    import {
+        Drawer,
+        DrawerClose,
+        DrawerContent,
+        DrawerDescription,
+        DrawerFooter,
+        DrawerHeader,
+        DrawerTitle,
+    } from '@/components/ui/drawer';
     
     const props = defineProps({
         coin: {
             type: Object,
-            default: () => ({}),
             required: true,
-        }
+        },
+        showDrawer: Boolean,
     });
     
-    const { coin } = toRefs(props);
+    const { coin, showDrawer } = toRefs(props);
+    const isOpen = ref(showDrawer.value);
+    const emit = defineEmits(['handleDrawer']);
+    watch(isOpen, bool => emit('handleDrawer', bool));
 </script>

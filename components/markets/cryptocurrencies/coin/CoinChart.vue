@@ -6,70 +6,77 @@
             class='mb-10'
         >
             <TabsList>
-                <TabsTrigger value='price'>Price</TabsTrigger>
-                <TabsTrigger value='mcap'>Market Cap</TabsTrigger>
+                <TabsTrigger value='price'>
+                    <NuxtIcon
+                        name='mdi-light:chart-line'
+                        size='35'
+                    />
+                    Price
+                </TabsTrigger>
+                
+                <TabsTrigger value='mcap'>
+                    <NuxtIcon
+                        name='mdi-light:chart-line'
+                        size='35'
+                    />
+                    Market Cap
+                </TabsTrigger>
+                
+                <TabsTrigger @click='showDrawer = true' value='supply'>
+                    <NuxtIcon
+                        name='mdi-light:chart-pie'
+                        size='35'
+                    />
+                    Supply
+                </TabsTrigger>
             </TabsList>
-        </Tabs>
-        
-        <div class='chart-container'>
-            <div v-if='loading' class='spinner-container'>
-                <MazSpinner class='spinner' />
+            
+            <div class='chart-container'>
+                <div v-if='loading' class='spinner-container'>
+                    <MazSpinner class='spinner' />
+                </div>
+                
+                <div>
+                    <Line
+                        ref='chartRef'
+                        v-if='data.datasets?.length'
+                        :data='data'
+                        :options='options'
+                        :height='400'
+                        :type='"customLineChart"'
+                    />
+                </div>
             </div>
             
-            <div>
-                <Line
-                    ref='chartRef'
-                    v-if='data.datasets?.length'
-                    :data='data'
-                    :options='options'
-                    :height='400'
-                    :type='"customLineChart"'
-                />
-            </div>
-        </div>
+            <CoinSupply
+                v-if='showDrawer'
+                :coin='coin.livecoinwatch'
+                :showDrawer='showDrawer'
+                @handleDrawer='onHandleDrawer'
+            />
+        </Tabs>
     </div>
 </template>
 
 <script setup>
     import dayjs from 'dayjs';
     import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+    import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
+    
     import { Line } from 'vue-chartjs';
     import CustomLineChart from '~/utils/CustomLineChart.js';
-    
-    import {
-        CategoryScale,
-        Chart as ChartJS,
-        Filler,
-        Legend,
-        LinearScale,
-        LineController,
-        LineElement,
-        PointElement,
-        Title,
-        Tooltip,
-    } from 'chart.js';
-    
-    ChartJS.register(
-        CustomLineChart,
-        LineController,
-        LineElement,
-        PointElement,
-        LinearScale,
-        CategoryScale,
-        Filler,
-        Title,
-        Tooltip,
-        Legend
-    );
+    import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
+    ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
     
     const props = defineProps({
-        chartData: {
+        coin: {
             type: Object,
             required: true
         }
     });
     
-    const { chartData } = toRefs(props);
+    const { coin } = toRefs(props);
+    const chartData = ref(coin.value?.chart);
     const timestamps = computed(() => chartData.value?.prices?.map(item => item[0]));
     const prices = computed(() => chartData.value?.prices?.map(item => item[1]));
     const volumes = computed(() => chartData.value?.total_volumes?.map(item => item[1]));
@@ -80,6 +87,15 @@
     const loading = ref(false);
     const chartRef = ref(null);
     
+    const showDrawer = ref(false);
+    const onHandleDrawer = bool => showDrawer.value = bool;
+    watch(showDrawer, () => {
+        // Switch to the price tab once the supply drawer is closed
+        if(activeTab.value === 'supply' && !showDrawer.value) {
+            nextTick(() => activeTab.value = 'price');
+        }
+    });
+    
     const data = computed(() => ({
         labels: timestamps.value, // x-axis
         datasets: [
@@ -88,7 +104,7 @@
                 data: activeData.value, // y-axis
                 
                 // Line
-                borderColor: '#3fc45a',
+                borderColor: 'oklch(0.657 0.163 153.606)',
                 borderWidth: 2,
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
@@ -105,13 +121,13 @@
                 // Point
                 pointRadius: 0,
                 pointHoverRadius: 5,
-                pointBackgroundColor: '#01c929',
+                pointBackgroundColor: '#3fc45a',
             },
         ],
     }));
     
     watch(activeData, () => {
-        const chartInstance = chartRef.value.chart;
+        const chartInstance = chartRef.value?.chart;
         
         if (chartInstance) {
             loading.value = true;
@@ -122,7 +138,7 @@
                 loading.value = false;
             }, 600);
         }
-    }, { deep: true })
+    }, { deep: true });
     
     const options = {
         responsive: true,
