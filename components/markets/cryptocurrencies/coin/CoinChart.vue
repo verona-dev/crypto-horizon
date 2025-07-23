@@ -6,13 +6,26 @@
             class='mb-10'
         >
             <TabsList>
-                <TabsTrigger value='price'>Price</TabsTrigger>
-                <TabsTrigger value='mcap'>Market Cap</TabsTrigger>
+                <TabsTrigger value='price'>
+                    <NuxtIcon
+                        name='mdi-light:chart-line'
+                        size='35'
+                    />
+                    Price
+                </TabsTrigger>
+                
+                <TabsTrigger value='mcap'>
+                    <NuxtIcon
+                        name='mdi-light:chart-line'
+                        size='35'
+                    />
+                    Market Cap
+                </TabsTrigger>
+                
                 <TabsTrigger @click='showDrawer = true' value='supply'>
                     <NuxtIcon
-                        name='bitcoin-icons:pie-chart-outline'
-                        size='50'
-                        class=''
+                        name='mdi-light:chart-pie'
+                        size='35'
                     />
                     Supply
                 </TabsTrigger>
