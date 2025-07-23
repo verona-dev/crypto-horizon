@@ -41,7 +41,7 @@
         <Separator />
         
         <!--  Supply  -->
-        <CoinSupply :coin='coin.livecoinwatch' />
+<!--        <CoinSupply :coin='coin.livecoinwatch' />-->
     </CardContent>
     
 <!--    <Separator class='my-4' />-->
