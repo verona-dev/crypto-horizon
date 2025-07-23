@@ -8,25 +8,51 @@
             <TabsList>
                 <TabsTrigger value='price'>Price</TabsTrigger>
                 <TabsTrigger value='mcap'>Market Cap</TabsTrigger>
+                <TabsTrigger value='supply'>Supply</TabsTrigger>
             </TabsList>
-        </Tabs>
-        
-        <div class='chart-container'>
-            <div v-if='loading' class='spinner-container'>
-                <MazSpinner class='spinner' />
-            </div>
             
-            <div>
-                <Line
-                    ref='chartRef'
-                    v-if='data.datasets?.length'
-                    :data='data'
-                    :options='options'
-                    :height='400'
-                    :type='"customLineChart"'
-                />
-            </div>
-        </div>
+            <TabsContent v-if='activeData' value='price'>
+                <div class='chart-container'>
+                    <div v-if='loading' class='spinner-container'>
+                        <MazSpinner class='spinner' />
+                    </div>
+                    
+                    <div>
+                        <Line
+                            ref='chartRef'
+                            v-if='data.datasets?.length'
+                            :data='data'
+                            :options='options'
+                            :height='400'
+                            :type='"customLineChart"'
+                        />
+                    </div>
+                </div>
+            </TabsContent>
+            
+            <TabsContent v-if='activeData' value='mcap'>
+                <div class='chart-container'>
+                    <div v-if='loading' class='spinner-container'>
+                        <MazSpinner class='spinner' />
+                    </div>
+                    
+                    <div>
+                        <Line
+                            ref='chartRef'
+                            v-if='data.datasets?.length'
+                            :data='data'
+                            :options='options'
+                            :height='400'
+                            :type='"customLineChart"'
+                        />
+                    </div>
+                </div>
+            </TabsContent>
+            
+            <TabsContent value='supply'>
+                <CoinSupply :coin='coin.livecoinwatch' />
+            </TabsContent>
+        </Tabs>
     </div>
 </template>
 
@@ -48,6 +74,7 @@
         Title,
         Tooltip,
     } from 'chart.js';
+    import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
     
     ChartJS.register(
         CustomLineChart,
@@ -112,7 +139,7 @@
     }));
     
     watch(activeData, () => {
-        const chartInstance = chartRef.value.chart;
+        const chartInstance = chartRef.value?.chart;
         
         if (chartInstance) {
             loading.value = true;
