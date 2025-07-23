@@ -1,15 +1,5 @@
 <template>
-    <Drawer v-model:open='localIsOpen'>
-        <!--  Open Drawer  -->
-        <DrawerTrigger class='flex items-center'>
-            <NuxtIcon
-                name='bitcoin-icons:pie-chart-outline'
-                size='50'
-                class=''
-            />
-            Supply
-        </DrawerTrigger>
-        
+    <Drawer v-model:open='isOpen'>
         <DrawerContent>
             <DrawerHeader>
                 <DrawerTitle>Title</DrawerTitle>
@@ -60,7 +50,6 @@
         DrawerFooter,
         DrawerHeader,
         DrawerTitle,
-        DrawerTrigger,
     } from '@/components/ui/drawer';
     
     const props = defineProps({
@@ -68,20 +57,11 @@
             type: Object,
             required: true,
         },
-        isOpen: Boolean,
+        showDrawer: Boolean,
     });
     
-    const { coin, isOpen } = toRefs(props);
-    const localIsOpen = ref(isOpen.value);
-    const emit = defineEmits(['onOpenDrawer']);
-    
-    watch(() => isOpen, value => {
-        localIsOpen.value = value;
-        console.log('localIsOpen: ', localIsOpen.value);
-    });
-    
-    watch(localIsOpen, value => {
-        emit('onOpenDrawer', value);
-        console.log('child: ', value);
-    });
+    const { coin, showDrawer } = toRefs(props);
+    const isOpen = ref(showDrawer.value);
+    const emit = defineEmits(['handleDrawer']);
+    watch(isOpen, bool => emit('handleDrawer', bool));
 </script>

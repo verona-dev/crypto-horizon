@@ -8,12 +8,13 @@
             <TabsList>
                 <TabsTrigger value='price'>Price</TabsTrigger>
                 <TabsTrigger value='mcap'>Market Cap</TabsTrigger>
-                <TabsTrigger value='supply'>
-                    <CoinSupply
-                        :coin='coin.livecoinwatch'
-                        :isOpen='isDrawerOpen'
-                        @onOpenDrawer='onOpenDrawer'
+                <TabsTrigger @click='showDrawer = true' value='supply'>
+                    <NuxtIcon
+                        name='bitcoin-icons:pie-chart-outline'
+                        size='50'
+                        class=''
                     />
+                    Supply
                 </TabsTrigger>
             </TabsList>
             
@@ -33,6 +34,13 @@
                     />
                 </div>
             </div>
+            
+            <CoinSupply
+                v-if='showDrawer'
+                :coin='coin.livecoinwatch'
+                :showDrawer='showDrawer'
+                @handleDrawer='onHandleDrawer'
+            />
         </Tabs>
     </div>
 </template>
@@ -88,16 +96,13 @@
     const activeData = computed(() => activeTab.value === 'price' ? prices.value : mCaps.value);
     const loading = ref(false);
     const chartRef = ref(null);
-    const isDrawerOpen = ref(false);
     
-    const onOpenDrawer = emittedValue => {
-        isDrawerOpen.value = emittedValue;
-    };
-    
-    watch(isDrawerOpen, () => {
+    const showDrawer = ref(false);
+    const onHandleDrawer = bool => showDrawer.value = bool;
+    watch(showDrawer, () => {
         // Switch to the price tab once the supply drawer is closed
-        if(activeTab.value === 'supply' && isDrawerOpen.value === false) {
-            activeTab.value = 'price';
+        if(activeTab.value === 'supply' && !showDrawer.value) {
+            nextTick(() => activeTab.value = 'price');
         }
     });
     
