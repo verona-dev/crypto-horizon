@@ -36,7 +36,7 @@
                     <MazSpinner class='spinner' />
                 </div>
                 
-                <div>
+                <div class='max-w-[650px] lg:max-w-auto mx-auto'>
                     <Line
                         ref='chartRef'
                         v-if='data.datasets?.length'
