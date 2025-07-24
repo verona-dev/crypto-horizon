@@ -18,6 +18,8 @@
         elevation
     >
         <template #title>
+            <h5>Top 100 Crypto Currencies by Market Cap</h5>
+            <!--
             <MazAnimatedText
                 tag='h5'
                 text='Top 100 Crypto Currencies by '
@@ -28,6 +30,7 @@
                 :column-gap='0.5'
                 :row-gap='0.5'
             />
+            -->
         </template>
         
         <MazTableRow
