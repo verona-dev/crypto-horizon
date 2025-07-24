@@ -2,11 +2,21 @@
     <Drawer v-model:open='isOpen'>
         <DrawerContent>
             <DrawerHeader class='mx-auto'>
-                <DrawerTitle class='my-10'>Coin Supply</DrawerTitle>
-<!--                <DrawerDescription class='mx-auto'>Subtitle.</DrawerDescription>-->
+                <DrawerTitle class=''>Coin Supply</DrawerTitle>
+                <!--                <DrawerDescription class='mx-auto'>Subtitle.</DrawerDescription>-->
+                
+                <div class='close-drawer absolute top-10 right-10'>
+                    <!--  Close Drawer  -->
+                    <DrawerClose>
+                        <NuxtIcon
+                            name='iconoir:web-window-xmark'
+                            size='45'
+                        />
+                    </DrawerClose>
+                </div>
             </DrawerHeader>
             
-            <DrawerFooter>
+            <DrawerFooter class='mt-10'>
                 <CoinSupplyProgressBars :coin='coin' />
                 
                 <!--
@@ -28,11 +38,6 @@
                     </TabsContent>
                 </Tabs>
                 -->
-                
-                <!--  Close Drawer  -->
-                <DrawerClose>
-                        Close
-                </DrawerClose>
             </DrawerFooter>
         </DrawerContent>
     </Drawer>
