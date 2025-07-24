@@ -55,7 +55,7 @@
     }
     
     h6 {
-        @apply text-md lg:text-xl;
+        @apply text-lg lg:text-xl;
     }
     
     p {
