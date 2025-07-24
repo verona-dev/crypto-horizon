@@ -1,6 +1,6 @@
 <template>
     <CardContent class='coin-body px-0'>
-        <section class='coin-intro flex flex-col xl:flex-row gap-30 justify-evenly xl:items-start'>
+        <section class='coin-intro flex flex-col xl:flex-row xl:gap-30 xl:items-start'>
             <!--  Left  -->
             <div class='left flex flex-col gap-24 xl:gap-18 xl:border-r pt-0 xl:py-10 px-20 lg:w-[800px] xl:w-auto'>
                 <!--  Overview  -->
