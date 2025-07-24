@@ -35,27 +35,27 @@
 
 @layer components {
     h1 {
-        @apply text-5xl lg:text-7xl font-bold;
+        @apply text-4xl lg:text-6xl font-bold;
     }
     
     h2 {
-        @apply text-4xl lg:text-6xl;
-    }
-    
-    h3 {
         @apply text-3xl lg:text-5xl;
     }
     
+    h3 {
+        @apply text-2xl lg:text-4xl;
+    }
+    
     h4 {
-        @apply text-2xl lg:text-4xl mb-3;
+        @apply text-xl lg:text-3xl mb-3;
     }
     
     h5 {
-        @apply text-xl lg:text-3xl;
+        @apply text-lg lg:text-2xl;
     }
     
     h6 {
-        @apply text-lg lg:text-2xl;
+        @apply text-lg lg:text-xl;
     }
     
     p {
