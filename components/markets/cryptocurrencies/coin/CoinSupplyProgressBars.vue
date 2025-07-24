@@ -4,13 +4,13 @@
         :duration='2000'
         class=''
     >
-        <div class='flex flex-wrap justify-center gap-10 xl:gap-20'>
+        <div class='flex flex-wrap items-start justify-evenly pt-6 pb-20'>
             <!--  Market Cap  -->
             <div v-if='marketCap' class='progress-bar-container'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2500'
-                    size='150px'
+                    size='125px'
                 >
                     <template #default>
                         <p>{{ formatNumber(marketCap, { compact: true, decimals: 2 }) }}</p>
@@ -18,7 +18,7 @@
                 </MazCircularProgressBar>
                 
                 <div class='ml-6 flex flex-col'>
-                    <div class='flex items-center'>
+                    <div class='flex items-start'>
                         <h6>Market Cap</h6>
                         
                         <HoverCard
@@ -29,7 +29,7 @@
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
                                     size='25'
-                                    class='flex ml-2 mt-1'
+                                    class='flex ml-2'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
@@ -42,7 +42,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ formatNumber(marketCap) }}</p>
+                    <span class='mt-2'>{{ formatNumber(marketCap) }}</span>
                 </div>
             </div>
             
@@ -51,7 +51,7 @@
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2500'
-                    size='150px'
+                    size='125px'
                 >
                     <template #default>
                         <p>{{ formatNumber(maxSupply, { compact: true, style: 'decimal' }) }}</p>
@@ -59,7 +59,7 @@
                 </MazCircularProgressBar>
                 
                 <div class='ml-6 flex flex-col'>
-                    <div class='flex items-center'>
+                    <div class='flex items-start'>
                         <h6>Max Supply</h6>
                         
                         <HoverCard
@@ -70,7 +70,7 @@
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
                                     size='25'
-                                    class='flex ml-2 mt-1'
+                                    class='flex ml-2'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
@@ -83,7 +83,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ formatNumber(maxSupply, { style: 'decimal' }) }} {{ symbol }}</p>
+                    <span class='mt-2'>{{ formatNumber(maxSupply, { style: 'decimal' }) }} {{ symbol }}</span>
                 </div>
             </div>
             
@@ -93,7 +93,7 @@
                     :percentage='totalSupplyPercentage'
                     :duration='3000'
                     suffix='%'
-                    size='150px'
+                    size='125px'
                 >
                     <template #default>
                         <p v-if='maxSupply'>{{ Math.floor(totalSupplyPercentage) }}&#37;</p>
@@ -102,7 +102,7 @@
                 </MazCircularProgressBar>
                 
                 <div class='ml-6 flex flex-col'>
-                    <div class='flex items-center'>
+                    <div class='flex items-start'>
                         <h6>Total Supply</h6>
                         
                         <HoverCard
@@ -113,7 +113,7 @@
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
                                     size='25'
-                                    class='flex ml-2 mt-1'
+                                    class='flex ml-2'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
@@ -125,7 +125,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ formatNumber(totalSupply, { style: 'decimal' }) }} {{ symbol }}</p>
+                    <span class='mt-2'>{{ formatNumber(totalSupply, { style: 'decimal' }) }} {{ symbol }}</span>
                 </div>
             </div>
             
@@ -135,7 +135,7 @@
                     :percentage='circulatingSupplyPercentage'
                     :duration='3000'
                     suffix='%'
-                    size='150px'
+                    size='125px'
                 >
                     <template #default>
                         <p v-if='maxSupply'>{{ Math.floor(circulatingSupplyPercentage) }}&#37;</p>
@@ -144,7 +144,7 @@
                 </MazCircularProgressBar>
                 
                 <div class='ml-6 flex flex-col'>
-                    <div class='flex items-center'>
+                    <div class='flex items-start'>
                         <h6>Circulating Supply</h6>
                         
                         <HoverCard
@@ -155,7 +155,7 @@
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
                                     size='25'
-                                    class='flex ml-2 mt-1'
+                                    class='flex ml-2'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
@@ -166,7 +166,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ formatNumber(circulatingSupply, { style: 'decimal' }) }} {{ symbol }}</p>
+                    <span class='mt-2'>{{ formatNumber(circulatingSupply, { style: 'decimal' }) }} {{ symbol }}</span>
                 </div>
             </div>
             
@@ -175,7 +175,7 @@
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='3500'
-                    size='150px'
+                    size='125px'
                 >
                     <template #default>
                         <p>{{ formatNumber(volume, { compact: true, decimals: 2 }) }}</p>
@@ -183,7 +183,7 @@
                 </MazCircularProgressBar>
                 
                 <div class='ml-6 flex flex-col'>
-                    <div class='flex items-center'>
+                    <div class='flex items-start'>
                         <h6>Volume 24h</h6>
                         
                         <HoverCard
@@ -194,7 +194,7 @@
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
                                     size='25'
-                                    class='flex ml-2 mt-1'
+                                    class='flex ml-2'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
@@ -203,7 +203,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ formatNumber(volume) }}</p>
+                    <span class='mt-2'>{{ formatNumber(volume) }}</span>
                 </div>
             </div>
             
@@ -212,7 +212,7 @@
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='3500'
-                    size='150px'
+                    size='125px'
                 >
                     <template #default>
                         <p>{{ formatNumber(liquidity, { compact: true, decimals: 2 }) }}</p>
@@ -220,7 +220,7 @@
                 </MazCircularProgressBar>
                 
                 <div class='ml-6 flex flex-col'>
-                    <div class='flex items-center'>
+                    <div class='flex items-start'>
                         <h6>Liquidity 24h</h6>
                         
                         <HoverCard
@@ -231,7 +231,7 @@
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
                                     size='25'
-                                    class='flex ml-2 mt-1'
+                                    class='flex ml-2'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
@@ -243,7 +243,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='mt-2'>{{ formatNumber(liquidity) }}</p>
+                    <span class='mt-2'>{{ formatNumber(liquidity) }}</span>
                 </div>
             </div>
         </div>
