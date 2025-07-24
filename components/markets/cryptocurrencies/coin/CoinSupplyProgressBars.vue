@@ -58,7 +58,7 @@
                     </template>
                 </MazCircularProgressBar>
                 
-                <div class='ml-6 flex flex-col]'>
+                <div class='ml-6 flex flex-col'>
                     <div class='flex items-center'>
                         <h6>Max Supply</h6>
                         
