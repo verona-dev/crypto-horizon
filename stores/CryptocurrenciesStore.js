@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
 import { useFetchCoinLoreData } from '~/composables/apiCoinLore.js';
 import { useFetchCoingecko } from '~/composables/apiCoingecko';
-import { formatCoingeckoCoin, formatCoinsTable, formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
+import { useFetchCoindesk } from '~/composables/apiCoindesk.js';
+import { formatCoingeckoCoin, formatCoinsTable, formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
 
 export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     state: () => ({
@@ -16,6 +17,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         },
         loading: false,
         marketOverview: [],
+        news: {},
     }),
     
     actions: {
@@ -90,7 +92,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             try {
                 const response = await useFetchCoinLoreData(route, options);
                 
-                if(route === 'global') {
+                if(response && route === 'global') {
                     this.marketOverview = [];
                     this.marketOverview = response[0];
                 }
@@ -108,13 +110,27 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             try {
                 const response = await useFetchLiveCoinWatch(route, options);
                 
-                if(route === 'coins/single') {
+                if(response && route === 'coins/single') {
                     this.coin.livecoinwatch = formatLivecoinwatchCoin(response);
                 }
             } catch(error) {
                 console.log(error);
             } finally {
                 this.loading = false;
+            }
+        },
+        
+        async fetchCoindeskNews(route, options) {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoindesk(route, options);
+                if(response) {
+                    this.news = response.data;
+                    console.log(JSON.parse(JSON.stringify(this.news)));
+                }
+            } catch(error) {
+                console.log(error);
             }
         },
     },
