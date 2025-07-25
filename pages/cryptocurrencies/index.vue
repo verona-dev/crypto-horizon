@@ -13,9 +13,9 @@
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
-    const { fetchCoindeskNews } = CryptocurrenciesStore;
+    const { getCoindeskNews } = CryptocurrenciesStore;
     
     onMounted(async() => {
-        await fetchCoindeskNews();
+        await getCoindeskNews();
     });
 </script>

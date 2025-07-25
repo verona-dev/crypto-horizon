@@ -194,8 +194,8 @@
     import { getTextColor } from '~/utils/styleUtils.js';
     
     const { marketOverview } = storeToRefs(CryptocurrenciesStore);
-    const { fetchCoinLore } = CryptocurrenciesStore;
-    onMounted(() => fetchCoinLore('global'));
+    const { getCoinLore } = CryptocurrenciesStore;
+    onMounted(() => getCoinLore('global'));
     
     const marketCapStyle = computed(() => getTextColor(marketOverview.value?.mcap_change));
     const volumeChangeStyle = computed(() => getTextColor(marketOverview.value?.volume_change));

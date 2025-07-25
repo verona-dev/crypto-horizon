@@ -86,7 +86,21 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async fetchCoinLore(route, options) {
+        async getCoindeskNews(route, options) {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoindesk('news/v1/article/list?lang=EN&limit=5', options);
+                if(response) {
+                    this.news = response;
+                    console.log(response);
+                }
+            } catch(error) {
+                console.log(error);
+            }
+        },
+        
+        async getCoinLore(route, options) {
             this.loading = true;
             
             try {
@@ -104,6 +118,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
+        /*
         async fetchLiveCoinWatch(route, options) {
             this.loading = true;
             
@@ -119,19 +134,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 this.loading = false;
             }
         },
-        
-        async fetchCoindeskNews(route, options) {
-            this.loading = true;
-            
-            try {
-                const response = await useFetchCoindesk(route, options);
-                if(response) {
-                    this.news = response.data;
-                    console.log(JSON.parse(JSON.stringify(this.news)));
-                }
-            } catch(error) {
-                console.log(error);
-            }
-        },
+        */
     },
 });
