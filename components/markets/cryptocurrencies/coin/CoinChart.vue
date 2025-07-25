@@ -227,7 +227,7 @@
                 ticks: {
                     color: 'oklch(0.705 0.015 286.067)',
                     callback: function(value) {
-                        return formatNumberWithOptions(value);
+                        return formatNumber(value);
                     }
                 },
                 offset: true,
