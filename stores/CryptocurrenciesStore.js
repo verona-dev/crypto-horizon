@@ -88,6 +88,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         
         async getCoindeskNews(route, options) {
             this.loading = true;
+            
             try {
                 const response = await useFetchCoindesk('news/v1/article/list', {
                     limit: 5,
@@ -98,6 +99,9 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 }
             } catch(error) {
                 console.log(error);
+            }
+            finally {
+                this.loading = false;
             }
         },
         
