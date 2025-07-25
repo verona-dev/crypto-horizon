@@ -1,7 +1,5 @@
 <template>
-    <div class='index'>
-        <Welcome />
-    </div>
+    <Welcome />
 </template>
 
 <script setup>
