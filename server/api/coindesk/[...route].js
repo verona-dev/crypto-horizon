@@ -1,10 +1,14 @@
-import { createError, defineEventHandler } from 'h3';
+import { createError, defineEventHandler, getQuery } from 'h3';
 
 export default defineEventHandler(async(event) => {
     const { coindesk_api } = useRuntimeConfig().public;
     
-    const route = event.context.params?.route || '';
-    const apiUrl = `https://data-api.coindesk.com/${route}`;
+    const route = Array.isArray(event.context.params.route)
+       ? event.context.params.route.join('/')
+       : event.context.params.route;
+    const queryEvent = getQuery(event);
+    const query = new URLSearchParams(queryEvent).toString();
+    const apiUrl = `https://data-api.coindesk.com/${route}?${query}`;
     
     try {
         const response = await fetch(apiUrl, {
