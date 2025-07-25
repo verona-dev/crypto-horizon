@@ -67,7 +67,7 @@
                                 <NavigationMenuLink as-child>
                                     <NuxtLink
                                         to='/cryptocurrencies'
-                                        class='flex items-start select-none space-y-1 rounded-md p-6 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
+                                        class='flex items-start select-none space-y-1 rounded-md px-6 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
                                     >
                                         <div class='text-sm font-medium leading-none'>Cryptocurrencies</div>
                                         <p class='line-clamp-2 text-sm leading-snug text-muted-foreground'>
@@ -98,7 +98,7 @@
                                 <NavigationMenuLink as-child>
                                     <NuxtLink
                                         to='/news'
-                                        class='flex items-start select-none space-y-1 rounded-md p-6 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
+                                        class='flex items-start select-none space-y-1 rounded-md px-6 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
                                     >
                                         <div class='text-sm font-medium leading-none'>News</div>
                                         <p class='line-clamp-2 text-sm leading-snug text-muted-foreground'>
