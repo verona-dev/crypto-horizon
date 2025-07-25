@@ -1,11 +1,10 @@
 <template>
-    <div v-if='coingecko' class='flex flex-col items-stretch px-20 w-full'>
+    <div v-if='coingecko' class='flex flex-col'>
         <h5 class='mb-6'>About
             <span class='capitalize'>{{ coingecko.id }}</span>
             <span class='ml-2'>&#40;{{ coin.symbol }}&#41;</span>
         </h5>
         
-        <!--  Description  -->
         <Accordion
             v-show='description'
             type='single'
@@ -63,5 +62,9 @@
 <style scoped>
     h6 {
         text-transform: capitalize;
+    }
+    
+    [data-slot='accordion-content'] {
+        width: 800px !important;
     }
 </style>

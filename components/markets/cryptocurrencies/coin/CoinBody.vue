@@ -29,12 +29,15 @@
             </div>
             
             <!--  Right  -->
-            <div class='right flex flex-col gap-20 px-0 2xl:px-10'>
+            <div class='right flex flex-col gap-20 pl-0 2xl:pl-10 w-800px 2xl:w-[900px]'>
                 <!--  Chart  -->
                 <CoinChart :coin='coin' />
                 
                 <!--  Delta  -->
                 <CoinDelta :marketData='coingecko.market_data' />
+                
+                <!--  Description Accordion  -->
+                <CoinDescription :coin='coin' />
             </div>
         </section>
         
@@ -52,6 +55,7 @@
     import CoinOverview from '~/components/markets/cryptocurrencies/coin/CoinOverview.vue';
     import CoinLinks from '~/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
+    import CoinDescription from '~/components/markets/cryptocurrencies/coin/CoinDescription.vue';
     
     const props = defineProps({
         coin: {
