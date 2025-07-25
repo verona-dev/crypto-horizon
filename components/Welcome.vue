@@ -1,53 +1,46 @@
 <template>
-    <div class='welcome'>
-        <section class='illustrations-container'>
-            <NuxtLink to='/cryptocurrencies'>
-                <NuxtImg src='btc-pink.svg' alt='Image' width='1536' />
-                <h3>Markets</h3>
-            </NuxtLink>
-            
-            <NuxtLink to='/defi'>
-                <NuxtImg src='btc-tree.svg' alt='Image' width='1536' />
-                <h3>Defi</h3>
-            </NuxtLink>
-        </section>
-    </div>
+    <section class='welcome xl:mt-40 flex flax-col md:flex-row justify-center items-center gap-10 xl:gap-30'>
+        <NuxtLink to='/cryptocurrencies' class='link-item flex flex-col items-center justify-center'>
+            <NuxtImg src='btc-pink.svg' alt='Image' />
+            <h3 class='my-5 uppercase'>Cryptocurrencies</h3>
+        </NuxtLink>
+        
+        <NuxtLink to='/news' class='link-item flex flex-col items-center justify-center'>
+            <NuxtImg src='btc-circle.svg' alt='Image' />
+            <h3 class='my-5 uppercase'>News</h3>
+        </NuxtLink>
+        
+        <NuxtLink to='/defi' class='link-item flex flex-col items-center justify-center'>
+            <NuxtImg src='btc-tree.svg' alt='Image' />
+            <h3 class='my-5 uppercase'>Defi</h3>
+        </NuxtLink>
+    </section>
 </template>
 
 <script setup>
-// const cryptocurrencies = 'btc-pink.svg';
-// const defi = 'btc-tree.svg';
+    // const cryptocurrencies = 'btc-pink.svg';
+    // const defi = 'btc-tree.svg';
 </script>
 
 <style scoped>
     .welcome {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        
-        h3 {
-            margin: 20px 0;
-            text-transform: uppercase;
+        .link-item {
+            &:hover img {
+                opacity: 0.85;
+                scale: 1.02;
+            }
+            
+            &:hover h3 {
+                color: var(--secondary);
+            }
         }
         
-        .illustrations-container {
-            display: flex;
-            justify-content: space-evenly;
-            width: 80%;
-            
-            img {
-                border-radius: 6px;
-                height: 400px;
-                object-fit: cover;
-                transition: all 200ms ease-in-out;
-                width: 500px;
-                
-                &:hover {
-                    opacity: 0.85;
-                    transition: all 100ms ease-in-out;
-                }
-            }
+        img {
+            border-radius: 6px;
+            height: 450px;
+            object-fit: cover;
+            transition: all 200ms ease-in-out;
+            width: 300px;
         }
     }
 </style>

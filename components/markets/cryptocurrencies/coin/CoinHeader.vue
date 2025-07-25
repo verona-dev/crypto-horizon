@@ -1,6 +1,6 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex flex-col justify-center items-center'>
-        <section class='my-10 flex flex-col lg:flex-row items-center gap-y-10 lg:gap-y-0 gap-x-10'>
+        <section class='my-4 flex flex-col lg:flex-row items-center gap-y-10 lg:gap-y-0 gap-x-10'>
             <!-- Logo  -->
             <NuxtImg
                 v-if='coingecko?.image?.large'
@@ -86,7 +86,7 @@
                 <!--  Coin price  -->
                 <div class='mt-4'>
                     <div class='flex items-center'>
-                        <h4 class='text-foreground'>{{ formatNumber(current_price, { truncate: true }) }}</h4>
+                        <h4 class='text-foreground'>{{ current_price_label }}</h4>
                         
                         <!--  Price change % in USD $  -->
                         <div class='ml-4 mb-2 flex items-center'>
@@ -149,9 +149,9 @@
                         :indicatorColor='progress_color'
                     />
                     <div class='flex justify-between'>
-                        <p>{{ formatNumber(low_24h_computed) }}</p>
+                        <p>{{ low_24h_label }}</p>
                         <p>24h Range</p>
-                        <p>{{ formatNumber(high_24h_computed) }}</p>
+                        <p>{{ high_24h_label }}</p>
                     </div>
                 </div>
             </div>
@@ -183,6 +183,9 @@
     
     const not_bitcoin = coin.value?.symbol !== 'BTC';
     const current_price = coingecko.value?.market_data?.current_price?.usd;
+    const current_price_label = formatNumber(coingecko.value?.market_data?.current_price?.usd, {
+        maximumFractionDigits: 4,
+    });
     const current_price_in_btc = coingecko.value?.market_data?.current_price?.btc;
     
     const price_change_percentage_7d = coingecko.value?.market_data?.price_change_percentage_7d;
@@ -196,12 +199,18 @@
         if(current_price > high_24h) return current_price;
         return high_24h;
     });
+    const high_24h_label = formatNumber(high_24h_computed.value, {
+        maximumFractionDigits: 4,
+    });
     
     const low_24h = coingecko.value?.market_data?.low_24h?.usd;
     const low_24h_computed = computed(() => {
         // Coingecko Api has delays in updating the low24h value therefore the current price can temporarily be under the low24h
         if(current_price < low_24h) return current_price;
         return low_24h;
+    });
+    const low_24h_label = formatNumber(low_24h_computed.value, {
+        maximumFractionDigits: 4,
     });
     
     const progress = computed(() => {

@@ -1,8 +1,8 @@
 <template>
     <CardContent class='coin-body px-0'>
-        <section class='coin-intro flex flex-col xl:flex-row xl:gap-30 items-start'>
+        <section class='mt-0 coin-intro flex flex-col 2xl:flex-row items-center xl:items-start gap-20 xl:gap-8'>
             <!--  Left  -->
-            <div class='left flex flex-col gap-24 xl:gap-18 xl:border-r pt-0 xl:py-10 px-20 lg:w-[800px] xl:w-auto'>
+            <div class='left flex flex-col gap-24 2xl:gap-18 2xl:border-r pt-0 2xl:py-10 px-20 lg:w-[800px] 2xl:w-auto'>
                 <!--  Overview  -->
                 <CoinOverview :coin='coin' />
                 
@@ -12,21 +12,6 @@
                 <!--  Contracts  -->
                 <CoinContracts :coin='coingecko' />
                 
-                <!--  Links  -->
-                <CoinLinks
-                    :livecoinwatchLinks='coin.livecoinwatch.links'
-                    :coingeckoLinks='coin.coingecko.links'
-                />
-            </div>
-            
-            <!--  Right  -->
-            <div class='right flex flex-col gap-20'>
-                <!--  Chart  -->
-                <CoinChart :coin='coin' />
-                
-                <!--  Delta  -->
-                <CoinDelta :marketData='coingecko.market_data' />
-                
                 <!--  Community Sentiment  -->
                 <CoinSentiment
                     :sentimentUp='sentiment_up_percentage'
@@ -35,6 +20,24 @@
                 
                 <!--  Converter  -->
                 <CoinConverter :coin='coin' />
+                
+                <!--  Links  -->
+                <CoinLinks
+                    :livecoinwatchLinks='coin.livecoinwatch.links'
+                    :coingeckoLinks='coin.coingecko.links'
+                />
+            </div>
+            
+            <!--  Right  -->
+            <div class='right flex flex-col gap-20 pl-0 2xl:pl-10 w-800px 2xl:w-[900px]'>
+                <!--  Chart  -->
+                <CoinChart :coin='coin' />
+                
+                <!--  Delta  -->
+                <CoinDelta :marketData='coingecko.market_data' />
+                
+                <!--  Description Accordion  -->
+                <CoinDescription :coin='coin' />
             </div>
         </section>
         
@@ -52,6 +55,7 @@
     import CoinOverview from '~/components/markets/cryptocurrencies/coin/CoinOverview.vue';
     import CoinLinks from '~/components/markets/cryptocurrencies/coin/CoinLinks.vue';
     import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
+    import CoinDescription from '~/components/markets/cryptocurrencies/coin/CoinDescription.vue';
     
     const props = defineProps({
         coin: {

@@ -9,7 +9,7 @@
                 <TabsTrigger value='price'>
                     <NuxtIcon
                         name='mdi-light:chart-line'
-                        size='35'
+                        size='30'
                     />
                     Price
                 </TabsTrigger>
@@ -17,7 +17,7 @@
                 <TabsTrigger value='mcap'>
                     <NuxtIcon
                         name='mdi-light:chart-line'
-                        size='35'
+                        size='30'
                     />
                     Market Cap
                 </TabsTrigger>
@@ -25,7 +25,7 @@
                 <TabsTrigger @click='showDrawer = true' value='supply'>
                     <NuxtIcon
                         name='mdi-light:chart-pie'
-                        size='35'
+                        size='30'
                     />
                     Supply
                 </TabsTrigger>
@@ -36,7 +36,7 @@
                     <MazSpinner class='spinner' />
                 </div>
                 
-                <div class='max-w-[650px] lg:max-w-auto mx-auto'>
+                <div class='max-w-[500px] md:max-w-[750px] lg:max-w-[900px] mx-auto'>
                     <Line
                         ref='chartRef'
                         v-if='data.datasets?.length'
@@ -227,7 +227,10 @@
                 ticks: {
                     color: 'oklch(0.705 0.015 286.067)',
                     callback: function(value) {
-                        return formatNumberWithOptions(value);
+                        return formatNumber(value, {
+                            compact: true,
+                            decimals: 1,
+                        });
                     }
                 },
                 offset: true,

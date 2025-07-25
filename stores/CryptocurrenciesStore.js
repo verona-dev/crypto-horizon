@@ -62,7 +62,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 
                 if (coinResponse) {
                     this.coin.coingecko = formatCoingeckoCoin(coinResponse);
-                    // console.log(JSON.parse(JSON.stringify(this.coin.coingecko)));
                 }
                 
                 if (chartResponse) {
@@ -86,17 +85,22 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoindeskNews(route, options) {
+        async getCoindeskNews() {
             this.loading = true;
             
             try {
-                const response = await useFetchCoindesk('news/v1/article/list?lang=EN&limit=5', options);
-                if(response) {
-                    this.news = response;
-                    console.log(response);
+                const response = await useFetchCoindesk('news/v1/article/list', {
+                    limit: 10,
+                });
+                if(response && response.Data) {
+                    this.news = response.Data;
+                    // console.log(this.news);
                 }
             } catch(error) {
                 console.log(error);
+            }
+            finally {
+                this.loading = false;
             }
         },
         
@@ -118,7 +122,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        /*
         async fetchLiveCoinWatch(route, options) {
             this.loading = true;
             
@@ -134,6 +137,5 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 this.loading = false;
             }
         },
-        */
     },
 });

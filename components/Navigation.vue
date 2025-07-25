@@ -42,37 +42,67 @@
             <NavigationMenuList>
                 <!--  Logo  -->
                 <NavigationMenuItem>
-                    <NuxtLink to="/" :class="navigationMenuTriggerStyle()">
+                    <NuxtLink to='/' :class='navigationMenuTriggerStyle()'>
                         <NavigationMenuLink >
-                            Crypto Horizon
+                            CryptoHorizon
                         </NavigationMenuLink>
                     </NuxtLink>
                 </NavigationMenuItem>
                 
-                <!--  Markets  -->
+                <!--  Cryptocurrencies  -->
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Markets</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                        <ul class='grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[minmax(0,.75fr)_minmax(0,1fr)]'>
-                            
-                            <!--  Markets Logo  -->
-                            <li class='row-span-3'>
+                    <NavigationMenuTrigger>Cryptocurrencies</NavigationMenuTrigger>
+                    <NavigationMenuContent class=''>
+                        <ul class='flex items-center p-6 md:w-[400px] xl:h-40 gap-4'>
+                            <!--  Cryptocurrencies Logo  -->
+                            <li class='w-24'>
                                 <NuxtIcon
-                                    name='bitcoin-icons:bitcoin-circle-outline'
-                                    size='150'
+                                    name='bitcoin-icons:bitcoin-circle-filled'
+                                    size='100'
                                 />
                             </li>
                             
-                            <!--  Markets - Cryptocurrencies -->
+                            <!--  Cryptocurrencies -->
                             <li>
                                 <NavigationMenuLink as-child>
                                     <NuxtLink
                                         to='/cryptocurrencies'
-                                        class='block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
+                                        class='flex items-start select-none space-y-1 rounded-md p-6 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
                                     >
                                         <div class='text-sm font-medium leading-none'>Cryptocurrencies</div>
                                         <p class='line-clamp-2 text-sm leading-snug text-muted-foreground'>
                                             Check the market.
+                                        </p>
+                                    </NuxtLink>
+                                </NavigationMenuLink>
+                            </li>
+                        </ul>
+                    </NavigationMenuContent>
+                </NavigationMenuItem>
+                
+                <!--  News  -->
+                <NavigationMenuItem>
+                    <NavigationMenuTrigger>News</NavigationMenuTrigger>
+                    <NavigationMenuContent class=''>
+                        <ul class='flex items-center p-6 md:w-[400px] xl:h-40 gap-4'>
+                            <!--  News Logo  -->
+                            <li class='w-24'>
+                                <NuxtIcon
+                                    name='emojione-monotone:newspaper'
+                                    size='85'
+                                />
+                            </li>
+                            
+                            <!--  News -->
+                            <li class=''>
+                                <NavigationMenuLink as-child>
+                                    <NuxtLink
+                                        to='/news'
+                                        class='flex items-start select-none space-y-1 rounded-md p-6 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
+                                    >
+                                        <div class='text-sm font-medium leading-none'>News</div>
+                                        <p class='line-clamp-2 text-sm leading-snug text-muted-foreground'>
+                                            Check the latest news.
                                         </p>
                                     </NuxtLink>
                                 </NavigationMenuLink>
