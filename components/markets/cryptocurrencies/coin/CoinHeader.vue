@@ -86,7 +86,7 @@
                 <!--  Coin price  -->
                 <div class='mt-4'>
                     <div class='flex items-center'>
-                        <h4 class='text-foreground'>{{ formatNumber(current_price, { truncate: true }) }}</h4>
+                        <h4 class='text-foreground'>{{ current_price_label }}</h4>
                         
                         <!--  Price change % in USD $  -->
                         <div class='ml-4 mb-2 flex items-center'>
@@ -183,6 +183,9 @@
     
     const not_bitcoin = coin.value?.symbol !== 'BTC';
     const current_price = coingecko.value?.market_data?.current_price?.usd;
+    const current_price_label = formatNumber(coingecko.value?.market_data?.current_price?.usd, {
+        maximumFractionDigits: 4,
+    });
     const current_price_in_btc = coingecko.value?.market_data?.current_price?.btc;
     
     const price_change_percentage_7d = coingecko.value?.market_data?.price_change_percentage_7d;
