@@ -3,7 +3,7 @@
         <section class='illustrations-container'>
             <NuxtLink to='/cryptocurrencies'>
                 <NuxtImg src='btc-pink.svg' alt='Image' width='1536' />
-                <h3>Markets</h3>
+                <h3>Cryptocurrencies</h3>
             </NuxtLink>
             
             <NuxtLink to='/defi'>
