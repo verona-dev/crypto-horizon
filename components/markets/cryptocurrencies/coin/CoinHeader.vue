@@ -1,6 +1,6 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex flex-col justify-center items-center'>
-        <section class='my-10 flex flex-col lg:flex-row items-center gap-y-10 lg:gap-y-0 gap-x-10'>
+        <section class='my-4 flex flex-col lg:flex-row items-center gap-y-10 lg:gap-y-0 gap-x-10'>
             <!-- Logo  -->
             <NuxtImg
                 v-if='coingecko?.image?.large'

@@ -1,6 +1,6 @@
 <template>
     <CardContent class='coin-body px-0'>
-        <section class='mt-0 coin-intro flex flex-col 2xl:flex-row items-center xl:items-start'>
+        <section class='mt-0 coin-intro flex flex-col 2xl:flex-row items-center xl:items-start gap-20 xl:gap-8'>
             <!--  Left  -->
             <div class='left flex flex-col gap-24 2xl:gap-18 2xl:border-r pt-0 2xl:py-10 px-20 lg:w-[800px] 2xl:w-auto'>
                 <!--  Overview  -->
@@ -11,6 +11,15 @@
                 
                 <!--  Contracts  -->
                 <CoinContracts :coin='coingecko' />
+                
+                <!--  Community Sentiment  -->
+                <CoinSentiment
+                    :sentimentUp='sentiment_up_percentage'
+                    :sentimentDown='sentiment_down_percentage'
+                />
+                
+                <!--  Converter  -->
+                <CoinConverter :coin='coin' />
                 
                 <!--  Links  -->
                 <CoinLinks
@@ -26,15 +35,6 @@
                 
                 <!--  Delta  -->
                 <CoinDelta :marketData='coingecko.market_data' />
-                
-                <!--  Community Sentiment  -->
-                <CoinSentiment
-                    :sentimentUp='sentiment_up_percentage'
-                    :sentimentDown='sentiment_down_percentage'
-                />
-                
-                <!--  Converter  -->
-                <CoinConverter :coin='coin' />
             </div>
         </section>
         
