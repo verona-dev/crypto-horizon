@@ -1,5 +1,5 @@
 <template>
-    <div class=''>
+    <div class='news custom-flex'>
         Latest crypto News
     </div>
 </template>
