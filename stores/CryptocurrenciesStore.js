@@ -86,12 +86,12 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoindeskNews(route, options) {
+        async getCoindeskNews() {
             this.loading = true;
             
             try {
                 const response = await useFetchCoindesk('news/v1/article/list', {
-                    limit: 5,
+                    limit: 10,
                 });
                 if(response) {
                     this.news = response;
@@ -123,7 +123,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        /*
         async fetchLiveCoinWatch(route, options) {
             this.loading = true;
             
@@ -139,6 +138,5 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 this.loading = false;
             }
         },
-        */
     },
 });
