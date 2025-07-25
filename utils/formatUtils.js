@@ -81,7 +81,9 @@ const formatCoinsTable = coins => {
         id: coin?.id,
         marketCap: formatNumberWithOptions(coin?.market_cap),
         name: coin?.name,
-        price: formatNumber(coin?.current_price, 2, 2),
+        price: formatNumber(coin?.current_price, {
+            maximumFractionDigits: 4,
+        }),
         rank: coin?.market_cap_rank,
         symbol: coin?.symbol.toUpperCase(),
         trend: getTextColor(coin?.price_change_percentage_24h),
