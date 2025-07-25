@@ -42,16 +42,16 @@
             <NavigationMenuList>
                 <!--  Logo  -->
                 <NavigationMenuItem>
-                    <NuxtLink to="/" :class="navigationMenuTriggerStyle()">
+                    <NuxtLink to='/' :class='navigationMenuTriggerStyle()'>
                         <NavigationMenuLink >
-                            Crypto Horizon
+                            CryptoHorizon
                         </NavigationMenuLink>
                     </NuxtLink>
                 </NavigationMenuItem>
                 
                 <!--  Markets  -->
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Markets</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>Cryptocurrencies</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul class='grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[minmax(0,.75fr)_minmax(0,1fr)]'>
                             
