@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
 import { useFetchCoinLoreData } from '~/composables/apiCoinLore.js';
 import { useFetchCoingecko } from '~/composables/apiCoingecko';
-import { formatCoingeckoCoin, formatCoinsTable, formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
+import { useFetchCoindesk } from '~/composables/apiCoindesk.js';
+import { formatCoingeckoCoin, formatCoinsTable, formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
 
 export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     state: () => ({
@@ -16,6 +17,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         },
         loading: false,
         marketOverview: [],
+        news: {},
     }),
     
     actions: {
@@ -84,13 +86,27 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async fetchCoinLore(route, options) {
+        async getCoindeskNews(route, options) {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoindesk('news/v1/article/list?lang=EN&limit=5', options);
+                if(response) {
+                    this.news = response;
+                    console.log(response);
+                }
+            } catch(error) {
+                console.log(error);
+            }
+        },
+        
+        async getCoinLore(route, options) {
             this.loading = true;
             
             try {
                 const response = await useFetchCoinLoreData(route, options);
                 
-                if(route === 'global') {
+                if(response && route === 'global') {
                     this.marketOverview = [];
                     this.marketOverview = response[0];
                 }
@@ -102,13 +118,14 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
+        /*
         async fetchLiveCoinWatch(route, options) {
             this.loading = true;
             
             try {
                 const response = await useFetchLiveCoinWatch(route, options);
                 
-                if(route === 'coins/single') {
+                if(response && route === 'coins/single') {
                     this.coin.livecoinwatch = formatLivecoinwatchCoin(response);
                 }
             } catch(error) {
@@ -117,5 +134,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 this.loading = false;
             }
         },
+        */
     },
 });
