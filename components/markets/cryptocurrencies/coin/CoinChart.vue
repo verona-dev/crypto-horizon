@@ -9,7 +9,7 @@
                 <TabsTrigger value='price'>
                     <NuxtIcon
                         name='mdi-light:chart-line'
-                        size='35'
+                        size='30'
                     />
                     Price
                 </TabsTrigger>
@@ -17,7 +17,7 @@
                 <TabsTrigger value='mcap'>
                     <NuxtIcon
                         name='mdi-light:chart-line'
-                        size='35'
+                        size='30'
                     />
                     Market Cap
                 </TabsTrigger>
@@ -25,7 +25,7 @@
                 <TabsTrigger @click='showDrawer = true' value='supply'>
                     <NuxtIcon
                         name='mdi-light:chart-pie'
-                        size='35'
+                        size='30'
                     />
                     Supply
                 </TabsTrigger>
@@ -227,7 +227,10 @@
                 ticks: {
                     color: 'oklch(0.705 0.015 286.067)',
                     callback: function(value) {
-                        return formatNumber(value);
+                        return formatNumber(value, {
+                            compact: true,
+                            decimals: 1,
+                        });
                     }
                 },
                 offset: true,
