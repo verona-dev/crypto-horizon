@@ -149,9 +149,9 @@
                         :indicatorColor='progress_color'
                     />
                     <div class='flex justify-between'>
-                        <p>{{ formatNumber(low_24h_computed) }}</p>
+                        <p>{{ low_24h_label }}</p>
                         <p>24h Range</p>
-                        <p>{{ formatNumber(high_24h_computed) }}</p>
+                        <p>{{ high_24h_label }}</p>
                     </div>
                 </div>
             </div>
@@ -199,12 +199,18 @@
         if(current_price > high_24h) return current_price;
         return high_24h;
     });
+    const high_24h_label = formatNumber(high_24h_computed.value, {
+        maximumFractionDigits: 4,
+    });
     
     const low_24h = coingecko.value?.market_data?.low_24h?.usd;
     const low_24h_computed = computed(() => {
         // Coingecko Api has delays in updating the low24h value therefore the current price can temporarily be under the low24h
         if(current_price < low_24h) return current_price;
         return low_24h;
+    });
+    const low_24h_label = formatNumber(low_24h_computed.value, {
+        maximumFractionDigits: 4,
     });
     
     const progress = computed(() => {
