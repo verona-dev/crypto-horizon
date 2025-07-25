@@ -62,7 +62,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 
                 if (coinResponse) {
                     this.coin.coingecko = formatCoingeckoCoin(coinResponse);
-                    // console.log(JSON.parse(JSON.stringify(this.coin.coingecko)));
                 }
                 
                 if (chartResponse) {
