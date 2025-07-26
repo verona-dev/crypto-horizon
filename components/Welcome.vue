@@ -1,5 +1,5 @@
 <template>
-    <section class='welcome xl:mt-40 flex flax-col md:flex-row justify-center items-center gap-10 xl:gap-30'>
+    <div class='welcome overflow-y-hidden flex flex-wrap flax-col md:flex-row justify-center items-center gap-6 xl:gap-30 mt-10 xl:mt-0 px-10'>
         <WelcomeItem
             v-for='item in welcomeItems'
             :title='item.title'
@@ -8,7 +8,7 @@
             :to='item.to'
             :key='item.title'
         />
-    </section>
+    </div>
 </template>
 
 <script setup>
@@ -35,3 +35,9 @@
         },
     ];
 </script>
+
+<style scoped>
+    .welcome {
+        min-height: calc(100vh - 200px);
+    }
+</style>
