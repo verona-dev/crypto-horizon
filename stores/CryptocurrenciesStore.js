@@ -8,7 +8,6 @@ import { formatCoingeckoCoin, formatCoinsTable, formatLivecoinwatchCoin } from '
 export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     state: () => ({
         coins: [],
-        coinsList: [],
         coin: {
             coingecko: {},
             livecoinwatch: {},
