@@ -43,7 +43,7 @@
                 <!--  Logo  -->
                 <NavigationMenuItem>
                     <NuxtLink to='/' :class='navigationMenuTriggerStyle()'>
-                        <NavigationMenuLink >
+                        <NavigationMenuLink class='text-2xl'>
                             CryptoHorizon
                         </NavigationMenuLink>
                     </NuxtLink>
