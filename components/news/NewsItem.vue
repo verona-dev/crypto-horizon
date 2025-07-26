@@ -2,17 +2,18 @@
     <Card class='news-item justify-between w-[450px] my-6'>
         <CardHeader>
             <CardDescription>
-                <img
-                    :src='imageUrl'
-                    alt='alt'
-                />
+                <img :src='imageUrl' alt='alt' />
             </CardDescription>
             
             <p class='my-4'>{{ title }}</p>
         </CardHeader>
         
         <CardContent class='flex justify-between px-6 pb-6'>
-            <span>{{ article_author }}</span>
+            <div class='flex flex-col'>
+                <span>{{ article_author }}</span>
+                <span>Source: {{ sourceData.NAME }}</span>
+            </div>
+            
             <span>{{ published_on }}</span>
         </CardContent>
         
@@ -43,6 +44,7 @@
         author: String,
         publishedOn: Number,
         imageUrl: String,
+        sourceData: Object,
     });
     
     const {
@@ -52,6 +54,7 @@
         author,
         publishedOn,
         imageUrl,
+        sourceData,
     } = toRefs(props);
     
     const published_on = computed(() => publishedOn.value && dayjs.unix(publishedOn.value).format('MMMM D, YYYY'));
