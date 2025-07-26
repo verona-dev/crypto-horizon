@@ -54,7 +54,6 @@
     import CoinDelta from '~/components/markets/cryptocurrencies/coin/CoinDelta.vue';
     import CoinOverview from '~/components/markets/cryptocurrencies/coin/CoinOverview.vue';
     import CoinLinks from '~/components/markets/cryptocurrencies/coin/CoinLinks.vue';
-    import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
     import CoinDescription from '~/components/markets/cryptocurrencies/coin/CoinDescription.vue';
     
     const props = defineProps({

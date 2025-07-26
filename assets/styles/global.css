@@ -62,6 +62,9 @@
         @apply text-base lg:text-lg;
     }
 
+    span {
+        @apply text-sm;
+    }
     
     .m-animated-text span {
         @apply text-3xl;
