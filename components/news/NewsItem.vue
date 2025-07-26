@@ -1,24 +1,24 @@
 <template>
-    <Card class='news-item w-[350px]'>
+    <Card class='news-item w-[500px]'>
         <CardHeader>
             <CardDescription>
-                <NuxtImg
+                <img
                     :src='imageUrl'
-                    height='150px'
-                    width='200px'
+                    alt='alt'
                 />
             </CardDescription>
-            <CardTitle>{{ title }}</CardTitle>
+            
+            <h6 class='my-4'>{{ title }}</h6>
         </CardHeader>
         <CardContent>
             <div class='flex flex-col space-y-1.5'>
-                <Label for='name'>Name</Label>
-                <Input id='name' placeholder='Name of your project' />
+                <p>Name</p>
+                <p>description</p>
             </div>
         </CardContent>
         <CardFooter class='flex justify-between px-6 pb-6'>
             <p>{{ author }}</p>
-            <p>{{ date }}</p>
+            <p>{{ publishedOn }}</p>
         </CardFooter>
     </Card>
 </template>
@@ -35,23 +35,30 @@
     
     const props = defineProps({
         id: String,
-        href: String,
+        url: String,
         title: String,
         author: String,
-        date: String,
+        publishedOn: Number,
         imageUrl: String,
     });
     
     const {
         id,
-        href,
+        url,
         title,
         author,
-        date,
+        publishedOn,
         imageUrl,
     } = toRefs(props);
 </script>
 
 <style scoped>
-
+    .news-item {
+        img {
+            border-radius: 6px;
+            object-fit: cover;
+            height: 250px;
+            width: 100%;
+        }
+    }
 </style>
