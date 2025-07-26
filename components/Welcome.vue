@@ -6,7 +6,7 @@
             :src='item.src'
             :alt='item.alt'
             :to='item.to'
-            :keyItem='item.title'
+            :key='item.title'
         />
     </section>
 </template>
