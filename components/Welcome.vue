@@ -17,11 +17,6 @@
     </section>
 </template>
 
-<script setup>
-    // const cryptocurrencies = 'btc-pink.svg';
-    // const defi = 'btc-tree.svg';
-</script>
-
 <style scoped>
     .welcome {
         .link-item {
