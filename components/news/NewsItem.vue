@@ -43,6 +43,8 @@
 
 <script setup>
     import dayjs from 'dayjs';
+    import relativeTime from 'dayjs/plugin/relativeTime';
+    dayjs.extend(relativeTime, { rounding: Math.floor });
     
     import {
         Card,
@@ -73,7 +75,7 @@
         sourceData,
     } = toRefs(props);
     
-    const published_on = computed(() => publishedOn.value && dayjs.unix(publishedOn.value).format('MMMM D, YYYY'));
+    const published_on = computed(() => publishedOn.value && dayjs.unix(publishedOn.value).fromNow());
     const article_author = computed(() => {
         if(author.value.length === 0) return 'Unknown author';
         return author.value;
