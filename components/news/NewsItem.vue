@@ -28,7 +28,7 @@
         
         <CardContent class='flex flex-col justify-between px-6 pb-6'>
             <span>by {{ article_author }}</span>
-            <span>from {{ sourceData.NAME }}</span>
+            <Badge class='rounded-xs py-1'>{{ sourceData.NAME }}</Badge>
             <span>{{ published_on }}</span>
         </CardContent>
         
@@ -54,6 +54,7 @@
         CardHeader,
     } from '@/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
+    import { Badge } from '@/components/ui/badge';
     
     const props = defineProps({
         id: String,
