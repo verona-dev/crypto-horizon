@@ -101,7 +101,7 @@
     import { toast } from 'vue-sonner';
     import { h, resolveComponent } from 'vue';
     // CryptocurrenciesStore
-    import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore';
+    import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';
     
     const props = defineProps({
         coin: Object,

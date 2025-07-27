@@ -44,9 +44,9 @@
 </template>
 
 <script setup>
-    import CoinSupplyProgressBars from '~/components/markets/cryptocurrencies/coin/CoinSupplyProgressBars.vue';
-    import CoinSupplyDoughnutChart from '~/components/markets/cryptocurrencies/coin/CoinSupplyDoughnutChart.vue';
-    import CoinSupplyStackedBars from '~/components/markets/cryptocurrencies/coin/CoinSupplyStackedBars.vue';
+    import CoinSupplyProgressBars from '~/components/cryptocurrencies/coin/CoinSupplyProgressBars.vue';
+    import CoinSupplyDoughnutChart from '~/components/cryptocurrencies/coin/CoinSupplyDoughnutChart.vue';
+    import CoinSupplyStackedBars from '~/components/cryptocurrencies/coin/CoinSupplyStackedBars.vue';
     import {
         Drawer,
         DrawerClose,
@@ -55,7 +55,7 @@
         DrawerFooter,
         DrawerHeader,
         DrawerTitle,
-    } from '@/components/ui/drawer';
+    } from '~/components/ui/drawer/index.js';
     
     const props = defineProps({
         coin: {

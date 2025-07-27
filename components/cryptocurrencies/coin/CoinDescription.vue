@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-    import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '~/components/ui/accordion/index.js';
+    import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '~/components/ui/accordion/index.ts';
     
     const props = defineProps({
         coin: {
