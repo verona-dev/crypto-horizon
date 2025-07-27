@@ -60,8 +60,8 @@
 
 <script setup>
     import dayjs from 'dayjs';
-    import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-    import CoinSupply from '~/components/markets/cryptocurrencies/coin/CoinSupply.vue';
+    import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
+    import CoinSupply from '~/components/cryptocurrencies/coin/CoinSupply.vue';
     
     import { Line } from 'vue-chartjs';
     import CustomLineChart from '~/utils/CustomLineChart.js';

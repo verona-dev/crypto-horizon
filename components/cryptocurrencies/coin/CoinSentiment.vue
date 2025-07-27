@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-    import { Progress } from '@/components/ui/progress';
+    import { Progress } from '~/components/ui/progress/index.js';
     
     const props = defineProps({
         sentimentUp: {

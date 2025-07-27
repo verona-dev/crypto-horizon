@@ -255,7 +255,7 @@
         HoverCard,
         HoverCardContent,
         HoverCardTrigger,
-    } from '@/components/ui/hover-card';
+    } from '~/components/ui/hover-card/index.js';
     import { formatNumber } from '~/utils/formatUtils.js';
     
     const props = defineProps({

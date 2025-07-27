@@ -184,8 +184,8 @@
         CardDescription,
         CardHeader,
         CardTitle,
-    } from '@/components/ui/card';
-    import { Separator } from '@/components/ui/separator';
+    } from '~/components/ui/card/index.js';
+    import { Separator } from '~/components/ui/separator/index.js';
     
     import { storeToRefs } from 'pinia';
     import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';

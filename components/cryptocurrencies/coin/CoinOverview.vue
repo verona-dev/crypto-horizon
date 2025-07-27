@@ -313,8 +313,8 @@
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
-    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.js';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
+    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.ts';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
     
     const props = defineProps({
         coin: {
