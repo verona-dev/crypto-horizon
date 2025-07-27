@@ -2,18 +2,33 @@
     <Card class='news-item justify-between w-[450px] my-6'>
         <CardHeader>
             <CardDescription>
-                <img :src='imageUrl' alt='alt' />
+                <NuxtImg
+                    :src='imageUrl'
+                    alt='article image'
+                    :custom='true'
+                    v-slot='{ src, isLoaded, imgAttrs }'
+                    preload
+                >
+                    <img
+                        v-if='isLoaded'
+                        v-bind='imgAttrs'
+                        :src='src'
+                        alt='article image'
+                    >
+                    
+                    <Skeleton
+                        v-else
+                        class='h-[250px] w-full rounded-lg'
+                    />
+                </NuxtImg>
             </CardDescription>
             
             <p class='my-4'>{{ title }}</p>
         </CardHeader>
         
-        <CardContent class='flex justify-between px-6 pb-6'>
-            <div class='flex flex-col'>
-                <span>{{ article_author }}</span>
-                <span>Source: {{ sourceData.NAME }}</span>
-            </div>
-            
+        <CardContent class='flex flex-col justify-between px-6 pb-6'>
+            <span>by {{ article_author }}</span>
+            <Badge class='rounded-xs py-1'>{{ sourceData.NAME }}</Badge>
             <span>{{ published_on }}</span>
         </CardContent>
         
@@ -28,6 +43,8 @@
 
 <script setup>
     import dayjs from 'dayjs';
+    import relativeTime from 'dayjs/plugin/relativeTime';
+    dayjs.extend(relativeTime, { rounding: Math.floor });
     
     import {
         Card,
@@ -36,6 +53,8 @@
         CardFooter,
         CardHeader,
     } from '@/components/ui/card';
+    import { Skeleton } from '~/components/ui/skeleton/index.js';
+    import { Badge } from '@/components/ui/badge';
     
     const props = defineProps({
         id: String,
@@ -57,7 +76,7 @@
         sourceData,
     } = toRefs(props);
     
-    const published_on = computed(() => publishedOn.value && dayjs.unix(publishedOn.value).format('MMMM D, YYYY'));
+    const published_on = computed(() => publishedOn.value && dayjs.unix(publishedOn.value).fromNow());
     const article_author = computed(() => {
         if(author.value.length === 0) return 'Unknown author';
         return author.value;
