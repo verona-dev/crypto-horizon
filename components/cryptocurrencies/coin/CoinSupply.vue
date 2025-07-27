@@ -17,6 +17,7 @@
             </DrawerHeader>
             
             <DrawerFooter class='mt-10'>
+                <!--  Livecoinwatch  -->
                 <CoinSupplyProgressBars :coin='coin' />
                 
                 <!--
