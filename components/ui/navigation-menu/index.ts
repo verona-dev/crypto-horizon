@@ -10,5 +10,5 @@ export { default as NavigationMenuTrigger } from './NavigationMenuTrigger.vue'
 export { default as NavigationMenuViewport } from './NavigationMenuViewport.vue'
 
 export const navigationMenuTriggerStyle = cva(
-  'group inline-flex w-max items-center justify-center rounded-md bg-background px-8 py-6 text-sm font-medium',
+  'group inline-flex w-max items-center justify-center rounded-md bg-color-background px-8 py-6 text-sm font-medium',
 )
