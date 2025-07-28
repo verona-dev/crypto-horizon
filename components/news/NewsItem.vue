@@ -13,18 +13,19 @@
                         <span>{{ source_name }}</span>
                     </HoverCardTrigger>
                     
-                    <HoverCardContent class='news-hover-card flex gap-6 p-10 w-[400px]'>
+                    <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-6 py-6 px-8 w-fit'>
                         <!--  Hover card image -->
                         <NuxtImg
                             :src='source_avatar'
                             alt='source avatar'
-                            width='125px'
-                            class='rounded-md'
+                            class='rounded-md m-auto'
+                            height='150px'
+                            width='150px'
                         />
                         
                         <!--  Hover card content -->
-                        <div class='flex flex-col justify-between gap-4'>
-                            <div class='flex flex-col gap-3'>
+                        <div class='flex flex-col justify-between '>
+                            <div class='flex flex-col gap-2'>
                                 <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
                                 <span v-if='source_score > 0'>Score: {{ source_score }}</span>
                                 <span v-if='source_launch_date'>Launched date: {{ source_launch_date }}</span>
@@ -149,6 +150,6 @@
     }
     
     [data-slot='hover-card-content'].news-hover-card {
-    
+
     }
 </style>
