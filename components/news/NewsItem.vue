@@ -1,10 +1,24 @@
 <template>
-    <Card class='news-item justify-between w-[450px] my-6'>
+    <Card class='news-item justify-between w-[450px] my-6 px-3 py-8 gap-4'>
         <CardHeader>
-            <CardDescription>
+            <CardDescription class='flex flex-col gap-6'>
+                <div class='flex items-center gap-3'>
+                    <!--  Avatar  -->
+                    <Avatar>
+                        <AvatarImage :src='source_avatar' alt='source url' />
+                        <AvatarFallback>Av</AvatarFallback>
+                    </Avatar>
+                    
+                    <!--  Source  -->
+                    <span>{{ source_name }}</span>
+                    <span>({{ source_score }})</span>
+                </div>
+                
+                <!--  Main image  -->
                 <NuxtImg
                     :src='imageUrl'
                     alt='article image'
+                    class='main-image'
                     :custom='true'
                     v-slot='{ src, isLoaded, imgAttrs }'
                     preload
@@ -21,23 +35,25 @@
                         class='h-[250px] w-full rounded-lg'
                     />
                 </NuxtImg>
+                
+                <!--  Title  -->
+                <p class='mb-6 text-foreground'>{{ title }}</p>
             </CardDescription>
-            
-            <p class='my-4'>{{ title }}</p>
         </CardHeader>
         
-        <CardContent class='flex flex-col justify-between px-6 pb-6'>
-            <span>by {{ article_author }}</span>
-            <Badge class='rounded-xs py-1'>{{ sourceData.NAME }}</Badge>
-            <span>{{ published_on }}</span>
-        </CardContent>
-        
-        <!--
-        <CardFooter class='flex justify-between px-6 pb-6'>
-            <p>{{ author }}</p>
-            <p>{{ publishedOn }}</p>
+        <CardFooter class='flex justify-between'>
+            <!--  Author  -->
+            <div class='flex flex-col justify-between'>
+                <span>by {{ article_author }}</span>
+                <!-- <Badge class='rounded-xs py-1'>{{ source_name }}</Badge> -->
+            </div>
+            
+            <!--  Publish date  -->
+            <div class='flex items-center gap-2'>
+                <NuxtIcon name='iconoir:calendar' size='20px' />
+                <span>{{ published_on }}</span>
+            </div>
         </CardFooter>
-        -->
     </Card>
 </template>
 
@@ -55,6 +71,7 @@
     } from '@/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Badge } from '@/components/ui/badge';
+    import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
     
     const props = defineProps({
         id: String,
@@ -63,7 +80,7 @@
         author: String,
         publishedOn: Number,
         imageUrl: String,
-        sourceData: Object,
+        source: Object,
     });
     
     const {
@@ -73,7 +90,7 @@
         author,
         publishedOn,
         imageUrl,
-        sourceData,
+        source,
     } = toRefs(props);
     
     const published_on = computed(() => publishedOn.value && dayjs.unix(publishedOn.value).fromNow());
@@ -81,11 +98,16 @@
         if(author.value.length === 0) return 'Unknown author';
         return author.value;
     });
+    const source_name = source.value?.NAME || 'Unknown source';
+    const source_avatar = source.value?.IMAGE_URL;
+    const source_score = source.value?.BENCHMARK_SCORE;
+    
+    console.log(JSON.parse(JSON.stringify(source.value)));
 </script>
 
 <style scoped>
     .news-item {
-        img {
+        img.main-image {
             border-radius: 6px;
             object-fit: cover;
             height: 250px;

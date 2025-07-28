@@ -10,7 +10,7 @@
                 :author='article.AUTHORS'
                 :published-on='article.PUBLISHED_ON'
                 :imageUrl='article.IMAGE_URL'
-                :source-data='article.SOURCE_DATA'
+                :source='article.SOURCE_DATA'
             />
         </div>
     </div>
