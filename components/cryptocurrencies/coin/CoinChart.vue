@@ -32,8 +32,10 @@
             </TabsList>
             
             <div class='chart-container'>
-                <div v-if='loading' class='spinner-container'>
-                    <MazSpinner class='spinner' />
+                <div v-if='loading' class='spinner-container flex flex-col gap-2'>
+                    <MazSpinner class='spinner' color='primary' size='3em' />
+                    <p class='mt-2'>Recalculating</p>
+                    <span class='text-muted-custom mb-6'>This might take a few seconds</span>
                 </div>
                 
                 <div class='max-w-[500px] md:max-w-[750px] lg:max-w-[900px] mx-auto'>
@@ -244,17 +246,18 @@
         position: relative;
         
         .spinner-container {
-            background-color: rgba(0, 0, 0, 0.75);
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
             border-radius: 12px;
             height: 400px;
             
-            position: absolute !important;
-            left: 0 !important;
-            right: 0 !important;
+            position: absolute;
+            left: 0;
+            right: 0;
             
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 </style>

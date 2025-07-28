@@ -89,11 +89,10 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             
             try {
                 const response = await useFetchCoindesk('news/v1/article/list', {
-                    limit: 10,
+                    limit: 20,
                 });
                 if(response && response.Data) {
                     this.news = response.Data;
-                    // console.log(this.news);
                 }
             } catch(error) {
                 console.log(error);
