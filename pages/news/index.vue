@@ -1,6 +1,6 @@
 <template>
     <div class='news max-w-[2000px] mx-auto'>
-        <div v-if='articles' class='flex flex-wrap xl:items-stretch justify-evenly gap-4 xl:px-32 mt-10'>
+        <div v-if='articles' class='flex flex-wrap xl:items-stretch justify-evenly gap-8 xl:gap-20 xl:px-32 mt-10'>
             <NewsItem
                 v-for='article in articles'
                 :key='article.GUID'

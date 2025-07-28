@@ -1,13 +1,28 @@
 <template>
-    <Card class='news-item justify-between w-[450px] my-6 px-3 py-8 gap-4'>
+    <Card class='news-item justify-between w-[450px] px-3 py-8 gap-4'>
         <CardHeader>
             <CardDescription class='flex flex-col gap-6'>
                 <div class='flex items-center gap-3'>
                     <!--  Avatar  -->
-                    <Avatar>
-                        <AvatarImage :src='source_avatar' alt='source url' />
-                        <AvatarFallback>Av</AvatarFallback>
-                    </Avatar>
+                    <HoverCard :openDelay='200'>
+                        <HoverCardTrigger>
+                            <Avatar>
+                                <AvatarImage :src='source_avatar' alt='source url' />
+                                <AvatarFallback>Av</AvatarFallback>
+                            </Avatar>
+                        </HoverCardTrigger>
+                        
+                        <HoverCardContent class='news-hover-card'>
+                            <Avatar>
+                                <AvatarImage :src='source_avatar' alt='source url' class='w-32' />
+                                <AvatarFallback>Av</AvatarFallback>
+                            </Avatar>
+                            
+                            <span>{{ source_name }}</span>
+                            
+                            <span>({{ source_score }})</span>
+                        </HoverCardContent>
+                    </HoverCard>
                     
                     <!--  Source  -->
                     <span>{{ source_name }}</span>
@@ -37,7 +52,7 @@
                 </NuxtImg>
                 
                 <!--  Title  -->
-                <p class='mb-6 text-foreground'>{{ title }}</p>
+                <p class='mb-10 text-foreground'>{{ title }}</p>
             </CardDescription>
         </CardHeader>
         
@@ -62,15 +77,10 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
-    import {
-        Card,
-        CardContent,
-        CardDescription,
-        CardFooter,
-        CardHeader,
-    } from '@/components/ui/card';
+    import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Badge } from '@/components/ui/badge';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
     import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
     
     const props = defineProps({
@@ -100,12 +110,13 @@
     });
     const source_name = source.value?.NAME || 'Unknown source';
     const source_avatar = source.value?.IMAGE_URL;
+    const source_url = source.value?.URL;
     const source_score = source.value?.BENCHMARK_SCORE;
     
     console.log(JSON.parse(JSON.stringify(source.value)));
 </script>
 
-<style scoped>
+<style>
     .news-item {
         img.main-image {
             border-radius: 6px;
@@ -113,5 +124,9 @@
             height: 250px;
             width: 100%;
         }
+    }
+    
+    [data-slot='hover-card-content'].news-hover-card {
+        background-color: red !important;
     }
 </style>
