@@ -244,7 +244,8 @@
         position: relative;
         
         .spinner-container {
-            background-color: rgba(0, 0, 0, 0.75);
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(2px);
             border-radius: 12px;
             height: 400px;
             
