@@ -13,7 +13,7 @@
                         <span>{{ source_name }}</span>
                     </HoverCardTrigger>
                     
-                    <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-6 py-6 px-8 w-fit'>
+                    <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-6 p-10 w-fit'>
                         <!--  Hover card image -->
                         <NuxtImg
                             :src='source_avatar'
@@ -28,11 +28,12 @@
                             <div class='flex flex-col gap-2'>
                                 <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
                                 <span v-if='source_score > 0'>Score: {{ source_score }}</span>
-                                <span v-if='source_launch_date'>Launched date: {{ source_launch_date }}</span>
+                                <span v-if='source_launch_date'>Launch date: {{ source_launch_date }}</span>
                                 <span v-if='source_lang'>Language: {{ source_lang }}</span>
                             </div>
                             
                             <NuxtLink
+                                v-if='source_url_label'
                                 :to='source_url_label'
                                 external
                                 target='_blank'
@@ -79,10 +80,15 @@
             </div>
             
             <!--  Publish date  -->
-            <div class='flex items-center gap-2'>
-                <NuxtIcon name='iconoir:calendar' size='20px' />
-                <span>{{ published_on }}</span>
-            </div>
+            <HoverCard :openDelay='200'>
+                <HoverCardTrigger class='flex items-center gap-2'>
+                    <NuxtIcon name='iconoir:calendar' size='20px' />
+                    <span>{{ published_date_from_now }}</span>
+                </HoverCardTrigger>
+                <HoverCardContent class='hover-card-content w-fit'>
+                    <span class='text-sm'>{{ published_date }}</span>
+                </HoverCardContent>
+            </HoverCard>
         </CardFooter>
     </Card>
 </template>
@@ -118,7 +124,8 @@
         source,
     } = toRefs(props);
     
-    const published_on = computed(() => publishedOn.value && dayjs.unix(publishedOn.value).fromNow());
+    const published_date = dayjs.unix(publishedOn.value).format('MMMM D, YYYY, h:mm A');
+    const published_date_from_now = computed(() => publishedOn.value && dayjs.unix(publishedOn.value).fromNow());
     const article_author = computed(() => {
         if(author.value.length === 0) return 'Unknown author';
         return author.value;
@@ -150,6 +157,6 @@
     }
     
     [data-slot='hover-card-content'].news-hover-card {
-
+    
     }
 </style>
