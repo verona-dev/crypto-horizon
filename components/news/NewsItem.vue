@@ -2,32 +2,40 @@
     <Card class='news-item justify-between w-[450px] px-3 py-8 gap-4'>
         <CardHeader>
             <CardDescription class='flex flex-col gap-6'>
-                <div class='flex items-center gap-3'>
-                    <!--  Avatar  -->
-                    <HoverCard :openDelay='200'>
-                        <HoverCardTrigger>
-                            <Avatar>
-                                <AvatarImage :src='source_avatar' alt='source url' />
-                                <AvatarFallback>Av</AvatarFallback>
-                            </Avatar>
-                        </HoverCardTrigger>
+                <!--  Header  -->
+                <HoverCard :openDelay='200'>
+                    <HoverCardTrigger class='flex items-center gap-3 cursor-pointer	'>
+                        <Avatar>
+                            <AvatarImage :src='source_avatar' alt='source url' />
+                            <AvatarFallback>Av</AvatarFallback>
+                        </Avatar>
                         
-                        <HoverCardContent class='news-hover-card'>
-                            <Avatar>
-                                <AvatarImage :src='source_avatar' alt='source url' class='w-32' />
-                                <AvatarFallback>Av</AvatarFallback>
-                            </Avatar>
-                            
-                            <span>{{ source_name }}</span>
-                            
-                            <span>({{ source_score }})</span>
-                        </HoverCardContent>
-                    </HoverCard>
+                        <span>{{ source_name }}</span>
+                    </HoverCardTrigger>
                     
-                    <!--  Source  -->
-                    <span>{{ source_name }}</span>
-                    <span>({{ source_score }})</span>
-                </div>
+                    <!--  Hover card  -->
+                    <HoverCardContent class='news-hover-card flex flex-col'>
+                        <NuxtImg
+                            :src='source_avatar'
+                            alt='source avatar'
+                            width='150px'
+                        />
+                        
+                        <span>{{ source_name }}</span>
+                        <span>Score {{ source_score }}</span>
+                        <span>Created on {{ source_created_on }}</span>
+                        <span>Language {{ source_lang }}</span>
+                        
+                        <NuxtLink
+                            :to='source_url'
+                            external
+                            target='_blank'
+                            class='self-start underline'
+                        >
+                            <span>Website</span>
+                        </NuxtLink>
+                    </HoverCardContent>
+                </HoverCard>
                 
                 <!--  Main image  -->
                 <NuxtImg
@@ -112,8 +120,10 @@
     const source_avatar = source.value?.IMAGE_URL;
     const source_url = source.value?.URL;
     const source_score = source.value?.BENCHMARK_SCORE;
+    const source_created_on = dayjs.unix(source.value?.CREATED_ON).format('MMMM D, YYYY');
+    const source_lang = source.value?.LANG;
     
-    console.log(JSON.parse(JSON.stringify(source.value)));
+    console.log(JSON.parse(JSON.stringify(source.value.LAUNCH_DATE)));
 </script>
 
 <style>
@@ -127,6 +137,6 @@
     }
     
     [data-slot='hover-card-content'].news-hover-card {
-        background-color: red !important;
+    
     }
 </style>
