@@ -1,5 +1,5 @@
 <template>
-    <Card class='news-item justify-between w-[450px] px-3 py-8 gap-4'>
+    <Card class='news-item bg-transparent shadow-2xl rounded-md	border-card-border justify-between w-[450px] px-3 py-8 gap-4'>
         <CardHeader>
             <CardDescription class='flex flex-col gap-6'>
                 <!--  Header  -->
@@ -13,27 +13,33 @@
                         <span>{{ source_name }}</span>
                     </HoverCardTrigger>
                     
-                    <!--  Hover card  -->
-                    <HoverCardContent class='news-hover-card flex flex-col'>
+                    <HoverCardContent class='news-hover-card flex gap-6 p-10 w-[400px]'>
+                        <!--  Hover card image -->
                         <NuxtImg
                             :src='source_avatar'
                             alt='source avatar'
-                            width='150px'
+                            width='125px'
+                            class='rounded-md'
                         />
                         
-                        <span>{{ source_name }}</span>
-                        <span>Score {{ source_score }}</span>
-                        <span>Created on {{ source_created_on }}</span>
-                        <span>Language {{ source_lang }}</span>
-                        
-                        <NuxtLink
-                            :to='source_url'
-                            external
-                            target='_blank'
-                            class='self-start underline'
-                        >
-                            <span>Website</span>
-                        </NuxtLink>
+                        <!--  Hover card content -->
+                        <div class='flex flex-col justify-between gap-4'>
+                            <div class='flex flex-col gap-3'>
+                                <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
+                                <span v-if='source_score > 0'>Score: {{ source_score }}</span>
+                                <span v-if='source_launch_date'>Launched date: {{ source_launch_date }}</span>
+                                <span v-if='source_lang'>Language: {{ source_lang }}</span>
+                            </div>
+                            
+                            <NuxtLink
+                                :to='source_url_label'
+                                external
+                                target='_blank'
+                                class='self-start hover:underline'
+                            >
+                                <span>Website</span>
+                            </NuxtLink>
+                        </div>
                     </HoverCardContent>
                 </HoverCard>
                 
@@ -118,12 +124,18 @@
     });
     const source_name = source.value?.NAME || 'Unknown source';
     const source_avatar = source.value?.IMAGE_URL;
-    const source_url = source.value?.URL;
     const source_score = source.value?.BENCHMARK_SCORE;
-    const source_created_on = dayjs.unix(source.value?.CREATED_ON).format('MMMM D, YYYY');
+    const source_launch_date = source.value?.LAUNCH_DATE && dayjs.unix(source.value?.LAUNCH_DATE).format('MMMM D, YYYY');
     const source_lang = source.value?.LANG;
     
-    console.log(JSON.parse(JSON.stringify(source.value.LAUNCH_DATE)));
+    const source_url = computed(() => source.value?.URL);
+    const source_url_label = computed(() => {
+        let url = new URL(source_url.value);
+        let protocol = url.protocol;
+        let host = url.host;
+        console.log(`${protocol}//${host}`);
+        return `${protocol}//${host}`;
+    });
 </script>
 
 <style>
