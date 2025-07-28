@@ -4,7 +4,7 @@
             <CardDescription class='flex flex-col gap-6'>
                 <!--  Header  -->
                 <HoverCard :openDelay='200'>
-                    <HoverCardTrigger class='flex items-center gap-3 cursor-pointer	'>
+                    <HoverCardTrigger class='flex items-center gap-3 cursor-pointer w-fit'>
                         <Avatar>
                             <AvatarImage :src='source_avatar' alt='source url' />
                             <AvatarFallback>Av</AvatarFallback>
@@ -46,26 +46,28 @@
                 </HoverCard>
                 
                 <!--  Main image  -->
-                <NuxtImg
-                    :src='imageUrl'
-                    alt='article image'
-                    class='main-image'
-                    :custom='true'
-                    v-slot='{ src, isLoaded, imgAttrs }'
-                    preload
-                >
-                    <img
-                        v-if='isLoaded'
-                        v-bind='imgAttrs'
-                        :src='src'
+                <NuxtLink to='/news'>
+                    <NuxtImg
+                        :src='imageUrl'
                         alt='article image'
+                        class='main-image'
+                        :custom='true'
+                        v-slot='{ src, isLoaded, imgAttrs }'
+                        preload
                     >
-                    
-                    <Skeleton
-                        v-else
-                        class='h-[250px] w-full rounded-lg'
-                    />
-                </NuxtImg>
+                        <img
+                            v-if='isLoaded'
+                            v-bind='imgAttrs'
+                            :src='src'
+                            alt='article image'
+                        >
+                        
+                        <Skeleton
+                            v-else
+                            class='h-[250px] w-full rounded-lg'
+                        />
+                    </NuxtImg>
+                </NuxtLink>
                 
                 <!--  Title  -->
                 <p class='mb-10 text-foreground'>{{ title }}</p>
