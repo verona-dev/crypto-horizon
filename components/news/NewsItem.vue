@@ -24,7 +24,7 @@
                         />
                         
                         <!--  Hover card content -->
-                        <div class='flex flex-col justify-between '>
+                        <div class='flex flex-col justify-between'>
                             <div class='flex flex-col gap-2'>
                                 <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
                                 <span v-if='source_score > 0'>Score: {{ source_score }}</span>
@@ -105,7 +105,7 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
-    import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
+    import { Card, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Badge } from '@/components/ui/badge';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
@@ -163,7 +163,5 @@
         }
     }
     
-    [data-slot='hover-card-content'].news-hover-card {
-        
-    }
+    /*[data-slot='hover-card-content'].news-hover-card {}*/
 </style>
