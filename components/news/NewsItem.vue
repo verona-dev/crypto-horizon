@@ -51,7 +51,7 @@
                 </HoverCard>
                 
                 <!--  Main image  -->
-                <NuxtLink to='/news'>
+                <NuxtLink :to="`/news/source_key=${source_key}&guid=${guid}`">
                     <NuxtImg
                         :src='imageUrl'
                         alt='article image'
@@ -112,7 +112,7 @@
     import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
     
     const props = defineProps({
-        id: String,
+        guid: String,
         url: String,
         title: String,
         author: String,
@@ -122,7 +122,7 @@
     });
     
     const {
-        id,
+        guid,
         url,
         title,
         author,
@@ -142,13 +142,16 @@
     const source_score = source.value?.BENCHMARK_SCORE;
     const source_launch_date = source.value?.LAUNCH_DATE && dayjs.unix(source.value?.LAUNCH_DATE).format('MMMM D, YYYY');
     const source_lang = source.value?.LANG;
-    
+    const source_key = source.value?.SOURCE_KEY;
     const source_url = computed(() => source.value?.URL);
+    
+    console.log(source_key);
+    
     const source_url_label = computed(() => {
         let url = new URL(source_url.value);
         let protocol = url.protocol;
         let host = url.host;
-        console.log(`${protocol}//${host}`);
+        
         return `${protocol}//${host}`;
     });
 </script>

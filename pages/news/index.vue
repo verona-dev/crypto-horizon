@@ -4,7 +4,7 @@
             <NewsItem
                 v-for='article in articles'
                 :key='article.GUID'
-                :id='article.GUID'
+                :guid='article.GUID'
                 :url='article.URL'
                 :title='article.TITLE'
                 :author='article.AUTHORS'
