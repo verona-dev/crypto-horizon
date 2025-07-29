@@ -29,7 +29,12 @@
                                 <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
                                 <span v-if='source_score > 0'>Score: {{ source_score }}</span>
                                 <span v-if='source_launch_date'>Launch date: {{ source_launch_date }}</span>
-                                <span v-if='source_lang'>Language: {{ source_lang }}</span>
+                                
+                                <div v-if='source_lang' class='flex items-center gap-2'>
+                                    <span>Language:</span>
+                                    <span>{{ source_lang }}</span>
+                                    <NuxtIcon :name="`circle-flags:lang-${source_lang.toLowerCase()}`" size='20px' class='self-center' />
+                                </div>
                             </div>
                             
                             <NuxtLink
@@ -159,6 +164,6 @@
     }
     
     [data-slot='hover-card-content'].news-hover-card {
-    
+        
     }
 </style>
