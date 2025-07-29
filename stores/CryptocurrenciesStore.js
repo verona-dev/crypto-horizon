@@ -91,6 +91,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 const response = await useFetchCoindesk('news/v1/article/list', {
                     limit: 20,
                 });
+                
                 if(response && response.Data) {
                     this.news = response.Data;
                 }
@@ -100,6 +101,22 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             finally {
                 this.loading = false;
             }
+        },
+        
+        async getCoindeskNewsSingle(source_key, guid) {
+          this.loading = true;
+          
+          try {
+              const response = await useFetchCoindesk('news/v1/article/get', {
+              
+              });
+              
+              if(response) {
+                  console.log(response);
+              }
+          } catch(error) {
+              console.error(error);
+          }
         },
         
         async getCoinLore(route, options) {
