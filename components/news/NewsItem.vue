@@ -24,12 +24,17 @@
                         />
                         
                         <!--  Hover card content -->
-                        <div class='flex flex-col justify-between '>
+                        <div class='flex flex-col justify-between'>
                             <div class='flex flex-col gap-2'>
                                 <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
                                 <span v-if='source_score > 0'>Score: {{ source_score }}</span>
                                 <span v-if='source_launch_date'>Launch date: {{ source_launch_date }}</span>
-                                <span v-if='source_lang'>Language: {{ source_lang }}</span>
+                                
+                                <div v-if='source_lang' class='flex items-center gap-2'>
+                                    <span>Language:</span>
+                                    <span>{{ source_lang }}</span>
+                                    <NuxtIcon :name="`circle-flags:lang-${source_lang.toLowerCase()}`" size='20px' class='self-center' />
+                                </div>
                             </div>
                             
                             <NuxtLink
@@ -46,7 +51,7 @@
                 </HoverCard>
                 
                 <!--  Main image  -->
-                <NuxtLink to='/news'>
+                <NuxtLink :to="`/news/source_key=${source_key}&guid=${guid}`">
                     <NuxtImg
                         :src='imageUrl'
                         alt='article image'
@@ -100,14 +105,14 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
-    import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
+    import { Card, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Badge } from '@/components/ui/badge';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
     import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
     
     const props = defineProps({
-        id: String,
+        guid: String,
         url: String,
         title: String,
         author: String,
@@ -117,7 +122,7 @@
     });
     
     const {
-        id,
+        guid,
         url,
         title,
         author,
@@ -137,13 +142,16 @@
     const source_score = source.value?.BENCHMARK_SCORE;
     const source_launch_date = source.value?.LAUNCH_DATE && dayjs.unix(source.value?.LAUNCH_DATE).format('MMMM D, YYYY');
     const source_lang = source.value?.LANG;
-    
+    const source_key = source.value?.SOURCE_KEY;
     const source_url = computed(() => source.value?.URL);
+    
+    console.log(source_key);
+    
     const source_url_label = computed(() => {
         let url = new URL(source_url.value);
         let protocol = url.protocol;
         let host = url.host;
-        console.log(`${protocol}//${host}`);
+        
         return `${protocol}//${host}`;
     });
 </script>
@@ -158,7 +166,5 @@
         }
     }
     
-    [data-slot='hover-card-content'].news-hover-card {
-    
-    }
+    /*[data-slot='hover-card-content'].news-hover-card {}*/
 </style>
