@@ -4,7 +4,7 @@
             <div class='flex flex-col gap-6'>
                 <!--  Main image  -->
                 <NuxtImg
-                    :src='imageUrl'
+                    :src='image_url'
                     alt='article image'
                     class='main-image rounded-md rounded-b-none'
                     :custom='true'
@@ -98,7 +98,7 @@
         <CardFooter class='flex justify-center pb-6'>
             <!--  Read more  -->
             <Button as-child variant='link' class='uppercase hover:text-foreground'>
-                <NuxtLink :to="`/news/source_key=${source_key}&guid=${guid}`">
+                <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
                     Read More
                 </NuxtLink>
             </Button>
@@ -121,40 +121,27 @@
     import { Button } from '@/components/ui/button';
     
     const props = defineProps({
-        guid: String,
-        url: String,
-        title: String,
-        author: String,
-        publishedOn: Number,
-        imageUrl: String,
-        source: Object,
+        article: Object,
     });
     
-    const {
-        guid,
-        url,
-        title,
-        author,
-        publishedOn,
-        imageUrl,
-        source,
-    } = toRefs(props);
+    const { article } = toRefs(props);
     
-    const published_date = dayjs.unix(publishedOn.value).format('MMMM D, YYYY, h:mm A');
-    const published_date_from_now = computed(() => publishedOn.value && dayjs.unix(publishedOn.value).fromNow());
+    const guid = article.value?.GUID;
+    const title = article.value?.TITLE;
+    const image_url = article.value?.IMAGE_URL;
+    const published_date = dayjs.unix(article.value?.PUBLISHED_ON).format('MMMM D, YYYY, h:mm A');
+    const published_date_from_now = computed(() => article.value?.PUBLISHED_ON && dayjs.unix(article.value?.PUBLISHED_ON).fromNow());
     const article_author = computed(() => {
-        if(author.value.length === 0) return 'Unknown author';
-        return author.value;
+        if(article.value?.AUTHORS.length === 0) return 'Unknown author';
+        return article.value?.AUTHORS;
     });
-    const source_name = source.value?.NAME || 'Unknown source';
-    const source_avatar = source.value?.IMAGE_URL;
-    const source_score = source.value?.BENCHMARK_SCORE;
-    const source_launch_date = source.value?.LAUNCH_DATE && dayjs.unix(source.value?.LAUNCH_DATE).format('MMMM D, YYYY');
-    const source_lang = source.value?.LANG;
-    const source_key = source.value?.SOURCE_KEY;
-    const source_url = computed(() => source.value?.URL);
-    
-    console.log(source_key);
+    const source_name = article.value?.SOURCE_DATA.NAME || 'Unknown source';
+    const source_avatar = article.value?.SOURCE_DATA.IMAGE_URL;
+    const source_score = article.value?.SOURCE_DATA.BENCHMARK_SCORE;
+    const source_launch_date = article.value?.SOURCE_DATA.LAUNCH_DATE && dayjs.unix(article.value?.SOURCE_DATA.LAUNCH_DATE).format('MMMM D, YYYY');
+    const source_lang = article.value?.SOURCE_DATA.LANG;
+    const source_key = article.value?.SOURCE_DATA.SOURCE_KEY;
+    const source_url = computed(() => article.value?.SOURCE_DATA.URL);
     
     const source_url_label = computed(() => {
         let url = new URL(source_url.value);

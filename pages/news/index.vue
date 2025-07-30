@@ -5,14 +5,8 @@
         <div v-if='articles' class='flex flex-wrap justify-center gap-12'>
             <NewsCard
                 v-for='article in articles'
-                :key='article.GUID'
-                :guid='article.GUID'
-                :url='article.URL'
-                :title='article.TITLE'
-                :author='article.AUTHORS'
-                :published-on='article.PUBLISHED_ON'
-                :imageUrl='article.IMAGE_URL'
-                :source='article.SOURCE_DATA'
+                :key='article.ID'
+                :article='article'
             />
         </div>
     </div>
@@ -28,6 +22,7 @@
     const { news } = storeToRefs(CryptocurrenciesStore);
     const articles = computed(() => news.value);
     const { getCoindeskNews } = CryptocurrenciesStore;
+    console.log(articles.value);
     
     onMounted(async() => {
         await getCoindeskNews();
