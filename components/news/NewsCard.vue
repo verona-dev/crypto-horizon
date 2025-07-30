@@ -1,5 +1,5 @@
 <template>
-    <Card class='news-item bg-transparent shadow-2xl justify-between w-[400px] gap-4 py-0'>
+    <Card class='news-item rounded-md bg-transparent shadow-2xl justify-between w-[400px] py-0 gap-8'>
         <CardHeader class='p-0'>
             <div class='flex flex-col gap-4'>
                 <!--  Main image  -->
@@ -7,7 +7,7 @@
                     <NuxtImg
                         :src='imageUrl'
                         alt='article image'
-                        class='main-image'
+                        class='main-image rounded-md rounded-b-none'
                         :custom='true'
                         v-slot='{ src, isLoaded, imgAttrs }'
                         preload
@@ -26,73 +26,75 @@
                     </NuxtImg>
                 </NuxtLink>
                 
-                <!--  Publish date  -->
-                <HoverCard :openDelay='200'>
-                    <HoverCardTrigger class='flex items-center gap-2 px-8'>
-                        <NuxtIcon name='iconoir:calendar' size='20px' />
-                        <span>{{ published_date_from_now }}</span>
-                    </HoverCardTrigger>
-                    <HoverCardContent class='hover-card-content w-fit'>
-                        <span class='text-sm'>{{ published_date }}</span>
-                    </HoverCardContent>
-                </HoverCard>
+                <div class='flex px-8'>
+                    <!--  Author  -->
+                    <HoverCard :openDelay='200'>
+                        <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
+                            <Avatar>
+                                <AvatarImage :src='source_avatar' alt='source url' />
+                                <AvatarFallback>Av</AvatarFallback>
+                            </Avatar>
+                            
+                            <div class='flex flex-col items-start'>
+                                <span class='font-bold'>{{ article_author }}</span>
+                                <span>{{ source_name }}</span>
+                            </div>
+                        </HoverCardTrigger>
+                        
+                        <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-6 p-10 w-fit'>
+                            <!--  Hover card image -->
+                            <NuxtImg
+                                :src='source_avatar'
+                                alt='source avatar'
+                                class='rounded-md m-auto'
+                                height='150px'
+                                width='150px'
+                            />
+                            
+                            <!--  Hover card content -->
+                            <div class='flex flex-col justify-between'>
+                                <div class='flex flex-col gap-2'>
+                                    <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
+                                    <span v-if='source_score > 0'>Score: {{ source_score }}</span>
+                                    <span v-if='source_launch_date'>Launch date: {{ source_launch_date }}</span>
+                                    
+                                    <div v-if='source_lang' class='flex items-center gap-2'>
+                                        <span>Language:</span>
+                                        <span>{{ source_lang }}</span>
+                                        <NuxtIcon :name="`circle-flags:lang-${source_lang.toLowerCase()}`" size='20px' class='self-center' />
+                                    </div>
+                                </div>
+                                
+                                <NuxtLink
+                                    v-if='source_url_label'
+                                    :to='source_url_label'
+                                    external
+                                    target='_blank'
+                                    class='self-start hover:underline'
+                                >
+                                    <span>Website</span>
+                                </NuxtLink>
+                            </div>
+                        </HoverCardContent>
+                    </HoverCard>
+                </div>
             </div>
         </CardHeader>
         
-        <!--  Title  -->
-        <CardContent class='px-8'>
+        <CardContent class='flex justify-between px-8'>
+            <!--  Title  -->
             <CardDescription class='text-foreground'>{{ title }}</CardDescription>
         </CardContent>
         
-        <CardFooter class='flex justify-between border-t-2 py-4 px-8'>
-            <!--  Author  -->
+        <CardFooter class='flex justify-between py-4 px-8 border-t-2'>
+            <!--  Publish date  -->
             <HoverCard :openDelay='200'>
-                <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
-                    <Avatar>
-                        <AvatarImage :src='source_avatar' alt='source url' />
-                        <AvatarFallback>Av</AvatarFallback>
-                    </Avatar>
-                    
-                    <div class='flex flex-col items-start'>
-                        <span class='font-bold'>{{ article_author }}</span>
-                        <span>{{ source_name }}</span>
-                    </div>
+                <HoverCardTrigger class='flex items-center gap-2'>
+                    <NuxtIcon name='iconoir:calendar' size='20px' />
+                    <span>{{ published_date_from_now }}</span>
                 </HoverCardTrigger>
-                
-                <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-6 p-10 w-fit'>
-                    <!--  Hover card image -->
-                    <NuxtImg
-                        :src='source_avatar'
-                        alt='source avatar'
-                        class='rounded-md m-auto'
-                        height='150px'
-                        width='150px'
-                    />
-                    
-                    <!--  Hover card content -->
-                    <div class='flex flex-col justify-between'>
-                        <div class='flex flex-col gap-2'>
-                            <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
-                            <span v-if='source_score > 0'>Score: {{ source_score }}</span>
-                            <span v-if='source_launch_date'>Launch date: {{ source_launch_date }}</span>
-                            
-                            <div v-if='source_lang' class='flex items-center gap-2'>
-                                <span>Language:</span>
-                                <span>{{ source_lang }}</span>
-                                <NuxtIcon :name="`circle-flags:lang-${source_lang.toLowerCase()}`" size='20px' class='self-center' />
-                            </div>
-                        </div>
-                        
-                        <NuxtLink
-                            v-if='source_url_label'
-                            :to='source_url_label'
-                            external
-                            target='_blank'
-                            class='self-start hover:underline'
-                        >
-                            <span>Website</span>
-                        </NuxtLink>
-                    </div>
+                <HoverCardContent class='hover-card-content w-fit'>
+                    <span class='text-sm'>{{ published_date }}</span>
                 </HoverCardContent>
             </HoverCard>
             

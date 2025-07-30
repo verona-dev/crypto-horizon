@@ -1,7 +1,7 @@
 <template>
     <div class='news max-w-[2000px] mx-auto'>
         <h6>Latest News</h6>
-        <div v-if='articles' class='flex flex-wrap justify-center gap-8 mt-10'>
+        <div v-if='articles' class='flex flex-wrap justify-center gap-16 mt-10'>
             <NewsCard
                 v-for='article in articles'
                 :key='article.GUID'
