@@ -112,8 +112,8 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                   guid,
               });
               
-              if(response) {
-                  console.log(response);
+              if(response && response.Data) {
+                  return response.Data;
               }
           } catch(error) {
               console.error(error);
