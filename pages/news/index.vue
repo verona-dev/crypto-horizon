@@ -1,6 +1,6 @@
 <template>
     <div class='news max-w-[2000px] mx-auto flex flex-col'>
-        <h1 class='my-28 self-center'>Latest News</h1>
+        <h1 class='my-28 self-center'>Latest Crypto News</h1>
         
         <div v-if='articles' class='flex flex-wrap justify-center gap-12'>
             <NewsCard
