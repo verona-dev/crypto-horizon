@@ -22,7 +22,6 @@
     const { news } = storeToRefs(CryptocurrenciesStore);
     const articles = computed(() => news.value);
     const { getCoindeskNews } = CryptocurrenciesStore;
-    console.log(articles.value);
     
     onMounted(async() => {
         await getCoindeskNews();

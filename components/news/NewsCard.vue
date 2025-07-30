@@ -20,11 +20,11 @@
                     
                     <Skeleton
                         v-else
-                        class='h-[250px] w-full'
+                        class='h-[300px] w-full'
                     />
                 </NuxtImg>
                 
-                <div class='flex px-6 justify-between items-center'>
+                <div class='flex px-6 justify-between items-center '>
                     <!--  Author  -->
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
@@ -88,6 +88,17 @@
                     </HoverCard>
                 </div>
             </div>
+            
+            <!--  Categories / Tags  -->
+            <div class='categories-container px-6 mt-2'>
+                <Badge
+                    v-for='category in categories.slice(0, 5)'
+                    class='mr-2 mb-2 border-muted-custom py-2 px-2'
+                    variant='outline'
+                >
+                    {{ category.NAME }}
+                </Badge>
+            </div>
         </CardHeader>
         
         <CardContent>
@@ -95,15 +106,13 @@
             <CardDescription class='text-foreground text-md font-bold'>{{ title }}</CardDescription>
         </CardContent>
         
-        <CardFooter class='flex justify-center pb-6'>
+        <CardFooter class='flex justify-center my-10'>
             <!--  Read more  -->
             <Button as-child variant='link' class='uppercase hover:text-foreground'>
                 <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
                     Read More
                 </NuxtLink>
             </Button>
-            
-            <!-- <Badge class='rounded-xs py-1'>{{ source_name }}</Badge> -->
         </CardFooter>
     </Card>
 </template>
@@ -135,6 +144,9 @@
         if(article.value?.AUTHORS.length === 0) return 'Unknown author';
         return article.value?.AUTHORS;
     });
+    const categories = article.value?.CATEGORY_DATA;
+    console.log(JSON.parse(JSON.stringify(categories)));
+    
     const source_name = article.value?.SOURCE_DATA.NAME || 'Unknown source';
     const source_avatar = article.value?.SOURCE_DATA.IMAGE_URL;
     const source_score = article.value?.SOURCE_DATA.BENCHMARK_SCORE;
@@ -158,6 +170,12 @@
             object-fit: cover;
             height: 300px;
             width: 100%;
+        }
+        
+        .categories-container {
+            //position: absolute;
+            //top: 0;
+            //right: 0;
         }
     }
     
