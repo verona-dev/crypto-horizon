@@ -31,7 +31,3 @@
         await getCoindeskNews();
     });
 </script>
-
-<style scoped>
-
-</style>
