@@ -1,30 +1,28 @@
 <template>
-    <Card class='news-item rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[400px] py-0'>
-        <CardHeader class='p-0 border-b-2 gap-4'>
+    <Card class='news-item rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[450px] py-0 gap-8'>
+        <CardHeader class='p-0'>
             <div class='flex flex-col gap-6'>
                 <!--  Main image  -->
-                <NuxtLink :to="`/news/source_key=${source_key}&guid=${guid}`">
-                    <NuxtImg
-                        :src='imageUrl'
+                <NuxtImg
+                    :src='imageUrl'
+                    alt='article image'
+                    class='main-image rounded-md rounded-b-none'
+                    :custom='true'
+                    v-slot='{ src, isLoaded, imgAttrs }'
+                    preload
+                >
+                    <img
+                        v-if='isLoaded'
+                        v-bind='imgAttrs'
+                        :src='src'
                         alt='article image'
-                        class='main-image rounded-md rounded-b-none'
-                        :custom='true'
-                        v-slot='{ src, isLoaded, imgAttrs }'
-                        preload
                     >
-                        <img
-                            v-if='isLoaded'
-                            v-bind='imgAttrs'
-                            :src='src'
-                            alt='article image'
-                        >
-                        
-                        <Skeleton
-                            v-else
-                            class='h-[250px] w-full'
-                        />
-                    </NuxtImg>
-                </NuxtLink>
+                    
+                    <Skeleton
+                        v-else
+                        class='h-[250px] w-full'
+                    />
+                </NuxtImg>
                 
                 <div class='flex px-6 justify-between items-center'>
                     <!--  Author  -->
@@ -92,20 +90,20 @@
             </div>
         </CardHeader>
         
-        <CardContent class='px-8 pb-4'>
+        <CardContent>
             <!--  Article Title  -->
             <CardDescription class='text-foreground text-md font-bold'>{{ title }}</CardDescription>
         </CardContent>
         
-        <CardFooter class='flex justify-center pb-4 px-8'>
+        <CardFooter class='flex justify-center pb-6'>
             <!--  Read more  -->
-                <Button as-child variant='link' class='uppercase hover:text-foreground'>
-                    <a href='/'>
-                        Read More
-                    </a>
-                </Button>
-
-                <!-- <Badge class='rounded-xs py-1'>{{ source_name }}</Badge> -->
+            <Button as-child variant='link' class='uppercase hover:text-foreground'>
+                <NuxtLink :to="`/news/source_key=${source_key}&guid=${guid}`">
+                    Read More
+                </NuxtLink>
+            </Button>
+            
+            <!-- <Badge class='rounded-xs py-1'>{{ source_name }}</Badge> -->
         </CardFooter>
     </Card>
 </template>
@@ -171,7 +169,7 @@
     .news-item {
         img.main-image {
             object-fit: cover;
-            height: 250px;
+            height: 300px;
             width: 100%;
         }
     }
