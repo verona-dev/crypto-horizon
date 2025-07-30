@@ -10,7 +10,6 @@
     const route = useRoute();
     
     // CryptocurrenciesStore
-    import {storeToRefs} from 'pinia';
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
