@@ -10,22 +10,18 @@
     const route = useRoute();
     
     // CryptocurrenciesStore
-    import {storeToRefs} from 'pinia';
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     const { getCoindeskNewsSingle } = CryptocurrenciesStore;
+    const single_news = ref({});
     
-    onMounted(() => {
-        console.log(route.params);
-        const source_key = route.params.source_key;
-        const guid = route.params.guid;
-        console.log(source_key)
-        console.log(guid);
-        getCoindeskNewsSingle(source_key, guid);
+    onMounted(async() => {
+        const { source_key, guid } = route.query;
+        const response = await getCoindeskNewsSingle(source_key, guid);
+        if(response) {
+            single_news.value = response;
+            console.log(single_news.value);
+        }
     });
 </script>
-
-<style scoped>
-
-</style>

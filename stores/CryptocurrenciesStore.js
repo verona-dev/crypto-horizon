@@ -108,11 +108,12 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
           
           try {
               const response = await useFetchCoindesk('news/v1/article/get', {
-              
+                  source_key,
+                  guid,
               });
               
-              if(response) {
-                  console.log(response);
+              if(response && response.Data) {
+                  return response.Data;
               }
           } catch(error) {
               console.error(error);

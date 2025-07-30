@@ -43,7 +43,7 @@
             border-radius: 6px;
             height: 450px;
             object-fit: cover;
-            object-position: center top	;
+            object-position: center top;
             transition: all 150ms ease-in-out;
             width: 300px;
         }
