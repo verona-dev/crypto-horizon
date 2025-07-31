@@ -153,11 +153,8 @@
     const article_author = computed(() => article.value?.AUTHORS);
     const article_author_label = computed(() => {
         if(article_author.value?.length === 0) return 'Unknown author';
-        console.log(source_name.value);
-        // if(source_name.value === 'CoinTelegraph') {
-        //     return source_name.value.replace('CoinTelegraph', '');
-        // }
-        return article.value?.AUTHORS;
+        if(source_name === 'CoinTelegraph') return article_author.value.replace('Cointelegraph by', '');
+        return article_author.value;
     });
     const categories = article.value?.CATEGORY_DATA;
     
