@@ -119,7 +119,7 @@
                     </div>
                 </CardHeader>
                 
-                <CardContent>
+                <CardContent v-if='body'>
                     {{ body }}
                 </CardContent>
                 
@@ -127,6 +127,22 @@
                     Footer
                 </CardFooter>
             </Card>
+            
+            <div
+                v-else
+                class='flex flex-col gap-8'
+            >
+                <h4>Sorry, the article is not available.</h4>
+                <Button
+                    as-child
+                    variant='link'
+                >
+                    <NuxtLink to='/news'>
+                        Go back
+                    </NuxtLink>
+                    
+                </Button>
+            </div>
         </div>
     </div>
 
@@ -166,10 +182,10 @@
         if(article.value?.AUTHORS.length === 0) return 'Unknown author';
         return article.value?.AUTHORS;
     });
-    const categories = article.value?.CATEGORY_DATA;
+    const categories = computed(() => article.value?.CATEGORY_DATA);
     
     const source_name = article.value?.SOURCE_DATA?.NAME || 'Unknown source';
-    const source_avatar = article.value?.SOURCE_DATA?.IMAGE_URL;
+    const source_avatar = computed(() => article.value?.SOURCE_DATA?.IMAGE_URL);
     const source_score = article.value?.SOURCE_DATA?.BENCHMARK_SCORE;
     const source_launch_date = article.value?.SOURCE_DATA?.LAUNCH_DATE && dayjs.unix(article.value?.SOURCE_DATA.LAUNCH_DATE).format('MMMM D, YYYY');
     const source_lang = article.value?.SOURCE_DATA?.LANG;
@@ -183,7 +199,10 @@
         return `${protocol}//${host}`;
     });
     
-    const body = article.value?.BODY;
+    const body = computed(() => article.value?.BODY);
+    const sentiment = article.value?.SENTIMENT;
+    const upvotes = article.value?.UPVOTES;
+    const downvotes = article.value?.DOWNVOTES;
     
     onMounted(async() => {
         const { source_key, guid } = route.query;

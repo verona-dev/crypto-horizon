@@ -94,6 +94,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 });
                 
                 if(response && response.Data) {
+                    this.news = {};
                     this.news = response.Data;
                 }
             } catch(error) {
