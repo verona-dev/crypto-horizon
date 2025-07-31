@@ -12,11 +12,12 @@
             <Card v-if='article && article.ID' class='bg-background gap-20 w-[1000px] mx-auto'>
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-10'>
-                    <!--  Article Title  -->
+                    <!--  Title  -->
                     <CardTitle class=''>
                             {{ title }}
                     </CardTitle>
                     
+                    <!--  Subtitle  -->
                     <CardDescription>
                         {{ subtitle }}
                     </CardDescription>
@@ -55,7 +56,7 @@
                     </div>
                     
                     <!--  Author + Source  -->
-                    <div class='flex mt-2 px-6 justify-between items-center '>
+                    <div class='flex mt-2 px-6 justify-between items-center gap-6'>
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
                                 <Avatar>
@@ -173,10 +174,10 @@
     const { article, loading } = storeToRefs(CryptocurrenciesStore);
     const { getCoindeskNewsSingle } = CryptocurrenciesStore;
     
-    const title = article.value?.TITLE;
-    const subtitle = article.value?.SUBTITLE;
+    const title = computed(() => article.value?.TITLE);
+    const subtitle = computed(() => article.value?.SUBTITLE);
     const image_url = computed(() => article.value?.IMAGE_URL);
-    const published_date = dayjs.unix(article.value?.PUBLISHED_ON).format('MMMM D, YYYY, h:mm A');
+    const published_date = computed(() => dayjs.unix(article.value?.PUBLISHED_ON).format('MMMM D, YYYY, h:mm A'));
     const published_date_from_now = computed(() => article.value?.PUBLISHED_ON && dayjs.unix(article.value?.PUBLISHED_ON).fromNow());
     const article_author = computed(() => {
         if(article.value?.AUTHORS.length === 0) return 'Unknown author';
@@ -184,11 +185,11 @@
     });
     const categories = computed(() => article.value?.CATEGORY_DATA);
     
-    const source_name = article.value?.SOURCE_DATA?.NAME || 'Unknown source';
+    const source_name = computed(() => article.value?.SOURCE_DATA?.NAME || 'Unknown source');
     const source_avatar = computed(() => article.value?.SOURCE_DATA?.IMAGE_URL);
-    const source_score = article.value?.SOURCE_DATA?.BENCHMARK_SCORE;
-    const source_launch_date = article.value?.SOURCE_DATA?.LAUNCH_DATE && dayjs.unix(article.value?.SOURCE_DATA.LAUNCH_DATE).format('MMMM D, YYYY');
-    const source_lang = article.value?.SOURCE_DATA?.LANG;
+    const source_score = computed(() => article.value?.SOURCE_DATA?.BENCHMARK_SCORE);
+    const source_launch_date = computed(() => article.value?.SOURCE_DATA?.LAUNCH_DATE && dayjs.unix(article.value?.SOURCE_DATA.LAUNCH_DATE).format('MMMM D, YYYY'));
+    const source_lang = computed(() => article.value?.SOURCE_DATA?.LANG);
     const source_url = computed(() => article.value?.SOURCE_DATA?.URL);
     
     const source_url_label = computed(() => {
@@ -200,9 +201,10 @@
     });
     
     const body = computed(() => article.value?.BODY);
-    const sentiment = article.value?.SENTIMENT;
-    const upvotes = article.value?.UPVOTES;
-    const downvotes = article.value?.DOWNVOTES;
+    const article_score = computed(() => article.value?.SCORE);
+    const sentiment = computed(() => article.value?.SENTIMENT);
+    const upvotes = computed(() => article.value?.UPVOTES);
+    const downvotes = computed(() => article.value?.DOWNVOTES);
     
     onMounted(async() => {
         const { source_key, guid } = route.query;
