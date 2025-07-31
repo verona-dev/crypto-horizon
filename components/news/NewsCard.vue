@@ -1,7 +1,7 @@
 <template>
     <Card class='news-item rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[450px] py-0 gap-8'>
         <CardHeader class='p-0'>
-            <div class='flex flex-col gap-6'>
+            <div class='flex flex-col gap-4'>
                 <!--  Main image  -->
                 <NuxtImg
                     :src='image_url'
@@ -24,8 +24,8 @@
                     />
                 </NuxtImg>
                 
-                <div class='flex px-6 justify-between items-center '>
-                    <!--  Author  -->
+                <!--  Author + Source  -->
+                <div class='flex mt-2 px-6 justify-between items-center '>
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
                             <Avatar>
@@ -87,24 +87,28 @@
                         </HoverCardContent>
                     </HoverCard>
                 </div>
+                
+                <!--  Categories / Tags  -->
+                <div class='categories-container px-6 mt-2'>
+                    <Badge
+                        v-for='category in categories.slice(0, 5)'
+                        class='mr-2 border-muted-custom py-1 px-3 rounded-sm'
+                        variant='outline'
+                    >
+                        {{ category.NAME }}
+                    </Badge>
+                </div>
+                
+                <!--  Article Title  -->
+                <CardDescription class='text-foreground text-md font-bold hover:underline px-6'>
+                    <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
+                        {{ title }}
+                    </NuxtLink>
+                </CardDescription>
             </div>
-            
-            <!--  Categories / Tags  -->
-            <div class='categories-container px-6 mt-2'>
-                <Badge
-                    v-for='category in categories.slice(0, 5)'
-                    class='mr-2 mb-2 border-muted-custom py-2 px-2'
-                    variant='outline'
-                >
-                    {{ category.NAME }}
-                </Badge>
-            </div>
-        </CardHeader>
         
-        <CardContent>
-            <!--  Article Title  -->
-            <CardDescription class='text-foreground text-md font-bold'>{{ title }}</CardDescription>
-        </CardContent>
+        
+        </CardHeader>
         
         <CardFooter class='flex justify-center my-10'>
             <!--  Read more  -->
