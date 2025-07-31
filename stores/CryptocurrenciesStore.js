@@ -17,6 +17,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         loading: false,
         marketOverview: [],
         news: {},
+        article: {},
     }),
     
     actions: {
@@ -93,6 +94,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 });
                 
                 if(response && response.Data) {
+                    this.news = {};
                     this.news = response.Data;
                 }
             } catch(error) {
@@ -113,10 +115,15 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
               });
               
               if(response && response.Data) {
-                  return response.Data;
+                  this.article = {};
+                  this.article = response.Data;
+                  console.log(JSON.parse(JSON.stringify(this.article)));
               }
           } catch(error) {
               console.error(error);
+          }
+          finally {
+              this.loading = false;
           }
         },
         

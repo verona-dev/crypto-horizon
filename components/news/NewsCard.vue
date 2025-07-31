@@ -24,14 +24,20 @@
                     />
                 </NuxtImg>
                 
-                <div class='flex px-6 justify-between items-center '>
-                    <!--  Author  -->
+                <!--  Author + Source  -->
+                <div class='flex mt-2 px-6 justify-between items-center'>
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
-                            <Avatar>
-                                <AvatarImage :src='source_avatar' alt='source url' />
-                                <AvatarFallback>Av</AvatarFallback>
-                            </Avatar>
+                            <MazAvatar
+                                :src='source_avatar'
+                                size='1rem'
+                                clickable
+                                rounded-size='xl'
+                            >
+                                <template #icon>
+                                    <NuxtIcon name='radix-icons:eye-open' size='25' />
+                                </template>
+                            </MazAvatar>
                             
                             <div class='flex flex-col items-start'>
                                 <span class=''>{{ article_author }}</span>
@@ -87,24 +93,28 @@
                         </HoverCardContent>
                     </HoverCard>
                 </div>
+                
+                <!--  Categories / Tags  -->
+                <div class='categories-container px-6 mt-2'>
+                    <Badge
+                        v-for='category in categories.slice(0, 5)'
+                        class='mr-2 border-muted-custom py-1 px-3 rounded-sm'
+                        variant='outline'
+                    >
+                        {{ category.NAME }}
+                    </Badge>
+                </div>
+                
+                <!--  Article Title  -->
+                <CardDescription class='text-foreground text-md font-bold hover:underline px-6'>
+                    <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
+                        {{ title }}
+                    </NuxtLink>
+                </CardDescription>
             </div>
-            
-            <!--  Categories / Tags  -->
-            <div class='categories-container px-6 mt-2'>
-                <Badge
-                    v-for='category in categories.slice(0, 5)'
-                    class='mr-2 mb-2 border-muted-custom py-2 px-2'
-                    variant='outline'
-                >
-                    {{ category.NAME }}
-                </Badge>
-            </div>
-        </CardHeader>
         
-        <CardContent>
-            <!--  Article Title  -->
-            <CardDescription class='text-foreground text-md font-bold'>{{ title }}</CardDescription>
-        </CardContent>
+        
+        </CardHeader>
         
         <CardFooter class='flex justify-center my-10'>
             <!--  Read more  -->
@@ -122,11 +132,10 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
-    import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
+    import { Card, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Badge } from '@/components/ui/badge';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
-    import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
     import { Button } from '@/components/ui/button';
     
     const props = defineProps({
@@ -145,7 +154,6 @@
         return article.value?.AUTHORS;
     });
     const categories = article.value?.CATEGORY_DATA;
-    console.log(JSON.parse(JSON.stringify(categories)));
     
     const source_name = article.value?.SOURCE_DATA.NAME || 'Unknown source';
     const source_avatar = article.value?.SOURCE_DATA.IMAGE_URL;
@@ -164,20 +172,12 @@
     });
 </script>
 
-<style>
+<style scoped>
     .news-item {
         img.main-image {
             object-fit: cover;
             height: 300px;
             width: 100%;
         }
-        
-        .categories-container {
-            //position: absolute;
-            //top: 0;
-            //right: 0;
-        }
     }
-    
-    /*[data-slot='hover-card-content'].news-hover-card {}*/
 </style>
