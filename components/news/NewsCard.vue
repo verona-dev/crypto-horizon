@@ -25,7 +25,7 @@
                 </NuxtImg>
                 
                 <!--  Author + Source  -->
-                <div class='flex mt-2 px-6 justify-between items-center'>
+                <div class='flex px-6 justify-between'>
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
                             <MazAvatar
