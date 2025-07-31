@@ -31,13 +31,8 @@
                             <MazAvatar
                                 :src='source_avatar'
                                 size='1.2rem'
-                                clickable
                                 rounded-size='xl'
-                            >
-                                <template #icon>
-                                    <NuxtIcon name='radix-icons:eye-open' size='30' />
-                                </template>
-                            </MazAvatar>
+                            />
                             
                             <div class='flex flex-col items-start'>
                                 <span>{{ article_author_label }}</span>
