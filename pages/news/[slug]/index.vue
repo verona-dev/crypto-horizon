@@ -17,6 +17,10 @@
                             {{ title }}
                     </CardTitle>
                     
+                    <CardDescription>
+                        {{ subtitle }}
+                    </CardDescription>
+                    
                     <!--  Main image  -->
                     <NuxtImg
                         :src='image_url'
@@ -154,6 +158,7 @@
     const { getCoindeskNewsSingle } = CryptocurrenciesStore;
     
     const title = article.value?.TITLE;
+    const subtitle = article.value?.SUBTITLE;
     const image_url = computed(() => article.value?.IMAGE_URL);
     const published_date = dayjs.unix(article.value?.PUBLISHED_ON).format('MMMM D, YYYY, h:mm A');
     const published_date_from_now = computed(() => article.value?.PUBLISHED_ON && dayjs.unix(article.value?.PUBLISHED_ON).fromNow());
