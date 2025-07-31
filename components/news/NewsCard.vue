@@ -1,5 +1,5 @@
 <template>
-    <Card class='news-item rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[400px] py-0 gap-8'>
+    <Card v-if='article' class='news-item rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[400px] py-0 gap-8'>
         <CardHeader class='p-0'>
             <div class='flex flex-col gap-6'>
                 <!--  Main image  -->
@@ -40,8 +40,8 @@
                             </MazAvatar>
                             
                             <div class='flex flex-col items-start'>
-                                <span>{{ article_author }}</span>
-                                <span class='text-muted-custom'>{{ source_name }}</span>
+                                <span>{{ article_author_label }}</span>
+                                <span class='text-muted-custom'>{{ source_name_label }}</span>
                             </div>
                         </HoverCardTrigger>
                         
@@ -149,19 +149,26 @@
     const image_url = article.value?.IMAGE_URL;
     const published_date = dayjs.unix(article.value?.PUBLISHED_ON).format('MMMM D, YYYY, h:mm A');
     const published_date_from_now = computed(() => article.value?.PUBLISHED_ON && dayjs.unix(article.value?.PUBLISHED_ON).fromNow());
-    const article_author = computed(() => {
-        if(article.value?.AUTHORS.length === 0) return 'Unknown author';
+    
+    const article_author = computed(() => article.value?.AUTHORS);
+    const article_author_label = computed(() => {
+        if(article_author.value?.length === 0) return 'Unknown author';
+        console.log(source_name.value);
+        // if(source_name.value === 'CoinTelegraph') {
+        //     return source_name.value.replace('CoinTelegraph', '');
+        // }
         return article.value?.AUTHORS;
     });
     const categories = article.value?.CATEGORY_DATA;
     
-    const source_name = article.value?.SOURCE_DATA.NAME || 'Unknown source';
-    const source_avatar = article.value?.SOURCE_DATA.IMAGE_URL;
-    const source_score = article.value?.SOURCE_DATA.BENCHMARK_SCORE;
-    const source_launch_date = article.value?.SOURCE_DATA.LAUNCH_DATE && dayjs.unix(article.value?.SOURCE_DATA.LAUNCH_DATE).format('MMMM D, YYYY');
-    const source_lang = article.value?.SOURCE_DATA.LANG;
-    const source_key = article.value?.SOURCE_DATA.SOURCE_KEY;
-    const source_url = computed(() => article.value?.SOURCE_DATA.URL);
+    const source_name = article.value?.SOURCE_DATA?.NAME;
+    const source_name_label = computed(() => source_name || 'Unknown source');
+    const source_avatar = article.value?.SOURCE_DATA?.IMAGE_URL;
+    const source_score = article.value?.SOURCE_DATA?.BENCHMARK_SCORE;
+    const source_launch_date = article.value?.SOURCE_DATA?.LAUNCH_DATE && dayjs.unix(article.value?.SOURCE_DATA.LAUNCH_DATE).format('MMMM D, YYYY');
+    const source_lang = article.value?.SOURCE_DATA?.LANG;
+    const source_key = article.value?.SOURCE_DATA?.SOURCE_KEY;
+    const source_url = computed(() => article.value?.SOURCE_DATA?.URL);
     
     const source_url_label = computed(() => {
         let url = new URL(source_url.value);
