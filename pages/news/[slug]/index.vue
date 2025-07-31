@@ -9,11 +9,11 @@
         </div>
         
         <div v-else>
-            <Card v-if='article && article.ID' class='bg-background gap-20 w-[1000px] mt-10 pt-10'>
+            <Card v-if='article && article.ID' class='bg-background gap-20 max-w-7xl mt-10'>
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-12'>
                     <!--  Categories + Title  -->
-                    <CardContent v-if='title' class='my-4 flex flex-col gap-6'>
+                    <CardContent v-if='title' class='my-8 flex flex-col gap-6'>
                         <div v-if='categories' class='categories-container'>
                             <MazBadge
                                 v-for='category in categories'
@@ -26,33 +26,35 @@
                             </MazBadge>
                         </div>
                         
-                        <h2>{{ title }}</h2>
+                        <h1>{{ title }}</h1>
                     </CardContent>
                     
                     <!--  Subtitle  -->
                     <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
                     
                     <!--  Main image  -->
-                    <NuxtImg
-                        :src='image_url'
-                        alt='article image'
-                        class='main-image'
-                        :custom='true'
-                        v-slot='{ src, isLoaded, imgAttrs }'
-                        preload
-                    >
-                        <img
-                            v-if='isLoaded'
-                            v-bind='imgAttrs'
-                            :src='src'
+                    <CardContent>
+                        <NuxtImg
+                            :src='image_url'
                             alt='article image'
+                            class='main-image'
+                            :custom='true'
+                            v-slot='{ src, isLoaded, imgAttrs }'
+                            preload
                         >
-                        
-                        <Skeleton
-                            v-else
-                            class='h-[400px] w-full'
-                        />
-                    </NuxtImg>
+                            <img
+                                v-if='isLoaded'
+                                v-bind='imgAttrs'
+                                :src='src'
+                                alt='article image'
+                            >
+                            
+                            <Skeleton
+                                v-else
+                                class='h-[400px] w-full'
+                            />
+                        </NuxtImg>
+                    </CardContent>
                     
                     <!--  Author + Source + Publish date  -->
                     <CardContent class='flex justify-between gap-6 w-full'>
@@ -68,8 +70,7 @@
                             </div>
                         </div>
                         
-                        <div class='flex flex-col'>
-                            <!--                            <span>{{ article_date_label }}</span>-->
+                        <div class='flex flex-col justify-center'>
                             <span v-if='publish_date'>Published: {{ publish_date_label }}</span>
                             <span v-if='update_date'>Last updated: {{ update_date_label }}</span>
                         </div>
@@ -167,9 +168,8 @@
     .single-news {
         img.main-image {
             object-fit: cover;
-            height: 400px;
-            margin: auto;
-            width: 600px;
+            height: 500px;
+            width: 800px;
         }
         
         .badge {
