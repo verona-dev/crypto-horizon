@@ -49,6 +49,70 @@
                             {{ category.NAME }}
                         </Badge>
                     </div>
+                    
+                    <!--  Author + Source  -->
+                    <div class='flex mt-2 px-6 justify-between items-center '>
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
+                                <Avatar>
+                                    <AvatarImage :src='source_avatar' alt='source url' />
+                                    <AvatarFallback>Av</AvatarFallback>
+                                </Avatar>
+                                
+                                <div class='flex flex-col items-start'>
+                                    <span class=''>{{ article_author }}</span>
+                                    <span class='text-muted-custom'>{{ source_name }}</span>
+                                </div>
+                            </HoverCardTrigger>
+                            
+                            <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-6 p-10 w-fit'>
+                                <!--  Hover card image -->
+                                <NuxtImg
+                                    :src='source_avatar'
+                                    alt='source avatar'
+                                    class='rounded-md m-auto'
+                                    height='150px'
+                                    width='150px'
+                                />
+                                
+                                <!--  Hover card content -->
+                                <div class='flex flex-col justify-between'>
+                                    <div class='flex flex-col gap-2'>
+                                        <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
+                                        <span v-if='source_score > 0'>Score: {{ source_score }}</span>
+                                        <span v-if='source_launch_date'>Launch date: {{ source_launch_date }}</span>
+                                        
+                                        <div v-if='source_lang' class='flex items-center gap-2'>
+                                            <span>Language:</span>
+                                            <span>{{ source_lang }}</span>
+                                            <NuxtIcon :name="`circle-flags:lang-${source_lang.toLowerCase()}`" size='20px' class='self-center' />
+                                        </div>
+                                    </div>
+                                    
+                                    <NuxtLink
+                                        v-if='source_url_label'
+                                        :to='source_url_label'
+                                        external
+                                        target='_blank'
+                                        class='self-start hover:underline'
+                                    >
+                                        <span>Website</span>
+                                    </NuxtLink>
+                                </div>
+                            </HoverCardContent>
+                        </HoverCard>
+                        
+                        <!--  Publish date  -->
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex items-center gap-2'>
+                                <NuxtIcon name='iconoir:calendar' size='16px' />
+                                <span class='text-xs'>{{ published_date_from_now }}</span>
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content w-fit'>
+                                <span class='text-sm'>{{ published_date }}</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
                 </CardHeader>
                 
                 <CardContent>
