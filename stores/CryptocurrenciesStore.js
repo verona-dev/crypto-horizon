@@ -115,6 +115,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
               });
               
               if(response && response.Data) {
+                  this.article = {};
                   this.article = response.Data;
                   console.log(JSON.parse(JSON.stringify(this.article)));
               }
