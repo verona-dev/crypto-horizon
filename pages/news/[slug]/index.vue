@@ -1,5 +1,5 @@
 <template>
-    <div class='single-news bg-background custom-flex'>
+    <div class='single-news custom-flex'>
         <div v-if='loading' class='flex items-center h-[75vh]'>
             <MazSpinner
                 color='secondary'
@@ -9,9 +9,14 @@
         </div>
         
         <div v-else>
-            <Card v-if='article && article.ID' class='w-7xl items-center'>
+            <Card v-if='article && article.ID' class='bg-background gap-20 w-[1000px] mx-auto'>
                 <!--  Header  -->
-                <div>
+                <CardHeader class='flex flex-col gap-10'>
+                    <!--  Article Title  -->
+                    <CardTitle class=''>
+                            {{ title }}
+                    </CardTitle>
+                    
                     <!--  Main image  -->
                     <NuxtImg
                         :src='image_url'
@@ -33,7 +38,7 @@
                             class='h-[400px] w-full'
                         />
                     </NuxtImg>
-                </div>
+                </CardHeader>
                 
                 <CardContent>
                     Content
