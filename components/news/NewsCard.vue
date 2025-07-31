@@ -1,5 +1,5 @@
 <template>
-    <Card class='news-item rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[450px] py-0 gap-8'>
+    <Card class='news-item rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[400px] py-0 gap-8'>
         <CardHeader class='p-0'>
             <div class='flex flex-col gap-6'>
                 <!--  Main image  -->
@@ -20,7 +20,7 @@
                     
                     <Skeleton
                         v-else
-                        class='h-[300px] w-full'
+                        class='h-[250px] w-full'
                     />
                 </NuxtImg>
                 
@@ -176,7 +176,7 @@
     .news-item {
         img.main-image {
             object-fit: cover;
-            height: 300px;
+            height: 250px;
             width: 100%;
         }
     }
