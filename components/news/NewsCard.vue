@@ -174,13 +174,5 @@
             height: 300px;
             width: 100%;
         }
-        
-        .categories-container {
-            //position: absolute;
-            //top: 0;
-            //right: 0;
-        }
     }
-    
-    /*[data-slot='hover-card-content'].news-hover-card {}*/
 </style>

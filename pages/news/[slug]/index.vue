@@ -9,6 +9,15 @@
     import {useRoute} from 'vue-router';
     const route = useRoute();
     
+    import {
+        Card,
+        CardContent,
+        CardDescription,
+        CardFooter,
+        CardHeader,
+        CardTitle,
+    } from '@/components/ui/card';
+    
     // CryptocurrenciesStore
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
