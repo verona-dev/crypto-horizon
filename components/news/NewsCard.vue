@@ -1,7 +1,7 @@
 <template>
     <Card class='news-item rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[450px] py-0 gap-8'>
         <CardHeader class='p-0'>
-            <div class='flex flex-col gap-4'>
+            <div class='flex flex-col gap-6'>
                 <!--  Main image  -->
                 <NuxtImg
                     :src='image_url'
@@ -25,13 +25,19 @@
                 </NuxtImg>
                 
                 <!--  Author + Source  -->
-                <div class='flex mt-2 px-6 justify-between items-center '>
+                <div class='flex mt-2 px-6 justify-between items-center'>
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
-                            <Avatar>
-                                <AvatarImage :src='source_avatar' alt='source url' />
-                                <AvatarFallback>Av</AvatarFallback>
-                            </Avatar>
+                            <MazAvatar
+                                :src='source_avatar'
+                                size='1rem'
+                                clickable
+                                rounded-size='xl'
+                            >
+                                <template #icon>
+                                    <NuxtIcon name='radix-icons:eye-open' size='25' />
+                                </template>
+                            </MazAvatar>
                             
                             <div class='flex flex-col items-start'>
                                 <span class=''>{{ article_author }}</span>
@@ -130,7 +136,6 @@
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Badge } from '@/components/ui/badge';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
-    import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
     import { Button } from '@/components/ui/button';
     
     const props = defineProps({

@@ -45,7 +45,7 @@
                         <MazBadge
                             v-for='category in categories'
                             class='badge m-2 !px-4 !py-2'
-                            color='gray'
+                            color='secondary'
                             size='1em'
                             outline
                         >
@@ -55,15 +55,15 @@
                     
                     <!--  Author + Source + Publish date  -->
                     <CardContent class='flex justify-between items-center gap-6 w-full'>
-                        <div class='flex items-center gap-4'>
+                        <div class='author flex items-center gap-4'>
                             <Avatar>
                                 <AvatarImage :src='source_avatar' alt='source url' />
                                 <AvatarFallback>Av</AvatarFallback>
                             </Avatar>
                             
                             <div class='flex flex-col items-start'>
-                                <span>Author:</span>
-                                <span class=''>{{ article_author }}</span>
+                                <p>Author:</p>
+                                <p class=''>{{ article_author }}</p>
                             </div>
                         </div>
                         
