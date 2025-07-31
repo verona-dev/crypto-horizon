@@ -9,11 +9,25 @@
         </div>
         
         <div v-else>
-            <Card v-if='article && article.ID' class='bg-background gap-20 w-[1000px]'>
+            <Card v-if='article && article.ID' class='bg-background gap-20 w-[1000px] mt-10 pt-10'>
                 <!--  Header  -->
-                <CardHeader class='flex flex-col gap-10'>
-                    <!--  Title  -->
-                    <CardContent v-if='title' class='my-20'><h2>{{ title }}</h2></CardContent>
+                <CardHeader class='flex flex-col gap-12'>
+                    <!--  Categories + Title  -->
+                    <CardContent v-if='title' class='my-4 flex flex-col gap-6'>
+                        <div v-if='categories' class='categories-container'>
+                            <MazBadge
+                                v-for='category in categories'
+                                class='badge m-2 !px-4 !py-1'
+                                color='secondary'
+                                size='1em'
+                                outline
+                            >
+                                {{ category.NAME }}
+                            </MazBadge>
+                        </div>
+                        
+                        <h2>{{ title }}</h2>
+                    </CardContent>
                     
                     <!--  Subtitle  -->
                     <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
@@ -39,19 +53,6 @@
                             class='h-[400px] w-full'
                         />
                     </NuxtImg>
-                    
-                    <!--  Categories / Tags  -->
-                    <CardContent v-if='categories' class='categories-container'>
-                        <MazBadge
-                            v-for='category in categories'
-                            class='badge m-2 !px-4 !py-2'
-                            color='secondary'
-                            size='1em'
-                            outline
-                        >
-                            {{ category.NAME }}
-                        </MazBadge>
-                    </CardContent>
                     
                     <!--  Author + Source + Publish date  -->
                     <CardContent class='flex justify-between gap-6 w-full'>
