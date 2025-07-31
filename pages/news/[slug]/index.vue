@@ -9,14 +9,14 @@
         </div>
         
         <div v-else>
-            <Card v-if='article && article.ID' class='bg-background gap-20 w-[1000px] mx-auto'>
+            <Card v-if='article && article.ID' class='bg-background gap-20 w-[1000px]'>
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-10'>
                     <!--  Title  -->
-                    <CardContent><h2>{{ title }}</h2></CardContent>
+                    <CardContent v-if='title' class='my-20'><h2>{{ title }}</h2></CardContent>
                     
                     <!--  Subtitle  -->
-                    <CardDescription>{{ subtitle }}</CardDescription>
+                    <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
                     
                     <!--  Main image  -->
                     <NuxtImg
@@ -56,10 +56,10 @@
                     <!--  Author + Source + Publish date  -->
                     <CardContent class='flex justify-between gap-6 w-full'>
                         <div class='author flex items-center gap-4'>
-                            <Avatar>
-                                <AvatarImage :src='source_avatar' alt='source url' />
-                                <AvatarFallback>Av</AvatarFallback>
-                            </Avatar>
+                            <MazAvatar
+                                :src='source_avatar'
+                                size='1.5rem'
+                            />
                             
                             <div class='flex flex-col items-start'>
                                 <p>Author:</p>
@@ -68,7 +68,7 @@
                         </div>
                         
                         <div class='flex flex-col'>
-<!--                            <span>{{ article_date_label }}</span>-->
+                            <!--                            <span>{{ article_date_label }}</span>-->
                             <span v-if='publish_date'>Published: {{ publish_date_label }}</span>
                             <span v-if='update_date'>Last updated: {{ update_date_label }}</span>
                         </div>
@@ -135,6 +135,7 @@
     const update_date_label = computed(() => dayjs.unix(update_date.value).fromNow());
     const body = computed(() => article.value?.BODY);
     const categories = computed(() => article.value?.CATEGORY_DATA);
+    const keywords = computed(() => article.value?.KEYWORDS);
     const author = computed(() => {
         if(article.value?.AUTHORS.length === 0) return 'Unknown author';
         return article.value?.AUTHORS;
