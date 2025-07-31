@@ -1,5 +1,5 @@
 <template>
-    <div class='news-single'>
+    <div v-if='article.ID' class='news-single'>
         single new page
     </div>
 </template>
@@ -14,14 +14,14 @@
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     const { getCoindeskNewsSingle } = CryptocurrenciesStore;
-    const single_news = ref({});
+    const article = ref({});
     
     onMounted(async() => {
         const { source_key, guid } = route.query;
         const response = await getCoindeskNewsSingle(source_key, guid);
         if(response) {
-            single_news.value = response;
-            console.log(single_news.value);
+            article.value = response;
+            console.log(JSON.parse(JSON.stringify(article.value)));
         }
     });
 </script>

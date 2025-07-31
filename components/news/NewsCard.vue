@@ -126,7 +126,7 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
-    import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
+    import { Card, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Badge } from '@/components/ui/badge';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
@@ -149,7 +149,6 @@
         return article.value?.AUTHORS;
     });
     const categories = article.value?.CATEGORY_DATA;
-    console.log(JSON.parse(JSON.stringify(categories)));
     
     const source_name = article.value?.SOURCE_DATA.NAME || 'Unknown source';
     const source_avatar = article.value?.SOURCE_DATA.IMAGE_URL;
