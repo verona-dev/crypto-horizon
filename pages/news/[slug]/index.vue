@@ -168,7 +168,6 @@
     const source_score = article.value?.SOURCE_DATA?.BENCHMARK_SCORE;
     const source_launch_date = article.value?.SOURCE_DATA?.LAUNCH_DATE && dayjs.unix(article.value?.SOURCE_DATA.LAUNCH_DATE).format('MMMM D, YYYY');
     const source_lang = article.value?.SOURCE_DATA?.LANG;
-    const source_key = article.value?.SOURCE_DATA?.SOURCE_KEY;
     const source_url = computed(() => article.value?.SOURCE_DATA?.URL);
     
     const source_url_label = computed(() => {
