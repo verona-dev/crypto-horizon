@@ -167,7 +167,7 @@
     });
 </script>
 
-<style>
+<style scoped>
     .news-item {
         img.main-image {
             object-fit: cover;
