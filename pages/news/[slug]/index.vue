@@ -45,18 +45,20 @@
                     </NuxtImg>
                     
                     <!--  Categories / Tags  -->
-                    <div class='categories-container px-6 mt-2'>
-                        <Badge
+                    <div class='categories-container'>
+                        <MazBadge
                             v-for='category in categories'
-                            class='mr-2 border-muted-custom py-1 px-3 rounded-sm'
-                            variant='outline'
+                            class='badge m-2 !px-4 !py-2'
+                            color='gray'
+                            size='1em'
+                            outline
                         >
                             {{ category.NAME }}
-                        </Badge>
+                        </MazBadge>
                     </div>
                     
                     <!--  Author + Source  -->
-                    <div class='flex mt-2 px-6 justify-between items-center gap-6'>
+                    <div class='flex mt-2 justify-between items-center gap-6'>
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
                                 <Avatar>
@@ -129,6 +131,7 @@
                 </CardFooter>
             </Card>
             
+            <!--  Article not available  -->
             <div
                 v-else
                 class='flex flex-col gap-8'
@@ -141,12 +144,10 @@
                     <NuxtLink to='/news'>
                         Go back
                     </NuxtLink>
-                    
                 </Button>
             </div>
         </div>
     </div>
-
 </template>
 
 <script setup>
@@ -219,6 +220,10 @@
             height: 400px;
             margin: auto;
             width: 600px;
+        }
+        
+        .badge {
+            border-radius: 4px !important;
         }
     }
 </style>
