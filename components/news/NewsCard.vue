@@ -30,12 +30,12 @@
                         <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
                             <MazAvatar
                                 :src='source_avatar'
-                                size='1rem'
+                                size='1.2rem'
                                 clickable
                                 rounded-size='xl'
                             >
                                 <template #icon>
-                                    <NuxtIcon name='radix-icons:eye-open' size='25' />
+                                    <NuxtIcon name='radix-icons:eye-open' size='30' />
                                 </template>
                             </MazAvatar>
                             
