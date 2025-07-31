@@ -120,7 +120,7 @@
                 </CardHeader>
                 
                 <CardContent>
-                    Content
+                    {{ body }}
                 </CardContent>
                 
                 <CardFooter>
@@ -182,6 +182,8 @@
         
         return `${protocol}//${host}`;
     });
+    
+    const body = article.value?.BODY;
     
     onMounted(async() => {
         const { source_key, guid } = route.query;
