@@ -106,25 +106,25 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         },
         
         async getCoindeskNewsSingle(source_key, guid) {
-          this.loading = true;
-          
-          try {
-              const response = await useFetchCoindesk('news/v1/article/get', {
-                  source_key,
-                  guid,
-              });
-              
-              if(response && response.Data) {
-                  this.article = {};
-                  this.article = response.Data;
-                  console.log(JSON.parse(JSON.stringify(this.article)));
-              }
-          } catch(error) {
-              console.error(error);
-          }
-          finally {
-              this.loading = false;
-          }
+            this.loading = true;
+            this.article = {};
+            
+            try {
+                const response = await useFetchCoindesk('news/v1/article/get', {
+                    source_key,
+                    guid,
+                });
+                
+                if(response && response.Data) {
+                    this.article = response.Data;
+                    console.log(JSON.parse(JSON.stringify(this.article)));
+                }
+            } catch(error) {
+                console.error(error);
+            }
+            finally {
+                this.loading = false;
+            }
         },
         
         async getCoinLore(route, options) {

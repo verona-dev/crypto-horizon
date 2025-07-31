@@ -9,66 +9,70 @@
         </div>
         
         <div v-else>
-            <Card v-if='article && article.ID' class='bg-background gap-20 w-[1000px] mx-auto'>
+            <Card v-if='article && article.ID' class='bg-background gap-20 max-w-7xl mt-10'>
                 <!--  Header  -->
-                <CardHeader class='flex flex-col gap-10'>
-                    <!--  Title  -->
-                    <CardContent><h2>{{ title }}</h2></CardContent>
+                <CardHeader class='flex flex-col gap-12'>
+                    <!--  Categories + Title  -->
+                    <CardContent v-if='title' class='my-8 flex flex-col gap-6'>
+                        <div v-if='categories' class='categories-container'>
+                            <MazBadge
+                                v-for='category in categories'
+                                class='badge m-2 !px-4 !py-1'
+                                color='secondary'
+                                size='1em'
+                                outline
+                            >
+                                {{ category.NAME }}
+                            </MazBadge>
+                        </div>
+                        
+                        <h1>{{ title }}</h1>
+                    </CardContent>
                     
                     <!--  Subtitle  -->
-                    <CardDescription>{{ subtitle }}</CardDescription>
+                    <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
                     
                     <!--  Main image  -->
-                    <NuxtImg
-                        :src='image_url'
-                        alt='article image'
-                        class='main-image'
-                        :custom='true'
-                        v-slot='{ src, isLoaded, imgAttrs }'
-                        preload
-                    >
-                        <img
-                            v-if='isLoaded'
-                            v-bind='imgAttrs'
-                            :src='src'
+                    <CardContent>
+                        <NuxtImg
+                            :src='image_url'
                             alt='article image'
+                            class='main-image'
+                            :custom='true'
+                            v-slot='{ src, isLoaded, imgAttrs }'
+                            preload
                         >
-                        
-                        <Skeleton
-                            v-else
-                            class='h-[400px] w-full'
-                        />
-                    </NuxtImg>
-                    
-                    <!--  Categories / Tags  -->
-                    <CardContent v-if='categories' class='categories-container'>
-                        <MazBadge
-                            v-for='category in categories'
-                            class='badge m-2 !px-4 !py-2'
-                            color='secondary'
-                            size='1em'
-                            outline
-                        >
-                            {{ category.NAME }}
-                        </MazBadge>
+                            <img
+                                v-if='isLoaded'
+                                v-bind='imgAttrs'
+                                :src='src'
+                                alt='article image'
+                            >
+                            
+                            <Skeleton
+                                v-else
+                                class='h-[400px] w-full'
+                            />
+                        </NuxtImg>
                     </CardContent>
                     
                     <!--  Author + Source + Publish date  -->
-                    <CardContent class='flex justify-between items-center gap-6 w-full'>
+                    <CardContent class='flex justify-between gap-6 w-full'>
                         <div class='author flex items-center gap-4'>
-                            <Avatar>
-                                <AvatarImage :src='source_avatar' alt='source url' />
-                                <AvatarFallback>Av</AvatarFallback>
-                            </Avatar>
+                            <MazAvatar
+                                :src='source_avatar'
+                                size='1.5rem'
+                            />
                             
                             <div class='flex flex-col items-start'>
                                 <p>Author:</p>
-                                <p class=''>{{ article_author }}</p>
+                                <p class=''>{{ author }}</p>
                             </div>
                         </div>
                         
-                        <div>
-                            <span>Last updated: {{ update_date }}</span>
+                        <div class='flex flex-col justify-center'>
+                            <span v-if='publish_date'>Published: {{ publish_date_label }}</span>
+                            <span v-if='update_date'>Last updated: {{ update_date_label }}</span>
                         </div>
                     </CardContent>
                 </CardHeader>
@@ -78,7 +82,7 @@
                 </CardContent>
                 
                 <CardFooter>
-                    Footer
+                    <p>Keywords: {{keywords}}</p>
                 </CardFooter>
             </Card>
             
@@ -113,8 +117,6 @@
     // Components
     import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
-    import { Badge } from '~/components/ui/badge/index.js';
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar/index.js';
     import { Button } from '~/components/ui/button/index.js';
     
@@ -129,12 +131,17 @@
     const title = computed(() => article.value?.TITLE);
     const subtitle = computed(() => article.value?.SUBTITLE);
     const image_url = computed(() => article.value?.IMAGE_URL);
-    const update_date = computed(() => dayjs.unix(article.value?.UPDATED_ON).format('MMMM D, YYYY, h:mm A'));
-    const article_author = computed(() => {
+    const publish_date = computed(() => article.value?.PUBLISHED_ON);
+    const publish_date_label = computed(() => dayjs.unix(publish_date.value).format('MMMM D, YYYY, h:mm A'));
+    const update_date = computed(() => article.value?.UPDATED_ON);
+    const update_date_label = computed(() => dayjs.unix(update_date.value).fromNow());
+    const body = computed(() => article.value?.BODY);
+    const categories = computed(() => article.value?.CATEGORY_DATA);
+    const keywords = computed(() => article.value?.KEYWORDS);
+    const author = computed(() => {
         if(article.value?.AUTHORS.length === 0) return 'Unknown author';
         return article.value?.AUTHORS;
     });
-    const categories = computed(() => article.value?.CATEGORY_DATA);
     
     const source_name = computed(() => article.value?.SOURCE_DATA?.NAME || 'Unknown source');
     const source_avatar = computed(() => article.value?.SOURCE_DATA?.IMAGE_URL);
@@ -151,12 +158,6 @@
         return `${protocol}//${host}`;
     });
     
-    const body = computed(() => article.value?.BODY);
-    const article_score = computed(() => article.value?.SCORE);
-    const sentiment = computed(() => article.value?.SENTIMENT);
-    const upvotes = computed(() => article.value?.UPVOTES);
-    const downvotes = computed(() => article.value?.DOWNVOTES);
-    
     onMounted(async() => {
         const { source_key, guid } = route.query;
         await getCoindeskNewsSingle(source_key, guid);
@@ -167,9 +168,8 @@
     .single-news {
         img.main-image {
             object-fit: cover;
-            height: 400px;
-            margin: auto;
-            width: 600px;
+            height: 500px;
+            width: 800px;
         }
         
         .badge {
