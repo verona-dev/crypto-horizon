@@ -133,7 +133,8 @@
     const publish_date_label = computed(() => dayjs.unix(publish_date.value).format('MMMM D, YYYY, h:mm A'));
     const update_date = computed(() => article.value?.UPDATED_ON);
     const update_date_label = computed(() => dayjs.unix(update_date.value).fromNow());
-
+    const body = computed(() => article.value?.BODY);
+    const categories = computed(() => article.value?.CATEGORY_DATA);
     const author = computed(() => {
         if(article.value?.AUTHORS.length === 0) return 'Unknown author';
         return article.value?.AUTHORS;
@@ -153,14 +154,6 @@
         
         return `${protocol}//${host}`;
     });
-    
-    const body = computed(() => article.value?.BODY);
-    const categories = computed(() => article.value?.CATEGORY_DATA);
-    const article_score = computed(() => article.value?.SCORE);
-    const sentiment = computed(() => article.value?.SENTIMENT);
-    const upvotes = computed(() => article.value?.UPVOTES);
-    const downvotes = computed(() => article.value?.DOWNVOTES);
-    const keywords = computed(() => article.value?.KEYWORDS);
     
     onMounted(async() => {
         const { source_key, guid } = route.query;
