@@ -40,7 +40,7 @@
                             </MazAvatar>
                             
                             <div class='flex flex-col items-start'>
-                                <span class=''>{{ article_author }}</span>
+                                <span>{{ article_author }}</span>
                                 <span class='text-muted-custom'>{{ source_name }}</span>
                             </div>
                         </HoverCardTrigger>
@@ -97,8 +97,8 @@
                 <!--  Categories / Tags  -->
                 <div class='categories-container px-6 mt-2'>
                     <Badge
-                        v-for='category in categories.slice(0, 5)'
-                        class='mr-2 border-muted-custom py-1 px-3 rounded-sm'
+                        v-for='category in categories.slice(0, 4)'
+                        class='mr-2 mb-2 border-muted-custom py-1 px-3 rounded-sm'
                         variant='outline'
                     >
                         {{ category.NAME }}
@@ -175,9 +175,10 @@
 <style scoped>
     .news-item {
         img.main-image {
-            object-fit: cover;
-            height: 250px;
-            width: 100%;
+            object-fit: contain;
+            //height: 100%;
+            //height: 250px;
+            //width: 100%;
         }
     }
 </style>
