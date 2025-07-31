@@ -38,6 +38,17 @@
                             class='h-[400px] w-full'
                         />
                     </NuxtImg>
+                    
+                    <!--  Categories / Tags  -->
+                    <div class='categories-container px-6 mt-2'>
+                        <Badge
+                            v-for='category in categories'
+                            class='mr-2 border-muted-custom py-1 px-3 rounded-sm'
+                            variant='outline'
+                        >
+                            {{ category.NAME }}
+                        </Badge>
+                    </div>
                 </CardHeader>
                 
                 <CardContent>
@@ -115,6 +126,7 @@
         img.main-image {
             object-fit: cover;
             height: 400px;
+            margin: auto;
             width: 600px;
         }
     }
