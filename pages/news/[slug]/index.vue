@@ -78,7 +78,7 @@
                 </CardHeader>
                 
                 <CardContent v-if='body'>
-                    <p>{{ body }}</p>
+                    <p v-html='body_formated'></p>
                 </CardContent>
                 
                 <CardFooter>
@@ -115,9 +115,8 @@
     const route = useRoute();
     
     // Components
-    import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+    import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
-    import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar/index.js';
     import { Button } from '~/components/ui/button/index.js';
     
     // CryptocurrenciesStore
@@ -141,6 +140,23 @@
     const author = computed(() => {
         if(article.value?.AUTHORS.length === 0) return 'Unknown author';
         return article.value?.AUTHORS;
+    });
+    
+    const body_formated = computed(() => {
+        let sentences = body.value
+            .split(/\. +|\.(?=\n)|\.(?=$)/)
+            .map(s => s.trim())
+            .filter(s => s.length);
+        
+        for (let i = 0; i < sentences.length; i++) {
+            if (i % 3 < 2) {
+                sentences[i] = sentences[i] + '. ';
+            } else {
+                sentences[i] = sentences[i] + '.<br><br>';
+            }
+        }
+        
+        return sentences.join('');
     });
     
     const source_name = computed(() => article.value?.SOURCE_DATA?.NAME || 'Unknown source');
