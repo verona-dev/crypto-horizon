@@ -1,5 +1,5 @@
 <template>
-    <Card v-if='article' class='news-item rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[400px] py-0 gap-8'>
+    <Card v-if='article' class='news-item rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[450px] py-0 gap-8'>
         <CardHeader class='p-0'>
             <div class='flex flex-col gap-6'>
                 <!--  Main image  -->
@@ -111,7 +111,7 @@
         
         </CardHeader>
         
-        <CardFooter class='flex justify-center my-10'>
+        <CardFooter class='flex justify-center my-6'>
             <!--  Read more  -->
             <Button as-child variant='link' class='uppercase hover:text-foreground'>
                 <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
