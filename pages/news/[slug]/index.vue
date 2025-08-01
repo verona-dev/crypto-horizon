@@ -9,15 +9,18 @@
         </div>
         
         <div v-else>
-            <Card v-if='article && article.ID' class='bg-background gap-20 max-w-7xl mt-10'>
+            <Card
+                v-if='article && article.ID'
+                class='bg-background gap-20 max-w-7xl my-10 xl:px-20 pt-20'
+            >
                 <!--  Header  -->
-                <CardHeader class='flex flex-col gap-12'>
+                <CardHeader class='flex flex-col gap-12 px-0'>
                     <!--  Categories + Title  -->
-                    <CardContent v-if='title' class='my-8 flex flex-col gap-6'>
+                    <CardContent v-if='title' class='flex flex-col gap-6'>
                         <div v-if='categories' class='categories-container'>
                             <MazBadge
                                 v-for='category in categories'
-                                class='badge m-2 !px-4 !py-1'
+                                class='badge m-2 !px-4 !py-1.5'
                                 color='secondary'
                                 size='1em'
                                 outline
@@ -26,14 +29,23 @@
                             </MazBadge>
                         </div>
                         
-                        <h1>{{ title }}</h1>
+                        <h1 class='mt-4'>{{ title }}</h1>
+                        
+                        <!--  Reading duration  -->
+                        <div class='flex items-center gap-2 mt-2'>
+                            <NuxtIcon
+                                name='mdi-light:clock'
+                                size='25'
+                            />
+                            <p>{{ readingDuration }} min Read</p>
+                        </div>
                     </CardContent>
                     
                     <!--  Subtitle  -->
                     <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
                     
                     <!--  Main image  -->
-                    <CardContent>
+                    <CardContent class='my-10'>
                         <NuxtImg
                             :src='image_url'
                             alt='article image'
@@ -57,7 +69,7 @@
                     </CardContent>
                     
                     <!--  Author + Source + Publish date  -->
-                    <CardContent class='flex justify-between gap-6 w-full'>
+                    <CardContent class='flex justify-between w-full'>
                         <div class='author flex items-center gap-4'>
                             <MazAvatar
                                 :src='source_avatar'
@@ -78,10 +90,10 @@
                 </CardHeader>
                 
                 <CardContent v-if='body'>
-                    <p>{{ body }}</p>
+                    <p v-html='body_formated'></p>
                 </CardContent>
                 
-                <CardFooter>
+                <CardFooter class='pb-10'>
                     <p>Keywords: {{keywords}}</p>
                 </CardFooter>
             </Card>
@@ -102,6 +114,11 @@
                 </Button>
             </CardContent>
         </div>
+        
+        <!-- Reading/Scroll progress bar -->
+        <div class='progress-container'>
+            <div class='progress-bar' :style='{ width: `${progress * 100}%` }'></div>
+        </div>
     </div>
 </template>
 
@@ -109,15 +126,15 @@
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
+    import { useReadingTime } from 'maz-ui';
     
     // Router
     import {useRoute} from 'vue-router';
     const route = useRoute();
     
     // Components
-    import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+    import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
-    import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar/index.js';
     import { Button } from '~/components/ui/button/index.js';
     
     // CryptocurrenciesStore
@@ -135,12 +152,30 @@
     const publish_date_label = computed(() => dayjs.unix(publish_date.value).format('MMMM D, YYYY, h:mm A'));
     const update_date = computed(() => article.value?.UPDATED_ON);
     const update_date_label = computed(() => dayjs.unix(update_date.value).fromNow());
-    const body = computed(() => article.value?.BODY);
     const categories = computed(() => article.value?.CATEGORY_DATA);
     const keywords = computed(() => article.value?.KEYWORDS);
     const author = computed(() => {
         if(article.value?.AUTHORS.length === 0) return 'Unknown author';
         return article.value?.AUTHORS;
+    });
+    const body = computed(() => article.value?.BODY);
+    const body_formated = computed(() => {
+        if (!body.value) return '';
+        
+        let sentences = body.value
+            .split(/\. +|\.(?=\n)|\.(?=$)/)
+            .map(s => s.trim())
+            .filter(s => s.length);
+        
+        for (let i = 0; i < sentences.length; i++) {
+            if (i % 3 < 2) {
+                sentences[i] = sentences[i] + '. ';
+            } else {
+                sentences[i] = sentences[i] + '.<br><br>';
+            }
+        }
+        
+        return sentences.join('');
     });
     
     const source_name = computed(() => article.value?.SOURCE_DATA?.NAME || 'Unknown source');
@@ -158,9 +193,33 @@
         return `${protocol}//${host}`;
     });
     
+    const progress = ref(0);
+    
+    const onScroll = () => {
+        const scrollTop = window.scrollY || window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        progress.value = Math.min(1, Math.max(0, scrollTop / docHeight));
+    };
+    
+    const readingDuration = ref(0);
+    
+    watch(body_formated, (newVal) => {
+        if (newVal && newVal.length > 0) {
+            const { duration } = useReadingTime({
+                content: newVal,
+            });
+            readingDuration.value = duration;
+        }
+    }, { immediate: true });
+    
     onMounted(async() => {
         const { source_key, guid } = route.query;
         await getCoindeskNewsSingle(source_key, guid);
+        window.addEventListener('scroll', onScroll);
+    });
+    
+    onBeforeUnmount(() => {
+        window.removeEventListener('scroll', onScroll);
     });
 </script>
 
@@ -174,6 +233,25 @@
         
         .badge {
             border-radius: 4px !important;
+        }
+        
+        .progress-container {
+            align-items: center;
+            background-color: var(--background);
+            bottom: 0;
+            display: flex;
+            height: 50px;
+            padding: 0 40px;
+            position: fixed;
+            right: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        .progress-bar {
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.1s ease-out;
         }
     }
 </style>

@@ -9,8 +9,9 @@
                     <!--  Close Drawer  -->
                     <DrawerClose>
                         <NuxtIcon
-                            name='iconoir:web-window-xmark'
+                            name='iconoir:fast-arrow-down'
                             size='45'
+                            class='hover:bg-gray-400'
                         />
                     </DrawerClose>
                 </div>
