@@ -9,7 +9,10 @@
         </div>
         
         <div v-else>
-            <Card v-if='article && article.ID' class='bg-background gap-20 max-w-7xl my-10 xl:px-20 pt-20'>
+            <Card
+                v-if='article && article.ID'
+                class='bg-background gap-20 max-w-7xl my-10 xl:px-20 pt-20'
+            >
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-12 px-0'>
                     <!--  Categories + Title  -->
@@ -102,6 +105,11 @@
                 </Button>
             </CardContent>
         </div>
+        
+        <!-- Reading/Scroll progress bar -->
+        <div class='progress-container'>
+            <div class='progress-bar' :style='{ width: `${progress * 100}%` }'></div>
+        </div>
     </div>
 </template>
 
@@ -134,15 +142,16 @@
     const publish_date_label = computed(() => dayjs.unix(publish_date.value).format('MMMM D, YYYY, h:mm A'));
     const update_date = computed(() => article.value?.UPDATED_ON);
     const update_date_label = computed(() => dayjs.unix(update_date.value).fromNow());
-    const body = computed(() => article.value?.BODY);
     const categories = computed(() => article.value?.CATEGORY_DATA);
     const keywords = computed(() => article.value?.KEYWORDS);
     const author = computed(() => {
         if(article.value?.AUTHORS.length === 0) return 'Unknown author';
         return article.value?.AUTHORS;
     });
-    
+    const body = computed(() => article.value?.BODY);
     const body_formated = computed(() => {
+        if (!body.value) return '';
+        
         let sentences = body.value
             .split(/\. +|\.(?=\n)|\.(?=$)/)
             .map(s => s.trim())
@@ -174,9 +183,23 @@
         return `${protocol}//${host}`;
     });
     
+    const progress = ref(0);
+    
+    const onScroll = () => {
+        const scrollTop = window.scrollY || window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        progress.value = Math.min(1, Math.max(0, scrollTop / docHeight));
+    };
+    
+    
     onMounted(async() => {
         const { source_key, guid } = route.query;
         await getCoindeskNewsSingle(source_key, guid);
+        window.addEventListener('scroll', onScroll);
+    });
+    
+    onBeforeUnmount(() => {
+        window.removeEventListener('scroll', onScroll);
     });
 </script>
 
@@ -190,6 +213,25 @@
         
         .badge {
             border-radius: 4px !important;
+        }
+        
+        .progress-container {
+            align-items: center;
+            background-color: var(--background);
+            bottom: 0;
+            display: flex;
+            height: 50px;
+            padding: 0 40px;
+            position: fixed;
+            right: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        .progress-bar {
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.1s ease-out;
         }
     }
 </style>
