@@ -29,7 +29,16 @@
                             </MazBadge>
                         </div>
                         
-                        <h1>{{ title }}</h1>
+                        <h1 class='mt-4'>{{ title }}</h1>
+                        
+                        <!--  Reading duration  -->
+                        <div class='flex items-center gap-2 mt-2'>
+                            <NuxtIcon
+                                name='mdi-light:clock'
+                                size='25'
+                            />
+                            <p>{{ readingDuration }} min Read</p>
+                        </div>
                     </CardContent>
                     
                     <!--  Subtitle  -->
@@ -117,6 +126,7 @@
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
+    import { useReadingTime } from 'maz-ui';
     
     // Router
     import {useRoute} from 'vue-router';
@@ -191,6 +201,16 @@
         progress.value = Math.min(1, Math.max(0, scrollTop / docHeight));
     };
     
+    const readingDuration = ref(0);
+    
+    watch(body_formated, (newVal) => {
+        if (newVal && newVal.length > 0) {
+            const { duration } = useReadingTime({
+                content: newVal,
+            });
+            readingDuration.value = duration;
+        }
+    }, { immediate: true });
     
     onMounted(async() => {
         const { source_key, guid } = route.query;
