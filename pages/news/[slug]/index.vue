@@ -9,15 +9,15 @@
         </div>
         
         <div v-else>
-            <Card v-if='article && article.ID' class='bg-background gap-20 max-w-7xl mt-10'>
+            <Card v-if='article && article.ID' class='bg-background gap-20 max-w-7xl my-10 xl:px-20 pt-20'>
                 <!--  Header  -->
-                <CardHeader class='flex flex-col gap-12'>
+                <CardHeader class='flex flex-col gap-12 px-0'>
                     <!--  Categories + Title  -->
-                    <CardContent v-if='title' class='my-8 flex flex-col gap-6'>
+                    <CardContent v-if='title' class='flex flex-col gap-6'>
                         <div v-if='categories' class='categories-container'>
                             <MazBadge
                                 v-for='category in categories'
-                                class='badge m-2 !px-4 !py-1'
+                                class='badge m-2 !px-4 !py-1.5'
                                 color='secondary'
                                 size='1em'
                                 outline
@@ -33,7 +33,7 @@
                     <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
                     
                     <!--  Main image  -->
-                    <CardContent>
+                    <CardContent class='my-10'>
                         <NuxtImg
                             :src='image_url'
                             alt='article image'
@@ -57,7 +57,7 @@
                     </CardContent>
                     
                     <!--  Author + Source + Publish date  -->
-                    <CardContent class='flex justify-between gap-6 w-full'>
+                    <CardContent class='flex justify-between w-full'>
                         <div class='author flex items-center gap-4'>
                             <MazAvatar
                                 :src='source_avatar'
@@ -81,7 +81,7 @@
                     <p v-html='body_formated'></p>
                 </CardContent>
                 
-                <CardFooter>
+                <CardFooter class='pb-10'>
                     <p>Keywords: {{keywords}}</p>
                 </CardFooter>
             </Card>
