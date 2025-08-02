@@ -11,7 +11,7 @@
         <div v-else>
             <Card
                 v-if='article && article.ID'
-                class='bg-background gap-20 max-w-7xl my-10 xl:px-20 pt-20'
+                class='bg-background gap-12 xl:gap-20 max-w-7xl my-10 xl:px-20 pt-20'
             >
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-12 px-0'>
@@ -45,7 +45,7 @@
                     <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
                     
                     <!--  Main image  -->
-                    <CardContent class='my-10'>
+                    <CardContent class=''>
                         <NuxtImg
                             :src='image_url'
                             alt='article image'
