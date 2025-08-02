@@ -1,6 +1,6 @@
 <template>
     <CardFooter class='coin-footer'>
-        <CoinNews />
+        <CoinNews :coin='coin' />
     </CardFooter>
 </template>
 <script setup lang="ts">
