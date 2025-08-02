@@ -94,7 +94,7 @@
                 </CardContent>
                 
                 <CardFooter class='pb-10'>
-                    <p>Keywords: {{keywords}}</p>
+                    <p v-if='keywords'>Keywords: {{keywords}}</p>
                 </CardFooter>
             </Card>
             
