@@ -117,7 +117,12 @@
         
         <!-- Reading/Scroll progress bar -->
         <div class='progress-container'>
-            <div class='progress-bar' :style='{ width: `${progress * 100}%` }'></div>
+            <div class='progress-bar mr-2' :style='{ width: `${progress * 100}%` }'></div>
+            <NuxtIcon
+                v-if='progress > 0'
+                name='streamline-freehand:newspaper-read-man'
+                size='25'
+            />
         </div>
     </div>
 </template>
@@ -241,7 +246,7 @@
             bottom: 0;
             display: flex;
             height: 50px;
-            padding: 0 40px;
+            padding: 0 20px;
             position: fixed;
             right: 0;
             width: 100%;
