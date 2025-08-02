@@ -5,9 +5,8 @@
 </template>
 
 <script setup>
-
+    const props = defineProps({
+        symbol: String,
+    });
+    const { symbol } = toRefs(props);
 </script>
-
-<style scoped>
-
-</style>

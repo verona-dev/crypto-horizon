@@ -14,7 +14,7 @@
                 class='bg-background border-none flex flex-col rounded-none'
             >
                 <CoinHeader :coin='coin' />
-                
+                <CoinNews :symbol='coin.symbol' />
                 <CoinBody :coin='coin'/>
                 
                 <CoinFooter :coin='coin' />
@@ -26,6 +26,7 @@
 <script setup>
     import CoinHeader from '~/components/cryptocurrencies/coin/CoinHeader.vue';
     import CoinBody from '~/components/cryptocurrencies/coin/CoinBody.vue';
+    import CoinNews from '~/components/cryptocurrencies/coin/CoinNews.vue';
     import CoinFooter from '~/components/cryptocurrencies/coin/CoinFooter.vue';
     
     // Router
