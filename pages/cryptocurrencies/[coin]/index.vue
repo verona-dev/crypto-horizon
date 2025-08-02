@@ -14,7 +14,7 @@
                 class='bg-background border-none flex flex-col rounded-none'
             >
                 <CoinHeader :coin='coin' />
-                <CoinNews />
+                
                 <CoinBody :coin='coin'/>
                 
                 <CoinFooter :coin='coin' />
@@ -26,7 +26,6 @@
 <script setup>
     import CoinHeader from '~/components/cryptocurrencies/coin/CoinHeader.vue';
     import CoinBody from '~/components/cryptocurrencies/coin/CoinBody.vue';
-    import CoinNews from '~/components/cryptocurrencies/coin/CoinNews.vue';
     import CoinFooter from '~/components/cryptocurrencies/coin/CoinFooter.vue';
     
     // Router
@@ -38,12 +37,11 @@
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State
-    const { coin, coinNews, loading } = storeToRefs(CryptocurrenciesStore);
+    const { coin, loading } = storeToRefs(CryptocurrenciesStore);
     // Methods
-    const { getCoin, getCoindeskNews } = CryptocurrenciesStore;
+    const { getCoin } = CryptocurrenciesStore;
     
-    onMounted(() => {
-        getCoin(route.params.coin);
-        getCoindeskNews( { categories: coin.value?.symbol });
+    onMounted(async() => {
+        await getCoin(route.params.coin);
     });
 </script>
