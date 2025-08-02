@@ -18,6 +18,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         marketOverview: [],
         news: {},
         article: {},
+        coinNews : {},
     }),
     
     actions: {
@@ -25,6 +26,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             await this.getCoingeckoCoin(coinId);
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
             await this.fetchLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
+            await this.getCoindeskNews( { categories: this.coin.symbol });
         },
         
         async getCoingeckoMarkets(options) {
@@ -85,15 +87,22 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoindeskNews() {
+        async getCoindeskNews({ categories = null }) {
             this.loading = true;
             
             try {
-                const response = await useFetchCoindesk('news/v1/article/list', {
-                    limit: 20,
-                });
+                const options = { limit: 10 };
+                if (categories) options.categories = categories;
+                
+                const response = await useFetchCoindesk('news/v1/article/list', options);
                 
                 if(response && response.Data) {
+                    if(categories) {
+                        this.coinNews = {};
+                        this.coinNews = response.Data;
+                        return;
+                    }
+                    
                     this.news = {};
                     this.news = response.Data;
                 }
@@ -105,7 +114,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoindeskNewsSingle(source_key, guid) {
+        async getCoindeskNewsSingleArticle(source_key, guid) {
             this.loading = true;
             this.article = {};
             

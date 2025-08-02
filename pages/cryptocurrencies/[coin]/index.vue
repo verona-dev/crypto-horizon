@@ -41,7 +41,7 @@
     // Methods
     const { getCoin } = CryptocurrenciesStore;
     
-    onMounted(() => {
-        getCoin(route.params.coin);
+    onMounted(async() => {
+        await getCoin(route.params.coin);
     });
 </script>
