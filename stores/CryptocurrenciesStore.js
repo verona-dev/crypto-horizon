@@ -87,24 +87,27 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoindeskNews(categories = '') {
+        async getCoindeskNews(categories = null) {
+            console.log(categories);
             this.loading = true;
             
             try {
-                const response = await useFetchCoindesk('news/v1/article/list', {
-                    limit: 10,
-                    categories: categories,
-                });
+                const options = { limit: 10 };
+                if (categories) options.categories = categories;
+                
+                const response = await useFetchCoindesk('news/v1/article/list', options);
                 
                 if(response && response.Data) {
                     if(categories) {
                         this.coinNews = {};
                         this.coinNews = response.Data;
+                        console.log(this.coinNews);
                         return;
                     }
                     
                     this.news = {};
                     this.news = response.Data;
+                    console.log(this.news);
                 }
             } catch(error) {
                 console.log(error);
