@@ -18,6 +18,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         marketOverview: [],
         news: {},
         article: {},
+        coinNews : {},
     }),
     
     actions: {
@@ -85,15 +86,22 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoindeskNews() {
+        async getCoindeskNews(categories = '') {
             this.loading = true;
             
             try {
                 const response = await useFetchCoindesk('news/v1/article/list', {
-                    limit: 20,
+                    limit: 10,
+                    categories: categories,
                 });
                 
                 if(response && response.Data) {
+                    if(categories) {
+                        this.coinNews = {};
+                        this.coinNews = response.Data;
+                        return;
+                    }
+                    
                     this.news = {};
                     this.news = response.Data;
                 }
@@ -105,7 +113,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoindeskNewsSingle(source_key, guid) {
+        async getCoindeskNewsSingleArticle(source_key, guid) {
             this.loading = true;
             this.article = {};
             

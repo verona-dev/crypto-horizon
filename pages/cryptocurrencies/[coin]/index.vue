@@ -14,7 +14,7 @@
                 class='bg-background border-none flex flex-col rounded-none'
             >
                 <CoinHeader :coin='coin' />
-                <CoinNews :symbol='coin.symbol' />
+                <CoinNews />
                 <CoinBody :coin='coin'/>
                 
                 <CoinFooter :coin='coin' />
@@ -38,11 +38,12 @@
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     // State
-    const { coin, loading } = storeToRefs(CryptocurrenciesStore);
+    const { coin, coinNews, loading } = storeToRefs(CryptocurrenciesStore);
     // Methods
-    const { getCoin } = CryptocurrenciesStore;
+    const { getCoin, getCoindeskNews } = CryptocurrenciesStore;
     
     onMounted(() => {
         getCoin(route.params.coin);
+        getCoindeskNews( { categories: coin.value?.symbol });
     });
 </script>
