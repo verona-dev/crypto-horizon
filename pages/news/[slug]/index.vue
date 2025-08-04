@@ -37,7 +37,7 @@
                                 name='mdi-light:clock'
                                 size='25'
                             />
-                            <p>{{ readingDuration }} min Read</p>
+                            <p>{{ reading_duration }} min Read</p>
                         </div>
                     </CardContent>
                     
@@ -116,7 +116,7 @@
         </div>
         
         <!-- Reading/Scroll progress bar -->
-        <div class='progress-container'>
+        <div v-if='show_reading_duration' class='progress-container'>
             <div class='progress-bar mr-2' :style='{ width: `${progress * 100}%` }'></div>
             <NuxtIcon
                 v-if='progress > 0'
@@ -183,13 +183,13 @@
         return sentences.join('');
     });
     
-    const source_name = computed(() => article.value?.SOURCE_DATA?.NAME || 'Unknown source');
     const source_avatar = computed(() => article.value?.SOURCE_DATA?.IMAGE_URL);
-    const source_score = computed(() => article.value?.SOURCE_DATA?.BENCHMARK_SCORE);
-    const source_launch_date = computed(() => article.value?.SOURCE_DATA?.LAUNCH_DATE && dayjs.unix(article.value?.SOURCE_DATA.LAUNCH_DATE).format('MMMM D, YYYY'));
-    const source_lang = computed(() => article.value?.SOURCE_DATA?.LANG);
-    const source_url = computed(() => article.value?.SOURCE_DATA?.URL);
-    
+    // const source_url = computed(() => article.value?.SOURCE_DATA?.URL);
+    // const source_name = computed(() => article.value?.SOURCE_DATA?.NAME || 'Unknown source');
+    // const source_score = computed(() => article.value?.SOURCE_DATA?.BENCHMARK_SCORE);
+    // const source_launch_date = computed(() => article.value?.SOURCE_DATA?.LAUNCH_DATE && dayjs.unix(article.value?.SOURCE_DATA.LAUNCH_DATE).format('MMMM D, YYYY'));
+    // const source_lang = computed(() => article.value?.SOURCE_DATA?.LANG);
+    /*
     const source_url_label = computed(() => {
         let url = new URL(source_url.value);
         let protocol = url.protocol;
@@ -197,6 +197,7 @@
         
         return `${protocol}//${host}`;
     });
+    */
     
     const progress = ref(0);
     
@@ -206,14 +207,16 @@
         progress.value = Math.min(1, Math.max(0, scrollTop / docHeight));
     };
     
-    const readingDuration = ref(0);
+    const reading_duration = ref(0);
+    const show_reading_duration = computed(() => reading_duration.value > 1);
     
     watch(body_formated, (newVal) => {
         if (newVal && newVal.length > 0) {
             const { duration } = useReadingTime({
                 content: newVal,
             });
-            readingDuration.value = duration;
+            reading_duration.value = duration.value;
+            console.log(duration.value);
         }
     }, { immediate: true });
     
