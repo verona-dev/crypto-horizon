@@ -1,5 +1,5 @@
 <template>
-    <Card v-if='article' class='coin-news-card rounded-none border-none bg-transparent shadow-2xl hover:bg-muted px-6 py-10'>
+    <Card v-if='article' class='coin-news-card rounded-none border-none bg-transparent shadow-2xl hover:bg-muted px-6 py-12'>
         <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
             <CardHeader class='p-0'>
                 <div class='flex gap-6'>
@@ -21,15 +21,28 @@
                         
                         <Skeleton
                             v-else
-                            class='h-[150px] w-full'
+                            class='h-[200px] w-full'
                         />
                     </NuxtImg>
                     
                     <div class='flex flex-col justify-around'>
                         <!--  Article Title  -->
-                        <CardDescription class='text-left text-foreground text-md font-bold hover:underline'>
-                            {{ title }}
-                        </CardDescription>
+                        <div class='flex flex-col items-start gap-2'>
+                            <CardDescription class='text-left text-foreground text-md font-bold hover:underline'>
+                                {{ title }}
+                            </CardDescription>
+                            
+                            <!--  Categories / Tags  -->
+                            <div class='categories-container'>
+                                <Badge
+                                    v-for='category in categories.slice(0, 4)'
+                                    class='mr-2 mb-2 border-muted-custom py-1 px-3 rounded-sm'
+                                    variant='outline'
+                                >
+                                    {{ category.NAME }}
+                                </Badge>
+                            </div>
+                        </div>
                         
                         <!--  Author/Source + Publish date  -->
                         <div class='flex items-start gap-12'>
@@ -95,19 +108,6 @@
                                 </HoverCardContent>
                             </HoverCard>
                         </div>
-                        
-                        <!--  Categories / Tags  -->
-                        <!--
-                        <div class='categories-container px-6 mt-2'>
-                            <Badge
-                                v-for='category in categories.slice(0, 4)'
-                                class='mr-2 mb-2 border-muted-custom py-1 px-3 rounded-sm'
-                                variant='outline'
-                            >
-                                {{ category.NAME }}
-                            </Badge>
-                        </div>
-                        -->
                     </div>
                 </div>
             </CardHeader>
@@ -184,7 +184,7 @@
         img.main-image {
             //object-fit: contain;
             //height: 100%;
-            height: 150px;
+            height: 200px;
             //width: 100%;
         }
     }
