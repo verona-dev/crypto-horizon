@@ -33,9 +33,9 @@
                             </CardDescription>
                             
                             <!--  Categories / Tags  -->
-                            <div class='categories-container'>
+                            <div class='categories-container flex flex-wrap'>
                                 <Badge
-                                    v-for='category in categories.slice(0, 4)'
+                                    v-for='category in categories.slice(0, 16)'
                                     class='mr-2 mb-2 border-muted-custom py-1 px-3 rounded-sm'
                                     variant='outline'
                                 >
