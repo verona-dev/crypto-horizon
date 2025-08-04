@@ -1,5 +1,5 @@
 <template>
-    <Card v-if='article' class='coin-news-card rounded-none border-none bg-transparent shadow-2xl'>
+    <Card v-if='article' class='coin-news-card rounded-none border-none bg-transparent shadow-2xl hover:bg-muted'>
         <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
             <CardHeader class='p-0'>
                 <div class='flex gap-6'>
@@ -32,7 +32,7 @@
                         </CardDescription>
                         
                         <!--  Author + Source  -->
-                        <div class='flex items-start justify-between px-6'>
+                        <div class='flex items-center justify-between px-6'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
                                     <MazAvatar
