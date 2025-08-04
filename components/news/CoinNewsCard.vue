@@ -1,5 +1,5 @@
 <template>
-    <Card v-if='article' class='coin-news-card rounded-none border-none bg-transparent shadow-2xl hover:bg-muted'>
+    <Card v-if='article' class='coin-news-card rounded-none border-none bg-transparent shadow-2xl hover:bg-muted px-6 py-10'>
         <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
             <CardHeader class='p-0'>
                 <div class='flex gap-6'>
@@ -21,18 +21,18 @@
                         
                         <Skeleton
                             v-else
-                            class='h-[175px] w-full'
+                            class='h-[150px] w-full'
                         />
                     </NuxtImg>
                     
                     <div class='flex flex-col justify-around'>
                         <!--  Article Title  -->
-                        <CardDescription class='text-left text-foreground text-md font-bold hover:underline px-6'>
+                        <CardDescription class='text-left text-foreground text-md font-bold hover:underline'>
                             {{ title }}
                         </CardDescription>
                         
-                        <!--  Author + Source  -->
-                        <div class='flex items-center justify-between px-6'>
+                        <!--  Author/Source + Publish date  -->
+                        <div class='flex items-start gap-12'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
                                     <MazAvatar
@@ -86,7 +86,7 @@
                             
                             <!--  Publish date  -->
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='flex items-center gap-2'>
+                                <HoverCardTrigger class='flex gap-2 mt-1'>
                                     <NuxtIcon name='iconoir:calendar' size='16px' />
                                     <span class='text-xs'>{{ published_date_from_now }}</span>
                                 </HoverCardTrigger>
@@ -184,7 +184,7 @@
         img.main-image {
             //object-fit: contain;
             //height: 100%;
-            height: 175px;
+            height: 150px;
             //width: 100%;
         }
     }

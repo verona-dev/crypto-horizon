@@ -1,5 +1,5 @@
 <template>
-    <CardFooter class='coin-footer'>
+    <CardFooter class='coin-footer px-0 mx-auto w-full 2xl:w-[1200px]'>
         <CoinNews :coin='coin' />
     </CardFooter>
 </template>
