@@ -2,7 +2,7 @@
     <div v-if='coinNews' class='coin-news w-full'>
         <h1 class='my-28'>Latest {{ symbol }} Crypto News</h1>
         
-        <div class='flex flex-col gap-8'>
+        <div class='flex flex-col'>
             <CoinNewsCard
                 v-for='article in articles'
                 :key='article.ID'
