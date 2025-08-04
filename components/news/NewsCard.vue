@@ -1,5 +1,5 @@
 <template>
-    <Card v-if='article' class='news-item rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[450px] py-0 gap-8'>
+    <Card v-if='article' class='news-card rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[450px] py-0 gap-8'>
         <CardHeader class='p-0'>
             <div class='flex flex-col gap-6'>
                 <!--  Main image  -->
@@ -107,8 +107,6 @@
                     </NuxtLink>
                 </CardDescription>
             </div>
-        
-        
         </CardHeader>
         
         <CardFooter class='flex justify-center my-6'>
@@ -172,7 +170,7 @@
 </script>
 
 <style scoped>
-    .news-item {
+    .news-card {
         img.main-image {
             object-fit: contain;
             //height: 100%;
