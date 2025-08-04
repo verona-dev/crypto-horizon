@@ -26,7 +26,10 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             await this.getCoingeckoCoin(coinId);
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
             await this.fetchLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
-            await this.getCoindeskNews( { categories: this.coin.symbol });
+            await this.getCoindeskNews( {
+                categories: this.coin.symbol,
+                limit: 5,
+            });
         },
         
         async getCoingeckoMarkets(options) {
@@ -87,14 +90,14 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoindeskNews({ categories = null }) {
+        async getCoindeskNews({ categories = null, limit = 10 } = {}) {
             this.loading = true;
             
             try {
-                const options = { limit: 10 };
-                if (categories) options.categories = categories;
-                
-                const response = await useFetchCoindesk('news/v1/article/list', options);
+                const response = await useFetchCoindesk('news/v1/article/list', {
+                    limit,
+                    categories,
+                });
                 
                 if(response && response.Data) {
                     if(categories) {
