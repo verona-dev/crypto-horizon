@@ -30,14 +30,6 @@
                     
                     <Table>
                         <TableCaption>Source details.</TableCaption>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead class="w-[100px]">
-                                    Name
-                                </TableHead>
-                                <TableHead>Value</TableHead>
-                            </TableRow>
-                        </TableHeader>
                         
                         <TableBody>
                             <!--  Launch Date  -->
