@@ -1,10 +1,10 @@
 <template>
-    <Card v-if='source' class='news-source-card flex flex-col items-center gap-12 rounded-md border-none hover:shadow-2xl w-3xl py-12'>
-        <h2>{{ name }}</h2>
+    <Card v-if='source' class='news-source-card flex flex-col items-center gap-12 rounded-md border-none shadow-lg hover:shadow-2xl w-3xl py-12'>
+        <h2 class='hover-underline'>{{ name }}</h2>
         
         <CardContent class='flex justify-around w-full'>
             <!--  Main image  -->
-            <NuxtLink :to='url' target='_blank'>
+            <NuxtLink :to='url' target='_blank' external>
                 <NuxtImg
                     :src='img_url'
                     alt='article image'
@@ -62,7 +62,6 @@
                             <TableCell class='font-medium'>Source type</TableCell>
                             <TableCell>{{ source_type }}</TableCell>
                         </TableRow>
-                    
                     </TableBody>
                 </Table>
             </div>
@@ -71,7 +70,7 @@
         <CardFooter class='flex justify-center'>
             <!--  Read more  -->
             <Button as-child variant='link' class='uppercase hover:text-foreground'>
-                <NuxtLink :to='url' target='_blank'>
+                <NuxtLink :to='url' target='_blank' external>
                     Visit Source
                 </NuxtLink>
             </Button>
@@ -91,10 +90,7 @@
     import {
         Table,
         TableBody,
-        TableCaption,
         TableCell,
-        TableHead,
-        TableHeader,
         TableRow,
     } from '@/components/ui/table';
     
@@ -130,17 +126,41 @@
 
 <style scoped>
     .news-source-card {
-        
         &:hover {
             background-color: var(--card-small);
         }
         
         img.main-image {
-            //object-fit: contain;
-            //height: 100%;
             height: 275px;
             width: 275px;
-            //width: 100%;
+        }
+        
+        .hover-underline {
+            position: relative;
+        }
+        
+        .hover-underline::after,
+        .hover-underline::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, var(--destructive-foreground), var(--secondary));
+            bottom: -15px;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease-out;
+        }
+        
+        .hover-underline::before {
+            top: -15px;
+            transform-origin: left;
+        }
+        
+        &:hover .hover-underline::after,
+        &:hover .hover-underline::before {
+            transform: scaleX(1);
         }
     }
 </style>
