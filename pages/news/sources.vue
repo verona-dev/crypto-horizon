@@ -9,7 +9,17 @@
         </div>
         
         <div v-else class='flex flex-col items-center'>
-            <h1 class='my-28'>News Sources</h1>
+            <div class='my-28 flex flex-col items-center gap-4'>
+                <h1>News Sources</h1>
+                <NuxtLink
+                    to='https://developers.coindesk.com/documentation/data-api/introduction'
+                    external
+                    target='_blank'
+                    class='text-muted-custom underline'
+                >
+                    <span>data from Coindesk Api</span>
+                </NuxtLink>
+            </div>
             
             <div v-if='newsSources' class='flex flex-wrap justify-center gap-6 xl:gap-20'>
                 <NewsSourceCard
