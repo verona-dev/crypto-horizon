@@ -1,44 +1,87 @@
 <template>
-    <Card v-if='source' class='news-source-card rounded-md border-none bg-transparent shadow-2xl w-7xl py-0'>
-        <NuxtLink :to='url' target='_blank'>
-            <CardHeader class='px-6 py-10 flex items-center gap-8'>
+    <Card v-if='source' class='news-source-card rounded-md border-none bg-transparent shadow-2xl w-3xl py-0'>
+            <CardHeader class='px-6 py-10 flex items-center gap-12'>
                 <!--  Main image  -->
-                <NuxtImg
-                    :src='img_url'
-                    alt='article image'
-                    class='main-image rounded-md'
-                    :custom='true'
-                    v-slot='{ src, isLoaded, imgAttrs }'
-                    preload
-                >
-                    <img
-                        v-if='isLoaded'
-                        v-bind='imgAttrs'
-                        :src='src'
+                <NuxtLink :to='url' target='_blank'>
+                    <NuxtImg
+                        :src='img_url'
                         alt='article image'
+                        class='main-image rounded-md'
+                        :custom='true'
+                        v-slot='{ src, isLoaded, imgAttrs }'
+                        preload
                     >
-                    
-                    <Skeleton
-                        v-else
-                        class='h-[200px] w-full'
-                    />
-                </NuxtImg>
+                        <img
+                            v-if='isLoaded'
+                            v-bind='imgAttrs'
+                            :src='src'
+                            alt='article image'
+                        >
+                        
+                        <Skeleton
+                            v-else
+                            class='h-[250px] w-[250px]'
+                        />
+                    </NuxtImg>
+                </NuxtLink>
                 
-                <div class='flex flex-col items-start gap-2'>
+                <div class='flex flex-col'>
                     <h3>{{ name }}</h3>
-                    <span>Launch date: {{ launch_date }}</span>
-                    <span>On Coindesk from: {{ created_on }}</span>
-                    <span>Last update: {{ last_updated }}</span>
-                    <p>Score: {{ benchmark_score }}</p>
-                    <div v-if='lang' class='flex items-center gap-2'>
-                        <p>Language:</p>
-                        <NuxtIcon  :name="`circle-flags:lang-${lang.toLowerCase()}`" size='20px' />
-                    </div>
-                    <p>Status: {{ status }}</p>
-                    <p>Source type: {{ source_type }}</p>
+                    
+                    <Table>
+                        <TableCaption>Source details.</TableCaption>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead class="w-[100px]">
+                                    Name
+                                </TableHead>
+                                <TableHead>Value</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        
+                        <TableBody>
+                            <!--  Launch Date  -->
+                            <TableRow>
+                                <TableCell class='font-medium'>Launch date</TableCell>
+                                <TableCell>{{ launch_date }}</TableCell>
+                            </TableRow>
+                             <!--  On Coindesk from  -->
+                            <TableRow v-if='created_on'>
+                                <TableCell class='font-medium'>On Coindesk from</TableCell>
+                                <TableCell>{{ created_on }}</TableCell>
+                            </TableRow>
+                            <!--  Last update  -->
+                            <TableRow v-if='last_updated'>
+                                <TableCell class='font-medium'>Last update</TableCell>
+                                <TableCell>{{ last_updated }}</TableCell>
+                            </TableRow>
+                            <!--  Benchmark Score  -->
+                            <TableRow v-if='benchmark_score'>
+                                <TableCell class='font-medium'>Score</TableCell>
+                                <TableCell>{{ benchmark_score }}</TableCell>
+                            </TableRow>
+                            <!--  Language  -->
+                            <TableRow v-if='lang'>
+                                <TableCell class='font-medium'>Language</TableCell>
+                                <TableCell>
+                                    <NuxtIcon  :name="`circle-flags:lang-${lang.toLowerCase()}`" size='20px' />
+                                </TableCell>
+                            </TableRow>
+                            <!--  Status  -->
+                            <TableRow v-if='lang'>
+                                <TableCell class='font-medium'>Status</TableCell>
+                                <TableCell>{{ status }}</TableCell>
+                            </TableRow>
+                            <!--  Source type  -->
+                            <TableRow v-if='lang'>
+                                <TableCell class='font-medium'>Source type</TableCell>
+                                <TableCell>{{ source_type }}</TableCell>
+                            </TableRow>
+                            
+                        </TableBody>
+                    </Table>
                 </div>
             </CardHeader>
-        </NuxtLink>
     </Card>
 </template>
 
@@ -50,6 +93,15 @@
     import { Card, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Button } from '@/components/ui/button';
+    import {
+        Table,
+        TableBody,
+        TableCaption,
+        TableCell,
+        TableHead,
+        TableHeader,
+        TableRow,
+    } from '@/components/ui/table';
     
     const props = defineProps({
         source: {}
@@ -86,7 +138,8 @@
         img.main-image {
             //object-fit: contain;
             //height: 100%;
-            height: 300px;
+            height: 250px;
+            width: 250px;
             //width: 100%;
         }
     }
