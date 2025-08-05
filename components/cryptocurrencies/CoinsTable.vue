@@ -2,13 +2,13 @@
     <MazTable
         v-if='!loading'
         :headers='[
-          { label: "#", key: "rank", align: "center", sortable: false, classes: "w-20", },
-          { label: "Name", key: "name", sortable: false, classes: "min-w-[400px]", },
-          { label: "Price", key: "price", align: "center", sortable: false, classes: "",},
-          { label: "Market Cap", key: "marketCap", align: "center", sortable: false, classes: "", },
-          { label: "Volume (24h)", key: "volume", align: "center", sortable: false, classes: "", },
-          { label: "Circ. Supply", key: "c_supply", align: "center", sortable: false, classes: "", },
-          { label: "24h %", key: "changePercent24Hr", align: "center", sortable: false, classes: "", },
+          { label: "#", key: "rank", align: "center", sortable: false, classes: "w-20"},
+          { label: "Name", key: "name", sortable: false, classes: "min-w-[400px]"},
+          { label: "Price", key: "price", align: "center", sortable: false, classes: ""},
+          { label: "Market Cap", key: "marketCap", align: "center", sortable: false, classes: "" },
+          { label: "Volume (24h)", key: "volume", align: "center", sortable: false, classes: "" },
+          { label: "Circ. Supply", key: "c_supply", align: "center", sortable: false, classes: "" },
+          { label: "24h %", key: "changePercent24Hr", align: "center", sortable: false, classes: "" },
         ]'
         :rows='coins'
         class='my-20 px-6 mx-auto'
