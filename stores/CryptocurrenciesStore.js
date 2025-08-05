@@ -151,7 +151,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 
                 if(response && response.Data) {
                     this.newsSources = response.Data;
-                    console.log(JSON.parse(JSON.stringify(this.newsSources)));
                 }
             } catch(error) {
                 console.error(error);
