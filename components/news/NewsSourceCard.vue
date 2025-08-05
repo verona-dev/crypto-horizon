@@ -1,10 +1,20 @@
 <template>
-    <div class='news-source-card'>
-        {{ id }}
-    </div>
+    <Card v-if='source' class='news-source-card rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[450px] py-0 gap-8'>
+        <div>{{ created_on }}</div>
+    </Card>
 </template>
 
 <script setup>
+    import dayjs from 'dayjs';
+    import relativeTime from 'dayjs/plugin/relativeTime';
+    dayjs.extend(relativeTime, { rounding: Math.floor });
+    
+    import { Card, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
+    import { Skeleton } from '~/components/ui/skeleton/index.js';
+    import { Badge } from '@/components/ui/badge';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
+    import { Button } from '@/components/ui/button';
+    
     const props = defineProps({
         source: {}
     });
@@ -13,7 +23,7 @@
     
     const id = source.value?.ID;
     const benchmark_score = source.value?.BENCHMARK_SCORE;
-    const created_on = source.value?.CREATED_ON;
+    const created_on = dayjs.unix(source.value?.CREATED_ON).format('MMMM D, YYYY');
     const img_url = source.value?.IMAGE_URL;
     const lang = source.value?.LANG;
     const last_updated = source.value?.LAST_UPDATED_TS;
