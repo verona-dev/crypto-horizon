@@ -1,8 +1,10 @@
 <template>
     <Card v-if='source' class='news-source-card rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[450px] py-0 gap-8'>
         <CardHeader class='p-0'>
-            <div>Launch date: {{ launch_date }}</div>
-            <div>On Coindesk from: {{ created_on }}</div>
+            <p>Name: {{ name }}</p>
+            <span>Launch date: {{ launch_date }}</span>
+            <span>On Coindesk from: {{ created_on }}</span>
+            <p>{{ benchmark_score }}</p>
         </CardHeader>
     </Card>
 </template>
@@ -24,8 +26,7 @@
     
     const { source } = toRefs(props);
     
-    const id = source.value?.ID;
-    const benchmark_score = source.value?.BENCHMARK_SCORE;
+    const benchmark_score = computed(() => source.value?.BENCHMARK_SCORE > 0 ? source.value.BENCHMARK_SCORE : '-');
     const created_on = dayjs.unix(source.value?.CREATED_ON).format('MMMM D, YYYY');
     const img_url = source.value?.IMAGE_URL;
     const lang = source.value?.LANG;
