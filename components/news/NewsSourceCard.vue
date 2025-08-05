@@ -1,6 +1,9 @@
 <template>
     <Card v-if='source' class='news-source-card rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[450px] py-0 gap-8'>
-        <div>{{ created_on }}</div>
+        <CardHeader class='p-0'>
+            <div>Launch date: {{ launch_date }}</div>
+            <div>On Coindesk from: {{ created_on }}</div>
+        </CardHeader>
     </Card>
 </template>
 
@@ -27,7 +30,12 @@
     const img_url = source.value?.IMAGE_URL;
     const lang = source.value?.LANG;
     const last_updated = source.value?.LAST_UPDATED_TS;
-    const launch_date = source.value?.LAUNCH_DATE;
+    const launch_date = computed(() => {
+        if(source.value?.LAUNCH_DATE) {
+            return dayjs.unix(source.value?.LAUNCH_DATE).format('MMMM D, YYYY');
+        }
+        return 'Unknown';
+    });
     const name = source.value?.NAME;
     const source_type = source.value?.SOURCE_TYPE;
     const status = source.value?.STATUS;
