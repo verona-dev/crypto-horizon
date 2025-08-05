@@ -1,10 +1,32 @@
 <template>
     <Card v-if='source' class='news-source-card rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[450px] py-0 gap-8'>
         <CardHeader class='p-0'>
+            <!--  Main image  -->
+            <NuxtImg
+                :src='img_url'
+                alt='article image'
+                class='main-image rounded-md rounded-b-none'
+                :custom='true'
+                v-slot='{ src, isLoaded, imgAttrs }'
+                preload
+            >
+                <img
+                    v-if='isLoaded'
+                    v-bind='imgAttrs'
+                    :src='src'
+                    alt='article image'
+                >
+                
+                <Skeleton
+                    v-else
+                    class='h-[200px] w-full'
+                />
+            </NuxtImg>
+            
             <p>Name: {{ name }}</p>
             <span>Launch date: {{ launch_date }}</span>
             <span>On Coindesk from: {{ created_on }}</span>
-            <p>{{ benchmark_score }}</p>
+            <p>Score: {{ benchmark_score }}</p>
         </CardHeader>
     </Card>
 </template>
@@ -45,5 +67,12 @@
 </script>
 
 <style scoped>
-
+.news-source-card {
+    img.main-image {
+        //object-fit: contain;
+        //height: 100%;
+        height: 200px;
+        //width: 100%;
+    }
+}
 </style>
