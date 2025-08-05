@@ -11,7 +11,7 @@
         <div v-else class='flex flex-col items-center'>
             <h1 class='my-28'>News Sources</h1>
             
-            <div v-if='newsSources' class='flex flex-wrap justify-center gap-6'>
+            <div v-if='newsSources' class='flex flex-wrap justify-center gap-6 xl:gap-20'>
                 <NewsSourceCard
                     v-for='source in newsSources'
                     :key='source.ID'
