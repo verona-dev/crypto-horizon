@@ -10,11 +10,21 @@
         
         <div v-else>
             <h1 class='my-28 self-center'>News Sources</h1>
+            
+            <div v-if='newsSources'>
+                <NewsSourceCard
+                    v-for='source in newsSources'
+                    :key='source.ID'
+                    :source='source'
+                />
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
+    import NewsSourceCard from '~/components/news/NewsSourceCard.vue';
+    
     // CryptocurrenciesStore
     import {storeToRefs} from 'pinia';
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
@@ -25,6 +35,7 @@
     
     onMounted(async() => {
         await getCoindeskNewsSources();
+        console.log(newsSources.value[0]);
     });
 </script>
 
