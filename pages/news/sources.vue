@@ -8,10 +8,10 @@
             <h4 class='ml-4 mb-0'>Loading...</h4>
         </div>
         
-        <div v-else>
-            <h1 class='my-28 self-center'>News Sources</h1>
+        <div v-else class='flex flex-col items-center'>
+            <h1 class='my-28'>News Sources</h1>
             
-            <div v-if='newsSources'>
+            <div v-if='newsSources' class='flex flex-wrap justify-center gap-6'>
                 <NewsSourceCard
                     v-for='source in newsSources'
                     :key='source.ID'
@@ -35,7 +35,6 @@
     
     onMounted(async() => {
         await getCoindeskNewsSources();
-        console.log(newsSources.value[0]);
     });
 </script>
 

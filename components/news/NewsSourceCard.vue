@@ -1,42 +1,44 @@
 <template>
-    <Card v-if='source' class='news-source-card rounded-md border-none bg-transparent shadow-2xl justify-between w-7xl py-0 gap-8'>
-        <CardHeader class='px-6 py-10 flex items-center gap-8'>
-            <!--  Main image  -->
-            <NuxtImg
-                :src='img_url'
-                alt='article image'
-                class='main-image rounded-md rounded-b-none'
-                :custom='true'
-                v-slot='{ src, isLoaded, imgAttrs }'
-                preload
-            >
-                <img
-                    v-if='isLoaded'
-                    v-bind='imgAttrs'
-                    :src='src'
+    <Card v-if='source' class='news-source-card rounded-md border-none bg-transparent shadow-2xl w-7xl py-0'>
+        <NuxtLink :to='url' target='_blank'>
+            <CardHeader class='px-6 py-10 flex items-center gap-8'>
+                <!--  Main image  -->
+                <NuxtImg
+                    :src='img_url'
                     alt='article image'
+                    class='main-image rounded-md'
+                    :custom='true'
+                    v-slot='{ src, isLoaded, imgAttrs }'
+                    preload
                 >
+                    <img
+                        v-if='isLoaded'
+                        v-bind='imgAttrs'
+                        :src='src'
+                        alt='article image'
+                    >
+                    
+                    <Skeleton
+                        v-else
+                        class='h-[200px] w-full'
+                    />
+                </NuxtImg>
                 
-                <Skeleton
-                    v-else
-                    class='h-[200px] w-full'
-                />
-            </NuxtImg>
-            
-            <div>
-                <p>Name: {{ name }}</p>
-                <span>Launch date: {{ launch_date }}</span>
-                <span>On Coindesk from: {{ created_on }}</span>
-                <span>Last update: {{ last_updated }}</span>
-                <p>Score: {{ benchmark_score }}</p>
-                <div v-if='lang' class='flex items-center gap-2'>
-                    <p>Language:</p>
-                    <NuxtIcon  :name="`circle-flags:lang-${lang.toLowerCase()}`" size='20px' />
+                <div class='flex flex-col items-start gap-2'>
+                    <h3>{{ name }}</h3>
+                    <span>Launch date: {{ launch_date }}</span>
+                    <span>On Coindesk from: {{ created_on }}</span>
+                    <span>Last update: {{ last_updated }}</span>
+                    <p>Score: {{ benchmark_score }}</p>
+                    <div v-if='lang' class='flex items-center gap-2'>
+                        <p>Language:</p>
+                        <NuxtIcon  :name="`circle-flags:lang-${lang.toLowerCase()}`" size='20px' />
+                    </div>
+                    <p>Status: {{ status }}</p>
+                    <p>Source type: {{ source_type }}</p>
                 </div>
-                <p>Status: {{ status }}</p>
-                <p>Source type: {{ source_type }}</p>
-            </div>
-        </CardHeader>
+            </CardHeader>
+        </NuxtLink>
     </Card>
 </template>
 
@@ -84,7 +86,7 @@
         img.main-image {
             //object-fit: contain;
             //height: 100%;
-            height: 200px;
+            height: 300px;
             //width: 100%;
         }
     }
