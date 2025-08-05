@@ -144,10 +144,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             this.loading = true;
             
             try {
-                const response = await useFetchCoindesk('news/v1/source/list', {
-                    status: 'ACTIVE',
-                    source_type: 'RSS',
-                });
+                const response = await useFetchCoindesk('news/v1/source/list');
                 
                 if(response && response.Data) {
                     this.newsSources = response.Data;
