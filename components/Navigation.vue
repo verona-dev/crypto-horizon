@@ -53,7 +53,7 @@
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>Cryptocurrencies</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul class='flex items-center p-6 md:w-[400px] xl:h-40 gap-4'>
+                        <ul class='flex items-center p-6 md:w-[400px] gap-4'>
                             <!--  Cryptocurrencies Logo  -->
                             <li class='w-24'>
                                 <NuxtIcon
@@ -84,7 +84,7 @@
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>News</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul class='flex items-center justify-around p-6 md:w-[500px] xl:h-40 gap-4'>
+                        <ul class='flex items-center justify-around p-6 md:w-[500px] gap-4'>
                             <!--  News Logo  -->
                             <li class='w-24'>
                                 <NuxtIcon
