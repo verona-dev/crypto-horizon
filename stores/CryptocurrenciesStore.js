@@ -100,7 +100,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 };
                 
                 if(category) {
-                    console.log('category');
                     params.category = category;
                 }
                 
@@ -123,7 +122,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         
         async getNewsArticle(source_key, guid) {
             this.loading = true;
-            this.article = {};
             
             try {
                 const response = await useFetchCoindesk('news/v1/article/get', {
