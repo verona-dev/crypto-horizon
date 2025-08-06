@@ -27,14 +27,14 @@
 
 <script setup>
     import NewsCard from '~/components/news/NewsCard.vue';
-    // CryptocurrenciesStore
-    import {storeToRefs} from 'pinia';
-    import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
-    const CryptocurrenciesStore = useCryptocurrenciesStore();
+    // NewsStore
+    import { storeToRefs } from 'pinia';
+    import { useNewsStore } from '~/stores/NewsStore';
+    const NewsStore = useNewsStore();
     
-    const { news, loading } = storeToRefs(CryptocurrenciesStore);
+    const { news, loading } = storeToRefs(NewsStore);
     const articles = computed(() => news.value);
-    const { getNews } = CryptocurrenciesStore;
+    const { getNews } = NewsStore;
     
     onMounted(async() => {
         await getNews({ limit: 10 });
