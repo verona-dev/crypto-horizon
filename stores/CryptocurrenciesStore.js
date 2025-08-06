@@ -27,7 +27,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             await this.getCoingeckoCoin(coinId);
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
             await this.fetchLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
-            await this.getCoindeskNews( {
+            await this.getNews( {
                 categories: this.coin.symbol,
                 limit: 5,
             });
@@ -91,7 +91,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoindeskNews({ categories = null, limit  }) {
+        async getNews({ categories = null, limit  }) {
             this.loading = true;
             
             try {

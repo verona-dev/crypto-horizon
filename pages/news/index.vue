@@ -34,9 +34,9 @@
     
     const { news, loading } = storeToRefs(CryptocurrenciesStore);
     const articles = computed(() => news.value);
-    const { getCoindeskNews } = CryptocurrenciesStore;
+    const { getNews } = CryptocurrenciesStore;
     
     onMounted(async() => {
-        await getCoindeskNews({ limit: 10 });
+        await getNews({ limit: 10 });
     });
 </script>
