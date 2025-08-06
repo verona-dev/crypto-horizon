@@ -37,6 +37,6 @@
     const { getCoindeskNews } = CryptocurrenciesStore;
     
     onMounted(async() => {
-        await getCoindeskNews();
+        await getCoindeskNews({ limit: 10 });
     });
 </script>

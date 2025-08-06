@@ -91,7 +91,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoindeskNews({ categories = null, limit = 10 } = {}) {
+        async getCoindeskNews({ categories = null, limit  }) {
             this.loading = true;
             
             try {
@@ -130,7 +130,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 
                 if(response && response.Data) {
                     this.article = response.Data;
-                    // console.log(JSON.parse(JSON.stringify(this.article)));
                 }
             } catch(error) {
                 console.error(error);
