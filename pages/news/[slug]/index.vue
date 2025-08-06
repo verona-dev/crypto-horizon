@@ -142,7 +142,7 @@
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Button } from '~/components/ui/button/index.js';
     
-    // CryptocurrenciesStore
+    // NewsStore
     import { storeToRefs } from 'pinia';
     import { useNewsStore } from '~/stores/NewsStore';
     const NewsStore = useNewsStore();

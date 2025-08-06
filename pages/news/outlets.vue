@@ -35,13 +35,13 @@
 <script setup>
     import OutletCard from '~/components/news/OutletCard.vue';
     
-    // CryptocurrenciesStore
-    import {storeToRefs} from 'pinia';
-    import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
-    const CryptocurrenciesStore = useCryptocurrenciesStore();
+    // NewsStore
+    import { storeToRefs } from 'pinia';
+    import { useNewsStore } from '~/stores/NewsStore';
+    const NewsStore = useNewsStore();
     
-    const { newsOutlets, loading } = storeToRefs(CryptocurrenciesStore);
-    const { getNewsOutlets } = CryptocurrenciesStore;
+    const { newsOutlets, loading } = storeToRefs(NewsStore);
+    const { getNewsOutlets } = NewsStore;
     
     onMounted(async() => {
         await getNewsOutlets();
