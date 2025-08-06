@@ -148,7 +148,7 @@
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     const { article, loading } = storeToRefs(CryptocurrenciesStore);
-    const { getCoindeskNewsSingleArticle } = CryptocurrenciesStore;
+    const { getNewsArticle } = CryptocurrenciesStore;
     
     const title = computed(() => article.value?.TITLE);
     const subtitle = computed(() => article.value?.SUBTITLE);
@@ -221,7 +221,7 @@
     
     onMounted(async() => {
         const { source_key, guid } = route.query;
-        await getCoindeskNewsSingleArticle(source_key, guid);
+        await getNewsArticle(source_key, guid);
         window.addEventListener('scroll', onScroll);
     });
     

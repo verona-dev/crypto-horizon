@@ -118,7 +118,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoindeskNewsSingleArticle(source_key, guid) {
+        async getNewsArticle(source_key, guid) {
             this.loading = true;
             this.article = {};
             
