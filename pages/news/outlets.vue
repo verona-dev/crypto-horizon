@@ -21,9 +21,9 @@
                 </NuxtLink>
             </div>
             
-            <div v-if='newsSources' class='flex flex-wrap justify-center gap-6 xl:gap-20'>
+            <div v-if='newsOutlets' class='flex flex-wrap justify-center gap-6 xl:gap-20'>
                 <OutletCard
-                    v-for='source in newsSources'
+                    v-for='source in newsOutlets'
                     :key='source.ID'
                     :source='source'
                 />
@@ -40,7 +40,7 @@
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
-    const { newsSources, loading } = storeToRefs(CryptocurrenciesStore);
+    const { newsOutlets, loading } = storeToRefs(CryptocurrenciesStore);
     const { getCoindeskNewsOutlet } = CryptocurrenciesStore;
     
     onMounted(async() => {

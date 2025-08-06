@@ -17,7 +17,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         loading: false,
         marketOverview: [],
         news: {},
-        newsSources: {},
+        newsOutlets: {},
         article: {},
         coinNews : {},
     }),
@@ -146,7 +146,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 const response = await useFetchCoindesk('news/v1/source/list');
                 
                 if(response && response.Data) {
-                    this.newsSources = response.Data;
+                    this.newsOutlets = response.Data;
                 }
             } catch(error) {
                 console.error(error);
