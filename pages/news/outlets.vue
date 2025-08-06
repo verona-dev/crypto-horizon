@@ -41,10 +41,10 @@
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     const { newsOutlets, loading } = storeToRefs(CryptocurrenciesStore);
-    const { getCoindeskNewsOutlet } = CryptocurrenciesStore;
+    const { getNewsOutlets } = CryptocurrenciesStore;
     
     onMounted(async() => {
-        await getCoindeskNewsOutlet();
+        await getNewsOutlets();
     });
 </script>
 

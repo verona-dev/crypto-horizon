@@ -72,7 +72,7 @@
                         <!--  Read more  -->
                         <Button as-child variant='link' class='uppercase hover:text-foreground'>
                             <NuxtLink :to='url' target='_blank' external>
-                                Visit Source
+                                Visit Outlet
                             </NuxtLink>
                         </Button>
                     </CardFooter>
