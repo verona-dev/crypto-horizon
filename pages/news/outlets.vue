@@ -10,7 +10,7 @@
         
         <div v-else class='flex flex-col items-center'>
             <div class='my-28 flex flex-col items-center gap-4'>
-                <h1>News Sources</h1>
+                <h1>News Outlets</h1>
                 <NuxtLink
                     to='https://developers.coindesk.com/documentation/data-api/introduction'
                     external
@@ -22,7 +22,7 @@
             </div>
             
             <div v-if='newsSources' class='flex flex-wrap justify-center gap-6 xl:gap-20'>
-                <NewsSourceCard
+                <OutletCard
                     v-for='source in newsSources'
                     :key='source.ID'
                     :source='source'
@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-    import NewsSourceCard from '~/components/news/NewsSourceCard.vue';
+    import OutletCard from '~/components/news/OutletCard.vue';
     
     // CryptocurrenciesStore
     import {storeToRefs} from 'pinia';
@@ -41,10 +41,10 @@
     const CryptocurrenciesStore = useCryptocurrenciesStore();
     
     const { newsSources, loading } = storeToRefs(CryptocurrenciesStore);
-    const { getCoindeskNewsProviders } = CryptocurrenciesStore;
+    const { getCoindeskNewsOutlet } = CryptocurrenciesStore;
     
     onMounted(async() => {
-        await getCoindeskNewsProviders();
+        await getCoindeskNewsOutlet();
     });
 </script>
 

@@ -139,7 +139,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
         },
         
-        async getCoindeskNewsProviders() {
+        async getCoindeskNewsOutlet() {
             this.loading = true;
             
             try {
