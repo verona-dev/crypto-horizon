@@ -17,6 +17,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         loading: false,
         marketOverview: [],
         news: {},
+        newsSources: {},
         article: {},
         coinNews : {},
     }),
@@ -130,6 +131,23 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
                 if(response && response.Data) {
                     this.article = response.Data;
                     // console.log(JSON.parse(JSON.stringify(this.article)));
+                }
+            } catch(error) {
+                console.error(error);
+            }
+            finally {
+                this.loading = false;
+            }
+        },
+        
+        async getCoindeskNewsSources() {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoindesk('news/v1/source/list');
+                
+                if(response && response.Data) {
+                    this.newsSources = response.Data;
                 }
             } catch(error) {
                 console.error(error);

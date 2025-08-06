@@ -52,8 +52,8 @@
                 <!--  Cryptocurrencies  -->
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>Cryptocurrencies</NavigationMenuTrigger>
-                    <NavigationMenuContent class=''>
-                        <ul class='flex items-center p-6 md:w-[400px] xl:h-40 gap-4'>
+                    <NavigationMenuContent>
+                        <ul class='flex items-center p-6 md:w-[400px] gap-4'>
                             <!--  Cryptocurrencies Logo  -->
                             <li class='w-24'>
                                 <NuxtIcon
@@ -67,7 +67,7 @@
                                 <NavigationMenuLink as-child>
                                     <NuxtLink
                                         to='/cryptocurrencies'
-                                        class='flex items-start select-none space-y-1 rounded-md px-6 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
+                                        class='flex items-start select-none space-y-1 rounded-md px-6 py-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
                                     >
                                         <div class='text-sm font-medium leading-none'>Cryptocurrencies</div>
                                         <p class='line-clamp-2 text-sm leading-snug text-muted-foreground'>
@@ -83,8 +83,8 @@
                 <!--  News  -->
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>News</NavigationMenuTrigger>
-                    <NavigationMenuContent class=''>
-                        <ul class='flex items-center p-6 md:w-[400px] xl:h-40 gap-4'>
+                    <NavigationMenuContent>
+                        <ul class='flex items-center justify-around p-6 md:w-[500px] gap-4'>
                             <!--  News Logo  -->
                             <li class='w-24'>
                                 <NuxtIcon
@@ -93,19 +93,38 @@
                                 />
                             </li>
                             
-                            <!--  News -->
-                            <li class=''>
-                                <NavigationMenuLink as-child>
-                                    <NuxtLink
-                                        to='/news'
-                                        class='flex items-start select-none space-y-1 rounded-md px-6 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
-                                    >
-                                        <div class='text-sm font-medium leading-none'>News</div>
-                                        <p class='line-clamp-2 text-sm leading-snug text-muted-foreground'>
-                                            Check the latest news.
-                                        </p>
-                                    </NuxtLink>
-                                </NavigationMenuLink>
+                            <li>
+                                <ul class='flex flex-col gap-3'>
+                                    <!--  Check the News -->
+                                    <li>
+                                        <NavigationMenuLink as-child>
+                                            <NuxtLink
+                                                to='/news'
+                                                class='flex items-start select-none space-y-1 rounded-md px-6 py-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
+                                            >
+                                                <div class='text-sm font-medium leading-none'>News</div>
+                                                <p class='line-clamp-2 text-sm leading-snug text-muted-foreground'>
+                                                    Discover the latest news.
+                                                </p>
+                                            </NuxtLink>
+                                        </NavigationMenuLink>
+                                    </li>
+                                    
+                                    <!-- News Sources -->
+                                    <li>
+                                        <NavigationMenuLink as-child>
+                                            <NuxtLink
+                                                to='/news/sources'
+                                                class='flex justify-start items-start select-none space-y-1 rounded-md px-6 py-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
+                                            >
+                                                <div class='text-sm font-medium leading-none'>Sources</div>
+                                                <p class='line-clamp-2 text-sm leading-snug text-muted-foreground'>
+                                                    Check the news sources.
+                                                </p>
+                                            </NuxtLink>
+                                        </NavigationMenuLink>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </NavigationMenuContent>
