@@ -6,6 +6,7 @@ export const useNewsStore = defineStore('NewsStore', {
         news: {},
         newsOutlets: {},
         article: {},
+        loading: false,
     }),
     
     actions: {

@@ -134,7 +134,7 @@
     import { useReadingTime } from 'maz-ui';
     
     // Router
-    import {useRoute} from 'vue-router';
+    import { useRoute } from 'vue-router';
     const route = useRoute();
     
     // Components
@@ -143,12 +143,12 @@
     import { Button } from '~/components/ui/button/index.js';
     
     // CryptocurrenciesStore
-    import {storeToRefs} from 'pinia';
-    import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
-    const CryptocurrenciesStore = useCryptocurrenciesStore();
+    import { storeToRefs } from 'pinia';
+    import { useNewsStore } from '~/stores/NewsStore';
+    const NewsStore = useNewsStore();
     
-    const { article, loading } = storeToRefs(CryptocurrenciesStore);
-    const { getNewsArticle } = CryptocurrenciesStore;
+    const { article, loading } = storeToRefs(NewsStore);
+    const { getNewsArticle } = NewsStore;
     
     const title = computed(() => article.value?.TITLE);
     const subtitle = computed(() => article.value?.SUBTITLE);
