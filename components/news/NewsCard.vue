@@ -20,7 +20,7 @@
                     
                     <Skeleton
                         v-else
-                        class='h-[250px] w-full'
+                        class='h-[350px] w-full'
                     />
                 </NuxtImg>
                 
@@ -172,9 +172,9 @@
 <style scoped>
     .news-card {
         img.main-image {
-            object-fit: contain;
+            object-fit: cover;
             //height: 100%;
-            //height: 250px;
+            height: 350px;
             //width: 100%;
         }
     }
