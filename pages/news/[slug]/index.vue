@@ -216,7 +216,6 @@
                 content: newVal,
             });
             reading_duration.value = duration.value;
-            console.log(duration.value);
         }
     }, { immediate: true });
     
