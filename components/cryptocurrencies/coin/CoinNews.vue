@@ -14,10 +14,10 @@
 
 <script setup>
     import CoinNewsItem from '~/components/cryptocurrencies/coin/CoinNewsItem.vue';
-    // CryptocurrenciesStore
+    // NewsStore
     import {storeToRefs} from 'pinia';
-    import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
-    const CryptocurrenciesStore = useCryptocurrenciesStore();
+    import { useNewsStore } from '~/stores/NewsStore';
+    const NewsStore = useNewsStore();
     
     const props = defineProps({
         coin: {
@@ -28,7 +28,7 @@
     
     const { coin } = toRefs(props);
     
-    const { coinNews } = storeToRefs(CryptocurrenciesStore);
+    const { coinNews } = storeToRefs(NewsStore);
     const articles = computed(() => coinNews.value);
     const symbol = coin.value?.symbol;
 </script>

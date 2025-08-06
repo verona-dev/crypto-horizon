@@ -4,6 +4,7 @@ import { useFetchCoingecko } from '~/composables/apiCoingecko';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 import { useFetchCoindesk } from '~/composables/apiCoindesk.js';
 import { formatCoingeckoCoin, formatCoinsTable, formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
+import { useNewsStore } from '~/stores/NewsStore.js';
 
 export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
     state: () => ({
@@ -16,18 +17,16 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         },
         loading: false,
         marketOverview: [],
-        news: {},
-        newsOutlets: {},
-        article: {},
-        coinNews : {},
     }),
     
     actions: {
         async getCoin(coinId) {
+            const NewsStore = useNewsStore();
+            
             await this.getCoingeckoCoin(coinId);
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
             await this.fetchLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
-            await this.getNews( {
+            await NewsStore.getNews( {
                 category: this.coin.symbol,
                 limit: 5,
             });
@@ -88,72 +87,6 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             }
             catch(error) {
                 console.error(error);
-            }
-        },
-        
-        async getNews({ category = null, limit  }) {
-            this.loading = true;
-            
-            try {
-                let params = {
-                    limit,
-                };
-                
-                if(category) {
-                    params.category = category;
-                }
-                
-                const response = await useFetchCoindesk('news/v1/article/list', params);
-                
-                if(response && response.Data) {
-                    if (category) {
-                        this.coinNews = response.Data;
-                    } else {
-                        this.news = response.Data;
-                    }
-                }
-            } catch(error) {
-                console.error(error);
-            }
-            finally {
-                this.loading = false;
-            }
-        },
-        
-        async getNewsArticle(source_key, guid) {
-            this.loading = true;
-            
-            try {
-                const response = await useFetchCoindesk('news/v1/article/get', {
-                    source_key,
-                    guid,
-                });
-                
-                if(response && response.Data) {
-                    this.article = response.Data;
-                }
-            } catch(error) {
-                console.error(error);
-            }
-            finally {
-                this.loading = false;
-            }
-        },
-        
-        async getNewsOutlets() {
-            this.loading = true;
-            
-            try {
-                const response = await useFetchCoindesk('news/v1/source/list');
-                
-                if(response && response.Data) {
-                    this.newsOutlets = response.Data;
-                }
-            } catch(error) {
-                console.error(error);
-            }
-            finally {
-                this.loading = false;
             }
         },
         

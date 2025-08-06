@@ -33,8 +33,8 @@
     const NewsStore = useNewsStore();
     
     const { news, loading } = storeToRefs(NewsStore);
-    const articles = computed(() => news.value);
     const { getNews } = NewsStore;
+    const articles = computed(() => news.value);
     
     onMounted(async() => {
         await getNews({ limit: 10 });
