@@ -1,5 +1,5 @@
 <template>
-    <div class='news max-w-[2000px] mx-auto flex flex-col'>
+    <div class='news max-w-[2000px] mx-auto px-20 flex flex-col'>
         <div v-if='loading' class='flex items-center h-[75vh]'>
             <MazSpinner
                 color='secondary'
@@ -8,8 +8,11 @@
             <h4 class='ml-4 mb-0'>Loading...</h4>
         </div>
         
-        <div v-else>
-            <h1 class='my-28 self-center'>Latest Crypto News</h1>
+        <div
+            v-else
+            class='flex flex-col items-center'
+        >
+            <h1 class='my-28'>Latest Crypto News</h1>
             
             <div v-if='articles' class='flex flex-wrap justify-center gap-12'>
                 <NewsCard
@@ -24,16 +27,16 @@
 
 <script setup>
     import NewsCard from '~/components/news/NewsCard.vue';
-    // CryptocurrenciesStore
-    import {storeToRefs} from 'pinia';
-    import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
-    const CryptocurrenciesStore = useCryptocurrenciesStore();
+    // NewsStore
+    import { storeToRefs } from 'pinia';
+    import { useNewsStore } from '~/stores/NewsStore';
+    const NewsStore = useNewsStore();
     
-    const { news, loading } = storeToRefs(CryptocurrenciesStore);
+    const { news, loading } = storeToRefs(NewsStore);
+    const { getNews } = NewsStore;
     const articles = computed(() => news.value);
-    const { getCoindeskNews } = CryptocurrenciesStore;
     
     onMounted(async() => {
-        await getCoindeskNews();
+        await getNews({ limit: 10 });
     });
 </script>

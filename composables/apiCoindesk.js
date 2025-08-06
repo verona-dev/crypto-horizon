@@ -4,7 +4,6 @@ export async function useFetchCoindesk(route, options = {}) {
         return await $fetch(`/api/coindesk/${route}`, {
             params: {
                 lang: 'EN',
-                limit: 5,
                 ...options,
             }
         });

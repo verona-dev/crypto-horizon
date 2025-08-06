@@ -2,7 +2,7 @@
     <Card v-if='article' class='coin-news-card rounded-none border-none bg-transparent shadow-2xl hover:bg-muted px-6 py-12'>
         <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
             <CardHeader class='p-0'>
-                <div class='flex gap-6'>
+                <div class='flex gap-12'>
                     <!--  Main image  -->
                     <NuxtImg
                         :src='image_url'
@@ -21,7 +21,7 @@
                         
                         <Skeleton
                             v-else
-                            class='h-[200px] w-full'
+                            class='h-[200px] w-[200px]'
                         />
                     </NuxtImg>
                     
@@ -185,7 +185,7 @@
             //object-fit: contain;
             //height: 100%;
             height: 200px;
-            //width: 100%;
+            width: 200px;
         }
     }
 </style>

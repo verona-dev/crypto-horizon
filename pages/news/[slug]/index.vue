@@ -134,7 +134,7 @@
     import { useReadingTime } from 'maz-ui';
     
     // Router
-    import {useRoute} from 'vue-router';
+    import { useRoute } from 'vue-router';
     const route = useRoute();
     
     // Components
@@ -142,13 +142,13 @@
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Button } from '~/components/ui/button/index.js';
     
-    // CryptocurrenciesStore
-    import {storeToRefs} from 'pinia';
-    import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
-    const CryptocurrenciesStore = useCryptocurrenciesStore();
+    // NewsStore
+    import { storeToRefs } from 'pinia';
+    import { useNewsStore } from '~/stores/NewsStore';
+    const NewsStore = useNewsStore();
     
-    const { article, loading } = storeToRefs(CryptocurrenciesStore);
-    const { getCoindeskNewsSingleArticle } = CryptocurrenciesStore;
+    const { article, loading } = storeToRefs(NewsStore);
+    const { getNewsArticle } = NewsStore;
     
     const title = computed(() => article.value?.TITLE);
     const subtitle = computed(() => article.value?.SUBTITLE);
@@ -216,13 +216,12 @@
                 content: newVal,
             });
             reading_duration.value = duration.value;
-            console.log(duration.value);
         }
     }, { immediate: true });
     
     onMounted(async() => {
         const { source_key, guid } = route.query;
-        await getCoindeskNewsSingleArticle(source_key, guid);
+        await getNewsArticle(source_key, guid);
         window.addEventListener('scroll', onScroll);
     });
     
