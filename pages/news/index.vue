@@ -15,7 +15,7 @@
             <h1 class='my-28'>Latest Crypto News</h1>
             
             <div v-if='articles' class='flex flex-wrap justify-center gap-12'>
-                <NewsCard
+                <NewsArticle
                     v-for='article in articles'
                     :key='article.ID'
                     :article='article'
@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-    import NewsCard from '~/components/news/NewsCard.vue';
+    import NewsArticle from '~/components/news/NewsArticle.vue';
     // CryptocurrenciesStore
     import {storeToRefs} from 'pinia';
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
