@@ -3,7 +3,7 @@
         <h1 class='mt-20 mb-14 underline'>Latest {{ symbol }} related Crypto News</h1>
         
         <div class='flex flex-col'>
-            <CoinNewsCard
+            <CoinNewsItem
                 v-for='article in articles'
                 :key='article.ID'
                 :article='article'
@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-    import CoinNewsCard from '~/components/news/CoinNewsCard.vue';
+    import CoinNewsItem from '~/components/cryptocurrencies/coin/CoinNewsItem.vue';
     // CryptocurrenciesStore
     import {storeToRefs} from 'pinia';
     import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
