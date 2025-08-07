@@ -1,6 +1,8 @@
 <template>
-    <Navigation />
-    <Welcome />
+    <div>
+        <Navigation />
+        <Welcome />
+    </div>
 </template>
 
 <script setup>
