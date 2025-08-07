@@ -1,5 +1,5 @@
 <template>
-    <div class='news-sources max-w-[2000px] mx-auto flex flex-col'>
+    <div class='news-sources mx-auto flex flex-col'>
         <div v-if='loading' class='flex items-center h-[75vh]'>
             <MazSpinner
                 color='secondary'
