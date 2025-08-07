@@ -11,23 +11,36 @@
         <div v-else>
             <Card
                 v-if='article && article.ID'
-                class='bg-background gap-12 xl:gap-20 max-w-7xl my-10 xl:px-20 pt-20'
+                class='bg-background gap-12 xl:gap-20 max-w-7xl my-10 xl:px-20 pt-8'
             >
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-12 px-0'>
                     <!--  Categories + Title  -->
-                    <CardContent v-if='title' class='flex flex-col gap-6'>
-                        <div v-if='categories' class='categories-container'>
-                            <MazBadge
-                                v-for='category in categories'
-                                class='badge m-2 !px-4 !py-1.5'
-                                color='secondary'
-                                size='1em'
-                                outline
-                            >
-                                {{ category.NAME }}
-                            </MazBadge>
+                    <CardContent v-if='title' class='flex flex-col gap-6 pt-6'>
+                        
+                        <div class='flex flex-col items-start gap-8'>
+                            <!--  Back to  -->
+                            <NuxtLink to='/news' class='hover:bg-muted rounded-full p-2'>
+                                <NuxtIcon
+                                    name='mdi-light:arrow-left'
+                                    size='50'
+                                    class='flex'
+                                />
+                            </NuxtLink>
+                            
+                            <div v-if='categories' class='categories-container'>
+                                <MazBadge
+                                    v-for='category in categories'
+                                    class='badge m-2 !px-4 !py-1.5'
+                                    color='secondary'
+                                    size='1em'
+                                    outline
+                                >
+                                    {{ category.NAME }}
+                                </MazBadge>
+                            </div>
                         </div>
+                       
                         
                         <h1 class='mt-4'>{{ title }}</h1>
                         
@@ -118,11 +131,6 @@
         <!-- Reading/Scroll progress bar -->
         <div v-if='show_reading_duration' class='progress-container'>
             <div class='progress-bar mr-2' :style='{ width: `${progress * 100}%` }'></div>
-            <NuxtIcon
-                v-if='progress > 0'
-                name='streamline-freehand:newspaper-read-man'
-                size='25'
-            />
         </div>
     </div>
 </template>

@@ -1,14 +1,25 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex flex-col justify-center items-center'>
         <section class='my-4 flex flex-col lg:flex-row items-center gap-y-10 lg:gap-y-0 gap-x-10'>
-            <!-- Logo  -->
-            <NuxtImg
-                v-if='coingecko?.image?.large'
-                :src='coin.coingecko.image.large'
-                alt='symbol'
-                width='150'
-                height='150'
-            />
+            <div class='flex items-center'>
+                <!--  Back to  -->
+                <NuxtLink to='/cryptocurrencies' class='hover:bg-muted rounded-full p-2 relative top-0 right-30 xl:right-50'>
+                    <NuxtIcon
+                        name='mdi-light:arrow-left'
+                        size='50'
+                        class='flex'
+                    />
+                </NuxtLink>
+                
+                <!-- Logo  -->
+                <NuxtImg
+                    v-if='coingecko?.image?.large'
+                    :src='coin.coingecko.image.large'
+                    alt='symbol'
+                    width='150'
+                    height='150'
+                />
+            </div>
             
             <div>
                 <div class='flex items-center'>
