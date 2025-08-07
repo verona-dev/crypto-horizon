@@ -17,12 +17,11 @@
     }
     
     main {
-        @apply flex flex-1 flex-col mx-auto;
         min-height: calc(100vh - 200px);
     }
     
     section {
-        @apply my-10 flex flex-col items-center lg:justify-around;
+        @apply flex flex-col items-center lg:justify-around;
     }
     
     /*
