@@ -1,5 +1,5 @@
 <template>
-    <Breadcrumb class='breadcrumbs mt-20'>
+    <Breadcrumb class='breadcrumbs mt-20 border border-secondary px-6 py-4'>
         <BreadcrumbList>
             <BreadcrumbItem v-for='(item, index) in items' :key='index'>
                 <template v-if='index !== items.length - 1'>
