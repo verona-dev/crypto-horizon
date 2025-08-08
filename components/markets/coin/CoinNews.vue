@@ -1,6 +1,6 @@
 <template>
     <div v-if='coinNews' class='coin-news w-full'>
-        <h1 class='mt-20 mb-14 underline'>Latest {{ symbol }} related Crypto News</h1>
+        <h3 class='mt-20 mb-14 underline'>Latest {{ symbol }} related Crypto News</h3>
         
         <div class='flex flex-col'>
             <CoinNewsItem
