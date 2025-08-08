@@ -35,7 +35,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
             this.loading = true;
             
             try {
-                const response = await useFetchCoingecko('coins/market', options);
+                const response = await useFetchCoingecko('coins/markets', options);
                 
                 if(response) {
                     this.coins = [];
@@ -82,7 +82,7 @@ export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
         
         async getCoingeckoCoinListSummary(options) {
             try {
-                return await useFetchCoingecko('coins/market', options);
+                return await useFetchCoingecko('coins/markets', options);
             }
             catch(error) {
                 console.error(error);
