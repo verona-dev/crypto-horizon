@@ -131,7 +131,7 @@
                 
                 <CardContent>
                     <NuxtLink
-                        to='/cryptocurrencies/bitcoin'
+                        to='/pages/markets/bitcoin'
                         class='flex items-center'
                     >
                         <NuxtIcon
@@ -153,7 +153,7 @@
                 
                 <CardContent>
                     <NuxtLink
-                        to='/cryptocurrencies/ethereum'
+                        to='/pages/markets/ethereum'
                         class='flex items-center'
                     >
                         <NuxtIcon
