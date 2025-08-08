@@ -20,7 +20,7 @@
             />
         </NuxtImg>
         
-        <h3 class='my-10'>{{ title }}</h3>
+        <h2 class='my-10'>{{ title }}</h2>
     </NuxtLink>
 </template>
 

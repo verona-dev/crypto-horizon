@@ -1,6 +1,6 @@
 <template>
     <div class='flex flex-col items-center gap-20 xl:gap-0 px-10'>
-        <h1 class='mt-20'>Crypto Horizon</h1>
+        <h1 class='mt-24'>Crypto Horizon</h1>
         
         <div class='welcome flex flex-col md:flex-row justify-center items-center gap-6 xl:gap-30'>
             <WelcomeItem
