@@ -2,7 +2,6 @@ import { defineStore } from 'pinia';
 import { useFetchCoinLoreData } from '~/composables/apiCoinLore.js';
 import { useFetchCoingecko } from '~/composables/apiCoingecko';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
-import { useFetchCoindesk } from '~/composables/apiCoindesk.js';
 import { formatCoingeckoCoin, formatCoinsTable, formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
 import { useNewsStore } from '~/stores/NewsStore.js';
 

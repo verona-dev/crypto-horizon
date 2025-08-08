@@ -1,20 +1,15 @@
 <template>
-    <Breadcrumb class='breadcrumbs'>
+    <Breadcrumb class='breadcrumbs mt-20 mb-10 border border-t-secondary border-b-secondary border-r-0 border-l-0 px-4 py-2'>
         <BreadcrumbList>
-            <BreadcrumbItem>
-                <BreadcrumbLink href='/'>
-                    Home
-                </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-                <BreadcrumbLink href='/components'>
-                    Components
-                </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-                <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+            <BreadcrumbItem v-for='(item, index) in items' :key='index'>
+                <template v-if='index !== items.length - 1'>
+                    <NuxtLink :to='item.url'>{{ item.name }}</NuxtLink>
+                    
+                    <BreadcrumbSeparator />
+                </template>
+                <template v-else>
+                    <BreadcrumbPage>{{ item.name }}</BreadcrumbPage>
+                </template>
             </BreadcrumbItem>
         </BreadcrumbList>
     </Breadcrumb>
@@ -23,15 +18,45 @@
 <script setup>
     import {
         Breadcrumb,
-        BreadcrumbEllipsis,
         BreadcrumbItem,
-        BreadcrumbLink,
         BreadcrumbList,
         BreadcrumbPage,
         BreadcrumbSeparator,
     } from '@/components/ui/breadcrumb';
+    
+    // NewsStore
+    import { storeToRefs } from 'pinia';
+    import { useNewsStore } from '~/stores/NewsStore';
+    const NewsStore = useNewsStore();
+    
+    const route = useRoute();
+    const { article } = storeToRefs(NewsStore);
+    const source = ref();
+    watch(article, () => source.value = article.value?.SOURCE_DATA?.NAME);
+    
+    const items = computed(() => {
+        let crumbs;
+        const paths = route.path.split('/').filter(Boolean);
+        
+        if (route.name === 'news-slug') {
+            if(source.value) {
+                crumbs = [
+                    { name: 'Home', url: '/' },
+                    { name: 'News', url: '/news' },
+                    { name: source.value },
+                ];
+            }
+        } else {
+            crumbs = [
+                { name: 'Home', url: '/' },
+                ...paths.map((path, i) => {
+                    const url = '/' + paths.slice(0, i + 1).join('/');
+                    const name = path.charAt(0).toUpperCase() + path.slice(1);
+                    return { name, url };
+                }),
+            ];
+        }
+        
+        return crumbs;
+    });
 </script>
-
-<style scoped>
-
-</style>
