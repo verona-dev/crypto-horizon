@@ -23,7 +23,7 @@
         {
             title: 'Markets',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753525072/btc-circle_mbhyga.svg',
-            alt: 'cryptocurrencies image',
+            alt: 'markets image',
             to: '/markets',
         },
         {
