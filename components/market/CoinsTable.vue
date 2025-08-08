@@ -110,13 +110,13 @@
 
 <script setup>
     import { storeToRefs } from 'pinia';
-    import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';
-    const CryptocurrenciesStore = useCryptocurrenciesStore();
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    const MarketStore = useMarketStore();
     
     // State
-    const { loading, coins } = storeToRefs(CryptocurrenciesStore);
+    const { loading, coins } = storeToRefs(MarketStore);
     // Methods
-    const { getCoingeckoMarkets } = CryptocurrenciesStore;
+    const { getCoingeckoMarkets } = MarketStore;
     
     onMounted(() => {
         getCoingeckoMarkets();

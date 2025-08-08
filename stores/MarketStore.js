@@ -5,7 +5,7 @@ import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 import { formatCoingeckoCoin, formatCoinsTable, formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
 import { useNewsStore } from '~/stores/NewsStore.js';
 
-export const useCryptocurrenciesStore = defineStore('CryptocurrenciesStore', {
+export const useMarketStore = defineStore('MarketStore', {
     state: () => ({
         coins: [],
         coin: {

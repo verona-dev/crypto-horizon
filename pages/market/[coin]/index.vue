@@ -29,17 +29,17 @@
     import CoinFooter from '~/components/market/coin/CoinFooter.vue';
     
     // Router
-    import {useRoute} from 'vue-router';
+    import { useRoute } from 'vue-router';
     const route = useRoute();
-    // CryptocurrenciesStore
-    import {storeToRefs} from 'pinia';
-    import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
-    const CryptocurrenciesStore = useCryptocurrenciesStore();
+    // MarketStore
+    import { storeToRefs } from 'pinia';
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    const MarketStore = useMarketStore();
     
     // State
-    const { coin, loading } = storeToRefs(CryptocurrenciesStore);
+    const { coin, loading } = storeToRefs(MarketStore);
     // Methods
-    const { getCoin } = CryptocurrenciesStore;
+    const { getCoin } = MarketStore;
     
     onMounted(async() => {
         await getCoin(route.params.coin);

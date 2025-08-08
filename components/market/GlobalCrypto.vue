@@ -188,13 +188,13 @@
     import { Separator } from '~/components/ui/separator/index.js';
     
     import { storeToRefs } from 'pinia';
-    import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';
-    const CryptocurrenciesStore = useCryptocurrenciesStore();
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    const MarketStore = useMarketStore();
     import { formatNumberWithOptions } from '~/utils/formatUtils.js';
     import { getTextColor } from '~/utils/styleUtils.js';
     
-    const { marketOverview } = storeToRefs(CryptocurrenciesStore);
-    const { getCoinLore } = CryptocurrenciesStore;
+    const { marketOverview } = storeToRefs(MarketStore);
+    const { getCoinLore } = MarketStore;
     onMounted(() => getCoinLore('global'));
     
     const marketCapStyle = computed(() => getTextColor(marketOverview.value?.mcap_change));
