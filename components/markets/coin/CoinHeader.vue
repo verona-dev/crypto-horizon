@@ -177,7 +177,7 @@
 <script setup>
     import { formatNumberWithOptions, formatNumber } from '~/utils/formatUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
-    import CoinPublicNotice from '~/components/cryptocurrencies/coin/CoinPublicNotice.vue';
+    import CoinPublicNotice from '~/components/markets/coin/CoinPublicNotice.vue';
     import { Progress } from '~/components/ui/progress/index.ts';
     
     const props = defineProps({
