@@ -49,12 +49,12 @@
                     </NuxtLink>
                 </NavigationMenuItem>
                 
-                <!--  Cryptocurrencies  -->
+                <!--  Markets  -->
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Cryptocurrencies</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>Markets</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul class='flex items-center p-6 md:w-[400px] gap-4'>
-                            <!--  Cryptocurrencies Logo  -->
+                        <ul class='flex items-center p-6 md:w-[500px] gap-4'>
+                            <!--  Markets Logo  -->
                             <li class='w-24'>
                                 <NuxtIcon
                                     name='bitcoin-icons:bitcoin-circle-filled'
@@ -62,16 +62,16 @@
                                 />
                             </li>
                             
-                            <!--  Cryptocurrencies -->
+                            <!--  Markets -->
                             <li>
                                 <NavigationMenuLink as-child>
                                     <NuxtLink
                                         to='/pages/markets'
                                         class='flex items-start select-none space-y-1 rounded-md px-6 py-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
                                     >
-                                        <div class='text-sm font-medium leading-none'>Cryptocurrencies</div>
-                                        <p class='line-clamp-2 text-sm leading-snug text-muted-foreground'>
-                                            Check the market.
+                                        <div class='text-sm font-medium leading-none'>Markets</div>
+                                        <p class='line-clamp-2 text-sm leading-snug text-muted-foreground w-fit'>
+                                            Check the cryptocurrencies.
                                         </p>
                                     </NuxtLink>
                                 </NavigationMenuLink>
