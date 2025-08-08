@@ -38,12 +38,12 @@
             :key='row.id'
         >
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.id}`'>
+                <NuxtLink :to='`/markets/${row.id}`'>
                     {{ row.rank }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.id}`'>
+                <NuxtLink :to='`/markets/${row.id}`'>
                     <div class='flex items-center gap-2'>
                         <NuxtImg
                             :src='row.image'
@@ -60,27 +60,27 @@
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.id}`'>
+                <NuxtLink :to='`/markets/${row.id}`'>
                     {{ row.price }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.id}`'>
+                <NuxtLink :to='`/markets/${row.id}`'>
                     {{ row.marketCap }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.id}`'>
+                <NuxtLink :to='`/markets/${row.id}`'>
                     {{ row.volume }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.id}`'>
+                <NuxtLink :to='`/markets/${row.id}`'>
                     {{ row.c_supply }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.id}`'>
+                <NuxtLink :to='`/markets/${row.id}`'>
                     <div :class='row.trend'>
                         {{ row.changePercent24Hr }}&#37;
                     </div>
