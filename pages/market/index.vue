@@ -6,6 +6,6 @@
 </template>
 
 <script setup>
-    import GlobalCrypto from '~/components/markets/GlobalCrypto.vue';
-    import CoinsTable from '~/components/markets/CoinsTable.vue';
+    import GlobalCrypto from '~/components/market/GlobalCrypto.vue';
+    import CoinsTable from '~/components/market/CoinsTable.vue';
 </script>

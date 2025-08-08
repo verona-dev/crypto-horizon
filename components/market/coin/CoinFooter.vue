@@ -4,7 +4,7 @@
     </CardFooter>
 </template>
 <script setup lang="ts">
-    import CoinNews from '~/components/markets/coin/CoinNews.vue';
+    import CoinNews from '~/components/market/coin/CoinNews.vue';
     
     const props = defineProps({
         coin: {

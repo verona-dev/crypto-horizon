@@ -24,9 +24,9 @@
 </template>
 
 <script setup>
-    import CoinHeader from '~/components/markets/coin/CoinHeader.vue';
-    import CoinBody from '~/components/markets/coin/CoinBody.vue';
-    import CoinFooter from '~/components/markets/coin/CoinFooter.vue';
+    import CoinHeader from '~/components/market/coin/CoinHeader.vue';
+    import CoinBody from '~/components/market/coin/CoinBody.vue';
+    import CoinFooter from '~/components/market/coin/CoinFooter.vue';
     
     // Router
     import {useRoute} from 'vue-router';
