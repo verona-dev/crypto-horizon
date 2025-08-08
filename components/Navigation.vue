@@ -37,24 +37,24 @@
 </script>
 
 <template>
-    <NavigationMenu disableHoverTrigger>
+    <NavigationMenu disableHoverTrigger class='main-nav'>
         <MazCardSpotlight color='secondary' :padding='false'>
             <NavigationMenuList>
                 <!--  Logo  -->
                 <NavigationMenuItem>
                     <NuxtLink to='/' :class='navigationMenuTriggerStyle()'>
-                        <NavigationMenuLink class='text-2xl'>
+                        <NavigationMenuLink class='title text-2xl'>
                             CryptoHorizon
                         </NavigationMenuLink>
                     </NuxtLink>
                 </NavigationMenuItem>
                 
-                <!--  Markets  -->
+                <!--  Market  -->
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Markets</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>Market</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul class='flex items-center p-6 md:w-[500px] gap-4'>
-                            <!--  Markets Logo  -->
+                            <!--  Market Logo  -->
                             <li class='w-24'>
                                 <NuxtIcon
                                     name='bitcoin-icons:bitcoin-circle-filled'
@@ -62,16 +62,16 @@
                                 />
                             </li>
                             
-                            <!--  Markets -->
+                            <!--  Market -->
                             <li>
                                 <NavigationMenuLink as-child>
                                     <NuxtLink
-                                        to='/pages/market'
+                                        to='/market'
                                         class='flex items-start select-none space-y-1 rounded-md px-6 py-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
                                     >
-                                        <div class='text-sm font-medium leading-none'>Markets</div>
+                                        <div class='text-sm font-medium leading-none'>Market</div>
                                         <p class='line-clamp-2 text-sm leading-snug text-muted-foreground w-fit'>
-                                            Check the cryptocurrencies.
+                                            Check the cryptocurrencies market.
                                         </p>
                                     </NuxtLink>
                                 </NavigationMenuLink>
@@ -157,21 +157,26 @@
 </template>
 
 <style>
-    ul {
-        background-color: var(--background) !important;
-    }
-    
-    nav {
+    nav.main-nav {
         position: relative;
         left: calc((100vw - 101%) / 2);
-    }
-    
-    .m-card-spotlight {
-        border-radius: 0 !important;
-        width: 100% !important;
         
-        .inner {
+        .title {
+            font-family: 'Great', sans-serif;
+            font-size: 1.8rem;
+        }
+        
+        ul {
+            background-color: var(--background) !important;
+        }
+        
+        .m-card-spotlight {
             border-radius: 0 !important;
+            width: 100% !important;
+            
+            .inner {
+                border-radius: 0 !important;
+            }
         }
     }
 </style>

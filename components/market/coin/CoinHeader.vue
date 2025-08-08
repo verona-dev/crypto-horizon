@@ -3,7 +3,7 @@
         <section class='my-4 flex flex-col lg:flex-row items-center gap-y-10 lg:gap-y-0 gap-x-10'>
             <div class='flex items-center'>
                 <!--  Back to  -->
-                <NuxtLink to='/pages/market' class='hover:bg-muted rounded-full p-2 relative top-0 right-30 xl:right-50'>
+                <NuxtLink to='/market' class='hover:bg-muted rounded-full p-2 relative top-0 right-30 xl:right-50'>
                     <NuxtIcon
                         name='mdi-light:arrow-left'
                         size='50'
