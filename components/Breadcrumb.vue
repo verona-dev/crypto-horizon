@@ -24,14 +24,15 @@
         BreadcrumbSeparator,
     } from '@/components/ui/breadcrumb';
     
-    const props = defineProps({
-        article: {},
-    });
+    // NewsStore
+    import { storeToRefs } from 'pinia';
+    import { useNewsStore } from '~/stores/NewsStore';
+    const NewsStore = useNewsStore();
     
     const route = useRoute();
-    const { article } = toRefs(props);
+    const { article } = storeToRefs(NewsStore);
     const source = ref();
-    watch(article, () => source.value = article.value?.SOURCE_DATA?.NAME || 'Article');
+    watch(article, () => source.value = article.value?.SOURCE_DATA?.NAME);
     
     const items = computed(() => {
         let crumbs;
@@ -42,7 +43,7 @@
                 crumbs = [
                     { name: 'Home', url: '/' },
                     { name: 'News', url: '/news' },
-                    { name: source.value, url: '/' },
+                    { name: source.value },
                 ];
             }
         } else {
