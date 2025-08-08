@@ -2,6 +2,12 @@
 @import '@fontsource/ibm-plex-mono';
 @import '@fontsource-variable/noto-sans';
 
+@font-face {
+    font-family: 'Great';
+    src: url(../fonts/Great.ttf);
+    font-display: swap;
+}
+
 @layer base {
     * {
         @apply m-0;
@@ -35,7 +41,8 @@
 
 @layer components {
     h1 {
-        @apply text-3xl xl:text-6xl font-bold;
+        @apply text-3xl xl:text-8xl;
+        font-family: 'Great', sans-serif;
     }
     
     h2 {
