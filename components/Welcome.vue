@@ -1,8 +1,8 @@
 <template>
-    <div class='flex flex-col items-center gap-20 xl:gap-0 px-10'>
-        <h1 class='mt-24'>Crypto Horizon</h1>
+    <div class='flex flex-col items-center gap-8 md:gap-32 px-10'>
+        <h1 class='my-20 md:my-0'>Crypto Horizon</h1>
         
-        <div class='welcome flex flex-col md:flex-row justify-center items-center gap-6 xl:gap-30'>
+        <div class='flex flex-col md:flex-row justify-center items-center gap-6 xl:gap-30'>
             <WelcomeItem
                 v-for='item in welcomeItems'
                 :title='item.title'
@@ -42,7 +42,9 @@
 </script>
 
 <style scoped>
-    .welcome {
-        min-height: calc(100vh - 200px);
+    h1 {
+        background: -webkit-linear-gradient(#C6FFDD, #FBD786, #f7797d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 </style>
