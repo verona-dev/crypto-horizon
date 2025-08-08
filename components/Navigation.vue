@@ -66,7 +66,7 @@
                             <li>
                                 <NavigationMenuLink as-child>
                                     <NuxtLink
-                                        to='/markets'
+                                        to='/pages/market'
                                         class='flex items-start select-none space-y-1 rounded-md px-6 py-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
                                     >
                                         <div class='text-sm font-medium leading-none'>Markets</div>
