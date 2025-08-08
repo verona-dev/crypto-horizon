@@ -17,6 +17,7 @@
     }
     
     main {
+        /*@apply flex justify-center items-center;*/
         /*min-height: calc(100vh - 200px);*/
     }
     
