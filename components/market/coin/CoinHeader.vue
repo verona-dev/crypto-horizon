@@ -25,7 +25,7 @@
                 <div class='flex items-center'>
                     <!--  Name  -->
                     <div class='flex items-center'>
-                        <h2>{{ coingecko.name }}</h2>
+                        <h1>{{ coingecko.name }}</h1>
                         
                         <!--  Ico Description -->
                         <HoverCard v-if='ico_description' :openDelay='200'>
