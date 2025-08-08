@@ -1,5 +1,5 @@
 <template>
-    <div class='welcome flex flex-wrap flex-col md:flex-row justify-center items-center gap-6 xl:gap-30 mt-10 2xl:mt-0 px-10'>
+    <div class='welcome flex flex-col md:flex-row justify-center items-center gap-6 xl:gap-30 mt-10 2xl:mt-0 px-10'>
         <WelcomeItem
             v-for='item in welcomeItems'
             :title='item.title'
