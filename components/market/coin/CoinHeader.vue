@@ -1,7 +1,6 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex flex-col justify-center items-center'>
-        
-        <section class='my-4 flex flex-col 2xl:flex-row items-center gap-y-10 2xl:gap-y-0 2xl:gap-x-10'>
+        <section class='my-4 flex flex-col xl:flex-row items-center gap-10'>
             <div class='flex flex-col items-center gap-4'>
                 <!--  Back to  -->
                 <NuxtLink @click='onClick' to='' class='hover:bg-muted hover:cursor-pointer rounded-full p-2'>
