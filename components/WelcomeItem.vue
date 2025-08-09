@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink :to='to' class='link-item flex flex-col items-center justify-center'>
+    <NuxtLink :to='to' class='link-item flex flex-col items-center justify-center w-96'>
         <NuxtImg
             :src='src'
             :alt='alt'
@@ -53,10 +53,12 @@
             scale: 1.01;
         }
         
-        /*
-        &:hover h3 {
+        h2 {
+            letter-spacing: 0.75rem;
+        }
+        
+        &:hover h2 {
             color: var(--secondary);
         }
-        */
     }
 </style>
