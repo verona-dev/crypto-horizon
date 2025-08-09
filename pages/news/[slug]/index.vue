@@ -114,14 +114,14 @@
             <!--  Article not available  -->
             <CardContent
                 v-else
-                class='flex flex-col gap-8'
+                class='flex flex-col justify-center gap-8 h-[50vh]'
             >
-                <h4>Sorry, the article is not available.</h4>
+                <h4>Sorry, the article is not available at the moment.</h4>
                 <Button
                     as-child
                     variant='link'
                 >
-                    <NuxtLink to='/news'>
+                    <NuxtLink @click='onClick' to=''>
                         Go back
                     </NuxtLink>
                 </Button>
@@ -142,8 +142,9 @@
     import { useReadingTime } from 'maz-ui';
     
     // Router
-    import { useRoute } from 'vue-router';
+    import { useRoute, useRouter } from 'vue-router';
     const route = useRoute();
+    const router  = useRouter();
     
     // Components
     import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
@@ -217,6 +218,12 @@
     
     const reading_duration = ref(0);
     const show_reading_duration = computed(() => reading_duration.value > 1);
+    
+    const onClick = () => {
+        const history = window.history.length > 1;
+        if(history) router.back();
+        else router.push('/news');
+    };
     
     watch(body_formated, (newVal) => {
         if (newVal && newVal.length > 0) {
