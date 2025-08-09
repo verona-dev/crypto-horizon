@@ -1,5 +1,5 @@
 <template>
-    <Breadcrumb class='breadcrumbs mt-20 mb-10 border border-t-secondary border-b-secondary border-r-0 border-l-0 px-4 py-2'>
+    <Breadcrumb v-if='!loading' class='breadcrumbs mt-20 mb-10 border border-t-secondary border-b-secondary border-r-0 border-l-0 px-4 py-2'>
         <BreadcrumbList>
             <BreadcrumbItem v-for='(item, index) in items' :key='index'>
                 <template v-if='index !== items.length - 1'>
@@ -30,22 +30,29 @@
     const NewsStore = useNewsStore();
     
     const route = useRoute();
-    const { article } = storeToRefs(NewsStore);
+    const { article, loading, errorFetch } = storeToRefs(NewsStore);
     const source = ref();
     watch(article, () => source.value = article.value?.SOURCE_DATA?.NAME);
+    
+    const sub_route_name = computed(() => {
+        if(!!errorFetch.value) {
+            return 'Not found';
+        } else {
+            return source.value;
+        }
+    });
     
     const items = computed(() => {
         let crumbs;
         const paths = route.path.split('/').filter(Boolean);
         
         if (route.name === 'news-slug') {
-            if(source.value) {
-                crumbs = [
-                    { name: 'Home', url: '/' },
-                    { name: 'News', url: '/news' },
-                    { name: source.value },
-                ];
-            }
+            crumbs = [
+                { name: 'Home', url: '/' },
+                { name: 'News', url: '/news' },
+                { name: sub_route_name.value },
+            ];
+            
         } else {
             crumbs = [
                 { name: 'Home', url: '/' },
