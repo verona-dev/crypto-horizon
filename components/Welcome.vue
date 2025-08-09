@@ -46,13 +46,14 @@
         letter-spacing: 1rem;
         word-spacing: 2.5rem;
         background-image: url('https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-        //background-image: url('https://images.unsplash.com/photo-1516245834210-c4c142787335?q=80&w=2969&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        //background-image: url('https://images.unsplash.com/photo-1522124624696-7ea32eb9592c?q=80&w=2969&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        //background-image: url('https://images.unsplash.com/photo-1465101162946-4377e57745c3?q=80&w=2978&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
         background-size: 300%;
         background-position: 0 50%;
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        animation: animate-background 100s infinite alternate linear;
+        animation: animate-background 300s infinite alternate linear;
     }
     
     @keyframes animate-background {
