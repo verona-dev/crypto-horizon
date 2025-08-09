@@ -1,6 +1,6 @@
 <template>
     <div v-if='coinNews' class='coin-news w-full'>
-        <h1 class='mt-20 mb-14 underline'>Latest {{ symbol }} related Crypto News</h1>
+        <h3 class='mt-20 mb-14 underline'>Latest {{ symbol }} related Crypto News</h3>
         
         <div class='flex flex-col'>
             <CoinNewsItem
@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-    import CoinNewsItem from '~/components/cryptocurrencies/coin/CoinNewsItem.vue';
+    import CoinNewsItem from '~/components/market/coin/CoinNewsItem.vue';
     // NewsStore
     import {storeToRefs} from 'pinia';
     import { useNewsStore } from '~/stores/NewsStore';

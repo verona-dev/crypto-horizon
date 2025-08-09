@@ -3,7 +3,7 @@
         <section class='my-4 flex flex-col lg:flex-row items-center gap-y-10 lg:gap-y-0 gap-x-10'>
             <div class='flex items-center'>
                 <!--  Back to  -->
-                <NuxtLink to='/cryptocurrencies' class='hover:bg-muted rounded-full p-2 relative top-0 right-30 xl:right-50'>
+                <NuxtLink to='/market' class='hover:bg-muted rounded-full p-2 relative top-0 right-30 xl:right-50'>
                     <NuxtIcon
                         name='mdi-light:arrow-left'
                         size='50'
@@ -25,7 +25,7 @@
                 <div class='flex items-center'>
                     <!--  Name  -->
                     <div class='flex items-center'>
-                        <h2>{{ coingecko.name }}</h2>
+                        <h1>{{ coingecko.name }}</h1>
                         
                         <!--  Ico Description -->
                         <HoverCard v-if='ico_description' :openDelay='200'>
@@ -177,7 +177,7 @@
 <script setup>
     import { formatNumberWithOptions, formatNumber } from '~/utils/formatUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
-    import CoinPublicNotice from '~/components/cryptocurrencies/coin/CoinPublicNotice.vue';
+    import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     import { Progress } from '~/components/ui/progress/index.ts';
     
     const props = defineProps({

@@ -46,15 +46,15 @@
 </template>
 
 <script setup>
-    import CoinContracts from '~/components/cryptocurrencies/coin/CoinContracts.vue';
-    import CoinConverter from '~/components/cryptocurrencies/coin/CoinConverter.vue';
-    import CoinExplorers from '~/components/cryptocurrencies/coin/CoinExplorers.vue';
-    import CoinSentiment from '~/components/cryptocurrencies/coin/CoinSentiment.vue';
-    import CoinChart from '~/components/cryptocurrencies/coin/CoinChart.vue';
-    import CoinDelta from '~/components/cryptocurrencies/coin/CoinDelta.vue';
-    import CoinOverview from '~/components/cryptocurrencies/coin/CoinOverview.vue';
-    import CoinLinks from '~/components/cryptocurrencies/coin/CoinLinks.vue';
-    import CoinDescription from '~/components/cryptocurrencies/coin/CoinDescription.vue';
+    import CoinContracts from '~/components/market/coin/CoinContracts.vue';
+    import CoinConverter from '~/components/market/coin/CoinConverter.vue';
+    import CoinExplorers from '~/components/market/coin/CoinExplorers.vue';
+    import CoinSentiment from '~/components/market/coin/CoinSentiment.vue';
+    import CoinChart from '~/components/market/coin/CoinChart.vue';
+    import CoinDelta from '~/components/market/coin/CoinDelta.vue';
+    import CoinOverview from '~/components/market/coin/CoinOverview.vue';
+    import CoinLinks from '~/components/market/coin/CoinLinks.vue';
+    import CoinDescription from '~/components/market/coin/CoinDescription.vue';
     
     const props = defineProps({
         coin: {

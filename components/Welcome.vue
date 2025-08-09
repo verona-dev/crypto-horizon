@@ -1,14 +1,19 @@
 <template>
-    <div class='welcome flex flex-wrap flex-col md:flex-row justify-center items-center gap-6 xl:gap-30 mt-10 2xl:mt-0 px-10'>
-        <WelcomeItem
-            v-for='item in welcomeItems'
-            :title='item.title'
-            :src='item.src'
-            :alt='item.alt'
-            :to='item.to'
-            :key='item.title'
-        />
+    <div class='flex flex-col items-center gap-8 md:gap-32 px-10 pb-10'>
+        <h1 class='my-20 md:my-0'>Crypto Horizon</h1>
+        
+        <div class='flex flex-col md:flex-row justify-center items-center gap-6 xl:gap-30'>
+            <WelcomeItem
+                v-for='item in welcomeItems'
+                :title='item.title'
+                :src='item.src'
+                :alt='item.alt'
+                :to='item.to'
+                :key='item.title'
+            />
+        </div>
     </div>
+
 </template>
 
 <script setup>
@@ -16,10 +21,10 @@
     
     const welcomeItems = [
         {
-            title: 'Cryptocurrencies',
+            title: 'Markets',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753525072/btc-circle_mbhyga.svg',
-            alt: 'cryptocurrencies image',
-            to: '/cryptocurrencies',
+            alt: 'market image',
+            to: '/market',
         },
         {
             title: 'News',
@@ -37,7 +42,26 @@
 </script>
 
 <style scoped>
-    .welcome {
-        min-height: calc(100vh - 200px);
+    h1 {
+        letter-spacing: 1rem;
+        word-spacing: 2.5rem;
+        background-image: url('https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        //background-image: url('https://images.unsplash.com/photo-1522124624696-7ea32eb9592c?q=80&w=2969&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        //background-image: url('https://images.unsplash.com/photo-1465101162946-4377e57745c3?q=80&w=2978&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-size: 300%;
+        background-position: 0 50%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: animate-background 300s infinite alternate linear;
+    }
+    
+    @keyframes animate-background {
+        0% {
+            background-position: 0 50%;
+        }
+        100% {
+            background-position: 100% 50%;
+        }
     }
 </style>

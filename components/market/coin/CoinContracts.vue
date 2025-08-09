@@ -100,17 +100,17 @@
 <script setup>
     import { toast } from 'vue-sonner';
     import { h, resolveComponent } from 'vue';
-    // CryptocurrenciesStore
-    import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';
+    // MarketStore
+    import { useMarketStore } from '~/stores/MarketStore.js';
     
     const props = defineProps({
         coin: Object,
         required: true,
     });
-    const CryptocurrenciesStore = useCryptocurrenciesStore();
+    const MarketStore = useMarketStore();
     
     const { coin } = toRefs(props);
-    const { getCoingeckoCoinListSummary } = CryptocurrenciesStore;
+    const { getCoingeckoCoinListSummary } = MarketStore;
     const platforms_list = ref([]);
     const platforms_summary = ref([]);
     const disable_dropdown = computed(() => platforms_list.value?.length === 1);

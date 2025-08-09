@@ -38,12 +38,12 @@
             :key='row.id'
         >
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.id}`'>
+                <NuxtLink :to='`/market/${row.id}`'>
                     {{ row.rank }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.id}`'>
+                <NuxtLink :to='`/market/${row.id}`'>
                     <div class='flex items-center gap-2'>
                         <NuxtImg
                             :src='row.image'
@@ -60,27 +60,27 @@
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.id}`'>
+                <NuxtLink :to='`/market/${row.id}`'>
                     {{ row.price }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.id}`'>
+                <NuxtLink :to='`/market/${row.id}`'>
                     {{ row.marketCap }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.id}`'>
+                <NuxtLink :to='`/market/${row.id}`'>
                     {{ row.volume }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.id}`'>
+                <NuxtLink :to='`/market/${row.id}`'>
                     {{ row.c_supply }}
                 </NuxtLink>
             </MazTableCell>
             <MazTableCell>
-                <NuxtLink :to='`/cryptocurrencies/${row.id}`'>
+                <NuxtLink :to='`/market/${row.id}`'>
                     <div :class='row.trend'>
                         {{ row.changePercent24Hr }}&#37;
                     </div>
@@ -110,13 +110,13 @@
 
 <script setup>
     import { storeToRefs } from 'pinia';
-    import { useCryptocurrenciesStore } from '~/stores/CryptocurrenciesStore.js';
-    const CryptocurrenciesStore = useCryptocurrenciesStore();
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    const MarketStore = useMarketStore();
     
     // State
-    const { loading, coins } = storeToRefs(CryptocurrenciesStore);
+    const { loading, coins } = storeToRefs(MarketStore);
     // Methods
-    const { getCoingeckoMarkets } = CryptocurrenciesStore;
+    const { getCoingeckoMarkets } = MarketStore;
     
     onMounted(() => {
         getCoingeckoMarkets();

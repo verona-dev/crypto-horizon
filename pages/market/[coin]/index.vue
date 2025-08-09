@@ -24,22 +24,22 @@
 </template>
 
 <script setup>
-    import CoinHeader from '~/components/cryptocurrencies/coin/CoinHeader.vue';
-    import CoinBody from '~/components/cryptocurrencies/coin/CoinBody.vue';
-    import CoinFooter from '~/components/cryptocurrencies/coin/CoinFooter.vue';
+    import CoinHeader from '~/components/market/coin/CoinHeader.vue';
+    import CoinBody from '~/components/market/coin/CoinBody.vue';
+    import CoinFooter from '~/components/market/coin/CoinFooter.vue';
     
     // Router
-    import {useRoute} from 'vue-router';
+    import { useRoute } from 'vue-router';
     const route = useRoute();
-    // CryptocurrenciesStore
-    import {storeToRefs} from 'pinia';
-    import {useCryptocurrenciesStore} from '~/stores/CryptocurrenciesStore';
-    const CryptocurrenciesStore = useCryptocurrenciesStore();
+    // MarketStore
+    import { storeToRefs } from 'pinia';
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    const MarketStore = useMarketStore();
     
     // State
-    const { coin, loading } = storeToRefs(CryptocurrenciesStore);
+    const { coin, loading } = storeToRefs(MarketStore);
     // Methods
-    const { getCoin } = CryptocurrenciesStore;
+    const { getCoin } = MarketStore;
     
     onMounted(async() => {
         await getCoin(route.params.coin);
