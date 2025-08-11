@@ -10,7 +10,7 @@
 
 @layer base {
     * {
-        @apply m-0;
+        @apply m-0 border-border outline-ring/50;
     }
     
     html {
