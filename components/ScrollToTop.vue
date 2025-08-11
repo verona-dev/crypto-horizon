@@ -17,7 +17,7 @@
     import { Button } from '@/components/ui/button';
     
     const scrollY = ref(0);
-    const show = computed(() => scrollY.value >= 400);
+    const show = computed(() => scrollY.value >= 500);
     
     const handleScroll = () => scrollY.value = window.scrollY;
     
@@ -40,9 +40,9 @@
 <style scoped>
     .scroll-to-top {
         position: fixed;
-        bottom: 100px;
-        right: 75px;
-        z-index: 1000 !important;
+        bottom: 75px;
+        right: 50px;
+        z-index: 100;
         transition: all 1s ease;
         box-shadow: 5px 5px 100px -6px var(--color-sky);
         
