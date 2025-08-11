@@ -42,7 +42,7 @@
                         </div>
                        
                         
-                        <h1 class='mt-4'>{{ title }}</h1>
+                        <h3 class='mt-4'>{{ title }}</h3>
                         
                         <!--  Reading duration  -->
                         <div class='flex items-center gap-2 mt-2'>
