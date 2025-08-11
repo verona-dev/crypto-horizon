@@ -1,10 +1,16 @@
 <template>
-    <div v-if='show' @click='scrollOnClick' class='scroll-to-top'>
-        Scroll to top
-    </div>
+    <Button v-if='show' @click='scrollOnClick' variant='outline' class='py-6 scroll-to-top rounded-md hover:cursor-pointer'>
+        <NuxtIcon
+            name='radix-icons:double-arrow-up'
+            class='text-sky-100'
+            size='20'
+        />
+    </Button>
 </template>
 
 <script setup>
+    import { Button } from '@/components/ui/button';
+    
     const scrollY = ref(0);
     const show = computed(() => scrollY.value >= 400);
     
@@ -30,9 +36,13 @@
     .scroll-to-top {
         position: fixed;
         bottom: 100px;
-        right: 25px;
+        right: 75px;
         z-index: 30;
-        //opacity: 0;
         transition: all 1s ease;
+        box-shadow: 5px 5px 100px -6px var(--color-sky);
+        
+        &:hover {
+            border:1px solid var(--color-sky) !important;
+        }
     }
 </style>
