@@ -11,7 +11,7 @@
         <div v-else class='w-full'>
             <Card
                 v-if='article && article.ID'
-                class='bg-background gap-12 xl:gap-20 max-w-7xl my-10 xl:px-20 pt-8 mx-auto'
+                class='bg-background gap-12 xl:gap-20 max-w-7xl xl:px-20 pt-0 pb-10 mt-10 mb-40 mx-auto'
             >
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-12 px-0'>
