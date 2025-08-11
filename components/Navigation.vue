@@ -43,8 +43,8 @@
                 <!--  Logo  -->
                 <NavigationMenuItem>
                     <NuxtLink to='/' :class='navigationMenuTriggerStyle()'>
-                        <NavigationMenuLink class='title text-2xl'>
-                            CryptoHorizon
+                        <NavigationMenuLink class='title text-3xl'>
+                            Crypto Horizon
                         </NavigationMenuLink>
                     </NuxtLink>
                 </NavigationMenuItem>
@@ -163,7 +163,7 @@
         
         .title {
             font-family: 'Great', sans-serif;
-            font-size: 1.8rem;
+            letter-spacing: 0.3rem;
         }
         
         ul {
