@@ -52,6 +52,7 @@
     
     h3 {
         @apply text-4xl xl:text-5xl;
+        line-height: 65px !important;
     }
     
     h4 {
