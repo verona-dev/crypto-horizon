@@ -8,6 +8,7 @@ export const useNewsStore = defineStore('NewsStore', {
         article: {},
         coinNews : {},
         loading: false,
+        errorFetch: null,
     }),
     
     actions: {
@@ -53,7 +54,7 @@ export const useNewsStore = defineStore('NewsStore', {
                     this.article = response.Data;
                 }
             } catch(error) {
-                console.error(error);
+                this.errorFetch = error;
             }
             finally {
                 this.loading = false;

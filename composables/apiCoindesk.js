@@ -9,6 +9,6 @@ export async function useFetchCoindesk(route, options = {}) {
         });
     } catch(error) {
         console.error('Error fetching Coindesk data: ', error);
-        return null;
+        throw error;
     }
 }

@@ -1,14 +1,10 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex flex-col justify-center items-center'>
-        <section class='my-4 flex flex-col lg:flex-row items-center gap-y-10 lg:gap-y-0 gap-x-10'>
-            <div class='flex items-center'>
+        <section class='my-4 flex flex-col xl:flex-row items-center gap-10'>
+            <div class='flex flex-col items-center gap-4'>
                 <!--  Back to  -->
-                <NuxtLink to='/market' class='hover:bg-muted rounded-full p-2 relative top-0 right-30 xl:right-50'>
-                    <NuxtIcon
-                        name='mdi-light:arrow-left'
-                        size='50'
-                        class='flex'
-                    />
+                <NuxtLink @click='onClick' to='' class='hover:bg-muted hover:cursor-pointer rounded-full p-2'>
+                    <NuxtIcon name='mdi-light:arrow-left' size='45' />
                 </NuxtLink>
                 
                 <!-- Logo  -->
@@ -180,6 +176,10 @@
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     import { Progress } from '~/components/ui/progress/index.ts';
     
+    // Router
+    import { useRouter } from 'vue-router';
+    const router  = useRouter();
+    
     const props = defineProps({
         coin: {
             type: Object,
@@ -236,6 +236,12 @@
     });
     
     const ico_description = coingecko.value?.ico_data?.short_desc;
+    
+    const onClick = () => {
+        const history = window.history.length > 1;
+        if(history) router.back();
+        else router.push('/market');
+    };
 </script>
 
 <style scoped>
