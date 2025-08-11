@@ -1,5 +1,5 @@
 <template>
-    <div class='single-news custom-flex'>
+    <div class='single-news custom-flex w-full'>
         <div v-if='loading' class='flex items-center h-[75vh]'>
             <MazSpinner
                 color='secondary'
@@ -8,10 +8,10 @@
             <h4 class='ml-4 mb-0'>Loading...</h4>
         </div>
         
-        <div v-else>
+        <div v-else class='w-full'>
             <Card
                 v-if='article && article.ID'
-                class='bg-background gap-12 xl:gap-20 max-w-7xl my-10 xl:px-20 pt-8'
+                class='bg-background gap-12 xl:gap-20 max-w-7xl my-10 xl:px-20 pt-8 mx-auto'
             >
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-12 px-0'>
@@ -42,7 +42,7 @@
                         </div>
                        
                         
-                        <h3 class='mt-4'>{{ title }}</h3>
+                        <h class='mt-4'>{{ title }}</h>
                         
                         <!--  Reading duration  -->
                         <div class='flex items-center gap-2 mt-2'>
