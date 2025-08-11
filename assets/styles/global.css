@@ -4,8 +4,8 @@
 
 @font-face {
     font-family: 'Great';
-    src: url(../fonts/Great.ttf);
     font-display: swap;
+    src: url(../fonts/Great.ttf);
 }
 
 @layer base {
