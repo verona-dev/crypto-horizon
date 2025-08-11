@@ -1,5 +1,10 @@
 <template>
-    <Button v-if='show' @click='scrollOnClick' variant='outline' class='py-6 scroll-to-top rounded-md hover:cursor-pointer'>
+    <Button
+        v-if='show'
+        @click='scrollOnClick'
+        variant='outline'
+        class='!bg-background py-6 scroll-to-top rounded-md hover:cursor-pointer'
+    >
         <NuxtIcon
             name='radix-icons:double-arrow-up'
             class='text-sky-100'
@@ -37,7 +42,7 @@
         position: fixed;
         bottom: 100px;
         right: 75px;
-        z-index: 30;
+        z-index: 1000 !important;
         transition: all 1s ease;
         box-shadow: 5px 5px 100px -6px var(--color-sky);
         
