@@ -4,7 +4,7 @@
             <!--  Left  -->
             <div class='left flex flex-col
                 gap-24 2xl:gap-18
-                pt-0 2xl:py-10 pr-10
+                pt-0 2xl:py-10 px-10
                 2xl:border-r
                 w-fit xl:w-full 2xl:w-auto
             '>
