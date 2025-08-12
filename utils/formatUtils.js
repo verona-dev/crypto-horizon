@@ -81,7 +81,9 @@ const formatCoinsTable = coins => {
         }),
         icon: coin?.symbol,
         id: coin?.id,
-        marketCap: formatNumberWithOptions(coin?.market_cap),
+        marketCap: formatNumber(coin?.market_cap, {
+            compact: true, decimals: 2
+        }),
         name: coin?.name,
         price: formatNumber(coin?.current_price, {
             maximumFractionDigits: 4,
