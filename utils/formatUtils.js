@@ -97,20 +97,6 @@ const formatCoinsTable = coins => {
     }));
 };
 
-const formatCoingeckoCoin = coin => {
-    return {
-        ...coin,
-        market_data: {
-            ...coin.market_data,
-            ath_change_percentage: {
-                ...coin.market_data.ath_change_percentage,
-                usd: coin?.market_data.ath_change_percentage.usd.toFixed(2)
-            },
-            ath_change_percentage_trend: getTextColor(coin?.market_data.ath_change_percentage.usd),
-        },
-    }
-};
-
 const formatLivecoinwatchCoin = coin => {
     return {
         ...coin,
@@ -166,7 +152,6 @@ export {
     formatNumberWithOptions,
     formatNumber,
     formatCoinsTable,
-    formatCoingeckoCoin,
     formatLivecoinwatchCoin,
     getDeltaPercentage,
     capitalize,

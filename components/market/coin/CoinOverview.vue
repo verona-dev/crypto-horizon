@@ -337,7 +337,7 @@
     const ath_date = coingecko.value?.market_data?.ath_date?.usd;
     const ath_date_from_now = dayjs(ath_date).fromNow();
     const ath_date_label = dayjs(ath_date).format('MMM D, YYYY');
-    const ath_change_percentage = coingecko.value?.market_data?.ath_change_percentage?.usd;
+    const ath_change_percentage = coingecko.value?.market_data?.ath_change_percentage?.usd.toFixed(2);
     const ath_change_percentage_label = formatNumber(ath_change_percentage, {
         style: 'percent', compact: true, decimals: 2,
     });
