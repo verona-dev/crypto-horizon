@@ -333,7 +333,7 @@
     
     const country_origin = coingecko.value?.country_origin;
     
-    const ath_price = coingecko.value?.market_data?.ath?.usd;
+    const ath_price = formatNumber(coingecko.value?.market_data?.ath?.usd);
     const ath_date = coingecko.value?.market_data?.ath_date?.usd;
     const ath_date_from_now = dayjs(ath_date).fromNow();
     const ath_date_label = dayjs(ath_date).format('MMM D, YYYY');
@@ -342,7 +342,7 @@
         style: 'percent', compact: true, decimals: 2,
     });
     
-    const atl_price = coingecko.value?.market_data.atl?.usd;
+    const atl_price = formatNumber(coingecko.value?.market_data.atl?.usd);
     const atl_date = coingecko.value?.market_data?.atl_date?.usd;
     const atl_date_from_now = dayjs(atl_date).fromNow();
     const atl_date_label = dayjs(atl_date).format('MMM D, YYYY');

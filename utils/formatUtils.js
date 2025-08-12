@@ -102,10 +102,6 @@ const formatCoingeckoCoin = coin => {
         ...coin,
         market_data: {
             ...coin.market_data,
-            ath: {
-                ...coin.market_data.ath,
-                usd: formatNumber(coin.market_data.ath.usd, 2, 2)
-            },
             ath_change_percentage: {
                 ...coin.market_data.ath_change_percentage,
                 usd: coin?.market_data.ath_change_percentage.usd.toFixed(2)
