@@ -76,7 +76,9 @@ const formatCoinsTable = coins => {
     return coins?.map(coin => ({
         ...coin,
         changePercent24Hr: coin?.price_change_percentage_24h.toFixed(2),
-        c_supply: formatNumberWithOptions(coin?.circulating_supply, false),
+        c_supply: formatNumber(coin?.circulating_supply, {
+            compact: true, style: 'decimal', decimals: 2
+        }),
         icon: coin?.symbol,
         id: coin?.id,
         marketCap: formatNumberWithOptions(coin?.market_cap),
@@ -88,7 +90,7 @@ const formatCoinsTable = coins => {
         symbol: coin?.symbol.toUpperCase(),
         trend: getTextColor(coin?.price_change_percentage_24h),
         volume: formatNumberWithOptions(coin?.total_volume),
-    }))
+    }));
 };
 
 const formatCoingeckoCoin = coin => {
