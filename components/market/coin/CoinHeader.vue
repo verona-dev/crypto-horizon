@@ -171,7 +171,7 @@
 </template>
 
 <script setup>
-    import { formatNumberWithOptions, formatNumber } from '~/utils/formatUtils.js';
+    import { formatNumber } from '~/utils/formatUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     import { Progress } from '~/components/ui/progress/index.ts';
@@ -190,7 +190,9 @@
     const { coin } = toRefs(props);
     const livecoinwatch = toRef(coin.value?.livecoinwatch);
     const coingecko = toRef(coin.value?.coingecko);
-    const watchlist_portfolio = formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true);
+    const watchlist_portfolio = formatNumber(coingecko.value?.watchlist_portfolio_users, {
+        style: 'decimal', compact: true, decimals: 2,
+    });
     
     const not_bitcoin = coin.value?.symbol !== 'BTC';
     const current_price = coingecko.value?.market_data?.current_price?.usd;
