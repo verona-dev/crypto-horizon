@@ -1,4 +1,4 @@
-import { getTextColor } from '~/utils/styleUtils.js';
+import { getTextColorClass } from '~/utils/styleUtils.js';
 
 const formatNumber = (value, {
        locale = 'en-US',
@@ -38,103 +38,39 @@ const formatNumber = (value, {
     return new Intl.NumberFormat(locale, options).format(num);
 };
 
-const formatNumberWithOptions = (number, usePrefix = true, useSuffix = true) => {
-    if (number === null || number === undefined) return '-';
-    
-    const absNumber = Math.abs(number);
-    let formattedNumber;
-    let prefix = usePrefix ? '$' : '';
-    let suffix = '';
-    
-    const floor = (num) => Math.floor(num * 100) / 100;
-    
-    if (absNumber >= 1_000_000_000_000) {
-        // Trillions
-        formattedNumber = floor(number / 1_000_000_000_000);
-        useSuffix && (suffix = 'T');
-    } else if (absNumber >= 1_000_000_000) {
-        // Billions
-        formattedNumber = floor(number / 1_000_000_000);
-        useSuffix && (suffix = 'B');
-    } else if (absNumber >= 1_000_000) {
-        // Millions
-        formattedNumber = floor(number / 1_000_000);
-        useSuffix && (suffix = 'M');
-    } else if (absNumber >= 1_000) {
-        // Thousands
-        formattedNumber = floor(number / 1_000);
-        useSuffix && (suffix = 'K');
-    } else {
-        // Less than thousand, show the number
-        formattedNumber = floor(number);
-    }
-    
-    return `${prefix}${formattedNumber}${suffix}`;
-};
-
 const formatCoinsTable = coins => {
     return coins?.map(coin => ({
         ...coin,
         changePercent24Hr: coin?.price_change_percentage_24h.toFixed(2),
-        c_supply: formatNumberWithOptions(coin?.circulating_supply, false),
+        c_supply: formatNumber(coin?.circulating_supply, {
+            compact: true, style: 'decimal', decimals: 2
+        }),
         icon: coin?.symbol,
         id: coin?.id,
-        marketCap: formatNumberWithOptions(coin?.market_cap),
+        marketCap: formatNumber(coin?.market_cap, {
+            compact: true, decimals: 2
+        }),
         name: coin?.name,
         price: formatNumber(coin?.current_price, {
             maximumFractionDigits: 4,
         }),
         rank: coin?.market_cap_rank,
         symbol: coin?.symbol.toUpperCase(),
-        trend: getTextColor(coin?.price_change_percentage_24h),
-        volume: formatNumberWithOptions(coin?.total_volume),
-    }))
-};
-
-const formatCoingeckoCoin = coin => {
-    return {
-        ...coin,
-        market_data: {
-            ...coin.market_data,
-            ath: {
-                ...coin.market_data.ath,
-                usd: formatNumber(coin.market_data.ath.usd, 2, 2)
-            },
-            ath_change_percentage: {
-                ...coin.market_data.ath_change_percentage,
-                usd: coin?.market_data.ath_change_percentage.usd.toFixed(2)
-            },
-            ath_change_percentage_trend: getTextColor(coin?.market_data.ath_change_percentage.usd),
-        },
-    }
+        trend: getTextColorClass(coin?.price_change_percentage_24h),
+        volume: formatNumber(coin?.total_volume, {
+            compact: true, decimals: 2
+        }),
+    }));
 };
 
 const formatLivecoinwatchCoin = coin => {
     return {
         ...coin,
-        allTimeHighUSD: coin?.allTimeHighUSD,
-        allTimeHighUSDFormatted: formatNumber(coin?.allTimeHighUSD, 2, 2),
-        circulatingSupply: coin?.circulatingSupply,
-        circulatingSupplyFormatted: formatNumberWithOptions(coin?.circulatingSupply, false),
-        exchanges: coin?.exchanges,
         links: extractLinks(coin?.links),
-        liquidity: coin?.liquidity,
-        liquidityFormatted: formatNumberWithOptions(coin?.liquidity),
-        marketCap: coin?.cap,
-        marketCapFormatted: formatNumberWithOptions(coin?.cap),
-        maxSupply: coin?.maxSupply,
-        maxSupplyFormatted: formatNumberWithOptions(coin?.maxSupply, false),
-        rate: coin?.rate,
-        rateFormatted: formatNumber(coin?.rate, 0, 2),
-        totalSupply: coin?.totalSupply,
-        totalSupplyFormatted: formatNumberWithOptions(coin?.totalSupply, false),
-        trend: getTextColor(coin?.changePercent24Hr),
-        volume: coin?.volume,
-        volumeFormatted: formatNumberWithOptions(coin?.volume),
     }
 };
 
-const extractLinks = (externalLinks) => {
+const extractLinks = externalLinks => {
     let links = {
         socials: {},
     };
@@ -154,19 +90,19 @@ const extractLinks = (externalLinks) => {
     return links;
 };
 
-const getDeltaPercentage = (delta, currentPrice) => {
-    return (delta - 1) * 100;
-};
-
 const capitalize = word => word.charAt(0).toUpperCase() + word.slice(1);
 
+const goBack = (router, path) => {
+    const history = window.history.length > 1;
+    if(history) return router.back();
+    else return router.push(path);
+};
+
 export {
-    formatNumberWithOptions,
     formatNumber,
     formatCoinsTable,
-    formatCoingeckoCoin,
     formatLivecoinwatchCoin,
-    getDeltaPercentage,
     capitalize,
+    goBack,
 };
 

@@ -2,8 +2,8 @@
     <CardHeader v-if='coin' class='coin-header flex flex-col justify-center items-center'>
         <section class='my-4 flex flex-col xl:flex-row items-center gap-10'>
             <div class='flex flex-col items-center gap-4'>
-                <!--  Back to  -->
-                <NuxtLink @click='onClick' to='' class='hover:bg-muted hover:cursor-pointer rounded-full p-2'>
+                <!--  Go back -->
+                <NuxtLink @click='goBack(router, "/market")' to='' class='hover:bg-muted hover:cursor-pointer rounded-full p-2'>
                     <NuxtIcon name='mdi-light:arrow-left' size='45' />
                 </NuxtLink>
                 
@@ -100,10 +100,10 @@
                             <NuxtIcon
                                 :name='getTrendIcon(price_change_percentage_7d)'
                                 size='35'
-                                :class='getTextColor(price_change_percentage_7d)'
+                                :class='getTextColorClass(price_change_percentage_7d)'
                             />
                             
-                            <p :class='getTextColor(price_change_percentage_7d)'>{{ price_change_percentage_7d_label }}&#40;7d&#41;</p>
+                            <p :class='getTextColorClass(price_change_percentage_7d)'>{{ price_change_percentage_7d_label }}&#40;7d&#41;</p>
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='info-icon'>
@@ -128,10 +128,10 @@
                             <NuxtIcon
                                 :name='getTrendIcon(price_change_percentage_7d_in_btc)'
                                 size='25'
-                                :class='getTextColor(price_change_percentage_7d_in_btc)'
+                                :class='getTextColorClass(price_change_percentage_7d_in_btc)'
                             />
                             
-                            <p :class='[getTextColor(price_change_percentage_7d_in_btc), "text-sm"]'>{{ price_change_percentage_7d_in_btc_label }}&#40;7d&#41;</p>
+                            <p :class='[getTextColorClass(price_change_percentage_7d_in_btc), "text-sm"]'>{{ price_change_percentage_7d_in_btc_label }}&#40;7d&#41;</p>
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='info-icon'>
@@ -171,7 +171,8 @@
 </template>
 
 <script setup>
-    import { formatNumberWithOptions, formatNumber } from '~/utils/formatUtils.js';
+    import { formatNumber, goBack } from '~/utils/formatUtils.js';
+    import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     import { Progress } from '~/components/ui/progress/index.ts';
@@ -190,7 +191,9 @@
     const { coin } = toRefs(props);
     const livecoinwatch = toRef(coin.value?.livecoinwatch);
     const coingecko = toRef(coin.value?.coingecko);
-    const watchlist_portfolio = formatNumberWithOptions(coingecko.value?.watchlist_portfolio_users, false, true);
+    const watchlist_portfolio = formatNumber(coingecko.value?.watchlist_portfolio_users, {
+        style: 'decimal', compact: true, decimals: 2,
+    });
     
     const not_bitcoin = coin.value?.symbol !== 'BTC';
     const current_price = coingecko.value?.market_data?.current_price?.usd;

@@ -3,12 +3,12 @@
         v-if='show'
         @click='scrollOnClick'
         variant='outline'
-        class='!bg-background py-6 scroll-to-top rounded-md hover:cursor-pointer'
+        class='!bg-background py-5 scroll-to-top rounded-md hover:cursor-pointer'
     >
         <NuxtIcon
             name='radix-icons:double-arrow-up'
             class='text-sky-100'
-            size='20'
+            size='18'
         />
     </Button>
 </template>

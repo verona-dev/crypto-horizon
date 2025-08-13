@@ -55,9 +55,9 @@
                                 <NuxtIcon
                                     :name='getTrendIcon(ath_change_percentage)'
                                     size='20'
-                                    :class='getTextColor(ath_change_percentage)'
+                                    :class='getTextColorClass(ath_change_percentage)'
                                 />
-                                <span :class='getTextColor(ath_change_percentage)'>{{ ath_change_percentage_label }}</span>
+                                <span :class='getTextColorClass(ath_change_percentage)'>{{ ath_change_percentage_label }}</span>
                             </div>
                         </div>
                         
@@ -98,9 +98,9 @@
                                 <NuxtIcon
                                     :name='getTrendIcon(atl_change_percentage)'
                                     size='20'
-                                    :class='getTextColor(atl_change_percentage)'
+                                    :class='getTextColorClass(atl_change_percentage)'
                                 />
-                                <span :class='getTextColor(atl_change_percentage)'>{{ atl_change_percentage_label }}</span>
+                                <span :class='getTextColorClass(atl_change_percentage)'>{{ atl_change_percentage_label }}</span>
                             </div>
                         </div>
                         
@@ -310,6 +310,7 @@
 </template>
 
 <script setup>
+    import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
@@ -333,16 +334,16 @@
     
     const country_origin = coingecko.value?.country_origin;
     
-    const ath_price = coingecko.value?.market_data?.ath?.usd;
+    const ath_price = formatNumber(coingecko.value?.market_data?.ath?.usd);
     const ath_date = coingecko.value?.market_data?.ath_date?.usd;
     const ath_date_from_now = dayjs(ath_date).fromNow();
     const ath_date_label = dayjs(ath_date).format('MMM D, YYYY');
-    const ath_change_percentage = coingecko.value?.market_data?.ath_change_percentage?.usd;
+    const ath_change_percentage = coingecko.value?.market_data?.ath_change_percentage?.usd.toFixed(2);
     const ath_change_percentage_label = formatNumber(ath_change_percentage, {
         style: 'percent', compact: true, decimals: 2,
     });
     
-    const atl_price = coingecko.value?.market_data.atl?.usd;
+    const atl_price = formatNumber(coingecko.value?.market_data.atl?.usd);
     const atl_date = coingecko.value?.market_data?.atl_date?.usd;
     const atl_date_from_now = dayjs(atl_date).fromNow();
     const atl_date_label = dayjs(atl_date).format('MMM D, YYYY');

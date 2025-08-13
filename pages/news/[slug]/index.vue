@@ -19,8 +19,8 @@
                     <CardContent v-if='title' class='flex flex-col gap-6 pt-6'>
                         
                         <div class='flex flex-col items-start gap-8'>
-                            <!--  Back to  -->
-                            <NuxtLink to='/news' class='hover:bg-muted rounded-full p-2'>
+                            <!--  Go back  -->
+                            <NuxtLink @click='goBack(router, "/news")' to='' class='hover:bg-muted hover:cursor-pointer rounded-full p-2'>
                                 <NuxtIcon
                                     name='mdi-light:arrow-left'
                                     size='50'
@@ -136,6 +136,7 @@
 </template>
 
 <script setup>
+    import { goBack } from '~/utils/formatUtils.js';
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });

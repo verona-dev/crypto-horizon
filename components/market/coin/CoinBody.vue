@@ -28,8 +28,8 @@
                 
                 <!--  Links  -->
                 <CoinLinks
-                    :livecoinwatchLinks='coin.livecoinwatch.links'
-                    :coingeckoLinks='coin.coingecko.links'
+                    :livecoinwatchLinks='livecoinwatch.links'
+                    :coingeckoLinks='coingecko.links'
                 />
             </div>
             
@@ -73,6 +73,7 @@
     
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
+    const livecoinwatch = toRef(coin.value?.livecoinwatch);
     
     const sentiment_up_percentage = coingecko.value?.sentiment_votes_up_percentage;
     const sentiment_down_percentage = coingecko.value?.sentiment_votes_down_percentage;

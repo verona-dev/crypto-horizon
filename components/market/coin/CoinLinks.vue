@@ -5,8 +5,8 @@
             <h5 class='mb-4'>Websites</h5>
             
             <NuxtLink
-                v-if='livecoinwatchLinks.website'
-                :to='livecoinwatchLinks.website'
+                v-if='homepage'
+                :to='homepage'
                 external
                 target='_blank'
                 class='flex items-center mb-3 link-item'
@@ -16,8 +16,8 @@
             </NuxtLink>
             
             <NuxtLink
-                v-if='livecoinwatchLinks.whitepaper'
-                :to='livecoinwatchLinks.whitepaper'
+                v-if='whitepaper'
+                :to='whitepaper'
                 external
                 target='_blank'
                 class='flex items-center mb-3 link-item'
@@ -26,7 +26,7 @@
                 <p>Whitepaper</p>
             </NuxtLink>
             
-            <div v-for='(link, name) in coingeckoLinks.official_forum_url' :key='name'>
+            <div v-for='(link, name) in official_forum' :key='name'>
                 <NuxtLink
                     v-if='link'
                     :to='link'
@@ -41,10 +41,10 @@
         </div>
         
         <!-- Chat -->
-        <div v-if='coingeckoLinks.chat_url.length' class='chat'>
+        <div v-if='chats.length' class='chat'>
             <h5 class='mb-4'>Chat</h5>
             
-            <div v-for='chat in coingeckoLinks.chat_url' :key='chat'>
+            <div v-for='chat in chats' :key='chat'>
                 <NuxtLink
                     v-if='chat'
                     :to='chat'
@@ -59,11 +59,11 @@
         </div>
         
         <!-- Community -->
-        <div v-if='livecoinwatchLinks?.socials && Object.keys(livecoinwatchLinks.socials).length' class='community'>
+        <div v-if='socials && Object.keys(socials).length' class='community'>
             <h5 class='mb-4'>Community</h5>
             
             <div
-                v-for='(link, name) in livecoinwatchLinks.socials'
+                v-for='(link, name) in socials'
                 :key='name'
             >
                 <NuxtLink
@@ -80,10 +80,10 @@
         </div>
         
         <!-- Github -->
-        <div v-if='coingeckoLinks.repos_url?.github.length' class='github'>
+        <div v-if='github.length' class='github'>
             <h5 class='mb-4'>Github</h5>
             
-            <div v-for='link in coingeckoLinks.repos_url.github' :key='link'>
+            <div v-for='link in github' :key='link'>
                 <NuxtLink
                     v-if='link'
                     :to='link'
@@ -112,6 +112,12 @@
     });
     
     const { livecoinwatchLinks, coingeckoLinks } = toRefs(props);
+    const homepage = computed(() => coingeckoLinks.value?.homepage[0]);
+    const whitepaper = computed(() => coingeckoLinks.value?.whitepaper);
+    const official_forum = computed(() => coingeckoLinks.value?.official_forum_url);
+    const chats = computed(() => coingeckoLinks.value?.chat_url);
+    const github = computed(() => coingeckoLinks.value?.repos_url?.github);
+    const socials = computed(() => livecoinwatchLinks.value?.socials);
 </script>
 
 <style scoped>

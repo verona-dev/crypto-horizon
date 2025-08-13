@@ -6,7 +6,7 @@
         <HoverCardTrigger>
             <Card
                 class='w-28 m-4 py-4 gap-2 text-card-foreground bg-accent-foreground'
-                :class="[getTextColor(delta), getBorderColor(delta)]"
+                :class="[getTextColorClass(delta), getBorderColorClass(delta)]"
             >
                 <CardTitle class='flex flex-col items-center'>
                     <p>{{title}}</p>
@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-    import { getBorderColor } from '~/utils/styleUtils.js';
+    import { getTextColorClass, getBorderColorClass } from '~/utils/styleUtils.js';
     
     const props = defineProps({
         delta: {
