@@ -118,9 +118,6 @@
     const chats = computed(() => coingeckoLinks.value?.chat_url);
     const github = computed(() => coingeckoLinks.value?.repos_url?.github);
     const socials = computed(() => livecoinwatchLinks.value?.socials);
-    // console.log(JSON.parse(JSON.stringify(livecoinwatchLinks.value)));
-    console.log(JSON.parse(JSON.stringify(coingeckoLinks.value)));
-    console.log(livecoinwatchLinks.value?.socials);
 </script>
 
 <style scoped>

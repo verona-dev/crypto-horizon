@@ -24,7 +24,7 @@ export const useMarketStore = defineStore('MarketStore', {
             
             await this.getCoingeckoCoin(coinId);
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
-            await this.fetchLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
+            await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
             await NewsStore.getNews( {
                 category: this.coin.symbol,
                 limit: 5,
@@ -80,6 +80,22 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
+        async getLiveCoinWatch(route, options) {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchLiveCoinWatch(route, options);
+                
+                if(response && route === 'coins/single') {
+                    this.coin.livecoinwatch = formatLivecoinwatchCoin(response);
+                }
+            } catch(error) {
+                console.log(error);
+            } finally {
+                this.loading = false;
+            }
+        },
+        
         async getCoingeckoCoinListSummary(options) {
             try {
                 return await useFetchCoingecko('coins/markets', options);
@@ -100,22 +116,6 @@ export const useMarketStore = defineStore('MarketStore', {
                     this.marketOverview = response[0];
                 }
                 
-            } catch(error) {
-                console.log(error);
-            } finally {
-                this.loading = false;
-            }
-        },
-        
-        async fetchLiveCoinWatch(route, options) {
-            this.loading = true;
-            
-            try {
-                const response = await useFetchLiveCoinWatch(route, options);
-                
-                if(response && route === 'coins/single') {
-                    this.coin.livecoinwatch = formatLivecoinwatchCoin(response);
-                }
             } catch(error) {
                 console.log(error);
             } finally {
