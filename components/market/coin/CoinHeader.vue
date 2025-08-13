@@ -2,8 +2,8 @@
     <CardHeader v-if='coin' class='coin-header flex flex-col justify-center items-center'>
         <section class='my-4 flex flex-col xl:flex-row items-center gap-10'>
             <div class='flex flex-col items-center gap-4'>
-                <!--  Back to  -->
-                <NuxtLink @click='onClick' to='' class='hover:bg-muted hover:cursor-pointer rounded-full p-2'>
+                <!--  Go back -->
+                <NuxtLink @click='goBack(router, "/market")' to='' class='hover:bg-muted hover:cursor-pointer rounded-full p-2'>
                     <NuxtIcon name='mdi-light:arrow-left' size='45' />
                 </NuxtLink>
                 
@@ -171,7 +171,7 @@
 </template>
 
 <script setup>
-    import { formatNumber } from '~/utils/formatUtils.js';
+    import { formatNumber, goBack } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
