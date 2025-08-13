@@ -102,7 +102,7 @@
                 
                 <CardContent>
                     <CardDescription>ATH total trading volume</CardDescription>
-                    <p v-if='volume_ath'>{{ formatNumber(volume_ath, { compact: true, decimals: 2 }) }}</p>
+                    <p v-if='volume_ath'>{{ formatNumber(volume_ath, { compact: true }) }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
                 
