@@ -28,7 +28,7 @@
                 <!--  Markets  -->
                 <CardHeader class='mt-10'>
                     <MazAnimatedText
-                        tag='h4'
+                        tag='h2'
                         text=''
                         last-word='Markets'
                         :delay='500'
@@ -49,7 +49,7 @@
             <Card class='card'>
                 <CardHeader>
                     <MazAnimatedText
-                        tag='h4'
+                        tag='h2'
                         text=''
                         last-word='Market Cap'
                         :delay='500'
@@ -84,7 +84,7 @@
             <Card class='card'>
                 <CardHeader>
                     <MazAnimatedText
-                        tag='h4'
+                        tag='h2'
                         text=''
                         last-word='Volume'
                         :delay='500'
@@ -117,7 +117,7 @@
             <Card class='card'>
                 <CardHeader>
                     <MazAnimatedText
-                        tag='h4'
+                        tag='h2'
                         text=''
                         last-word='Dominance'
                         :delay='500'
