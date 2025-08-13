@@ -40,7 +40,7 @@
                 
                 <CardContent>
                     <CardDescription>Total exchange pairs</CardDescription>
-                    <p v-if='marketOverview.active_markets'>{{ marketOverview.active_markets }}</p>
+                    <p v-if='active_markets'>{{ active_markets }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
             </Card>
@@ -73,7 +73,7 @@
                 
                 <CardContent>
                     <CardDescription>Change for last 24h</CardDescription>
-                    <p v-if='marketOverview?.mcap_change' :class='marketCapStyle'>{{ formatNumber(marketOverview.mcap_change, { style: 'percent', compact: true, decimals: 2, }) }}</p>
+                    <p v-if='marketOverview?.mcap_change' :class='m_cap_style'>{{ formatNumber(marketOverview.mcap_change, { style: 'percent', compact: true, decimals: 2, }) }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
             </Card>
@@ -108,7 +108,7 @@
                 
                 <CardContent>
                     <CardDescription>Change for last 24h</CardDescription>
-                    <p v-if='marketOverview.volume_change' :class='volumeChangeStyle'>{{ formatNumber(marketOverview.volume_change, { style: 'percent', compact: true, decimals: 2, }) }}</p>
+                    <p v-if='marketOverview.volume_change' :class='volume_change_style'>{{ formatNumber(marketOverview.volume_change, { style: 'percent', compact: true, decimals: 2, }) }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
             </Card>
@@ -190,11 +190,13 @@
     
     const { marketOverview } = storeToRefs(MarketStore);
     const { getCoinLore } = MarketStore;
-    onMounted(() => getCoinLore('global'));
+    console.log(JSON.parse(JSON.stringify(marketOverview.value)));
     
-    const marketCapStyle = computed(() => getTextColor(marketOverview.value?.mcap_change));
-    const volumeChangeStyle = computed(() => getTextColor(marketOverview.value?.volume_change));
+    const active_markets = computed(() => marketOverview.value?.active_markets);
+    const m_cap_style = computed(() => getTextColor(marketOverview.value?.mcap_change));
+    const volume_change_style = computed(() => getTextColor(marketOverview.value?.volume_change));
 
+    onMounted(() => getCoinLore('global'));
 </script>
 
 <style>
