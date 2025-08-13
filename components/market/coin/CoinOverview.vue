@@ -310,6 +310,7 @@
 </template>
 
 <script setup>
+    import { getTrendIcon } from '~/utils/styleUtils.js';
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
