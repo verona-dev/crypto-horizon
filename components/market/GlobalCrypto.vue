@@ -61,19 +61,19 @@
                 
                 <CardContent>
                     <CardDescription>Total crypto market cap</CardDescription>
-                    <p v-if='marketOverview?.total_mcap'>{{ formatNumberWithOptions(marketOverview?.total_mcap) }}</p>
+                    <p v-if='marketOverview?.total_mcap'>{{ formatNumber(marketOverview?.total_mcap, { compact: true, decimals: 2 }) }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
                 
                 <CardContent>
                     <CardDescription>ATH total market cap</CardDescription>
-                    <p v-if='marketOverview?.mcap_ath'>{{ formatNumberWithOptions(marketOverview.mcap_ath) }}</p>
+                    <p v-if='marketOverview?.mcap_ath'>{{ formatNumber(marketOverview.mcap_ath, { compact: true, decimals: 2 }) }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
                 
                 <CardContent>
                     <CardDescription>Change for last 24h</CardDescription>
-                    <p v-if='marketOverview?.mcap_change' :class='marketCapStyle'>{{ marketOverview.mcap_change }}&#37;</p>
+                    <p v-if='marketOverview?.mcap_change' :class='marketCapStyle'>{{ formatNumber(marketOverview.mcap_change, { style: 'percent', compact: true, decimals: 2, }) }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
             </Card>
@@ -96,21 +96,19 @@
                 
                 <CardContent>
                     <CardDescription>Total trading volume for last 24h</CardDescription>
-                    <p v-if='marketOverview?.total_volume'>{{
-                            formatNumberWithOptions(marketOverview?.total_volume)
-                                                           }}</p>
+                    <p v-if='marketOverview?.total_volume'>{{ formatNumber(marketOverview?.total_volume, { compact: true, decimals: 2 }) }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
                 
                 <CardContent>
                     <CardDescription>ATH total trading volume</CardDescription>
-                    <p v-if='marketOverview?.volume_ath'>{{ formatNumberWithOptions(marketOverview?.volume_ath) }}</p>
+                    <p v-if='marketOverview?.volume_ath'>{{ formatNumber(marketOverview?.volume_ath, { compact: true, decimals: 2 }) }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
                 
                 <CardContent>
                     <CardDescription>Change for last 24h</CardDescription>
-                    <p v-if='marketOverview.volume_change' :class='volumeChangeStyle'>{{ marketOverview.volume_change }}&#37;</p>
+                    <p v-if='marketOverview.volume_change' :class='volumeChangeStyle'>{{ formatNumber(marketOverview.volume_change, { style: 'percent', compact: true, decimals: 2, }) }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
             </Card>
