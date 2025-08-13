@@ -32,6 +32,7 @@
 </template>
 
 <script setup>
+    import { getTextColor } from '~/utils/styleUtils.js';
     import { getBorderColor } from '~/utils/styleUtils.js';
     
     const props = defineProps({

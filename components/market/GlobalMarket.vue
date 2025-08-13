@@ -177,6 +177,8 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
+    import { getTextColor } from '~/utils/styleUtils.js';
+    
     import {
         Card,
         CardContent,
