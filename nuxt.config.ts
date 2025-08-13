@@ -15,30 +15,6 @@ export default defineNuxtConfig({
       },
    },
 
-   booster: {
-      detection: {
-         performance: true,
-         browserSupport: true,
-         battery: true,
-      },
-
-      performanceMetrics: {
-         device: {
-            hardwareConcurrency: { min: 2, max: 48 },
-            deviceMemory: { min: 2 }
-         },
-         timing: {
-            fcp: 800,
-            dcl: 1200
-         }
-      },
-
-      lazyOffset: {
-         component: '0%',
-         asset: '0%'
-      },
-   },
-
    css: [
       '@/assets/styles/index.css',
    ],
@@ -83,14 +59,13 @@ export default defineNuxtConfig({
    },
 
    modules: [
-      '@nuxt/image',
-      '@pinia/nuxt',
-      'maz-ui/nuxt',
-      '@nuxtjs/color-mode',
-      '@nuxt/icon',
-      'shadcn-nuxt',
-      'nuxt-charts',
-      'nuxt-booster',
+     '@nuxt/image',
+     '@pinia/nuxt',
+     'maz-ui/nuxt',
+     '@nuxtjs/color-mode',
+     '@nuxt/icon',
+     'shadcn-nuxt',
+     'nuxt-charts',
    ],
 
    runtimeConfig: {
