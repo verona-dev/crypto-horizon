@@ -2,7 +2,7 @@
     <MazAnimatedElement
         direction='down'
         :duration='2000'
-        class='cryptocurrencies-global flex flex-wrap items-center justify-center my-20'
+        class='global-market flex flex-wrap items-center justify-center my-20'
     >
         <div class='flex flex-col lg:flex-row'>
             <Card class='card'>
@@ -181,15 +181,12 @@
         CardContent,
         CardDescription,
         CardHeader,
-        CardTitle,
     } from '~/components/ui/card/index.js';
     import { Separator } from '~/components/ui/separator/index.js';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    import { formatNumberWithOptions } from '~/utils/formatUtils.js';
-    import { getTextColor } from '~/utils/styleUtils.js';
     
     const { marketOverview } = storeToRefs(MarketStore);
     const { getCoinLore } = MarketStore;
@@ -201,7 +198,7 @@
 </script>
 
 <style>
-    .cryptocurrencies-global {
+    .global-market {
         .card {
             border-color: var(--card-border);
             min-height: 375px;
