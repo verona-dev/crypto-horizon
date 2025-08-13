@@ -70,7 +70,7 @@ const formatLivecoinwatchCoin = coin => {
     }
 };
 
-const extractLinks = (externalLinks) => {
+const extractLinks = externalLinks => {
     let links = {
         socials: {},
     };
@@ -92,10 +92,17 @@ const extractLinks = (externalLinks) => {
 
 const capitalize = word => word.charAt(0).toUpperCase() + word.slice(1);
 
+const goBack = (router, path) => {
+    const history = window.history.length > 1;
+    if(history) return router.back();
+    else return router.push(path);
+};
+
 export {
     formatNumber,
     formatCoinsTable,
     formatLivecoinwatchCoin,
     capitalize,
+    goBack,
 };
 
