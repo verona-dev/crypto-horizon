@@ -124,10 +124,6 @@ const extractLinks = (externalLinks) => {
     return links;
 };
 
-const getDeltaPercentage = (delta, currentPrice) => {
-    return (delta - 1) * 100;
-};
-
 const capitalize = word => word.charAt(0).toUpperCase() + word.slice(1);
 
 export {
@@ -135,7 +131,6 @@ export {
     formatNumber,
     formatCoinsTable,
     formatLivecoinwatchCoin,
-    getDeltaPercentage,
     capitalize,
 };
 
