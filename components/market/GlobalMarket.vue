@@ -96,19 +96,19 @@
                 
                 <CardContent>
                     <CardDescription>Total trading volume for last 24h</CardDescription>
-                    <p v-if='total_volume'>{{ formatNumber(total_volume, { compact: true, decimals: 2 }) }}</p>
+                    <p v-if='total_volume'>{{ total_volume_label }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
                 
                 <CardContent>
                     <CardDescription>ATH total trading volume</CardDescription>
-                    <p v-if='volume_ath'>{{ formatNumber(volume_ath, { compact: true }) }}</p>
+                    <p v-if='volume_ath'>{{ volume_ath_label }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
                 
                 <CardContent>
                     <CardDescription>Change for last 24h</CardDescription>
-                    <p v-if='volume_change' :class='volume_change_class'>{{ formatNumber(volume_change, { style: 'percent', compact: true, decimals: 2, }) }}</p>
+                    <p v-if='!!volume_change' :class='volume_change_class'>{{ volume_change_label }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
             </Card>
@@ -143,7 +143,7 @@
                                 BTC Dominance Index
                             </CardDescription>
                             
-                            <p v-if='marketOverview.btc_d'>{{ marketOverview.btc_d }}&#37;</p>
+                            <p v-if='!!btc_dominance'>{{ btc_dominance }}&#37;</p>
                             <p v-else>&#8208;</p>
                         </div>
                     </NuxtLink>
@@ -165,7 +165,7 @@
                                 ETH Dominance Index
                             </CardDescription>
                             
-                            <p v-if='marketOverview.eth_d'>{{ marketOverview.eth_d }}&#37;</p>
+                            <p v-if='!!eth_dominance'>{{ eth_dominance }}&#37;</p>
                             <p v-else>&#8208;</p>
                         </div>
                     </NuxtLink>
@@ -194,6 +194,8 @@
     
     const active_markets = computed(() => marketOverview.value?.active_markets);
     const coins_count = computed(() => marketOverview.value?.coins_count);
+    const btc_dominance = computed(() => marketOverview.value?.btc_d);
+    const eth_dominance = computed(() => marketOverview.value?.eth_d);
     
     const mcap_total = computed(() => marketOverview.value?.total_mcap);
     const mcap_total_label =  computed(() => formatNumber(mcap_total.value, {
@@ -210,10 +212,17 @@
     const mcap_change_class = computed(() => getTextColor(mcap_change.value));
     
     const total_volume = computed(() => marketOverview.value?.total_volume);
+    const total_volume_label = computed(() => formatNumber(total_volume.value, {
+        compact: true, decimals: 2
+    }));
     const volume_ath = computed(() => marketOverview.value?.volume_ath);
+    const volume_ath_label = computed(() => formatNumber(volume_ath.value, { compact: true }));
     const volume_change = computed(() => marketOverview.value?.volume_change);
+    const volume_change_label = computed(() => formatNumber(volume_change.value, {
+        style: 'percent', compact: true, decimals: 2
+    }));
     const volume_change_class = computed(() => getTextColor(volume_change.value));
-
+    
     onMounted(() => getCoinLore('global'));
 </script>
 
