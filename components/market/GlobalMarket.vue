@@ -61,19 +61,19 @@
                 
                 <CardContent>
                     <CardDescription>Total crypto market cap</CardDescription>
-                    <p v-if='total_mcap'>{{ formatNumber(total_mcap, { compact: true, decimals: 2 }) }}</p>
+                    <p v-if='mcap_total'>{{ mcap_total_label }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
                 
                 <CardContent>
                     <CardDescription>ATH total market cap</CardDescription>
-                    <p v-if='mcap_ath'>{{ formatNumber(mcap_ath, { compact: true, decimals: 2 }) }}</p>
+                    <p v-if='mcap_ath'>{{ mcap_ath_label }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
                 
                 <CardContent>
                     <CardDescription>Change for last 24h</CardDescription>
-                    <p v-if='mcap_change' :class='mcap_change_style'>{{ formatNumber(mcap_change, { style: 'percent', compact: true, decimals: 2, }) }}</p>
+                    <p v-if='!!mcap_change' :class='mcap_change_class'>{{ mcap_change_label }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
             </Card>
@@ -108,7 +108,7 @@
                 
                 <CardContent>
                     <CardDescription>Change for last 24h</CardDescription>
-                    <p v-if='volume_change' :class='volume_change_style'>{{ formatNumber(volume_change, { style: 'percent', compact: true, decimals: 2, }) }}</p>
+                    <p v-if='volume_change' :class='volume_change_class'>{{ formatNumber(volume_change, { style: 'percent', compact: true, decimals: 2, }) }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
             </Card>
@@ -176,6 +176,7 @@
 </template>
 
 <script setup>
+    import { formatNumber } from '~/utils/formatUtils.js';
     import {
         Card,
         CardContent,
@@ -193,14 +194,25 @@
     
     const active_markets = computed(() => marketOverview.value?.active_markets);
     const coins_count = computed(() => marketOverview.value?.coins_count);
-    const total_mcap = computed(() => marketOverview.value?.total_mcap);
+    
+    const mcap_total = computed(() => marketOverview.value?.total_mcap);
+    const mcap_total_label =  computed(() => formatNumber(mcap_total.value, {
+        compact: true, decimals: 2
+    }));
     const mcap_ath = computed(() => marketOverview.value?.mcap_ath);
+    const mcap_ath_label = computed(() => formatNumber(mcap_ath.value, {
+        compact: true, decimals: 2
+    }));
     const mcap_change = computed(() => marketOverview.value?.mcap_change);
-    const mcap_change_style = computed(() => getTextColor(mcap_change.value));
+    const mcap_change_label = computed(() => formatNumber(mcap_change.value, {
+        style: 'percent', compact: true, decimals: 2
+    }));
+    const mcap_change_class = computed(() => getTextColor(mcap_change.value));
+    
     const total_volume = computed(() => marketOverview.value?.total_volume);
     const volume_ath = computed(() => marketOverview.value?.volume_ath);
     const volume_change = computed(() => marketOverview.value?.volume_change);
-    const volume_change_style = computed(() => getTextColor(volume_change.value));
+    const volume_change_class = computed(() => getTextColor(volume_change.value));
 
     onMounted(() => getCoinLore('global'));
 </script>
