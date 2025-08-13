@@ -100,6 +100,7 @@
 <script setup>
     import { toast } from 'vue-sonner';
     import { h, resolveComponent } from 'vue';
+    import { capitalize } from '~/utils/formatUtils.js';
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
     
