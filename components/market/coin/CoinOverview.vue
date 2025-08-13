@@ -55,9 +55,9 @@
                                 <NuxtIcon
                                     :name='getTrendIcon(ath_change_percentage)'
                                     size='20'
-                                    :class='getTextColor(ath_change_percentage)'
+                                    :class='getTextColorClass(ath_change_percentage)'
                                 />
-                                <span :class='getTextColor(ath_change_percentage)'>{{ ath_change_percentage_label }}</span>
+                                <span :class='getTextColorClass(ath_change_percentage)'>{{ ath_change_percentage_label }}</span>
                             </div>
                         </div>
                         
@@ -98,9 +98,9 @@
                                 <NuxtIcon
                                     :name='getTrendIcon(atl_change_percentage)'
                                     size='20'
-                                    :class='getTextColor(atl_change_percentage)'
+                                    :class='getTextColorClass(atl_change_percentage)'
                                 />
-                                <span :class='getTextColor(atl_change_percentage)'>{{ atl_change_percentage_label }}</span>
+                                <span :class='getTextColorClass(atl_change_percentage)'>{{ atl_change_percentage_label }}</span>
                             </div>
                         </div>
                         
@@ -310,7 +310,7 @@
 </template>
 
 <script setup>
-    import { getTrendIcon, getTextColor } from '~/utils/styleUtils.js';
+    import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });

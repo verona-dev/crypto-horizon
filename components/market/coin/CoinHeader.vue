@@ -100,10 +100,10 @@
                             <NuxtIcon
                                 :name='getTrendIcon(price_change_percentage_7d)'
                                 size='35'
-                                :class='getTextColor(price_change_percentage_7d)'
+                                :class='getTextColorClass(price_change_percentage_7d)'
                             />
                             
-                            <p :class='getTextColor(price_change_percentage_7d)'>{{ price_change_percentage_7d_label }}&#40;7d&#41;</p>
+                            <p :class='getTextColorClass(price_change_percentage_7d)'>{{ price_change_percentage_7d_label }}&#40;7d&#41;</p>
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='info-icon'>
@@ -128,10 +128,10 @@
                             <NuxtIcon
                                 :name='getTrendIcon(price_change_percentage_7d_in_btc)'
                                 size='25'
-                                :class='getTextColor(price_change_percentage_7d_in_btc)'
+                                :class='getTextColorClass(price_change_percentage_7d_in_btc)'
                             />
                             
-                            <p :class='[getTextColor(price_change_percentage_7d_in_btc), "text-sm"]'>{{ price_change_percentage_7d_in_btc_label }}&#40;7d&#41;</p>
+                            <p :class='[getTextColorClass(price_change_percentage_7d_in_btc), "text-sm"]'>{{ price_change_percentage_7d_in_btc_label }}&#40;7d&#41;</p>
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='info-icon'>
@@ -172,7 +172,7 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
-    import { getTrendIcon, getTextColor } from '~/utils/styleUtils.js';
+    import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     import { Progress } from '~/components/ui/progress/index.ts';

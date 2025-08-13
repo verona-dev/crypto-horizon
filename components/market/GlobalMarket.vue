@@ -177,7 +177,7 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
-    import { getTextColor } from '~/utils/styleUtils.js';
+    import { getTextColorClass } from '~/utils/styleUtils.js';
     
     import {
         Card,
@@ -211,7 +211,7 @@
     const mcap_change_label = computed(() => formatNumber(mcap_change.value, {
         style: 'percent', compact: true, decimals: 2
     }));
-    const mcap_change_class = computed(() => getTextColor(mcap_change.value));
+    const mcap_change_class = computed(() => getTextColorClass(mcap_change.value));
     
     const total_volume = computed(() => marketOverview.value?.total_volume);
     const total_volume_label = computed(() => formatNumber(total_volume.value, {
@@ -223,7 +223,7 @@
     const volume_change_label = computed(() => formatNumber(volume_change.value, {
         style: 'percent', compact: true, decimals: 2
     }));
-    const volume_change_class = computed(() => getTextColor(volume_change.value));
+    const volume_change_class = computed(() => getTextColorClass(volume_change.value));
     
     onMounted(() => getCoinLore('global'));
 </script>
