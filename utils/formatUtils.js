@@ -38,40 +38,6 @@ const formatNumber = (value, {
     return new Intl.NumberFormat(locale, options).format(num);
 };
 
-const formatNumberWithOptions = (number, usePrefix = true, useSuffix = true) => {
-    if (number === null || number === undefined) return '-';
-    
-    const absNumber = Math.abs(number);
-    let formattedNumber;
-    let prefix = usePrefix ? '$' : '';
-    let suffix = '';
-    
-    const floor = (num) => Math.floor(num * 100) / 100;
-    
-    if (absNumber >= 1_000_000_000_000) {
-        // Trillions
-        formattedNumber = floor(number / 1_000_000_000_000);
-        useSuffix && (suffix = 'T');
-    } else if (absNumber >= 1_000_000_000) {
-        // Billions
-        formattedNumber = floor(number / 1_000_000_000);
-        useSuffix && (suffix = 'B');
-    } else if (absNumber >= 1_000_000) {
-        // Millions
-        formattedNumber = floor(number / 1_000_000);
-        useSuffix && (suffix = 'M');
-    } else if (absNumber >= 1_000) {
-        // Thousands
-        formattedNumber = floor(number / 1_000);
-        useSuffix && (suffix = 'K');
-    } else {
-        // Less than thousand, show the number
-        formattedNumber = floor(number);
-    }
-    
-    return `${prefix}${formattedNumber}${suffix}`;
-};
-
 const formatCoinsTable = coins => {
     return coins?.map(coin => ({
         ...coin,
@@ -127,7 +93,6 @@ const extractLinks = (externalLinks) => {
 const capitalize = word => word.charAt(0).toUpperCase() + word.slice(1);
 
 export {
-    formatNumberWithOptions,
     formatNumber,
     formatCoinsTable,
     formatLivecoinwatchCoin,
