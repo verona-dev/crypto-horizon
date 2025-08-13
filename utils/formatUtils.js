@@ -100,25 +100,7 @@ const formatCoinsTable = coins => {
 const formatLivecoinwatchCoin = coin => {
     return {
         ...coin,
-        allTimeHighUSD: coin?.allTimeHighUSD,
-        allTimeHighUSDFormatted: formatNumber(coin?.allTimeHighUSD, 2, 2),
-        circulatingSupply: coin?.circulatingSupply,
-        circulatingSupplyFormatted: formatNumberWithOptions(coin?.circulatingSupply, false),
-        exchanges: coin?.exchanges,
         links: extractLinks(coin?.links),
-        liquidity: coin?.liquidity,
-        liquidityFormatted: formatNumberWithOptions(coin?.liquidity),
-        marketCap: coin?.cap,
-        marketCapFormatted: formatNumberWithOptions(coin?.cap),
-        maxSupply: coin?.maxSupply,
-        maxSupplyFormatted: formatNumberWithOptions(coin?.maxSupply, false),
-        rate: coin?.rate,
-        rateFormatted: formatNumber(coin?.rate, 0, 2),
-        totalSupply: coin?.totalSupply,
-        totalSupplyFormatted: formatNumberWithOptions(coin?.totalSupply, false),
-        trend: getTextColor(coin?.changePercent24Hr),
-        volume: coin?.volume,
-        volumeFormatted: formatNumberWithOptions(coin?.volume),
     }
 };
 
