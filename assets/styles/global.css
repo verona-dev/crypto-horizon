@@ -74,24 +74,12 @@
         @apply text-sm;
     }
     
-    .m-animated-text span {
-        @apply text-3xl;
-    }
-    
     a {
         @apply text-center;
     }
     
     button {
         @apply cursor-pointer;
-    }
-    
-    .m-table {
-        font-family: 'Noto Sans Variable', sans-serif;
-    }
-    
-    .m-table-header {
-        font-family: 'IBM Plex Mono', monospace;
     }
     
     .custom-flex {
@@ -101,16 +89,8 @@
         align-items: center;
     }
     
-    .hover-card-content {
-        background: var(--card-small) !important;
-    }
-    
     .info-icon {
         color: var(--maz-color-muted);
-    }
-    
-    .custom-separator {
-        background: var(--card-border) !important;
     }
     
     .vertical-separator {
@@ -118,54 +98,7 @@
         height: 50px;
         width: 1px;
     }
-    
-    /*  CoinExplorers + CoinContracts  */
-    .main-badge {
-        background-color: var(--accent-foreground) !important;
-        border: 1px solid transparent !important;
-        border-top-right-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
-        height: 50px;
-        
-        &:hover {
-            background-color: var(--accent) !important;
-        }
-    }
-    
-    /* Dropdown icon */
-    .m-dropdown__wrapper {
-        .m-btn {
-            background-color: var(--accent-foreground) !important;
-            border-top-left-radius: 0 !important;
-            border-bottom-left-radius: 0 !important;
-            height: 50px;
-            
-            &:hover {
-                background-color: var(--accent) !important;
-            }
-        }
-    }
-    
-    /* Dropdown menus */
-    .m-dropdown.explorers-dropdown {
-        .menu {
-            background-color: var(--accent-foreground) !important;
-            width: 200px !important;
-        }
-    }
-    
-    .m-dropdown.contracts-dropdown {
-        .menu {
-            background-color: var(--accent-foreground) !important;
-            height: 375px !important;
-            width: 375px !important;
-        }
-    }
-    
-    /* Coin supply progress bars */
-    .progress-bar-container {
-        @apply flex flex-col items-center gap-6;
-    }
+
 }
 
 /* Desktop */
