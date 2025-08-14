@@ -10,35 +10,34 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --color-background: var(--background-2);
-    --color-foreground: var(--foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-background: var(--background);
+    --color-border: var(--border);
     --color-card: var(--card);
     --color-card-small: var(--card-small);
     --color-card-foreground: var(--card-foreground);
     --color-card-border: var(--card-border);
-    --color-popover: var(--popover);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-primary: var(--primary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-secondary: var(--secondary);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-tertiary: var(--tertiary);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-foreground: var(--foreground);
+    
+    --color-input: var(--input);
     --color-muted: var(--muted);
     --color-muted-custom: var(--muted-custom);
     --color-maz-muted: var(--maz-color-muted);
     --color-muted-foreground: var(--muted-foreground);
-    --color-accent: var(--accent);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-warning: var(--warning);
-    --color-border: var(--border);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
     --color-ring: var(--ring);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-warning: var(--warning);
     
-    --color-input: var(--input);
-    --color-destructive: var(--destructive);
-    --color-destructive-foreground: var(--destructive-foreground);
     --color-progress: var(--color-progress);
     --color-sky: var(--color-sky);
-    
     --color-1: var(--color-1);
     --color-3: var(--color-3);
     --color-4: var(--color-4);
@@ -47,32 +46,36 @@
 }
 
 :root {
-    --card: oklch(1 0 0);
-    --card-small: red;
-    --card-foreground: oklch(0.141 0.005 285.823);
-    
-    --primary: oklch(0.985 0 0);
-    --primary-foreground: oklch(0.21 0.006 285.885);
-    --secondary: #1cd1a1;
-    --secondary-foreground: oklch(0.985 0 0);
-    --tertiary: oklch(0.21 0.006 285.885);
-    
     --accent: oklch(0.274 0.006 286.033);
     --accent-foreground: oklch(0.21 0.006 285.885);
     --border: oklch(0.274 0.006 286.033);
+    --background: #0D1217;
+    --background-2: oklch(0.17 0.008 285.489);
+    --background-3: #222531;
+    /*--background: oklch(0.141 0.005 285.823); zinc-default */
+    --foreground: oklch(0.985 0 0);
+    
+    --card: oklch(0.141 0.005 285.823);
+    --card-small: oklch(0.21 0.006 285.885);
+    --card-foreground: oklch(0.985 0 0);
+    --card-border: oklch(0.442 0.017 285.786);
+    --destructive: oklch(0.396 0.141 25.723);
+    --destructive-foreground: oklch(0.637 0.237 25.331);
+    --input: oklch(0.274 0.006 286.033);
     --muted-custom: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
     --muted-foreground: oklch(0.705 0.015 286.067);
     --muted: oklch(0.274 0.006 286.033);
     --popover: oklch(0.141 0.005 285.823);
     --popover-foreground: oklch(0.985 0 0);
-    --input: oklch(0.274 0.006 286.033);
+    --primary: oklch(0.985 0 0);
+    --primary-foreground: oklch(0.21 0.006 285.885);
     --ring: oklch(0.442 0.017 285.786);
+    --secondary: #1cd1a1;
+    --secondary-foreground: oklch(0.985 0 0);
     --warning: oklch(83.7% 0.128 66.29);
-    --destructive: oklch(0.396 0.141 25.723);
-    --destructive-foreground: oklch(0.637 0.237 25.331);
+    
     --color-progress: oklch(0.696 0.17 162.48);
     --color-sky: rgb(14 165 233);
-    
     --color-1: #4eec4e;
     --color-3: oklch(0.398 0.07 227.392);
     --color-4: oklch(0.627 0.265 303.9);
@@ -81,14 +84,5 @@
 }
 
 .dark {
-    --background: oklch(0.17 0.008 285.489);
-    --background-2:  #0D1217;
-    --background-3:  #222531;
-    /*--background: oklch(0.141 0.005 285.823); zinc-default */
-    --foreground: oklch(0.985 0 0);
-    
-    --card: oklch(0.141 0.005 285.823);
-    --card-small: oklch(0.21 0.006 285.885);
-    --card-foreground: oklch(0.985 0 0);
-    --card-border: oklch(0.442 0.017 285.786);
+
 }
