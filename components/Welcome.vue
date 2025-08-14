@@ -24,19 +24,19 @@
     const welcomeItems = [
         {
             title: 'Markets',
-            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753525072/btc-circle_mbhyga.svg',
+            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp',
             alt: 'market image',
             to: '/market',
         },
         {
             title: 'News',
-            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753525063/btc-pink_nxk9ig.svg',
+            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545829/cryptocurrency-6601591_1920_i7bpq2.jpg',
             alt: 'news image',
             to: '/news',
         },
         {
             title: 'Defi',
-            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753525063/btc-tree_b2gnne.svg',
+            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195953/cyberpunk-bitcoin-illustration_jejcnb.webp',
             alt: 'defi image',
             to: '/defi',
         },
