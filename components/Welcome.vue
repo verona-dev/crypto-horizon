@@ -1,9 +1,7 @@
 <template>
     <div class='flex flex-col items-center gap-8 md:gap-32 px-10 pb-10'>
         <h1 class='my-20 md:my-0 select-none'>
-            <span class='animated-line mb-4'></span>
             Crypto Horizon
-            <span class='animated-line mt-4'></span>
         </h1>
         
         <div class='flex flex-col md:flex-row justify-center items-center gap-6 xl:gap-30'>
@@ -49,30 +47,22 @@
     h1 {
         letter-spacing: 1rem;
         word-spacing: 2.5rem;
-        background-image: url('https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-        //background-image: url('https://images.unsplash.com/photo-1522124624696-7ea32eb9592c?q=80&w=2969&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-        //background-image: url('https://images.unsplash.com/photo-1465101162946-4377e57745c3?q=80&w=2978&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-        background-size: 300%;
+        font-weight: 600;
+        
+        background-image: url('~/assets/images/hero.webp');
+        background-size: 110%;
+        animation: animate-background 100s infinite alternate linear;
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        animation: animate-background 300s infinite alternate linear;
-    }
-    
-    .animated-line {
-        display: block;
-        height: 8px;
-        background-image: url('https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-        background-size: 300%;
-        animation: animate-background 300s infinite alternate linear;
     }
     
     @keyframes animate-background {
         0% {
-            background-position: 25% 50%;
+            background-position: 75% 90%;
         }
         100% {
-            background-position: 100% 50%;
+            background-position: 50% 0;
         }
     }
 </style>
