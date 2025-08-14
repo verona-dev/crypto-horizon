@@ -67,11 +67,11 @@
 <style>
     .coin-sentiment {
         .progress-root {
-            background-color: var(--chart-5);
+            background-color: var(--color-5);
         }
         
         .progress-indicator {
-            background-color: var(--chart-2);
+            background-color: var(--color-progress);
         }
     }
 </style>
