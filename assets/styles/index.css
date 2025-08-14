@@ -1,7 +1,6 @@
 @import 'maz-ui/styles';
 @import 'tailwindcss';
 @import './global.css';
-@import './colors.css';
 @import './transitions.css';
 @import './shadcn.css';
 @import './mazui.css';
@@ -60,9 +59,9 @@
     --destructive: oklch(0.396 0.141 25.723);
     --destructive-foreground: oklch(0.637 0.237 25.331);
     --input: oklch(0.274 0.006 286.033);
-    --muted-custom: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
-    --muted-foreground: oklch(0.705 0.015 286.067);
     --muted: oklch(0.274 0.006 286.033);
+    --muted-foreground: oklch(0.705 0.015 286.067);
+    --muted-custom: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
     --popover: oklch(0.141 0.005 285.823);
     --popover-foreground: oklch(0.985 0 0);
     --primary: oklch(0.985 0 0);
@@ -79,6 +78,29 @@
     --color-4: oklch(0.627 0.265 303.9);
     --color-5: oklch(0.645 0.246 16.439);
     --color-6: oklch(0.569 0.132 154.839);
+    
+    /*
+    --color-aqua: #02D0BD;
+    --color-black: #000;
+    --color-blue_dark: #0f1725;
+    --color-blue_maastricht: #041b2b;
+    --color-body-background: #1c283f;
+    --color-error-text: #e10707;
+    --color-gray_dark: #100f0f;
+    --color-offwhite: #FFFFF7;
+    --color-pink_cabaret: #E91E63;
+    --color-pink_french: #FF65a4;
+    --color-purple: #E040FB;
+    --color-red: #B61432;
+    --color-teal: #24A397;
+
+    --color-primary_dark: #FFFFF7;
+    --color-secondary_dark: #E91E63;
+    --color-tertiary_dark: #917ddb;
+
+    --color-primary_light: #2f4858;
+    --color-secondary_light: #4e6b73;
+    */
 }
 
 .dark {
