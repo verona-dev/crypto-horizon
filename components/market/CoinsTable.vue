@@ -171,7 +171,7 @@
         }
         
         thead {
-            background-color: var(--tertiary);
+            background-color: var(--primary-foreground);
             height: 75px;
         }
         

@@ -57,7 +57,7 @@
         
         --vis-axis-grid-color: var(--muted) !important;
         
-        --vis-tooltip-background-color: var(--card-small) !important;
+        --vis-tooltip-background-color: var(--primary-foreground) !important;
         --vis-tooltip-border-color: none !important;
         --vis-axis-tick-label-color: var(--muted-foreground) !important;
         

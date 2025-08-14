@@ -16,7 +16,7 @@
             
             <Skeleton
                 v-else
-                class='h-[450px] w-[305px] rounded-lg'
+                class='h-[300px] w-[385px] rounded-lg'
             />
         </NuxtImg>
         
@@ -41,11 +41,10 @@
     .link-item {
         img {
             border-radius: 6px;
-            height: 450px;
+            height: 300px;
             object-fit: cover;
-            object-position: center top;
             transition: all 150ms ease-in-out;
-            width: 300px;
+            width: 450px;
         }
         
         &:hover img {

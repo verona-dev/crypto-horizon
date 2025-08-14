@@ -1,7 +1,7 @@
 
 /*  Sonner  */
 [data-sonner-toast] {
-    background-color: var(--card-small) !important;
+    background-color: var(--primary-foreground) !important;
     border-radius: 8px !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
     display: flex !important;
@@ -19,4 +19,8 @@
 
 [data-button] {
     margin: 0 !important;
+}
+
+.hover-card-content {
+    background: var(--primary-foreground) !important;
 }
