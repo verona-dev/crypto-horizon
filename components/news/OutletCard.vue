@@ -28,7 +28,7 @@
                     </NuxtImg>
                 </div>
                 
-                <div class='card-back bg-card flex flex-col gap-12'>
+                <div class='card-back bg-card'>
                     <CardContent class='w-4/5 px-0'>
                         <Table>
                             <TableBody>
@@ -148,11 +148,14 @@
         }
         
         .card-front {
+            align-items: center;
+            justify-content: center;
             height: 350px;
         }
         
         .card-back {
-            height: 450px;
+            height: 375px;
+            flex-direction: column;
             transform: rotateY(180deg);
         }
         
