@@ -47,7 +47,3 @@
         await getNewsOutlets();
     });
 </script>
-
-<style scoped>
-    .news-sources {}
-</style>
