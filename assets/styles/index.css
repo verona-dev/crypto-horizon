@@ -41,14 +41,14 @@
     --color-input: var(--input);
     --color-ring: var(--ring);
     
+    --color-progress: var(--color-progress);
+    --color-sky: var(--color-sky);
+    
     --color-1: var(--color-1);
     --color-3: var(--color-3);
     --color-4: var(--color-4);
     --color-5: var(--color-5);
     --color-6: var(--color-6);
-    
-    --color-progress: var(--color-progress);
-    --color-sky: rgb(14 165 233);
 }
 
 :root {
@@ -77,8 +77,10 @@
     --destructive: oklch(0.577 0.245 27.325);
     --destructive-foreground: oklch(0.577 0.245 27.325);
     
-    --color-1: #4eec4e;
     --color-progress: oklch(0.696 0.17 162.48);
+    --color-sky: rgb(14 165 233);
+    
+    --color-1: #4eec4e;
     --color-3: oklch(0.398 0.07 227.392);
     --color-4: oklch(0.627 0.265 303.9);
     --color-5: oklch(0.645 0.246 16.439);
