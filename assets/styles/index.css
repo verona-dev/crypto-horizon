@@ -34,13 +34,13 @@
     --color-muted-foreground: var(--muted-foreground);
     --color-accent: var(--accent);
     --color-accent-foreground: var(--accent-foreground);
-    --color-destructive: var(--destructive);
-    --color-destructive-foreground: var(--destructive-foreground);
     --color-warning: var(--warning);
     --color-border: var(--border);
     --color-input: var(--input);
     --color-ring: var(--ring);
     
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
     --color-progress: var(--color-progress);
     --color-sky: var(--color-sky);
     
@@ -54,6 +54,7 @@
 :root {
     --background: oklch(1 0 0);
     --foreground: oklch(0.141 0.005 285.823);
+    
     --card: oklch(1 0 0);
     --card-small: red;
     --card-foreground: oklch(0.141 0.005 285.823);
@@ -74,9 +75,8 @@
     --input: oklch(0.92 0.004 286.32);
     --ring: oklch(0.705 0.015 286.067);
     
-    --destructive: oklch(0.577 0.245 27.325);
-    --destructive-foreground: oklch(0.577 0.245 27.325);
-    
+    --destructive: oklch(0.396 0.141 25.723);
+    --destructive-foreground: oklch(0.637 0.237 25.331);
     --color-progress: oklch(0.696 0.17 162.48);
     --color-sky: rgb(14 165 233);
     
@@ -93,6 +93,7 @@
     --background-3:  #222531;
     /*--background: oklch(0.141 0.005 285.823); zinc-default */
     --foreground: oklch(0.985 0 0);
+    
     --card: oklch(0.141 0.005 285.823);
     --card-small: oklch(0.21 0.006 285.885);
     --card-foreground: oklch(0.985 0 0);
@@ -109,8 +110,6 @@
     --muted-foreground: oklch(0.705 0.015 286.067);
     --accent: oklch(0.274 0.006 286.033);
     --accent-foreground: oklch(0.21 0.006 285.885);
-    --destructive: oklch(0.396 0.141 25.723);
-    --destructive-foreground: oklch(0.637 0.237 25.331);
     --border: oklch(0.274 0.006 286.033);
     --input: oklch(0.274 0.006 286.033);
     --ring: oklch(0.442 0.017 285.786);
