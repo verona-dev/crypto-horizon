@@ -148,8 +148,6 @@
         }
         
         .card-front {
-            align-items: center;
-            justify-content: center;
             height: 350px;
         }
         
