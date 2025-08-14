@@ -10,7 +10,7 @@
 }
 
 [data-icon] {
-    color: var(--chart-2) !important;
+    color: var(--color-progress) !important;
 }
 
 [data-title] {
