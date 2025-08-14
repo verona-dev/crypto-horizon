@@ -4,15 +4,10 @@
 @import './colors.css';
 @import './transitions.css';
 @import './shadcn.css';
+@import './mazui.css';
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
-
-/* Desktop */
-@media (min-width: 1024px) {}
-
-/* Mobile */
-@media (max-width: 1023px) {}
 
 @theme inline {
     --color-background: var(--background-2);
