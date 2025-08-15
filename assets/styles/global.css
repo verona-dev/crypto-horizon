@@ -58,12 +58,12 @@
         @apply text-3xl xl:text-4xl mb-3;
     }
     
-    .global-market h4 {
-        font-family: 'Great', sans-serif;
-    }
-    
     h5 {
         @apply text-2xl xl:text-3xl;
+    }
+    
+    .global-market h5 {
+        font-family: 'Great', sans-serif;
     }
     
     h6 {
