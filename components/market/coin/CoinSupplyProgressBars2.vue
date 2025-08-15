@@ -178,7 +178,7 @@
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ formatNumber(volume, { compact: true, decimals: 2 }) }}</p>
+                        <p>{{ volume_bar_label }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -203,7 +203,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ formatNumber(volume) }}</span>
+                    <span class='mt-2'>{{ volume_label }}</span>
                 </div>
             </div>
             
@@ -296,7 +296,11 @@
     }));
     const circulating_supply_percentage = computed(() => (circulating_supply.value / max_supply.value) * 100);
     
-    const volume = computed(() => coin.value?.volume);
+    const volume = computed(() => market_data.value?.total_volume?.usd);
+    const volume_label = computed(() => formatNumber(volume.value));
+    const volume_bar_label = computed(() => formatNumber(volume.value, {
+        compact: true, decimals: 2
+    }));
     const liquidity = computed(() => coin.value?.liquidity);
     
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
