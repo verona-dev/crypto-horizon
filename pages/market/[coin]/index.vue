@@ -11,7 +11,7 @@
         <div v-else>
             <Card
                 v-if='coin && coin.livecoinwatch.name'
-                class='bg-background flex flex-col pb-40 mb-40'
+                class='bg-background flex flex-col pb-20'
             >
                 <CoinHeader :coin='coin' />
                 
