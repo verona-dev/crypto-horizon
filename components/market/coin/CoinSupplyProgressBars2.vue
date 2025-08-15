@@ -54,7 +54,7 @@
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ formatNumber(max_supply, { compact: true, style: 'decimal' }) }}</p>
+                        <p>{{ max_supply_bar_label }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -83,7 +83,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ formatNumber(max_supply, { style: 'decimal' }) }} {{ symbol }}</span>
+                    <span class='mt-2'>{{ max_supply_label }} {{ symbol }}</span>
                 </div>
             </div>
             
@@ -274,11 +274,17 @@
     
     const market_cap = computed(() => market_data.value?.market_cap?.usd);
     const market_cap_label = computed(() => formatNumber(market_cap.value));
-    console.log(market_cap_label.value);
     const market_cap_bar_label = computed(() => formatNumber(market_cap.value, {
         compact: true, decimals: 1
     }));
-    const max_supply = computed(() => coin.value?.maxSupply);
+    
+    const max_supply = computed(() => market_data.value?.max_supply);
+    const max_supply_label = computed(() => formatNumber(max_supply.value, {
+        style: 'decimal'
+    }));
+    const max_supply_bar_label = computed(() => formatNumber(max_supply.value, {
+        compact: true, style: 'decimal'
+    }))
     
     const total_supply = computed(() => coin.value?.totalSupply);
     const total_supply_percentage = computed(() => (coin.value?.totalSupply / coin.value?.maxSupply) * 100);
