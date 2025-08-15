@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class=''>
+        <h1 class='mt-10 mb-40 text-center'>Crypto Market</h1>
         <GlobalMarket />
         <CoinsTable />
     </div>

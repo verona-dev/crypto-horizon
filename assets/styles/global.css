@@ -34,7 +34,7 @@
     }
     
     section {
-        @apply flex flex-col items-center lg:justify-around;
+        @apply mb-20 flex flex-col items-center lg:justify-around;
     }
 }
 
@@ -56,6 +56,10 @@
     
     h4 {
         @apply text-3xl xl:text-4xl mb-3;
+    }
+    
+    .global-market h4 {
+        font-family: 'Great', sans-serif;
     }
     
     h5 {

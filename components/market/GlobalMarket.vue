@@ -8,14 +8,7 @@
             <Card class='card'>
                 <!--  Assets  -->
                 <CardHeader>
-                    <MazAnimatedText
-                        tag='h2'
-                        text=''
-                        last-word='Assets'
-                        :delay='500'
-                        :duration='2000'
-                        direction='left'
-                    />
+                    <h4>Assets</h4>
                     <Separator />
                 </CardHeader>
                 
@@ -27,14 +20,7 @@
                 
                 <!--  Markets  -->
                 <CardHeader class='mt-10'>
-                    <MazAnimatedText
-                        tag='h2'
-                        text=''
-                        last-word='Markets'
-                        :delay='500'
-                        :duration='2000'
-                        direction='left'
-                    />
+                    <h4>Markets</h4>
                     <Separator />
                 </CardHeader>
                 
@@ -48,14 +34,7 @@
             <!--  Market Cap  -->
             <Card class='card'>
                 <CardHeader>
-                    <MazAnimatedText
-                        tag='h2'
-                        text=''
-                        last-word='Market Cap'
-                        :delay='500'
-                        :duration='2000'
-                        direction='left'
-                    />
+                    <h4>Market Cap</h4>
                     <Separator />
                 </CardHeader>
                 
@@ -83,14 +62,7 @@
             <!--  Volume  -->
             <Card class='card'>
                 <CardHeader>
-                    <MazAnimatedText
-                        tag='h2'
-                        text=''
-                        last-word='Volume'
-                        :delay='500'
-                        :duration='2000'
-                        direction='left'
-                    />
+                    <h4>Volume</h4>
                     <Separator />
                 </CardHeader>
                 
@@ -116,14 +88,7 @@
             <!--  Dominance  -->
             <Card class='card'>
                 <CardHeader>
-                    <MazAnimatedText
-                        tag='h2'
-                        text=''
-                        last-word='Dominance'
-                        :delay='500'
-                        :duration='2000'
-                        direction='left'
-                    />
+                    <h4>Dominance</h4>
                     <Separator />
                 </CardHeader>
                 
