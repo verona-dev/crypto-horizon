@@ -9,7 +9,7 @@
         </div>
         
         <div v-else class='flex flex-col items-center'>
-            <div class='my-28 flex flex-col items-center gap-4'>
+            <div class='mt-10 mb-40 flex flex-col items-center gap-4'>
                 <h1>News Outlets</h1>
                 <NuxtLink
                     to='https://developers.coindesk.com/documentation/data-api/introduction'
