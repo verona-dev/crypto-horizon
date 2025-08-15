@@ -2,13 +2,13 @@
     <MazAnimatedElement
         direction='down'
         :duration='2000'
-        class='global-market flex flex-wrap items-center justify-center my-20'
+        class='global-market flex flex-wrap items-center justify-center'
     >
         <div class='flex flex-col lg:flex-row'>
             <Card class='card'>
                 <!--  Assets  -->
                 <CardHeader>
-                    <h4>Assets</h4>
+                    <h5>Assets</h5>
                     <Separator />
                 </CardHeader>
                 
@@ -20,7 +20,7 @@
                 
                 <!--  Markets  -->
                 <CardHeader class='mt-10'>
-                    <h4>Markets</h4>
+                    <h5>Markets</h5>
                     <Separator />
                 </CardHeader>
                 
@@ -34,7 +34,7 @@
             <!--  Market Cap  -->
             <Card class='card'>
                 <CardHeader>
-                    <h4>Market Cap</h4>
+                    <h5>Market Cap</h5>
                     <Separator />
                 </CardHeader>
                 
@@ -62,7 +62,7 @@
             <!--  Volume  -->
             <Card class='card'>
                 <CardHeader>
-                    <h4>Volume</h4>
+                    <h5>Volume</h5>
                     <Separator />
                 </CardHeader>
                 
@@ -88,7 +88,7 @@
             <!--  Dominance  -->
             <Card class='card'>
                 <CardHeader>
-                    <h4>Dominance</h4>
+                    <h5>Dominance</h5>
                     <Separator />
                 </CardHeader>
                 
