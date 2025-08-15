@@ -23,4 +23,5 @@
 
 .hover-card-content {
     background: var(--primary-foreground) !important;
+    padding: 20px !important;
 }
