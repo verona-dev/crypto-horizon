@@ -13,7 +13,7 @@
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ formatNumber(market_cap, { compact: true, decimals: 2 }) }}</p>
+                        <p>{{ market_cap_bar_label }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -42,7 +42,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ formatNumber(market_cap) }}</span>
+                    <span class='mt-2'>{{ market_cap_label }}</span>
                 </div>
             </div>
             
@@ -271,6 +271,10 @@
     const { coin } = toRefs(props);
     
     const market_cap = computed(() => coin.value?.marketCap);
+    const market_cap_label = computed(() => formatNumber(market_cap.value));
+    const market_cap_bar_label = computed(() => formatNumber(market_cap.value, {
+        compact: true, decimals: 2
+    }))
     const max_supply = computed(() => coin.value?.maxSupply);
     
     const total_supply = computed(() => coin.value?.totalSupply);
