@@ -11,7 +11,7 @@
           { label: "24h %", key: "changePercent24Hr", align: "center", sortable: false, classes: "" },
         ]'
         :rows='coins'
-        class='my-20 px-6 mx-auto'
+        class='self-stretch'
         color='secondary'
         hoverable
         background-even
