@@ -1,5 +1,5 @@
 <template>
-    <div class='news mx-auto px-20 flex flex-col'>
+    <div class='news mx-auto flex flex-col'>
         <div v-if='loading' class='flex items-center h-[75vh]'>
             <MazSpinner
                 color='secondary'
@@ -12,7 +12,7 @@
             v-else
             class='flex flex-col items-center'
         >
-            <h1 class='my-28'>Latest Crypto News</h1>
+            <h1 class='mt-10 mb-40'>Latest Crypto News</h1>
             
             <div v-if='articles' class='flex flex-wrap justify-center gap-12'>
                 <NewsCard
