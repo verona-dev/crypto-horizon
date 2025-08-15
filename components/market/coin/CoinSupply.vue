@@ -3,7 +3,7 @@
         <DrawerContent>
             <DrawerHeader class='mx-auto'>
                 <DrawerTitle class=''>Coin Supply</DrawerTitle>
-                <!--                <DrawerDescription class='mx-auto'>Subtitle.</DrawerDescription>-->
+                <DrawerDescription class='mx-auto'>Exploring Key Metrics of Coin Availability.</DrawerDescription>
                 
                 <div class='close-drawer absolute top-10 right-10'>
                     <!--  Close Drawer  -->
