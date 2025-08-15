@@ -38,7 +38,7 @@
                     <span class='text-muted-custom mb-6'>This might take a few seconds</span>
                 </div>
                 
-                <div class='max-w-[500px] md:max-w-[750px] lg:max-w-[900px] mx-auto'>
+                <div class='max-w-[450px] md:max-w-[650px] lg:max-w-[900px] mx-auto'>
                     <Line
                         ref='chartRef'
                         v-if='data.datasets?.length'

@@ -1,7 +1,7 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex flex-col justify-center items-center'>
         <section class='my-4 flex flex-col xl:flex-row items-center gap-10'>
-            <div class='flex flex-col items-center gap-4'>
+            <div class='flex items-center gap-4'>
                 <!--  Go back -->
                 <NuxtLink @click='goBack(router, "/market")' to='' class='hover:bg-muted hover:cursor-pointer rounded-full p-2'>
                     <NuxtIcon name='mdi-light:arrow-left' size='45' />

@@ -2,27 +2,23 @@
     <MazAnimatedElement
         direction='down'
         :duration='2000'
-        class='global-market flex flex-wrap items-center justify-center my-20'
+        class='global-market flex flex-wrap items-center justify-center'
     >
         <div class='flex flex-col lg:flex-row'>
             <Card class='card'>
                 <!--  Assets  -->
-                <CardHeader>
-                    <h4>Assets</h4>
-                    <Separator />
-                </CardHeader>
+                <h5 class='text-center'>Assets</h5>
+                <Separator />
                 
-                <CardContent>
+                <CardContent class='mb-8'>
                     <CardDescription>Total number of coins</CardDescription>
                     <p v-if='coins_count'>{{ coins_count }}</p>
                     <p v-else>&#8208;</p>
                 </CardContent>
                 
                 <!--  Markets  -->
-                <CardHeader class='mt-10'>
-                    <h4>Markets</h4>
-                    <Separator />
-                </CardHeader>
+                <h5 class='text-center'>Markets</h5>
+                <Separator />
                 
                 <CardContent>
                     <CardDescription>Total exchange pairs</CardDescription>
@@ -33,10 +29,8 @@
             
             <!--  Market Cap  -->
             <Card class='card'>
-                <CardHeader>
-                    <h4>Market Cap</h4>
-                    <Separator />
-                </CardHeader>
+                <h5 class='text-center'>Market Cap</h5>
+                <Separator />
                 
                 <CardContent>
                     <CardDescription>Total crypto market cap</CardDescription>
@@ -61,10 +55,8 @@
         <div class='flex flex-col lg:flex-row'>
             <!--  Volume  -->
             <Card class='card'>
-                <CardHeader>
-                    <h4>Volume</h4>
-                    <Separator />
-                </CardHeader>
+                <h5 class='text-center'>Volume</h5>
+                <Separator />
                 
                 <CardContent>
                     <CardDescription>Total trading volume for last 24h</CardDescription>
@@ -87,10 +79,8 @@
             
             <!--  Dominance  -->
             <Card class='card'>
-                <CardHeader>
-                    <h4>Dominance</h4>
-                    <Separator />
-                </CardHeader>
+                <h5 class='text-center'>Dominance</h5>
+                <Separator />
                 
                 <CardContent>
                     <NuxtLink
@@ -99,12 +89,12 @@
                     >
                         <NuxtIcon
                             name='token-branded:btc'
-                            size='50'
+                            size='70'
                             class='mr-4 mb-1'
                         />
                         
                         <div class='flex flex-col items-start'>
-                            <CardDescription>
+                            <CardDescription class='text-left'>
                                 BTC Dominance Index
                             </CardDescription>
                             
@@ -121,12 +111,12 @@
                     >
                         <NuxtIcon
                             name='token-branded:eth'
-                            size='50'
+                            size='70'
                             class='mr-4'
                         />
                         
                         <div class='flex flex-col items-start'>
-                            <CardDescription>
+                            <CardDescription class='text-left'>
                                 ETH Dominance Index
                             </CardDescription>
                             
