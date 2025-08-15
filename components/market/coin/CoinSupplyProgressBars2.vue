@@ -125,7 +125,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ formatNumber(total_supply, { style: 'decimal' }) }} {{ symbol }}</span>
+                    <span class='mt-2'>{{ total_supply_label }} {{ symbol }}</span>
                 </div>
             </div>
             
@@ -286,8 +286,11 @@
         compact: true, style: 'decimal'
     }))
     
-    const total_supply = computed(() => coin.value?.totalSupply);
-    const total_supply_percentage = computed(() => (coin.value?.totalSupply / coin.value?.maxSupply) * 100);
+    const total_supply = computed(() =>  market_data.value?.total_supply);
+    const total_supply_label = computed(() => formatNumber(total_supply.value, {
+        style: 'decimal'
+    }));
+    const total_supply_percentage = computed(() => (total_supply.value / max_supply.value) * 100);
     
     const circulating_supply = computed(() => coin.value?.circulatingSupply);
     const circulating_supply_percentage = computed(() => (coin.value?.circulatingSupply / coin.value?.maxSupply) * 100);
