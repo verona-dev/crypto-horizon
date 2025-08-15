@@ -54,7 +54,7 @@
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ formatNumber(max_supply, { compact: true, style: 'decimal' }) }}</p>
+                        <p>{{ max_supply_bar_label }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -83,7 +83,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ formatNumber(max_supply, { style: 'decimal' }) }} {{ symbol }}</span>
+                    <span class='mt-2'>{{ max_supply_label }} {{ symbol }}</span>
                 </div>
             </div>
             
@@ -125,7 +125,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ formatNumber(total_supply, { style: 'decimal' }) }} {{ symbol }}</span>
+                    <span class='mt-2'>{{ total_supply_label }} {{ symbol }}</span>
                 </div>
             </div>
             
@@ -139,9 +139,7 @@
                 >
                     <template #default>
                         <p v-if='max_supply'>{{ Math.floor(circulating_supply_percentage) }}&#37;</p>
-                        <p v-else>{{
-                                formatNumber(circulating_supply, { compact: true, style: 'decimal', decimals: 2 })
-                                  }}</p>
+                        <p v-else>{{ formatNumber(circulating_supply, { compact: true, style: 'decimal', decimals: 2 }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -168,7 +166,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ formatNumber(circulating_supply, { style: 'decimal' }) }} {{ symbol }}</span>
+                    <span class='mt-2'>{{ circulating_supply_label }} {{ symbol }}</span>
                 </div>
             </div>
             
@@ -180,7 +178,7 @@
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ formatNumber(volume, { compact: true, decimals: 2 }) }}</p>
+                        <p>{{ volume_bar_label }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -205,47 +203,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ formatNumber(volume) }}</span>
-                </div>
-            </div>
-            
-            <!--  Liquidity 24h  -->
-            <div v-if='liquidity' class='progress-bar-container'>
-                <MazCircularProgressBar
-                    :percentage='100'
-                    :duration='3500'
-                    size='125px'
-                >
-                    <template #default>
-                        <p>{{ formatNumber(liquidity, { compact: true, decimals: 2 }) }}</p>
-                    </template>
-                </MazCircularProgressBar>
-                
-                <div class='ml-6 flex flex-col'>
-                    <div class='flex items-start'>
-                        <h6>Liquidity 24h</h6>
-                        
-                        <HoverCard
-                            :openDelay='200'
-                            class='flex'
-                        >
-                            <HoverCardTrigger>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>
-                                    How easily you can buy or sell a cryptocurrency without significantly affecting its price.
-                                    A ±2% orderbook depth.
-                                </span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </div>
-                    
-                    <span class='mt-2'>{{ formatNumber(liquidity) }}</span>
+                    <span class='mt-2'>{{ volume_label }}</span>
                 </div>
             </div>
         </div>
@@ -269,22 +227,39 @@
     });
     
     const { coin } = toRefs(props);
+    const market_data = computed(() => coin.value?.coingecko?.market_data);
     
-    const market_cap = computed(() => coin.value?.marketCap);
+    const market_cap = computed(() => market_data.value?.market_cap?.usd);
     const market_cap_label = computed(() => formatNumber(market_cap.value));
     const market_cap_bar_label = computed(() => formatNumber(market_cap.value, {
-        compact: true, decimals: 2
+        compact: true, decimals: 1
+    }));
+    
+    const max_supply = computed(() => market_data.value?.max_supply);
+    const max_supply_label = computed(() => formatNumber(max_supply.value, {
+        style: 'decimal'
+    }));
+    const max_supply_bar_label = computed(() => formatNumber(max_supply.value, {
+        compact: true, style: 'decimal'
     }))
-    const max_supply = computed(() => coin.value?.maxSupply);
     
-    const total_supply = computed(() => coin.value?.totalSupply);
-    const total_supply_percentage = computed(() => (coin.value?.totalSupply / coin.value?.maxSupply) * 100);
+    const total_supply = computed(() =>  market_data.value?.total_supply);
+    const total_supply_label = computed(() => formatNumber(total_supply.value, {
+        style: 'decimal'
+    }));
+    const total_supply_percentage = computed(() => (total_supply.value / max_supply.value) * 100);
     
-    const circulating_supply = computed(() => coin.value?.circulatingSupply);
-    const circulating_supply_percentage = computed(() => (coin.value?.circulatingSupply / coin.value?.maxSupply) * 100);
+    const circulating_supply = computed(() => market_data.value?.circulating_supply);
+    const circulating_supply_label = computed(() => formatNumber(circulating_supply.value, {
+        style: 'decimal'
+    }));
+    const circulating_supply_percentage = computed(() => (circulating_supply.value / max_supply.value) * 100);
     
-    const volume = computed(() => coin.value?.volume);
-    const liquidity = computed(() => coin.value?.liquidity);
+    const volume = computed(() => market_data.value?.total_volume?.usd);
+    const volume_label = computed(() => formatNumber(volume.value));
+    const volume_bar_label = computed(() => formatNumber(volume.value, {
+        compact: true, decimals: 2
+    }));
     
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>

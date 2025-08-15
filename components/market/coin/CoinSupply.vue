@@ -18,10 +18,7 @@
             </DrawerHeader>
             
             <DrawerFooter class='mt-10'>
-                <!--  Livecoinwatch  -->
-<!--                <CoinSupplyProgressBars :coin='livecoinwatch' />-->
-
-                <CoinSupplyProgressBars2 :coin='coin' />
+                <CoinSupplyProgressBars :coin='coin' />
                 
                 <!--
                 <Tabs
@@ -49,7 +46,6 @@
 
 <script setup>
     import CoinSupplyProgressBars from '~/components/market/coin/CoinSupplyProgressBars.vue';
-    import CoinSupplyProgressBars2 from '~/components/market/coin/CoinSupplyProgressBars2.vue';
     import CoinSupplyDoughnutChart from '~/components/market/coin/CoinSupplyDoughnutChart.vue';
     import CoinSupplyStackedBars from '~/components/market/coin/CoinSupplyStackedBars.vue';
     
@@ -72,7 +68,6 @@
     });
     
     const { coin, showDrawer } = toRefs(props);
-    const livecoinwatch = coin.value?.livecoinwatch;
     const isOpen = ref(showDrawer.value);
     const emit = defineEmits(['handleDrawer']);
     watch(isOpen, bool => emit('handleDrawer', bool));
