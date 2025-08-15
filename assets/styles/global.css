@@ -34,7 +34,7 @@
     }
     
     section {
-        @apply flex flex-col items-center lg:justify-around;
+        @apply mb-20 flex flex-col items-center lg:justify-around;
     }
 }
 
