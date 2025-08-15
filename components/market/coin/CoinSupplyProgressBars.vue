@@ -6,14 +6,14 @@
     >
         <div class='flex flex-wrap items-start justify-evenly pt-6 pb-20'>
             <!--  Market Cap  -->
-            <div v-if='marketCap' class='progress-bar-container'>
+            <div v-if='market_cap' class='progress-bar-container'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2500'
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ formatNumber(marketCap, { compact: true, decimals: 2 }) }}</p>
+                        <p>{{ formatNumber(market_cap, { compact: true, decimals: 2 }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -42,19 +42,19 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ formatNumber(marketCap) }}</span>
+                    <span class='mt-2'>{{ formatNumber(market_cap) }}</span>
                 </div>
             </div>
             
             <!--  Max Supply  -->
-            <div v-if='maxSupply' class='progress-bar-container'>
+            <div v-if='max_supply' class='progress-bar-container'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2500'
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ formatNumber(maxSupply, { compact: true, style: 'decimal' }) }}</p>
+                        <p>{{ formatNumber(max_supply, { compact: true, style: 'decimal' }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -83,21 +83,21 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ formatNumber(maxSupply, { style: 'decimal' }) }} {{ symbol }}</span>
+                    <span class='mt-2'>{{ formatNumber(max_supply, { style: 'decimal' }) }} {{ symbol }}</span>
                 </div>
             </div>
             
             <!--  Total Supply  -->
-            <div v-if='totalSupply' class='progress-bar-container'>
+            <div v-if='total_supply' class='progress-bar-container'>
                 <MazCircularProgressBar
-                    :percentage='totalSupplyPercentage'
+                    :percentage='total_supply_percentage'
                     :duration='3000'
                     suffix='%'
                     size='125px'
                 >
                     <template #default>
-                        <p v-if='maxSupply'>{{ Math.floor(totalSupplyPercentage) }}&#37;</p>
-                        <p v-else>{{ formatNumber(totalSupply, { compact: true, style: 'decimal', decimals: 2  }) }}</p>
+                        <p v-if='max_supply'>{{ Math.floor(total_supply_percentage) }}&#37;</p>
+                        <p v-else>{{ formatNumber(total_supply, { compact: true, style: 'decimal', decimals: 2 }) }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -125,21 +125,23 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ formatNumber(totalSupply, { style: 'decimal' }) }} {{ symbol }}</span>
+                    <span class='mt-2'>{{ formatNumber(total_supply, { style: 'decimal' }) }} {{ symbol }}</span>
                 </div>
             </div>
             
             <!--  Circulating Supply  -->
-            <div v-if='circulatingSupply' class='progress-bar-container'>
+            <div v-if='circulating_supply' class='progress-bar-container'>
                 <MazCircularProgressBar
-                    :percentage='circulatingSupplyPercentage'
+                    :percentage='circulating_supply_percentage'
                     :duration='3000'
                     suffix='%'
                     size='125px'
                 >
                     <template #default>
-                        <p v-if='maxSupply'>{{ Math.floor(circulatingSupplyPercentage) }}&#37;</p>
-                        <p v-else>{{ formatNumber(circulatingSupply, { compact: true, style: 'decimal', decimals: 2  }) }}</p>
+                        <p v-if='max_supply'>{{ Math.floor(circulating_supply_percentage) }}&#37;</p>
+                        <p v-else>{{
+                                formatNumber(circulating_supply, { compact: true, style: 'decimal', decimals: 2 })
+                                  }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -166,7 +168,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ formatNumber(circulatingSupply, { style: 'decimal' }) }} {{ symbol }}</span>
+                    <span class='mt-2'>{{ formatNumber(circulating_supply, { style: 'decimal' }) }} {{ symbol }}</span>
                 </div>
             </div>
             
@@ -268,14 +270,14 @@
     
     const { coin } = toRefs(props);
     
-    const marketCap = computed(() => coin.value?.marketCap);
-    const maxSupply = computed(() => coin.value?.maxSupply);
+    const market_cap = computed(() => coin.value?.marketCap);
+    const max_supply = computed(() => coin.value?.maxSupply);
     
-    const totalSupply = computed(() => coin.value?.totalSupply);
-    const totalSupplyPercentage = computed(() => (coin.value?.totalSupply / coin.value?.maxSupply) * 100);
+    const total_supply = computed(() => coin.value?.totalSupply);
+    const total_supply_percentage = computed(() => (coin.value?.totalSupply / coin.value?.maxSupply) * 100);
     
-    const circulatingSupply = computed(() => coin.value?.circulatingSupply);
-    const circulatingSupplyPercentage = computed(() => (coin.value?.circulatingSupply / coin.value?.maxSupply) * 100);
+    const circulating_supply = computed(() => coin.value?.circulatingSupply);
+    const circulating_supply_percentage = computed(() => (coin.value?.circulatingSupply / coin.value?.maxSupply) * 100);
     
     const volume = computed(() => coin.value?.volume);
     const liquidity = computed(() => coin.value?.liquidity);
