@@ -37,7 +37,7 @@
 </script>
 
 <template>
-    <NavigationMenu disableHoverTrigger class='main-nav'>
+    <NavigationMenu class='main-nav'>
         <MazCardSpotlight color='secondary' :padding='false'>
             <NavigationMenuList>
                 <!--  Logo  -->
@@ -70,7 +70,7 @@
                                         class='flex items-start select-none space-y-1 rounded-md px-6 py-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground'
                                     >
                                         <div class='text-sm font-medium leading-none'>Market</div>
-                                        <p class='line-clamp-2 text-sm leading-snug text-muted-foreground w-fit'>
+                                        <p class='line-clamp-2 text-sm text-left leading-snug text-muted-foreground'>
                                             Check the cryptocurrencies market.
                                         </p>
                                     </NuxtLink>
