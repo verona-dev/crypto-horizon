@@ -53,7 +53,7 @@
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>Market</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul class='flex items-center p-6 md:w-[500px] gap-4'>
+                        <ul class='flex items-center p-6 md:w-[550px] gap-4'>
                             <!--  Market Logo  -->
                             <li class='w-24'>
                                 <NuxtIcon
@@ -84,7 +84,7 @@
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>News</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul class='flex items-center justify-around p-6 md:w-[500px] gap-4'>
+                        <ul class='flex items-center justify-around p-6 md:w-[550px] gap-4'>
                             <!--  News Logo  -->
                             <li class='w-24'>
                                 <NuxtIcon
@@ -134,7 +134,7 @@
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>Defi</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul class='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] '>
+                        <ul class='grid w-[400px] gap-3 p-4 md:w-[550px] md:grid-cols-2 lg:w-[600px] '>
                             <li v-for='item in defiItems' :key='item.title'>
                                 <NavigationMenuLink as-child>
                                     <NuxtLink
