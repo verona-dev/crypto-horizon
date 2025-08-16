@@ -52,7 +52,7 @@
             
             <CoinSupply
                 v-if='showDrawer'
-                :coin='coin.livecoinwatch'
+                :coin='coin'
                 :showDrawer='showDrawer'
                 @handleDrawer='onHandleDrawer'
             />
@@ -78,6 +78,7 @@
     });
     
     const { coin } = toRefs(props);
+    
     const chartData = ref(coin.value?.chart);
     const timestamps = computed(() => chartData.value?.prices?.map(item => item[0]));
     const prices = computed(() => chartData.value?.prices?.map(item => item[1]));

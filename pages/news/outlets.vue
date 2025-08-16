@@ -8,9 +8,10 @@
             <h4 class='ml-4 mb-0'>Loading...</h4>
         </div>
         
-        <div v-else class='flex flex-col items-center'>
-            <div class='mt-10 mb-40 flex flex-col items-center gap-4'>
+        <div v-else class='flex flex-col items-center gap-32'>
+            <div class='mt-10 flex flex-col items-center gap-4'>
                 <h1>News Outlets</h1>
+                
                 <NuxtLink
                     to='https://developers.coindesk.com/documentation/data-api/introduction'
                     external

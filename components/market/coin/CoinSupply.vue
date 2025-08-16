@@ -1,24 +1,30 @@
 <template>
     <Drawer v-model:open='isOpen'>
-        <DrawerContent>
-            <DrawerHeader class='mx-auto'>
-                <DrawerTitle class=''>Coin Supply</DrawerTitle>
-                <!--                <DrawerDescription class='mx-auto'>Subtitle.</DrawerDescription>-->
-                
-                <div class='close-drawer absolute top-10 right-10'>
-                    <!--  Close Drawer  -->
-                    <DrawerClose>
+<!--        top-0 lg:top-40 overflow-y-auto md:overflow-hidden -->
+        <DrawerContent class=''>
+            <DrawerHeader class='border-b border-b-ring'>
+                <div class='my-6 flex items-start justify-between px-4 relative'>
+                    <!--  Spacer  -->
+                    <div class='w-12'></div>
+                    
+                    <!--  Title container  -->
+                    <div class='flex flex-col flex-1 text-center gap-4'>
+                        <DrawerTitle>Coin Supply</DrawerTitle>
+                        <DrawerDescription class='mx-auto'>Exploring Key Metrics</DrawerDescription>
+                    </div>
+                    
+                    <!--  Close button  -->
+                    <DrawerClose class='w-12 flex justify-end'>
                         <NuxtIcon
                             name='iconoir:fast-arrow-down'
                             size='45'
-                            class='hover:bg-gray-400'
+                            class='hover:bg-muted-foreground'
                         />
                     </DrawerClose>
                 </div>
             </DrawerHeader>
             
-            <DrawerFooter class='mt-10'>
-                <!--  Livecoinwatch  -->
+            <DrawerFooter class='mt-6 overflow-y-auto'>
                 <CoinSupplyProgressBars :coin='coin' />
                 
                 <!--
@@ -49,6 +55,7 @@
     import CoinSupplyProgressBars from '~/components/market/coin/CoinSupplyProgressBars.vue';
     import CoinSupplyDoughnutChart from '~/components/market/coin/CoinSupplyDoughnutChart.vue';
     import CoinSupplyStackedBars from '~/components/market/coin/CoinSupplyStackedBars.vue';
+    
     import {
         Drawer,
         DrawerClose,

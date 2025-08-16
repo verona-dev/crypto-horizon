@@ -37,7 +37,7 @@
 </script>
 
 <template>
-    <NavigationMenu class='main-nav'>
+    <NavigationMenu disablePointerLeaveClose class='main-nav'>
         <MazCardSpotlight color='secondary' :padding='false'>
             <NavigationMenuList>
                 <!--  Logo  -->
@@ -158,12 +158,12 @@
 
 <style>
     nav.main-nav {
-        position: relative;
-        left: calc((100vw - 101%) / 2);
+        //position: relative;
+        //left: calc((100vw - 101%) / 2);
         
         .title {
             font-family: 'Great', sans-serif;
-            letter-spacing: 0.3rem;
+            letter-spacing: 0.4rem;
         }
         
         ul {
