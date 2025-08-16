@@ -4,7 +4,7 @@
         :duration='2000'
     >
         <div class='flex flex-col justify-around items-around flex-wrap mb-20 gap-0 md:gap-12 xl:gap-28'>
-            <div class='top flex flex-wrap items-center justify-center'>
+            <div class='top flex md:flex-nowrap items-start justify-center'>
                 <!--  Market Cap  -->
                 <div v-if='market_cap' class='progress-bar-container'>
                     <MazCircularProgressBar
@@ -18,7 +18,7 @@
                     </MazCircularProgressBar>
                     
                     <div class='ml-6 flex flex-col items-center'>
-                        <div class='flex items-center'>
+                        <div class='flex items-start'>
                             <h6>Market Cap</h6>
                             
                             <HoverCard
@@ -29,7 +29,7 @@
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
                                         size='25'
-                                        class='flex ml-2'
+                                        class='flex ml-2 mt-1'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent class='hover-card-content'>
@@ -59,8 +59,8 @@
                     </MazCircularProgressBar>
                     
                     <div class='ml-6 flex flex-col items-center'>
-                        <div class='flex items-center'>
-                            <h6>Fully Diluted Valuation</h6>
+                        <div class='flex items-start'>
+                            <h6 class='text-center'>Fully Diluted Valuation</h6>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -70,7 +70,7 @@
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
                                         size='25'
-                                        class='flex ml-2'
+                                        class='flex ml-2 mt-1'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent class='hover-card-content'>
@@ -100,7 +100,7 @@
                     </MazCircularProgressBar>
                     
                     <div class='ml-6 flex flex-col items-center'>
-                        <div class='flex items-center'>
+                        <div class='flex items-start'>
                             <h6>Volume 24h</h6>
                             
                             <HoverCard
@@ -111,7 +111,7 @@
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
                                         size='25'
-                                        class='flex ml-2'
+                                        class='flex ml-2 mt-1'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent class='hover-card-content'>
@@ -125,7 +125,7 @@
                 </div>
             </div>
             
-            <div class='bottom flex flex-wrap items-center justify-center'>
+            <div class='bottom flex flex-wrap md:flex-nowrap items-start justify-center'>
                 <!--  Circulating Supply  -->
                 <div v-if='circulating_supply' class='progress-bar-container'>
                     <MazCircularProgressBar
@@ -141,7 +141,7 @@
                     </MazCircularProgressBar>
                     
                     <div class='ml-6 flex flex-col items-center'>
-                        <div class='flex items-center'>
+                        <div class='flex items-start'>
                             <h6>Circulating Supply</h6>
                             
                             <HoverCard
@@ -152,7 +152,7 @@
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
                                         size='25'
-                                        class='flex ml-2'
+                                        class='flex ml-2 mt-1'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent class='hover-card-content'>
@@ -180,7 +180,7 @@
                     </MazCircularProgressBar>
                     
                     <div class='ml-6 flex flex-col items-center'>
-                        <div class='flex items-center'>
+                        <div class='flex items-start'>
                             <h6>Max Supply</h6>
                             
                             <HoverCard
@@ -191,7 +191,7 @@
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
                                         size='25'
-                                        class='flex ml-2'
+                                        class='flex ml-2 mt-1'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent class='hover-card-content'>
@@ -223,7 +223,7 @@
                     </MazCircularProgressBar>
                     
                     <div class='ml-6 flex flex-col items-center'>
-                        <div class='flex items-center'>
+                        <div class='flex items-start'>
                             <h6>Total Supply</h6>
                             
                             <HoverCard
@@ -234,7 +234,7 @@
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
                                         size='25'
-                                        class='flex ml-2'
+                                        class='flex ml-2 mt-1'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent class='hover-card-content'>
@@ -320,13 +320,17 @@
     }
     
     .progress-bar-container {
-        @media (min-width: 800px) {
-            width: 500px;
+        @media (min-width: 768px) {
+            //width: 500px;
         }
         
         /* Desktop */
         @media (min-width: 1024px) {
-            width: 450px;
+            width: 250px;
+        }
+        
+        @media (min-width: 1280px) {
+            width: 400px;
         }
     }
 </style>
