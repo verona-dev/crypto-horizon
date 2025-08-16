@@ -3,7 +3,7 @@
         direction='up'
         :duration='2000'
     >
-        <div class='flex flex-col justify-around items-around flex-wrap mb-20 gap-0 md:gap-12 xl:gap-28'>
+        <div class='coin-supply-progress-bars flex flex-col items-center justify-center gap-0 md:gap-20 xl:gap-28'>
             <div class='top flex md:flex-nowrap items-start justify-center'>
                 <!--  Market Cap  -->
                 <div v-if='market_cap' class='progress-bar-container'>
@@ -19,7 +19,7 @@
                     
                     <div class='ml-6 flex flex-col items-center'>
                         <div class='flex items-start'>
-                            <h6>Market Cap</h6>
+                            <h6 class='text-center'>Market Cap</h6>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -101,7 +101,7 @@
                     
                     <div class='ml-6 flex flex-col items-center'>
                         <div class='flex items-start'>
-                            <h6>Volume 24h</h6>
+                            <h6 class='text-center'>Volume 24h</h6>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -142,7 +142,7 @@
                     
                     <div class='ml-6 flex flex-col items-center'>
                         <div class='flex items-start'>
-                            <h6>Circulating Supply</h6>
+                            <h6 class='text-center'>Circulating Supply</h6>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -181,7 +181,7 @@
                     
                     <div class='ml-6 flex flex-col items-center'>
                         <div class='flex items-start'>
-                            <h6>Max Supply</h6>
+                            <h6 class='text-center'>Max Supply</h6>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -224,7 +224,7 @@
                     
                     <div class='ml-6 flex flex-col items-center'>
                         <div class='flex items-start'>
-                            <h6>Total Supply</h6>
+                            <h6 class='text-center'>Total Supply</h6>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -314,23 +314,25 @@
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
 
-<style scoped>
-    a {
-        color: var(--maz-color-muted);
-    }
-    
-    .progress-bar-container {
-        @media (min-width: 768px) {
-            //width: 500px;
+<style>
+    .coin-supply-progress-bars {
+        a {
+            color: var(--maz-color-muted);
         }
         
-        /* Desktop */
-        @media (min-width: 1024px) {
-            width: 250px;
-        }
-        
-        @media (min-width: 1280px) {
-            width: 400px;
+        .progress-bar-container {
+            @media (min-width: 768px) {
+                //width: 500px;
+            }
+            
+            /* Desktop */
+            @media (min-width: 1024px) {
+                width: 250px;
+            }
+            
+            @media (min-width: 1280px) {
+                width: 400px;
+            }
         }
     }
 </style>
