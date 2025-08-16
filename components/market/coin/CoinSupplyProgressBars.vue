@@ -1,10 +1,6 @@
 <template>
-    <MazAnimatedElement
-        direction='up'
-        :duration='2000'
-        class='xl:w-[1200px] mx-auto'
-    >
-        <div class='coin-supply-progress-bars grid grid-cols-2 sm:grid-cols-3 gap-y-20 xl:gap-32 justify-items-center w-full'>
+    <div class='xl:w-[1200px] mx-auto'>
+        <div class='coin-supply-progress-bars grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-8 xl:gap-24 justify-items-center mb-20 w-full'>
             <!--  Market Cap  -->
             <div v-if='market_cap' class='item-container'>
                 <MazCircularProgressBar
@@ -248,7 +244,7 @@
                 </div>
             </div>
         </div>
-    </MazAnimatedElement>
+    </div>
 </template>
 
 <script setup>
@@ -311,7 +307,7 @@
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
 
-<style scoped>
+<style>
     .coin-supply-progress-bars {
         a {
             color: var(--maz-color-muted);
@@ -341,6 +337,14 @@
                 flex-direction: column;
                 align-items: center;
             }
+        }
+    }
+    
+    [data-slot='drawer-content'] {
+        margin-top: 0 !important;
+        
+        @media (min-width: 768px) {
+            margin-top: calc(var(--spacing) * 24);
         }
     }
 </style>

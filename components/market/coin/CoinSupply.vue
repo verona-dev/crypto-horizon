@@ -1,6 +1,7 @@
 <template>
     <Drawer v-model:open='isOpen'>
-        <DrawerContent class='top-0 md:top-40'>
+<!--        top-0 lg:top-40 -->
+        <DrawerContent class='overflow-y-auto md:overflow-hidden'>
             <DrawerHeader class='mt-3 mb-6 xl:mb-16'>
                 <div class='flex items-center justify-between px-4 relative'>
                     <!--  Spacer  -->
