@@ -1,7 +1,7 @@
 <template>
     <Drawer v-model:open='isOpen'>
-        <DrawerContent class='top-0 sm:top-10 md:top-40'>
-            <DrawerHeader class='mt-3 mb-16'>
+        <DrawerContent class='top-0 md:top-40'>
+            <DrawerHeader class='mt-3 mb-6 xl:mb-16'>
                 <div class='flex items-center justify-between px-4 relative'>
                     <!--  Spacer  -->
                     <div class='w-12'></div>
