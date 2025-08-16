@@ -1,6 +1,6 @@
 <template>
     <Drawer v-model:open='isOpen'>
-        <DrawerContent>
+        <DrawerContent class='top-0 md:top-30 xl:top-40'>
             <DrawerHeader class='mx-auto'>
                 <DrawerTitle class=''>Coin Supply</DrawerTitle>
                 <DrawerDescription class='mx-auto'>Exploring Key Metrics</DrawerDescription>
