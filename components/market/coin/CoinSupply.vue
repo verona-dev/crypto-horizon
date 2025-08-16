@@ -2,8 +2,8 @@
     <Drawer v-model:open='isOpen'>
 <!--        top-0 lg:top-40 overflow-y-auto md:overflow-hidden -->
         <DrawerContent class=''>
-            <DrawerHeader class='mt-3 mb-6 xl:mb-16'>
-                <div class='flex items-center justify-between px-4 relative'>
+            <DrawerHeader class='border-b border-b-ring'>
+                <div class='my-6 flex items-start justify-between px-4 relative'>
                     <!--  Spacer  -->
                     <div class='w-12'></div>
                     
@@ -24,7 +24,7 @@
                 </div>
             </DrawerHeader>
             
-            <DrawerFooter class='mt-0 overflow-y-auto'>
+            <DrawerFooter class='mt-6 overflow-y-auto'>
                 <CoinSupplyProgressBars :coin='coin' />
                 
                 <!--
