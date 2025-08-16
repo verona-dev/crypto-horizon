@@ -1,11 +1,10 @@
 
 <template>
-    <div class='my-6'>
-        <Doughnut
-            :data='chartData'
-            :options='chartOptions'
-        />
-    </div>
+    <Doughnut
+        :data='chartData'
+        :options='chartOptions'
+        class='w-[500px]'
+    />
 </template>
 
 <script lang='ts' setup>

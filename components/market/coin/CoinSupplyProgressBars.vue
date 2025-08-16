@@ -1,11 +1,11 @@
 <template>
-    <div class='xl:w-[1200px] mx-auto'>
-        <div class='coin-supply-progress-bars grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-24 justify-items-center mb-20 w-full'>
+    <div class='coin-supply-progress-bars xl:w-[1200px] mx-auto'>
+        <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center my-10'>
             <!--  Market Cap  -->
             <div v-if='market_cap' class='item-container'>
                 <MazCircularProgressBar
                     :percentage='100'
-                    :duration='2500'
+                    :duration='2000'
                     size='125px'
                 >
                     <template #default>
@@ -42,11 +42,11 @@
                 </div>
             </div>
             
-            <!--  Fully Diluted Valuation  -->
+            <!--  Diluted Valuation  -->
             <div v-if='fully_diluted_valuation' class='item-container'>
                 <MazCircularProgressBar
                     :percentage='100'
-                    :duration='3500'
+                    :duration='2500'
                     size='125px'
                 >
                     <template #default>
@@ -87,7 +87,7 @@
             <div v-if='volume' class='item-container'>
                 <MazCircularProgressBar
                     :percentage='100'
-                    :duration='3500'
+                    :duration='3000'
                     size='125px'
                 >
                     <template #default>
@@ -124,7 +124,7 @@
             <div v-if='circulating_supply' class='item-container'>
                 <MazCircularProgressBar
                     :percentage='circulating_supply_percentage'
-                    :duration='3000'
+                    :duration='2000'
                     suffix='%'
                     size='125px'
                 >
@@ -158,47 +158,6 @@
                     </div>
                     
                     <span class='mt-2'>{{ circulating_supply_label }} {{ symbol }}</span>
-                </div>
-            </div>
-            
-            <!--  Max Supply  -->
-            <div v-if='max_supply' class='item-container'>
-                <MazCircularProgressBar
-                    :percentage='100'
-                    :duration='2500'
-                    size='125px'
-                >
-                    <template #default>
-                        <p>{{ max_supply_bar_label }}</p>
-                    </template>
-                </MazCircularProgressBar>
-                
-                <div class='label-container'>
-                    <div class='flex items-start'>
-                        <h5 class='break-words text-center'>Max Supply</h5>
-                        
-                        <HoverCard
-                            :openDelay='200'
-                            class='flex'
-                        >
-                            <HoverCardTrigger>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2 mt-1'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>The best approximation of the maximum amount of coins that will exist in the forthcoming
-                                   lifespan of the cryptocurrency, minus any coins that have been verifiably burned. This is
-                                   also known as the theoretical max number of coins that can be minted, minus any coins
-                                   that have been verifiably burned.
-                                </span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </div>
-                    
-                    <span class='mt-2'>{{ max_supply_label }} {{ symbol }}</span>
                 </div>
             </div>
             
@@ -241,6 +200,47 @@
                     </div>
                     
                     <span class='mt-2'>{{ total_supply_label }} {{ symbol }}</span>
+                </div>
+            </div>
+            
+            <!--  Max Supply  -->
+            <div v-if='max_supply' class='item-container'>
+                <MazCircularProgressBar
+                    :percentage='100'
+                    :duration='2500'
+                    size='125px'
+                >
+                    <template #default>
+                        <p>{{ max_supply_bar_label }}</p>
+                    </template>
+                </MazCircularProgressBar>
+                
+                <div class='label-container'>
+                    <div class='flex items-start'>
+                        <h5 class='break-words text-center'>Max Supply</h5>
+                        
+                        <HoverCard
+                            :openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>The best approximation of the maximum amount of coins that will exist in the forthcoming
+                                   lifespan of the cryptocurrency, minus any coins that have been verifiably burned. This is
+                                   also known as the theoretical max number of coins that can be minted, minus any coins
+                                   that have been verifiably burned.
+                                </span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <span class='mt-2'>{{ max_supply_label }} {{ symbol }}</span>
                 </div>
             </div>
         </div>
@@ -338,13 +338,15 @@
                 align-items: center;
             }
         }
-    }
-    
-    [data-slot='drawer-content'] {
-        margin-top: 0 !important;
         
-        @media (min-width: 768px) {
-            margin-top: calc(var(--spacing) * 24);
+        /*
+        [data-slot='drawer-content'] {
+            margin-top: 0 !important;
+            
+            @media (min-width: 768px) {
+                margin-top: calc(var(--spacing) * 24);
+            }
         }
+        */
     }
 </style>
