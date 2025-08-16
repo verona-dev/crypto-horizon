@@ -1,6 +1,5 @@
 <template>
     <Drawer v-model:open='isOpen' class='drawer'>
-        <!--        top-0 lg:top-40 overflow-y-auto md:overflow-hidden -->
         <DrawerContent class='lg:top-30'>
             <Tabs
                 default-value='progress-bars'
@@ -14,7 +13,7 @@
                                 Coin Supply
                                 
                                 <!--  Close button  -->
-                                <DrawerClose class='close-container w-12 flex absolute top-15 right-10'>
+                                <DrawerClose class='w-12 flex absolute top-15 right-10'>
                                     <NuxtIcon
                                         name='iconoir:fast-arrow-down'
                                         size='45'
@@ -86,13 +85,5 @@
 <style>
     [data-vaul-drawer-direction='bottom'] {
         min-height: 85vh !important;
-    }
-    
-    .drawer {
-        .close-container {
-            position: absolute;
-            top: 0;
-            right: 0;
-        }
     }
 </style>
