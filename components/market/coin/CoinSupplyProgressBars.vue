@@ -6,7 +6,7 @@
         <div class='coin-supply-progress-bars flex flex-col items-center justify-center gap-0 md:gap-20 xl:gap-28'>
             <div class='top flex md:flex-nowrap items-start justify-center'>
                 <!--  Market Cap  -->
-                <div v-if='market_cap' class='progress-bar-container'>
+                <div v-if='market_cap' class='item-container'>
                     <MazCircularProgressBar
                         :percentage='100'
                         :duration='2500'
@@ -17,9 +17,9 @@
                         </template>
                     </MazCircularProgressBar>
                     
-                    <div class='ml-6 flex flex-col items-center'>
+                    <div class='label-container'>
                         <div class='flex items-start'>
-                            <h6 class='break-words text-center'>Market Cap</h6>
+                            <h4 class='break-words text-center'>Market Cap</h4>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -47,7 +47,7 @@
                 </div>
                 
                 <!--  Fully Diluted Valuation  -->
-                <div v-if='fully_diluted_valuation' class='progress-bar-container'>
+                <div v-if='fully_diluted_valuation' class='item-container'>
                     <MazCircularProgressBar
                         :percentage='100'
                         :duration='3500'
@@ -58,7 +58,7 @@
                         </template>
                     </MazCircularProgressBar>
                     
-                    <div class='ml-6 flex flex-col items-center'>
+                    <div class='label-container'>
                         <div class='flex items-start'>
                             <h6 class='break-words text-center'>Fully Diluted Valuation</h6>
                             
@@ -88,7 +88,7 @@
                 </div>
                 
                 <!--  Volume 24h  -->
-                <div v-if='volume' class='progress-bar-container'>
+                <div v-if='volume' class='item-container'>
                     <MazCircularProgressBar
                         :percentage='100'
                         :duration='3500'
@@ -99,7 +99,7 @@
                         </template>
                     </MazCircularProgressBar>
                     
-                    <div class='ml-6 flex flex-col items-center'>
+                    <div class='label-container'>
                         <div class='flex items-start'>
                             <h6 class='break-words text-center'>Volume 24h</h6>
                             
@@ -127,7 +127,7 @@
             
             <div class='bottom flex flex-wrap md:flex-nowrap items-start justify-center'>
                 <!--  Circulating Supply  -->
-                <div v-if='circulating_supply' class='progress-bar-container'>
+                <div v-if='circulating_supply' class='item-container'>
                     <MazCircularProgressBar
                         :percentage='circulating_supply_percentage'
                         :duration='3000'
@@ -140,7 +140,7 @@
                         </template>
                     </MazCircularProgressBar>
                     
-                    <div class='ml-6 flex flex-col items-center'>
+                    <div class='label-container'>
                         <div class='flex items-start'>
                             <h6 class='break-words text-center'>Circulating Supply</h6>
                             
@@ -168,7 +168,7 @@
                 </div>
                 
                 <!--  Max Supply  -->
-                <div v-if='max_supply' class='progress-bar-container'>
+                <div v-if='max_supply' class='item-container'>
                     <MazCircularProgressBar
                         :percentage='100'
                         :duration='2500'
@@ -179,7 +179,7 @@
                         </template>
                     </MazCircularProgressBar>
                     
-                    <div class='ml-6 flex flex-col items-center'>
+                    <div class='label-container'>
                         <div class='flex items-start'>
                             <h6 class='break-words text-center'>Max Supply</h6>
                             
@@ -209,7 +209,7 @@
                 </div>
                 
                 <!--  Total Supply  -->
-                <div v-if='total_supply' class='progress-bar-container'>
+                <div v-if='total_supply' class='item-container'>
                     <MazCircularProgressBar
                         :percentage='total_supply_percentage'
                         :duration='3000'
@@ -222,7 +222,7 @@
                         </template>
                     </MazCircularProgressBar>
                     
-                    <div class='ml-6 flex flex-col items-center'>
+                    <div class='label-container'>
                         <div class='flex items-start'>
                             <h6 class='break-words text-center'>Total Supply</h6>
                             
@@ -302,7 +302,7 @@
     const volume = computed(() => market_data.value?.total_volume?.usd);
     const volume_label = computed(() => formatNumber(volume.value));
     const volume_bar_label = computed(() => formatNumber(volume.value, {
-        compact: true, decimals: 2
+        compact: true, decimals: 1
     }));
     
     const fully_diluted_valuation = computed(() => market_data.value?.fully_diluted_valuation?.usd);
@@ -314,15 +314,19 @@
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
 
-<style>
+<style scoped>
     .coin-supply-progress-bars {
         a {
             color: var(--maz-color-muted);
         }
         
-        .progress-bar-container {
+        .item-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            
             @media (min-width: 768px) {
-                //width: 500px;
                 width: 300px;
             }
             
@@ -333,6 +337,12 @@
             
             @media (min-width: 1280px) {
                 width: 400px;
+            }
+            
+            .label-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
         }
     }
