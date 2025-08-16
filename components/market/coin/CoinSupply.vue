@@ -1,13 +1,13 @@
 <template>
     <Drawer v-model:open='isOpen'>
-        <DrawerContent class='top-0 md:top-30 xl:top-40'>
-            <DrawerHeader>
+        <DrawerContent class='top-0 sm:top-10 md:top-40'>
+            <DrawerHeader class='mt-3 mb-16'>
                 <div class='flex items-center justify-between px-4 relative'>
                     <!--  Spacer  -->
                     <div class='w-12'></div>
                     
                     <!--  Title container  -->
-                    <div class='flex-1 text-center'>
+                    <div class='flex flex-col flex-1 text-center gap-4'>
                         <DrawerTitle>Coin Supply</DrawerTitle>
                         <DrawerDescription class='mx-auto'>Exploring Key Metrics</DrawerDescription>
                     </div>
@@ -23,7 +23,7 @@
                 </div>
             </DrawerHeader>
             
-            <DrawerFooter class='mt-10'>
+            <DrawerFooter class='mt-0'>
                 <CoinSupplyProgressBars :coin='coin' />
                 
                 <!--
