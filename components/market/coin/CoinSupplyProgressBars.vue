@@ -19,7 +19,7 @@
                     
                     <div class='ml-6 flex flex-col items-center'>
                         <div class='flex items-start'>
-                            <h6 class='text-center'>Market Cap</h6>
+                            <h6 class='break-words text-center'>Market Cap</h6>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -60,7 +60,7 @@
                     
                     <div class='ml-6 flex flex-col items-center'>
                         <div class='flex items-start'>
-                            <h6 class='text-center'>Fully Diluted Valuation</h6>
+                            <h6 class='break-words text-center'>Fully Diluted Valuation</h6>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -101,7 +101,7 @@
                     
                     <div class='ml-6 flex flex-col items-center'>
                         <div class='flex items-start'>
-                            <h6 class='text-center'>Volume 24h</h6>
+                            <h6 class='break-words text-center'>Volume 24h</h6>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -142,7 +142,7 @@
                     
                     <div class='ml-6 flex flex-col items-center'>
                         <div class='flex items-start'>
-                            <h6 class='text-center'>Circulating Supply</h6>
+                            <h6 class='break-words text-center'>Circulating Supply</h6>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -181,7 +181,7 @@
                     
                     <div class='ml-6 flex flex-col items-center'>
                         <div class='flex items-start'>
-                            <h6 class='text-center'>Max Supply</h6>
+                            <h6 class='break-words text-center'>Max Supply</h6>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -224,7 +224,7 @@
                     
                     <div class='ml-6 flex flex-col items-center'>
                         <div class='flex items-start'>
-                            <h6 class='text-center'>Total Supply</h6>
+                            <h6 class='break-words text-center'>Total Supply</h6>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -323,11 +323,12 @@
         .progress-bar-container {
             @media (min-width: 768px) {
                 //width: 500px;
+                width: 300px;
             }
             
             /* Desktop */
             @media (min-width: 1024px) {
-                width: 250px;
+                width: 350px;
             }
             
             @media (min-width: 1280px) {
