@@ -2,9 +2,8 @@
     <MazAnimatedElement
         direction='up'
         :duration='2000'
-        class=''
     >
-        <div class='flex flex-col flex-wrap mb-20 gap-32'>
+        <div class='flex flex-col justify-around items-around flex-wrap mb-20 gap-0 md:gap-12 xl:gap-28'>
             <div class='top flex flex-wrap items-center justify-center'>
                 <!--  Market Cap  -->
                 <div v-if='market_cap' class='progress-bar-container'>
@@ -18,8 +17,8 @@
                         </template>
                     </MazCircularProgressBar>
                     
-                    <div class='ml-6 flex flex-col'>
-                        <div class='flex items-start'>
+                    <div class='ml-6 flex flex-col items-center'>
+                        <div class='flex items-center'>
                             <h6>Market Cap</h6>
                             
                             <HoverCard
@@ -59,8 +58,8 @@
                         </template>
                     </MazCircularProgressBar>
                     
-                    <div class='ml-6 flex flex-col'>
-                        <div class='flex items-start'>
+                    <div class='ml-6 flex flex-col items-center'>
+                        <div class='flex items-center'>
                             <h6>Fully Diluted Valuation</h6>
                             
                             <HoverCard
@@ -100,8 +99,8 @@
                         </template>
                     </MazCircularProgressBar>
                     
-                    <div class='ml-6 flex flex-col'>
-                        <div class='flex items-start'>
+                    <div class='ml-6 flex flex-col items-center'>
+                        <div class='flex items-center'>
                             <h6>Volume 24h</h6>
                             
                             <HoverCard
@@ -141,8 +140,8 @@
                         </template>
                     </MazCircularProgressBar>
                     
-                    <div class='ml-6 flex flex-col'>
-                        <div class='flex items-start'>
+                    <div class='ml-6 flex flex-col items-center'>
+                        <div class='flex items-center'>
                             <h6>Circulating Supply</h6>
                             
                             <HoverCard
@@ -180,8 +179,8 @@
                         </template>
                     </MazCircularProgressBar>
                     
-                    <div class='ml-6 flex flex-col'>
-                        <div class='flex items-start'>
+                    <div class='ml-6 flex flex-col items-center'>
+                        <div class='flex items-center'>
                             <h6>Max Supply</h6>
                             
                             <HoverCard
@@ -223,8 +222,8 @@
                         </template>
                     </MazCircularProgressBar>
                     
-                    <div class='ml-6 flex flex-col'>
-                        <div class='flex items-start'>
+                    <div class='ml-6 flex flex-col items-center'>
+                        <div class='flex items-center'>
                             <h6>Total Supply</h6>
                             
                             <HoverCard
@@ -321,6 +320,13 @@
     }
     
     .progress-bar-container {
-        width: 450px;
+        @media (min-width: 800px) {
+            width: 500px;
+        }
+        
+        /* Desktop */
+        @media (min-width: 1024px) {
+            width: 450px;
+        }
     }
 </style>
