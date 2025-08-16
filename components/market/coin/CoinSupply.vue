@@ -1,5 +1,5 @@
 <template>
-    <Drawer v-model:open='isOpen'>
+    <Drawer v-model:open='isOpen' class='drawer'>
         <!--        top-0 lg:top-40 overflow-y-auto md:overflow-hidden -->
         <DrawerContent class='lg:top-30'>
             <Tabs
@@ -7,13 +7,22 @@
                 class='overflow-y-auto h-full'
             >
                 <DrawerHeader class='border-b border-b-ring'>
-                    <div class='my-6 flex items-start px-4 relative'>
-                        <!--  Spacer  -->
-                        <div class='w-12'></div>
-                        
+                    <div class='my-6'>
                         <!--  Title container  -->
                         <div class='flex flex-col flex-1 text-center gap-4'>
-                            <DrawerTitle>Coin Supply</DrawerTitle>
+                            <DrawerTitle class='flex justify-center items-center'>
+                                Coin Supply
+                                
+                                <!--  Close button  -->
+                                <DrawerClose class='close-container w-12 flex absolute top-15 right-10'>
+                                    <NuxtIcon
+                                        name='iconoir:fast-arrow-down'
+                                        size='45'
+                                        class='hover:bg-muted-foreground'
+                                    />
+                                </DrawerClose>
+                            </DrawerTitle>
+                            
                             <DrawerDescription class='mx-auto'>Exploring Key Metrics</DrawerDescription>
                             
                             <TabsList class='mb-0'>
@@ -22,15 +31,7 @@
                                 <TabsTrigger value='stacked-bars'>Stacked Bars</TabsTrigger>
                             </TabsList>
                         </div>
-                        
-                        <!--  Close button  -->
-                        <DrawerClose class='w-12 flex justify-end'>
-                            <NuxtIcon
-                                name='iconoir:fast-arrow-down'
-                                size='45'
-                                class='hover:bg-muted-foreground'
-                            />
-                        </DrawerClose>
+                    
                     </div>
                 </DrawerHeader>
                 
@@ -84,8 +85,14 @@
 
 <style>
     [data-vaul-drawer-direction='bottom'] {
-        //height: 100vh !important;
-        //max-height: 100vh !important;
         min-height: 85vh !important;
+    }
+    
+    .drawer {
+        .close-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
     }
 </style>
