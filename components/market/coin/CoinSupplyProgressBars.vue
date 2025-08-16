@@ -4,7 +4,7 @@
         :duration='2000'
     >
         <div class='coin-supply-progress-bars flex flex-col items-center justify-center gap-0 md:gap-20 xl:gap-28'>
-            <div class='top flex md:flex-nowrap items-start justify-center'>
+            <div class='top flex flex-wrap md:flex-nowrap items-start justify-center'>
                 <!--  Market Cap  -->
                 <div v-if='market_cap' class='item-container'>
                     <MazCircularProgressBar
@@ -19,7 +19,7 @@
                     
                     <div class='label-container'>
                         <div class='flex items-start'>
-                            <h4 class='break-words text-center'>Market Cap</h4>
+                            <h5 class='break-words text-center'>Market Cap</h5>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -60,7 +60,7 @@
                     
                     <div class='label-container'>
                         <div class='flex items-start'>
-                            <h6 class='break-words text-center'>Fully Diluted Valuation</h6>
+                            <h5 class='break-words text-center'>Diluted Valuation</h5>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -101,7 +101,7 @@
                     
                     <div class='label-container'>
                         <div class='flex items-start'>
-                            <h6 class='break-words text-center'>Volume 24h</h6>
+                            <h5 class='break-words text-center'>Volume 24h</h5>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -142,7 +142,7 @@
                     
                     <div class='label-container'>
                         <div class='flex items-start'>
-                            <h6 class='break-words text-center'>Circulating Supply</h6>
+                            <h5 class='break-words text-center'>Circulating Supply</h5>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -181,7 +181,7 @@
                     
                     <div class='label-container'>
                         <div class='flex items-start'>
-                            <h6 class='break-words text-center'>Max Supply</h6>
+                            <h5 class='break-words text-center'>Max Supply</h5>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -224,7 +224,7 @@
                     
                     <div class='label-container'>
                         <div class='flex items-start'>
-                            <h6 class='break-words text-center'>Total Supply</h6>
+                            <h5 class='break-words text-center'>Total Supply</h5>
                             
                             <HoverCard
                                 :openDelay='200'
@@ -327,7 +327,7 @@
             gap: 16px;
             
             @media (min-width: 768px) {
-                width: 300px;
+                //width: 300px;
             }
             
             /* Desktop */
