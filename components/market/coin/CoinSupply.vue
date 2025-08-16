@@ -1,10 +1,13 @@
 <template>
     <Drawer v-model:open='isOpen'>
         <!--        top-0 lg:top-40 overflow-y-auto md:overflow-hidden -->
-        <DrawerContent>
-            <Tabs default-value='progress-bars'>
+        <DrawerContent class='lg:top-30'>
+            <Tabs
+                default-value='progress-bars'
+                class='overflow-y-auto h-full'
+            >
                 <DrawerHeader class='border-b border-b-ring'>
-                    <div class='my-6 flex items-start justify-between px-4 relative'>
+                    <div class='my-6 flex items-start px-4 relative'>
                         <!--  Spacer  -->
                         <div class='w-12'></div>
                         
@@ -12,6 +15,12 @@
                         <div class='flex flex-col flex-1 text-center gap-4'>
                             <DrawerTitle>Coin Supply</DrawerTitle>
                             <DrawerDescription class='mx-auto'>Exploring Key Metrics</DrawerDescription>
+                            
+                            <TabsList class='mb-0'>
+                                <TabsTrigger value='progress-bars'>Progress Bars</TabsTrigger>
+                                <TabsTrigger value='doughnut-chart'>Doughnut Chart</TabsTrigger>
+                                <TabsTrigger value='stacked-bars'>Stacked Bars</TabsTrigger>
+                            </TabsList>
                         </div>
                         
                         <!--  Close button  -->
@@ -25,13 +34,7 @@
                     </div>
                 </DrawerHeader>
                 
-                <DrawerFooter class='overflow-y-auto'>
-                    <TabsList class='my-6'>
-                        <TabsTrigger value='progress-bars'>Progress Bars</TabsTrigger>
-                        <TabsTrigger value='doughnut-chart'>Doughnut Chart</TabsTrigger>
-                        <TabsTrigger value='stacked-bars'>Stacked Bars</TabsTrigger>
-                    </TabsList>
-                    
+                <DrawerFooter class='overflow-y-auto mt-4'>
                     <TabsContent value='progress-bars' class=''>
                         <CoinSupplyProgressBars :coin='coin' />
                     </TabsContent>
@@ -78,3 +81,11 @@
     const emit = defineEmits(['handleDrawer']);
     watch(isOpen, bool => emit('handleDrawer', bool));
 </script>
+
+<style>
+    [data-vaul-drawer-direction='bottom'] {
+        //height: 100vh !important;
+        //max-height: 100vh !important;
+        min-height: 85vh !important;
+    }
+</style>
