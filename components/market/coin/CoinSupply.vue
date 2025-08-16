@@ -35,16 +35,16 @@
                 </DrawerHeader>
                 
                 <DrawerFooter class='overflow-y-auto mt-4'>
-                    <TabsContent value='progress-bars' class=''>
+                    <TabsContent value='progress-bars'>
                         <CoinSupplyProgressBars :coin='coin' />
                     </TabsContent>
                     
-                    <TabsContent value='doughnut-chart' class=''>
-                        <CoinSupplyDoughnutChart :coin='coin' />
+                    <TabsContent value='doughnut-chart' class='mx-auto'>
+                        <CoinSupplyDoughnutChart :coin='coin.livecoinwatch' />
                     </TabsContent>
                     
                     <TabsContent value='stacked-bars' class=''>
-                        <CoinSupplyStackedBars :coin='coin' />
+                        <CoinSupplyStackedBars :coin='coin.livecoinwatch' />
                     </TabsContent>
                 
                 </DrawerFooter>
