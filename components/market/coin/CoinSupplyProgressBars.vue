@@ -327,7 +327,7 @@
             gap: 16px;
             
             @media (min-width: 768px) {
-                //width: 300px;
+                width: 300px;
             }
             
             /* Desktop */
