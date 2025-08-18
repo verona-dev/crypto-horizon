@@ -19,7 +19,11 @@
     });
     
     const { coin } = toRefs(props);
-    const remainingSupply = computed(() => coin.value.maxSupply - coin.value.totalSupply);
+    const market_data = computed(() => coin.value?.coingecko?.market_data);
+    const max_supply = computed(() => market_data.value?.max_supply);
+    const total_supply = computed(() =>  market_data.value?.total_supply);
+    const circulating_supply = computed(() => market_data.value?.circulating_supply);
+    const remaining_supply = computed(() => max_supply.value - total_supply.value);
     
     const chartContent = computed(() => {
         const labels = [];
@@ -27,39 +31,39 @@
         const backgroundColor = [];
         
         // If coin has max supply
-        if (coin.value.maxSupply) {
+        if (max_supply.value) {
             labels.push('Max Supply');
-            data.push(coin.value.maxSupply);
+            data.push(max_supply.value);
             backgroundColor.push('#00b1f5');
             
-            if(coin.value.totalSupply) {
+            if(total_supply.value) {
                 labels.push('Total Supply');
-                data.push(coin.value.totalSupply);
+                data.push(total_supply.value);
                 backgroundColor.push('#fef0ca');
             }
             
-            if(coin.value.circulatingSupply) {
+            if(circulating_supply.value) {
                 labels.push('Circulating Supply');
-                data.push(coin.value.circulatingSupply);
+                data.push(circulating_supply.valu);
                 backgroundColor.push('#e787c0');
             }
             
-            if(remainingSupply.value) {
+            if(remaining_supply.value) {
                 labels.push('Remaining Supply');
-                data.push(remainingSupply.value);
+                data.push(remaining_supply.value);
                 backgroundColor.push('#41B883');
             }
         } else {
             // If coin does not have max supply
-            if(coin.value.totalSupply) {
+            if(total_supply.value) {
                 labels.push('Total Supply');
-                data.push(coin.value.totalSupply);
+                data.push(total_supply.value);
                 backgroundColor.push('#fef0ca');
             }
             
-            if(coin.value.circulatingSupply) {
+            if(circulating_supply.value) {
                 labels.push('Circulating Supply');
-                data.push(coin.value.circulatingSupply);
+                data.push(circulating_supply.valu);
                 backgroundColor.push('#e787c0');
             }
         }
