@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { useFetchCoinLoreData } from '~/composables/apiCoinLore.js';
 import { useFetchCoingecko } from '~/composables/apiCoingecko';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
-import { formatCoinsTable, formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
+import { formatCoinsTable, formatCoingeckoCoin, formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
 import { useNewsStore } from '~/stores/NewsStore.js';
 
 export const useMarketStore = defineStore('MarketStore', {
@@ -65,7 +65,8 @@ export const useMarketStore = defineStore('MarketStore', {
                 ]);
                 
                 if (coinResponse) {
-                    this.coin.coingecko = coinResponse;
+                    this.coin.coingecko = formatCoingeckoCoin(coinResponse);
+                    console.log(JSON.parse(JSON.stringify(this.coin.coingecko.market_data)));
                 }
                 
                 if (chartResponse) {
