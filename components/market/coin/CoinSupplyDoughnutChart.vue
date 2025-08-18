@@ -1,14 +1,52 @@
 
 <template>
-    <Doughnut
-        :data='chartData'
-        :options='chartOptions'
-        class='w-[500px] my-10 mx-auto'
-    />
+    <div class='mt-10 flex items-center justify-center gap-16'>
+        <div>
+            <Doughnut
+                :data='chartData'
+                :options='chartOptions'
+                class='w-[450px] h-[450px]'
+            />
+        </div>
+        
+        <div>
+            <Table class='w-96'>
+                <TableBody>
+                    <!--  max_supply  -->
+                    <TableRow v-if='max_supply'>
+                        <TableCell class='font-medium'>max_supply</TableCell>
+                        <TableCell>{{ max_supply }}</TableCell>
+                    </TableRow>
+                    <!--  total_supply  -->
+                    <TableRow v-if='total_supply'>
+                        <TableCell class='font-medium'>total_supply</TableCell>
+                        <TableCell>{{ total_supply }}</TableCell>
+                    </TableRow>
+                    <!--  Language  -->
+                    <TableRow v-if='circulating_supply'>
+                        <TableCell class='font-medium'>circulating_supply</TableCell>
+                        <TableCell>{{ circulating_supply }}</TableCell>
+                    </TableRow>
+                    <!--  Status  -->
+                    <TableRow v-if='remaining_supply'>
+                        <TableCell class='font-medium'>remaining_supply</TableCell>
+                        <TableCell>{{ remaining_supply }}</TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+        </div>
+
+    </div>
 </template>
 
 <script lang='ts' setup>
     import { Doughnut } from 'vue-chartjs';
+    import {
+        Table,
+        TableBody,
+        TableCell,
+        TableRow,
+    } from '@/components/ui/table';
     
     const props = defineProps({
         coin: {
@@ -52,7 +90,7 @@
             
             if(circulating_supply.value) {
                 labels.push('Circulating Supply');
-                data.push(circulating_supply.valu);
+                data.push(circulating_supply.value);
                 backgroundColor.push('#e787c0');
             }
         }
