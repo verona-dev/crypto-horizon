@@ -1,48 +1,74 @@
 <template>
-    <Drawer v-model:open='isOpen' class='drawer'>
-        <DrawerContent class='lg:top-30'>
-            <Tabs
-                default-value='progress-bars'
-                class='overflow-y-auto h-full'
-            >
-                <DrawerHeader class='border-b border-b-ring'>
-                    <div class='my-6'>
-                        <!--  Title container  -->
-                        <div class='flex flex-col flex-1 text-center gap-4'>
-                            <DrawerTitle class='flex justify-center items-center'>
-                                Coin Supply
-                                
-                                <!--  Close button  -->
-                                <DrawerClose class='w-12 flex absolute top-15 right-10'>
-                                    <NuxtIcon
-                                        name='iconoir:fast-arrow-down'
-                                        size='45'
-                                        class='hover:bg-muted-foreground'
-                                    />
-                                </DrawerClose>
-                            </DrawerTitle>
-                            
-                            <DrawerDescription class='mx-auto'>Exploring Key Metrics</DrawerDescription>
-                            
-                            <TabsList class='mb-0'>
-                                <TabsTrigger value='progress-bars'>Progress Bars</TabsTrigger>
-                                <TabsTrigger value='doughnut-chart'>Doughnut Chart</TabsTrigger>
-                            </TabsList>
-                        </div>
+    <Drawer v-model:open='isOpen'>
+        <!--        top-0 lg:top-40 overflow-y-auto md:overflow-hidden -->
+        <DrawerContent class=''>
+            <DrawerHeader class='border-b border-b-ring'>
+                <div class='my-6 flex items-start justify-between px-4 relative'>
+                    <!--  Spacer  -->
+                    <div class='w-12'></div>
                     
+                    <!--  Title container  -->
+                    <div class='flex flex-col flex-1 text-center gap-4'>
+                        <DrawerTitle>Coin Supply</DrawerTitle>
+                        <DrawerDescription class='mx-auto'>Exploring Key Metrics</DrawerDescription>
                     </div>
-                </DrawerHeader>
+                    
+                    <!--  Close button  -->
+                    <DrawerClose class='w-12 flex justify-end'>
+                        <NuxtIcon
+                            name='iconoir:fast-arrow-down'
+                            size='45'
+                            class='hover:bg-muted-foreground'
+                        />
+                    </DrawerClose>
+                </div>
                 
-                <DrawerFooter class='overflow-y-auto mt-4'>
-                    <TabsContent value='progress-bars'>
-                        <CoinSupplyProgressBars :coin='coin' />
+                <Select v-model='selectedChart' default-value='progress-bars'>
+                    <SelectTrigger class='w-[180px]'>
+                        <SelectValue placeholder='Select a chart' />
+                    </SelectTrigger>
+                    
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectItem value='progress-bars'>Progress Bars</SelectItem>
+                            <SelectItem value='doughnut-chart'>Doughnut Chart</SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
+            </DrawerHeader>
+            
+            <DrawerFooter class='mt-6 overflow-y-auto'>
+                <CoinSupplyProgressBars
+                    v-if='selectedChart === "progress-bars"'
+                    :coin='coin'
+                />
+                
+                <CoinSupplyDoughnutChart
+                    v-if='selectedChart === "doughnut-chart"'
+                    :coin='coin.livecoinwatch'
+                    class='mx-auto'
+                />
+                
+                <!--
+                <Tabs
+                    default-value='doughnut-chart'
+                    class='my-10 self-center w-full xl:w-1/2'
+                >
+                    <TabsList>
+                        <TabsTrigger value='doughnut-chart'>Doughnut Chart</TabsTrigger>
+                        <TabsTrigger value='stacked-bars'>Stacked Bars</TabsTrigger>
+                    </TabsList>
+                    
+                    <TabsContent value='doughnut-chart' class='min-h-[500px] xl:w-1/2 mx-auto'>
+                        <CoinSupplyDoughnutChart :coin='coin' />
                     </TabsContent>
                     
-                    <TabsContent value='doughnut-chart' class='mx-auto'>
-                        <CoinSupplyDoughnutChart :coin='coin.livecoinwatch' />
+                    <TabsContent value='stacked-bars' class='min-h-[500px] xl:w-11/12 mx-auto'>
+                        <CoinSupplyStackedBars :coin='coin' />
                     </TabsContent>
-                </DrawerFooter>
-            </Tabs>
+                </Tabs>
+                -->
+            </DrawerFooter>
         </DrawerContent>
     </Drawer>
 </template>
@@ -61,6 +87,15 @@
         DrawerTitle,
     } from '~/components/ui/drawer/index.js';
     
+    import {
+        Select,
+        SelectContent,
+        SelectGroup,
+        SelectItem,
+        SelectTrigger,
+        SelectValue,
+    } from "@/components/ui/select";
+    
     const props = defineProps({
         coin: {
             type: Object,
@@ -70,6 +105,11 @@
     });
     
     const { coin, showDrawer } = toRefs(props);
+    const selectedChart = ref('progress-bars');
+    
+    watch(selectedChart, val => console.log('Chart changed to', val));
+    
+    
     const isOpen = ref(showDrawer.value);
     const emit = defineEmits(['handleDrawer']);
     watch(isOpen, bool => emit('handleDrawer', bool));
