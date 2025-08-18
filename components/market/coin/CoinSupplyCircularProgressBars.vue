@@ -165,7 +165,7 @@
             <div v-if='total_supply' class='item-container'>
                 <MazCircularProgressBar
                     :percentage='total_supply_percentage'
-                    :duration='3000'
+                    :duration='2500'
                     suffix='%'
                     size='125px'
                 >
@@ -207,7 +207,7 @@
             <div v-if='max_supply' class='item-container'>
                 <MazCircularProgressBar
                     :percentage='100'
-                    :duration='2500'
+                    :duration='3000'
                     size='125px'
                 >
                     <template #default>
