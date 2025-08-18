@@ -9,7 +9,7 @@
         </div>
         
         <div v-else class='flex flex-col items-center gap-40'>
-            <h1 class='mt-10'>Latest Crypto News</h1>
+            <h1 class='mt-10'>Latest News</h1>
             
             <div v-if='articles' class='flex flex-wrap justify-center gap-12'>
                 <NewsCard
