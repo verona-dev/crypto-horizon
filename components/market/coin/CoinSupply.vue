@@ -91,10 +91,6 @@
     
     const { coin, showDrawer } = toRefs(props);
     const selectedChart = ref('progress-bars');
-    
-    watch(selectedChart, val => console.log('Chart changed to', val));
-    
-    
     const isOpen = ref(showDrawer.value);
     const emit = defineEmits(['handleDrawer']);
     watch(isOpen, bool => emit('handleDrawer', bool));
