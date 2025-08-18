@@ -1,7 +1,6 @@
 <template>
     <Drawer v-model:open='isOpen'>
-        <!--        top-0 lg:top-40 overflow-y-auto md:overflow-hidden -->
-        <DrawerContent class=''>
+        <DrawerContent>
             <DrawerHeader class='border-b border-b-ring'>
                 <div class='my-6 flex items-start justify-between px-4 relative'>
                     <!--  Spacer  -->
