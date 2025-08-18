@@ -12,10 +12,10 @@
         <div>
             <Table class='w-96'>
                 <TableBody>
-                    <!--  max_supply  -->
+                    <!--  Max Supply  -->
                     <TableRow v-if='max_supply'>
-                        <TableCell class='font-medium'>max_supply</TableCell>
-                        <TableCell>{{ max_supply }}</TableCell>
+                        <TableCell class='font-medium'>Max Supply</TableCell>
+                        <TableCell>{{ max_supply_label }}&nbsp;{{ symbol }}</TableCell>
                     </TableRow>
                     <!--  total_supply  -->
                     <TableRow v-if='total_supply'>
@@ -40,6 +40,8 @@
 </template>
 
 <script lang='ts' setup>
+    import { formatNumber } from '~/utils/formatUtils.js';
+    
     import { Doughnut } from 'vue-chartjs';
     import {
         Table,
@@ -56,8 +58,12 @@
     });
     
     const { coin } = toRefs(props);
+    const symbol = computed(() => coin.value?.symbol);
     const market_data = computed(() => coin.value?.coingecko?.market_data);
     const max_supply = computed(() => market_data.value?.max_supply);
+    const max_supply_label = computed(() => formatNumber(max_supply.value, {
+        style: 'decimal'
+    }));
     const total_supply = computed(() =>  market_data.value?.total_supply);
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
     const remaining_supply = computed(() => max_supply.value - total_supply.value);
