@@ -18,14 +18,14 @@
                             default-value='progress-bars'
                             class=''
                         >
-                            <SelectTrigger class='w-52 mt-4' data-size='default'>
-                                <SelectValue class='w-2/3'/>
+                            <SelectTrigger class='w-56 mt-4 px-6 dark:bg-primary-foreground border-secondary' data-size='default'>
+                                <SelectValue class='w-2/3 '/>
                             </SelectTrigger>
                             
-                            <SelectContent>
+                            <SelectContent class='bg-primary-foreground'>
                                 <SelectGroup>
-                                    <SelectItem value='progress-bars' class='py-2'>Progress Bars</SelectItem>
-                                    <SelectItem value='doughnut-chart' class='py-2'>Doughnut Chart</SelectItem>
+                                    <SelectItem value='progress-bars' class='py-4'>Progress Bars</SelectItem>
+                                    <SelectItem value='doughnut-chart' class='py-4'>Doughnut Chart</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
