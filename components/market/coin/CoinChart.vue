@@ -5,7 +5,7 @@
             default-value='price'
             class='mb-10'
         >
-            <TabsList>
+            <TabsList class='text-muted mx-auto my-10 gap-2 py-6.5 px-1.5 w-3/5'>
                 <TabsTrigger value='price'>
                     <NuxtIcon
                         name='mdi-light:chart-line'
