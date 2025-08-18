@@ -18,14 +18,14 @@
                             default-value='progress-bars'
                             class=''
                         >
-                            <SelectTrigger class='w-[180px] mt-4'>
-                                <SelectValue placeholder='Select a chart' />
+                            <SelectTrigger class='w-52 mt-4' data-size='default'>
+                                <SelectValue class='w-2/3'/>
                             </SelectTrigger>
                             
                             <SelectContent>
                                 <SelectGroup>
-                                    <SelectItem value='progress-bars'>Progress Bars</SelectItem>
-                                    <SelectItem value='doughnut-chart'>Doughnut Chart</SelectItem>
+                                    <SelectItem value='progress-bars' class='py-2'>Progress Bars</SelectItem>
+                                    <SelectItem value='doughnut-chart' class='py-2'>Doughnut Chart</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
@@ -43,7 +43,7 @@
             </DrawerHeader>
             
             <DrawerFooter class='mt-6 overflow-y-auto'>
-                <CoinSupplyProgressBars
+                <CoinSupplyCircularProgressBars
                     v-if='selectedChart === "progress-bars"'
                     :coin='coin'
                 />
@@ -59,7 +59,7 @@
 </template>
 
 <script setup>
-    import CoinSupplyProgressBars from '~/components/market/coin/CoinSupplyProgressBars.vue';
+    import CoinSupplyCircularProgressBars from '~/components/market/coin/CoinSupplyCircularProgressBars.vue';
     import CoinSupplyDoughnutChart from '~/components/market/coin/CoinSupplyDoughnutChart.vue';
     
     import {
