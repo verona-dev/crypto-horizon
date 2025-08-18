@@ -1,6 +1,6 @@
 
 <template>
-    <div>
+    <div class='mt-10 h-96 w-3/4 mx-auto'>
         <Bar
             :data='chartData'
             :options='chartOptions'
@@ -85,7 +85,7 @@
     const chartOptions = ref({
         barThickness: 50,
         indexAxis: 'y',
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         responsive: true,
         plugins: {
             legend: {
