@@ -49,7 +49,7 @@
                 
                 <CoinSupplyDoughnutChart
                     v-if='selectedChart === "doughnut-chart"'
-                    :coin='coin.livecoinwatch'
+                    :coin='coin'
                     class='mx-auto'
                 />
             </DrawerFooter>

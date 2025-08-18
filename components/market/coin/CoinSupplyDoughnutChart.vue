@@ -18,7 +18,7 @@
     });
     
     const { coin } = toRefs(props);
-    const remainingSupply = computed(() => coin.value.maxSupply - coin.value.totalSupply);
+    const remainingSupply = computed(() => coin.value.livecoinwatch.maxSupply - coin.value.livecoinwatch.totalSupply);
     
     const chartContent = computed(() => {
         const labels = [];
@@ -26,10 +26,10 @@
         const backgroundColor = [];
         
         // If coin has max supply
-        if (coin.value.maxSupply) {
-            if(coin.value.totalSupply) {
+        if (coin.value.livecoinwatch.maxSupply) {
+            if(coin.value.livecoinwatch.totalSupply) {
                 labels.push('Total Supply');
-                data.push(coin.value.totalSupply);
+                data.push(coin.value.livecoinwatch.totalSupply);
                 backgroundColor.push('#fef0ca');
             }
             
@@ -40,15 +40,15 @@
             }
         } else {
             // If coin does not have max supply
-            if(coin.value.totalSupply) {
+            if(coin.value.livecoinwatch.totalSupply) {
                 labels.push('Total Supply');
-                data.push(coin.value.totalSupply);
+                data.push(coin.value.livecoinwatch.totalSupply);
                 backgroundColor.push('#fef0ca');
             }
             
-            if(coin.value.circulatingSupply) {
+            if(coin.value.livecoinwatch.circulatingSupply) {
                 labels.push('Circulating Supply');
-                data.push(coin.value.circulatingSupply);
+                data.push(coin.value.livecoinwatch.circulatingSupply);
                 backgroundColor.push('#e787c0');
             }
         }
