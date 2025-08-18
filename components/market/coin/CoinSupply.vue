@@ -27,7 +27,6 @@
                             <TabsList class='mb-0'>
                                 <TabsTrigger value='progress-bars'>Progress Bars</TabsTrigger>
                                 <TabsTrigger value='doughnut-chart'>Doughnut Chart</TabsTrigger>
-                                <TabsTrigger value='stacked-bars'>Stacked Bars</TabsTrigger>
                             </TabsList>
                         </div>
                     
@@ -42,11 +41,6 @@
                     <TabsContent value='doughnut-chart' class='mx-auto'>
                         <CoinSupplyDoughnutChart :coin='coin.livecoinwatch' />
                     </TabsContent>
-                    
-                    <TabsContent value='stacked-bars' class=''>
-                        <CoinSupplyStackedBars :coin='coin.livecoinwatch' />
-                    </TabsContent>
-                
                 </DrawerFooter>
             </Tabs>
         </DrawerContent>
@@ -56,7 +50,6 @@
 <script setup>
     import CoinSupplyProgressBars from '~/components/market/coin/CoinSupplyProgressBars.vue';
     import CoinSupplyDoughnutChart from '~/components/market/coin/CoinSupplyDoughnutChart.vue';
-    import CoinSupplyStackedBars from '~/components/market/coin/CoinSupplyStackedBars.vue';
     
     import {
         Drawer,
