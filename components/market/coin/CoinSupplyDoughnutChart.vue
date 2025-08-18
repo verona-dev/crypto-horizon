@@ -11,31 +11,38 @@
         
         <div>
             <Table class='w-96'>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead>Supply</TableHead>
+                        <TableHead>{{ symbol }}</TableHead>
+                    </TableRow>
+                </TableHeader>
+                
                 <TableBody>
                     <!--  Max Supply  -->
                     <TableRow v-if='max_supply'>
                         <TableCell class='font-medium'>Max Supply</TableCell>
-                        <TableCell>{{ max_supply_label }}&nbsp;{{ symbol }}</TableCell>
+                        <TableCell>{{ max_supply_label }}</TableCell>
                     </TableRow>
                     <!--  Total Supply  -->
                     <TableRow v-if='total_supply'>
                         <TableCell class='font-medium'>Total Supply</TableCell>
-                        <TableCell>{{ total_supply_label }}&nbsp;{{ symbol }}</TableCell>
+                        <TableCell>{{ total_supply_label }}</TableCell>
                     </TableRow>
-                    <!--  Language  -->
+                    <!--  Circulating Supply  -->
                     <TableRow v-if='circulating_supply'>
-                        <TableCell class='font-medium'>circulating_supply</TableCell>
-                        <TableCell>{{ circulating_supply }}</TableCell>
+                        <TableCell class='font-medium'>Circulating Supply</TableCell>
+                        <TableCell>{{ circulating_supply_label }}</TableCell>
                     </TableRow>
-                    <!--  Status  -->
+                    <!--  Remaining Supply  -->
                     <TableRow v-if='remaining_supply'>
-                        <TableCell class='font-medium'>remaining_supply</TableCell>
-                        <TableCell>{{ remaining_supply }}</TableCell>
+                        <TableCell class='font-medium'>Remaining Supply</TableCell>
+                        <TableCell>{{ remaining_supply_label }}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
         </div>
-
+    
     </div>
 </template>
 
@@ -69,7 +76,13 @@
         style: 'decimal'
     }));
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
+    const circulating_supply_label = computed(() => formatNumber(circulating_supply.value, {
+        style: 'decimal'
+    }));
     const remaining_supply = computed(() => max_supply.value - total_supply.value);
+    const remaining_supply_label = computed(() => formatNumber(remaining_supply.value, {
+        style: 'decimal'
+    }));
     
     const chartContent = computed(() => {
         const labels = [];
