@@ -18,7 +18,11 @@
     });
     
     const { coin } = toRefs(props);
-    const remainingSupply = computed(() => coin.value.livecoinwatch.maxSupply - coin.value.livecoinwatch.totalSupply);
+    const market_data = computed(() => coin.value?.coingecko?.market_data);
+    const max_supply = computed(() => market_data.value?.max_supply);
+    const total_supply = computed(() =>  market_data.value?.total_supply);
+    const circulating_supply = computed(() => market_data.value?.circulating_supply);
+    const remaining_supply = computed(() => max_supply.value - total_supply.value);
     
     const chartContent = computed(() => {
         const labels = [];
@@ -26,29 +30,29 @@
         const backgroundColor = [];
         
         // If coin has max supply
-        if (coin.value.livecoinwatch.maxSupply) {
-            if(coin.value.livecoinwatch.totalSupply) {
+        if (max_supply.value) {
+            if(total_supply.value) {
                 labels.push('Total Supply');
-                data.push(coin.value.livecoinwatch.totalSupply);
+                data.push(total_supply.value);
                 backgroundColor.push('#fef0ca');
             }
             
-            if(remainingSupply.value) {
+            if(remaining_supply.value) {
                 labels.push('Remaining Supply');
-                data.push(remainingSupply.value);
+                data.push(remaining_supply.value);
                 backgroundColor.push('#41B883');
             }
         } else {
             // If coin does not have max supply
-            if(coin.value.livecoinwatch.totalSupply) {
+            if(total_supply.value) {
                 labels.push('Total Supply');
-                data.push(coin.value.livecoinwatch.totalSupply);
+                data.push(total_supply.value);
                 backgroundColor.push('#fef0ca');
             }
             
-            if(coin.value.livecoinwatch.circulatingSupply) {
+            if(circulating_supply.value) {
                 labels.push('Circulating Supply');
-                data.push(coin.value.livecoinwatch.circulatingSupply);
+                data.push(circulating_supply.valu);
                 backgroundColor.push('#e787c0');
             }
         }
