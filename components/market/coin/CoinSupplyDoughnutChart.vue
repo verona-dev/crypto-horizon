@@ -17,10 +17,10 @@
                         <TableCell class='font-medium'>Max Supply</TableCell>
                         <TableCell>{{ max_supply_label }}&nbsp;{{ symbol }}</TableCell>
                     </TableRow>
-                    <!--  total_supply  -->
+                    <!--  Total Supply  -->
                     <TableRow v-if='total_supply'>
-                        <TableCell class='font-medium'>total_supply</TableCell>
-                        <TableCell>{{ total_supply }}</TableCell>
+                        <TableCell class='font-medium'>Total Supply</TableCell>
+                        <TableCell>{{ total_supply_label }}&nbsp;{{ symbol }}</TableCell>
                     </TableRow>
                     <!--  Language  -->
                     <TableRow v-if='circulating_supply'>
@@ -65,6 +65,9 @@
         style: 'decimal'
     }));
     const total_supply = computed(() =>  market_data.value?.total_supply);
+    const total_supply_label = computed(() => formatNumber(total_supply.value, {
+        style: 'decimal'
+    }));
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
     const remaining_supply = computed(() => max_supply.value - total_supply.value);
     
