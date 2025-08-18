@@ -3,7 +3,7 @@
     <Doughnut
         :data='chartData'
         :options='chartOptions'
-        class='w-[500px] my-10'
+        class='w-[500px] my-10 mx-auto'
     />
 </template>
 

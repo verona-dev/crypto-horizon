@@ -13,7 +13,7 @@
                         <DrawerDescription>Exploring Key Metrics</DrawerDescription>
                         
                         <Select
-                            v-model='selectedChart'
+                            v-model='selected'
                             default-value='progress-bars'
                             class=''
                         >
@@ -25,6 +25,7 @@
                                 <SelectGroup>
                                     <SelectItem value='progress-bars' class='py-4 px-5'>Progress Bars</SelectItem>
                                     <SelectItem value='doughnut-chart' class='py-4 px-5'>Doughnut Chart</SelectItem>
+                                    <SelectItem value='stacked-bars' class='py-4 px-5'>Stacked Bars</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
@@ -43,15 +44,23 @@
             
             <DrawerFooter class='mt-6 overflow-y-auto'>
                 <CoinSupplyCircularProgressBars
-                    v-if='selectedChart === "progress-bars"'
+                    v-if='selected === "progress-bars"'
                     :coin='coin'
                 />
                 
                 <CoinSupplyDoughnutChart
-                    v-if='selectedChart === "doughnut-chart"'
+                    v-else-if='selected === "doughnut-chart"'
                     :coin='coin'
-                    class='mx-auto'
                 />
+                
+                <CoinSupplyStackedBars
+                    v-else-if='selected === "stacked-bars"'
+                    :coin='coin'
+                />
+                
+                <div v-else>
+                    <h6>Something went wrong. Please refresh the page and try again.</h6>
+                </div>
             </DrawerFooter>
         </DrawerContent>
     </Drawer>
@@ -60,6 +69,7 @@
 <script setup>
     import CoinSupplyCircularProgressBars from '~/components/market/coin/CoinSupplyCircularProgressBars.vue';
     import CoinSupplyDoughnutChart from '~/components/market/coin/CoinSupplyDoughnutChart.vue';
+    import CoinSupplyStackedBars from '~/components/market/coin/CoinSupplyStackedBars.vue';
     
     import {
         Drawer,
@@ -89,7 +99,7 @@
     });
     
     const { coin, showDrawer } = toRefs(props);
-    const selectedChart = ref('progress-bars');
+    const selected = ref('progress-bars');
     const isOpen = ref(showDrawer.value);
     const emit = defineEmits(['handleDrawer']);
     watch(isOpen, bool => emit('handleDrawer', bool));

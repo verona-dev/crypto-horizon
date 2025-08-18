@@ -1,6 +1,6 @@
 
 <template>
-    <div class='my-6'>
+    <div>
         <Bar
             :data='chartData'
             :options='chartOptions'
@@ -44,7 +44,7 @@
             
             if(circulating_supply.value) {
                 labels.push('Circulating Supply');
-                data.push(circulating_supply.valu);
+                data.push(circulating_supply.value);
                 backgroundColor.push('#e787c0');
             }
             
@@ -63,7 +63,7 @@
             
             if(circulating_supply.value) {
                 labels.push('Circulating Supply');
-                data.push(circulating_supply.valu);
+                data.push(circulating_supply.value);
                 backgroundColor.push('#e787c0');
             }
         }
@@ -83,7 +83,7 @@
     });
     
     const chartOptions = ref({
-        barThickness: 70,
+        barThickness: 50,
         indexAxis: 'y',
         maintainAspectRatio: true,
         responsive: true,
