@@ -1,6 +1,6 @@
 <template>
-    <div class='coin-supply-progress-bars xl:w-[1200px] mx-auto'>
-        <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center my-10'>
+    <div class='coin-supply-progress-bars xl:w-[1200px] mx-auto my-10'>
+        <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center'>
             <!--  Market Cap  -->
             <div v-if='market_cap' class='item-container'>
                 <MazCircularProgressBar
