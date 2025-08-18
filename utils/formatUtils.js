@@ -63,6 +63,16 @@ const formatCoinsTable = coins => {
     }));
 };
 
+const formatCoingeckoCoin = coin => {
+    return {
+        ...coin,
+        market_data: {
+            ...coin.market_data,
+            market_cap_label: formatNumber(coin.market_data.market_cap.usd),
+        },
+    }
+};
+
 const formatLivecoinwatchCoin = coin => {
     return {
         ...coin,
@@ -101,6 +111,7 @@ const goBack = (router, path) => {
 export {
     formatNumber,
     formatCoinsTable,
+    formatCoingeckoCoin,
     formatLivecoinwatchCoin,
     capitalize,
     goBack,

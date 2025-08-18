@@ -1,15 +1,11 @@
 <template>
-    <MazAnimatedElement
-        direction='up'
-        :duration='2000'
-        class=''
-    >
-        <div class='flex flex-wrap items-start justify-evenly pt-6 pb-20'>
+    <div class='coin-supply-progress-bars xl:w-[1200px] mx-auto my-10'>
+        <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center'>
             <!--  Market Cap  -->
-            <div v-if='market_cap' class='progress-bar-container'>
+            <div v-if='market_cap' class='item-container'>
                 <MazCircularProgressBar
                     :percentage='100'
-                    :duration='2500'
+                    :duration='2000'
                     size='125px'
                 >
                     <template #default>
@@ -17,9 +13,9 @@
                     </template>
                 </MazCircularProgressBar>
                 
-                <div class='ml-6 flex flex-col'>
+                <div class='label-container'>
                     <div class='flex items-start'>
-                        <h6>Market Cap</h6>
+                        <h5 class='break-words text-center'>Market Cap</h5>
                         
                         <HoverCard
                             :openDelay='200'
@@ -29,7 +25,7 @@
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
                                     size='25'
-                                    class='flex ml-2'
+                                    class='flex ml-2 mt-1'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
@@ -46,21 +42,21 @@
                 </div>
             </div>
             
-            <!--  Max Supply  -->
-            <div v-if='max_supply' class='progress-bar-container'>
+            <!--  Diluted Valuation  -->
+            <div v-if='fully_diluted_valuation' class='item-container'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2500'
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ formatNumber(max_supply, { compact: true, style: 'decimal' }) }}</p>
+                        <p>{{ fully_diluted_bar_valuation }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
-                <div class='ml-6 flex flex-col'>
+                <div class='label-container'>
                     <div class='flex items-start'>
-                        <h6>Max Supply</h6>
+                        <h5 class='break-words text-center'>Diluted Valuation</h5>
                         
                         <HoverCard
                             :openDelay='200'
@@ -70,7 +66,168 @@
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
                                     size='25'
-                                    class='flex ml-2'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                    <span class='text-sm'>
+                                        Coin fully diluted valuation (FDV) in currency.
+                                        FDV and market cap of a crypto coin can be the same number when the total supply
+                                        of tokens is equal to the circulating supply of tokens.
+                                    </span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <span class='mt-2'>{{ fully_diluted_valuation_label }}</span>
+                </div>
+            </div>
+            
+            <!--  Volume 24h  -->
+            <div v-if='volume' class='item-container'>
+                <MazCircularProgressBar
+                    :percentage='100'
+                    :duration='3000'
+                    size='125px'
+                >
+                    <template #default>
+                        <p>{{ volume_bar_label }}</p>
+                    </template>
+                </MazCircularProgressBar>
+                
+                <div class='label-container'>
+                    <div class='flex items-start'>
+                        <h5 class='break-words text-center'>Volume 24h</h5>
+                        
+                        <HoverCard
+                            :openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>A measure of how much of a cryptocurrency was traded in the last 24 hours.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <span class='mt-2'>{{ volume_label }}</span>
+                </div>
+            </div>
+            
+            <!--  Circulating Supply  -->
+            <div v-if='circulating_supply' class='item-container'>
+                <MazCircularProgressBar
+                    :percentage='circulating_supply_percentage'
+                    :duration='2000'
+                    suffix='%'
+                    size='125px'
+                >
+                    <template #default>
+                        <p v-if='max_supply'>{{ Math.floor(circulating_supply_percentage) }}&#37;</p>
+                        <p v-else>{{ formatNumber(circulating_supply, { compact: true, style: 'decimal', decimals: 2 }) }}</p>
+                    </template>
+                </MazCircularProgressBar>
+                
+                <div class='label-container'>
+                    <div class='flex items-start'>
+                        <h5 class='break-words text-center'>Circulating Supply</h5>
+                        
+                        <HoverCard
+                            :openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                            <span class='text-sm'>
+                                The amount of coins that are circulating in the market and are in public hands. It is analogous to the flowing shares in the stock market.
+                            </span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <span class='mt-2'>{{ circulating_supply_label }} {{ symbol }}</span>
+                </div>
+            </div>
+            
+            <!--  Total Supply  -->
+            <div v-if='total_supply' class='item-container'>
+                <MazCircularProgressBar
+                    :percentage='total_supply_percentage'
+                    :duration='2500'
+                    suffix='%'
+                    size='125px'
+                >
+                    <template #default>
+                        <p v-if='max_supply'>{{ Math.floor(total_supply_percentage) }}&#37;</p>
+                        <p v-else>{{ formatNumber(total_supply, { compact: true, style: 'decimal', decimals: 2 }) }}</p>
+                    </template>
+                </MazCircularProgressBar>
+                
+                <div class='label-container'>
+                    <div class='flex items-start'>
+                        <h5 class='break-words text-center'>Total Supply</h5>
+                        
+                        <HoverCard
+                            :openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                            <span class='text-sm'>
+                                Total supply = Total coins created - coins that have been burned (if any)
+                                It is comparable to outstanding shares in the stock market.
+                            </span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <span class='mt-2'>{{ total_supply_label }} {{ symbol }}</span>
+                </div>
+            </div>
+            
+            <!--  Max Supply  -->
+            <div v-if='max_supply' class='item-container'>
+                <MazCircularProgressBar
+                    :percentage='100'
+                    :duration='3000'
+                    size='125px'
+                >
+                    <template #default>
+                        <p>{{ max_supply_bar_label }}</p>
+                    </template>
+                </MazCircularProgressBar>
+                
+                <div class='label-container'>
+                    <div class='flex items-start'>
+                        <h5 class='break-words text-center'>Max Supply</h5>
+                        
+                        <HoverCard
+                            :openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex ml-2 mt-1'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
@@ -83,173 +240,11 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ formatNumber(max_supply, { style: 'decimal' }) }} {{ symbol }}</span>
-                </div>
-            </div>
-            
-            <!--  Total Supply  -->
-            <div v-if='total_supply' class='progress-bar-container'>
-                <MazCircularProgressBar
-                    :percentage='total_supply_percentage'
-                    :duration='3000'
-                    suffix='%'
-                    size='125px'
-                >
-                    <template #default>
-                        <p v-if='max_supply'>{{ Math.floor(total_supply_percentage) }}&#37;</p>
-                        <p v-else>{{ formatNumber(total_supply, { compact: true, style: 'decimal', decimals: 2 }) }}</p>
-                    </template>
-                </MazCircularProgressBar>
-                
-                <div class='ml-6 flex flex-col'>
-                    <div class='flex items-start'>
-                        <h6>Total Supply</h6>
-                        
-                        <HoverCard
-                            :openDelay='200'
-                            class='flex'
-                        >
-                            <HoverCardTrigger>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                            <span class='text-sm'>
-                                Total supply = Total coins created - coins that have been burned (if any)
-                                It is comparable to outstanding shares in the stock market.
-                            </span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </div>
-                    
-                    <span class='mt-2'>{{ formatNumber(total_supply, { style: 'decimal' }) }} {{ symbol }}</span>
-                </div>
-            </div>
-            
-            <!--  Circulating Supply  -->
-            <div v-if='circulating_supply' class='progress-bar-container'>
-                <MazCircularProgressBar
-                    :percentage='circulating_supply_percentage'
-                    :duration='3000'
-                    suffix='%'
-                    size='125px'
-                >
-                    <template #default>
-                        <p v-if='max_supply'>{{ Math.floor(circulating_supply_percentage) }}&#37;</p>
-                        <p v-else>{{
-                                formatNumber(circulating_supply, { compact: true, style: 'decimal', decimals: 2 })
-                                  }}</p>
-                    </template>
-                </MazCircularProgressBar>
-                
-                <div class='ml-6 flex flex-col'>
-                    <div class='flex items-start'>
-                        <h6>Circulating Supply</h6>
-                        
-                        <HoverCard
-                            :openDelay='200'
-                            class='flex'
-                        >
-                            <HoverCardTrigger>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                            <span class='text-sm'>
-                                The amount of coins that are circulating in the market and are in public hands. It is analogous to the flowing shares in the stock market.
-                            </span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </div>
-                    
-                    <span class='mt-2'>{{ formatNumber(circulating_supply, { style: 'decimal' }) }} {{ symbol }}</span>
-                </div>
-            </div>
-            
-            <!--  Volume 24h  -->
-            <div v-if='volume' class='progress-bar-container'>
-                <MazCircularProgressBar
-                    :percentage='100'
-                    :duration='3500'
-                    size='125px'
-                >
-                    <template #default>
-                        <p>{{ formatNumber(volume, { compact: true, decimals: 2 }) }}</p>
-                    </template>
-                </MazCircularProgressBar>
-                
-                <div class='ml-6 flex flex-col'>
-                    <div class='flex items-start'>
-                        <h6>Volume 24h</h6>
-                        
-                        <HoverCard
-                            :openDelay='200'
-                            class='flex'
-                        >
-                            <HoverCardTrigger>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>A measure of how much of a cryptocurrency was traded in the last 24 hours.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </div>
-                    
-                    <span class='mt-2'>{{ formatNumber(volume) }}</span>
-                </div>
-            </div>
-            
-            <!--  Liquidity 24h  -->
-            <div v-if='liquidity' class='progress-bar-container'>
-                <MazCircularProgressBar
-                    :percentage='100'
-                    :duration='3500'
-                    size='125px'
-                >
-                    <template #default>
-                        <p>{{ formatNumber(liquidity, { compact: true, decimals: 2 }) }}</p>
-                    </template>
-                </MazCircularProgressBar>
-                
-                <div class='ml-6 flex flex-col'>
-                    <div class='flex items-start'>
-                        <h6>Liquidity 24h</h6>
-                        
-                        <HoverCard
-                            :openDelay='200'
-                            class='flex'
-                        >
-                            <HoverCardTrigger>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>
-                                    How easily you can buy or sell a cryptocurrency without significantly affecting its price.
-                                    A ±2% orderbook depth.
-                                </span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </div>
-                    
-                    <span class='mt-2'>{{ formatNumber(liquidity) }}</span>
+                    <span class='mt-2'>{{ max_supply_label }} {{ symbol }}</span>
                 </div>
             </div>
         </div>
-    </MazAnimatedElement>
+    </div>
 </template>
 
 <script setup>
@@ -269,28 +264,89 @@
     });
     
     const { coin } = toRefs(props);
+    const market_data = computed(() => coin.value?.coingecko?.market_data);
     
-    const market_cap = computed(() => coin.value?.marketCap);
-    const market_cap_label = computed(() => formatNumber(market_cap.value));
+    const market_cap = computed(() => market_data.value?.market_cap?.usd);
+    const market_cap_label = computed(() => market_data.value.market_cap_label);
     const market_cap_bar_label = computed(() => formatNumber(market_cap.value, {
-        compact: true, decimals: 2
+        compact: true, decimals: 1
+    }));
+    
+    const max_supply = computed(() => market_data.value?.max_supply);
+    const max_supply_label = computed(() => formatNumber(max_supply.value, {
+        style: 'decimal'
+    }));
+    const max_supply_bar_label = computed(() => formatNumber(max_supply.value, {
+        compact: true, style: 'decimal'
     }))
-    const max_supply = computed(() => coin.value?.maxSupply);
     
-    const total_supply = computed(() => coin.value?.totalSupply);
-    const total_supply_percentage = computed(() => (coin.value?.totalSupply / coin.value?.maxSupply) * 100);
+    const total_supply = computed(() =>  market_data.value?.total_supply);
+    const total_supply_label = computed(() => formatNumber(total_supply.value, {
+        style: 'decimal'
+    }));
+    const total_supply_percentage = computed(() => (total_supply.value / max_supply.value) * 100);
     
-    const circulating_supply = computed(() => coin.value?.circulatingSupply);
-    const circulating_supply_percentage = computed(() => (coin.value?.circulatingSupply / coin.value?.maxSupply) * 100);
+    const circulating_supply = computed(() => market_data.value?.circulating_supply);
+    const circulating_supply_label = computed(() => formatNumber(circulating_supply.value, {
+        style: 'decimal'
+    }));
+    const circulating_supply_percentage = computed(() => (circulating_supply.value / max_supply.value) * 100);
     
-    const volume = computed(() => coin.value?.volume);
-    const liquidity = computed(() => coin.value?.liquidity);
+    const volume = computed(() => market_data.value?.total_volume?.usd);
+    const volume_label = computed(() => formatNumber(volume.value));
+    const volume_bar_label = computed(() => formatNumber(volume.value, {
+        compact: true, decimals: 1
+    }));
+    
+    const fully_diluted_valuation = computed(() => market_data.value?.fully_diluted_valuation?.usd);
+    const fully_diluted_valuation_label = computed(() => formatNumber(fully_diluted_valuation.value));
+    const fully_diluted_bar_valuation = computed(() => formatNumber(fully_diluted_valuation.value, {
+        compact: true, decimals: 1
+    }));
     
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
 
-<style scoped>
-    a {
-        color: var(--maz-color-muted);
+<style>
+    .coin-supply-progress-bars {
+        a {
+            color: var(--maz-color-muted);
+        }
+        
+        .item-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            
+            @media (min-width: 768px) {
+                width: 300px;
+            }
+            
+            /* Desktop */
+            @media (min-width: 1024px) {
+                width: 350px;
+            }
+            
+            @media (min-width: 1280px) {
+                width: 400px;
+            }
+            
+            .label-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /*
+        [data-slot='drawer-content'] {
+            margin-top: 0 !important;
+            
+            @media (min-width: 768px) {
+                margin-top: calc(var(--spacing) * 24);
+            }
+        }
+        */
     }
 </style>

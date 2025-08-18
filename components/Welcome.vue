@@ -1,10 +1,10 @@
 <template>
-    <div class='flex flex-col items-center gap-8 md:gap-32 px-10 pb-10'>
-        <h1 class='my-20 md:my-0 select-none'>
+    <div class='flex flex-col items-center gap-8 2xl:gap-32 2xl:px-10 pb-10'>
+        <h1 class='my-20 2xl:my-0 select-none break-words text-center'>
             Crypto Horizon
         </h1>
         
-        <div class='flex flex-col md:flex-row justify-center items-center gap-6 xl:gap-30'>
+        <div class='flex flex-col 2xl:flex-row justify-center items-center gap-6 2xl:gap-30'>
             <WelcomeItem
                 v-for='item in welcomeItems'
                 :title='item.title'
