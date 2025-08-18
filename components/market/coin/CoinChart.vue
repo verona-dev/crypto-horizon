@@ -5,7 +5,7 @@
             default-value='price'
             class='mb-10'
         >
-            <TabsList class='text-muted mx-auto my-10 gap-2 py-6.5 px-1.5 w-3/5'>
+            <TabsList class='text-muted mx-auto my-10 gap-x-1 py-6 w-3/5'>
                 <TabsTrigger value='price'>
                     <NuxtIcon
                         name='mdi-light:chart-line'
@@ -247,7 +247,7 @@
         position: relative;
         
         .spinner-container {
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(1px);
             border-radius: 12px;
             height: 400px;
