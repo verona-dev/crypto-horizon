@@ -295,7 +295,7 @@
     }));
     
     const fully_diluted_valuation = computed(() => market_data.value?.fully_diluted_valuation?.usd);
-    const fully_diluted_valuation_label = market_data.value?.fully_diluted_valuation_label;
+    const fully_diluted_valuation_label = computed(() => market_data.value?.fully_diluted_valuation_label);
     const fully_diluted_bar_valuation = computed(() => formatNumber(fully_diluted_valuation.value, {
         compact: true, decimals: 1
     }));

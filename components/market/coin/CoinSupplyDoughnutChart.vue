@@ -13,8 +13,8 @@
             <Table class='w-96'>
                 <TableHeader>
                     <TableRow>
-                        <TableHead>Supply</TableHead>
-                        <TableHead>{{ symbol }}</TableHead>
+                        <TableHead>Type</TableHead>
+                        <TableHead>Amount&#40;{{ symbol }}&#41;</TableHead>
                     </TableRow>
                 </TableHeader>
                 
