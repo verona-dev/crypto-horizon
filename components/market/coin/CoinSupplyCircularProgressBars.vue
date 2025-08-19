@@ -267,18 +267,16 @@
     const market_data = computed(() => coin.value?.coingecko?.market_data);
     
     const market_cap = computed(() => market_data.value?.market_cap?.usd);
-    const market_cap_label = computed(() => market_data.value.market_cap_label);
+    const market_cap_label = market_data.value.market_cap_label;
     const market_cap_bar_label = computed(() => formatNumber(market_cap.value, {
         compact: true, decimals: 1
     }));
     
     const max_supply = computed(() => market_data.value?.max_supply);
-    const max_supply_label = computed(() => formatNumber(max_supply.value, {
-        style: 'decimal'
-    }));
+    const max_supply_label = market_data.value?.max_supply_label;
     const max_supply_bar_label = computed(() => formatNumber(max_supply.value, {
         compact: true, style: 'decimal'
-    }))
+    }));
     
     const total_supply = computed(() =>  market_data.value?.total_supply);
     const total_supply_label = computed(() => formatNumber(total_supply.value, {

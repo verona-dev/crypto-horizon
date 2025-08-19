@@ -69,6 +69,9 @@ const formatCoingeckoCoin = coin => {
         market_data: {
             ...coin.market_data,
             market_cap_label: formatNumber(coin.market_data.market_cap.usd),
+            max_supply_label: formatNumber(coin.market_data.max_supply, {
+                style: 'decimal'
+            }),
         },
     }
 };
