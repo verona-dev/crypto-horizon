@@ -78,6 +78,8 @@ const formatCoingeckoCoin = coin => {
             circulating_supply_label: formatNumber(coin.market_data.circulating_supply, {
                 style: 'decimal'
             }),
+            fully_diluted_valuation_label: formatNumber(coin.market_data.fully_diluted_valuation),
+            volume_label: formatNumber(coin.market_data.total_volume?.usd),
         },
     }
 };

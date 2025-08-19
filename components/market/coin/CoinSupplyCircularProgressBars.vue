@@ -285,19 +285,17 @@
     const total_supply_percentage = computed(() => (total_supply.value / max_supply.value) * 100);
     
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
-    const circulating_supply_label = computed(() => formatNumber(circulating_supply.value, {
-        style: 'decimal'
-    }));
+    const circulating_supply_label = market_data.value?.circulating_supply_label;
     const circulating_supply_percentage = computed(() => (circulating_supply.value / max_supply.value) * 100);
     
     const volume = computed(() => market_data.value?.total_volume?.usd);
-    const volume_label = computed(() => formatNumber(volume.value));
+    const volume_label = market_data.value?.volume_label;
     const volume_bar_label = computed(() => formatNumber(volume.value, {
         compact: true, decimals: 1
     }));
     
     const fully_diluted_valuation = computed(() => market_data.value?.fully_diluted_valuation?.usd);
-    const fully_diluted_valuation_label = computed(() => formatNumber(fully_diluted_valuation.value));
+    const fully_diluted_valuation_label = market_data.value?.fully_diluted_valuation_label;
     const fully_diluted_bar_valuation = computed(() => formatNumber(fully_diluted_valuation.value, {
         compact: true, decimals: 1
     }));
