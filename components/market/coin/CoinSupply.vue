@@ -107,6 +107,6 @@
 
 <style>
     [data-vaul-drawer-direction='bottom'] {
-        min-height: 85vh !important;
+        min-height: 90vh !important;
     }
 </style>

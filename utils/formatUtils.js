@@ -75,6 +75,9 @@ const formatCoingeckoCoin = coin => {
             total_supply_label: formatNumber(coin.market_data.total_supply, {
                 style: 'decimal'
             }),
+            circulating_supply_label: formatNumber(coin.market_data.circulating_supply, {
+                style: 'decimal'
+            }),
         },
     }
 };
