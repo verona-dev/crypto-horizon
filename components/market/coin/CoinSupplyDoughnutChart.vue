@@ -1,11 +1,11 @@
 
 <template>
-    <div class='my-10 flex-col lg:flex-row flex items-center justify-center gap-16'>
-        <div class='w-full xl:w-[450px] h-[450px]'>
+    <div class='my-10 flex-col lg:flex-row flex items-center justify-center gap-16 mx-auto'>
+        <div>
             <Doughnut
                 :data='chartData'
                 :options='chartOptions'
-                class='mx-auto h-full'
+                class='w-full xl:w-[450px] h-[450px]'
             />
         </div>
         
@@ -81,7 +81,7 @@
     
     const chartOptions = ref({
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 labels: {
