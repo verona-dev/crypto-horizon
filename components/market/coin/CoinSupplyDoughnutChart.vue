@@ -5,7 +5,7 @@
             <Doughnut
                 :data='chartData'
                 :options='chartOptions'
-                class='w-[450px] h-[450px]'
+                class='w-[400px] h-[400px]'
             />
         </div>
         
