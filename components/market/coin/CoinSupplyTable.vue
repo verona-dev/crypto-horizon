@@ -1,6 +1,6 @@
 <template>
     <div v-if='market_data'>
-        <Table class='w-96'>
+        <Table class='w-full xl:w-96'>
             <TableHeader>
                 <TableRow>
                     <TableHead>Type</TableHead>
