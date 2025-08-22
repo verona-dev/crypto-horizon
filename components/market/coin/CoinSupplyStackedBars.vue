@@ -5,7 +5,6 @@
             <Bar
                 :data='chartData'
                 :options='chartOptions'
-                class=''
             />
         </div>
         
@@ -62,16 +61,15 @@
             }
         } else {
             // If coin does not have max supply
-            if(total_supply.value) {
-                labels.push('Total Supply');
-                data.push(total_supply.value);
-                backgroundColor.push('#fef0ca');
-            }
-            
-            if(circulating_supply.value) {
-                labels.push('Circulating Supply');
-                data.push(circulating_supply.value);
-                backgroundColor.push('#e787c0');
+            // If coin's total supply is the same as circulating supply
+            if(total_supply.value === circulating_supply.value) {
+                // display only TOTAL
+                // EXAMPLE: ETH
+                if(total_supply.value) {
+                    labels.push('Total Supply');
+                    data.push(total_supply.value);
+                    backgroundColor.push('#fef0ca');
+                }
             }
         }
         
