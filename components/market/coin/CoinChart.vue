@@ -30,9 +30,15 @@
                     Supply
                 </TabsTrigger>
                 
-                <ToggleGroup type='single' variant='outline'>
+                <ToggleGroup
+                    v-model='range'
+                    @update:model-value='onUpdateRange'
+                    type='single'
+                    variant='outline'
+                >
                     <ToggleGroupItem
                         value='1d'
+                        :disabled='range.value === ""'
                         aria-label='Toggle 1 day'
                     >
                         <span class=''>1D</span>
@@ -40,6 +46,7 @@
                     
                     <ToggleGroupItem
                         value='7d'
+                        :disabled='range.value === ""'
                         aria-label='Toggle 7 days'
                     >
                         <span class=''>7D</span>
@@ -47,6 +54,7 @@
                     
                     <ToggleGroupItem
                         value='1m'
+                        :disabled='range.value === ""'
                         aria-label='Toggle 1 month'
                     >
                         <span class=''>1M</span>
@@ -102,6 +110,12 @@
     });
     
     const { coin } = toRefs(props);
+    
+    const range = ref('1d');
+    
+    const onUpdateRange = value => {
+        console.log('updated range', value);
+    };
     
     const chartData = ref(coin.value?.chart);
     const timestamps = computed(() => chartData.value?.prices?.map(item => item[0]));
