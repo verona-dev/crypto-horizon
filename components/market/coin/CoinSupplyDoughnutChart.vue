@@ -51,17 +51,18 @@
             }
         } else {
             // If coin does not have max supply
+            alert('no max supply');
             if(total_supply.value) {
                 labels.push('Total Supply');
                 data.push(total_supply.value);
                 backgroundColor.push('#fef0ca');
             }
             
-            if(circulating_supply.value) {
+/*            if(circulating_supply.value) {
                 labels.push('Circulating Supply');
                 data.push(circulating_supply.value);
                 backgroundColor.push('#e787c0');
-            }
+            }*/
         }
         
         return { labels, data, backgroundColor };
