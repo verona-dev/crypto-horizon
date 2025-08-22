@@ -1,11 +1,11 @@
 
 <template>
     <div class='my-10 flex-col lg:flex-row flex items-center justify-center gap-16 mx-auto'>
-        <div>
+        <div class='w-full xl:w-[450px] h-full xl:h-[450px]'>
             <Doughnut
                 :data='chartData'
                 :options='chartOptions'
-                class='w-full xl:w-[450px] h-[450px]'
+                class=''
             />
         </div>
         
