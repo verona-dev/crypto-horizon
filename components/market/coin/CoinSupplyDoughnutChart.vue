@@ -38,8 +38,10 @@
         
         // If coin's tot.supply is the same as circ.supply
         if(total_supply.value === circulating_supply.value) {
-            // EXAMPLE: BNB
+            
             if(max_supply.value) {
+                // EXAMPLE: BNB
+                // display TOTAL and REMAINING
                 if(total_supply.value) {
                     labels.push('Total Supply');
                     data.push(total_supply.value);
@@ -53,6 +55,7 @@
                 }
             } else {
                 // EXAMPLE: ETH
+                // display TOTAL
                 if(total_supply.value) {
                     labels.push('Total Supply');
                     data.push(total_supply.value);
@@ -62,6 +65,7 @@
         } else {
             // If coin's tot.supply is different than circ.supply
             // EXAMPLE: BTC, XRP
+            // display TOTAL and REMAINING
             if(total_supply.value) {
                 labels.push('Total Supply');
                 data.push(total_supply.value);
