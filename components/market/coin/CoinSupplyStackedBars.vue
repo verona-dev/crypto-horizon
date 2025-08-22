@@ -1,11 +1,11 @@
 
 <template>
-    <div class='my-10 flex-col lg:flex-row flex items-center justify-center gap-16'>
-        <div class='w-full xl:w-[450px] h-[450px]'>
+    <div class='my-10 flex-col xl:flex-row flex items-center justify-center gap-16 '>
+        <div class='w-full xl:w-[450px] h-full xl:h-[450px]'>
             <Bar
                 :data='chartData'
                 :options='chartOptions'
-                class='mx-auto h-full'
+                class=''
             />
         </div>
         
@@ -92,8 +92,8 @@
     const chartOptions = ref({
         barThickness: 75,
         indexAxis: 'y',
-        maintainAspectRatio: false,
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 labels: {
