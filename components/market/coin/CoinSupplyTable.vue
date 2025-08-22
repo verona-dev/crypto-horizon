@@ -1,35 +1,37 @@
 <template>
-    <Table v-if='market_data' class='w-96'>
-        <TableHeader>
-            <TableRow>
-                <TableHead>Type</TableHead>
-                <TableHead>Amount&#40;{{ symbol }}&#41;</TableHead>
-            </TableRow>
-        </TableHeader>
-        
-        <TableBody>
-            <!--  Max Supply  -->
-            <TableRow v-if='max_supply'>
-                <TableCell class='font-medium'>Max Supply</TableCell>
-                <TableCell>{{ max_supply_label }}</TableCell>
-            </TableRow>
-            <!--  Total Supply  -->
-            <TableRow v-if='total_supply'>
-                <TableCell class='font-medium'>Total Supply</TableCell>
-                <TableCell>{{ total_supply_label }}</TableCell>
-            </TableRow>
-            <!--  Circulating Supply  -->
-            <TableRow v-if='circulating_supply'>
-                <TableCell class='font-medium'>Circulating Supply</TableCell>
-                <TableCell>{{ circulating_supply_label }}</TableCell>
-            </TableRow>
-            <!--  Remaining Supply  -->
-            <TableRow v-if='remaining_supply'>
-                <TableCell class='font-medium'>Remaining Supply</TableCell>
-                <TableCell>{{ remaining_supply_label }}</TableCell>
-            </TableRow>
-        </TableBody>
-    </Table>
+    <div v-if='market_data'>
+        <Table class='w-96'>
+            <TableHeader>
+                <TableRow>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Amount&#40;{{ symbol }}&#41;</TableHead>
+                </TableRow>
+            </TableHeader>
+            
+            <TableBody>
+                <!--  Max Supply  -->
+                <TableRow v-if='max_supply'>
+                    <TableCell class='font-medium'>Max Supply</TableCell>
+                    <TableCell>{{ max_supply_label }}</TableCell>
+                </TableRow>
+                <!--  Total Supply  -->
+                <TableRow v-if='total_supply'>
+                    <TableCell class='font-medium'>Total Supply</TableCell>
+                    <TableCell>{{ total_supply_label }}</TableCell>
+                </TableRow>
+                <!--  Circulating Supply  -->
+                <TableRow v-if='circulating_supply'>
+                    <TableCell class='font-medium'>Circulating Supply</TableCell>
+                    <TableCell>{{ circulating_supply_label }}</TableCell>
+                </TableRow>
+                <!--  Remaining Supply  -->
+                <TableRow v-if='remaining_supply'>
+                    <TableCell class='font-medium'>Remaining Supply</TableCell>
+                    <TableCell>{{ remaining_supply_label }}</TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
+    </div>
 </template>
 
 <script setup>
