@@ -1,7 +1,7 @@
 
 <template>
     <div class='my-10 flex-col lg:flex-row flex items-center justify-center gap-16 mx-auto'>
-        <div class='w-full xl:w-[450px] h-full xl:h-[450px]'>
+        <div class='w-52 xl:w-[450px] h-52 xl:h-[450px]'>
             <Doughnut
                 :data='chartData'
                 :options='chartOptions'

@@ -1,7 +1,7 @@
 
 <template>
     <div class='my-10 flex-col xl:flex-row flex items-center justify-center gap-16 '>
-        <div class='w-full xl:w-[450px] h-full xl:h-[450px]'>
+        <div class='w-full xl:w-[450px] h-96 xl:h-[450px]'>
             <Bar
                 :data='chartData'
                 :options='chartOptions'
