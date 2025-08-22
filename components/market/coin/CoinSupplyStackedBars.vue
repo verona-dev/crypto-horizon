@@ -1,15 +1,21 @@
 
 <template>
-    <div class='mt-10 h-96 w-3/4 mx-auto'>
-        <Bar
-            :data='chartData'
-            :options='chartOptions'
-        />
+    <div class='my-10 flex-col xl:flex-row flex items-center justify-center gap-16 '>
+        <div class='w-full xl:w-[450px] h-96 xl:h-[450px]'>
+            <Bar
+                :data='chartData'
+                :options='chartOptions'
+            />
+        </div>
+        
+        <CoinSupplyTable :coin='coin' />
     </div>
+
 </template>
 
 <script lang='ts' setup>
-    import { Bar } from 'vue-chartjs';
+    import {Bar} from 'vue-chartjs';
+    import CoinSupplyTable from '~/components/market/coin/CoinSupplyTable.vue';
     
     const props = defineProps({
         coin: {
@@ -55,16 +61,15 @@
             }
         } else {
             // If coin does not have max supply
-            if(total_supply.value) {
-                labels.push('Total Supply');
-                data.push(total_supply.value);
-                backgroundColor.push('#fef0ca');
-            }
-            
-            if(circulating_supply.value) {
-                labels.push('Circulating Supply');
-                data.push(circulating_supply.value);
-                backgroundColor.push('#e787c0');
+            // If coin's total supply is the same as circulating supply
+            if(total_supply.value === circulating_supply.value) {
+                // display only TOTAL
+                // EXAMPLE: ETH
+                if(total_supply.value) {
+                    labels.push('Total Supply');
+                    data.push(total_supply.value);
+                    backgroundColor.push('#fef0ca');
+                }
             }
         }
         
@@ -83,10 +88,10 @@
     });
     
     const chartOptions = ref({
-        barThickness: 50,
+        barThickness: 75,
         indexAxis: 'y',
-        maintainAspectRatio: false,
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 labels: {

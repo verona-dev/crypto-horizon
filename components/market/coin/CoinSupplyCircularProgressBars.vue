@@ -267,18 +267,16 @@
     const market_data = computed(() => coin.value?.coingecko?.market_data);
     
     const market_cap = computed(() => market_data.value?.market_cap?.usd);
-    const market_cap_label = computed(() => market_data.value.market_cap_label);
+    const market_cap_label = market_data.value.market_cap_label;
     const market_cap_bar_label = computed(() => formatNumber(market_cap.value, {
         compact: true, decimals: 1
     }));
     
     const max_supply = computed(() => market_data.value?.max_supply);
-    const max_supply_label = computed(() => formatNumber(max_supply.value, {
-        style: 'decimal'
-    }));
+    const max_supply_label = market_data.value?.max_supply_label;
     const max_supply_bar_label = computed(() => formatNumber(max_supply.value, {
         compact: true, style: 'decimal'
-    }))
+    }));
     
     const total_supply = computed(() =>  market_data.value?.total_supply);
     const total_supply_label = computed(() => formatNumber(total_supply.value, {
@@ -287,19 +285,17 @@
     const total_supply_percentage = computed(() => (total_supply.value / max_supply.value) * 100);
     
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
-    const circulating_supply_label = computed(() => formatNumber(circulating_supply.value, {
-        style: 'decimal'
-    }));
+    const circulating_supply_label = market_data.value?.circulating_supply_label;
     const circulating_supply_percentage = computed(() => (circulating_supply.value / max_supply.value) * 100);
     
     const volume = computed(() => market_data.value?.total_volume?.usd);
-    const volume_label = computed(() => formatNumber(volume.value));
+    const volume_label = market_data.value?.volume_label;
     const volume_bar_label = computed(() => formatNumber(volume.value, {
         compact: true, decimals: 1
     }));
     
     const fully_diluted_valuation = computed(() => market_data.value?.fully_diluted_valuation?.usd);
-    const fully_diluted_valuation_label = computed(() => formatNumber(fully_diluted_valuation.value));
+    const fully_diluted_valuation_label = computed(() => market_data.value?.fully_diluted_valuation_label);
     const fully_diluted_bar_valuation = computed(() => formatNumber(fully_diluted_valuation.value, {
         compact: true, decimals: 1
     }));

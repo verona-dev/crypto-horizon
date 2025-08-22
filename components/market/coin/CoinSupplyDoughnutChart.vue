@@ -1,61 +1,20 @@
 
 <template>
-    <div class='mt-10 flex items-center justify-center gap-16'>
-        <div>
+    <div class='my-10 flex-col lg:flex-row flex items-center justify-center gap-16'>
+        <div class='w-52 lg:w-[450px] h-52 lg:h-[450px]'>
             <Doughnut
                 :data='chartData'
                 :options='chartOptions'
-                class='w-[450px] h-[450px]'
             />
         </div>
         
-        <div>
-            <Table class='w-96'>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead>Supply</TableHead>
-                        <TableHead>{{ symbol }}</TableHead>
-                    </TableRow>
-                </TableHeader>
-                
-                <TableBody>
-                    <!--  Max Supply  -->
-                    <TableRow v-if='max_supply'>
-                        <TableCell class='font-medium'>Max Supply</TableCell>
-                        <TableCell>{{ max_supply_label }}</TableCell>
-                    </TableRow>
-                    <!--  Total Supply  -->
-                    <TableRow v-if='total_supply'>
-                        <TableCell class='font-medium'>Total Supply</TableCell>
-                        <TableCell>{{ total_supply_label }}</TableCell>
-                    </TableRow>
-                    <!--  Circulating Supply  -->
-                    <TableRow v-if='circulating_supply'>
-                        <TableCell class='font-medium'>Circulating Supply</TableCell>
-                        <TableCell>{{ circulating_supply_label }}</TableCell>
-                    </TableRow>
-                    <!--  Remaining Supply  -->
-                    <TableRow v-if='remaining_supply'>
-                        <TableCell class='font-medium'>Remaining Supply</TableCell>
-                        <TableCell>{{ remaining_supply_label }}</TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
-        </div>
-    
+        <CoinSupplyTable :coin='coin' />
     </div>
 </template>
 
 <script lang='ts' setup>
-    import { formatNumber } from '~/utils/formatUtils.js';
-    
     import { Doughnut } from 'vue-chartjs';
-    import {
-        Table,
-        TableBody,
-        TableCell,
-        TableRow,
-    } from '@/components/ui/table';
+    import CoinSupplyTable from '~/components/market/coin/CoinSupplyTable.vue';
     
     const props = defineProps({
         coin: {
@@ -65,24 +24,11 @@
     });
     
     const { coin } = toRefs(props);
-    const symbol = computed(() => coin.value?.symbol);
     const market_data = computed(() => coin.value?.coingecko?.market_data);
     const max_supply = computed(() => market_data.value?.max_supply);
-    const max_supply_label = computed(() => formatNumber(max_supply.value, {
-        style: 'decimal'
-    }));
     const total_supply = computed(() =>  market_data.value?.total_supply);
-    const total_supply_label = computed(() => formatNumber(total_supply.value, {
-        style: 'decimal'
-    }));
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
-    const circulating_supply_label = computed(() => formatNumber(circulating_supply.value, {
-        style: 'decimal'
-    }));
     const remaining_supply = computed(() => max_supply.value - total_supply.value);
-    const remaining_supply_label = computed(() => formatNumber(remaining_supply.value, {
-        style: 'decimal'
-    }));
     
     const chartContent = computed(() => {
         const labels = [];
@@ -90,7 +36,10 @@
         const backgroundColor = [];
         
         // If coin has max supply
-        if (max_supply.value) {
+        if(max_supply.value) {
+            // display TOTAL and REMAINING
+            // EXAMPLE: BTC, XRP, BNB
+            
             if(total_supply.value) {
                 labels.push('Total Supply');
                 data.push(total_supply.value);
@@ -104,16 +53,15 @@
             }
         } else {
             // If coin does not have max supply
-            if(total_supply.value) {
-                labels.push('Total Supply');
-                data.push(total_supply.value);
-                backgroundColor.push('#fef0ca');
-            }
-            
-            if(circulating_supply.value) {
-                labels.push('Circulating Supply');
-                data.push(circulating_supply.value);
-                backgroundColor.push('#e787c0');
+            // If coin's total supply is the same as circulating supply
+            if(total_supply.value === circulating_supply.value) {
+                // display only TOTAL
+                // EXAMPLE: ETH
+                if(total_supply.value) {
+                    labels.push('Total Supply');
+                    data.push(total_supply.value);
+                    backgroundColor.push('#fef0ca');
+                }
             }
         }
         
@@ -134,7 +82,7 @@
     
     const chartOptions = ref({
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 labels: {
