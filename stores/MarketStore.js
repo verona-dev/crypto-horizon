@@ -58,7 +58,7 @@ export const useMarketStore = defineStore('MarketStore', {
                     useFetchCoingecko(`coins/${coinId}`),
                     useFetchCoingecko(`coins/${coinId}/market_chart`, {
                         query: {
-                            days: 7,
+                            days: 1,
                             precision: 5,
                         }
                     })
