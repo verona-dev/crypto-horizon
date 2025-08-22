@@ -36,8 +36,32 @@
         const data = [];
         const backgroundColor = [];
         
-        // If coin has max supply
-        if (max_supply.value) {
+        // If coin's tot.supply is the same as circ.supply
+        if(total_supply.value === circulating_supply.value) {
+            // EXAMPLE: BNB
+            if(max_supply.value) {
+                if(total_supply.value) {
+                    labels.push('Total Supply');
+                    data.push(total_supply.value);
+                    backgroundColor.push('#fef0ca');
+                }
+                
+                if(remaining_supply.value) {
+                    labels.push('Remaining Supply');
+                    data.push(remaining_supply.value);
+                    backgroundColor.push('#41B883');
+                }
+            } else {
+                // EXAMPLE: ETH
+                if(total_supply.value) {
+                    labels.push('Total Supply');
+                    data.push(total_supply.value);
+                    backgroundColor.push('#fef0ca');
+                }
+            }
+        } else {
+            // If coin's tot.supply is different than circ.supply
+            // EXAMPLE: BTC, XRP
             if(total_supply.value) {
                 labels.push('Total Supply');
                 data.push(total_supply.value);
@@ -49,20 +73,6 @@
                 data.push(remaining_supply.value);
                 backgroundColor.push('#41B883');
             }
-        } else {
-            // If coin does not have max supply
-            alert('no max supply');
-            if(total_supply.value) {
-                labels.push('Total Supply');
-                data.push(total_supply.value);
-                backgroundColor.push('#fef0ca');
-            }
-            
-/*            if(circulating_supply.value) {
-                labels.push('Circulating Supply');
-                data.push(circulating_supply.value);
-                backgroundColor.push('#e787c0');
-            }*/
         }
         
         return { labels, data, backgroundColor };
