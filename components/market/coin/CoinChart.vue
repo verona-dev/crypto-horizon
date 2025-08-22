@@ -38,7 +38,6 @@
                 >
                     <ToggleGroupItem
                         value='1d'
-                        :disabled='range.value === ""'
                         aria-label='Toggle 1 day'
                     >
                         <span class=''>1D</span>
@@ -46,7 +45,6 @@
                     
                     <ToggleGroupItem
                         value='7d'
-                        :disabled='range.value === ""'
                         aria-label='Toggle 7 days'
                     >
                         <span class=''>7D</span>
@@ -54,7 +52,6 @@
                     
                     <ToggleGroupItem
                         value='1m'
-                        :disabled='range.value === ""'
                         aria-label='Toggle 1 month'
                     >
                         <span class=''>1M</span>
