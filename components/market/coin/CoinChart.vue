@@ -29,6 +29,29 @@
                     />
                     Supply
                 </TabsTrigger>
+                
+                <ToggleGroup type='single' variant='outline'>
+                    <ToggleGroupItem
+                        value='1d'
+                        aria-label='Toggle 1 day'
+                    >
+                        <span class=''>1D</span>
+                    </ToggleGroupItem>
+                    
+                    <ToggleGroupItem
+                        value='7d'
+                        aria-label='Toggle 7 days'
+                    >
+                        <span class=''>7D</span>
+                    </ToggleGroupItem>
+                    
+                    <ToggleGroupItem
+                        value='1m'
+                        aria-label='Toggle 1 month'
+                    >
+                        <span class=''>1M</span>
+                    </ToggleGroupItem>
+                </ToggleGroup>
             </TabsList>
             
             <div class='chart-container'>
@@ -69,6 +92,7 @@
     import CustomLineChart from '~/utils/CustomLineChart.js';
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
     ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
+    import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
     
     const props = defineProps({
         coin: {
@@ -103,7 +127,7 @@
         labels: timestamps.value, // x-axis
         datasets: [
             {
-                label: 'Last 7 days',
+                label: '24H',
                 data: activeData.value, // y-axis
                 
                 // Line
@@ -259,6 +283,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        
+
+    }
+    
+    .group\/toggle-group {
+        button {
+            color: var(--muted-foreground);
+        }
+        
+        button[data-state='on'] {
+            color: var(--secondary) !important;
         }
     }
 </style>
