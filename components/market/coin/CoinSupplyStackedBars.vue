@@ -1,15 +1,22 @@
 
 <template>
-    <div class='mt-10 h-96 w-3/4 mx-auto'>
-        <Bar
-            :data='chartData'
-            :options='chartOptions'
-        />
+    <div class='my-10 flex-col lg:flex-row flex items-center justify-center gap-16'>
+        <div class='w-full xl:w-[450px] h-[450px]'>
+            <Bar
+                :data='chartData'
+                :options='chartOptions'
+                class='mx-auto h-full'
+            />
+        </div>
+        
+        <CoinSupplyTable :coin='coin' />
     </div>
+
 </template>
 
 <script lang='ts' setup>
-    import { Bar } from 'vue-chartjs';
+    import {Bar} from 'vue-chartjs';
+    import CoinSupplyTable from '~/components/market/coin/CoinSupplyTable.vue';
     
     const props = defineProps({
         coin: {
@@ -83,7 +90,7 @@
     });
     
     const chartOptions = ref({
-        barThickness: 50,
+        barThickness: 75,
         indexAxis: 'y',
         maintainAspectRatio: false,
         responsive: true,
