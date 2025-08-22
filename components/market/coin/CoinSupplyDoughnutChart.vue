@@ -36,36 +36,11 @@
         const data = [];
         const backgroundColor = [];
         
-        // If coin's tot.supply is the same as circ.supply
-        if(total_supply.value === circulating_supply.value) {
-            
-            if(max_supply.value) {
-                // EXAMPLE: BNB
-                // display TOTAL and REMAINING
-                if(total_supply.value) {
-                    labels.push('Total Supply');
-                    data.push(total_supply.value);
-                    backgroundColor.push('#fef0ca');
-                }
-                
-                if(remaining_supply.value) {
-                    labels.push('Remaining Supply');
-                    data.push(remaining_supply.value);
-                    backgroundColor.push('#41B883');
-                }
-            } else {
-                // EXAMPLE: ETH
-                // display TOTAL
-                if(total_supply.value) {
-                    labels.push('Total Supply');
-                    data.push(total_supply.value);
-                    backgroundColor.push('#fef0ca');
-                }
-            }
-        } else {
-            // If coin's tot.supply is different than circ.supply
-            // EXAMPLE: BTC, XRP
+        // If coin has max supply
+        if(max_supply.value) {
             // display TOTAL and REMAINING
+            // EXAMPLE: BTC, XRP, BNB
+            
             if(total_supply.value) {
                 labels.push('Total Supply');
                 data.push(total_supply.value);
@@ -76,6 +51,18 @@
                 labels.push('Remaining Supply');
                 data.push(remaining_supply.value);
                 backgroundColor.push('#41B883');
+            }
+        } else {
+            // If coin does not have max supply
+            // If coin's total supply is the same as circulating supply
+            if(total_supply.value === circulating_supply.value) {
+                // display only TOTAL
+                // EXAMPLE: ETH
+                if(total_supply.value) {
+                    labels.push('Total Supply');
+                    data.push(total_supply.value);
+                    backgroundColor.push('#fef0ca');
+                }
             }
         }
         
