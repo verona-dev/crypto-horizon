@@ -104,6 +104,17 @@
                     >
                         1Y
                     </TabsTrigger>
+                    
+                    <TabsTrigger
+                        value='600'
+                        class='py-5 px-4
+                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
+                               rounded-lg
+                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        '
+                    >
+                        Max
+                    </TabsTrigger>
                 </TabsList>
             </Tabs>
         </div>
