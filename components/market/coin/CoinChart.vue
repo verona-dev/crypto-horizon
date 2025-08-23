@@ -35,9 +35,11 @@
                     @update:model-value='onUpdateRange'
                     type='single'
                     variant='outline'
+                    class='toggle-group'
                 >
                     <ToggleGroupItem
                         value='1d'
+                        :disabled='range === "1d"'
                         aria-label='Toggle 1 day'
                     >
                         <span class=''>1D</span>
@@ -45,6 +47,7 @@
                     
                     <ToggleGroupItem
                         value='7d'
+                        :disabled='range === "7d"'
                         aria-label='Toggle 7 days'
                     >
                         <span class=''>7D</span>
@@ -52,6 +55,7 @@
                     
                     <ToggleGroupItem
                         value='1m'
+                        :disabled='range === "1m"'
                         aria-label='Toggle 1 month'
                     >
                         <span class=''>1M</span>
@@ -112,6 +116,9 @@
     
     const onUpdateRange = value => {
         console.log('updated range', value);
+        if (value) {
+            range.value = value;
+        }
     };
     
     const chartData = ref(coin.value?.chart);
@@ -299,13 +306,19 @@
 
     }
     
-    .group\/toggle-group {
+    .toggle-group {
+        border: 1px solid red;
+        
         button {
             color: var(--muted-foreground);
         }
         
         button[data-state='on'] {
-            color: var(--secondary) !important;
+            background-color:var(--card);
+            border-radius: 6px;
+            //color: var(--muted-foreground) !important;
+            opacity: 1 !important;
+            
         }
     }
 </style>
