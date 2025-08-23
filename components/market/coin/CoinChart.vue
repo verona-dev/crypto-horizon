@@ -55,22 +55,23 @@
             
             <!--  Range  -->
             <Tabs
-                v-model='range'
+                v-model='current_interval'
                 @update:model-value='onRangeUpdate'
-                :default-value='ranges[0].value'
+                :default-value='current_interval'
                 class='inline'
             >
                 <TabsList class='my-10 gap-x-0.5 py-6 px-0.5'>
                     <TabsTrigger
                         v-for='range in ranges'
-                        :value=range.value
+                        :key='range.interval'
+                        :value='range.interval'
                         class='py-5 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
-                        {{ range.label }}
+                        {{ range.button_label }}
                     </TabsTrigger>
                 </TabsList>
             </Tabs>
@@ -130,58 +131,43 @@
     
     const { coin } = toRefs(props);
     
+    // Tabs
+    const type = ref('price');
     const ranges = [
         {
             name: 'Day',
-            value: 1,
-            label: '1D',
+            interval: 1,
+            button_label: '1D',
         },
         {
             name: 'Week',
-            value: 7,
-            label: '7D',
+            interval: 7,
+            button_label: '7D',
         },
         {
             name: 'Month',
-            value: 30,
-            label: '30D',
+            interval: 30,
+            button_label: '30D',
         },
         {
             name: 'Year',
-            value: 365,
-            label: '1Y',
+            interval: 365,
+            button_label: '1Y',
         },
-        {
-            name: 'Max',
-            value: 1000,
-            label: 'Max',
-        }
     ];
+    const current_interval = ref(ranges[0].interval);
+    const current_range = computed(() => ranges.find(r => r.interval === current_interval.value));
+    const onRangeUpdate = () => getCoingeckoCoinChart(current_interval.value);
     
+    // Chart
     const chart = computed(() => coin.value?.chart);
+    const chartRef = ref(null);
     const timestamps = computed(() => chart.value?.prices?.map(item => item[0]));
     const prices = computed(() => chart.value?.prices?.map(item => item[1]));
     const volumes = computed(() => chart.value?.total_volumes?.map(item => item[1]));
     const m_caps = computed(() => chart.value?.market_caps?.map(item => item[1]));
-    
-    const type = ref('price');
-    const range = ref(ranges.value);
     const chart_data = computed(() => type.value === 'price' ? prices.value : m_caps.value);
     const loading = ref(false);
-    const chartRef = ref(null);
-    
-    const show_drawer = ref(false);
-    const onHandleDrawer = bool => show_drawer.value = bool;
-    watch(show_drawer, () => {
-        // Switch to the price type once the supply drawer is closed
-        if(type.value === 'supply' && !show_drawer.value) {
-            nextTick(() => type.value = 'price');
-        }
-    });
-    
-    const onRangeUpdate = () => {
-        getCoingeckoCoinChart(range.value);
-    };
     
     watch(chart_data, () => {
         const chartInstance = chartRef.value?.chart;
@@ -201,7 +187,7 @@
         labels: timestamps.value, // x-axis
         datasets: [
             {
-                label: '24H',
+                label: `1 ${current_range.value?.name}`,
                 data: chart_data.value, // y-axis
                 
                 // Line
@@ -324,6 +310,16 @@
             },
         },
     };
+    
+    // Drawer
+    const show_drawer = ref(false);
+    const onHandleDrawer = bool => show_drawer.value = bool;
+    watch(show_drawer, () => {
+        // Switch to the price type once the supply drawer is closed
+        if(type.value === 'supply' && !show_drawer.value) {
+            nextTick(() => type.value = 'price');
+        }
+    });
 </script>
 
 <style scoped>
