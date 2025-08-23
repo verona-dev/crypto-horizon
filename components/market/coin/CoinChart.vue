@@ -284,6 +284,10 @@
                     maxTicksLimit: 8,
                     callback: function(value) {
                         const label = this.getLabelForValue(value);
+                        
+                        if(current_range.value.name === 'Year') {
+                            return dayjs(label).format("MMM 'YY");
+                        }
                         return dayjs(label).format('D. MMM');
                     }
                 },
