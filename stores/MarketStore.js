@@ -66,7 +66,6 @@ export const useMarketStore = defineStore('MarketStore', {
                 
                 if (coinResponse) {
                     this.coin.coingecko = formatCoingeckoCoin(coinResponse);
-                    console.log(JSON.parse(JSON.stringify(this.coin.coingecko)));
                 }
                 
                 if (chartResponse) {
