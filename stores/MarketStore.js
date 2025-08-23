@@ -81,12 +81,11 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getCoingeckoCoinChart(coinId, range) {
-            console.log(coinId, range);
-            this.loading = true;
+        async getCoingeckoCoinChart(range) {
+            const id = this.coin.coingecko.id;
             
             try {
-                const response = await useFetchCoingecko(`coins/${coinId}/market_chart`, {
+                const response = await useFetchCoingecko(`coins/${id}/market_chart`, {
                     query: {
                         days: range,
                         precision: 5,
@@ -98,9 +97,6 @@ export const useMarketStore = defineStore('MarketStore', {
                 }
             } catch(error) {
                 console.error(error)
-            }
-            finally {
-                this.loading = false;
             }
         },
         

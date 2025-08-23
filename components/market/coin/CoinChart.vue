@@ -3,7 +3,6 @@
         <div class='tabs-container flex items-center justify-between'>
             <Tabs
                 v-model='type'
-                @update:model-value='onTabUpdate'
                 default-value='price'
                 class='inline'
             >
@@ -50,7 +49,7 @@
             
             <Tabs
                 v-model='range'
-                @update:model-value='onTabUpdate'
+                @update:model-value='onRangeUpdate'
                 default-value='price'
                 class='inline'
             >
@@ -140,6 +139,13 @@
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
     ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
     
+    // MarketStore
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    const MarketStore = useMarketStore();
+    
+    // Methods
+    const { getCoingeckoCoinChart } = MarketStore;
+    
     const props = defineProps({
         coin: {
             type: Object,
@@ -149,18 +155,14 @@
     
     const { coin } = toRefs(props);
     
-    const onTabUpdate = (value) => {
-        console.log(value);
-    };
-    
-    const chart = ref(coin.value?.chart);
+    const chart = computed(() => coin.value?.chart);
     const timestamps = computed(() => chart.value?.prices?.map(item => item[0]));
     const prices = computed(() => chart.value?.prices?.map(item => item[1]));
     const volumes = computed(() => chart.value?.total_volumes?.map(item => item[1]));
     const mCaps = computed(() => chart.value?.market_caps?.map(item => item[1]));
     
     const type = ref('price');
-    const range = ref('1d');
+    const range = ref('1');
     const chartData = computed(() => type.value === 'price' ? prices.value : mCaps.value);
     const loading = ref(false);
     const chartRef = ref(null);
@@ -173,6 +175,24 @@
             nextTick(() => type.value = 'price');
         }
     });
+    
+    const onRangeUpdate = () => {
+        getCoingeckoCoinChart(range.value);
+    };
+    
+    watch(chartData, () => {
+        const chartInstance = chartRef.value?.chart;
+        
+        if (chartInstance) {
+            loading.value = true;
+            
+            chartInstance.update();
+            
+            setTimeout(() => {
+                loading.value = false;
+            }, 600);
+        }
+    }, { deep: true });
     
     const data = computed(() => ({
         labels: timestamps.value, // x-axis
@@ -203,20 +223,6 @@
             },
         ],
     }));
-    
-    watch(chartData, () => {
-        const chartInstance = chartRef.value?.chart;
-        
-        if (chartInstance) {
-            loading.value = true;
-            
-            chartInstance.update();
-            
-            setTimeout(() => {
-                loading.value = false;
-            }, 600);
-        }
-    }, { deep: true });
     
     const options = {
         responsive: true,
