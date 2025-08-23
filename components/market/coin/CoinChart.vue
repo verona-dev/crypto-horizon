@@ -1,6 +1,7 @@
 <template>
     <div v-if='chart.prices' class='coin-chart'>
         <div class='tabs-container flex items-center justify-between'>
+            <!--  Price + Market Cap  -->
             <Tabs
                 v-model='type'
                 default-value='price'
@@ -11,7 +12,7 @@
                         value='price'
                         class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-md
+                               rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
@@ -22,19 +23,24 @@
                         value='mcap'
                         class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-md
+                               rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
                         Market Cap
                     </TabsTrigger>
-                    
+                </TabsList>
+            </Tabs>
+            
+            <!--  Supply Drawer  -->
+            <Tabs v-model='type'>
+                <TabsList class='my-10 gap-x-0.5 py-5 px-0.5 w-36'>
                     <TabsTrigger
                         @click='show_drawer = true'
                         value='supply'
                         class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-md
+                               rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
@@ -47,6 +53,7 @@
                 </TabsList>
             </Tabs>
             
+            <!--  Range  -->
             <Tabs
                 v-model='range'
                 @update:model-value='onRangeUpdate'
@@ -58,7 +65,7 @@
                         value='1'
                         class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-md
+                               rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
@@ -69,7 +76,7 @@
                         value='7'
                         class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-md
+                               rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
@@ -80,7 +87,7 @@
                         value='30'
                         class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-md
+                               rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
@@ -91,7 +98,7 @@
                         value='365'
                         class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-md
+                               rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
