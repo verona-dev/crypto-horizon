@@ -7,7 +7,7 @@
                 default-value='price'
                 class='inline'
             >
-                <TabsList class='my-10 gap-x-1 py-6.5 px-1'>
+                <TabsList class='my-10 gap-x-1 py-6 px-0.5'>
                     <TabsTrigger
                         value='price'
                         class='py-5 px-4
@@ -21,7 +21,7 @@
                     
                     <TabsTrigger
                         value='mcap'
-                        class='py-5.5 px-4
+                        class='py-5 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -33,7 +33,7 @@
                     <TabsTrigger
                         @click='showDrawer = true'
                         value='supply'
-                        class='py-5.5 px-4
+                        class='py-5 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -54,7 +54,7 @@
                 default-value='price'
                 class='inline'
             >
-                <TabsList class='my-10 gap-x-1 py-6.5 px-1'>
+                <TabsList class='my-10 gap-x-1 py-6 px-0.5'>
                     <TabsTrigger
                         value='1'
                         class='py-5 px-4
