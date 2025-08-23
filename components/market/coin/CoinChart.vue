@@ -1,85 +1,100 @@
 <template>
     <div v-if='chartData.prices' class='coin-chart'>
-        <Tabs
-            v-model='activeTab'
-            default-value='price'
-            class='mb-10'
-        >
-            <TabsList class='text-muted mx-auto my-10 gap-x-1 py-6 w-3/5'>
-                <TabsTrigger value='price'>
-                    <NuxtIcon
-                        name='mdi-light:chart-line'
-                        size='30'
-                    />
-                    Price
-                </TabsTrigger>
-                
-                <TabsTrigger value='mcap'>
-                    <NuxtIcon
-                        name='mdi-light:chart-line'
-                        size='30'
-                    />
-                    Market Cap
-                </TabsTrigger>
-                
-                <TabsTrigger @click='showDrawer = true' value='supply'>
-                    <NuxtIcon
-                        name='mdi-light:chart-pie'
-                        size='30'
-                    />
-                    Supply
-                </TabsTrigger>
-                
-                <ToggleGroup
-                    v-model='range'
-                    @update:model-value='onUpdateRange'
-                    type='single'
-                    variant='outline'
-                    class='toggle-group'
-                >
-                    <ToggleGroupItem
-                        value='1d'
-                        :disabled='range === "1d"'
-                        aria-label='Toggle 1 day'
+        <div class='tabs-container'>
+            <Tabs
+                v-model='tab'
+                @update:model-value='onUpdate'
+                default-value='price'
+                class='inline'
+            >
+                <TabsList class='text-muted mx-auto my-10 gap-x-1 py-6 w-3/5'>
+                    <TabsTrigger
+                        value='price'
+                        class='py-5 dark:data-[state=active]:bg-accent-foreground hover:bg-accent-foreground
+                               text-foreground dark:text-muted-foreground
+                               focus-visible:border-ring
+                               rounded-sm focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        '
                     >
-                        <span class=''>1D</span>
-                    </ToggleGroupItem>
+                        Price
+                    </TabsTrigger>
                     
-                    <ToggleGroupItem
-                        value='7d'
-                        :disabled='range === "7d"'
-                        aria-label='Toggle 7 days'
+                    <TabsTrigger
+                        value='mcap'
+                        class='py-5 dark:data-[state=active]:bg-accent-foreground hover:bg-accent-foreground
+                               text-foreground dark:text-muted-foreground
+                               focus-visible:border-ring
+                               rounded-sm focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        '
                     >
-                        <span class=''>7D</span>
-                    </ToggleGroupItem>
+                        Market Cap
+                    </TabsTrigger>
                     
-                    <ToggleGroupItem
-                        value='1m'
-                        :disabled='range === "1m"'
-                        aria-label='Toggle 1 month'
+                    <TabsTrigger
+                        @click='showDrawer = true'
+                        value='supply'
+                        class='py-5 dark:data-[state=active]:bg-accent-foreground hover:bg-accent-foreground
+                               text-foreground dark:text-muted-foreground
+                               focus-visible:border-ring
+                               rounded-sm focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        '
                     >
-                        <span class=''>1M</span>
-                    </ToggleGroupItem>
-                </ToggleGroup>
-            </TabsList>
+                        <NuxtIcon
+                            name='mdi-light:chart-pie'
+                            size='30'
+                        />
+                        Supply
+                    </TabsTrigger>
+                </TabsList>
+            </Tabs>
             
-            <div class='chart-container'>
-                <div v-if='loading' class='spinner-container flex flex-col gap-2'>
-                    <MazSpinner class='spinner' color='primary' size='3em' />
-                    <p class='mt-2'>Recalculating</p>
-                    <span class='text-muted-custom mb-6'>This might take a few seconds</span>
-                </div>
-                
-                <div class='max-w-[450px] md:max-w-[650px] lg:max-w-[900px] mx-auto'>
-                    <Line
-                        ref='chartRef'
-                        v-if='data.datasets?.length'
-                        :data='data'
-                        :options='options'
-                        :height='400'
-                        :type='"customLineChart"'
-                    />
-                </div>
+            <Tabs
+                v-model='range'
+                @update:model-value='onUpdate'
+                default-value='price'
+                class='inline'
+            >
+                <TabsList class='h-0'>
+                    <TabsTrigger
+                        value='1d'
+                        class='w-10'
+                    >
+                        1D
+                    </TabsTrigger>
+                    
+                    <TabsTrigger
+                        value='7d'
+                        class='w-10'
+                    >
+                        7D
+                    </TabsTrigger>
+                    
+                    <TabsTrigger
+                        value='30d'
+                        class='w-10'
+                    >
+                        30D
+                    </TabsTrigger>
+                </TabsList>
+            </Tabs>
+        </div>
+        
+        <div class='chart-container'>
+            <div v-if='loading' class='spinner-container flex flex-col gap-2'>
+                <MazSpinner class='spinner' color='primary' size='3em' />
+                <p class='mt-2'>Recalculating</p>
+                <span class='text-muted-custom mb-6'>This might take a few seconds</span>
+            </div>
+            
+            <div class='max-w-[450px] md:max-w-[650px] lg:max-w-[900px] mx-auto'>
+                <Line
+                    ref='chartRef'
+                    v-if='data.datasets?.length'
+                    :data='data'
+                    :options='options'
+                    :height='400'
+                    :type='"customLineChart"'
+                />
             </div>
             
             <CoinSupply
@@ -88,7 +103,7 @@
                 :showDrawer='showDrawer'
                 @handleDrawer='onHandleDrawer'
             />
-        </Tabs>
+        </div>
     </div>
 </template>
 
@@ -101,7 +116,6 @@
     import CustomLineChart from '~/utils/CustomLineChart.js';
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
     ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
-    import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
     
     const props = defineProps({
         coin: {
@@ -112,13 +126,8 @@
     
     const { coin } = toRefs(props);
     
-    const range = ref('1d');
-    
-    const onUpdateRange = value => {
-        console.log('updated range', value);
-        if (value) {
-            range.value = value;
-        }
+    const onUpdate = (value) => {
+        console.log(value);
     };
     
     const chartData = ref(coin.value?.chart);
@@ -127,8 +136,9 @@
     const volumes = computed(() => chartData.value?.total_volumes?.map(item => item[1]));
     const mCaps = computed(() => chartData.value?.market_caps?.map(item => item[1]));
     
-    const activeTab = ref('price');
-    const activeData = computed(() => activeTab.value === 'price' ? prices.value : mCaps.value);
+    const tab = ref('price');
+    const range = ref('1d');
+    const activeData = computed(() => tab.value === 'price' ? prices.value : mCaps.value);
     const loading = ref(false);
     const chartRef = ref(null);
     
@@ -136,8 +146,8 @@
     const onHandleDrawer = bool => showDrawer.value = bool;
     watch(showDrawer, () => {
         // Switch to the price tab once the supply drawer is closed
-        if(activeTab.value === 'supply' && !showDrawer.value) {
-            nextTick(() => activeTab.value = 'price');
+        if(tab.value === 'supply' && !showDrawer.value) {
+            nextTick(() => tab.value = 'price');
         }
     });
     
@@ -231,7 +241,7 @@
                             truncate: true,
                         });
                         const volume = formatNumber(volumes.value[index]);
-                        const label = activeTab.value === 'price' ? 'Price' : 'Market Cap';
+                        const label = tab.value === 'price' ? 'Price' : 'Market Cap';
                         
                         return [
                             `${label}: ${amount}`,
@@ -301,24 +311,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        
-
-    }
-    
-    .toggle-group {
-        border: 1px solid red;
-        
-        button {
-            color: var(--muted-foreground);
-        }
-        
-        button[data-state='on'] {
-            background-color:var(--card);
-            border-radius: 6px;
-            //color: var(--muted-foreground) !important;
-            opacity: 1 !important;
-            
         }
     }
 </style>
