@@ -6,10 +6,10 @@
                 default-value='price'
                 class='inline'
             >
-                <TabsList class='my-10 gap-x-1 py-6 px-0.5'>
+                <TabsList class='my-10 gap-x-0.5 py-5 px-0.5'>
                     <TabsTrigger
                         value='price'
-                        class='py-5 px-4
+                        class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -20,7 +20,7 @@
                     
                     <TabsTrigger
                         value='mcap'
-                        class='py-5 px-4
+                        class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -32,7 +32,7 @@
                     <TabsTrigger
                         @click='showDrawer = true'
                         value='supply'
-                        class='py-5 px-4
+                        class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -53,10 +53,10 @@
                 default-value='price'
                 class='inline'
             >
-                <TabsList class='my-10 gap-x-1 py-6 px-0.5'>
+                <TabsList class='my-10 gap-x-0.5 py-5 px-0.5'>
                     <TabsTrigger
                         value='1'
-                        class='py-5 px-4
+                        class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -67,7 +67,7 @@
                     
                     <TabsTrigger
                         value='7'
-                        class='py-5 px-4
+                        class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -78,7 +78,7 @@
                     
                     <TabsTrigger
                         value='30'
-                        class='py-5 px-4
+                        class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -89,7 +89,7 @@
                     
                     <TabsTrigger
                         value='365'
-                        class='py-5 px-4
+                        class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -104,8 +104,8 @@
         <div class='chart-container'>
             <div v-if='loading' class='spinner-container flex flex-col gap-2'>
                 <MazSpinner class='spinner' color='primary' size='3em' />
-                <p class='mt-2'>Recalculating</p>
-                <span class='text-muted-custom mb-6'>This might take a few seconds</span>
+                <p class='mt-2'>Loading Data</p>
+                <span class='text-muted-custom mb-6'>Please wait a moment.</span>
             </div>
             
             <div class='max-w-[450px] md:max-w-[650px] lg:max-w-[900px] mx-auto'>
