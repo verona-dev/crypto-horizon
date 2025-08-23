@@ -202,14 +202,13 @@
                 data: chartData.value, // y-axis
                 
                 // Line
-                borderColor: 'oklch(0.657 0.163 153.606)',
+                borderColor: 'rgba(22,199,132, 0.9)',
                 borderWidth: 2,
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
                     const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-                    gradient.addColorStop(0.05, '#006200');
-                    gradient.addColorStop(0.1, '#1a4d1a');
-                    gradient.addColorStop(0.5, '#0d290d');
+                    gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
+                    gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
                     gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
                     return gradient;
                 },
