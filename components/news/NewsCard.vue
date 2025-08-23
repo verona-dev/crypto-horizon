@@ -101,7 +101,7 @@
                 </div>
                 
                 <!--  Article Title  -->
-                <CardDescription class='text-foreground text-md font-bold hover:underline px-6'>
+                <CardDescription class='text-foreground text-md text-left font-bold hover:underline px-6'>
                     <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
                         {{ title }}
                     </NuxtLink>
