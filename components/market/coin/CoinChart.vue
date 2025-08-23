@@ -282,12 +282,20 @@
                 ticks: {
                     color: 'oklch(0.705 0.015 286.067)',
                     maxTicksLimit: 8,
-                    callback: function(value) {
+                    callback: function(value, index) {
                         const label = this.getLabelForValue(value);
                         
-                        if(current_range.value.name === 'Year') {
+                        if(current_range.value.name === 'Day') {
+                            if(index === 0) {
+                                return dayjs().format('D. MMM');
+                            }
+                            return dayjs(label).minute(0).second(0).millisecond(0).format('HH:mm');
+                        }
+                        
+                        else if(current_range.value.name === 'Year') {
                             return dayjs(label).format("MMM 'YY");
                         }
+                        
                         return dayjs(label).format('D. MMM');
                     }
                 },
