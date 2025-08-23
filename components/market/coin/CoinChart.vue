@@ -1,6 +1,6 @@
 <template>
     <div v-if='chartData.prices' class='coin-chart'>
-        <div class='tabs-container'>
+        <div class='tabs-container flex items-center justify-between'>
             <Tabs
                 v-model='tab'
                 @update:model-value='onUpdate'
@@ -54,25 +54,34 @@
                 default-value='price'
                 class='inline'
             >
-                <TabsList class='h-0'>
+                <TabsList class='my-10 gap-x-1 py-6 px-0.5'>
                     <TabsTrigger
                         value='1d'
-                        class='w-10'
-                    >
+                        class='py-5.5 px-4
+                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
+                               rounded-md
+                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        '                    >
                         1D
                     </TabsTrigger>
                     
                     <TabsTrigger
                         value='7d'
-                        class='w-10'
-                    >
+                        class='py-5.5 px-4
+                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
+                               rounded-md
+                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        '                    >
                         7D
                     </TabsTrigger>
                     
                     <TabsTrigger
                         value='30d'
-                        class='w-10'
-                    >
+                        class='py-5.5 px-4
+                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
+                               rounded-md
+                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        '                    >
                         30D
                     </TabsTrigger>
                 </TabsList>
