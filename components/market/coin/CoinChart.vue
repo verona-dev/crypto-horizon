@@ -7,13 +7,13 @@
                 default-value='price'
                 class='inline'
             >
-                <TabsList class='text-muted mx-auto my-10 gap-x-1 py-6 w-3/5'>
+                <TabsList class='text-muted mx-auto my-10 gap-x-1 py-6'>
                     <TabsTrigger
                         value='price'
-                        class='py-5 dark:data-[state=active]:bg-accent-foreground hover:bg-accent-foreground
-                               text-foreground dark:text-muted-foreground
-                               focus-visible:border-ring
-                               rounded-sm focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        class='py-5 dark:data-[state=active]:bg-accent-foreground
+                               dark:text-muted-foreground dark:hover:text-foreground
+                               rounded-md
+                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
                         Price
@@ -21,10 +21,10 @@
                     
                     <TabsTrigger
                         value='mcap'
-                        class='py-5 dark:data-[state=active]:bg-accent-foreground hover:bg-accent-foreground
-                               text-foreground dark:text-muted-foreground
-                               focus-visible:border-ring
-                               rounded-sm focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        class='py-5 dark:data-[state=active]:bg-accent-foreground
+                               dark:text-muted-foreground dark:hover:text-foreground
+                               rounded-md
+                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
                         Market Cap
@@ -33,10 +33,10 @@
                     <TabsTrigger
                         @click='showDrawer = true'
                         value='supply'
-                        class='py-5 dark:data-[state=active]:bg-accent-foreground hover:bg-accent-foreground
-                               text-foreground dark:text-muted-foreground
-                               focus-visible:border-ring
-                               rounded-sm focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        class='py-5 dark:data-[state=active]:bg-accent-foreground
+                               dark:text-muted-foreground dark:hover:text-foreground
+                               rounded-md
+                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
                         <NuxtIcon
