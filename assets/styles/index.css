@@ -32,6 +32,7 @@
     --color-ring: var(--ring);
     --color-secondary: var(--secondary);
     --color-secondary-foreground: var(--secondary-foreground);
+    --color-tertiary: var(--tertiary);
     --color-warning: var(--warning);
     
     --color-progress: var(--color-progress);
@@ -69,6 +70,7 @@
     --ring: oklch(0.442 0.017 285.786);
     --secondary: #1cd1a1;
     --secondary-foreground: oklch(0.985 0 0);
+    --tertiary: var(--color-cyan-700);
     --warning: oklch(83.7% 0.128 66.29);
     
     --color-progress: oklch(0.696 0.17 162.48);
