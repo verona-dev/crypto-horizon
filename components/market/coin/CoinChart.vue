@@ -206,7 +206,7 @@
                 // Point
                 pointRadius: 0,
                 pointHoverRadius: 5,
-                pointBackgroundColor: '#3fc45a',
+                pointBackgroundColor: 'oklch(0.985 0 0)',
             },
         ],
     }));
