@@ -57,63 +57,20 @@
             <Tabs
                 v-model='range'
                 @update:model-value='onRangeUpdate'
-                default-value='price'
+                :default-value='ranges[0].value'
                 class='inline'
             >
                 <TabsList class='my-10 gap-x-0.5 py-6 px-0.5'>
                     <TabsTrigger
-                        value='1'
+                        v-for='range in ranges'
+                        :value=range.value
                         class='py-5 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
-                        1D
-                    </TabsTrigger>
-                    
-                    <TabsTrigger
-                        value='7'
-                        class='py-5 px-4
-                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-lg
-                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
-                        '
-                    >
-                        7D
-                    </TabsTrigger>
-                    
-                    <TabsTrigger
-                        value='30'
-                        class='py-5 px-4
-                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-lg
-                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
-                        '
-                    >
-                        30D
-                    </TabsTrigger>
-                    
-                    <TabsTrigger
-                        value='365'
-                        class='py-5 px-4
-                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-lg
-                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
-                        '
-                    >
-                        1Y
-                    </TabsTrigger>
-                    
-                    <TabsTrigger
-                        value='600'
-                        class='py-5 px-4
-                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-lg
-                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
-                        '
-                    >
-                        Max
+                        {{ range.label }}
                     </TabsTrigger>
                 </TabsList>
             </Tabs>
@@ -173,6 +130,34 @@
     
     const { coin } = toRefs(props);
     
+    const ranges = [
+        {
+            name: 'Day',
+            value: 1,
+            label: '1D',
+        },
+        {
+            name: 'Week',
+            value: 7,
+            label: '7D',
+        },
+        {
+            name: 'Month',
+            value: 30,
+            label: '30D',
+        },
+        {
+            name: 'Year',
+            value: 365,
+            label: '1Y',
+        },
+        {
+            name: 'Max',
+            value: 1000,
+            label: 'Max',
+        }
+    ];
+    
     const chart = computed(() => coin.value?.chart);
     const timestamps = computed(() => chart.value?.prices?.map(item => item[0]));
     const prices = computed(() => chart.value?.prices?.map(item => item[1]));
@@ -180,7 +165,7 @@
     const m_caps = computed(() => chart.value?.market_caps?.map(item => item[1]));
     
     const type = ref('price');
-    const range = ref('1');
+    const range = ref(ranges.value);
     const chart_data = computed(() => type.value === 'price' ? prices.value : m_caps.value);
     const loading = ref(false);
     const chartRef = ref(null);
