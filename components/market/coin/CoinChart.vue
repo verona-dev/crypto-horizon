@@ -7,10 +7,10 @@
                 default-value='price'
                 class='inline'
             >
-                <TabsList class='my-10 gap-x-0.5 py-5 px-0.5'>
+                <TabsList class='my-10 gap-x-0.5 py-6 px-0.5'>
                     <TabsTrigger
                         value='price'
-                        class='py-4 px-4
+                        class='py-5 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -21,7 +21,7 @@
                     
                     <TabsTrigger
                         value='mcap'
-                        class='py-4 px-4
+                        class='py-5 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -34,12 +34,12 @@
             
             <!--  Supply Drawer  -->
             <Tabs v-model='type'>
-                <TabsList class='my-10 gap-x-0.5 py-5 px-0.5 w-36'>
+                <TabsList class='my-10 gap-x-0.5 py-6 px-0.5 w-36'>
                     <TabsTrigger
                         @click='show_drawer = true'
                         value='supply'
                         class='py-4 px-4
-                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
+                               dark:data-[state=active]:bg-accent dark:text-muted-foreground dark:hover:text-foreground
                                rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
@@ -60,10 +60,10 @@
                 default-value='price'
                 class='inline'
             >
-                <TabsList class='my-10 gap-x-0.5 py-5 px-0.5'>
+                <TabsList class='my-10 gap-x-0.5 py-6 px-0.5'>
                     <TabsTrigger
                         value='1'
-                        class='py-4 px-4
+                        class='py-5 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -74,7 +74,7 @@
                     
                     <TabsTrigger
                         value='7'
-                        class='py-4 px-4
+                        class='py-5 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -85,7 +85,7 @@
                     
                     <TabsTrigger
                         value='30'
-                        class='py-4 px-4
+                        class='py-5 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -96,7 +96,7 @@
                     
                     <TabsTrigger
                         value='365'
-                        class='py-4 px-4
+                        class='py-5 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
