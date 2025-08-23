@@ -281,7 +281,7 @@
                 },
                 ticks: {
                     color: 'oklch(0.705 0.015 286.067)',
-                    maxTicksLimit: 8,
+                    maxTicksLimit: 7,
                     callback: function(value, index) {
                         const label = this.getLabelForValue(value);
                         
