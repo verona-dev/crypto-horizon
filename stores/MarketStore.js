@@ -66,7 +66,7 @@ export const useMarketStore = defineStore('MarketStore', {
                 
                 if (coinResponse) {
                     this.coin.coingecko = formatCoingeckoCoin(coinResponse);
-                    console.log(JSON.parse(JSON.stringify(this.coin.coingecko.market_data)));
+                    console.log(JSON.parse(JSON.stringify(this.coin.coingecko)));
                 }
                 
                 if (chartResponse) {
@@ -75,6 +75,29 @@ export const useMarketStore = defineStore('MarketStore', {
             }
             catch(error) {
                 console.error(error);
+            }
+            finally {
+                this.loading = false;
+            }
+        },
+        
+        async getCoingeckoCoinChart(coinId, range) {
+            console.log(coinId, range);
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko(`coins/${coinId}/market_chart`, {
+                    query: {
+                        days: range,
+                        precision: 5,
+                    }
+                });
+                
+                if(response) {
+                    this.coin.chart = response;
+                }
+            } catch(error) {
+                console.error(error)
             }
             finally {
                 this.loading = false;
