@@ -1,62 +1,107 @@
 <template>
-    <div v-if='chartData.prices' class='coin-chart'>
-        <Tabs
-            v-model='activeTab'
-            default-value='price'
-            class='mb-10'
-        >
-            <TabsList class='text-muted mx-auto my-10 gap-x-1 py-6 w-3/5'>
-                <TabsTrigger value='price'>
-                    <NuxtIcon
-                        name='mdi-light:chart-line'
-                        size='30'
-                    />
-                    Price
-                </TabsTrigger>
-                
-                <TabsTrigger value='mcap'>
-                    <NuxtIcon
-                        name='mdi-light:chart-line'
-                        size='30'
-                    />
-                    Market Cap
-                </TabsTrigger>
-                
-                <TabsTrigger @click='showDrawer = true' value='supply'>
-                    <NuxtIcon
-                        name='mdi-light:chart-pie'
-                        size='30'
-                    />
-                    Supply
-                </TabsTrigger>
-            </TabsList>
+    <div v-if='chart.prices' class='coin-chart'>
+        <div class='tabs-container flex items-center justify-between'>
+            <!--  Price + Market Cap  -->
+            <Tabs
+                v-model='type'
+                default-value='price'
+                class='inline'
+            >
+                <TabsList class='my-10 gap-x-0.5 py-6 px-0.5'>
+                    <TabsTrigger
+                        value='price'
+                        class='py-5 px-4
+                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
+                               rounded-lg
+                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        '
+                    >
+                        Price
+                    </TabsTrigger>
+                    
+                    <TabsTrigger
+                        value='mcap'
+                        class='py-5 px-4
+                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
+                               rounded-lg
+                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        '
+                    >
+                        Market Cap
+                    </TabsTrigger>
+                </TabsList>
+            </Tabs>
             
-            <div class='chart-container'>
-                <div v-if='loading' class='spinner-container flex flex-col gap-2'>
-                    <MazSpinner class='spinner' color='primary' size='3em' />
-                    <p class='mt-2'>Recalculating</p>
-                    <span class='text-muted-custom mb-6'>This might take a few seconds</span>
-                </div>
-                
-                <div class='max-w-[450px] md:max-w-[650px] lg:max-w-[900px] mx-auto'>
-                    <Line
-                        ref='chartRef'
-                        v-if='data.datasets?.length'
-                        :data='data'
-                        :options='options'
-                        :height='400'
-                        :type='"customLineChart"'
-                    />
-                </div>
+            <!--  Supply Drawer  -->
+            <Tabs v-model='type'>
+                <TabsList class='my-10 gap-x-0.5 py-6 px-0.5 w-36'>
+                    <TabsTrigger
+                        @click='show_drawer = true'
+                        value='supply'
+                        class='py-4 px-4
+                               dark:data-[state=active]:bg-accent dark:text-muted-foreground dark:hover:text-foreground
+                               rounded-lg
+                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        '
+                    >
+                        <NuxtIcon
+                            name='mdi-light:chart-pie'
+                            size='30'
+                        />
+                        Supply
+                    </TabsTrigger>
+                </TabsList>
+            </Tabs>
+            
+            <!--  Range  -->
+            <Tabs
+                v-model='current_interval'
+                @update:model-value='onRangeUpdate'
+                :default-value='current_interval'
+                class='inline'
+            >
+                <TabsList class='my-10 gap-x-0.5 py-6 px-0.5'>
+                    <TabsTrigger
+                        v-for='range in ranges'
+                        :key='range.interval'
+                        :value='range.interval'
+                        class='py-5 px-4
+                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
+                               rounded-lg
+                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        '
+                    >
+                        {{ range.button_label }}
+                    </TabsTrigger>
+                </TabsList>
+            </Tabs>
+        </div>
+        
+        <div class='chart-container'>
+            <div v-if='loading' class='spinner-container flex flex-col gap-2'>
+                <MazSpinner class='spinner' color='primary' size='3em' />
+                <p class='mt-2'>Loading Data</p>
+                <span class='text-muted-custom mb-6'>Please wait a moment.</span>
+            </div>
+            
+            <div class='max-w-[450px] md:max-w-[650px] lg:max-w-[900px] mx-auto'>
+                <Line
+                    ref='chartRef'
+                    v-if='data.datasets?.length'
+                    :data='data'
+                    :options='options'
+                    :height='400'
+                    :type='"customLineChart"'
+                />
             </div>
             
             <CoinSupply
-                v-if='showDrawer'
+                v-if='show_drawer'
                 :coin='coin'
-                :showDrawer='showDrawer'
+                :showDrawer='show_drawer'
                 @handleDrawer='onHandleDrawer'
             />
-        </Tabs>
+        </div>
     </div>
 </template>
 
@@ -70,6 +115,13 @@
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
     ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
     
+    // MarketStore
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    const MarketStore = useMarketStore();
+    
+    // Methods
+    const { getCoingeckoCoinChart } = MarketStore;
+    
     const props = defineProps({
         coin: {
             type: Object,
@@ -79,57 +131,45 @@
     
     const { coin } = toRefs(props);
     
-    const chartData = ref(coin.value?.chart);
-    const timestamps = computed(() => chartData.value?.prices?.map(item => item[0]));
-    const prices = computed(() => chartData.value?.prices?.map(item => item[1]));
-    const volumes = computed(() => chartData.value?.total_volumes?.map(item => item[1]));
-    const mCaps = computed(() => chartData.value?.market_caps?.map(item => item[1]));
+    // Tabs
+    const type = ref('price');
+    const ranges = [
+        {
+            name: 'Day',
+            interval: 1,
+            button_label: '1D',
+        },
+        {
+            name: 'Week',
+            interval: 7,
+            button_label: '7D',
+        },
+        {
+            name: 'Month',
+            interval: 30,
+            button_label: '30D',
+        },
+        {
+            name: 'Year',
+            interval: 365,
+            button_label: '1Y',
+        },
+    ];
+    const current_interval = ref(ranges[0].interval);
+    const current_range = computed(() => ranges.find(r => r.interval === current_interval.value));
+    const onRangeUpdate = () => getCoingeckoCoinChart(current_interval.value);
     
-    const activeTab = ref('price');
-    const activeData = computed(() => activeTab.value === 'price' ? prices.value : mCaps.value);
-    const loading = ref(false);
+    // Chart
+    const chart = computed(() => coin.value?.chart);
     const chartRef = ref(null);
+    const timestamps = computed(() => chart.value?.prices?.map(item => item[0]));
+    const prices = computed(() => chart.value?.prices?.map(item => item[1]));
+    const volumes = computed(() => chart.value?.total_volumes?.map(item => item[1]));
+    const m_caps = computed(() => chart.value?.market_caps?.map(item => item[1]));
+    const chart_data = computed(() => type.value === 'price' ? prices.value : m_caps.value);
+    const loading = ref(false);
     
-    const showDrawer = ref(false);
-    const onHandleDrawer = bool => showDrawer.value = bool;
-    watch(showDrawer, () => {
-        // Switch to the price tab once the supply drawer is closed
-        if(activeTab.value === 'supply' && !showDrawer.value) {
-            nextTick(() => activeTab.value = 'price');
-        }
-    });
-    
-    const data = computed(() => ({
-        labels: timestamps.value, // x-axis
-        datasets: [
-            {
-                label: 'Last 7 days',
-                data: activeData.value, // y-axis
-                
-                // Line
-                borderColor: 'oklch(0.657 0.163 153.606)',
-                borderWidth: 2,
-                backgroundColor: (context) => {
-                    const ctx = context.chart.ctx;
-                    const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-                    gradient.addColorStop(0.05, '#006200');
-                    gradient.addColorStop(0.1, '#1a4d1a');
-                    gradient.addColorStop(0.5, '#0d290d');
-                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-                    return gradient;
-                },
-                fill: true,
-                tension: 0.5,
-                
-                // Point
-                pointRadius: 0,
-                pointHoverRadius: 5,
-                pointBackgroundColor: '#3fc45a',
-            },
-        ],
-    }));
-    
-    watch(activeData, () => {
+    watch(chart_data, () => {
         const chartInstance = chartRef.value?.chart;
         
         if (chartInstance) {
@@ -143,6 +183,34 @@
         }
     }, { deep: true });
     
+    const data = computed(() => ({
+        labels: timestamps.value, // x-axis
+        datasets: [
+            {
+                data: chart_data.value, // y-axis
+                
+                // Line
+                borderColor: 'rgba(22,199,132, 0.9)',
+                borderWidth: 2,
+                backgroundColor: (context) => {
+                    const ctx = context.chart.ctx;
+                    const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
+                    gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
+                    gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
+                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                    return gradient;
+                },
+                fill: true,
+                tension: 0.5,
+                
+                // Point
+                pointRadius: 0,
+                pointHoverRadius: 5,
+                pointBackgroundColor: 'oklch(0.985 0 0)',
+            },
+        ],
+    }));
+    
     const options = {
         responsive: true,
         maintainAspectRatio: false,
@@ -153,6 +221,7 @@
         },
         animation: {
             duration: 1000,
+            easing: 'easeOutSine',
         },
         plugins: {
             tooltip: {
@@ -189,7 +258,7 @@
                             truncate: true,
                         });
                         const volume = formatNumber(volumes.value[index]);
-                        const label = activeTab.value === 'price' ? 'Price' : 'Market Cap';
+                        const label = type.value === 'price' ? 'Price' : 'Market Cap';
                         
                         return [
                             `${label}: ${amount}`,
@@ -199,6 +268,7 @@
                 },
             },
             legend: {
+                display: false,
                 labels: {
                     color: 'oklch(0.705 0.015 286.067)',
                 }
@@ -240,6 +310,16 @@
             },
         },
     };
+    
+    // Drawer
+    const show_drawer = ref(false);
+    const onHandleDrawer = bool => show_drawer.value = bool;
+    watch(show_drawer, () => {
+        // Switch to the price type once the supply drawer is closed
+        if(type.value === 'supply' && !show_drawer.value) {
+            nextTick(() => type.value = 'price');
+        }
+    });
 </script>
 
 <style scoped>
@@ -247,14 +327,16 @@
         position: relative;
         
         .spinner-container {
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(1px);
             border-radius: 12px;
-            height: 400px;
+            height: 450px;
             
             position: absolute;
-            left: 0;
-            right: 0;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -25px;
             
             display: flex;
             align-items: center;
