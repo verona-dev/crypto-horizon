@@ -1,9 +1,9 @@
 <template>
-    <div v-if='chartData.prices' class='coin-chart'>
+    <div v-if='chart.prices' class='coin-chart'>
         <div class='tabs-container flex items-center justify-between'>
             <Tabs
-                v-model='tab'
-                @update:model-value='onUpdate'
+                v-model='type'
+                @update:model-value='onTabUpdate'
                 default-value='price'
                 class='inline'
             >
@@ -50,7 +50,7 @@
             
             <Tabs
                 v-model='range'
-                @update:model-value='onUpdate'
+                @update:model-value='onTabUpdate'
                 default-value='price'
                 class='inline'
             >
@@ -149,28 +149,28 @@
     
     const { coin } = toRefs(props);
     
-    const onUpdate = (value) => {
+    const onTabUpdate = (value) => {
         console.log(value);
     };
     
-    const chartData = ref(coin.value?.chart);
-    const timestamps = computed(() => chartData.value?.prices?.map(item => item[0]));
-    const prices = computed(() => chartData.value?.prices?.map(item => item[1]));
-    const volumes = computed(() => chartData.value?.total_volumes?.map(item => item[1]));
-    const mCaps = computed(() => chartData.value?.market_caps?.map(item => item[1]));
+    const chart = ref(coin.value?.chart);
+    const timestamps = computed(() => chart.value?.prices?.map(item => item[0]));
+    const prices = computed(() => chart.value?.prices?.map(item => item[1]));
+    const volumes = computed(() => chart.value?.total_volumes?.map(item => item[1]));
+    const mCaps = computed(() => chart.value?.market_caps?.map(item => item[1]));
     
-    const tab = ref('price');
+    const type = ref('price');
     const range = ref('1d');
-    const activeData = computed(() => tab.value === 'price' ? prices.value : mCaps.value);
+    const chartData = computed(() => type.value === 'price' ? prices.value : mCaps.value);
     const loading = ref(false);
     const chartRef = ref(null);
     
     const showDrawer = ref(false);
     const onHandleDrawer = bool => showDrawer.value = bool;
     watch(showDrawer, () => {
-        // Switch to the price tab once the supply drawer is closed
-        if(tab.value === 'supply' && !showDrawer.value) {
-            nextTick(() => tab.value = 'price');
+        // Switch to the price type once the supply drawer is closed
+        if(type.value === 'supply' && !showDrawer.value) {
+            nextTick(() => type.value = 'price');
         }
     });
     
@@ -179,7 +179,7 @@
         datasets: [
             {
                 label: '24H',
-                data: activeData.value, // y-axis
+                data: chartData.value, // y-axis
                 
                 // Line
                 borderColor: 'oklch(0.657 0.163 153.606)',
@@ -204,7 +204,7 @@
         ],
     }));
     
-    watch(activeData, () => {
+    watch(chartData, () => {
         const chartInstance = chartRef.value?.chart;
         
         if (chartInstance) {
@@ -264,7 +264,7 @@
                             truncate: true,
                         });
                         const volume = formatNumber(volumes.value[index]);
-                        const label = tab.value === 'price' ? 'Price' : 'Market Cap';
+                        const label = type.value === 'price' ? 'Price' : 'Market Cap';
                         
                         return [
                             `${label}: ${amount}`,
