@@ -30,7 +30,7 @@
                     </TabsTrigger>
                     
                     <TabsTrigger
-                        @click='showDrawer = true'
+                        @click='show_drawer = true'
                         value='supply'
                         class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
@@ -120,9 +120,9 @@
             </div>
             
             <CoinSupply
-                v-if='showDrawer'
+                v-if='show_drawer'
                 :coin='coin'
-                :showDrawer='showDrawer'
+                :showDrawer='show_drawer'
                 @handleDrawer='onHandleDrawer'
             />
         </div>
@@ -159,19 +159,19 @@
     const timestamps = computed(() => chart.value?.prices?.map(item => item[0]));
     const prices = computed(() => chart.value?.prices?.map(item => item[1]));
     const volumes = computed(() => chart.value?.total_volumes?.map(item => item[1]));
-    const mCaps = computed(() => chart.value?.market_caps?.map(item => item[1]));
+    const m_caps = computed(() => chart.value?.market_caps?.map(item => item[1]));
     
     const type = ref('price');
     const range = ref('1');
-    const chartData = computed(() => type.value === 'price' ? prices.value : mCaps.value);
+    const chart_data = computed(() => type.value === 'price' ? prices.value : m_caps.value);
     const loading = ref(false);
     const chartRef = ref(null);
     
-    const showDrawer = ref(false);
-    const onHandleDrawer = bool => showDrawer.value = bool;
-    watch(showDrawer, () => {
+    const show_drawer = ref(false);
+    const onHandleDrawer = bool => show_drawer.value = bool;
+    watch(show_drawer, () => {
         // Switch to the price type once the supply drawer is closed
-        if(type.value === 'supply' && !showDrawer.value) {
+        if(type.value === 'supply' && !show_drawer.value) {
             nextTick(() => type.value = 'price');
         }
     });
@@ -180,7 +180,7 @@
         getCoingeckoCoinChart(range.value);
     };
     
-    watch(chartData, () => {
+    watch(chart_data, () => {
         const chartInstance = chartRef.value?.chart;
         
         if (chartInstance) {
@@ -199,7 +199,7 @@
         datasets: [
             {
                 label: '24H',
-                data: chartData.value, // y-axis
+                data: chart_data.value, // y-axis
                 
                 // Line
                 borderColor: 'rgba(22,199,132, 0.9)',
@@ -233,6 +233,7 @@
         },
         animation: {
             duration: 1000,
+            easing: 'easeOutSine',
         },
         plugins: {
             tooltip: {
