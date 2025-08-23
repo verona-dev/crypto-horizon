@@ -187,7 +187,6 @@
         labels: timestamps.value, // x-axis
         datasets: [
             {
-                label: `1 ${current_range.value?.name}`,
                 data: chart_data.value, // y-axis
                 
                 // Line
@@ -269,6 +268,7 @@
                 },
             },
             legend: {
+                display: false,
                 labels: {
                     color: 'oklch(0.705 0.015 286.067)',
                 }
@@ -327,14 +327,16 @@
         position: relative;
         
         .spinner-container {
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(1px);
             border-radius: 12px;
-            height: 400px;
+            height: 450px;
             
             position: absolute;
-            left: 0;
-            right: 0;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -25px;
             
             display: flex;
             align-items: center;
