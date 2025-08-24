@@ -29,12 +29,6 @@
             email: 'guest@guest.com',
             avatar: '/avatars/shadcn.jpg',
         },
-        teams: [
-            {
-                name: 'Crypto Horizon',
-                plan: 'Enterprise',
-            },
-        ],
         navMain: [
             {
                 title: 'Market',
@@ -103,8 +97,10 @@
 <template>
     <Sidebar v-bind="props">
         <SidebarHeader>
-            <NavLogo :teams="data.teams" />
+            <NavLogo />
         </SidebarHeader>
+        
+        <Separator />
         
         <SidebarContent>
             <NavMain :items="data.navMain" />
