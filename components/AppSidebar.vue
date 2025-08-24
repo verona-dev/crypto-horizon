@@ -2,8 +2,9 @@
     import type { SidebarProps } from '@/components/ui/sidebar'
     
     import {
-        CircleDollarSign,
         DollarSign,
+        ChartCandlestick,
+        Landmark,
         BookOpen,
         Bot,
         Frame,
@@ -45,7 +46,7 @@
             {
                 title: "Markets",
                 url: "/market",
-                icon: DollarSign,
+                icon: ChartCandlestick,
                 items: [
                     {
                         title: "Market",
