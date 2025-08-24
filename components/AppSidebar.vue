@@ -10,10 +10,8 @@
         Frame,
         Map,
         PieChart,
-        Settings2,
     } from "lucide-vue-next"
     import NavMain from '@/components/NavMain.vue'
-    import NavProjects from '@/components/NavProjects.vue'
     import NavUser from '@/components/NavUser.vue'
     import TeamSwitcher from '@/components/TeamSwitcher.vue'
     
@@ -131,7 +129,6 @@
         
         <SidebarContent>
             <NavMain :items="data.navMain" />
-            <NavProjects :projects="data.projects" />
         </SidebarContent>
         
         <SidebarFooter>
