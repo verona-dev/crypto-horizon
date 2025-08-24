@@ -40,6 +40,12 @@ export default defineNuxtConfig({
             'token-branded': ['btc', 'eth'],
          },
       },
+      customCollections: [
+         {
+            prefix: 'my-icon',
+            dir: './assets/my-icons'
+         },
+      ],
    },
 
    image: {

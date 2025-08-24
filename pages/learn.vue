@@ -1,6 +1,6 @@
 <template>
-    <div class='defi custom-flex flex-col gap-6'>
-        <h1 class='text-pink-500'>Defi</h1>
+    <div class='learn custom-flex flex-col gap-6'>
+        <h1 class='text-pink-500'>Academy</h1>
         <h6>Coming Soon...</h6>
     </div>
 </template>
@@ -10,5 +10,5 @@
 </script>
 
 <style scoped>
-    .defi {}
+    .learn {}
 </style>

@@ -1,15 +1,28 @@
 <template>
-    <Navigation />
-    
-    <main class='flex flex-1 flex-col items-center max-w-[2000px] mx-auto'>
+    <SidebarProvider>
+        <AppSidebar />
+        
+        <!--
         <Breadcrumb />
-        <slot />
-        <ScrollToTop />
-    </main>
+        -->
+        
+        <SidebarInset>
+            <main class='flex flex-1 flex-col items-center max-w-[2000px] mx-auto'>
+                <SidebarTrigger class='m-4 self-start absolute top-0 left-0' />
+                <slot />
+                <ScrollToTop />
+            </main>
+        </SidebarInset>
+    </SidebarProvider>
 </template>
 
 <script setup>
-    import Navigation from '~/components/Navigation.vue';
-    import Breadcrumb from '~/components/Breadcrumb.vue';
     import ScrollToTop from '~/components/ScrollToTop.vue';
+    import AppSidebar from "~/components/AppSidebar.vue";
+    
+    import {
+        SidebarInset,
+        SidebarProvider,
+        SidebarTrigger,
+    } from "~/components/ui/sidebar"
 </script>
