@@ -1,18 +1,37 @@
 <template>
-    <Navigation />
-    
-    <NavigationNew />
-    
-    <main class='flex flex-1 flex-col items-center max-w-[2000px] mx-auto'>
-        <Breadcrumb />
-        <slot />
-        <ScrollToTop />
-    </main>
+    <SidebarProvider>
+        <AppSidebar />
+        
+        <SidebarTrigger class='' />
+        
+<!--            <Breadcrumb />-->
+        
+        <main class='flex flex-1 flex-col items-center max-w-[2000px] mx-auto'>
+            
+            <slot />
+            <ScrollToTop />
+        </main>
+    </SidebarProvider>
 </template>
 
 <script setup>
-    import Navigation from '~/components/Navigation.vue';
-    import NavigationNew from '~/components/NavigationNew.vue';
-    import Breadcrumb from '~/components/Breadcrumb.vue';
     import ScrollToTop from '~/components/ScrollToTop.vue';
+    import AppSidebar from "~/components/AppSidebar.vue";
+    
+    import {
+        Breadcrumb,
+        BreadcrumbItem,
+        BreadcrumbLink,
+        BreadcrumbList,
+        BreadcrumbPage,
+        BreadcrumbSeparator,
+    } from "~/components//ui/breadcrumb"
+    
+    import { Separator } from "~/components/ui/separator"
+    
+    import {
+        SidebarInset,
+        SidebarProvider,
+        SidebarTrigger,
+    } from "~/components/ui/sidebar"
 </script>
