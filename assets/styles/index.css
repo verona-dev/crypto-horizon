@@ -80,6 +80,15 @@
     --secondary-foreground: oklch(0.985 0 0);
     --tertiary: var(--color-cyan-700);
     --warning: oklch(83.7% 0.128 66.29);
+    
+    --sidebar: var(--background);
+    --sidebar-foreground: var(--foreground);
+    --sidebar-primary: var(--secondary); /* Main icon bg */
+    --sidebar-primary-foreground: var(--foreground); /* Main icon text */
+    --sidebar-accent: var(--secondary); /* Hover nav items bg */
+    --sidebar-accent-foreground: var(--accent-foreground); /* Hover nav items text */
+    --sidebar-border: var(--ring); /* Submenu vertical line */
+    --sidebar-ring: var(--ring);
 
     --color-progress: oklch(0.696 0.17 162.48);
     --color-sky: rgb(14 165 233);
@@ -125,16 +134,7 @@
     */
 }
 
-.dark {
-    --sidebar: hsl(240 5.9% 10%);
-    --sidebar-foreground: hsl(240 4.8% 95.9%);
-    --sidebar-primary: hsl(224.3 76.3% 48%);
-    --sidebar-primary-foreground: hsl(0 0% 100%);
-    --sidebar-accent: hsl(240 3.7% 15.9%);
-    --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-    --sidebar-border: hsl(240 3.7% 15.9%);
-    --sidebar-ring: hsl(217.2 91.2% 59.8%);
-}
+.dark {}
 
 
 /*
