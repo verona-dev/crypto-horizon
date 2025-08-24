@@ -44,7 +44,7 @@
         ],
         navMain: [
             {
-                title: "Markets",
+                title: "Market",
                 url: "/market",
                 icon: ChartCandlestick,
                 items: [
