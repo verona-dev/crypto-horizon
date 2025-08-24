@@ -45,7 +45,7 @@
                 <NuxtLink :to="item.url">
                     <SidebarMenuItem v-if='item.items.length > 1'>
                         <CollapsibleTrigger as-child>
-                            <SidebarMenuButton :tooltip="item.title">
+                            <SidebarMenuButton :is-active="item.isActive" :tooltip="item.title">
                                 <component :is="item.icon" v-if="item.icon" />
                                 <span>{{ item.title }}</span>
                                 <ChevronRight class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
@@ -66,7 +66,7 @@
                     </SidebarMenuItem>
                     
                     <SidebarMenuItem v-else>
-                        <SidebarMenuButton :tooltip="item.title">
+                        <SidebarMenuButton :is-active="item.isActive" :tooltip="item.title">
                             <component :is="item.icon" v-if="item.icon" />
                             
                             <span>{{ item.title }}</span>
