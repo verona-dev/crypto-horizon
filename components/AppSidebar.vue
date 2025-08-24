@@ -4,8 +4,8 @@
     import {
         ChartCandlestick,
         Newspaper,
-        BookOpen,
-        Bot,
+        HandCoins,
+        Landmark,
         Frame,
         Map,
         PieChart,
@@ -68,25 +68,25 @@
                 ],
             },
             {
-                title: 'Documentation',
-                url: '#',
-                icon: BookOpen,
+                title: 'Defi',
+                url: '/defi',
+                icon: Landmark,
                 items: [
                     {
-                        title: 'Introduction',
-                        url: '#',
+                        title: 'What',
+                        url: '/defi',
                     },
                     {
-                        title: 'Get Started',
-                        url: '#',
+                        title: 'When',
+                        url: '/defi',
                     },
                     {
-                        title: 'Tutorials',
-                        url: '#',
+                        title: 'Where',
+                        url: '/defi',
                     },
                     {
-                        title: 'Changelog',
-                        url: '#',
+                        title: 'How',
+                        url: '/defi',
                     },
                 ],
             },
