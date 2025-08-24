@@ -6,14 +6,10 @@
         BookOpen,
         Landmark,
         GraduationCap,
-        
-        Frame,
-        Map,
-        PieChart,
     } from "lucide-vue-next"
     import NavMain from '@/components/NavMain.vue'
     import NavUser from '@/components/NavUser.vue'
-    import TeamSwitcher from '@/components/TeamSwitcher.vue'
+    import NavLogo from '~/components/NavLogo.vue'
     
     import {
         Sidebar,
@@ -101,30 +97,13 @@
                 ],
             },
         ],
-        projects: [
-            {
-                name: 'Design Engineering',
-                url: '#',
-                icon: Frame,
-            },
-            {
-                name: 'Sales & Marketing',
-                url: '#',
-                icon: PieChart,
-            },
-            {
-                name: 'Travel',
-                url: '#',
-                icon: Map,
-            },
-        ],
     }
 </script>
 
 <template>
     <Sidebar v-bind="props">
         <SidebarHeader>
-            <TeamSwitcher :teams="data.teams" />
+            <NavLogo :teams="data.teams" />
         </SidebarHeader>
         
         <SidebarContent>
