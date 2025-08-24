@@ -33,36 +33,26 @@
     // This is sample data.
     const data = {
         user: {
-            name: "shadcn",
-            email: "m@example.com",
+            name: "Guest",
+            email: "guest@guest.com",
             avatar: "/avatars/shadcn.jpg",
         },
         teams: [
             {
                 name: "Crypto Horizon",
-                logo: Telescope,
                 plan: "Enterprise",
             },
         ],
         navMain: [
             {
-                title: "Playground",
-                url: "#",
+                title: "Markets",
+                url: "/market",
                 icon: SquareTerminal,
-                isActive: true,
                 items: [
                     {
-                        title: "History",
-                        url: "#",
-                    },
-                    {
-                        title: "Starred",
-                        url: "#",
-                    },
-                    {
-                        title: "Settings",
-                        url: "#",
-                    },
+                        title: "Market",
+                        url: "/market",
+                    }
                 ],
             },
             {
