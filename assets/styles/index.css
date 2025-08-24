@@ -83,7 +83,7 @@
     
     --sidebar: var(--background);
     --sidebar-foreground: var(--foreground);
-    --sidebar-primary: var(--secondary); /* Main icon bg */
+    --sidebar-primary: transparent; /* Main icon bg */
     --sidebar-primary-foreground: var(--foreground); /* Main icon text */
     --sidebar-accent: var(--secondary); /* Hover nav items bg */
     --sidebar-accent-foreground: var(--accent-foreground); /* Hover nav items text */

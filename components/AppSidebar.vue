@@ -7,7 +7,7 @@ import {
   Bot,
   Command,
   Frame,
-  GalleryVerticalEnd,
+    Telescope,
   Map,
   PieChart,
   Settings2,
@@ -39,19 +39,9 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
+      name: "Crypto Horizon",
+      logo: Telescope,
       plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
     },
   ],
   navMain: [
@@ -165,6 +155,13 @@ const data = {
   <Sidebar v-bind="props">
     <SidebarHeader>
       <TeamSwitcher :teams="data.teams" />
+        
+            <NuxtIcon
+                name='token-branded:btc'
+                size='40'
+                class=''
+            />
+        
     </SidebarHeader>
     <SidebarContent>
       <NavMain :items="data.navMain" />
