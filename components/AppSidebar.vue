@@ -2,16 +2,13 @@
     import type { SidebarProps } from '@/components/ui/sidebar'
     
     import {
-        AudioWaveform,
+        CircleDollarSign,
         BookOpen,
         Bot,
-        Command,
         Frame,
-        Telescope,
         Map,
         PieChart,
         Settings2,
-        SquareTerminal,
     } from "lucide-vue-next"
     import NavMain from '@/components/NavMain.vue'
     import NavProjects from '@/components/NavProjects.vue'
@@ -47,7 +44,7 @@
             {
                 title: "Markets",
                 url: "/market",
-                icon: SquareTerminal,
+                icon: CircleDollarSign,
                 items: [
                     {
                         title: "Market",
