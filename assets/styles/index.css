@@ -83,9 +83,9 @@
     
     --sidebar: var(--background);
     --sidebar-foreground: var(--foreground);
-    --sidebar-primary: transparent; /* Main icon bg */
+    --sidebar-primary: rgba(255, 255, 255, 0.9); /* Main icon bg */
     --sidebar-primary-foreground: var(--foreground); /* Main icon text */
-    --sidebar-accent: var(--secondary); /* Hover nav items bg */
+    --sidebar-accent: var(--foreground); /* Hover nav items bg */
     --sidebar-accent-foreground: var(--accent-foreground); /* Hover nav items text */
     --sidebar-border: var(--ring); /* Submenu vertical line */
     --sidebar-ring: var(--ring);
