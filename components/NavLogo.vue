@@ -41,7 +41,7 @@
                                 />
                             </div>
                             <div class="grid flex-1 text-left text-sm leading-tight">
-                                <span class="truncate font-medium">{{ activeTeam.name }}</span>
+                                <p class="custom truncate font-medium">{{ activeTeam.name }}</p>
                                 <span class="truncate text-xs">{{ activeTeam.plan }}</span>
                             </div>
                         </SidebarMenuButton>
@@ -51,3 +51,10 @@
         </SidebarMenuItem>
     </SidebarMenu>
 </template>
+
+<style scoped>
+p.custom {
+    font-family: 'Great', sans-serif;
+    letter-spacing: 5px;
+}
+</style>
