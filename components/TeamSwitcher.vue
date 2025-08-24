@@ -1,15 +1,9 @@
 <script setup lang="ts">
 import type { Component } from "vue"
 
-import { ChevronsUpDown, Plus } from "lucide-vue-next"
 import { ref } from "vue"
 import {
   DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
@@ -17,7 +11,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
 } from '@/components/ui/sidebar'
 
 const props = defineProps<{
@@ -28,7 +21,6 @@ const props = defineProps<{
   }[]
 }>()
 
-const { isMobile } = useSidebar()
 const activeTeam = ref(props.teams[0])
 </script>
 
