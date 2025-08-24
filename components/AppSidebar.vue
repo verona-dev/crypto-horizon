@@ -2,9 +2,8 @@
     import type { SidebarProps } from '@/components/ui/sidebar'
     
     import {
-        DollarSign,
         ChartCandlestick,
-        Landmark,
+        Newspaper,
         BookOpen,
         Bot,
         Frame,
@@ -29,111 +28,106 @@
         collapsible: "icon",
     })
     
-    // This is sample data.
     const data = {
         user: {
-            name: "Guest",
-            email: "guest@guest.com",
-            avatar: "/avatars/shadcn.jpg",
+            name: 'Guest',
+            email: 'guest@guest.com',
+            avatar: '/avatars/shadcn.jpg',
         },
         teams: [
             {
-                name: "Crypto Horizon",
-                plan: "Enterprise",
+                name: 'Crypto Horizon',
+                plan: 'Enterprise',
             },
         ],
         navMain: [
             {
-                title: "Market",
-                url: "/market",
+                title: 'Market',
+                url: '/market',
                 icon: ChartCandlestick,
                 items: [
                     {
-                        title: "Market",
-                        url: "/market",
+                        title: 'Market',
+                        url: '/market',
                     }
                 ],
             },
             {
-                title: "Models",
-                url: "#",
-                icon: Bot,
+                title: 'News',
+                url: '/news',
+                icon: Newspaper,
                 items: [
                     {
-                        title: "Genesis",
-                        url: "#",
+                        title: 'Latest News',
+                        url: '/news',
                     },
                     {
-                        title: "Explorer",
-                        url: "#",
-                    },
-                    {
-                        title: "Quantum",
-                        url: "#",
+                        title: 'Outlets',
+                        url: '/news/outlets',
                     },
                 ],
             },
             {
-                title: "Documentation",
-                url: "#",
+                title: 'Documentation',
+                url: '#',
                 icon: BookOpen,
                 items: [
                     {
-                        title: "Introduction",
-                        url: "#",
+                        title: 'Introduction',
+                        url: '#',
                     },
                     {
-                        title: "Get Started",
-                        url: "#",
+                        title: 'Get Started',
+                        url: '#',
                     },
                     {
-                        title: "Tutorials",
-                        url: "#",
+                        title: 'Tutorials',
+                        url: '#',
                     },
                     {
-                        title: "Changelog",
-                        url: "#",
+                        title: 'Changelog',
+                        url: '#',
                     },
                 ],
             },
             {
-                title: "Settings",
-                url: "#",
+                title: 'Settings',
+                url: '#',
                 icon: Settings2,
                 items: [
                     {
-                        title: "General",
-                        url: "#",
+                        title: 'General',
+                        url: '#',
                     },
                     {
-                        title: "Team",
-                        url: "#",
+                        title: 'Team',
+                        url: '#',
                     },
                     {
-                        title: "Billing",
-                        url: "#",
+                        title: 'Billing',
+                        url: '#',
                     },
                     {
-                        title: "Limits",
-                        url: "#",
+                        title: 'Limits',
+                        url: '#',
                     },
                 ],
             },
         ],
         projects: [
             {
-                name: "Design Engineering",
-                url: "#",
+                name: 'Design Engineering',
+                url: '#',
                 icon: Frame,
             },
             {
-                name: "Sales & Marketing",
-                url: "#",
+                name: 'Sales & Marketing',
+                url: '#',
                 icon: PieChart,
             },
             {
-                name: "Travel",
-                url: "#",
+                name: 'Travel',
+                url: '#',
                 icon: Map,
             },
         ],

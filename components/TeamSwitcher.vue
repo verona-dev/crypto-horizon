@@ -41,9 +41,7 @@
                                 />
                             </div>
                             <div class="grid flex-1 text-left text-sm leading-tight">
-              <span class="truncate font-medium">
-                {{ activeTeam.name }}
-              </span>
+                                <span class="truncate font-medium">{{ activeTeam.name }}</span>
                                 <span class="truncate text-xs">{{ activeTeam.plan }}</span>
                             </div>
                         </SidebarMenuButton>
