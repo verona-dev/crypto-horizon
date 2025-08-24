@@ -1,6 +1,4 @@
 <template>
-    <Navigation />
-    
     <SidebarProvider>
         <AppSidebar />
         
