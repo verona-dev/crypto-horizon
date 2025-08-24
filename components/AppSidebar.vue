@@ -3,6 +3,7 @@
     
     import {
         CircleDollarSign,
+        DollarSign,
         BookOpen,
         Bot,
         Frame,
@@ -44,7 +45,7 @@
             {
                 title: "Markets",
                 url: "/market",
-                icon: CircleDollarSign,
+                icon: DollarSign,
                 items: [
                     {
                         title: "Market",
