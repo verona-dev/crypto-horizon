@@ -1,8 +1,7 @@
 <template>
-    <div class='defi custom-flex'>
-        <h1 class='text-pink-500'>Coming Soon...</h1>
-        
-<!--        <MazBtn class='mt-8'>Click me!</MazBtn>-->
+    <div class='defi custom-flex flex-col gap-6'>
+        <h1 class='text-pink-500'>Defi</h1>
+        <h6>Coming Soon...</h6>
     </div>
 </template>
 
