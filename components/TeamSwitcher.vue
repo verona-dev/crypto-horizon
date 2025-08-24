@@ -41,12 +41,13 @@ const activeTeam = ref(props.teams[0])
             size="lg"
             class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
           >
-            <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                <NuxtIcon
-                    name='token-branded:btc'
-                    size='40'
-                    class=''
-                />
+            <div class="flex aspect-square size-10 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                <NuxtLink to='/' class='flex'>
+                    <NuxtIcon
+                        name='my-icon:astronaut'
+                        size='30'
+                    />
+                </NuxtLink>
             </div>
             <div class="grid flex-1 text-left text-sm leading-tight">
               <span class="truncate font-medium">
