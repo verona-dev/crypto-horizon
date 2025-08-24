@@ -8,7 +8,7 @@
         
         <SidebarInset>
             <main class='flex flex-1 flex-col items-center max-w-[2000px] mx-auto'>
-                <SidebarTrigger class='m-10' />
+                <SidebarTrigger class='m-4 self-start absolute top-0 left-0' />
                 <slot />
                 <ScrollToTop />
             </main>
