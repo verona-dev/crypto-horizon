@@ -2,32 +2,23 @@
     <SidebarProvider>
         <AppSidebar />
         
-        <SidebarTrigger class='' />
+        <!--
+        <Breadcrumb />
+        -->
         
-<!--            <Breadcrumb />-->
-        
-        <main class='flex flex-1 flex-col items-center max-w-[2000px] mx-auto'>
-            
-            <slot />
-            <ScrollToTop />
-        </main>
+        <SidebarInset>
+            <main class='flex flex-1 flex-col items-center max-w-[2000px] mx-auto'>
+                <SidebarTrigger class='m-10' />
+                <slot />
+                <ScrollToTop />
+            </main>
+        </SidebarInset>
     </SidebarProvider>
 </template>
 
 <script setup>
     import ScrollToTop from '~/components/ScrollToTop.vue';
     import AppSidebar from "~/components/AppSidebar.vue";
-    
-    import {
-        Breadcrumb,
-        BreadcrumbItem,
-        BreadcrumbLink,
-        BreadcrumbList,
-        BreadcrumbPage,
-        BreadcrumbSeparator,
-    } from "~/components//ui/breadcrumb"
-    
-    import { Separator } from "~/components/ui/separator"
     
     import {
         SidebarInset,
