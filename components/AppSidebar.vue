@@ -3,9 +3,10 @@
     
     import {
         ChartCandlestick,
-        Newspaper,
-        HandCoins,
+        BookOpen,
         Landmark,
+        GraduationCap,
+        
         Frame,
         Map,
         PieChart,
@@ -55,7 +56,7 @@
             {
                 title: 'News',
                 url: '/news',
-                icon: Newspaper,
+                icon: BookOpen,
                 items: [
                     {
                         title: 'Latest News',
@@ -91,24 +92,12 @@
                 ],
             },
             {
-                title: 'Settings',
-                url: '#',
-                icon: Settings2,
+                title: 'Learn',
+                url: '/learn',
+                icon: GraduationCap,
                 items: [
                     {
                         title: 'General',
-                        url: '#',
-                    },
-                    {
-                        title: 'Team',
-                        url: '#',
-                    },
-                    {
-                        title: 'Billing',
-                        url: '#',
-                    },
-                    {
-                        title: 'Limits',
                         url: '#',
                     },
                 ],
