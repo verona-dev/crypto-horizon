@@ -1,6 +1,5 @@
 <script setup lang="ts">
     import type { SidebarProps } from '@/components/ui/sidebar'
-    
     import {
         ChartCandlestick,
         BookOpen,
@@ -10,7 +9,6 @@
     import NavMain from '@/components/NavMain.vue'
     import NavUser from '@/components/NavUser.vue'
     import NavLogo from '~/components/NavLogo.vue'
-    
     import {
         Sidebar,
         SidebarContent,
@@ -18,11 +16,9 @@
         SidebarHeader,
         SidebarRail,
     } from '@/components/ui/sidebar'
-    
     const props = withDefaults(defineProps<SidebarProps>(), {
         collapsible: "icon",
     })
-    
     const data = {
         user: {
             name: 'Guest',
@@ -40,9 +36,7 @@
                         url: '/market',
                     }
                 ],
-            },
-            {
-                title: 'News',
+            },            {                title: 'News',
                 url: '/news',
                 icon: BookOpen,
                 items: [
@@ -55,9 +49,7 @@
                         url: '/news/outlets',
                     },
                 ],
-            },
-            {
-                title: 'Defi',
+            },            {                title: 'Defi',
                 url: '/defi',
                 icon: Landmark,
                 items: [
@@ -78,9 +70,7 @@
                         url: '/defi',
                     },
                 ],
-            },
-            {
-                title: 'Learn',
+            },            {                title: 'Learn',
                 url: '/learn',
                 icon: GraduationCap,
                 items: [
@@ -89,8 +79,7 @@
                         url: '#',
                     },
                 ],
-            },
-        ],
+            },        ],
     }
 </script>
 
@@ -99,17 +88,13 @@
         <SidebarHeader>
             <NavLogo />
         </SidebarHeader>
-        
         <Separator />
-        
         <SidebarContent>
             <NavMain :items="data.navMain" />
         </SidebarContent>
-        
         <SidebarFooter>
             <NavUser :user="data.user" />
         </SidebarFooter>
-        
         <SidebarRail />
     </Sidebar>
 </template>

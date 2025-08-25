@@ -2,7 +2,6 @@
     import type { LucideIcon } from "lucide-vue-next"
     import { ChevronRight } from "lucide-vue-next"
     import { useSidebar } from "@/components/ui/sidebar"
-    
     import {
         Collapsible,
         CollapsibleContent,
@@ -18,7 +17,6 @@
         SidebarMenuSubButton,
         SidebarMenuSubItem,
     } from '@/components/ui/sidebar'
-    
     defineProps<{
         items: {
             title: string
@@ -31,7 +29,6 @@
             }[]
         }[]
     }>()
-    
     const { open } = useSidebar();
 </script>
 
@@ -55,7 +52,6 @@
                                 <ChevronRight class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                             </SidebarMenuButton>
                         </CollapsibleTrigger>
-                        
                         <CollapsibleContent>
                             <SidebarMenuSub>
                                 <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title" >
@@ -68,11 +64,9 @@
                             </SidebarMenuSub>
                         </CollapsibleContent>
                     </SidebarMenuItem>
-                    
                     <SidebarMenuItem v-else>
                         <SidebarMenuButton :is-active="item.isActive" :tooltip="item.title">
                             <component :is="item.icon" v-if="item.icon" />
-                            
                             <span>{{ item.title }}</span>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
@@ -84,7 +78,6 @@
 
 <style scoped>
     svg {
-        //width: 20px;
-        //height: 20px;
-    }
+    //width: 20px;
+    //height: 20px;    }
 </style>

@@ -2,11 +2,9 @@
     import type { HTMLAttributes } from "vue"
     import { cn } from "@/lib/utils"
     import { useSidebar } from "@/components/ui/sidebar"
-    
     const props = defineProps<{
         class?: HTMLAttributes["class"]
     }>()
-    
     const { open } = useSidebar();
 </script>
 
@@ -19,7 +17,6 @@
           { 'm-6': open },
         props.class
         )"
-    >
-        <slot />
+    >        <slot />
     </div>
 </template>
