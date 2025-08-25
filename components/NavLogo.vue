@@ -22,6 +22,7 @@
                 <DropdownMenuTrigger>
                     <NuxtLink to='/' class='flex'>
                         <SidebarMenuButton
+                            tooltip="Homepage"
                             size="lg"
                             class="flex items-center gap-4 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                         >
