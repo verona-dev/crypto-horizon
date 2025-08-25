@@ -1,4 +1,6 @@
 <script setup lang="ts">
+    import { useSidebar } from "@/components/ui/sidebar"
+    
     import {
         DropdownMenu,
         DropdownMenuTrigger,
@@ -9,16 +11,18 @@
         SidebarMenuButton,
         SidebarMenuItem,
     } from '@/components/ui/sidebar'
-
+    
+    const { open } = useSidebar();
 </script>
 
 <template>
-    <SidebarMenu class='p-4'>
+    <SidebarMenu>
         <SidebarMenuItem>
             <DropdownMenu>
-                <DropdownMenuTrigger as-child>
-                    <NuxtLink to='/' class='flex'>
+                <DropdownMenuTrigger class='w-full'>
+                    <NuxtLink to='/'>
                         <SidebarMenuButton
+                            tooltip="Homepage"
                             size="lg"
                             class="flex items-center gap-4 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                         >

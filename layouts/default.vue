@@ -1,5 +1,5 @@
 <template>
-    <SidebarProvider>
+    <SidebarProvider :default-open='false'>
         <AppSidebar />
         
         <!--
@@ -8,8 +8,10 @@
         
         <SidebarInset>
             <main class='flex flex-1 flex-col items-center max-w-[2000px] mx-auto'>
-                <SidebarTrigger class='m-4 self-start absolute top-0 left-0' />
+                <SidebarTrigger class='m-4 absolute top-0 left-0' />
+                
                 <slot />
+                
                 <ScrollToTop />
             </main>
         </SidebarInset>

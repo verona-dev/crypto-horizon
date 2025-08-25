@@ -2,7 +2,6 @@
     import type { HTMLAttributes } from "vue"
     import { PanelLeft } from "lucide-vue-next"
     import { cn } from "@/lib/utils"
-    import { Button } from '@/components/ui/button'
     import { useSidebar } from "./utils"
     
     const props = defineProps<{
@@ -18,7 +17,7 @@
         data-sidebar="trigger"
         data-slot="sidebar-trigger"
         :class="cn('h-8 w-8', props.class)"
-        class='hover:cursor-pointer hover:bg-gray-200'
+        class='hover:cursor-pointer hover:bg-secondary'
         @click="toggleSidebar"
     >
         <PanelLeft />
