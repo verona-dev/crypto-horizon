@@ -13,7 +13,7 @@
         data-slot="sidebar-content"
         data-sidebar="content"
         :class="cn(
-        'flex min-h-0 mt-4 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden',
+        'flex min-h-0 mt-2 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden',
           { '': !open },
         props.class
         )"
