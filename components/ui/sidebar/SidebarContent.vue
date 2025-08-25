@@ -14,7 +14,7 @@
         data-sidebar="content"
         :class="cn(
         'flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden',
-          { 'm-6': open },
+          { '': open },
         props.class
         )"
     >        <slot />

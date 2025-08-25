@@ -35,7 +35,8 @@
 <template>
     <SidebarGroup>
         <SidebarGroupLabel>Menu</SidebarGroupLabel>
-        <SidebarMenu :class='{ "items-center" : !open }'>
+        <!--  :class='{ "items-center" : !open }'  -->
+        <SidebarMenu>
             <Collapsible
                 v-for="item in items"
                 :key="item.title"
@@ -43,7 +44,7 @@
                 :default-open="item.isActive"
                 class="group/collapsible"
             >
-                <NuxtLink :to="item.url">
+                <NuxtLink :to="item.url" class='w-fit'>
                     <SidebarMenuItem v-if='item.items.length > 1'>
                         <CollapsibleTrigger as-child>
                             <SidebarMenuButton :is-active="item.isActive" :tooltip="item.title">
@@ -78,7 +79,7 @@
 
 <style scoped>
     svg {
-    //width: 20px;
-    //height: 20px;
+        //width: 20px;
+        //height: 20px;
     }
 </style>
