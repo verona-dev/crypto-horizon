@@ -13,7 +13,7 @@
 </script>
 
 <template>
-    <SidebarMenu class='p-4'>
+    <SidebarMenu>
         <SidebarMenuItem>
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
