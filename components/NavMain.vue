@@ -1,6 +1,8 @@
 <script setup lang="ts">
     import type { LucideIcon } from "lucide-vue-next"
     import { ChevronRight } from "lucide-vue-next"
+    import { useSidebar } from "@/components/ui/sidebar"
+    
     import {
         Collapsible,
         CollapsibleContent,
@@ -29,12 +31,14 @@
             }[]
         }[]
     }>()
+    
+    const { open } = useSidebar();
 </script>
 
 <template>
     <SidebarGroup>
         <SidebarGroupLabel>Platform</SidebarGroupLabel>
-        <SidebarMenu>
+        <SidebarMenu :class='{ "items-center" : !open }'>
             <Collapsible
                 v-for="item in items"
                 :key="item.title"
