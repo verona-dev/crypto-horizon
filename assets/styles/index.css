@@ -87,8 +87,8 @@
     --sidebar-primary-foreground: var(--foreground); /* Main icon text */
     --sidebar-accent: var(--foreground); /* Hover nav items bg */
     --sidebar-accent-foreground: var(--accent-foreground); /* Hover nav items text */
-    --sidebar-border: var(--ring); /* Submenu vertical line */
-    --sidebar-ring: var(--ring);
+    --sidebar-border: var(--card-border); /* Submenu vertical line */
+    --sidebar-ring: var(--card-border);
 
     --color-progress: oklch(0.696 0.17 162.48);
     --color-sky: rgb(14 165 233);
