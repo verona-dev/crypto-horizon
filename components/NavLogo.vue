@@ -19,8 +19,8 @@
     <SidebarMenu>
         <SidebarMenuItem>
             <DropdownMenu>
-                <DropdownMenuTrigger>
-                    <NuxtLink to='/' class='flex'>
+                <DropdownMenuTrigger class='w-full'>
+                    <NuxtLink to='/'>
                         <SidebarMenuButton
                             tooltip="Homepage"
                             size="lg"

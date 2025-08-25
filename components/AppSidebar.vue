@@ -92,7 +92,7 @@
 
 <template>
     <Sidebar v-bind="props">
-        <SidebarHeader>
+        <SidebarHeader class='h-20 flex items-center justify-center'>
             <NavLogo />
         </SidebarHeader>
         
