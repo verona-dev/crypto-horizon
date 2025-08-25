@@ -45,6 +45,7 @@
                 class="group/collapsible"
             >
                 <template v-if='open'>
+                    <!--  Sub routes -->
                     <SidebarMenuItem v-if='item.items.length > 1'>
                         <CollapsibleTrigger as-child>
                             <SidebarMenuButton :is-active="item.isActive" :tooltip="item.title">
@@ -65,11 +66,15 @@
                             </SidebarMenuSub>
                         </CollapsibleContent>
                     </SidebarMenuItem>
+                    
+                    <!--  No Sub routes  -->
                     <SidebarMenuItem v-else>
-                        <SidebarMenuButton :is-active="item.isActive" :tooltip="item.title">
-                            <component :is="item.icon" v-if="item.icon" />
-                            <span>{{ item.title }}</span>
-                        </SidebarMenuButton>
+                        <NuxtLink :to="item.url">
+                            <SidebarMenuButton :is-active="item.isActive" :tooltip="item.title">
+                                <component :is="item.icon" v-if="item.icon" />
+                                <span>{{ item.title }}</span>
+                            </SidebarMenuButton>
+                        </NuxtLink>
                     </SidebarMenuItem>
                 </template>
                 

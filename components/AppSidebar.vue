@@ -36,7 +36,9 @@
                         url: '/market',
                     }
                 ],
-            },            {                title: 'News',
+            },
+            {
+                title: 'News',
                 url: '/news',
                 icon: BookOpen,
                 items: [
@@ -49,7 +51,9 @@
                         url: '/news/outlets',
                     },
                 ],
-            },            {                title: 'Defi',
+            },
+            {
+                title: 'Defi',
                 url: '/defi',
                 icon: Landmark,
                 items: [
@@ -70,7 +74,9 @@
                         url: '/defi',
                     },
                 ],
-            },            {                title: 'Learn',
+            },
+            {
+                title: 'Learn',
                 url: '/learn',
                 icon: GraduationCap,
                 items: [
@@ -79,7 +85,8 @@
                         url: '#',
                     },
                 ],
-            },        ],
+            },
+        ],
     }
 </script>
 
