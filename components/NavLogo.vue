@@ -1,4 +1,6 @@
 <script setup lang="ts">
+    import { useSidebar } from "@/components/ui/sidebar"
+    
     import {
         DropdownMenu,
         DropdownMenuTrigger,
@@ -9,11 +11,12 @@
         SidebarMenuButton,
         SidebarMenuItem,
     } from '@/components/ui/sidebar'
-
+    
+    const { open } = useSidebar();
 </script>
 
 <template>
-    <SidebarMenu>
+    <SidebarMenu :class='{ "items-center" : open }'>
         <SidebarMenuItem>
             <DropdownMenu>
                 <DropdownMenuTrigger>
