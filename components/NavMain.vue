@@ -34,7 +34,7 @@
 
 <template>
     <SidebarGroup>
-        <SidebarGroupLabel>Platform</SidebarGroupLabel>
+        <SidebarGroupLabel>Menu</SidebarGroupLabel>
         <SidebarMenu :class='{ "items-center" : !open }'>
             <Collapsible
                 v-for="item in items"
@@ -79,5 +79,6 @@
 <style scoped>
     svg {
     //width: 20px;
-    //height: 20px;    }
+    //height: 20px;
+    }
 </style>
