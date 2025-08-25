@@ -16,7 +16,7 @@
     <SidebarMenu>
         <SidebarMenuItem>
             <DropdownMenu>
-                <DropdownMenuTrigger as-child>
+                <DropdownMenuTrigger>
                     <NuxtLink to='/' class='flex'>
                         <SidebarMenuButton
                             size="lg"
