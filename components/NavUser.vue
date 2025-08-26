@@ -33,7 +33,7 @@
         }
     }>()
     
-    const { isMobile } = useSidebar()
+    const { open, isMobile } = useSidebar()
     
     const onClick = () => alert('Coming soon!');
 </script>
@@ -47,13 +47,16 @@
                     <SidebarMenuButton
                         size='lg'
                         class='
-                            dark:hover:bg-accent dark:hover:text-foreground
-                            dark:data-[state=open]:bg-tertiary
+                            dark:bg-accent dark:hover:bg-card dark:hover:text-foreground
+                            dark:data-[state=open]:bg-card
                         '
                     >
                         <Avatar class='h-8 w-8 rounded-lg'>
                             <AvatarImage :src='user.avatar' :alt='user.name' />
-                            <AvatarFallback class='bg-tertiary hover:border hover:border-foreground rounded-lg text-lg'>
+                            <AvatarFallback
+                                class='bg-tertiary rounded-lg text-lg'
+                                :class='{ "hover:border hover:border-foreground" : !open }'
+                            >
                                 G
                             </AvatarFallback>
                         </Avatar>
@@ -78,7 +81,7 @@
                         <div class='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
                             <Avatar class='h-8 w-8 rounded-lg'>
                                 <AvatarImage :src='user.avatar' :alt='user.name' />
-                                <AvatarFallback class='bg-tertiary hover:border hover:border-foreground rounded-lg text-lg'>
+                                <AvatarFallback class='bg-tertiary rounded-lg text-lg'>
                                     G
                                 </AvatarFallback>
                             </Avatar>
@@ -95,7 +98,7 @@
                     <DropdownMenuGroup>
                         <DropdownMenuItem
                             @click='onClick'
-                            class='focus:bg-foreground focus:text-accent cursor-pointer py-3 mb-2'
+                            class='focus:bg-foreground focus:text-accent cursor-pointer py-4 mb-2'
                         >
                             <MailPlus />
                             Register
@@ -104,7 +107,7 @@
                     
                     <DropdownMenuItem
                         @click='onClick'
-                        class='focus:bg-foreground focus:text-accent cursor-pointer py-3'
+                        class='focus:bg-foreground focus:text-accent cursor-pointer py-4'
                     >
                         <LogIn />
                         Log In
