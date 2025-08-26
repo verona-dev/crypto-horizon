@@ -37,6 +37,24 @@
         <SidebarGroupLabel>Menu</SidebarGroupLabel>
         <!--  :class='{ "items-center" : !open }'  -->
         <SidebarMenu>
+            <NuxtLink v-if='!open' to='/'>
+                <SidebarMenuButton
+                    tooltip="Homepage"
+                    size="lg"
+                    class="mb-2 flex items-center gap-4 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                >
+                    <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                        <NuxtIcon
+                            name='my-icon:astronaut'
+                            size='35'
+                        />
+                    </div>
+                    <div class="grid flex-1 text-left text-sm leading-tight">
+                        <p class="custom truncate font-medium">Crypto Horizon</p>
+                    </div>
+                </SidebarMenuButton>
+            </NuxtLink>
+            
             <Collapsible
                 v-for="item in items"
                 :key="item.title"

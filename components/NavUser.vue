@@ -35,7 +35,7 @@
     
     const { open, isMobile } = useSidebar()
     
-    const onClick = () => alert('Coming soon!');
+    // const onClick = () => alert('Coming soon!');
 </script>
 
 <template>
@@ -95,24 +95,20 @@
                     </DropdownMenuLabel>
                     
                     <DropdownMenuSeparator />
-                    
+            
                     <DropdownMenuGroup>
-                        <DropdownMenuItem
-                            @click='onClick'
-                            class='focus:bg-foreground focus:text-accent cursor-pointer py-3 mb-2'
-                        >
+                        <DropdownMenuItem class='focus:bg-foreground focus:text-accent cursor-pointer py-3 mb-2'>
                             <MailPlus />
                             Register
                         </DropdownMenuItem>
+                        
+                        <DropdownMenuItem
+                            class='focus:bg-foreground focus:text-accent cursor-pointer py-3'
+                        >
+                            <LogIn />
+                            Log In
+                        </DropdownMenuItem>
                     </DropdownMenuGroup>
-                    
-                    <DropdownMenuItem
-                        @click='onClick'
-                        class='focus:bg-foreground focus:text-accent cursor-pointer py-3'
-                    >
-                        <LogIn />
-                        Log In
-                    </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
         </SidebarMenuItem>
