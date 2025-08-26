@@ -43,13 +43,14 @@
         <SidebarMenuItem>
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
-                    <!--  Closed: Trigger Icon -->
+                    <!--  Trigger Icon -->
                     <SidebarMenuButton
                         size='lg'
                         class='
-                            dark:bg-accent dark:hover:bg-card dark:hover:text-foreground
-                            dark:data-[state=open]:bg-card
+                            dark:bg-card
+                            dark:hover:text-foreground
                         '
+                        :class='{ "dark:border dark:border-accent dark:hover:border-sidebar-border" : open }'
                     >
                         <Avatar class='h-8 w-8 rounded-lg'>
                             <AvatarImage :src='user.avatar' :alt='user.name' />
@@ -72,7 +73,7 @@
                 
                 <!--  Popup  -->
                 <DropdownMenuContent
-                    class='w-[--reka-dropdown-menu-trigger-width] min-w-56 rounded-lg'
+                    class='border-accent w-[--reka-dropdown-menu-trigger-width] min-w-56 rounded-lg'
                     :side='isMobile ? "bottom" : "right"'
                     align='end'
                     :side-offset='4'
