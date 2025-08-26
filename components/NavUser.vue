@@ -33,7 +33,7 @@
         }
     }>()
     
-    const { isMobile } = useSidebar()
+    const { open, isMobile } = useSidebar()
 </script>
 
 <template>
@@ -41,17 +41,18 @@
         <SidebarMenuItem>
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
-                    <!--  Close-->
+                    <!--  Icon -->
                     <SidebarMenuButton
                         size='lg'
                         class='
-                            hover:bg-accent hover:text-foreground
-                            data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground
+                            dark:hover:bg-accent dark:hover:text-foreground
+                            dark:data-[state=open]:bg-sidebar-accent
                         '
+                        :class='{ "dark:data-[state=open]:bg-tertiary" : !open }'
                     >
                         <Avatar class='h-8 w-8 rounded-lg'>
                             <AvatarImage :src='user.avatar' :alt='user.name' />
-                            <AvatarFallback class='bg-tertiary hover:bg-muted-custom rounded-lg text-lg'>
+                            <AvatarFallback class='bg-tertiary hover:border hover:border-foreground rounded-lg text-lg'>
                                 G
                             </AvatarFallback>
                         </Avatar>
@@ -65,7 +66,7 @@
                     </SidebarMenuButton>
                 </DropdownMenuTrigger>
                 
-                <!--  Open-->
+                <!--  Popup Icon  -->
                 <DropdownMenuContent
                     class='w-[--reka-dropdown-menu-trigger-width] min-w-56 rounded-lg'
                     :side='isMobile ? "bottom" : "right"'
@@ -76,10 +77,15 @@
                         <div class='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
                             <Avatar class='h-8 w-8 rounded-lg'>
                                 <AvatarImage :src='user.avatar' :alt='user.name' />
-                                <AvatarFallback class='rounded-lg text-lg'>
+                                <AvatarFallback
+                                    class='rounded-lg text-lg'
+                                    :class='{ "" : !open }'
+                                
+                                >
                                     G
                                 </AvatarFallback>
                             </Avatar>
+                      
                             
                             <div class='grid flex-1 text-left text-sm leading-tight'>
                                 <span class='truncate font-semibold'>{{ user.name }}</span>
