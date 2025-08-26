@@ -34,6 +34,8 @@
     }>()
     
     const { isMobile } = useSidebar()
+    
+    const onClick = () => alert('Coming soon!');
 </script>
 
 <template>
@@ -91,13 +93,13 @@
                     <DropdownMenuSeparator />
                     
                     <DropdownMenuGroup>
-                        <DropdownMenuItem>
+                        <DropdownMenuItem @click='onClick'>
                             <MailPlus />
                             Register
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
                     
-                    <DropdownMenuItem>
+                    <DropdownMenuItem @click='onClick'>
                         <LogIn />
                         Log In
                     </DropdownMenuItem>
