@@ -29,7 +29,7 @@
             @click="toggleSidebar"
         >
             <PanelLeft />
-            <span class="sr-only">Toggle Sidebar</span>
+            <span class="sr-only">Toggle Menu</span>
         </NuxtIcon>
     </template>
     
@@ -48,7 +48,7 @@
                 @click='toggleSidebar'
             >
                 <PanelLeft />
-                <span class='sr-only'>Toggle Sidebar</span>
+                <span class='sr-only'>Toggle Menu</span>
             </NuxtIcon>
         </SidebarMenuButton>
     </template>

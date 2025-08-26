@@ -44,6 +44,7 @@
                 :default-open="true"
                 class="group/collapsible"
             >
+                <!--  Open -->
                 <template v-if='open'>
                     <!--  Sub routes -->
                     <SidebarMenuItem v-if='item.items.length > 1'>
@@ -78,6 +79,7 @@
                     </SidebarMenuItem>
                 </template>
                 
+                <!--  Close -->
                 <template v-else>
                     <NuxtLink :to="item.url">
                         <SidebarMenuItem v-if='item.items.length > 1'>
