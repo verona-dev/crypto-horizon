@@ -98,7 +98,7 @@
                     <DropdownMenuGroup>
                         <DropdownMenuItem
                             @click='onClick'
-                            class='focus:bg-foreground focus:text-accent cursor-pointer py-4 mb-2'
+                            class='focus:bg-foreground focus:text-accent cursor-pointer py-3 mb-2'
                         >
                             <MailPlus />
                             Register
@@ -107,7 +107,7 @@
                     
                     <DropdownMenuItem
                         @click='onClick'
-                        class='focus:bg-foreground focus:text-accent cursor-pointer py-4'
+                        class='focus:bg-foreground focus:text-accent cursor-pointer py-3'
                     >
                         <LogIn />
                         Log In
