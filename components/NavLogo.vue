@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { useSidebar } from "@/components/ui/sidebar"
+    import {SidebarTrigger, useSidebar} from '@/components/ui/sidebar'
     
     import {
         DropdownMenu,
@@ -19,8 +19,11 @@
     <SidebarMenu>
         <SidebarMenuItem>
             <DropdownMenu>
-                <DropdownMenuTrigger class='w-full'>
-                    <NuxtLink to='/'>
+                <DropdownMenuTrigger class='w-full flex items-center justify-evenly gap-2'>
+                    <NuxtLink
+                        v-if='open'
+                        to='/'
+                    >
                         <SidebarMenuButton
                             tooltip="Homepage"
                             size="lg"
@@ -37,6 +40,8 @@
                             </div>
                         </SidebarMenuButton>
                     </NuxtLink>
+                    
+                    <SidebarTrigger />
                 </DropdownMenuTrigger>
             </DropdownMenu>
         </SidebarMenuItem>

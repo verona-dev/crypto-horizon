@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import type { SidebarProps } from '@/components/ui/sidebar'
+    import {type SidebarProps} from '@/components/ui/sidebar'
     import {
         ChartCandlestick,
         BookOpen,
@@ -22,7 +22,7 @@
     const data = {
         user: {
             name: 'Guest',
-            email: 'guest@guest.com',
+            email: '',
             avatar: '/avatars/shadcn.jpg',
         },
         navMain: [
@@ -92,7 +92,7 @@
 
 <template>
     <Sidebar v-bind="props">
-        <SidebarHeader class='h-20 flex items-center justify-center'>
+        <SidebarHeader class='h-24 flex items-center justify-center'>
             <NavLogo />
         </SidebarHeader>
         
