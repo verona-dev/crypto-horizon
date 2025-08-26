@@ -19,7 +19,7 @@
     <SidebarMenu>
         <SidebarMenuItem>
             <DropdownMenu>
-                <DropdownMenuTrigger class='w-full'>
+                <DropdownMenuTrigger class='w-full flex items-center justify-evenly gap-2'>
                     <NuxtLink
                         v-if='open'
                         to='/'

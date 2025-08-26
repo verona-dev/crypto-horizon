@@ -13,23 +13,17 @@
 </script>
 
 <template>
-    <!--
-    :name='open ? "iconoir:sidebar-collapse" : "iconoir:sidebar-expand"'
-    :name='open ? "tabler:layout-sidebar-right-filled" : "tabler:layout-sidebar-right-collapse-filled"'
-    :name='open ? "stash:burger-arrow-left-duotone" : "stash:burger-arrow-right-duotone"'
-    -->
-    
     <!--  Open  -->
     <template v-if='open'>
         <NuxtIcon
             name='stash:burger-arrow-left-duotone'
-            data-sidebar="trigger"
-            data-slot="sidebar-trigger"
-            :class="cn('h-8 w-8 hover:bg-secondary',props.class)"
-            @click="toggleSidebar"
+            data-sidebar='trigger'
+            data-slot='sidebar-trigger'
+            :class='cn("h-6 w-6 hover:bg-secondary",props.class)'
+            @click='toggleSidebar'
         >
             <PanelLeft />
-            <span class="sr-only">Toggle Menu</span>
+            <span class='sr-only'>Toggle Menu</span>
         </NuxtIcon>
     </template>
     
