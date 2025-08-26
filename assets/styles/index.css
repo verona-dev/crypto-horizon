@@ -86,8 +86,8 @@
     --sidebar-primary: var(--foreground); /* Logo bg */
     --sidebar-primary-foreground: var(--foreground); /* Logo text */
     --sidebar-accent: var(--foreground); /* Hover nav items bg */
-    --sidebar-accent-foreground: var(--tertiary); /* Hover nav items text */
-    --sidebar-border: var(--tertiary); /* Submenu vertical line */
+    --sidebar-accent-foreground: var(--card-border); /* Hover nav items text */
+    --sidebar-border: var(--card-border); /* Submenu vertical line */
     --sidebar-ring: var(--card-border);
 
     --color-progress: oklch(0.696 0.17 162.48);

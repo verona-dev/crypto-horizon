@@ -22,7 +22,7 @@
     const data = {
         user: {
             name: 'Guest',
-            email: 'guest@guest.com',
+            email: '',
             avatar: '/avatars/shadcn.jpg',
         },
         navMain: [

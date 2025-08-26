@@ -1,11 +1,8 @@
 <script setup lang='ts'>
     import {
-        BadgeCheck,
-        Bell,
         ChevronsUpDown,
-        CreditCard,
-        LogOut,
-        Sparkles,
+        LogIn,
+        MailPlus,
     } from 'lucide-vue-next'
     import {
         Avatar,
@@ -47,11 +44,14 @@
                     <!--  Close-->
                     <SidebarMenuButton
                         size='lg'
-                        class='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
+                        class='
+                            hover:bg-accent hover:text-foreground
+                            data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground
+                        '
                     >
                         <Avatar class='h-8 w-8 rounded-lg'>
                             <AvatarImage :src='user.avatar' :alt='user.name' />
-                            <AvatarFallback class='rounded-lg text-lg'>
+                            <AvatarFallback class='bg-tertiary hover:bg-muted-custom rounded-lg text-lg'>
                                 G
                             </AvatarFallback>
                         </Avatar>
@@ -68,7 +68,7 @@
                 <!--  Open-->
                 <DropdownMenuContent
                     class='w-[--reka-dropdown-menu-trigger-width] min-w-56 rounded-lg'
-                    :side="isMobile ? 'bottom' : 'right'"
+                    :side='isMobile ? "bottom" : "right"'
                     align='end'
                     :side-offset='4'
                 >
@@ -87,32 +87,19 @@
                             </div>
                         </div>
                     </DropdownMenuLabel>
+                    
                     <DropdownMenuSeparator />
+                    
                     <DropdownMenuGroup>
                         <DropdownMenuItem>
-                            <Sparkles />
-                            Upgrade to Pro
+                            <MailPlus />
+                            Register
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuGroup>
-                        <DropdownMenuItem>
-                            <BadgeCheck />
-                            Account
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <CreditCard />
-                            Billing
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <Bell />
-                            Notifications
-                        </DropdownMenuItem>
-                    </DropdownMenuGroup>
-                    <DropdownMenuSeparator />
+                    
                     <DropdownMenuItem>
-                        <LogOut />
-                        Log out
+                        <LogIn />
+                        Log In
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
