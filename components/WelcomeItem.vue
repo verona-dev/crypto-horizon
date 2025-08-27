@@ -41,10 +41,10 @@
     .link-item {
         img {
             border-radius: 6px;
-            height: 300px;
+            height: 275px;
             object-fit: cover;
             transition: all 150ms ease-out;
-            width: 450px;
+            width: 425px;
         }
         
         &:hover {
@@ -56,8 +56,6 @@
             h2 {
                 border-left: 1px solid var(--snowy-mint);
                 border-right: 1px solid var(--snowy-mint);
-                padding-left: 20px;
-                padding-right: 20px;
             }
         }
         
