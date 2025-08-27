@@ -26,13 +26,18 @@
     
     const route = useRoute()
     const { open } = useSidebar();
-    const closed = computed(() => !open.value);
     
-    const isParentActive = (item_url: any) => {
+    const isParentActive = (item_url, items) => {
+        if (open.value) {
+            if (!route.path.startsWith(item_url)) return false;
+            // If the parent has one route, highlight the parent
+            if (items.length === 1) return route.path.startsWith(item_url);
+            return !items.some(child => route.path === child.url);
+        }
         return route.path.startsWith(item_url);
     };
     
-    const isChildActive = (item_url: any) => {
+    const isChildActive = (item_url: string) => {
         return route.path === item_url;
     };
     
@@ -48,13 +53,13 @@
                 url: '/market',
                 icon: ChartCandlestick,
                 get isActive() {
-                    return isParentActive(this.url);
+                    return isParentActive(this.url, this.items);
                 },
                 items: [
                     {
                         title: 'Market',
                         url: '/market',
-                    }
+                    },
                 ],
             },
             {
@@ -62,9 +67,7 @@
                 url: '/news',
                 icon: BookOpen,
                 get isActive() {
-                    if(closed.value) {
-                        return isParentActive(this.url);
-                    }
+                    return isParentActive(this.url, this.items);
                 },
                 items: [
                     {
@@ -88,9 +91,7 @@
                 url: '/defi',
                 icon: Landmark,
                 get isActive() {
-                    if(closed.value) {
-                        return isParentActive(this.url);
-                    }
+                    return isParentActive(this.url, this.items);
                 },
                 items: [
                     {
@@ -114,12 +115,12 @@
                 url: '/learn',
                 icon: GraduationCap,
                 get isActive() {
-                    return isParentActive(this.url);
+                    return isParentActive(this.url, this.items);
                 },
                 items: [
                     {
                         title: 'General',
-                        url: '#',
+                        url: '/learn',
                     },
                 ],
             },
