@@ -36,6 +36,9 @@
                 title: 'Market',
                 url: '/market',
                 icon: ChartCandlestick,
+                get isActive() {
+                    return route.path.startsWith(this.url);
+                },
                 items: [
                     {
                         title: 'Market',
@@ -47,6 +50,9 @@
                 title: 'News',
                 url: '/news',
                 icon: BookOpen,
+                get isActive() {
+                    return route.path.startsWith(this.url);
+                },
                 items: [
                     {
                         title: 'Latest News',
@@ -62,6 +68,9 @@
                 title: 'Defi',
                 url: '/defi',
                 icon: Landmark,
+                get isActive() {
+                    return route.path.startsWith(this.url);
+                },
                 items: [
                     {
                         title: 'What',
@@ -85,6 +94,9 @@
                 title: 'Learn',
                 url: '/learn',
                 icon: GraduationCap,
+                get isActive() {
+                    return route.path.startsWith(this.url);
+                },
                 items: [
                     {
                         title: 'General',
@@ -94,13 +106,6 @@
             },
         ],
     };
-    
-    const nav = computed(() => {
-        return data.navMain.map(item => ({
-            ...item,
-            isActive: route.path.startsWith(item.url)
-        }))
-    });
 </script>
 
 <template>
@@ -112,7 +117,7 @@
         <Separator />
         
         <SidebarContent>
-            <NavMain :items="nav" />
+            <NavMain :items="data.navMain" />
         </SidebarContent>
         
         <SidebarFooter>
