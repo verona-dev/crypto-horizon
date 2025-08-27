@@ -39,7 +39,7 @@
         <SidebarMenu>
             <NuxtLink v-if='!open' to='/'>
                 <SidebarMenuButton
-                    tooltip="Homepage"
+                    tooltip="Startpage"
                     size="lg"
                     class="mb-2 flex items-center gap-4 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                 >
@@ -59,7 +59,6 @@
                 v-for="item in items"
                 :key="item.title"
                 as-child
-                :default-open="true"
                 class="group/collapsible"
             >
                 <!--  Open -->
