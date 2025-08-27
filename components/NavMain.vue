@@ -76,7 +76,7 @@
                         <CollapsibleContent>
                             <SidebarMenuSub class='pl-5'>
                                 <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title" >
-                                    <SidebarMenuSubButton as-child>
+                                    <SidebarMenuSubButton as-child :is-active='subItem.isActive'>
                                         <NuxtLink :to="subItem.url">
                                             <span>{{ subItem.title }}</span>
                                         </NuxtLink>
