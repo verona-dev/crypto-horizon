@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import {type SidebarProps} from '@/components/ui/sidebar'
+    import {type SidebarProps, useSidebar} from '@/components/ui/sidebar'
     import {
         ChartCandlestick,
         BookOpen,
@@ -19,11 +19,22 @@
         SidebarRail,
     } from '@/components/ui/sidebar'
     
-    const route = useRoute()
     
     const props = withDefaults(defineProps<SidebarProps>(), {
         collapsible: "icon",
     })
+    
+    const route = useRoute()
+    const { open } = useSidebar();
+    const closed = computed(() => !open.value);
+    
+    const isParentActive = (item_url: any) => {
+        return route.path.startsWith(item_url);
+    };
+    
+    const isChildActive = (item_url: any) => {
+        return route.path === item_url;
+    };
     
     const data = {
         user: {
@@ -37,7 +48,7 @@
                 url: '/market',
                 icon: ChartCandlestick,
                 get isActive() {
-                    return route.path.startsWith(this.url);
+                    return isParentActive(this.url);
                 },
                 items: [
                     {
@@ -51,16 +62,24 @@
                 url: '/news',
                 icon: BookOpen,
                 get isActive() {
-                    return route.path.startsWith(this.url);
+                    if(closed.value) {
+                        return isParentActive(this.url);
+                    }
                 },
                 items: [
                     {
                         title: 'Latest News',
                         url: '/news',
+                        get isActive() {
+                            return isChildActive(this.url);
+                        }
                     },
                     {
                         title: 'Outlets',
                         url: '/news/outlets',
+                        get isActive() {
+                            return isChildActive(this.url);
+                        }
                     },
                 ],
             },
@@ -69,24 +88,24 @@
                 url: '/defi',
                 icon: Landmark,
                 get isActive() {
-                    return route.path.startsWith(this.url);
+                    if(closed.value) {
+                        return isParentActive(this.url);
+                    }
                 },
                 items: [
                     {
-                        title: 'What',
+                        title: 'What is Defi',
                         url: '/defi',
+                        get isActive() {
+                            return isChildActive(this.url);
+                        }
                     },
                     {
-                        title: 'When',
-                        url: '/defi',
-                    },
-                    {
-                        title: 'Where',
-                        url: '/defi',
-                    },
-                    {
-                        title: 'How',
-                        url: '/defi',
+                        title: 'Platforms',
+                        url: '/defi/platforms',
+                        get isActive() {
+                            return isChildActive(this.url);
+                        }
                     },
                 ],
             },
@@ -95,7 +114,7 @@
                 url: '/learn',
                 icon: GraduationCap,
                 get isActive() {
-                    return route.path.startsWith(this.url);
+                    return isParentActive(this.url);
                 },
                 items: [
                     {
