@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import {SidebarTrigger, useSidebar} from '@/components/ui/sidebar'
+    import {useSidebar} from '@/components/ui/sidebar'
     
     import {
         DropdownMenu,
@@ -19,7 +19,7 @@
     <SidebarMenu>
         <SidebarMenuItem>
             <DropdownMenu>
-                <DropdownMenuTrigger class='w-full flex items-center justify-evenly gap-2'>
+                <DropdownMenuTrigger>
                     <NuxtLink
                         v-if='open'
                         to='/'
@@ -40,8 +40,6 @@
                             </div>
                         </SidebarMenuButton>
                     </NuxtLink>
-                    
-                    <SidebarTrigger />
                 </DropdownMenuTrigger>
             </DropdownMenu>
         </SidebarMenuItem>
