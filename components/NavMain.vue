@@ -29,6 +29,7 @@
             }[]
         }[]
     }>()
+    
     const { open } = useSidebar();
     
     /* TODO: collapse out if parent or child are active
@@ -44,7 +45,10 @@
     <SidebarGroup>
         <SidebarGroupLabel>Menu</SidebarGroupLabel>
         <!--  :class='{ "items-center" : !open }'  -->
-        <SidebarMenu class='gap-3'>
+        <SidebarMenu
+            class='gap-3'
+            :class='{ "flex items-center" : !open }'
+        >
             <Collapsible
                 v-for='item in items'
                 :key='item.title'
