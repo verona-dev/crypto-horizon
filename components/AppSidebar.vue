@@ -138,7 +138,7 @@
             <Separator />
             
             <div
-                class='h-12 flex items-center justify-center'
+                class='h-12 flex items-center'
                 :class='{ "justify-end" : open }'
             >
                 <SidebarTrigger />

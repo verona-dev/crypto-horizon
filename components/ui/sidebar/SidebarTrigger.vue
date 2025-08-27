@@ -15,16 +15,24 @@
 <template>
     <!--  Open  -->
     <template v-if='open'>
-        <NuxtIcon
-            name='stash:burger-arrow-left-duotone'
-            data-sidebar='trigger'
-            data-slot='sidebar-trigger'
-            :class='cn("h-6 w-6 hover:bg-secondary",props.class)'
+        <SidebarMenuButton
+            tooltip='Close Menu'
+            size="lg"
+            class='h-10'
             @click='toggleSidebar'
         >
-            <PanelLeft />
-            <span class='sr-only'>Toggle Menu</span>
-        </NuxtIcon>
+            <div class='flex w-full'>
+                <NuxtIcon
+                    name='stash:burger-arrow-left-duotone'
+                    data-sidebar='trigger'
+                    data-slot='sidebar-trigger'
+                    :class='cn("h-7 w-7",props.class)'
+                >
+                    <PanelLeft />
+                    <span class='sr-only'>Toggle Menu</span>
+                </NuxtIcon>
+            </div>
+        </SidebarMenuButton>
     </template>
     
     <!--  Close  -->
@@ -32,14 +40,15 @@
         <SidebarMenuButton
             tooltip='Open Menu'
             size="lg"
-            class='hover:bg-transparent active:bg-transparent'
+            class=''
+            @click='toggleSidebar'
         >
             <NuxtIcon
                 name='stash:burger-arrow-right-duotone'
                 data-sidebar='trigger'
                 data-slot='sidebar-trigger'
-                :class='cn("h-8 w-8 hover:bg-secondary",props.class)'
-                @click='toggleSidebar'
+                :class='cn("h-7 w-7",props.class)'
+                
             >
                 <PanelLeft />
                 <span class='sr-only'>Toggle Menu</span>
