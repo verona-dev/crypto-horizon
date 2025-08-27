@@ -59,6 +59,7 @@
                 v-for="item in items"
                 :key="item.title"
                 as-child
+                :default-open="item.isActive"
                 class="group/collapsible"
             >
                 <!--  Open -->

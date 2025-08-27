@@ -5,10 +5,12 @@
         BookOpen,
         Landmark,
         GraduationCap,
-    } from "lucide-vue-next"
+    } from 'lucide-vue-next'
+    
     import NavMain from '@/components/NavMain.vue'
     import NavUser from '@/components/NavUser.vue'
     import NavLogo from '~/components/NavLogo.vue'
+    
     import {
         Sidebar,
         SidebarContent,
@@ -16,9 +18,13 @@
         SidebarHeader,
         SidebarRail,
     } from '@/components/ui/sidebar'
+    
+    const route = useRoute()
+    
     const props = withDefaults(defineProps<SidebarProps>(), {
         collapsible: "icon",
     })
+    
     const data = {
         user: {
             name: 'Guest',
@@ -87,7 +93,14 @@
                 ],
             },
         ],
-    }
+    };
+    
+    const nav = computed(() => {
+        return data.navMain.map(item => ({
+            ...item,
+            isActive: route.path.startsWith(item.url)
+        }))
+    });
 </script>
 
 <template>
@@ -99,7 +112,7 @@
         <Separator />
         
         <SidebarContent>
-            <NavMain :items="data.navMain" />
+            <NavMain :items="nav" />
         </SidebarContent>
         
         <SidebarFooter>
