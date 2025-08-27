@@ -40,14 +40,16 @@
 <style scoped>
     .link-item {
         img {
+            border: 1px solid transparent;
             border-radius: 6px;
             height: 300px;
             object-fit: cover;
-            transition: all 150ms ease-in-out;
+            transition: all 150ms ease-out;
             width: 450px;
         }
         
         &:hover img {
+            border: 1px solid var(--snowy-mint);
             opacity: 0.9;
             scale: 1.01;
         }
@@ -57,7 +59,7 @@
         }
         
         &:hover h2 {
-            color: var(--secondary);
+            color: var(--snowy-mint);
         }
     }
 </style>
