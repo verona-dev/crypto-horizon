@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink :to='to' class='link-item flex flex-col items-center justify-center w-96'>
+    <NuxtLink :to='to' class='link-item w-96'>
         <NuxtImg
             :src='src'
             :alt='alt'
@@ -41,15 +41,22 @@
     .link-item {
         img {
             border-radius: 6px;
-            height: 300px;
+            height: 275px;
             object-fit: cover;
-            transition: all 150ms ease-in-out;
-            width: 450px;
+            transition: all 150ms ease-out;
+            width: 425px;
         }
         
-        &:hover img {
-            opacity: 0.9;
-            scale: 1.01;
+        &:hover {
+            img {
+                opacity: 0.9;
+                scale: 1.01;
+            }
+            
+            h2 {
+                border-left: 1px solid var(--snowy-mint);
+                border-right: 1px solid var(--snowy-mint);
+            }
         }
         
         h2 {
@@ -57,7 +64,7 @@
         }
         
         &:hover h2 {
-            color: var(--secondary);
+            color: var(--snowy-mint);
         }
     }
 </style>

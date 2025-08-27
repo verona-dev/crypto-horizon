@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import {SidebarTrigger, useSidebar} from '@/components/ui/sidebar'
+    import {useSidebar} from '@/components/ui/sidebar'
     
     import {
         DropdownMenu,
@@ -16,32 +16,27 @@
 </script>
 
 <template>
-    <SidebarMenu>
+    <SidebarMenu :class='{ "ml-3" : !open }'>
         <SidebarMenuItem>
             <DropdownMenu>
-                <DropdownMenuTrigger class='w-full flex items-center justify-evenly gap-2'>
-                    <NuxtLink
-                        v-if='open'
-                        to='/'
-                    >
+                <DropdownMenuTrigger :class='{ "ml-3" : open }'>
+                    <NuxtLink to='/'>
                         <SidebarMenuButton
-                            tooltip="Homepage"
-                            size="lg"
-                            class="flex items-center gap-4 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                            tooltip='Startpage'
+                            size='lg'
+                            class='flex gap-4 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
                         >
-                            <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                            <div class='flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary'>
                                 <NuxtIcon
                                     name='my-icon:astronaut'
                                     size='35'
                                 />
                             </div>
-                            <div class="grid flex-1 text-left text-sm leading-tight">
+                            <div class="flex-1 text-left text-sm leading-tight">
                                 <p class="custom truncate font-medium">Crypto Horizon</p>
                             </div>
                         </SidebarMenuButton>
                     </NuxtLink>
-                    
-                    <SidebarTrigger />
                 </DropdownMenuTrigger>
             </DropdownMenu>
         </SidebarMenuItem>
