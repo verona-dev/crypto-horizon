@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import {type SidebarProps, useSidebar} from '@/components/ui/sidebar'
+    import {type SidebarProps, SidebarTrigger, useSidebar} from '@/components/ui/sidebar'
     import {
         ChartCandlestick,
         BookOpen,
@@ -27,10 +27,10 @@
     const route = useRoute()
     const { open } = useSidebar();
     
-    const isParentActive = (item_url:string, items: any[]) => {
+    const isParentActive = (item_url: string, items: any[]) => {
         if (open.value) {
             if (!route.path.startsWith(item_url)) return false;
-            // If the parent has one route, highlight the parent
+            // If the parent has only one route, highlight the parent
             if (items.length === 1) return route.path.startsWith(item_url);
             return !items.some(child => route.path === child.url);
         }
@@ -130,8 +130,16 @@
 
 <template>
     <Sidebar v-bind="props">
-        <SidebarHeader class='h-24 flex items-center justify-center'>
-            <NavLogo />
+        <SidebarHeader>
+            <div class='h-16 flex items-center justify-center'>
+                <NavLogo />
+            </div>
+            
+            <Separator />
+            
+            <div class='h-12 flex items-center justify-end'>
+                <SidebarTrigger />
+            </div>
         </SidebarHeader>
         
         <Separator />
