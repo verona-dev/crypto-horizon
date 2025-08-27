@@ -30,6 +30,14 @@
         }[]
     }>()
     const { open } = useSidebar();
+    
+    /* TODO: collapse out if parent or child are active
+    const isAnyActive = item => {
+        if(item.isActive) return true;
+        if(item.item && item.items.some(subItem => subItem.isActive)) return true;
+        return false;
+    };
+    */
 </script>
 
 <template>
