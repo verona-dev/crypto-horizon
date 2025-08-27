@@ -20,14 +20,11 @@
         <SidebarMenuItem>
             <DropdownMenu>
                 <DropdownMenuTrigger>
-                    <NuxtLink
-                        v-if='open'
-                        to='/'
-                    >
+                    <NuxtLink to='/'>
                         <SidebarMenuButton
-                            tooltip="Homepage"
+                            tooltip="Startpage"
                             size="lg"
-                            class="flex items-center gap-4 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                            class="flex gap-4 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                         >
                             <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                                 <NuxtIcon
