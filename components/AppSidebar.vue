@@ -27,7 +27,7 @@
     const route = useRoute()
     const { open } = useSidebar();
     
-    const isParentActive = (item_url, items) => {
+    const isParentActive = (item_url:string, items: any[]) => {
         if (open.value) {
             if (!route.path.startsWith(item_url)) return false;
             // If the parent has one route, highlight the parent
