@@ -30,7 +30,7 @@
                             name='stash:burger-arrow-left-duotone'
                             data-sidebar='trigger'
                             data-slot='sidebar-trigger'
-                            :class='cn("h-7 w-7 ml-3",props.class)'
+                            :class='cn("h-6 w-6 ml-3",props.class)'
                         >
                             <PanelLeft />
                             <span class='sr-only'>Toggle Menu</span>
