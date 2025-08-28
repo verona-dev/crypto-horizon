@@ -45,6 +45,7 @@
     --color-teal-blue: var(--teal-blue);
     --color-blue-victoria: var(--blue-victoria);
     --color-pink-blush: var(--pink-blush);
+    --color-blue-hippie: var(--blue-hippie);
     
     --color-1: var(--color-1);
     --color-3: var(--color-3);
@@ -101,6 +102,7 @@
     --teal-blue: #014760;
     --blue-victoria: #4a478a;
     --pink-blush: #da8a8b;
+    --blue-hippie: #5591a9;
     
     --color-1: #5591a9;
     --color-2: oklch(0.398 0.07 227.392);
