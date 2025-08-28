@@ -39,11 +39,10 @@
 </script>
 
 <template>
-    <SidebarMenu class='flex items-center'>
+    <SidebarMenu :class='{ "ml-4" : !open }'>
         <SidebarMenuItem>
             <DropdownMenu>
-                <DropdownMenuTrigger as-child>
-                    <!--  Trigger Icon -->
+                <DropdownMenuTrigger as-child :class='{ "" : !open }'>
                     <SidebarMenuButton
                         size='lg'
                         class='
@@ -52,7 +51,10 @@
                         '
                         :class='{ "dark:border dark:border-accent dark:hover:border-sidebar-border" : open }'
                     >
-                        <Avatar class='h-8 w-8 rounded-lg'>
+                        <Avatar
+                            class='h-8 w-8 rounded-lg'
+                            :class='{ "ml-2" : open }'
+                        >
                             <AvatarImage :src='user.avatar' :alt='user.name' />
                             <AvatarFallback
                                 class='bg-tertiary rounded-lg text-lg'
