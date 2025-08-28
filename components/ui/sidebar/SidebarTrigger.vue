@@ -9,7 +9,7 @@
         class?: HTMLAttributes["class"]
     }>()
     
-    const { open, toggleSidebar } = useSidebar()
+    const { open, toggleSidebar, isMobile } = useSidebar()
 </script>
 
 <template>

@@ -30,7 +30,7 @@
         }[]
     }>()
     
-    const { open } = useSidebar();
+    const { open, isMobile } = useSidebar();
     
     /* TODO: collapse out if parent or child are active
     const isAnyActive = item => {
