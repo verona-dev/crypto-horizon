@@ -19,7 +19,7 @@
     <SidebarMenu :class='{ "ml-2" : !open }'>
         <SidebarMenuItem>
             <DropdownMenu>
-                <DropdownMenuTrigger :class='{ "ml-2" : open }'>
+                <DropdownMenuTrigger class='h-full' :class='{ "ml-2" : open }'>
                     <NuxtLink to='/'>
                         <SidebarMenuButton
                             tooltip='Startpage'
