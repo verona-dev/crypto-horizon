@@ -93,11 +93,11 @@
     --ring: oklch(0.442 0.017 285.786);
     --secondary: #1cd1a1;
     --secondary-foreground: oklch(0.985 0 0);
-    --tertiary: var(--color-cyan-700);
+    --tertiary: #007595;  /* tw cyan-700 */
     --warning: oklch(83.7% 0.128 66.29);
 
-    --progress: oklch(0.696 0.17 162.48);
-    --sky: rgb(14 165 233);
+    --progress: #00bc7d;
+    --sky: #0ea5e9;
     --green-patina: #6a9a8b;
     --snowy-mint: #c3e8c8;
     --pink-cabaret: #E91E63;
@@ -118,7 +118,7 @@
     --sidebar-foreground: var(--foreground);
     --sidebar-primary: var(--foreground); /* Logo bg */
     --sidebar-primary-foreground: var(--foreground); /* Logo text */
-    --sidebar-accent: var(--gray-dove); /* Hover + Active nav items bg */
+    --sidebar-accent: var(--tertiary); /* Hover + Active nav items bg */
     --sidebar-accent-foreground: var(--foreground); /* Hover nav items text */
     --sidebar-border: var(--card-border); /* Submenu vertical line */
     --sidebar-ring: var(--card-border);
