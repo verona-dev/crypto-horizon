@@ -52,11 +52,12 @@
                 opacity: 0.9;
                 scale: 1.01;
             }
-            
+            /*
             h2 {
                 border-left: 1px solid var(--snowy-mint);
                 border-right: 1px solid var(--snowy-mint);
             }
+            */
         }
         
         h2 {
