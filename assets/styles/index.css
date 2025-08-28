@@ -42,6 +42,7 @@
     --color-snowy-mint: var(--snowy-mint);
     --color-pink-cabaret : var(--pink-cabaret);
     --color-green-deco: var(--green-deco);
+    --color-teal-blue: var(--teal-blue);
     
     --color-1: var(--color-1);
     --color-3: var(--color-3);
@@ -95,8 +96,9 @@
     --snowy-mint: #c3e8c8;
     --pink-cabaret: #E91E63;
     --green-deco: #cbe58e;
-
-    --color-1: #cbe58e;
+    --teal-blue: #014760;
+    
+    --color-1: #014760;
     --color-2: oklch(0.398 0.07 227.392);
     --color-3: oklch(0.569 0.132 154.839);
     
