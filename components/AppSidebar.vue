@@ -131,7 +131,7 @@
 <template>
     <Sidebar v-bind="props">
         <SidebarHeader>
-            <div class='h-24 flex items-center justify-center'>
+            <div class='h-20 flex items-center justify-center'>
                 <NavLogo />
             </div>
             
@@ -148,7 +148,7 @@
             <NavMain :items="data.navMain" />
         </SidebarContent>
         
-        <SidebarFooter>
+        <SidebarFooter class='h-20 flex items-center justify-center'>
             <NavUser :user="data.user" />
         </SidebarFooter>
         

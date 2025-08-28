@@ -67,7 +67,7 @@
 <style>
     .coin-sentiment {
         .progress-root {
-            background-color: var(--color-5);
+            background-color: var(--destructive-radical);
         }
         
         .progress-indicator {

@@ -5,13 +5,15 @@
         <!--
         <Breadcrumb />
         -->
-        
-        <SidebarInset>
-            <main class='flex flex-1 flex-col items-center max-w-[2000px] mx-auto'>
-                <slot />
-                
-                <ScrollToTop />
-            </main>
+        <SidebarInset class='flex flex-1 flex-col items-center max-w-[2000px] mx-auto'>
+            <!--  Mobile Trigger  -->
+            <!--
+            <SidebarTrigger />
+            -->
+            
+            <slot />
+            
+            <ScrollToTop />
         </SidebarInset>
     </SidebarProvider>
 </template>
@@ -22,6 +24,6 @@
     
     import {
         SidebarInset,
-        SidebarProvider,
-    } from "~/components/ui/sidebar"
+        SidebarProvider, SidebarTrigger,
+    } from '~/components/ui/sidebar';
 </script>
