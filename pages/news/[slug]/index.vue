@@ -129,7 +129,10 @@
         </div>
         
         <!-- Reading/Scroll progress bar -->
-        <div v-if='show_reading_duration' class='progress-container'>
+        <div
+            v-if='show_reading_duration'
+            class='progress-container l-0 xl:l-[70px]'
+        >
             <div class='progress-bar mr-2' :style='{ width: `${progress * 100}%` }'></div>
         </div>
     </div>
@@ -266,8 +269,7 @@
             height: 50px;
             padding: 0 20px;
             position: fixed;
-            right: 0;
-            width: 100%;
+            width: calc(100% - 70px);
             z-index: 100;
         }
         
