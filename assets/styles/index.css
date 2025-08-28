@@ -48,6 +48,7 @@
     --color-blue-hippie: var(--blue-hippie);
     --color-red-brick: var(--red-brick);
     --color-gray-mine: var(--gray-mine);
+    --color-gray-dove: var(--gray-dove);
     
     --color-1: var(--color-1);
     --color-3: var(--color-3);
@@ -107,8 +108,9 @@
     --blue-hippie: #5591a9;
     --red-brick: #c9374c;
     --gray-mine: #333136;
+    --gray-dove: #6f6d72;
     
-    --color-1: #333136;
+    --color-1: #6f6d72;
     --color-2: oklch(0.398 0.07 227.392);
     --color-3: oklch(0.569 0.132 154.839);
     
