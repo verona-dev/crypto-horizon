@@ -137,7 +137,7 @@
             
             <Separator />
             
-            <div class='h-12 flex items-center'>
+            <div class='h-20 flex items-center'>
                 <SidebarTrigger />
             </div>
         </SidebarHeader>
@@ -148,7 +148,7 @@
             <NavMain :items="data.navMain" />
         </SidebarContent>
         
-        <SidebarFooter class='h-20 flex items-center justify-center'>
+        <SidebarFooter class='h-28 flex items-center justify-center'>
             <NavUser :user="data.user" />
         </SidebarFooter>
         
