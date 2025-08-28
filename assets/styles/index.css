@@ -46,6 +46,7 @@
     --color-blue-victoria: var(--blue-victoria);
     --color-pink-blush: var(--pink-blush);
     --color-blue-hippie: var(--blue-hippie);
+    --color-red-brick: var(--red-brick);
     
     --color-1: var(--color-1);
     --color-3: var(--color-3);
@@ -103,8 +104,9 @@
     --blue-victoria: #4a478a;
     --pink-blush: #da8a8b;
     --blue-hippie: #5591a9;
+    --red-brick: #c9374c;
     
-    --color-1: #5591a9;
+    --color-1: #c9374c;
     --color-2: oklch(0.398 0.07 227.392);
     --color-3: oklch(0.569 0.132 154.839);
     
