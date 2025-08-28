@@ -48,6 +48,7 @@
                         class='
                             dark:bg-card
                             dark:hover:text-foreground
+                            gap-4
                         '
                         :class='{ "dark:border dark:border-accent dark:hover:border-sidebar-border" : open }'
                     >

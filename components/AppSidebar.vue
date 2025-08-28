@@ -148,7 +148,7 @@
             <NavMain :items="data.navMain" />
         </SidebarContent>
         
-        <SidebarFooter class='flex items-center justify-center'>
+        <SidebarFooter class='h-20 flex items-center justify-center'>
             <NavUser :user="data.user" />
         </SidebarFooter>
         
