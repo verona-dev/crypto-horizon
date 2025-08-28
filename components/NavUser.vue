@@ -39,7 +39,7 @@
 </script>
 
 <template>
-    <SidebarMenu>
+    <SidebarMenu class='flex items-center'>
         <SidebarMenuItem>
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
