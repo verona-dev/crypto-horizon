@@ -11,62 +11,65 @@
     
     const { open, toggleSidebar, isMobile } = useSidebar()
     
-    const ShortcutTooltip = {
+    const TooltipContent = {
         render() {
-            return h('kbd', {
-                class: 'pointer-events-none self-start inline-flex select-none items-center gap-1 rounded border bg-muted px-2 font-mono text-[12px] font-medium text-muted-foreground opacity-100'
+            return h('div', {
+                class: 'flex select-none items-center gap-1 px-2'
             }, [
-                h('span', { class: 'text-lg' }, '⌘'),
-                'E'
+                h('span', { class: 'text-xl' }, '⌘'),
+                h('span', 'E')
             ])
         }
-    }
+    };
 </script>
 
 <template>
-    <SidebarMenu :class='{ "ml-2" : !open }'>
+    <SidebarMenu class='ml-3.5'>
         <SidebarMenuItem>
-                <!--  Open  -->
-                <template v-if='open'>
-                    <SidebarMenuButton
-                        tooltip='Close Menu'
-                        class='h-10'
-                        @click='toggleSidebar'
+            <!--  Open  -->
+            <template v-if='open'>
+                <SidebarMenuButton
+                    tooltip='Close Menu'
+                    class='
+                        h-10 flex items-center justify-between
+                        hover:bg-transparent active:bg-transparent focus:bg-transparent hover:text-green-deco
+                    '
+                    @click='toggleSidebar'
+                >
+                    <NuxtIcon
+                        name='stash:burger-arrow-left-duotone'
+                        data-sidebar='trigger'
+                        data-slot='sidebar-trigger'
+                        :class='cn("h-6 w-6",props.class)'
                     >
-                        <div class='flex w-full'>
-                            <NuxtIcon
-                                name='stash:burger-arrow-left-duotone'
-                                data-sidebar='trigger'
-                                data-slot='sidebar-trigger'
-                                :class='cn("h-6 w-6",props.class)'
-                            >
-                                <PanelLeft />
-                                <span class='sr-only'>Toggle Menu</span>
-                            </NuxtIcon>
-                        </div>
-                    </SidebarMenuButton>
-                </template>
-                
-                <!--  Close  -->
-                <template v-else>
-                    <SidebarMenuButton
-                        :tooltip='ShortcutTooltip'
-                        size="lg"
-                        class='justify-center flex-col'
-                        @click='toggleSidebar'
+                        <PanelLeft />
+                        <span class='sr-only'>Toggle Menu</span>
+                    </NuxtIcon>
+                    
+                    <span class='mr-3.5 text-xs'>Close Menu</span>
+                </SidebarMenuButton>
+            </template>
+            
+            <!--  Close  -->
+            <template v-else>
+                <SidebarMenuButton
+                    :tooltip='TooltipContent'
+                    size="lg"
+                    class='justify-center flex-col hover:bg-transparent active:bg-transparent focus:bg-transparent hover:text-green-deco'
+                    @click='toggleSidebar'
+                >
+                    <NuxtIcon
+                        name='stash:burger-arrow-right-duotone'
+                        data-sidebar='trigger'
+                        data-slot='sidebar-trigger'
+                        :class='cn("h-6 w-6",props.class)'
+                    
                     >
-                        <NuxtIcon
-                            name='stash:burger-arrow-right-duotone'
-                            data-sidebar='trigger'
-                            data-slot='sidebar-trigger'
-                            :class='cn("h-6 w-6",props.class)'
-                        
-                        >
-                            <PanelLeft />
-                            <span class='sr-only'>Toggle Menu</span>
-                        </NuxtIcon>
-                    </SidebarMenuButton>
-                </template>
+                        <PanelLeft />
+                        <span class='sr-only'>Toggle Menu</span>
+                    </NuxtIcon>
+                </SidebarMenuButton>
+            </template>
         </SidebarMenuItem>
     </SidebarMenu>
     

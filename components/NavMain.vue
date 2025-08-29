@@ -60,21 +60,25 @@
                 <template v-if='open'>
                     <!--  Sub routes -->
                     <SidebarMenuItem v-if='item.items.length > 1'>
-                        <CollapsibleTrigger as-child>
+                        <CollapsibleTrigger class='w-full'>
                             <SidebarMenuButton
                                 :is-active='item.isActive'
-                                :tooltip='item.title'
-                                class='h-10'
+                                class=''
                             >
                                 <component :is='item.icon' v-if='item.icon' />
                                 <span>{{ item.title }}</span>
                                 <ChevronRight class='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
                             </SidebarMenuButton>
                         </CollapsibleTrigger>
+                        
                         <CollapsibleContent>
                             <SidebarMenuSub class='pl-5'>
                                 <SidebarMenuSubItem v-for='subItem in item.items' :key='subItem.title'>
-                                    <SidebarMenuSubButton as-child :is-active='subItem.isActive'  class='h-10 mt-1'>
+                                    <SidebarMenuSubButton
+                                        as-child
+                                        :is-active='subItem.isActive'
+                                        class='mt-1'
+                                    >
                                         <NuxtLink :to='subItem.url'>
                                             <span>{{ subItem.title }}</span>
                                         </NuxtLink>
@@ -89,8 +93,7 @@
                         <NuxtLink :to='item.url'>
                             <SidebarMenuButton
                                 :is-active='item.isActive'
-                                :tooltip='item.title'
-                                class='h-10'
+                                class=''
                             >
                                 <component :is='item.icon' v-if='item.icon' />
                                 <span>{{ item.title }}</span>
@@ -102,31 +105,17 @@
                 <!--  Close -->
                 <template v-else>
                     <NuxtLink :to='item.url'>
-                        <SidebarMenuItem v-if='item.items.length > 1'>
-                            <CollapsibleTrigger as-child>
-                                <SidebarMenuButton :is-active='item.isActive' :tooltip='item.title'>
+                        <SidebarMenuItem>
+                            <CollapsibleTrigger>
+                                <SidebarMenuButton
+                                    :is-active='item.isActive'
+                                    :tooltip='item.title'
+                                    class='hover:bg-muted active:bg-muted'
+                                >
                                     <component :is='item.icon' v-if='item.icon' />
                                     <span>{{ item.title }}</span>
-                                    <ChevronRight class='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
                                 </SidebarMenuButton>
                             </CollapsibleTrigger>
-                            <CollapsibleContent>
-                                <SidebarMenuSub class='pl-5'>
-                                    <SidebarMenuSubItem v-for='subItem in item.items' :key='subItem.title' >
-                                        <SidebarMenuSubButton as-child>
-                                            <NuxtLink :to='subItem.url'>
-                                                <span>{{ subItem.title }}</span>
-                                            </NuxtLink>
-                                        </SidebarMenuSubButton>
-                                    </SidebarMenuSubItem>
-                                </SidebarMenuSub>
-                            </CollapsibleContent>
-                        </SidebarMenuItem>
-                        <SidebarMenuItem v-else>
-                            <SidebarMenuButton :is-active='item.isActive' :tooltip='item.title'>
-                                <component :is='item.icon' v-if='item.icon' />
-                                <span>{{ item.title }}</span>
-                            </SidebarMenuButton>
                         </SidebarMenuItem>
                     </NuxtLink>
                 </template>

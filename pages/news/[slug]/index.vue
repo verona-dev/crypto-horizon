@@ -11,16 +11,20 @@
         <div v-else class='w-full'>
             <Card
                 v-if='article && article.ID'
-                class='bg-background gap-12 xl:gap-20 max-w-7xl xl:px-20 pt-0 pb-10 mt-10 mb-40 mx-auto'
+                class='bg-background border-none gap-12 xl:gap-20 max-w-7xl xl:px-20 pt-0 pb-10 mt-10 mb-40 mx-auto'
             >
                 <!--  Header  -->
-                <CardHeader class='flex flex-col gap-12 px-0'>
+                <CardHeader class='flex flex-col gap-12'>
                     <!--  Categories + Title  -->
-                    <CardContent v-if='title' class='flex flex-col gap-6 pt-6'>
+                    <CardContent v-if='title' class='flex flex-col gap-8 pt-12'>
                         
-                        <div class='flex flex-col items-start gap-8'>
+                        <div class='header-nav flex items-center justify-start gap-8'>
                             <!--  Go back  -->
-                            <NuxtLink @click='goBack(router, "/news")' to='' class='hover:bg-muted hover:cursor-pointer rounded-full p-2'>
+                            <NuxtLink
+                                @click='goBack(router, "/news")'
+                                to=''
+                                class='hover:bg-muted hover:cursor-pointer rounded-xl p-1'
+                            >
                                 <NuxtIcon
                                     name='mdi-light:arrow-left'
                                     size='50'
@@ -29,26 +33,25 @@
                             </NuxtLink>
                             
                             <div v-if='categories' class='categories-container'>
-                                <MazBadge
+                                <Badge
+                                    variant='outline'
                                     v-for='category in categories'
-                                    class='badge m-2 !px-4 !py-1.5'
-                                    color='secondary'
-                                    size='1em'
-                                    outline
+                                    :key='category'
+                                    class='badge m-2 !px-4 !py-1.5 text-muted-foreground rounded-lg text-sm border border-card-border'
                                 >
                                     {{ category.NAME }}
-                                </MazBadge>
+                                </Badge>
                             </div>
                         </div>
-                       
                         
                         <h3 class='mt-4'>{{ title }}</h3>
                         
                         <!--  Reading duration  -->
-                        <div class='flex items-center gap-2 mt-2'>
+                        <div class='flex items-center gap-2 text-muted-foreground'>
                             <NuxtIcon
                                 name='mdi-light:clock'
                                 size='25'
+                            
                             />
                             <p>{{ reading_duration }} min Read</p>
                         </div>
@@ -58,7 +61,7 @@
                     <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
                     
                     <!--  Main image  -->
-                    <CardContent class=''>
+                    <CardContent class='p-0'>
                         <NuxtImg
                             :src='image_url'
                             alt='article image'
@@ -82,7 +85,7 @@
                     </CardContent>
                     
                     <!--  Author + Source + Publish date  -->
-                    <CardContent class='flex justify-between w-full'>
+                    <CardContent class='flex justify-between w-2/3'>
                         <div class='author flex items-center gap-4'>
                             <MazAvatar
                                 :src='source_avatar'
@@ -95,7 +98,7 @@
                             </div>
                         </div>
                         
-                        <div class='flex flex-col justify-center'>
+                        <div class='flex flex-col justify-center text-muted-foreground'>
                             <span v-if='publish_date'>Published: {{ publish_date_label }}</span>
                             <span v-if='update_date'>Last updated: {{ update_date_label }}</span>
                         </div>
@@ -106,8 +109,11 @@
                     <p v-html='body_formated'></p>
                 </CardContent>
                 
-                <CardFooter class='pb-10'>
-                    <p v-if='keywords'>Keywords: {{keywords}}</p>
+                <CardFooter class='pb-10 text-muted-foreground'>
+                    <p v-if='keywords'>
+                        Keywords:
+                        <span style='font-size: inherit;'>{{ keywords }}</span>
+                    </p>
                 </CardFooter>
             </Card>
             
@@ -132,8 +138,9 @@
         <div
             v-if='show_reading_duration'
             class='progress-container l-0 xl:l-[70px]'
+            :style='{ width: progress_bar_width }'
         >
-            <div class='progress-bar mr-2' :style='{ width: `${progress * 100}%` }'></div>
+            <div class='progress-bar' :style='{ width: `${progress * 100}%` }'></div>
         </div>
     </div>
 </template>
@@ -144,6 +151,7 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     import { useReadingTime } from 'maz-ui';
+    import { SIDEBAR_WIDTH } from '~/components/ui/sidebar/utils.js';
     
     // Router
     import { useRoute, useRouter } from 'vue-router';
@@ -152,6 +160,7 @@
     
     // Components
     import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
+    import { Badge } from '@/components/ui/badge';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Button } from '~/components/ui/button/index.js';
     
@@ -213,6 +222,7 @@
     */
     
     const progress = ref(0);
+    const progress_bar_width = computed(() => `calc(95vw - ${SIDEBAR_WIDTH})`);
     
     const onScroll = () => {
         const scrollTop = window.scrollY || window.pageYOffset;
@@ -250,6 +260,12 @@
 </script>
 
 <style scoped>
+    [data-slot='card-header'],
+    [data-slot='card-content'] {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
     .single-news {
         img.main-image {
             object-fit: cover;
@@ -257,26 +273,24 @@
             width: 800px;
         }
         
-        .badge {
-            border-radius: 4px !important;
-        }
-        
         .progress-container {
             align-items: center;
             background-color: var(--background);
             bottom: 0;
+            color: var(--tertiary);
             display: flex;
             height: 50px;
             padding: 0 20px;
             position: fixed;
-            width: calc(100% - 70px);
             z-index: 100;
         }
         
         .progress-bar {
             height: 2px;
-            background-color: var(--secondary);
+            background-color: var(--tertiary);
             transition: width 0.1s ease-out;
+            box-shadow: 0 0 16px 1px var(--tertiary);
+            border-radius: 16px;
         }
     }
 </style>

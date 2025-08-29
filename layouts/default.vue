@@ -1,5 +1,5 @@
 <template>
-    <SidebarProvider :default-open='false'>
+    <SidebarProvider>
         <AppSidebar />
         
         <!--

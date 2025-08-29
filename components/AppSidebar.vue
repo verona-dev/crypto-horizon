@@ -131,13 +131,13 @@
 <template>
     <Sidebar v-bind="props">
         <SidebarHeader>
-            <div class='h-20 flex items-center justify-center'>
+            <div class='h-24 flex items-center justify-center'>
                 <NavLogo />
             </div>
             
             <Separator />
             
-            <div class='h-12 flex items-center'>
+            <div class='h-8 flex items-center'>
                 <SidebarTrigger />
             </div>
         </SidebarHeader>
