@@ -16,7 +16,7 @@
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-12 px-0'>
                     <!--  Categories + Title  -->
-                    <CardContent v-if='title' class='flex flex-col gap-10 py-12 px-0'>
+                    <CardContent v-if='title' class='flex flex-col gap-8 pt-12 px-0'>
                         
                         <div class='header-nav flex items-center justify-start gap-8'>
                             <!--  Go back  -->
@@ -33,23 +33,25 @@
                             </NuxtLink>
                             
                             <div v-if='categories' class='categories-container'>
-                                <Badge variant='outline'
-                                       v-for='category in categories'
-                                       :key='category'
-                                       class='badge m-2 !px-4 !py-1.5 text-muted-foreground rounded-lg text-sm border border-card-border'
+                                <Badge
+                                    variant='outline'
+                                    v-for='category in categories'
+                                    :key='category'
+                                    class='badge m-2 !px-4 !py-1.5 text-muted-foreground rounded-lg text-sm border border-card-border'
                                 >
                                     {{ category.NAME }}
                                 </Badge>
                             </div>
                         </div>
                         
-                        <h3>{{ title }}</h3>
+                        <h3 class='mt-4'>{{ title }}</h3>
                         
                         <!--  Reading duration  -->
-                        <div class='flex items-center gap-2 mt-2'>
+                        <div class='flex items-center gap-2 text-muted-foreground'>
                             <NuxtIcon
                                 name='mdi-light:clock'
                                 size='25'
+                                
                             />
                             <p>{{ reading_duration }} min Read</p>
                         </div>
