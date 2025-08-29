@@ -39,7 +39,7 @@
 </script>
 
 <template>
-    <SidebarMenu :class='{ "ml-4" : !open }'>
+    <SidebarMenu :class='{ "ml-8" : !open }'>
         <SidebarMenuItem>
             <DropdownMenu>
                 <DropdownMenuTrigger as-child :class='{ "" : !open }'>
@@ -54,7 +54,7 @@
                     >
                         <Avatar
                             class='h-8 w-8 rounded-lg'
-                            :class='{ "ml-2" : open }'
+                            :class='{ "ml-4" : open }'
                         >
                             <AvatarImage :src='user.avatar' :alt='user.name' />
                             <AvatarFallback
@@ -65,7 +65,7 @@
                             </AvatarFallback>
                         </Avatar>
                         
-                        <div class='grid flex-1 text-left text-sm leading-tight'>
+                        <div class='flex-1 text-left text-sm leading-tight'>
                             <span class='truncate font-medium'>{{ user.name }}</span>
                             <span class='truncate text-xs'>{{ user.email }}</span>
                         </div>
@@ -102,7 +102,7 @@
                     <DropdownMenuGroup>
                         <DropdownMenuItem
                             @click='onClick'
-                            class='focus:bg-foreground focus:text-accent cursor-pointer py-3 mb-2'
+                            class='focus:bg-muted focus:text-foreground cursor-pointer py-3 mb-2'
                         >
                             <MailPlus />
                             Register
@@ -110,7 +110,7 @@
                         
                         <DropdownMenuItem
                             @click='onClick'
-                            class='focus:bg-foreground focus:text-accent cursor-pointer py-3'
+                            class='focus:bg-muted focus:text-foreground cursor-pointer py-3'
                         >
                             <LogIn />
                             Log In
