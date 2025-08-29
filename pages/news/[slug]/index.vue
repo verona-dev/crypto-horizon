@@ -16,9 +16,9 @@
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-12 px-0'>
                     <!--  Categories + Title  -->
-                    <CardContent v-if='title' class='flex flex-col gap-6 pt-6'>
+                    <CardContent v-if='title' class='flex flex-col gap-10 py-12 px-0'>
                         
-                        <div class='flex items-center justify-start gap-8'>
+                        <div class='header-nav flex items-center justify-start gap-8'>
                             <!--  Go back  -->
                             <NuxtLink
                                 @click='goBack(router, "/news")'
@@ -42,9 +42,8 @@
                                 </Badge>
                             </div>
                         </div>
-                       
                         
-                        <h3 class='mt-4'>{{ title }}</h3>
+                        <h3>{{ title }}</h3>
                         
                         <!--  Reading duration  -->
                         <div class='flex items-center gap-2 mt-2'>
@@ -60,7 +59,7 @@
                     <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
                     
                     <!--  Main image  -->
-                    <CardContent class=''>
+                    <CardContent class='p-0'>
                         <NuxtImg
                             :src='image_url'
                             alt='article image'
