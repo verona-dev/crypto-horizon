@@ -51,7 +51,7 @@
                             <NuxtIcon
                                 name='mdi-light:clock'
                                 size='25'
-                                
+                            
                             />
                             <p>{{ reading_duration }} min Read</p>
                         </div>
@@ -138,8 +138,9 @@
         <div
             v-if='show_reading_duration'
             class='progress-container l-0 xl:l-[70px]'
+            :style='{ width: progress_bar_width }'
         >
-            <div class='progress-bar mr-2' :style='{ width: `${progress * 100}%` }'></div>
+            <div class='progress-bar' :style='{ width: `${progress * 100}%` }'></div>
         </div>
     </div>
 </template>
@@ -150,6 +151,7 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     import { useReadingTime } from 'maz-ui';
+    import { SIDEBAR_WIDTH } from '~/components/ui/sidebar/utils.js';
     
     // Router
     import { useRoute, useRouter } from 'vue-router';
@@ -220,6 +222,7 @@
     */
     
     const progress = ref(0);
+    const progress_bar_width = computed(() => `calc(90vw - ${SIDEBAR_WIDTH})`);
     
     const onScroll = () => {
         const scrollTop = window.scrollY || window.pageYOffset;
@@ -274,18 +277,20 @@
             align-items: center;
             background-color: var(--background);
             bottom: 0;
+            color: var(--tertiary);
             display: flex;
             height: 50px;
             padding: 0 20px;
             position: fixed;
-            width: calc(100% - 70px);
             z-index: 100;
         }
         
         .progress-bar {
             height: 2px;
-            background-color: var(--secondary);
+            background-color: var(--tertiary);
             transition: width 0.1s ease-out;
+            box-shadow: 0 0 16px 1px var(--tertiary);
+            border-radius: 16px;
         }
     }
 </style>
