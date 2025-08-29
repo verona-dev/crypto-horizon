@@ -24,7 +24,7 @@
 </script>
 
 <template>
-    <SidebarMenu :class='{ "ml-2" : !open }'>
+    <SidebarMenu :class='{ "ml-4" : !open }'>
         <SidebarMenuItem>
                 <!--  Open  -->
                 <template v-if='open'>
