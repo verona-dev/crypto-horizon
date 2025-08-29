@@ -18,9 +18,13 @@
                     <!--  Categories + Title  -->
                     <CardContent v-if='title' class='flex flex-col gap-6 pt-6'>
                         
-                        <div class='flex flex-col items-start gap-8'>
+                        <div class='flex items-center justify-start gap-8'>
                             <!--  Go back  -->
-                            <NuxtLink @click='goBack(router, "/news")' to='' class='hover:bg-muted hover:cursor-pointer rounded-full p-2'>
+                            <NuxtLink
+                                @click='goBack(router, "/news")'
+                                to=''
+                                class='hover:bg-muted hover:cursor-pointer rounded-xl p-1'
+                            >
                                 <NuxtIcon
                                     name='mdi-light:arrow-left'
                                     size='50'
@@ -29,15 +33,13 @@
                             </NuxtLink>
                             
                             <div v-if='categories' class='categories-container'>
-                                <MazBadge
-                                    v-for='category in categories'
-                                    class='badge m-2 !px-4 !py-1.5'
-                                    color='secondary'
-                                    size='1em'
-                                    outline
+                                <Badge variant='outline'
+                                       v-for='category in categories'
+                                       :key='category'
+                                       class='badge m-2 !px-4 !py-1.5 text-muted-foreground rounded-lg text-sm border border-card-border'
                                 >
                                     {{ category.NAME }}
-                                </MazBadge>
+                                </Badge>
                             </div>
                         </div>
                        
@@ -152,6 +154,7 @@
     
     // Components
     import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
+    import { Badge } from '@/components/ui/badge';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Button } from '~/components/ui/button/index.js';
     
@@ -255,10 +258,6 @@
             object-fit: cover;
             height: 500px;
             width: 800px;
-        }
-        
-        .badge {
-            border-radius: 4px !important;
         }
         
         .progress-container {

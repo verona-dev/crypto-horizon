@@ -78,7 +78,8 @@
 
     --card: oklch(0.141 0.005 285.823);
     --card-foreground: oklch(0.985 0 0);
-    --card-border: oklch(0.442 0.017 285.786);
+    --card-border: var(--gray-dove);
+    /*--card-border: oklch(0.442 0.017 285.786);*/
     --destructive: oklch(0.396 0.141 25.723);
     --destructive-foreground: oklch(0.637 0.237 25.331);
     --destructive-radical: oklch(0.645 0.246 16.439);
