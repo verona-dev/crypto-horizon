@@ -24,49 +24,52 @@
 </script>
 
 <template>
-    <SidebarMenu :class='{ "ml-4" : !open }'>
+    <SidebarMenu class='ml-3.5'>
         <SidebarMenuItem>
-                <!--  Open  -->
-                <template v-if='open'>
-                    <SidebarMenuButton
-                        tooltip='Close Menu'
-                        class='h-10 hover:bg-transparent active:bg-transparent focus:bg-transparent hover:text-secondary'
-                        @click='toggleSidebar'
+            <!--  Open  -->
+            <template v-if='open'>
+                <SidebarMenuButton
+                    tooltip='Close Menu'
+                    class='
+                        h-10 flex items-center justify-between
+                        hover:bg-transparent active:bg-transparent focus:bg-transparent hover:text-green-deco
+                    '
+                    @click='toggleSidebar'
+                >
+                    <NuxtIcon
+                        name='stash:burger-arrow-left-duotone'
+                        data-sidebar='trigger'
+                        data-slot='sidebar-trigger'
+                        :class='cn("h-6 w-6",props.class)'
                     >
-                        <div class='flex w-full'>
-                            <NuxtIcon
-                                name='stash:burger-arrow-left-duotone'
-                                data-sidebar='trigger'
-                                data-slot='sidebar-trigger'
-                                :class='cn("h-6 w-6",props.class)'
-                            >
-                                <PanelLeft />
-                                <span class='sr-only'>Toggle Menu</span>
-                            </NuxtIcon>
-                        </div>
-                    </SidebarMenuButton>
-                </template>
-                
-                <!--  Close  -->
-                <template v-else>
-                    <SidebarMenuButton
-                        :tooltip='TooltipContent'
-                        size="lg"
-                        class='justify-center flex-col hover:bg-transparent active:bg-transparent focus:bg-transparent hover:text-secondary'
-                        @click='toggleSidebar'
+                        <PanelLeft />
+                        <span class='sr-only'>Toggle Menu</span>
+                    </NuxtIcon>
+                    
+                    <span class='mr-3.5 text-xs'>Close Menu</span>
+                </SidebarMenuButton>
+            </template>
+            
+            <!--  Close  -->
+            <template v-else>
+                <SidebarMenuButton
+                    :tooltip='TooltipContent'
+                    size="lg"
+                    class='justify-center flex-col hover:bg-transparent active:bg-transparent focus:bg-transparent hover:text-green-deco'
+                    @click='toggleSidebar'
+                >
+                    <NuxtIcon
+                        name='stash:burger-arrow-right-duotone'
+                        data-sidebar='trigger'
+                        data-slot='sidebar-trigger'
+                        :class='cn("h-6 w-6",props.class)'
+                    
                     >
-                        <NuxtIcon
-                            name='stash:burger-arrow-right-duotone'
-                            data-sidebar='trigger'
-                            data-slot='sidebar-trigger'
-                            :class='cn("h-6 w-6",props.class)'
-                        
-                        >
-                            <PanelLeft />
-                            <span class='sr-only'>Toggle Menu</span>
-                        </NuxtIcon>
-                    </SidebarMenuButton>
-                </template>
+                        <PanelLeft />
+                        <span class='sr-only'>Toggle Menu</span>
+                    </NuxtIcon>
+                </SidebarMenuButton>
+            </template>
         </SidebarMenuItem>
     </SidebarMenu>
     
