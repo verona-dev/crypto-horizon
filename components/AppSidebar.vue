@@ -131,7 +131,7 @@
 <template>
     <Sidebar v-bind="props">
         <SidebarHeader>
-            <div class='h-28 flex items-center justify-center'>
+            <div class='h-24 flex items-center justify-center'>
                 <NavLogo />
             </div>
             
