@@ -11,16 +11,16 @@
     
     const { open, toggleSidebar, isMobile } = useSidebar()
     
-    const ShortcutTooltip = {
+    const TooltipContent = {
         render() {
-            return h('kbd', {
-                class: 'pointer-events-none self-start inline-flex select-none items-center gap-1 rounded border bg-muted px-2 font-mono text-[12px] font-medium text-muted-foreground opacity-100'
+            return h('div', {
+                class: 'flex select-none items-center gap-1 px-2'
             }, [
-                h('span', { class: 'text-lg' }, '⌘'),
-                'E'
+                h('span', { class: 'text-xl' }, '⌘'),
+                h('span', 'E')
             ])
         }
-    }
+    };
 </script>
 
 <template>
@@ -50,7 +50,7 @@
                 <!--  Close  -->
                 <template v-else>
                     <SidebarMenuButton
-                        :tooltip='ShortcutTooltip'
+                        :tooltip='TooltipContent'
                         size="lg"
                         class='justify-center flex-col'
                         @click='toggleSidebar'
