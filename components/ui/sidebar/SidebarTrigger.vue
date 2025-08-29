@@ -30,7 +30,7 @@
                 <template v-if='open'>
                     <SidebarMenuButton
                         tooltip='Close Menu'
-                        class='h-10'
+                        class='h-10 hover:bg-transparent active:bg-transparent'
                         @click='toggleSidebar'
                     >
                         <div class='flex w-full'>
@@ -38,7 +38,7 @@
                                 name='stash:burger-arrow-left-duotone'
                                 data-sidebar='trigger'
                                 data-slot='sidebar-trigger'
-                                :class='cn("h-6 w-6",props.class)'
+                                :class='cn("h-6 w-6 hover:bg-secondary",props.class)'
                             >
                                 <PanelLeft />
                                 <span class='sr-only'>Toggle Menu</span>
@@ -52,14 +52,14 @@
                     <SidebarMenuButton
                         :tooltip='TooltipContent'
                         size="lg"
-                        class='justify-center flex-col'
+                        class='justify-center flex-col hover:bg-transparent active:bg-transparent'
                         @click='toggleSidebar'
                     >
                         <NuxtIcon
                             name='stash:burger-arrow-right-duotone'
                             data-sidebar='trigger'
                             data-slot='sidebar-trigger'
-                            :class='cn("h-6 w-6",props.class)'
+                            :class='cn("h-6 w-6 hover:bg-secondary",props.class)'
                         
                         >
                             <PanelLeft />
