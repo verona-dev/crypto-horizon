@@ -85,7 +85,7 @@
                     </CardContent>
                     
                     <!--  Author + Source + Publish date  -->
-                    <CardContent class='flex justify-between w-full'>
+                    <CardContent class='flex justify-between w-2/3'>
                         <div class='author flex items-center gap-4'>
                             <MazAvatar
                                 :src='source_avatar'
