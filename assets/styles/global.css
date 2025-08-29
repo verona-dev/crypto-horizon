@@ -29,6 +29,7 @@
     }
     
     main {
+        @apply my-20;
         /*@apply flex justify-center items-center;*/
         /*min-height: calc(100vh - 200px);*/
     }
