@@ -137,7 +137,7 @@
             
             <Separator />
             
-            <div class='h-12 flex items-center'>
+            <div class='h-8 flex items-center'>
                 <SidebarTrigger />
             </div>
         </SidebarHeader>
