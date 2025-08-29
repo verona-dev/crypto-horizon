@@ -14,9 +14,9 @@
                 class='bg-background border-none gap-12 xl:gap-20 max-w-7xl xl:px-20 pt-0 pb-10 mt-10 mb-40 mx-auto'
             >
                 <!--  Header  -->
-                <CardHeader class='flex flex-col gap-12 px-0'>
+                <CardHeader class='flex flex-col gap-12'>
                     <!--  Categories + Title  -->
-                    <CardContent v-if='title' class='flex flex-col gap-8 pt-12 px-0'>
+                    <CardContent v-if='title' class='flex flex-col gap-8 pt-12'>
                         
                         <div class='header-nav flex items-center justify-start gap-8'>
                             <!--  Go back  -->
@@ -257,6 +257,12 @@
 </script>
 
 <style scoped>
+    [data-slot='card-header'],
+    [data-slot='card-content'] {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
     .single-news {
         img.main-image {
             object-fit: cover;
