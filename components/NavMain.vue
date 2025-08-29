@@ -63,7 +63,6 @@
                         <CollapsibleTrigger as-child>
                             <SidebarMenuButton
                                 :is-active='item.isActive'
-                                :tooltip='item.title'
                                 class='h-10 hover:bg-muted active:bg-muted'
                             >
                                 <component :is='item.icon' v-if='item.icon' />
@@ -94,7 +93,6 @@
                         <NuxtLink :to='item.url'>
                             <SidebarMenuButton
                                 :is-active='item.isActive'
-                                :tooltip='item.title'
                                 class='h-10 hover:bg-muted active:bg-muted'
                             >
                                 <component :is='item.icon' v-if='item.icon' />
