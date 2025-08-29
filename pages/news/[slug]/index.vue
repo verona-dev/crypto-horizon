@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         
-                        <div class='flex flex-col justify-center'>
+                        <div class='flex flex-col justify-center text-muted-foreground'>
                             <span v-if='publish_date'>Published: {{ publish_date_label }}</span>
                             <span v-if='update_date'>Last updated: {{ update_date_label }}</span>
                         </div>
@@ -109,8 +109,11 @@
                     <p v-html='body_formated'></p>
                 </CardContent>
                 
-                <CardFooter class='pb-10'>
-                    <p v-if='keywords'>Keywords: {{keywords}}</p>
+                <CardFooter class='pb-10 text-muted-foreground'>
+                    <p v-if='keywords'>
+                        Keywords:
+                        <span style='font-size: inherit;'>{{ keywords }}</span>
+                    </p>
                 </CardFooter>
             </Card>
             
