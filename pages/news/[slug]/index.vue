@@ -222,7 +222,7 @@
     */
     
     const progress = ref(0);
-    const progress_bar_width = computed(() => `calc(90vw - ${SIDEBAR_WIDTH})`);
+    const progress_bar_width = computed(() => `calc(95vw - ${SIDEBAR_WIDTH})`);
     
     const onScroll = () => {
         const scrollTop = window.scrollY || window.pageYOffset;
