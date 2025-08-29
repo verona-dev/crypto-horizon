@@ -60,7 +60,7 @@
                 <template v-if='open'>
                     <!--  Sub routes -->
                     <SidebarMenuItem v-if='item.items.length > 1'>
-                        <CollapsibleTrigger as-child>
+                        <CollapsibleTrigger class='w-full'>
                             <SidebarMenuButton
                                 :is-active='item.isActive'
                                 class='h-10 hover:bg-muted active:bg-muted'
