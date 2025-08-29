@@ -63,7 +63,7 @@
                         <CollapsibleTrigger class='w-full'>
                             <SidebarMenuButton
                                 :is-active='item.isActive'
-                                class='h-10 hover:bg-muted active:bg-muted'
+                                class=''
                             >
                                 <component :is='item.icon' v-if='item.icon' />
                                 <span>{{ item.title }}</span>
@@ -77,7 +77,7 @@
                                     <SidebarMenuSubButton
                                         as-child
                                         :is-active='subItem.isActive'
-                                        class='h-10 mt-1 hover:bg-muted active:bg-muted'
+                                        class='mt-1'
                                     >
                                         <NuxtLink :to='subItem.url'>
                                             <span>{{ subItem.title }}</span>
@@ -93,7 +93,7 @@
                         <NuxtLink :to='item.url'>
                             <SidebarMenuButton
                                 :is-active='item.isActive'
-                                class='h-10 hover:bg-muted active:bg-muted'
+                                class=''
                             >
                                 <component :is='item.icon' v-if='item.icon' />
                                 <span>{{ item.title }}</span>
