@@ -24,7 +24,7 @@
                         <SidebarMenuButton
                             tooltip='Startpage'
                             size='lg'
-                            class='flex gap-4 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
+                            class='flex gap-4 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground hover:bg-transparent'
                         >
                             <div class='flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary'>
                                 <NuxtIcon
