@@ -64,7 +64,7 @@
                             <SidebarMenuButton
                                 :is-active='item.isActive'
                                 :tooltip='item.title'
-                                class='h-10'
+                                class='h-10 hover:bg-muted active:bg-muted'
                             >
                                 <component :is='item.icon' v-if='item.icon' />
                                 <span>{{ item.title }}</span>
@@ -75,7 +75,11 @@
                         <CollapsibleContent>
                             <SidebarMenuSub class='pl-5'>
                                 <SidebarMenuSubItem v-for='subItem in item.items' :key='subItem.title'>
-                                    <SidebarMenuSubButton as-child :is-active='subItem.isActive'  class='h-10 mt-1'>
+                                    <SidebarMenuSubButton
+                                        as-child
+                                        :is-active='subItem.isActive'
+                                        class='h-10 mt-1 hover:bg-muted active:bg-muted'
+                                    >
                                         <NuxtLink :to='subItem.url'>
                                             <span>{{ subItem.title }}</span>
                                         </NuxtLink>
@@ -91,7 +95,7 @@
                             <SidebarMenuButton
                                 :is-active='item.isActive'
                                 :tooltip='item.title'
-                                class='h-10'
+                                class='h-10 hover:bg-muted active:bg-muted'
                             >
                                 <component :is='item.icon' v-if='item.icon' />
                                 <span>{{ item.title }}</span>
@@ -105,7 +109,11 @@
                     <NuxtLink :to='item.url'>
                         <SidebarMenuItem>
                             <CollapsibleTrigger>
-                                <SidebarMenuButton :is-active='item.isActive' :tooltip='item.title'>
+                                <SidebarMenuButton
+                                    :is-active='item.isActive'
+                                    :tooltip='item.title'
+                                    class='hover:bg-muted active:bg-muted'
+                                >
                                     <component :is='item.icon' v-if='item.icon' />
                                     <span>{{ item.title }}</span>
                                 </SidebarMenuButton>
