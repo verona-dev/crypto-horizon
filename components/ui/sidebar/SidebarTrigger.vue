@@ -31,7 +31,7 @@
                 <SidebarMenuButton
                     class='
                         flex items-center justify-between
-                        hover:bg-transparent active:bg-transparent focus:bg-transparent hover:text-green-deco
+                        hover:bg-transparent active:bg-transparent focus:bg-transparent hover:text-sidebar-accent
                     '
                     @click='toggleSidebar'
                 >
