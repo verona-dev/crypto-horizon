@@ -10,25 +10,19 @@
 </script>
 
 <template>
-    <SidebarMenu class='ml-3.5'>
-        <Collapsible>
+    <SidebarMenu :class='{ "ml-3.5" : !open }'>
             <SidebarMenuItem>
                 <NuxtLink to='/'>
                     <!--  Open -->
                     <template v-if='open'>
                         <SidebarMenuButton
                             tooltip='Startpage'
-                            class='h-16 flex items-center justify-between
+                            class='h-16 flex items-center justify-center
                                    hover:text-green-deco
                             '
                             :class='{ "hover:bg-transparent active:bg-transparent focus:bg-transparent" : open }'
                         >
-                            <NuxtIcon
-                                name='my-icon:astronaut'
-                                class='h-8 w-8'
-                            />
-                            
-                            <h6 v-if='open' class='custom truncate'>Crypto Horizon</h6>
+                                          <h5 v-if='open' class='custom truncate'>Crypto Horizon</h5>
                         </SidebarMenuButton>
                     </template>
                     
@@ -36,7 +30,7 @@
                     <template v-else>
                         <SidebarMenuButton
                             tooltip='Startpage'
-                            class='h-16 flex items-center justify-between
+                            class='
                                    hover:text-green-deco
                             '
                             :class='{ "hover:bg-transparent active:bg-transparent focus:bg-transparent" : open }'
@@ -44,20 +38,19 @@
                         >
                             <NuxtIcon
                                 name='my-icon:astronaut'
-                                class='h-8 w-8'
+                                class='h-8 w-8 transition-all duration-400 ease-in-out'
                             />
                         </SidebarMenuButton>
                     </template>
                 
                 </NuxtLink>
             </SidebarMenuItem>
-        </Collapsible>
     </SidebarMenu>
 </template>
 
 <style scoped>
     .custom {
         font-family: 'Great', sans-serif;
-        letter-spacing: 0.35rem;
+        letter-spacing: 0.4rem;
     }
 </style>
