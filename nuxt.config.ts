@@ -90,6 +90,11 @@ export default defineNuxtConfig({
 
    ssr: false,
 
+   svgo: {
+      autoImportPath: 'assets/my-icons',
+      componentPrefix: 'Svgo',
+   },
+
    vite: {
       plugins: [
          tailwindcss(),
