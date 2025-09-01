@@ -12,49 +12,27 @@
 </script>
 
 <template>
-    <SidebarMenu>
+    <SidebarMenu class='ml-3.5'>
         <Collapsible>
-            <!--  Open  -->
-            <template v-if='open'>
-                <SidebarMenuItem>
+            <SidebarMenuItem>
+                <NuxtLink to='/'>
                     <SidebarMenuButton
                         tooltip='Startpage'
                         class='
-                        h-10 flex items-center justify-between
-                        hover:bg-transparent active:bg-transparent focus:bg-transparent hover:text-green-deco
+                        h-16 flex items-center justify-between
+                         hover:text-green-deco
                     '
+                        :class='{ "hover:bg-transparent active:bg-transparent focus:bg-transparent" : open }'
                     >
                         <NuxtIcon
                             name='my-icon:astronaut'
-                            class=''
-                            size='40'
+                            :class='cn("h-8 w-8")'
                         />
                         
-                        <h5 class='custom truncate'>Crypto Horizon</h5>
+                        <h5 v-if='open' class='custom truncate'>Crypto Horizon</h5>
                     </SidebarMenuButton>
-                </SidebarMenuItem>
-            
-            </template>
-            
-            <!--  Close  -->
-            <template v-else>
-                <NuxtLink to='/'>
-                    <SidebarMenuItem>
-                        <CollapsibleTrigger>
-                            <SidebarMenuButton
-                                tooltip='Startpage'
-                                class='justify-center flex-col hover:text-green-deco'
-                            >
-                                <NuxtIcon
-                                    name='my-icon:astronaut'
-                                    class=''
-                                    :class='cn("h-8 w-8")'
-                                />
-                            </SidebarMenuButton>
-                        </CollapsibleTrigger>
-                    </SidebarMenuItem>
                 </NuxtLink>
-            </template>
+            </SidebarMenuItem>
         </Collapsible>
     </SidebarMenu>
 </template>
