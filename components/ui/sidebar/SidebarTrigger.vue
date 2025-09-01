@@ -4,7 +4,7 @@
     import { cn } from "@/lib/utils"
     import { useSidebar } from "./utils"
     import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '~/components/ui/sidebar'
-    
+    import { LucidePanelLeft } from 'lucide-vue-next'
     const props = defineProps<{
         class?: HTMLAttributes["class"]
     }>()
@@ -29,23 +29,12 @@
             <!--  Open  -->
             <template v-if='open'>
                 <SidebarMenuButton
-                    tooltip='Close Menu'
                     class='
-                        h-10 flex items-center justify-between
+                        flex items-center justify-between
                         hover:bg-transparent active:bg-transparent focus:bg-transparent hover:text-green-deco
                     '
                     @click='toggleSidebar'
                 >
-                    <NuxtIcon
-                        name='stash:burger-arrow-left-duotone'
-                        data-sidebar='trigger'
-                        data-slot='sidebar-trigger'
-                        :class='cn("h-6 w-6",props.class)'
-                    >
-                        <PanelLeft />
-                        <span class='sr-only'>Toggle Menu</span>
-                    </NuxtIcon>
-                    
                     <span class='mr-3.5 text-xs'>Close Menu</span>
                 </SidebarMenuButton>
             </template>
@@ -55,15 +44,14 @@
                 <SidebarMenuButton
                     :tooltip='TooltipContent'
                     size="lg"
-                    class='justify-center flex-col hover:bg-transparent active:bg-transparent focus:bg-transparent hover:text-green-deco'
+                    class='justify-center flex-col'
                     @click='toggleSidebar'
                 >
                     <NuxtIcon
-                        name='stash:burger-arrow-right-duotone'
+                        name='mynaui:sidebar'
                         data-sidebar='trigger'
                         data-slot='sidebar-trigger'
                         :class='cn("h-6 w-6",props.class)'
-                    
                     >
                         <PanelLeft />
                         <span class='sr-only'>Toggle Menu</span>
