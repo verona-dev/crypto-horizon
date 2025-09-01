@@ -10,41 +10,38 @@
 </script>
 
 <template>
-    <SidebarMenu :class='{ "ml-3.5" : !open }'>
-            <SidebarMenuItem>
-                <NuxtLink to='/'>
-                    <!--  Open -->
-                    <template v-if='open'>
-                        <SidebarMenuButton
-                            tooltip='Startpage'
-                            class='h-16 flex items-center justify-center
-                                   hover:text-green-deco
-                            '
-                            :class='{ "hover:bg-transparent active:bg-transparent focus:bg-transparent" : open }'
-                        >
-                                          <h5 v-if='open' class='custom truncate'>Crypto Horizon</h5>
-                        </SidebarMenuButton>
-                    </template>
-                    
-                    <!--  Close -->
-                    <template v-else>
-                        <SidebarMenuButton
-                            tooltip='Startpage'
-                            class='
-                                   hover:text-green-deco
-                            '
-                            :class='{ "hover:bg-transparent active:bg-transparent focus:bg-transparent" : open }'
-                            size='lg'
-                        >
-                            <NuxtIcon
-                                name='my-icon:astronaut'
-                                class='h-8 w-8 transition-all duration-400 ease-in-out'
-                            />
-                        </SidebarMenuButton>
-                    </template>
+    <SidebarMenu>
+        <SidebarMenuItem>
+            <NuxtLink to='/' class='flex justify-center'>
+                <!--  Open -->
+                <template v-if='open'>
+                    <SidebarMenuButton
+                        class='h-16 flex items-center justify-center
+                               hover:bg-transparent active:bg-transparent focus:bg-transparent
+                               hover:text-green-deco
+                        '
+                        size='lg'
+                    >
+                        <h5 v-if='open' class='custom truncate'>Crypto Horizon</h5>
+                    </SidebarMenuButton>
+                </template>
                 
-                </NuxtLink>
-            </SidebarMenuItem>
+                <!--  Close -->
+                <template v-else>
+                    <SidebarMenuButton
+                        tooltip='Startpage'
+                        class='hover:bg-transparent active:bg-transparent focus:bg-transparent'
+                        size='lg'
+                    >
+                        <NuxtIcon
+                            name='my-icon:astronaut'
+                            class='h-10 w-10'
+                        />
+                    </SidebarMenuButton>
+                </template>
+            
+            </NuxtLink>
+        </SidebarMenuItem>
     </SidebarMenu>
 </template>
 
