@@ -43,7 +43,6 @@
             <template v-else>
                 <SidebarMenuButton
                     :tooltip='TooltipContent'
-                    size='lg'
                     class='justify-center flex-col'
                     @click='toggleSidebar'
                 >
@@ -51,7 +50,7 @@
                         name='mynaui:sidebar'
                         data-sidebar='trigger'
                         data-slot='sidebar-trigger'
-                        :class='cn("h-6 w-6",props.class)'
+                        :class='cn("h-8 w-8",props.class)'
                     >
                         <PanelLeft />
                         <span class='sr-only'>Toggle Menu</span>
