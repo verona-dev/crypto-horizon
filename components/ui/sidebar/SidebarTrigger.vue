@@ -4,7 +4,6 @@
     import { cn } from "@/lib/utils"
     import { useSidebar } from "./utils"
     import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '~/components/ui/sidebar'
-    import { LucidePanelLeft } from 'lucide-vue-next'
     const props = defineProps<{
         class?: HTMLAttributes["class"]
     }>()
@@ -24,7 +23,7 @@
 </script>
 
 <template>
-    <SidebarMenu :class='open ? "" : "flex items-center justify-center"'>
+    <SidebarMenu :class='{ "flex items-center justify-center" : !open }'>
         <SidebarMenuItem>
             <!--  Open  -->
             <template v-if='open'>
