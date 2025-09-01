@@ -72,6 +72,7 @@ export default defineNuxtConfig({
      '@nuxt/icon',
      'shadcn-nuxt',
      'nuxt-charts',
+     'nuxt-svgo',
    ],
 
    runtimeConfig: {
