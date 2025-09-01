@@ -91,10 +91,7 @@
                     <!--  No Sub routes  -->
                     <SidebarMenuItem v-else>
                         <NuxtLink :to='item.url'>
-                            <SidebarMenuButton
-                                :is-active='item.isActive'
-                                class=''
-                            >
+                            <SidebarMenuButton :is-active='item.isActive'>
                                 <component :is='item.icon' v-if='item.icon' />
                                 <span>{{ item.title }}</span>
                             </SidebarMenuButton>
