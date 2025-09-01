@@ -49,6 +49,7 @@
     --color-red-brick: var(--red-brick);
     --color-gray-mine: var(--gray-mine);
     --color-gray-dove: var(--gray-dove);
+    --color-ebony-clay: var(--ebony-clay);
     
     --color-1: var(--color-1);
     --color-3: var(--color-3);
@@ -67,12 +68,13 @@
 }
 
 :root {
-    --accent: oklch(0.274 0.006 286.033);
+    --accent: oklch(0.274 0.006 286.033); /* #27272a */
     --accent-foreground: oklch(0.21 0.006 285.885);
     --border: oklch(0.274 0.006 286.033);
     --background: #0D1217;
     --background-2: oklch(0.17 0.008 285.489);
     --background-3: #222531;
+    --background-4: #1f2b37;
     /*--background: oklch(0.141 0.005 285.823); zinc-default */
     --foreground: oklch(0.985 0 0);
 
@@ -91,7 +93,7 @@
     --popover-foreground: oklch(0.985 0 0);
     --primary: oklch(0.985 0 0);
     --primary-foreground: oklch(0.21 0.006 285.885);
-    --ring: oklch(0.442 0.017 285.786);
+    --ring: oklch(0.442 0.017 285.786); /* #52525c */
     --secondary: #1cd1a1;
     --secondary-foreground: oklch(0.985 0 0);
     --tertiary: #007595;  /* tw cyan-700 */
@@ -110,19 +112,21 @@
     --red-brick: #c9374c;
     --gray-mine: #333136;
     --gray-dove: #6f6d72;
+    --ebony-clay: #1f2b37;
     
     --color-1: #b4b1b8;
     --color-2: oklch(0.398 0.07 227.392);
     --color-3: oklch(0.569 0.132 154.839);
     
-    --sidebar: var(--background);
+    --sidebar: var(--accent);
     --sidebar-foreground: var(--foreground);
     --sidebar-primary: var(--foreground); /* Logo bg */
     --sidebar-primary-foreground: var(--foreground); /* Logo text */
-    --sidebar-accent: var(--tertiary); /* Hover + Active nav items bg */
+    --sidebar-accent: var(--red-brick); /* Hover + Active nav items bg */
     --sidebar-accent-foreground: var(--foreground); /* Hover nav items text */
-    --sidebar-border: var(--card-border); /* Submenu vertical line */
-    --sidebar-ring: var(--card-border);
+    --sidebar-border: var(--gray-dove); /* Submenu vertical line */
+    --sidebar-ring: var(--ring); /* Hover bg-color */
+    
     /*
     --color-aqua: #02D0BD;
     --color-black: #000;
