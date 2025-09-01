@@ -35,10 +35,7 @@
                 >
                     <span class='text-xs truncate'>Close Menu</span>
                     
-                    <kbd
-                        class='text-foreground border-muted-foreground pointer-events-none inline-flex select-none items-center gap-1 rounded border px-2 font-mono text-[14px] font-medium opacity-100'
-                        :class='{ "mx-auto" : !open}'
-                    >
+                    <kbd class='text-foreground border-ring pointer-events-none inline-flex select-none items-center gap-1 rounded border px-3 py-1 text-[14px] opacity-100'>
                         <span class='text-xl'>⌘</span>E
                     </kbd>
                 </SidebarMenuButton>
@@ -64,13 +61,4 @@
             </template>
         </SidebarMenuItem>
     </SidebarMenu>
-    
-    <!--
-    <kbd
-        class='pointer-events-none self-start inline-flex select-none items-center gap-1 rounded border bg-muted px-2 font-mono text-[14px] font-medium text-muted-foreground opacity-100'
-        :class='{ "mx-auto" : !open}'
-    >
-        <span class='text-xl'>⌘</span>E
-    </kbd>
-    -->
 </template>
