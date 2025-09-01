@@ -134,12 +134,6 @@
             <div class='h-24 flex items-center justify-center'>
                 <NavLogo />
             </div>
-            
-            <Separator />
-            
-            <div class='h-8 flex items-center'>
-                <SidebarTrigger />
-            </div>
         </SidebarHeader>
         
         <Separator />
@@ -147,6 +141,14 @@
         <SidebarContent>
             <NavMain :items="data.navMain" />
         </SidebarContent>
+        
+        <Separator />
+        
+        <div class='h-16 flex items-center'>
+            <SidebarTrigger />
+        </div>
+        
+        <Separator />
         
         <SidebarFooter class='h-20 flex items-center justify-center'>
             <NavUser :user="data.user" />

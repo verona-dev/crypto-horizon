@@ -24,12 +24,23 @@
 </script>
 
 <template>
-    <SidebarMenu :class='{ "ml-3.5" : !open }'>
+    <SidebarMenu :class='open ? "" : "flex items-center justify-center"'>
         <SidebarMenuItem>
             <!--  Open  -->
             <template v-if='open'>
-                <SidebarMenuButton @click='toggleSidebar'>
-                    <span class='text-xs'>Close Menu</span>
+                <SidebarMenuButton
+                    @click='toggleSidebar'
+                    class='flex items-center justify-between rounded-none h-16'
+                    :class='{ "px-6" : open}'
+                >
+                    <span class='text-xs truncate'>Close Menu</span>
+                    
+                    <kbd
+                        class='text-foreground border-muted-foreground pointer-events-none inline-flex select-none items-center gap-1 rounded border px-2 font-mono text-[14px] font-medium opacity-100'
+                        :class='{ "mx-auto" : !open}'
+                    >
+                        <span class='text-xl'>⌘</span>E
+                    </kbd>
                 </SidebarMenuButton>
             </template>
             
