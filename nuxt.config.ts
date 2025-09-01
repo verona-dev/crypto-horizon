@@ -71,7 +71,6 @@ export default defineNuxtConfig({
      '@nuxt/icon',
      'shadcn-nuxt',
      'nuxt-charts',
-     'nuxt-svgo-loader',
    ],
 
    runtimeConfig: {
@@ -88,15 +87,6 @@ export default defineNuxtConfig({
    },
 
    ssr: false,
-
-   svgoLoader: {
-      namespaces: [
-         {
-            prefix: 'my-icon',
-            dir: 'assets/my-icons',
-         },
-      ],
-   },
 
    vite: {
       plugins: [
