@@ -107,7 +107,7 @@
                                 <SidebarMenuButton
                                     :is-active='item.isActive'
                                     :tooltip='item.title'
-                                    class='hover:bg-muted active:bg-muted'
+                                    class='hover:bg-gray-mine active:bg-gray-mine'
                                 >
                                     <component :is='item.icon' v-if='item.icon' />
                                     <span>{{ item.title }}</span>
