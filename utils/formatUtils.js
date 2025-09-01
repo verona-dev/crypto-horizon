@@ -41,7 +41,7 @@ const formatNumber = (value, {
 const formatCoinsTable = coins => {
     return coins?.map(coin => ({
         ...coin,
-        changePercent24Hr: coin?.price_change_percentage_24h.toFixed(2),
+        changePercent24Hr: coin?.price_change_percentage_24h?.toFixed(2),
         c_supply: formatNumber(coin?.circulating_supply, {
             compact: true, style: 'decimal', decimals: 2
         }),

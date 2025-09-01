@@ -4,7 +4,6 @@
     import { cn } from "@/lib/utils"
     import { useSidebar } from "./utils"
     import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '~/components/ui/sidebar'
-    
     const props = defineProps<{
         class?: HTMLAttributes["class"]
     }>()
@@ -24,29 +23,20 @@
 </script>
 
 <template>
-    <SidebarMenu class='ml-3.5'>
+    <SidebarMenu :class='{ "flex items-center justify-center" : !open }'>
         <SidebarMenuItem>
             <!--  Open  -->
             <template v-if='open'>
                 <SidebarMenuButton
-                    tooltip='Close Menu'
-                    class='
-                        h-10 flex items-center justify-between
-                        hover:bg-transparent active:bg-transparent focus:bg-transparent hover:text-green-deco
-                    '
                     @click='toggleSidebar'
+                    class='flex items-center justify-between rounded-none h-16'
+                    :class='{ "px-6" : open}'
                 >
-                    <NuxtIcon
-                        name='stash:burger-arrow-left-duotone'
-                        data-sidebar='trigger'
-                        data-slot='sidebar-trigger'
-                        :class='cn("h-6 w-6",props.class)'
-                    >
-                        <PanelLeft />
-                        <span class='sr-only'>Toggle Menu</span>
-                    </NuxtIcon>
+                    <span class='text-xs truncate'>Close Menu</span>
                     
-                    <span class='mr-3.5 text-xs'>Close Menu</span>
+                    <kbd class='text-foreground border-ring pointer-events-none inline-flex select-none items-center gap-1 rounded border px-3 py-1 text-[14px] opacity-100'>
+                        <span class='text-xl'>⌘</span>E
+                    </kbd>
                 </SidebarMenuButton>
             </template>
             
@@ -54,16 +44,14 @@
             <template v-else>
                 <SidebarMenuButton
                     :tooltip='TooltipContent'
-                    size="lg"
-                    class='justify-center flex-col hover:bg-transparent active:bg-transparent focus:bg-transparent hover:text-green-deco'
+                    class='justify-center flex-col'
                     @click='toggleSidebar'
                 >
                     <NuxtIcon
-                        name='stash:burger-arrow-right-duotone'
+                        name='mynaui:sidebar'
                         data-sidebar='trigger'
                         data-slot='sidebar-trigger'
-                        :class='cn("h-6 w-6",props.class)'
-                    
+                        :class='cn("h-8 w-8",props.class)'
                     >
                         <PanelLeft />
                         <span class='sr-only'>Toggle Menu</span>
@@ -72,13 +60,4 @@
             </template>
         </SidebarMenuItem>
     </SidebarMenu>
-    
-    <!--
-    <kbd
-        class='pointer-events-none self-start inline-flex select-none items-center gap-1 rounded border bg-muted px-2 font-mono text-[14px] font-medium text-muted-foreground opacity-100'
-        :class='{ "mx-auto" : !open}'
-    >
-        <span class='text-xl'>⌘</span>E
-    </kbd>
-    -->
 </template>

@@ -16,7 +16,7 @@
             
             <Skeleton
                 v-else
-                class='h-[300px] w-[385px] rounded-lg'
+                class='h-[275px] w-[385px] rounded-lg'
             />
         </NuxtImg>
         

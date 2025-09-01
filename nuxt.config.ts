@@ -33,7 +33,6 @@ export default defineNuxtConfig({
 
    icon: {
       componentName: 'NuxtIcon',
-      mode: 'css',
       cssLayer: 'base',
       serverBundle: {
          collections: {

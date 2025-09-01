@@ -12,7 +12,6 @@
         ]'
         :rows='coins'
         class='self-stretch'
-        color='secondary'
         hoverable
         background-even
         elevation
