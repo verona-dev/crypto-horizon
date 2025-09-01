@@ -24,15 +24,12 @@
 </script>
 
 <template>
-    <SidebarMenu class='ml-3.5'>
+    <SidebarMenu :class='{ "ml-3.5" : !open }'>
         <SidebarMenuItem>
             <!--  Open  -->
             <template v-if='open'>
                 <SidebarMenuButton
-                    class='
-                        flex items-center justify-between
-                        hover:bg-transparent active:bg-transparent focus:bg-transparent hover:text-sidebar-accent
-                    '
+                    class=''
                     @click='toggleSidebar'
                 >
                     <span class='mr-3.5 text-xs'>Close Menu</span>
