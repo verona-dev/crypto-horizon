@@ -33,7 +33,6 @@ export default defineNuxtConfig({
 
    icon: {
       componentName: 'NuxtIcon',
-      mode: 'css',
       cssLayer: 'base',
       serverBundle: {
          collections: {
@@ -72,7 +71,7 @@ export default defineNuxtConfig({
      '@nuxt/icon',
      'shadcn-nuxt',
      'nuxt-charts',
-     'nuxt-svgo',
+     'nuxt-svgo-loader',
    ],
 
    runtimeConfig: {
@@ -90,9 +89,13 @@ export default defineNuxtConfig({
 
    ssr: false,
 
-   svgo: {
-      autoImportPath: 'assets/my-icons',
-      componentPrefix: 'Svgo',
+   svgoLoader: {
+      namespaces: [
+         {
+            prefix: 'my-icon',
+            dir: 'assets/my-icons',
+         },
+      ],
    },
 
    vite: {
