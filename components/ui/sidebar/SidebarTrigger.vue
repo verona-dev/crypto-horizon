@@ -28,11 +28,8 @@
         <SidebarMenuItem>
             <!--  Open  -->
             <template v-if='open'>
-                <SidebarMenuButton
-                    class=''
-                    @click='toggleSidebar'
-                >
-                    <span class='mr-3.5 text-xs'>Close Menu</span>
+                <SidebarMenuButton @click='toggleSidebar'>
+                    <span class='text-xs'>Close Menu</span>
                 </SidebarMenuButton>
             </template>
             
