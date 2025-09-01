@@ -43,7 +43,7 @@
             <template v-else>
                 <SidebarMenuButton
                     :tooltip='TooltipContent'
-                    size="lg"
+                    size='lg'
                     class='justify-center flex-col'
                     @click='toggleSidebar'
                 >
