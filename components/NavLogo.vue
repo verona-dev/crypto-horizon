@@ -38,7 +38,6 @@
                         />
                     </SidebarMenuButton>
                 </template>
-            
             </NuxtLink>
         </SidebarMenuItem>
     </SidebarMenu>

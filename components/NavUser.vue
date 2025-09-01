@@ -50,7 +50,6 @@
                             dark:hover:text-foreground
                             gap-4
                         '
-                        :class='{ "dark:border dark:border-accent dark:hover:border-sidebar-border" : open }'
                     >
                         <Avatar
                             class='h-8 w-8 rounded-lg'
@@ -59,7 +58,6 @@
                             <AvatarImage :src='user.avatar' :alt='user.name' />
                             <AvatarFallback
                                 class='bg-tertiary rounded-lg text-lg'
-                                :class='{ "hover:border hover:border-foreground" : !open }'
                             >
                                 G
                             </AvatarFallback>
