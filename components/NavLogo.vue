@@ -18,7 +18,7 @@
                     <SidebarMenuButton
                         class='h-16 flex items-center justify-center
                                hover:bg-transparent active:bg-transparent focus:bg-transparent
-                               hover:text-green-deco
+                               hover:text-sidebar-accent
                         '
                         size='lg'
                     >
