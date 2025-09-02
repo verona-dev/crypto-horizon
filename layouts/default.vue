@@ -19,9 +19,5 @@
 <script setup>
     import ScrollToTop from '~/components/ScrollToTop.vue';
     import AppSidebar from "~/components/AppSidebar.vue";
-    
-    import {
-        SidebarInset,
-        SidebarProvider, SidebarTrigger,
-    } from '~/components/ui/sidebar';
+    import { SidebarInset, SidebarProvider, SidebarTrigger, } from '~/components/ui/sidebar';
 </script>
