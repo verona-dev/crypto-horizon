@@ -6,7 +6,7 @@
         SidebarMenuItem,
     } from '@/components/ui/sidebar'
     
-    const { open } = useSidebar();
+    const { open, isMobile } = useSidebar()
 </script>
 
 <template>
@@ -14,19 +14,19 @@
         <SidebarMenuItem>
             <NuxtLink to='/' class='flex justify-center'>
                 <!--  Open -->
-                <template v-if='open'>
+                <template v-if='open && !isMobile'>
                     <SidebarMenuButton
                         class='h-16 flex items-center justify-center
                                hover:bg-transparent active:bg-transparent focus:bg-transparent
                         '
                         size='lg'
                     >
-                        <h5 v-if='open' class='custom truncate'>Crypto Horizon</h5>
+                        <h5 v-if='open' class='custom truncate tracking-[0.4rem]'>Crypto Horizon</h5>
                     </SidebarMenuButton>
                 </template>
                 
                 <!--  Close -->
-                <template v-else>
+                <template v-else-if='!open && !isMobile'>
                     <SidebarMenuButton
                         tooltip='Startpage'
                         class='hover:bg-transparent active:bg-transparent focus:bg-transparent'
@@ -38,6 +38,16 @@
                         />
                     </SidebarMenuButton>
                 </template>
+                
+                <!--  Mobile -->
+                <template v-else-if='isMobile'>
+                    <SidebarMenuButton
+                        tooltip='Startpage'
+                        class='flex justify-center'
+                    >
+                        <h5 class='custom truncate tracking-[0.2rem]'>Crypto Horizon</h5>
+                    </SidebarMenuButton>
+                </template>
             </NuxtLink>
         </SidebarMenuItem>
     </SidebarMenu>
@@ -46,6 +56,5 @@
 <style scoped>
     .custom {
         font-family: 'Great', sans-serif;
-        letter-spacing: 0.4rem;
     }
 </style>

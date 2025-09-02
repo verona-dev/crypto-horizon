@@ -13,21 +13,19 @@
 </script>
 
 <template>
-    <div class='self-start'>
-        <SidebarMenuButton
-            v-if='isMobile'
-            class=''
-            @click='toggleSidebar'
+    <SidebarMenuButton
+        v-if='isMobile'
+        class='w-fit flex items-center justify-center my-10 py-8'
+        @click='toggleSidebar'
+    >
+        <NuxtIcon
+            name='mynaui:sidebar'
+            data-sidebar='trigger'
+            data-slot='sidebar-trigger'
+            :class='cn("h-10 w-10",props.class)'
         >
-            <NuxtIcon
-                name='mynaui:sidebar'
-                data-sidebar='trigger'
-                data-slot='sidebar-trigger'
-                :class='cn("h-8 w-8",props.class)'
-            >
-                <PanelLeft />
-                <span class='sr-only'>Toggle Menu</span>
-            </NuxtIcon>
-        </SidebarMenuButton>
-    </div>
+            <PanelLeft />
+            <span class='sr-only'>Toggle Menu</span>
+        </NuxtIcon>
+    </SidebarMenuButton>
 </template>
