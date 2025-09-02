@@ -3,7 +3,7 @@
 @import '@fontsource-variable/noto-sans';
 
 @font-face {
-    font-family: 'Great', sans-serif;
+    font-family: 'Great';
     font-display: swap;
     src: url(../fonts/Great.ttf);
 }
