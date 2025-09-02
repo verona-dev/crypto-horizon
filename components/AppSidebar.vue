@@ -60,9 +60,16 @@
                     {
                         title: 'Market',
                         url: '/market',
-                    },       {
+                        get isActive() {
+                            return isChildActive(this.url);
+                        }
+                    },
+                    {
                         title: 'Exchanges',
                         url: '/market/exchanges',
+                        get isActive() {
+                            return isChildActive(this.url);
+                        }
                     },
                 ],
             },
@@ -125,10 +132,16 @@
                     {
                         title: 'Learn',
                         url: '/learn',
+                        get isActive() {
+                            return isChildActive(this.url);
+                        }
                     },
                     {
                         title: 'Dyor',
                         url: '/learn/dyor',
+                        get isActive() {
+                            return isChildActive(this.url);
+                        }
                     },
                 ],
             },
