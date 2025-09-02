@@ -60,6 +60,9 @@
                     {
                         title: 'Market',
                         url: '/market',
+                    },       {
+                        title: 'Exchanges',
+                        url: '/market/exchanges',
                     },
                 ],
             },
@@ -120,8 +123,12 @@
                 },
                 items: [
                     {
-                        title: 'General',
+                        title: 'Learn',
                         url: '/learn',
+                    },
+                    {
+                        title: 'Dyor',
+                        url: '/learn/dyor',
                     },
                 ],
             },
