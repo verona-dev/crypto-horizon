@@ -44,10 +44,11 @@
 <template>
     <SidebarGroup>
         <SidebarGroupLabel>Menu</SidebarGroupLabel>
-        <!--  :class='{ "items-center" : !open }'  -->
         <SidebarMenu
-            class='gap-3'
-            :class='{ "flex items-center" : !open }'
+            :class='[
+                isMobile ? "gap-8 items-stretch" : "gap-3",
+                { "flex items-center": !open }
+            ]'
         >
             <Collapsible
                 v-for='item in items'
@@ -55,12 +56,13 @@
                 as-child
                 :default-open='item.isActive'
                 class='group/collapsible'
+                :class='{ "w-full" : isMobile }'
             >
                 <!--  Open -->
                 <template v-if='open'>
                     <!--  Sub routes -->
                     <SidebarMenuItem v-if='item.items.length > 1'>
-                        <CollapsibleTrigger class='w-full'>
+                        <CollapsibleTrigger>
                             <SidebarMenuButton
                                 :is-active='item.isActive'
                                 class=''
@@ -91,7 +93,7 @@
                     <!--  No Sub routes  -->
                     <SidebarMenuItem v-else>
                         <NuxtLink :to='item.url'>
-                            <SidebarMenuButton :is-active='item.isActive'>
+                            <SidebarMenuButton :is-active='item.isActive' class='w-full'>
                                 <component :is='item.icon' v-if='item.icon' />
                                 <span>{{ item.title }}</span>
                             </SidebarMenuButton>
@@ -103,7 +105,7 @@
                 <template v-else>
                     <NuxtLink :to='item.url'>
                         <SidebarMenuItem>
-                            <CollapsibleTrigger>
+                            <CollapsibleTrigger class='w-full'>
                                 <SidebarMenuButton
                                     :is-active='item.isActive'
                                     :tooltip='item.title'
