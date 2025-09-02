@@ -62,7 +62,7 @@
                 <template v-if='open'>
                     <!--  Sub routes -->
                     <SidebarMenuItem v-if='item.items.length > 1'>
-                        <CollapsibleTrigger>
+                        <CollapsibleTrigger class='w-full'>
                             <SidebarMenuButton
                                 :is-active='item.isActive'
                                 class=''
@@ -93,7 +93,7 @@
                     <!--  No Sub routes  -->
                     <SidebarMenuItem v-else>
                         <NuxtLink :to='item.url'>
-                            <SidebarMenuButton :is-active='item.isActive' class='w-full'>
+                            <SidebarMenuButton :is-active='item.isActive' :class='{ "w-full" : isMobile }'>
                                 <component :is='item.icon' v-if='item.icon' />
                                 <span>{{ item.title }}</span>
                             </SidebarMenuButton>
@@ -105,7 +105,7 @@
                 <template v-else>
                     <NuxtLink :to='item.url'>
                         <SidebarMenuItem>
-                            <CollapsibleTrigger class='w-full'>
+                            <CollapsibleTrigger :class='{ "w-full" : isMobile }'>
                                 <SidebarMenuButton
                                     :is-active='item.isActive'
                                     :tooltip='item.title'
