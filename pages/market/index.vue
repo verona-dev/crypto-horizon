@@ -1,6 +1,6 @@
 <template>
     <div class='flex flex-col items-center gap-20'>
-        <h1 class='mt-10'>Crypto Market</h1>
+        <h1 class='xl:mt-10'>Crypto Market</h1>
         <GlobalMarket />
         <CoinsTable />
     </div>
