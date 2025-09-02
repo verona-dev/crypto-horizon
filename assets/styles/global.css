@@ -29,9 +29,14 @@
     }
     
     main {
-        @apply md:my-20 px-10;
+        /*@apply px-10;*/
         /*@apply flex justify-center items-center;*/
         /*min-height: calc(100vh - 200px);*/
+    }
+    
+    /* Sidebar acts as .main */
+    [data-slot='sidebar-wrapper'] {
+       @apply my-20 px-10;
     }
     
     section {
