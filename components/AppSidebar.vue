@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import {type SidebarProps, SidebarTrigger, useSidebar} from '@/components/ui/sidebar'
+    import {type SidebarProps, useSidebar} from '@/components/ui/sidebar'
     import {
         ChartCandlestick,
         BookOpen,
@@ -10,6 +10,7 @@
     import NavMain from '@/components/NavMain.vue'
     import NavUser from '@/components/NavUser.vue'
     import NavLogo from '~/components/NavLogo.vue'
+    import SidebarTriggerCustom from '~/components/ui/sidebar/SidebarTriggerCustom.vue'
     
     import {
         Sidebar,
@@ -145,7 +146,7 @@
         <Separator />
         
         <div class='h-16 flex items-center'>
-            <SidebarTrigger />
+            <SidebarTriggerCustom />
         </div>
         
         <Separator />
