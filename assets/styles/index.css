@@ -1,7 +1,7 @@
-@import 'maz-ui/styles';
-@import 'tailwindcss';
 @import './global.css';
+@import 'tailwindcss';
 @import './transitions.css';
+@import 'maz-ui/styles';
 @import './shadcn.css';
 @import './mazui.css';
 @import 'tw-animate-css';
