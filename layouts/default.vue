@@ -5,7 +5,7 @@
         <!--
         <Breadcrumb />
         -->
-        <SidebarInset class='flex flex-1 flex-col items-center max-w-[2000px] mx-auto'>
+        <SidebarInset class='flex flex-1 flex-col items-center justify-center'>
             <!--  Mobile Trigger  -->
             <SidebarTrigger />
             
