@@ -26,7 +26,7 @@
     <SidebarMenu :class='{ "flex items-center justify-center" : !open }'>
         <SidebarMenuItem>
             <!--  Open  -->
-            <template v-if='open'>
+            <template v-if='open || isMobile'>
                 <SidebarMenuButton
                     @click='toggleSidebar'
                     class='flex items-center justify-between rounded-none h-16'
@@ -41,7 +41,7 @@
             </template>
             
             <!--  Close  -->
-            <template v-else>
+            <template v-if='!open && !isMobile'>
                 <SidebarMenuButton
                     :tooltip='TooltipContent'
                     class='justify-center flex-col'
