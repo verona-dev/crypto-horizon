@@ -15,17 +15,33 @@
 <template>
     <SidebarMenuButton
         v-if='isMobile'
-        class='w-fit flex items-center justify-center my-10 py-8'
-        @click='toggleSidebar'
+        class=' mobile-nav flex items-center h-20 p-6 border border-b-sidebar-ring rounded-none'
+        :class='isMobile ? "gap-8" : "justify-between"'
     >
         <NuxtIcon
-            name='mynaui:sidebar'
+            name='radix-icons:hamburger-menu'
             data-sidebar='trigger'
             data-slot='sidebar-trigger'
-            :class='cn("h-10 w-10",props.class)'
+            :class='cn("h-7 w-7",props.class)'
+            @click='toggleSidebar'
         >
             <PanelLeft />
             <span class='sr-only'>Toggle Menu</span>
         </NuxtIcon>
+        
+        <NuxtLink to='/'>
+            <p class='great-font'>Crypto Horizon</p>
+        </NuxtLink>
     </SidebarMenuButton>
 </template>
+
+<style>
+    .mobile-nav {
+        position: fixed;
+        background-color: transparent;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+    }
+</style>
