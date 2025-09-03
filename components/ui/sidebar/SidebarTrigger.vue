@@ -15,11 +15,15 @@
 <template>
     <SidebarMenuButton
         v-if='isMobile'
-        class='w-fit flex items-center justify-center my-10 py-8'
+        class='
+            mobile-nav flex items-center justify-between rounded-none
+            h-20 p-6
+            border border-b-sidebar-ring
+        '
         @click='toggleSidebar'
     >
         <NuxtIcon
-            name='mynaui:sidebar'
+            name='radix-icons:hamburger-menu'
             data-sidebar='trigger'
             data-slot='sidebar-trigger'
             :class='cn("h-10 w-10",props.class)'
@@ -29,3 +33,14 @@
         </NuxtIcon>
     </SidebarMenuButton>
 </template>
+
+<style>
+    .mobile-nav {
+        position: fixed;
+        background-color: transparent;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+    }
+</style>
