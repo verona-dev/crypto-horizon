@@ -21,7 +21,7 @@
                         '
                         size='lg'
                     >
-                        <h5 v-if='open' class='custom truncate tracking-[0.4rem]'>Crypto Horizon</h5>
+                        <h5 v-if='open' class='great-font'>Crypto Horizon</h5>
                     </SidebarMenuButton>
                 </template>
                 
@@ -52,9 +52,3 @@
         </SidebarMenuItem>
     </SidebarMenu>
 </template>
-
-<style scoped>
-    .custom {
-        font-family: 'Great', sans-serif;
-    }
-</style>
