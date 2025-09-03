@@ -24,17 +24,29 @@
 
 <template>
     <SidebarMenu :class='{ "flex items-center justify-center" : !open }'>
-        <SidebarMenuItem>
+        <SidebarMenuItem :class=' { "w-full" : isMobile }'>
             <!--  Open  -->
             <template v-if='open || isMobile'>
                 <SidebarMenuButton
                     @click='toggleSidebar'
-                    class='flex items-center justify-between rounded-none h-16'
-                    :class='{ "px-6" : open}'
+                    class='w-full flex items-center justify-center rounded-none h-16'
+                    :class='[
+                        { "px-6" : open },
+                        { "justify-between" : !isMobile },
+                    ]'
                 >
-                    <span class='text-xs truncate'>Close Menu</span>
+                    <template v-if='isMobile'>
+                        <span class='text-xl truncate'>Close Menu</span>
+                    </template>
                     
-                    <kbd class='text-foreground border-ring pointer-events-none inline-flex select-none items-center gap-1 rounded border px-3 py-1 text-[14px] opacity-100'>
+                    <template v-if='!isMobile'>
+                        <span class='text-xs truncate'>Close Menu</span>
+                    </template>
+                    
+                    <kbd
+                        v-if='!isMobile'
+                        class='text-foreground border-ring pointer-events-none inline-flex select-none items-center gap-1 rounded border px-3 py-1 text-[14px] opacity-100'
+                    >
                         <span class='text-xl'>⌘</span>E
                     </kbd>
                 </SidebarMenuButton>
