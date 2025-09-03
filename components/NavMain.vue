@@ -64,7 +64,7 @@
                             </template>
                         </CollapsibleTrigger>
                         
-                        <CollapsibleContent>
+                        <CollapsibleContent class='mt-1.5'>
                             <SidebarMenuSub class='pl-5'>
                                 <SidebarMenuSubItem
                                     v-for='subItem in item.items'
