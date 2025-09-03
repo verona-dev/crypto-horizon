@@ -58,7 +58,7 @@
                 },
                 items: [
                     {
-                        title: 'Market',
+                        title: 'Crypto Market',
                         url: '/market',
                         get isActive() {
                             return isChildActive(this.url);
