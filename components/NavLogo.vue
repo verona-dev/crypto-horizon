@@ -45,7 +45,7 @@
                         tooltip='Startpage'
                         class='flex justify-center'
                     >
-                        <h5 class='custom truncate tracking-[0.2rem]'>Crypto Horizon</h5>
+                        <h6 class='great-font'>Crypto Horizon</h6>
                     </SidebarMenuButton>
                 </template>
             </NuxtLink>
