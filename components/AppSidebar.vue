@@ -147,6 +147,8 @@
             },
         ],
     };
+    
+    const { isMobile } = useSidebar()
 </script>
 
 <template>
@@ -159,7 +161,7 @@
         
         <Separator />
         
-        <SidebarContent>
+        <SidebarContent :class='{ "flex-initial" : isMobile }'>
             <NavMain :items="data.navMain" />
         </SidebarContent>
         
