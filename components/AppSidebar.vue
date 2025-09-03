@@ -10,7 +10,7 @@
     import NavMain from '@/components/NavMain.vue'
     import NavUser from '@/components/NavUser.vue'
     import NavLogo from '~/components/NavLogo.vue'
-    import SidebarTriggerCustom from '~/components/ui/sidebar/SidebarTriggerCustom.vue'
+    import SidebarToggle from '~/components/SidebarToggle.vue'
     
     import {
         Sidebar,
@@ -166,7 +166,7 @@
         <Separator />
         
         <div class='h-16 flex items-center'>
-            <SidebarTriggerCustom />
+            <SidebarToggle />
         </div>
         
         <Separator />
