@@ -1,22 +1,9 @@
 <script setup lang="ts">
-    import type { LucideIcon } from 'lucide-vue-next'
-    import { ChevronRight } from 'lucide-vue-next'
-    import { useSidebar } from '@/components/ui/sidebar'
-    import {
-        Collapsible,
-        CollapsibleContent,
-        CollapsibleTrigger,
-    } from '@/components/ui/collapsible'
-    import {
-        SidebarGroup,
-        SidebarGroupLabel,
-        SidebarMenu,
-        SidebarMenuButton,
-        SidebarMenuItem,
-        SidebarMenuSub,
-        SidebarMenuSubButton,
-        SidebarMenuSubItem,
-    } from '@/components/ui/sidebar'
+    import type { LucideIcon } from "lucide-vue-next"
+    import { ChevronRight } from "lucide-vue-next"
+    import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
+    import {SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, useSidebar } from '@/components/ui/sidebar'
+    
     defineProps<{
         items: {
             title: string
@@ -31,14 +18,6 @@
     }>()
     
     const { open, isMobile } = useSidebar();
-    
-    /* TODO: collapse out if parent or child are active
-    const isAnyActive = item => {
-        if(item.isActive) return true;
-        if(item.item && item.items.some(subItem => subItem.isActive)) return true;
-        return false;
-    };
-    */
 </script>
 
 <template>
@@ -47,7 +26,7 @@
         <SidebarMenu
             :class='[
                 isMobile ? "gap-8 items-stretch" : "gap-3",
-                { "flex items-center": !open }
+                { "flex items-center": !open && !isMobile },
             ]'
         >
             <Collapsible
@@ -56,26 +35,41 @@
                 as-child
                 :default-open='item.isActive'
                 class='group/collapsible'
-                :class='{ "w-full" : isMobile }'
             >
-                <!--  Open -->
-                <template v-if='open'>
-                    <!--  Sub routes -->
-                    <SidebarMenuItem v-if='item.items.length > 1'>
-                        <CollapsibleTrigger class='w-full'>
-                            <SidebarMenuButton
-                                :is-active='item.isActive'
-                                class=''
-                            >
-                                <component :is='item.icon' v-if='item.icon' />
-                                <span>{{ item.title }}</span>
-                                <ChevronRight class='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
-                            </SidebarMenuButton>
+                <!--  Open Desktop + Mobile  -->
+                <template v-if='open || isMobile'>
+                    <SidebarMenuItem>
+                        <CollapsibleTrigger as-child>
+                            <!--  Mobile  -->
+                            <template v-if='isMobile'>
+                                <SidebarMenuButton
+                                    :tooltip='item.title'
+                                >
+                                    <component :is='item.icon' v-if='item.icon' />
+                                    <span>{{ item.title }}</span>
+                                    <ChevronRight class='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
+                                </SidebarMenuButton>
+                            </template>
+                            
+                            <!--  Desktop  -->
+                            <template v-else>
+                                <SidebarMenuButton
+                                    :tooltip='item.title'
+                                    :is-active='item.isActive'
+                                >
+                                    <component :is='item.icon' v-if='item.icon' />
+                                    <span>{{ item.title }}</span>
+                                    <ChevronRight class='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
+                                </SidebarMenuButton>
+                            </template>
                         </CollapsibleTrigger>
                         
                         <CollapsibleContent>
                             <SidebarMenuSub class='pl-5'>
-                                <SidebarMenuSubItem v-for='subItem in item.items' :key='subItem.title'>
+                                <SidebarMenuSubItem
+                                    v-for='subItem in item.items'
+                                    :key='subItem.title'
+                                >
                                     <SidebarMenuSubButton
                                         as-child
                                         :is-active='subItem.isActive'
@@ -89,20 +83,10 @@
                             </SidebarMenuSub>
                         </CollapsibleContent>
                     </SidebarMenuItem>
-                    
-                    <!--  No Sub routes  -->
-                    <SidebarMenuItem v-else>
-                        <NuxtLink :to='item.url'>
-                            <SidebarMenuButton :is-active='item.isActive' :class='{ "w-full" : isMobile }'>
-                                <component :is='item.icon' v-if='item.icon' />
-                                <span>{{ item.title }}</span>
-                            </SidebarMenuButton>
-                        </NuxtLink>
-                    </SidebarMenuItem>
                 </template>
                 
-                <!--  Close -->
-                <template v-else>
+                <!--  Close Desktop -->
+                <template v-else-if='!open && !isMobile'>
                     <NuxtLink :to='item.url'>
                         <SidebarMenuItem>
                             <CollapsibleTrigger :class='{ "w-full" : isMobile }'>
@@ -121,10 +105,3 @@
         </SidebarMenu>
     </SidebarGroup>
 </template>
-
-<style scoped>
-    svg {
-        //width: 20px;
-        //height: 20px;
-    }
-</style>
