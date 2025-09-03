@@ -73,7 +73,6 @@
                                     <SidebarMenuSubButton
                                         as-child
                                         :is-active='subItem.isActive'
-                                        class='mt-1'
                                     >
                                         <NuxtLink :to='subItem.url'>
                                             <span>{{ subItem.title }}</span>
