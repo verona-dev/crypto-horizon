@@ -99,6 +99,11 @@
         align-items: center;
     }
     
+    .great-font {
+        font-family: 'Great', sans-serif;
+        @apply truncate tracking-[0.4rem];
+    }
+    
     .info-icon {
         color: var(--maz-color-muted);
     }
