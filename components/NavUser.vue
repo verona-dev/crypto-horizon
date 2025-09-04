@@ -39,26 +39,17 @@
 </script>
 
 <template>
-    <SidebarMenu :class='{ "ml-8" : !open }'>
+    <SidebarMenu>
         <SidebarMenuItem>
             <DropdownMenu>
-                <DropdownMenuTrigger as-child :class='{ "" : !open }'>
+                <DropdownMenuTrigger as-child>
                     <SidebarMenuButton
                         size='lg'
-                        class='
-                            dark:bg-card
-                            dark:hover:text-foreground
-                            gap-4
-                        '
+                        class='bg-sidebar-primary hover:bg-sidebar-ring focus:bg-sidebar-primary data-[state=open]:bg-sidebar-accent gap-4'
                     >
-                        <Avatar
-                            class='h-8 w-8 rounded-lg'
-                            :class='{ "ml-4" : open }'
-                        >
+                        <Avatar class='h-8 w-8 rounded-lg'>
                             <AvatarImage :src='user.avatar' :alt='user.name' />
-                            <AvatarFallback
-                                class='bg-tertiary rounded-lg text-lg'
-                            >
+                            <AvatarFallback class='bg-sidebar-accent rounded-lg text-lg'>
                                 G
                             </AvatarFallback>
                         </Avatar>
@@ -100,7 +91,7 @@
                     <DropdownMenuGroup>
                         <DropdownMenuItem
                             @click='onClick'
-                            class='focus:bg-muted focus:text-foreground cursor-pointer py-3 mb-2'
+                            class='focus:bg-sidebar-primary focus:text-foreground cursor-pointer py-3 mb-2'
                         >
                             <MailPlus />
                             Register
@@ -108,7 +99,7 @@
                         
                         <DropdownMenuItem
                             @click='onClick'
-                            class='focus:bg-muted focus:text-foreground cursor-pointer py-3'
+                            class='focus:bg-sidebar-primary focus:text-foreground cursor-pointer py-3'
                         >
                             <LogIn />
                             Log In

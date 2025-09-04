@@ -50,6 +50,7 @@
     --color-gray-mine: var(--gray-mine);
     --color-gray-dove: var(--gray-dove);
     --color-ebony-clay: var(--ebony-clay);
+    --color-gray-steel: var(--gray-steel);
     
     --color-1: var(--color-1);
     --color-3: var(--color-3);
@@ -69,16 +70,15 @@
 
 :root {
     --accent: oklch(0.274 0.006 286.033); /* #27272a */
-    --accent-foreground: oklch(0.21 0.006 285.885);
+    --accent-foreground: oklch(0.21 0.006 285.885); /* #18181b */
     --border: oklch(0.274 0.006 286.033);
     --background: #0D1217;
     --background-2: oklch(0.17 0.008 285.489);
-    --background-3: #222531;
-    --background-4: #1f2b37;
+    --background-3: #1f2b37;
     /*--background: oklch(0.141 0.005 285.823); zinc-default */
     --foreground: oklch(0.985 0 0);
 
-    --card: oklch(0.141 0.005 285.823);
+    --card: oklch(0.141 0.005 285.823); /* #09090b */
     --card-foreground: oklch(0.985 0 0);
     --card-border: var(--gray-dove);
     /*--card-border: oklch(0.442 0.017 285.786);*/
@@ -113,6 +113,7 @@
     --gray-mine: #333136;
     --gray-dove: #6f6d72;
     --ebony-clay: #1f2b37;
+    --gray-steel: #1f2b37;
     
     --color-1: #b4b1b8;
     --color-2: oklch(0.398 0.07 227.392);
@@ -120,7 +121,7 @@
     
     --sidebar: var(--accent);
     --sidebar-foreground: var(--foreground);
-    --sidebar-primary: var(--foreground); /* Logo bg */
+    --sidebar-primary: var(--gray-mine); /* Logo bg */
     --sidebar-primary-foreground: var(--foreground); /* Logo text */
     --sidebar-accent: var(--red-brick); /* Hover + Active nav items bg */
     --sidebar-accent-foreground: var(--foreground); /* Hover nav items text */

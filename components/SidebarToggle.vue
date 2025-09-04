@@ -60,7 +60,7 @@
                     @click='toggleSidebar'
                 >
                     <NuxtIcon
-                        name='mynaui:sidebar'
+                        name='stash:burger-arrow-right-duotone'
                         data-sidebar='trigger'
                         data-slot='sidebar-trigger'
                         :class='cn("h-8 w-8",props.class)'

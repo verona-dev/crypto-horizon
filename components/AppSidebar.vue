@@ -46,7 +46,7 @@
         user: {
             name: 'Guest',
             email: '',
-            avatar: '/avatars/shadcn.jpg',
+            avatar: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757002350/cartoon-woman-wearing-glasses_j0t0qt.jpg',
         },
         navMain: [
             {
@@ -165,15 +165,13 @@
             <NavMain :items="data.navMain" />
         </SidebarContent>
         
-        <Separator />
+        <SidebarContent>
+            <div class='h-16 flex items-center'>
+                <SidebarToggle />
+            </div>
+        </SidebarContent>
         
-        <div class='h-16 flex items-center'>
-            <SidebarToggle />
-        </div>
-        
-        <Separator />
-        
-        <SidebarFooter class='h-20 flex items-center justify-center'>
+        <SidebarFooter class='m-2 mb-1 h-16 flex items-center justify-center'>
             <NavUser :user="data.user" />
         </SidebarFooter>
         
