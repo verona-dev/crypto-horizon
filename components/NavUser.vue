@@ -42,10 +42,10 @@
     <SidebarMenu :class='{ "ml-8" : !open }'>
         <SidebarMenuItem>
             <DropdownMenu>
-                <DropdownMenuTrigger as-child :class='{ "" : !open }'>
+                <DropdownMenuTrigger as-child>
                     <SidebarMenuButton
                         size='lg'
-                        class='bg-card hover:text-foreground gap-4'
+                        class='gap-4'
                     >
                         <Avatar
                             class='h-8 w-8 rounded-lg'
