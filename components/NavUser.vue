@@ -45,7 +45,7 @@
                 <DropdownMenuTrigger as-child>
                     <SidebarMenuButton
                         size='lg'
-                        class='data-[state=open]:bg-sidebar-accent gap-4'
+                        class='bg-sidebar-primary hover:bg-sidebar-ring focus:bg-sidebar-primary data-[state=open]:bg-sidebar-accent gap-4'
                     >
                         <Avatar
                             class='h-8 w-8 rounded-lg'
