@@ -39,7 +39,7 @@
 </script>
 
 <template>
-    <SidebarMenu :class='{ "ml-8" : !open && !isMobile }'>
+    <SidebarMenu>
         <SidebarMenuItem>
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
@@ -47,10 +47,7 @@
                         size='lg'
                         class='bg-sidebar-primary hover:bg-sidebar-ring focus:bg-sidebar-primary data-[state=open]:bg-sidebar-accent gap-4'
                     >
-                        <Avatar
-                            class='h-8 w-8 rounded-lg'
-                            :class='{ "" : open }'
-                        >
+                        <Avatar class='h-8 w-8 rounded-lg'>
                             <AvatarImage :src='user.avatar' :alt='user.name' />
                             <AvatarFallback class='bg-sidebar-accent rounded-lg text-lg'>
                                 G
