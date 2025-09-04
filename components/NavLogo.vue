@@ -13,19 +13,20 @@
     <SidebarMenu>
         <SidebarMenuItem>
             <NuxtLink to='/' class='flex justify-center'>
-                <!--  Open -->
+                <!--  Desktop Open -->
                 <template v-if='open && !isMobile'>
                     <SidebarMenuButton
-                        class='h-16 flex items-center justify-center
-                               hover:bg-transparent active:bg-transparent focus:bg-transparent
-                        '
+                        class='h-full hover:bg-transparent active:bg-transparent focus:bg-transparent'
                         size='lg'
                     >
-                        <h5 v-if='open' class='great-font'>Crypto Horizon</h5>
+                        <div class='ml-2 great-font whitespace-normal'>
+                        <h5 >Crypto</h5>
+                        <h5 class='ml-15'>Horizon</h5>
+                        </div>
                     </SidebarMenuButton>
                 </template>
                 
-                <!--  Close -->
+                <!--  Desktop Close -->
                 <template v-else-if='!open && !isMobile'>
                     <SidebarMenuButton
                         tooltip='Startpage'
