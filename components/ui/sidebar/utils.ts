@@ -5,7 +5,7 @@ export const SIDEBAR_COOKIE_NAME = "sidebar_state"
 export const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
 export const SIDEBAR_WIDTH = "26rem"
 export const SIDEBAR_WIDTH_MOBILE = "22rem"
-export const SIDEBAR_WIDTH_ICON = "5rem"
+export const SIDEBAR_WIDTH_ICON = "4rem"
 export const SIDEBAR_KEYBOARD_SHORTCUT = "e"
 
 export const [useSidebar, provideSidebarContext] = createContext<{
