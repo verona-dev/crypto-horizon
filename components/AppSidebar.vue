@@ -171,7 +171,7 @@
             </div>
         </SidebarContent>
         
-        <SidebarFooter class='h-16 flex items-center justify-center px-0'>
+        <SidebarFooter class='h-16 flex items-center justify-center'>
             <NavUser :user="data.user" />
         </SidebarFooter>
         
