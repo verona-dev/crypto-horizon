@@ -46,7 +46,7 @@
         user: {
             name: 'Guest',
             email: '',
-            avatar: '/avatars/shadcn.jpg',
+            avatar: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757002350/cartoon-woman-wearing-glasses_j0t0qt.jpg',
         },
         navMain: [
             {
