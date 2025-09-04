@@ -165,15 +165,15 @@
             <NavMain :items="data.navMain" />
         </SidebarContent>
         
+        <SidebarContent>
+            <div class='h-16 flex items-center'>
+                <SidebarToggle />
+            </div>
+        </SidebarContent>
+        
         <Separator />
         
-        <div class='h-16 flex items-center'>
-            <SidebarToggle />
-        </div>
-        
-        <Separator />
-        
-        <SidebarFooter class='h-20 flex items-center justify-center'>
+        <SidebarFooter class='h-16 flex items-center justify-center px-0'>
             <NavUser :user="data.user" />
         </SidebarFooter>
         
