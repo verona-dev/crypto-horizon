@@ -52,7 +52,7 @@
                             :class='{ "ml-4" : open }'
                         >
                             <AvatarImage :src='user.avatar' :alt='user.name' />
-                            <AvatarFallback class='bg-tertiary rounded-lg text-lg'>
+                            <AvatarFallback class='bg-sidebar-accent rounded-lg text-lg'>
                                 G
                             </AvatarFallback>
                         </Avatar>
