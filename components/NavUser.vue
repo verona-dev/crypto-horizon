@@ -49,7 +49,7 @@
                     >
                         <Avatar
                             class='h-8 w-8 rounded-lg'
-                            :class='{ "ml-4" : open }'
+                            :class='{ "" : open }'
                         >
                             <AvatarImage :src='user.avatar' :alt='user.name' />
                             <AvatarFallback class='bg-sidebar-accent rounded-lg text-lg'>
