@@ -39,7 +39,7 @@
 </script>
 
 <template>
-    <SidebarMenu :class='{ "ml-8" : !open }'>
+    <SidebarMenu :class='{ "ml-8" : !open && !isMobile }'>
         <SidebarMenuItem>
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
