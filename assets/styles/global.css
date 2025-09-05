@@ -34,13 +34,18 @@
         /*min-height: calc(100vh - 200px);*/
     }
     
-    /* Sidebar acts as .main */
+    /* Sidebar acts as main */
     [data-slot='sidebar-wrapper'] {
-       @apply mt-30 mb-20 px-10 flex items-center justify-center;
+       @apply my-30 md:my-16 flex flex-col items-center justify-center;
     }
     
+    [data-slot='sidebar-inset'] {
+       @apply my-8 md:ml-16 mb-20 flex items-center;
+    }
+    
+    
     section {
-        @apply mb-20 flex flex-col items-center lg:justify-around;
+        @apply flex flex-col items-center;
     }
 }
 
