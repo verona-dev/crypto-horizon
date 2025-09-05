@@ -29,7 +29,7 @@
                 <!--  Desktop Close -->
                 <template v-else-if='!open && !isMobile'>
                     <SidebarMenuButton
-                        tooltip='Startpage'
+                        tooltip='Home'
                         class='hover:bg-transparent active:bg-transparent focus:bg-transparent'
                         size='lg'
                     >
@@ -43,7 +43,7 @@
                 <!--  Mobile -->
                 <template v-else-if='isMobile'>
                     <SidebarMenuButton
-                        tooltip='Startpage'
+                        tooltip='Home'
                         class='flex justify-center'
                     >
                         <h6 class='great-font'>Crypto Horizon</h6>
