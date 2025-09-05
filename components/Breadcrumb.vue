@@ -1,5 +1,5 @@
 <template>
-    <div class='w-full'>
+    <div class='w-full mb-6'>
         <Breadcrumb class='breadcrumb flex h-10 w-fit'>
             <BreadcrumbList>
                 <BreadcrumbItem v-for='(item, index) in items' :key='index'>
@@ -9,7 +9,7 @@
                         <BreadcrumbSeparator />
                     </template>
                     <template v-else>
-                        <BreadcrumbPage>{{ item.name }}</BreadcrumbPage>
+                        <BreadcrumbPage class='underline'>{{ item.name }}</BreadcrumbPage>
                     </template>
                 </BreadcrumbItem>
             </BreadcrumbList>
@@ -32,8 +32,9 @@
     const NewsStore = useNewsStore();
     
     const route = useRoute();
-    const { article, loading, errorFetch } = storeToRefs(NewsStore);
+    const { article, errorFetch } = storeToRefs(NewsStore);
     const source = ref();
+    
     watch(article, () => source.value = article.value?.SOURCE_DATA?.NAME);
     
     const sub_route_name = computed(() => {
