@@ -1,5 +1,5 @@
 <template>
-    <div class='news mx-auto flex flex-col'>
+    <div class='news'>
         <div v-if='loading' class='flex items-center h-[75vh]'>
             <MazSpinner
                 color='secondary'
@@ -8,10 +8,10 @@
             <h4 class='ml-4 mb-0'>Loading...</h4>
         </div>
         
-        <div v-else class='flex flex-col items-center gap-40'>
-            <h1 class='xl:mt-10'>Latest News</h1>
+        <div v-else class='flex flex-col items-center my-8 gap-24'>
+            <h1 class=''>Latest News</h1>
             
-            <div v-if='articles' class='flex flex-wrap justify-center gap-12'>
+            <div v-if='articles' class='flex flex-wrap justify-center gap-24'>
                 <NewsCard
                     v-for='article in articles'
                     :key='article.ID'
