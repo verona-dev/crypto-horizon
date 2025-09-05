@@ -9,4 +9,4 @@
 <script setup>
     import GlobalMarket from '~/components/market/GlobalMarket.vue';
     import CoinsTable from '~/components/market/CoinsTable.vue';
-</script>0
+</script>
