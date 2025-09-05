@@ -1,5 +1,5 @@
 <template>
-    <section class='news gap-24'>
+    <section class='news'>
         <h1 class='page-title'>Latest News</h1>
         
         <div v-if='loading' class='flex items-center'>
