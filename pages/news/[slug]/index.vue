@@ -16,7 +16,7 @@
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-12'>
                     <!--  Categories + Title  -->
-                    <CardContent v-if='title' class='flex flex-col gap-8 pt-12'>
+                    <CardContent v-if='title' class='flex flex-col gap-8'>
                         
                         <div class='header-nav flex items-center justify-start gap-8'>
                             <!--  Go back  -->
