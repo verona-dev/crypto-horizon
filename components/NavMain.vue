@@ -74,7 +74,10 @@
                                         as-child
                                         :is-active='subItem.isActive'
                                     >
-                                        <NuxtLink :to='subItem.url'>
+                                        <NuxtLink
+                                            :to='subItem.url'
+                                            class='pl-3'
+                                        >
                                             <span>{{ subItem.title }}</span>
                                         </NuxtLink>
                                     </SidebarMenuSubButton>

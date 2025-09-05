@@ -1,5 +1,5 @@
 <template>
-    <div class='single-news custom-flex w-full px-20'>
+    <section class='single-news'>
         <div v-if='loading' class='flex items-center h-[75vh]'>
             <MazSpinner
                 color='secondary'
@@ -16,7 +16,7 @@
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-12'>
                     <!--  Categories + Title  -->
-                    <CardContent v-if='title' class='flex flex-col gap-8 pt-12'>
+                    <CardContent v-if='title' class='flex flex-col gap-8'>
                         
                         <div class='header-nav flex items-center justify-start gap-8'>
                             <!--  Go back  -->
@@ -109,7 +109,7 @@
                     <p v-html='body_formated'></p>
                 </CardContent>
                 
-                <CardFooter class='pb-10 text-muted-foreground'>
+                <CardFooter class='pb-10 pl-0 text-muted-foreground'>
                     <p v-if='keywords'>
                         Keywords:
                         <span style='font-size: inherit;'>{{ keywords }}</span>
@@ -142,7 +142,7 @@
         >
             <div class='progress-bar' :style='{ width: `${progress * 100}%` }'></div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script setup>
@@ -277,7 +277,6 @@
             align-items: center;
             background-color: var(--background);
             bottom: 0;
-            color: var(--tertiary);
             display: flex;
             height: 50px;
             padding: 0 20px;
@@ -287,9 +286,9 @@
         
         .progress-bar {
             height: 2px;
-            background-color: var(--tertiary);
+            background-color: var(--secondary);
             transition: width 0.1s ease-out;
-            box-shadow: 0 0 16px 1px var(--tertiary);
+            box-shadow: 0 0 16px 1px var(--secondary);
             border-radius: 16px;
         }
     }

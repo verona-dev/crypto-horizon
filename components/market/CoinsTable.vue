@@ -1,6 +1,5 @@
 <template>
     <MazTable
-        v-if='!loading'
         :headers='[
           { label: "#", key: "rank", align: "center", sortable: false, classes: "w-20"},
           { label: "Name", key: "name", sortable: false, classes: "min-w-[400px]"},

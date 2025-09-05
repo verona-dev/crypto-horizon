@@ -1,12 +1,12 @@
 <template>
-    <div class='flex flex-col items-center gap-20'>
-        <h1 class='xl:mt-10'>Crypto Market</h1>
+    <section class='gap-20'>
+        <h1 class='page-title'>Crypto Market</h1>
         <GlobalMarket />
         <CoinsTable />
-    </div>
+    </section>
 </template>
 
 <script setup>
     import GlobalMarket from '~/components/market/GlobalMarket.vue';
     import CoinsTable from '~/components/market/CoinsTable.vue';
-</script>0
+</script>
