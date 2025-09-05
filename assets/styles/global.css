@@ -40,7 +40,7 @@
     }
     
     [data-slot='sidebar-inset'] {
-       @apply my-8 md:ml-16 mb-20 flex items-center;
+       @apply my-8 md:ml-16 mb-20 md:px-32 flex items-center;
     }
     
     
