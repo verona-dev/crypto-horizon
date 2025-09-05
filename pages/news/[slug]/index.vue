@@ -1,5 +1,5 @@
 <template>
-    <div class='single-news custom-flex w-full px-20'>
+    <section class='single-news'>
         <div v-if='loading' class='flex items-center h-[75vh]'>
             <MazSpinner
                 color='secondary'
@@ -142,7 +142,7 @@
         >
             <div class='progress-bar' :style='{ width: `${progress * 100}%` }'></div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script setup>
