@@ -1,6 +1,6 @@
 <template>
     <div class='w-full'>
-        <Breadcrumb class='breadcrumbs w-fit h-10 mx-auto my-10 border border-t-secondary border-b-secondary border-r-0 border-l-0 px-4 py-2'>
+        <Breadcrumb class='breadcrumbs w-96 h-10 mx-auto px-4 py-2'>
             <BreadcrumbList>
                 <BreadcrumbItem v-for='(item, index) in items' :key='index'>
                     <template v-if='index !== items.length - 1'>
