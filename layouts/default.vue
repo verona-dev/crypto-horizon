@@ -2,9 +2,9 @@
     <SidebarProvider :default-open='false'>
         <AppSidebar />
         
-        <Breadcrumb />
-        
-        <SidebarInset class=''>
+        <SidebarInset>
+            <Breadcrumb />
+            
             <!--  Mobile Trigger  -->
             <SidebarTrigger />
             
