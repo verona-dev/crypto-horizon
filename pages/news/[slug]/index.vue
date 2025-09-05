@@ -277,7 +277,6 @@
             align-items: center;
             background-color: var(--background);
             bottom: 0;
-            color: var(--tertiary);
             display: flex;
             height: 50px;
             padding: 0 20px;
@@ -287,9 +286,9 @@
         
         .progress-bar {
             height: 2px;
-            background-color: var(--tertiary);
+            background-color: var(--secondary);
             transition: width 0.1s ease-out;
-            box-shadow: 0 0 16px 1px var(--tertiary);
+            box-shadow: 0 0 16px 1px var(--secondary);
             border-radius: 16px;
         }
     }
