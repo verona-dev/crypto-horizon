@@ -29,7 +29,7 @@
     }
     
     main {
-        @apply flex flex-col items-center flex-1 justify-center w-full px-20 md:px-32;
+        @apply flex flex-col items-center flex-1 justify-center w-full;
         /*@apply px-10;*/
         /*@apply flex justify-center items-center;*/
         /*min-height: calc(100vh - 200px);*/
@@ -37,7 +37,7 @@
     
     /* Sidebar acts as main */
     [data-slot='sidebar-wrapper'] {
-       @apply my-20 md:my-6;
+       @apply my-20 md:my-6 px-20 md:px-32;
        /*@apply my-30 md:my-16 flex flex-col items-center justify-center;*/
     }
     
