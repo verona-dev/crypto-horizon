@@ -1,12 +1,13 @@
 <template>
-    <div class='defi-platforms custom-flex flex-col gap-6'>
-        <h1 class='text-pink-500'>Defi Platforms</h1>
+    <div class='defi-platforms'>
         <h6>Coming Soon...</h6>
     </div>
 </template>
 
 <script setup>
-
+    definePageMeta({
+        title: 'Defi Platforms',
+    });
 </script>
 
 <style scoped>
