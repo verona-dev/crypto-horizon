@@ -57,7 +57,7 @@
     }
     
     h1.page-title {
-        @apply my-6 xl:my-12 xl:h-24;
+        @apply my-10 xl:my-20 xl:h-24;
     }
     
     h2 {
