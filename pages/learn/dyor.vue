@@ -1,5 +1,5 @@
 <template>
-    <div class='dyor custom-flex flex-col gap-6'>
+    <div class='dyor'>
         <h6>Coming Soon...</h6>
     </div>
 </template>
