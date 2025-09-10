@@ -85,7 +85,7 @@
                 </div>
             </div>
             
-            <div class='max-w-[400px] md:max-w-[550px] lg:max-w-[800px] mx-auto'>
+            <div class='max-w-[500px] md:max-w-[650px] lg:max-w-[800px] mx-auto'>
                 <Line
                     ref='chartRef'
                     v-if='data.datasets?.length'
