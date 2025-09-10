@@ -1,12 +1,11 @@
 <template>
-    <CardContent class='coin-body px-0'>
+    <CardContent class='coin-body my-10'>
         <section class='mt-0 flex flex-col 2xl:flex-row items-center 2xl:items-start'>
             <!--  Left  -->
             <div class='left flex flex-col
                 gap-24 2xl:gap-18
-                pt-0 2xl:py-10 px-0 xl:px-10
+                2xl:py-10 pr-0 xl:pr-10
                 2xl:border-r
-                w-fit xl:w-full 2xl:w-auto
             '>
                 <!--  Overview  -->
                 <CoinOverview :coin='coin' />
@@ -34,9 +33,7 @@
             </div>
             
             <!--  Right  -->
-            <div class='right flex flex-col gap-20
-                px-10 xl:px-0
-            '>
+            <div class='right flex flex-col gap-28'>
                 <!--  Chart  -->
                 <CoinChart :coin='coin' />
                 
