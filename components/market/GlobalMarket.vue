@@ -2,7 +2,7 @@
     <MazAnimatedElement
         direction='down'
         :duration='2000'
-        class='global-market flex items-center justify-center flex-col lg:flex-row md:flex-wrap'
+        class='global-market flex items-center justify-center flex-col lg:flex-row md:flex-wrap mb-20'
     >
         <Card class='card'>
             <!--  Assets  -->
@@ -184,7 +184,7 @@
             border-color: var(--card-border);
             min-height: 375px;
             margin: 25px;
-            width: 300px;
+            width: 250px;
         }
     }
 </style>
