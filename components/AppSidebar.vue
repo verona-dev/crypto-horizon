@@ -166,6 +166,7 @@
         </SidebarContent>
         
         <Separator />
+        
         <div class='h-16 flex items-center'>
             <SidebarToggle />
         </div>
