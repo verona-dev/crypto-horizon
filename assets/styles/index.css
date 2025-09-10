@@ -50,7 +50,6 @@
     --color-gray-mine: var(--gray-mine);
     --color-gray-dove: var(--gray-dove);
     --color-ebony-clay: var(--ebony-clay);
-    --color-gray-steel: var(--gray-steel);
     
     --color-1: var(--color-1);
     --color-3: var(--color-3);
@@ -113,7 +112,6 @@
     --gray-mine: #333136;
     --gray-dove: #6f6d72;
     --ebony-clay: #1f2b37;
-    --gray-steel: #1f2b37;
     
     --color-1: #b4b1b8;
     --color-2: oklch(0.398 0.07 227.392);
