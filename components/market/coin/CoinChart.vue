@@ -7,11 +7,11 @@
                 default-value='price'
                 class='inline'
             >
-                <TabsList class='my-10 gap-x-0.5 py-5 px-0.5'>
+                <TabsList class='my-10 gap-x-0.5 py-5 px-1'>
                     <TabsTrigger
                         value='price'
                         class='py-4 px-4
-                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
+                               dark:data-[state=active]:bg-ring dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
@@ -22,7 +22,7 @@
                     <TabsTrigger
                         value='mcap'
                         class='py-4 px-4
-                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
+                               dark:data-[state=active]:bg-ring dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
@@ -34,7 +34,7 @@
             
             <!--  Supply Drawer  -->
             <Tabs v-model='type'>
-                <TabsList class='my-10 gap-x-0.5 py-6 px-0.5 w-36'>
+                <TabsList class='my-10 gap-x-0.5 py-5 px-1 w-36'>
                     <TabsTrigger
                         @click='show_drawer = true'
                         value='supply'
@@ -60,14 +60,14 @@
                 :default-value='current_interval'
                 class='inline'
             >
-                <TabsList class='my-10 gap-x-0.5 py-6 px-0.5'>
+                <TabsList class='my-10 gap-x-0.5 py-5 px-1'>
                     <TabsTrigger
                         v-for='range in ranges'
                         :key='range.interval'
                         :value='range.interval'
-                        class='py-5 px-4
-                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-lg
+                        class='py-4 px-4
+                               dark:data-[state=active]:bg-ring dark:text-muted-foreground dark:hover:text-foreground
+                               rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
