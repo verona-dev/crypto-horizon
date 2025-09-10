@@ -11,7 +11,7 @@
                     <TabsTrigger
                         value='price'
                         class='py-4 px-4
-                               dark:data-[state=active]:bg-ring dark:text-muted-foreground dark:hover:text-foreground
+                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
@@ -22,7 +22,7 @@
                     <TabsTrigger
                         value='mcap'
                         class='py-4 px-4
-                               dark:data-[state=active]:bg-ring dark:text-muted-foreground dark:hover:text-foreground
+                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
@@ -66,7 +66,7 @@
                         :key='range.interval'
                         :value='range.interval'
                         class='py-4 px-4
-                               dark:data-[state=active]:bg-ring dark:text-muted-foreground dark:hover:text-foreground
+                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
