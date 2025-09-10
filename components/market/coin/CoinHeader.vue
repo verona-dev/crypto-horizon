@@ -174,8 +174,6 @@
         
         <CoinPublicNotice :public-notice='coingecko.public_notice' />
     </CardHeader>
-    
-    <Separator class='my-4' />
 </template>
 
 <script setup>
