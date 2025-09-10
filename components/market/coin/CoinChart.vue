@@ -7,12 +7,12 @@
                 default-value='price'
                 class='inline'
             >
-                <TabsList class='my-10 gap-x-0.5 py-6 px-0.5'>
+                <TabsList class='my-10 gap-x-0.5 py-5 px-0.5'>
                     <TabsTrigger
                         value='price'
-                        class='py-5 px-4
+                        class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-lg
+                               rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
@@ -21,9 +21,9 @@
                     
                     <TabsTrigger
                         value='mcap'
-                        class='py-5 px-4
+                        class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-lg
+                               rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
