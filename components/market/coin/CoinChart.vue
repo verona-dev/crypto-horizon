@@ -46,7 +46,7 @@
                     >
                         <NuxtIcon
                             name='mdi-light:chart-pie'
-                            size='30'
+                            size='25'
                         />
                         Supply
                     </TabsTrigger>
