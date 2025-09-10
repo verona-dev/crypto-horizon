@@ -35,8 +35,7 @@
             
             <!--  Right  -->
             <div class='right flex flex-col gap-20
-                w-900px 2xl:w-[1000px]
-                px-10
+                px-10 xl:px-0
             '>
                 <!--  Chart  -->
                 <CoinChart :coin='coin' />
