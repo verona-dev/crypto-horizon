@@ -8,7 +8,7 @@
         <Accordion
             v-show='description'
             type='single'
-            collapsible class='py-3 px-6 bg-muted rounded-t-md'
+            collapsible class='py-3 px-6 rounded-t-md'
         >
             <AccordionItem value='item-1' class=''>
                 <AccordionTrigger>
@@ -22,7 +22,7 @@
         <Separator class='bg-ring' />
         
         <!--  Categories  -->
-        <Accordion v-if='coingecko.categories' type='single' collapsible class='py-3 px-6 bg-muted rounded-b-md'>
+        <Accordion v-if='coingecko.categories' type='single' collapsible class='py-3 px-6 rounded-b-md'>
             <AccordionItem value='item-1'>
                 <AccordionTrigger>
                     <p>Categories</p>
@@ -65,6 +65,6 @@
     }
     
     [data-slot='accordion-content'] {
-        width: 800px !important;
+        width: 650px !important;
     }
 </style>
