@@ -3,7 +3,7 @@
         <section class='mt-0 flex flex-col 2xl:flex-row items-center 2xl:items-start'>
             <!--  Left  -->
             <div class='left flex flex-col
-                gap-24 2xl:gap-18
+                gap-24 2xl:gap-24
                 2xl:py-10 pr-0 xl:pr-10
                 2xl:border-r
             '>
