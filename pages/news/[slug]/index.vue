@@ -10,7 +10,7 @@
         
         <div v-else class='w-full'>
             <Card
-                v-if='article && article.ID'
+                v-if='body && body_formatted'
                 class='bg-transparent border-none gap-12 xl:gap-20 max-w-7xl xl:px-20 pt-0 pb-10 xl:mt-10 mb-40 mx-auto'
             >
                 <!--  Header  -->
@@ -106,7 +106,7 @@
                 </CardHeader>
                 
                 <CardContent v-if='body'>
-                    <p v-html='body_formated'></p>
+                    <p v-html='body_formatted'></p>
                 </CardContent>
                 
                 <CardFooter class='pb-10 pl-0 text-muted-foreground'>
@@ -127,7 +127,7 @@
                     as-child
                     variant='link'
                 >
-                    <NuxtLink @click='onClick' to=''>
+                    <NuxtLink @click='onClick' to='' class='hover:cursor-pointer'>
                         Go back
                     </NuxtLink>
                 </Button>
@@ -186,7 +186,7 @@
         return article.value?.AUTHORS;
     });
     const body = computed(() => article.value?.BODY);
-    const body_formated = computed(() => {
+    const body_formatted = computed(() => {
         if (!body.value) return '';
         
         let sentences = body.value
@@ -239,7 +239,7 @@
         else router.push('/news');
     };
     
-    watch(body_formated, (newVal) => {
+    watch(body_formatted, (newVal) => {
         if (newVal && newVal.length > 0) {
             const { duration } = useReadingTime({
                 content: newVal,
@@ -252,6 +252,9 @@
         const { source_key, guid } = route.query;
         await getNewsArticle(source_key, guid);
         window.addEventListener('scroll', onScroll);
+        
+        console.log(JSON.parse(JSON.stringify(body.value)));
+        console.log(JSON.parse(JSON.stringify(body_formatted.value)));
     });
     
     onBeforeUnmount(() => {
