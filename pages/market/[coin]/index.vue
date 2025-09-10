@@ -1,5 +1,5 @@
 <template>
-    <div class='single-coin custom-flex'>
+    <div class='single-coin'>
         <div v-if='loading' class='flex items-center h-[55vh]'>
             <MazSpinner
                 color='secondary'
