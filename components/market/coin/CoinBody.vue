@@ -44,8 +44,6 @@
                 <CoinDescription :coin='coin' />
             </div>
         </section>
-        
-        <Separator />
     </CardContent>
 </template>
 
