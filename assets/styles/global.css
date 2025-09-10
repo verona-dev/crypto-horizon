@@ -46,7 +46,7 @@
     }
     
     section {
-        @apply flex flex-col items-center gap-12 xl:gap-24 mb-20;
+        @apply flex 2xl:flex-col gap-12 xl:gap-24 mb-20;
     }
 }
 
