@@ -12,12 +12,12 @@
     
     const TooltipContent = {
         render() {
-            return h('div', {
-                class: 'flex select-none items-center gap-1 px-2'
-            }, [
-                h('span', { class: 'text-xl' }, '⌘'),
-                h('span', 'E')
-            ])
+            return h('kbd', { class: 'flex select-none items-center gap-1 px-2 border'},
+                [
+                    h('span', { class: 'text-xl' }, '⌘'),
+                    h('span', 'E')
+                ]
+            );
         }
     };
 </script>
