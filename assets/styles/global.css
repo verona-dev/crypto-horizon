@@ -29,7 +29,8 @@
     }
     
     main {
-        @apply flex flex-col items-center my-6 px-20 md:px-32;
+        @apply my-28 md:my-14 px-20 md:px-32;
+        /*@apply flex flex-col my-28 md:my-14 px-20 md:px-32;*/
     }
     
     [data-slot='sidebar-wrapper'] {
@@ -37,7 +38,7 @@
     }
     
     [data-slot='sidebar-inset'] {
-       /*@apply mt-6 flex flex-col justify-start max-w-[1800px] mx-auto;*/
+       @apply mt-6 flex flex-col justify-start max-w-[1800px] mx-auto;
     }
     
     section {
