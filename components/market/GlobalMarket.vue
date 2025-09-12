@@ -2,7 +2,7 @@
     <MazAnimatedElement
         direction='down'
         :duration='2000'
-        class='global-market flex items-center justify-center flex-col lg:flex-row md:flex-wrap mb-20'
+        class='global-market flex flex-col items-center justify-center lg:flex-row md:flex-wrap mb-20'
     >
         <Card class='card'>
             <!--  Assets  -->
