@@ -11,7 +11,7 @@
         <div v-else class='w-full'>
             <Card
                 v-if='body && body_formatted'
-                class='bg-transparent border-none gap-12 xl:gap-20 max-w-7xl xl:px-20 pt-0 pb-10 xl:mt-10 mb-40 mx-auto'
+                class='bg-transparent border-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'
             >
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-12'>
@@ -135,13 +135,15 @@
         </div>
         
         <!-- Reading/Scroll progress bar -->
-        <div
-            v-if='show_reading_duration'
-            class='progress-container l-0 xl:l-[70px]'
-            :style='{ width: progress_bar_width }'
-        >
-            <div class='progress-bar' :style='{ width: `${progress * 100}%` }'></div>
-        </div>
+        <template v-if='show_progress_bar'>
+            <div
+                class='progress-container w-3/4 xl:max-w-[1300px]'
+                :style='{ width: progress_bar_width }'
+            >
+                <div class='progress-bar' :style='{ width: `${progress * 100}%` }'></div>
+            </div>
+        </template>
+
     </section>
 </template>
 
@@ -151,7 +153,8 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     import { useReadingTime } from 'maz-ui';
-    import { SIDEBAR_WIDTH } from '~/components/ui/sidebar/utils.js';
+    import { SIDEBAR_WIDTH, useSidebar } from '~/components/ui/sidebar/utils.js';
+    const { open, isMobile } = useSidebar()
     
     // Router
     import { useRoute, useRouter } from 'vue-router';
@@ -222,16 +225,15 @@
     */
     
     const progress = ref(0);
-    const progress_bar_width = computed(() => `calc(95vw - ${SIDEBAR_WIDTH})`);
+    const reading_duration = ref(0);
+    const progress_bar_width = computed(() => `calc(100vw - ${SIDEBAR_WIDTH})`);
+    const show_progress_bar = computed(() => reading_duration.value > 1 && !isMobile.value && !open.value);
     
     const onScroll = () => {
         const scrollTop = window.scrollY || window.pageYOffset;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         progress.value = Math.min(1, Math.max(0, scrollTop / docHeight));
     };
-    
-    const reading_duration = ref(0);
-    const show_reading_duration = computed(() => reading_duration.value > 1);
     
     const onClick = () => {
         const history = window.history.length > 1;
@@ -252,9 +254,6 @@
         const { source_key, guid } = route.query;
         await getNewsArticle(source_key, guid);
         window.addEventListener('scroll', onScroll);
-        
-        console.log(JSON.parse(JSON.stringify(body.value)));
-        console.log(JSON.parse(JSON.stringify(body_formatted.value)));
     });
     
     onBeforeUnmount(() => {
@@ -263,13 +262,13 @@
 </script>
 
 <style scoped>
-    [data-slot='card-header'],
-    [data-slot='card-content'] {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-    
     .single-news {
+        [data-slot='card-header'],
+        [data-slot='card-content'] {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+        
         img.main-image {
             object-fit: cover;
             height: 500px;
@@ -282,9 +281,8 @@
             bottom: 0;
             display: flex;
             height: 50px;
-            padding: 0 20px;
             position: fixed;
-            z-index: 100;
+            z-index: 10000;
         }
         
         .progress-bar {
