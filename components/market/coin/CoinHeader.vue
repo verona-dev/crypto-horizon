@@ -3,8 +3,16 @@
         <section class='my-4 flex flex-col xl:flex-row items-center gap-10'>
             <div class='flex items-center gap-4'>
                 <!--  Go back -->
-                <NuxtLink @click='goBack(router, "/market")' to='' class='hover:bg-muted hover:cursor-pointer rounded-full p-2'>
-                    <NuxtIcon name='mdi-light:arrow-left' size='45' />
+                <NuxtLink
+                    @click='goBack(router, "/market")'
+                    to=''
+                    class='hover:bg-muted hover:cursor-pointer rounded-xl p-1'
+                >
+                    <NuxtIcon
+                        name='mdi-light:arrow-left'
+                        size='50'
+                        class='flex'
+                    />
                 </NuxtLink>
                 
                 <!-- Logo  -->
@@ -166,8 +174,6 @@
         
         <CoinPublicNotice :public-notice='coingecko.public_notice' />
     </CardHeader>
-    
-    <Separator class='my-4' />
 </template>
 
 <script setup>

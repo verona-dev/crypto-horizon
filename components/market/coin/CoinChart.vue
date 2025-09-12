@@ -7,12 +7,12 @@
                 default-value='price'
                 class='inline'
             >
-                <TabsList class='my-10 gap-x-0.5 py-6 px-0.5'>
+                <TabsList class='my-10 gap-x-0.5 py-5 px-1'>
                     <TabsTrigger
                         value='price'
-                        class='py-5 px-4
+                        class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-lg
+                               rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
@@ -21,9 +21,9 @@
                     
                     <TabsTrigger
                         value='mcap'
-                        class='py-5 px-4
+                        class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-lg
+                               rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
@@ -34,7 +34,7 @@
             
             <!--  Supply Drawer  -->
             <Tabs v-model='type'>
-                <TabsList class='my-10 gap-x-0.5 py-6 px-0.5 w-36'>
+                <TabsList class='my-10 gap-x-0.5 py-5 px-1 w-36'>
                     <TabsTrigger
                         @click='show_drawer = true'
                         value='supply'
@@ -46,7 +46,7 @@
                     >
                         <NuxtIcon
                             name='mdi-light:chart-pie'
-                            size='30'
+                            size='25'
                         />
                         Supply
                     </TabsTrigger>
@@ -60,14 +60,14 @@
                 :default-value='current_interval'
                 class='inline'
             >
-                <TabsList class='my-10 gap-x-0.5 py-6 px-0.5'>
+                <TabsList class='my-10 gap-x-0.5 py-5 px-1'>
                     <TabsTrigger
                         v-for='range in ranges'
                         :key='range.interval'
                         :value='range.interval'
-                        class='py-5 px-4
+                        class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-lg
+                               rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
@@ -78,13 +78,14 @@
         </div>
         
         <div class='chart-container'>
-            <div v-if='loading' class='spinner-container flex flex-col gap-2'>
-                <MazSpinner class='spinner' color='primary' size='3em' />
-                <p class='mt-2'>Loading Data</p>
-                <span class='text-muted-custom mb-6'>Please wait a moment.</span>
+            <div v-if='loading' class='spinner-container'>
+                <div class='h-full flex flex-col items-center justify-center gap-2 pb-12'>
+                    <MazSpinner size='2em' />
+                    <span class='text-muted-custom'>Please wait a moment.</span>
+                </div>
             </div>
             
-            <div class='max-w-[450px] md:max-w-[650px] lg:max-w-[900px] mx-auto'>
+            <div class='max-w-[500px] md:max-w-[650px] lg:max-w-[800px] mx-auto'>
                 <Line
                     ref='chartRef'
                     v-if='data.datasets?.length'
@@ -339,20 +340,13 @@
         position: relative;
         
         .spinner-container {
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(1px);
-            border-radius: 12px;
-            height: 450px;
-            
+            backdrop-filter: blur(3px);
+            background-color: rgba(0, 0, 0, 0.1);
             position: absolute;
-            top: -15px;
-            left: -15px;
-            right: -15px;
-            bottom: -25px;
-            
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
     }
 </style>

@@ -1,7 +1,5 @@
 <template>
     <section class='news'>
-        <h1 class='page-title'>Latest News</h1>
-        
         <div v-if='loading' class='flex items-center'>
             <MazSpinner
                 color='secondary'
@@ -33,5 +31,9 @@
     
     onMounted(async() => {
         await getNews({ limit: 10 });
+    });
+    
+    definePageMeta({
+        title: 'Latest News',
     });
 </script>

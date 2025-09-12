@@ -1,5 +1,5 @@
 <template>
-    <Card v-if='article' class='coin-news-card rounded-none border-none bg-transparent shadow-2xl hover:bg-muted px-6 py-12'>
+    <Card v-if='article' class='coin-news-item bg-background-2 shadow-2xl rounded-md px-6 py-12 my-4 cursor-pointer'>
         <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
             <CardHeader class='p-0'>
                 <div class='flex gap-12'>
@@ -28,7 +28,7 @@
                     <div class='flex flex-col justify-around'>
                         <!--  Article Title  -->
                         <div class='flex flex-col items-start gap-2'>
-                            <CardDescription class='text-left text-foreground text-md font-bold hover:underline'>
+                            <CardDescription class='article-title text-left text-foreground text-md font-bold'>
                                 {{ title }}
                             </CardDescription>
                             
@@ -47,7 +47,7 @@
                         <!--  Author/Source + Publish date  -->
                         <div class='flex items-start gap-12'>
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
+                                <HoverCardTrigger class='flex items-center gap-4'>
                                     <MazAvatar
                                         :src='source_avatar'
                                         size='0.6rem'
@@ -177,15 +177,19 @@
 </script>
 
 <style scoped>
-    .coin-news-card {
-        //border-top: 1px solid red;
-        border-bottom: 1px solid var(--card-border);
+    .coin-news-item {
+        border: 1px solid var(--accent);
         
         img.main-image {
             //object-fit: contain;
             //height: 100%;
             height: 200px;
             width: 200px;
+        }
+        
+        &:hover .article-title {
+            color: var(--green-deco);
+            text-decoration: underline;
         }
     }
 </style>

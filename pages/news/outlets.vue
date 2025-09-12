@@ -10,8 +10,6 @@
         
         <div v-else class='flex flex-col items-center gap-32'>
             <div class='xl:mt-10 flex flex-col items-center gap-4'>
-                <h1 class='page-title'>News Outlets</h1>
-                
                 <NuxtLink
                     to='https://developers.coindesk.com/documentation/data-api/introduction'
                     external
@@ -46,5 +44,9 @@
     
     onMounted(async() => {
         await getNewsOutlets();
+    });
+    
+    definePageMeta({
+        title: 'News Outlets',
     });
 </script>

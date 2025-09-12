@@ -2,7 +2,7 @@
     <MazAnimatedElement
         direction='down'
         :duration='2000'
-        class='global-market flex items-center justify-center flex-col lg:flex-row md:flex-wrap'
+        class='global-market flex flex-col items-center justify-center lg:flex-row md:flex-wrap mb-20'
     >
         <Card class='card'>
             <!--  Assets  -->
@@ -11,8 +11,8 @@
             
             <CardContent class='mb-8'>
                 <CardDescription>Total number of coins</CardDescription>
-                <p v-if='coins_count'>{{ coins_count }}</p>
-                <p v-else>&#8208;</p>
+                <span v-if='coins_count'>{{ coins_count }}</span>
+                <span v-else>&#8208;</span>
             </CardContent>
             
             <!--  Markets  -->
@@ -21,8 +21,8 @@
             
             <CardContent>
                 <CardDescription>Total exchange pairs</CardDescription>
-                <p v-if='active_markets'>{{ active_markets }}</p>
-                <p v-else>&#8208;</p>
+                <span v-if='active_markets'>{{ active_markets }}</span>
+                <span v-else>&#8208;</span>
             </CardContent>
         </Card>
         
@@ -33,20 +33,20 @@
             
             <CardContent>
                 <CardDescription>Total crypto market cap</CardDescription>
-                <p v-if='mcap_total'>{{ mcap_total_label }}</p>
-                <p v-else>&#8208;</p>
+                <span v-if='mcap_total'>{{ mcap_total_label }}</span>
+                <span v-else>&#8208;</span>
             </CardContent>
             
             <CardContent>
                 <CardDescription>ATH total market cap</CardDescription>
-                <p v-if='mcap_ath'>{{ mcap_ath_label }}</p>
-                <p v-else>&#8208;</p>
+                <span v-if='mcap_ath'>{{ mcap_ath_label }}</span>
+                <span v-else>&#8208;</span>
             </CardContent>
             
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-                <p v-if='!!mcap_change' :class='mcap_change_class'>{{ mcap_change_label }}</p>
-                <p v-else>&#8208;</p>
+                <span v-if='!!mcap_change' :class='mcap_change_class'>{{ mcap_change_label }}</span>
+                <span v-else>&#8208;</span>
             </CardContent>
         </Card>
         
@@ -57,20 +57,20 @@
             
             <CardContent>
                 <CardDescription>Total trading volume for last 24h</CardDescription>
-                <p v-if='total_volume'>{{ total_volume_label }}</p>
-                <p v-else>&#8208;</p>
+                <span v-if='total_volume'>{{ total_volume_label }}</span>
+                <span v-else>&#8208;</span>
             </CardContent>
             
             <CardContent>
                 <CardDescription>ATH total trading volume</CardDescription>
-                <p v-if='volume_ath'>{{ volume_ath_label }}</p>
-                <p v-else>&#8208;</p>
+                <span v-if='volume_ath'>{{ volume_ath_label }}</span>
+                <span v-else>&#8208;</span>
             </CardContent>
             
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-                <p v-if='!!volume_change' :class='volume_change_class'>{{ volume_change_label }}</p>
-                <p v-else>&#8208;</p>
+                <span v-if='!!volume_change' :class='volume_change_class'>{{ volume_change_label }}</span>
+                <span v-else>&#8208;</span>
             </CardContent>
         </Card>
         
@@ -95,8 +95,8 @@
                             BTC Dominance Index
                         </CardDescription>
                         
-                        <p v-if='!!btc_dominance'>{{ btc_dominance }}&#37;</p>
-                        <p v-else>&#8208;</p>
+                        <span v-if='!!btc_dominance'>{{ btc_dominance }}&#37;</span>
+                        <span v-else>&#8208;</span>
                     </div>
                 </NuxtLink>
             </CardContent>
@@ -117,8 +117,8 @@
                             ETH Dominance Index
                         </CardDescription>
                         
-                        <p v-if='!!eth_dominance'>{{ eth_dominance }}&#37;</p>
-                        <p v-else>&#8208;</p>
+                        <span v-if='!!eth_dominance'>{{ eth_dominance }}&#37;</span>
+                        <span v-else>&#8208;</span>
                     </div>
                 </NuxtLink>
             </CardContent>
@@ -184,7 +184,7 @@
             border-color: var(--card-border);
             min-height: 375px;
             margin: 25px;
-            width: 300px;
+            width: 250px;
         }
     }
 </style>

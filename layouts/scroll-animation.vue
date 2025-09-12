@@ -2,13 +2,13 @@
     <SidebarProvider :default-open='false'>
         <AppSidebar />
         
-        <SidebarInset class='flex items-center justify-start'>
+        <SidebarInset>
             <Breadcrumb />
             
             <!--  Mobile Trigger  -->
             <SidebarTrigger />
             
-            <h1 v-if='title' class='page-title'>{{ title }}</h1>
+            <h1 v-if='title' class='page-title flex self-center'>{{ title }}</h1>
             
             <slot />
             

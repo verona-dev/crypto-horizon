@@ -9,14 +9,14 @@
             <h5>Overview</h5>
         </div>
         
-        <Table class='text-md'>
+        <Table>
             <TableBody>
                 <!--  Genesis  -->
                 <TableRow v-if='genesis_date'>
                     <TableCell>Created</TableCell>
                     <TableCell class='flex flex-col'>
                         {{ genesis_date_label }}
-                        <span class='text-sm text-muted-custom'>{{ generis_date_from_now }}</span>
+                        <span class='text-muted-custom'>{{ generis_date_from_now }}</span>
                     </TableCell>
                 </TableRow>
                 
@@ -40,7 +40,7 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>All-Time High and Price Change from All-Time High &#40;&#37;&#41;.</span>
+                                <span>All-Time High and Price Change from All-Time High &#40;&#37;&#41;.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
@@ -50,7 +50,7 @@
                         <div class='flex items-center'>
                             <span>{{ ath_price }}</span>
                             
-                            <div class='ml-2 flex items-center text-sm'>
+                            <div class='ml-2 flex items-center'>
                                 
                                 <NuxtIcon
                                     :name='getTrendIcon(ath_change_percentage)'
@@ -62,7 +62,7 @@
                         </div>
                         
                         <!--  ATH Date -->
-                        <div class='text-muted-custom text-sm'>
+                        <div class='text-muted-custom'>
                             <span class='mr-1'>{{ ath_date_label }}</span>
                             <span>&#40;{{ ath_date_from_now }}&#41;</span>
                         </div>
@@ -83,7 +83,7 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>All-Time Low and change in price&#40;&#37;&#41; relative to the coin’s all-time low.</span>
+                                <span>All-Time Low and change in price&#40;&#37;&#41; relative to the coin’s all-time low.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
@@ -93,7 +93,7 @@
                         <div class='flex items-center'>
                             <span>{{ atl_price }}</span>
                             
-                            <div class='ml-2 flex items-center text-sm'>
+                            <div class='ml-2 flex items-center'>
                                 
                                 <NuxtIcon
                                     :name='getTrendIcon(atl_change_percentage)'
@@ -105,7 +105,7 @@
                         </div>
                         
                         <!--  ATL Date -->
-                        <div class='text-muted-custom text-sm'>
+                        <div class='text-muted-custom'>
                             <span class='mr-1'>{{ atl_date_label }}</span>
                             <span>&#40;{{ atl_date_from_now }}&#41;</span>
                         </div>
@@ -126,7 +126,7 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>The number of markets the coin is present at.</span>
+                                <span>The number of markets the coin is present at.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
@@ -147,7 +147,7 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>The number of unique markets the coin is present at.</span>
+                                <span>The number of unique markets the coin is present at.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
@@ -168,7 +168,7 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>The number of exchanges the coin is present at.</span>
+                                <span>The number of exchanges the coin is present at.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
@@ -186,7 +186,7 @@
                     <TableCell>Ico Start</TableCell>
                     <TableCell class='flex flex-col'>
                         {{ ico_start_label }}
-                        <span class='text-sm text-muted-custom'>{{ ico_start_from_now }}</span>
+                        <span class='text-muted-custom'>{{ ico_start_from_now }}</span>
                     </TableCell>
                 </TableRow>
                 
@@ -195,7 +195,7 @@
                     <TableCell>Ico End</TableCell>
                     <TableCell class='flex- flex-col'>
                         {{ ico_end_label }}
-                        <span class='text-sm text-muted-custom'>{{ ico_end_from_now }}</span>
+                        <span class='text-muted-custom'>{{ ico_end_from_now }}</span>
                     </TableCell>
                 </TableRow>
                 
@@ -213,7 +213,7 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Github forks.</span>
+                                <span>Github forks.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
@@ -234,7 +234,7 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Github stars.</span>
+                                <span>Github stars.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
@@ -255,7 +255,7 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Github issues.</span>
+                                <span>Github issues.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
@@ -276,7 +276,7 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Github commits in the last 30 days.</span>
+                                <span>Github commits in the last 30 days.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
@@ -298,7 +298,7 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Github contributors.</span>
+                                <span>Github contributors.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>

@@ -1,5 +1,5 @@
 <template>
-    <section class='coin-links flex flex-wrap items-start gap-10'>
+    <section class='coin-links flex flex-wrap items-start gap-16'>
         <!-- Websites -->
         <div class='websites'>
             <h5 class='mb-4'>Websites</h5>
