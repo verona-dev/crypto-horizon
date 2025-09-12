@@ -280,9 +280,9 @@
             background-color: var(--background);
             bottom: 0;
             display: flex;
-            height: 50px;
+            height: 100px;
             position: fixed;
-            z-index: 10000;
+            z-index: 10;
         }
         
         .progress-bar {
