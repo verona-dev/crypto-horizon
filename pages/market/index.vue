@@ -11,5 +11,6 @@
     
     definePageMeta({
         title: 'Crypto Market',
+        layout: 'scroll-animation',
     });
 </script>
