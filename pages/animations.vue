@@ -11,14 +11,19 @@
                 allowfullscreen
                 frameborder="0"
             ></iframe>
-            
-            
-            <!--
+        </div>
+        
+        <div
+            class='h-screen w-[600%] overscroll-none flex overflow-hidden wrapper'
+            ref='container'
+        >
             <NuxtImg
-                src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757751348/javier-miranda-AlJ9TQqeCV0-unsplash_ri1x1f.jpg'
-                class='w-full h-[110%] slide'
+                v-for='slide in slides'
+                :key='slide.id'
+                :src='slide.src'
+                class='w-full h-full text-[60px] image'
+                ref='image'
                 alt='alt'
-                :custom='true'
                 v-slot='{ src, isLoaded, imgAttrs }'
                 preload
             >
@@ -31,60 +36,9 @@
                 
                 <Skeleton
                     v-else
-                    class='w-full h-full slide'
+                    class='w-full h-full'
                 />
             </NuxtImg>
-            -->
-        </div>
-        
-        <div class='h-screen w-[300%] overscroll-none flex overflow-hidden wrapper' ref='container'>
-            <!--  Slide 2  -->
-            <div class='slide w-full h-full' ref='slide'>
-                <NuxtImg
-                    src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757762298/bitcoin-9193579_izajko.jpg'
-                    class='w-full h-full text-[60px] image'
-                    alt='alt'
-                    :custom='true'
-                    v-slot='{ src, isLoaded, imgAttrs }'
-                    preload
-                >
-                    <img
-                        v-if='isLoaded'
-                        v-bind='imgAttrs'
-                        :src='src'
-                        alt='alt'
-                    >
-                    
-                    <Skeleton
-                        v-else
-                        class='w-full h-full'
-                    />
-                </NuxtImg>
-            </div>
-            
-            <!--  Slide 3  -->
-            <div class='slide w-full h-full' ref='slide'>
-                <NuxtImg
-                    src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp'
-                    class='w-full h-full'
-                    alt='alt'
-                    :custom='true'
-                    v-slot='{ src, isLoaded, imgAttrs }'
-                    preload
-                >
-                    <img
-                        v-if='isLoaded'
-                        v-bind='imgAttrs'
-                        :src='src'
-                        alt='alt'
-                    >
-                    
-                    <Skeleton
-                        v-else
-                        class='w-full h-full'
-                    />
-                </NuxtImg>
-            </div>
         </div>
         
         <div class='w-screen h-screen bg-violet-200'>
@@ -121,13 +75,21 @@
     
     const container = ref(null);
     let ctx;
+    const slides = [
+        { id: 'one', src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757762298/bitcoin-9193579_izajko.jpg' },
+        { id: 'two', src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp' },
+        { id: 'three', src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545829/bitcoin-7678812_b86ffi.jpg' },
+        { id: 'four', src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545824/bitcoin-8629504_nbvzjj.jpg' },
+        { id: 'five', src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545827/crypto-7678815_h1ylkr.jpg' },
+        { id: 'six', src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545828/bitcoin-7678816_zipi26.jpg' }
+    ];
     
     onMounted(async() => {
         ctx = gsap.context((self) => {
-            const slides = self.selector('.slide');
-            const amount = slides.length - 1;
+            const images = self.selector('.image');
+            const amount = images.length - 1;
             
-            gsap.to(slides, {
+            gsap.to(images, {
                 xPercent: -100 * amount,
                 ease: 'none',
                 scrollTrigger: {
