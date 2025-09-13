@@ -1,8 +1,22 @@
 <template>
     <div class='overflow-hidden'>
-        <div class='w-full h-screen'>
+        <!--  Slide 1  -->
+        <div class='w-screen h-screen'>
+            <iframe
+                src="https://player.cloudinary.com/embed/?cloud_name=dgcyv1ehi&public_id=200636-913478601_small_invszg&profile=cld-default"
+                width="640"
+                height="360"
+                style="height: auto; width: 100%; aspect-ratio: 640 / 360;"
+                allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                allowfullscreen
+                frameborder="0"
+            ></iframe>
+            
+            
+            <!--
             <NuxtImg
-                src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757751346/nasa-Q1p7bh3SHj8-unsplash_ls6py3.jpg'
+                src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757751348/javier-miranda-AlJ9TQqeCV0-unsplash_ri1x1f.jpg'
+                class='w-full h-[110%] slide'
                 alt='alt'
                 :custom='true'
                 v-slot='{ src, isLoaded, imgAttrs }'
@@ -11,34 +25,90 @@
                 <img
                     v-if='isLoaded'
                     v-bind='imgAttrs'
-                    class='w-fit h-full image rotate-180'
                     :src='src'
                     alt='alt'
                 >
                 
                 <Skeleton
                     v-else
-                    class='w-full h-full image'
+                    class='w-full h-full slide'
                 />
             </NuxtImg>
+            -->
         </div>
         
-        <div
-            class='h-screen w-[600%] overscroll-none flex overflow-hidden wrapper'
-            ref='container'
-        >
-            <div
-                v-for='slide in slides'
-                :key='slide.id'
-                class='w-full h-full text-[60px] image'
-                :class='`bg-${slide.color}-200`'
-                ref='image'
-            >
-                {{ slide.id }}
+        <div class='h-screen w-[300%] overscroll-none flex overflow-hidden wrapper' ref='container'>
+            <!--  Slide 2  -->
+            <div class='slide w-full h-full' ref='slide'>
+                <NuxtImg
+                    src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757762298/bitcoin-9193579_izajko.jpg'
+                    class='w-full h-full text-[60px] image'
+                    alt='alt'
+                    :custom='true'
+                    v-slot='{ src, isLoaded, imgAttrs }'
+                    preload
+                >
+                    <img
+                        v-if='isLoaded'
+                        v-bind='imgAttrs'
+                        :src='src'
+                        alt='alt'
+                    >
+                    
+                    <Skeleton
+                        v-else
+                        class='w-full h-full'
+                    />
+                </NuxtImg>
+            </div>
+            
+            <!--  Slide 3  -->
+            <div class='slide w-full h-full' ref='slide'>
+                <NuxtImg
+                    src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp'
+                    class='w-full h-full'
+                    alt='alt'
+                    :custom='true'
+                    v-slot='{ src, isLoaded, imgAttrs }'
+                    preload
+                >
+                    <img
+                        v-if='isLoaded'
+                        v-bind='imgAttrs'
+                        :src='src'
+                        alt='alt'
+                    >
+                    
+                    <Skeleton
+                        v-else
+                        class='w-full h-full'
+                    />
+                </NuxtImg>
             </div>
         </div>
         
-        <div class='w-screen hh-screen-screen bg-violet-200'>FINISH</div>
+        <div class='w-screen h-screen bg-violet-200'>
+            <NuxtImg
+                src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545829/bitcoin-7678812_b86ffi.jpg'
+                class='w-full h-full'
+                alt='alt'
+                :custom='true'
+                v-slot='{ src, isLoaded, imgAttrs }'
+                preload
+            >
+                <img
+                    v-if='isLoaded'
+                    v-bind='imgAttrs'
+                    :src='src'
+                    alt='alt'
+                >
+                
+                <Skeleton
+                    v-else
+                    class='w-full h-full'
+                />
+            </NuxtImg>
+        </div>
     </div>
 </template>
 
@@ -52,17 +122,12 @@
     const container = ref(null);
     let ctx;
     
-    const slides = [
-        { id: "one", color: "teal" },
-        { id: "two", color: "orange" },
-        { id: "three", color: "emerald" },
-    ];
-    
     onMounted(async() => {
         ctx = gsap.context((self) => {
-            const images = self.selector('.image');
-            const amount = images.length - 1;
-            gsap.to(images, {
+            const slides = self.selector('.slide');
+            const amount = slides.length - 1;
+            
+            gsap.to(slides, {
                 xPercent: -100 * amount,
                 ease: 'none',
                 scrollTrigger: {
