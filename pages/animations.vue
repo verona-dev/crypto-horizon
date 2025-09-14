@@ -1,20 +1,18 @@
 <template>
     <div class='overflow-hidden'>
-        <!--  Slide 1  -->
+        <!--  Starting Slide  -->
         <div class='w-screen h-screen'>
-            <iframe
-                src="https://player.cloudinary.com/embed/?cloud_name=dgcyv1ehi&public_id=200636-913478601_small_invszg&profile=cld-default"
-                width="640"
-                height="360"
-                style="height: auto; width: 100%; aspect-ratio: 640 / 360;"
-                allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                allowfullscreen
-                frameborder="0"
-            ></iframe>
+            <video
+                src="https://res.cloudinary.com/dgcyv1ehi/video/upload/v1757762338/200636-913478601_small_invszg.mp4"
+                autoplay
+                muted
+                loop
+            ></video>
         </div>
         
+        <!--  Horizontal Sliders  -->
         <div
-            class='h-screen w-[600%] overscroll-none flex overflow-hidden wrapper'
+            class='h-screen w-[400%] overscroll-none flex overflow-hidden wrapper'
             ref='container'
         >
             <NuxtImg
@@ -41,6 +39,7 @@
             </NuxtImg>
         </div>
         
+        <!--  Ending Slide  -->
         <div class='w-screen h-screen bg-violet-200'>
             <NuxtImg
                 src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545829/bitcoin-7678812_b86ffi.jpg'
@@ -78,10 +77,8 @@
     const slides = [
         { id: 'one', src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757762298/bitcoin-9193579_izajko.jpg' },
         { id: 'two', src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp' },
-        { id: 'three', src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545829/bitcoin-7678812_b86ffi.jpg' },
-        { id: 'four', src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545824/bitcoin-8629504_nbvzjj.jpg' },
-        { id: 'five', src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545827/crypto-7678815_h1ylkr.jpg' },
-        { id: 'six', src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545828/bitcoin-7678816_zipi26.jpg' }
+        { id: 'three', src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545824/bitcoin-8629504_nbvzjj.jpg' },
+        { id: 'four', src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545827/crypto-7678815_h1ylkr.jpg' },
     ];
     
     onMounted(async() => {
