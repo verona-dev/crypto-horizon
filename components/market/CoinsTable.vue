@@ -10,7 +10,7 @@
           { label: "24h %", key: "changePercent24Hr", align: "center", sortable: false, classes: "" },
         ]'
         :rows='coins'
-        class='self-stretch'
+        class='mt-20 self-stretch'
         hoverable
         background-even
         elevation
