@@ -181,13 +181,13 @@
     onMounted(() => getCoinLore('global'));
 </script>
 
-<style>
+<style scoped>
     .slide {
         align-items: center;
         display: flex;
         justify-content: center;
         height: 100%;
-        width: 100%;
+        width: 50%;
     }
     
     .card {
