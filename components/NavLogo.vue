@@ -20,7 +20,7 @@
                         size='lg'
                     >
                         <div class='ml-2 great-font whitespace-normal'>
-                        <h5 >Crypto</h5>
+                        <h5>Crypto</h5>
                         <h5 class='ml-15'>Horizon</h5>
                         </div>
                     </SidebarMenuButton>
