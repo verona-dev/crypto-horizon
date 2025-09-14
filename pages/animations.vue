@@ -2,12 +2,35 @@
     <div class='overflow-hidden'>
         <!--  Starting Slide  -->
         <div class='w-screen h-screen'>
+            <NuxtImg
+                src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545830/bitcoin-3396302_1920_ll5chx.jpg'
+                class='w-full h-full'
+                alt='alt'
+                :custom='true'
+                v-slot='{ src, isLoaded, imgAttrs }'
+                preload
+            >
+                <img
+                    v-if='isLoaded'
+                    v-bind='imgAttrs'
+                    :src='src'
+                    alt='alt'
+                >
+                
+                <Skeleton
+                    v-else
+                    class='w-full h-full'
+                />
+            </NuxtImg>
+            
+            <!--
             <video
                 src="https://res.cloudinary.com/dgcyv1ehi/video/upload/v1757762338/200636-913478601_small_invszg.mp4"
                 autoplay
                 muted
                 loop
             ></video>
+            -->
         </div>
         
         <!--  Horizontal Sliders  -->
