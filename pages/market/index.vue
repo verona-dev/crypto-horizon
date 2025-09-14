@@ -3,8 +3,8 @@
         <!--  Hero Slide  -->
         <div class='w-screen h-screen'>
             <NuxtImg
-                src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757751348/javier-miranda-AlJ9TQqeCV0-unsplash_ri1x1f.jpg'
-                class='w-full h-full'
+                src='https://c02.purpledshub.com/uploads/sites/41/2019/09/GettyImages-471296532-c-db7bc08.jpg?w=1880&webp=1'
+                class='w-full h-full rotate-180'
                 alt='alt'
                 :custom='true'
                 v-slot='{ src, isLoaded, imgAttrs }'
@@ -79,3 +79,11 @@
         layout: 'scroll-animation',
     });
 </script>
+
+<style scoped>
+    .global-market {
+        background-image: url('https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757866373/jeremy-thomas-E0AHdsENmDg-unsplash_ylo2pv.jpg');
+        background-size: 50% 100%;
+        background-repeat: no-repeat;
+    }
+</style>
