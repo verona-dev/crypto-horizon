@@ -29,7 +29,7 @@
     }
     
     main {
-        @apply my-28 md:my-14 px-20 md:px-32;
+        /*@apply my-28 md:my-14 px-20 md:px-32;*/
         /*@apply flex flex-col my-28 md:my-14 px-20 md:px-32;*/
     }
     
@@ -74,7 +74,7 @@
         @apply text-xl xl:text-2xl;
     }
     
-    .global-market h5 {
+    .global-market h3 {
         font-family: 'Great', sans-serif;
     }
     

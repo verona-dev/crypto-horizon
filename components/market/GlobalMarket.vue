@@ -1,82 +1,85 @@
 <template>
-    <MazAnimatedElement
-        direction='down'
-        :duration='2000'
-        class='global-market flex flex-col items-center justify-center lg:flex-row md:flex-wrap mb-20'
-    >
+    <!--  Assets + Markets  -->
+    <div class='slide'>
         <Card class='card'>
             <!--  Assets  -->
-            <h5 class='text-center'>Assets</h5>
+            <h3 class='text-center'>Assets</h3>
             <Separator />
             
             <CardContent class='mb-8'>
                 <CardDescription>Total number of coins</CardDescription>
-                <span v-if='coins_count'>{{ coins_count }}</span>
+                <p v-if='coins_count'>{{ coins_count }}</p>
                 <span v-else>&#8208;</span>
             </CardContent>
             
             <!--  Markets  -->
-            <h5 class='text-center'>Markets</h5>
+            <h3 class='text-center'>Markets</h3>
             <Separator />
             
             <CardContent>
                 <CardDescription>Total exchange pairs</CardDescription>
-                <span v-if='active_markets'>{{ active_markets }}</span>
+                <p v-if='active_markets'>{{ active_markets }}</p>
                 <span v-else>&#8208;</span>
             </CardContent>
         </Card>
-        
-        <!--  Market Cap  -->
+    </div>
+    
+    <!--  Market Cap  -->
+    <div class='slide'>
         <Card class='card'>
-            <h5 class='text-center'>Market Cap</h5>
+            <h3 class='text-center'>Market Cap</h3>
             <Separator />
             
             <CardContent>
                 <CardDescription>Total crypto market cap</CardDescription>
-                <span v-if='mcap_total'>{{ mcap_total_label }}</span>
+                <p v-if='mcap_total'>{{ mcap_total_label }}</p>
                 <span v-else>&#8208;</span>
             </CardContent>
             
             <CardContent>
                 <CardDescription>ATH total market cap</CardDescription>
-                <span v-if='mcap_ath'>{{ mcap_ath_label }}</span>
+                <p v-if='mcap_ath'>{{ mcap_ath_label }}</p>
                 <span v-else>&#8208;</span>
             </CardContent>
             
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-                <span v-if='!!mcap_change' :class='mcap_change_class'>{{ mcap_change_label }}</span>
+                <p v-if='!!mcap_change' :class='mcap_change_class'>{{ mcap_change_label }}</p>
                 <span v-else>&#8208;</span>
             </CardContent>
         </Card>
-        
-        <!--  Volume  -->
+    </div>
+    
+    <!--  Volume  -->
+    <div class='slide'>
         <Card class='card'>
-            <h5 class='text-center'>Volume</h5>
+            <h3 class='text-center'>Volume</h3>
             <Separator />
             
             <CardContent>
                 <CardDescription>Total trading volume for last 24h</CardDescription>
-                <span v-if='total_volume'>{{ total_volume_label }}</span>
+                <p v-if='total_volume'>{{ total_volume_label }}</p>
                 <span v-else>&#8208;</span>
             </CardContent>
             
             <CardContent>
                 <CardDescription>ATH total trading volume</CardDescription>
-                <span v-if='volume_ath'>{{ volume_ath_label }}</span>
+                <p v-if='volume_ath'>{{ volume_ath_label }}</p>
                 <span v-else>&#8208;</span>
             </CardContent>
             
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-                <span v-if='!!volume_change' :class='volume_change_class'>{{ volume_change_label }}</span>
+                <p v-if='!!volume_change' :class='volume_change_class'>{{ volume_change_label }}</p>
                 <span v-else>&#8208;</span>
             </CardContent>
         </Card>
-        
-        <!--  Dominance  -->
+    </div>
+    
+    <!--  Dominance  -->
+    <div class='slide'>
         <Card class='card'>
-            <h5 class='text-center'>Dominance</h5>
+            <h3 class='text-center'>Dominance</h3>
             <Separator />
             
             <CardContent>
@@ -95,7 +98,7 @@
                             BTC Dominance Index
                         </CardDescription>
                         
-                        <span v-if='!!btc_dominance'>{{ btc_dominance }}&#37;</span>
+                        <p v-if='!!btc_dominance'>{{ btc_dominance }}&#37;</p>
                         <span v-else>&#8208;</span>
                     </div>
                 </NuxtLink>
@@ -117,13 +120,13 @@
                             ETH Dominance Index
                         </CardDescription>
                         
-                        <span v-if='!!eth_dominance'>{{ eth_dominance }}&#37;</span>
+                        <p v-if='!!eth_dominance'>{{ eth_dominance }}&#37;</p>
                         <span v-else>&#8208;</span>
                     </div>
                 </NuxtLink>
             </CardContent>
         </Card>
-    </MazAnimatedElement>
+    </div>
 </template>
 
 <script setup>
@@ -178,13 +181,18 @@
     onMounted(() => getCoinLore('global'));
 </script>
 
-<style>
-    .global-market {
-        .card {
-            border-color: var(--card-border);
-            min-height: 375px;
-            margin: 25px;
-            width: 250px;
-        }
+<style scoped>
+    .slide {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        width: 50%;
+    }
+    
+    .card {
+        border-color: var(--card-border);
+        height: 425px;
+        width: 425px;
     }
 </style>
