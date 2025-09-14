@@ -2,7 +2,7 @@
     <SidebarProvider :default-open='false'>
         <AppSidebar />
         
-        <SidebarInset class='flex items-center justify-start'>
+        <SidebarInset class='flex items-center justify-start my-28 md:my-14 px-20 md:px-32'>
             <Breadcrumb />
             
             <!--  Mobile Trigger  -->
