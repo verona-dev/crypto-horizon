@@ -1,6 +1,6 @@
 <template>
-    <div class='overflow-hidden'>
-        <!--  Starting Slide  -->
+    <div class='overflow-hidden w-screen'>
+        <!--  Hero Slide  -->
         <div class='w-screen h-screen'>
             <NuxtImg
                 src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545830/bitcoin-3396302_1920_ll5chx.jpg'
