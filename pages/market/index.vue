@@ -3,9 +3,8 @@
         <!--  Hero Slide  -->
         <div class='w-screen h-screen'>
             <NuxtImg
-                src='https://c02.purpledshub.com/uploads/sites/41/2019/09/GettyImages-471296532-c-db7bc08.jpg?w=1880&webp=1'
+                src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757866406/GettyImages-471296532-c-db7bc08_edtsqo.webp'
                 class='w-full h-full rotate-180'
-                alt='alt'
                 :custom='true'
                 v-slot='{ src, isLoaded, imgAttrs }'
                 preload
@@ -26,14 +25,41 @@
         
         <!--  Horizontal Sliders  -->
         <div
-            class='global-market h-screen w-[200%] overscroll-none flex justify-center items-center overflow-hidden wrapper'
+            class='global-market-container h-screen w-[350%] overscroll-none flex justify-center items-center overflow-hidden wrapper'
             ref='container'
         >
+            <!--  Astronaut  -->
+            <div class='slide h-full w-2/3'>
+                <NuxtImg
+                    src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757869820/cat-7710382_zqbc1t.jpg'
+                    class='h-full w-fit'
+                    v-slot='{ src, isLoaded, imgAttrs }'
+                    preload
+                >
+                    <img
+                        v-if='isLoaded'
+                        v-bind='imgAttrs'
+                        :src='src'
+                        alt='alt'
+                    >
+                    
+                    <Skeleton
+                        v-else
+                        class='w-full h-full'
+                    />
+                </NuxtImg>
+            </div>
+            
+            <div class='slide w-1/2 flex items-center'>
+                <h1 class='tracking-[0.4rem] text-[140px] shadow-2xl'>Global Statistics</h1>
+<!--                <h1 class='truncate tracking-[0.4rem] text-[120px] shadow-2xl whitespace-nowrap'>Global Statistics</h1>-->
+            </div>
+            
             <GlobalMarket />
         </div>
         
         <!--  Ending Slide  -->
-        <div class='w-screen h-screen flex justify-center items-center'>
+        <div class='w-screen flex justify-center items-center'>
             <CoinsTable />
         </div>
     </div>
@@ -81,9 +107,9 @@
 </script>
 
 <style scoped>
-    .global-market {
-        background-image: url('https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757866373/jeremy-thomas-E0AHdsENmDg-unsplash_ylo2pv.jpg');
-        background-size: 50% 100%;
-        background-repeat: no-repeat;
+    .global-market-container {
+        //background-image: url('https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757866398/nathan-anderson-KvgB81s4dF0-unsplash_rrdxem.jpg');
+        //background-size: 50% 100%;
+        //background-repeat: no-repeat;
     }
 </style>
