@@ -3,12 +3,14 @@
         <AppSidebar />
         
         <SidebarInset class='m-0'>
-<!--            <Breadcrumb />-->
+            <!--            <Breadcrumb />-->
             
             <!--  Mobile Trigger  -->
             <SidebarTrigger />
             
-            <slot />
+            <transition name='scroll-animation-layout' mode='out-in'>
+                <slot />
+            </transition>
             
             <ScrollToTop />
         </SidebarInset>
