@@ -187,7 +187,7 @@
         display: flex;
         justify-content: center;
         height: 100%;
-        width: 50%;
+        width: 75%;
     }
     
     .card {

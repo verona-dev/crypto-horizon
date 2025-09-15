@@ -25,7 +25,7 @@
         
         <!--  Horizontal Sliders  -->
         <div
-            class='global-market-container h-screen w-[350%] overscroll-none flex justify-center items-center overflow-hidden wrapper relative'
+            class='global-market-container h-screen w-[450%] overscroll-none flex justify-center items-center overflow-hidden wrapper relative'
             ref='container'
         >
             <!--  Astronaut  -->
@@ -142,6 +142,6 @@
             rgba(14, 14, 14, 0.25) 80%,
             #0e0e0e 100%
         );
-        z-index: 1;
     }
+
 </style>
