@@ -192,7 +192,7 @@
     
     .card {
         border-color: var(--card-border);
-        height: 425px;
+        min-height: 475px;
         width: 425px;
     }
 </style>
