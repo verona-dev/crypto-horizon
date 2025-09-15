@@ -8,7 +8,8 @@ export default defineNuxtConfig({
    app: {
       layout: 'default',
       layoutTransition: {
-         name: 'scroll-animation-layout', mode: 'default'
+         name: 'scroll-animation-layout',
+         mode: 'in-out'
       },
       pageTransition: {
          // Name options are: 'bounce', 'fade', 'page', 'custom',
