@@ -9,7 +9,9 @@
             <SidebarTrigger />
             
             <transition name='scroll-animation-layout' mode='out-in'>
-                <slot />
+                <suspense>
+                    <slot />
+                </suspense>
             </transition>
             
             <ScrollToTop />
