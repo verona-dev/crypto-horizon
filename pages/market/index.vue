@@ -112,5 +112,15 @@
         background-size: 30% 100%;
         background-repeat: no-repeat;
     }
-
+    
+    .global-market-container::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 130px;
+        bottom: 0;
+        pointer-events: none;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #0e0e0e 100%);
+    }
 </style>
