@@ -7,6 +7,9 @@ export default defineNuxtConfig({
 
    app: {
       layout: 'default',
+      layoutTransition: {
+         name: 'scroll-animation-layout', mode: 'default'
+      },
       pageTransition: {
          // Name options are: 'bounce', 'fade', 'page', 'custom',
          // Mode options are: 'out-in','in-out',
@@ -64,13 +67,13 @@ export default defineNuxtConfig({
    },
 
    modules: [
-     '@nuxt/image',
-     '@pinia/nuxt',
-     'maz-ui/nuxt',
-     '@nuxtjs/color-mode',
-     '@nuxt/icon',
-     'shadcn-nuxt',
-     'nuxt-charts',
+      '@nuxt/image',
+      '@pinia/nuxt',
+      'maz-ui/nuxt',
+      '@nuxtjs/color-mode',
+      '@nuxt/icon',
+      'shadcn-nuxt',
+      'nuxt-charts',
    ],
 
    runtimeConfig: {
