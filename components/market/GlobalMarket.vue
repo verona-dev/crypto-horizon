@@ -187,12 +187,12 @@
         display: flex;
         justify-content: center;
         height: 100%;
-        width: 50%;
+        width: 75%;
     }
     
     .card {
         border-color: var(--card-border);
-        height: 425px;
+        min-height: 475px;
         width: 425px;
     }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class='overflow-hidden w-screen'>
         <!--  Hero Slide  -->
-        <div class='w-screen h-screen'>
+        <div class='hero-container w-screen h-screen relative'>
             <NuxtImg
                 src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757866406/GettyImages-471296532-c-db7bc08_edtsqo.webp'
                 class='w-full h-full rotate-180'
@@ -25,14 +25,14 @@
         
         <!--  Horizontal Sliders  -->
         <div
-            class='global-market-container h-screen w-[350%] overscroll-none flex justify-center items-center overflow-hidden wrapper'
+            class='global-market-container h-screen w-[450%] overscroll-none flex justify-center items-center overflow-hidden wrapper relative'
             ref='container'
         >
             <!--  Astronaut  -->
-            <div class='slide h-full w-2/3'>
+            <div class='astronaut-container slide h-full w-full'>
                 <NuxtImg
                     src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757869820/cat-7710382_zqbc1t.jpg'
-                    class='h-full w-fit'
+                    class='w-full h-[125%]'
                     v-slot='{ src, isLoaded, imgAttrs }'
                     preload
                 >
@@ -51,7 +51,7 @@
             </div>
             
             <div class='slide w-1/2 flex items-center'>
-                <h1 class='tracking-[0.4rem] text-[140px] shadow-2xl'>Global Statistics</h1>
+                <h1 class='tracking-[0.4rem] text-[140px] shadow-sm'>Global Statistics</h1>
 <!--                <h1 class='truncate tracking-[0.4rem] text-[120px] shadow-2xl whitespace-nowrap'>Global Statistics</h1>-->
             </div>
             
@@ -108,8 +108,40 @@
 
 <style scoped>
     .global-market-container {
-        //background-image: url('https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757866398/nathan-anderson-KvgB81s4dF0-unsplash_rrdxem.jpg');
-        //background-size: 50% 100%;
-        //background-repeat: no-repeat;
+        background-image: url('https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757866335/aperture-vintage-Z6EpCdMcoUU-unsplash_dpdgla.jpg');
+        background-size: 30% 100%;
+        background-repeat: no-repeat;
+        z-index: 0;
     }
+    
+    .hero-container::after,
+    .global-market-container::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100px;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #0e0e0e 100%);
+        z-index: 1;
+    }
+    
+    .astronaut-container::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 100px;
+        background: linear-gradient(
+            to top,
+            rgba(14, 14, 14, 0) 0%,
+            rgba(14, 14, 14, 0.05) 20%,
+            rgba(14, 14, 14, 0.1) 40%,
+            rgba(14, 14, 14, 0.15) 60%,
+            rgba(14, 14, 14, 0.25) 80%,
+            #0e0e0e 100%
+        );
+    }
+
 </style>
