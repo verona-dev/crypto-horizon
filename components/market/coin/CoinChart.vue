@@ -56,7 +56,6 @@
             <!--  Range  -->
             <Tabs
                 v-model='current_interval'
-                @update:model-value='onRangeUpdate'
                 :default-value='current_interval'
                 class='inline'
             >
@@ -65,6 +64,7 @@
                         v-for='range in ranges'
                         :key='range.interval'
                         :value='range.interval'
+                        @click='onRangeUpdate'
                         class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
@@ -156,12 +156,19 @@
             button_label: '1Y',
         },
     ];
+    
+    // Range/Timeframe interval
     const current_interval = ref(ranges[0].interval);
     const current_range = computed(() => ranges.find(r => r.interval === current_interval.value));
     const onRangeUpdate = async() => {
         await nextTick();
         await getCoingeckoCoinChart(current_interval.value);
     };
+    
+    watch(current_interval, async () => {
+        await nextTick();
+        await getCoingeckoCoinChart(current_interval.value);
+    });
     
     // Chart
     const chart = computed(() => coin.value?.chart);
