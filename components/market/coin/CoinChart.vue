@@ -158,7 +158,10 @@
     ];
     const current_interval = ref(ranges[0].interval);
     const current_range = computed(() => ranges.find(r => r.interval === current_interval.value));
-    const onRangeUpdate = () => getCoingeckoCoinChart(current_interval.value);
+    const onRangeUpdate = async() => {
+        await nextTick();
+        await getCoingeckoCoinChart(current_interval.value);
+    };
     
     // Chart
     const chart = computed(() => coin.value?.chart);
