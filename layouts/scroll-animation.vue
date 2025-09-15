@@ -8,7 +8,7 @@
             <!--  Mobile Trigger  -->
             <SidebarTrigger />
             
-            <transition name='scroll-animation-layout' mode='out-in'>
+            <transition name='scroll-animation-layout' mode='in-out'>
                 <suspense>
                     <slot />
                 </suspense>
