@@ -64,7 +64,6 @@
                         v-for='range in ranges'
                         :key='range.interval'
                         :value='range.interval'
-                        @click='onRangeUpdate'
                         class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
@@ -160,10 +159,6 @@
     // Range/Timeframe interval
     const current_interval = ref(ranges[0].interval);
     const current_range = computed(() => ranges.find(r => r.interval === current_interval.value));
-    const onRangeUpdate = async() => {
-        await nextTick();
-        await getCoingeckoCoinChart(current_interval.value);
-    };
     
     watch(current_interval, async () => {
         loading.value = true;
