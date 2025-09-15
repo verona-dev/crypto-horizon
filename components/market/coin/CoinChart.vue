@@ -166,8 +166,14 @@
     };
     
     watch(current_interval, async () => {
+        loading.value = true;
+        
         await nextTick();
         await getCoingeckoCoinChart(current_interval.value);
+        
+        setTimeout(() => {
+            loading.value = false;
+        }, 600);
     });
     
     // Chart
@@ -184,13 +190,7 @@
         const chartInstance = chartRef.value?.chart;
         
         if (chartInstance) {
-            loading.value = true;
-            
             chartInstance.update();
-            
-            setTimeout(() => {
-                loading.value = false;
-            }, 600);
         }
     }, { deep: true });
     
