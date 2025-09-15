@@ -74,6 +74,7 @@ export default defineNuxtConfig({
       '@nuxt/icon',
       'shadcn-nuxt',
       'nuxt-charts',
+      'nuxt-scroll-restoration',
    ],
 
    runtimeConfig: {
@@ -82,6 +83,11 @@ export default defineNuxtConfig({
          livecoinwatchApiKey: process.env.LIVECOINWATCH_API_KEY,
          coindesk_api: process.env.COINDESK_API_KEY,
       },
+   },
+
+   scrollRestoration: {
+      scrollRestorationTimeoutMs: 3000,
+      tryToScrollIntervalMs: 50
    },
 
    shadcn: {
