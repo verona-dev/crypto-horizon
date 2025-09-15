@@ -71,6 +71,15 @@
     filter: grayscale(1);
 }
 
+.scroll-animation-layout-enter-active, .scroll-animation-layout-leave-active {
+    transition: all 0.4s ease;
+}
+
+.scroll-animation-layout-enter-from, .scroll-animation-layout-leave-to {
+    opacity: 0;
+    filter: blur(1rem);
+}
+
 /*Custom*/
 .custom-enter-active {
     transition: all .3s ease;
