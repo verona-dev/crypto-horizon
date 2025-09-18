@@ -224,7 +224,7 @@
     
     const progress = ref(0);
     const reading_duration = ref(0);
-    const show_progress_bar = computed(() => reading_duration.value > 1 && !isMobile.value && !open.value);
+    const show_progress_bar = computed(() => reading_duration.value > 1 && !open.value);
     
     const onScroll = () => {
         const scrollTop = window.scrollY || window.pageYOffset;
@@ -278,12 +278,16 @@
             bottom: 0;
             display: flex;
             height: 50px;
-            left: calc(v-bind(SIDEBAR_WIDTH_ICON) / 2);
-            //left: calc(v-bind(SIDEBAR_WIDTH_ICON) + 20px);
-            //padding-right: calc(v-bind(SIDEBAR_WIDTH_ICON) + 50px);
+            left: 20px;
+            padding-right: 50px;
             position: fixed;
             width: 100vw;
             z-index: 10;
+            
+            @media (min-width: 770px) {
+                left: calc(v-bind(SIDEBAR_WIDTH_ICON) + 20px);
+                padding-right: calc(v-bind(SIDEBAR_WIDTH_ICON) + 50px);
+            }
         }
         
         .bar-container {
@@ -291,7 +295,7 @@
             border-radius: 4px;
             margin: 0 auto;
             height: 6px;
-            width: calc(100vw - v-bind(SIDEBAR_WIDTH));
+            width: 100%;
             
             .progress-bar {
                 background-color: var(--secondary);
