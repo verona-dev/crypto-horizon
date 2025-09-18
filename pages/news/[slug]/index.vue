@@ -8,7 +8,7 @@
             <h4 class='ml-4 mb-0'>Loading...</h4>
         </div>
         
-        <div v-else class='w-full'>
+        <div v-else>
             <Card
                 v-if='body && body_formatted'
                 class='bg-transparent border-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'
@@ -136,14 +136,12 @@
         
         <!-- Reading/Scroll progress bar -->
         <template v-if='show_progress_bar'>
-            <div
-                class='progress-container w-3/4 xl:max-w-[1300px]'
-                :style='{ width: progress_bar_width }'
-            >
-                <div class='progress-bar' :style='{ width: `${progress * 100}%` }'></div>
+            <div class='progress-container px-20 2xl:px-96'>
+                <div class='bar-container'>
+                    <div class='progress-bar' :style='{ width: `${progress * 100}%` }'></div>
+                </div>
             </div>
         </template>
-
     </section>
 </template>
 
@@ -153,7 +151,7 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     import { useReadingTime } from 'maz-ui';
-    import { SIDEBAR_WIDTH, useSidebar } from '~/components/ui/sidebar/utils.js';
+    import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_ICON, useSidebar } from '~/components/ui/sidebar/utils.js';
     const { open, isMobile } = useSidebar()
     
     // Router
@@ -276,21 +274,30 @@
         }
         
         .progress-container {
-            align-items: center;
-            background-color: var(--background);
-            bottom: 0;
-            display: flex;
-            height: 100px;
             position: fixed;
+            bottom: 0;
+            left: calc(v-bind(SIDEBAR_WIDTH_ICON) / 2);
+            height: 50px;
+            background-color: var(--background);
             z-index: 10;
+            display: flex;
+            align-items: center;
+            width: 100%;
         }
         
-        .progress-bar {
-            height: 2px;
-            background-color: var(--secondary);
-            transition: width 0.1s ease-out;
-            box-shadow: 0 0 16px 1px var(--secondary);
-            border-radius: 16px;
+        .bar-container {
+            border: 1px solid var(--secondary);
+            border-radius: 2px;
+            margin: 0 auto;
+            height: 8px;
+            width: 100%;
+            
+            .progress-bar {
+                background-color: var(--secondary);
+                box-shadow: 0 0 16px 1px var(--secondary);
+                height: 100%;
+                transition: width 0.1s ease-out;
+            }
         }
     }
 </style>

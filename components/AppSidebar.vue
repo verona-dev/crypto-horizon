@@ -152,7 +152,7 @@
 </script>
 
 <template>
-    <Sidebar v-bind='props'>
+    <Sidebar v-bind='props' class='z-50'>
         <SidebarHeader>
             <div class='h-24 flex items-center justify-center'>
                 <NavLogo />
