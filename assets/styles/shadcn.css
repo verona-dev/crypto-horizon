@@ -22,6 +22,6 @@
 }
 
 .hover-card-content {
-    background: var(--primary-foreground) !important;
+    background: var(--accent) !important;
     padding: 20px !important;
 }
