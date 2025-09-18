@@ -80,7 +80,7 @@
             <div v-if='loading' class='spinner-container'>
                 <div class='h-full flex flex-col items-center justify-center gap-2 pb-12'>
                     <MazSpinner size='2em' />
-                    <span class='text-muted-custom'>Please wait a moment.</span>
+                    <!-- <span class='text-muted-custom'>Please wait a moment.</span> -->
                 </div>
             </div>
             
