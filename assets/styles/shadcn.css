@@ -6,7 +6,7 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
     display: flex !important;
     justify-content: space-around !important;
-    min-width: 425px !important;
+    min-width: 475px !important;
 }
 
 [data-icon] {
@@ -14,7 +14,7 @@
 }
 
 [data-title] {
-    margin-left: 10px !important;
+    margin: 0 10px 0 20px !important;
 }
 
 [data-button] {
