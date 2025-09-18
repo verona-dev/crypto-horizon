@@ -136,7 +136,7 @@
         
         <!-- Reading/Scroll progress bar -->
         <template v-if='show_progress_bar'>
-            <div class='progress-container px-20 2xl:px-96'>
+            <div class='progress-container'>
                 <div class='bar-container'>
                     <div class='progress-bar' :style='{ width: `${progress * 100}%` }'></div>
                 </div>
@@ -224,7 +224,6 @@
     
     const progress = ref(0);
     const reading_duration = ref(0);
-    const progress_bar_width = computed(() => `calc(100vw - ${SIDEBAR_WIDTH})`);
     const show_progress_bar = computed(() => reading_duration.value > 1 && !isMobile.value && !open.value);
     
     const onScroll = () => {
@@ -274,26 +273,29 @@
         }
         
         .progress-container {
-            position: fixed;
-            bottom: 0;
-            left: calc(v-bind(SIDEBAR_WIDTH_ICON) / 2);
-            height: 50px;
-            background-color: var(--background);
-            z-index: 10;
-            display: flex;
             align-items: center;
-            width: 100%;
+            background-color: var(--background);
+            bottom: 0;
+            display: flex;
+            height: 50px;
+            left: calc(v-bind(SIDEBAR_WIDTH_ICON) / 2);
+            //left: calc(v-bind(SIDEBAR_WIDTH_ICON) + 20px);
+            //padding-right: calc(v-bind(SIDEBAR_WIDTH_ICON) + 50px);
+            position: fixed;
+            width: 100vw;
+            z-index: 10;
         }
         
         .bar-container {
-            border: 1px solid var(--secondary);
-            border-radius: 2px;
+            background: var(--accent);
+            border-radius: 4px;
             margin: 0 auto;
-            height: 8px;
-            width: 100%;
+            height: 6px;
+            width: calc(100vw - v-bind(SIDEBAR_WIDTH));
             
             .progress-bar {
                 background-color: var(--secondary);
+                border-radius: 4px;
                 box-shadow: 0 0 16px 1px var(--secondary);
                 height: 100%;
                 transition: width 0.1s ease-out;
