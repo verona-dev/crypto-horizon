@@ -166,9 +166,12 @@
         await nextTick();
         await getCoingeckoCoinChart(current_interval.value);
         
+        /*
         setTimeout(() => {
             loading.value = false;
-        }, 600);
+        }, 600);*/
+        
+        loading.value = false;
     });
     
     // Chart
