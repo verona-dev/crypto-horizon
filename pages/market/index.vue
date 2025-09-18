@@ -59,7 +59,7 @@
         </div>
         
         <!--  Ending Slide  -->
-        <div class='w-screen flex justify-center items-center'>
+        <div class='flex justify-center'>
             <CoinsTable />
         </div>
     </div>

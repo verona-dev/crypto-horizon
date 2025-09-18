@@ -1,5 +1,5 @@
 <template>
-    <div class='mt-30 flex flex-col items-center justify-center mx-auto'>
+    <div class='mt-30 flex flex-col md:mr-20'>
         <h3 class='my-30 tracking-[0.4rem] shadow-2xl'>Cryptocurrency Prices by Market Cap </h3>
         
         <MazTable
