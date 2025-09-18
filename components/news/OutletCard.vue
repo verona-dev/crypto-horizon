@@ -164,7 +164,7 @@
         
         tbody {
             tr:hover {
-                background-color: var(--gray-mine);
+                background-color: var(--accent-foreground);
             }
         }
         
