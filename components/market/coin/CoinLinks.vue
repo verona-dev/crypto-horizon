@@ -126,7 +126,7 @@
             color: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
             
             &:hover {
-                color: var(--secondary);
+                color: var(--foreground);
                 text-decoration: underline;
             }
         }
