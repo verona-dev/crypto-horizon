@@ -25,7 +25,7 @@
                 />
             </div>
             
-            <div>
+            <div class='flex flex-col justify-center gap-6'>
                 <!--  Name  -->
                 <div class='flex items-center gap-4'>
                     <h2>{{ coingecko.name }}</h2>
@@ -110,15 +110,16 @@
                     </div>
                 </div>
                 
-                <div class='mt-2'>
+                <!--  Rank + Watchlist -->
+                <div class='flex items-center gap-6'>
                     <!--  Rank  -->
-                    <HoverCard :openDelay='200' class='flex'>
+                    <HoverCard :openDelay='200'>
                         <HoverCardTrigger class='info-icon'>
                             <MazBadge
                                 color='info'
                                 size='1.25rem'
                                 rounded-size='md'
-                                class='ml-8 cursor-default self-center'
+                                class='cursor-default'
                                 outline
                             >
                                 &#35;{{ coingecko.market_cap_rank }}
@@ -130,13 +131,13 @@
                     </HoverCard>
                     
                     <!--  Portfolio watchlist  -->
-                    <HoverCard :openDelay='200' class='flex'>
+                    <HoverCard :openDelay='200'>
                         <HoverCardTrigger class='info-icon'>
                             <MazBadge
                                 color='theme'
                                 size='1.25rem'
                                 rounded-size='md'
-                                class='ml-8 cursor-default'
+                                class='cursor-default'
                                 outline
                             >
                                 <div class='flex items-center'>
@@ -156,7 +157,7 @@
                 </div>
                 
                 <!--  Price 24h range -->
-                <div class='mt-8 w-[450px] text-muted-custom'>
+                <div class='w-[450px] text-muted-custom'>
                     <Progress
                         v-model='progress'
                         :indicatorColor='progress_color'
