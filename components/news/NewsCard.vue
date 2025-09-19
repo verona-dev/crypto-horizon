@@ -34,7 +34,7 @@
                                 rounded-size='xl'
                             />
                             
-                            <div class='flex flex-col items-start'>
+                            <div class='flex flex-col items-start text-left'>
                                 <span>{{ article_author_label }}</span>
                                 <span class='text-muted-custom'>{{ source_name_label }}</span>
                             </div>
@@ -77,16 +77,29 @@
                         </HoverCardContent>
                     </HoverCard>
                     
-                    <!--  Publish date  -->
-                    <HoverCard :openDelay='200'>
-                        <HoverCardTrigger class='flex items-center gap-2'>
-                            <NuxtIcon name='iconoir:calendar' size='16px' />
-                            <span class='text-xs'>{{ published_date_from_now }}</span>
-                        </HoverCardTrigger>
-                        <HoverCardContent class='hover-card-content w-fit'>
-                            <span class='text-sm'>{{ published_date }}</span>
-                        </HoverCardContent>
-                    </HoverCard>
+                    <div class='flex flex-col justify-center gap-2 min-w-28'>
+                        <!--  Publish date  -->
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex items-center gap-2'>
+                                <NuxtIcon name='iconoir:calendar' size='16px' />
+                                <span class='text-xs'>{{ published_date_from_now }}</span>
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>{{ published_date }}</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                        
+                        <!--  Reading duration  -->
+                        <div class='flex items-center gap-2'>
+                            <NuxtIcon
+                                name='mdi-light:clock'
+                                size='16'
+                            />
+                            <span class='text-xs'>{{ reading_duration }} min read</span>
+                        </div>
+                    </div>
+                    
+
                 </div>
                 
                 <!--  Categories / Tags  -->
@@ -121,6 +134,7 @@
 </template>
 
 <script setup>
+    import { useReadingTime } from 'maz-ui';
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
@@ -136,6 +150,7 @@
     });
     
     const { article } = toRefs(props);
+    console.log(JSON.parse(JSON.stringify(article.value)));
     
     const guid = article.value?.GUID;
     const title = article.value?.TITLE;
@@ -149,6 +164,36 @@
         if(source_name === 'CoinTelegraph') return article_author.value.replace('Cointelegraph by', '');
         return article_author.value;
     });
+    
+    const reading_duration = ref(0);
+    const body = computed(() => article.value?.BODY);
+    const body_formatted = computed(() => {
+        if (!body.value) return '';
+        
+        let sentences = body.value
+            .split(/\. +|\.(?=\n)|\.(?=$)/)
+            .map(s => s.trim())
+            .filter(s => s.length);
+        
+        for (let i = 0; i < sentences.length; i++) {
+            if (i % 3 < 2) {
+                sentences[i] = sentences[i] + '. ';
+            } else {
+                sentences[i] = sentences[i] + '.<br><br>';
+            }
+        }
+        
+        return sentences.join('');
+    });
+    watch(body_formatted, (newVal) => {
+        if (newVal && newVal.length > 0) {
+            const { duration } = useReadingTime({
+                content: newVal,
+            });
+            reading_duration.value = duration.value;
+        }
+    }, { immediate: true });
+    
     const categories = article.value?.CATEGORY_DATA;
     
     const source_name = article.value?.SOURCE_DATA?.NAME;
