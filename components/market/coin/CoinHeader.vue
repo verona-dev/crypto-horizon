@@ -1,6 +1,6 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex flex-col justify-center items-center'>
-        <section class='my-4 flex flex-col xl:flex-row items-center gap-10'>
+        <section class='flex flex-col xl:flex-row items-center'>
             <div class='flex items-center gap-4'>
                 <!--  Go back -->
                 <NuxtLink
@@ -36,7 +36,7 @@
                             <NuxtIcon
                                 name='radix-icons:info-circled'
                                 size='25'
-                                class='flex ml-2 mt-2'
+                                class='flex'
                             />
                         </HoverCardTrigger>
                         <HoverCardContent class='hover-card-content'>
@@ -52,26 +52,29 @@
                 </div>
                 
                 <!--  Coin price  -->
-                <div>
-                    <div class='flex items-center'>
+                <div class='flex flex-col justify-center gap-4'>
+                    <div class='flex items-center gap-6'>
                         <h1 class='text-foreground'>{{ current_price_label }}</h1>
                         
                         <!--  Price change % in USD $  -->
-                        <div class='ml-4 flex items-center'>
-                            <NuxtIcon
-                                :name='getTrendIcon(price_change_percentage_7d)'
-                                size='35'
-                                :class='getTextColorClass(price_change_percentage_7d)'
-                            />
-                            
-                            <p :class='getTextColorClass(price_change_percentage_7d)'>{{ price_change_percentage_7d_label }}&#40;7d&#41;</p>
+                        <div class='flex items-center gap-2'>
+                            <div class='flex items-center'>
+                                <NuxtIcon
+                                    :name='getTrendIcon(price_change_percentage_7d)'
+                                    size='35'
+                                    :class='getTextColorClass(price_change_percentage_7d)'
+                                />
+                                
+                                <p :class='getTextColorClass(price_change_percentage_7d)'>
+                                    {{ price_change_percentage_7d_label }}&#40;7d&#41;</p>
+                            </div>
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
                                         size='25'
-                                        class='flex ml-2'
+                                        class='flex'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent class='hover-card-content'>
@@ -82,24 +85,27 @@
                     </div>
                     
                     <!--  Price change % in BTC  -->
-                    <div v-if='not_bitcoin' class='price-in-btc flex items-center'>
+                    <div v-if='not_bitcoin' class='price-in-btc flex items-center gap-6'>
                         <p class='text-sm text-muted-custom'>{{ current_price_in_btc }} BTC</p>
                         
-                        <div class='ml-3 flex items-center'>
-                            <NuxtIcon
-                                :name='getTrendIcon(price_change_percentage_7d_in_btc)'
-                                size='25'
-                                :class='getTextColorClass(price_change_percentage_7d_in_btc)'
-                            />
-                            
-                            <p :class='[getTextColorClass(price_change_percentage_7d_in_btc), "text-sm"]'>{{ price_change_percentage_7d_in_btc_label }}&#40;7d&#41;</p>
+                        <div class='flex items-center gap-2'>
+                            <div class='flex items-center'>
+                                <NuxtIcon
+                                    :name='getTrendIcon(price_change_percentage_7d_in_btc)'
+                                    size='25'
+                                    :class='getTextColorClass(price_change_percentage_7d_in_btc)'
+                                />
+                                
+                                <p :class='[getTextColorClass(price_change_percentage_7d_in_btc), "text-sm"]'>
+                                    {{ price_change_percentage_7d_in_btc_label }}&#40;7d&#41;</p>
+                            </div>
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
                                         size='25'
-                                        class='flex ml-2'
+                                        class='flex'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent class='hover-card-content'>
