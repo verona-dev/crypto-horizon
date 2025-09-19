@@ -1,5 +1,5 @@
 <template>
-    <Card v-if='article' class='coin-news-item bg-background-2 shadow-2xl rounded-md px-6 py-12 my-4 cursor-pointer'>
+    <Card v-if='article' class='coin-news-item bg-background-2 border-accent shadow-2xl rounded-md px-6 py-12 my-4 cursor-pointer'>
         <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
             <CardHeader class='p-0'>
                 <div class='flex gap-12'>
@@ -7,7 +7,7 @@
                     <NuxtImg
                         :src='image_url'
                         alt='article image'
-                        class='main-image rounded-md rounded-b-none'
+                        class='main-image rounded-md'
                         :custom='true'
                         v-slot='{ src, isLoaded, imgAttrs }'
                         preload
@@ -178,17 +178,14 @@
 
 <style scoped>
     .coin-news-item {
-        border: 1px solid var(--accent);
-        
         img.main-image {
             //object-fit: contain;
             //height: 100%;
-            height: 200px;
-            width: 200px;
+            //height: 200px;
+            //width: 200px;
         }
         
         &:hover .article-title {
-            color: var(--green-deco);
             text-decoration: underline;
         }
     }
