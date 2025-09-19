@@ -29,7 +29,7 @@
         },
         {
             title: 'News',
-            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545829/cryptocurrency-6601591_1920_i7bpq2.jpg',
+            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545835/ai-generated-8517436_1920_vk0pnk.png',
             alt: 'news image',
             to: '/news',
         },
@@ -41,7 +41,7 @@
         },
         {
             title: 'Learn',
-            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195953/cyberpunk-bitcoin-illustration_jejcnb.webp',
+            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755194748/andre-francois-mckenzie-uw3VwkDHiMI-unsplash_hs9t15.jpg',
             alt: 'learn image',
             to: '/learn',
         },
