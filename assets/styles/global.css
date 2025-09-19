@@ -48,7 +48,7 @@
 
 @layer components {
     h1 {
-        @apply text-5xl xl:text-7xl 2xl:text-8xl;
+        @apply text-6xl md:text-7xl 2xl:text-8xl;
         font-family: 'Great', sans-serif;
     }
     
