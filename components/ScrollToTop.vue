@@ -7,7 +7,7 @@
     >
         <NuxtIcon
             name='radix-icons:double-arrow-up'
-            class='text-sky-100'
+            class='text-foreground'
             size='18'
         />
     </Button>
@@ -43,11 +43,11 @@
         bottom: 75px;
         right: 50px;
         z-index: 100;
-        transition: all 1s ease;
-        box-shadow: 5px 5px 100px -6px var(--color-sky);
+        transition: all 250ms linear;
+        box-shadow: 5px 5px 100px -6px var(--secondary);
         
         &:hover {
-            border:1px solid var(--color-sky) !important;
+            border:1px solid var(--secondary) !important;
         }
     }
 </style>

@@ -162,6 +162,12 @@
             width: 200px;
         }
         
+        tbody {
+            tr:hover {
+                background-color: var(--accent-foreground);
+            }
+        }
+        
         &:hover {
             border: 1px solid var(--card-border);
         }

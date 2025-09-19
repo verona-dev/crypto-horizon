@@ -294,13 +294,13 @@
             background: var(--accent);
             border-radius: 4px;
             margin: 0 auto;
-            height: 6px;
+            height: 4px;
             width: 100%;
             
             .progress-bar {
                 background-color: var(--secondary);
                 border-radius: 4px;
-                box-shadow: 0 0 16px 1px var(--secondary);
+                box-shadow: 0 0 48px 1px var(--secondary);
                 height: 100%;
                 transition: width 0.1s ease-out;
             }

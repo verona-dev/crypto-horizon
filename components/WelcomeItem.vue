@@ -48,24 +48,21 @@
         }
         
         &:hover {
+            color: var(--foreground);
+            
             img {
-                opacity: 0.9;
                 scale: 1.01;
             }
-            /*
-            h2 {
-                border-left: 1px solid var(--snowy-mint);
-                border-right: 1px solid var(--snowy-mint);
-            }
-            */
         }
         
         h2 {
-            letter-spacing: 0.75rem;
+            letter-spacing: 0.5rem;
         }
         
         &:hover h2 {
-            color: var(--snowy-mint);
+            color: var(--foreground);
+            //text-decoration: underline;
+            //text-underline-offset: 8px;
         }
     }
 </style>
