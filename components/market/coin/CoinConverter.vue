@@ -11,7 +11,7 @@
         
         <MazInput
             v-model.number='coin_input'
-            color='info'
+            color='white'
             rounded-size='md'
             class='coin-input'
             @input='updatePrice("coin", $event)'
@@ -24,7 +24,7 @@
         
         <MazInput
             v-model.number='usd_input'
-            color='info'
+            color='white'
             rounded-size='md'
             class='usd-input'
             @input='updatePrice("usd", $event)'
