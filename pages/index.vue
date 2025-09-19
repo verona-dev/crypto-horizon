@@ -1,5 +1,5 @@
 <template>
-    <div class='flex flex-col items-center gap-8 2xl:gap-32 2xl:px-10 pb-20 2xl:pb-10'>
+    <div class='flex flex-col items-center gap-8 2xl:gap-32 px-20 pb-20 2xl:pb-10'>
         <h1 class='my-20 2xl:my-0 select-none break-words text-center'>
             Crypto Horizon
         </h1>
