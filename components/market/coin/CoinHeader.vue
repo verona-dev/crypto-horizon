@@ -1,6 +1,6 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex flex-col justify-center items-center'>
-        <section class='flex flex-col xl:flex-row items-center'>
+        <section class='flex flex-col xl:flex-row items-center gap-4'>
             <div class='flex items-center gap-4'>
                 <!--  Go back -->
                 <NuxtLink
@@ -27,26 +27,26 @@
             
             <div class='flex flex-col justify-center gap-6'>
                 <!--  Name  -->
-                <div class='flex items-center gap-4'>
+                <div class='flex items-center gap-6'>
                     <h2>{{ coingecko.name }}</h2>
                     
-                    <!--  Ico Description -->
-                    <HoverCard v-if='ico_description' :openDelay='200'>
-                        <HoverCardTrigger class='info-icon'>
-                            <NuxtIcon
-                                name='radix-icons:info-circled'
-                                size='25'
-                                class='flex'
-                            />
-                        </HoverCardTrigger>
-                        <HoverCardContent class='hover-card-content'>
-                            <span class='text-sm'>{{ ico_description }}.</span>
-                        </HoverCardContent>
-                    </HoverCard>
-                    
                     <!-- Symbol  -->
-                    <div class='text-muted-custom'>
-                        <h5 class='great-font mb-0'>{{ coin.symbol }}</h5>
+                    <div class='flex items-center text-muted-custom gap-2'>
+                        <h5 class='great-font'>{{ coin.symbol }}</h5>
+                        
+                        <!--  Ico Description -->
+                        <HoverCard v-if='ico_description' :openDelay='200'>
+                            <HoverCardTrigger class='info-icon'>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>{{ ico_description }}.</span>
+                            </HoverCardContent>
+                        </HoverCard>
                         <!--   <h2 v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</h2>   -->
                     </div>
                 </div>
