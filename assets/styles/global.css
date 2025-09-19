@@ -44,6 +44,10 @@
     section {
         @apply flex 2xl:flex-col gap-12 xl:gap-24 mb-20;
     }
+    
+    ::selection {
+        background: var(--accent);
+    }
 }
 
 @layer components {
