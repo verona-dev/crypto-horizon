@@ -106,7 +106,7 @@
                 </CardHeader>
                 
                 <CardContent v-if='body'>
-                    <p v-html='body_formatted'></p>
+                    <p v-for='(par, index) in body_formatted' :key='index' class='mb-14'>{{ par }}</p>
                 </CardContent>
                 
                 <CardFooter class='pb-10 pl-0 text-muted-foreground'>
@@ -195,15 +195,14 @@
             .map(s => s.trim())
             .filter(s => s.length);
         
-        for (let i = 0; i < sentences.length; i++) {
-            if (i % 3 < 2) {
-                sentences[i] = sentences[i] + '. ';
-            } else {
-                sentences[i] = sentences[i] + '.<br><br>';
-            }
+        let paragraphs = [];
+        
+        for (let i = 0; i < sentences.length; i += 3) {
+            let par = sentences.slice(i, i + 3).map(s => s + '.').join(' ');
+            paragraphs.push(par);
         }
         
-        return sentences.join('');
+        return paragraphs;
     });
     
     const source_avatar = computed(() => article.value?.SOURCE_DATA?.IMAGE_URL);
