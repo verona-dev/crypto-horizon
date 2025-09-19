@@ -1,10 +1,10 @@
 <template>
     <div class='flex flex-col items-center gap-8 2xl:gap-32 px-20 pb-20 2xl:pb-10'>
-        <h1 class='my-20 2xl:my-0 select-none break-words text-center'>
+        <h1 class='mt-20 mb-20 2xl:mb-0 select-none break-words text-center'>
             Crypto Horizon
         </h1>
         
-        <div class='flex flex-wrap 2xl:flex-nowrap justify-center items-center gap-12 md:gap-20 2xl:gap-30'>
+        <div class='flex flex-wrap justify-center items-center gap-12 md:gap-20 2xl:gap-30'>
             <WelcomeItem
                 v-for='item in welcomeItems'
                 :title='item.title'
@@ -38,6 +38,12 @@
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195953/cyberpunk-bitcoin-illustration_jejcnb.webp',
             alt: 'defi image',
             to: '/defi',
+        },
+        {
+            title: 'Learn',
+            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195953/cyberpunk-bitcoin-illustration_jejcnb.webp',
+            alt: 'learn image',
+            to: '/learn',
         },
     ];
     
