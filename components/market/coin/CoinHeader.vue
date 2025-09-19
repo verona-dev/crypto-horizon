@@ -26,76 +26,74 @@
             </div>
             
             <div>
-                <div class='flex items-center'>
-                    <!--  Name  -->
-                    <div class='flex items-center'>
-                        <h1>{{ coingecko.name }}</h1>
-                        
-                        <!--  Ico Description -->
-                        <HoverCard v-if='ico_description' :openDelay='200'>
-                            <HoverCardTrigger class='info-icon'>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2 mt-2'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>{{ ico_description }}.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </div>
+                <!--  Name  -->
+                <div class='flex items-center gap-6'>
+                    <h1>{{ coingecko.name }}</h1>
                     
-                    <div class='mt-2'>
-                        <!--  Rank  -->
-                        <HoverCard :openDelay='200' class='flex'>
-                            <HoverCardTrigger class='info-icon'>
-                                <MazBadge
-                                    color='info'
-                                    size='1.25rem'
-                                    rounded-size='md'
-                                    class='ml-8 cursor-default self-center'
-                                    outline
-                                >
-                                    &#35;{{ coingecko.market_cap_rank }}
-                                </MazBadge>
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Coin rank by market cap.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                        
-                        <!--  Portfolio watchlist  -->
-                        <HoverCard :openDelay='200' class='flex'>
-                            <HoverCardTrigger class='info-icon'>
-                                <MazBadge
-                                    color='theme'
-                                    size='1.25rem'
-                                    rounded-size='md'
-                                    class='ml-8 cursor-default'
-                                    outline
-                                >
-                                    <div class='flex items-center'>
-                                        <NuxtIcon
-                                            name='iconoir:star-solid'
-                                            size='25'
-                                            class='mr-2'
-                                        />
-                                        {{ watchlist_portfolio }}
-                                    </div>
-                                </MazBadge>
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>{{ watchlist_portfolio }} watchlists on Coingecko include {{ coin.symbol }}.</span>
-                            </HoverCardContent>
-                        </HoverCard>
+                    <!--  Ico Description -->
+                    <HoverCard v-if='ico_description' :openDelay='200'>
+                        <HoverCardTrigger class='info-icon'>
+                            <NuxtIcon
+                                name='radix-icons:info-circled'
+                                size='25'
+                                class='flex ml-2 mt-2'
+                            />
+                        </HoverCardTrigger>
+                        <HoverCardContent class='hover-card-content'>
+                            <span class='text-sm'>{{ ico_description }}.</span>
+                        </HoverCardContent>
+                    </HoverCard>
+                    
+                    <!-- Symbol  -->
+                    <div class='text-muted-custom'>
+                        <h2 class='mt-2'>{{ coin.symbol }}</h2>
+                        <!--   <h2 v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</h2>   -->
                     </div>
                 </div>
                 
-                <!-- Symbol  -->
-                <div class='ml-1 mt-2 text-muted-custom'>
-                    <p class='inline mr-3'>{{ coin.symbol }}</p>
-                    <p v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</p>
+                <div class='mt-2'>
+                    <!--  Rank  -->
+                    <HoverCard :openDelay='200' class='flex'>
+                        <HoverCardTrigger class='info-icon'>
+                            <MazBadge
+                                color='info'
+                                size='1.25rem'
+                                rounded-size='md'
+                                class='ml-8 cursor-default self-center'
+                                outline
+                            >
+                                &#35;{{ coingecko.market_cap_rank }}
+                            </MazBadge>
+                        </HoverCardTrigger>
+                        <HoverCardContent class='hover-card-content'>
+                            <span class='text-sm'>Coin rank by market cap.</span>
+                        </HoverCardContent>
+                    </HoverCard>
+                    
+                    <!--  Portfolio watchlist  -->
+                    <HoverCard :openDelay='200' class='flex'>
+                        <HoverCardTrigger class='info-icon'>
+                            <MazBadge
+                                color='theme'
+                                size='1.25rem'
+                                rounded-size='md'
+                                class='ml-8 cursor-default'
+                                outline
+                            >
+                                <div class='flex items-center'>
+                                    <NuxtIcon
+                                        name='iconoir:star-solid'
+                                        size='25'
+                                        class='mr-2'
+                                    />
+                                    {{ watchlist_portfolio }}
+                                </div>
+                            </MazBadge>
+                        </HoverCardTrigger>
+                        <HoverCardContent class='hover-card-content'>
+                            <span class='text-sm'>{{ watchlist_portfolio }} watchlists on Coingecko include {{ coin.symbol }}.</span>
+                        </HoverCardContent>
+                    </HoverCard>
                 </div>
                 
                 <!--  Coin price  -->
