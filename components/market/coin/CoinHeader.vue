@@ -155,19 +155,6 @@
                         </HoverCardContent>
                     </HoverCard>
                 </div>
-                
-                <!--  Price 24h range -->
-                <div class='w-[450px] text-muted-custom'>
-                    <Progress
-                        v-model='progress'
-                        :indicatorColor='progress_color'
-                    />
-                    <div class='flex justify-between'>
-                        <p>{{ low_24h_label }}</p>
-                        <p>24h Range</p>
-                        <p>{{ high_24h_label }}</p>
-                    </div>
-                </div>
             </div>
         </section>
         
@@ -180,7 +167,6 @@
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
-    import { Progress } from '~/components/ui/progress/index.ts';
     
     // Router
     import { useRouter } from 'vue-router';
@@ -194,7 +180,6 @@
     });
     
     const { coin } = toRefs(props);
-    const livecoinwatch = toRef(coin.value?.livecoinwatch);
     const coingecko = toRef(coin.value?.coingecko);
     const watchlist_portfolio = formatNumber(coingecko.value?.watchlist_portfolio_users, {
         style: 'decimal', compact: true, decimals: 2,
@@ -202,7 +187,7 @@
     
     const not_bitcoin = coin.value?.symbol !== 'BTC';
     const current_price = coingecko.value?.market_data?.current_price?.usd;
-    const current_price_label = formatNumber(coingecko.value?.market_data?.current_price?.usd, {
+    const current_price_label = formatNumber(current_price, {
         maximumFractionDigits: 4,
     });
     const current_price_in_btc = coingecko.value?.market_data?.current_price?.btc;
@@ -211,45 +196,7 @@
     const price_change_percentage_7d_label = formatNumber(price_change_percentage_7d, { style: 'percent', truncate: true });
     const price_change_percentage_7d_in_btc = coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc;
     const price_change_percentage_7d_in_btc_label = formatNumber(coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc, { style: 'percent', truncate: true });
-    
-    const high_24h = coingecko.value?.market_data?.high_24h?.usd;
-    const high_24h_computed = computed(() => {
-        // Coingecko Api has delays in updating the high24h value therefore the current price can temporarily be above the high24h
-        if(current_price > high_24h) return current_price;
-        return high_24h;
-    });
-    const high_24h_label = formatNumber(high_24h_computed.value, {
-        maximumFractionDigits: 4,
-    });
-    
-    const low_24h = coingecko.value?.market_data?.low_24h?.usd;
-    const low_24h_computed = computed(() => {
-        // Coingecko Api has delays in updating the low24h value therefore the current price can temporarily be under the low24h
-        if(current_price < low_24h) return current_price;
-        return low_24h;
-    });
-    const low_24h_label = formatNumber(low_24h_computed.value, {
-        maximumFractionDigits: 4,
-    });
-    
-    const progress = computed(() => {
-        const range = high_24h_computed.value - low_24h_computed.value;
-        if (range < 0.005) return 99; // for stablecoins, since range can be as low as .001
-        return ((current_price - low_24h_computed.value) / range) * 100;
-    });
-    const progress_color = computed(() => {
-        if(progress.value < 25) return '#E32D2D';
-        else if(progress.value < 50) return 'linear-gradient(90deg, #E32D2D 75%, #EBAA28 100%)';
-        return 'linear-gradient(90deg, #E32D2D 0%, #EBAA28 50%, #1AC914 100%)';
-    });
-    
     const ico_description = coingecko.value?.ico_data?.short_desc;
-    
-    const onClick = () => {
-        const history = window.history.length > 1;
-        if(history) router.back();
-        else router.push('/market');
-    };
 </script>
 
 <style scoped>
