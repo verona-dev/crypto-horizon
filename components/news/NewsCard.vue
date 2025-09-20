@@ -150,7 +150,6 @@
     });
     
     const { article } = toRefs(props);
-    console.log(JSON.parse(JSON.stringify(article.value)));
     
     const guid = article.value?.GUID;
     const title = article.value?.TITLE;
