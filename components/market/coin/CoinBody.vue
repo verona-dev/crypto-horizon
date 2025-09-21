@@ -40,7 +40,7 @@
                 <!--  Delta  -->
                 <CoinDelta :marketData='coingecko.market_data' />
                 
-                <!--  Description Accordion  -->
+                <!--  Description  -->
                 <CoinDescription :coin='coin' />
             </div>
         </section>
