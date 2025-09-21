@@ -1,20 +1,22 @@
 <template>
-    <SidebarProvider :default-open='false'>
-        <AppSidebar />
-        
-        <SidebarInset class='flex items-center justify-start my-28 md:my-14 px-20 md:px-32'>
-            <Breadcrumb />
+    <div>
+        <SidebarProvider :default-open='false'>
+            <AppSidebar />
             
-            <!--  Mobile Trigger  -->
-            <SidebarTrigger />
-            
-            <h1 v-if='title' class='page-title'>{{ title }}</h1>
-            
-            <slot />
-            
-            <ScrollToTop />
-        </SidebarInset>
-    </SidebarProvider>
+            <SidebarInset class='flex items-center justify-start my-28 md:my-14 px-20 md:px-32'>
+                <Breadcrumb />
+                
+                <!--  Mobile Trigger  -->
+                <SidebarTrigger />
+                
+                <h1 v-if='title' class='page-title'>{{ title }}</h1>
+                
+                <slot />
+                
+                <ScrollToTop />
+            </SidebarInset>
+        </SidebarProvider>
+    </div>
 </template>
 
 <script setup>
