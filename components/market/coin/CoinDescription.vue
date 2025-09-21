@@ -1,9 +1,7 @@
 <template>
     <div v-if='coingecko' class='flex flex-col gap-6'>
-        <h5>About</h5>
-        
         <div v-if='description' class='description-container flex flex-col'>
-            <Alert class='flex flex-col gap-4 p-8'>
+            <Alert class='bg-background flex flex-col gap-4 p-8'>
                 <AlertTitle class='flex items-center gap-2'>
                     <NuxtIcon
                         name='mdi:about-variant'
