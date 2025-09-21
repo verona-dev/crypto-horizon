@@ -3,8 +3,9 @@
         <h5>About</h5>
         
         <div v-if='description' class='description-container flex flex-col gap-4'>
+            
             <h6 class='flex items-center gap-1'>
-                <span>What is {{ coingecko.name }}</span>
+                What is {{ coingecko.name }}
                 <span>&#40;{{ coin.symbol }}&#41;</span>
             </h6>
             
