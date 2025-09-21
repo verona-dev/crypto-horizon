@@ -17,8 +17,8 @@
                 </h6>
             </AlertTitle>
             
-            <AlertDescription class=''>
-                <p class='text-sm'>{{ description }}</p>
+            <AlertDescription>
+                <p class='text-sm text-foreground'>{{ description }}</p>
             </AlertDescription>
         </Alert>
         
