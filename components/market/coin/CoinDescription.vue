@@ -43,8 +43,7 @@
 </template>
 
 <script setup>
-    import { Info } from "lucide-vue-next"
-    import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+    import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
     
     const props = defineProps({
         coin: {
