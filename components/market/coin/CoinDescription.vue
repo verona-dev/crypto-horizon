@@ -2,14 +2,25 @@
     <div v-if='coingecko' class='flex flex-col gap-6'>
         <h5>About</h5>
         
-        <div v-if='description' class='description-container flex flex-col gap-4'>
-            
-            <h6 class='flex items-center gap-1'>
-                What is {{ coingecko.name }}
-                <span>&#40;{{ coin.symbol }}&#41;</span>
-            </h6>
-            
-            <div>{{ description }}</div>
+        <div v-if='description' class='description-container flex flex-col'>
+            <Alert class='flex flex-col gap-4 p-8'>
+                <AlertTitle class='flex items-center gap-2'>
+                    <NuxtIcon
+                        name='mdi:about-variant'
+                        class='block text-foreground'
+                        size='30'
+                    />
+                    
+                    <h6 class='flex items-center gap-2'>
+                        What is {{ coingecko.name }}
+                        <span class='mt-0.5'>&#40;{{ coin.symbol }}&#41;</span>
+                    </h6>
+                </AlertTitle>
+                
+                <AlertDescription class=''>
+                    <p class='text-sm'>{{ description }}</p>
+                </AlertDescription>
+            </Alert>
         </div>
         
         <Separator class='my-10' />
@@ -34,6 +45,9 @@
 </template>
 
 <script setup>
+    import { Info } from "lucide-vue-next"
+    import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+    
     const props = defineProps({
         coin: {
             type: Object,
