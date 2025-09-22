@@ -56,7 +56,8 @@
                 
                 <!--  Coin price  -->
                 <div class='flex flex-col justify-center gap-4'>
-                    <div class='flex items-center gap-6'>
+                    <!--  Price in USD  -->
+                    <div class='flex flex-col gap-6'>
                         <h1 class='text-foreground'>{{ current_price_label }}</h1>
                         
                         <!--  Price change % in USD $  -->
@@ -87,10 +88,11 @@
                         </div>
                     </div>
                     
-                    <!--  Price change % in BTC  -->
+                    <!--  Price in BTC  -->
                     <div v-if='not_bitcoin' class='price-in-btc flex items-center gap-6'>
                         <p class='text-sm text-muted-custom'>{{ current_price_in_btc }} BTC</p>
                         
+                        <!--  Price change % in BTC  -->
                         <div class='flex items-center gap-2'>
                             <div class='flex items-center'>
                                 <NuxtIcon
