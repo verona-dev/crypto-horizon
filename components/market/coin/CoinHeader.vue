@@ -28,21 +28,23 @@
                 
                 <!--  Name + Watchlist  -->
                 <div class='flex flex-col items-center gap-6 border border-emerald-500 p-4'>
-                    <!--  Name  -->
-                    <h2 class='text-6xl'>{{ coingecko.name }}</h2>
-                    
-                    <!-- Symbol  -->
-                    <HoverCard :openDelay='200'>
-                        <HoverCardTrigger class='flex items-center text-muted-custom gap-4'>
-                            <h5 class='great-font'>{{ coin.symbol }}</h5>
-                            <h2 v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</h2>
-                        </HoverCardTrigger>
+                    <div class='flex flex-col items-center gap-2'>
+                        <!--  Name  -->
+                        <h2 class='text-6xl'>{{ coingecko.name }}</h2>
                         
-                        <!--  Ico Description -->
-                        <HoverCardContent v-if='ico_description' class='hover-card-content'>
-                            <span class='text-sm'>{{ ico_description }}.</span>
-                        </HoverCardContent>
-                    </HoverCard>
+                        <!-- Symbol  -->
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex items-center text-muted-custom gap-4 hover:cursor-help'>
+                                <h5 class='great-font'>{{ coin.symbol }}</h5>
+                                <h2 v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</h2>
+                            </HoverCardTrigger>
+                            
+                            <!--  Ico Description -->
+                            <HoverCardContent v-if='ico_description' class='hover-card-content'>
+                                <span class='text-sm'>{{ ico_description }}.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
                     
                     <!--  Rank + Watchlist -->
                     <div class='flex gap-6'>
@@ -96,7 +98,7 @@
             <div class='right border border-pink-500 p-2'>
                 <!--  Price in USD  -->
                 <div class='flex flex-col'>
-                    <h1 class='text-foreground'>{{ current_price_label }}</h1>
+                    <h2 class='text-foreground text-7xl'>{{ current_price_label }}</h2>
                     
                     <!--  Price change % in USD $  -->
                     <div class='flex items-center gap-2'>
