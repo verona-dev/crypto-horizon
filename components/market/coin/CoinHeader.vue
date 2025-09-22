@@ -1,30 +1,22 @@
 <template>
-    <CardHeader v-if='coin' class='coin-header flex flex-col items-center'>
-        <!--  Go back -->
-        <NuxtLink
-            @click='goBack(router, "/market")'
-            to=''
-            class='hover:bg-muted hover:cursor-pointer rounded-xl p-1'
-        >
-            <NuxtIcon
-                name='mdi-light:arrow-left'
-                size='50'
-                class='flex'
-            />
-        </NuxtLink>
-        
-        <Alert class='bg-background flex flex-col xl:flex-row flex-wrap justify-center items-center gap-4'>
-            <!--  LOGO + Name + Watchlist  -->
-            <div class='left flex justify-center items-center gap-10 p-4'>
-                <!-- Logo  -->
-                <NuxtImg
-                    v-if='coingecko?.image?.large'
-                    :src='coin.coingecko.image.large'
-                    alt='symbol'
-                    width='125'
-                    height='125'
+    <CardHeader v-if='coin' class='coin-header'>
+        <Alert class='bg-background flex flex-col items-center xl:flex-row xl:justify-center gap-10 w-full xl:w-fit mx-auto p-8 xl:p-20 h-full'>
+            <!--  Go back -->
+            <NuxtLink
+                @click='goBack(router, "/market")'
+                to=''
+                class='hover:bg-muted hover:cursor-pointer rounded-xl'
+            >
+                <NuxtIcon
+                    name='mdi-light:arrow-left'
+                    size='50'
                 />
-                
+            </NuxtLink>
+            
+            <div class='vertical-separator h-full hidden xl:block'></div>
+            
+            <!--  LOGO + Name + Watchlist  -->
+            <div class='left flex justify-center items-center gap-10'>
                 <div class='flex flex-col items-center gap-4'>
                     <!--  Name  -->
                     <h2 class='text-6xl'>{{ coingecko.name }}</h2>
@@ -32,6 +24,14 @@
                     <!-- Symbol  -->
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger class='flex items-center text-muted-custom gap-4 hover:cursor-help'>
+                            <!-- Logo  -->
+                            <NuxtImg
+                                v-if='coingecko?.image?.large'
+                                :src='coin.coingecko.image.large'
+                                alt='symbol'
+                                width='50'
+                                height='50'
+                            />
                             <h4 class='great-font'>{{ coin.symbol }}</h4>
                             <h2 v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</h2>
                         </HoverCardTrigger>
@@ -90,10 +90,10 @@
                 </div>
             </div>
             
-            <div class='vertical-separator h-96'></div>
+            <div class='vertical-separator h-full hidden xl:block'></div>
             
             <!--  Coin price  -->
-            <div class='right flex flex-col items-center gap-12'>
+            <div class='right flex flex-col items-center h-full justify-around'>
                 <!--  Price in USD  -->
                 <div class='flex flex-col'>
                     <h2 class='text-foreground text-7xl'>{{ current_price_label }}</h2>
@@ -153,7 +153,7 @@
     import { formatNumber, goBack } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
-    import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+    import { Alert } from '@/components/ui/alert';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     
     // Router
