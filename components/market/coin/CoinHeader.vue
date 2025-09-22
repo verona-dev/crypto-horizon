@@ -91,7 +91,7 @@
                     
                     <!--  Price in BTC  -->
                     <div v-if='not_bitcoin' class='price-in-btc flex items-center gap-6'>
-                        <p class='text-sm text-muted-custom'>{{ current_price_in_btc }} BTC</p>
+                        <p class='text-sm text-muted-custom'>{{ current_price_in_btc_label }} BTC</p>
                         
                         <!--  Price change % in BTC  -->
                         <div class='flex items-center gap-2'>
@@ -103,7 +103,8 @@
                                 />
                                 
                                 <p :class='[getTextColorClass(price_change_percentage_7d_in_btc), "text-sm"]'>
-                                    {{ price_change_percentage_7d_in_btc_label }}&#40;7d&#41;</p>
+                                    {{ price_change_percentage_7d_in_btc_label }}&#40;7d&#41;
+                                </p>
                             </div>
                             
                             <HoverCard :openDelay='200'>
@@ -203,6 +204,9 @@
         maximumFractionDigits: 4,
     });
     const current_price_in_btc = coingecko.value?.market_data?.current_price?.btc;
+    const current_price_in_btc_label = formatNumber(current_price_in_btc, {
+        style: 'decimal', maximumFractionDigits: 5,
+    });
     
     const price_change_percentage_7d = coingecko.value?.market_data?.price_change_percentage_7d;
     const price_change_percentage_7d_label = formatNumber(price_change_percentage_7d, {
