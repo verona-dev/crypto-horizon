@@ -32,25 +32,17 @@
                     <h2 class='text-5xl'>{{ coingecko.name }}</h2>
                     
                     <!-- Symbol  -->
-                    <div class='flex items-center text-muted-custom gap-4'>
-                        <h5 class='great-font'>{{ coin.symbol }}</h5>
-                        
-                        <h2 v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</h2>
+                    <HoverCard v-if='ico_description' :openDelay='200'>
+                        <HoverCardTrigger class='flex items-center text-muted-custom gap-4'>
+                            <h5 class='great-font'>{{ coin.symbol }}</h5>
+                            <h2 v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</h2>
+                        </HoverCardTrigger>
                         
                         <!--  Ico Description -->
-                        <HoverCard v-if='ico_description' :openDelay='200'>
-                            <HoverCardTrigger class='info-icon'>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>{{ ico_description }}.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </div>
+                        <HoverCardContent class='hover-card-content'>
+                            <span class='text-sm'>{{ ico_description }}.</span>
+                        </HoverCardContent>
+                    </HoverCard>
                     
                     <!--  Rank + Watchlist -->
                     <div class='flex gap-6'>
