@@ -70,7 +70,8 @@
                                 />
                                 
                                 <p :class='getTextColorClass(price_change_percentage_7d)'>
-                                    {{ price_change_percentage_7d_label }}&#40;7d&#41;</p>
+                                    {{ price_change_percentage_7d_label }}&#40;7d&#41;
+                                </p>
                             </div>
                             
                             <HoverCard :openDelay='200'>
@@ -204,9 +205,13 @@
     const current_price_in_btc = coingecko.value?.market_data?.current_price?.btc;
     
     const price_change_percentage_7d = coingecko.value?.market_data?.price_change_percentage_7d;
-    const price_change_percentage_7d_label = formatNumber(price_change_percentage_7d, { style: 'percent', truncate: true });
+    const price_change_percentage_7d_label = formatNumber(price_change_percentage_7d, {
+        style: 'percent', compact: true, decimals: 2,
+    });
     const price_change_percentage_7d_in_btc = coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc;
-    const price_change_percentage_7d_in_btc_label = formatNumber(coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc, { style: 'percent', truncate: true });
+    const price_change_percentage_7d_in_btc_label = formatNumber(coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc, {
+        style: 'percent', compact: true, decimals: 2,
+    });
     const ico_description = coingecko.value?.ico_data?.short_desc;
 </script>
 
