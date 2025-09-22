@@ -27,7 +27,7 @@
                 </div>
                 
                 <!--  Name + Watchlist  -->
-                <div class='flex flex-col items-center gap-6 border border-emerald-500 p-4'>
+                <div class='flex flex-col items-center gap-10 border border-emerald-500 p-4'>
                     <div class='flex flex-col items-center gap-2'>
                         <!--  Name  -->
                         <h2 class='text-6xl'>{{ coingecko.name }}</h2>
@@ -35,7 +35,7 @@
                         <!-- Symbol  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='flex items-center text-muted-custom gap-4 hover:cursor-help'>
-                                <h5 class='great-font'>{{ coin.symbol }}</h5>
+                                <h4 class='great-font'>{{ coin.symbol }}</h4>
                                 <h2 v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</h2>
                             </HoverCardTrigger>
                             
