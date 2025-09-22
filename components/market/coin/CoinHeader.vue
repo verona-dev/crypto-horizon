@@ -35,6 +35,7 @@
                         <h5 class='great-font'>{{ coin.symbol }}</h5>
                         
                         <!--  Ico Description -->
+                        <!--
                         <HoverCard v-if='ico_description' :openDelay='200'>
                             <HoverCardTrigger class='info-icon'>
                                 <NuxtIcon
@@ -47,6 +48,8 @@
                                 <span class='text-sm'>{{ ico_description }}.</span>
                             </HoverCardContent>
                         </HoverCard>
+                        -->
+                        
                         <!--   <h2 v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</h2>   -->
                     </div>
                 </div>
