@@ -95,7 +95,7 @@
             </div>
             
             <!--  Coin price  -->
-            <div class='right flex flex-col justify-around items-center border border-pink-500 px-4'>
+            <div class='right flex flex-col gap-12 border border-pink-500 p-8'>
                 <!--  Price in USD  -->
                 <div class='flex flex-col'>
                     <h2 class='text-foreground text-7xl'>{{ current_price_label }}</h2>
