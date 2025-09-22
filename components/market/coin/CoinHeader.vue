@@ -27,16 +27,17 @@
                 </div>
                 
                 <!--  Name + Watchlist  -->
-                <div class='flex flex-col gap-3 border border-emerald-500 p-4'>
+                <div class='flex flex-col items-center gap-3 border border-emerald-500 p-4'>
                     <!--  Name  -->
                     <h2 class='text-5xl'>{{ coingecko.name }}</h2>
                     
                     <!-- Symbol  -->
-                    <div class='flex items-center text-muted-custom gap-2'>
+                    <div class='flex items-center text-muted-custom gap-4'>
                         <h5 class='great-font'>{{ coin.symbol }}</h5>
                         
+                        <h2 v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</h2>
+                        
                         <!--  Ico Description -->
-                        <!--
                         <HoverCard v-if='ico_description' :openDelay='200'>
                             <HoverCardTrigger class='info-icon'>
                                 <NuxtIcon
@@ -49,9 +50,6 @@
                                 <span class='text-sm'>{{ ico_description }}.</span>
                             </HoverCardContent>
                         </HoverCard>
-                        -->
-                        
-                        <!--   <h2 v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</h2>   -->
                     </div>
                     
                     <!--  Rank + Watchlist -->
@@ -60,7 +58,7 @@
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='info-icon'>
                                 <MazBadge
-                                    color='info'
+                                    color='gray'
                                     size='1.25rem'
                                     rounded-size='md'
                                     class='cursor-default'
@@ -78,7 +76,7 @@
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='info-icon'>
                                 <MazBadge
-                                    color='theme'
+                                    color='gray'
                                     size='1.25rem'
                                     rounded-size='md'
                                     class='cursor-default'
@@ -195,6 +193,7 @@
     
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
+    const livecoinwatch = toRef(coin.value?.livecoinwatch);
     const watchlist_portfolio = formatNumber(coingecko.value?.watchlist_portfolio_users, {
         style: 'decimal', compact: true, decimals: 2,
     });
