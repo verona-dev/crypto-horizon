@@ -27,19 +27,19 @@
                 </div>
                 
                 <!--  Name + Watchlist  -->
-                <div class='flex flex-col items-center gap-3 border border-emerald-500 p-4'>
+                <div class='flex flex-col items-center gap-6 border border-emerald-500 p-4'>
                     <!--  Name  -->
-                    <h2 class='text-5xl'>{{ coingecko.name }}</h2>
+                    <h2 class='text-6xl'>{{ coingecko.name }}</h2>
                     
                     <!-- Symbol  -->
-                    <HoverCard v-if='ico_description' :openDelay='200'>
+                    <HoverCard :openDelay='200'>
                         <HoverCardTrigger class='flex items-center text-muted-custom gap-4'>
                             <h5 class='great-font'>{{ coin.symbol }}</h5>
                             <h2 v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</h2>
                         </HoverCardTrigger>
                         
                         <!--  Ico Description -->
-                        <HoverCardContent class='hover-card-content'>
+                        <HoverCardContent v-if='ico_description' class='hover-card-content'>
                             <span class='text-sm'>{{ ico_description }}.</span>
                         </HoverCardContent>
                     </HoverCard>
@@ -74,11 +74,11 @@
                                     class='cursor-default'
                                     outline
                                 >
-                                    <div class='flex items-center'>
+                                    <div class='flex items-center gap-2'>
                                         <NuxtIcon
                                             name='iconoir:star-solid'
-                                            size='25'
-                                            class='mr-2'
+                                            class='text-red-400'
+                                            size='20'
                                         />
                                         {{ watchlist_portfolio }}
                                     </div>
@@ -93,7 +93,7 @@
             </div>
             
             <!--  Coin price  -->
-            <div class='right border border-pink-500 p-4'>
+            <div class='right border border-pink-500 p-2'>
                 <!--  Price in USD  -->
                 <div class='flex flex-col'>
                     <h1 class='text-foreground'>{{ current_price_label }}</h1>
