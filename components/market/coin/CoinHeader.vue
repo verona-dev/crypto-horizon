@@ -14,9 +14,9 @@
         </NuxtLink>
         
         <div class='flex gap-4 border border-sky-500 p-12'>
-            <div class='left flex justify-evenly border border-red-500 p-6'>
+            <div class='left flex border border-red-500 p-6'>
                 <!-- Logo  -->
-                <div class='border border-orange-500'>
+                <div class='flex items-center border border-orange-500 px-3'>
                     <NuxtImg
                         v-if='coingecko?.image?.large'
                         :src='coin.coingecko.image.large'
@@ -26,39 +26,36 @@
                     />
                 </div>
                 
-                
                 <!--  Name + Watchlist  -->
-                <div class='border border-emerald-500'>
+                <div class='flex flex-col gap-3 border border-emerald-500 p-4'>
                     <!--  Name  -->
-                    <div class='flex flex-col w-68'>
-                        <h2>{{ coingecko.name }}</h2>
+                    <h2 class='text-5xl'>{{ coingecko.name }}</h2>
+                    
+                    <!-- Symbol  -->
+                    <div class='flex items-center text-muted-custom gap-2'>
+                        <h5 class='great-font'>{{ coin.symbol }}</h5>
                         
-                        <!-- Symbol  -->
-                        <div class='flex items-center text-muted-custom gap-2'>
-                            <h5 class='great-font'>{{ coin.symbol }}</h5>
-                            
-                            <!--  Ico Description -->
-                            <!--
-                            <HoverCard v-if='ico_description' :openDelay='200'>
-                                <HoverCardTrigger class='info-icon'>
-                                    <NuxtIcon
-                                        name='radix-icons:info-circled'
-                                        size='25'
-                                        class='flex'
-                                    />
-                                </HoverCardTrigger>
-                                <HoverCardContent class='hover-card-content'>
-                                    <span class='text-sm'>{{ ico_description }}.</span>
-                                </HoverCardContent>
-                            </HoverCard>
-                            -->
-                            
-                            <!--   <h2 v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</h2>   -->
-                        </div>
+                        <!--  Ico Description -->
+                        <!--
+                        <HoverCard v-if='ico_description' :openDelay='200'>
+                            <HoverCardTrigger class='info-icon'>
+                                <NuxtIcon
+                                    name='radix-icons:info-circled'
+                                    size='25'
+                                    class='flex'
+                                />
+                            </HoverCardTrigger>
+                            <HoverCardContent class='hover-card-content'>
+                                <span class='text-sm'>{{ ico_description }}.</span>
+                            </HoverCardContent>
+                        </HoverCard>
+                        -->
+                        
+                        <!--   <h2 v-if='livecoinwatch.symbol' class='inline'>{{ livecoinwatch.symbol }}</h2>   -->
                     </div>
                     
                     <!--  Rank + Watchlist -->
-                    <div>
+                    <div class='flex gap-6'>
                         <!--  Rank  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='info-icon'>
@@ -106,7 +103,7 @@
             </div>
             
             <!--  Coin price  -->
-            <div class='right border border-pink-500'>
+            <div class='right border border-pink-500 p-4'>
                 <!--  Price in USD  -->
                 <div class='flex flex-col'>
                     <h1 class='text-foreground'>{{ current_price_label }}</h1>
@@ -177,7 +174,7 @@
         
         <CoinPublicNotice :public-notice='coingecko.public_notice' />
     </CardHeader>
-</template>
+</template>0
 
 <script setup>
     import { formatNumber, goBack } from '~/utils/formatUtils.js';
