@@ -95,38 +95,31 @@
             </div>
             
             <!--  Coin price  -->
-            <div class='right border border-pink-500 p-2'>
+            <div class='right border border-pink-500 p-6'>
                 <!--  Price in USD  -->
                 <div class='flex flex-col'>
                     <h2 class='text-foreground text-7xl'>{{ current_price_label }}</h2>
                     
                     <!--  Price change % in USD $  -->
-                    <div class='flex items-center gap-2'>
-                        <div class='flex items-center'>
-                            <NuxtIcon
-                                :name='getTrendIcon(price_change_percentage_7d)'
-                                size='35'
-                                :class='getTextColorClass(price_change_percentage_7d)'
-                            />
-                            
-                            <p :class='getTextColorClass(price_change_percentage_7d)'>
-                                {{ price_change_percentage_7d_label }}&#40;7d&#41;
-                            </p>
-                        </div>
-                        
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='info-icon'>
+                    <HoverCard :openDelay='200'>
+                        <HoverCardTrigger>
+                            <div class='flex items-center'>
                                 <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex'
+                                    :name='getTrendIcon(price_change_percentage_7d)'
+                                    size='35'
+                                    :class='getTextColorClass(price_change_percentage_7d)'
                                 />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Price change&#40;&#37;&#41; in USD&#40;&#36;&#41;.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </div>
+                                
+                                <p :class='getTextColorClass(price_change_percentage_7d)'>
+                                    {{ price_change_percentage_7d_label }}&#40;7d&#41;
+                                </p>
+                            </div>
+                        </HoverCardTrigger>
+                        
+                        <HoverCardContent class='hover-card-content'>
+                            <span class='text-sm'>Price change&#40;&#37;&#41; in USD&#40;&#36;&#41;.</span>
+                        </HoverCardContent>
+                    </HoverCard>
                 </div>
                 
                 <!--  Price in BTC  -->
