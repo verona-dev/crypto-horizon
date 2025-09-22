@@ -95,23 +95,24 @@
             </div>
             
             <!--  Coin price  -->
-            <div class='right border border-pink-500 p-6'>
+            <div class='right flex flex-col justify-around items-center border border-pink-500 px-4'>
                 <!--  Price in USD  -->
                 <div class='flex flex-col'>
                     <h2 class='text-foreground text-7xl'>{{ current_price_label }}</h2>
                     
                     <!--  Price change % in USD $  -->
                     <HoverCard :openDelay='200'>
-                        <HoverCardTrigger class='flex items-center'>
+                        <HoverCardTrigger class='flex items-center self-center'>
                             <NuxtIcon
                                 :name='getTrendIcon(price_change_percentage_7d)'
                                 size='35'
                                 :class='getTextColorClass(price_change_percentage_7d)'
                             />
                             
-                            <p :class='getTextColorClass(price_change_percentage_7d)'>
-                                {{ price_change_percentage_7d_label }}&#40;7d&#41;
-                            </p>
+                            <h6 :class='getTextColorClass(price_change_percentage_7d)' class='flex items-center'>
+                                {{ price_change_percentage_7d_label }}
+                                <span class='ml-1 text-[size:inherit]'>&#40;7d&#41;</span>
+                            </h6>
                         </HoverCardTrigger>
                         
                         <HoverCardContent class='hover-card-content'>
@@ -134,7 +135,7 @@
                             />
                             
                             <p :class='[getTextColorClass(price_change_percentage_7d_in_btc), "text-sm"]'>
-                                {{ price_change_percentage_7d_in_btc_label }}&#40;7d&#41;
+                                {{ price_change_percentage_7d_in_btc_label }}<span class='ml-1'>&#40;7d&#41;</span>
                             </p>
                         </HoverCardTrigger>
                         
