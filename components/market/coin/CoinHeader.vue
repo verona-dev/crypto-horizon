@@ -22,7 +22,10 @@
                 
                 <!-- Symbol  -->
                 <HoverCard :openDelay='200'>
-                    <HoverCardTrigger class='flex items-center text-muted-custom gap-4 hover:cursor-help'>
+                    <HoverCardTrigger
+                        class='flex items-center text-muted-custom gap-4 '
+                        :class='ico_description && "hover:cursor-help"'
+                    >
                         <!-- Logo  -->
                         <NuxtImg
                             v-if='coingecko?.image?.large'
