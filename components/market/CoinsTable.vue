@@ -81,7 +81,7 @@
             
             <template #no-results>
                 <div class='h-[800px] flex flex-col justify-center items-center'>
-                    <h4 class='fetching'>Fetching data...</h4>
+                    <h4 class='fetching mb-3'>Fetching data...</h4>
                     
                     <div class='flex items-center justify-center h-32'>
                         <MazSpinner color='secondary' size='4em' />

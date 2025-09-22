@@ -5,7 +5,7 @@
                 color='secondary'
                 size='3em'
             />
-            <h4 class='ml-4 mb-0'>Loading...</h4>
+            <h4 class='ml-4 mb-3'>Loading...</h4>
         </div>
         
         <div v-else>
@@ -122,7 +122,7 @@
                 v-else
                 class='flex flex-col justify-center gap-8 h-[50vh]'
             >
-                <h4>Sorry, the article is not available at the moment.</h4>
+                <h4 class='mb-3'>Sorry, the article is not available at the moment.</h4>
                 <Button
                     as-child
                     variant='link'
