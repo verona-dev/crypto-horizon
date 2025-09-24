@@ -5,7 +5,7 @@
                 color='secondary'
                 size='3em'
             />
-            <h4 class='ml-4 mb-0'>Loading...</h4>
+            <h4 class='ml-4 mb-3'>Loading...</h4>
         </div>
         
         <div v-else>
@@ -106,7 +106,7 @@
                 </CardHeader>
                 
                 <CardContent v-if='body'>
-                    <p v-html='body_formatted'></p>
+                    <p v-for='(par, index) in body_formatted' :key='index' class='mb-14'>{{ par }}</p>
                 </CardContent>
                 
                 <CardFooter class='pb-10 pl-0 text-muted-foreground'>
@@ -122,7 +122,7 @@
                 v-else
                 class='flex flex-col justify-center gap-8 h-[50vh]'
             >
-                <h4>Sorry, the article is not available at the moment.</h4>
+                <h4 class='mb-3'>Sorry, the article is not available at the moment.</h4>
                 <Button
                     as-child
                     variant='link'
@@ -195,15 +195,14 @@
             .map(s => s.trim())
             .filter(s => s.length);
         
-        for (let i = 0; i < sentences.length; i++) {
-            if (i % 3 < 2) {
-                sentences[i] = sentences[i] + '. ';
-            } else {
-                sentences[i] = sentences[i] + '.<br><br>';
-            }
+        let paragraphs = [];
+        
+        for (let i = 0; i < sentences.length; i += 3) {
+            let par = sentences.slice(i, i + 3).map(s => s + '.').join(' ');
+            paragraphs.push(par);
         }
         
-        return sentences.join('');
+        return paragraphs;
     });
     
     const source_avatar = computed(() => article.value?.SOURCE_DATA?.IMAGE_URL);

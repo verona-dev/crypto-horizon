@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink :to='to' class='link-item w-96'>
+    <NuxtLink :to='to' class='link-item w-[450px] flex flex-col items-center justify-center'>
         <NuxtImg
             :src='src'
             :alt='alt'
@@ -41,10 +41,10 @@
     .link-item {
         img {
             border-radius: 6px;
-            height: 275px;
+            height: 250px;
             object-fit: cover;
             transition: all 150ms ease-out;
-            width: 425px;
+            width: 375px;
         }
         
         &:hover {

@@ -44,11 +44,15 @@
     section {
         @apply flex 2xl:flex-col gap-12 xl:gap-24 mb-20;
     }
+    
+    ::selection {
+        background: var(--accent);
+    }
 }
 
 @layer components {
     h1 {
-        @apply text-4xl xl:text-6xl 2xl:text-7xl;
+        @apply text-6xl md:text-7xl 2xl:text-8xl;
         font-family: 'Great', sans-serif;
     }
     
@@ -67,7 +71,7 @@
     }
     
     h4 {
-        @apply text-2xl xl:text-3xl mb-3;
+        @apply text-2xl xl:text-3xl;
     }
     
     h5 {
@@ -115,7 +119,7 @@
     }
     
     .vertical-separator {
-        background: var(--card-border) !important;
+        background: var(--accent) !important;
         height: 50px;
         width: 1px;
     }

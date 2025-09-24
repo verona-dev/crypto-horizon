@@ -170,7 +170,7 @@
                     size='125px'
                 >
                     <template #default>
-                        <p v-if='max_supply'>{{ Math.floor(total_supply_percentage) }}&#37;</p>
+                        <p v-if='max_supply'>{{ total_supply_percentage }}&#37;</p>
                         <p v-else>{{ formatNumber(total_supply, { compact: true, style: 'decimal', decimals: 2 }) }}</p>
                     </template>
                 </MazCircularProgressBar>
@@ -282,7 +282,7 @@
     const total_supply_label = computed(() => formatNumber(total_supply.value, {
         style: 'decimal'
     }));
-    const total_supply_percentage = computed(() => (total_supply.value / max_supply.value) * 100);
+    const total_supply_percentage = computed(() => Math.floor((total_supply.value / max_supply.value) * 100));
     
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
     const circulating_supply_label = market_data.value?.circulating_supply_label;

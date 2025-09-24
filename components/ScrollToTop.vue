@@ -15,10 +15,17 @@
 
 <script setup>
     import { Button } from '@/components/ui/button';
+    import { useRoute } from 'vue-router';
     
+    const route = useRoute();
     const scrollY = ref(0);
-    const show = computed(() => scrollY.value >= 500);
-    
+    const show = computed(() => {
+        if (route.path === '/market') {
+            return scrollY.value > 5500;
+        } else {
+            return scrollY.value > 500;
+        }
+    });
     const handleScroll = () => scrollY.value = window.scrollY;
     
     const scrollOnClick = () => {

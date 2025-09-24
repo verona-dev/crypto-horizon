@@ -1,22 +1,24 @@
 <template>
-    <SidebarProvider :default-open='false'>
-        <AppSidebar />
-        
-        <SidebarInset class='m-0'>
-            <!--            <Breadcrumb />-->
+    <div>
+        <SidebarProvider :default-open='false'>
+            <AppSidebar />
             
-            <!--  Mobile Trigger  -->
-            <SidebarTrigger />
-            
-            <transition name='scroll-animation-layout' mode='in-out'>
-                <suspense>
-                    <slot />
-                </suspense>
-            </transition>
-            
-            <ScrollToTop />
-        </SidebarInset>
-    </SidebarProvider>
+            <SidebarInset class='m-0'>
+                <!--            <Breadcrumb />-->
+                
+                <!--  Mobile Trigger  -->
+                <SidebarTrigger />
+                
+                <transition name='scroll-animation-layout' mode='in-out'>
+                    <suspense>
+                        <slot />
+                    </suspense>
+                </transition>
+                
+                <ScrollToTop />
+            </SidebarInset>
+        </SidebarProvider>
+    </div>
 </template>
 
 <script setup>
