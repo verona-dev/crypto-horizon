@@ -15,9 +15,9 @@
             </NuxtLink>
             -->
             
-            <div class='flex flex-col items-center gap-4 p-8'>
+            <div class='flex flex-col items-center gap-8 p-8'>
                 <!-- Logo + Name  -->
-                <div class='flex items-center gap-6'>
+                <div class='flex gap-6'>
                     <NuxtImg
                         v-if='coingecko?.image?.large'
                         :src='coin.coingecko.image.large'
@@ -25,7 +25,8 @@
                         width='75'
                         height='75'
                     />
-                    <h2 class='text-6xl'>{{ coingecko.name }}</h2>
+                    
+                    <h2 class='text-7xl'>{{ coingecko.name }}</h2>
                 </div>
                 
                 <!-- Symbol + Rank  -->
@@ -97,7 +98,7 @@
                 </div>
             </div>
             
-<!--            <Separator orientation='horizontal' />-->
+            <!--            <Separator orientation='horizontal' />-->
             
             <!--  Price  -->
             <div class='flex flex-col gap-6 p-8'>
@@ -133,10 +134,10 @@
                     <div class='flex items-center'>
                         <NuxtIcon
                             name='mynaui:bitcoin'
-                            size='50'
+                            size='40'
                         />
                         
-                        <h2 class='text-5xl'>{{ current_price_in_btc_label }}</h2>
+                        <h2 class='text-4xl'>{{ current_price_in_btc_label }}</h2>
                     </div>
                     
                     <!--  Price change % in BTC  -->
