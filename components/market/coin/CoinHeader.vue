@@ -1,7 +1,8 @@
 <template>
     <CardHeader v-if='coin' class='coin-header'>
-        <Alert class='bg-background flex flex-col items-center xl:flex-row xl:justify-center gap-10 w-full xl:w-fit mx-auto p-8 xl:p-20 h-full'>
+        <Alert class='bg-background flex flex-col items-center gap-10 p-8'>
             <!--  Go back -->
+            <!--
             <NuxtLink
                 @click='goBack(router, "/market")'
                 to=''
@@ -12,12 +13,17 @@
                     size='50'
                 />
             </NuxtLink>
+            -->
             
-            <div class='vertical-separator h-full hidden xl:block'></div>
-            
-            <!--  LOGO + Name + Watchlist  -->
-            <div class='left flex flex-col justify-center items-center gap-6'>
-                <!--  Name  -->
+            <!-- Logo + Name  -->
+            <div class='flex items-center gap-4'>
+                <NuxtImg
+                    v-if='coingecko?.image?.large'
+                    :src='coin.coingecko.image.large'
+                    alt='symbol'
+                    width='75'
+                    height='75'
+                />
                 <h2 class='text-6xl'>{{ coingecko.name }}</h2>
                 
                 <!-- Symbol  -->
@@ -26,14 +32,7 @@
                         class='flex items-center text-muted-custom gap-4 '
                         :class='ico_description && "hover:cursor-help"'
                     >
-                        <!-- Logo  -->
-                        <NuxtImg
-                            v-if='coingecko?.image?.large'
-                            :src='coin.coingecko.image.large'
-                            alt='symbol'
-                            width='50'
-                            height='50'
-                        />
+                        
                         <h4 class='great-font'>{{ coin.symbol }}</h4>
                         <h4 v-if='livecoinwatch.symbol' class='mb-0.5'>{{ livecoinwatch.symbol }}</h4>
                     </HoverCardTrigger>
@@ -43,6 +42,58 @@
                         <span class='text-sm'>{{ ico_description }}.</span>
                     </HoverCardContent>
                 </HoverCard>
+            </div>
+            
+            <!--  Price in USD  -->
+            <div class='flex flex-col'>
+                <h2 class='text-foreground text-7xl'>{{ current_price_label }}</h2>
+                
+                <!--  Price change % in USD $  -->
+                <HoverCard :openDelay='200'>
+                    <HoverCardTrigger class='flex items-center self-center'>
+                        <NuxtIcon
+                            :name='getTrendIcon(price_change_percentage_7d)'
+                            size='35'
+                            :class='getTextColorClass(price_change_percentage_7d)'
+                        />
+                        
+                        <h6 :class='getTextColorClass(price_change_percentage_7d)' class='flex items-center'>
+                            {{ price_change_percentage_7d_label }}
+                            <span class='ml-1 text-[size:inherit]'>&#40;7d&#41;</span>
+                        </h6>
+                    </HoverCardTrigger>
+                    
+                    <HoverCardContent class='hover-card-content'>
+                        <span class='text-sm'>Price change&#40;&#37;&#41; in USD&#40;&#36;&#41;.</span>
+                    </HoverCardContent>
+                </HoverCard>
+            </div>
+            
+            <!--  Price in BTC  -->
+            <div v-if='not_bitcoin' class='price-in-btc flex items-center gap-2'>
+                <p class='text-sm text-muted-custom'>{{ current_price_in_btc_label }} BTC</p>
+                
+                <!--  Price change % in BTC  -->
+                <HoverCard :openDelay='200'>
+                    <HoverCardTrigger class='flex items-center'>
+                        <NuxtIcon
+                            :name='getTrendIcon(price_change_percentage_7d_in_btc)'
+                            size='25'
+                            :class='getTextColorClass(price_change_percentage_7d_in_btc)'
+                        />
+                        
+                        <p :class='[getTextColorClass(price_change_percentage_7d_in_btc), "text-sm"]'>
+                            {{ price_change_percentage_7d_in_btc_label }}<span class='ml-1'>&#40;7d&#41;</span>
+                        </p>
+                    </HoverCardTrigger>
+                    
+                    <HoverCardContent class='hover-card-content'>
+                        <span class='text-sm'>Current price in BTC and price change&#40;&#37;&#41; compared to Bitcoin&#40;BTC&#41;.</span>
+                    </HoverCardContent>
+                </HoverCard>
+            </div>
+            
+            <div class='left flex flex-col justify-center items-center gap-6'>
                 
                 <!--  Rank + Watchlist -->
                 <div class='flex gap-6'>
@@ -91,58 +142,10 @@
                 </div>
             </div>
             
-            <div class='vertical-separator h-full hidden xl:block'></div>
-            
             <!--  Coin price  -->
             <div class='right flex flex-col items-center h-full justify-around'>
-                <!--  Price in USD  -->
-                <div class='flex flex-col'>
-                    <h2 class='text-foreground text-7xl'>{{ current_price_label }}</h2>
-                    
-                    <!--  Price change % in USD $  -->
-                    <HoverCard :openDelay='200'>
-                        <HoverCardTrigger class='flex items-center self-center'>
-                            <NuxtIcon
-                                :name='getTrendIcon(price_change_percentage_7d)'
-                                size='35'
-                                :class='getTextColorClass(price_change_percentage_7d)'
-                            />
-                            
-                            <h6 :class='getTextColorClass(price_change_percentage_7d)' class='flex items-center'>
-                                {{ price_change_percentage_7d_label }}
-                                <span class='ml-1 text-[size:inherit]'>&#40;7d&#41;</span>
-                            </h6>
-                        </HoverCardTrigger>
-                        
-                        <HoverCardContent class='hover-card-content'>
-                            <span class='text-sm'>Price change&#40;&#37;&#41; in USD&#40;&#36;&#41;.</span>
-                        </HoverCardContent>
-                    </HoverCard>
-                </div>
                 
-                <!--  Price in BTC  -->
-                <div v-if='not_bitcoin' class='price-in-btc flex items-center gap-2'>
-                    <p class='text-sm text-muted-custom'>{{ current_price_in_btc_label }} BTC</p>
-                    
-                    <!--  Price change % in BTC  -->
-                    <HoverCard :openDelay='200'>
-                        <HoverCardTrigger class='flex items-center'>
-                            <NuxtIcon
-                                :name='getTrendIcon(price_change_percentage_7d_in_btc)'
-                                size='25'
-                                :class='getTextColorClass(price_change_percentage_7d_in_btc)'
-                            />
-                            
-                            <p :class='[getTextColorClass(price_change_percentage_7d_in_btc), "text-sm"]'>
-                                {{ price_change_percentage_7d_in_btc_label }}<span class='ml-1'>&#40;7d&#41;</span>
-                            </p>
-                        </HoverCardTrigger>
-                        
-                        <HoverCardContent class='hover-card-content'>
-                            <span class='text-sm'>Current price in BTC and price change&#40;&#37;&#41; compared to Bitcoin&#40;BTC&#41;.</span>
-                        </HoverCardContent>
-                    </HoverCard>
-                </div>
+
             </div>
         </Alert>
         
