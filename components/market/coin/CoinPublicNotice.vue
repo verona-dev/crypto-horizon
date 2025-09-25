@@ -2,9 +2,9 @@
     <!--  Public Notice  -->
     <Alert
         v-if='publicNotice'
-        class='my-10 py-0 w-3/4 flex items-center border border-warning'
+        class='my-10 p-0 w-3/4 flex items-center border border-warning'
     >
-        <div class='mr-6'>
+        <div class='flex p-4'>
             <NuxtIcon
                 name='iconoir:megaphone'
                 size='50'
