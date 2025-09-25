@@ -13,9 +13,7 @@
                 />
             </NuxtLink>
             
-            <div
-                class='alert-content flex flex-col items-center ml-20'
-            >
+            <div class='alert-content flex flex-col items-center ml-20'>
                 <div class='flex flex-col items-center gap-4 p-10'>
                     <!-- Logo + Name  -->
                     <div class='flex items-center gap-6'>
