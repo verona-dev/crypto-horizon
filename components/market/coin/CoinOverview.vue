@@ -83,7 +83,7 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span>All-Time Low and change in price&#40;&#37;&#41; relative to the coin’s all-time low.</span>
+                                <span>Coin price all-time low (ATL) in &#65284;USD and percentage change from ATL.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
