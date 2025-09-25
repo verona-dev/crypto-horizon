@@ -15,7 +15,6 @@
                         <Select
                             v-model='selected'
                             default-value='progress-bars'
-                            class=''
                         >
                             <SelectTrigger class='w-56 mt-4 px-5 dark:bg-primary-foreground border-ring' data-size='default'>
                                 <SelectValue class='w-2/3'/>

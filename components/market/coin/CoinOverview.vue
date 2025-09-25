@@ -201,7 +201,7 @@
                 
                 <!--  Github Forks  -->
                 <TableRow v-if='github_forks_label'>
-                    <TableCell  class='text-color-warning'>
+                    <TableCell>
                         Forks
                         
                         <HoverCard :openDelay='200'>
@@ -209,7 +209,7 @@
                                 <NuxtIcon
                                     name='iconoir:git-fork'
                                     size='25'
-                                    class='flex ml-2 text-yellow-500'
+                                    class='flex ml-2 text-yellow-selective'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
@@ -230,7 +230,7 @@
                                 <NuxtIcon
                                     name='iconoir:star'
                                     size='22'
-                                    class='flex ml-2 text-yellow-500'
+                                    class='flex ml-2 text-yellow-selective'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
@@ -251,7 +251,7 @@
                                 <NuxtIcon
                                     name='iconoir:git-pull-request'
                                     size='23'
-                                    class='flex ml-2 text-yellow-400'
+                                    class='flex ml-2 text-yellow-selective'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
@@ -272,7 +272,7 @@
                                 <NuxtIcon
                                     name='radix-icons:commit'
                                     size='25'
-                                    class='flex ml-2 text-yellow-400'
+                                    class='flex ml-2 text-yellow-selective'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
@@ -294,7 +294,7 @@
                                 <NuxtIcon
                                     name='iconoir:github'
                                     size='22'
-                                    class='flex ml-2 text-yellow-400'
+                                    class='flex ml-2 text-yellow-selective'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
