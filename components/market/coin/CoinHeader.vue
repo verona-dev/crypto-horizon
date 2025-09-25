@@ -1,11 +1,11 @@
 <template>
-    <CardHeader v-if='coin' class='coin-header flex items-stretch min-w-full mx-auto'>
-        <Alert class='bg-background flex justify-center p-0'>
+    <CardHeader v-if='coin' class='coin-header flex min-w-full mx-auto'>
+        <Alert class='bg-background flex flex-col items-center justify-center p-0'>
             <!--  Go back -->
             <NuxtLink
                 @click='goBack(router, "/market")'
                 to=''
-                class='go-back absolute top-0 left-0 h-full w-20 flex items-center justify-center px-2 border border-r-accent hover:bg-muted hover:cursor-pointer'
+                class='alert-go-back absolute top-0 left-0 h-full w-20 flex items-center justify-center px-2 border border-r-accent hover:bg-muted hover:cursor-pointer'
             >
                 <NuxtIcon
                     name='mdi-light:arrow-left'
@@ -13,7 +13,9 @@
                 />
             </NuxtLink>
             
-            <div class='flex flex-col'>
+            <div
+                class='alert-content flex flex-col items-center ml-20'
+            >
                 <div class='flex flex-col items-center gap-4 p-10'>
                     <!-- Logo + Name  -->
                     <div class='flex items-center gap-6'>
@@ -159,10 +161,10 @@
                         </HoverCard>
                     </div>
                 </div>
+                
+                <CoinPublicNotice :public-notice='coingecko.public_notice' />
             </div>
         </Alert>
-        
-        <CoinPublicNotice :public-notice='coingecko.public_notice' />
     </CardHeader>
 </template>
 
