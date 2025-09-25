@@ -17,7 +17,7 @@
             
             <div class='flex flex-col items-center gap-4 p-10'>
                 <!-- Logo + Name  -->
-                <div class='flex gap-6'>
+                <div class='flex items-center gap-6'>
                     <NuxtImg
                         v-if='coingecko?.image?.large'
                         :src='coin.coingecko.image.large'
@@ -31,31 +31,14 @@
                 
                 <!-- Symbol + Rank  -->
                 <div class='flex items-center gap-6'>
-                    <!-- Symbol  -->
-                    <HoverCard :openDelay='200'>
-                        <HoverCardTrigger
-                            class='flex items-center text-muted-custom gap-4 '
-                            :class='ico_description && "hover:cursor-help"'
-                        >
-                            
-                            <h2>{{ coin.symbol }}</h2>
-                            <h4 v-if='livecoinwatch.symbol'>{{ livecoinwatch.symbol }}</h4>
-                        </HoverCardTrigger>
-                        
-                        <!--  Ico Description -->
-                        <HoverCardContent v-if='ico_description' class='hover-card-content'>
-                            <span class='text-sm'>{{ ico_description }}.</span>
-                        </HoverCardContent>
-                    </HoverCard>
                     
                     <!--  Rank + Watchlist -->
                     <div class='flex items-center gap-6'>
                         <div class='flex gap-6'>
                             <!--  Rank  -->
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='info-icon'>
+                                <HoverCardTrigger>
                                     <MazBadge
-                                        color='gray'
                                         size='1.25rem'
                                         rounded-size='md'
                                         class='cursor-default'
@@ -69,11 +52,27 @@
                                 </HoverCardContent>
                             </HoverCard>
                             
+                            <!-- Symbol  -->
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger
+                                    class='flex items-center text-muted-foreground gap-4 '
+                                    :class='ico_description && "hover:cursor-help"'
+                                >
+                                    
+                                    <h2>{{ coin.symbol }}</h2>
+                                    <h4 v-if='livecoinwatch.symbol'>{{ livecoinwatch.symbol }}</h4>
+                                </HoverCardTrigger>
+                                
+                                <!--  Ico Description -->
+                                <HoverCardContent v-if='ico_description' class='hover-card-content'>
+                                    <span class='text-sm'>{{ ico_description }}.</span>
+                                </HoverCardContent>
+                            </HoverCard>
+                            
                             <!--  Portfolio watchlist  -->
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='info-icon'>
+                                <HoverCardTrigger>
                                     <MazBadge
-                                        color='gray'
                                         size='1.25rem'
                                         rounded-size='md'
                                         class='cursor-default'
@@ -81,8 +80,7 @@
                                     >
                                         <div class='flex items-center gap-2'>
                                             <NuxtIcon
-                                                name='iconoir:star-solid'
-                                                class='text-red-400'
+                                                name='uis:favorite'
                                                 size='20'
                                             />
                                             {{ watchlist_portfolio }}
@@ -97,6 +95,8 @@
                     </div>
                 </div>
             </div>
+            
+            <Separator />
             
             <!--  Price  -->
             <div class='flex flex-col 2xl:flex-row p-10 gap-6 2xl:gap-24'>
@@ -220,8 +220,14 @@
     .coin-header {
         .m-badge {
             span.iconify {
-                color: oklch(0.828 0.189 84.429) !important;
+                //color: var(--muted-custom) !important;
             }
+        }
+        
+        [data-hover-card-trigger],
+        .m-badge {
+            color: var(--muted-foreground) !important;
+            border: 1px solid var(--accent);
         }
     }
 </style>
