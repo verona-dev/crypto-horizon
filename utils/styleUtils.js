@@ -5,7 +5,7 @@ export const getTextColorClass = change => {
     } else if(Math.sign(change) === 0){
         return '!text-gray-500';
     } else {
-        return '!text-emerald-400';
+        return '!text-secondary';
     }
 };
 
