@@ -216,7 +216,7 @@
     .coin-header {
         .m-badge {
             span.iconify {
-                //color: var(--muted-custom) !important;
+                color: var(--yellow-selective) !important;
             }
         }
         
