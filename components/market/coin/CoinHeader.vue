@@ -1,5 +1,5 @@
 <template>
-    <CardHeader v-if='coin' class='coin-header flex items-stretch min-w-3/4 mx-auto'>
+    <CardHeader v-if='coin' class='coin-header flex items-stretch min-w-full md:min-w-11/12 xl:min-w-3/4 mx-auto'>
         <!--  Go back -->
         <NuxtLink
             @click='goBack(router, "/market")'
