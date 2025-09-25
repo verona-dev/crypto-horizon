@@ -42,7 +42,9 @@
                                 </MazBadge>
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Coin rank by market cap.</span>
+                                <span class='text-sm'>
+                                    Ranked {{ coingecko.market_cap_rank }} out of all active cryptocurrencies listed on CoinGecko.
+                                </span>
                             </HoverCardContent>
                         </HoverCard>
                         
