@@ -20,8 +20,8 @@
                         v-if='coingecko?.image?.large'
                         :src='coin.coingecko.image.large'
                         alt='symbol'
-                        width='75'
-                        height='75'
+                        width='80'
+                        height='80'
                     />
                     
                     <h1>{{ coingecko.name }}</h1>
@@ -29,7 +29,6 @@
                 
                 <!-- Symbol + Rank  -->
                 <div class='flex items-center gap-6'>
-                    
                     <!--  Rank + Watchlist -->
                     <div class='flex items-center gap-6'>
                         <div class='flex gap-6'>
