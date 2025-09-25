@@ -127,7 +127,7 @@
                     as-child
                     variant='link'
                 >
-                    <NuxtLink @click='onClick' to='' class='hover:cursor-pointer'>
+                    <NuxtLink @click='goBack(router, "/news")' to='' class='hover:cursor-pointer'>
                         Go back
                     </NuxtLink>
                 </Button>
@@ -229,12 +229,6 @@
         const scrollTop = window.scrollY || window.pageYOffset;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         progress.value = Math.min(1, Math.max(0, scrollTop / docHeight));
-    };
-    
-    const onClick = () => {
-        const history = window.history.length > 1;
-        if(history) router.back();
-        else router.push('/news');
     };
     
     watch(body_formatted, (newVal) => {

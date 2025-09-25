@@ -42,7 +42,9 @@
                                 </MazBadge>
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Coin rank by market cap.</span>
+                                <span class='text-sm'>
+                                    Ranked {{ coingecko.market_cap_rank }} by market cap out of all active cryptocurrencies listed on CoinGecko.
+                                </span>
                             </HoverCardContent>
                         </HoverCard>
                         
@@ -112,7 +114,9 @@
                             </HoverCardTrigger>
                             
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Price change&#40;&#37;&#41; in USD&#40;&#36;&#41;.</span>
+                                <span class='text-sm'>
+                                    Current coin price in &#65284;USD and price change percentage.
+                                </span>
                             </HoverCardContent>
                         </HoverCard>
                     </div>
@@ -147,7 +151,7 @@
                             </HoverCardTrigger>
                             
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Current price in BTC and price change&#40;&#37;&#41; compared to Bitcoin&#40;BTC&#41;.</span>
+                                <span class='text-sm'>Current coin price in BTC and {{ coin.symbol }}'s price change percentage compared to Bitcoin&#40;BTC&#41;.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </div>
