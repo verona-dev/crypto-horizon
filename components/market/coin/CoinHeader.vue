@@ -2,6 +2,7 @@
     <CardHeader v-if='coin' class='coin-header flex min-w-full mx-auto'>
         <Alert class='bg-background flex flex-col items-center justify-center p-0'>
             <!--  Go back -->
+            <!--
             <NuxtLink
                 @click='goBack(router, "/market")'
                 to=''
@@ -13,7 +14,8 @@
                 />
             </NuxtLink>
             
-            <div class='alert-content flex flex-col items-center ml-20'>
+            -->
+            <div class='alert-content flex flex-col items-center'>
                 <div class='flex flex-col items-center gap-4 p-10'>
                     <!-- Logo + Name  -->
                     <div class='flex items-center gap-6'>
