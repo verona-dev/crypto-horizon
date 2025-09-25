@@ -43,7 +43,7 @@
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
                                 <span class='text-sm'>
-                                    Ranked {{ coingecko.market_cap_rank }} out of all active cryptocurrencies listed on CoinGecko.
+                                    Ranked {{ coingecko.market_cap_rank }} by market cap out of all active cryptocurrencies listed on CoinGecko.
                                 </span>
                             </HoverCardContent>
                         </HoverCard>
