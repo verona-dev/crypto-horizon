@@ -114,7 +114,10 @@
                             </HoverCardTrigger>
                             
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Price change&#40;&#37;&#41; in USD&#40;&#36;&#41;.</span>
+                                <span class='text-sm'>
+                                    Coin current price in USD and
+                                    coin price change&#40;&#37;&#41;.
+                                </span>
                             </HoverCardContent>
                         </HoverCard>
                     </div>
