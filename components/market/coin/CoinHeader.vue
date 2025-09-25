@@ -1,20 +1,18 @@
 <template>
-    <CardHeader v-if='coin' class='coin-header min-w-3/4 mx-auto'>
+    <CardHeader v-if='coin' class='coin-header flex items-stretch min-w-3/4 mx-auto'>
+        <!--  Go back -->
+        <NuxtLink
+            @click='goBack(router, "/market")'
+            to=''
+            class='go-back hover:bg-muted hover:cursor-pointer rounded-lg flex items-center border border-accent'
+        >
+            <NuxtIcon
+                name='mdi-light:arrow-left'
+                size='50'
+            />
+        </NuxtLink>
+        
         <Alert class='bg-background flex flex-col items-center'>
-            <!--  Go back -->
-            <!--
-            <NuxtLink
-                @click='goBack(router, "/market")'
-                to=''
-                class='hover:bg-muted hover:cursor-pointer rounded-xl'
-            >
-                <NuxtIcon
-                    name='mdi-light:arrow-left'
-                    size='50'
-                />
-            </NuxtLink>
-            -->
-            
             <div class='flex flex-col items-center gap-4 p-10'>
                 <!-- Logo + Name  -->
                 <div class='flex items-center gap-6'>
@@ -26,7 +24,7 @@
                         height='75'
                     />
                     
-                    <h1 class=''>{{ coingecko.name }}</h1>
+                    <h1>{{ coingecko.name }}</h1>
                 </div>
                 
                 <!-- Symbol + Rank  -->
@@ -96,8 +94,6 @@
                 </div>
             </div>
             
-            <Separator />
-            
             <!--  Price  -->
             <div class='flex flex-col 2xl:flex-row p-10 gap-6 2xl:gap-24'>
                 <!--  Price in USD  -->
@@ -115,7 +111,7 @@
                             
                             <p
                                 :class='getTextColorClass(price_change_percentage_7d)'
-                               class='flex items-center'
+                                class='flex items-center'
                             >
                                 {{ price_change_percentage_7d_label }}
                                 <span class='ml-1 text-[size:inherit]'>&#40;7d&#41;</span>
@@ -173,7 +169,6 @@
     import { formatNumber, goBack } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
-    import { Separator } from '~/components/ui/separator/index.js';
     import { Alert } from '@/components/ui/alert';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     
