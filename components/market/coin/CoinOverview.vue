@@ -40,7 +40,7 @@
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span>All-Time High and Price Change from All-Time High &#40;&#37;&#41;.</span>
+                                <span>Coin price all-time high (ATH) in &#65284;USD and percentage change from ATH.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </TableCell>
