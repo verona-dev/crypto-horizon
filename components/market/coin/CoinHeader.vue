@@ -115,7 +115,7 @@
                             
                             <HoverCardContent class='hover-card-content'>
                                 <span class='text-sm'>
-                                    Coin current price in USD and
+                                    Coin current price in &#65284;USD and
                                     coin price change&#40;&#37;&#41;.
                                 </span>
                             </HoverCardContent>
