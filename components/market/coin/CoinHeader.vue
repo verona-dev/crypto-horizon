@@ -152,7 +152,7 @@
                             </HoverCardTrigger>
                             
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Current price in BTC and price change&#40;&#37;&#41; compared to Bitcoin&#40;BTC&#41;.</span>
+                                <span class='text-sm'>Current price in BTC and {{ coin.symbol }}'s percentage change compared to Bitcoin&#40;BTC&#41;.</span>
                             </HoverCardContent>
                         </HoverCard>
                     </div>
