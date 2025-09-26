@@ -194,21 +194,16 @@
     const watchlist_portfolio = formatNumber(coingecko.value?.watchlist_portfolio_users, {
         style: 'decimal', compact: true, decimals: 2,
     });
-    
     const timeframe = toRef(MarketStore.coin, 'timeframe');
     console.log('timeframe: ', timeframe.value);
     const not_bitcoin = coin.value?.symbol !== 'BTC';
+    
+    
     // Price in USD
     const current_price = coingecko.value?.market_data?.current_price?.usd;
     const current_price_label = formatNumber(current_price, {
         maximumFractionDigits: 4,
     });
-    const current_price_in_btc = coingecko.value?.market_data?.current_price?.btc;
-    const current_price_in_btc_label = formatNumber(current_price_in_btc, {
-        style: 'decimal', maximumFractionDigits: 5,
-    });
-    
-    
     const price_change_percentage_1d = coingecko.value?.market_data?.price_change_percentage_24h;
     const price_change_percentage_1d_label = formatNumber(price_change_percentage_1d, {
         style: 'percent', compact: true, decimals: 2,
@@ -220,6 +215,16 @@
     const price_change_percentage_30d = coingecko.value?.market_data?.price_change_percentage_30d;
     const price_change_percentage_30d_label = formatNumber(price_change_percentage_30d, {
         style: 'percent', compact: true, decimals: 2,
+    });
+    const price_change_percentage_1y = coingecko.value?.market_data.price_change_percentage_1y;
+    const price_change_percentage_1y_label = formatNumber(price_change_percentage_1y, {
+        style: 'percent', compact: true, decimals: 2,
+    });
+    
+    // Price in BTC
+    const current_price_in_btc = coingecko.value?.market_data?.current_price?.btc;
+    const current_price_in_btc_label = formatNumber(current_price_in_btc, {
+        style: 'decimal', maximumFractionDigits: 5,
     });
     
     const price_change_percentage_7d_in_btc = coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc;
