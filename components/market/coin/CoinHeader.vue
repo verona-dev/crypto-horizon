@@ -1,7 +1,8 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex min-w-full mx-auto'>
-        <Alert class='bg-background flex flex-col items-center justify-center p-0'>
+        <Alert class='flex flex-col items-center justify-center p-0'>
             <!--  Go back -->
+            <!--
             <NuxtLink
                 @click='goBack(router, "/market")'
                 to=''
@@ -13,7 +14,9 @@
                 />
             </NuxtLink>
             
-            <div class='alert-content flex flex-col items-center ml-20'>
+            -->
+            <div class='alert-content flex flex-col items-center'>
+                <!--  Name  -->
                 <div class='flex flex-col items-center gap-4 p-10'>
                     <!-- Logo + Name  -->
                     <div class='flex items-center gap-6'>
@@ -28,7 +31,7 @@
                         <h1>{{ coingecko.name }}</h1>
                     </div>
                     
-                    <div class='flex items-center gap-6'>
+                    <div class='flex items-center justify-evenly w-3/4 gap-4'>
                         <!--  Rank  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
@@ -51,7 +54,7 @@
                         <!-- Symbol  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger
-                                class='flex items-center text-snowy-mint gap-4 '
+                                class='symbol flex items-center gap-4 '
                                 :class='ico_description && "hover:cursor-help"'
                             >
                                 <h2>{{ coin.symbol }}</h2>
@@ -70,7 +73,7 @@
                                 <MazBadge
                                     size='1.25rem'
                                     rounded-size='md'
-                                    class='cursor-default'
+                                    class='cursor-default !pr-4'
                                     outline
                                 >
                                     <div class='flex items-center gap-2'>
@@ -92,24 +95,24 @@
                 <!--  Price  -->
                 <div class='flex flex-col 2xl:flex-row p-10 gap-6 2xl:gap-24'>
                     <!--  Price in USD  -->
-                    <div class='flex flex-col items-center'>
+                    <div class='flex flex-col items-center gap-2'>
                         <h2 class='text-6xl'>{{ current_price_label }}</h2>
                         
                         <!--  Price change % in USD $  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='flex items-center'>
                                 <NuxtIcon
-                                    :name='getTrendIcon(price_change_percentage_7d)'
+                                    :name='getTrendIcon(price_change_percentage)'
                                     size='20'
-                                    :class='getTextColorClass(price_change_percentage_7d)'
+                                    :class='getTextColorClass(price_change_percentage)'
                                 />
                                 
                                 <p
-                                    :class='getTextColorClass(price_change_percentage_7d)'
+                                    :class='getTextColorClass(price_change_percentage)'
                                     class='flex items-center'
                                 >
-                                    {{ price_change_percentage_7d_label }}
-                                    <span class='ml-1 text-[size:inherit]'>&#40;7d&#41;</span>
+                                    {{ price_change_percentage_label }}
+                                    <span class='ml-1 text-[size:inherit]'>&#40;{{ range_label }}&#41;</span>
                                 </p>
                             </HoverCardTrigger>
                             
@@ -122,7 +125,7 @@
                     </div>
                     
                     <!--  Price in BTC  -->
-                    <div class='flex flex-col items-center' v-if='not_bitcoin'>
+                    <div class='flex flex-col items-center gap-2' v-if='not_bitcoin'>
                         <div class='flex items-center'>
                             <NuxtIcon
                                 name='mynaui:bitcoin'
@@ -136,17 +139,17 @@
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='flex items-center'>
                                 <NuxtIcon
-                                    :name='getTrendIcon(price_change_percentage_7d_in_btc)'
+                                    :name='getTrendIcon(price_change_percentage_btc)'
                                     size='20'
-                                    :class='getTextColorClass(price_change_percentage_7d_in_btc)'
+                                    :class='getTextColorClass(price_change_percentage_btc)'
                                 />
                                 
                                 <p
-                                    :class='[getTextColorClass(price_change_percentage_7d_in_btc)]'
+                                    :class='[getTextColorClass(price_change_percentage_btc)]'
                                     class='flex items-center'
                                 >
-                                    {{ price_change_percentage_7d_in_btc_label }}
-                                    <span class='ml-1 text-[size:inherit]'>&#40;7d&#41;</span>
+                                    {{ price_change_percentage_btc_label }}
+                                    <span class='ml-1 text-[size:inherit]'>&#40;{{ range_label }}&#41;</span>
                                 </p>
                             </HoverCardTrigger>
                             
@@ -170,6 +173,12 @@
     import { Alert } from '@/components/ui/alert';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     
+    // MarketStore
+    import { storeToRefs } from 'pinia';
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    const MarketStore = useMarketStore();
+    const { getRange } = storeToRefs(MarketStore);
+    
     // Router
     import { useRouter } from 'vue-router';
     const router  = useRouter();
@@ -187,39 +196,103 @@
     const watchlist_portfolio = formatNumber(coingecko.value?.watchlist_portfolio_users, {
         style: 'decimal', compact: true, decimals: 2,
     });
-    
     const not_bitcoin = coin.value?.symbol !== 'BTC';
+    const range_label = computed(() => getRange.value?.label);
+    const range_timeframe = computed(() => getRange.value?.timeframe);
+    
+    // Price in USD
     const current_price = coingecko.value?.market_data?.current_price?.usd;
     const current_price_label = formatNumber(current_price, {
         maximumFractionDigits: 4,
     });
+    
+    const price_change_percentage = computed(() => {
+        if(range_timeframe.value === 1) return price_change_percentage_1d;
+        if(range_timeframe.value === 7) return price_change_percentage_7d;
+        if(range_timeframe.value === 30) return price_change_percentage_30d;
+        if(range_timeframe.value === 365) return price_change_percentage_1y;
+    });
+    
+    const price_change_percentage_label = computed(() => {
+        if(range_timeframe.value === 1) return price_change_percentage_1d_label;
+        if(range_timeframe.value === 7) return price_change_percentage_7d_label;
+        if(range_timeframe.value === 30) return price_change_percentage_30d_label;
+        if(range_timeframe.value === 365) return price_change_percentage_1y_label;
+    });
+    
+    const price_change_percentage_1d = coingecko.value?.market_data?.price_change_percentage_24h;
+    const price_change_percentage_1d_label = formatNumber(price_change_percentage_1d, {
+        style: 'percent', compact: true, decimals: 2,
+    });
+    const price_change_percentage_7d = coingecko.value?.market_data?.price_change_percentage_7d;
+    const price_change_percentage_7d_label = formatNumber(price_change_percentage_7d, {
+        style: 'percent', compact: true, decimals: 2,
+    });
+    const price_change_percentage_30d = coingecko.value?.market_data?.price_change_percentage_30d;
+    const price_change_percentage_30d_label = formatNumber(price_change_percentage_30d, {
+        style: 'percent', compact: true, decimals: 2,
+    });
+    const price_change_percentage_1y = coingecko.value?.market_data?.price_change_percentage_1y;
+    const price_change_percentage_1y_label = formatNumber(price_change_percentage_1y, {
+        style: 'percent', compact: true, decimals: 2,
+    });
+    
+    // Price in BTC
     const current_price_in_btc = coingecko.value?.market_data?.current_price?.btc;
     const current_price_in_btc_label = formatNumber(current_price_in_btc, {
         style: 'decimal', maximumFractionDigits: 5,
     });
     
-    const price_change_percentage_7d = coingecko.value?.market_data?.price_change_percentage_7d;
-    const price_change_percentage_7d_label = formatNumber(price_change_percentage_7d, {
+    const price_change_percentage_btc = computed(() => {
+        if(range_timeframe.value === 1) return price_change_percentage_1d_btc;
+        if(range_timeframe.value === 7) return price_change_percentage_7d_btc;
+        if(range_timeframe.value === 30) return price_change_percentage_30d_btc;
+        if(range_timeframe.value === 365) return price_change_percentage_1y_btc;
+    });
+    
+    const price_change_percentage_btc_label = computed(() => {
+        if(range_timeframe.value === 1) return price_change_percentage_1d_btc_label;
+        if(range_timeframe.value === 7) return price_change_percentage_7d_btc_label;
+        if(range_timeframe.value === 30) return price_change_percentage_30d_btc_label;
+        if(range_timeframe.value === 365) return price_change_percentage_1y_btc_label;
+    });
+    
+    const price_change_percentage_1d_btc = coingecko.value?.market_data?.price_change_percentage_24h_in_currency?.btc;
+    const price_change_percentage_1d_btc_label = formatNumber(price_change_percentage_1d_btc, {
         style: 'percent', compact: true, decimals: 2,
     });
-    const price_change_percentage_7d_in_btc = coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc;
-    const price_change_percentage_7d_in_btc_label = formatNumber(price_change_percentage_7d_in_btc, {
+    const price_change_percentage_7d_btc = coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc;
+    const price_change_percentage_7d_btc_label = formatNumber(price_change_percentage_7d_btc, {
         style: 'percent', compact: true, decimals: 2,
     });
+    const price_change_percentage_30d_btc = coingecko.value?.market_data?.price_change_percentage_30d_in_currency?.btc;
+    const price_change_percentage_30d_btc_label = formatNumber(price_change_percentage_30d_btc, {
+        style: 'percent', compact: true, decimals: 2,
+    });
+     const price_change_percentage_1y_btc = coingecko.value?.market_data?.price_change_percentage_1y_in_currency?.btc;
+    const price_change_percentage_1y_btc_label = formatNumber(price_change_percentage_1y_btc, {
+        style: 'percent', compact: true, decimals: 2,
+    });
+    console.log(price_change_percentage_1y_btc_label);
+    
     const ico_description = coingecko.value?.ico_data?.short_desc;
 </script>
 
 <style scoped>
     .coin-header {
         .m-badge {
+            padding: 10px;
+            border: 1px solid var(--accent);
+            min-width: 75px;
+            
             span.iconify {
                 color: var(--yellow-selective) !important;
             }
         }
         
+        .symbol,
         .m-badge {
             color: var(--snowy-mint) !important;
-            border: 1px solid var(--accent);
         }
     }
 </style>

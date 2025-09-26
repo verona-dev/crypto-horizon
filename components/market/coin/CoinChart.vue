@@ -1,13 +1,12 @@
 <template>
     <div v-if='chart.prices' class='coin-chart'>
-        <div class='tabs-container flex items-center justify-between'>
+        <div class='tabs-container flex items-center justify-center gap-24 my-10'>
             <!--  Price + Market Cap  -->
             <Tabs
                 v-model='type'
                 default-value='price'
-                class='inline'
             >
-                <TabsList class='my-10 gap-x-0.5 py-5 px-1'>
+                <TabsList class='gap-x-0.5'>
                     <TabsTrigger
                         value='price'
                         class='py-4 px-4
@@ -16,7 +15,7 @@
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
-                        Price
+                       Price
                     </TabsTrigger>
                     
                     <TabsTrigger
@@ -34,11 +33,11 @@
             
             <!--  Supply Drawer  -->
             <Tabs v-model='type'>
-                <TabsList class='my-10 gap-x-0.5 py-5 px-1 w-36'>
+                <TabsList class='w-36'>
                     <TabsTrigger
                         @click='show_drawer = true'
                         value='supply'
-                        class='py-4 px-4
+                        class='
                                dark:data-[state=active]:bg-accent dark:text-muted-foreground dark:hover:text-foreground
                                rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -54,23 +53,19 @@
             </Tabs>
             
             <!--  Range  -->
-            <Tabs
-                v-model='current_interval'
-                :default-value='current_interval'
-                class='inline'
-            >
-                <TabsList class='my-10 gap-x-0.5 py-5 px-1'>
+            <Tabs v-model='timeframe'>
+                <TabsList class='gap-x-0.5'>
                     <TabsTrigger
                         v-for='range in ranges'
-                        :key='range.interval'
-                        :value='range.interval'
+                        :key='range.timeframe'
+                        :value='range.timeframe'
                         class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
-                        {{ range.button_label }}
+                        {{ range.label.toUpperCase() }}
                     </TabsTrigger>
                 </TabsList>
             </Tabs>
@@ -120,7 +115,10 @@
     const MarketStore = useMarketStore();
     
     // Methods
-    const { getCoingeckoCoinChart } = MarketStore;
+    const {
+        setTimeframe,
+        getCoingeckoCoinChart,
+    } = MarketStore;
     
     const props = defineProps({
         coin: {
@@ -133,43 +131,18 @@
     
     // Tabs
     const type = ref('price');
-    const ranges = [
-        {
-            name: 'Day',
-            interval: 1,
-            button_label: '1D',
-        },
-        {
-            name: 'Week',
-            interval: 7,
-            button_label: '7D',
-        },
-        {
-            name: 'Month',
-            interval: 30,
-            button_label: '30D',
-        },
-        {
-            name: 'Year',
-            interval: 365,
-            button_label: '1Y',
-        },
-    ];
     
-    // Range/Timeframe interval
-    const current_interval = ref(ranges[0].interval);
-    const current_range = computed(() => ranges.find(r => r.interval === current_interval.value));
+    // Range/Timeframe
+    const ranges = toRef(MarketStore.coin, 'ranges');
+    const current_range = computed(() => ranges.value?.find(range => range.timeframe === timeframe.value));
+    const timeframe = toRef(MarketStore.coin, 'timeframe');
     
-    watch(current_interval, async () => {
+    watch(timeframe, async () => {
         loading.value = true;
         
+        await setTimeframe(timeframe.value);
         await nextTick();
-        await getCoingeckoCoinChart(current_interval.value);
-        
-        /*
-        setTimeout(() => {
-            loading.value = false;
-        }, 600);*/
+        await getCoingeckoCoinChart();
         
         loading.value = false;
     });
@@ -296,7 +269,7 @@
                         
                         if(current_range.value.name === 'Day') {
                             if(index === 0) {
-                                return dayjs().format('D. MMM');
+                                return dayjs(label).format('D. MMM');
                             }
                             return dayjs(label).minute(0).second(0).millisecond(0).format('HH:mm');
                         }

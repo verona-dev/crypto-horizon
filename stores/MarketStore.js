@@ -13,6 +13,29 @@ export const useMarketStore = defineStore('MarketStore', {
             livecoinwatch: {},
             symbol: '',
             chart: {},
+            timeframe: 1,
+            ranges: [
+                {
+                    name: 'Day',
+                    label: '1d',
+                    timeframe: 1,
+                },
+                {
+                    name: 'Week',
+                    label: '7d',
+                    timeframe: 7,
+                },
+                {
+                    name: 'Month',
+                    label: '30d',
+                    timeframe: 30,
+                },
+                {
+                    name: 'Year',
+                    label: '1y',
+                    timeframe: 365,
+                },
+            ],
         },
         loading: false,
         marketOverview: [],
@@ -80,13 +103,18 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getCoingeckoCoinChart(range) {
+        async setTimeframe(timeframe) {
+            this.coin.timeframe = timeframe;
+            // console.log(this.getRange);
+        },
+        
+        async getCoingeckoCoinChart() {
             const id = this.coin.coingecko.id;
             
             try {
                 const response = await useFetchCoingecko(`coins/${id}/market_chart`, {
                     query: {
-                        days: range,
+                        days: this.coin.timeframe,
                         precision: 5,
                     }
                 });
@@ -142,4 +170,10 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
     },
+    
+    getters: {
+        getRange() {
+            return this.coin.ranges.find(range => range.timeframe === this.coin.timeframe);
+        },
+    }
 });
