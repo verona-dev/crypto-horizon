@@ -16,6 +16,7 @@
             
             -->
             <div class='alert-content flex flex-col items-center'>
+                <!--  Name  -->
                 <div class='flex flex-col items-center gap-4 p-10'>
                     <!-- Logo + Name  -->
                     <div class='flex items-center gap-6'>
@@ -30,7 +31,7 @@
                         <h1>{{ coingecko.name }}</h1>
                     </div>
                     
-                    <div class='flex items-center justify-evenly w-3/4'>
+                    <div class='flex items-center justify-evenly w-3/4 gap-4'>
                         <!--  Rank  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
@@ -194,7 +195,10 @@
         style: 'decimal', compact: true, decimals: 2,
     });
     
+    const timeframe = toRef(MarketStore.coin, 'timeframe');
+    console.log('timeframe: ', timeframe.value);
     const not_bitcoin = coin.value?.symbol !== 'BTC';
+    // Price in USD
     const current_price = coingecko.value?.market_data?.current_price?.usd;
     const current_price_label = formatNumber(current_price, {
         maximumFractionDigits: 4,
@@ -204,8 +208,6 @@
         style: 'decimal', maximumFractionDigits: 5,
     });
     
-    const timeframe = toRef(MarketStore.coin, 'timeframe');
-    console.log('timeframe: ', timeframe.value);
     
     const price_change_percentage_1d = coingecko.value?.market_data?.price_change_percentage_24h;
     const price_change_percentage_1d_label = formatNumber(price_change_percentage_1d, {
@@ -215,6 +217,11 @@
     const price_change_percentage_7d_label = formatNumber(price_change_percentage_7d, {
         style: 'percent', compact: true, decimals: 2,
     });
+    const price_change_percentage_30d = coingecko.value?.market_data?.price_change_percentage_30d;
+    const price_change_percentage_30d_label = formatNumber(price_change_percentage_30d, {
+        style: 'percent', compact: true, decimals: 2,
+    });
+    
     const price_change_percentage_7d_in_btc = coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc;
     const price_change_percentage_7d_in_btc_label = formatNumber(price_change_percentage_7d_in_btc, {
         style: 'percent', compact: true, decimals: 2,
