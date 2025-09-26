@@ -5,9 +5,8 @@
             <Tabs
                 v-model='type'
                 default-value='price'
-                class='inline'
             >
-                <TabsList class='my-10 gap-x-0.5 py-5 px-1'>
+                <TabsList class='gap-x-0.5'>
                     <TabsTrigger
                         value='price'
                         class='py-4 px-4
@@ -16,7 +15,7 @@
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
-                        Price
+                       Price
                     </TabsTrigger>
                     
                     <TabsTrigger
@@ -34,7 +33,7 @@
             
             <!--  Supply Drawer  -->
             <Tabs v-model='type'>
-                <TabsList class='my-10 gap-x-0.5 py-5 px-1 w-36'>
+                <TabsList class='w-36'>
                     <TabsTrigger
                         @click='show_drawer = true'
                         value='supply'
