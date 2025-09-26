@@ -65,7 +65,7 @@
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
-                        {{ range.label }}
+                        {{ range.label.toUpperCase() }}
                     </TabsTrigger>
                 </TabsList>
             </Tabs>
