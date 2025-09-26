@@ -70,7 +70,7 @@
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
                         '
                     >
-                        {{ range.button_label }}
+                        {{ range.label }}
                     </TabsTrigger>
                 </TabsList>
             </Tabs>

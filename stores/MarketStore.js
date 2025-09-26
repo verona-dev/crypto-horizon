@@ -17,23 +17,23 @@ export const useMarketStore = defineStore('MarketStore', {
             ranges: [
                 {
                     name: 'Day',
+                    label: '1D',
                     interval: 1,
-                    button_label: '1D',
                 },
                 {
                     name: 'Week',
+                    label: '7D',
                     interval: 7,
-                    button_label: '7D',
                 },
                 {
                     name: 'Month',
+                    label: '30D',
                     interval: 30,
-                    button_label: '30D',
                 },
                 {
                     name: 'Year',
+                    label: '1Y',
                     interval: 365,
-                    button_label: '1Y',
                 },
             ],
         },
@@ -105,6 +105,7 @@ export const useMarketStore = defineStore('MarketStore', {
         
         async setTimeframe(timeframe) {
             this.coin.timeframe = timeframe;
+            // console.log(this.getRange);
         },
         
         async getCoingeckoCoinChart(timeframe) {
