@@ -1,6 +1,6 @@
 <template>
     <div v-if='chart.prices' class='coin-chart'>
-        <div class='tabs-container flex items-center justify-between'>
+        <div class='tabs-container flex items-center justify-center gap-24 my-10'>
             <!--  Price + Market Cap  -->
             <Tabs
                 v-model='type'
@@ -37,7 +37,7 @@
                     <TabsTrigger
                         @click='show_drawer = true'
                         value='supply'
-                        class='py-4 px-4
+                        class='
                                dark:data-[state=active]:bg-accent dark:text-muted-foreground dark:hover:text-foreground
                                rounded-lg
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
@@ -54,7 +54,7 @@
             
             <!--  Range  -->
             <Tabs v-model='timeframe'>
-                <TabsList class='my-10 gap-x-0.5 py-5 px-1'>
+                <TabsList class='gap-x-0.5'>
                     <TabsTrigger
                         v-for='range in ranges'
                         :key='range.timeframe'
