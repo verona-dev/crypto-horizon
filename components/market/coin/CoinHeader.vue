@@ -102,17 +102,19 @@
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='flex items-center'>
                                 <NuxtIcon
-                                    :name='getTrendIcon(price_change_percentage_7d)'
+                                    :name='getTrendIcon(price_change_percentage)'
                                     size='20'
-                                    :class='getTextColorClass(price_change_percentage_7d)'
+                                    :class='getTextColorClass(price_change_percentage)'
                                 />
                                 
                                 <p
-                                    :class='getTextColorClass(price_change_percentage_7d)'
+                                    :class='getTextColorClass(price_change_percentage)'
                                     class='flex items-center'
                                 >
-                                    {{ price_change_percentage_7d_label }}
-                                    <span class='ml-1 text-[size:inherit]'>&#40;{{ timeframe }}d&#41;</span>
+                                    {{ price_change_percentage }}
+                                    <span class='ml-1 text-[size:inherit]'>&#40;{{
+                                            range_label
+                                                                           }}&#41;</span>
                                 </p>
                             </HoverCardTrigger>
                             
@@ -174,8 +176,10 @@
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     
     // MarketStore
+    import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
+    const { getRange } = storeToRefs(MarketStore);
     
     // Router
     import { useRouter } from 'vue-router';
@@ -194,16 +198,26 @@
     const watchlist_portfolio = formatNumber(coingecko.value?.watchlist_portfolio_users, {
         style: 'decimal', compact: true, decimals: 2,
     });
-    const timeframe = toRef(MarketStore.coin, 'timeframe');
-    console.log('timeframe: ', timeframe.value);
+    // const timeframe = toRef(MarketStore.coin, 'timeframe');
+    // console.log('timeframe: ', timeframe.value);
     const not_bitcoin = coin.value?.symbol !== 'BTC';
-    
     
     // Price in USD
     const current_price = coingecko.value?.market_data?.current_price?.usd;
     const current_price_label = formatNumber(current_price, {
         maximumFractionDigits: 4,
     });
+    
+    const price_change_percentage = computed(() => {
+        if(range_timeframe.value === 1) return price_change_percentage_1d_label;
+        if(range_timeframe.value === 7) return price_change_percentage_7d_label;
+        if(range_timeframe.value === 30) return price_change_percentage_30d_label;
+        if(range_timeframe.value === 365) return price_change_percentage_1y_label;
+    });
+    
+    const range_label = computed(() => getRange.value?.label);
+    const range_timeframe = computed(() => getRange.value?.timeframe);
+    
     const price_change_percentage_1d = coingecko.value?.market_data?.price_change_percentage_24h;
     const price_change_percentage_1d_label = formatNumber(price_change_percentage_1d, {
         style: 'percent', compact: true, decimals: 2,
