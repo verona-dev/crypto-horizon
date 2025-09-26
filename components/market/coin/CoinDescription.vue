@@ -1,6 +1,6 @@
 <template>
     <div v-if='coingecko' class='flex flex-col gap-12'>
-        <Alert class='bg-background flex flex-col gap-32 p-16'>
+        <Alert class='flex flex-col gap-32 p-16'>
             <div
                 v-if='description_formatted'
                 class='description flex flex-col gap-8'

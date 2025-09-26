@@ -1,6 +1,6 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex min-w-full mx-auto'>
-        <Alert class='bg-background flex flex-col items-center justify-center p-0'>
+        <Alert class='flex flex-col items-center justify-center p-0'>
             <!--  Go back -->
             <!--
             <NuxtLink
