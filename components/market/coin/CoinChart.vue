@@ -62,8 +62,8 @@
                 <TabsList class='my-10 gap-x-0.5 py-5 px-1'>
                     <TabsTrigger
                         v-for='range in ranges'
-                        :key='range.interval'
-                        :value='range.interval'
+                        :key='range.timeframe'
+                        :value='range.timeframe'
                         class='py-4 px-4
                                dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
                                rounded-md
@@ -137,9 +137,9 @@
     // Tabs
     const type = ref('price');
     
-    // Range/Timeframe interval
+    // Range/Timeframe
     const ranges = toRef(MarketStore.coin, 'ranges');
-    const current_range = computed(() => ranges.value?.find(range => range.interval === timeframe.value));
+    const current_range = computed(() => ranges.value?.find(range => range.timeframe === timeframe.value));
     const timeframe = ref(MarketStore.coin.timeframe);
     
     watch(timeframe, async () => {
