@@ -13,6 +13,29 @@ export const useMarketStore = defineStore('MarketStore', {
             livecoinwatch: {},
             symbol: '',
             chart: {},
+            timeframe: 7,
+            ranges: [
+                {
+                    name: 'Day',
+                    interval: 1,
+                    button_label: '1D',
+                },
+                {
+                    name: 'Week',
+                    interval: 7,
+                    button_label: '7D',
+                },
+                {
+                    name: 'Month',
+                    interval: 30,
+                    button_label: '30D',
+                },
+                {
+                    name: 'Year',
+                    interval: 365,
+                    button_label: '1Y',
+                },
+            ],
         },
         loading: false,
         marketOverview: [],
@@ -86,7 +109,7 @@ export const useMarketStore = defineStore('MarketStore', {
             try {
                 const response = await useFetchCoingecko(`coins/${id}/market_chart`, {
                     query: {
-                        days: range,
+                        days: this.coin.timeframe,
                         precision: 5,
                     }
                 });
