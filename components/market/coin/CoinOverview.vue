@@ -1,311 +1,329 @@
 <template>
-    <div class='flex flex-col gap-8'>
-        <div class='flex items-center'>
-            <NuxtIcon
-                name='bitcoin-icons:grid-outline'
-                size='43'
-                class='mr-2 min-w-14'
-            />
-            <h5>Overview</h5>
+    <div class='flex flex-col gap-12'>
+        <!--  Overview Table  -->
+        <div class='overview-table-container flex flex-col gap-4'>
+            <div class='flex items-center'>
+                <NuxtIcon
+                    name='bitcoin-icons:grid-outline'
+                    size='43'
+                    class='mr-2 min-w-14'
+                />
+                <h5>Overview</h5>
+            </div>
+            
+            <Table>
+                <TableBody>
+                    <!--  Genesis  -->
+                    <TableRow v-if='genesis_date'>
+                        <TableCell>Created</TableCell>
+                        <TableCell class='flex flex-col'>
+                            {{ genesis_date_label }}
+                            <span class='text-muted-custom'>{{ generis_date_from_now }}</span>
+                        </TableCell>
+                    </TableRow>
+                    
+                    <!--  Origin  -->
+                    <TableRow v-if='country_origin'>
+                        <TableCell>Origin Country</TableCell>
+                        <TableCell >{{ country_origin }}</TableCell>
+                    </TableRow>
+                    
+                    <!--  ATH  -->
+                    <TableRow v-if='ath_price'>
+                        <TableCell>
+                            All-Time High
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='info-icon'>
+                                    <NuxtIcon
+                                        name='radix-icons:info-circled'
+                                        size='25'
+                                        class='flex ml-2'
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent class='hover-card-content'>
+                                    <span>Coin price all-time high (ATH) in &#65284;USD and percentage change from ATH.</span>
+                                </HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
+                        
+                        <TableCell class='flex flex-col !items-end'>
+                            <!--  ATH Price  -->
+                            <div class='flex items-center'>
+                                <span>{{ ath_price }}</span>
+                                
+                                <div class='ml-2 flex items-center'>
+                                    
+                                    <NuxtIcon
+                                        :name='getTrendIcon(ath_change_percentage)'
+                                        size='20'
+                                        :class='getTextColorClass(ath_change_percentage)'
+                                    />
+                                    <span :class='getTextColorClass(ath_change_percentage)'>{{ ath_change_percentage_label }}</span>
+                                </div>
+                            </div>
+                            
+                            <!--  ATH Date -->
+                            <div class='text-muted-custom'>
+                                <span class='mr-1'>{{ ath_date_label }}</span>
+                                <span>&#40;{{ ath_date_from_now }}&#41;</span>
+                            </div>
+                        </TableCell>
+                    </TableRow>
+                    
+                    <!--  ATL  -->
+                    <TableRow v-if='atl_price'>
+                        <TableCell>
+                            All-Time Low
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='info-icon'>
+                                    <NuxtIcon
+                                        name='radix-icons:info-circled'
+                                        size='25'
+                                        class='flex ml-2'
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent class='hover-card-content'>
+                                    <span>Coin price all-time low (ATL) in &#65284;USD and percentage change from ATL.</span>
+                                </HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
+                        
+                        <TableCell class='flex flex-col !items-end'>
+                            <!--  ATL Price  -->
+                            <div class='flex items-center'>
+                                <span>{{ atl_price }}</span>
+                                
+                                <div class='ml-2 flex items-center'>
+                                    
+                                    <NuxtIcon
+                                        :name='getTrendIcon(atl_change_percentage)'
+                                        size='20'
+                                        :class='getTextColorClass(atl_change_percentage)'
+                                    />
+                                    <span :class='getTextColorClass(atl_change_percentage)'>{{ atl_change_percentage_label }}</span>
+                                </div>
+                            </div>
+                            
+                            <!--  ATL Date -->
+                            <div class='text-muted-custom'>
+                                <span class='mr-1'>{{ atl_date_label }}</span>
+                                <span>&#40;{{ atl_date_from_now }}&#41;</span>
+                            </div>
+                        </TableCell>
+                    </TableRow>
+                    
+                    <!--  Markets  -->
+                    <TableRow v-if='markets'>
+                        <TableCell>
+                            Markets
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='info-icon'>
+                                    <NuxtIcon
+                                        name='radix-icons:info-circled'
+                                        size='25'
+                                        class='flex ml-2'
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent class='hover-card-content'>
+                                    <span>The number of markets the coin is present at.</span>
+                                </HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
+                        <TableCell>{{ markets }}</TableCell>
+                    </TableRow>
+                    
+                    <!--  Pairs  -->
+                    <TableRow v-if='pairs'>
+                        <TableCell>
+                            Pairs
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='info-icon'>
+                                    <NuxtIcon
+                                        name='radix-icons:info-circled'
+                                        size='25'
+                                        class='flex ml-2'
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent class='hover-card-content'>
+                                    <span>The number of unique markets the coin is present at.</span>
+                                </HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
+                        <TableCell>{{ pairs }}</TableCell>
+                    </TableRow>
+                    
+                    <!--  Exchanges  -->
+                    <TableRow v-if='exchanges'>
+                        <TableCell>
+                            Exchanges
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='info-icon'>
+                                    <NuxtIcon
+                                        name='radix-icons:info-circled'
+                                        size='25'
+                                        class='flex ml-2'
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent class='hover-card-content'>
+                                    <span>The number of exchanges the coin is present at.</span>
+                                </HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
+                        <TableCell>{{ exchanges }}</TableCell>
+                    </TableRow>
+                    
+                    <!--  Hashing Algorithm  -->
+                    <TableRow v-if='hashing_algorithm'>
+                        <TableCell>Hashing Algorithm</TableCell>
+                        <TableCell>{{ hashing_algorithm }}</TableCell>
+                    </TableRow>
+                    
+                    <!--  Ico Start  -->
+                    <TableRow v-if='ico_start'>
+                        <TableCell>Ico Start</TableCell>
+                        <TableCell class='flex flex-col'>
+                            {{ ico_start_label }}
+                            <span class='text-muted-custom'>{{ ico_start_from_now }}</span>
+                        </TableCell>
+                    </TableRow>
+                    
+                    <!--  Ico End  -->
+                    <TableRow v-if='ico_end'>
+                        <TableCell>Ico End</TableCell>
+                        <TableCell class='flex- flex-col'>
+                            {{ ico_end_label }}
+                            <span class='text-muted-custom'>{{ ico_end_from_now }}</span>
+                        </TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
         </div>
         
-        <Table>
-            <TableBody>
-                <!--  Genesis  -->
-                <TableRow v-if='genesis_date'>
-                    <TableCell>Created</TableCell>
-                    <TableCell class='flex flex-col'>
-                        {{ genesis_date_label }}
-                        <span class='text-muted-custom'>{{ generis_date_from_now }}</span>
-                    </TableCell>
-                </TableRow>
-                
-                <!--  Origin  -->
-                <TableRow v-if='country_origin'>
-                    <TableCell>Origin Country</TableCell>
-                    <TableCell >{{ country_origin }}</TableCell>
-                </TableRow>
-                
-                <!--  ATH  -->
-                <TableRow v-if='ath_price'>
-                    <TableCell>
-                        All-Time High
-                        
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='info-icon'>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span>Coin price all-time high (ATH) in &#65284;USD and percentage change from ATH.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </TableCell>
-                    
-                    <TableCell class='flex flex-col !items-end'>
-                        <!--  ATH Price  -->
-                        <div class='flex items-center'>
-                            <span>{{ ath_price }}</span>
+        <!--  Github Table  -->
+        <div v-if='show_github_table' class='github-table-container flex flex-col gap-4'>
+            <div class='flex items-center'>
+                <NuxtIcon
+                    name='iconoir:github'
+                    size='30'
+                    class='mr-2 min-w-14'
+                />
+                <h5>Github</h5>
+            </div>
+            
+            <Table>
+                <TableBody>
+                    <!--  Github Forks  -->
+                    <TableRow v-if='github_forks_label'>
+                        <TableCell>
+                            Forks
                             
-                            <div class='ml-2 flex items-center'>
-                                
-                                <NuxtIcon
-                                    :name='getTrendIcon(ath_change_percentage)'
-                                    size='20'
-                                    :class='getTextColorClass(ath_change_percentage)'
-                                />
-                                <span :class='getTextColorClass(ath_change_percentage)'>{{ ath_change_percentage_label }}</span>
-                            </div>
-                        </div>
-                        
-                        <!--  ATH Date -->
-                        <div class='text-muted-custom'>
-                            <span class='mr-1'>{{ ath_date_label }}</span>
-                            <span>&#40;{{ ath_date_from_now }}&#41;</span>
-                        </div>
-                    </TableCell>
-                </TableRow>
-                
-                <!--  ATL  -->
-                <TableRow v-if='atl_price'>
-                    <TableCell>
-                        All-Time Low
-                        
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='info-icon'>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span>Coin price all-time low (ATL) in &#65284;USD and percentage change from ATL.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </TableCell>
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='flex items-center'>
+                                    <NuxtIcon
+                                        name='iconoir:git-fork'
+                                        size='25'
+                                        class='flex ml-2 text-yellow-selective'
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent class='hover-card-content'>
+                                    <span>Github forks.</span>
+                                </HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
+                        <TableCell>{{ github_forks_label }}</TableCell>
+                    </TableRow>
                     
-                    <TableCell class='flex flex-col !items-end'>
-                        <!--  ATL Price  -->
-                        <div class='flex items-center'>
-                            <span>{{ atl_price }}</span>
+                    <!--  Github Stars  -->
+                    <TableRow v-if='github_stars_label'>
+                        <TableCell>
+                            Stars
                             
-                            <div class='ml-2 flex items-center'>
-                                
-                                <NuxtIcon
-                                    :name='getTrendIcon(atl_change_percentage)'
-                                    size='20'
-                                    :class='getTextColorClass(atl_change_percentage)'
-                                />
-                                <span :class='getTextColorClass(atl_change_percentage)'>{{ atl_change_percentage_label }}</span>
-                            </div>
-                        </div>
-                        
-                        <!--  ATL Date -->
-                        <div class='text-muted-custom'>
-                            <span class='mr-1'>{{ atl_date_label }}</span>
-                            <span>&#40;{{ atl_date_from_now }}&#41;</span>
-                        </div>
-                    </TableCell>
-                </TableRow>
-                
-                <!--  Markets  -->
-                <TableRow v-if='markets'>
-                    <TableCell>
-                        Markets
-                        
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='info-icon'>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span>The number of markets the coin is present at.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </TableCell>
-                    <TableCell>{{ markets }}</TableCell>
-                </TableRow>
-                
-                <!--  Pairs  -->
-                <TableRow v-if='pairs'>
-                    <TableCell>
-                        Pairs
-                        
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='info-icon'>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span>The number of unique markets the coin is present at.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </TableCell>
-                    <TableCell>{{ pairs }}</TableCell>
-                </TableRow>
-                
-                <!--  Exchanges  -->
-                <TableRow v-if='exchanges'>
-                    <TableCell>
-                        Exchanges
-                        
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='info-icon'>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span>The number of exchanges the coin is present at.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </TableCell>
-                    <TableCell>{{ exchanges }}</TableCell>
-                </TableRow>
-                
-                <!--  Hashing Algorithm  -->
-                <TableRow v-if='hashing_algorithm'>
-                    <TableCell>Hashing Algorithm</TableCell>
-                    <TableCell>{{ hashing_algorithm }}</TableCell>
-                </TableRow>
-                
-                <!--  Ico Start  -->
-                <TableRow v-if='ico_start'>
-                    <TableCell>Ico Start</TableCell>
-                    <TableCell class='flex flex-col'>
-                        {{ ico_start_label }}
-                        <span class='text-muted-custom'>{{ ico_start_from_now }}</span>
-                    </TableCell>
-                </TableRow>
-                
-                <!--  Ico End  -->
-                <TableRow v-if='ico_end'>
-                    <TableCell>Ico End</TableCell>
-                    <TableCell class='flex- flex-col'>
-                        {{ ico_end_label }}
-                        <span class='text-muted-custom'>{{ ico_end_from_now }}</span>
-                    </TableCell>
-                </TableRow>
-                
-                <!--  Github Forks  -->
-                <TableRow v-if='github_forks_label'>
-                    <TableCell>
-                        Forks
-                        
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='flex items-center'>
-                                <NuxtIcon
-                                    name='iconoir:git-fork'
-                                    size='25'
-                                    class='flex ml-2 text-yellow-selective'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span>Github forks.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </TableCell>
-                    <TableCell>{{ github_forks_label }}</TableCell>
-                </TableRow>
-                
-                <!--  Github Stars  -->
-                <TableRow v-if='github_stars_label'>
-                    <TableCell>
-                        Stars
-                        
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='flex items-center'>
-                                <NuxtIcon
-                                    name='iconoir:star'
-                                    size='22'
-                                    class='flex ml-2 text-yellow-selective'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span>Github stars.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </TableCell>
-                    <TableCell>{{ github_stars_label }}</TableCell>
-                </TableRow>
-                
-                <!--  Github Issues  -->
-                <TableRow v-if='github_issues_label'>
-                    <TableCell>
-                        Issues
-                        
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='flex items-center'>
-                                <NuxtIcon
-                                    name='iconoir:git-pull-request'
-                                    size='23'
-                                    class='flex ml-2 text-yellow-selective'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span>Github issues.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </TableCell>
-                    <TableCell>{{ github_issues_label }}</TableCell>
-                </TableRow>
-                
-                <!--  Github Commits  -->
-                <TableRow v-if='github_commits_label'>
-                    <TableCell>
-                        Commits
-                        
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='flex items-center'>
-                                <NuxtIcon
-                                    name='radix-icons:commit'
-                                    size='25'
-                                    class='flex ml-2 text-yellow-selective'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span>Github commits in the last 30 days.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </TableCell>
-                    <TableCell>{{ github_commits_label }}</TableCell>
-                </TableRow>
-                
-                
-                <!--  Github Contributors  -->
-                <TableRow v-if='github_contributors_label'>
-                    <TableCell>
-                        Contributors
-                        
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='flex items-center'>
-                                <NuxtIcon
-                                    name='iconoir:github'
-                                    size='22'
-                                    class='flex ml-2 text-yellow-selective'
-                                />
-                            </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span>Github contributors.</span>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </TableCell>
-                    <TableCell>{{ github_contributors_label }}</TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='flex items-center'>
+                                    <NuxtIcon
+                                        name='iconoir:star'
+                                        size='22'
+                                        class='flex ml-2 text-yellow-selective'
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent class='hover-card-content'>
+                                    <span>Github stars.</span>
+                                </HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
+                        <TableCell>{{ github_stars_label }}</TableCell>
+                    </TableRow>
+                    
+                    <!--  Github Issues  -->
+                    <TableRow v-if='github_issues_label'>
+                        <TableCell>
+                            Issues
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='flex items-center'>
+                                    <NuxtIcon
+                                        name='iconoir:git-pull-request'
+                                        size='23'
+                                        class='flex ml-2 text-yellow-selective'
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent class='hover-card-content'>
+                                    <span>Github issues.</span>
+                                </HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
+                        <TableCell>{{ github_issues_label }}</TableCell>
+                    </TableRow>
+                    
+                    <!--  Github Commits  -->
+                    <TableRow v-if='github_commits_label'>
+                        <TableCell>
+                            Commits
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='flex items-center'>
+                                    <NuxtIcon
+                                        name='radix-icons:commit'
+                                        size='25'
+                                        class='flex ml-2 text-yellow-selective'
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent class='hover-card-content'>
+                                    <span>Github commits in the last 30 days.</span>
+                                </HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
+                        <TableCell>{{ github_commits_label }}</TableCell>
+                    </TableRow>
+                    
+                    <!--  Github Contributors  -->
+                    <TableRow v-if='github_contributors_label'>
+                        <TableCell>
+                            Contributors
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='flex items-center'>
+                                    <NuxtIcon
+                                        name='iconoir:github'
+                                        size='22'
+                                        class='flex ml-2 text-yellow-selective'
+                                    />
+                                </HoverCardTrigger>
+                                <HoverCardContent class='hover-card-content'>
+                                    <span>Github contributors.</span>
+                                </HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
+                        <TableCell>{{ github_contributors_label }}</TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+        </div>
         
         <!--  Price 24h range -->
         <div class='p-2 mt-4'>
@@ -420,6 +438,7 @@
     const ico_end_label = dayjs(ico_end).format('MMM D, YYYY');;
     const ico_end_from_now = dayjs(ico_end).fromNow();
     
+    const show_github_table = computed(() => github_forks || github_stars || github_commits || github_contributors || github_issues);
     const github_forks = coingecko.value?.developer_data?.forks;
     const github_forks_label = github_forks > 0 && formatNumber(github_forks, {
         style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0
