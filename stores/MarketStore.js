@@ -104,7 +104,6 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         
         async setTimeframe(timeframe) {
-            console.log('setTimeframe', timeframe);
             this.coin.timeframe = timeframe;
         },
         
