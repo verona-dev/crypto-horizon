@@ -269,7 +269,7 @@
                         
                         if(current_range.value.name === 'Day') {
                             if(index === 0) {
-                                return dayjs().format('D. MMM');
+                                return dayjs(label).format('D. MMM');
                             }
                             return dayjs(label).minute(0).second(0).millisecond(0).format('HH:mm');
                         }
