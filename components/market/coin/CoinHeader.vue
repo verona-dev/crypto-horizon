@@ -196,8 +196,6 @@
     const watchlist_portfolio = formatNumber(coingecko.value?.watchlist_portfolio_users, {
         style: 'decimal', compact: true, decimals: 2,
     });
-    // const timeframe = toRef(MarketStore.coin, 'timeframe');
-    // console.log('timeframe: ', timeframe.value);
     const not_bitcoin = coin.value?.symbol !== 'BTC';
     
     // Price in USD
