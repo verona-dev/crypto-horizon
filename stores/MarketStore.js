@@ -170,4 +170,10 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
     },
+    
+    getters: {
+        getRange() {
+            return this.coin.ranges.find(range => range.interval === this.coin.timeframe);
+        },
+    }
 });
