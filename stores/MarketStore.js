@@ -17,22 +17,22 @@ export const useMarketStore = defineStore('MarketStore', {
             ranges: [
                 {
                     name: 'Day',
-                    label: '1D',
+                    label: '1d',
                     timeframe: 1,
                 },
                 {
                     name: 'Week',
-                    label: '7D',
+                    label: '7d',
                     timeframe: 7,
                 },
                 {
                     name: 'Month',
-                    label: '30D',
+                    label: '30d',
                     timeframe: 30,
                 },
                 {
                     name: 'Year',
-                    label: '1Y',
+                    label: '1y',
                     timeframe: 365,
                 },
             ],
