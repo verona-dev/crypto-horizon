@@ -111,7 +111,7 @@
                                     class='flex items-center'
                                 >
                                     {{ price_change_percentage_7d_label }}
-                                    <span class='ml-1 text-[size:inherit]'>&#40;7d&#41;</span>
+                                    <span class='ml-1 text-[size:inherit]'>&#40;{{ timeframe }}d&#41;</span>
                                 </p>
                             </HoverCardTrigger>
                             
@@ -172,6 +172,10 @@
     import { Alert } from '@/components/ui/alert';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     
+    // MarketStore
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    const MarketStore = useMarketStore();
+    
     // Router
     import { useRouter } from 'vue-router';
     const router  = useRouter();
@@ -200,6 +204,13 @@
         style: 'decimal', maximumFractionDigits: 5,
     });
     
+    const timeframe = toRef(MarketStore.coin, 'timeframe');
+    console.log('timeframe: ', timeframe.value);
+    
+    const price_change_percentage_1d = coingecko.value?.market_data?.price_change_percentage_24h;
+    const price_change_percentage_1d_label = formatNumber(price_change_percentage_1d, {
+        style: 'percent', compact: true, decimals: 2,
+    });
     const price_change_percentage_7d = coingecko.value?.market_data?.price_change_percentage_7d;
     const price_change_percentage_7d_label = formatNumber(price_change_percentage_7d, {
         style: 'percent', compact: true, decimals: 2,
