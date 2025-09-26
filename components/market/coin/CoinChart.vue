@@ -54,11 +54,7 @@
             </Tabs>
             
             <!--  Range  -->
-            <Tabs
-                v-if='ranges.length'
-                v-model='timeframe'
-                class='inline'
-            >
+            <Tabs v-model='timeframe'>
                 <TabsList class='my-10 gap-x-0.5 py-5 px-1'>
                     <TabsTrigger
                         v-for='range in ranges'
