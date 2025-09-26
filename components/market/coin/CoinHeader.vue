@@ -30,7 +30,7 @@
                         <h1>{{ coingecko.name }}</h1>
                     </div>
                     
-                    <div class='flex items-center gap-6'>
+                    <div class='flex items-center justify-evenly w-3/4'>
                         <!--  Rank  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
@@ -53,7 +53,7 @@
                         <!-- Symbol  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger
-                                class='flex items-center text-snowy-mint gap-4 '
+                                class='symbol flex items-center gap-4 '
                                 :class='ico_description && "hover:cursor-help"'
                             >
                                 <h2>{{ coin.symbol }}</h2>
@@ -72,7 +72,7 @@
                                 <MazBadge
                                     size='1.25rem'
                                     rounded-size='md'
-                                    class='cursor-default'
+                                    class='cursor-default !pr-4'
                                     outline
                                 >
                                     <div class='flex items-center gap-2'>
@@ -214,14 +214,18 @@
 <style scoped>
     .coin-header {
         .m-badge {
+            padding: 10px;
+            border: 1px solid var(--accent);
+            min-width: 75px;
+            
             span.iconify {
                 color: var(--yellow-selective) !important;
             }
         }
         
+        .symbol,
         .m-badge {
             color: var(--snowy-mint) !important;
-            border: 1px solid var(--accent);
         }
     }
 </style>
