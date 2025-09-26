@@ -197,6 +197,8 @@
         style: 'decimal', compact: true, decimals: 2,
     });
     const not_bitcoin = coin.value?.symbol !== 'BTC';
+    const range_label = computed(() => getRange.value?.label);
+    const range_timeframe = computed(() => getRange.value?.timeframe);
     
     // Price in USD
     const current_price = coingecko.value?.market_data?.current_price?.usd;
@@ -217,9 +219,6 @@
         if(range_timeframe.value === 30) return price_change_percentage_30d_label;
         if(range_timeframe.value === 365) return price_change_percentage_1y_label;
     });
-    
-    const range_label = computed(() => getRange.value?.label);
-    const range_timeframe = computed(() => getRange.value?.timeframe);
     
     const price_change_percentage_1d = coingecko.value?.market_data?.price_change_percentage_24h;
     const price_change_percentage_1d_label = formatNumber(price_change_percentage_1d, {
@@ -249,10 +248,6 @@
         style: 'percent', compact: true, decimals: 2,
     });
     const ico_description = coingecko.value?.ico_data?.short_desc;
-    
-    const getIcon = () => {
-        getTrendIcon();
-    };
 </script>
 
 <style scoped>
