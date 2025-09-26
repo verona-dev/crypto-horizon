@@ -247,11 +247,16 @@
     const price_change_percentage_1d_btc_label = formatNumber(price_change_percentage_1d_btc, {
         style: 'percent', compact: true, decimals: 2,
     });
-    
     const price_change_percentage_7d_in_btc = coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc;
     const price_change_percentage_7d_in_btc_label = formatNumber(price_change_percentage_7d_in_btc, {
         style: 'percent', compact: true, decimals: 2,
     });
+    const price_change_percentage_30d_btc = coingecko.value?.market_data.price_change_percentage_30d_in_currenc.btc;
+    const price_change_percentage_30d_btc_label = formatNumber(price_change_percentage_30d_btc, {
+        style: 'percent', compact: true, decimals: 2,
+    });
+    
+    
     const ico_description = coingecko.value?.ico_data?.short_desc;
 </script>
 
