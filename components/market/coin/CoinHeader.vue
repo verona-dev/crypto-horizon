@@ -95,7 +95,7 @@
                 <!--  Price  -->
                 <div class='flex flex-col 2xl:flex-row p-10 gap-6 2xl:gap-24'>
                     <!--  Price in USD  -->
-                    <div class='flex flex-col items-center'>
+                    <div class='flex flex-col items-center gap-2'>
                         <h2 class='text-6xl'>{{ current_price_label }}</h2>
                         
                         <!--  Price change % in USD $  -->
@@ -125,7 +125,7 @@
                     </div>
                     
                     <!--  Price in BTC  -->
-                    <div class='flex flex-col items-center' v-if='not_bitcoin'>
+                    <div class='flex flex-col items-center gap-2' v-if='not_bitcoin'>
                         <div class='flex items-center'>
                             <NuxtIcon
                                 name='mynaui:bitcoin'
