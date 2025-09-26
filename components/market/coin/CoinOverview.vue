@@ -1,7 +1,7 @@
 <template>
-    <div class='flex flex-col gap-12'>
+    <div class='flex flex-col gap-16'>
         <!--  Overview Table  -->
-        <div class='overview-table-container flex flex-col gap-4'>
+        <Alert class='overview-table-container flex flex-col gap-8 py-12 px-8'>
             <div class='flex items-center'>
                 <NuxtIcon
                     name='bitcoin-icons:grid-outline'
@@ -202,10 +202,10 @@
                     </TableRow>
                 </TableBody>
             </Table>
-        </div>
+        </Alert>
         
         <!--  Github Table  -->
-        <div v-if='show_github_table' class='github-table-container flex flex-col gap-4'>
+        <Alert class='github-table-container flex flex-col gap-8 py-12 px-8' v-if='show_github_table' >
             <div class='flex items-center'>
                 <NuxtIcon
                     name='iconoir:github'
@@ -323,7 +323,7 @@
                     </TableRow>
                 </TableBody>
             </Table>
-        </div>
+        </Alert>
         
         <!--  Price 24h range -->
         <div class='p-2 mt-4'>
@@ -358,6 +358,7 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
     import { Progress } from '~/components/ui/progress';
     import { formatNumber } from '~/utils/formatUtils.js';
+    import { Alert } from '@/components/ui/alert';
     
     const props = defineProps({
         coin: {
