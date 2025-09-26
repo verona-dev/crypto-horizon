@@ -147,7 +147,7 @@
         
         await setTimeframe(timeframe.value);
         await nextTick();
-        await getCoingeckoCoinChart(timeframe.value);
+        await getCoingeckoCoinChart();
         
         loading.value = false;
     });

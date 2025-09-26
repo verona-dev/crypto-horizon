@@ -13,7 +13,7 @@ export const useMarketStore = defineStore('MarketStore', {
             livecoinwatch: {},
             symbol: '',
             chart: {},
-            timeframe: 7,
+            timeframe: 30,
             ranges: [
                 {
                     name: 'Day',
@@ -108,7 +108,7 @@ export const useMarketStore = defineStore('MarketStore', {
             // console.log(this.getRange);
         },
         
-        async getCoingeckoCoinChart(timeframe) {
+        async getCoingeckoCoinChart() {
             const id = this.coin.coingecko.id;
             
             try {
