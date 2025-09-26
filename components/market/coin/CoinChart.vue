@@ -55,8 +55,8 @@
             
             <!--  Range  -->
             <Tabs
-                v-model='current_interval'
-                :default-value='current_interval'
+                v-if='ranges.length'
+                v-model='timeframe'
                 class='inline'
             >
                 <TabsList class='my-10 gap-x-0.5 py-5 px-1'>
@@ -120,7 +120,10 @@
     const MarketStore = useMarketStore();
     
     // Methods
-    const { getCoingeckoCoinChart } = MarketStore;
+    const {
+        setTimeframe,
+        getCoingeckoCoinChart,
+    } = MarketStore;
     
     const props = defineProps({
         coin: {
@@ -133,43 +136,18 @@
     
     // Tabs
     const type = ref('price');
-    const ranges = [
-        {
-            name: 'Day',
-            interval: 1,
-            button_label: '1D',
-        },
-        {
-            name: 'Week',
-            interval: 7,
-            button_label: '7D',
-        },
-        {
-            name: 'Month',
-            interval: 30,
-            button_label: '30D',
-        },
-        {
-            name: 'Year',
-            interval: 365,
-            button_label: '1Y',
-        },
-    ];
     
     // Range/Timeframe interval
-    const current_interval = ref(ranges[0].interval);
-    const current_range = computed(() => ranges.find(r => r.interval === current_interval.value));
+    const ranges = toRef(MarketStore.coin, 'ranges')
+    const current_range = computed(() => ranges.value?.find(range => range.interval === timeframe.value));
+    const timeframe = ref(MarketStore.coin.timeframe);
     
-    watch(current_interval, async () => {
+    watch(timeframe, async () => {
         loading.value = true;
         
+        await setTimeframe(timeframe.value);
         await nextTick();
-        await getCoingeckoCoinChart(current_interval.value);
-        
-        /*
-        setTimeout(() => {
-            loading.value = false;
-        }, 600);*/
+        await getCoingeckoCoinChart(timeframe.value);
         
         loading.value = false;
     });
