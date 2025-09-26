@@ -111,10 +111,8 @@
                                     :class='getTextColorClass(price_change_percentage)'
                                     class='flex items-center'
                                 >
-                                    {{ price_change_percentage }}
-                                    <span class='ml-1 text-[size:inherit]'>&#40;{{
-                                            range_label
-                                                                           }}&#41;</span>
+                                    {{ price_change_percentage_label }}
+                                    <span class='ml-1 text-[size:inherit]'>&#40;{{range_label }}&#41;</span>
                                 </p>
                             </HoverCardTrigger>
                             
@@ -209,6 +207,13 @@
     });
     
     const price_change_percentage = computed(() => {
+        if(range_timeframe.value === 1) return price_change_percentage_1d;
+        if(range_timeframe.value === 7) return price_change_percentage_7d;
+        if(range_timeframe.value === 30) return price_change_percentage_30d;
+        if(range_timeframe.value === 365) return price_change_percentage_1y;
+    });
+    
+    const price_change_percentage_label = computed(() => {
         if(range_timeframe.value === 1) return price_change_percentage_1d_label;
         if(range_timeframe.value === 7) return price_change_percentage_7d_label;
         if(range_timeframe.value === 30) return price_change_percentage_30d_label;
@@ -246,6 +251,10 @@
         style: 'percent', compact: true, decimals: 2,
     });
     const ico_description = coingecko.value?.ico_data?.short_desc;
+    
+    const getIcon = () => {
+        getTrendIcon();
+    };
 </script>
 
 <style scoped>
