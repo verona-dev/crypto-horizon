@@ -138,7 +138,7 @@
     const type = ref('price');
     
     // Range/Timeframe interval
-    const ranges = toRef(MarketStore.coin, 'ranges')
+    const ranges = toRef(MarketStore.coin, 'ranges');
     const current_range = computed(() => ranges.value?.find(range => range.interval === timeframe.value));
     const timeframe = ref(MarketStore.coin.timeframe);
     
