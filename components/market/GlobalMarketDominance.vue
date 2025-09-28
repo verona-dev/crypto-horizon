@@ -1,50 +1,15 @@
 <template>
-    <Card class='w-[600px]'>
+    <Card class='!w-4/5'>
         <h3 class='text-center'>Dominance</h3>
         <Separator />
         
         <CardContent>
-            <NuxtLink
-                to='/market/bitcoin'
-                class='flex items-center'
-            >
-                <NuxtIcon
-                    name='token-branded:btc'
-                    size='70'
-                    class='mr-4 mb-1'
+            <div class='w-full'>
+                <Bar
+                    :data='data'
+                    :options='options'
                 />
-                
-                <div class='flex flex-col items-start'>
-                    <CardDescription class='text-left'>
-                        BTC Dominance Index
-                    </CardDescription>
-                    
-                    <p v-if='!!btc_dominance'>{{ btc_dominance }}</p>
-                    <span v-else>&#8208;</span>
-                </div>
-            </NuxtLink>
-        </CardContent>
-        
-        <CardContent>
-            <NuxtLink
-                to='/market/ethereum'
-                class='flex items-center'
-            >
-                <NuxtIcon
-                    name='token-branded:eth'
-                    size='70'
-                    class='mr-4'
-                />
-                
-                <div class='flex flex-col items-start'>
-                    <CardDescription class='text-left'>
-                        ETH Dominance Index
-                    </CardDescription>
-                    
-                    <p v-if='!!eth_dominance'>{{ eth_dominance }}</p>
-                    <span v-else>&#8208;</span>
-                </div>
-            </NuxtLink>
+            </div>
         </CardContent>
     </Card>
 </template>
@@ -63,6 +28,75 @@
     const { mcap_dominance } = toRefs(props);
     console.log(JSON.parse(JSON.stringify( mcap_dominance.value )));
     
-    const btc_dominance = computed(() => mcap_dominance.value?.btc);
-    const eth_dominance = computed(() => mcap_dominance.value?.eth);
+    const btc_dominance = computed(() => mcap_dominance.value?.btc.toFixed(1));
+    const eth_dominance = computed(() => mcap_dominance.value?.eth.toFixed(1));
+    const bnb_dominance = computed(() => mcap_dominance.value?.bnb.toFixed(1));
+    const others_dominance = computed(() => 100 - btc_dominance.value - eth_dominance.value);
+    
+    const dominance_data = ref([
+        {
+            label: 'BTC',
+            data: [btc_dominance.value],
+            backgroundColor: '#fbbf24',
+        },
+        {
+            label: 'Ethereum',
+            data: [eth_dominance.value],
+            backgroundColor: '#3b82f6',
+        },
+        {
+            label: 'Others',
+            data: [others_dominance.value],
+            backgroundColor: '#9ca3af',
+        }
+    ]);
+    
+    const data = {
+        labels: ['Market Cap Dominance'],
+        datasets: dominance_data.value,
+    };
+    
+    const options = {
+        barThickness: 75,
+        indexAxis: 'y',
+        animation: {
+            duration: 750,
+            easing: 'easeInSine',
+        },
+        scales: {
+            x: {
+                stacked: true,
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                    display: false,
+                },
+                title: {
+                    display: false,
+                },
+            },
+            y: {
+                stacked: true,
+                title: {
+                    display: false,
+                },
+            }
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'top', },
+            tooltip: {
+                enabled: true,
+                callbacks: {
+                    title: () => '',
+                    label: context => {
+                        const label = context.dataset.label || '';
+                        const value = context.parsed.x || context.parsed.y || 0;
+                        return `${label}: ${value}%`;
+                    }
+                }
+            }
+        }
+    };
 </script>
