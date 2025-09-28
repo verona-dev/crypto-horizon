@@ -131,7 +131,7 @@
         </Card>
     </div>
     
-    <h6>Updated at: {{ updated_at }}</h6>
+    <h6>Data updated at {{ updated_at }}</h6>
 </template>
 
 <script setup>
@@ -184,7 +184,7 @@
         style: 'percent', compact: true, decimals: 2
     }));
     
-    const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D, YYYY, HH:mm'));
+    const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY, HH:mm[h]'));
     
     onMounted(() => getCoingeckoGlobalMarket());
 </script>
