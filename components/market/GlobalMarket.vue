@@ -79,8 +79,11 @@
         </Card>
     </div>
     
-    <!--  Dominance  -->
-    <GlobalMarketDominance v-if='mcap_dominance' :mcap_dominance='mcap_dominance' />
+    <!--  Market Cap  Dominance  -->
+    <GlobalMarketDominance
+        v-if='mcap_dominance'
+        :mcap_dominance='mcap_dominance'
+    />
     
     <h6>Data updated at {{ updated_at }}</h6>
 </template>
