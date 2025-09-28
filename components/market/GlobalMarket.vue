@@ -80,8 +80,8 @@
                             BTC Dominance Index
                         </CardDescription>
                         
-<!--                        <p v-if='!!btc_dominance'>{{ btc_dominance }}&#37;</p>-->
-<!--                        <span v-else>&#8208;</span>-->
+                        <p v-if='!!btc_dominance_label'>{{ btc_dominance_label }}&#37;</p>
+                        <span v-else>&#8208;</span>
                     </div>
                 </NuxtLink>
             </CardContent>
@@ -102,8 +102,8 @@
                             ETH Dominance Index
                         </CardDescription>
                         
-<!--                        <p v-if='!!eth_dominance'>{{ eth_dominance }}&#37;</p>-->
-<!--                        <span v-else>&#8208;</span>-->
+                        <p v-if='!!eth_dominance_label'>{{ eth_dominance_label }}&#37;</p>
+                        <span v-else>&#8208;</span>
                     </div>
                 </NuxtLink>
             </CardContent>
@@ -126,7 +126,7 @@
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
-    const { marketOverview, globalMarket } = storeToRefs(MarketStore);
+    const { globalMarket } = storeToRefs(MarketStore);
     const { getCoingeckoGlobalMarket } = MarketStore;
     
     const active_cryptocurrencies = computed(() => globalMarket.value?.active_cryptocurrencies);
@@ -147,9 +147,12 @@
         compact: true, decimals: 2
     }));
     
-    const btc_dominance = computed(() => marketOverview.value?.btc_d);
-    const eth_dominance = computed(() => marketOverview.value?.eth_d);
-    
+    const btc_dominance_label = computed(() => formatNumber(globalMarket.value?.market_cap_percentage?.btc, {
+        style: 'percent', compact: true, decimals: 2
+    }));
+    const eth_dominance_label = computed(() => formatNumber(globalMarket.value?.market_cap_percentage?.eth, {
+        style: 'percent', compact: true, decimals: 2
+    }));
     
     onMounted(() => getCoingeckoGlobalMarket());
 </script>
