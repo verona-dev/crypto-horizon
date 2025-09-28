@@ -130,11 +130,16 @@
             </CardContent>
         </Card>
     </div>
+    
+    <h6>Updated at: {{ updated_at }}</h6>
 </template>
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTextColorClass } from '~/utils/styleUtils.js';
+    import dayjs from 'dayjs';
+    import relativeTime from 'dayjs/plugin/relativeTime';
+    dayjs.extend(relativeTime);
     
     import {
         Card,
@@ -178,6 +183,8 @@
     const eth_dominance_label = computed(() => formatNumber(globalMarket.value?.market_cap_percentage?.eth, {
         style: 'percent', compact: true, decimals: 2
     }));
+    
+    const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D, YYYY, HH:mm'));
     
     onMounted(() => getCoingeckoGlobalMarket());
 </script>
