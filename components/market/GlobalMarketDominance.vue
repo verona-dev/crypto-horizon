@@ -19,7 +19,7 @@
                         BTC Dominance Index
                     </CardDescription>
                     
-                    <p v-if='!!btc_dominance_label'>{{ btc_dominance_label }}&#37;</p>
+                    <p v-if='!!btc_dominance_label'>{{ btc_dominance_label }}</p>
                     <span v-else>&#8208;</span>
                 </div>
             </NuxtLink>
@@ -41,7 +41,7 @@
                         ETH Dominance Index
                     </CardDescription>
                     
-                    <p v-if='!!eth_dominance_label'>{{ eth_dominance_label }}&#37;</p>
+                    <p v-if='!!eth_dominance_label'>{{ eth_dominance_label }}</p>
                     <span v-else>&#8208;</span>
                 </div>
             </NuxtLink>
