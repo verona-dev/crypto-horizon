@@ -14,7 +14,7 @@
 </template>
 
 <script lang='ts' setup>
-    import {Bar} from 'vue-chartjs';
+    import { Bar } from 'vue-chartjs';
     import CoinSupplyTable from '~/components/market/coin/CoinSupplyTable.vue';
     
     const props = defineProps({
