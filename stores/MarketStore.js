@@ -61,8 +61,8 @@ export const useMarketStore = defineStore('MarketStore', {
             try {
                 const response = await useFetchCoingecko('global');
                 
-                if(response) {
-                    this.globalMarket = response;
+                if(response && response.data) {
+                    this.globalMarket = response.data;
                     console.log(JSON.parse(JSON.stringify(this.globalMarket)));
                 }
             } catch(error) {

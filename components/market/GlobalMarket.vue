@@ -32,20 +32,14 @@
             
             <CardContent>
                 <CardDescription>Total crypto market cap</CardDescription>
-<!--                <p v-if='mcap_total'>{{ mcap_total_label }}</p>-->
-<!--                <span v-else>&#8208;</span>-->
-            </CardContent>
-            
-            <CardContent>
-                <CardDescription>ATH total market cap</CardDescription>
-<!--                <p v-if='mcap_ath'>{{ mcap_ath_label }}</p>-->
-<!--                <span v-else>&#8208;</span>-->
+                <p v-if='mcap_total'>{{ mcap_total_label }}</p>
+                <span v-else>&#8208;</span>
             </CardContent>
             
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-<!--                <p v-if='!!mcap_change' :class='mcap_change_class'>{{ mcap_change_label }}</p>-->
-<!--                <span v-else>&#8208;</span>-->
+                <p v-if='!!mcap_change' :class='mcap_change_class'>{{ mcap_change_label }}</p>
+                <span v-else>&#8208;</span>
             </CardContent>
         </Card>
     </div>
@@ -149,23 +143,19 @@
     
     const active_cryptocurrencies = computed(() => globalMarket.value?.active_cryptocurrencies);
     const markets = computed(() => globalMarket.value?.markets);
-    
-    const btc_dominance = computed(() => marketOverview.value?.btc_d);
-    const eth_dominance = computed(() => marketOverview.value?.eth_d);
-    
-    const mcap_total = computed(() => marketOverview.value?.total_mcap);
+    const mcap_total = computed(() => globalMarket.value?.total_market_cap?.usd);
     const mcap_total_label =  computed(() => formatNumber(mcap_total.value, {
         compact: true, decimals: 2
     }));
-    const mcap_ath = computed(() => marketOverview.value?.mcap_ath);
-    const mcap_ath_label = computed(() => formatNumber(mcap_ath.value, {
-        compact: true, decimals: 2
-    }));
-    const mcap_change = computed(() => marketOverview.value?.mcap_change);
+    const mcap_change = computed(() => globalMarket.value?.market_cap_change_percentage_24h_usd);
     const mcap_change_label = computed(() => formatNumber(mcap_change.value, {
         style: 'percent', compact: true, decimals: 2
     }));
     const mcap_change_class = computed(() => getTextColorClass(mcap_change.value));
+    
+    const btc_dominance = computed(() => marketOverview.value?.btc_d);
+    const eth_dominance = computed(() => marketOverview.value?.eth_d);
+    
     
     const total_volume = computed(() => marketOverview.value?.total_volume);
     const total_volume_label = computed(() => formatNumber(total_volume.value, {
