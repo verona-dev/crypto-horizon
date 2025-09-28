@@ -80,56 +80,7 @@
     </div>
     
     <!--  Dominance  -->
-    <div class='slide'>
-        <Card class='card'>
-            <h3 class='text-center'>Dominance</h3>
-            <Separator />
-            
-            <CardContent>
-                <NuxtLink
-                    to='/market/bitcoin'
-                    class='flex items-center'
-                >
-                    <NuxtIcon
-                        name='token-branded:btc'
-                        size='70'
-                        class='mr-4 mb-1'
-                    />
-                    
-                    <div class='flex flex-col items-start'>
-                        <CardDescription class='text-left'>
-                            BTC Dominance Index
-                        </CardDescription>
-                        
-                        <p v-if='!!btc_dominance_label'>{{ btc_dominance_label }}&#37;</p>
-                        <span v-else>&#8208;</span>
-                    </div>
-                </NuxtLink>
-            </CardContent>
-            
-            <CardContent>
-                <NuxtLink
-                    to='/market/ethereum'
-                    class='flex items-center'
-                >
-                    <NuxtIcon
-                        name='token-branded:eth'
-                        size='70'
-                        class='mr-4'
-                    />
-                    
-                    <div class='flex flex-col items-start'>
-                        <CardDescription class='text-left'>
-                            ETH Dominance Index
-                        </CardDescription>
-                        
-                        <p v-if='!!eth_dominance_label'>{{ eth_dominance_label }}&#37;</p>
-                        <span v-else>&#8208;</span>
-                    </div>
-                </NuxtLink>
-            </CardContent>
-        </Card>
-    </div>
+    <GlobalMarketDominance v-if='mcap_dominance' :mcap_dominance='mcap_dominance' />
     
     <h6>Data updated at {{ updated_at }}</h6>
 </template>
@@ -140,6 +91,7 @@
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime);
+    import GlobalMarketDominance from '~/components/market/GlobalMarketDominance.vue';
     
     import {
         Card,
@@ -167,6 +119,7 @@
         style: 'percent', compact: true, decimals: 2
     }));
     const mcap_change_class = computed(() => getTextColorClass(mcap_change.value));
+    const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage);
     
     const total_volume = computed(() => globalMarket.value?.total_volume?.usd);
     const total_volume_label = computed(() => formatNumber(total_volume.value, {
@@ -176,13 +129,6 @@
     const ended_icos = computed(() => globalMarket.value?.ended_icos);
     const ongoing_icos = computed(() => globalMarket.value?.ongoing_icos);
     const upcoming_icos = computed(() => globalMarket.value?.upcoming_icos);
-    
-    const btc_dominance_label = computed(() => formatNumber(globalMarket.value?.market_cap_percentage?.btc, {
-        style: 'percent', compact: true, decimals: 2
-    }));
-    const eth_dominance_label = computed(() => formatNumber(globalMarket.value?.market_cap_percentage?.eth, {
-        style: 'percent', compact: true, decimals: 2
-    }));
     
     const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY, HH:mm[h]'));
     
