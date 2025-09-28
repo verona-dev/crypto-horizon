@@ -3,8 +3,8 @@
     <div class='my-10 flex-col xl:flex-row flex items-center justify-center gap-16 '>
         <div class='w-full xl:w-[450px] h-96 xl:h-[450px]'>
             <Bar
-                :data='chartData'
-                :options='chartOptions'
+                :data='data'
+                :options='options'
             />
         </div>
         
@@ -31,7 +31,7 @@
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
     const remaining_supply = computed(() => max_supply.value - total_supply.value);
     
-    const chartContent = computed(() => {
+    const content = computed(() => {
         const labels = [];
         const data = [];
         const backgroundColor = [];
@@ -76,18 +76,18 @@
         return { labels, data, backgroundColor };
     });
     
-    const chartData = ref({
-        labels: chartContent.value?.labels,
+    const data = ref({
+        labels: content.value?.labels,
         datasets: [
             {
                 label: 'Supply',
-                backgroundColor: chartContent.value?.backgroundColor,
-                data: chartContent.value?.data,
+                backgroundColor: content.value?.backgroundColor,
+                data: content.value?.data,
             }
         ],
     });
     
-    const chartOptions = ref({
+    const options = ref({
         barThickness: 75,
         indexAxis: 'y',
         responsive: true,
