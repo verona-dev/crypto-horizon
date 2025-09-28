@@ -273,7 +273,6 @@
     const price_change_percentage_1y_btc_label = formatNumber(price_change_percentage_1y_btc, {
         style: 'percent', compact: true, decimals: 2,
     });
-    console.log(price_change_percentage_1y_btc_label);
     
     const ico_description = coingecko.value?.ico_data?.short_desc;
 </script>
