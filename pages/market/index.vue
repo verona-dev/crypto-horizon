@@ -1,5 +1,5 @@
 <template>
-    <div class=''>
+    <div class='market'>
         <!--  Hero Image  -->
         <div class='hero-container w-screen'>
             <NuxtImg
