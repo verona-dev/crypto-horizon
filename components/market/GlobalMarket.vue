@@ -52,20 +52,8 @@
             
             <CardContent>
                 <CardDescription>Total trading volume for last 24h</CardDescription>
-<!--                <p v-if='total_volume'>{{ total_volume_label }}</p>-->
-<!--                <span v-else>&#8208;</span>-->
-            </CardContent>
-            
-            <CardContent>
-                <CardDescription>ATH total trading volume</CardDescription>
-<!--                <p v-if='volume_ath'>{{ volume_ath_label }}</p>-->
-<!--                <span v-else>&#8208;</span>-->
-            </CardContent>
-            
-            <CardContent>
-                <CardDescription>Change for last 24h</CardDescription>
-<!--                <p v-if='!!volume_change' :class='volume_change_class'>{{ volume_change_label }}</p>-->
-<!--                <span v-else>&#8208;</span>-->
+                <p v-if='total_volume'>{{ total_volume_label }}</p>
+                <span v-else>&#8208;</span>
             </CardContent>
         </Card>
     </div>
@@ -143,6 +131,7 @@
     
     const active_cryptocurrencies = computed(() => globalMarket.value?.active_cryptocurrencies);
     const markets = computed(() => globalMarket.value?.markets);
+    
     const mcap_total = computed(() => globalMarket.value?.total_market_cap?.usd);
     const mcap_total_label =  computed(() => formatNumber(mcap_total.value, {
         compact: true, decimals: 2
@@ -153,21 +142,14 @@
     }));
     const mcap_change_class = computed(() => getTextColorClass(mcap_change.value));
     
-    const btc_dominance = computed(() => marketOverview.value?.btc_d);
-    const eth_dominance = computed(() => marketOverview.value?.eth_d);
-    
-    
-    const total_volume = computed(() => marketOverview.value?.total_volume);
+    const total_volume = computed(() => globalMarket.value?.total_volume?.usd);
     const total_volume_label = computed(() => formatNumber(total_volume.value, {
         compact: true, decimals: 2
     }));
-    const volume_ath = computed(() => marketOverview.value?.volume_ath);
-    const volume_ath_label = computed(() => formatNumber(volume_ath.value, { compact: true }));
-    const volume_change = computed(() => marketOverview.value?.volume_change);
-    const volume_change_label = computed(() => formatNumber(volume_change.value, {
-        style: 'percent', compact: true, decimals: 2
-    }));
-    const volume_change_class = computed(() => getTextColorClass(volume_change.value));
+    
+    const btc_dominance = computed(() => marketOverview.value?.btc_d);
+    const eth_dominance = computed(() => marketOverview.value?.eth_d);
+    
     
     onMounted(() => getCoingeckoGlobalMarket());
 </script>
