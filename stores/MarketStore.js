@@ -38,7 +38,6 @@ export const useMarketStore = defineStore('MarketStore', {
             ],
         },
         loading: false,
-        marketOverview: [],
         globalMarket: {},
     }),
     
@@ -166,24 +165,6 @@ export const useMarketStore = defineStore('MarketStore', {
             }
             catch(error) {
                 console.error(error);
-            }
-        },
-        
-        async getCoinLore(route, options) {
-            this.loading = true;
-            
-            try {
-                const response = await useFetchCoinLoreData(route, options);
-                
-                if(response && route === 'global') {
-                    this.marketOverview = [];
-                    this.marketOverview = response[0];
-                }
-                
-            } catch(error) {
-                console.log(error);
-            } finally {
-                this.loading = false;
             }
         },
     },
