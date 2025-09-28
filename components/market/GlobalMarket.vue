@@ -8,8 +8,8 @@
             
             <CardContent class='mb-8'>
                 <CardDescription>Total number of coins</CardDescription>
-<!--                <p v-if='coins_count'>{{ coins_count }}</p>-->
-<!--                <span v-else>&#8208;</span>-->
+                <p v-if='active_cryptocurrencies'>{{ active_cryptocurrencies }}</p>
+                <span v-else>&#8208;</span>
             </CardContent>
             
             <!--  Markets  -->
@@ -18,8 +18,8 @@
             
             <CardContent>
                 <CardDescription>Total exchange pairs</CardDescription>
-<!--                <p v-if='active_markets'>{{ active_markets }}</p>-->
-<!--                <span v-else>&#8208;</span>-->
+                <p v-if='markets'>{{ markets }}</p>
+                <span v-else>&#8208;</span>
             </CardContent>
         </Card>
     </div>
@@ -144,11 +144,12 @@
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
-    const { marketOverview } = storeToRefs(MarketStore);
+    const { marketOverview, globalMarket } = storeToRefs(MarketStore);
     const { getCoingeckoGlobalMarket } = MarketStore;
     
-    const active_markets = computed(() => marketOverview.value?.active_markets);
-    const coins_count = computed(() => marketOverview.value?.coins_count);
+    const active_cryptocurrencies = computed(() => globalMarket.value?.active_cryptocurrencies);
+    const markets = computed(() => globalMarket.value?.markets);
+    
     const btc_dominance = computed(() => marketOverview.value?.btc_d);
     const eth_dominance = computed(() => marketOverview.value?.eth_d);
     
