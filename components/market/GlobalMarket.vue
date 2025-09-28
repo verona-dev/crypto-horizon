@@ -55,6 +55,27 @@
                 <p v-if='total_volume'>{{ total_volume_label }}</p>
                 <span v-else>&#8208;</span>
             </CardContent>
+            
+            <!--  Ico  -->
+            <h3 class='text-center'>ICO</h3>
+            <Separator />
+            
+            <CardContent>
+                <CardDescription>Ended ICO's</CardDescription>
+                <p v-if='ended_icos'>{{ ended_icos }}</p>
+                <span v-else>&#8208;</span>
+            </CardContent>
+            
+            <CardContent>
+                <CardDescription>Ongoing ICO's</CardDescription>
+                <p v-if='ongoing_icos'>{{ ongoing_icos }}</p>
+                <span v-else>&#8208;</span>
+            </CardContent>
+            
+            <CardContent>
+                <CardDescription>Upcoming ICO's</CardDescription>
+                <p>{{ upcoming_icos }}</p>
+            </CardContent>
         </Card>
     </div>
     
@@ -146,6 +167,10 @@
     const total_volume_label = computed(() => formatNumber(total_volume.value, {
         compact: true, decimals: 2
     }));
+    
+    const ended_icos = computed(() => globalMarket.value?.ended_icos);
+    const ongoing_icos = computed(() => globalMarket.value?.ongoing_icos);
+    const upcoming_icos = computed(() => globalMarket.value?.upcoming_icos);
     
     const btc_dominance_label = computed(() => formatNumber(globalMarket.value?.market_cap_percentage?.btc, {
         style: 'percent', compact: true, decimals: 2
