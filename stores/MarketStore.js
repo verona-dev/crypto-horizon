@@ -61,7 +61,6 @@ export const useMarketStore = defineStore('MarketStore', {
                 
                 if(response && response.data) {
                     this.globalMarket = response.data;
-                    console.log(JSON.parse(JSON.stringify(this.globalMarket)));
                 }
             } catch(error) {
                 console.error(error);
