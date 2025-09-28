@@ -8,8 +8,8 @@
             
             <CardContent class='mb-8'>
                 <CardDescription>Total number of coins</CardDescription>
-                <p v-if='coins_count'>{{ coins_count }}</p>
-                <span v-else>&#8208;</span>
+<!--                <p v-if='coins_count'>{{ coins_count }}</p>-->
+<!--                <span v-else>&#8208;</span>-->
             </CardContent>
             
             <!--  Markets  -->
@@ -18,8 +18,8 @@
             
             <CardContent>
                 <CardDescription>Total exchange pairs</CardDescription>
-                <p v-if='active_markets'>{{ active_markets }}</p>
-                <span v-else>&#8208;</span>
+<!--                <p v-if='active_markets'>{{ active_markets }}</p>-->
+<!--                <span v-else>&#8208;</span>-->
             </CardContent>
         </Card>
     </div>
@@ -32,20 +32,20 @@
             
             <CardContent>
                 <CardDescription>Total crypto market cap</CardDescription>
-                <p v-if='mcap_total'>{{ mcap_total_label }}</p>
-                <span v-else>&#8208;</span>
+<!--                <p v-if='mcap_total'>{{ mcap_total_label }}</p>-->
+<!--                <span v-else>&#8208;</span>-->
             </CardContent>
             
             <CardContent>
                 <CardDescription>ATH total market cap</CardDescription>
-                <p v-if='mcap_ath'>{{ mcap_ath_label }}</p>
-                <span v-else>&#8208;</span>
+<!--                <p v-if='mcap_ath'>{{ mcap_ath_label }}</p>-->
+<!--                <span v-else>&#8208;</span>-->
             </CardContent>
             
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-                <p v-if='!!mcap_change' :class='mcap_change_class'>{{ mcap_change_label }}</p>
-                <span v-else>&#8208;</span>
+<!--                <p v-if='!!mcap_change' :class='mcap_change_class'>{{ mcap_change_label }}</p>-->
+<!--                <span v-else>&#8208;</span>-->
             </CardContent>
         </Card>
     </div>
@@ -58,20 +58,20 @@
             
             <CardContent>
                 <CardDescription>Total trading volume for last 24h</CardDescription>
-                <p v-if='total_volume'>{{ total_volume_label }}</p>
-                <span v-else>&#8208;</span>
+<!--                <p v-if='total_volume'>{{ total_volume_label }}</p>-->
+<!--                <span v-else>&#8208;</span>-->
             </CardContent>
             
             <CardContent>
                 <CardDescription>ATH total trading volume</CardDescription>
-                <p v-if='volume_ath'>{{ volume_ath_label }}</p>
-                <span v-else>&#8208;</span>
+<!--                <p v-if='volume_ath'>{{ volume_ath_label }}</p>-->
+<!--                <span v-else>&#8208;</span>-->
             </CardContent>
             
             <CardContent>
                 <CardDescription>Change for last 24h</CardDescription>
-                <p v-if='!!volume_change' :class='volume_change_class'>{{ volume_change_label }}</p>
-                <span v-else>&#8208;</span>
+<!--                <p v-if='!!volume_change' :class='volume_change_class'>{{ volume_change_label }}</p>-->
+<!--                <span v-else>&#8208;</span>-->
             </CardContent>
         </Card>
     </div>
@@ -98,8 +98,8 @@
                             BTC Dominance Index
                         </CardDescription>
                         
-                        <p v-if='!!btc_dominance'>{{ btc_dominance }}&#37;</p>
-                        <span v-else>&#8208;</span>
+<!--                        <p v-if='!!btc_dominance'>{{ btc_dominance }}&#37;</p>-->
+<!--                        <span v-else>&#8208;</span>-->
                     </div>
                 </NuxtLink>
             </CardContent>
@@ -120,8 +120,8 @@
                             ETH Dominance Index
                         </CardDescription>
                         
-                        <p v-if='!!eth_dominance'>{{ eth_dominance }}&#37;</p>
-                        <span v-else>&#8208;</span>
+<!--                        <p v-if='!!eth_dominance'>{{ eth_dominance }}&#37;</p>-->
+<!--                        <span v-else>&#8208;</span>-->
                     </div>
                 </NuxtLink>
             </CardContent>
@@ -145,7 +145,7 @@
     const MarketStore = useMarketStore();
     
     const { marketOverview } = storeToRefs(MarketStore);
-    const { getCoinLore } = MarketStore;
+    const { getCoingeckoGlobalMarket } = MarketStore;
     
     const active_markets = computed(() => marketOverview.value?.active_markets);
     const coins_count = computed(() => marketOverview.value?.coins_count);
@@ -178,21 +178,5 @@
     }));
     const volume_change_class = computed(() => getTextColorClass(volume_change.value));
     
-    onMounted(() => getCoinLore('global'));
+    onMounted(() => getCoingeckoGlobalMarket());
 </script>
-
-<style scoped>
-    .slide {
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        height: 100%;
-        width: 75%;
-    }
-    
-    .card {
-        border-color: var(--card-border);
-        min-height: 475px;
-        width: 425px;
-    }
-</style>
