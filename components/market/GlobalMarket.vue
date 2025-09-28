@@ -1,83 +1,77 @@
 <template>
     <!--  Assets + Markets  -->
-    <div class='slide'>
-        <Card class='card'>
-            <!--  Assets  -->
-            <h3 class='text-center'>Assets</h3>
-            <Separator />
-            
-            <CardContent class='mb-8'>
-                <CardDescription>Total number of coins</CardDescription>
-                <p v-if='active_cryptocurrencies'>{{ active_cryptocurrencies }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
-            
-            <!--  Markets  -->
-            <h3 class='text-center'>Markets</h3>
-            <Separator />
-            
-            <CardContent>
-                <CardDescription>Total exchange pairs</CardDescription>
-                <p v-if='markets'>{{ markets }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
-        </Card>
-    </div>
+    <Card>
+        <!--  Assets  -->
+        <h3 class='text-center'>Assets</h3>
+        <Separator />
+        
+        <CardContent class='mb-8'>
+            <CardDescription>Total number of coins</CardDescription>
+            <p v-if='active_cryptocurrencies'>{{ active_cryptocurrencies }}</p>
+            <span v-else>&#8208;</span>
+        </CardContent>
+        
+        <!--  Markets  -->
+        <h3 class='text-center'>Markets</h3>
+        <Separator />
+        
+        <CardContent>
+            <CardDescription>Total exchange pairs</CardDescription>
+            <p v-if='markets'>{{ markets }}</p>
+            <span v-else>&#8208;</span>
+        </CardContent>
+    </Card>
     
     <!--  Market Cap  -->
-    <div class='slide'>
-        <Card class='card'>
-            <h3 class='text-center'>Market Cap</h3>
-            <Separator />
-            
-            <CardContent>
-                <CardDescription>Total crypto market cap</CardDescription>
-                <p v-if='mcap_total'>{{ mcap_total_label }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
-            
-            <CardContent>
-                <CardDescription>Change for last 24h</CardDescription>
-                <p v-if='!!mcap_change' :class='mcap_change_class'>{{ mcap_change_label }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
-        </Card>
-    </div>
+    <Card>
+        <h3 class='text-center'>Market Cap</h3>
+        <Separator />
+        
+        <CardContent>
+            <CardDescription>Total crypto market cap</CardDescription>
+            <p v-if='mcap_total'>{{ mcap_total_label }}</p>
+            <span v-else>&#8208;</span>
+        </CardContent>
+        
+        <CardContent>
+            <CardDescription>Change for last 24h</CardDescription>
+            <p v-if='!!mcap_change' :class='mcap_change_class'>{{ mcap_change_label }}</p>
+            <span v-else>&#8208;</span>
+        </CardContent>
+    </Card>
     
     <!--  Volume  -->
-    <div class='slide'>
-        <Card class='card'>
-            <h3 class='text-center'>Volume</h3>
-            <Separator />
-            
-            <CardContent>
-                <CardDescription>Total trading volume for last 24h</CardDescription>
-                <p v-if='total_volume'>{{ total_volume_label }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
-            
-            <!--  Ico  -->
-            <h3 class='text-center'>ICO</h3>
-            <Separator />
-            
-            <CardContent>
-                <CardDescription>Ended ICO's</CardDescription>
-                <p v-if='ended_icos'>{{ ended_icos }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
-            
-            <CardContent>
-                <CardDescription>Ongoing ICO's</CardDescription>
-                <p v-if='ongoing_icos'>{{ ongoing_icos }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
-            
-            <CardContent>
-                <CardDescription>Upcoming ICO's</CardDescription>
-                <p>{{ upcoming_icos }}</p>
-            </CardContent>
-        </Card>
-    </div>
+    <Card>
+        <h3 class='text-center'>Volume</h3>
+        <Separator />
+        
+        <CardContent>
+            <CardDescription>Total trading volume for last 24h</CardDescription>
+            <p v-if='total_volume'>{{ total_volume_label }}</p>
+            <span v-else>&#8208;</span>
+        </CardContent>
+        
+        <!--  Ico  -->
+        <h3 class='text-center'>ICO</h3>
+        <Separator />
+        
+        <CardContent>
+            <CardDescription>Ended ICO's</CardDescription>
+            <p v-if='ended_icos'>{{ ended_icos }}</p>
+            <span v-else>&#8208;</span>
+        </CardContent>
+        
+        <CardContent>
+            <CardDescription>Ongoing ICO's</CardDescription>
+            <p v-if='ongoing_icos'>{{ ongoing_icos }}</p>
+            <span v-else>&#8208;</span>
+        </CardContent>
+        
+        <CardContent>
+            <CardDescription>Upcoming ICO's</CardDescription>
+            <p>{{ upcoming_icos }}</p>
+        </CardContent>
+    </Card>
     
     <!--  Market Cap  Dominance  -->
     <GlobalMarketDominance
