@@ -1,5 +1,5 @@
 <template>
-    <Card>
+    <Card class='w-[600px]'>
         <h3 class='text-center'>Dominance</h3>
         <Separator />
         
@@ -19,7 +19,7 @@
                         BTC Dominance Index
                     </CardDescription>
                     
-                    <p v-if='!!btc_dominance_label'>{{ btc_dominance_label }}</p>
+                    <p v-if='!!btc_dominance'>{{ btc_dominance }}</p>
                     <span v-else>&#8208;</span>
                 </div>
             </NuxtLink>
@@ -41,7 +41,7 @@
                         ETH Dominance Index
                     </CardDescription>
                     
-                    <p v-if='!!eth_dominance_label'>{{ eth_dominance_label }}</p>
+                    <p v-if='!!eth_dominance'>{{ eth_dominance }}</p>
                     <span v-else>&#8208;</span>
                 </div>
             </NuxtLink>
@@ -53,6 +53,7 @@
     import { Separator } from '~/components/ui/separator/index.js';
     import { Card, CardContent, CardDescription } from '~/components/ui/card/index.js';
     import { formatNumber } from '~/utils/formatUtils.js';
+    import { Bar } from 'vue-chartjs';
     
     const props = defineProps({
         mcap_dominance: {
@@ -60,11 +61,8 @@
         }
     });
     const { mcap_dominance } = toRefs(props);
+    console.log(JSON.parse(JSON.stringify( mcap_dominance.value )));
     
-    const btc_dominance_label = computed(() => formatNumber(mcap_dominance.value?.btc, {
-        style: 'percent', compact: true, decimals: 2
-    }));
-    const eth_dominance_label = computed(() => formatNumber(mcap_dominance.value?.eth, {
-        style: 'percent', compact: true, decimals: 2
-    }));
+    const btc_dominance = computed(() => mcap_dominance.value?.btc);
+    const eth_dominance = computed(() => mcap_dominance.value?.eth);
 </script>
