@@ -39,6 +39,7 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         loading: false,
         marketOverview: [],
+        globalMarket: {},
     }),
     
     actions: {
@@ -54,6 +55,23 @@ export const useMarketStore = defineStore('MarketStore', {
             });
         },
         
+        async getCoingeckoGlobalMarket() {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko('global');
+                
+                if(response) {
+                    this.globalMarket = response;
+                    console.log(JSON.parse(JSON.stringify(this.globalMarket)));
+                }
+            } catch(error) {
+                console.error(error);
+            } finally {
+                this.loading = false;
+            }
+        },
+        
         async getCoingeckoMarkets(options) {
             this.loading = true;
             
@@ -64,8 +82,7 @@ export const useMarketStore = defineStore('MarketStore', {
                     this.coins = [];
                     this.coins = formatCoinsTable(response);
                 }
-            }
-            catch(error) {
+            } catch(error) {
                 console.error(error)
             }
             finally {
