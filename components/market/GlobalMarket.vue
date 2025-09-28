@@ -131,3 +131,10 @@
     
     onMounted(() => getCoingeckoGlobalMarket());
 </script>
+
+<style scoped>
+    [data-slot='card'] {
+        margin: 20px !important;
+        width: 400px;
+    }
+</style>
