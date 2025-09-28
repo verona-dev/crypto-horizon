@@ -1,6 +1,6 @@
 <template>
     <Card class='!w-4/5'>
-        <h3 class='text-center'>Dominance</h3>
+        <h3 class='text-center'>Market Cap Dominance</h3>
         <Separator />
         
         <CardContent>
@@ -38,6 +38,7 @@
             label: 'BTC',
             data: [btc_dominance.value],
             backgroundColor: '#fbbf24',
+            borderRadius: { topLeft: 15, bottomLeft: 15 }
         },
         {
             label: 'Ethereum',
@@ -48,6 +49,7 @@
             label: 'Others',
             data: [others_dominance.value],
             backgroundColor: '#9ca3af',
+            borderRadius: {topRight: 15, bottomRight: 15}
         }
     ]);
     
@@ -57,7 +59,7 @@
     };
     
     const options = {
-        barThickness: 75,
+        barThickness: 15,
         indexAxis: 'y',
         animation: {
             duration: 750,
@@ -85,7 +87,15 @@
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-            legend: { position: 'top', },
+            legend: {
+                position: 'top',
+                labels: {
+                    usePointStyle: true,
+                    pointStyle: 'circle',
+                    boxWidth: 30,
+                    padding: 30,
+                }
+            },
             tooltip: {
                 enabled: true,
                 callbacks: {
