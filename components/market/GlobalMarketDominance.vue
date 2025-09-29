@@ -1,9 +1,9 @@
 <template>
-    <Card class='!w-fit bg-accent flex flex-col gap-4 shadow-2xl p-10'>
+    <Card class='!w-fit bg-accent flex flex-col gap-4 shadow-2xl p-6'>
         <div class='px-10 flex flex-col gap-10'>
             <!--  Title  -->
-            <div class='flex items-center gap-3'>
-                <h3>Bitcoin Dominance</h3>
+            <div class='mt-4 flex items-center gap-3'>
+                <h4>Bitcoin Dominance</h4>
                 
                 <HoverCard :openDelay='200'>
                     <HoverCardTrigger class='info-icon'>
@@ -34,7 +34,7 @@
             </div>
             
             <!--  Legend  -->
-            <div class='flex gap-16'>
+            <div class='flex gap-12'>
                 <div
                     v-for='item in dataset'
                     :key='item'
@@ -63,7 +63,7 @@
                                 />
                             </HoverCardTrigger>
                             
-                            <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !py-8 !px-12'>
+                            <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !p-8'>
                                 <p class='underline'>Other Assets Breakdown</p>
                                 
                                 <Table class='w-60'>
@@ -87,7 +87,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='text-3xl font-bold'>{{ item.label }}</p>
+                    <p class='text-2xl font-bold'>{{ item.label }}</p>
                 </div>
             </div>
         </div>
