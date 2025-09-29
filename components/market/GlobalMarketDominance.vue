@@ -64,9 +64,11 @@
                             </HoverCardTrigger>
                             
                             <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !py-8 !px-12'>
-                                <p>Other assets breakdown</p>
+                                <p class='underline'>Other Assets Breakdown</p>
                                 
                                 <Table class='w-60'>
+                                    <TableCaption class='text-xs'>Minor values not included.</TableCaption>
+                                    
                                     <TableHeader>
                                         <TableRow>
                                             <TableHead>Asset</TableHead>
@@ -105,7 +107,7 @@
     import { Card, CardContent } from '~/components/ui/card/index.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import { Bar } from 'vue-chartjs';
-    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.js';
+    import { Table, TableBody, TableCell, TableRow, TableCaption } from '~/components/ui/table/index.js';
     
     const props = defineProps({
         mcap_dominance: {
