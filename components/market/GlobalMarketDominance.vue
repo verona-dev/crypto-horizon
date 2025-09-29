@@ -38,9 +38,9 @@
                 <div
                     v-for='item in dataset'
                     :key='item'
-                    class='flex flex-col  gap-2'
+                    class='flex flex-col gap-2'
                 >
-                    <div class='flex  space-x-2 w-8 h-8'>
+                    <div class='flex space-x-2 h-8'>
                         <div v-if='!item.displayInfo' class='flex items-center space-x-2'>
                             <span class='w-4 h-4 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                             <span class='text-muted-foreground'>{{ item.label }}</span>
@@ -52,6 +52,7 @@
                         >
                             <HoverCardTrigger class='flex items-center gap-2 text-muted-foreground'>
                                 <span class='w-4 h-4 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
+                                
                                 <span>{{ item.label }}</span>
                                 
                                 <NuxtIcon
@@ -60,8 +61,10 @@
                                 />
                             </HoverCardTrigger>
                             
-                            <HoverCardContent class='hover-card-content flex items-stretch'>
-                                <!--  Others table  -->
+                            <!--  Others table  -->
+                            <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !py-8 !px-12'>
+                                <h5>Other assets breakdown</h5>
+                                
                                 <Table class='w-60'>
                                     <TableHeader>
                                         <TableRow>
