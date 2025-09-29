@@ -1,6 +1,6 @@
 <template>
-    <Card class='!w-[600px] bg-accent flex flex-col gap-2'>
-        <div class='px-10 py-4 flex flex-col gap-6'>
+    <Card class='!w-[600px] bg-accent flex flex-col gap-4'>
+        <div class='px-10 flex flex-col gap-6'>
             <!--  Title  -->
             <div class='flex items-center gap-3'>
                 <h3>Bitcoin Dominance</h3>
@@ -22,8 +22,8 @@
                             traders and investors can better understand how the cryptocurrency market is performing and
                             where it's headed.
                         </span>
-                            
-                            <span>
+                        
+                        <span>
                             Specifically, BTC dominance represents the ratio of Bitcoin’s market capitalization to the
                             global market cap of all cryptocurrencies, where market capitalization is the total value
                             of the coins that are in circulation. Bitcoin dominance is calculated by dividing Bitcoin’s
@@ -54,16 +54,12 @@
             </div>
         </div>
         
-        <Separator />
-        
         <!--  Bar chart  -->
         <CardContent>
-            <div class='w-full'>
-                <Bar
-                    :data='chartData'
-                    :options='chartOptions'
-                />
-            </div>
+            <Bar
+                :data='chartData'
+                :options='chartOptions'
+            />
         </CardContent>
     </Card>
 </template>
