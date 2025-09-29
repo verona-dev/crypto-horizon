@@ -61,25 +61,25 @@
                                 />
                             </HoverCardTrigger>
                             
-                            <HoverCardContent class='hover-card-content'>
+                            <HoverCardContent class='hover-card-content flex items-stretch'>
                                 <!--  Others table  -->
-                                <Table class='w-40 mx-auto'>
+                                <Table class='w-60'>
                                     <TableHeader>
                                         <TableRow>
                                             <TableHead>Asset</TableHead>
-                                            <TableHead>Today</TableHead>
+                                            <TableHead class='flex flex-col justify-center !items-end'>Today</TableHead>
                                         </TableRow>
                                     </TableHeader>
                                     
                                     <TableBody>
                                         <TableRow v-for='item in filtered_array'>
-                                            <TableCell class='font-medium'>{{ item.label }}</TableCell>
-                                            <TableCell>{{ item.value }}</TableCell>
+                                            <TableCell class='font-medium '>{{ item.label }}</TableCell>
+                                            <TableCell class='flex flex-col !items-end'>{{ item.value }}</TableCell>
                                         </TableRow>
                                         
-                                        <TableRow v-if='others_dominance_label' class='border-t-2 border-t-red-500'>
-                                            <TableCell class='border-t-2 border-t-secondary'>Total</TableCell>
-                                            <TableCell class='border-t-2 border-t-secondary'>{{ others_dominance_label }}</TableCell>
+                                        <TableRow class='!border-t-2 !border-t-secondary'>
+                                            <TableCell>Total</TableCell>
+                                            <TableCell class='flex flex-col !items-end'>{{ others_dominance_label }}</TableCell>
                                         </TableRow>
                                     </TableBody>
                                 </Table>
