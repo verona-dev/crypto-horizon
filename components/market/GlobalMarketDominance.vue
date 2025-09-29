@@ -1,6 +1,34 @@
 <template>
     <Card class='!w-4/5'>
-        <h3 class='text-center'>Market Cap Dominance</h3>
+        <div class='flex items-center justify-center gap-2'>
+            <h3>Market Cap Dominance</h3>
+            
+            <HoverCard :openDelay='200'>
+                <HoverCardTrigger class='info-icon'>
+                    <NuxtIcon
+                        name='radix-icons:info-circled'
+                        size='25'
+                        class='flex mt-1'
+                    />
+                </HoverCardTrigger>
+                <HoverCardContent class='hover-card-content flex-col gap-6'>
+                    <span>
+                        Bitcoin dominance is the market share of BTC compared against the rest of the crypto market.
+                        This metric allows traders to identify potential cryptocurrency market trends and
+                        decide on trading strategies. By measuring Bitcoin's proportion of the total market,
+                        traders and investors can better understand how the cryptocurrency market is performing and
+                        where it's headed.
+                    </span>
+                    
+                    <span>
+                        Specifically, BTC dominance represents the ratio of Bitcoin’s market capitalization to the
+                        global market cap of all cryptocurrencies, where market capitalization is the total value
+                        of the coins that are in circulation. Bitcoin dominance is calculated by dividing Bitcoin’s
+                        current market capitalization by the global crypto market cap.
+                    </span>
+                </HoverCardContent>
+            </HoverCard>
+        </div>
         <Separator />
         
         <CardContent>
@@ -19,6 +47,7 @@
     import { Card, CardContent, CardDescription } from '~/components/ui/card/index.js';
     import { formatNumber } from '~/utils/formatUtils.js';
     import { Bar } from 'vue-chartjs';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     
     const props = defineProps({
         mcap_dominance: {
@@ -49,12 +78,15 @@
             label: 'Others',
             data: [others_dominance.value],
             backgroundColor: '#9ca3af',
-            borderRadius: {topRight: 15, bottomRight: 15}
+            borderRadius: {
+                topRight: 15, bottomRight: 15,
+                topLeft: 15, bottomLeft: 15,
+            }
         }
     ]);
     
     const data = {
-        labels: ['Market Cap Dominance'],
+        labels: ['Bitcoin Dominance'],
         datasets: dominance_data.value,
     };
     
