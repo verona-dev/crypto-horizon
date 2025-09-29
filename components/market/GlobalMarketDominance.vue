@@ -1,14 +1,14 @@
 <template>
-    <Card class='!w-4/5'>
-        <div class='flex items-center justify-center gap-2'>
-            <h3>Market Cap Dominance</h3>
+    <Card class='!w-2/3 bg-accent'>
+        <div class='flex items-center justify-center gap-3'>
+            <h3>Bitcoin Dominance</h3>
             
             <HoverCard :openDelay='200'>
                 <HoverCardTrigger class='info-icon'>
                     <NuxtIcon
                         name='radix-icons:info-circled'
                         size='25'
-                        class='flex mt-1'
+                        class='flex mt-2'
                     />
                 </HoverCardTrigger>
                 <HoverCardContent class='hover-card-content flex-col gap-6'>
@@ -86,7 +86,7 @@
     ]);
     
     const data = {
-        labels: ['Bitcoin Dominance'],
+        labels: [''],
         datasets: dominance_data.value,
     };
     
@@ -138,7 +138,8 @@
                         return `${label}: ${value}%`;
                     }
                 }
-            }
-        }
+            },
+            displayValues: {},
+        },
     };
 </script>
