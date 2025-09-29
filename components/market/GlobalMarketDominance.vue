@@ -114,9 +114,8 @@
             type: Object,
         }
     });
-    const { mcap_dominance } = toRefs(props);
-    console.log(JSON.parse(JSON.stringify(mcap_dominance.value)));
     
+    const { mcap_dominance } = toRefs(props);
     const btc = computed(() => mcap_dominance.value?.btc);
     const btc_label = computed(() => formatNumber(btc.value , {
         style: 'percent', decimals: 1,
@@ -131,13 +130,10 @@
     const stablecoins_label = computed(() => formatNumber(stablecoins.value, {
         style: 'percent', decimals: 2,
     }));
-    
-    
     const others_dominance = computed(() => (100 - btc.value - eth.value - stablecoins.value));
     const others_dominance_label = computed(() => formatNumber(others_dominance.value, {
         style: 'percent', decimals: 2,
     }));
-    console.log(others_dominance_label.value);
     
     const filtered_array = Object.entries(mcap_dominance.value)
         .filter(([key]) => key !== 'btc' && key !== 'eth' && key !== 'usdc' && key !== 'usdt')
