@@ -36,7 +36,7 @@
             <!--  Legend  -->
             <div class='flex gap-16'>
                 <div
-                    v-for='item in data'
+                    v-for='item in dataset'
                     :key='item'
                     class='flex flex-col items-center gap-2'
                 >
@@ -65,7 +65,6 @@
 </template>
 
 <script setup>
-    import { Separator } from '~/components/ui/separator/index.js';
     import { Card, CardContent } from '~/components/ui/card/index.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import { Bar } from 'vue-chartjs';
@@ -83,12 +82,13 @@
     const bnb_dominance = computed(() => mcap_dominance.value?.bnb.toFixed(1));
     const others_dominance = computed(() => (100 - btc_dominance.value - eth_dominance.value).toFixed(1));
     
-    const data = ref([
+    const dataset = ref([
         {
             label: 'Bitcoin',
             data: [btc_dominance.value],
             backgroundColor: '#fbbf24',
-            borderRadius: { topLeft: 15, bottomLeft: 15 }
+            borderRadius: { topLeft: 15, bottomLeft: 15 },
+            borderSkipped: 'right',
         },
         {
             label: 'Ethereum',
@@ -102,13 +102,14 @@
             borderRadius: {
                 topRight: 15, bottomRight: 15,
                 topLeft: 15, bottomLeft: 15,
+                borderSkipped: 'left',
             }
         }
     ]);
     
     const chartData = {
         labels: [''],
-        datasets: data.value,
+        datasets: dataset.value,
     };
     
     const chartOptions = {
