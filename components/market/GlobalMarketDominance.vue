@@ -168,5 +168,6 @@
 <style scoped>
     canvas {
         height: 50px !important;
+        padding-right: 15px !important;
     }
 </style>
