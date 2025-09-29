@@ -54,6 +54,23 @@
             </div>
         </div>
         
+        <!--  Others table  -->
+        <Table class='w-40 mx-auto'>
+            <TableHeader>
+                <TableRow>
+                    <TableHead>Asset</TableHead>
+                    <TableHead>Value</TableHead>
+                </TableRow>
+            </TableHeader>
+            
+            <TableBody>
+                <TableRow v-for='item in filtered_array'>
+                    <TableCell class='font-medium'>{{ item.label }}</TableCell>
+                    <TableCell>{{ item.value }}</TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
+        
         <!--  Bar chart  -->
         <CardContent>
             <Bar
@@ -65,9 +82,11 @@
 </template>
 
 <script setup>
+    import { formatNumber } from '~/utils/formatUtils.js';
     import { Card, CardContent } from '~/components/ui/card/index.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import { Bar } from 'vue-chartjs';
+    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.js';
     
     const props = defineProps({
         mcap_dominance: {
@@ -79,8 +98,16 @@
     
     const btc_dominance = computed(() => mcap_dominance.value?.btc.toFixed(1));
     const eth_dominance = computed(() => mcap_dominance.value?.eth.toFixed(1));
-    const bnb_dominance = computed(() => mcap_dominance.value?.bnb.toFixed(1));
     const others_dominance = computed(() => (100 - btc_dominance.value - eth_dominance.value).toFixed(1));
+    
+    const filtered_array = Object.entries(mcap_dominance.value)
+        .filter(([key]) => key !== 'btc' && key !== 'eth')
+        .map(([key, value]) => ({
+            label: key.toUpperCase(),
+            value: formatNumber(value, {
+                style: 'percent', compact: true, decimals: 2,
+            })
+        }));
     
     const dataset = ref([
         {
