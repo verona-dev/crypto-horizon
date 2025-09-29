@@ -1,5 +1,5 @@
 <template>
-    <Card class='!w-fit bg-accent flex flex-col gap-4 shadow-2xl p-6'>
+    <Card class='!w-fit bg-accent-foreground flex flex-col gap-4 shadow-2xl p-6'>
         <div class='px-10 flex flex-col gap-10'>
             <!--  Title  -->
             <div class='mt-4 flex items-center gap-3'>
