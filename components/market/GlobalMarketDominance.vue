@@ -1,41 +1,67 @@
 <template>
-    <Card class='!w-2/3 bg-accent'>
-        <div class='flex items-center justify-center gap-3'>
-            <h3>Bitcoin Dominance</h3>
-            
-            <HoverCard :openDelay='200'>
-                <HoverCardTrigger class='info-icon'>
-                    <NuxtIcon
-                        name='radix-icons:info-circled'
-                        size='25'
-                        class='flex mt-2'
-                    />
-                </HoverCardTrigger>
-                <HoverCardContent class='hover-card-content flex-col gap-6'>
-                    <span>
-                        Bitcoin dominance is the market share of BTC compared against the rest of the crypto market.
-                        This metric allows traders to identify potential cryptocurrency market trends and
-                        decide on trading strategies. By measuring Bitcoin's proportion of the total market,
-                        traders and investors can better understand how the cryptocurrency market is performing and
-                        where it's headed.
-                    </span>
+    <Card class='!w-[600px] bg-accent flex flex-col gap-2'>
+        <div class='px-10 py-4 flex flex-col gap-6'>
+            <!--  Title  -->
+            <div class='flex items-center gap-3'>
+                <h3>Bitcoin Dominance</h3>
+                
+                <HoverCard :openDelay='200'>
+                    <HoverCardTrigger class='info-icon'>
+                        <NuxtIcon
+                            name='radix-icons:info-circled'
+                            size='25'
+                            class='flex mt-1'
+                        />
+                    </HoverCardTrigger>
                     
-                    <span>
-                        Specifically, BTC dominance represents the ratio of Bitcoin’s market capitalization to the
-                        global market cap of all cryptocurrencies, where market capitalization is the total value
-                        of the coins that are in circulation. Bitcoin dominance is calculated by dividing Bitcoin’s
-                        current market capitalization by the global crypto market cap.
-                    </span>
-                </HoverCardContent>
-            </HoverCard>
+                    <HoverCardContent class='hover-card-content flex-col gap-6'>
+                        <span>
+                            Bitcoin dominance is the market share of BTC compared against the rest of the crypto market.
+                            This metric allows traders to identify potential cryptocurrency market trends and
+                            decide on trading strategies. By measuring Bitcoin's proportion of the total market,
+                            traders and investors can better understand how the cryptocurrency market is performing and
+                            where it's headed.
+                        </span>
+                            
+                            <span>
+                            Specifically, BTC dominance represents the ratio of Bitcoin’s market capitalization to the
+                            global market cap of all cryptocurrencies, where market capitalization is the total value
+                            of the coins that are in circulation. Bitcoin dominance is calculated by dividing Bitcoin’s
+                            current market capitalization by the global crypto market cap.
+                        </span>
+                    </HoverCardContent>
+                </HoverCard>
+            </div>
+            
+            <!--  Legend  -->
+            <div class='flex gap-16'>
+                <div
+                    v-for='item in data'
+                    :key='item'
+                    class='flex flex-col items-center gap-2'
+                >
+                    <div class='flex items-center space-x-2'>
+                    <span
+                        class='w-3 h-3 rounded-full'
+                        :style='{ backgroundColor: item.backgroundColor }'
+                    />
+                        
+                        <span>{{ item.label }}</span>
+                    </div>
+                    
+                    <p class='text-3xl font-bold'>{{ item.data[0] }}%</p>
+                </div>
+            </div>
         </div>
+        
         <Separator />
         
+        <!--  Bar chart  -->
         <CardContent>
             <div class='w-full'>
                 <Bar
-                    :data='data'
-                    :options='options'
+                    :data='chartData'
+                    :options='chartOptions'
                 />
             </div>
         </CardContent>
@@ -44,10 +70,9 @@
 
 <script setup>
     import { Separator } from '~/components/ui/separator/index.js';
-    import { Card, CardContent, CardDescription } from '~/components/ui/card/index.js';
-    import { formatNumber } from '~/utils/formatUtils.js';
-    import { Bar } from 'vue-chartjs';
+    import { Card, CardContent } from '~/components/ui/card/index.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
+    import { Bar } from 'vue-chartjs';
     
     const props = defineProps({
         mcap_dominance: {
@@ -60,11 +85,11 @@
     const btc_dominance = computed(() => mcap_dominance.value?.btc.toFixed(1));
     const eth_dominance = computed(() => mcap_dominance.value?.eth.toFixed(1));
     const bnb_dominance = computed(() => mcap_dominance.value?.bnb.toFixed(1));
-    const others_dominance = computed(() => 100 - btc_dominance.value - eth_dominance.value);
+    const others_dominance = computed(() => (100 - btc_dominance.value - eth_dominance.value).toFixed(1));
     
-    const dominance_data = ref([
+    const data = ref([
         {
-            label: 'BTC',
+            label: 'Bitcoin',
             data: [btc_dominance.value],
             backgroundColor: '#fbbf24',
             borderRadius: { topLeft: 15, bottomLeft: 15 }
@@ -85,12 +110,12 @@
         }
     ]);
     
-    const data = {
+    const chartData = {
         labels: [''],
-        datasets: dominance_data.value,
+        datasets: data.value,
     };
     
-    const options = {
+    const chartOptions = {
         barThickness: 15,
         indexAxis: 'y',
         animation: {
@@ -120,12 +145,11 @@
         maintainAspectRatio: false,
         plugins: {
             legend: {
+                display: false,
                 position: 'top',
                 labels: {
                     usePointStyle: true,
                     pointStyle: 'circle',
-                    boxWidth: 30,
-                    padding: 30,
                 }
             },
             tooltip: {
@@ -143,3 +167,9 @@
         },
     };
 </script>
+
+<style scoped>
+    canvas {
+        height: 50px !important;
+    }
+</style>
