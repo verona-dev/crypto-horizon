@@ -1,5 +1,5 @@
 <template>
-    <Card class='!w-[600px] bg-accent flex flex-col gap-4'>
+    <Card class='!w-[600px] bg-accent flex flex-col gap-4 shadow-2xl'>
         <div class='px-10 flex flex-col gap-6'>
             <!--  Title  -->
             <div class='flex items-center gap-3'>
@@ -46,7 +46,7 @@
                         :style='{ backgroundColor: item.backgroundColor }'
                     />
                         
-                        <span>{{ item.label }}</span>
+                        <span class='text-muted-foreground'>{{ item.label }}</span>
                     </div>
                     
                     <p class='text-3xl font-bold'>{{ item.data[0] }}%</p>
@@ -98,7 +98,7 @@
         {
             label: 'Others',
             data: [others_dominance.value],
-            backgroundColor: '#9ca3af',
+            backgroundColor: '#66686b',
             borderRadius: {
                 topRight: 15, bottomRight: 15,
                 topLeft: 15, bottomLeft: 15,
