@@ -151,7 +151,7 @@
     const dataset = ref([
         {
             name: 'Bitcoin',
-            data: [btc.value.toFixed(2)],
+            data: [btc.value.toFixed(1)],
             label: btc_label.value,
             backgroundColor: '#fbbf24',
             borderRadius: { topLeft: 15, bottomLeft: 15 },
@@ -159,19 +159,19 @@
         },
         {
             name: 'Ethereum',
-            data: [eth.value.toFixed(2)],
+            data: [eth.value.toFixed(1)],
             label: eth_label.value,
             backgroundColor: '#3b82f6',
         },
         {
             name: 'Stablecoins',
-            data: [stablecoins.value.toFixed(2)],
+            data: [stablecoins.value.toFixed(1)],
             label: stablecoins_label.value,
             backgroundColor: '#2f9331',
         },
         {
             name: 'Others',
-            data: [others_dominance.value.toFixed(2)],
+            data: [others_dominance.value.toFixed(1)],
             label: others_dominance_label.value,
             backgroundColor: '#66686b',
             borderRadius: {
