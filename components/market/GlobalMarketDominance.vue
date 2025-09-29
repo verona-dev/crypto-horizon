@@ -57,7 +57,7 @@
                                 
                                 <NuxtIcon
                                     name='solar:list-line-duotone'
-                                    size='25'
+                                    size='20'
                                 />
                             </HoverCardTrigger>
                             
