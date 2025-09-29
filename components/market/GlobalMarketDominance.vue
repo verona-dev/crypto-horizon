@@ -1,6 +1,6 @@
 <template>
-    <Card class='!w-[600px] bg-accent flex flex-col gap-4 shadow-2xl'>
-        <div class='px-10 flex flex-col gap-6'>
+    <Card class='!w-fit bg-accent flex flex-col gap-4 shadow-2xl p-10'>
+        <div class='px-10 flex flex-col gap-10'>
             <!--  Title  -->
             <div class='flex items-center gap-3'>
                 <h3>Bitcoin Dominance</h3>
@@ -41,11 +41,13 @@
                     class='flex flex-col gap-2'
                 >
                     <div class='flex space-x-2 h-8'>
+                        <!--  Btc, Eth, Stablecoins  -->
                         <div v-if='!item.displayInfo' class='flex items-center space-x-2'>
                             <span class='w-4 h-4 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
-                            <span class='text-muted-foreground'>{{ item.label }}</span>
+                            <span class='text-muted-foreground'>{{ item.name }}</span>
                         </div>
                         
+                        <!--  Others  -->
                         <HoverCard
                             v-else
                             :openDelay='200'
@@ -53,7 +55,7 @@
                             <HoverCardTrigger class='flex items-center gap-2 text-muted-foreground'>
                                 <span class='w-4 h-4 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                                 
-                                <span>{{ item.label }}</span>
+                                <span>{{ item.name }}</span>
                                 
                                 <NuxtIcon
                                     name='solar:list-line-duotone'
@@ -61,9 +63,8 @@
                                 />
                             </HoverCardTrigger>
                             
-                            <!--  Others table  -->
                             <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !py-8 !px-12'>
-                                <h5>Other assets breakdown</h5>
+                                <p>Other assets breakdown</p>
                                 
                                 <Table class='w-60'>
                                     <TableHeader>
@@ -75,13 +76,8 @@
                                     
                                     <TableBody>
                                         <TableRow v-for='item in filtered_array'>
-                                            <TableCell class='font-medium '>{{ item.label }}</TableCell>
+                                            <TableCell class='font-medium '>{{ item.name }}</TableCell>
                                             <TableCell class='flex flex-col !items-end'>{{ item.value }}</TableCell>
-                                        </TableRow>
-                                        
-                                        <TableRow class='!border-t-2 !border-t-secondary'>
-                                            <TableCell>Total</TableCell>
-                                            <TableCell class='flex flex-col !items-end'>{{ others_dominance_label }}</TableCell>
                                         </TableRow>
                                     </TableBody>
                                 </Table>
@@ -89,7 +85,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='text-3xl font-bold'>{{ item.data[0] }}%</p>
+                    <p class='text-3xl font-bold'>{{ item.label }}</p>
                 </div>
             </div>
         </div>
@@ -117,39 +113,64 @@
         }
     });
     const { mcap_dominance } = toRefs(props);
+    console.log(JSON.parse(JSON.stringify(mcap_dominance.value)));
     
-    const btc_dominance = computed(() => mcap_dominance.value?.btc.toFixed(1));
-    const eth_dominance = computed(() => mcap_dominance.value?.eth.toFixed(1));
-    const others_dominance = computed(() => (100 - btc_dominance.value - eth_dominance.value).toFixed(1));
-    const others_dominance_label = formatNumber(others_dominance.value, {
-        style: 'percent', compact: true, decimals: 2,
-    });
+    const btc = computed(() => mcap_dominance.value?.btc);
+    const btc_label = computed(() => formatNumber(btc.value , {
+        style: 'percent', decimals: 1,
+    }));
+    const eth = computed(() => mcap_dominance.value?.eth);
+    const eth_label = computed(() => formatNumber(eth.value, {
+        style: 'percent', decimals: 1,
+    }));
+    const usdc = computed(() => mcap_dominance.value?.usdc);
+    const usdt = computed(() => mcap_dominance.value?.usdt);
+    const stablecoins = computed(() => usdc.value + usdt.value);
+    const stablecoins_label = computed(() => formatNumber(stablecoins.value, {
+        style: 'percent', decimals: 2,
+    }));
+    
+    
+    const others_dominance = computed(() => (100 - btc.value - eth.value - stablecoins.value));
+    const others_dominance_label = computed(() => formatNumber(others_dominance.value, {
+        style: 'percent', decimals: 2,
+    }));
+    console.log(others_dominance_label.value);
     
     const filtered_array = Object.entries(mcap_dominance.value)
-        .filter(([key]) => key !== 'btc' && key !== 'eth')
+        .filter(([key]) => key !== 'btc' && key !== 'eth' && key !== 'usdc' && key !== 'usdt')
         .map(([key, value]) => ({
-            label: key.toUpperCase(),
+            name: key.toUpperCase(),
             value: formatNumber(value, {
-                style: 'percent', compact: true, decimals: 2,
+                style: 'percent', decimals: 1,
             })
         }));
     
     const dataset = ref([
         {
-            label: 'Bitcoin',
-            data: [btc_dominance.value],
+            name: 'Bitcoin',
+            data: [btc.value.toFixed(2)],
+            label: btc_label.value,
             backgroundColor: '#fbbf24',
             borderRadius: { topLeft: 15, bottomLeft: 15 },
             borderSkipped: 'right',
         },
         {
-            label: 'Ethereum',
-            data: [eth_dominance.value],
+            name: 'Ethereum',
+            data: [eth.value.toFixed(2)],
+            label: eth_label.value,
             backgroundColor: '#3b82f6',
         },
         {
-            label: 'Others',
-            data: [others_dominance.value],
+            name: 'Stablecoins',
+            data: [stablecoins.value.toFixed(2)],
+            label: stablecoins_label.value,
+            backgroundColor: '#2f9331',
+        },
+        {
+            name: 'Others',
+            data: [others_dominance.value.toFixed(2)],
+            label: others_dominance_label.value,
             backgroundColor: '#66686b',
             borderRadius: {
                 topRight: 15, bottomRight: 15,
@@ -207,7 +228,7 @@
                 callbacks: {
                     title: () => '',
                     label: context => {
-                        const label = context.dataset.label || '';
+                        const label = context.dataset.name || '';
                         const value = context.parsed.x || context.parsed.y || 0;
                         return `${label}: ${value}%`;
                     }
@@ -220,7 +241,7 @@
 
 <style scoped>
     canvas {
-        height: 50px !important;
-        padding-right: 15px !important;
+        height: 75px !important;
+        padding-right: 20px !important;
     }
 </style>
