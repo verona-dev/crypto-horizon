@@ -38,11 +38,11 @@
                 <div
                     v-for='item in dataset'
                     :key='item'
-                    class='flex flex-col items-center gap-2'
+                    class='flex flex-col  gap-2'
                 >
-                    <div class='flex items-center space-x-2'>
+                    <div class='flex  space-x-2 w-8 h-8'>
                         <div v-if='!item.displayInfo' class='flex items-center space-x-2'>
-                            <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
+                            <span class='w-4 h-4 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                             <span class='text-muted-foreground'>{{ item.label }}</span>
                         </div>
                         
@@ -50,14 +50,13 @@
                             v-else
                             :openDelay='200'
                         >
-                            <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
-                            
-                            <HoverCardTrigger class='flex items-center gap-1 text-muted-foreground'>
+                            <HoverCardTrigger class='flex items-center gap-2 text-muted-foreground'>
+                                <span class='w-4 h-4 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                                 <span>{{ item.label }}</span>
                                 
                                 <NuxtIcon
-                                    name='fluent:caret-down-24-regular'
-                                    size='20'
+                                    name='solar:list-line-duotone'
+                                    size='25'
                                 />
                             </HoverCardTrigger>
                             
@@ -115,7 +114,6 @@
         }
     });
     const { mcap_dominance } = toRefs(props);
-    console.log(JSON.parse(JSON.stringify( mcap_dominance.value )));
     
     const btc_dominance = computed(() => mcap_dominance.value?.btc.toFixed(1));
     const eth_dominance = computed(() => mcap_dominance.value?.eth.toFixed(1));
