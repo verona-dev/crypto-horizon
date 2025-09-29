@@ -41,35 +41,56 @@
                     class='flex flex-col items-center gap-2'
                 >
                     <div class='flex items-center space-x-2'>
-                    <span
-                        class='w-3 h-3 rounded-full'
-                        :style='{ backgroundColor: item.backgroundColor }'
-                    />
+                        <div v-if='!item.displayInfo' class='flex items-center space-x-2'>
+                            <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
+                            <span class='text-muted-foreground'>{{ item.label }}</span>
+                        </div>
                         
-                        <span class='text-muted-foreground'>{{ item.label }}</span>
+                        <HoverCard
+                            v-else
+                            :openDelay='200'
+                        >
+                            <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
+                            
+                            <HoverCardTrigger class='flex items-center gap-1 text-muted-foreground'>
+                                <span>{{ item.label }}</span>
+                                
+                                <NuxtIcon
+                                    name='fluent:caret-down-24-regular'
+                                    size='20'
+                                />
+                            </HoverCardTrigger>
+                            
+                            <HoverCardContent class='hover-card-content'>
+                                <!--  Others table  -->
+                                <Table class='w-40 mx-auto'>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead>Asset</TableHead>
+                                            <TableHead>Today</TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    
+                                    <TableBody>
+                                        <TableRow v-for='item in filtered_array'>
+                                            <TableCell class='font-medium'>{{ item.label }}</TableCell>
+                                            <TableCell>{{ item.value }}</TableCell>
+                                        </TableRow>
+                                        
+                                        <TableRow v-if='others_dominance_label' class='border-t-2 border-t-red-500'>
+                                            <TableCell class='border-t-2 border-t-secondary'>Total</TableCell>
+                                            <TableCell class='border-t-2 border-t-secondary'>{{ others_dominance_label }}</TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                </Table>
+                            </HoverCardContent>
+                        </HoverCard>
                     </div>
                     
                     <p class='text-3xl font-bold'>{{ item.data[0] }}%</p>
                 </div>
             </div>
         </div>
-        
-        <!--  Others table  -->
-        <Table class='w-40 mx-auto'>
-            <TableHeader>
-                <TableRow>
-                    <TableHead>Asset</TableHead>
-                    <TableHead>Value</TableHead>
-                </TableRow>
-            </TableHeader>
-            
-            <TableBody>
-                <TableRow v-for='item in filtered_array'>
-                    <TableCell class='font-medium'>{{ item.label }}</TableCell>
-                    <TableCell>{{ item.value }}</TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
         
         <!--  Bar chart  -->
         <CardContent>
@@ -99,6 +120,9 @@
     const btc_dominance = computed(() => mcap_dominance.value?.btc.toFixed(1));
     const eth_dominance = computed(() => mcap_dominance.value?.eth.toFixed(1));
     const others_dominance = computed(() => (100 - btc_dominance.value - eth_dominance.value).toFixed(1));
+    const others_dominance_label = formatNumber(others_dominance.value, {
+        style: 'percent', compact: true, decimals: 2,
+    });
     
     const filtered_array = Object.entries(mcap_dominance.value)
         .filter(([key]) => key !== 'btc' && key !== 'eth')
@@ -130,7 +154,8 @@
                 topRight: 15, bottomRight: 15,
                 topLeft: 15, bottomLeft: 15,
                 borderSkipped: 'left',
-            }
+            },
+            displayInfo: true,
         }
     ]);
     
