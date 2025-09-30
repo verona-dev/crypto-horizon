@@ -27,7 +27,7 @@
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
-    const { globalMarket, globalDefi } = storeToRefs(MarketStore);
+    const { globalMarket } = storeToRefs(MarketStore);
     const { getCoingeckoGlobalMarket } = MarketStore;
     const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage);
     const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY, HH:mm[h]'));
