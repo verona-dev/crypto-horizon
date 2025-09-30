@@ -38,6 +38,7 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         loading: false,
         globalMarket: {},
+        globalDefi: {},
     }),
     
     actions: {
@@ -57,10 +58,17 @@ export const useMarketStore = defineStore('MarketStore', {
             this.loading = true;
             
             try {
-                const response = await useFetchCoingecko('global');
+                const [ marketResponse, defiResponse ] = await Promise.all([
+                    useFetchCoingecko('global'),
+                    useFetchCoingecko('global/decentralized_finance_defi')
+                ]);
                 
-                if(response && response.data) {
-                    this.globalMarket = response.data;
+                if(marketResponse && marketResponse.data) {
+                    this.globalMarket = marketResponse.data;
+                }
+                
+                if(defiResponse && defiResponse.data) {
+                    this.globalDefi = defiResponse.data;
                 }
             } catch(error) {
                 console.error(error);
@@ -91,7 +99,7 @@ export const useMarketStore = defineStore('MarketStore', {
             this.loading = true;
             
             try {
-                const [coinResponse, chartResponse] = await Promise.all([
+                const [ coinResponse, chartResponse ] = await Promise.all([
                     useFetchCoingecko(`coins/${coinId}`),
                     useFetchCoingecko(`coins/${coinId}/market_chart`, {
                         query: {
@@ -119,7 +127,6 @@ export const useMarketStore = defineStore('MarketStore', {
         
         async setTimeframe(timeframe) {
             this.coin.timeframe = timeframe;
-            // console.log(this.getRange);
         },
         
         async getCoingeckoCoinChart() {
