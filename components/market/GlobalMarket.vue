@@ -1,83 +1,12 @@
-<script setup>
-    import { formatNumber } from '~/utils/formatUtils.js';
-    import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
-    import dayjs from 'dayjs';
-    import relativeTime from 'dayjs/plugin/relativeTime';
-    dayjs.extend(relativeTime);
-    import GlobalMarketDominance from '~/components/market/GlobalMarketDominance.vue';
-    
-    import {
-        Card,
-        CardContent,
-        CardDescription,
-    } from '~/components/ui/card/index.js';
-    import { Separator } from '~/components/ui/separator/index.js';
-    import { Badge } from '@/components/ui/badge';
-    
-    import { storeToRefs } from 'pinia';
-    import { useMarketStore } from '~/stores/MarketStore.js';
-    const MarketStore = useMarketStore();
-    
-    const { globalMarket } = storeToRefs(MarketStore);
-    const { getCoingeckoGlobalMarket } = MarketStore;
-    
-    const active_cryptocurrencies = computed(() => formatNumber(globalMarket.value?.active_cryptocurrencies, {
-        style: 'decimal', decimals: 0,
-    }));
-    const markets = computed(() => globalMarket.value?.markets);
-    
-    const mcap_total = computed(() => globalMarket.value?.total_market_cap?.usd);
-    const mcap_total_label =  computed(() => formatNumber(mcap_total.value, {
-        compact: true, decimals: 2
-    }));
-    const mcap_change = computed(() => globalMarket.value?.market_cap_change_percentage_24h_usd);
-    const mcap_change_label = computed(() => formatNumber(mcap_change.value, {
-        style: 'percent', compact: true, decimals: 2
-    }));
-    const mcap_change_class = computed(() => getTextColorClass(mcap_change.value));
-    const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage);
-    
-    const total_volume = computed(() => globalMarket.value?.total_volume?.usd);
-    const total_volume_label = computed(() => formatNumber(total_volume.value, {
-        compact: true, decimals: 2
-    }));
-    
-    const ended_icos = computed(() => globalMarket.value?.ended_icos);
-    const ongoing_icos = computed(() => globalMarket.value?.ongoing_icos);
-    const upcoming_icos = computed(() => globalMarket.value?.upcoming_icos);
-    
-    const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY, HH:mm[h]'));
-    
-    const data = computed(() => [
-        {
-            label: 'Coins',
-            value: active_cryptocurrencies.value || '-',
-        },
-        {
-            label: 'Exchanges',
-            value: markets.value || '-',
-        },
-        {
-            label: 'Market Cap',
-            value: mcap_total.value || '-',
-            value_formatted : mcap_total_label.value,
-            trend: mcap_change_label || '-',
-        },
-    
-    ]);
-    
-    onMounted(() => getCoingeckoGlobalMarket());
-</script>
-
 <template>
     <!--  Global Market  -->
-    <Card class='!w-full bg-accent-foreground flex flex-row items-center gap-0'>
+    <Card class='!w-fit bg-accent-foreground mx-40 flex flex-row items-center gap-0'>
         <CardContent
             v-for='item in data'
             :key='item.label'
             class='flex items-center gap-2'
         >
-            <p class='text-xs'>{{ item.label }}&#58;</p>
+            <p class='text-sm'>{{ item.label }}&#58;</p>
             
             <p v-if='item.value_formatted' class='font-bold text-sm'>{{ item.value_formatted }}</p>
             <p v-else class='font-bold text-sm'>{{ item.value }}</p>
@@ -178,6 +107,82 @@
     
     <h6>Data updated at {{ updated_at }}</h6>
 </template>
+
+<script setup>
+    import { formatNumber } from '~/utils/formatUtils.js';
+    import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
+    import dayjs from 'dayjs';
+    import relativeTime from 'dayjs/plugin/relativeTime';
+    dayjs.extend(relativeTime);
+    import GlobalMarketDominance from '~/components/market/GlobalMarketDominance.vue';
+    
+    import {
+        Card,
+        CardContent,
+        CardDescription,
+    } from '~/components/ui/card/index.js';
+    import { Separator } from '~/components/ui/separator/index.js';
+    import { Badge } from '@/components/ui/badge';
+    
+    import { storeToRefs } from 'pinia';
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    const MarketStore = useMarketStore();
+    
+    const { globalMarket } = storeToRefs(MarketStore);
+    const { getCoingeckoGlobalMarket } = MarketStore;
+    
+    const active_cryptocurrencies = computed(() => formatNumber(globalMarket.value?.active_cryptocurrencies, {
+        style: 'decimal', decimals: 0,
+    }));
+    const markets = computed(() => globalMarket.value?.markets);
+    
+    const mcap_total = computed(() => globalMarket.value?.total_market_cap?.usd);
+    const mcap_total_label =  computed(() => formatNumber(mcap_total.value, {
+        compact: true, decimals: 2
+    }));
+    const mcap_change = computed(() => globalMarket.value?.market_cap_change_percentage_24h_usd);
+    const mcap_change_label = computed(() => formatNumber(mcap_change.value, {
+        style: 'percent', compact: true, decimals: 2
+    }));
+    const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage);
+    
+    const total_volume = computed(() => globalMarket.value?.total_volume?.usd);
+    const total_volume_label = computed(() => formatNumber(total_volume.value, {
+        compact: true, decimals: 2
+    }));
+    console.log(total_volume.value);
+    console.log(total_volume_label.value);
+    
+    const ended_icos = computed(() => globalMarket.value?.ended_icos);
+    const ongoing_icos = computed(() => globalMarket.value?.ongoing_icos);
+    const upcoming_icos = computed(() => globalMarket.value?.upcoming_icos);
+    
+    const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY, HH:mm[h]'));
+    
+    const data = computed(() => [
+        {
+            label: 'Coins',
+            value: active_cryptocurrencies.value || '-',
+        },
+        {
+            label: 'Exchanges',
+            value: markets.value || '-',
+        },
+        {
+            label: 'Market Cap',
+            value: mcap_total.value || '-',
+            value_formatted : mcap_total_label.value,
+            trend: mcap_change_label || '-',
+        },
+        {
+            label: '24h Volume',
+            value: total_volume.value || '-',
+            value_formatted : total_volume_label.value,
+        },
+    ]);
+    
+    onMounted(() => getCoingeckoGlobalMarket());
+</script>
 
 <style scoped>
     [data-slot='card'] {
