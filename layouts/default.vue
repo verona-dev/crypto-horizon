@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class='md:pr-16'>
         <SidebarProvider :default-open='false'>
             <AppSidebar />
             
-            <SidebarInset class='my-28 md:my-0 px-20 md:px-32'>
+            <SidebarInset class='my-28 md:my-0'>
 <!--                <Breadcrumb />-->
                 
                 <!--  Mobile Trigger  -->
