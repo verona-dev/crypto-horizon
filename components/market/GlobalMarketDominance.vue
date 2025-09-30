@@ -123,11 +123,11 @@
     const { mcapDominance, updatedAt } = toRefs(props);
     const btc = computed(() => mcapDominance.value?.btc);
     const btc_label = computed(() => formatNumber(btc.value , {
-        style: 'percent', decimals: 1,
+        style: 'percent', decimals: 2,
     }));
     const eth = computed(() => mcapDominance.value?.eth);
     const eth_label = computed(() => formatNumber(eth.value, {
-        style: 'percent', decimals: 1,
+        style: 'percent', decimals: 2,
     }));
     const usdc = computed(() => mcapDominance.value?.usdc);
     const usdt = computed(() => mcapDominance.value?.usdt);
@@ -145,14 +145,16 @@
         .map(([key, value]) => ({
             name: key.toUpperCase(),
             value: formatNumber(value, {
-                style: 'percent', decimals: 1,
+                style: 'percent', decimals: 2,
             })
         }));
     
     const dataset = ref([
         {
             name: 'Bitcoin',
-            data: [btc.value.toFixed(1)],
+            data: [formatNumber(btc.value, {
+                style: 'decimal', decimals: 2
+            })],
             label: btc_label.value,
             backgroundColor: '#fbbf24',
             borderRadius: { topLeft: 15, bottomLeft: 15 },
@@ -160,19 +162,25 @@
         },
         {
             name: 'Ethereum',
-            data: [eth.value.toFixed(1)],
+            data: [formatNumber(eth.value, {
+                 style: 'decimal', decimals: 2
+            })],
             label: eth_label.value,
             backgroundColor: '#3b82f6',
         },
         {
             name: 'Stablecoins',
-            data: [stablecoins.value.toFixed(1)],
+            data: [formatNumber(stablecoins.value, {
+                style: 'decimal', decimals: 2
+            })],
             label: stablecoins_label.value,
             backgroundColor: '#2f9331',
         },
         {
             name: 'Others',
-            data: [others_dominance.value.toFixed(1)],
+            data: [formatNumber(others_dominance.value, {
+                style: 'decimal', decimals: 2
+            })],
             label: others_dominance_label.value,
             backgroundColor: '#66686b',
             borderRadius: {
