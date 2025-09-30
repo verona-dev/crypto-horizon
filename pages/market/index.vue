@@ -2,6 +2,8 @@
     <div class='market flex flex-col items-center justify-center gap-16'>
         <GlobalMarket />
         
+        <GlobalDefi />
+        
         <GlobalMarketDominance
             v-if='mcap_dominance'
             :mcap-dominance='mcap_dominance'
@@ -17,6 +19,7 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime);
     import GlobalMarket from '~/components/market/GlobalMarket.vue';
+    import GlobalDefi from '~/components/market/GlobalDefi.vue';
     import CoinsTable from '~/components/market/CoinsTable.vue';
     import GlobalMarketDominance from '~/components/market/GlobalMarketDominance.vue';
     
@@ -24,7 +27,7 @@
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
-    const { globalMarket } = storeToRefs(MarketStore);
+    const { globalMarket, globalDefi } = storeToRefs(MarketStore);
     const { getCoingeckoGlobalMarket } = MarketStore;
     const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage);
     const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY, HH:mm[h]'));
