@@ -1,7 +1,18 @@
 <template>
+    <!--  Global Market  -->
+    <Card class='!w-full'>
+        <CardContent class='flex items-center gap-2'>
+            <p>Coins:</p>
+            <p v-if='active_cryptocurrencies' class='font-bold'>{{ active_cryptocurrencies }}</p>
+            <span v-else>&#8208;</span>
+        </CardContent>
+    </Card>
+    
+    
     <!--  Assets + Markets  -->
+<!--
     <Card>
-        <!--  Assets  -->
+        &lt;!&ndash;  Assets  &ndash;&gt;
         <h3 class='text-center'>Assets</h3>
         <Separator />
         
@@ -11,7 +22,7 @@
             <span v-else>&#8208;</span>
         </CardContent>
         
-        <!--  Markets  -->
+        &lt;!&ndash;  Markets  &ndash;&gt;
         <h3 class='text-center'>Markets</h3>
         <Separator />
         
@@ -22,7 +33,7 @@
         </CardContent>
     </Card>
     
-    <!--  Market Cap  -->
+    &lt;!&ndash;  Market Cap  &ndash;&gt;
     <Card>
         <h3 class='text-center'>Market Cap</h3>
         <Separator />
@@ -40,7 +51,7 @@
         </CardContent>
     </Card>
     
-    <!--  Volume  -->
+    &lt;!&ndash;  Volume  &ndash;&gt;
     <Card>
         <h3 class='text-center'>Volume</h3>
         <Separator />
@@ -51,7 +62,7 @@
             <span v-else>&#8208;</span>
         </CardContent>
         
-        <!--  Ico  -->
+        &lt;!&ndash;  Ico  &ndash;&gt;
         <h3 class='text-center'>ICO</h3>
         <Separator />
         
@@ -72,6 +83,7 @@
             <p>{{ upcoming_icos }}</p>
         </CardContent>
     </Card>
+    -->
     
     <!--  Market Cap  Dominance  -->
     <GlobalMarketDominance
@@ -104,7 +116,9 @@
     const { globalMarket } = storeToRefs(MarketStore);
     const { getCoingeckoGlobalMarket } = MarketStore;
     
-    const active_cryptocurrencies = computed(() => globalMarket.value?.active_cryptocurrencies);
+    const active_cryptocurrencies = computed(() => formatNumber(globalMarket.value?.active_cryptocurrencies, {
+        style: 'decimal', decimals: 0,
+    }));
     const markets = computed(() => globalMarket.value?.markets);
     
     const mcap_total = computed(() => globalMarket.value?.total_market_cap?.usd);
