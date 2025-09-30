@@ -1,5 +1,5 @@
 <template>
-    <div class='market flex flex-col items-center justify-center'>
+    <div class='market flex flex-col items-center justify-center gap-24'>
         <GlobalMarket />
         
         <GlobalMarketDominance
