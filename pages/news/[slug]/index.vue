@@ -233,8 +233,9 @@
     
     watch(body_formatted, (newVal) => {
         if (newVal && newVal.length > 0) {
+            const joined = newVal.join(' ');
             const { duration } = useReadingTime({
-                content: newVal,
+                content: joined,
             });
             reading_duration.value = duration.value;
         }
