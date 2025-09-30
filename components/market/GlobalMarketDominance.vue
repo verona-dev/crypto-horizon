@@ -41,10 +41,48 @@
                     class='flex flex-col gap-2'
                 >
                     <div class='flex space-x-2 h-8'>
-                        <!--  Btc, Eth, Stablecoins  -->
-                        <div v-if='!item.displayInfo' class='flex items-center space-x-2'>
+                        <!--  Btc, Eth  -->
+                        <div v-if='!item.displayInfo && !item.stablecoins' class='flex items-center space-x-2'>
                             <span class='w-4 h-4 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                             <span class='text-muted-foreground'>{{ item.name }}</span>
+                        </div>
+                        
+                        <!--  Stablecoins  -->
+                        <div v-else-if='!item.displayInfo && item.stablecoins' class='flex items-center space-x-2'>
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='flex items-center gap-2 text-muted-foreground'>
+                                    <span class='w-4 h-4 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
+                                    
+                                    <span class='text-muted-foreground'>{{ item.name }}</span>
+                                    
+                                    <NuxtIcon
+                                        name='solar:list-line-duotone'
+                                        size='20'
+                                    />
+                                </HoverCardTrigger>
+                                
+                                <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !p-8'>
+                                    <p class='underline'>Stablecoins</p>
+                                    
+                                    <Table class='w-60'>
+                                        <TableCaption class='text-xs'>Minor values not included.</TableCaption>
+                                        
+                                        <TableHeader>
+                                            <TableRow>
+                                                <TableHead>Asset</TableHead>
+                                                <TableHead class='flex flex-col justify-center !items-end'>Today</TableHead>
+                                            </TableRow>
+                                        </TableHeader>
+                                        
+                                        <TableBody>
+                                            <TableRow v-for='item in filtered_array'>
+                                                <TableCell class='font-medium '>{{ item.name }}</TableCell>
+                                                <TableCell class='flex flex-col !items-end'>{{ item.value }}</TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                    </Table>
+                                </HoverCardContent>
+                            </HoverCard>
                         </div>
                         
                         <!--  Others  -->
@@ -175,6 +213,7 @@
             })],
             label: stablecoins_label.value,
             backgroundColor: '#2f9331',
+            stablecoins: true,
         },
         {
             name: 'Others',
