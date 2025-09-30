@@ -34,8 +34,6 @@
     const mcap_change_label = computed(() => formatNumber(mcap_change.value, {
         style: 'percent', compact: true, decimals: 2
     }));
-    console.log(mcap_change.value);
-    console.log(mcap_change_label.value);
     const mcap_change_class = computed(() => getTextColorClass(mcap_change.value));
     const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage);
     
@@ -79,12 +77,12 @@
             :key='item.label'
             class='flex items-center gap-2'
         >
-            <p>{{ item.label }}&#58;</p>
+            <p class='text-xs'>{{ item.label }}&#58;</p>
             
-            <p v-if='item.value_formatted' class='font-bold'>{{ item.value_formatted }}</p>
-            <p v-else>{{ item.value }}</p>
+            <p v-if='item.value_formatted' class='font-bold text-sm'>{{ item.value_formatted }}</p>
+            <p v-else class='font-bold text-sm'>{{ item.value }}</p>
             
-            <Badge v-if='item.trend' variant='outline'>
+            <Badge v-if='item.trend' variant='outline' class='border-ring rounded-2xl pl-2 pr-3 py-1 ml-1'>
                 <NuxtIcon
                     :name='getTrendIcon(item.value)'
                     size='20'
