@@ -54,15 +54,18 @@
             
             <!--  Range  -->
             <Tabs v-model='timeframe'>
-                <TabsList class='gap-x-0.5'>
+                <TabsList class='gap-x-0.5 dark:bg-background'>
                     <TabsTrigger
                         v-for='range in ranges'
                         :key='range.timeframe'
                         :value='range.timeframe'
                         class='py-4 px-4
-                               dark:data-[state=active]:bg-tertiary dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-md
+                        dark:bg-background
+                               dark:data-[state=active]:text-sky dark:data-[state=active]:bg-background
+                               dark:text-muted-foreground dark:hover:text-sky
+                               rounded-2xl
                                focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                               w-12
                         '
                     >
                         {{ range.label.toUpperCase() }}
