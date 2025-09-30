@@ -194,9 +194,6 @@
             })
         }));
     
-    console.log(stablecoins_array);
-    
-    
     const dataset = ref([
         {
             name: 'Bitcoin',
