@@ -1,198 +1,98 @@
 <template>
-    <!--  Assets + Markets  -->
-    <div class='slide'>
-        <Card class='card'>
-            <!--  Assets  -->
-            <h3 class='text-center'>Assets</h3>
-            <Separator />
+    <Card class='!w-screen bg-accent-foreground flex flex-row justify-center items-center shadow-2xl gap-12 py-5 !m-0' v-if='globalMarket'>
+        <CardContent
+            v-for='item in data'
+            :key='item.label'
+            class='flex items-center gap-2 p-0'
+        >
+            <p class='text-xs'>{{ item.label }}&#58;</p>
             
-            <CardContent class='mb-8'>
-                <CardDescription>Total number of coins</CardDescription>
-                <p v-if='coins_count'>{{ coins_count }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
+            <p v-if='item.value_formatted' class='font-bold text-xs'>{{ item.value_formatted }}</p>
+            <p v-else class='font-bold text-xs'>{{ item.value }}</p>
             
-            <!--  Markets  -->
-            <h3 class='text-center'>Markets</h3>
-            <Separator />
-            
-            <CardContent>
-                <CardDescription>Total exchange pairs</CardDescription>
-                <p v-if='active_markets'>{{ active_markets }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
-        </Card>
-    </div>
-    
-    <!--  Market Cap  -->
-    <div class='slide'>
-        <Card class='card'>
-            <h3 class='text-center'>Market Cap</h3>
-            <Separator />
-            
-            <CardContent>
-                <CardDescription>Total crypto market cap</CardDescription>
-                <p v-if='mcap_total'>{{ mcap_total_label }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
-            
-            <CardContent>
-                <CardDescription>ATH total market cap</CardDescription>
-                <p v-if='mcap_ath'>{{ mcap_ath_label }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
-            
-            <CardContent>
-                <CardDescription>Change for last 24h</CardDescription>
-                <p v-if='!!mcap_change' :class='mcap_change_class'>{{ mcap_change_label }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
-        </Card>
-    </div>
-    
-    <!--  Volume  -->
-    <div class='slide'>
-        <Card class='card'>
-            <h3 class='text-center'>Volume</h3>
-            <Separator />
-            
-            <CardContent>
-                <CardDescription>Total trading volume for last 24h</CardDescription>
-                <p v-if='total_volume'>{{ total_volume_label }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
-            
-            <CardContent>
-                <CardDescription>ATH total trading volume</CardDescription>
-                <p v-if='volume_ath'>{{ volume_ath_label }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
-            
-            <CardContent>
-                <CardDescription>Change for last 24h</CardDescription>
-                <p v-if='!!volume_change' :class='volume_change_class'>{{ volume_change_label }}</p>
-                <span v-else>&#8208;</span>
-            </CardContent>
-        </Card>
-    </div>
-    
-    <!--  Dominance  -->
-    <div class='slide'>
-        <Card class='card'>
-            <h3 class='text-center'>Dominance</h3>
-            <Separator />
-            
-            <CardContent>
-                <NuxtLink
-                    to='/market/bitcoin'
-                    class='flex items-center'
-                >
-                    <NuxtIcon
-                        name='token-branded:btc'
-                        size='70'
-                        class='mr-4 mb-1'
-                    />
-                    
-                    <div class='flex flex-col items-start'>
-                        <CardDescription class='text-left'>
-                            BTC Dominance Index
-                        </CardDescription>
-                        
-                        <p v-if='!!btc_dominance'>{{ btc_dominance }}&#37;</p>
-                        <span v-else>&#8208;</span>
-                    </div>
-                </NuxtLink>
-            </CardContent>
-            
-            <CardContent>
-                <NuxtLink
-                    to='/market/ethereum'
-                    class='flex items-center'
-                >
-                    <NuxtIcon
-                        name='token-branded:eth'
-                        size='70'
-                        class='mr-4'
-                    />
-                    
-                    <div class='flex flex-col items-start'>
-                        <CardDescription class='text-left'>
-                            ETH Dominance Index
-                        </CardDescription>
-                        
-                        <p v-if='!!eth_dominance'>{{ eth_dominance }}&#37;</p>
-                        <span v-else>&#8208;</span>
-                    </div>
-                </NuxtLink>
-            </CardContent>
-        </Card>
-    </div>
+            <Badge v-if='item.trend' variant='outline' class='border-ring rounded-2xl pl-2 pr-3 py-1 ml-1'>
+                <NuxtIcon
+                    :name='getTrendIcon(item.value)'
+                    size='15'
+                    :class='getTextColorClass(item.trend)'
+                />
+                
+                {{ item.trend }}
+            </Badge>
+        </CardContent>
+    </Card>
 </template>
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
-    import { getTextColorClass } from '~/utils/styleUtils.js';
+    import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
+    import dayjs from 'dayjs';
+    import relativeTime from 'dayjs/plugin/relativeTime';
+    dayjs.extend(relativeTime);
     
     import {
         Card,
         CardContent,
-        CardDescription,
     } from '~/components/ui/card/index.js';
-    import { Separator } from '~/components/ui/separator/index.js';
+    import { Badge } from '@/components/ui/badge';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
-    const { marketOverview } = storeToRefs(MarketStore);
-    const { getCoinLore } = MarketStore;
+    const { globalMarket } = storeToRefs(MarketStore);
     
-    const active_markets = computed(() => marketOverview.value?.active_markets);
-    const coins_count = computed(() => marketOverview.value?.coins_count);
-    const btc_dominance = computed(() => marketOverview.value?.btc_d);
-    const eth_dominance = computed(() => marketOverview.value?.eth_d);
+    const active_cryptocurrencies = computed(() => formatNumber(globalMarket.value?.active_cryptocurrencies, {
+        style: 'decimal', decimals: 0,
+    }));
+    const markets = computed(() => globalMarket.value?.markets);
     
-    const mcap_total = computed(() => marketOverview.value?.total_mcap);
+    const mcap_total = computed(() => globalMarket.value?.total_market_cap?.usd);
     const mcap_total_label =  computed(() => formatNumber(mcap_total.value, {
         compact: true, decimals: 2
     }));
-    const mcap_ath = computed(() => marketOverview.value?.mcap_ath);
-    const mcap_ath_label = computed(() => formatNumber(mcap_ath.value, {
-        compact: true, decimals: 2
-    }));
-    const mcap_change = computed(() => marketOverview.value?.mcap_change);
+    const mcap_change = computed(() => globalMarket.value?.market_cap_change_percentage_24h_usd);
     const mcap_change_label = computed(() => formatNumber(mcap_change.value, {
         style: 'percent', compact: true, decimals: 2
     }));
-    const mcap_change_class = computed(() => getTextColorClass(mcap_change.value));
     
-    const total_volume = computed(() => marketOverview.value?.total_volume);
+    const total_volume = computed(() => globalMarket.value?.total_volume?.usd);
     const total_volume_label = computed(() => formatNumber(total_volume.value, {
         compact: true, decimals: 2
     }));
-    const volume_ath = computed(() => marketOverview.value?.volume_ath);
-    const volume_ath_label = computed(() => formatNumber(volume_ath.value, { compact: true }));
-    const volume_change = computed(() => marketOverview.value?.volume_change);
-    const volume_change_label = computed(() => formatNumber(volume_change.value, {
-        style: 'percent', compact: true, decimals: 2
-    }));
-    const volume_change_class = computed(() => getTextColorClass(volume_change.value));
     
-    onMounted(() => getCoinLore('global'));
+    const ongoing_icos = computed(() => globalMarket.value?.ongoing_icos);
+    
+    const data = computed(() => [
+        {
+            label: 'Coins',
+            value: active_cryptocurrencies.value || '-',
+        },
+        {
+            label: 'Exchanges',
+            value: markets.value || '-',
+        },
+        {
+            label: 'Market Cap',
+            value: mcap_total.value || '-',
+            value_formatted : mcap_total_label.value,
+            trend: mcap_change_label || '-',
+        },
+        {
+            label: '24h Volume',
+            value: total_volume.value || '-',
+            value_formatted : total_volume_label.value,
+        },
+        {
+            label: 'Ongoing ICO',
+            value: ongoing_icos.value || '-',
+        },
+    ]);
 </script>
 
 <style scoped>
-    .slide {
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        height: 100%;
-        width: 75%;
-    }
-    
-    .card {
-        border-color: var(--card-border);
-        min-height: 475px;
-        width: 425px;
+    [data-slot='card'] {
+        margin: 20px !important;
+        width: 400px;
     }
 </style>
