@@ -1,6 +1,7 @@
 <template>
     <div class='market'>
         <!--  Hero Image  -->
+        <!--
         <div class='hero-container w-screen'>
             <NuxtImg
                 src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757866406/GettyImages-471296532-c-db7bc08_edtsqo.webp'
@@ -22,6 +23,7 @@
                 />
             </NuxtImg>
         </div>
+        -->
         
         <!--  Ending Slide  -->
         <div class='flex flex-col items-center justify-center'>
