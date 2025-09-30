@@ -68,19 +68,13 @@
     const mcap_change_label = computed(() => formatNumber(mcap_change.value, {
         style: 'percent', compact: true, decimals: 2
     }));
-    
     const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage);
-    const btc_dominance = computed(() => mcap_dominance.value?.btc);
-    const btc_dominance_label = computed(() => formatNumber(btc_dominance.value , {
-        style: 'percent'
-    }));
     
     const total_volume = computed(() => globalMarket.value?.total_volume?.usd);
     const total_volume_label = computed(() => formatNumber(total_volume.value, {
         compact: true, decimals: 2
     }));
     
-    const ended_icos = computed(() => globalMarket.value?.ended_icos);
     const ongoing_icos = computed(() => globalMarket.value?.ongoing_icos);
     const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY, HH:mm[h]'));
     
@@ -105,17 +99,8 @@
             value_formatted : total_volume_label.value,
         },
         {
-            label: 'Dominance',
-            value: btc_dominance.value || '-',
-            value_formatted : `BTC ${btc_dominance_label.value}`,
-        },
-        {
             label: 'Ongoing ICO',
             value: ongoing_icos.value || '-',
-        },
-        {
-            label: 'Ended ICO',
-            value: ended_icos.value || '-',
         },
     ]);
     
