@@ -1,9 +1,9 @@
 <template>
-    <Card class='!w-full bg-accent-foreground flex flex-row justify-center items-center shadow-2xl gap-0 py-5 !m-0' v-if='globalMarket'>
+    <Card class='!w-screen bg-accent-foreground flex flex-row justify-center items-center shadow-2xl gap-12 py-5 !m-0' v-if='globalMarket'>
         <CardContent
             v-for='item in data'
             :key='item.label'
-            class='flex items-center gap-2'
+            class='flex items-center gap-2 p-0'
         >
             <p class='text-xs'>{{ item.label }}&#58;</p>
             
