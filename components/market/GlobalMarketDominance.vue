@@ -62,7 +62,7 @@
                                 </HoverCardTrigger>
                                 
                                 <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !p-8'>
-                                    <p class='underline'>Stablecoins Breakdown</p>
+                                    <p class='underline'>Stablecoins</p>
                                     
                                     <Table class='w-60'>
                                         <TableHeader>
@@ -100,7 +100,7 @@
                             </HoverCardTrigger>
                             
                             <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !p-8'>
-                                <p class='underline'>Other Assets Breakdown</p>
+                                <p class='underline'>Other Assets</p>
                                 
                                 <Table class='w-60'>
                                     <TableCaption class='text-xs'>Minor values not included.</TableCaption>
