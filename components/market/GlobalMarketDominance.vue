@@ -1,5 +1,5 @@
 <template>
-    <Card class='!w-fit bg-accent-foreground flex flex-col gap-4 shadow-2xl p-6'>
+    <Card class='!w-screen bg-accent-foreground flex flex-col gap-4 shadow-2xl p-6'>
         <div class='px-10 flex flex-col gap-10'>
             <!--  Title  -->
             <div class='mt-4 flex items-center gap-3'>
@@ -99,6 +99,8 @@
                 :options='chartOptions'
             />
         </CardContent>
+        
+        <p class='text-xs self-center'>Coingecko data updated at {{ updatedAt }}</p>
     </Card>
 </template>
 
@@ -110,22 +112,25 @@
     import { Table, TableBody, TableCell, TableRow, TableCaption } from '~/components/ui/table/index.js';
     
     const props = defineProps({
-        mcap_dominance: {
+        mcapDominance: {
+            type: Object,
+        },
+        updatedAt: {
             type: Object,
         }
     });
     
-    const { mcap_dominance } = toRefs(props);
-    const btc = computed(() => mcap_dominance.value?.btc);
+    const { mcapDominance, updatedAt } = toRefs(props);
+    const btc = computed(() => mcapDominance.value?.btc);
     const btc_label = computed(() => formatNumber(btc.value , {
         style: 'percent', decimals: 1,
     }));
-    const eth = computed(() => mcap_dominance.value?.eth);
+    const eth = computed(() => mcapDominance.value?.eth);
     const eth_label = computed(() => formatNumber(eth.value, {
         style: 'percent', decimals: 1,
     }));
-    const usdc = computed(() => mcap_dominance.value?.usdc);
-    const usdt = computed(() => mcap_dominance.value?.usdt);
+    const usdc = computed(() => mcapDominance.value?.usdc);
+    const usdt = computed(() => mcapDominance.value?.usdt);
     const stablecoins = computed(() => usdc.value + usdt.value);
     const stablecoins_label = computed(() => formatNumber(stablecoins.value, {
         style: 'percent', decimals: 2,
@@ -135,7 +140,7 @@
         style: 'percent', decimals: 2,
     }));
     
-    const filtered_array = Object.entries(mcap_dominance.value)
+    const filtered_array = Object.entries(mcapDominance.value)
         .filter(([key]) => key !== 'btc' && key !== 'eth' && key !== 'usdc' && key !== 'usdt')
         .map(([key, value]) => ({
             name: key.toUpperCase(),
