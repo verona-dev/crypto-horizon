@@ -1,5 +1,5 @@
 <template>
-    <Card class='!w-full bg-accent-foreground flex flex-row items-center shadow-2xl gap-0 py-3 !m-0' v-if='globalMarket'>
+    <Card class='!w-full bg-accent-foreground flex flex-row justify-center items-center shadow-2xl gap-0 py-5 !m-0' v-if='globalMarket'>
         <CardContent
             v-for='item in data'
             :key='item.label'
