@@ -145,13 +145,14 @@
         style: 'percent', compact: true, decimals: 2
     }));
     const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage);
-    
+    const btc_dominance = computed(() => mcap_dominance.value?.btc);
+    const btc_dominance_label = computed(() => formatNumber(btc_dominance.value , {
+        style: 'percent'
+    }));
     const total_volume = computed(() => globalMarket.value?.total_volume?.usd);
     const total_volume_label = computed(() => formatNumber(total_volume.value, {
         compact: true, decimals: 2
     }));
-    console.log(total_volume.value);
-    console.log(total_volume_label.value);
     
     const ended_icos = computed(() => globalMarket.value?.ended_icos);
     const ongoing_icos = computed(() => globalMarket.value?.ongoing_icos);
@@ -178,6 +179,11 @@
             label: '24h Volume',
             value: total_volume.value || '-',
             value_formatted : total_volume_label.value,
+        },
+        {
+            label: 'Dominance',
+            value: btc_dominance.value || '-',
+            value_formatted : `BTC ${btc_dominance_label.value}`,
         },
     ]);
     
