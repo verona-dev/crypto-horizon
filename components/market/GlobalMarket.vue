@@ -1,6 +1,6 @@
 <template>
     <!--  Global Market  -->
-    <Card class='!w-fit bg-accent-foreground flex flex-row items-center shadow-2xl gap-0 py-3'>
+    <Card class='!w-full bg-accent-foreground flex flex-row items-center shadow-2xl gap-0 py-3 !m-0'>
         <CardContent
             v-for='item in data'
             :key='item.label'
@@ -26,10 +26,10 @@
     <!--  Market Cap  Dominance  -->
     <GlobalMarketDominance
         v-if='mcap_dominance'
-        :mcap_dominance='mcap_dominance'
+        :mcap-dominance='mcap_dominance'
+        :updated-at='updated_at'
     />
     
-    <p class='text-sm'>Coingecko data updated at {{ updated_at }}</p>
 </template>
 
 <script setup>
