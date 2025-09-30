@@ -12,6 +12,7 @@
         CardDescription,
     } from '~/components/ui/card/index.js';
     import { Separator } from '~/components/ui/separator/index.js';
+    import { Badge } from '@/components/ui/badge';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
@@ -56,6 +57,11 @@
             label: 'Exchanges',
             value: markets.value || '-',
         },
+        {
+            label: 'Market Cap',
+            value: mcap_total_label.value || '-',
+            badge: mcap_change_label || '-',
+        },
         
     ]);
     
@@ -68,10 +74,13 @@
         <CardContent
             v-for='item in data'
             :key='item.label'
-            class='flex items-center gap-1'
+            class='flex items-center gap-2'
         >
             <p>{{ item.label }}&#58;</p>
+            
             <p class='font-bold'>{{ item.value }}</p>
+            
+            <Badge v-if='item.badge'>{{ item.badge }}</Badge>
         </CardContent>
     </Card>
     
