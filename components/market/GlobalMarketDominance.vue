@@ -62,11 +62,9 @@
                                 </HoverCardTrigger>
                                 
                                 <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !p-8'>
-                                    <p class='underline'>Stablecoins</p>
+                                    <p class='underline'>Stablecoins Breakdown</p>
                                     
                                     <Table class='w-60'>
-                                        <TableCaption class='text-xs'>Minor values not included.</TableCaption>
-                                        
                                         <TableHeader>
                                             <TableRow>
                                                 <TableHead>Asset</TableHead>
@@ -75,7 +73,7 @@
                                         </TableHeader>
                                         
                                         <TableBody>
-                                            <TableRow v-for='item in filtered_array'>
+                                            <TableRow v-for='item in stablecoins_array'>
                                                 <TableCell class='font-medium '>{{ item.name }}</TableCell>
                                                 <TableCell class='flex flex-col !items-end'>{{ item.value }}</TableCell>
                                             </TableRow>
@@ -115,7 +113,7 @@
                                     </TableHeader>
                                     
                                     <TableBody>
-                                        <TableRow v-for='item in filtered_array'>
+                                        <TableRow v-for='item in others_array'>
                                             <TableCell class='font-medium '>{{ item.name }}</TableCell>
                                             <TableCell class='flex flex-col !items-end'>{{ item.value }}</TableCell>
                                         </TableRow>
@@ -154,7 +152,7 @@
             type: Object,
         },
         updatedAt: {
-            type: Object,
+            type: String,
         }
     });
     
@@ -178,7 +176,7 @@
         style: 'percent', decimals: 2,
     }));
     
-    const filtered_array = Object.entries(mcapDominance.value)
+    const others_array = Object.entries(mcapDominance.value)
         .filter(([key]) => key !== 'btc' && key !== 'eth' && key !== 'usdc' && key !== 'usdt')
         .map(([key, value]) => ({
             name: key.toUpperCase(),
@@ -186,6 +184,18 @@
                 style: 'percent', decimals: 2,
             })
         }));
+    
+    const stablecoins_array = Object.entries(mcapDominance.value)
+        .filter(([key]) => key === 'usdc' || key === 'usdt')
+        .map(([key, value]) => ({
+            name: key.toUpperCase(),
+            value: formatNumber(value, {
+                style: 'percent', decimals: 2,
+            })
+        }));
+    
+    console.log(stablecoins_array);
+    
     
     const dataset = ref([
         {
