@@ -4,7 +4,7 @@
             <AppSidebar />
             
             <SidebarInset class='flex items-center justify-start my-28 md:my-14 px-20 md:px-32'>
-                <Breadcrumb />
+<!--                <Breadcrumb />-->
                 
                 <!--  Mobile Trigger  -->
                 <SidebarTrigger />
