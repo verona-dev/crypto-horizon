@@ -1,6 +1,5 @@
 <template>
-    <!--  Global Market  -->
-    <Card class='!w-full bg-accent-foreground flex flex-row items-center shadow-2xl gap-0 py-3 !m-0'>
+    <Card class='!w-full bg-accent-foreground flex flex-row items-center shadow-2xl gap-0 py-3 !m-0' v-if='globalMarket'>
         <CardContent
             v-for='item in data'
             :key='item.label'
@@ -22,14 +21,6 @@
             </Badge>
         </CardContent>
     </Card>
-    
-    <!--  Market Cap  Dominance  -->
-    <GlobalMarketDominance
-        v-if='mcap_dominance'
-        :mcap-dominance='mcap_dominance'
-        :updated-at='updated_at'
-    />
-    
 </template>
 
 <script setup>
@@ -38,14 +29,11 @@
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime);
-    import GlobalMarketDominance from '~/components/market/GlobalMarketDominance.vue';
     
     import {
         Card,
         CardContent,
-        CardDescription,
     } from '~/components/ui/card/index.js';
-    import { Separator } from '~/components/ui/separator/index.js';
     import { Badge } from '@/components/ui/badge';
     
     import { storeToRefs } from 'pinia';
@@ -53,7 +41,6 @@
     const MarketStore = useMarketStore();
     
     const { globalMarket } = storeToRefs(MarketStore);
-    const { getCoingeckoGlobalMarket } = MarketStore;
     
     const active_cryptocurrencies = computed(() => formatNumber(globalMarket.value?.active_cryptocurrencies, {
         style: 'decimal', decimals: 0,
@@ -68,7 +55,6 @@
     const mcap_change_label = computed(() => formatNumber(mcap_change.value, {
         style: 'percent', compact: true, decimals: 2
     }));
-    const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage);
     
     const total_volume = computed(() => globalMarket.value?.total_volume?.usd);
     const total_volume_label = computed(() => formatNumber(total_volume.value, {
@@ -76,7 +62,6 @@
     }));
     
     const ongoing_icos = computed(() => globalMarket.value?.ongoing_icos);
-    const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY, HH:mm[h]'));
     
     const data = computed(() => [
         {
@@ -103,8 +88,6 @@
             value: ongoing_icos.value || '-',
         },
     ]);
-    
-    onMounted(() => getCoingeckoGlobalMarket());
 </script>
 
 <style scoped>
