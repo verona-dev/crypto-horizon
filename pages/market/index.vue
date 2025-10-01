@@ -2,8 +2,6 @@
     <div class='market flex flex-col items-center justify-center gap-16'>
         <GlobalMarket />
         
-        <GlobalDefi />
-        
         <GlobalMarketDominance
             v-if='mcap_dominance'
             :mcap-dominance='mcap_dominance'
@@ -19,7 +17,6 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime);
     import GlobalMarket from '~/components/market/GlobalMarket.vue';
-    import GlobalDefi from '~/components/market/GlobalDefi.vue';
     import CoinsTable from '~/components/market/CoinsTable.vue';
     import GlobalMarketDominance from '~/components/market/GlobalMarketDominance.vue';
     
