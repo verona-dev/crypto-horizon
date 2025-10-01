@@ -1,5 +1,5 @@
 <template>
-    <div class='defi'>
+    <div class='defi' v-if='globalDefi'>
         <GlobalDefi />
     </div>
 </template>
@@ -10,9 +10,11 @@
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    const { getCoingeckoGlobalMarket } = MarketStore;
     
-    onMounted(() => getCoingeckoGlobalMarket());
+    const { globalDefi } = storeToRefs(MarketStore);
+    const { getCoingeckoGlobalDefi } = MarketStore;
+    
+    onMounted(() => getCoingeckoGlobalDefi());
     
     definePageMeta({
         title: 'Defi',
