@@ -2,7 +2,7 @@
     <div class='market flex flex-col items-center justify-center gap-16'>
         <GlobalMarket />
         
-<!--        <GlobalDefi />-->
+        <GlobalDefi />
         
         <GlobalMarketDominance
             v-if='mcap_dominance'
