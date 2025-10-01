@@ -78,7 +78,6 @@ export const useMarketStore = defineStore('MarketStore', {
                 
                 if(response && response.data) {
                     this.globalDefi = response.data;
-                    console.log(JSON.parse(JSON.stringify(this.globalDefi)));
                 }
             } catch(error) {
                 console.error(error);
