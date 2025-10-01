@@ -22,6 +22,21 @@
             <span>{{ eth_market_cap }}</span>
         </CardContent>
         
+        <CardContent>
+            Top Coin:
+            <span>{{ top_coin_name }}</span>
+        </CardContent>
+        
+        <CardContent>
+            Top Coin Dominance:
+            <span>{{ top_coin_defi_dominance }}</span>
+        </CardContent>
+        
+        <CardContent>
+            Trading Volume (24h):
+            <span>{{ trading_volume_24h }}</span>
+        </CardContent>
+        
     </Card>
 </template>
 
@@ -45,6 +60,13 @@
         style: 'percent', decimals: 2
     }));
     const eth_market_cap = computed(() => formatNumber(globalDefi.value?.eth_market_cap, {
+        compact: true, decimals: 2
+    }));
+    const top_coin_name = computed(() => globalDefi.value?.top_coin_name);
+    const top_coin_defi_dominance = computed(() => formatNumber(globalDefi.value?.top_coin_defi_dominance, {
+        style: 'percent', decimals: 2
+    }));
+    const trading_volume_24h = computed(() => formatNumber(globalDefi.value?.trading_volume_24h, {
         compact: true, decimals: 2
     }));
 </script>
