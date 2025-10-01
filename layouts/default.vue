@@ -4,7 +4,7 @@
             <AppSidebar />
             
             <SidebarInset class='flex items-center justify-start my-28 md:my-0 px-20 md:px-32'>
-<!--                <Breadcrumb />-->
+                <!--                <Breadcrumb />-->
                 
                 <!--  Mobile Trigger  -->
                 <SidebarTrigger />
@@ -16,6 +16,8 @@
                 <ScrollToTop />
             </SidebarInset>
         </SidebarProvider>
+        
+        <CoingeckoAttribution />
     </div>
 </template>
 
@@ -27,4 +29,5 @@
     import { useRoute } from 'vue-router';
     const route = useRoute();
     const title = computed(() => route.meta.title);
+    import CoingeckoAttribution from '~/components/CoingeckoAttribution.vue';
 </script>
