@@ -58,17 +58,10 @@ export const useMarketStore = defineStore('MarketStore', {
             this.loading = true;
             
             try {
-                const [ marketResponse, defiResponse ] = await Promise.all([
-                    useFetchCoingecko('global'),
-                    useFetchCoingecko('global/decentralized_finance_defi')
-                ]);
+                const response = await useFetchCoingecko('global');
                 
-                if(marketResponse && marketResponse.data) {
-                    this.globalMarket = marketResponse.data;
-                }
-                
-                if(defiResponse && defiResponse.data) {
-                    this.globalDefi = defiResponse.data;
+                if(response && response.data) {
+                    this.globalMarket = response.data;
                 }
             } catch(error) {
                 console.error(error);
@@ -78,20 +71,20 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         
         async getCoingeckoGlobalDefi() {
-          this.loading = true;
-          
-          try {
-              const response = await useFetchCoingecko('global/decentralized_finance_defi');
-              
-              if(response && response.data) {
-                  this.globalDefi = response.data;
-                  console.log(JSON.parse(JSON.stringify(this.globalDefi)));
-              }
-          } catch(error) {
-              console.error(error);
-          } finally {
-              this.loading = false;
-          }
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko('global/decentralized_finance_defi');
+                
+                if(response && response.data) {
+                    this.globalDefi = response.data;
+                    console.log(JSON.parse(JSON.stringify(this.globalDefi)));
+                }
+            } catch(error) {
+                console.error(error);
+            } finally {
+                this.loading = false;
+            }
         },
         
         async getCoingeckoMarkets(options) {
