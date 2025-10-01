@@ -12,6 +12,16 @@
             <span>{{ defi_market_cap }}</span>
         </CardContent>
         
+        <CardContent>
+            Defi to ETH Ratio:
+            <span>{{ defi_to_eth_ratio }}</span>
+        </CardContent>
+        
+        <CardContent>
+            ETH Market Cap:
+            <span>{{ eth_market_cap }}</span>
+        </CardContent>
+        
     </Card>
 </template>
 
@@ -24,7 +34,6 @@
     const MarketStore = useMarketStore();
     
     const { globalDefi } = storeToRefs(MarketStore);
-    console.log(JSON.parse(JSON.stringify(globalDefi.value)));
     
     const defi_dominance = computed(() => formatNumber(globalDefi.value?.defi_dominance, {
         style: 'percent', decimals: 2
@@ -32,7 +41,12 @@
     const defi_market_cap = computed(() => formatNumber(globalDefi.value?.defi_market_cap, {
         compact: true, decimals: 2
     }));
-    console.log(defi_dominance.value);
+    const defi_to_eth_ratio = computed(() => formatNumber(globalDefi.value?.defi_to_eth_ratio, {
+        style: 'percent', decimals: 2
+    }));
+    const eth_market_cap = computed(() => formatNumber(globalDefi.value?.eth_market_cap, {
+        compact: true, decimals: 2
+    }));
 </script>
 
 <style scoped>
