@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { useFetchCoingecko } from '~/composables/apiCoingecko';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
+import { useFetchCmc } from '~/composables/apiCmc.js';
 import { formatCoinsTable, formatCoingeckoCoin, formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
 import { useNewsStore } from '~/stores/NewsStore.js';
 
@@ -37,7 +38,9 @@ export const useMarketStore = defineStore('MarketStore', {
             ],
         },
         loading: false,
-        globalMarket: {},
+        globalMarket: {
+            fearAndGreed: {},
+        },
         globalDefi: {},
     }),
     
@@ -171,6 +174,22 @@ export const useMarketStore = defineStore('MarketStore', {
             } finally {
                 this.loading = false;
             }
+        },
+        
+        async getCmcFearAndGreed() {
+          this.loading = true;
+          
+          try {
+              const response = await useFetchCmc('v3/fear-and-greed/latest');
+              
+              if(response) {
+                  this.globalMarket.fearAndGreed = response;
+              }
+          } catch(error) {
+              console.error(error);
+          } finally {
+              this.loading = false;
+          }
         },
         
         async getCoingeckoCoinListSummary(options) {
