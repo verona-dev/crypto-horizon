@@ -1,7 +1,7 @@
 import { createError, getQuery } from 'h3';
 
 export default defineCachedEventHandler(async (event) => {
-    const { coingeckoApiKey } = useRuntimeConfig().public;
+    const { coingecko_api_key } = useRuntimeConfig().public;
     
     const route = event.context.params?.route || '';
     const queryEvent = getQuery(event);
@@ -14,7 +14,7 @@ export default defineCachedEventHandler(async (event) => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'x-cg-demo-api-key': coingeckoApiKey,
+                'x-cg-demo-api-key': coingecko_api_key,
             },
             redirect: 'follow',
         });
