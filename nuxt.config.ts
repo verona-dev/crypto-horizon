@@ -60,7 +60,7 @@ export default defineNuxtConfig({
          'lg': 1024,
          'xl': 1280,
          'xxl': 1536,
-         '2xl': 1536
+         '2xl': 2048
       },
       vercel: {
          sizes: [320, 640, 768, 1024, 1280, 1536, 2048, 3840],
