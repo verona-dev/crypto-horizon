@@ -3,7 +3,7 @@
         <SidebarProvider :default-open='false'>
             <AppSidebar />
             
-            <SidebarInset class='flex items-center justify-start my-28 md:my-12 px-20 md:px-32'>
+            <SidebarInset class='flex items-center justify-start my-28 md:my-0 px-20 md:px-32'>
                 <!--                <Breadcrumb />-->
                 
                 <!--  Mobile Trigger  -->
