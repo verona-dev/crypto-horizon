@@ -37,7 +37,7 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='25'
+                                        size='20'
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
@@ -80,7 +80,7 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='25'
+                                        size='20'
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
@@ -123,7 +123,7 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='25'
+                                        size='20'
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
@@ -144,7 +144,7 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='25'
+                                        size='20'
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
@@ -165,7 +165,7 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='25'
+                                        size='20'
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
