@@ -162,16 +162,16 @@
     const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage || {});
     const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY, HH:mm[h]'));
     
-    const btc = computed(() => mcap_dominance.value.btc ?? 0);
+    const btc = computed(() => mcap_dominance.value.btc);
     const btc_label = computed(() => formatNumber(btc.value , {
         style: 'percent', decimals: 2,
     }));
-    const eth = computed(() => mcap_dominance.value.eth ?? 0);
+    const eth = computed(() => mcap_dominance.value.eth);
     const eth_label = computed(() => formatNumber(eth.value, {
         style: 'percent', decimals: 2,
     }));
-    const usdc = computed(() => mcap_dominance.value.usdc ?? 0);
-    const usdt = computed(() => mcap_dominance.value.usdt ?? 0);
+    const usdc = computed(() => mcap_dominance.value.usdc);
+    const usdt = computed(() => mcap_dominance.value.usdt);
     const stablecoins = computed(() => usdc.value + usdt.value);
     const stablecoins_label = computed(() => formatNumber(stablecoins.value, {
         style: 'percent', decimals: 2,
@@ -181,23 +181,23 @@
         style: 'percent', decimals: 2,
     }));
     
-    const others_array = Object.entries(mcap_dominance.value)
+    const others_array = computed(() => Object.entries(mcap_dominance.value)
         .filter(([key]) => key !== 'btc' && key !== 'eth' && key !== 'usdc' && key !== 'usdt')
         .map(([key, value]) => ({
             name: key.toUpperCase(),
             value: formatNumber(value, {
                 style: 'percent', decimals: 2,
             })
-        }));
+        })));
     
-    const stablecoins_array = Object.entries(mcap_dominance.value)
+    const stablecoins_array = computed(() => Object.entries(mcap_dominance.value)
         .filter(([key]) => key === 'usdc' || key === 'usdt')
         .map(([key, value]) => ({
             name: key.toUpperCase(),
             value: formatNumber(value, {
                 style: 'percent', decimals: 2,
             })
-        }));
+        })));
     
     const dataset = computed(() => [
         {
