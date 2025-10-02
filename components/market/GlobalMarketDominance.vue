@@ -1,5 +1,8 @@
 <template>
-    <Card class='!w-fit bg-accent-foreground flex flex-col gap-4 shadow-2xl p-6'>
+    <Card
+        v-if='globalMarket'
+        class='!w-fit bg-accent-foreground flex flex-col gap-4 shadow-2xl p-6'
+    >
         <div class='px-10 flex flex-col gap-10'>
             <!--  Title  -->
             <div class='mt-4 flex items-center gap-3'>
@@ -136,7 +139,7 @@
             />
         </CardContent>
         
-        <p class='text-xs self-center'>Coingecko data updated at {{ updatedAt }}</p>
+        <p class='text-xs self-center'>Coingecko data updated at {{ updated_at }}</p>
     </Card>
 </template>
 
@@ -146,27 +149,29 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import { Bar } from 'vue-chartjs';
     import { Table, TableBody, TableCell, TableRow, TableCaption } from '~/components/ui/table/index.js';
+    import dayjs from 'dayjs';
+    import relativeTime from 'dayjs/plugin/relativeTime';
+    dayjs.extend(relativeTime);
     
-    const props = defineProps({
-        mcapDominance: {
-            type: Object,
-        },
-        updatedAt: {
-            type: String,
-        }
-    });
+    import { storeToRefs } from 'pinia';
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    const MarketStore = useMarketStore();
     
-    const { mcapDominance, updatedAt } = toRefs(props);
-    const btc = computed(() => mcapDominance.value?.btc);
+    const { globalMarket } = storeToRefs(MarketStore);
+    
+    const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage || {});
+    const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY, HH:mm[h]'));
+    
+    const btc = computed(() => mcap_dominance.value.btc ?? 0);
     const btc_label = computed(() => formatNumber(btc.value , {
         style: 'percent', decimals: 2,
     }));
-    const eth = computed(() => mcapDominance.value?.eth);
+    const eth = computed(() => mcap_dominance.value.eth ?? 0);
     const eth_label = computed(() => formatNumber(eth.value, {
         style: 'percent', decimals: 2,
     }));
-    const usdc = computed(() => mcapDominance.value?.usdc);
-    const usdt = computed(() => mcapDominance.value?.usdt);
+    const usdc = computed(() => mcap_dominance.value.usdc ?? 0);
+    const usdt = computed(() => mcap_dominance.value.usdt ?? 0);
     const stablecoins = computed(() => usdc.value + usdt.value);
     const stablecoins_label = computed(() => formatNumber(stablecoins.value, {
         style: 'percent', decimals: 2,
@@ -176,7 +181,7 @@
         style: 'percent', decimals: 2,
     }));
     
-    const others_array = Object.entries(mcapDominance.value)
+    const others_array = Object.entries(mcap_dominance.value)
         .filter(([key]) => key !== 'btc' && key !== 'eth' && key !== 'usdc' && key !== 'usdt')
         .map(([key, value]) => ({
             name: key.toUpperCase(),
@@ -185,7 +190,7 @@
             })
         }));
     
-    const stablecoins_array = Object.entries(mcapDominance.value)
+    const stablecoins_array = Object.entries(mcap_dominance.value)
         .filter(([key]) => key === 'usdc' || key === 'usdt')
         .map(([key, value]) => ({
             name: key.toUpperCase(),
@@ -194,7 +199,7 @@
             })
         }));
     
-    const dataset = ref([
+    const dataset = computed(() => [
         {
             name: 'Bitcoin',
             data: [formatNumber(btc.value, {
@@ -238,12 +243,12 @@
         }
     ]);
     
-    const chartData = {
+    const chartData = computed(() => ({
         labels: [''],
         datasets: dataset.value,
-    };
+    }));
     
-    const chartOptions = {
+    const chartOptions = computed(() => ({
         barThickness: 15,
         indexAxis: 'y',
         animation: {
@@ -293,7 +298,7 @@
             },
             displayValues: {},
         },
-    };
+    }));
 </script>
 
 <style scoped>
