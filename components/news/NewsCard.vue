@@ -90,7 +90,7 @@
                         </HoverCard>
                         
                         <!--  Reading duration  -->
-                        <div class='flex items-center gap-2'>
+                        <div v-if='show_reading_duration' class='flex items-center gap-2'>
                             <NuxtIcon
                                 name='mdi-light:clock'
                                 size='16'
@@ -165,6 +165,7 @@
     });
     
     const reading_duration = ref(0);
+    const show_reading_duration = computed(() => reading_duration.value > 0);
     const body = computed(() => article.value?.BODY);
     const body_formatted = computed(() => {
         if (!body.value) return '';
