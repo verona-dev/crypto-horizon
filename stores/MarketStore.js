@@ -38,9 +38,8 @@ export const useMarketStore = defineStore('MarketStore', {
             ],
         },
         loading: false,
-        globalMarket: {
-            fearAndGreed: {},
-        },
+        globalMarket: {},
+        fearAndGreed: null,
         globalDefi: {},
     }),
     
@@ -183,7 +182,7 @@ export const useMarketStore = defineStore('MarketStore', {
               const response = await useFetchCmc('v3/fear-and-greed/latest');
               
               if(response) {
-                  this.globalMarket.fearAndGreed = response;
+                  this.fearAndGreed = response;
               }
           } catch(error) {
               console.error(error);
