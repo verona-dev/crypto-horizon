@@ -180,7 +180,7 @@ export const useMarketStore = defineStore('MarketStore', {
           
           try {
               const response = await useFetchCmc('v3/fear-and-greed/latest');
-              response && console.log(response);
+              
               if(response && response.data) {
                   this.fearAndGreed = response.data;
               }
