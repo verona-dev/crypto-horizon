@@ -5,9 +5,9 @@
             class='w-4/5 xl:!w-[600px]'
         />
         
-        <div
+        <CardContent
             v-else
-            class='flex flex-col justify-between w-full h-full'
+            class='flex flex-col justify-between w-full h-full p-0'
         >
             <!--  Title  -->
             <div class='flex items-center gap-3'>
@@ -150,7 +150,7 @@
             </div>
             
             <p class='text-xs self-center'>Coingecko data updated at {{ updated_at }}</p>
-        </div>
+        </CardContent>
     </Card>
 </template>
 

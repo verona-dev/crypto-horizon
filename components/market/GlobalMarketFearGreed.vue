@@ -5,9 +5,9 @@
             class='!w-4/5 xl:!w-[500px]'
         />
         
-        <div
+        <CardContent
             v-else
-            class='flex flex-col items-center h-full w-full relative'
+            class='flex flex-col items-center h-full w-full relative p-0'
         >
             <!--  Title  -->
             <div class='flex items-center gap-3'>
@@ -67,7 +67,7 @@
                     CoinMarketCap.com
                 </NuxtLink>
             </p>
-        </div>
+        </CardContent>
 
     </Card>
 </template>
