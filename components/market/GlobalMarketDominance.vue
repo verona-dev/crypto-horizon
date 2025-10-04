@@ -1,13 +1,13 @@
 <template>
-    <Card class='bg-background shadow-2xl h-96 p-12 w-4/5 xl:!w-[600px] animate-fadeIn'>
+    <Card class='bg-background shadow-2xl h-96 p-0 w-4/5 xl:!w-[600px] animate-fadeIn'>
         <Skeleton
             v-if='!updated_at'
-            class='w-4/5 xl:!w-[600px]'
+            class='w-full h-full'
         />
         
         <CardContent
             v-else
-            class='flex flex-col justify-between w-full h-full p-0'
+            class='flex flex-col justify-between w-full h-full p-12'
         >
             <!--  Title  -->
             <div class='flex items-center gap-3'>

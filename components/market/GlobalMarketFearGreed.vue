@@ -1,13 +1,13 @@
 <template>
-    <Card class='bg-background shadow-2xl h-96 p-12 !w-4/5 xl:!w-[500px] animate-fadeIn'>
+    <Card class='bg-background shadow-2xl h-96 p-0 !w-4/5 xl:!w-[500px] animate-fadeIn'>
         <Skeleton
             v-if='!fearAndGreed'
-            class='!w-4/5 xl:!w-[500px]'
+            class='w-full h-full'
         />
         
         <CardContent
             v-else
-            class='flex flex-col items-center h-full w-full relative p-0'
+            class='flex flex-col items-center h-full w-full relative p-12'
         >
             <!--  Title  -->
             <div class='flex items-center gap-3'>
