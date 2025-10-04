@@ -60,7 +60,7 @@ export default defineNuxtConfig({
          'lg': 1024,
          'xl': 1280,
          'xxl': 1536,
-         '2xl': 1536
+         '2xl': 2048
       },
       vercel: {
          sizes: [320, 640, 768, 1024, 1280, 1536, 2048, 3840],
@@ -80,9 +80,10 @@ export default defineNuxtConfig({
 
    runtimeConfig: {
       public: {
-         coingeckoApiKey: process.env.COINGECKO_API_KEY,
-         livecoinwatchApiKey: process.env.LIVECOINWATCH_API_KEY,
+         coingecko_api_key: process.env.COINGECKO_API_KEY,
+         livecoinwatch_api_key: process.env.LIVECOINWATCH_API_KEY,
          coindesk_api: process.env.COINDESK_API_KEY,
+         cmc_api_key: process.env.CMC_API_KEY,
       },
    },
 

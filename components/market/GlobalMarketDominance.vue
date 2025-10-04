@@ -1,70 +1,123 @@
 <template>
-    <Card class='!w-fit bg-accent-foreground flex flex-col gap-4 shadow-2xl p-6'>
-        <div class='px-10 flex flex-col gap-10'>
+    <Card class='bg-background shadow-2xl h-96 p-0 w-4/5 xl:!w-[600px] animate-fadeIn'>
+        <Skeleton
+            v-if='!updated_at'
+            class='w-full h-full'
+        />
+        
+        <CardContent
+            v-else
+            class='flex flex-col justify-between w-full h-full p-12'
+        >
             <!--  Title  -->
-            <div class='mt-4 flex items-center gap-3'>
-                <h4>Bitcoin Dominance</h4>
+            <div class='flex items-center gap-3'>
+                <h5>Bitcoin Dominance</h5>
                 
                 <HoverCard :openDelay='200'>
                     <HoverCardTrigger class='info-icon'>
                         <NuxtIcon
                             name='radix-icons:info-circled'
-                            size='25'
+                            size='15'
                             class='flex mt-1'
                         />
                     </HoverCardTrigger>
                     
-                    <HoverCardContent class='hover-card-content flex-col gap-6'>
-                        <span>
-                            Bitcoin dominance is the market share of BTC compared against the rest of the crypto market.
-                            This metric allows traders to identify potential cryptocurrency market trends and
-                            decide on trading strategies. By measuring Bitcoin's proportion of the total market,
-                            traders and investors can better understand how the cryptocurrency market is performing and
-                            where it's headed.
-                        </span>
+                    <HoverCardContent class='hover-card-content flex-col gap-6 !p-10'>
+                    <span>
+                        Bitcoin dominance is the market share of BTC compared against the rest of the crypto market.
+                        This metric allows traders to identify potential cryptocurrency market trends and
+                        decide on trading strategies.
+                    </span>
                         
                         <span>
-                            Specifically, BTC dominance represents the ratio of Bitcoin’s market capitalization to the
-                            global market cap of all cryptocurrencies, where market capitalization is the total value
-                            of the coins that are in circulation. Bitcoin dominance is calculated by dividing Bitcoin’s
-                            current market capitalization by the global crypto market cap.
-                        </span>
+                        By measuring Bitcoin's proportion of the total market,
+                        traders and investors can better understand how the cryptocurrency market is performing and
+                        where it's headed.
+                    </span>
+                        
+                        <span>
+                        Specifically, BTC dominance represents the ratio of Bitcoin’s market capitalization to the
+                        global market cap of all cryptocurrencies, where market capitalization is the total value
+                        of the coins that are in circulation. Bitcoin dominance is calculated by dividing Bitcoin’s
+                        current market capitalization by the global crypto market cap.
+                    </span>
                     </HoverCardContent>
                 </HoverCard>
             </div>
             
-            <!--  Legend  -->
-            <div class='flex gap-12'>
-                <div
-                    v-for='item in dataset'
-                    :key='item'
-                    class='flex flex-col gap-2'
-                >
-                    <div class='flex space-x-2 h-8'>
-                        <!--  Btc, Eth  -->
-                        <div v-if='!item.displayInfo && !item.stablecoins' class='flex items-center space-x-2'>
-                            <span class='w-4 h-4 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
-                            <span class='text-muted-foreground'>{{ item.name }}</span>
-                        </div>
-                        
-                        <!--  Stablecoins  -->
-                        <div v-else-if='!item.displayInfo && item.stablecoins' class='flex items-center space-x-2'>
-                            <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='flex items-center gap-2 text-muted-foreground'>
-                                    <span class='w-4 h-4 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
+            <div class='flex flex-col gap-6'>
+                <!--  Legend  -->
+                <div class='flex gap-12 justify-around'>
+                    <div
+                        v-for='item in dataset'
+                        :key='item'
+                        class='flex flex-col gap-2'
+                    >
+                        <div class='flex space-x-2 h-8'>
+                            <!--  Btc, Eth  -->
+                            <div v-if='!item.displayInfo && !item.stablecoins' class='flex items-center space-x-2'>
+                                <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
+                                <span class='text-muted-foreground text-xs'>{{ item.name }}</span>
+                            </div>
+                            
+                            <!--  Stablecoins  -->
+                            <div v-else-if='!item.displayInfo && item.stablecoins' class='flex items-center space-x-2'>
+                                <HoverCard :openDelay='200'>
+                                    <HoverCardTrigger class='flex items-center gap-2 text-muted-foreground'>
+                                        <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
+                                        
+                                        <span class='text-muted-foreground text-xs'>{{ item.name }}</span>
+                                        
+                                        <NuxtIcon
+                                            name='solar:list-line-duotone'
+                                            size='15'
+                                        />
+                                    </HoverCardTrigger>
                                     
-                                    <span class='text-muted-foreground'>{{ item.name }}</span>
+                                    <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !p-8'>
+                                        <p class='underline'>Stablecoins</p>
+                                        
+                                        <Table class='w-60'>
+                                            <TableHeader>
+                                                <TableRow>
+                                                    <TableHead>Asset</TableHead>
+                                                    <TableHead class='flex flex-col justify-center !items-end'>Today</TableHead>
+                                                </TableRow>
+                                            </TableHeader>
+                                            
+                                            <TableBody>
+                                                <TableRow v-for='item in stablecoins_array'>
+                                                    <TableCell class='font-medium '>{{ item.name }}</TableCell>
+                                                    <TableCell class='flex flex-col !items-end'>{{ item.value }}</TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                        </Table>
+                                    </HoverCardContent>
+                                </HoverCard>
+                            </div>
+                            
+                            <!--  Others  -->
+                            <HoverCard
+                                v-else
+                                :openDelay='200'
+                            >
+                                <HoverCardTrigger class='flex items-center gap-2 text-muted-foreground'>
+                                    <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
+                                    
+                                    <span class='text-xs'>{{ item.name }}</span>
                                     
                                     <NuxtIcon
                                         name='solar:list-line-duotone'
-                                        size='20'
+                                        size='15'
                                     />
                                 </HoverCardTrigger>
                                 
                                 <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !p-8'>
-                                    <p class='underline'>Stablecoins</p>
+                                    <p class='underline'>Other Assets</p>
                                     
                                     <Table class='w-60'>
+                                        <TableCaption class='text-xs'>Minor values not included.</TableCaption>
+                                        
                                         <TableHeader>
                                             <TableRow>
                                                 <TableHead>Asset</TableHead>
@@ -73,7 +126,7 @@
                                         </TableHeader>
                                         
                                         <TableBody>
-                                            <TableRow v-for='item in stablecoins_array'>
+                                            <TableRow v-for='item in others_array'>
                                                 <TableCell class='font-medium '>{{ item.name }}</TableCell>
                                                 <TableCell class='flex flex-col !items-end'>{{ item.value }}</TableCell>
                                             </TableRow>
@@ -83,60 +136,21 @@
                             </HoverCard>
                         </div>
                         
-                        <!--  Others  -->
-                        <HoverCard
-                            v-else
-                            :openDelay='200'
-                        >
-                            <HoverCardTrigger class='flex items-center gap-2 text-muted-foreground'>
-                                <span class='w-4 h-4 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
-                                
-                                <span>{{ item.name }}</span>
-                                
-                                <NuxtIcon
-                                    name='solar:list-line-duotone'
-                                    size='20'
-                                />
-                            </HoverCardTrigger>
-                            
-                            <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !p-8'>
-                                <p class='underline'>Other Assets</p>
-                                
-                                <Table class='w-60'>
-                                    <TableCaption class='text-xs'>Minor values not included.</TableCaption>
-                                    
-                                    <TableHeader>
-                                        <TableRow>
-                                            <TableHead>Asset</TableHead>
-                                            <TableHead class='flex flex-col justify-center !items-end'>Today</TableHead>
-                                        </TableRow>
-                                    </TableHeader>
-                                    
-                                    <TableBody>
-                                        <TableRow v-for='item in others_array'>
-                                            <TableCell class='font-medium '>{{ item.name }}</TableCell>
-                                            <TableCell class='flex flex-col !items-end'>{{ item.value }}</TableCell>
-                                        </TableRow>
-                                    </TableBody>
-                                </Table>
-                            </HoverCardContent>
-                        </HoverCard>
+                        <p class='text-lg font-bold'>{{ item.label }}</p>
                     </div>
-                    
-                    <p class='text-2xl font-bold'>{{ item.label }}</p>
                 </div>
+                
+                <!--  Bar chart  -->
+                <CardContent class='px-0'>
+                    <Bar
+                        :data='chartData'
+                        :options='chartOptions'
+                    />
+                </CardContent>
             </div>
-        </div>
-        
-        <!--  Bar chart  -->
-        <CardContent>
-            <Bar
-                :data='chartData'
-                :options='chartOptions'
-            />
+            
+            <p class='text-xs self-center'>Coingecko data updated at {{ updated_at }}</p>
         </CardContent>
-        
-        <p class='text-xs self-center'>Coingecko data updated at {{ updatedAt }}</p>
     </Card>
 </template>
 
@@ -144,29 +158,32 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { Card, CardContent } from '~/components/ui/card/index.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
+    import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Bar } from 'vue-chartjs';
     import { Table, TableBody, TableCell, TableRow, TableCaption } from '~/components/ui/table/index.js';
+    import dayjs from 'dayjs';
+    import relativeTime from 'dayjs/plugin/relativeTime';
+    dayjs.extend(relativeTime);
     
-    const props = defineProps({
-        mcapDominance: {
-            type: Object,
-        },
-        updatedAt: {
-            type: String,
-        }
-    });
+    import { storeToRefs } from 'pinia';
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    const MarketStore = useMarketStore();
     
-    const { mcapDominance, updatedAt } = toRefs(props);
-    const btc = computed(() => mcapDominance.value?.btc);
+    const { globalMarket } = storeToRefs(MarketStore);
+    
+    const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage);
+    const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY, HH:mm[h]'));
+    
+    const btc = computed(() => mcap_dominance.value?.btc);
     const btc_label = computed(() => formatNumber(btc.value , {
         style: 'percent', decimals: 2,
     }));
-    const eth = computed(() => mcapDominance.value?.eth);
+    const eth = computed(() => mcap_dominance.value?.eth);
     const eth_label = computed(() => formatNumber(eth.value, {
         style: 'percent', decimals: 2,
     }));
-    const usdc = computed(() => mcapDominance.value?.usdc);
-    const usdt = computed(() => mcapDominance.value?.usdt);
+    const usdc = computed(() => mcap_dominance.value?.usdc);
+    const usdt = computed(() => mcap_dominance.value?.usdt);
     const stablecoins = computed(() => usdc.value + usdt.value);
     const stablecoins_label = computed(() => formatNumber(stablecoins.value, {
         style: 'percent', decimals: 2,
@@ -176,25 +193,25 @@
         style: 'percent', decimals: 2,
     }));
     
-    const others_array = Object.entries(mcapDominance.value)
+    const others_array = computed(() => Object.entries(mcap_dominance.value)
         .filter(([key]) => key !== 'btc' && key !== 'eth' && key !== 'usdc' && key !== 'usdt')
         .map(([key, value]) => ({
             name: key.toUpperCase(),
             value: formatNumber(value, {
                 style: 'percent', decimals: 2,
             })
-        }));
+        })));
     
-    const stablecoins_array = Object.entries(mcapDominance.value)
+    const stablecoins_array = computed(() => Object.entries(mcap_dominance.value)
         .filter(([key]) => key === 'usdc' || key === 'usdt')
         .map(([key, value]) => ({
             name: key.toUpperCase(),
             value: formatNumber(value, {
                 style: 'percent', decimals: 2,
             })
-        }));
+        })));
     
-    const dataset = ref([
+    const dataset = computed(() => [
         {
             name: 'Bitcoin',
             data: [formatNumber(btc.value, {
@@ -208,7 +225,7 @@
         {
             name: 'Ethereum',
             data: [formatNumber(eth.value, {
-                 style: 'decimal', decimals: 2
+                style: 'decimal', decimals: 2
             })],
             label: eth_label.value,
             backgroundColor: '#3b82f6',
@@ -238,16 +255,16 @@
         }
     ]);
     
-    const chartData = {
+    const chartData = computed(() => ({
         labels: [''],
         datasets: dataset.value,
-    };
+    }));
     
-    const chartOptions = {
-        barThickness: 15,
+    const chartOptions = computed(() => ({
+        barThickness: 10,
         indexAxis: 'y',
         animation: {
-            duration: 750,
+            duration: 1500,
             easing: 'easeInSine',
         },
         scales: {
@@ -293,12 +310,12 @@
             },
             displayValues: {},
         },
-    };
+    }));
 </script>
 
 <style scoped>
     canvas {
-        height: 75px !important;
+        height: 50px !important;
         padding-right: 20px !important;
     }
 </style>

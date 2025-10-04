@@ -1,7 +1,7 @@
 import { defineEventHandler, readBody, createError } from 'h3';
 
 export default defineEventHandler(async (event) => {
-    const { livecoinwatchApiKey } = useRuntimeConfig().public;
+    const { livecoinwatch_api_key } = useRuntimeConfig().public;
     
     const route = Array.isArray(event.context.params.route)
        ? event.context.params.route.join('/')
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'x-api-key': livecoinwatchApiKey,
+                'x-api-key': livecoinwatch_api_key,
             },
             body: JSON.stringify(body),
         });

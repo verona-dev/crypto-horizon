@@ -37,7 +37,7 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='25'
+                                        size='20'
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
@@ -80,7 +80,7 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='25'
+                                        size='20'
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
@@ -123,7 +123,7 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='25'
+                                        size='20'
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
@@ -144,7 +144,7 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='25'
+                                        size='20'
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
@@ -165,7 +165,7 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='25'
+                                        size='20'
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
@@ -226,7 +226,7 @@
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
                                         name='iconoir:git-fork'
-                                        size='25'
+                                        size='17'
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
@@ -247,7 +247,7 @@
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
                                         name='iconoir:star'
-                                        size='22'
+                                        size='15'
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
@@ -268,7 +268,7 @@
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
                                         name='iconoir:git-pull-request'
-                                        size='23'
+                                        size='15'
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
@@ -289,7 +289,7 @@
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
                                         name='radix-icons:commit'
-                                        size='25'
+                                        size='17'
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
@@ -310,7 +310,7 @@
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
                                         name='iconoir:github'
-                                        size='22'
+                                        size='15'
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>

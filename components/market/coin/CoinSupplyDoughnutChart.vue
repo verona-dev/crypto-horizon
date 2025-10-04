@@ -3,8 +3,8 @@
     <div class='my-10 flex-col lg:flex-row flex items-center justify-center gap-16'>
         <div class='w-52 lg:w-[450px] h-52 lg:h-[450px]'>
             <Doughnut
-                :data='chartData'
-                :options='chartOptions'
+                :data='data'
+                :options='options'
             />
         </div>
         
@@ -30,7 +30,7 @@
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
     const remaining_supply = computed(() => max_supply.value - total_supply.value);
     
-    const chartContent = computed(() => {
+    const content = computed(() => {
         const labels = [];
         const data = [];
         const backgroundColor = [];
@@ -68,19 +68,19 @@
         return { labels, data, backgroundColor };
     });
     
-    const chartData = ref(({
-        labels: chartContent.value?.labels,
+    const data = ref(({
+        labels: content.value?.labels,
         datasets: [
             {
                 backgroundColor: ['#fef0ca', '#41B883'],
-                data: chartContent.value?.data,
+                data: content.value?.data,
                 cutout: '50%',
                 hoverOffset: 20,
             },
         ],
     }));
     
-    const chartOptions = ref({
+    const options = ref({
         responsive: true,
         maintainAspectRatio: false,
         plugins: {

@@ -22,6 +22,13 @@
     100% { opacity: 1; }
 }
 
+.animate-fadeIn {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-fadeIn-2000 {
+    animation: fadeIn 2s ease-out forwards;
+}
 
 /*Page*/
 .page-enter-active,
