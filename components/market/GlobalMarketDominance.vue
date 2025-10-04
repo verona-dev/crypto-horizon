@@ -1,12 +1,12 @@
 <template>
     <Card
         v-if='globalMarket'
-        class='!w-fit bg-background flex flex-col gap-4 shadow-2xl p-4'
+        class='!w-fit bg-background flex flex-col gap-4 shadow-2xl p-12'
     >
         <div class='px-8 flex flex-col gap-8'>
             <!--  Title  -->
             <div class='mt-4 flex items-center gap-3'>
-                <h6>Bitcoin Dominance</h6>
+                <h5>Bitcoin Dominance</h5>
                 
                 <HoverCard :openDelay='200'>
                     <HoverCardTrigger class='info-icon'>
