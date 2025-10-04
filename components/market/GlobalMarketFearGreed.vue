@@ -1,11 +1,11 @@
 <template>
     <Card
         v-if='fear_and_greed_data'
-        class='bg-background flex flex-col items-center shadow-2xl h-96 p-12 relative !w-[500px]'
+        class='bg-background flex flex-col items-center shadow-2xl h-96 p-12 relative !w-4/5 xl:!w-[500px]'
     >
         <!--  Title  -->
-        <div class='mt-4 flex items-center gap-3'>
-            <h5>CMC Crypto Fear and greed Index</h5>
+        <div class='flex items-center gap-3'>
+            <h5>Crypto Fear and greed Index</h5>
             
             <HoverCard :openDelay='200'>
                 <HoverCardTrigger class='info-icon'>
@@ -38,7 +38,7 @@
         </div>
         
         <!--  Doughnut chart  -->
-        <CardContent class='w-96 h-96'>
+        <CardContent class='w-76 h-76'>
             <Doughnut
                 :data='data'
                 :options='options'
@@ -46,10 +46,21 @@
         </CardContent>
         
         <!--  Fear and Greed labels  -->
-        <div class='labels-container great-font flex flex-col items-center gap-2'>
-            <h2 class='text-7xl'>{{ fear_and_greed_data }}</h2>
-            <p class='text-muted-foreground'>{{ fear_and_greed_label }}</p>
+        <div class='labels-container great-font flex flex-col items-center gap-3'>
+            <h2 class='text-6xl'>{{ fear_and_greed_data }}</h2>
+            <p class='text-muted-foreground text-lg'>{{ fear_and_greed_label }}</p>
         </div>
+        
+        <p class='text-xs self-center'>Data provided by
+            <NuxtLink
+                to='https://coinmarketcap.com/'
+                external
+                target='_blank'
+                class='hover:underline'
+            >
+                CoinMarketCap.com
+            </NuxtLink>
+        </p>
     </Card>
 </template>
 
@@ -136,7 +147,7 @@
         pointerValue: fear_and_greed_data.value,
         plugins: {
             legend: { display: false },
-            tooltip: { enabled: true },
+            tooltip: { enabled: false },
         },
         animation: {
             animateScale: true,
