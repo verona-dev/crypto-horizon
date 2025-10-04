@@ -35,7 +35,7 @@
         </div>
         
         <!--  Doughnut chart  -->
-        <CardContent class='w-76 h-76'>
+        <CardContent class='w-76 h-76 px-0'>
             <Doughnut
                 :data='data'
                 :options='options'
@@ -44,8 +44,8 @@
         
         <!--  Fear and Greed labels  -->
         <div class='labels-container great-font flex flex-col items-center gap-3 animate-fadeIn-2000'>
-            <h2 class='text-6xl'>{{ fear_and_greed_data }}</h2>
-            <p class='text-muted-foreground text-lg'>{{ fear_and_greed_label }}</p>
+            <h2 class='text-5xl'>{{ fear_and_greed_data }}</h2>
+            <p class='text-muted-foreground'>{{ fear_and_greed_label }}</p>
         </div>
         
         <p class='text-xs self-center'>Data provided by
@@ -72,7 +72,7 @@
     const { fearAndGreed } = storeToRefs(MarketStore);
     // const { getCmcFearAndGreed } = MarketStore;
     
-    // const fear_and_greed_data = ref(100);
+    // const fear_and_greed_data = ref(0);
     const fear_and_greed_data = computed(() => fearAndGreed.value?.value);
     const fear_and_greed_label = computed(() => fearAndGreed.value?.value_classification);
     
@@ -91,7 +91,7 @@
                 borderWidth: 0,
                 circumference: 180,
                 rotation: 270,
-                cutout: '95%',
+                cutout: '92%',
                 borderRadius: 24,
                 spacing: 16,
             },
@@ -147,6 +147,12 @@
         responsive: true,
         maintainAspectRatio: false,
         pointerValue: fear_and_greed_data.value,
+        layout: {
+            padding: {
+                left:8,
+                right: 8,
+            }
+        },
         plugins: {
             legend: { display: false },
             tooltip: { enabled: false },
@@ -154,14 +160,9 @@
         animation: {
             animateScale: true,
             duration: 2000,
-            onProgress: (animation) => {
-                const chart = animation.chart;
-                drawDataPointPlugin(chart);
+            onComplete: function () {
+                drawDataPointPlugin(this);
             },
-            onComplete: (animation) => {
-                const chart = animation.chart;
-                drawDataPointPlugin(chart);
-            }
         }
     });
     
