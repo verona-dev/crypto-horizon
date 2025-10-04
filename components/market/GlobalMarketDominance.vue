@@ -1,7 +1,7 @@
 <template>
     <Card
         v-if='globalMarket'
-        class='!w-fit bg-accent-foreground flex flex-col gap-4 shadow-2xl p-4'
+        class='!w-fit bg-background flex flex-col gap-4 shadow-2xl p-4'
     >
         <div class='px-8 flex flex-col gap-8'>
             <!--  Title  -->
