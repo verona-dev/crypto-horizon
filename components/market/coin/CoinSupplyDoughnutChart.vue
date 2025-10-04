@@ -83,6 +83,12 @@
     const options = ref({
         responsive: true,
         maintainAspectRatio: false,
+        layout: {
+            padding: {
+                top: 12,
+                bottom: 12,
+            }
+        },
         plugins: {
             legend: {
                 labels: {

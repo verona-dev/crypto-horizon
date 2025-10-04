@@ -68,7 +68,6 @@
                 </NuxtLink>
             </p>
         </CardContent>
-
     </Card>
 </template>
 
