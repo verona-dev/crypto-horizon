@@ -1,7 +1,7 @@
 <template>
     <Card
         v-if='globalMarket'
-        class='!w-fit bg-background flex flex-col gap-4 shadow-2xl p-12'
+        class='!w-fit bg-background flex flex-col shadow-2xl h-96 p-12'
     >
         <div class='px-8 flex flex-col gap-8'>
             <!--  Title  -->
@@ -213,7 +213,7 @@
         {
             name: 'Ethereum',
             data: [formatNumber(eth.value, {
-                 style: 'decimal', decimals: 2
+                style: 'decimal', decimals: 2
             })],
             label: eth_label.value,
             backgroundColor: '#3b82f6',
