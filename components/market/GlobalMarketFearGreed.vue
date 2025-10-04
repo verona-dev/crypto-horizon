@@ -17,6 +17,54 @@
 
 <script setup>
     import { Doughnut } from 'vue-chartjs';
+    import { Chart as ChartJS } from 'chart.js';
+    const pointerPlugin = {
+        id: 'pointerPlugin',
+        afterDatasetDraw(chart) {
+            const ctx = chart.ctx;
+            const data = chart.data;
+            
+            const datasetMeta = chart.getDatasetMeta(0);
+            
+            const xCenter = datasetMeta.data[0].x;
+            const yCenter = datasetMeta.data[0].y;
+            const innerRadius = datasetMeta.data[0].innerRadius;
+            const outerRadius = datasetMeta.data[0].outerRadius;
+            
+            const doughnutThickness = outerRadius - innerRadius;
+            
+            const pointerColor = 'green';
+            const pointerValue = fear_and_greed_data.value;
+            const pointerRadius = 0;
+            const angle = Math.PI / 180;
+            
+            function sumArray(arr) {
+                return arr.reduce((acc, current) => acc + current, 0);
+            }
+            
+            const dataPointArray = data.datasets[0].data.map(datapoint => {
+                return datapoint;
+            });
+            
+            const totalSum = sumArray(dataPointArray);
+            const targetPointerRotation = (pointerValue / totalSum * 180) - 90;
+            
+            ctx.save();
+            ctx.translate(xCenter, yCenter);
+            ctx.rotate(angle * targetPointerRotation);
+            ctx.beginPath();
+            ctx.fillStyle = pointerColor;
+            ctx.lineWidth = 8;
+            ctx.strokeStyle = 'white';
+            ctx.roundRect(0 - 2.5, -outerRadius - 10, 5, doughnutThickness + 20, pointerRadius);
+            
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+        }
+    };
+    
+    ChartJS.register(pointerPlugin);
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
@@ -25,8 +73,8 @@
     const { fearAndGreed } = storeToRefs(MarketStore);
     // const { getCmcFearAndGreed } = MarketStore;
     
-    // const fear_and_greed_data = ref(25);
-    const fear_and_greed_data = computed(() => fearAndGreed.value?.value);
+    const fear_and_greed_data = ref(25);
+    // const fear_and_greed_data = computed(() => fearAndGreed.value?.value);
     const fear_and_greed_label = computed(() => fearAndGreed.value?.value_classification);
     
     const data = ref(({
@@ -90,19 +138,25 @@
         aspectRatio: 2,
         responsive: true,
         maintainAspectRatio: false,
+        pointerValue: fear_and_greed_data.value,
         plugins: {
             legend: { display: false },
             tooltip: { enabled: true },
+            pointerPlugin: pointerPlugin,
         },
         animation: {
             animateScale: true,
-            duration: 1000,
-            onComplete: function () {
-                drawDataPointPlugin(this);
+            duration: 2000,
+            onProgress: (animation) => {
+                const chart = animation.chart;
+                drawDataPointPlugin(chart);
+            },
+            onComplete: (animation) => {
+                const chart = animation.chart;
+                drawDataPointPlugin(chart);
             }
         }
     });
-    
     
     // onMounted(() => getCmcFearAndGreed());
 </script>
