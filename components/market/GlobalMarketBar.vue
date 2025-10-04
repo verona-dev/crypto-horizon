@@ -1,5 +1,5 @@
 <template>
-    <Card class='!w-screen bg-accent-foreground flex flex-row justify-center items-center shadow-2xl gap-12 py-5 !m-0' v-if='globalMarket?.active_cryptocurrencies'>
+    <Card class='!w-screen bg-background flex flex-row justify-center items-center shadow-2xl gap-12 py-5 !m-0' v-if='globalMarket?.active_cryptocurrencies'>
         <CardContent
             v-for='item in data'
             :key='item.label'
