@@ -1,29 +1,41 @@
 <template>
-    <Card class='!w-screen !h-20 bg-background flex flex-row justify-center items-center shadow-2xl gap-12 py-5 !m-0 animate-fadeIn'>
-        <CardContent
-            v-for='item in data'
-            :key='item.label'
-            class='flex items-center gap-2 p-0'
+    <Card class='!w-screen !h-20 bg-background shadow-2xl p-0 !m-0 animate-fadeIn'>
+        <Skeleton
+            v-if='!markets'
+            class='w-full h-full'
+        />
+        
+        <div
+            v-else
+            class='flex flex-row justify-center items-center gap-12 h-full w-full'
         >
-            <p class='text-xs'>{{ item.label }}&#58;</p>
-            
-            <p v-if='item.value_formatted' class='font-bold text-xs'>{{ item.value_formatted }}</p>
-            <p v-else class='font-bold text-xs'>{{ item.value }}</p>
-            
-            <Badge v-if='item.trend' variant='outline' class='border-ring rounded-2xl pl-2 pr-3 py-1 ml-1'>
-                <NuxtIcon
-                    :name='getTrendIcon(item.value)'
-                    size='15'
-                    :class='getTextColorClass(item.trend)'
-                />
+            <CardContent
+                v-for='item in data'
+                :key='item.label'
+                class='flex items-center gap-2 p-0'
+            >
+                <p class='text-xs'>{{ item.label }}&#58;</p>
                 
-                {{ item.trend }}
-            </Badge>
-        </CardContent>
+                <p v-if='item.value_formatted' class='font-bold text-xs'>{{ item.value_formatted }}</p>
+                <p v-else class='font-bold text-xs'>{{ item.value }}</p>
+                
+                <Badge v-if='item.trend' variant='outline' class='border-ring rounded-2xl pl-2 pr-3 py-1 ml-1'>
+                    <NuxtIcon
+                        :name='getTrendIcon(item.value)'
+                        size='15'
+                        :class='getTextColorClass(item.trend)'
+                    />
+                    
+                    {{ item.trend }}
+                </Badge>
+            </CardContent>
+        </div>
+
     </Card>
 </template>
 
 <script setup>
+    import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import dayjs from 'dayjs';
