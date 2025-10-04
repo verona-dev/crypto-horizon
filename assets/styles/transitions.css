@@ -23,7 +23,11 @@
 }
 
 .animate-fadeIn {
-    animation: fadeIn 2s linear forwards;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-fadeIn-2000 {
+    animation: fadeIn 2s ease-out forwards;
 }
 
 /*Page*/
