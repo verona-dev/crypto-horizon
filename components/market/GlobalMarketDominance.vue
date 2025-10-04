@@ -1,23 +1,22 @@
 <template>
     <Card
         v-if='globalMarket'
-        class='!w-fit bg-background flex flex-col shadow-2xl h-96 p-12'
+        class='bg-background flex flex-col justify-between shadow-2xl h-96 p-12 w-4/5 xl:!w-fit'
     >
-        <div class='px-8 flex flex-col gap-8'>
-            <!--  Title  -->
-            <div class='mt-4 flex items-center gap-3'>
-                <h5>Bitcoin Dominance</h5>
+        <!--  Title  -->
+        <div class='flex items-center gap-3'>
+            <h5>Bitcoin Dominance</h5>
+            
+            <HoverCard :openDelay='200'>
+                <HoverCardTrigger class='info-icon'>
+                    <NuxtIcon
+                        name='radix-icons:info-circled'
+                        size='15'
+                        class='flex mt-1'
+                    />
+                </HoverCardTrigger>
                 
-                <HoverCard :openDelay='200'>
-                    <HoverCardTrigger class='info-icon'>
-                        <NuxtIcon
-                            name='radix-icons:info-circled'
-                            size='15'
-                            class='flex mt-1'
-                        />
-                    </HoverCardTrigger>
-                    
-                    <HoverCardContent class='hover-card-content flex-col gap-6'>
+                <HoverCardContent class='hover-card-content flex-col gap-6'>
                         <span>
                             Bitcoin dominance is the market share of BTC compared against the rest of the crypto market.
                             This metric allows traders to identify potential cryptocurrency market trends and
@@ -25,17 +24,18 @@
                             traders and investors can better understand how the cryptocurrency market is performing and
                             where it's headed.
                         </span>
-                        
-                        <span>
+                    
+                    <span>
                             Specifically, BTC dominance represents the ratio of Bitcoin’s market capitalization to the
                             global market cap of all cryptocurrencies, where market capitalization is the total value
                             of the coins that are in circulation. Bitcoin dominance is calculated by dividing Bitcoin’s
                             current market capitalization by the global crypto market cap.
                         </span>
-                    </HoverCardContent>
-                </HoverCard>
-            </div>
-            
+                </HoverCardContent>
+            </HoverCard>
+        </div>
+        
+        <div class='flex flex-col gap-4'>
             <!--  Legend  -->
             <div class='flex gap-12'>
                 <div
@@ -129,15 +129,15 @@
                     <p class='text-lg font-bold'>{{ item.label }}</p>
                 </div>
             </div>
+            
+            <!--  Bar chart  -->
+            <CardContent>
+                <Bar
+                    :data='chartData'
+                    :options='chartOptions'
+                />
+            </CardContent>
         </div>
-        
-        <!--  Bar chart  -->
-        <CardContent>
-            <Bar
-                :data='chartData'
-                :options='chartOptions'
-            />
-        </CardContent>
         
         <p class='text-xs self-center'>Coingecko data updated at {{ updated_at }}</p>
     </Card>
