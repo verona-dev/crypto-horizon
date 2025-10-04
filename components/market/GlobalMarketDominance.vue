@@ -1,8 +1,5 @@
 <template>
-    <Card
-        v-if='globalMarket'
-        class='bg-background flex flex-col justify-between shadow-2xl h-96 p-12 w-4/5 xl:!w-fit'
-    >
+    <Card class='bg-background flex flex-col justify-between shadow-2xl h-96 p-12 w-4/5 xl:!w-[600px] animate-fadeIn'>
         <!--  Title  -->
         <div class='flex items-center gap-3'>
             <h5>Bitcoin Dominance</h5>
@@ -16,28 +13,32 @@
                     />
                 </HoverCardTrigger>
                 
-                <HoverCardContent class='hover-card-content flex-col gap-6'>
-                        <span>
-                            Bitcoin dominance is the market share of BTC compared against the rest of the crypto market.
-                            This metric allows traders to identify potential cryptocurrency market trends and
-                            decide on trading strategies. By measuring Bitcoin's proportion of the total market,
-                            traders and investors can better understand how the cryptocurrency market is performing and
-                            where it's headed.
-                        </span>
+                <HoverCardContent class='hover-card-content flex-col gap-6 !p-10'>
+                    <span>
+                        Bitcoin dominance is the market share of BTC compared against the rest of the crypto market.
+                        This metric allows traders to identify potential cryptocurrency market trends and
+                        decide on trading strategies.
+                    </span>
                     
                     <span>
-                            Specifically, BTC dominance represents the ratio of Bitcoin’s market capitalization to the
-                            global market cap of all cryptocurrencies, where market capitalization is the total value
-                            of the coins that are in circulation. Bitcoin dominance is calculated by dividing Bitcoin’s
-                            current market capitalization by the global crypto market cap.
-                        </span>
+                        By measuring Bitcoin's proportion of the total market,
+                        traders and investors can better understand how the cryptocurrency market is performing and
+                        where it's headed.
+                    </span>
+                    
+                    <span>
+                        Specifically, BTC dominance represents the ratio of Bitcoin’s market capitalization to the
+                        global market cap of all cryptocurrencies, where market capitalization is the total value
+                        of the coins that are in circulation. Bitcoin dominance is calculated by dividing Bitcoin’s
+                        current market capitalization by the global crypto market cap.
+                    </span>
                 </HoverCardContent>
             </HoverCard>
         </div>
         
-        <div class='flex flex-col gap-4'>
+        <div class='flex flex-col gap-6'>
             <!--  Legend  -->
-            <div class='flex gap-12'>
+            <div class='flex gap-12 justify-around'>
                 <div
                     v-for='item in dataset'
                     :key='item'
@@ -131,7 +132,7 @@
             </div>
             
             <!--  Bar chart  -->
-            <CardContent>
+            <CardContent class='px-0'>
                 <Bar
                     :data='chartData'
                     :options='chartOptions'
@@ -159,19 +160,19 @@
     
     const { globalMarket } = storeToRefs(MarketStore);
     
-    const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage || {});
+    const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage);
     const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY, HH:mm[h]'));
     
-    const btc = computed(() => mcap_dominance.value.btc);
+    const btc = computed(() => mcap_dominance.value?.btc);
     const btc_label = computed(() => formatNumber(btc.value , {
         style: 'percent', decimals: 2,
     }));
-    const eth = computed(() => mcap_dominance.value.eth);
+    const eth = computed(() => mcap_dominance.value?.eth);
     const eth_label = computed(() => formatNumber(eth.value, {
         style: 'percent', decimals: 2,
     }));
-    const usdc = computed(() => mcap_dominance.value.usdc);
-    const usdt = computed(() => mcap_dominance.value.usdt);
+    const usdc = computed(() => mcap_dominance.value?.usdc);
+    const usdt = computed(() => mcap_dominance.value?.usdt);
     const stablecoins = computed(() => usdc.value + usdt.value);
     const stablecoins_label = computed(() => formatNumber(stablecoins.value, {
         style: 'percent', decimals: 2,
@@ -252,7 +253,7 @@
         barThickness: 10,
         indexAxis: 'y',
         animation: {
-            duration: 750,
+            duration: 1500,
             easing: 'easeInSine',
         },
         scales: {
