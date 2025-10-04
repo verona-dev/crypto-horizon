@@ -126,14 +126,19 @@
         ctx.translate(xCenter, yCenter);
         ctx.rotate(angle * targetPointerRotation);
         
-        const circleRadius = 10;
+        // Dot
+        const circleRadius = 14;
         const circleX = 0;
         const circleY = -outerRadius - 5;
-        
         ctx.fillStyle = 'white';
+        // Dot bg
+        ctx.strokeStyle = '#0D1217';
+        ctx.lineWidth = 8;
+        
         ctx.beginPath();
         ctx.arc(circleX, circleY, circleRadius, 0, 2 * Math.PI, false);
         ctx.fill();
+        ctx.stroke();
         ctx.restore();
     }
     
