@@ -1,68 +1,80 @@
 <template>
-    <Card class='bg-background flex flex-col items-center shadow-2xl h-96 p-12 relative !w-4/5 xl:!w-[500px] animate-fadeIn'>
-        <!--  Title  -->
-        <div class='flex items-center gap-3'>
-            <h5>Crypto Fear and Greed Index</h5>
-            
-            <HoverCard :openDelay='200'>
-                <HoverCardTrigger class='info-icon'>
-                    <NuxtIcon
-                        name='radix-icons:info-circled'
-                        size='15'
-                        class='flex mt-1'
-                    />
-                </HoverCardTrigger>
+    <Card class='bg-background shadow-2xl h-96 p-12 !w-4/5 xl:!w-[500px] animate-fadeIn'>
+        <Skeleton
+            v-if='!fearAndGreed'
+            class='!w-4/5 xl:!w-[500px]'
+        />
+        
+        <div
+            v-else
+            class='flex flex-col items-center h-full w-full relative'
+        >
+            <!--  Title  -->
+            <div class='flex items-center gap-3'>
+                <h5>Crypto Fear and Greed Index</h5>
                 
-                <HoverCardContent class='hover-card-content flex-col gap-6 !p-10'>
+                <HoverCard :openDelay='200'>
+                    <HoverCardTrigger class='info-icon'>
+                        <NuxtIcon
+                            name='radix-icons:info-circled'
+                            size='15'
+                            class='flex mt-1'
+                        />
+                    </HoverCardTrigger>
+                    
+                    <HoverCardContent class='hover-card-content flex-col gap-6 !p-10'>
                     <span>
                         The CMC Fear and Greed Index is a proprietary tool developed by CoinMarketCap that measures
                         the prevailing sentiment in the cryptocurrency market.
                     </span>
-                    
-                    <span>
+                        
+                        <span>
                         This index ranges from 0 to 100,
                         where a lower value indicates extreme fear, and a higher value indicates extreme greed.
                         It helps investors understand the emotional state of the market, which can influence
                         buying and selling behaviors.
                     </span>
-                    
-                    <span>
+                        
+                        <span>
                         The index provides insights into whether the market may be
                         undervalued (extreme fear) or overvalued (extreme greed).
                     </span>
-                </HoverCardContent>
-            </HoverCard>
+                    </HoverCardContent>
+                </HoverCard>
+            </div>
+            
+            <!--  Doughnut chart  -->
+            <CardContent class='w-76 h-76 px-0'>
+                <Doughnut
+                    :data='data'
+                    :options='options'
+                />
+            </CardContent>
+            
+            <!--  Fear and Greed labels  -->
+            <div class='labels-container great-font flex flex-col items-center gap-3 animate-fadeIn-2000'>
+                <h2 class='text-5xl'>{{ fear_and_greed_data }}</h2>
+                <p class='text-muted-foreground'>{{ fear_and_greed_label }}</p>
+            </div>
+            
+            <p class='text-xs self-center'>Data provided by
+                <NuxtLink
+                    to='https://coinmarketcap.com/'
+                    external
+                    target='_blank'
+                    class='hover:underline'
+                >
+                    CoinMarketCap.com
+                </NuxtLink>
+            </p>
         </div>
-        
-        <!--  Doughnut chart  -->
-        <CardContent class='w-76 h-76 px-0'>
-            <Doughnut
-                :data='data'
-                :options='options'
-            />
-        </CardContent>
-        
-        <!--  Fear and Greed labels  -->
-        <div class='labels-container great-font flex flex-col items-center gap-3 animate-fadeIn-2000'>
-            <h2 class='text-5xl'>{{ fear_and_greed_data }}</h2>
-            <p class='text-muted-foreground'>{{ fear_and_greed_label }}</p>
-        </div>
-        
-        <p class='text-xs self-center'>Data provided by
-            <NuxtLink
-                to='https://coinmarketcap.com/'
-                external
-                target='_blank'
-                class='hover:underline'
-            >
-                CoinMarketCap.com
-            </NuxtLink>
-        </p>
+
     </Card>
 </template>
 
 <script setup>
     import { Doughnut } from 'vue-chartjs';
+    import { Skeleton } from '~/components/ui/skeleton/index.js';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
