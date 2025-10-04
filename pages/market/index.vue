@@ -2,9 +2,10 @@
     <div class='market flex flex-col items-center justify-center gap-16'>
         <GlobalMarketBar />
         
-        <GlobalMarketFearGreed v-if='fearAndGreed'/>
-        
-        <GlobalMarketDominance />
+        <div class='flex flex-wrap items-center justify-center gap-4'>
+            <GlobalMarketFearGreed v-if='fearAndGreed'/>
+            <GlobalMarketDominance />
+        </div>
         
         <CoinsTable />
     </div>
