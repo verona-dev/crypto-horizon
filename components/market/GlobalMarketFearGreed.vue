@@ -1,14 +1,13 @@
 <template>
     <Card class='fear-and-greed bg-background p-12'>
-        <div v-if='fear_and_greed_label' class='relative w-52 h-52'>
+        <div v-if='fear_and_greed_label' class='relative w-96 h-96'>
             <Doughnut
-                id='canvas'
                 :data='data'
                 :options='options'
             />
             
-            <div class='labels-container'>
-                <h3>{{ fear_and_greed_data }}</h3>
+            <div class='labels-container great-font flex flex-col items-center gap-4'>
+                <h1>{{ fear_and_greed_data }}</h1>
                 <p class='text-muted-foreground'>{{ fear_and_greed_label }}</p>
             </div>
         </div>
@@ -25,21 +24,28 @@
     const { fearAndGreed } = storeToRefs(MarketStore);
     // const { getCmcFearAndGreed } = MarketStore;
     
-    const fear_and_greed_data = ref(25);
-    // const fear_and_greed_data = computed(() => fearAndGreed.value?.value);
+    // const fear_and_greed_data = ref(100);
+    const fear_and_greed_data = computed(() => fearAndGreed.value?.value);
     const fear_and_greed_label = computed(() => fearAndGreed.value?.value_classification);
     
     const data = ref(({
         labels: ['Fear and Greed'],
         datasets: [
             {
-                data: [fear_and_greed_data.value, 100 - fear_and_greed_data.value],
-                backgroundColor: ['#f44336', '#ddd'],
+                data: [ 20, 20, 20, 20, 20 ],
+                backgroundColor: [
+                    '#f44336', // Extreme Fear
+                    '#ff9800', // Fear
+                    '#ffeb3b', // Neutral
+                    '#8bc34a', // Greed
+                    '#31b00e', // Extreme Greed
+                ],
                 borderWidth: 0,
                 circumference: 180,
                 rotation: 270,
                 cutout: '95%',
-                borderRadius: 12,
+                borderRadius: 24,
+                spacing: 16,
             },
         ],
     }));
@@ -72,9 +78,9 @@
         ctx.translate(xCenter, yCenter);
         ctx.rotate(angle * targetPointerRotation);
         
-        const circleRadius = 8;
+        const circleRadius = 12;
         const circleX = 0;
-        const circleY = -outerRadius + 2.5;
+        const circleY = -outerRadius - 5;
         
         ctx.fillStyle = 'white';
         ctx.beginPath();
@@ -116,7 +122,7 @@
         top: 60%;
         left: 0;
         text-align: center;
-        transform: translateY(-50%);
+        transform: translateY(-60%);
         pointer-events: none;
         user-select: none;
     }
