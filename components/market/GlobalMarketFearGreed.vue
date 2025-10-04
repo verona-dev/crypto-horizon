@@ -39,6 +39,7 @@
                 circumference: 180,
                 rotation: 270,
                 cutout: '95%',
+                borderRadius: 12,
             },
         ],
     }));
