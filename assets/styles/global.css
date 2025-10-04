@@ -109,6 +109,14 @@
         align-items: center;
     }
     
+    .default-font {
+        font-family: 'IBM Plex Mono', monospace;
+    }
+    
+    .roboto-font {
+        font-family: 'Roboto', monospace;
+    }
+    
     .great-font {
         font-family: 'Great', sans-serif;
         @apply truncate tracking-[0.4rem];
