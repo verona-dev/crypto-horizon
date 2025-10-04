@@ -3,7 +3,7 @@
         <GlobalMarketBar />
         
         <div class='flex flex-wrap items-center justify-center gap-4 h-96'>
-            <GlobalMarketFearGreed v-if='fearAndGreed'/>
+            <GlobalMarketFearGreed />
             <GlobalMarketDominance />
         </div>
         
@@ -17,11 +17,9 @@
     import GlobalMarketDominance from '~/components/market/GlobalMarketDominance.vue';
     import GlobalMarketFearGreed from '~/components/market/GlobalMarketFearGreed.vue';
     
-    import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     const { getCoingeckoGlobalMarket, getCmcFearAndGreed } = MarketStore;
-    const { fearAndGreed } = storeToRefs(MarketStore);
     
     onMounted(() => {
          getCoingeckoGlobalMarket();
