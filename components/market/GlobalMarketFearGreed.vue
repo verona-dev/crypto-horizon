@@ -1,15 +1,54 @@
 <template>
-    <Card class='fear-and-greed bg-background p-12'>
-        <div v-if='fear_and_greed_label' class='relative w-96 h-96'>
+    <Card
+        v-if='fear_and_greed_data'
+        class='bg-background flex flex-col items-center shadow-2xl h-96 p-12 relative !w-[500px]'
+    >
+        <!--  Title  -->
+        <div class='mt-4 flex items-center gap-3'>
+            <h5>CMC Crypto Fear and greed Index</h5>
+            
+            <HoverCard :openDelay='200'>
+                <HoverCardTrigger class='info-icon'>
+                    <NuxtIcon
+                        name='radix-icons:info-circled'
+                        size='15'
+                        class='flex mt-1'
+                    />
+                </HoverCardTrigger>
+                
+                <HoverCardContent class='hover-card-content flex-col gap-6'>
+                    <span>
+                        The CMC Fear and Greed Index is a proprietary tool developed by CoinMarketCap that measures
+                        the prevailing sentiment in the cryptocurrency market.
+                    </span>
+                    
+                    <span>
+                        This index ranges from 0 to 100,
+                        where a lower value indicates extreme fear, and a higher value indicates extreme greed.
+                        It helps investors understand the emotional state of the market, which can influence
+                        buying and selling behaviors.
+                    </span>
+                    
+                    <span>
+                        The index provides insights into whether the market may be
+                        undervalued (extreme fear) or overvalued (extreme greed).
+                    </span>
+                </HoverCardContent>
+            </HoverCard>
+        </div>
+        
+        <!--  Doughnut chart  -->
+        <CardContent class='w-96 h-96'>
             <Doughnut
                 :data='data'
                 :options='options'
             />
-            
-            <div class='labels-container great-font flex flex-col items-center gap-4'>
-                <h1>{{ fear_and_greed_data }}</h1>
-                <p class='text-muted-foreground'>{{ fear_and_greed_label }}</p>
-            </div>
+        </CardContent>
+        
+        <!--  Fear and Greed labels  -->
+        <div class='labels-container great-font flex flex-col items-center gap-2'>
+            <h2 class='text-7xl'>{{ fear_and_greed_data }}</h2>
+            <p class='text-muted-foreground'>{{ fear_and_greed_label }}</p>
         </div>
     </Card>
 </template>
@@ -19,6 +58,7 @@
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     const MarketStore = useMarketStore();
     
     const { fearAndGreed } = storeToRefs(MarketStore);
