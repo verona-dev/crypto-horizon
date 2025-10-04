@@ -1,11 +1,8 @@
 <template>
-    <Card
-        v-if='fear_and_greed_data'
-        class='bg-background flex flex-col items-center shadow-2xl h-96 p-12 relative !w-4/5 xl:!w-[500px]'
-    >
+    <Card class='bg-background flex flex-col items-center shadow-2xl h-96 p-12 relative !w-4/5 xl:!w-[500px] animate-fadeIn'>
         <!--  Title  -->
         <div class='flex items-center gap-3'>
-            <h5>Crypto Fear and greed Index</h5>
+            <h5>Crypto Fear and Greed Index</h5>
             
             <HoverCard :openDelay='200'>
                 <HoverCardTrigger class='info-icon'>
@@ -16,7 +13,7 @@
                     />
                 </HoverCardTrigger>
                 
-                <HoverCardContent class='hover-card-content flex-col gap-6'>
+                <HoverCardContent class='hover-card-content flex-col gap-6 !p-10'>
                     <span>
                         The CMC Fear and Greed Index is a proprietary tool developed by CoinMarketCap that measures
                         the prevailing sentiment in the cryptocurrency market.
@@ -46,7 +43,7 @@
         </CardContent>
         
         <!--  Fear and Greed labels  -->
-        <div class='labels-container great-font flex flex-col items-center gap-3'>
+        <div class='labels-container great-font flex flex-col items-center gap-3 animate-fadeIn-2000'>
             <h2 class='text-6xl'>{{ fear_and_greed_data }}</h2>
             <p class='text-muted-foreground text-lg'>{{ fear_and_greed_label }}</p>
         </div>
@@ -129,7 +126,7 @@
         ctx.translate(xCenter, yCenter);
         ctx.rotate(angle * targetPointerRotation);
         
-        const circleRadius = 12;
+        const circleRadius = 10;
         const circleX = 0;
         const circleY = -outerRadius - 5;
         
