@@ -2,7 +2,7 @@
     <div class='market flex flex-col items-center justify-center gap-16'>
         <GlobalMarketBar />
         
-        <div class='flex flex-wrap items-center justify-center gap-4 h-96'>
+        <div class='flex flex-wrap items-center justify-center gap-4 h-[768px] xl:h-96'>
             <GlobalMarketFearGreed />
             <GlobalMarketDominance />
         </div>
