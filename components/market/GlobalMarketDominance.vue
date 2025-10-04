@@ -1,18 +1,18 @@
 <template>
     <Card
         v-if='globalMarket'
-        class='!w-fit bg-accent-foreground flex flex-col gap-4 shadow-2xl p-6'
+        class='!w-fit bg-accent-foreground flex flex-col gap-4 shadow-2xl p-4'
     >
-        <div class='px-10 flex flex-col gap-10'>
+        <div class='px-8 flex flex-col gap-8'>
             <!--  Title  -->
             <div class='mt-4 flex items-center gap-3'>
-                <h4>Bitcoin Dominance</h4>
+                <h6>Bitcoin Dominance</h6>
                 
                 <HoverCard :openDelay='200'>
                     <HoverCardTrigger class='info-icon'>
                         <NuxtIcon
                             name='radix-icons:info-circled'
-                            size='25'
+                            size='15'
                             class='flex mt-1'
                         />
                     </HoverCardTrigger>
@@ -46,21 +46,21 @@
                     <div class='flex space-x-2 h-8'>
                         <!--  Btc, Eth  -->
                         <div v-if='!item.displayInfo && !item.stablecoins' class='flex items-center space-x-2'>
-                            <span class='w-4 h-4 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
-                            <span class='text-muted-foreground'>{{ item.name }}</span>
+                            <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
+                            <span class='text-muted-foreground text-xs'>{{ item.name }}</span>
                         </div>
                         
                         <!--  Stablecoins  -->
                         <div v-else-if='!item.displayInfo && item.stablecoins' class='flex items-center space-x-2'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center gap-2 text-muted-foreground'>
-                                    <span class='w-4 h-4 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
+                                    <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                                     
-                                    <span class='text-muted-foreground'>{{ item.name }}</span>
+                                    <span class='text-muted-foreground text-xs'>{{ item.name }}</span>
                                     
                                     <NuxtIcon
                                         name='solar:list-line-duotone'
-                                        size='20'
+                                        size='15'
                                     />
                                 </HoverCardTrigger>
                                 
@@ -92,13 +92,13 @@
                             :openDelay='200'
                         >
                             <HoverCardTrigger class='flex items-center gap-2 text-muted-foreground'>
-                                <span class='w-4 h-4 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
+                                <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                                 
-                                <span>{{ item.name }}</span>
+                                <span class='text-xs'>{{ item.name }}</span>
                                 
                                 <NuxtIcon
                                     name='solar:list-line-duotone'
-                                    size='20'
+                                    size='15'
                                 />
                             </HoverCardTrigger>
                             
@@ -126,7 +126,7 @@
                         </HoverCard>
                     </div>
                     
-                    <p class='text-2xl font-bold'>{{ item.label }}</p>
+                    <p class='text-lg font-bold'>{{ item.label }}</p>
                 </div>
             </div>
         </div>
@@ -249,7 +249,7 @@
     }));
     
     const chartOptions = computed(() => ({
-        barThickness: 15,
+        barThickness: 10,
         indexAxis: 'y',
         animation: {
             duration: 750,
@@ -303,7 +303,7 @@
 
 <style scoped>
     canvas {
-        height: 75px !important;
+        height: 50px !important;
         padding-right: 20px !important;
     }
 </style>
