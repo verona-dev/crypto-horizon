@@ -26,9 +26,6 @@ export default defineCachedEventHandler(async (event) => {
             })
         }
         
-        // const json = await response.json().data;
-        // return json;
-        
         return await response.json();
         
     } catch(error) {
