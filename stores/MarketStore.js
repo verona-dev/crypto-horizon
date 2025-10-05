@@ -40,6 +40,7 @@ export const useMarketStore = defineStore('MarketStore', {
         loading: false,
         globalMarket: {},
         fearAndGreed: null,
+        globalTrending: null,
         globalDefi: {},
     }),
     
@@ -85,6 +86,20 @@ export const useMarketStore = defineStore('MarketStore', {
                 console.error(error);
             } finally {
                 this.loading = false;
+            }
+        },
+        
+        async getCoingeckoGlobalTrending() {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko('search/trending');
+                if(response) {
+                    this.globalTrending = response;
+                    console.log(this.globalTrending);
+                }
+            } catch(error) {
+                console.error(error);
             }
         },
         
@@ -176,19 +191,19 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         
         async getCmcFearAndGreed() {
-          this.loading = true;
-          
-          try {
-              const response = await useFetchCmc('v3/fear-and-greed/latest');
-              
-              if(response && response.data) {
-                  this.fearAndGreed = response.data;
-              }
-          } catch(error) {
-              console.error(error);
-          } finally {
-              this.loading = false;
-          }
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCmc('v3/fear-and-greed/latest');
+                
+                if(response && response.data) {
+                    this.fearAndGreed = response.data;
+                }
+            } catch(error) {
+                console.error(error);
+            } finally {
+                this.loading = false;
+            }
         },
         
         async getCoingeckoCoinListSummary(options) {
