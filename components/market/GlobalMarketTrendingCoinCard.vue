@@ -1,7 +1,7 @@
 <template>
     <Card
         v-if='coin'
-        class='!w-60 bg-accent-foreground  shadow-2xl p-6'
+        class='!w-60 bg-background shadow-2xl p-6'
     >
         <HoverCard :openDelay='200'>
            <HoverCardTrigger class='flex flex-col items-center gap-4'>

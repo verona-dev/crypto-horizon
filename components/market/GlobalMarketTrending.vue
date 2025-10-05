@@ -1,5 +1,5 @@
 <template>
-    <Alert class='!bg-background flex w-4/5 !shadow-none animate-fadeIn'>
+    <Alert class='!bg-background flex w-4/5 !border-none !shadow-none animate-fadeIn'>
         <Skeleton
             v-if='!trending_coins'
             class='w-full h-full'
