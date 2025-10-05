@@ -5,18 +5,21 @@
             class='w-full h-full'
         />
         
-        <div v-else class='flex items-start justify-center mx-auto gap-12 max-w-[800px]'>
+        <div v-else class='flex items-start justify-center mx-auto max-w-6xl'>
             <Carousel
-                class="relative w-full"
-                :plugins="[plugin]"
-                @mouseenter="plugin.stop"
-                @mouseleave="[plugin.reset(), plugin.play()];"
+                class='relative w-full'
+                :plugins='[plugin]'
+                @mouseenter='plugin.stop'
+                @mouseleave='[plugin.reset(), plugin.play()];'
+                :opts='{
+                  align: "start",
+                }'
             >
                 <CarouselContent>
                     <CarouselItem
                         v-for='coin in trending_coins'
                         :key='coin.item.id'
-                        class='pl-1 md:basis-1/2 lg:basis-1/3'
+                        class='md:basis-1/2 lg:basis-1/4'
                     >
                         <GlobalMarketTrendingCoinCard
                             :coin='coin.item'
