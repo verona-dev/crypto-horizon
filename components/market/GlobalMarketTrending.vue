@@ -5,17 +5,22 @@
             class='w-full h-full'
         />
         
-        <div v-else class='flex items-start justify-center mx-auto max-w-6xl'>
+        <div v-else class='flex items-start justify-center mx-auto max-w-6xl h-full'>
             <Carousel
                 class='relative w-full'
                 :plugins='[plugin]'
                 @mouseenter='plugin.stop'
                 @mouseleave='[plugin.reset(), plugin.play()];'
                 :opts='{
-                  align: "start",
+                    align: "center",
+                    loop: true,
+                    skipSnaps: true,
+                    duration: 1500,
+                    startIndex: 1,
+                    dragThreshold: 1,
                 }'
             >
-                <CarouselContent>
+                <CarouselContent class='ml-3'>
                     <CarouselItem
                         v-for='coin in trending_coins'
                         :key='coin.item.id'
