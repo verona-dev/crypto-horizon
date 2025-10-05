@@ -8,7 +8,7 @@
         <NuxtImg
             :src='image'
             alt='trending coin logo'
-            class='rounded-md rounded-b-none'
+            class='w-12 h-12 rounded-md rounded-b-none'
             :custom='true'
             v-slot='{ src, isLoaded, imgAttrs, alt }'
             preload
@@ -32,7 +32,46 @@
             <p class='text-xs'>{{ symbol }}</p>
         </div>
         
-        <p class='text-xs'>{{ price_label }}</p>
+        <h5>{{ price_label }}</h5>
+        
+        <div class='flex items-center gap-1'>
+            <NuxtIcon
+                :name='getTrendIcon(price_change_percentage_1d)'
+                size='20'
+                :class='getTextColorClass(price_change_percentage_1d)'
+            />
+            
+            <p
+                :class='[getTextColorClass(price_change_percentage_1d)]'
+                class='flex items-center'
+            >
+                {{ price_change_percentage_1d_label }}
+            </p>
+        </div>
+        
+        <!--  Sparkline  -->
+        <NuxtImg
+            :src='sparkline'
+            alt='trending coin logo'
+            class='w-full'
+            :custom='true'
+            v-slot='{ src, isLoaded, imgAttrs, alt }'
+            preload
+        >
+            <img
+                v-if='isLoaded'
+                v-bind='imgAttrs'
+                :src='src'
+                :alt='alt'
+            >
+            
+            <Skeleton
+                v-else
+                class='h-[100px] w-full'
+            />
+        </NuxtImg>
+        
+        <p class='text-xs'>{{ content }}</p>
     </Card>
 </template>
 
@@ -58,6 +97,12 @@
     const price_label = formatNumber(price, {
         maximumFractionDigits: 4,
     });
+    const price_change_percentage_1d = coin.value?.data?.price_change_percentage_24h?.usd;
+    const price_change_percentage_1d_label = formatNumber(price_change_percentage_1d, {
+        style: 'percent', compact: true, decimals: 2,
+    });
+    const sparkline = coin.value?.data?.sparkline;
+    const content = coin.value?.data?.content;
 </script>
 
 <style scoped>
