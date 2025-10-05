@@ -1,23 +1,25 @@
 <template>
     <div class='md:pr-16'>
-        <SidebarProvider :default-open='false'>
-            <AppSidebar />
+        <ClientOnly>
+            <SidebarProvider :default-open='false'>
+                <AppSidebar />
+                
+                <SidebarInset class='flex items-center justify-start my-28 md:my-0 px-20 md:px-32'>
+                    <!--                <Breadcrumb />-->
+                    
+                    <!--  Mobile Trigger  -->
+                    <SidebarTrigger />
+                    
+                    <h1 v-if='title' class='page-title'>{{ title }}</h1>
+                    
+                    <slot />
+                    
+                    <ScrollToTop />
+                </SidebarInset>
+            </SidebarProvider>
             
-            <SidebarInset class='flex items-center justify-start my-28 md:my-0 px-20 md:px-32'>
-                <!--                <Breadcrumb />-->
-                
-                <!--  Mobile Trigger  -->
-                <SidebarTrigger />
-                
-                <h1 v-if='title' class='page-title'>{{ title }}</h1>
-                
-                <slot />
-                
-                <ScrollToTop />
-            </SidebarInset>
-        </SidebarProvider>
-        
-        <CoingeckoAttribution />
+            <CoingeckoAttribution />
+        </ClientOnly>
     </div>
 </template>
 
