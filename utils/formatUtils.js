@@ -16,11 +16,19 @@ const formatNumber = (value, {
     
     let num = Math.abs(Number(value));
     
+    if (num > 0 && num < 0.000001) {
+        minimumFractionDigits = 8;
+        maximumFractionDigits = 12;
+    } else if (Math.abs(num) > 10000) {
+        minimumFractionDigits = decimals;
+        maximumFractionDigits = decimals;
+    }
+    
     let options = {
         style,
         currency,
-        minimumFractionDigits: Math.abs(num) > 10000 ? decimals : minimumFractionDigits,
-        maximumFractionDigits: Math.abs(num) > 10000 ? decimals : maximumFractionDigits,
+        minimumFractionDigits,
+        maximumFractionDigits,
         notation: compact ? 'compact' : 'standard',
         roundingMode,
     };
