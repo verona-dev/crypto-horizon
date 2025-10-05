@@ -24,7 +24,7 @@
                    
                    <Skeleton
                        v-else
-                       class='h-[100px] w-full'
+                       class='w-12 h-12'
                    />
                </NuxtImg>
                
