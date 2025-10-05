@@ -96,7 +96,7 @@ export const useMarketStore = defineStore('MarketStore', {
                 const response = await useFetchCoingecko('search/trending');
                 if(response) {
                     this.globalTrending = response;
-                    console.log(this.globalTrending);
+                    // console.log(this.globalTrending);
                 }
             } catch(error) {
                 console.error(error);
