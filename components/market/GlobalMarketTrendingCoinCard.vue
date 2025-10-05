@@ -95,7 +95,7 @@
     
     const { coin } = toRefs(props);
     
-    const rank = coin.value?.score;
+    const rank = coin.value?.score + 1;
     const image = coin.value?.large;
     const mcap_rank = coin.value?.market_cap_rank;
     const name = coin.value?.name;
