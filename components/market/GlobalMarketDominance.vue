@@ -22,7 +22,7 @@
                         />
                     </HoverCardTrigger>
                     
-                    <HoverCardContent class='hover-card-content flex-col gap-6 !p-10'>
+                    <HoverCardContent class='hover-card-content flex-col gap-6 !p-6'>
                     <span>
                         Bitcoin dominance is the market share of BTC compared against the rest of the crypto market.
                         This metric allows traders to identify potential cryptocurrency market trends and
