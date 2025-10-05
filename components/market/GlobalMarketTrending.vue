@@ -14,10 +14,7 @@
                 :opts='{
                     align: "center",
                     loop: true,
-                    skipSnaps: true,
-                    duration: 1500,
                     startIndex: 1,
-                    dragThreshold: 1,
                 }'
             >
                 <CarouselContent class='ml-3'>
@@ -43,7 +40,7 @@
     import GlobalMarketTrendingCoinCard from '~/components/market/GlobalMarketTrendingCoinCard.vue';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-    import Autoplay from 'embla-carousel-autoplay';
+    import AutoScroll from 'embla-carousel-auto-scroll';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
@@ -55,10 +52,9 @@
     const trending_coins = computed(() => globalTrending.value?.coins);
     console.log(trending_coins.value);
     
-    const plugin = Autoplay({
-        delay: 2000,
-        stopOnMouseEnter: true,
-        stopOnInteraction: false,
+    const plugin = AutoScroll({
+        speed: 0.25,
+        startDelay: 2000,
     })
     
     // onMounted(() => getCoingeckoGlobalTrending());
