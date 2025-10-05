@@ -1,39 +1,42 @@
 <template>
-    <Alert class='!bg-background flex w-4/ h-96 !border-none !shadow-none animate-fadeIn'>
-        <Skeleton
-            v-if='!trending_coins'
-            class='w-full h-full'
-        />
+    <div class='mt-12 flex flex-col items-center gap-6'>
+        <h3>Top Trending Coins</h3>
         
-        <div v-else class='flex items-start justify-center mx-auto max-w-6xl h-full'>
-            <Carousel
-                class='relative w-full'
-                :plugins='[plugin]'
-                @mouseenter='plugin.stop'
-                @mouseleave='[plugin.reset(), plugin.play()];'
-                :opts='{
+        <Alert class='flex w-4/ !border-none !shadow-none animate-fadeIn'>
+            <Skeleton
+                v-if='!trending_coins'
+                class='w-full h-full'
+            />
+            
+            <div v-else class='flex flex-col items-start justify-center max-w-6xl h-full'>
+                <Carousel
+                    class='relative w-full'
+                    :plugins='[plugin]'
+                    @mouseenter='plugin.stop'
+                    @mouseleave='[plugin.reset(), plugin.play()];'
+                    :opts='{
                     align: "center",
                     loop: true,
                     startIndex: 1,
                 }'
-            >
-                <CarouselContent class='ml-3'>
-                    <CarouselItem
-                        v-for='coin in trending_coins'
-                        :key='coin.item.id'
-                        class='md:basis-1/2 lg:basis-1/4'
-                    >
-                        <GlobalMarketTrendingCoinCard
-                            :coin='coin.item'
-                        />
-                    </CarouselItem>
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-            </Carousel>
-        </div>
-
-    </Alert>
+                >
+                    <CarouselContent class='ml-3'>
+                        <CarouselItem
+                            v-for='coin in trending_coins'
+                            :key='coin.item.id'
+                            class='md:basis-1/2 lg:basis-1/3'
+                        >
+                            <GlobalMarketTrendingCoinCard
+                                :coin='coin.item'
+                            />
+                        </CarouselItem>
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
+            </div>
+        </Alert>
+    </div>
 </template>
 
 <script setup>
@@ -50,12 +53,21 @@
     
     const { globalTrending } = storeToRefs(MarketStore);
     const trending_coins = computed(() => globalTrending.value?.coins);
-    console.log(trending_coins.value);
     
     const plugin = AutoScroll({
-        speed: 0.25,
-        startDelay: 2000,
+        speed: 0.5,
+        startDelay: 1000,
     })
     
     // onMounted(() => getCoingeckoGlobalTrending());
 </script>
+
+<style scoped>
+    button {
+        &:hover {
+            color: var(--muted-foreground);
+        }
+        
+        margin: 0 -50px;
+    }
+</style>
