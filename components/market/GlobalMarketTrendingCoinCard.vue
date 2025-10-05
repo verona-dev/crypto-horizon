@@ -74,7 +74,7 @@
                </NuxtImg>
            </HoverCardTrigger>
             
-            <HoverCardContent>
+            <HoverCardContent v-if='content'>
                 <p class='text-xs'>{{ content }}</p>
             </HoverCardContent>
         </HoverCard>
