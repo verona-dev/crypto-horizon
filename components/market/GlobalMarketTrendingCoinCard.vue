@@ -1,12 +1,12 @@
 <template>
     <Card
         v-if='coin'
-        class='!w-64 bg-background/50 shadow-2xl !py-6 !px-0 !border-warning/10'
+        class='!w-64 bg-accent-foreground shadow-2xl !py-6 !px-0 !border-warning/10'
     >
-        <CardHeader class='flex items-center justify-center gap-4 border-b border-warning/10 px-0 !pb-4'>
-            <Badge class='select-none text-sm text-warning border-warning/10' variant='outline'>{{ rank }}</Badge>
+        <CardHeader class='flex items-center justify-center gap-4 border-b text-warning border-warning/10 px-0 !pb-4'>
+            <Badge class='select-none text-sm text-warning border-warning' variant='outline'>{{ rank }}</Badge>
             
-            <h6 class='text-warning'>{{ name }}</h6>
+            <h6>{{ name }}</h6>
         </CardHeader>
         
         <CardContent class='flex flex-col items-center justify-center gap-8 px-0'>
