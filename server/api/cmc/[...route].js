@@ -12,7 +12,7 @@ export default defineCachedEventHandler(async (event) => {
         const response = await fetch(apiUrl, {
             method: 'GET',
             headers: {
-                Accept: 'application/json',
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'X-CMC_PRO_API_KEY': cmc_api_key,
             },

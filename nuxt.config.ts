@@ -38,11 +38,6 @@ export default defineNuxtConfig({
    icon: {
       componentName: 'NuxtIcon',
       cssLayer: 'base',
-      serverBundle: {
-         collections: {
-            'token-branded': ['btc', 'eth'],
-         },
-      },
       customCollections: [
          {
             prefix: 'my-icon',
@@ -97,7 +92,7 @@ export default defineNuxtConfig({
       componentDir: './components/ui'
    },
 
-   ssr: false,
+   ssr: true,
 
    vite: {
       plugins: [
