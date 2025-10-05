@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-background shadow-2xl h-96 p-0 !w-4/5 xl:!w-[500px] animate-fadeIn'>
+    <Card class='bg-background/50 shadow-2xl h-96 p-0 !w-4/5 xl:!w-[500px] animate-fadeIn'>
         <Skeleton
             v-if='!fearAndGreed'
             class='w-full h-full'
