@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <ClientOnly>
         <SidebarProvider :default-open='false'>
             <AppSidebar />
             
@@ -18,7 +18,7 @@
                 <ScrollToTop />
             </SidebarInset>
         </SidebarProvider>
-    </div>
+    </ClientOnly>
 </template>
 
 <script setup>
