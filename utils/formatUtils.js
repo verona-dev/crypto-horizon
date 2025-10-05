@@ -19,7 +19,22 @@ const formatNumber = (value, {
     if (num > 0 && num < 0.000001) {
         minimumFractionDigits = 8;
         maximumFractionDigits = 12;
-    } else if (Math.abs(num) > 10000) {
+    } else if (num >= 0.000001 && num <  0.0001) {
+        minimumFractionDigits = 6;
+        maximumFractionDigits = 8;
+    } else if (num >= 0.0001 && num < 0.001) {
+        minimumFractionDigits = 4;
+        maximumFractionDigits = 6;
+    } else if (num >= 0.001 && num < 0.01) {
+        minimumFractionDigits = 4;
+        maximumFractionDigits = 4;
+    } else if (num >= 0.01 && num < 1) {
+        minimumFractionDigits = 3;
+        maximumFractionDigits = 3;
+    } else if (num >= 1 && num < 10) {
+        minimumFractionDigits = 2;
+        maximumFractionDigits = 2;
+    } else if (num >= 1000) {
         minimumFractionDigits = decimals;
         maximumFractionDigits = decimals;
     }
