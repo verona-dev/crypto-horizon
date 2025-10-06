@@ -135,8 +135,7 @@
     const name = coin.value?.name;
     const symbol = coin.value?.symbol;
     const price = coin.value?.data?.price;
-    const price_label = formatNumber(price, {
-    });
+    const price_label = formatNumber(price);
     const price_change_percentage_1d = coin.value?.data?.price_change_percentage_24h?.usd;
     const price_change_percentage_1d_label = formatNumber(price_change_percentage_1d, {
         style: 'percent', compact: true, decimals: 2,
