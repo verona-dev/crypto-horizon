@@ -55,8 +55,8 @@
     const plugin = AutoScroll({
         speed: 0.75,
         startDelay: 1000,
-        stopOnInteraction: false,
-        stopOnMouseEnter: false,
+        stopOnInteraction: true,
+        stopOnMouseEnter: true,
     })
     
     // onMounted(() => getCoingeckoGlobalTrending());
