@@ -1,87 +1,32 @@
 <template>
     <Card
         v-if='coin'
-        class='!w-64 bg-accent-foreground shadow-2xl !py-6 !px-0 !border-warning/10'
+        class='!w-64 bg-accent-foreground flex flex-col justify-center gap-6 shadow-2xl !py-0 !px-0 !pb-2 !border-warning/10'
     >
-        <NuxtLink
-            :to='`/market/${slug}`'
-            class='flex flex-col justify-center gap-6'
-        >
-            <CardHeader class='flex items-center justify-center gap-4 border-b text-warning border-warning/10 px-0 !pb-4'>
-                <Badge class='select-none text-sm text-warning border-warning' variant='outline'>{{ rank }}</Badge>
+        <CardHeader class='flex items-center justify-center border-b text-warning border-warning/10 !py-4'>
+            <NuxtLink
+                :to='`/market/${slug}`'
+                class='flex items-center justify-center gap-2'
+            >
+                
+                <Badge class='text-lg text-warning' variant='outline'>{{ rank }}</Badge>
                 
                 <h6>{{ name }}</h6>
-            </CardHeader>
-            
-            <CardContent class='flex flex-col items-center justify-center gap-8 px-0'>
-                <div class='flex flex-col items-center gap-3'>
-                    <NuxtImg
-                        :src='image'
-                        alt='trending coin logo'
-                        class='w-20 h-20 rounded-md rounded-b-none select-none'
-                        :custom='true'
-                        v-slot='{ src, isLoaded, imgAttrs, alt }'
-                        preload
-                    >
-                        <img
-                            v-if='isLoaded'
-                            v-bind='imgAttrs'
-                            :src='src'
-                            :alt='alt'
-                        >
-                        
-                        <Skeleton
-                            v-else
-                            class='w-20 h-20'
-                        />
-                    </NuxtImg>
-                    
-                    <div class='flex items-center gap-2 text-muted-foreground'>
-                        <p>#{{ mcap_rank }}</p>
-                        
-                        <p>{{ symbol }}</p>
-                        
-                        <HoverCard :openDelay='200' v-if='description'>
-                            <HoverCardTrigger class='info-icon'>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='15'
-                                    class='flex text-muted-foreground'
-                                />
-                            </HoverCardTrigger>
-                            
-                            <HoverCardContent class='!p-6 flex flex-col !gap-3'>
-                                <p class='text-xs'>{{ title }}</p>
-                                <p class='text-xs'>{{ description }}</p>
-                            </HoverCardContent>
-                        </HoverCard>
-                    </div>
-                </div>
                 
-                <div class='flex flex-col items-center gap-1'>
-                    <h4>{{ price_label }}</h4>
-                    
-                    <div class='flex items-center gap-1 mr-2'>
-                        <NuxtIcon
-                            :name='getTrendIcon(price_change_percentage_1d)'
-                            size='15'
-                            :class='getTextColorClass(price_change_percentage_1d)'
-                        />
-                        
-                        <span
-                            :class='[getTextColorClass(price_change_percentage_1d)]'
-                            class='flex items-center'
-                        >
-                    {{ price_change_percentage_1d_label }}
-                </span>
-                    </div>
-                </div>
-                
-                <!--  Sparkline  -->
+                <NuxtIcon
+                    name='iconoir:open-new-window'
+                    size='12'
+                    class='mt-0.5 ml-1.5'
+                />
+            </NuxtLink>
+        </CardHeader>
+        
+        <CardContent class='flex flex-col items-center justify-center gap-6 px-0'>
+            <div class='flex flex-col items-center gap-3'>
                 <NuxtImg
-                    :src='sparkline'
+                    :src='image'
                     alt='trending coin logo'
-                    class='w-2/3'
+                    class='w-18 h-18 rounded-md rounded-b-none select-none'
                     :custom='true'
                     v-slot='{ src, isLoaded, imgAttrs, alt }'
                     preload
@@ -95,11 +40,83 @@
                     
                     <Skeleton
                         v-else
-                        class='h-[100px] w-full'
+                        class='w-18 h-18'
                     />
                 </NuxtImg>
-            </CardContent>
-        </NuxtLink>
+                
+                <div class='flex items-center gap-2 text-muted-foreground'>
+                    <p class='text-sm'>#{{ mcap_rank }}</p>
+                    
+                    <p class='text-sm'>{{ symbol }}</p>
+                    
+                    <HoverCard :openDelay='200' v-if='description'>
+                        <HoverCardTrigger class='info-icon'>
+                            <NuxtIcon
+                                name='radix-icons:info-circled'
+                                size='15'
+                                class='flex text-muted-foreground'
+                            />
+                        </HoverCardTrigger>
+                        
+                        <HoverCardContent class='!p-6 flex flex-col !gap-3'>
+                            <p class='text-xs'>{{ title }}</p>
+                            <p class='text-xs text-muted-foreground'>{{ description }}</p>
+                        </HoverCardContent>
+                    </HoverCard>
+                </div>
+            </div>
+            
+            <div class='flex flex-col items-center gap-1'>
+                <h5>{{ price_label }}</h5>
+                
+                <div
+                    class='flex items-center gap-1'
+                    :class='getTextColorClass(price_change_percentage_1d)'
+                >
+                    <NuxtIcon
+                        :name='getTrendIcon(price_change_percentage_1d)'
+                        size='12'
+                    />
+                    
+                    <span class='flex items-center text-xs'>{{ price_change_percentage_1d_label }}</span>
+                    
+                    <span class='text-xs'>&#40;24h&#41;</span>
+                </div>
+            </div>
+            
+            <!--  Sparkline  -->
+            <div class='w-5/6 border-t border-warning/10 h-30 p-6 rounded'>
+                <NuxtImg
+                    v-if='sparkline'
+                    :src='sparkline'
+                    alt='trending coin logo'
+                    class='w-full h-full'
+                    :custom='true'
+                    v-slot='{ src, isLoaded, imgAttrs, alt }'
+                    preload
+                >
+                    <img
+                        v-if='isLoaded'
+                        v-bind='imgAttrs'
+                        :src='src'
+                        :alt='alt'
+                    >
+                    <Skeleton
+                        v-else
+                        class='w-full h-20'
+                    />
+                </NuxtImg>
+                
+                <div v-else class='w-full h-full flex flex-col items-center justify-center gap-2'>
+                    <NuxtIcon
+                        name='my-icon:sparkline-fallback'
+                        class='w-full h-full'
+                    />
+                    
+                    <p class='text-xs'>No sparkline available</p>
+                </div>
+            </div>
+        </CardContent>
     </Card>
 </template>
 
