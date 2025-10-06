@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-background shadow-2xl h-96 p-0 w-4/5 xl:!w-[600px] animate-fadeIn'>
+    <Card class='bg-background/50 shadow-2xl h-96 p-0 w-4/5 xl:!w-[700px] animate-fadeIn'>
         <Skeleton
             v-if='!updated_at'
             class='w-full h-full'
@@ -22,7 +22,7 @@
                         />
                     </HoverCardTrigger>
                     
-                    <HoverCardContent class='hover-card-content flex-col gap-6 !p-10'>
+                    <HoverCardContent class='hover-card-content flex-col gap-6 !p-6'>
                     <span>
                         Bitcoin dominance is the market share of BTC compared against the rest of the crypto market.
                         This metric allows traders to identify potential cryptocurrency market trends and
