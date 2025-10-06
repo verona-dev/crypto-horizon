@@ -1,23 +1,16 @@
 <template>
     <Card
         v-if='coin'
-        class='!w-64 bg-accent-foreground flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
+        class='!w-80 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
     >
-        <CardHeader class='flex items-center justify-center border-b text-pink-blush border-warning/10 !py-4'>
+        <CardHeader class='flex items-center justify-center border-b border-warning/10 !py-4'>
             <NuxtLink
                 :to='`/market/${slug}`'
-                class='flex items-center justify-center gap-2'
+                class='flex items-center justify-center gap-4'
             >
+                <Badge class='text-md border-muted-foreground' variant='outline'>{{ rank }}</Badge>
                 
-                <Badge class='text-lg text-pink-blush' variant='outline'>{{ rank }}</Badge>
-                
-                <h6 class='truncate text-pink-blush'>{{ name }}</h6>
-                
-                <NuxtIcon
-                    name='iconoir:open-new-window'
-                    size='12'
-                    class='mt-0.5 ml-1.5'
-                />
+                <h6 class='truncate'>{{ name }}</h6>
             </NuxtLink>
         </CardHeader>
         
@@ -85,7 +78,7 @@
             </div>
             
             <!--  Sparkline  -->
-            <div class='w-5/6 border-t border-warning/10 h-30 rounded py-4 px-2 flex items-center'>
+            <div class='w-3/4 border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center'>
                 <NuxtImg
                     v-if='sparkline'
                     :src='sparkline'
