@@ -3,14 +3,14 @@
         v-if='coin'
         class='!w-72 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
     >
-        <CardHeader class='flex items-center justify-center border-b border-warning/10 !py-4'>
+        <CardHeader class='flex items-center justify-center border-b border-warning/10 !py-8'>
             <NuxtLink
                 :to='`/market/${slug}`'
                 class='flex items-center justify-center gap-4'
             >
                 <Badge class='text-md border-muted-foreground' variant='outline'>{{ rank }}</Badge>
                 
-                <h6 class='truncate'>{{ name }}</h6>
+                <h6 class='break-words whitespace-normal'>{{ name }}</h6>
             </NuxtLink>
         </CardHeader>
         
