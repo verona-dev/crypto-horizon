@@ -65,6 +65,13 @@
                         }
                     },
                     {
+                        title: 'Trending',
+                        url: '/market/trending',
+                        get isActive() {
+                            return isChildActive(this.url);
+                        }
+                    },
+                    {
                         title: 'Exchanges',
                         url: '/market/exchanges',
                         get isActive() {
