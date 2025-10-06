@@ -114,11 +114,11 @@
 </template>
 
 <script setup>
-    import { Skeleton } from '~/components/ui/skeleton/index.js';
+    import { Skeleton } from '~/components/ui/skeleton/index.ts';
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
-    import { Badge } from '@/components/ui/badge';
+    import { Badge } from '~/components/ui/badge/index.js';
     
     const props = defineProps({
         coin: {
