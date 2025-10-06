@@ -55,7 +55,7 @@
     const plugin = AutoScroll({
         speed: 0.75,
         startDelay: 1000,
-        stopOnInteraction: true,
+        stopOnInteraction: false,
         stopOnMouseEnter: true,
     })
     
