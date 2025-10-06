@@ -112,7 +112,7 @@
                                     class='flex items-center'
                                 >
                                     {{ price_change_percentage_label }}
-                                    <span class='ml-1 text-[size:inherit]'>&#40;{{ range_label }}&#41;</span>
+                                    <span class='text-[size:inherit]'>&#40;{{ range_label }}&#41;</span>
                                 </p>
                             </HoverCardTrigger>
                             
