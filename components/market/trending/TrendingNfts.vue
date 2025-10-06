@@ -13,10 +13,10 @@
                     class='relative w-full'
                     :plugins='[plugin]'
                     :opts='{
-                    align: "center",
-                    loop: true,
-                    startIndex: 1,
-                }'
+                        align: "center",
+                        loop: true,
+                        startIndex: 1,
+                    }'
                 >
                     <CarouselContent class='ml-3'>
                         <CarouselItem
@@ -54,9 +54,10 @@
     console.log(nfts.value);
     
     const plugin = AutoScroll({
+        direction: 'backward',
         speed: 0.75,
         startDelay: 1000,
         stopOnInteraction: false,
-        stopOnMouseEnter: true,
+        stopOnMouseEnter: false,
     });
 </script>
