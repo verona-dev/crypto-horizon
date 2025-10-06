@@ -40,7 +40,7 @@ export const useMarketStore = defineStore('MarketStore', {
         loading: false,
         globalMarket: {},
         fearAndGreed: null,
-        globalTrending: null,
+        marketTrending: null,
         globalDefi: {},
     }),
     
@@ -89,14 +89,13 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getCoingeckoGlobalTrending() {
+        async getCoingeckoTrending() {
             this.loading = true;
             
             try {
                 const response = await useFetchCoingecko('search/trending');
                 if(response) {
-                    this.globalTrending = response;
-                    // console.log(this.globalTrending);
+                    this.marketTrending = response;
                 }
             } catch(error) {
                 console.error(error);
