@@ -1,17 +1,17 @@
 <template>
     <Card
         v-if='coin'
-        class='!w-64 bg-accent-foreground flex flex-col justify-center gap-6 shadow-2xl !py-0 !px-0 !pb-2 !border-warning/10'
+        class='!w-64 bg-accent-foreground flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
     >
-        <CardHeader class='flex items-center justify-center border-b text-warning border-warning/10 !py-4'>
+        <CardHeader class='flex items-center justify-center border-b text-pink-blush border-warning/10 !py-4'>
             <NuxtLink
                 :to='`/market/${slug}`'
                 class='flex items-center justify-center gap-2'
             >
                 
-                <Badge class='text-lg text-warning' variant='outline'>{{ rank }}</Badge>
+                <Badge class='text-lg text-pink-blush' variant='outline'>{{ rank }}</Badge>
                 
-                <h6>{{ name }}</h6>
+                <h6 class='truncate text-pink-blush'>{{ name }}</h6>
                 
                 <NuxtIcon
                     name='iconoir:open-new-window'
@@ -85,7 +85,7 @@
             </div>
             
             <!--  Sparkline  -->
-            <div class='w-5/6 border-t border-warning/10 h-30 p-6 rounded'>
+            <div class='w-5/6 border-t border-warning/10 h-30 rounded py-4 px-2 flex items-center'>
                 <NuxtImg
                     v-if='sparkline'
                     :src='sparkline'
@@ -103,11 +103,11 @@
                     >
                     <Skeleton
                         v-else
-                        class='w-full h-20'
+                        class='w-full h-full'
                     />
                 </NuxtImg>
                 
-                <div v-else class='w-full h-full flex flex-col items-center justify-center gap-2'>
+                <div v-else class='w-full h-full flex flex-col items-center justify-center gap-2 mb-2'>
                     <NuxtIcon
                         name='my-icon:sparkline-fallback'
                         class='w-full h-full'
