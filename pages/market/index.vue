@@ -1,6 +1,8 @@
 <template>
-    <div class='market flex flex-col items-center justify-center gap-12'>
+    <div class='market flex flex-col items-center justify-center gap-20'>
         <GlobalMarketBar />
+        
+        <h1 class='text-6xl'>Crypto Market</h1>
         
         <div class='flex flex-wrap items-center justify-center gap-4 h-[960px] xl:h-96 max-w-7xl'>
             <GlobalMarketFearGreed />
@@ -28,8 +30,8 @@
     
     
     onMounted(() => {
-         getCoingeckoGlobalMarket();
-         getCmcFearAndGreed();
+        getCoingeckoGlobalMarket();
+        getCmcFearAndGreed();
         getCoingeckoGlobalTrending();
     });
 </script>
