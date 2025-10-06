@@ -28,3 +28,15 @@
     
     onMounted(() => getCoingeckoTrending());
 </script>
+
+<style>
+    .trending {
+        button {
+            &:hover {
+                color: var(--muted-foreground);
+            }
+            
+            margin: 0 -50px;
+        }
+    }
+</style>
