@@ -1,7 +1,7 @@
 <template>
     <Card
         v-if='coin'
-        class='!w-80 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
+        class='!w-72 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
     >
         <CardHeader class='flex items-center justify-center border-b border-warning/10 !py-4'>
             <NuxtLink
