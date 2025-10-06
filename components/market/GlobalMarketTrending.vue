@@ -1,6 +1,6 @@
 <template>
-    <div class='mt-12 flex flex-col items-center gap-6'>
-        <h3>Top Trending Coins</h3>
+    <div class='mt-16 flex flex-col items-center gap-20'>
+        <h1 class='text-6xl'>Top Trending Coins</h1>
         
         <Alert class='flex w-4/ !border-none !shadow-none animate-fadeIn'>
             <Skeleton
