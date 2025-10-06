@@ -56,13 +56,3 @@
         stopOnMouseEnter: true,
     });
 </script>
-
-<style scoped>
-    button {
-        &:hover {
-            color: var(--muted-foreground);
-        }
-        
-        margin: 0 -50px;
-    }
-</style>
