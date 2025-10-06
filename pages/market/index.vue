@@ -9,8 +9,6 @@
             <GlobalMarketDominance />
         </div>
         
-        <GlobalMarketTrending v-if='globalTrending'/>
-        
         <CoinsTable />
     </div>
 </template>
@@ -19,19 +17,14 @@
     import GlobalMarketBar from '~/components/market/GlobalMarketBar.vue';
     import GlobalMarketFearGreed from '~/components/market/GlobalMarketFearGreed.vue';
     import GlobalMarketDominance from '~/components/market/GlobalMarketDominance.vue';
-    import GlobalMarketTrending from '~/components/market/GlobalMarketTrending.vue';
     import CoinsTable from '~/components/market/CoinsTable.vue';
     
-    import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    const { getCoingeckoGlobalMarket, getCmcFearAndGreed, getCoingeckoGlobalTrending } = MarketStore;
-    const { globalTrending } = storeToRefs(MarketStore);
-    
+    const { getCmcFearAndGreed, getCoingeckoGlobalMarket } = MarketStore;
     
     onMounted(() => {
-        getCoingeckoGlobalMarket();
         getCmcFearAndGreed();
-        getCoingeckoGlobalTrending();
+        getCoingeckoGlobalMarket();
     });
 </script>
