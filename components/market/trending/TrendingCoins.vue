@@ -1,10 +1,10 @@
 <template>
-    <div v-if='marketTrending' class='mt-16 flex flex-col items-center gap-20'>
+    <div class='mt-16 flex flex-col items-center gap-20'>
         <h1 class='text-6xl'>Trending Coins</h1>
         
         <Alert class='flex w-4/ !border-none !shadow-none animate-fadeIn'>
             <Skeleton
-                v-if='!trending_coins'
+                v-if='!coins'
                 class='w-full h-full'
             />
             
@@ -20,11 +20,11 @@
                 >
                     <CarouselContent class='ml-3'>
                         <CarouselItem
-                            v-for='coin in trending_coins'
+                            v-for='coin in coins'
                             :key='coin.item.id'
                             class='md:basis-1/2 lg:basis-1/3'
                         >
-                            <MarketTrendingCoinCard
+                            <TrendingCoinCard
                                 :coin='coin.item'
                             />
                         </CarouselItem>
@@ -38,28 +38,23 @@
 </template>
 
 <script setup>
-    import MarketTrendingCoinCard from '~/components/market/trending/MarketTrendingCoinCard.vue';
+    import TrendingCoinCard from '~/components/market/trending/TrendingCoinCard.vue';
     import { Skeleton } from '~/components/ui/skeleton/index.ts';
     import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '~/components/ui/carousel/index.js';
     import AutoScroll from 'embla-carousel-auto-scroll';
     
-    import { storeToRefs } from 'pinia';
-    import { useMarketStore } from '~/stores/MarketStore.js';
-    const MarketStore = useMarketStore();
-    
-    const { getCoingeckoTrending } = MarketStore;
-    
-    const { marketTrending } = storeToRefs(MarketStore);
-    const trending_coins = computed(() => marketTrending.value?.coins);
+    const props = defineProps({
+        coins: {
+            type: Object,
+        }
+    });
     
     const plugin = AutoScroll({
         speed: 0.75,
         startDelay: 1000,
         stopOnInteraction: false,
         stopOnMouseEnter: true,
-    })
-    
-    onMounted(() => getCoingeckoTrending());
+    });
 </script>
 
 <style scoped>
