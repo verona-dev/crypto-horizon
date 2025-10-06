@@ -12,8 +12,6 @@
                 <Carousel
                     class='relative w-full'
                     :plugins='[plugin]'
-                    @mouseenter='plugin.stop'
-                    @mouseleave='[plugin.reset(), plugin.play()];'
                     :opts='{
                     align: "center",
                     loop: true,
@@ -55,8 +53,10 @@
     const trending_coins = computed(() => globalTrending.value?.coins);
     
     const plugin = AutoScroll({
-        speed: 0.5,
+        speed: 0.75,
         startDelay: 1000,
+        stopOnInteraction: false,
+        stopOnMouseEnter: false,
     })
     
     // onMounted(() => getCoingeckoGlobalTrending());
