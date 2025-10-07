@@ -77,27 +77,28 @@
             
             <!--  Sparkline  -->
             <div class='w-3/4 border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center'>
-                <NuxtImg
-                    v-if='sparkline && !sparkline_error'
-                    :src='sparkline'
-                    alt='trending nft logo'
-                    class='w-full h-full'
-                    :custom='true'
-                    v-slot='{ src, isLoaded, imgAttrs, alt }'r
-                    preload
-                >
-                    <img
-                        v-if='isLoaded'
-                        v-bind='imgAttrs'
-                        :src='src'
-                        :alt='alt'
-                        @error='sparkline_error = true'
-                    >
-                    <Skeleton
-                        v-else
+                <div v-if='sparkline' class='w-full h-full'>
+                    <NuxtImg
+                        :src='sparkline'
+                        alt='trending nft logo'
                         class='w-full h-full'
-                    />
-                </NuxtImg>
+                        :custom='true'
+                        v-slot='{ src, isLoaded, imgAttrs, alt }'r
+                        preload
+                    >
+                        <img
+                            v-if='isLoaded && !sparkline_error'
+                            v-bind='imgAttrs'
+                            :src='src'
+                            :alt='alt'
+                            @error='sparkline_error = true'
+                        >
+                        <Skeleton
+                            v-else
+                            class='w-full h-full'
+                        />
+                    </NuxtImg>
+                </div>
                 
                 <div v-else class='w-full h-full flex flex-col items-center justify-center gap-2 mb-2'>
                     <NuxtIcon
