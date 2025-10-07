@@ -56,6 +56,8 @@
             </div>
             
             <div class='flex flex-col items-center gap-1'>
+                <h5>Floor price</h5>
+                
                 <h5>{{ floor_price }}</h5>
                 
                 <div
@@ -76,12 +78,12 @@
             <!--  Sparkline  -->
             <div class='w-3/4 border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center'>
                 <NuxtImg
-                    v-if='sparkline'
+                    v-if='sparkline && !sparkline_error'
                     :src='sparkline'
                     alt='trending nft logo'
                     class='w-full h-full'
                     :custom='true'
-                    v-slot='{ src, isLoaded, imgAttrs, alt }'
+                    v-slot='{ src, isLoaded, imgAttrs, alt }'r
                     preload
                 >
                     <img
@@ -89,6 +91,7 @@
                         v-bind='imgAttrs'
                         :src='src'
                         :alt='alt'
+                        @error='sparkline_error = true'
                     >
                     <Skeleton
                         v-else
@@ -140,6 +143,7 @@
     const volume_24h = nft.value?.data?.h24_volume;
     const average_sale_price_24h = nft.value?.data?.h24_average_sale_price;
     const sparkline = nft.value?.data?.sparkline;
+    const sparkline_error = ref(false);
     const title = nft.value?.data?.content?.title;
     const description = nft.value?.data?.content?.description;
 </script>
