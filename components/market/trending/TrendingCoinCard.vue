@@ -1,18 +1,24 @@
 <template>
     <Card
         v-if='coin'
-        class='!w-72 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
+        class='!w-76 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
     >
-        <CardHeader class='flex items-center justify-center border-b border-warning/10 !py-8'>
-            <NuxtLink
-                :to='`/market/${slug}`'
-                class='flex items-center justify-center gap-4'
-            >
-                <Badge class='text-md border-muted-foreground' variant='outline'>{{ rank }}</Badge>
+        <NuxtLink
+            :to='`/market/${slug}`'
+            target='_blank'
+        >
+            <CardHeader class='card-header flex items-center justify-center gap-4 border-b border-warning/10 !py-8'>
+                <Badge class='badge text-md border-muted-foreground' variant='outline'>{{ rank }}</Badge>
                 
-                <h6 class='break-words whitespace-normal'>{{ name }}</h6>
-            </NuxtLink>
-        </CardHeader>
+                <h6 class='name break-words whitespace-normal'>{{ name }}</h6>
+                
+                <NuxtIcon
+                    name='iconoir:open-new-window'
+                    size='12'
+                    class='icon mt-0.5 opacity-0'
+                />
+            </CardHeader>
+        </NuxtLink>
         
         <CardContent class='flex flex-col items-center justify-center gap-6 px-0'>
             <div class='flex flex-col items-center gap-3'>
@@ -144,3 +150,22 @@
     const title = coin.value?.data?.content?.title;
     const description = coin.value?.data?.content?.description;
 </script>
+
+<style scoped>
+    .card-header {
+        &:hover {
+            .name {
+                text-decoration: underline;
+            }
+            
+            .icon {
+                opacity: 1;
+            }
+            
+            .badge {
+                background-color: var(--tertiary);
+                border: 1px solid var(--tertiary);
+            }
+        }
+    }
+</style>
