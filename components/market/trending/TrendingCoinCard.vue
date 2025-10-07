@@ -1,7 +1,7 @@
 <template>
     <Card
         v-if='coin'
-        class='!w-76 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
+        class='!w-80 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
     >
         <NuxtLink
             :to='`/market/${slug}`'
@@ -10,7 +10,7 @@
             <CardHeader class='card-header flex items-center justify-center gap-4 border-b border-warning/10 !py-8'>
                 <Badge class='badge text-md border-muted-foreground' variant='outline'>{{ rank }}</Badge>
                 
-                <h6 class='name break-words whitespace-normal'>{{ name }}</h6>
+                <h5 class='name break-words whitespace-normal font-bold uppercase'>{{ name }}</h5>
                 
                 <NuxtIcon
                     name='iconoir:open-new-window'
