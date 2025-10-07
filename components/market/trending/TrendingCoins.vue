@@ -11,12 +11,13 @@
             <div v-else class='flex flex-col items-start justify-center max-w-6xl h-full'>
                 <Carousel
                     class='relative w-full'
-                    :plugins='[autoPlay, autoScroll]'
+                    :plugins='[autoScroll]'
                     :opts='{
                         align: "center",
                         loop: true,
                         startIndex: 1,
                         skipSnaps: true,
+                        duration: 1500,
                         dragThreshold: 1,
                     }'
                 >
@@ -43,7 +44,6 @@
     import TrendingCoinCard from '~/components/market/trending/TrendingCoinCard.vue';
     import { Skeleton } from '~/components/ui/skeleton/index.ts';
     import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '~/components/ui/carousel/index.js';
-    import Autoplay from 'embla-carousel-autoplay';
     import AutoScroll from 'embla-carousel-auto-scroll';
     
     const props = defineProps({
@@ -52,16 +52,9 @@
         }
     });
     
-    const autoPlay = Autoplay({
+    const autoScroll = AutoScroll({
         delay: 2000,
         stopOnMouseEnter: true,
         stopOnInteraction: false,
-    })
-    
-    const autoScroll = AutoScroll({
-        speed: 0.75,
-        startDelay: 1000,
-        stopOnMouseEnter: true,
-        stopOnInteraction: false,
-    })
+    });
 </script>
