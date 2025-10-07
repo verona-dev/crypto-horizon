@@ -7,6 +7,8 @@ remote_images = [
   "https://resources.cryptocompare.com/.*",
   "https://images.cryptocompare.com/.*",
   "https://www.coingecko.com/.*",
+  "https://www.coingecko.com/coins/.*",
+  "https://www.coingecko.com/nft/.*",
 ]
 
 [[headers]]
