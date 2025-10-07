@@ -1,10 +1,10 @@
 <template>
     <div class='mt-16 flex flex-col items-center gap-20'>
-        <h1 class='text-6xl'>Top Trending Coins</h1>
+        <h1 class='text-6xl'>Trending Coins</h1>
         
         <Alert class='flex w-4/ !border-none !shadow-none animate-fadeIn'>
             <Skeleton
-                v-if='!trending_coins'
+                v-if='!coins'
                 class='w-full h-full'
             />
             
@@ -12,8 +12,6 @@
                 <Carousel
                     class='relative w-full'
                     :plugins='[plugin]'
-                    @mouseenter='plugin.stop'
-                    @mouseleave='[plugin.reset(), plugin.play()];'
                     :opts='{
                     align: "center",
                     loop: true,
@@ -22,11 +20,11 @@
                 >
                     <CarouselContent class='ml-3'>
                         <CarouselItem
-                            v-for='coin in trending_coins'
+                            v-for='coin in coins'
                             :key='coin.item.id'
                             class='md:basis-1/2 lg:basis-1/3'
                         >
-                            <GlobalMarketTrendingCoinCard
+                            <TrendingCoinCard
                                 :coin='coin.item'
                             />
                         </CarouselItem>
@@ -40,34 +38,21 @@
 </template>
 
 <script setup>
-    import GlobalMarketTrendingCoinCard from '~/components/market/GlobalMarketTrendingCoinCard.vue';
-    import { Skeleton } from '~/components/ui/skeleton/index.js';
-    import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+    import TrendingCoinCard from '~/components/market/trending/TrendingCoinCard.vue';
+    import { Skeleton } from '~/components/ui/skeleton/index.ts';
+    import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '~/components/ui/carousel/index.js';
     import AutoScroll from 'embla-carousel-auto-scroll';
     
-    import { storeToRefs } from 'pinia';
-    import { useMarketStore } from '~/stores/MarketStore.js';
-    const MarketStore = useMarketStore();
-    
-    // const { getCoingeckoGlobalTrending } = MarketStore;
-    
-    const { globalTrending } = storeToRefs(MarketStore);
-    const trending_coins = computed(() => globalTrending.value?.coins);
+    const props = defineProps({
+        coins: {
+            type: Object,
+        }
+    });
     
     const plugin = AutoScroll({
-        speed: 0.5,
+        speed: 0.75,
         startDelay: 1000,
-    })
-    
-    // onMounted(() => getCoingeckoGlobalTrending());
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+    });
 </script>
-
-<style scoped>
-    button {
-        &:hover {
-            color: var(--muted-foreground);
-        }
-        
-        margin: 0 -50px;
-    }
-</style>

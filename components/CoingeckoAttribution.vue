@@ -3,7 +3,7 @@
         <NuxtLink
             to='https://www.coingecko.com/en/api/'
             target='_blank'
-            class='flex items-center gap-3'
+            class='flex items-center gap-3 hover:underline'
             external
         >
             <p class='text-sm'>Data powered by</p>
@@ -27,6 +27,12 @@
                     class='w-[150px] rounded-lg'
                 />
             </NuxtImg>
+            
+            <NuxtIcon
+                name='iconoir:open-new-window'
+                size='12'
+                class='self-start'
+            />
         </NuxtLink>
     </Alert>
 </template>
