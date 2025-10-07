@@ -77,30 +77,26 @@
             
             <!--  Sparkline  -->
             <div class='w-3/4 border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center'>
-                <div v-if='sparkline' class='w-full h-full'>
-                    <NuxtImg
-                        v-if='!sparkline_error'
-                        :src='sparkline'
-                        alt='trending nft logo'
-                        class='w-full h-full'
-                        :custom='true'
-                        v-slot='{ src, isLoaded, imgAttrs, alt }'r
-                        preload
+                <NuxtImg
+                    v-if='sparkline'
+                    :src='sparkline'
+                    alt='trending nft logo'
+                    class='w-full h-full'
+                    :custom='true'
+                    v-slot='{ src, isLoaded, imgAttrs, alt }'
+                    preload
+                >
+                    <img
+                        v-if='isLoaded'
+                        v-bind='imgAttrs'
+                        :src='src'
+                        :alt='alt'
                     >
-                        <img
-                            v-if='isLoaded && !sparkline_error'
-                            v-bind='imgAttrs'
-                            :src='src'
-                            :alt='alt'
-                            @error='sparkline_error = true'
-                        >
-                        
-                        <Skeleton
-                            v-else
-                            class='w-full h-full'
-                        />
-                    </NuxtImg>
-                </div>
+                    <Skeleton
+                        v-else
+                        class='w-full h-full'
+                    />
+                </NuxtImg>
                 
                 <div v-else class='w-full h-full flex flex-col items-center justify-center gap-2 mb-2'>
                     <NuxtIcon
@@ -118,7 +114,6 @@
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTextColorClass, getTrendIcon } from '~/utils/styleUtils.js';
-    import { Badge } from '~/components/ui/badge/index.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     
@@ -146,7 +141,6 @@
     const volume_24h = nft.value?.data?.h24_volume;
     const average_sale_price_24h = nft.value?.data?.h24_average_sale_price;
     const sparkline = nft.value?.data?.sparkline;
-    const sparkline_error = ref(false);
     const title = nft.value?.data?.content?.title;
     const description = nft.value?.data?.content?.description;
 </script>
