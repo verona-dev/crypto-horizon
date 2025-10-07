@@ -6,7 +6,7 @@ remote_images = [
   "https://res.cloudinary.com/.*",
   "https://resources.cryptocompare.com/.*",
   "https://images.cryptocompare.com/.*",
-  "https://www.coingecko.com/coins/.*",
+  "https://www.coingecko.com/.*",
 ]
 
 [[headers]]
