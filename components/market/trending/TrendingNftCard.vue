@@ -1,15 +1,12 @@
 <template>
     <Card
         v-if='nft'
-        class='!w-80 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
+        class='!w-96 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
     >
-        <CardHeader class='flex items-center justify-center border-b border-warning/10 !py-8'>
-            <NuxtLink
-                :to='`/market/${slug}`'
-                class='flex items-center justify-center gap-4'
-            >
-                <h6 class='break-words whitespace-normal'>{{ name }}</h6>
-            </NuxtLink>
+        <CardHeader class='h-36 flex flex-col items-center justify-center gap-4 border-b border-warning/10 !py-8'>
+            <Badge class='badge text-md border-muted-foreground' variant='outline'>{{ contract_id }}</Badge>
+            
+            <h6 class='break-words whitespace-normal'>{{ name }}</h6>
         </CardHeader>
         
         <CardContent class='flex flex-col items-center justify-center gap-6 px-0'>
@@ -55,23 +52,33 @@
                 </div>
             </div>
             
-            <div class='flex flex-col items-center gap-1'>
-                <h5>Floor price</h5>
-                
-                <h5>{{ floor_price }}</h5>
-                
-                <div
-                    class='flex items-center gap-1'
-                    :class='getTextColorClass(price_change_percentage_1d)'
-                >
-                    <NuxtIcon
-                        :name='getTrendIcon(price_change_percentage_1d)'
-                        size='12'
-                    />
+            <div class='flex justify-evenly w-full'>
+                <!--  Floor Price  -->
+                <div class='flex flex-col items-center gap-1'>
+                    <p class='uppercase text-muted-foreground text-sm'>Floor price</p>
                     
-                    <span class='flex items-center text-xs'>{{ price_change_percentage_1d_label }}</span>
+                    <h5>{{ floor_price }}</h5>
                     
-                    <span class='text-xs'>&#40;24h&#41;</span>
+                    <div
+                        class='flex items-center gap-1'
+                        :class='getTextColorClass(floor_price_change_percentage_1d)'
+                    >
+                        <NuxtIcon
+                            :name='getTrendIcon(floor_price_change_percentage_1d)'
+                            size='12'
+                        />
+                        
+                        <span class='flex items-center text-xs'>{{ price_change_percentage_1d_label }}</span>
+                        
+                        <span class='text-xs'>&#40;24h&#41;</span>
+                    </div>
+                </div>
+                
+                <!--  Sale Price  -->
+                <div class='flex flex-col items-center gap-1'>
+                    <p class='uppercase text-muted-foreground text-sm'>Sale price</p>
+                    
+                    <h5>{{ average_sale_price_24h }}</h5>
                 </div>
             </div>
             
@@ -116,16 +123,18 @@
     import { getTextColorClass, getTrendIcon } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
+    import { Badge } from '~/components/ui/badge/index.js';
     
     const props = defineProps({
-       nft: {
-           type: Object,
-       }
+        nft: {
+            type: Object,
+        }
     });
     
     const { nft } = toRefs(props);
     
     const slug = nft.value?.id;
+    const contract_id = nft.value?.nft_contract_id;
     const name = nft.value?.name;
     const symbol = nft.value?.symbol;
     const image = nft.value?.thumb;
@@ -134,8 +143,8 @@
     const currency = nft.value?.native_currency;
     
     const floor_price = nft.value?.data?.floor_price;
-    const price_change_percentage_1d = nft.value?.data?.floor_price_in_usd_24h_percentage_change;
-    const price_change_percentage_1d_label = formatNumber(price_change_percentage_1d, {
+    const floor_price_change_percentage_1d = nft.value?.data?.floor_price_in_usd_24h_percentage_change;
+    const price_change_percentage_1d_label = formatNumber(floor_price_change_percentage_1d, {
         style: 'percent', compact: true, decimals: 2,
     });
     const volume_24h = nft.value?.data?.h24_volume;
