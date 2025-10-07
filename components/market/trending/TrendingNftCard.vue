@@ -79,6 +79,7 @@
             <div class='w-3/4 border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center'>
                 <div v-if='sparkline' class='w-full h-full'>
                     <NuxtImg
+                        v-if='!sparkline_error'
                         :src='sparkline'
                         alt='trending nft logo'
                         class='w-full h-full'
@@ -93,6 +94,7 @@
                             :alt='alt'
                             @error='sparkline_error = true'
                         >
+                        
                         <Skeleton
                             v-else
                             class='w-full h-full'
