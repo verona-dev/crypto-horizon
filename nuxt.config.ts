@@ -63,14 +63,15 @@ export default defineNuxtConfig({
    },
 
    modules: [
-      '@nuxt/image',
-      '@pinia/nuxt',
-      'maz-ui/nuxt',
-      '@nuxtjs/color-mode',
-      '@nuxt/icon',
-      'shadcn-nuxt',
-      'nuxt-charts',
-      'nuxt-scroll-restoration',
+     '@nuxt/image',
+     '@pinia/nuxt',
+     'maz-ui/nuxt',
+     '@nuxtjs/color-mode',
+     '@nuxt/icon',
+     'shadcn-nuxt',
+     'nuxt-charts',
+     'nuxt-scroll-restoration',
+     'nuxt-swiper',
    ],
 
    runtimeConfig: {
