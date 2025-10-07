@@ -1,6 +1,6 @@
 <template>
-    <div class='mt-16 flex flex-col items-center gap-20'>
-        <h1 class='text-6xl'>Trending Nft's</h1>
+    <div class='flex flex-col items-center gap-20'>
+        <h1 class='text-5xl xl:text-9xl my-10'>Trending Nft's</h1>
         
         <Alert class='flex w-4/ !border-none !shadow-none animate-fadeIn'>
             <Skeleton
@@ -23,7 +23,7 @@
                         <CarouselItem
                             v-for='nft in nfts'
                             :key='nft.id'
-                            class='md:basis-1/2 lg:basis-1/3'
+                            class='md:ml-10 md:basis-1/2 lg:basis-1/3'
                         >
                             <TrendingNftCard :nft='nft' />
                         </CarouselItem>
