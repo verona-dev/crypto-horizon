@@ -1,6 +1,6 @@
 <template>
     <div class='mt-16 flex flex-col items-center gap-20'>
-        <h1 class='text-6xl'>Trending Coins</h1>
+        <h1 class='text-5xl xl:text-9xl my-10'>Trending Coins</h1>
         
         <Alert class='flex w-4/ !border-none !shadow-none animate-fadeIn'>
             <Skeleton
