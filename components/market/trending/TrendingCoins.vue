@@ -25,9 +25,7 @@
                             :key='coin.item.id'
                             class='md:basis-1/2 lg:basis-1/3'
                         >
-                            <TrendingCoinCard
-                                :coin='coin.item'
-                            />
+                            <TrendingCoinCard :coin='coin.item' />
                         </CarouselItem>
                     </CarouselContent>
                 </Carousel>
