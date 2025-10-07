@@ -7,6 +7,7 @@
             :to='`/market/${slug}`'
             target='_blank'
         >
+            <!--  Rank + Name  -->
             <CardHeader class='card-header flex items-center justify-center gap-4 border-b border-warning/10 !py-8'>
                 <Badge class='badge text-md border-muted-foreground' variant='outline'>{{ rank }}</Badge>
                 
@@ -22,6 +23,7 @@
         
         <CardContent class='flex flex-col items-center justify-center gap-6 px-0'>
             <div class='flex flex-col items-center gap-3'>
+                <!--  Logo  -->
                 <NuxtImg
                     :src='image'
                     alt='trending coin logo'
@@ -43,6 +45,7 @@
                     />
                 </NuxtImg>
                 
+                <!--  Mcap + Symbol + Description  -->
                 <div class='flex items-center gap-2 text-muted-foreground'>
                     <p class='text-sm'>#{{ mcap_rank }}</p>
                     
@@ -65,6 +68,7 @@
                 </div>
             </div>
             
+            <!--  Price  -->
             <div class='flex flex-col items-center gap-1'>
                 <h5>{{ price_label }}</h5>
                 
