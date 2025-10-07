@@ -1,20 +1,30 @@
 <template>
     <Card
         v-if='nft'
-        class='!w-96 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
+        class='w-full md:w-96 bg-accent-foreground/75 flex flex-col gap-10 shadow-2xl p-0 border border-warning/10 rounded-lg'
     >
-        <CardHeader class='h-36 flex flex-col items-center justify-center gap-4 border-b border-warning/10 !py-8'>
-            <Badge class='badge text-md border-muted-foreground' variant='outline'>{{ contract_id }}</Badge>
-            
-            <h6 class='break-words whitespace-normal'>{{ name }}</h6>
+        <CardHeader class='h-40 flex flex-col items-center justify-center !p-4 border-b border-warning/10'>
+            <div class='flex flex-col items-center gap-4 w-full mt-2'>
+                <HoverCard :openDelay='200' v-if='contract_id'>
+                    <HoverCardTrigger class='info-icon'>
+                        <Badge class='badge w-24 text-md border-muted-foreground' variant='outline'>{{ contract_id }}</Badge>
+                    </HoverCardTrigger>
+                    
+                    <HoverCardContent class='!p-4'>
+                        <p class='text-xs'>Contract ID</p>
+                    </HoverCardContent>
+                </HoverCard>
+                
+                <h5 class='h-14 text-green-deco break-words whitespace-normal text-center font-bold uppercase'>{{ name }}</h5>
+            </div>
         </CardHeader>
         
-        <CardContent class='flex flex-col items-center justify-center gap-6 px-0'>
+        <CardContent class='flex flex-col items-center justify-center gap-12'>
             <div class='flex flex-col items-center gap-3'>
                 <NuxtImg
                     :src='image'
                     alt='trending nft logo'
-                    class='w-18 h-18 rounded-md rounded-b-none select-none'
+                    class='w-32 h-32 rounded-md rounded-b-none select-none'
                     :custom='true'
                     v-slot='{ src, isLoaded, imgAttrs, alt }'
                     preload
@@ -28,12 +38,12 @@
                     
                     <Skeleton
                         v-else
-                        class='w-18 h-18'
+                        class='w-32 h-32'
                     />
                 </NuxtImg>
                 
                 <div class='flex items-center gap-2 text-muted-foreground'>
-                    <p class='text-sm'>{{ symbol }}</p>
+                    <h6 class='truncate text-green-deco'>{{ symbol }}</h6>
                     
                     <HoverCard :openDelay='200' v-if='description'>
                         <HoverCardTrigger class='info-icon'>
@@ -52,7 +62,8 @@
                 </div>
             </div>
             
-            <div class='flex justify-evenly w-full'>
+            <!--  Prices  -->
+            <div class='flex justify-between w-full px-3'>
                 <!--  Floor Price  -->
                 <div class='flex flex-col items-center gap-1'>
                     <p class='uppercase text-muted-foreground text-sm'>Floor price</p>
@@ -76,19 +87,19 @@
                 
                 <!--  Sale Price  -->
                 <div class='flex flex-col items-center gap-1'>
-                    <p class='uppercase text-muted-foreground text-sm'>Sale price</p>
+                    <p class='uppercase text-muted-foreground text-sm'>Average sale price</p>
                     
                     <h5>{{ average_sale_price_24h }}</h5>
                 </div>
             </div>
             
             <!--  Sparkline  -->
-            <div class='w-3/4 border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center'>
+            <div class='w-full border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center justify-center'>
                 <NuxtImg
                     v-if='sparkline'
                     :src='sparkline'
                     alt='trending nft logo'
-                    class='w-full h-full'
+                    class='w-2/3 h-full'
                     :custom='true'
                     v-slot='{ src, isLoaded, imgAttrs, alt }'
                     preload
