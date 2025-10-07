@@ -8,14 +8,15 @@
                 class='w-full h-full'
             />
             
-            <div v-else class='flex flex-col items-start justify-center max-w-6xl h-full'>
+            <div v-else class='flex flex-col items-start justify-center max-w-7xl h-full'>
                 <Carousel
                     class='relative w-full'
-                    :plugins='[plugin]'
+                    :plugins='[autoScroll]'
                     :opts='{
                         align: "center",
                         loop: true,
                         startIndex: 1,
+                        skipSnaps: true,
                     }'
                 >
                     <CarouselContent class='ml-3'>
@@ -24,9 +25,7 @@
                             :key='nft.id'
                             class='md:basis-1/2 lg:basis-1/3'
                         >
-                            <TrendingNftCard
-                                :nft='nft'
-                            />
+                            <TrendingNftCard :nft='nft' />
                         </CarouselItem>
              
                     </CarouselContent>
@@ -51,11 +50,11 @@
     const { nfts } = toRefs(props);
     console.log(nfts.value);
     
-    const plugin = AutoScroll({
+    const autoScroll = AutoScroll({
         direction: 'backward',
         speed: 0.75,
         startDelay: 1000,
         stopOnInteraction: false,
-        stopOnMouseEnter: false,
+        stopOnMouseEnter: true,
     });
 </script>
