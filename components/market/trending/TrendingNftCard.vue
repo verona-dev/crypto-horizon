@@ -25,7 +25,7 @@
                 
                 <div class='flex items-center gap-2 text-muted-foreground'>
                     <HoverCard :openDelay='200' v-if='description'>
-                        <HoverCardTrigger class='info-icon'>
+                        <HoverCardTrigger class='info-icon cursor-auto'>
                             <NuxtIcon
                                 name='radix-icons:info-circled'
                                 size='15'
@@ -74,7 +74,7 @@
                         
                         <!--  Trend  -->
                         <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='info-icon'>
+                            <HoverCardTrigger class='info-icon cursor-default'>
                                 <div
                                     class='flex items-center gap-1'
                                     :class='getTextColorClass(floor_price_change_percentage_1d)'
@@ -116,7 +116,7 @@
             </div>
             
             <!--  Sparkline  -->
-            <div class='w-full border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center justify-center'>
+            <div class='w-full border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center justify-center select-none'>
                 <NuxtImg
                     v-if='sparkline'
                     :src='sparkline'
