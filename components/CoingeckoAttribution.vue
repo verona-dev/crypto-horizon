@@ -1,5 +1,5 @@
 <template>
-    <Alert class='w-screen flex items-center justify-center mt-16 p-3.5 rounded-none'>
+    <Alert class='w-screen flex items-center justify-center mt-16 p-3.5'>
         <NuxtLink
             to='https://www.coingecko.com/en/api/'
             target='_blank'
