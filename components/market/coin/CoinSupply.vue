@@ -1,7 +1,7 @@
 <template>
     <Drawer v-model:open='isOpen'>
         <DrawerContent>
-            <DrawerHeader class='border-b border-b-ring'>
+            <DrawerHeader class='border-b'>
                 <div class='my-6 flex items-start justify-between px-4 relative'>
                     <!--  Spacer  -->
                     <div class='w-12'></div>
