@@ -161,7 +161,7 @@
     --foreground: #ffffff;
     --card: #2c2a36;
     --card-foreground: #ffffff;
-    --popover: #2c2a36;
+    --popover: #1c1a22;  /* Default #2c2a36 */
     --popover-foreground: #ffffff;
     --primary: #d0c9db;
     --primary-foreground: #212027;
