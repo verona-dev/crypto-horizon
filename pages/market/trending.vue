@@ -1,5 +1,5 @@
 <template>
-    <div class='trending flex flex-col items-center justify-center gap-20'>
+    <div class='trending flex flex-col items-center justify-center gap-60'>
         <TrendingCoins
             v-if='trending_coins'
             :coins='trending_coins'
@@ -28,15 +28,3 @@
     
     onMounted(() => getCoingeckoTrending());
 </script>
-
-<style>
-    .trending {
-        button {
-            &:hover {
-                color: var(--muted-foreground);
-            }
-            
-            margin: 0 -50px;
-        }
-    }
-</style>

@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<SidebarProps>(), {
   collapsible: "offcanvas",
 })
 
-const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
+const { isMobile, state, openMobile, setOpenMobile, setOpen } = useSidebar()
 </script>
 
 <template>
@@ -59,6 +59,8 @@ const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
     :data-collapsible="state === 'collapsed' ? collapsible : ''"
     :data-variant="variant"
     :data-side="side"
+    @mouseenter="setOpen(true)"
+    @mouseleave="setOpen(false)"
   >
     <!-- This is what handles the sidebar gap on desktop  -->
     <div

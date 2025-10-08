@@ -1,6 +1,6 @@
 <template>
-    <div class='mt-16 flex flex-col items-center gap-20'>
-        <h1 class='text-6xl'>Trending Nft's</h1>
+    <div class='flex flex-col items-center gap-20'>
+        <h1 class='text-5xl xl:text-9xl my-10'>Trending Nft's</h1>
         
         <Alert class='flex w-4/ !border-none !shadow-none animate-fadeIn'>
             <Skeleton
@@ -8,14 +8,15 @@
                 class='w-full h-full'
             />
             
-            <div v-else class='flex flex-col items-start justify-center max-w-6xl h-full'>
+            <div v-else class='flex flex-col items-start justify-center max-w-7xl h-full'>
                 <Carousel
-                    class='relative w-full'
-                    :plugins='[plugin]'
+                    class='relative w-full cursor-grab'
+                    :plugins='[autoScroll]'
                     :opts='{
                         align: "center",
                         loop: true,
                         startIndex: 1,
+                        skipSnaps: true,
                     }'
                 >
                     <CarouselContent class='ml-3'>
@@ -24,14 +25,10 @@
                             :key='nft.id'
                             class='md:basis-1/2 lg:basis-1/3'
                         >
-                            <TrendingNftCard
-                                :nft='nft'
-                            />
+                            <TrendingNftCard :nft='nft' />
                         </CarouselItem>
              
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
                 </Carousel>
             </div>
         </Alert>
@@ -41,7 +38,7 @@
 <script setup>
     import TrendingNftCard from '~/components/market/trending/TrendingNftCard.vue'
     import { Skeleton } from '~/components/ui/skeleton/index.ts';
-    import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '~/components/ui/carousel/index.js';
+    import { Carousel, CarouselContent, CarouselItem } from '~/components/ui/carousel/index.js';
     import AutoScroll from 'embla-carousel-auto-scroll';
     
     const props = defineProps({
@@ -53,11 +50,11 @@
     const { nfts } = toRefs(props);
     console.log(nfts.value);
     
-    const plugin = AutoScroll({
+    const autoScroll = AutoScroll({
         direction: 'backward',
         speed: 0.75,
         startDelay: 1000,
         stopOnInteraction: false,
-        stopOnMouseEnter: false,
+        stopOnMouseEnter: true,
     });
 </script>

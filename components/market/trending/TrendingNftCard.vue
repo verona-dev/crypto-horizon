@@ -1,87 +1,126 @@
 <template>
     <Card
         v-if='nft'
-        class='!w-80 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
+        class='w-full md:w-84 bg-accent-foreground/75 flex flex-col shadow-2xl p-0 border border-secondary/25 rounded-lg'
     >
-        <CardHeader class='flex items-center justify-center border-b border-warning/10 !py-8'>
-            <NuxtLink
-                :to='`/market/${slug}`'
-                class='flex items-center justify-center gap-4'
-            >
-                <h6 class='break-words whitespace-normal'>{{ name }}</h6>
-            </NuxtLink>
+        <CardHeader class='h-24 !pb-0 flex items-center border-b border-warning/10'>
+            <!--  Contract ID  -->
+            <!--
+            <HoverCard :openDelay='200' v-if='contract_id'>
+                <HoverCardTrigger class='info-icon'>
+                    <Badge class='badge h-12 w-24 text-md border-muted-foreground flex items-center justify-center' variant='outline'>{{ contract_id }}</Badge>
+                </HoverCardTrigger>
+                <HoverCardContent>
+                    <p class='text-xs'>Contract ID</p>
+                </HoverCardContent>
+            </HoverCard>
+            -->
+            
+            <!--  Name + Symbol  -->
+            <h6 class='flex-grow text-green-deco break-words whitespace-normal text-center font-bold uppercase overflow-hidden'>
+                {{ name }}
+                <span class='truncate text-muted-foreground w-full text-center text-sm'>{{ symbol }}</span>
+            </h6>
+            
+            <!--  Description  -->
+            <div class='flex items-center gap-2 text-muted-foreground'>
+                <HoverCard :openDelay='200' v-if='description'>
+                    <HoverCardTrigger class='info-icon cursor-auto'>
+                        <NuxtIcon
+                            name='radix-icons:info-circled'
+                            size='15'
+                            class='flex text-muted-foreground'
+                        />
+                    </HoverCardTrigger>
+                    
+                    <HoverCardContent class='!p-6 flex flex-col !gap-3'>
+                        <p class='text-xs'>{{ title }}</p>
+                        <p class='text-xs text-muted-foreground'>{{ description }}</p>
+                    </HoverCardContent>
+                </HoverCard>
+            </div>
         </CardHeader>
         
-        <CardContent class='flex flex-col items-center justify-center gap-6 px-0'>
-            <div class='flex flex-col items-center gap-3'>
-                <NuxtImg
-                    :src='image'
-                    alt='trending nft logo'
-                    class='w-18 h-18 rounded-md rounded-b-none select-none'
-                    :custom='true'
-                    v-slot='{ src, isLoaded, imgAttrs, alt }'
-                    preload
+        <CardContent class='flex flex-col items-center justify-center gap-6 !px-0'>
+            <!--  Logo  -->
+            <NuxtImg
+                :src='image'
+                alt='trending nft logo'
+                class='w-32 h-32 rounded-md rounded-b-none select-none'
+                :custom='true'
+                v-slot='{ src, isLoaded, imgAttrs, alt }'
+                preload
+            >
+                <img
+                    v-if='isLoaded'
+                    v-bind='imgAttrs'
+                    :src='src'
+                    :alt='alt'
                 >
-                    <img
-                        v-if='isLoaded'
-                        v-bind='imgAttrs'
-                        :src='src'
-                        :alt='alt'
-                    >
-                    
-                    <Skeleton
-                        v-else
-                        class='w-18 h-18'
-                    />
-                </NuxtImg>
                 
-                <div class='flex items-center gap-2 text-muted-foreground'>
-                    <p class='text-sm'>{{ symbol }}</p>
-                    
-                    <HoverCard :openDelay='200' v-if='description'>
-                        <HoverCardTrigger class='info-icon'>
-                            <NuxtIcon
-                                name='radix-icons:info-circled'
-                                size='15'
-                                class='flex text-muted-foreground'
-                            />
-                        </HoverCardTrigger>
-                        
-                        <HoverCardContent class='!p-6 flex flex-col !gap-3'>
-                            <p class='text-xs'>{{ title }}</p>
-                            <p class='text-xs text-muted-foreground'>{{ description }}</p>
-                        </HoverCardContent>
-                    </HoverCard>
-                </div>
-            </div>
+                <Skeleton
+                    v-else
+                    class='w-32 h-32'
+                />
+            </NuxtImg>
             
-            <div class='flex flex-col items-center gap-1'>
-                <h5>Floor price</h5>
+            <div class='flex flex-col w-full px-2 gap-8'>
+                <div class='flex flex-col items-center gap-1'>
+                    <p class='uppercase text-muted-foreground text-sm'>Floor price</p>
+                    <div class='flex items-center gap-3'>
+                        <!--  Floor Price  -->
+                        <h6>{{ floor_price }}</h6>
+                        
+                        <!--  Trend  -->
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='info-icon cursor-default'>
+                                <div
+                                    class='flex items-center gap-1'
+                                    :class='getTextColorClass(floor_price_change_percentage_1d)'
+                                >
+                                    <NuxtIcon
+                                        :name='getTrendIcon(floor_price_change_percentage_1d)'
+                                        size='15'
+                                    />
+                                    
+                                    <span class='flex items-center text-sm'>{{ price_change_percentage_1d_label }}</span>
+                                    
+                                    <span class='text-sm'>&#40;24h&#41;</span>
+                                </div>
+                            </HoverCardTrigger>
+                            
+                            <HoverCardContent class='flex flex-col !gap-3'>
+                                <p class='text-xs'>Floor Price 24h Percentage Change</p>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
                 
-                <h5>{{ floor_price }}</h5>
+                </div>
                 
-                <div
-                    class='flex items-center gap-1'
-                    :class='getTextColorClass(price_change_percentage_1d)'
-                >
-                    <NuxtIcon
-                        :name='getTrendIcon(price_change_percentage_1d)'
-                        size='12'
-                    />
+                <div class='flex items-center justify-around'>
+                    <!--  Sale Price  -->
+                    <div class='flex flex-col items-center gap-1'>
+                        <p class='uppercase text-muted-foreground text-sm'>Average sale price</p>
+                        
+                        <h6>{{ average_sale_price_24h }}</h6>
+                    </div>
                     
-                    <span class='flex items-center text-xs'>{{ price_change_percentage_1d_label }}</span>
-                    
-                    <span class='text-xs'>&#40;24h&#41;</span>
+                    <!--  Volume 24h  -->
+                    <div class='flex flex-col items-center gap-1'>
+                        <p class='uppercase text-muted-foreground text-sm'>Volume 24h</p>
+                        
+                        <h6>{{ volume_24h }}</h6>
+                    </div>
                 </div>
             </div>
             
             <!--  Sparkline  -->
-            <div class='w-3/4 border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center'>
+            <div class='w-full h-24 rounded py-8 px-2 flex items-center justify-center border-t border-warning/10 select-none'>
                 <NuxtImg
                     v-if='sparkline'
                     :src='sparkline'
                     alt='trending nft logo'
-                    class='w-full h-full'
+                    class='w-2/3 h-full'
                     :custom='true'
                     v-slot='{ src, isLoaded, imgAttrs, alt }'
                     preload
@@ -94,7 +133,7 @@
                     >
                     <Skeleton
                         v-else
-                        class='w-full h-full'
+                        class='w-50 h-16'
                     />
                 </NuxtImg>
                 
@@ -116,26 +155,24 @@
     import { getTextColorClass, getTrendIcon } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
+    // import { Badge } from '~/components/ui/badge/index.js';
     
     const props = defineProps({
-       nft: {
-           type: Object,
-       }
+        nft: {
+            type: Object,
+        }
     });
     
     const { nft } = toRefs(props);
     
-    const slug = nft.value?.id;
+    // const slug = nft.value?.id;
+    // const contract_id = nft.value?.nft_contract_id;
     const name = nft.value?.name;
     const symbol = nft.value?.symbol;
     const image = nft.value?.thumb;
-    const price = nft.value?.floor_price_in_native_currency;
-    const price_label = formatNumber(price);
-    const currency = nft.value?.native_currency;
-    
     const floor_price = nft.value?.data?.floor_price;
-    const price_change_percentage_1d = nft.value?.data?.floor_price_in_usd_24h_percentage_change;
-    const price_change_percentage_1d_label = formatNumber(price_change_percentage_1d, {
+    const floor_price_change_percentage_1d = nft.value?.data?.floor_price_in_usd_24h_percentage_change;
+    const price_change_percentage_1d_label = formatNumber(floor_price_change_percentage_1d, {
         style: 'percent', compact: true, decimals: 2,
     });
     const volume_24h = nft.value?.data?.h24_volume;

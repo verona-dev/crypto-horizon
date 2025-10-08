@@ -1,21 +1,31 @@
 <template>
     <Card
         v-if='coin'
-        class='!w-72 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
+        class='!w-68 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-secondary/25'
     >
-        <CardHeader class='flex items-center justify-center border-b border-warning/10 !py-8'>
-            <NuxtLink
-                :to='`/market/${slug}`'
-                class='flex items-center justify-center gap-4'
-            >
-                <Badge class='text-md border-muted-foreground' variant='outline'>{{ rank }}</Badge>
+        <NuxtLink
+            :to='`/market/${slug}`'
+            target='_blank'
+        >
+            <!--  Rank + Name  -->
+            <CardHeader class='!py-6 card-header flex justify-center items-center gap-3 border-b border-warning/10'>
+                <Badge class='0.5 text-md border-muted-foreground' variant='outline'>{{ rank }}</Badge>
                 
-                <h6 class='break-words whitespace-normal'>{{ name }}</h6>
-            </NuxtLink>
-        </CardHeader>
+                <div class='flex items-center gap-3'>
+                    <h6 class='name break-words whitespace-normal font-bold uppercase'>{{ name }}</h6>
+                    
+                    <NuxtIcon
+                        name='iconoir:open-new-window'
+                        size='12'
+                        class='icon opacity-0'
+                    />
+                </div>
+            </CardHeader>
+        </NuxtLink>
         
         <CardContent class='flex flex-col items-center justify-center gap-6 px-0'>
             <div class='flex flex-col items-center gap-3'>
+                <!--  Logo  -->
                 <NuxtImg
                     :src='image'
                     alt='trending coin logo'
@@ -37,13 +47,14 @@
                     />
                 </NuxtImg>
                 
+                <!--  Mcap + Symbol + Description  -->
                 <div class='flex items-center gap-2 text-muted-foreground'>
                     <p class='text-sm'>#{{ mcap_rank }}</p>
                     
                     <p class='text-sm'>{{ symbol }}</p>
                     
                     <HoverCard :openDelay='200' v-if='description'>
-                        <HoverCardTrigger class='info-icon'>
+                        <HoverCardTrigger class='info-icon cursor-default'>
                             <NuxtIcon
                                 name='radix-icons:info-circled'
                                 size='15'
@@ -59,6 +70,7 @@
                 </div>
             </div>
             
+            <!--  Price  -->
             <div class='flex flex-col items-center gap-1'>
                 <h5>{{ price_label }}</h5>
                 
@@ -78,12 +90,12 @@
             </div>
             
             <!--  Sparkline  -->
-            <div class='w-3/4 border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center'>
+            <div class='w-full h-24 rounded py-6 px-2 flex items-center justify-center border-t border-warning/10 select-none'>
                 <NuxtImg
                     v-if='sparkline'
                     :src='sparkline'
                     alt='trending coin logo'
-                    class='w-full h-full'
+                    class='w-2/3 h-full'
                     :custom='true'
                     v-slot='{ src, isLoaded, imgAttrs, alt }'
                     preload
@@ -96,7 +108,7 @@
                     >
                     <Skeleton
                         v-else
-                        class='w-full h-full'
+                        class='w-50 h-16'
                     />
                 </NuxtImg>
                 
@@ -144,3 +156,17 @@
     const title = coin.value?.data?.content?.title;
     const description = coin.value?.data?.content?.description;
 </script>
+
+<style scoped>
+    .card-header {
+        &:hover {
+            .name {
+                text-decoration: underline;
+            }
+            
+            .icon {
+                opacity: 1;
+            }
+        }
+    }
+</style>

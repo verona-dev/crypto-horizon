@@ -31,7 +31,7 @@
             <NuxtIcon
                 name='iconoir:open-new-window'
                 size='12'
-                class='self-start'
+                class='icon opacity-0'
             />
         </NuxtLink>
     </Alert>
@@ -41,3 +41,22 @@
     import { Alert } from '@/components/ui/alert';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
 </script>
+
+<style scoped>
+    a {
+        &:hover {
+            .name {
+                text-decoration: underline;
+            }
+            
+            .icon {
+                opacity: 1;
+            }
+            
+            .badge {
+                background-color: var(--tertiary);
+                border: 1px solid var(--tertiary);
+            }
+        }
+    }
+</style>
