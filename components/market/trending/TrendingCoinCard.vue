@@ -1,14 +1,14 @@
 <template>
     <Card
         v-if='coin'
-        class='!w-68 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-secondary/25'
+        class='!w-68 flex flex-col justify-center gap-6 !p-0'
     >
         <NuxtLink
             :to='`/market/${slug}`'
             target='_blank'
         >
             <!--  Rank + Name  -->
-            <CardHeader class='!py-6 card-header flex justify-center items-center gap-3 border-b border-warning/10'>
+            <CardHeader class='!py-6 card-header flex justify-center items-center gap-3 border-b'>
                 <Badge variant='outline'>{{ rank }}</Badge>
                 
                 <div class='flex items-center gap-3'>

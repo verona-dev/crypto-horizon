@@ -1,9 +1,9 @@
 <template>
     <Card
         v-if='nft'
-        class='w-full md:w-84 bg-accent-foreground/75 flex flex-col shadow-2xl p-0 border border-secondary/25 rounded-lg'
+        class='w-full md:w-84 flex flex-col p-0 border'
     >
-        <CardHeader class='h-24 !pb-0 flex items-center border-b border-warning/10'>
+        <CardHeader class='h-24 !pb-0 flex items-center border-b'>
             <!--  Contract ID  -->
             <!--
             <HoverCard :openDelay='200' v-if='contract_id'>

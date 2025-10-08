@@ -1,5 +1,5 @@
 <template>
-    <Card v-if='article' class='coin-news-item bg-background-2 border-accent shadow-2xl rounded-md px-6 py-12 my-4 cursor-pointer'>
+    <Card v-if='article' class='coin-news-item bg-background/50 px-6 py-12 my-4 cursor-pointer'>
         <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
             <CardHeader class='p-0'>
                 <div class='flex gap-12'>
@@ -28,7 +28,7 @@
                     <div class='flex flex-col justify-around'>
                         <!--  Article Title  -->
                         <div class='flex flex-col items-start gap-2'>
-                            <CardDescription class='article-title text-left text-foreground text-md font-bold'>
+                            <CardDescription class='article-title text-left'>
                                 {{ title }}
                             </CardDescription>
                             

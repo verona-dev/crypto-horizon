@@ -1,5 +1,5 @@
 <template>
-    <Card class='!w-fit bg-accent-foreground flex flex-col gap-4 shadow-2xl p-6' v-if='globalDefi'>
+    <Card class='!w-fit flex flex-col gap-4 p-6' v-if='globalDefi'>
         <h4>Defi</h4>
         
         <CardContent>

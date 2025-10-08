@@ -109,7 +109,7 @@
                     <p v-for='(par, index) in body_formatted' :key='index' class='mb-14'>{{ par }}</p>
                 </CardContent>
                 
-                <CardFooter class='pb-10 pl-0 text-muted-foreground'>
+                <CardFooter class='pb-10 pl-0'>
                     <p v-if='keywords'>
                         Keywords:
                         <span style='font-size: inherit;'>{{ keywords }}</span>

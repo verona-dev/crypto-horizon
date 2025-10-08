@@ -1,5 +1,5 @@
 <template>
-    <Card v-if='source' class='news-source-card flex items-center shadow-lg hover:shadow-2xl w-md h-[650px] gap-0 cursor-text'>
+    <Card v-if='source' class='news-source-card flex items-center w-md h-[650px] gap-0 cursor-text'>
         <h3 class='mt-24 mb-4 hover-underline text-wrap'>{{ name }}</h3>
         
         <div class='card-container h-full w-full'>
