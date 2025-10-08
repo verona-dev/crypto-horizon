@@ -65,7 +65,7 @@
                 
                 <!--  Popup  -->
                 <DropdownMenuContent
-                    class='border-accent w-[--reka-dropdown-menu-trigger-width] min-w-56 rounded-lg'
+                    class='w-[--reka-dropdown-menu-trigger-width] min-w-56'
                     :side='isMobile ? "bottom" : "right"'
                     align='end'
                     :side-offset='4'
@@ -91,7 +91,7 @@
                     <DropdownMenuGroup>
                         <DropdownMenuItem
                             @click='onClick'
-                            class='focus:bg-sidebar-primary focus:text-foreground cursor-pointer py-3 mb-2'
+                            class='cursor-pointer py-3 mb-2'
                         >
                             <MailPlus />
                             Register
@@ -99,7 +99,7 @@
                         
                         <DropdownMenuItem
                             @click='onClick'
-                            class='focus:bg-sidebar-primary focus:text-foreground cursor-pointer py-3'
+                            class='cursor-pointer py-3'
                         >
                             <LogIn />
                             Log In
