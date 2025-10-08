@@ -23,7 +23,7 @@
                         <CarouselItem
                             v-for='nft in nfts'
                             :key='nft.id'
-                            class='md:ml-10 md:basis-1/2 lg:basis-1/3'
+                            class='md:basis-1/2 lg:basis-1/3'
                         >
                             <TrendingNftCard :nft='nft' />
                         </CarouselItem>
