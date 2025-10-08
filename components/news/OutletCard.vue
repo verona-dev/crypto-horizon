@@ -70,7 +70,7 @@
                     
                     <CardFooter class='flex justify-center mt-6'>
                         <!--  Read more  -->
-                        <Button as-child variant='link' class='uppercase hover:text-foreground'>
+                        <Button as-child variant='link' class='uppercase'>
                             <NuxtLink :to='url' target='_blank' external>
                                 Visit Outlet
                             </NuxtLink>

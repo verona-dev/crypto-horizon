@@ -127,7 +127,7 @@
                     as-child
                     variant='link'
                 >
-                    <NuxtLink @click='goBack(router, "/news")' to='' class='hover:cursor-pointer'>
+                    <NuxtLink @click='goBack(router, "/news")' to=''>
                         Go back
                     </NuxtLink>
                 </Button>

@@ -124,7 +124,7 @@
         
         <CardFooter class='flex justify-center my-6'>
             <!--  Read more  -->
-            <Button as-child variant='link' class='uppercase hover:text-foreground'>
+            <Button as-child variant='link' class='uppercase'>
                 <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
                     Read More
                 </NuxtLink>
