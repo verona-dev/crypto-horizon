@@ -19,6 +19,7 @@
     --color-primary-foreground: var(--primary-foreground);
     --color-secondary: var(--secondary);
     --color-secondary-foreground: var(--secondary-foreground);
+    --color-tertiary: var(--tertiary);
     --color-muted: var(--muted);
     --color-muted-foreground: var(--muted-foreground);
     --color-muted-custom: var(--muted-custom);
@@ -151,6 +152,7 @@
     --primary-foreground: #ffffff;
     --secondary: #ffffff;
     --secondary-foreground: #4d4d5a;
+    --tertiary: #007595;  /* tw cyan-700 */
     --muted: #ffffff;
     --muted-foreground: #868492;
     --muted-custom: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
