@@ -9,7 +9,7 @@
         >
             <!--  Rank + Name  -->
             <CardHeader class='card-header flex items-center justify-center gap-4 border-b border-warning/10 !py-8'>
-                <Badge class='badge text-md border-muted-foreground' variant='outline'>{{ rank }}</Badge>
+                <Badge class='text-md border-muted-foreground' variant='outline'>{{ rank }}</Badge>
                 
                 <h5 class='name break-words whitespace-normal font-bold uppercase'>{{ name }}</h5>
                 
@@ -164,11 +164,6 @@
             
             .icon {
                 opacity: 1;
-            }
-            
-            .badge {
-                background-color: var(--tertiary);
-                border: 1px solid var(--tertiary);
             }
         }
     }
