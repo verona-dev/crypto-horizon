@@ -1,23 +1,25 @@
 <template>
     <Card
         v-if='coin'
-        class='!w-80 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-warning/10'
+        class='!w-68 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-secondary'
     >
         <NuxtLink
             :to='`/market/${slug}`'
             target='_blank'
         >
             <!--  Rank + Name  -->
-            <CardHeader class='card-header flex items-center justify-center gap-4 border-b border-warning/10 !py-8'>
-                <Badge class='text-md border-muted-foreground' variant='outline'>{{ rank }}</Badge>
+            <CardHeader class='!py-6 card-header flex justify-center items-center gap-3 border-b border-warning/10'>
+                <Badge class='0.5 text-md border-muted-foreground' variant='outline'>{{ rank }}</Badge>
                 
-                <h5 class='name break-words whitespace-normal font-bold uppercase'>{{ name }}</h5>
-                
-                <NuxtIcon
-                    name='iconoir:open-new-window'
-                    size='12'
-                    class='icon mt-0.5 opacity-0'
-                />
+                <div class='flex items-center gap-3'>
+                    <h6 class='name break-words whitespace-normal font-bold uppercase'>{{ name }}</h6>
+                    
+                    <NuxtIcon
+                        name='iconoir:open-new-window'
+                        size='12'
+                        class='icon opacity-0'
+                    />
+                </div>
             </CardHeader>
         </NuxtLink>
         
@@ -88,12 +90,12 @@
             </div>
             
             <!--  Sparkline  -->
-            <div class='w-3/4 border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center select-none'>
+            <div class='w-full h-24 rounded py-6 px-2 flex items-center justify-center border-t border-warning/10 select-none'>
                 <NuxtImg
                     v-if='sparkline'
                     :src='sparkline'
                     alt='trending coin logo'
-                    class='w-full h-full'
+                    class='w-2/3 h-full'
                     :custom='true'
                     v-slot='{ src, isLoaded, imgAttrs, alt }'
                     preload
@@ -106,7 +108,7 @@
                     >
                     <Skeleton
                         v-else
-                        class='w-full h-full'
+                        class='w-50 h-16'
                     />
                 </NuxtImg>
                 
