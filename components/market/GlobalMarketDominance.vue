@@ -149,7 +149,7 @@
                 </CardContent>
             </div>
             
-            <p class='text-xs self-center'>Coingecko data updated at {{ updated_at }}</p>
+            <p class='text-xs self-center'>Coingecko data updated on {{ updated_at }}</p>
         </CardContent>
     </Card>
 </template>
@@ -172,7 +172,7 @@
     const { globalMarket } = storeToRefs(MarketStore);
     
     const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage);
-    const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY, HH:mm[h]'));
+    const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY [at] HH:mm[h]'));
     
     const btc = computed(() => mcap_dominance.value?.btc);
     const btc_label = computed(() => formatNumber(btc.value , {
