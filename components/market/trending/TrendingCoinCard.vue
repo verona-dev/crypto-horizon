@@ -1,7 +1,7 @@
 <template>
     <Card
         v-if='coin'
-        class='!w-68 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-secondary'
+        class='!w-68 bg-accent-foreground/75 flex flex-col justify-center gap-6 shadow-2xl !p-0 !border-secondary/25'
     >
         <NuxtLink
             :to='`/market/${slug}`'
