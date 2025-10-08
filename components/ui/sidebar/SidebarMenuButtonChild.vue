@@ -22,7 +22,6 @@ const props = withDefaults(defineProps<SidebarMenuButtonProps>(), {
 
 <template>
   <Primitive
-    data-slot="sidebar-menu-button"
     data-sidebar="menu-button"
     :data-size="size"
     :data-active="isActive"

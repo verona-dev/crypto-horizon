@@ -34,7 +34,6 @@ const delegatedProps = reactiveOmit(props, "tooltip")
         <slot />
       </SidebarMenuButtonChild>
     </TooltipTrigger>
-    
     <TooltipContent
       side="right"
       align="center"
