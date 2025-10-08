@@ -36,3 +36,10 @@ tbody {
     }
 }
 */
+
+.hover-card-content {
+    padding: 20px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
