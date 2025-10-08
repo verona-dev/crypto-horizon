@@ -45,18 +45,6 @@ export const useMarketStore = defineStore('MarketStore', {
     }),
     
     actions: {
-        async getCoin(slug) {
-            const NewsStore = useNewsStore();
-            
-            await this.getCoingeckoCoin(slug);
-            this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
-            await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
-            await NewsStore.getNews( {
-                category: this.coin.symbol,
-                limit: 5,
-            });
-        },
-        
         async getCoingeckoGlobalMarket() {
             this.loading = true;
             
@@ -73,32 +61,20 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getCoingeckoGlobalDefi() {
+        
+        async getCmcFearAndGreed() {
             this.loading = true;
             
             try {
-                const response = await useFetchCoingecko('global/decentralized_finance_defi');
+                const response = await useFetchCmc('v3/fear-and-greed/latest');
                 
                 if(response && response.data) {
-                    this.globalDefi = response.data;
+                    this.fearAndGreed = response.data;
                 }
             } catch(error) {
                 console.error(error);
             } finally {
                 this.loading = false;
-            }
-        },
-        
-        async getCoingeckoTrending() {
-            this.loading = true;
-            
-            try {
-                const response = await useFetchCoingecko('search/trending');
-                if(response) {
-                    this.marketTrending = response;
-                }
-            } catch(error) {
-                console.error(error);
             }
         },
         
@@ -118,6 +94,18 @@ export const useMarketStore = defineStore('MarketStore', {
             finally {
                 this.loading = false;
             }
+        },
+        
+        async getCoin(slug) {
+            const NewsStore = useNewsStore();
+            
+            await this.getCoingeckoCoin(slug);
+            this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
+            await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
+            await NewsStore.getNews( {
+                category: this.coin.symbol,
+                limit: 5,
+            });
         },
         
         async getCoingeckoCoin(slug) {
@@ -150,6 +138,22 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
+        async getLiveCoinWatch(route, options) {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchLiveCoinWatch(route, options);
+                
+                if(response && route === 'coins/single') {
+                    this.coin.livecoinwatch = formatLivecoinwatchCoin(response);
+                }
+            } catch(error) {
+                console.log(error);
+            } finally {
+                this.loading = false;
+            }
+        },
+        
         async setTimeframe(timeframe) {
             this.coin.timeframe = timeframe;
         },
@@ -173,44 +177,41 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getLiveCoinWatch(route, options) {
-            this.loading = true;
-            
-            try {
-                const response = await useFetchLiveCoinWatch(route, options);
-                
-                if(response && route === 'coins/single') {
-                    this.coin.livecoinwatch = formatLivecoinwatchCoin(response);
-                }
-            } catch(error) {
-                console.log(error);
-            } finally {
-                this.loading = false;
-            }
-        },
-        
-        async getCmcFearAndGreed() {
-            this.loading = true;
-            
-            try {
-                const response = await useFetchCmc('v3/fear-and-greed/latest');
-                
-                if(response && response.data) {
-                    this.fearAndGreed = response.data;
-                }
-            } catch(error) {
-                console.error(error);
-            } finally {
-                this.loading = false;
-            }
-        },
-        
         async getCoingeckoCoinListSummary(options) {
             try {
                 return await useFetchCoingecko('coins/markets', options);
             }
             catch(error) {
                 console.error(error);
+            }
+        },
+        
+        async getCoingeckoTrending() {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko('search/trending');
+                if(response) {
+                    this.marketTrending = response;
+                }
+            } catch(error) {
+                console.error(error);
+            }
+        },
+        
+        async getCoingeckoGlobalDefi() {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko('global/decentralized_finance_defi');
+                
+                if(response && response.data) {
+                    this.globalDefi = response.data;
+                }
+            } catch(error) {
+                console.error(error);
+            } finally {
+                this.loading = false;
             }
         },
     },
