@@ -34,10 +34,10 @@
                             
                             <div v-if='categories' class='categories-container'>
                                 <Badge
-                                    variant='outline'
                                     v-for='category in categories'
                                     :key='category'
-                                    class='badge m-2 !px-4 !py-1.5 text-muted-foreground rounded-lg text-sm border border-card-border'
+                                    class='m-2 !px-4 !py-1.5'
+                                    variant='outline'
                                 >
                                     {{ category.NAME }}
                                 </Badge>

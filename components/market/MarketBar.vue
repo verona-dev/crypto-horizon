@@ -19,7 +19,10 @@
                 <p v-if='item.value_formatted' class='font-bold text-xs'>{{ item.value_formatted }}</p>
                 <p v-else class='font-bold text-xs'>{{ item.value }}</p>
                 
-                <Badge v-if='item.trend' variant='outline' class='border-ring rounded-2xl pl-2 pr-3 py-1 ml-1'>
+                <Badge
+                    v-if='item.trend'
+                    variant='outline'
+                    class='pl-2 pr-3 py-1 ml-1'>
                     <NuxtIcon
                         :name='getTrendIcon(item.value)'
                         size='15'

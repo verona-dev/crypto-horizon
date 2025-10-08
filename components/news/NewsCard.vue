@@ -106,7 +106,7 @@
                 <div class='categories-container px-6 mt-2'>
                     <Badge
                         v-for='category in categories.slice(0, 4)'
-                        class='mr-2 mb-2 border-muted-custom py-1 px-3 rounded-sm'
+                        class='mr-2 mb-2 py-1 px-3'
                         variant='outline'
                     >
                         {{ category.NAME }}

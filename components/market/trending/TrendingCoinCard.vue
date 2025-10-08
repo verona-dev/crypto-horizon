@@ -9,7 +9,7 @@
         >
             <!--  Rank + Name  -->
             <CardHeader class='!py-6 card-header flex justify-center items-center gap-3 border-b border-warning/10'>
-                <Badge class='0.5 text-md border-muted-foreground' variant='outline'>{{ rank }}</Badge>
+                <Badge variant='outline'>{{ rank }}</Badge>
                 
                 <div class='flex items-center gap-3'>
                     <h6 class='name break-words whitespace-normal font-bold uppercase'>{{ name }}</h6>
