@@ -2,7 +2,7 @@
     <div class='mt-16 flex flex-col items-center gap-20'>
         <h1 class='text-5xl xl:text-9xl my-10'>Trending Coins</h1>
         
-        <Alert class='flex animate-fadeIn'>
+        <Alert class='flex animate-fadeIn border-none'>
             <Skeleton
                 v-if='!coins'
                 class='w-full h-full'
