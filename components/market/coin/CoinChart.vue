@@ -1,20 +1,17 @@
 <template>
     <div v-if='chart.prices' class='coin-chart'>
-        <div class='tabs-container flex items-center justify-center gap-24 my-10'>
+        <div class='tabs-container flex items-center justify-center gap-20 my-10'>
             <!--  Price + Market Cap  -->
             <Tabs
                 v-model='type'
                 default-value='price'
             >
-                <TabsList class='gap-x-0.5 dark:bg-background'>
+                <TabsList class='gap-x-2 dark:bg-background'>
                     <TabsTrigger
                         value='price'
-                        class='py-4 px-4
-                               dark:bg-background
-                               dark:data-[state=active]:text-sky dark:data-[state=active]:bg-background
-                               dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-2xl
-                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        class='py-2 px-2
+                               data-[state=active]:border data-[state=active]:border-tertiary data-[state=active]:text-primary
+                               rounded-xl w-28
                         '
                     >
                        Price
@@ -22,12 +19,9 @@
                     
                     <TabsTrigger
                         value='mcap'
-                        class='py-4 px-4
-                               dark:bg-background
-                               dark:data-[state=active]:text-sky dark:data-[state=active]:bg-background
-                               dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-2xl
-                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        class='py-2 px-2
+                               data-[state=active]:border data-[state=active]:border-tertiary data-[state=active]:text-primary
+                               rounded-xl w-28
                         '
                     >
                         Market Cap
@@ -36,42 +30,36 @@
             </Tabs>
             
             <!--  Supply Drawer  -->
-            <Tabs v-model='type'>
-                <TabsList class='w-36 dark:bg-background'>
+            <Tabs>
+                <TabsList class='dark:bg-background'>
                     <TabsTrigger
                         @click='show_drawer = true'
                         value='supply'
-                        class='py-4 px-4
-                               dark:bg-background
-                               dark:data-[state=active]:text-sky dark:data-[state=active]:bg-background
-                               dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-2xl
-                               border-ring/50 focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
+                        class='
+                               text-primary/75
+                               flex items-center justify-center gap-1
+                               hover:text-foreground
                         '
                     >
                         <NuxtIcon
                             name='mdi-light:chart-pie'
-                            size='25'
+                            size='30'
                         />
-                        Supply
+                        <span>Supply</span>
                     </TabsTrigger>
                 </TabsList>
             </Tabs>
             
             <!--  Range  -->
             <Tabs v-model='timeframe'>
-                <TabsList class='gap-x-0.5 dark:bg-background'>
+                <TabsList class='gap-x-2 dark:bg-background'>
                     <TabsTrigger
                         v-for='range in ranges'
                         :key='range.timeframe'
                         :value='range.timeframe'
-                        class='py-4 px-4
-                               dark:bg-background
-                               dark:data-[state=active]:text-sky dark:data-[state=active]:bg-background
-                               dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-2xl
-                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
-                               w-12
+                        class='py-1.5 px-1.5
+                               data-[state=active]:border data-[state=active]:border-tertiary data-[state=active]:text-primary
+                               rounded-xl w-14
                         '
                     >
                         {{ range.label.toUpperCase() }}
