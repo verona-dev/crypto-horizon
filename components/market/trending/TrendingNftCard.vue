@@ -1,9 +1,9 @@
 <template>
     <Card
         v-if='nft'
-        class='w-full md:w-96 bg-background/75 flex flex-col gap-10 shadow-2xl p-0 border border-warning/10 rounded-lg'
+        class='w-full md:w-84 bg-accent-foreground/75 flex flex-col shadow-2xl p-0 border border-secondary/25 rounded-lg'
     >
-        <CardHeader class='h-40 flex flex-col items-center justify-between py-10 border-b border-warning/10'>
+        <CardHeader class='h-24 !pb-0 flex items-center border-b border-warning/10'>
             <!--  Contract ID  -->
             <!--
             <HoverCard :openDelay='200' v-if='contract_id'>
@@ -16,33 +16,32 @@
             </HoverCard>
             -->
             
-            <!--  Name  -->
-            <h4 class='flex-grow text-green-deco break-words whitespace-normal text-center font-bold uppercase overflow-hidden'>{{ name }}</h4>
+            <!--  Name + Symbol  -->
+            <h6 class='flex-grow text-green-deco break-words whitespace-normal text-center font-bold uppercase overflow-hidden'>
+                {{ name }}
+                <span class='truncate text-muted-foreground w-full text-center text-sm'>{{ symbol }}</span>
+            </h6>
             
-            <!--  Symbol + Description  -->
-            <div class='flex items-center'>
-                <p class='truncate text-muted-foreground w-full text-center'>{{ symbol }}</p>
-                
-                <div class='flex items-center gap-2 text-muted-foreground'>
-                    <HoverCard :openDelay='200' v-if='description'>
-                        <HoverCardTrigger class='info-icon cursor-auto'>
-                            <NuxtIcon
-                                name='radix-icons:info-circled'
-                                size='15'
-                                class='flex text-muted-foreground'
-                            />
-                        </HoverCardTrigger>
-                        
-                        <HoverCardContent class='!p-6 flex flex-col !gap-3'>
-                            <p class='text-xs'>{{ title }}</p>
-                            <p class='text-xs text-muted-foreground'>{{ description }}</p>
-                        </HoverCardContent>
-                    </HoverCard>
-                </div>
+            <!--  Description  -->
+            <div class='flex items-center gap-2 text-muted-foreground'>
+                <HoverCard :openDelay='200' v-if='description'>
+                    <HoverCardTrigger class='info-icon cursor-auto'>
+                        <NuxtIcon
+                            name='radix-icons:info-circled'
+                            size='15'
+                            class='flex text-muted-foreground'
+                        />
+                    </HoverCardTrigger>
+                    
+                    <HoverCardContent class='!p-6 flex flex-col !gap-3'>
+                        <p class='text-xs'>{{ title }}</p>
+                        <p class='text-xs text-muted-foreground'>{{ description }}</p>
+                    </HoverCardContent>
+                </HoverCard>
             </div>
         </CardHeader>
         
-        <CardContent class='flex flex-col gap-8 items-center justify-center'>
+        <CardContent class='flex flex-col items-center justify-center gap-6 !px-0'>
             <!--  Logo  -->
             <NuxtImg
                 :src='image'
@@ -65,12 +64,12 @@
                 />
             </NuxtImg>
             
-            <div class='flex flex-col w-full px-3 gap-12'>
+            <div class='flex flex-col w-full px-2 gap-8'>
                 <div class='flex flex-col items-center gap-1'>
-                    <p class='uppercase text-muted-foreground text-md'>Floor price</p>
-                    <div class='flex items-center gap-4'>
+                    <p class='uppercase text-muted-foreground text-sm'>Floor price</p>
+                    <div class='flex items-center gap-3'>
                         <!--  Floor Price  -->
-                        <h4>{{ floor_price }}</h4>
+                        <h6>{{ floor_price }}</h6>
                         
                         <!--  Trend  -->
                         <HoverCard :openDelay='200'>
@@ -98,25 +97,25 @@
                 
                 </div>
                 
-                <div class='flex items-center justify-between'>
+                <div class='flex items-center justify-around'>
                     <!--  Sale Price  -->
                     <div class='flex flex-col items-center gap-1'>
-                        <p class='uppercase text-muted-foreground text-md'>Average sale price</p>
+                        <p class='uppercase text-muted-foreground text-sm'>Average sale price</p>
                         
-                        <h4>{{ average_sale_price_24h }}</h4>
+                        <h6>{{ average_sale_price_24h }}</h6>
                     </div>
                     
                     <!--  Volume 24h  -->
                     <div class='flex flex-col items-center gap-1'>
-                        <p class='uppercase text-muted-foreground text-md'>Volume 24h</p>
+                        <p class='uppercase text-muted-foreground text-sm'>Volume 24h</p>
                         
-                        <h4>{{ volume_24h }}</h4>
+                        <h6>{{ volume_24h }}</h6>
                     </div>
                 </div>
             </div>
             
             <!--  Sparkline  -->
-            <div class='w-full border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center justify-center select-none'>
+            <div class='w-full h-24 rounded py-8 px-2 flex items-center justify-center border-t border-warning/10 select-none'>
                 <NuxtImg
                     v-if='sparkline'
                     :src='sparkline'
@@ -134,7 +133,7 @@
                     >
                     <Skeleton
                         v-else
-                        class='w-full h-full'
+                        class='w-50 h-16'
                     />
                 </NuxtImg>
                 
@@ -156,7 +155,7 @@
     import { getTextColorClass, getTrendIcon } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
-    import { Badge } from '~/components/ui/badge/index.js';
+    // import { Badge } from '~/components/ui/badge/index.js';
     
     const props = defineProps({
         nft: {
@@ -166,8 +165,8 @@
     
     const { nft } = toRefs(props);
     
-    const slug = nft.value?.id;
-    const contract_id = nft.value?.nft_contract_id;
+    // const slug = nft.value?.id;
+    // const contract_id = nft.value?.nft_contract_id;
     const name = nft.value?.name;
     const symbol = nft.value?.symbol;
     const image = nft.value?.thumb;
