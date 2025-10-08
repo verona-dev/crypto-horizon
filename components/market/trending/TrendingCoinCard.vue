@@ -52,7 +52,7 @@
                     <p class='text-sm'>{{ symbol }}</p>
                     
                     <HoverCard :openDelay='200' v-if='description'>
-                        <HoverCardTrigger class='info-icon'>
+                        <HoverCardTrigger class='info-icon cursor-default'>
                             <NuxtIcon
                                 name='radix-icons:info-circled'
                                 size='15'
@@ -88,7 +88,7 @@
             </div>
             
             <!--  Sparkline  -->
-            <div class='w-3/4 border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center'>
+            <div class='w-3/4 border-t border-warning/10 h-32 rounded py-8 px-2 flex items-center select-none'>
                 <NuxtImg
                     v-if='sparkline'
                     :src='sparkline'
