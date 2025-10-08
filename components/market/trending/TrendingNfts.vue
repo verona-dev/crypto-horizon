@@ -10,7 +10,7 @@
             
             <div v-else class='flex flex-col items-start justify-center max-w-7xl h-full'>
                 <Carousel
-                    class='relative w-full'
+                    class='relative w-full cursor-grab'
                     :plugins='[autoScroll]'
                     :opts='{
                         align: "center",
