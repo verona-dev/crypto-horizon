@@ -21,6 +21,7 @@
     --color-secondary-foreground: var(--secondary-foreground);
     --color-muted: var(--muted);
     --color-muted-foreground: var(--muted-foreground);
+    --color-muted-custom: var(--muted-custom);
     --color-accent: var(--accent);
     --color-accent-foreground: var(--accent-foreground);
     --color-destructive: var(--destructive);
@@ -152,6 +153,7 @@
     --secondary-foreground: #4d4d5a;
     --muted: #ffffff;
     --muted-foreground: #868492;
+    --muted-custom: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
     --accent: #f3e7eb;
     --accent-foreground: #533e44;
     --destructive: #d49f9f;
