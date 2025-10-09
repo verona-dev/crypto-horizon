@@ -1,6 +1,7 @@
 <template>
-    <div v-if='chart.prices' class='coin-chart'>
-        <div class='tabs-container flex items-center justify-center gap-20 my-10'>
+    <Alert v-if='chart.prices' class='coin-chart pt-12 pb-16 flex flex-col gap-6'>
+        <!--  Tabs  -->
+        <div class='tabs-container flex items-center justify-center gap-20'>
             <!--  Price + Market Cap  -->
             <Tabs
                 v-model='type'
@@ -68,6 +69,7 @@
             </Tabs>
         </div>
         
+        <!--  Chart  -->
         <div class='chart-container'>
             <div v-if='loading' class='spinner-container'>
                 <div class='h-full flex flex-col items-center justify-center gap-2 pb-12'>
@@ -76,7 +78,7 @@
                 </div>
             </div>
             
-            <div class='max-w-[500px] md:max-w-[650px] lg:max-w-[800px] mx-auto'>
+            <div class='max-w-[500px] md:max-w-[650px] lg:max-w-[800px] xl:w-5/6 mx-auto'>
                 <Line
                     ref='chartRef'
                     v-if='data.datasets?.length'
@@ -94,13 +96,14 @@
                 @handleDrawer='onHandleDrawer'
             />
         </div>
-    </div>
+    </Alert>
 </template>
 
 <script setup>
     import dayjs from 'dayjs';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     import CoinSupply from '~/components/market/coin/CoinSupply.vue';
+    import { Alert } from '@/components/ui/alert';
     
     import { Line } from 'vue-chartjs';
     import CustomLineChart from '~/utils/CustomLineChart.js';
