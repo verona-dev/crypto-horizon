@@ -279,7 +279,7 @@
             z-index: 10;
             
             @media (min-width: 770px) {
-                left: calc(v-bind(SIDEBAR_WIDTH_ICON) + 20px);
+                left: calc(v-bind(SIDEBAR_WIDTH_ICON) + 15px);
                 padding-right: calc(v-bind(SIDEBAR_WIDTH_ICON) + 50px);
             }
         }
@@ -292,9 +292,9 @@
             width: 100%;
             
             .progress-bar {
-                background-color: var(--secondary);
+                background-color: var(--green-patina);
                 border-radius: 4px;
-                box-shadow: 0 0 48px 1px var(--secondary);
+                box-shadow: 0 0 48px 1px var(--green-patina);
                 height: 100%;
                 transition: width 0.1s ease-out;
             }
