@@ -1,5 +1,5 @@
 <template>
-    <Card v-if='source' class='news-source-card flex items-center w-md h-[650px] gap-0 cursor-text'>
+    <Card v-if='source' class='news-source-card flex flex-col items-center w-md h-[650px] gap-0 cursor-text'>
         <h3 class='mt-24 mb-4 hover-underline text-wrap'>{{ name }}</h3>
         
         <div class='card-container h-full w-full'>
@@ -162,14 +162,8 @@
             width: 200px;
         }
         
-        tbody {
-            tr:hover {
-                background-color: var(--accent-foreground);
-            }
-        }
-        
         &:hover {
-            border: 1px solid var(--card-border);
+            border: 1px solid var(--primary);
         }
         
         &:hover .card-inner {
