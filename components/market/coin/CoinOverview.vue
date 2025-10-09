@@ -459,13 +459,14 @@
 </script>
 
 <style scoped>
-    [data-slot='table-row'] {
+    tr{
         align-items: baseline;
         display: flex;
         justify-content: space-between;
     }
-    [data-slot='table-cell'] {
+    td {
         display: flex;
         align-items: center;
+        padding: 8px 0;
     }
 </style>
