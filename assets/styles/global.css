@@ -52,46 +52,49 @@
 
 @layer components {
     h1 {
-        @apply text-6xl md:text-7xl 2xl:text-8xl;
+        @apply text-6xl md:text-7xl 2xl:text-8xl tracking-tight;
         font-family: 'Great', sans-serif;
-    }
-    
-    h1.page-title {
-        @apply my-10 xl:my-20 xl:h-24;
+        
+        &.page-title {
+            @apply my-10 xl:my-20 xl:h-24;
+        }
     }
     
     h2 {
-        @apply text-4xl;
+        @apply text-3xl tracking-tight;
         font-family: 'Great', sans-serif;
     }
     
     h3 {
-        @apply text-3xl;
-        line-height: 65px !important;
-    }
-    
-    h4 {
         @apply text-2xl;
-    }
-    
-    h5 {
-        @apply text-xl;
+        line-height: 30px !important;
     }
     
     .global-market h3 {
         font-family: 'Great', sans-serif;
     }
     
-    h6 {
+    h4 {
+        @apply text-xl;
+    }
+    
+    h5 {
         @apply text-lg;
     }
     
+    h6 {
+        @apply text-base;
+    }
+    
+    
     p {
-        @apply text-sm md:text-base;
+        @apply leading-5;
+        /*@apply text-sm md:text-base;*/
     }
 
     span {
-        @apply text-sm;
+        @apply text-inherit;
+        /*@apply text-sm;*/
     }
     
     a {
