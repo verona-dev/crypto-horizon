@@ -1,5 +1,5 @@
 <template>
-    <div class='md:pr-16'>
+    <div>
         <ClientOnly>
             <SidebarProvider :default-open='false'>
                 <AppSidebar />
