@@ -114,11 +114,11 @@
                 </div>
                 
                 <!--  Article Title  -->
-                <CardDescription class='text-left hover:underline px-6'>
+                <CardTitle class='text-xl text-left hover:underline px-6'>
                     <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
                         {{ title }}
                     </NuxtLink>
-                </CardDescription>
+                </CardTitle>
             </div>
         </CardHeader>
         
@@ -139,7 +139,7 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
-    import { Card, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
+    import { Card, CardTitle, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Badge } from '@/components/ui/badge';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
