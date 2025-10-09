@@ -47,7 +47,6 @@
                         <DropdownMenuItem
                             v-for='explorer in explorers'
                             :key='explorer'
-                            @click='isOpen = false'
                             class='h-12 !px-0 w-full rounded-lg focus:bg-accent focus:text-accent-foreground my-2'
                         >
                             <NuxtLink
@@ -84,7 +83,6 @@
     });
     
     const { links } = toRefs(props);
-    const isOpen = ref(false);
     const open = ref(false);
     
     const extractNameFromUrl = url => {
