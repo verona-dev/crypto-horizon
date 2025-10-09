@@ -1,7 +1,7 @@
 <template>
     <Card
         v-if='nft'
-        class='w-full md:w-84 flex flex-col p-0 border'
+        class='w-full md:w-84 flex flex-col gap-6 p-0 border'
     >
         <CardHeader class='h-24 !pb-0 flex items-center border-b'>
             <!--  Contract ID  -->
@@ -17,7 +17,7 @@
             -->
             
             <!--  Name + Symbol  -->
-            <h6 class='flex-grow text-green-deco break-words whitespace-normal text-center font-bold uppercase overflow-hidden'>
+            <h6 class='flex flex-col flex-grow text-green-deco break-words whitespace-normal text-center font-bold uppercase overflow-hidden'>
                 {{ name }}
                 <span class='truncate text-muted-foreground w-full text-center text-sm'>{{ symbol }}</span>
             </h6>
@@ -41,7 +41,7 @@
             </div>
         </CardHeader>
         
-        <CardContent class='flex flex-col items-center justify-center gap-6 !px-0'>
+        <CardContent class='flex flex-col items-center justify-center gap-10 !px-0'>
             <!--  Logo  -->
             <NuxtImg
                 :src='image'
