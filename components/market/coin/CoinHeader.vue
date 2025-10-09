@@ -13,13 +13,13 @@
                     size='50'
                 />
             </NuxtLink>
-            
             -->
+            
             <div class='alert-content flex flex-col items-center'>
                 <!--  Name  -->
                 <div class='flex flex-col items-center gap-4 p-10'>
                     <!-- Logo + Name  -->
-                    <div class='flex items-center gap-6'>
+                    <CardTitle class='flex items-center gap-6'>
                         <NuxtImg
                             v-if='coingecko?.image?.large'
                             :src='coin.coingecko.image.large'
@@ -29,73 +29,64 @@
                         />
                         
                         <h1>{{ coingecko.name }}</h1>
-                    </div>
+                    </CardTitle>
                     
-                    <div class='flex items-center justify-evenly w-3/4 gap-4'>
+                    <CardDescription class='flex items-center justify-evenly gap-10'>
                         <!--  Rank  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
-                                <MazBadge
-                                    size='1.25rem'
-                                    rounded-size='md'
-                                    class='cursor-default'
-                                    outline
+                                <Badge
+                                    class='h-8 px-4 py-1 text-md text-muted-foreground'
+                                    variant='outline'
                                 >
                                     &#35;{{ coingecko.market_cap_rank }}
-                                </MazBadge>
+                                </Badge>
                             </HoverCardTrigger>
+                            
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>
-                                    Ranked {{ coingecko.market_cap_rank }} by market cap out of all active cryptocurrencies listed on CoinGecko.
-                                </span>
+                                Ranked {{ coingecko.market_cap_rank }} by market cap out of all active cryptocurrencies listed on CoinGecko.
                             </HoverCardContent>
                         </HoverCard>
                         
                         <!-- Symbol  -->
                         <HoverCard :openDelay='200'>
-                            <HoverCardTrigger
-                                class='symbol flex items-center gap-4 '
-                                :class='ico_description && "hover:cursor-help"'
-                            >
+                            <HoverCardTrigger class='symbol flex items-center gap-4'>
                                 <h2>{{ coin.symbol }}</h2>
-                                <h4 v-if='livecoinwatch.symbol'>{{ livecoinwatch.symbol }}</h4>
+                                <h2 v-if='livecoinwatch.symbol'>{{ livecoinwatch.symbol }}</h2>
                             </HoverCardTrigger>
                             
                             <!--  Ico Description -->
                             <HoverCardContent v-if='ico_description' class='hover-card-content'>
-                                <span class='text-sm'>{{ ico_description }}.</span>
+                                {{ ico_description }}.
                             </HoverCardContent>
                         </HoverCard>
                         
                         <!--  Portfolio watchlist  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
-                                <MazBadge
-                                    size='1.25rem'
-                                    rounded-size='md'
-                                    class='cursor-default !pr-4'
-                                    outline
+                                <Badge
+                                    class='h-8 px-4 flex items-center gap-2 text-muted-foreground'
+                                    variant='outline'
                                 >
-                                    <div class='flex items-center gap-2'>
-                                        <NuxtIcon
-                                            name='uis:favorite'
-                                            size='20'
-                                        />
-                                        {{ watchlist_portfolio }}
-                                    </div>
-                                </MazBadge>
+                                    <NuxtIcon
+                                        name='uis:favorite'
+                                        class='text-yellow-selective'
+                                        size='20'
+                                    />
+                                    {{ watchlist_portfolio }}
+                                </Badge>
                             </HoverCardTrigger>
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>{{ watchlist_portfolio }} watchlists on Coingecko include {{ coin.symbol }}.</span>
+                                {{ watchlist_portfolio }} watchlists on Coingecko include {{ coin.symbol }}.
                             </HoverCardContent>
                         </HoverCard>
-                    </div>
+                    </CardDescription>
                 </div>
                 
                 <!--  Price  -->
-                <div class='flex flex-col 2xl:flex-row p-10 gap-6 2xl:gap-24'>
+                <div class='flex flex-col 2xl:flex-row py-10 gap-10 2xl:gap-24'>
                     <!--  Price in USD  -->
-                    <div class='flex flex-col items-center gap-2'>
+                    <div class='flex flex-col items-center gap-2 text-green-dollar'>
                         <h2 class='text-6xl'>{{ current_price_label }}</h2>
                         
                         <!--  Price change % in USD $  -->
@@ -112,24 +103,22 @@
                                     class='flex items-center'
                                 >
                                     {{ price_change_percentage_label }}
-                                    <span class='text-[size:inherit]'>&#40;{{ range_label }}&#41;</span>
+                                    <span>&#40;{{ range_label }}&#41;</span>
                                 </p>
                             </HoverCardTrigger>
                             
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>
-                                    Current coin price in &#65284;USD and price change percentage.
-                                </span>
+                                Current coin price in &#65284;USD and price change percentage.
                             </HoverCardContent>
                         </HoverCard>
                     </div>
                     
                     <!--  Price in BTC  -->
-                    <div class='flex flex-col items-center gap-2' v-if='not_bitcoin'>
+                    <div class='flex flex-col items-center gap-2 text-orange-bitcoin' v-if='not_bitcoin'>
                         <div class='flex items-center'>
                             <NuxtIcon
                                 name='mynaui:bitcoin'
-                                size='60'
+                                size='65'
                             />
                             
                             <h2 class='text-6xl'>{{ current_price_in_btc_label }}</h2>
@@ -149,12 +138,12 @@
                                     class='flex items-center'
                                 >
                                     {{ price_change_percentage_btc_label }}
-                                    <span class='ml-1 text-[size:inherit]'>&#40;{{ range_label }}&#41;</span>
+                                    <span class='ml-1'>&#40;{{ range_label }}&#41;</span>
                                 </p>
                             </HoverCardTrigger>
                             
                             <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>Current coin price in BTC and {{ coin.symbol }}'s price change percentage compared to Bitcoin&#40;BTC&#41;.</span>
+                                Current coin price in BTC and {{ coin.symbol }}'s price change percentage compared to Bitcoin&#40;BTC&#41;.
                             </HoverCardContent>
                         </HoverCard>
                     </div>
@@ -172,6 +161,7 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
     import { Alert } from '@/components/ui/alert';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
+    import { Badge } from '@/components/ui/badge';
     
     // MarketStore
     import { storeToRefs } from 'pinia';
@@ -269,29 +259,10 @@
     const price_change_percentage_30d_btc_label = formatNumber(price_change_percentage_30d_btc, {
         style: 'percent', compact: true, decimals: 2,
     });
-     const price_change_percentage_1y_btc = coingecko.value?.market_data?.price_change_percentage_1y_in_currency?.btc;
+    const price_change_percentage_1y_btc = coingecko.value?.market_data?.price_change_percentage_1y_in_currency?.btc;
     const price_change_percentage_1y_btc_label = formatNumber(price_change_percentage_1y_btc, {
         style: 'percent', compact: true, decimals: 2,
     });
     
     const ico_description = coingecko.value?.ico_data?.short_desc;
 </script>
-
-<style scoped>
-    .coin-header {
-        .m-badge {
-            padding: 10px;
-            border: 1px solid var(--accent);
-            min-width: 75px;
-            
-            span.iconify {
-                color: var(--yellow-selective) !important;
-            }
-        }
-        
-        .symbol,
-        .m-badge {
-            color: var(--snowy-mint) !important;
-        }
-    }
-</style>
