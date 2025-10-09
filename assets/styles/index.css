@@ -64,6 +64,7 @@
 
     --color-progress: var(--progress);
     --color-sky: var(--sky);
+    --color-green-dollar: var(--green-dollar);
     --color-green-patina: var(--green-patina);
     --color-green-shamrock: var(--green-shamrock);
     --color-snowy-mint: var(--snowy-mint);
@@ -78,6 +79,7 @@
     --color-gray-mine: var(--gray-mine);
     --color-gray-dove: var(--gray-dove);
     --color-ebony-clay: var(--ebony-clay);
+    --color-orange-bitcoin: var(--orange-bitcoin);
     --color-yellow-selective: var(--yellow-selective);
 }
 
@@ -139,6 +141,7 @@
 
     --progress: #00bc7d;
     --sky: #0ea5e9;
+    --green-dollar: #27ae60;
     --green-patina: #6a9a8b;
     --green-shamrock: #1cd1a1;
     --snowy-mint: #c3e8c8;
@@ -153,6 +156,7 @@
     --gray-mine: #333136;
     --gray-dove: #6f6d72;
     --ebony-clay: #1f2b37;
+    --orange-bitcoin: #f7931a;
     --yellow-selective: #ffb900;
 }
 
