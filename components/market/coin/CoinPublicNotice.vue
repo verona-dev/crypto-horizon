@@ -2,7 +2,7 @@
     <!--  Public Notice  -->
     <Alert
         v-if='publicNotice'
-        class='my-10 p-0 w-3/4 flex items-center border border-warning'
+        class='my-10 p-0 w-3/4 flex items-center border border-warning/50'
     >
         <div class='flex p-4'>
             <NuxtIcon
@@ -11,7 +11,7 @@
             />
         </div>
         
-        <div class='notice-content border-l border-warning p-6'>
+        <div class='notice-content border-l border-warning/50 p-6'>
             <AlertTitle>Public notice:</AlertTitle>
             <AlertDescription class='inline' v-html='publicNoticeFormatted' />
         </div>
