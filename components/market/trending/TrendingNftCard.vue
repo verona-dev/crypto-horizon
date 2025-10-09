@@ -67,6 +67,7 @@
             <div class='flex flex-col w-full px-2 gap-8'>
                 <div class='flex flex-col items-center gap-1'>
                     <p class='uppercase text-muted-foreground text-sm'>Floor price</p>
+                    
                     <div class='flex items-center gap-3'>
                         <!--  Floor Price  -->
                         <h6>{{ floor_price }}</h6>
