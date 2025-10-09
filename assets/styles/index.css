@@ -81,6 +81,7 @@
     --color-ebony-clay: var(--ebony-clay);
     --color-orange-bitcoin: var(--orange-bitcoin);
     --color-yellow-selective: var(--yellow-selective);
+    --color-warning: var(--warning);
 }
 
 :root {
@@ -158,6 +159,7 @@
     --ebony-clay: #1f2b37;
     --orange-bitcoin: #f7931a;
     --yellow-selective: #ffb900;
+    --warning: oklch(83.7% 0.128 66.29);
 }
 
 .dark {
