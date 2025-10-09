@@ -1,74 +1,81 @@
 <template>
-    <div v-if='links?.blockchain_site' class='coin-explorers'>
-        <div class='flex items-center mb-4'>
+    <div v-if='links?.blockchain_site' class='coin-explorers flex flex-col gap-8'>
+        <!--  Explorers Title  -->
+        <div class='flex items-center gap-3'>
             <NuxtIcon
-                name='bitcoin-icons:block-outline'
-                size='42'
-                class='mr-3 min-w-14'
+                name='iconoir:apple-shortcuts'
+                size='25'
             />
-            <h5>Explorers</h5>
+            <h3>Explorers</h3>
         </div>
         
-        <div class='flex items-center rounded-md border border-card-border'>
+        <div class='w-full 2xl:w-96 h-12 bg-popover flex items-center justify-between border rounded-lg'>
             <!--  Main Explorer  -->
             <NuxtLink
                 :to='main_explorer_link'
                 external
                 target='_blank'
-                class='inline-flex items-center flex-1'
+                class='flex items-center h-full w-full'
             >
-                <MazBadge class='main-badge w-full'>
-                    <div class='py-1.5 pr-4 flex items-center'>
-                        <NuxtIcon
-                            name='radix-icons:globe'
-                            size='20'
-                            class='w-[50px]'
-                        />
-                        <p>{{ main_explorer_name }}</p>
-                    </div>
-                </MazBadge>
+                <NuxtIcon
+                    name='radix-icons:globe'
+                    size='20'
+                    class='w-12'
+                />
+                
+                <p>{{ main_explorer_name }}</p>
             </NuxtLink>
             
-            <div class='vertical-separator'></div>
-            
             <!--  All Explorers - Dropdown menu  -->
-            <MazDropdown
-                trigger='click'
-                v-model:open='isOpen'
-                position='bottom right'
-                class='explorers-dropdown'
-            >
-                <template #dropdown>
-                    <div
-                        v-for='explorer in explorers'
-                        :key='explorer'
-                        @click='isOpen = false'
+            <DropdownMenu v-model:open='open'>
+                <DropdownMenuTrigger as-child>
+                    <Button
+                        variant='ghost'
+                        class='group !h-full rounded-tl-none rounded-bl-none border-l border-border'
+                        :data-state='open ? "open" : "closed"'
                     >
-                        <NuxtLink
-                            :to='explorer.href'
-                            external
-                            target='_blank'
+                        <ChevronDown class='text-primary ml-auto transition-transform duration-400 group-data-[state=open]:rotate-180' />
+                    </Button>
+                </DropdownMenuTrigger>
+                
+                <DropdownMenuContent class='min-w-64 rounded-lg' align='end'>
+                    <DropdownMenuLabel class='px-4 py-4 my-1'>Explorers</DropdownMenuLabel>
+                    
+                    <DropdownMenuSeparator />
+                    
+                    <DropdownMenuGroup class='px-1'>
+                        <DropdownMenuItem
+                            v-for='explorer in explorers'
+                            :key='explorer'
+                            @click='isOpen = false'
+                            class='h-12 !px-0 w-full rounded-lg focus:bg-accent focus:text-accent-foreground my-2'
                         >
-                            <MazBtn
-                                color='transparent'
-                                style='--justify:start'
-                                class='w-full'
+                            <NuxtLink
+                                :to='explorer.href'
+                                external
+                                target='_blank'
+                                class='h-12 w-full px-3 rounded-lg'
                             >
-                                <NuxtIcon
-                                    name='radix-icons:globe'
-                                    size='20'
-                                />
-                                {{ explorer.name }}
-                            </MazBtn>
-                        </NuxtLink>
-                    </div>
-                </template>
-            </MazDropdown>
+                                <div class='flex items-center gap-3 h-full w-full'>
+                                    <NuxtIcon
+                                        name='radix-icons:globe'
+                                        size='20'
+                                    />
+                                    {{ explorer.name }}
+                                </div>
+                            </NuxtLink>
+                        </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                </DropdownMenuContent>
+            </DropdownMenu>
         </div>
     </div>
 </template>
 
 <script setup>
+    import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+    import { ChevronDown } from 'lucide-vue-next';
+    
     const props = defineProps({
         links: {
             type: Object,
@@ -78,6 +85,7 @@
     
     const { links } = toRefs(props);
     const isOpen = ref(false);
+    const open = ref(false);
     
     const extractNameFromUrl = url => {
         try {
@@ -101,11 +109,3 @@
     const main_explorer_link = explorers.value[0].href;
     const main_explorer_name = explorers.value[0].name;
 </script>
-
-<style>
-    .coin-explorers {
-        .m-btn {
-            cursor: pointer !important;
-        }
-    }
-</style>
