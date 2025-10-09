@@ -8,18 +8,16 @@
             target='_blank'
         >
             <!--  Rank + Name  -->
-            <CardHeader class='!py-6 card-header flex justify-center items-center gap-3 border-b'>
+            <CardHeader class='!py-8 card-header flex flex-row justify-center items-center gap-3 border-b'>
                 <Badge variant='outline'>{{ rank }}</Badge>
                 
-                <div class='flex items-center gap-3'>
-                    <h6 class='name break-words whitespace-normal font-bold uppercase'>{{ name }}</h6>
-                    
-                    <NuxtIcon
-                        name='iconoir:open-new-window'
-                        size='12'
-                        class='icon opacity-0'
-                    />
-                </div>
+                <h6 class='name text-green-deco font-bold uppercase'>{{ name }}</h6>
+                
+                <NuxtIcon
+                    name='iconoir:open-new-window'
+                    size='12'
+                    class='icon opacity-0'
+                />
             </CardHeader>
         </NuxtLink>
         
@@ -70,23 +68,32 @@
                 </div>
             </div>
             
-            <!--  Price  -->
             <div class='flex flex-col items-center gap-1'>
+                <!--  Price  -->
                 <h5>{{ price_label }}</h5>
                 
-                <div
-                    class='flex items-center gap-1'
-                    :class='getTextColorClass(price_change_percentage_1d)'
-                >
-                    <NuxtIcon
-                        :name='getTrendIcon(price_change_percentage_1d)'
-                        size='12'
-                    />
+                <!--  Trend  -->
+                <HoverCard :openDelay='200'>
+                    <HoverCardTrigger class='info-icon cursor-default'>
+                        <div
+                            class='flex items-center gap-1'
+                            :class='getTextColorClass(price_change_percentage_1d)'
+                        >
+                            <NuxtIcon
+                                :name='getTrendIcon(price_change_percentage_1d)'
+                                size='12'
+                            />
+                            
+                            <span class='flex items-center text-xs'>{{ price_change_percentage_1d_label }}</span>
+                            
+                            <span class='text-xs'>&#40;24h&#41;</span>
+                        </div>
+                    </HoverCardTrigger>
                     
-                    <span class='flex items-center text-xs'>{{ price_change_percentage_1d_label }}</span>
-                    
-                    <span class='text-xs'>&#40;24h&#41;</span>
-                </div>
+                    <HoverCardContent class='flex flex-col !gap-3'>
+                        <p class='text-xs'>Floor Price 24h Percentage Change</p>
+                    </HoverCardContent>
+                </HoverCard>
             </div>
             
             <!--  Sparkline  -->
