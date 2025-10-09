@@ -2,7 +2,7 @@
     <CardContent class='coin-body my-10'>
         <div class='mt-0 flex flex-col 2xl:flex-row items-center 2xl:items-start gap-20'>
             <!--  Left  -->
-            <div class='left flex flex-col gap-24 2xl:gap-24 w-full 2xl:w-md'>
+            <Alert class='left flex flex-col gap-24 2xl:gap-24 w-full 2xl:w-md p-12'>
                 <!--  Overview  -->
                 <CoinOverview :coin='coin' />
                 
@@ -26,10 +26,10 @@
                     :livecoinwatchLinks='livecoinwatch.links'
                     :coingeckoLinks='coingecko.links'
                 />
-            </div>
+            </Alert>
             
             <!--  Right  -->
-            <div class='right flex flex-col gap-28 w-full 2xl:w-4xl'>
+            <div class='right flex flex-col gap-28 w-full 2xl:w-5xl'>
                 <!--  Chart  -->
                 <CoinChart :coin='coin' />
                 
@@ -53,6 +53,7 @@
     import CoinOverview from '~/components/market/coin/CoinOverview.vue';
     import CoinLinks from '~/components/market/coin/CoinLinks.vue';
     import CoinDescription from '~/components/market/coin/CoinDescription.vue';
+    import { Alert } from '@/components/ui/alert';
     
     const props = defineProps({
         coin: {
