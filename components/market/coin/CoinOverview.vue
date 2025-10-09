@@ -209,7 +209,7 @@
     </div>
     
     <!--  Github  -->
-    <div class='flex flex-col gap-8 border-b'>
+    <div v-if='show_github_table' class='flex flex-col gap-8 border-b'>
         <!--  Github Title  -->
         <div class='flex items-center gap-3'>
             <NuxtIcon
@@ -220,7 +220,7 @@
         </div>
         
         <!--  Github Table  -->
-        <Table v-if='show_github_table'>
+        <Table>
             <TableBody>
                 <!--  Github Forks  -->
                 <TableRow v-if='github_forks_label'>
@@ -374,7 +374,6 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
     import { Progress } from '~/components/ui/progress';
     import { formatNumber } from '~/utils/formatUtils.js';
-    import { Alert } from '@/components/ui/alert';
     
     const props = defineProps({
         coin: {
