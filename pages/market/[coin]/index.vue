@@ -1,11 +1,9 @@
 <template>
-    <div class='single-coin'>
-        <div v-if='loading' class='flex items-center h-[55vh]'>
-            <MazSpinner
-                color='secondary'
-                size='3em'
-            />
-            <h4 class='ml-4'>Loading...</h4>
+    <section class='single-coin'>
+        <div v-if='loading' class='flex items-center gap-4'>
+            <Spinner class='size-12 text-secondary' />
+
+            <h4>Loading...</h4>
         </div>
         
         <div v-else>
@@ -20,13 +18,14 @@
                 <CoinFooter :coin='coin' />
             </Card>
         </div>
-    </div>
+    </section>
 </template>
 
 <script setup>
     import CoinHeader from '~/components/market/coin/CoinHeader.vue';
     import CoinBody from '~/components/market/coin/CoinBody.vue';
     import CoinFooter from '~/components/market/coin/CoinFooter.vue';
+    import { Spinner } from '@/components/ui/Spinner';
     
     // Router
     import { useRoute } from 'vue-router';
