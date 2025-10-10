@@ -338,7 +338,7 @@
                 name='iconoir:arc-3d-center-point'
                 size='27'
             />
-            <h3>Price Performance 24h</h3>
+            <h3>Price Performance</h3>
         </div>
         
         <!--  Price Data -->
