@@ -20,7 +20,7 @@ export default defineNuxtConfig({
    },
 
    css: [
-      '@/assets/styles/index.css',
+      '~/assets/styles/index.css',
    ],
 
    colorMode: {
