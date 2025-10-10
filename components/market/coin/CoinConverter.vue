@@ -24,7 +24,7 @@
                     type='number'
                     id='coin'
                     class='coin-input h-full !bg-popover pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-bl-none rounded-br-none'
-                    defaultValue='1'
+                    :defaultValue='coin_price'
                     @input='updatePrice("coin", $event)'
                     @change='resetOnInvalidNumber($event)'
                 />
@@ -42,6 +42,7 @@
                     :modelValue='usd_input'
                     type='number'
                     id='usd'
+                    :defaultValue='coin_input'
                     class='usd-input h-full !bg-popover pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-tl-none rounded-tr-none'
                     @input='updatePrice("usd", $event)'
                     @change='resetOnInvalidNumber'
