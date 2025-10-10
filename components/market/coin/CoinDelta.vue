@@ -1,5 +1,5 @@
 <template>
-    <div class='coin-delta flex flex-col items-center justify-center'>
+    <Card class='coin-delta bg-background flex flex-col items-center justify-center'>
         <h6 class='mb-6'>Rate of Change</h6>
         
         <div class='flex items-center'>
@@ -38,7 +38,7 @@
                 description='Rate of change in the last 365 days.'
             />
         </div>
-    </div>
+    </Card>
 </template>
 
 <script setup>
