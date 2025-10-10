@@ -1,43 +1,49 @@
 <template>
-    <div v-if='sentimentUp' class='coin-sentiment'>
-        <div class='flex items-center mb-4'>
+    <div v-if='sentimentUp' class='coin-sentiment flex flex-col gap-8'>
+        <!--  Sentiment Title  -->
+        <div class='flex items-center gap-3'>
             <NuxtIcon
-                name='bitcoin-icons:podcast-outline'
-                size='45'
-                class='mr-3 min-w-14'
+                name='iconoir:community'
+                size='25'
             />
-            <h5>Community sentiment</h5>
+            <h3>Community sentiment</h3>
         </div>
         
-        <div class='flex items-center'>
-            <div class='flex items-center text-chart-2'>
-                <NuxtIcon
-                    name='bitcoin-icons:rocket-outline'
-                    size='40'
-                    class='mr-2'
-                />
-                <p>{{ sentiment_up_label }}</p>
-            </div>
+        <HoverCard :openDelay='200'>
+            <HoverCardTrigger>
+                <div class='w-full flex items-center justify-between'>
+                    <div class='flex items-center gap-2 text-progress'>
+                        <NuxtIcon
+                            name='iconoir:stat-up'
+                            size='30'
+                        />
+                        <p>{{ sentiment_up_label }}</p>
+                    </div>
+                    
+                    <Progress
+                        v-model='sentimentUp'
+                        class='h-3 mx-4 bg-destructive'
+                    />
+                    
+                    <div class='flex items-center gap-2 text-destructive'>
+                        <p>{{ sentiment_down_label }}</p>
+                        <NuxtIcon
+                            name='iconoir:stat-down'
+                            size='30'
+                        />
+                    </div>
+                </div>
+            </HoverCardTrigger>
             
-            <Progress
-                v-model='sentimentUp'
-                class='mx-4'
-            />
-            
-            <div class='flex items-center text-chart-5'>
-                <p>{{ sentiment_down_label }}</p>
-                <NuxtIcon
-                    name='iconoir:thumbs-down'
-                    size='30'
-                    class='ml-2'
-                />
-            </div>
-        </div>
+            <HoverCardContent class='hover-card-content'>
+                Community market sentiment is measured by tallying bullish and bearish votes from users            </HoverCardContent>
+        </HoverCard>
     </div>
 </template>
 
 <script setup>
     import { Progress } from '~/components/ui/progress/index.js';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     
     const props = defineProps({
         sentimentUp: {
@@ -66,12 +72,8 @@
 
 <style>
     .coin-sentiment {
-        .progress-root {
-            background-color: var(--destructive-radical);
-        }
-        
         .progress-indicator {
-            background-color: var(--color-progress);
+            background-color: var(--color-progress) !important;
         }
     }
 </style>
