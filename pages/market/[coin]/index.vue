@@ -1,7 +1,7 @@
 <template>
     <section class='single-coin'>
         <div v-if='loading' class='flex items-center gap-4'>
-            <Spinner class='size-12 text-secondary' />
+            <Spinner class='size-10 text-secondary' />
 
             <h4>Loading...</h4>
         </div>
