@@ -101,7 +101,7 @@
     --muted-custom: rgb(156 163 175 / var(--maz-tw-text-opacity, 1));
     --accent: #f3e7eb;
     --accent-foreground: #bb3f58;  /*  Default #533e44  */
-    --destructive: #d49f9f;
+    --destructive: #ff2056;
     --destructive-foreground: #ffffff;
     --border: #fbfafc;
     --input: #ffffff;
@@ -177,7 +177,7 @@
     --muted-foreground: #c3c0c8;
     --accent: #423b48;
     --accent-foreground: #ffffff;
-    --destructive: #e3baba;
+    --destructive: #EA3943;
     --destructive-foreground: #212027;
     --border: #3d3a48;
     --input: #353441;
