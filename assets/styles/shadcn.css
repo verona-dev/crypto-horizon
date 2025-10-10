@@ -13,14 +13,6 @@
     margin: 0 !important;
 }
 
-.hover-card-content {
-    background: var(--accent-foreground) !important;
-    padding: 20px !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-}
-
 tbody {
     tr:hover {
         background: var(--accent-foreground) !important;
@@ -29,7 +21,6 @@ tbody {
 */
 
 .hover-card-content {
-    /*padding: 20px !important;*/
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
