@@ -343,7 +343,7 @@
         
         <!--  Price Data -->
         <div class='flex flex-col gap-2'>
-            <div class='flex justify-between items-end'>
+            <div class='flex justify-between items-end text-sm'>
                 <div class='flex flex-col gap-1'>
                     <span class='text-muted-custom'>Low</span>
                     <p>{{ low_24h_label }}</p>
