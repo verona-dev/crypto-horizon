@@ -1,7 +1,7 @@
 <template>
-    <Card class='bg-background flex flex-col gap-24 p-10 pb-15'>
+    <Card class='bg-background flex flex-col gap-16 p-10'>
         <!--  Overview  -->
-        <div class='flex flex-col gap-8'>
+        <div class='flex flex-col gap-6'>
             <!--  Overview Title  -->
             <div class='flex items-center gap-3'>
                 <NuxtIcon
@@ -67,7 +67,6 @@
                                         :class='getTextColorClass(ath_change_percentage)'
                                     />
                                     <span
-                                        class='text-xxs'
                                         :class='getTextColorClass(ath_change_percentage)'
                                     >{{ ath_change_percentage_label }}</span>
                                 </div>
@@ -110,11 +109,11 @@
                             <div class='flex items-center'>
                                 <span>{{ atl_price }}</span>
                                 
-                                <div class='ml-2 flex items-center'>
+                                <div class='ml-2 flex items-center text-xxs'>
                                     
                                     <NuxtIcon
                                         :name='getTrendIcon(atl_change_percentage)'
-                                        size='20'
+                                        size='10'
                                         :class='getTextColorClass(atl_change_percentage)'
                                     />
                                     <span
@@ -241,7 +240,7 @@
         </div>
         
         <!--  Github  -->
-        <div v-if='show_github_table' class='flex flex-col gap-8'>
+        <div v-if='show_github_table' class='flex flex-col gap-6'>
             <!--  Github Title  -->
             <div class='flex items-center gap-3'>
                 <NuxtIcon
