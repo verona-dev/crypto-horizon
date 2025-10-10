@@ -39,7 +39,7 @@
                 </DropdownMenuTrigger>
                 
                 <DropdownMenuContent class='min-w-64 rounded-lg' align='end'>
-                    <DropdownMenuLabel class='px-4 py-4 my-1'>Explorers</DropdownMenuLabel>
+                    <DropdownMenuLabel class='text-lg px-4 py-4 my-1'>Explorers</DropdownMenuLabel>
                     
                     <DropdownMenuSeparator />
                     
