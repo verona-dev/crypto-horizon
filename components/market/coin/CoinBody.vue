@@ -2,7 +2,7 @@
     <CardContent class='coin-body'>
         <div class='flex flex-col 2xl:flex-row items-center 2xl:items-start gap-10'>
             <!--  Left  -->
-            <Card class='bg-background left flex flex-col gap-24 2xl:gap-24 w-full 2xl:w-md p-10'>
+            <Card class='bg-background left flex flex-col gap-24 2xl:gap-28 w-full 2xl:w-md p-10'>
                 <!--  Overview  -->
                 <CoinOverview :coin='coin' />
                 
