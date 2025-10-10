@@ -1,6 +1,6 @@
 <template>
-    <CardHeader v-if='coin' class='coin-header flex min-w-full mx-auto'>
-        <Alert class='flex flex-col items-center justify-center p-0'>
+    <CardHeader v-if='coin' class='coin-header flex'>
+        <Card class='bg-background flex flex-col items-center justify-center p-0'>
             <!--  Go back -->
             <!--
             <NuxtLink
@@ -15,31 +15,28 @@
             </NuxtLink>
             -->
             
-            <div class='alert-content flex flex-col items-center'>
-                <!--  Name  -->
-                <div class='flex flex-col items-center gap-4 p-10'>
+            <div class='flex flex-col items-center gap-12 p-10'>
+                <div class='flex flex-col items-center gap-4 md:gap-8'>
                     <!-- Logo + Name  -->
-                    <CardTitle class='flex items-center gap-6'>
+                    <CardTitle class='flex items-center gap-2 md:gap-6'>
                         <NuxtImg
                             v-if='coingecko?.image?.large'
                             :src='coin.coingecko.image.large'
                             alt='symbol'
-                            width='80'
-                            height='80'
+                            width='60'
+                            height='60'
                         />
                         
-                        <h1>{{ coingecko.name }}</h1>
+                        <h1 class='text-4xl md:text-5xl lg:text-7xl'>{{ coingecko.name }}</h1>
                     </CardTitle>
                     
-                    <CardDescription class='flex items-center justify-evenly gap-10'>
+                    <CardDescription class='flex gap-4 md:gap-10'>
                         <!--  Rank  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
-                                <Badge
-                                    class='h-8 px-4 py-1 text-md text-muted-foreground'
-                                    variant='outline'
-                                >
-                                    &#35;{{ coingecko.market_cap_rank }}
+                                <Badge class='h-8 px-2 py-1 text-muted-foreground' variant='outline'>
+                                
+                                &#35;{{ coingecko.market_cap_rank }}
                                 </Badge>
                             </HoverCardTrigger>
                             
@@ -51,8 +48,8 @@
                         <!-- Symbol  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='symbol flex items-center gap-4'>
-                                <h2>{{ coin.symbol }}</h2>
-                                <h2 v-if='livecoinwatch.symbol'>{{ livecoinwatch.symbol }}</h2>
+                                <h2 class='text-xl'>{{ coin.symbol }}</h2>
+                                <h2 v-if='livecoinwatch.symbol' class='text-xl'>{{ livecoinwatch.symbol }}</h2>
                             </HoverCardTrigger>
                             
                             <!--  Ico Description -->
@@ -64,11 +61,9 @@
                         <!--  Portfolio watchlist  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
-                                <Badge
-                                    class='h-8 px-4 flex items-center gap-2 text-muted-foreground'
-                                    variant='outline'
-                                >
-                                    <NuxtIcon
+                                <Badge class='h-8 px-2 sm:px-4 flex items-center gap-1 sm:gap-2 text-xs sm:text-md text-muted-foreground' variant='outline'>
+                                
+                                <NuxtIcon
                                         name='uis:favorite'
                                         class='text-yellow-selective'
                                         size='20'
@@ -84,10 +79,10 @@
                 </div>
                 
                 <!--  Price  -->
-                <div class='flex flex-col 2xl:flex-row py-10 gap-10 2xl:gap-24'>
+                <div class='flex flex-col xl:flex-row gap-10 xl:gap-24'>
                     <!--  Price in USD  -->
                     <div class='flex flex-col items-center gap-2 text-green-dollar'>
-                        <h2 class='text-6xl'>{{ current_price_label }}</h2>
+                        <h2 class='text-3xl md:text-5xl'>{{ current_price_label }}</h2>
                         
                         <!--  Price change % in USD $  -->
                         <HoverCard :openDelay='200'>
@@ -118,10 +113,10 @@
                         <div class='flex items-center'>
                             <NuxtIcon
                                 name='mynaui:bitcoin'
-                                size='65'
+                                size='45'
                             />
                             
-                            <h2 class='text-6xl'>{{ current_price_in_btc_label }}</h2>
+                            <h2 class='text-3xl md:text-5xl'>{{ current_price_in_btc_label }}</h2>
                         </div>
                         
                         <!--  Price change % in BTC  -->
@@ -151,7 +146,7 @@
                 
                 <CoinPublicNotice :public-notice='coingecko.public_notice' />
             </div>
-        </Alert>
+        </Card>
     </CardHeader>
 </template>
 
