@@ -95,10 +95,10 @@
                                 
                                 <p
                                     :class='getTextColorClass(price_change_percentage)'
-                                    class='flex items-center'
+                                    class='flex items-center text-sm'
                                 >
                                     {{ price_change_percentage_label }}
-                                    <span>&#40;{{ range_label }}&#41;</span>
+                                    <span class='ml-1'>&#40;{{ range_label }}&#41;</span>
                                 </p>
                             </HoverCardTrigger>
                             
@@ -130,7 +130,7 @@
                                 
                                 <p
                                     :class='[getTextColorClass(price_change_percentage_btc)]'
-                                    class='flex items-center'
+                                    class='flex items-center text-sm'
                                 >
                                     {{ price_change_percentage_btc_label }}
                                     <span class='ml-1'>&#40;{{ range_label }}&#41;</span>
@@ -154,7 +154,6 @@
     import { formatNumber, goBack } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
-    import { Alert } from '@/components/ui/alert';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     import { Badge } from '@/components/ui/badge';
     
