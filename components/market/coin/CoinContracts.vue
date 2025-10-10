@@ -111,6 +111,7 @@
     
     const { coin } = toRefs(props);
     const { getCoingeckoCoinListSummary } = MarketStore;
+    const open = ref(false);
     const platforms_list = ref([]);
     const platforms_summary = ref([]);
     const disable_dropdown = computed(() => platforms_list.value?.length === 1);
