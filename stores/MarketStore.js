@@ -111,6 +111,8 @@ export const useMarketStore = defineStore('MarketStore', {
         async getCoingeckoCoin(slug) {
             this.loading = true;
             
+            this.resetCoin();
+            
             try {
                 const [ coinResponse, chartResponse ] = await Promise.all([
                     useFetchCoingecko(`coins/${slug}`),
@@ -213,6 +215,38 @@ export const useMarketStore = defineStore('MarketStore', {
             } finally {
                 this.loading = false;
             }
+        },
+        
+        resetCoin() {
+          this.coin = {
+              coingecko: {},
+              livecoinwatch: {},
+              symbol: '',
+              chart: {},
+              timeframe: 1,
+              ranges: [
+                  {
+                      name: 'Day',
+                      label: '1d',
+                      timeframe: 1,
+                  },
+                  {
+                      name: 'Week',
+                      label: '7d',
+                      timeframe: 7,
+                  },
+                  {
+                      name: 'Month',
+                      label: '30d',
+                      timeframe: 30,
+                  },
+                  {
+                      name: 'Year',
+                      label: '1y',
+                      timeframe: 365,
+                  },
+              ],
+          }
         },
     },
     
