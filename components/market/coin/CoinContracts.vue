@@ -43,7 +43,7 @@
                     </Button>
                 </DropdownMenuTrigger>
                 
-                <DropdownMenuContent class='min-w-84 rounded-lg' align='end'>
+                <DropdownMenuContent class='min-w-76 rounded-lg' align='end'>
                     <DropdownMenuLabel class='text-lg px-4 py-4 my-1'>Contracts</DropdownMenuLabel>
                     
                     <DropdownMenuSeparator />
@@ -53,7 +53,7 @@
                             v-for='contract in platforms'
                             :key='contract'
                             @click='onCopyLink(contract)'
-                            class='py-3 my-2 rounded-lg focus:bg-accent focus:text-accent-foreground cursor-pointer'
+                            class='py-3 my-2 rounded-lg cursor-pointer'
                         >
                             <div class='px-3 flex justify-between items-center w-full'>
                                 <div class='flex items-center'>
