@@ -22,7 +22,8 @@
                 <Badge
                     v-if='item.trend'
                     variant='outline'
-                    class='pl-2 pr-3 py-1 ml-1'>
+                    class='pl-2 pr-3 py-1 ml-1'
+                >
                     <NuxtIcon
                         :name='getTrendIcon(item.value)'
                         size='15'
