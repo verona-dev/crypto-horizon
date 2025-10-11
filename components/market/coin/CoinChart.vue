@@ -1,5 +1,5 @@
 <template>
-    <Alert v-if='chart.prices' class='coin-chart pt-12 pb-16 flex flex-col gap-6'>
+    <Alert v-if='chart.prices' class='coin-chart flex flex-col gap-6'>
         <!--  Tabs  -->
         <div class='tabs-container flex items-center justify-center gap-20'>
             <!--  Price + Market Cap  -->
