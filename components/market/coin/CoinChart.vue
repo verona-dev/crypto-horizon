@@ -1,29 +1,23 @@
 <template>
-    <Card class='coin-chart bg-background flex flex-col gap-6 p-8' v-if='chart.prices'>
+    <Card class='coin-chart flex flex-col gap-6 p-8' v-if='chart.prices'>
         <!--  Tabs  -->
-        <div class='tabs-container flex items-center justify-between gap-20'>
+        <div class='tabs-container flex items-center justify-between'>
             <!--  Price + Market Cap  -->
             <Tabs
                 v-model='type'
                 default-value='price'
             >
-                <TabsList class='gap-x-2 dark:bg-background'>
+                <TabsList>
                     <TabsTrigger
                         value='price'
-                        class='py-2 px-2 text-xs
-                               data-[state=active]:border data-[state=active]:border-tertiary data-[state=active]:text-primary
-                               rounded-xl w-16
-                        '
+                        class='py-1.5 px-1.5 text-xs w-16'
                     >
                        Price
                     </TabsTrigger>
                     
                     <TabsTrigger
                         value='mcap'
-                        class='py-2 px-2 text-xs
-                               data-[state=active]:border data-[state=active]:border-tertiary data-[state=active]:text-primary
-                               rounded-xl w-24
-                        '
+                        class='py-1.5 px-1.5 text-xs w-24'
                     >
                         Market Cap
                     </TabsTrigger>
@@ -32,19 +26,15 @@
             
             <!--  Supply Drawer  -->
             <Tabs>
-                <TabsList class='dark:bg-background'>
+                <TabsList>
                     <TabsTrigger
                         @click='show_drawer = true'
                         value='supply'
-                        class='
-                               text-primary/75 text-xs
-                               flex items-center justify-center gap-1
-                               hover:text-foreground
-                        '
+                        class='py-1.5 px-1.5 text-xs flex gap-1 bg-transparent'
                     >
                         <NuxtIcon
                             name='mdi-light:chart-pie'
-                            size='25'
+                            size='15'
                         />
                         <span>Supply</span>
                     </TabsTrigger>
@@ -53,15 +43,12 @@
             
             <!--  Range  -->
             <Tabs v-model='timeframe'>
-                <TabsList class='gap-x-2 dark:bg-background'>
+                <TabsList>
                     <TabsTrigger
                         v-for='range in ranges'
                         :key='range.timeframe'
                         :value='range.timeframe'
-                        class='py-1.5 px-1.5 text-xs
-                               data-[state=active]:border data-[state=active]:border-tertiary data-[state=active]:text-primary
-                               rounded-xl w-10
-                        '
+                        class='py-1.5 px-1.5 text-xs w-10'
                     >
                         {{ range.label.toUpperCase() }}
                     </TabsTrigger>
@@ -78,7 +65,7 @@
                 </div>
             </div>
             
-            <div class='px-6 max-w-screen sm:max-w-xl md:max-w-2xl xl:max-w-full mx-auto w-full'>
+            <div class='w-full'>
                 <Line
                     ref='chartRef'
                     v-if='data.datasets?.length'

@@ -1,25 +1,21 @@
 <template>
-    <CardContent class='coin-body'>
-        <!--  Overview  -->
-        <CoinOverview :coin='coin' />
+    <CardContent class='coin-body grid grid-cols-1 xl:grid-cols-[1fr_3fr] gap-6'>
+        <!-- Left -->
+        <div class='flex flex-col space-y-6'>
+            <CoinOverview :coin='coin' />
+            <CoinInsights :coin='coin' />
+        </div>
         
-        <!--  Insights  -->
-        <CoinInsights :coin='coin' />
-        
-        <!--  Links  -->
-        <CoinLinks
-            :livecoinwatchLinks='livecoinwatch.links'
-            :coingeckoLinks='coingecko.links'
-        />
-        
-        <!--  Chart  -->
-        <CoinChart :coin='coin' />
-        
-        <!--  Delta  -->
-        <CoinDelta :marketData='coingecko.market_data' />
-        
-        <!--  Description  -->
-        <CoinDescription :coin='coin' />
+        <!-- Right -->
+        <div class='flex flex-col space-y-6'>
+            <CoinChart :coin='coin' />
+            <CoinLinks
+                :livecoinwatchLinks='livecoinwatch.links'
+                :coingeckoLinks='coingecko.links'
+            />
+            <CoinDelta :marketData='coingecko.market_data' />
+            <CoinDescription :coin='coin' />
+        </div>
     </CardContent>
 </template>
 
