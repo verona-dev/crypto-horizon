@@ -98,10 +98,10 @@
     import { toast } from 'vue-sonner';
     import { h, resolveComponent } from 'vue';
     import { capitalize } from '~/utils/formatUtils.js';
+    import { ChevronDown } from 'lucide-vue-next';
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
     import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu/index.js';
-    import { ChevronDown } from 'lucide-vue-next';
     
     const props = defineProps({
         coin: Object,
