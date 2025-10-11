@@ -8,7 +8,7 @@
                     
                     <!--  Title container  -->
                     <div class='flex flex-col items-center gap-4'>
-                        <DrawerTitle>Coin Supply</DrawerTitle>
+                        <DrawerTitle class='text-4xl'>Coin Supply</DrawerTitle>
                         
                         <DrawerDescription>Exploring Key Metrics</DrawerDescription>
                         
@@ -106,6 +106,6 @@
 
 <style>
     [data-vaul-drawer-direction='bottom'] {
-        min-height: 90vh !important;
+        min-height: 50vh !important;
     }
 </style>
