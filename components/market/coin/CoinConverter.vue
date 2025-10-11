@@ -1,13 +1,13 @@
 <template>
-    <div v-if='coin_price' class='coin-converter flex flex-col gap-8'>
+    <div v-if='coin_price' class='coin-converter flex flex-col gap-4'>
         <!-- Converter Title -->
         <div class='flex items-center gap-3'>
             <NuxtIcon
                 name='iconoir:calculator'
-                size='25'
+                size='20'
             />
             
-            <h3>{{ coin_symbol }} to USD converter</h3>
+            <h4>{{ coin_symbol }} converter</h4>
         </div>
         
         <div>

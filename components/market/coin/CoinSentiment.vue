@@ -1,17 +1,17 @@
 <template>
-    <div v-if='sentimentUp' class='coin-sentiment flex flex-col gap-8'>
+    <div v-if='sentimentUp' class='coin-sentiment flex flex-col gap-4'>
         <!--  Sentiment Title  -->
         <div class='flex items-center gap-3'>
             <NuxtIcon
                 name='iconoir:community'
-                size='25'
+                size='22'
             />
-            <h3>Community sentiment</h3>
+            <h4>Community sentiment</h4>
         </div>
         
         <HoverCard :openDelay='200'>
             <HoverCardTrigger>
-                <div class='w-full flex items-center justify-between'>
+                <div class='flex items-center justify-between'>
                     <div class='flex items-center gap-2 text-progress'>
                         <NuxtIcon
                             name='iconoir:stat-up'

@@ -1,32 +1,32 @@
 <template>
-    <div v-if='platforms_list.length' class='coin-contracts flex flex-col gap-8'>
+    <div v-if='platforms_list.length' class='coin-contracts flex flex-col gap-4'>
         <!--  Contracts Title  -->
         <div class='flex items-center gap-3'>
             <NuxtIcon
                 name='iconoir:page-edit'
-                size='25'
+                size='20'
             />
-            <h3>Contracts</h3>
+            <h4>Contracts</h4>
         </div>
         
-        <div class='w-full 2xl:w-96 h-12 bg-popover flex items-center justify-between border rounded-lg'>
+        <div class='h-12 bg-popover flex items-center justify-between border rounded-lg'>
             <!--  Main Contract  -->
             <div
-                class='flex items-center justify-center gap-5 w-full cursor-pointer'
+                class='flex items-center justify-evenly w-full cursor-pointer'
                 @click='onCopyLink(platforms[0])'
             >
                 <NuxtImg
                     v-if='platformImageMap.find(platform => platform.name === platforms[0].name)?.image'
                     :src='platformImageMap.find(platform => platform.name === platforms[0].name).image'
-                    width='25'
-                    height='25'
+                    width='20'
+                    height='20'
                 />
                 
-                <p class='capitalize'>{{platforms[0].value.slice(0, 7) + '...' + platforms[0].value.slice(-7) }}</p>
+                <p class='capitalize text-sm'>{{platforms[0].value.slice(0, 5) + '...' + platforms[0].value.slice(-5) }}</p>
                 
                 <NuxtIcon
-                    name='radix-icons:copy'
-                    size='20'
+                    name='iconoir:copy'
+                    size='15'
                     class='ml-1'
                 />
             </div>
@@ -53,7 +53,7 @@
                             v-for='contract in platforms'
                             :key='contract'
                             @click='onCopyLink(contract)'
-                            class='py-3 my-2 w-full rounded-lg focus:bg-accent focus:text-accent-foreground cursor-pointer'
+                            class='py-3 my-2 rounded-lg focus:bg-accent focus:text-accent-foreground cursor-pointer'
                         >
                             <div class='px-3 flex justify-between items-center w-full'>
                                 <div class='flex items-center'>
@@ -138,8 +138,11 @@
     const onCopyLink = contract => {
         navigator.clipboard.writeText(contract.value);
         
-        toast(`${coin.value?.name} (${capitalize(contract.name)}) contract copied to clipboard.`, {
-            duration: 5000,
+        toast(``, {
+            title: () =>
+                h('h6', {
+                    class: 'font-medium',
+                }, `${coin.value?.name} (${capitalize(contract.name)}) contract copied.`),
             icon: () =>
                 h(resolveComponent('NuxtIcon'), {
                     name: 'iconoir:check-circle-solid',
@@ -149,6 +152,10 @@
             action: {
                 label: 'OK',
             },
+            description: () =>
+                h('span', {
+                    class: '',
+                }, contract.value),
         });
     };
     

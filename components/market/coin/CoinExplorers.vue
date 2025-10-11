@@ -1,21 +1,21 @@
 <template>
-    <div v-if='links?.blockchain_site' class='coin-explorers flex flex-col gap-8'>
+    <div v-if='links?.blockchain_site' class='coin-explorers flex flex-col gap-4'>
         <!--  Explorers Title  -->
         <div class='flex items-center gap-3'>
             <NuxtIcon
                 name='iconoir:apple-shortcuts'
-                size='25'
+                size='20'
             />
-            <h3>Explorers</h3>
+            <h4>Explorers</h4>
         </div>
         
-        <div class='w-full 2xl:w-96 h-12 bg-popover flex items-center justify-between border rounded-lg'>
+        <div class='h-12 bg-popover flex items-center justify-between border rounded-lg'>
             <!--  Main Explorer  -->
             <NuxtLink
                 :to='main_explorer_link'
                 external
                 target='_blank'
-                class='flex items-center h-full w-full'
+                class='flex items-center'
             >
                 <NuxtIcon
                     name='radix-icons:globe'
@@ -47,15 +47,15 @@
                         <DropdownMenuItem
                             v-for='explorer in explorers'
                             :key='explorer'
-                            class='h-12 !px-0 w-full rounded-lg focus:bg-accent focus:text-accent-foreground my-2'
+                            class='h-12 !px-0 rounded-lg focus:bg-accent focus:text-accent-foreground my-2'
                         >
                             <NuxtLink
                                 :to='explorer.href'
                                 external
                                 target='_blank'
-                                class='h-12 w-full px-3 rounded-lg'
+                                class='h-12 px-3 rounded-lg'
                             >
-                                <div class='flex items-center gap-3 h-full w-full'>
+                                <div class='flex items-center gap-3 h-full'>
                                     <NuxtIcon
                                         name='radix-icons:globe'
                                         size='20'

@@ -1,14 +1,14 @@
 <template>
-    <Card class='bg-background flex flex-col gap-16 p-10'>
+    <Card class='coin-overview bg-background flex flex-col gap-16 p-10 w-full'>
         <!--  Overview  -->
-        <div class='flex flex-col gap-6'>
+        <div class='flex flex-col gap-4'>
             <!--  Overview Title  -->
             <div class='flex items-center gap-3'>
                 <NuxtIcon
                     name='iconoir:view-grid'
-                    size='25'
+                    size='20'
                 />
-                <h3>Overview</h3>
+                <h4>Overview</h4>
             </div>
             
             <!--  Overview Table  -->
@@ -240,14 +240,14 @@
         </div>
         
         <!--  Github  -->
-        <div v-if='show_github_table' class='flex flex-col gap-6'>
+        <div v-if='show_github_table' class='flex flex-col gap-4'>
             <!--  Github Title  -->
             <div class='flex items-center gap-3'>
                 <NuxtIcon
                     name='iconoir:github'
-                    size='25'
+                    size='20'
                 />
-                <h3>Github</h3>
+                <h4>Github</h4>
             </div>
             
             <!--  Github Table  -->

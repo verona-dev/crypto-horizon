@@ -1,13 +1,13 @@
 <template>
     <!--  Price Performance 24h -->
-    <div class='flex flex-col gap-8'>
+    <div class='coin-performance flex flex-col gap-4'>
         <!--  Price Title  -->
         <div class='flex items-center gap-3'>
             <NuxtIcon
                 name='iconoir:arc-3d-center-point'
-                size='27'
+                size='22'
             />
-            <h3>Price Performance</h3>
+            <h4>Price Performance</h4>
         </div>
         
         <!--  Price Data -->
