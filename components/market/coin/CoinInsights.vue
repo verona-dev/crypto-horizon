@@ -9,14 +9,14 @@
         <!--  Contracts  -->
         <CoinContracts :coin='coingecko' />
         
-        <!--  Converter  -->
-        <CoinConverter :coin='coin' />
-        
         <!--  Community Sentiment  -->
         <CoinSentiment
             :sentimentUp='sentiment_up_percentage'
             :sentimentDown='sentiment_down_percentage'
         />
+        
+        <!--  Converter  -->
+        <CoinConverter :coin='coin' />
     </Card>
 </template>
 
