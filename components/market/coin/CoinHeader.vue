@@ -1,5 +1,5 @@
 <template>
-    <CardHeader v-if='coin' class='coin-header flex'>
+    <CardHeader v-if='coin' class='coin-header flex w-full'>
         <Card class='bg-background flex flex-col items-center justify-center'>
             <!--  Go back -->
             <!--

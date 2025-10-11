@@ -1,7 +1,7 @@
 <template>
     <Card class='coin-chart bg-background flex flex-col gap-6 p-8' v-if='chart.prices'>
         <!--  Tabs  -->
-        <div class='tabs-container flex items-center justify-center gap-20'>
+        <div class='tabs-container flex items-center justify-between gap-20'>
             <!--  Price + Market Cap  -->
             <Tabs
                 v-model='type'
@@ -10,9 +10,9 @@
                 <TabsList class='gap-x-2 dark:bg-background'>
                     <TabsTrigger
                         value='price'
-                        class='py-2 px-2
+                        class='py-2 px-2 text-xs
                                data-[state=active]:border data-[state=active]:border-tertiary data-[state=active]:text-primary
-                               rounded-xl w-28
+                               rounded-xl w-16
                         '
                     >
                        Price
@@ -20,9 +20,9 @@
                     
                     <TabsTrigger
                         value='mcap'
-                        class='py-2 px-2
+                        class='py-2 px-2 text-xs
                                data-[state=active]:border data-[state=active]:border-tertiary data-[state=active]:text-primary
-                               rounded-xl w-28
+                               rounded-xl w-24
                         '
                     >
                         Market Cap
@@ -37,14 +37,14 @@
                         @click='show_drawer = true'
                         value='supply'
                         class='
-                               text-primary/75
+                               text-primary/75 text-xs
                                flex items-center justify-center gap-1
                                hover:text-foreground
                         '
                     >
                         <NuxtIcon
                             name='mdi-light:chart-pie'
-                            size='30'
+                            size='25'
                         />
                         <span>Supply</span>
                     </TabsTrigger>
@@ -58,9 +58,9 @@
                         v-for='range in ranges'
                         :key='range.timeframe'
                         :value='range.timeframe'
-                        class='py-1.5 px-1.5
+                        class='py-1.5 px-1.5 text-xs
                                data-[state=active]:border data-[state=active]:border-tertiary data-[state=active]:text-primary
-                               rounded-xl w-14
+                               rounded-xl w-10
                         '
                     >
                         {{ range.label.toUpperCase() }}
@@ -73,12 +73,12 @@
         <div class='chart-container'>
             <div v-if='loading' class='spinner-container'>
                 <div class='h-full flex flex-col items-center justify-center gap-2 pb-12'>
-                    <MazSpinner size='2em' />
+                    <Spinner class='size-8 text-secondary' />
                     <!-- <span class='text-muted-custom'>Please wait a moment.</span> -->
                 </div>
             </div>
             
-            <div class='max-w-[500px] md:max-w-[650px] lg:max-w-[800px] xl:w-5/6 mx-auto'>
+            <div class='px-6 max-w-screen sm:max-w-xl md:max-w-2xl xl:max-w-full mx-auto w-full'>
                 <Line
                     ref='chartRef'
                     v-if='data.datasets?.length'
@@ -103,7 +103,6 @@
     import dayjs from 'dayjs';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     import CoinSupply from '~/components/market/coin/CoinSupply.vue';
-    import { Alert } from '@/components/ui/alert';
     
     import { Line } from 'vue-chartjs';
     import CustomLineChart from '~/utils/CustomLineChart.js';
@@ -112,6 +111,7 @@
     
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
+    import { Spinner } from '~/components/ui/spinner/index.js';
     const MarketStore = useMarketStore();
     
     // Methods

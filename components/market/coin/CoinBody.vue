@@ -1,8 +1,8 @@
 <template>
     <CardContent class='coin-body'>
-        <div class='flex flex-col lg:flex-row items-center lg:items-start gap-6 lg:gap-10'>
+        <div class='flex flex-col xl:flex-row items-center xl:items-start gap-6 xl:gap-10'>
             <!--  Left w-full 2xl:w-md -->
-            <div class='left flex flex-col items-center gap-24 2xl:gap-10'>
+            <div class='left flex flex-col items-center gap-24 xl:gap-10 w-1/2 sm:w-2/3 lg:w-full xl:w-1/3'>
                 <!--  Overview  -->
                 <CoinOverview :coin='coin' />
                 
@@ -17,7 +17,7 @@
             </div>
             
             <!--  Right w-full 2xl:w-4xl -->
-            <div class='right flex flex-col gap-10'>
+            <div class='right flex flex-col gap-10 xl:w-2/3'>
                 <!--  Chart  -->
                 <CoinChart :coin='coin' />
                 
@@ -33,7 +33,6 @@
 
 <script setup>
     import CoinOverview from '~/components/market/coin/CoinOverview.vue';
-    import CoinPerformance from '~/components/market/coin/CoinPerformance.vue';
     import CoinInsights from '~/components/market/coin/CoinInsights.vue';
     import CoinLinks from '~/components/market/coin/CoinLinks.vue';
     import CoinChart from '~/components/market/coin/CoinChart.vue';
@@ -50,7 +49,4 @@
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
     const livecoinwatch = toRef(coin.value?.livecoinwatch);
-    
-    const sentiment_up_percentage = coingecko.value?.sentiment_votes_up_percentage;
-    const sentiment_down_percentage = coingecko.value?.sentiment_votes_down_percentage;
 </script>

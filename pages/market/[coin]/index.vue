@@ -9,7 +9,7 @@
         <div v-else>
             <Card
                 v-if='coin && coin.livecoinwatch.name'
-                class='bg-background border-none flex flex-col items-center gap-4'
+                class='bg-background border-none flex flex-col items-center gap-4 max-w-7xl w-full'
             >
                 <CoinHeader :coin='coin' />
                 
