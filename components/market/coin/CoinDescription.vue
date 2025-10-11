@@ -1,67 +1,63 @@
 <template>
-    <div v-if='coingecko' class='flex flex-col gap-12'>
-        <Alert class='flex flex-col gap-32 p-16'>
-            <div
-                v-if='description_formatted'
-                class='description flex flex-col gap-8'
-            >
-                <AlertTitle class='flex items-center gap-2'>
-                    <NuxtIcon
-                        name='mdi:about-variant'
-                        class='block text-foreground'
-                        size='30'
-                    />
-                    
-                    <h6 class='flex items-center gap-2'>
-                        What is {{ coingecko.name }}
-                        <span class='mt-0.5'>&#40;{{ coin.symbol }}&#41;</span>
-                    </h6>
-                </AlertTitle>
+    <Card class='coin-description bg-background flex flex-col gap-20 p-10' v-if='coingecko'>
+        <div
+            v-if='description_formatted'
+            class='description flex flex-col gap-6'
+        >
+            <CardTitle class='flex items-center gap-2'>
+                <NuxtIcon
+                    name='mdi:about-variant'
+                    class='block text-foreground'
+                    size='30'
+                />
                 
-                <AlertDescription class='flex flex-col gap-6'>
-                    <p
-                        v-for='paragraph in description_formatted'
-                        :key='paragraph'
-                        class='text-sm text-foreground'
-                    >
-                        {{ paragraph }}
-                    </p>
-                </AlertDescription>
-            </div>
+                <h6 class='flex items-center gap-2'>
+                    What is {{ coingecko.name }}
+                    <span class='mt-0.5'>&#40;{{ coin.symbol }}&#41;</span>
+                </h6>
+            </CardTitle>
             
-            <!--  Categories  -->
-            <div
-                v-if='coingecko.categories'
-                class='categories flex flex-col gap-8'
-            >
-                <AlertTitle class='flex items-center gap-2'>
-                    <NuxtIcon
-                        name='iconoir:hashtag'
-                        class='block text-foreground'
-                        size='24'
-                    />
-                    <h6>Categories</h6>
-                </AlertTitle>
-                
-                <div>
-                    <MazBadge
-                        v-for='category in coingecko.categories'
-                        :key='category'
-                        color='white'
-                        class='m-2'
-                        outline
-                        pastel
-                    >
-                        {{ category }}
-                    </MazBadge>
-                </div>
+            <CardDescription class='flex flex-col gap-6'>
+                <p
+                    v-for='paragraph in description_formatted'
+                    :key='paragraph'
+                    class='text-sm text-foreground'
+                >
+                    {{ paragraph }}
+                </p>
+            </CardDescription>
+        </div>
+        
+        <!--  Categories  -->
+        <div
+            v-if='coingecko.categories'
+            class='categories flex flex-col gap-6'
+        >
+            <CardTitle class='flex items-center gap-2'>
+                <NuxtIcon
+                    name='iconoir:hashtag'
+                    class='block'
+                    size='24'
+                />
+                <h6>Categories</h6>
+            </CardTitle>
+            
+            <div>
+                <Badge
+                    v-for='category in categories'
+                    :key='category'
+                    class='m-2 py-2 px-3'
+                    variant='outline'
+                >
+                    {{ category }}
+                </Badge>
             </div>
-        </Alert>
-    </div>
+        </div>
+    </Card>
 </template>
 
 <script setup>
-    import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+    import { Badge } from '@/components/ui/badge';
     
     const props = defineProps({
         coin: {
@@ -73,6 +69,7 @@
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
     const description = ref(coingecko.value?.description?.en);
+    const categories = ref(coingecko.value?.categories);
     
     const description_formatted = computed(() => {
         if (!description.value) return '';
