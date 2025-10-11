@@ -1,5 +1,5 @@
 <template>
-    <Card class='coin-overview bg-background flex flex-col gap-16 p-10 w-full'>
+    <Card class='coin-overview flex flex-col gap-16 p-10 w-full'>
         <!--  Overview  -->
         <div class='flex flex-col gap-4'>
             <!--  Overview Title  -->
