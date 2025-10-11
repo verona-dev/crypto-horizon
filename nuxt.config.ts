@@ -14,7 +14,7 @@ export default defineNuxtConfig({
       pageTransition: {
          // Name options are: 'bounce', 'fade', 'page', 'custom',
          // Mode options are: 'out-in','in-out',
-         name: 'bounce',
+         name: 'fade',
          mode: 'out-in',
       },
    },
