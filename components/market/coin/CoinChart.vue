@@ -1,5 +1,5 @@
 <template>
-    <Alert v-if='chart.prices' class='coin-chart flex flex-col gap-6'>
+    <Card class='coin-chart bg-background flex flex-col gap-6 p-8' v-if='chart.prices'>
         <!--  Tabs  -->
         <div class='tabs-container flex items-center justify-center gap-20'>
             <!--  Price + Market Cap  -->
@@ -96,7 +96,7 @@
                 @handleDrawer='onHandleDrawer'
             />
         </div>
-    </Alert>
+    </Card>
 </template>
 
 <script setup>
