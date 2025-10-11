@@ -1,35 +1,23 @@
 <template>
     <CardContent class='coin-body'>
-        <div class='flex flex-col 2xl:flex-row items-center 2xl:items-start gap-10'>
-            <!--  Left  -->
-            <Card class='bg-background left flex flex-col gap-24 2xl:gap-28 w-full 2xl:w-md p-10'>
+        <div class='flex flex-col lg:flex-row items-center lg:items-start gap-6 lg:gap-10'>
+            <!--  Left w-full 2xl:w-md -->
+            <div class='left flex flex-col items-center gap-24 2xl:gap-10'>
                 <!--  Overview  -->
                 <CoinOverview :coin='coin' />
                 
-                <!--  Explorers  -->
-                <CoinExplorers :links='coingecko.links'/>
-                
-                <!--  Contracts  -->
-                <CoinContracts :coin='coingecko' />
-                
-                <!--  Community Sentiment  -->
-                <CoinSentiment
-                    :sentimentUp='sentiment_up_percentage'
-                    :sentimentDown='sentiment_down_percentage'
-                />
-                
-                <!--  Converter  -->
-                <CoinConverter :coin='coin' />
+                <!--  Insights  -->
+                <CoinInsights :coin='coin' />
                 
                 <!--  Links  -->
                 <CoinLinks
                     :livecoinwatchLinks='livecoinwatch.links'
                     :coingeckoLinks='coingecko.links'
                 />
-            </Card>
+            </div>
             
-            <!--  Right  -->
-            <div class='right flex flex-col gap-10 w-full 2xl:w-4xl'>
+            <!--  Right w-full 2xl:w-4xl -->
+            <div class='right flex flex-col gap-10'>
                 <!--  Chart  -->
                 <CoinChart :coin='coin' />
                 
@@ -44,14 +32,12 @@
 </template>
 
 <script setup>
-    import CoinContracts from '~/components/market/coin/CoinContracts.vue';
-    import CoinConverter from '~/components/market/coin/CoinConverter.vue';
-    import CoinExplorers from '~/components/market/coin/CoinExplorers.vue';
-    import CoinSentiment from '~/components/market/coin/CoinSentiment.vue';
+    import CoinOverview from '~/components/market/coin/CoinOverview.vue';
+    import CoinPerformance from '~/components/market/coin/CoinPerformance.vue';
+    import CoinInsights from '~/components/market/coin/CoinInsights.vue';
+    import CoinLinks from '~/components/market/coin/CoinLinks.vue';
     import CoinChart from '~/components/market/coin/CoinChart.vue';
     import CoinDelta from '~/components/market/coin/CoinDelta.vue';
-    import CoinOverview from '~/components/market/coin/CoinOverview.vue';
-    import CoinLinks from '~/components/market/coin/CoinLinks.vue';
     import CoinDescription from '~/components/market/coin/CoinDescription.vue';
     
     const props = defineProps({
