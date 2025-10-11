@@ -1,5 +1,5 @@
 <template>
-    <CardContent class='coin-body'>
+    <CardContent class='coin-body animate-fadeIn-2000'>
         <div class='grid grid-cols-1 xl:grid-cols-6 gap-6'>
             <!-- Left -->
             <div class='lg:col-span-2 xl:col-span-2 space-y-6'>
