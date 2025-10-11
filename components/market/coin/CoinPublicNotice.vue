@@ -2,18 +2,19 @@
     <!--  Public Notice  -->
     <Alert
         v-if='publicNotice'
-        class='my-10 p-0 w-3/4 flex items-center border border-warning/50'
+        class='my-6 px-0 w-3/4 flex items-center animate-fadeIn border border-warning/50'
     >
-        <div class='flex p-4'>
+        <div class='flex px-8'>
             <NuxtIcon
-                name='iconoir:megaphone'
-                size='50'
+                name='iconoir:shield-alert'
+                size='30'
+                class='text-warning'
             />
         </div>
         
-        <div class='notice-content border-l border-warning/50 p-6'>
-            <AlertTitle>Public notice:</AlertTitle>
-            <AlertDescription class='inline' v-html='publicNoticeFormatted' />
+        <div class='notice-content flex flex-col gap-2 border-l border-warning/50 p-6'>
+            <AlertTitle class='uppercase underline text-warning text-sm'>Public notice</AlertTitle>
+            <AlertDescription v-html='publicNoticeFormatted' class='text-xs' />
         </div>
     </Alert>
 </template>
