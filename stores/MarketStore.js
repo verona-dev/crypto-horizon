@@ -98,7 +98,7 @@ export const useMarketStore = defineStore('MarketStore', {
         
         async getCoin(slug) {
             const NewsStore = useNewsStore();
-            
+
             await this.getCoingeckoCoin(slug);
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
             await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
@@ -110,8 +110,6 @@ export const useMarketStore = defineStore('MarketStore', {
         
         async getCoingeckoCoin(slug) {
             this.loading = true;
-            
-            this.resetCoin();
             
             try {
                 const [ coinResponse, chartResponse ] = await Promise.all([
@@ -217,7 +215,7 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        resetCoin() {
+        async resetCoin() {
           this.coin = {
               coingecko: {},
               livecoinwatch: {},
