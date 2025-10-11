@@ -240,7 +240,7 @@
         </div>
         
         <!--  Github  -->
-        <div v-if='show_github_table' class='flex flex-col gap-4'>
+        <div v-if='show_github_table' class='flex flex-col gap-6'>
             <!--  Github Title  -->
             <div class='flex items-center gap-3'>
                 <NuxtIcon
