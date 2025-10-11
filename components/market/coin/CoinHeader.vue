@@ -1,6 +1,6 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex w-full'>
-        <Card class='bg-background flex flex-col items-center justify-center'>
+        <Card class='flex flex-col items-center justify-center'>
             <!--  Go back -->
             <!--
             <NuxtLink
@@ -16,9 +16,9 @@
             -->
             
             <div class='flex flex-col items-center gap-12 p-10'>
-                <div class='flex flex-col items-center gap-4 md:gap-8'>
+                <div class='flex flex-col items-center gap-4'>
                     <!-- Logo + Name  -->
-                    <CardTitle class='flex items-center gap-2 md:gap-6'>
+                    <CardTitle class='flex items-center gap-2'>
                         <NuxtImg
                             v-if='coingecko?.image?.large'
                             :src='coin.coingecko.image.large'
@@ -30,7 +30,7 @@
                         <h1 class='text-4xl md:text-5xl lg:text-7xl'>{{ coingecko.name }}</h1>
                     </CardTitle>
                     
-                    <CardDescription class='flex gap-4 md:gap-10'>
+                    <CardDescription class='flex items-center gap-4'>
                         <!--  Rank  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
@@ -61,7 +61,7 @@
                         <!--  Portfolio watchlist  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
-                                <Badge class='h-8 px-2 sm:px-4 flex items-center gap-1 sm:gap-2 text-xs sm:text-md text-muted-foreground' variant='outline'>
+                                <Badge class='h-8 px-2 flex items-center gap-2 text-xs text-muted-foreground' variant='outline'>
                                 
                                 <NuxtIcon
                                         name='uis:favorite'

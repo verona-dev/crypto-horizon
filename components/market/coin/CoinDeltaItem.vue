@@ -5,7 +5,7 @@
     >
         <HoverCardTrigger>
             <Card
-                class='bg-background w-28 m-4 py-4 flex flex-col items-center gap-2'
+                class='w-28 m-4 py-4 flex flex-col items-center gap-2'
                 :class="[getTextColorClass(delta), getBorderColorClass(delta)]"
             >
                 <CardTitle class='flex flex-col items-center'>

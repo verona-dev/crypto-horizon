@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-background flex flex-col gap-20 p-10 w-full'>
+    <Card class='flex flex-col gap-20 p-10 w-full'>
         <!--  Performance  -->
         <CoinPerformance :coin='coin' />
         
