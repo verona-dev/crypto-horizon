@@ -1,5 +1,5 @@
 <template>
-    <Card class='coin-delta bg-background flex flex-col items-center justify-center'>
+    <Card class='coin-delta bg-background flex flex-col items-center justify-center p-10'>
         <h6 class='mb-6'>Rate of Change</h6>
         
         <div class='flex items-center'>
