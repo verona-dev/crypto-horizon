@@ -9,7 +9,7 @@
             <h4>Contracts</h4>
         </div>
         
-        <div class='h-12 bg-popover flex items-center justify-between border rounded-lg'>
+        <div class='h-12 bg-input flex items-center justify-between border rounded-lg'>
             <!--  Main Contract  -->
             <div
                 class='flex items-center justify-evenly w-full cursor-pointer'

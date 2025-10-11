@@ -23,7 +23,7 @@
                     :modelValue='coin_input'
                     type='number'
                     id='coin'
-                    class='coin-input h-full !bg-popover pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-bl-none rounded-br-none'
+                    class='coin-input h-full pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-bl-none rounded-br-none'
                     :defaultValue='coin_price'
                     @input='updatePrice("coin", $event)'
                     @change='resetOnInvalidNumber($event)'
@@ -43,7 +43,7 @@
                     type='number'
                     id='usd'
                     :defaultValue='coin_input'
-                    class='usd-input h-full !bg-popover pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-tl-none rounded-tr-none'
+                    class='usd-input h-full pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-tl-none rounded-tr-none'
                     @input='updatePrice("usd", $event)'
                     @change='resetOnInvalidNumber'
                 />
