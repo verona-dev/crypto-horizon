@@ -1,6 +1,6 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex'>
-        <Card class='bg-background flex flex-col items-center justify-center p-0'>
+        <Card class='bg-background flex flex-col items-center justify-center'>
             <!--  Go back -->
             <!--
             <NuxtLink
@@ -89,7 +89,7 @@
                             <HoverCardTrigger class='flex items-center'>
                                 <NuxtIcon
                                     :name='getTrendIcon(price_change_percentage)'
-                                    size='20'
+                                    size='15'
                                     :class='getTextColorClass(price_change_percentage)'
                                 />
                                 
@@ -124,7 +124,7 @@
                             <HoverCardTrigger class='flex items-center'>
                                 <NuxtIcon
                                     :name='getTrendIcon(price_change_percentage_btc)'
-                                    size='20'
+                                    size='15'
                                     :class='getTextColorClass(price_change_percentage_btc)'
                                 />
                                 
