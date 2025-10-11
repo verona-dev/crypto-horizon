@@ -2,7 +2,7 @@
     <Card v-if='article' class='coin-news-item bg-background/50 px-6 py-12 my-4 cursor-pointer'>
         <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
             <CardHeader class='p-0'>
-                <div class='flex gap-12'>
+                <div class='flex flex-col lg:flex-row gap-12'>
                     <!--  Main image  -->
                     <NuxtImg
                         :src='image_url'
