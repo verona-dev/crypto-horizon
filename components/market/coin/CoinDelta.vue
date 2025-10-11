@@ -2,7 +2,7 @@
     <Card class='coin-delta bg-background flex flex-col items-center justify-center p-10'>
         <h6 class='mb-6'>Rate of Change</h6>
         
-        <div class='flex items-center'>
+        <div class='flex flex-col md:flex-row items-center'>
             <!--  1h  -->
             <CoinDeltaItem
                 :delta='delta1h'

@@ -1,5 +1,5 @@
 <template>
-    <Card class='coin-links bg-background flex flex-col flex-wrap gap-10 p-10 w-full'>
+    <Card class='coin-links bg-background flex flex-col flex-wrap gap-10 p-10'>
         <!--  Links Title  -->
         <div class='flex items-center gap-3'>
             <NuxtIcon
@@ -9,7 +9,7 @@
             <h4>Links</h4>
         </div>
         
-        <div class='flex flex-col gap-12'>
+        <div class='flex justify-around'>
             <!-- Websites -->
             <div v-if='websites' class='websites flex flex-col gap-4'>
                 <h5>Websites</h5>
