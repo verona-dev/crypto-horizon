@@ -48,7 +48,6 @@
     });
     
     const { nfts } = toRefs(props);
-    console.log(nfts.value);
     
     const autoScroll = AutoScroll({
         direction: 'backward',
