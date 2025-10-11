@@ -1,5 +1,5 @@
 <template>
-    <Card class='!w-screen !h-20 bg-background/50 p-0 !m-0 animate-fadeIn'>
+    <Card class='!w-screen !h-20 p-0 !m-0 animate-fadeIn'>
         <Skeleton
             v-if='!markets'
             class='w-full h-full'
