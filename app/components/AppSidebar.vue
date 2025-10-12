@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import {type SidebarProps, useSidebar} from '@/components/ui/sidebar'
+    import {type SidebarProps, useSidebar} from '../components/ui/sidebar'
     import {
         ChartCandlestick,
         BookOpen,
@@ -7,10 +7,10 @@
         GraduationCap,
     } from 'lucide-vue-next'
     
-    import NavMain from '@/components/NavMain.vue'
-    import NavUser from '@/components/NavUser.vue'
-    import NavLogo from '~/components/NavLogo.vue'
-    import SidebarToggle from '~/components/SidebarToggle.vue'
+    import NavMain from '../components/NavMain.vue'
+    import NavUser from '../components/NavUser.vue'
+    import NavLogo from '../components/NavLogo.vue'
+    import SidebarToggle from '../components/SidebarToggle.vue'
     
     import {
         Sidebar,
@@ -18,7 +18,7 @@
         SidebarFooter,
         SidebarHeader,
         SidebarRail,
-    } from '@/components/ui/sidebar'
+    } from '../components/ui/sidebar'
     
     
     const props = withDefaults(defineProps<SidebarProps>(), {
