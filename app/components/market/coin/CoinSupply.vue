@@ -78,7 +78,7 @@
         DrawerFooter,
         DrawerHeader,
         DrawerTitle,
-    } from '~/components/ui/drawer/index.js';
+    } from '~/components/ui/drawer';
     
     import {
         Select,
@@ -87,7 +87,7 @@
         SelectItem,
         SelectTrigger,
         SelectValue,
-    } from "@/components/ui/select";
+    } from '~/components/ui/select';
     
     const props = defineProps({
         coin: {

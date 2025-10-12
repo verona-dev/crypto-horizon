@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.js';
+    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table';
     import { formatNumber } from '~/utils/formatUtils.js';
     
     const props = defineProps({

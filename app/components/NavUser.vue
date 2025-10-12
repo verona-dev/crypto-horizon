@@ -8,7 +8,7 @@
         Avatar,
         AvatarFallback,
         AvatarImage,
-    } from '@/components/ui/avatar'
+    } from '~/components/ui/avatar'
     import {
         DropdownMenu,
         DropdownMenuContent,
@@ -17,13 +17,13 @@
         DropdownMenuLabel,
         DropdownMenuSeparator,
         DropdownMenuTrigger,
-    } from '@/components/ui/dropdown-menu'
+    } from '~/components/ui/dropdown-menu'
     import {
         SidebarMenu,
         SidebarMenuButton,
         SidebarMenuItem,
         useSidebar,
-    } from '@/components/ui/sidebar'
+    } from '~/components/ui/sidebar'
     
     const props = defineProps<{
         user: {

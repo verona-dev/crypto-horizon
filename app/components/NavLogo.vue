@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-    import {SidebarMenuButton, useSidebar} from '@/components/ui/sidebar'
+    import {SidebarMenuButton, useSidebar} from '~/components/ui/sidebar'
     
     import {
         SidebarMenu,

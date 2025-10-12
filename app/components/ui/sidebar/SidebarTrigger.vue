@@ -3,7 +3,7 @@
     import { PanelLeft } from "lucide-vue-next"
     import { cn } from "@/lib/utils"
     import { useSidebar } from "./utils"
-    import {SidebarMenuButton} from '~/components/ui/sidebar/index';
+    import {SidebarMenuButton} from '~/components/ui/sidebar';
     
     const props = defineProps<{
         class?: HTMLAttributes["class"]

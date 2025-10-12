@@ -100,8 +100,8 @@
     import { capitalize } from '~/utils/formatUtils.js';
     import { ChevronDown } from 'lucide-vue-next';
     // MarketStore
-    import { useMarketStore } from '../../../stores/MarketStore.js';
-    import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu/index.js';
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
     
     const props = defineProps({
         coin: Object,

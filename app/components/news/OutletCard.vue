@@ -96,7 +96,7 @@
         TableBody,
         TableCell,
         TableRow,
-    } from '@/components/ui/table';
+    } from '~/components/ui/table';
     
     const props = defineProps({
         source: {}

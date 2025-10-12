@@ -25,14 +25,14 @@
     import CoinHeader from '~/components/market/coin/CoinHeader.vue';
     import CoinBody from '~/components/market/coin/CoinBody.vue';
     import CoinFooter from '~/components/market/coin/CoinFooter.vue';
-    import { Spinner } from '~/components/ui/spinner/index.js';
+    import { Spinner } from '~/components/ui/spinner';
     
     // Router
     import { useRoute } from 'vue-router';
     const route = useRoute();
     // MarketStore
     import { storeToRefs } from 'pinia';
-    import { useMarketStore } from '../../../stores/MarketStore.js';
+    import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
     // State

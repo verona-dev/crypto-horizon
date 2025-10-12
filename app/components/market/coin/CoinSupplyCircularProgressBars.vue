@@ -252,7 +252,7 @@
         HoverCard,
         HoverCardContent,
         HoverCardTrigger,
-    } from '~/components/ui/hover-card/index.js';
+    } from '~/components/ui/hover-card';
     import { formatNumber } from '~/utils/formatUtils.js';
     
     const props = defineProps({

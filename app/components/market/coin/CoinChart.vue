@@ -97,7 +97,7 @@
     ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
     
     // MarketStore
-    import { useMarketStore } from '../../../stores/MarketStore.js';
+    import { useMarketStore } from '~/stores/MarketStore.js';
     import { Spinner } from '~/components/ui/spinner/index.js';
     const MarketStore = useMarketStore();
     

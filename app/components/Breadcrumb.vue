@@ -24,7 +24,7 @@
         BreadcrumbList,
         BreadcrumbPage,
         BreadcrumbSeparator,
-    } from '@/components/ui/breadcrumb';
+    } from '~/components/ui/breadcrumb';
     
     // NewsStore
     import { storeToRefs } from 'pinia';

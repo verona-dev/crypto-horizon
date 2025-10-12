@@ -159,7 +159,7 @@
     
     // MarketStore
     import { storeToRefs } from 'pinia';
-    import { useMarketStore } from '../../../stores/MarketStore.js';
+    import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     const { getRange } = storeToRefs(MarketStore);
     

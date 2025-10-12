@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import {type SidebarProps, useSidebar} from '../components/ui/sidebar'
+    import {type SidebarProps, useSidebar} from '~/components/ui/sidebar'
     import {
         ChartCandlestick,
         BookOpen,
@@ -18,7 +18,7 @@
         SidebarFooter,
         SidebarHeader,
         SidebarRail,
-    } from '../components/ui/sidebar'
+    } from '~/components/ui/sidebar'
     
     
     const props = withDefaults(defineProps<SidebarProps>(), {
