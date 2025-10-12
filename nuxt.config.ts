@@ -4,10 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
    devtools: { enabled: true },
-   alias: {
-      // This is usually not needed, but can help if there are resolution issues
-      'lib': '/lib',
-   },
+
    app: {
       layout: 'default',
       layoutTransition: { name: 'fade', mode: 'in-out' },
@@ -41,7 +38,7 @@ export default defineNuxtConfig({
       customCollections: [
          {
             prefix: 'my-icon',
-            dir: './assets/my-icons'
+            dir: './app/assets/my-icons'
          },
       ],
    },
@@ -71,17 +68,6 @@ export default defineNuxtConfig({
       translations: {
          locale: 'en',
          fallbackLocale: 'en',
-      },
-      plugins: {
-         aos: true,
-         dialog: true,
-         toast: true,
-         wait: true,
-      },
-      directives: {
-         vTooltip: true,
-         vLazyImg: true,
-         vClickOutside: true,
       },
    },
 
@@ -115,10 +101,5 @@ export default defineNuxtConfig({
       plugins: [
          tailwindcss(),
       ],
-      resolve: {
-         alias: {
-            'lib': '/lib',
-         },
-      },
    },
 });
