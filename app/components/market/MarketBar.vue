@@ -49,7 +49,7 @@
     import { Badge } from '@/components/ui/badge';
     
     import { storeToRefs } from 'pinia';
-    import { useMarketStore } from '../../../stores/MarketStore.js';
+    import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
     const { globalMarket } = storeToRefs(MarketStore);

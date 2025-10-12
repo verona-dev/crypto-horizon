@@ -44,7 +44,7 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     
     import { storeToRefs } from 'pinia';
-    import { useMarketStore } from '../../../stores/MarketStore.js';
+    import { useMarketStore } from '~/stores/MarketStore.js';
     import { CardContent } from '~/components/ui/card/index.js';
     const MarketStore = useMarketStore();
     

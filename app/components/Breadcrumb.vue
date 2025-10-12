@@ -28,7 +28,7 @@
     
     // NewsStore
     import { storeToRefs } from 'pinia';
-    import { useNewsStore } from '../../stores/NewsStore.js';
+    import { useNewsStore } from '~/stores/NewsStore.js';
     const NewsStore = useNewsStore();
     
     const route = useRoute();

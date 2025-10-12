@@ -17,7 +17,7 @@
     import TrendingNfts from '~/components/market/trending/TrendingNfts.vue';
     
     import { storeToRefs } from 'pinia';
-    import { useMarketStore } from '../../../stores/MarketStore.js';
+    import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
     const { getCoingeckoTrending } = MarketStore;

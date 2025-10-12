@@ -76,7 +76,7 @@
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     
     import { storeToRefs } from 'pinia';
-    import { useMarketStore } from '../../../stores/MarketStore.js';
+    import { useMarketStore } from '~/stores/MarketStore.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
     const MarketStore = useMarketStore();
     

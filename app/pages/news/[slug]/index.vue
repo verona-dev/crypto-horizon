@@ -167,7 +167,7 @@
     
     // NewsStore
     import { storeToRefs } from 'pinia';
-    import { useNewsStore } from '../../../../stores/NewsStore';
+    import { useNewsStore } from '~/stores/NewsStore';
     const NewsStore = useNewsStore();
     
     const { article, loading } = storeToRefs(NewsStore);

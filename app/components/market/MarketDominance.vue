@@ -74,7 +74,7 @@
                                     </HoverCardTrigger>
                                     
                                     <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !p-8'>
-                                        <p class='underline'>Stablecoins</p>
+                                        <p class='underline text-sm'>Stablecoins</p>
                                         
                                         <Table class='w-60'>
                                             <TableHeader>
@@ -112,7 +112,7 @@
                                 </HoverCardTrigger>
                                 
                                 <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !p-8'>
-                                    <p class='underline'>Other Assets</p>
+                                    <p class='underline text-sm'>Other Assets</p>
                                     
                                     <Table class='w-60'>
                                         <TableCaption class='text-xs'>Minor values not included.</TableCaption>
@@ -165,7 +165,7 @@
     dayjs.extend(relativeTime);
     
     import { storeToRefs } from 'pinia';
-    import { useMarketStore } from '../../../stores/MarketStore.js';
+    import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
     const { globalMarket } = storeToRefs(MarketStore);

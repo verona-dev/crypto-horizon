@@ -8,7 +8,7 @@
     import GlobalDefi from '~/components/market/GlobalDefi.vue';
     
     import { storeToRefs } from 'pinia';
-    import { useMarketStore } from '../../../stores/MarketStore.js';
+    import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
     const { globalDefi } = storeToRefs(MarketStore);

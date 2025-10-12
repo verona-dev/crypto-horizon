@@ -19,7 +19,7 @@
     import MarketDominance from '~/components/market/MarketDominance.vue';
     import CoinsTable from '~/components/market/CoinsTable.vue';
     
-    import { useMarketStore } from '../../../stores/MarketStore.js';
+    import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     const { getCmcFearAndGreed, getCoingeckoGlobalMarket } = MarketStore;
     
