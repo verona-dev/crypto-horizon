@@ -130,7 +130,7 @@
     }
     
     .info-icon {
-        color: var(--color-muted);
+        color: var(--primary);
     }
     
     .vertical-separator {
