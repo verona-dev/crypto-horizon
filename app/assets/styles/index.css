@@ -1,6 +1,6 @@
 /*@import 'global.css';*/
 @import 'tailwindcss';
-@import 'mazui.css';
+@import 'maz-ui/styles';
 @import 'shadcn.css';
 @import 'tw-animate-css';
 @import 'transitions.css';

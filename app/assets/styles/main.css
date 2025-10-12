@@ -1,9 +1,10 @@
 @import "tailwindcss";
-/*@import 'global.css';*/
-/*@import 'mazui.css';*/
-/*@import 'shadcn.css';*/
-/*@import 'tw-animate-css';*/
-/*@import 'transitions.css';*/
+@import "tw-animate-css";
+@import './global.css';
+@plugin "tailwindcss-animate";
+@import 'maz-ui/styles';
+@import './shadcn.css';
+@import './transitions.css';
 
 @custom-variant dark (&:is(.dark *));
 
