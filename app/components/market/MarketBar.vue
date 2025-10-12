@@ -1,5 +1,5 @@
 <template>
-    <Card class='!w-screen !h-20 p-0 !m-0 animate-fadeIn'>
+    <Card class='bg-background/50 !w-screen !h-20 p-0 !m-0 shadow-2xl'>
         <Skeleton
             v-if='!markets'
             class='w-full h-full'
@@ -12,7 +12,7 @@
             <CardContent
                 v-for='item in data'
                 :key='item.label'
-                class='flex items-center gap-2 p-0'
+                class='flex items-center gap-2 p-0 animate-fadeIn'
             >
                 <p class='text-xs'>{{ item.label }}&#58;</p>
                 

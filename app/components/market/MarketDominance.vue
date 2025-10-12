@@ -1,5 +1,5 @@
 <template>
-    <Card class='h-96 p-0 w-4/5 xl:!w-[700px] animate-fadeIn'>
+    <Card class='h-78 w-4/5 xl:!w-[650px]'>
         <Skeleton
             v-if='!updated_at'
             class='w-full h-full'
@@ -7,10 +7,10 @@
         
         <CardContent
             v-else
-            class='flex flex-col justify-between w-full h-full p-12'
+            class='flex flex-col justify-between w-full h-full p-8 animate-fadeIn-2000'
         >
             <!--  Title  -->
-            <div class='flex items-center gap-3'>
+            <div class='flex gap-3 self-center'>
                 <h5>Bitcoin Dominance</h5>
                 
                 <HoverCard :openDelay='200'>
@@ -22,7 +22,7 @@
                         />
                     </HoverCardTrigger>
                     
-                    <HoverCardContent class='hover-card-content flex-col gap-6 !p-6'>
+                    <HoverCardContent class='hover-card-content flex-col gap-6 !p-4'>
                     <span>
                         Bitcoin dominance is the market share of BTC compared against the rest of the crypto market.
                         This metric allows traders to identify potential cryptocurrency market trends and
@@ -45,23 +45,23 @@
                 </HoverCard>
             </div>
             
-            <div class='flex flex-col gap-6'>
+            <div class='flex flex-col gap-4'>
                 <!--  Legend  -->
-                <div class='flex gap-12 justify-around'>
+                <div class='flex justify-around'>
                     <div
                         v-for='item in dataset'
                         :key='item'
                         class='flex flex-col gap-2'
                     >
-                        <div class='flex space-x-2 h-8'>
+                        <div class='flex h-8'>
                             <!--  Btc, Eth  -->
-                            <div v-if='!item.displayInfo && !item.stablecoins' class='flex items-center space-x-2'>
+                            <div v-if='!item.displayInfo && !item.stablecoins' class='flex items-center xl:space-x-2'>
                                 <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                                 <span class='text-muted-foreground text-xs'>{{ item.name }}</span>
                             </div>
                             
                             <!--  Stablecoins  -->
-                            <div v-else-if='!item.displayInfo && item.stablecoins' class='flex items-center space-x-2'>
+                            <div v-else-if='!item.displayInfo && item.stablecoins' class='flex items-center xl:space-x-2'>
                                 <HoverCard :openDelay='200'>
                                     <HoverCardTrigger class='flex items-center gap-2'>
                                         <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
@@ -136,12 +136,12 @@
                             </HoverCard>
                         </div>
                         
-                        <p class='text-lg font-bold'>{{ item.label }}</p>
+                        <p class='text-sm lg:text-lg font-bold'>{{ item.label }}</p>
                     </div>
                 </div>
                 
                 <!--  Bar chart  -->
-                <CardContent class='px-0'>
+                <CardContent class='px-0 pb-0'>
                     <Bar
                         :data='chartData'
                         :options='chartOptions'
@@ -315,7 +315,7 @@
 
 <style scoped>
     canvas {
-        height: 50px !important;
+        height: 40px !important;
         padding-right: 20px !important;
     }
 </style>

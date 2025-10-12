@@ -1,5 +1,5 @@
 <template>
-    <Card class='h-96 p-0 !w-4/5 xl:!w-[500px] animate-fadeIn'>
+    <Card class='h-78 !w-4/5 xl:!w-[400px]'>
         <Skeleton
             v-if='!fearAndGreed'
             class='w-full h-full'
@@ -7,7 +7,7 @@
         
         <CardContent
             v-else
-            class='flex flex-col items-center h-full w-full relative p-12'
+            class='flex flex-col items-center justify-around h-full relative p-8 animate-fadeIn-2000'
         >
             <!--  Title  -->
             <div class='flex items-center gap-3'>
@@ -44,7 +44,7 @@
             </div>
             
             <!--  Doughnut chart  -->
-            <CardContent class='w-76 h-76 px-0'>
+            <CardContent class='w-64 h-64 px-0 pb-0'>
                 <Doughnut
                     :data='data'
                     :options='options'
@@ -52,7 +52,7 @@
             </CardContent>
             
             <!--  Fear and Greed labels  -->
-            <div class='labels-container great-font flex flex-col items-center gap-3 animate-fadeIn-2000'>
+            <div class='labels-container great-font flex flex-col items-center gap-3'>
                 <h2 class='text-5xl'>{{ fear_and_greed_data }}</h2>
                 <p class='text-muted-foreground'>{{ fear_and_greed_label }}</p>
             </div>
@@ -102,7 +102,7 @@
                 borderWidth: 0,
                 circumference: 180,
                 rotation: 270,
-                cutout: '92%',
+                cutout: '94%',
                 borderRadius: 24,
                 spacing: 16,
             },
@@ -143,7 +143,7 @@
         const circleY = -outerRadius - 5;
         ctx.fillStyle = 'white';
         // Dot bg
-        ctx.strokeStyle = '#0D1217';
+        ctx.strokeStyle = '#2c2a36';
         ctx.lineWidth = 8;
         
         ctx.beginPath();
@@ -184,7 +184,7 @@
     .labels-container {
         position: absolute;
         width: 100%;
-        top: 60%;
+        top: 57%;
         left: 0;
         text-align: center;
         transform: translateY(-60%);

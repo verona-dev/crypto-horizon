@@ -4,7 +4,7 @@
         
         <h1 class='text-6xl'>Crypto Market</h1>
         
-        <div class='flex flex-wrap items-center justify-center gap-4 h-[960px] xl:h-96 max-w-7xl'>
+        <div class='flex flex-col xl:flex-row items-center justify-center gap-12 w-screen max-w-7xl'>
             <MarketFearGreed />
             <MarketDominance />
         </div>
