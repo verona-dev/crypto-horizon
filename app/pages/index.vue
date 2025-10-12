@@ -61,7 +61,7 @@
         
         background-image: url('~/assets/images/hero.webp');
         background-size: 110%;
-        animation: animate-background 100s infinite alternate linear;
+        animation: animate-background 25s infinite linear;
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
