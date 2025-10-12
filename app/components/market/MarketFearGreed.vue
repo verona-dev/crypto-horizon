@@ -77,7 +77,7 @@
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     const MarketStore = useMarketStore();
     
     const { fearAndGreed } = storeToRefs(MarketStore);

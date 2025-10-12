@@ -43,7 +43,7 @@
 
 <script setup>
     import { Progress } from '~/components/ui/progress/index.js';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.js';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     
     const props = defineProps({
         sentimentUp: {

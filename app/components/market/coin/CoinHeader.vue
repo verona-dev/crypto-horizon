@@ -153,7 +153,7 @@
 <script setup>
     import { formatNumber, goBack } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     import { Badge } from '@/components/ui/badge';
     
