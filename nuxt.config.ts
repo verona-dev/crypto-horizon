@@ -4,7 +4,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
    devtools: { enabled: true },
-
+   alias: {
+      // This is usually not needed, but can help if there are resolution issues
+      'lib': '/lib',
+   },
    app: {
       layout: 'default',
       layoutTransition: { name: 'fade', mode: 'in-out' },
@@ -17,7 +20,7 @@ export default defineNuxtConfig({
    },
 
    css: [
-      '~/assets/styles/index.css',
+      './app/assets/styles/main.css',
    ],
 
    colorMode: {
@@ -59,15 +62,37 @@ export default defineNuxtConfig({
       },
    },
 
+   mazUi: {
+      theme: {
+         preset: 'maz-ui',
+         strategy: 'hybrid',
+         darkModeStrategy: 'class',
+      },
+      translations: {
+         locale: 'en',
+         fallbackLocale: 'en',
+      },
+      plugins: {
+         aos: true,
+         dialog: true,
+         toast: true,
+         wait: true,
+      },
+      directives: {
+         vTooltip: true,
+         vLazyImg: true,
+         vClickOutside: true,
+      },
+   },
+
    modules: [
       '@nuxt/image',
       '@pinia/nuxt',
-      'maz-ui/nuxt',
+      '@maz-ui/nuxt',
       '@nuxtjs/color-mode',
       '@nuxt/icon',
       'shadcn-nuxt',
       'nuxt-charts',
-      'nuxt-scroll-restoration',
    ],
 
    runtimeConfig: {
@@ -79,14 +104,9 @@ export default defineNuxtConfig({
       },
    },
 
-   scrollRestoration: {
-      scrollRestorationTimeoutMs: 3000,
-      tryToScrollIntervalMs: 50
-   },
-
    shadcn: {
       prefix: '',
-      componentDir: './components/ui'
+      componentDir: './app/components/ui'
    },
 
    ssr: true,
@@ -95,5 +115,10 @@ export default defineNuxtConfig({
       plugins: [
          tailwindcss(),
       ],
+      resolve: {
+         alias: {
+            'lib': '/lib',
+         },
+      },
    },
 });

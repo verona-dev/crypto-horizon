@@ -10,5 +10,6 @@
 </template>
 
 <script>
+    import { Toaster } from './app/components/ui/sonner'
     import 'vue-sonner/style.css';
 </script>
