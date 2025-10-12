@@ -46,7 +46,7 @@
     dayjs.extend(relativeTime);
     
     import { Card, CardContent } from '~/components/ui/card';
-    import { Badge } from '@/components/ui/badge';
+    import { Badge } from '~/components/ui/badge';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';

@@ -137,7 +137,7 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
-    import { Badge } from '~/components/ui/badge/index.js';
+    import { Badge } from '~/components/ui/badge';
     
     const props = defineProps({
         coin: {

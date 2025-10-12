@@ -155,7 +155,7 @@
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
-    import { Badge } from '@/components/ui/badge';
+    import { Badge } from '~/components/ui/badge';
     
     // MarketStore
     import { storeToRefs } from 'pinia';

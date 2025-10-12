@@ -57,7 +57,7 @@
 </template>
 
 <script setup>
-    import { Badge } from '@/components/ui/badge';
+    import { Badge } from '~/components/ui/badge';
     
     const props = defineProps({
         coin: {
