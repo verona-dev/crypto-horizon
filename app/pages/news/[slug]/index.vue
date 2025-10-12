@@ -163,7 +163,7 @@
     import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '~/components/ui/card';
     import { Badge } from '~/components/ui/badge';
     import { Skeleton } from '~/components/ui/skeleton';
-    import { Button } from '~/components/ui/button/index.js';
+    import { Button } from '~/components/ui/button';
     
     // NewsStore
     import { storeToRefs } from 'pinia';

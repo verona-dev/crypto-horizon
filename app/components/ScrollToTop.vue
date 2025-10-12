@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-    import { Button } from '@/components/ui/button';
+    import { Button } from '~/components/ui/button';
     import { useRoute } from 'vue-router';
     
     const route = useRoute();

@@ -143,7 +143,7 @@
     import { Skeleton } from '~/components/ui/skeleton';
     import { Badge } from '~/components/ui/badge';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
-    import { Button } from '@/components/ui/button';
+    import { Button } from '~/components/ui/button';
     
     const props = defineProps({
         article: Object,
