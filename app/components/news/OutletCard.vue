@@ -87,7 +87,7 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
-    import { Card, CardContent, CardFooter } from '@/components/ui/card';
+    import { Card, CardContent, CardFooter } from '~/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Button } from '@/components/ui/button';
     

@@ -45,7 +45,7 @@
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
-    import { CardContent } from '~/components/ui/card/index.js';
+    import { Card } from '~/components/ui/card';
     const MarketStore = useMarketStore();
     
     const { globalDefi } = storeToRefs(MarketStore);

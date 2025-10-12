@@ -45,7 +45,7 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime);
     
-    import { Card, CardContent } from '~/components/ui/card/index.js';
+    import { Card, CardContent } from '~/components/ui/card';
     import { Badge } from '@/components/ui/badge';
     
     import { storeToRefs } from 'pinia';

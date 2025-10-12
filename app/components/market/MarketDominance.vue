@@ -155,7 +155,7 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
-    import { Card, CardContent } from '~/components/ui/card/index.js';
+    import { Card, CardContent } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Bar } from 'vue-chartjs';

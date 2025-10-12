@@ -160,7 +160,7 @@
     const router  = useRouter();
     
     // Components
-    import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
+    import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '~/components/ui/card';
     import { Badge } from '@/components/ui/badge';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Button } from '~/components/ui/button/index.js';
