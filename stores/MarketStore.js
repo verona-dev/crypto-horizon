@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
-import { useFetchCoingecko } from '../app/composables/apiCoingecko';
-import { useFetchLiveCoinWatch } from '../app/composables/apiLiveCoinWatch.js';
-import { useFetchCmc } from '../app/composables/apiCmc.js';
-import { formatCoinsTable, formatCoingeckoCoin, formatLivecoinwatchCoin } from '../app/utils/formatUtils.js';
+import { useFetchCoingecko } from '~/composables/apiCoingecko';
+import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
+import { useFetchCmc } from '~/composables/apiCmc.js';
+import { formatCoinsTable, formatCoingeckoCoin, formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
 import { useNewsStore } from '../stores/NewsStore.js';
 
 export const useMarketStore = defineStore('MarketStore', {
