@@ -14,11 +14,10 @@
                 <h5>Bitcoin Dominance</h5>
                 
                 <HoverCard :openDelay='200'>
-                    <HoverCardTrigger class='info-icon'>
+                    <HoverCardTrigger class='info-icon flex items-center'>
                         <NuxtIcon
                             name='radix-icons:info-circled'
                             size='15'
-                            class='flex mt-1'
                         />
                     </HoverCardTrigger>
                     
