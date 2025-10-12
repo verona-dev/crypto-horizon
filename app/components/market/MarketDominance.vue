@@ -54,13 +54,13 @@
                     >
                         <div class='flex h-8'>
                             <!--  Btc, Eth  -->
-                            <div v-if='!item.displayInfo && !item.stablecoins' class='flex items-center xl:space-x-2'>
+                            <div v-if='!item.displayInfo && !item.stablecoins' class='flex items-center space-x-2'>
                                 <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                                 <span class='text-muted-foreground text-xs'>{{ item.name }}</span>
                             </div>
                             
                             <!--  Stablecoins  -->
-                            <div v-else-if='!item.displayInfo && item.stablecoins' class='flex items-center xl:space-x-2'>
+                            <div v-else-if='!item.displayInfo && item.stablecoins' class='flex items-center space-x-2'>
                                 <HoverCard :openDelay='200'>
                                     <HoverCardTrigger class='flex items-center gap-2'>
                                         <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
@@ -100,7 +100,7 @@
                                 v-else
                                 :openDelay='200'
                             >
-                                <HoverCardTrigger class='flex items-center gap-2'>
+                                <HoverCardTrigger class='flex items-center space-x-2'>
                                     <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                                     
                                     <span class='text-xs'>{{ item.name }}</span>
