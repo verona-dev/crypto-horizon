@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { useFetchCoindesk } from '../app/composables/apiCoindesk.js';
+import { useFetchCoindesk } from '~/composables/apiCoindesk.js';
 
 export const useNewsStore = defineStore('NewsStore', {
     state: () => ({
