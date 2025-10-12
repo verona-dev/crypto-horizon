@@ -140,7 +140,7 @@
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
     import { Card, CardTitle, CardDescription, CardFooter, CardHeader } from '~/components/ui/card';
-    import { Skeleton } from '~/components/ui/skeleton/index.js';
+    import { Skeleton } from '~/components/ui/skeleton';
     import { Badge } from '@/components/ui/badge';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Button } from '@/components/ui/button';

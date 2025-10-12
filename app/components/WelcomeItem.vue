@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-    import { Skeleton } from '~/components/ui/skeleton/index.js';
+    import { Skeleton } from '~/components/ui/skeleton';
     
     const props = defineProps({
         title: String,

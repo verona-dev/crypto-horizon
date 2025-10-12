@@ -73,7 +73,7 @@
 
 <script setup>
     import { Doughnut } from 'vue-chartjs';
-    import { Skeleton } from '~/components/ui/skeleton/index.js';
+    import { Skeleton } from '~/components/ui/skeleton';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';

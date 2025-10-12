@@ -92,7 +92,7 @@
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-    import { Skeleton } from '~/components/ui/skeleton/index.js';
+    import { Skeleton } from '~/components/ui/skeleton';
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
     
     const container = ref(null);

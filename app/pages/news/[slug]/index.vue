@@ -162,7 +162,7 @@
     // Components
     import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '~/components/ui/card';
     import { Badge } from '@/components/ui/badge';
-    import { Skeleton } from '~/components/ui/skeleton/index.js';
+    import { Skeleton } from '~/components/ui/skeleton';
     import { Button } from '~/components/ui/button/index.js';
     
     // NewsStore

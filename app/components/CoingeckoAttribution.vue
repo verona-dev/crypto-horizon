@@ -39,7 +39,7 @@
 
 <script setup>
     import { Alert } from '@/components/ui/alert';
-    import { Skeleton } from '~/components/ui/skeleton/index.js';
+    import { Skeleton } from '~/components/ui/skeleton';
 </script>
 
 <style scoped>

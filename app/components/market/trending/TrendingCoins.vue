@@ -36,7 +36,7 @@
 
 <script setup>
     import TrendingCoinCard from '~/components/market/trending/TrendingCoinCard.vue';
-    import { Skeleton } from '~/components/ui/skeleton/index.ts';
+    import { Skeleton } from '~/components/ui/skeleton';
     import { Carousel, CarouselContent, CarouselItem } from '~/components/ui/carousel/index.js';
     import AutoScroll from 'embla-carousel-auto-scroll';
     

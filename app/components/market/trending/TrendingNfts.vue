@@ -37,7 +37,7 @@
 
 <script setup>
     import TrendingNftCard from '~/components/market/trending/TrendingNftCard.vue'
-    import { Skeleton } from '~/components/ui/skeleton/index.ts';
+    import { Skeleton } from '~/components/ui/skeleton';
     import { Carousel, CarouselContent, CarouselItem } from '~/components/ui/carousel/index.js';
     import AutoScroll from 'embla-carousel-auto-scroll';
     
