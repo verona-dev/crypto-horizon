@@ -21,7 +21,7 @@
                         />
                     </HoverCardTrigger>
                     
-                    <HoverCardContent class='hover-card-content flex-col gap-6 !p-4'>
+                    <HoverCardContent class='hover-card-content flex-col gap-6'>
                     <span>
                         Bitcoin dominance is the market share of BTC compared against the rest of the crypto market.
                         This metric allows traders to identify potential cryptocurrency market trends and
@@ -73,7 +73,7 @@
                                         />
                                     </HoverCardTrigger>
                                     
-                                    <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !p-8'>
+                                    <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8'>
                                         <p class='underline text-sm'>Stablecoins</p>
                                         
                                         <Table class='w-60'>
@@ -86,7 +86,7 @@
                                             
                                             <TableBody>
                                                 <TableRow v-for='item in stablecoins_array'>
-                                                    <TableCell class='font-medium '>{{ item.name }}</TableCell>
+                                                    <TableCell class='text-xs'>{{ item.name }}</TableCell>
                                                     <TableCell class='flex flex-col !items-end'>{{ item.value }}</TableCell>
                                                 </TableRow>
                                             </TableBody>
@@ -111,7 +111,7 @@
                                     />
                                 </HoverCardTrigger>
                                 
-                                <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !p-8'>
+                                <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8'>
                                     <p class='underline text-sm'>Other Assets</p>
                                     
                                     <Table class='w-60'>
@@ -126,7 +126,7 @@
                                         
                                         <TableBody>
                                             <TableRow v-for='item in others_array'>
-                                                <TableCell class='font-medium '>{{ item.name }}</TableCell>
+                                                <TableCell class='text-xs'>{{ item.name }}</TableCell>
                                                 <TableCell class='flex flex-col !items-end'>{{ item.value }}</TableCell>
                                             </TableRow>
                                         </TableBody>
