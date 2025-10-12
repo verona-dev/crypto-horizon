@@ -59,7 +59,7 @@
         word-spacing: 2.5rem;
         font-weight: 600;
         
-        background-image: url('~/app/assets/images/hero.webp');
+        background-image: url('~/assets/images/hero.webp');
         background-size: 110%;
         animation: animate-background 100s infinite alternate linear;
         background-clip: text;
