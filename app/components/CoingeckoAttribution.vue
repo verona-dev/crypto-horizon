@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-    import { Alert } from '@/components/ui/alert';
+    import { Alert } from '~/components/ui/alert';
     import { Skeleton } from '~/components/ui/skeleton';
 </script>
 

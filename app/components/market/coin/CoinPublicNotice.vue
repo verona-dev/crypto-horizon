@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-    import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert/index.ts';
+    import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert';
     
     const props = defineProps({
         publicNotice: {
