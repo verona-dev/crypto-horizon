@@ -81,6 +81,10 @@ export default defineNuxtConfig({
       'nuxt-charts',
    ],
 
+   nitro: {
+      logLevel: 'verbose',
+   },
+
    runtimeConfig: {
       public: {
          coingecko_api_key: process.env.COINGECKO_API_KEY,
