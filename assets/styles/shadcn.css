@@ -1,14 +1,6 @@
 
 /*  Sonner  */
-[data-sonner-toast] {
-    background-color: var(--primary-foreground) !important;
-    border-radius: 8px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-    display: flex !important;
-    justify-content: space-around !important;
-    min-width: 475px !important;
-}
-
+/*
 [data-icon] {
     color: var(--color-progress) !important;
 }
@@ -21,16 +13,33 @@
     margin: 0 !important;
 }
 
-.hover-card-content {
-    background: var(--accent-foreground) !important;
-    padding: 20px !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-}
-
 tbody {
     tr:hover {
         background: var(--accent-foreground) !important;
     }
 }
+*/
+
+.hover-card-content {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+[data-sonner-toast] {
+    width: 500px !important;
+    display: flex !important;
+    justify-content: space-evenly !important;
+    align-items: center !important;
+    
+    & [data-content] {
+        margin-left: 50px;
+    }
+    
+    @media (max-width: 1020px) {
+        width: 90% !important;
+    }
+}
+
+
+

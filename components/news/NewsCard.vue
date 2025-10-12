@@ -1,5 +1,5 @@
 <template>
-    <Card v-if='article' class='news-card rounded-md border-card-border bg-transparent shadow-2xl justify-between w-[450px] py-0 gap-8'>
+    <Card v-if='article' class='news-card justify-between w-[450px] py-0 gap-8'>
         <CardHeader class='p-0'>
             <div class='flex flex-col gap-6'>
                 <!--  Main image  -->
@@ -106,7 +106,7 @@
                 <div class='categories-container px-6 mt-2'>
                     <Badge
                         v-for='category in categories.slice(0, 4)'
-                        class='mr-2 mb-2 border-muted-custom py-1 px-3 rounded-sm'
+                        class='mr-2 mb-2 py-1 px-3'
                         variant='outline'
                     >
                         {{ category.NAME }}
@@ -114,17 +114,17 @@
                 </div>
                 
                 <!--  Article Title  -->
-                <CardDescription class='text-foreground text-md text-left font-bold hover:underline px-6'>
+                <CardTitle class='text-xl text-left hover:underline px-6'>
                     <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
                         {{ title }}
                     </NuxtLink>
-                </CardDescription>
+                </CardTitle>
             </div>
         </CardHeader>
         
         <CardFooter class='flex justify-center my-6'>
             <!--  Read more  -->
-            <Button as-child variant='link' class='uppercase hover:text-foreground'>
+            <Button as-child variant='link' class='uppercase'>
                 <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
                     Read More
                 </NuxtLink>
@@ -139,7 +139,7 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
-    import { Card, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
+    import { Card, CardTitle, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton/index.js';
     import { Badge } from '@/components/ui/badge';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';

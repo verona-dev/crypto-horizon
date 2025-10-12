@@ -7,10 +7,7 @@ export default defineNuxtConfig({
 
    app: {
       layout: 'default',
-      layoutTransition: {
-         name: 'scroll-animation-layout',
-         mode: 'in-out'
-      },
+      layoutTransition: { name: 'fade', mode: 'in-out' },
       pageTransition: {
          // Name options are: 'bounce', 'fade', 'page', 'custom',
          // Mode options are: 'out-in','in-out',
@@ -20,7 +17,7 @@ export default defineNuxtConfig({
    },
 
    css: [
-      '@/assets/styles/index.css',
+      '~/assets/styles/index.css',
    ],
 
    colorMode: {

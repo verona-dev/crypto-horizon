@@ -1,10 +1,10 @@
 <template>
-    <div class='md:pr-16'>
+    <div>
         <ClientOnly>
             <SidebarProvider :default-open='false'>
                 <AppSidebar />
                 
-                <SidebarInset class='flex items-center justify-start my-28 md:my-0 px-20 md:px-32'>
+                <SidebarInset class='custom-flex'>
                     <!--                <Breadcrumb />-->
                     
                     <!--  Mobile Trigger  -->

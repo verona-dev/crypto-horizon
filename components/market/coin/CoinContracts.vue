@@ -1,64 +1,61 @@
 <template>
-    <div v-if='platforms_list.length' class='coin-contracts'>
-        <div class='flex items-center mb-4'>
+    <div v-if='platforms_list.length' class='coin-contracts flex flex-col gap-4'>
+        <!--  Contracts Title  -->
+        <div class='flex items-center gap-3'>
             <NuxtIcon
-                name='bitcoin-icons:sign-outline'
-                size='45'
-                class='mr-3 min-w-14'
+                name='iconoir:page-edit'
+                size='20'
             />
-            <h5>Contracts</h5>
+            <h4>Contracts</h4>
         </div>
         
-        <div class='flex items-center rounded-md border border-card-border'>
+        <div class='h-12 bg-input flex items-center justify-between border rounded-lg'>
             <!--  Main Contract  -->
-            <MazBadge
-                class='main-badge w-full cursor-pointer'
-                color='info'
+            <div
+                class='flex items-center justify-evenly w-full cursor-pointer'
                 @click='onCopyLink(platforms[0])'
             >
-                <div class='flex items-center w-3/4 justify-around'>
-                    <NuxtImg
-                        v-if='platformImageMap.find(platform => platform.name === platforms[0].name)?.image'
-                        :src='platformImageMap.find(platform => platform.name === platforms[0].name).image'
-                        width='30'
-                        height='30'
-                        class='mr-2'
-                    />
-                    
-                    <p class='capitalize'>{{ platforms[0].value.slice(0, 5) + '...' + platforms[0].value.slice(-5) }}</p>
-                    
-                    <div class='flex items-center justify-center'>
-                        <NuxtIcon
-                            name='radix-icons:copy'
-                            size='20'
-                            class='w-[50px]'
-                        />
-                    </div>
-                </div>
-            </MazBadge>
-            
-            <div class='vertical-separator'></div>
+                <NuxtImg
+                    v-if='platformImageMap.find(platform => platform.name === platforms[0].name)?.image'
+                    :src='platformImageMap.find(platform => platform.name === platforms[0].name).image'
+                    width='20'
+                    height='20'
+                />
+                
+                <p class='capitalize text-sm'>{{platforms[0].value.slice(0, 5) + '...' + platforms[0].value.slice(-5) }}</p>
+                
+                <NuxtIcon
+                    name='iconoir:copy'
+                    size='15'
+                    class='ml-1'
+                />
+            </div>
             
             <!--  All Contracts - Dropdown menu  -->
-            <MazDropdown
-                trigger='click'
-                class='contracts-dropdown'
-                position='bottom right'
-                :disabled='disable_dropdown'
-            >
-                <template #dropdown>
-                    <div
-                        v-for='contract in platforms'
-                        :key='contract'
+            <DropdownMenu v-model:open='open' :modal=false>
+                <DropdownMenuTrigger as-child :disabled='disable_dropdown'>
+                    <Button
+                        variant='ghost'
+                        class='group !h-full rounded-tl-none rounded-bl-none border-l border-border'
+                        :data-state='open ? "open" : "closed"'
                     >
-                        <MazBtn
-                            block
-                            justify='start'
-                            class='my-1'
-                            color='transparent'
+                        <ChevronDown class='text-primary ml-auto transition-transform duration-400 group-data-[state=open]:rotate-180' />
+                    </Button>
+                </DropdownMenuTrigger>
+                
+                <DropdownMenuContent class='min-w-76 rounded-lg' align='end'>
+                    <DropdownMenuLabel class='text-lg px-4 py-4 my-1'>Contracts</DropdownMenuLabel>
+                    
+                    <DropdownMenuSeparator />
+                    
+                    <DropdownMenuGroup class='px-1'>
+                        <DropdownMenuItem
+                            v-for='contract in platforms'
+                            :key='contract'
                             @click='onCopyLink(contract)'
+                            class='py-3 my-2 rounded-lg cursor-pointer'
                         >
-                            <div class='py-1 flex justify-between items-center w-full'>
+                            <div class='px-3 flex justify-between items-center w-full'>
                                 <div class='flex items-center'>
                                     <!--  Logo  -->
                                     <div class='logo-container flex w-12'>
@@ -89,10 +86,10 @@
                                     <NuxtIcon name='radix-icons:copy' size='20' />
                                 </div>
                             </div>
-                        </MazBtn>
-                    </div>
-                </template>
-            </MazDropdown>
+                        </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                </DropdownMenuContent>
+            </DropdownMenu>
         </div>
     </div>
 </template>
@@ -101,8 +98,10 @@
     import { toast } from 'vue-sonner';
     import { h, resolveComponent } from 'vue';
     import { capitalize } from '~/utils/formatUtils.js';
+    import { ChevronDown } from 'lucide-vue-next';
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
+    import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu/index.js';
     
     const props = defineProps({
         coin: Object,
@@ -112,6 +111,7 @@
     
     const { coin } = toRefs(props);
     const { getCoingeckoCoinListSummary } = MarketStore;
+    const open = ref(false);
     const platforms_list = ref([]);
     const platforms_summary = ref([]);
     const disable_dropdown = computed(() => platforms_list.value?.length === 1);
@@ -137,9 +137,12 @@
     
     const onCopyLink = contract => {
         navigator.clipboard.writeText(contract.value);
-
-        toast(`${coin.value?.name} (${capitalize(contract.name)}) contract copied to clipboard`, {
-            duration: 2500,
+        
+        toast(``, {
+            title: () =>
+                h('h6', {
+                    class: 'font-medium',
+                }, `${coin.value?.name} (${capitalize(contract.name)}) contract copied.`),
             icon: () =>
                 h(resolveComponent('NuxtIcon'), {
                     name: 'iconoir:check-circle-solid',
@@ -149,6 +152,10 @@
             action: {
                 label: 'OK',
             },
+            description: () =>
+                h('span', {
+                    class: '',
+                }, contract.value),
         });
     };
     

@@ -1,9 +1,9 @@
 <template>
     <Card
         v-if='nft'
-        class='w-full md:w-84 bg-accent-foreground/75 flex flex-col shadow-2xl p-0 border border-secondary/25 rounded-lg'
+        class='w-full md:w-84 flex flex-col gap-6 p-0 border'
     >
-        <CardHeader class='h-24 !pb-0 flex items-center border-b border-warning/10'>
+        <CardHeader class='h-24 !pb-0 flex items-center border-b'>
             <!--  Contract ID  -->
             <!--
             <HoverCard :openDelay='200' v-if='contract_id'>
@@ -17,7 +17,7 @@
             -->
             
             <!--  Name + Symbol  -->
-            <h6 class='flex-grow text-green-deco break-words whitespace-normal text-center font-bold uppercase overflow-hidden'>
+            <h6 class='flex flex-col flex-grow text-green-deco break-words whitespace-normal text-center font-bold uppercase overflow-hidden'>
                 {{ name }}
                 <span class='truncate text-muted-foreground w-full text-center text-sm'>{{ symbol }}</span>
             </h6>
@@ -41,7 +41,7 @@
             </div>
         </CardHeader>
         
-        <CardContent class='flex flex-col items-center justify-center gap-6 !px-0'>
+        <CardContent class='flex flex-col items-center justify-center gap-10 !px-0'>
             <!--  Logo  -->
             <NuxtImg
                 :src='image'
@@ -67,6 +67,7 @@
             <div class='flex flex-col w-full px-2 gap-8'>
                 <div class='flex flex-col items-center gap-1'>
                     <p class='uppercase text-muted-foreground text-sm'>Floor price</p>
+                    
                     <div class='flex items-center gap-3'>
                         <!--  Floor Price  -->
                         <h6>{{ floor_price }}</h6>

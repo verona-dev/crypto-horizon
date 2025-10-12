@@ -1,5 +1,5 @@
 <template>
-    <Card class='!w-screen !h-20 bg-background/50 shadow-2xl p-0 !m-0 animate-fadeIn'>
+    <Card class='!w-screen !h-20 p-0 !m-0 animate-fadeIn'>
         <Skeleton
             v-if='!markets'
             class='w-full h-full'
@@ -19,7 +19,11 @@
                 <p v-if='item.value_formatted' class='font-bold text-xs'>{{ item.value_formatted }}</p>
                 <p v-else class='font-bold text-xs'>{{ item.value }}</p>
                 
-                <Badge v-if='item.trend' variant='outline' class='border-ring rounded-2xl pl-2 pr-3 py-1 ml-1'>
+                <Badge
+                    v-if='item.trend'
+                    variant='outline'
+                    class='pl-2 pr-3 py-1 ml-1'
+                >
                     <NuxtIcon
                         :name='getTrendIcon(item.value)'
                         size='15'
@@ -41,10 +45,7 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime);
     
-    import {
-        Card,
-        CardContent,
-    } from '~/components/ui/card/index.js';
+    import { Card, CardContent } from '~/components/ui/card/index.js';
     import { Badge } from '@/components/ui/badge';
     
     import { storeToRefs } from 'pinia';

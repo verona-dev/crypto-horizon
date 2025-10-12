@@ -1,8 +1,8 @@
 <template>
-    <Card v-if='article' class='coin-news-item bg-background-2 border-accent shadow-2xl rounded-md px-6 py-12 my-4 cursor-pointer'>
+    <Card class='coin-news-card px-6 py-12 my-4 cursor-pointer' v-if='article'>
         <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
             <CardHeader class='p-0'>
-                <div class='flex gap-12'>
+                <div class='flex flex-col lg:flex-row gap-12'>
                     <!--  Main image  -->
                     <NuxtImg
                         :src='image_url'
@@ -28,7 +28,7 @@
                     <div class='flex flex-col justify-around'>
                         <!--  Article Title  -->
                         <div class='flex flex-col items-start gap-2'>
-                            <CardDescription class='article-title text-left text-foreground text-md font-bold'>
+                            <CardDescription class='article-title text-left'>
                                 {{ title }}
                             </CardDescription>
                             
@@ -36,7 +36,7 @@
                             <div class='categories-container flex flex-wrap'>
                                 <Badge
                                     v-for='category in categories.slice(0, 16)'
-                                    class='mr-2 mb-2 border-muted-custom py-1 px-3 rounded-sm'
+                                    class='mr-2 mb-2 py-1 px-3'
                                     variant='outline'
                                 >
                                     {{ category.NAME }}

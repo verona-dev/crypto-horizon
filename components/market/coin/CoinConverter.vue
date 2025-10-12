@@ -1,45 +1,61 @@
 <template>
-    <div v-if='coin_price' class='coin-converter flex flex-col'>
-        <div class='flex items-center mb-4'>
+    <div v-if='coin_price' class='coin-converter flex flex-col gap-4'>
+        <!-- Converter Title -->
+        <div class='flex items-center gap-3'>
             <NuxtIcon
-                name='bitcoin-icons:exchange-outline'
-                size='45'
-                class='mr-3 min-w-14'
+                name='iconoir:calculator'
+                size='20'
             />
-            <h5>{{ coin_symbol }} to USD converter</h5>
+            
+            <h4>{{ coin_symbol }} converter</h4>
         </div>
         
-        <MazInput
-            v-model.number='coin_input'
-            color='white'
-            rounded-size='md'
-            class='coin-input'
-            @input='updatePrice("coin", $event)'
-            @change='resetOnInvalidNumber'
-        >
-            <template #left-icon>
-                <span class='min-w-12'>{{ coin_symbol }}</span>
-            </template>
-        </MazInput>
-        
-        <MazInput
-            v-model.number='usd_input'
-            color='white'
-            rounded-size='md'
-            class='usd-input'
-            @input='updatePrice("usd", $event)'
-            @change='resetOnInvalidNumber'
-        >
-            <template #left-icon>
-                <span class='min-w-12'>USD</span>
-            </template>
-        </MazInput>
+        <div>
+            <!-- $COIN Input -->
+            <div class='relative h-12'>
+                <Label
+                    for='coin' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-sm text-muted-foreground'
+                >
+                    {{ coin_symbol }}
+                </Label>
+                
+                <Input
+                    :modelValue='coin_input'
+                    type='number'
+                    id='coin'
+                    class='coin-input h-full pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-bl-none rounded-br-none'
+                    :defaultValue='coin_price'
+                    @input='updatePrice("coin", $event)'
+                    @change='resetOnInvalidNumber($event)'
+                />
+            </div>
+            
+            <!-- $USD Input -->
+            <div class='relative h-12'>
+                <Label
+                    for='usd' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-sm text-muted-foreground'
+                >
+                    USD
+                </Label>
+                
+                <Input
+                    :modelValue='usd_input'
+                    type='number'
+                    id='usd'
+                    :defaultValue='coin_input'
+                    class='usd-input h-full pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-tl-none rounded-tr-none'
+                    @input='updatePrice("usd", $event)'
+                    @change='resetOnInvalidNumber'
+                />
+            </div>
+        </div>
     </div>
-
 </template>
 
+
 <script lang='ts' setup>
-    import {ref} from 'vue';
+    import { Input } from '@/components/ui/input';
+    import { Label } from '@/components/ui/label';
     
     const props = defineProps({
         coin: {
@@ -94,24 +110,14 @@
 
 <style>
     .coin-converter {
-        .m-input-wrapper {
-            background-color: var(--accent-foreground) !important;
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
         
-        .coin-input {
-            .m-input-wrapper {
-                border-bottom-left-radius: 0 !important;
-                border-bottom-right-radius: 0 !important;
-                width: 100%;
-            }
-        }
-        
-        .usd-input {
-            .m-input-wrapper {
-                border-top-left-radius: 0 !important;
-                border-top-right-radius: 0 !important;
-                width: 100%;
-            }
+        input {
+            -moz-appearance: textfield;
         }
     }
 </style>

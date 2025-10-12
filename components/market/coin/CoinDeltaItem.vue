@@ -5,22 +5,22 @@
     >
         <HoverCardTrigger>
             <Card
-                class='w-28 m-4 py-4 gap-2 text-card-foreground bg-accent-foreground'
+                class='w-28 m-4 py-4 flex flex-col items-center gap-2'
                 :class="[getTextColorClass(delta), getBorderColorClass(delta)]"
             >
                 <CardTitle class='flex flex-col items-center'>
                     <p>{{title}}</p>
                 </CardTitle>
                 
-                <CardContent class='flex justify-center'>
+                <CardContent class='flex justify-center py-2'>
                     <NuxtIcon
                         name='radix-icons:bar-chart'
                         size='30'
                     />
                 </CardContent>
                 
-                <CardContent>
-                    <span>{{ formatNumber(delta, { style: 'percent', truncate: true }) }}</span>
+                <CardContent class='py-2'>
+                   {{ formatNumber(delta, { style: 'percent', truncate: true }) }}
                 </CardContent>
             </Card>
         </HoverCardTrigger>

@@ -34,10 +34,10 @@
                             
                             <div v-if='categories' class='categories-container'>
                                 <Badge
-                                    variant='outline'
                                     v-for='category in categories'
                                     :key='category'
-                                    class='badge m-2 !px-4 !py-1.5 text-muted-foreground rounded-lg text-sm border border-card-border'
+                                    class='m-2 !px-4 !py-1.5'
+                                    variant='outline'
                                 >
                                     {{ category.NAME }}
                                 </Badge>
@@ -109,7 +109,7 @@
                     <p v-for='(par, index) in body_formatted' :key='index' class='mb-14'>{{ par }}</p>
                 </CardContent>
                 
-                <CardFooter class='pb-10 pl-0 text-muted-foreground'>
+                <CardFooter class='pb-10 pl-0'>
                     <p v-if='keywords'>
                         Keywords:
                         <span style='font-size: inherit;'>{{ keywords }}</span>
@@ -127,7 +127,7 @@
                     as-child
                     variant='link'
                 >
-                    <NuxtLink @click='goBack(router, "/news")' to='' class='hover:cursor-pointer'>
+                    <NuxtLink @click='goBack(router, "/news")' to=''>
                         Go back
                     </NuxtLink>
                 </Button>
@@ -279,7 +279,7 @@
             z-index: 10;
             
             @media (min-width: 770px) {
-                left: calc(v-bind(SIDEBAR_WIDTH_ICON) + 20px);
+                left: calc(v-bind(SIDEBAR_WIDTH_ICON) + 15px);
                 padding-right: calc(v-bind(SIDEBAR_WIDTH_ICON) + 50px);
             }
         }
@@ -292,9 +292,9 @@
             width: 100%;
             
             .progress-bar {
-                background-color: var(--secondary);
+                background-color: var(--green-patina);
                 border-radius: 4px;
-                box-shadow: 0 0 48px 1px var(--secondary);
+                box-shadow: 0 0 48px 1px var(--green-patina);
                 height: 100%;
                 transition: width 0.1s ease-out;
             }

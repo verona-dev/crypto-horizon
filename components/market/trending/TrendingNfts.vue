@@ -2,7 +2,7 @@
     <div class='flex flex-col items-center gap-20'>
         <h1 class='text-5xl xl:text-9xl my-10'>Trending Nft's</h1>
         
-        <Alert class='flex w-4/ !border-none !shadow-none animate-fadeIn'>
+        <Alert class='flex animate-fadeIn border-none'>
             <Skeleton
                 v-if='!nfts'
                 class='w-full h-full'
@@ -10,7 +10,7 @@
             
             <div v-else class='flex flex-col items-start justify-center max-w-7xl h-full'>
                 <Carousel
-                    class='relative w-full cursor-grab'
+                    class='w-full cursor-grab'
                     :plugins='[autoScroll]'
                     :opts='{
                         align: "center",
@@ -48,7 +48,6 @@
     });
     
     const { nfts } = toRefs(props);
-    console.log(nfts.value);
     
     const autoScroll = AutoScroll({
         direction: 'backward',

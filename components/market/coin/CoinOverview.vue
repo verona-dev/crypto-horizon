@@ -1,31 +1,39 @@
 <template>
-    <div class='flex flex-col gap-16'>
-        <!--  Overview Table  -->
-        <Alert class='overview-table-container flex flex-col gap-8 py-12 px-8'>
-            <div class='flex items-center'>
+    <Card class='coin-overview flex flex-col gap-16 p-10 w-full'>
+        <!--  Overview  -->
+        <div class='flex flex-col gap-4'>
+            <!--  Overview Title  -->
+            <div class='flex items-center gap-3'>
                 <NuxtIcon
-                    name='bitcoin-icons:grid-outline'
-                    size='43'
-                    class='mr-2 min-w-14'
+                    name='iconoir:view-grid'
+                    size='20'
                 />
-                <h5>Overview</h5>
+                <h4>Overview</h4>
             </div>
             
+            <!--  Overview Table  -->
             <Table>
                 <TableBody>
                     <!--  Genesis  -->
                     <TableRow v-if='genesis_date'>
-                        <TableCell>Created</TableCell>
-                        <TableCell class='flex flex-col'>
-                            {{ genesis_date_label }}
-                            <span class='text-muted-custom'>{{ generis_date_from_now }}</span>
+                        <TableCell>Genesis</TableCell>
+                        <TableCell>
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger>
+                                    {{ genesis_date_label }}
+                                </HoverCardTrigger>
+                                
+                                <HoverCardContent>
+                                    {{ generis_date_from_now }}
+                                </HoverCardContent>
+                            </HoverCard>
                         </TableCell>
                     </TableRow>
                     
                     <!--  Origin  -->
                     <TableRow v-if='country_origin'>
                         <TableCell>Origin Country</TableCell>
-                        <TableCell >{{ country_origin }}</TableCell>
+                        <TableCell>{{ country_origin }}</TableCell>
                     </TableRow>
                     
                     <!--  ATH  -->
@@ -41,8 +49,8 @@
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent class='hover-card-content'>
-                                    <span>Coin price all-time high (ATH) in &#65284;USD and percentage change from ATH.</span>
+                                <HoverCardContent>
+                                    Coin price all-time high (ATH) in &#65284;USD and percentage change from ATH.
                                 </HoverCardContent>
                             </HoverCard>
                         </TableCell>
@@ -52,22 +60,28 @@
                             <div class='flex items-center'>
                                 <span>{{ ath_price }}</span>
                                 
-                                <div class='ml-2 flex items-center'>
-                                    
+                                <div class='ml-2 flex items-center text-xxs'>
                                     <NuxtIcon
                                         :name='getTrendIcon(ath_change_percentage)'
-                                        size='20'
+                                        size='10'
                                         :class='getTextColorClass(ath_change_percentage)'
                                     />
-                                    <span :class='getTextColorClass(ath_change_percentage)'>{{ ath_change_percentage_label }}</span>
+                                    <span
+                                        :class='getTextColorClass(ath_change_percentage)'
+                                    >{{ ath_change_percentage_label }}</span>
                                 </div>
                             </div>
                             
                             <!--  ATH Date -->
-                            <div class='text-muted-custom'>
-                                <span class='mr-1'>{{ ath_date_label }}</span>
-                                <span>&#40;{{ ath_date_from_now }}&#41;</span>
-                            </div>
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='text-muted-custom'>
+                                    {{ ath_date_label }}
+                                </HoverCardTrigger>
+                                
+                                <HoverCardContent>
+                                    {{ ath_date_from_now }}
+                                </HoverCardContent>
+                            </HoverCard>
                         </TableCell>
                     </TableRow>
                     
@@ -84,7 +98,7 @@
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent class='hover-card-content'>
+                                <HoverCardContent>
                                     <span>Coin price all-time low (ATL) in &#65284;USD and percentage change from ATL.</span>
                                 </HoverCardContent>
                             </HoverCard>
@@ -95,22 +109,29 @@
                             <div class='flex items-center'>
                                 <span>{{ atl_price }}</span>
                                 
-                                <div class='ml-2 flex items-center'>
+                                <div class='ml-2 flex items-center text-xxs'>
                                     
                                     <NuxtIcon
                                         :name='getTrendIcon(atl_change_percentage)'
-                                        size='20'
+                                        size='10'
                                         :class='getTextColorClass(atl_change_percentage)'
                                     />
-                                    <span :class='getTextColorClass(atl_change_percentage)'>{{ atl_change_percentage_label }}</span>
+                                    <span
+                                        :class='getTextColorClass(atl_change_percentage)'
+                                    >{{ atl_change_percentage_label }}</span>
                                 </div>
                             </div>
                             
                             <!--  ATL Date -->
-                            <div class='text-muted-custom'>
-                                <span class='mr-1'>{{ atl_date_label }}</span>
-                                <span>&#40;{{ atl_date_from_now }}&#41;</span>
-                            </div>
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='text-muted-custom'>
+                                    {{ atl_date_label }}
+                                </HoverCardTrigger>
+                                
+                                <HoverCardContent>
+                                    {{ atl_date_from_now }}
+                                </HoverCardContent>
+                            </HoverCard>
                         </TableCell>
                     </TableRow>
                     
@@ -127,7 +148,7 @@
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent class='hover-card-content'>
+                                <HoverCardContent>
                                     <span>The number of markets the coin is present at.</span>
                                 </HoverCardContent>
                             </HoverCard>
@@ -148,7 +169,7 @@
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent class='hover-card-content'>
+                                <HoverCardContent>
                                     <span>The number of unique markets the coin is present at.</span>
                                 </HoverCardContent>
                             </HoverCard>
@@ -169,7 +190,7 @@
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent class='hover-card-content'>
+                                <HoverCardContent>
                                     <span>The number of exchanges the coin is present at.</span>
                                 </HoverCardContent>
                             </HoverCard>
@@ -187,8 +208,15 @@
                     <TableRow v-if='ico_start'>
                         <TableCell>Ico Start</TableCell>
                         <TableCell class='flex flex-col'>
-                            {{ ico_start_label }}
-                            <span class='text-muted-custom'>{{ ico_start_from_now }}</span>
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger>
+                                    {{ ico_start_label }}
+                                </HoverCardTrigger>
+                                
+                                <HoverCardContent>
+                                    {{ ico_start_from_now }}
+                                </HoverCardContent>
+                            </HoverCard>
                         </TableCell>
                     </TableRow>
                     
@@ -196,25 +224,33 @@
                     <TableRow v-if='ico_end'>
                         <TableCell>Ico End</TableCell>
                         <TableCell class='flex- flex-col'>
-                            {{ ico_end_label }}
-                            <span class='text-muted-custom'>{{ ico_end_from_now }}</span>
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger>
+                                    {{ ico_end_label }}
+                                </HoverCardTrigger>
+                                
+                                <HoverCardContent>
+                                    {{ ico_end_from_now }}
+                                </HoverCardContent>
+                            </HoverCard>
                         </TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
-        </Alert>
+        </div>
         
-        <!--  Github Table  -->
-        <Alert class='github-table-container flex flex-col gap-8 py-12 px-8' v-if='show_github_table' >
-            <div class='flex items-center'>
+        <!--  Github  -->
+        <div v-if='show_github_table' class='flex flex-col gap-6'>
+            <!--  Github Title  -->
+            <div class='flex items-center gap-3'>
                 <NuxtIcon
                     name='iconoir:github'
-                    size='30'
-                    class='mr-2 min-w-14'
+                    size='20'
                 />
-                <h5>Github</h5>
+                <h4>Github</h4>
             </div>
             
+            <!--  Github Table  -->
             <Table>
                 <TableBody>
                     <!--  Github Forks  -->
@@ -323,30 +359,8 @@
                     </TableRow>
                 </TableBody>
             </Table>
-        </Alert>
-        
-        <!--  Price 24h range -->
-        <div class='p-2 mt-4'>
-            <div class='flex justify-between items-end'>
-                <div class='flex flex-col'>
-                    <span class='text-muted-custom'>Low</span>
-                    <p>{{ low_24h_label }}</p>
-                </div>
-                
-                <span class='text-muted-custom'>24h Range</span>
-                
-                <div class='flex flex-col'>
-                    <span class='text-muted-custom'>High</span>
-                    <p>{{ high_24h_label }}</p>
-                </div>
-            </div>
-            
-            <Progress
-                v-model='progress'
-                :indicatorColor='progress_color'
-            />
         </div>
-    </div>
+    </Card>
 </template>
 
 <script setup>
@@ -356,9 +370,7 @@
     dayjs.extend(relativeTime, { rounding: Math.floor });
     import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.ts';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
-    import { Progress } from '~/components/ui/progress';
     import { formatNumber } from '~/utils/formatUtils.js';
-    import { Alert } from '@/components/ui/alert';
     
     const props = defineProps({
         coin: {
@@ -370,37 +382,6 @@
     const { coin } = toRefs(props);
     const livecoinwatch = toRef(coin.value.livecoinwatch);
     const coingecko = toRef(coin.value.coingecko);
-    
-    const current_price = coingecko.value?.market_data?.current_price?.usd;
-    const low_24h = coingecko.value?.market_data?.low_24h?.usd;
-    const low_24h_computed = computed(() => {
-        // Coingecko Api has delays in updating the low24h value therefore the current price can temporarily be under the low24h
-        if(current_price < low_24h) return current_price;
-        return low_24h;
-    });
-    const low_24h_label = formatNumber(low_24h_computed.value, {
-        maximumFractionDigits: 4,
-    });
-    const high_24h = coingecko.value?.market_data?.high_24h?.usd;
-    const high_24h_computed = computed(() => {
-        // Coingecko Api has delays in updating the high24h value therefore the current price can temporarily be above the high24h
-        if(current_price > high_24h) return current_price;
-        return high_24h;
-    });
-    const high_24h_label = formatNumber(high_24h_computed.value, {
-        maximumFractionDigits: 4,
-    });
-    
-    const progress = computed(() => {
-        const range = high_24h_computed.value - low_24h_computed.value;
-        if (range < 0.005) return 99; // for stablecoins, since range can be as low as .001
-        return ((current_price - low_24h_computed.value) / range) * 100;
-    });
-    const progress_color = computed(() => {
-        if(progress.value < 25) return '#E32D2D';
-        else if(progress.value < 50) return 'linear-gradient(90deg, #E32D2D 75%, #EBAA28 100%)';
-        return 'linear-gradient(90deg, #E32D2D 0%, #EBAA28 50%, #1AC914 100%)';
-    });
     
     const genesis_date = coingecko.value?.genesis_date;
     const generis_date_from_now = dayjs(genesis_date).fromNow();
@@ -463,13 +444,16 @@
 </script>
 
 <style scoped>
-    [data-slot='table-row'] {
+    tr{
         align-items: baseline;
         display: flex;
         justify-content: space-between;
+        font-size: 12px;
+        gap: 32px;
     }
-    [data-slot='table-cell'] {
+    td {
         display: flex;
         align-items: center;
+        padding: 8px 0;
     }
 </style>

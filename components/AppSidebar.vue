@@ -166,19 +166,19 @@
             </div>
         </SidebarHeader>
         
-        <Separator class='bg-ring' />
+        <Separator />
         
         <SidebarContent :class='{ "flex-initial" : isMobile }'>
             <NavMain :items="data.navMain" />
         </SidebarContent>
         
-        <Separator class='bg-ring' />
+        <Separator />
         
         <div class='h-16 flex items-center'>
             <SidebarToggle />
         </div>
         
-        <Separator class='bg-ring' />
+        <Separator />
         
         <SidebarFooter class='m-2 h-16 flex items-center justify-center'>
             <NavUser :user="data.user" />

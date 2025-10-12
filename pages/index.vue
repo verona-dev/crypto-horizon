@@ -1,7 +1,8 @@
 <template>
     <div class='flex flex-col items-center gap-8 2xl:gap-32 px-20 pb-20 2xl:pb-10'>
-        <h1 class='mt-20 mb-20 2xl:mb-0 select-none break-words text-center'>
-            Crypto Horizon
+        <h1 class='mt-20 mb-20 2xl:mb-0 select-none break-words flex flex-col gap-3'>
+            <span>Crypto</span>
+            <span>Horizon</span>
         </h1>
         
         <div class='flex flex-wrap justify-center items-center gap-12 md:gap-20 2xl:gap-30'>

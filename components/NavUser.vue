@@ -43,13 +43,10 @@
         <SidebarMenuItem>
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
-                    <SidebarMenuButton
-                        size='lg'
-                        class='bg-sidebar-primary hover:bg-sidebar-primary active:bg-sidebar-primary focus:bg-sidebar-primary data-[state=open]:bg-sidebar-accent gap-4'
-                    >
+                    <SidebarMenuButton size='lg'>
                         <Avatar class='h-8 w-8 rounded-lg'>
                             <AvatarImage :src='user.avatar' :alt='user.name' />
-                            <AvatarFallback class='bg-sidebar-accent rounded-lg text-lg'>
+                            <AvatarFallback class='rounded-lg'>
                                 G
                             </AvatarFallback>
                         </Avatar>
@@ -65,7 +62,7 @@
                 
                 <!--  Popup  -->
                 <DropdownMenuContent
-                    class='border-accent w-[--reka-dropdown-menu-trigger-width] min-w-56 rounded-lg'
+                    class='w-[--reka-dropdown-menu-trigger-width] min-w-56'
                     :side='isMobile ? "bottom" : "right"'
                     align='end'
                     :side-offset='4'
@@ -74,7 +71,7 @@
                         <div class='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
                             <Avatar class='h-8 w-8 rounded-lg'>
                                 <AvatarImage :src='user.avatar' :alt='user.name' />
-                                <AvatarFallback class='bg-tertiary rounded-lg text-lg'>
+                                <AvatarFallback class='rounded-lg'>
                                     G
                                 </AvatarFallback>
                             </Avatar>
@@ -91,7 +88,7 @@
                     <DropdownMenuGroup>
                         <DropdownMenuItem
                             @click='onClick'
-                            class='focus:bg-sidebar-primary focus:text-foreground cursor-pointer py-3 mb-2'
+                            class='cursor-pointer py-3 mb-2'
                         >
                             <MailPlus />
                             Register
@@ -99,7 +96,7 @@
                         
                         <DropdownMenuItem
                             @click='onClick'
-                            class='focus:bg-sidebar-primary focus:text-foreground cursor-pointer py-3'
+                            class='cursor-pointer py-3'
                         >
                             <LogIn />
                             Log In

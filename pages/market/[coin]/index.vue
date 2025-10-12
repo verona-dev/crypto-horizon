@@ -1,17 +1,15 @@
 <template>
-    <div class='single-coin'>
-        <div v-if='loading' class='flex items-center h-[55vh]'>
-            <MazSpinner
-                color='secondary'
-                size='3em'
-            />
-            <h4 class='ml-4'>Loading...</h4>
+    <section class='single-coin max-w-7xl'>
+        <div v-if='loading' class='flex items-center gap-4'>
+            <Spinner class='size-10 text-secondary' />
+
+            <h4>Loading...</h4>
         </div>
         
         <div v-else>
             <Card
                 v-if='coin && coin.livecoinwatch.name'
-                class='bg-background border-none'
+                class='bg-background border-none flex flex-col items-center gap-4'
             >
                 <CoinHeader :coin='coin' />
                 
@@ -20,13 +18,14 @@
                 <CoinFooter :coin='coin' />
             </Card>
         </div>
-    </div>
+    </section>
 </template>
 
 <script setup>
     import CoinHeader from '~/components/market/coin/CoinHeader.vue';
     import CoinBody from '~/components/market/coin/CoinBody.vue';
     import CoinFooter from '~/components/market/coin/CoinFooter.vue';
+    import { Spinner } from '~/components/ui/spinner/index.js';
     
     // Router
     import { useRoute } from 'vue-router';

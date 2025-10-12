@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-background/50 shadow-2xl h-96 p-0 w-4/5 xl:!w-[700px] animate-fadeIn'>
+    <Card class='h-96 p-0 w-4/5 xl:!w-[700px] animate-fadeIn'>
         <Skeleton
             v-if='!updated_at'
             class='w-full h-full'
@@ -63,7 +63,7 @@
                             <!--  Stablecoins  -->
                             <div v-else-if='!item.displayInfo && item.stablecoins' class='flex items-center space-x-2'>
                                 <HoverCard :openDelay='200'>
-                                    <HoverCardTrigger class='flex items-center gap-2 text-muted-foreground'>
+                                    <HoverCardTrigger class='flex items-center gap-2'>
                                         <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                                         
                                         <span class='text-muted-foreground text-xs'>{{ item.name }}</span>
@@ -101,7 +101,7 @@
                                 v-else
                                 :openDelay='200'
                             >
-                                <HoverCardTrigger class='flex items-center gap-2 text-muted-foreground'>
+                                <HoverCardTrigger class='flex items-center gap-2'>
                                     <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                                     
                                     <span class='text-xs'>{{ item.name }}</span>

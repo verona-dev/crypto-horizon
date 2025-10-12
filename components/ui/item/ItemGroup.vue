@@ -9,8 +9,9 @@ const props = defineProps<{
 
 <template>
   <div
-    data-slot="dialog-header"
-    :class="cn('flex flex-col gap-2 text-center sm:text-left', props.class)"
+    role="list"
+    data-slot="item-group"
+    :class="cn('group/item-group flex flex-col', props.class)"
   >
     <slot />
   </div>

@@ -1,34 +1,23 @@
 <template>
-    <div v-if='chart.prices' class='coin-chart'>
-        <div class='tabs-container flex items-center justify-center gap-24 my-10'>
+    <Card class='coin-chart flex flex-col gap-6 p-8' v-if='chart.prices'>
+        <!--  Tabs  -->
+        <div class='tabs-container flex items-center justify-between'>
             <!--  Price + Market Cap  -->
             <Tabs
                 v-model='type'
                 default-value='price'
             >
-                <TabsList class='gap-x-0.5 dark:bg-background'>
+                <TabsList>
                     <TabsTrigger
                         value='price'
-                        class='py-4 px-4
-                               dark:bg-background
-                               dark:data-[state=active]:text-sky dark:data-[state=active]:bg-background
-                               dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-2xl
-                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
-                        '
+                        class='py-1.5 px-1.5 text-xs w-16'
                     >
                        Price
                     </TabsTrigger>
                     
                     <TabsTrigger
                         value='mcap'
-                        class='py-4 px-4
-                               dark:bg-background
-                               dark:data-[state=active]:text-sky dark:data-[state=active]:bg-background
-                               dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-2xl
-                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
-                        '
+                        class='py-1.5 px-1.5 text-xs w-24'
                     >
                         Market Cap
                     </TabsTrigger>
@@ -36,43 +25,30 @@
             </Tabs>
             
             <!--  Supply Drawer  -->
-            <Tabs v-model='type'>
-                <TabsList class='w-36 dark:bg-background'>
+            <Tabs>
+                <TabsList>
                     <TabsTrigger
                         @click='show_drawer = true'
                         value='supply'
-                        class='py-4 px-4
-                               dark:bg-background
-                               dark:data-[state=active]:text-sky dark:data-[state=active]:bg-background
-                               dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-2xl
-                               border-ring/50 focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
-                        '
+                        class='py-1.5 px-1.5 text-xs flex gap-1 bg-transparent'
                     >
                         <NuxtIcon
                             name='mdi-light:chart-pie'
-                            size='25'
+                            size='15'
                         />
-                        Supply
+                        <span>Supply</span>
                     </TabsTrigger>
                 </TabsList>
             </Tabs>
             
             <!--  Range  -->
             <Tabs v-model='timeframe'>
-                <TabsList class='gap-x-0.5 dark:bg-background'>
+                <TabsList>
                     <TabsTrigger
                         v-for='range in ranges'
                         :key='range.timeframe'
                         :value='range.timeframe'
-                        class='py-4 px-4
-                               dark:bg-background
-                               dark:data-[state=active]:text-sky dark:data-[state=active]:bg-background
-                               dark:text-muted-foreground dark:hover:text-foreground
-                               rounded-2xl
-                               focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:shadow-xl
-                               w-12
-                        '
+                        class='py-1.5 px-1.5 text-xs w-10'
                     >
                         {{ range.label.toUpperCase() }}
                     </TabsTrigger>
@@ -80,15 +56,16 @@
             </Tabs>
         </div>
         
+        <!--  Chart  -->
         <div class='chart-container'>
             <div v-if='loading' class='spinner-container'>
                 <div class='h-full flex flex-col items-center justify-center gap-2 pb-12'>
-                    <MazSpinner size='2em' />
+                    <Spinner class='size-8 text-secondary' />
                     <!-- <span class='text-muted-custom'>Please wait a moment.</span> -->
                 </div>
             </div>
             
-            <div class='max-w-[500px] md:max-w-[650px] lg:max-w-[800px] mx-auto'>
+            <div class='w-full'>
                 <Line
                     ref='chartRef'
                     v-if='data.datasets?.length'
@@ -106,7 +83,7 @@
                 @handleDrawer='onHandleDrawer'
             />
         </div>
-    </div>
+    </Card>
 </template>
 
 <script setup>
@@ -121,6 +98,7 @@
     
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
+    import { Spinner } from '~/components/ui/spinner/index.js';
     const MarketStore = useMarketStore();
     
     // Methods

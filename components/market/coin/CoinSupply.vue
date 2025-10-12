@@ -1,14 +1,14 @@
 <template>
     <Drawer v-model:open='isOpen'>
         <DrawerContent>
-            <DrawerHeader class='border-b border-b-ring'>
+            <DrawerHeader class='border-b'>
                 <div class='my-6 flex items-start justify-between px-4 relative'>
                     <!--  Spacer  -->
                     <div class='w-12'></div>
                     
                     <!--  Title container  -->
                     <div class='flex flex-col items-center gap-4'>
-                        <DrawerTitle>Coin Supply</DrawerTitle>
+                        <DrawerTitle class='text-4xl'>Coin Supply</DrawerTitle>
                         
                         <DrawerDescription>Exploring Key Metrics</DrawerDescription>
                         
@@ -16,11 +16,11 @@
                             v-model='selected'
                             default-value='progress-bars'
                         >
-                            <SelectTrigger class='w-56 mt-4 px-5 dark:bg-primary-foreground border-ring' data-size='default'>
+                            <SelectTrigger class='w-56 mt-4 px-5' data-size='default'>
                                 <SelectValue class='w-2/3'/>
                             </SelectTrigger>
                             
-                            <SelectContent class='bg-primary-foreground'>
+                            <SelectContent>
                                 <SelectGroup>
                                     <SelectItem value='progress-bars' class='py-4 px-5'>Progress Bars</SelectItem>
                                     <SelectItem value='doughnut-chart' class='py-4 px-5'>Doughnut Chart</SelectItem>
@@ -106,6 +106,6 @@
 
 <style>
     [data-vaul-drawer-direction='bottom'] {
-        min-height: 90vh !important;
+        min-height: 50vh !important;
     }
 </style>
