@@ -1,0 +1,60 @@
+<template>
+    <Button
+        v-if='show'
+        @click='scrollOnClick'
+        variant='outline'
+        class='!bg-background py-5 scroll-to-top rounded-md hover:cursor-pointer'
+    >
+        <NuxtIcon
+            name='radix-icons:double-arrow-up'
+            class='text-foreground'
+            size='18'
+        />
+    </Button>
+</template>
+
+<script setup>
+    import { Button } from '~/components/ui/button';
+    import { useRoute } from 'vue-router';
+    
+    const route = useRoute();
+    const scrollY = ref(0);
+    const show = computed(() => {
+        if (route.path === '/market') {
+            return scrollY.value > 5500;
+        } else {
+            return scrollY.value > 500;
+        }
+    });
+    const handleScroll = () => scrollY.value = window.scrollY;
+    
+    const scrollOnClick = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+    
+    onMounted(() => {
+        window.addEventListener('scroll', handleScroll);
+    });
+    
+    onUnmounted(() => {
+        window.removeEventListener('scroll', handleScroll);
+    });
+</script>
+
+<style scoped>
+    .scroll-to-top {
+        position: fixed;
+        bottom: 75px;
+        right: 50px;
+        z-index: 100;
+        transition: all 250ms linear;
+        box-shadow: 5px 5px 100px -6px var(--secondary);
+        
+        &:hover {
+            border:1px solid var(--secondary) !important;
+        }
+    }
+</style>
