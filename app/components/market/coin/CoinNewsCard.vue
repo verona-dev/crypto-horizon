@@ -50,7 +50,7 @@
                             <Avatar class='h-8 w-8 rounded-full'>
                                 <AvatarImage :src='source_avatar' alt='avatar' />
                                 <AvatarFallback class='rounded-full'>
-                                    G
+                                    S
                                 </AvatarFallback>
                             </Avatar>
                             
@@ -61,7 +61,6 @@
                         </HoverCardTrigger>
                         
                         <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-10 !p-10 w-fit'>
-                            <!--  Hover card image -->
                             <NuxtImg
                                 :src='source_avatar'
                                 alt='source avatar'
@@ -70,7 +69,6 @@
                                 width='150px'
                             />
                             
-                            <!--  Hover card content -->
                             <div class='flex flex-col justify-between'>
                                 <div class='flex flex-col gap-2'>
                                     <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
