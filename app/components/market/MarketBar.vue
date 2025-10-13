@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-background/50 !w-screen !h-20 p-0 !m-0 shadow-2xl'>
+    <Card class='bg-background/50 !w-screen !h-20 p-0 !m-0 border-t-0'>
         <Skeleton
             v-if='!markets'
             class='w-full h-full'
@@ -19,34 +19,43 @@
                 <p v-if='item.value_formatted' class='font-bold text-xs'>{{ item.value_formatted }}</p>
                 <p v-else class='font-bold text-xs'>{{ item.value }}</p>
                 
-                <Badge
-                    v-if='item.trend'
-                    variant='outline'
-                    class='pl-2 pr-3 py-1 ml-1'
-                >
-                    <NuxtIcon
-                        :name='getTrendIcon(item.value)'
-                        size='15'
-                        :class='getTextColorClass(item.trend)'
-                    />
+                <HoverCard :openDelay='200' v-if='item.trend'>
+                    <HoverCardTrigger>
+                        <Badge
+                            variant='outline'
+                            class='pl-2 pr-3 py-1 ml-1'
+                        >
+                            <NuxtIcon
+                                :name='getTrendIcon(item.value)'
+                                size='15'
+                                :class='getTextColorClass(item.trend)'
+                            />
+                            
+                            {{ item.trend }}
+                        </Badge>
+                    </HoverCardTrigger>
                     
-                    {{ item.trend }}
-                </Badge>
+                    <!--  Ico Description -->
+                    <HoverCardContent class='hover-card-content'>
+                        Cryptocurrencies market cap change percentage in 24 hours in $USD
+                    </HoverCardContent>
+                </HoverCard>
             </CardContent>
         </div>
     </Card>
 </template>
 
 <script setup>
-    import { Skeleton } from '~/components/ui/skeleton';
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime);
     
+    import { Skeleton } from '~/components/ui/skeleton';
     import { Card, CardContent } from '~/components/ui/card';
     import { Badge } from '~/components/ui/badge';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index.js';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
@@ -101,10 +110,3 @@
         },
     ]);
 </script>
-
-<style scoped>
-    [data-slot='card'] {
-        margin: 20px !important;
-        width: 400px;
-    }
-</style>
