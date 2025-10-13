@@ -1,7 +1,7 @@
 <template>
-    <Card class='coin-links flex flex-col md:flex-row gap-16 justify-around p-10'>
+    <Card class='coin-links flex flex-col lg:flex-row gap-16 lg:justify-around p-10 w-full'>
         <!-- Websites -->
-        <div v-if='websites' class='websites flex flex-col gap-4'>
+        <CardContent v-if='websites' class='websites flex flex-col gap-4'>
             <h5>Websites</h5>
             
             <NuxtLink
@@ -38,10 +38,10 @@
                     <p class='text-sm'>Official Forum</p>
                 </NuxtLink>
             </div>
-        </div>
+        </CardContent>
         
         <!-- Chat -->
-        <div v-if='chats.length' class='chat flex flex-col gap-4'>
+        <CardContent v-if='chats.length' class='chat flex flex-col gap-4'>
             <h5>Chat</h5>
             
             <div v-for='chat in chats' :key='chat'>
@@ -56,10 +56,10 @@
                     <p class='text-sm'>{{ chat }}</p>
                 </NuxtLink>
             </div>
-        </div>
+        </CardContent>
         
         <!-- Community -->
-        <div v-if='socials && Object.keys(socials).length' class='community flex flex-col gap-4'>
+        <CardContent v-if='socials && Object.keys(socials).length' class='community flex flex-col gap-4'>
             <h5>Community</h5>
             
             <div
@@ -77,10 +77,10 @@
                     <p class='text-sm'>{{ name }}</p>
                 </NuxtLink>
             </div>
-        </div>
+        </CardContent>
         
         <!-- Github -->
-        <div v-if='github.length' class='github flex flex-col gap-4'>
+        <CardContent v-if='github.length' class='github flex flex-col gap-4'>
             <h5>Github</h5>
             
             <div v-for='link in github' :key='link'>
@@ -95,11 +95,14 @@
                     <p class='text-sm'>{{ link }}</p>
                 </NuxtLink>
             </div>
-        </div>
+        </CardContent>
     </Card>
 </template>
 
 <script setup>
+    import { Card, CardContent } from '~/components/ui/card';
+    
+    
     const props = defineProps({
         livecoinwatchLinks: {
             type: Object,

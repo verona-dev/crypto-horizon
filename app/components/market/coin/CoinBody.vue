@@ -10,7 +10,7 @@
                 <CoinInsights :coin='coin' />
             </div>
             <!-- Right -->
-            <div class='xl:col-span-4 space-y-6'>
+            <div class='lg:col-span-2 xl:col-span-4 space-y-6'>
                 <!-- Chart -->
                 <CoinChart :coin='coin' />
                 
@@ -19,12 +19,6 @@
                 
                 <!-- Description -->
                 <CoinDescription :coin='coin' />
-                
-                <!-- Links -->
-                <CoinLinks
-                    :livecoinwatchLinks='livecoinwatch.links'
-                    :coingeckoLinks='coingecko.links'
-                />
             </div>
         </div>
     </CardContent>
@@ -33,7 +27,6 @@
 <script setup>
     import CoinOverview from '~/components/market/coin/CoinOverview.vue';
     import CoinInsights from '~/components/market/coin/CoinInsights.vue';
-    import CoinLinks from '~/components/market/coin/CoinLinks.vue';
     import CoinChart from '~/components/market/coin/CoinChart.vue';
     import CoinDelta from '~/components/market/coin/CoinDelta.vue';
     import CoinDescription from '~/components/market/coin/CoinDescription.vue';
@@ -48,5 +41,4 @@
     
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
-    const livecoinwatch = toRef(coin.value?.livecoinwatch);
 </script>
