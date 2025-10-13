@@ -1,12 +1,12 @@
 <template>
     <Card v-if='article' class='news-card justify-between w-[450px] py-0 gap-8'>
         <CardHeader class='p-0'>
-            <div class='flex flex-col gap-6'>
-                <!--  Main image  -->
+            <div class='flex flex-col gap-6 p-8'>
+                <!--  Article image  -->
                 <NuxtImg
                     :src='image_url'
                     alt='article image'
-                    class='main-image rounded-md rounded-b-none'
+                    class='main-image rounded-md rounded-b-none object-cover'
                     :custom='true'
                     v-slot='{ src, isLoaded, imgAttrs }'
                     preload
@@ -28,20 +28,20 @@
                 <div class='flex px-6 justify-between'>
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
-                            <MazAvatar
-                                :src='source_avatar'
-                                size='1.2rem'
-                                rounded-size='xl'
-                            />
+                            <Avatar class='h-8 w-8 rounded-full'>
+                                <AvatarImage :src='source_avatar' alt='avatar' />
+                                <AvatarFallback class='rounded-full'>
+                                    S
+                                </AvatarFallback>
+                            </Avatar>
                             
-                            <div class='flex flex-col items-start text-left'>
+                            <div class='flex flex-col items-start text-left text-sm'>
                                 <span>{{ article_author_label }}</span>
                                 <span class='text-muted-custom'>{{ source_name_label }}</span>
                             </div>
                         </HoverCardTrigger>
                         
                         <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-6 p-10 w-fit'>
-                            <!--  Hover card image -->
                             <NuxtImg
                                 :src='source_avatar'
                                 alt='source avatar'
@@ -50,7 +50,6 @@
                                 width='150px'
                             />
                             
-                            <!--  Hover card content -->
                             <div class='flex flex-col justify-between'>
                                 <div class='flex flex-col gap-2'>
                                     <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
@@ -98,8 +97,6 @@
                             <span class='text-xs'>{{ reading_duration }} min read</span>
                         </div>
                     </div>
-                    
-
                 </div>
                 
                 <!--  Categories / Tags  -->
@@ -114,7 +111,7 @@
                 </div>
                 
                 <!--  Article Title  -->
-                <CardTitle class='text-xl text-left hover:underline px-6'>
+                <CardTitle class='text-lg text-left hover:underline px-6'>
                     <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
                         {{ title }}
                     </NuxtLink>
@@ -139,6 +136,7 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
+    import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
     import { Card, CardTitle, CardDescription, CardFooter, CardHeader } from '~/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton';
     import { Badge } from '~/components/ui/badge';
@@ -217,8 +215,8 @@
 <style scoped>
     .news-card {
         img.main-image {
-            object-fit: cover;
-            height: 350px;
+            //object-fit: cover;
+            //height: 350px;
         }
     }
 </style>
