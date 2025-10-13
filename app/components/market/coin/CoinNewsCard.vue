@@ -47,11 +47,12 @@
                     <div class='flex items-start gap-12'>
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='flex items-center gap-4'>
-                                <MazAvatar
-                                    :src='source_avatar'
-                                    size='0.6rem'
-                                    rounded-size='xl'
-                                />
+                                <Avatar class='h-8 w-8 rounded-full'>
+                                    <AvatarImage :src='source_avatar' alt='avatar' />
+                                    <AvatarFallback class='rounded-full'>
+                                        G
+                                    </AvatarFallback>
+                                </Avatar>
                                 
                                 <div class='flex flex-col items-start text-sm'>
                                     <span>{{ article_author_label }}</span>
@@ -135,6 +136,7 @@
     import { Badge } from '~/components/ui/badge';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Button } from '~/components/ui/button';
+    import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
     
     const props = defineProps({
         article: Object,
