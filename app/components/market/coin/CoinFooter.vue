@@ -1,5 +1,5 @@
 <template>
-    <CardFooter class='coin-footer flex flex-col gap-8 xl:gap-20'>
+    <CardFooter class='coin-footer w-full flex flex-col gap-8 xl:gap-20'>
         <!-- Links -->
         <CoinLinks
             :livecoinwatchLinks='livecoinwatch.links'

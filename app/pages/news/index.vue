@@ -1,11 +1,9 @@
 <template>
     <section class='news'>
         <div v-if='loading' class='flex items-center'>
-            <MazSpinner
-                color='secondary'
-                size='3em'
-            />
-            <h4 class='ml-4 mb-3'>Loading...</h4>
+            <Spinner class='size-10 text-secondary' />
+            
+            <h4>Loading...</h4>
         </div>
         
         <div v-else class='flex flex-wrap justify-center gap-24'>
@@ -23,6 +21,7 @@
     // NewsStore
     import { storeToRefs } from 'pinia';
     import { useNewsStore } from '~/stores/NewsStore.js';
+    import { Spinner } from '@/components/ui/spinner/index.js';
     const NewsStore = useNewsStore();
     
     const { news, loading } = storeToRefs(NewsStore);

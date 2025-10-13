@@ -1,29 +1,8 @@
 <script setup lang='ts'>
-    import {
-        ChevronsUpDown,
-        LogIn,
-        MailPlus,
-    } from 'lucide-vue-next'
-    import {
-        Avatar,
-        AvatarFallback,
-        AvatarImage,
-    } from '~/components/ui/avatar'
-    import {
-        DropdownMenu,
-        DropdownMenuContent,
-        DropdownMenuGroup,
-        DropdownMenuItem,
-        DropdownMenuLabel,
-        DropdownMenuSeparator,
-        DropdownMenuTrigger,
-    } from '~/components/ui/dropdown-menu'
-    import {
-        SidebarMenu,
-        SidebarMenuButton,
-        SidebarMenuItem,
-        useSidebar,
-    } from '~/components/ui/sidebar'
+    import { ChevronsUpDown, LogIn, MailPlus } from 'lucide-vue-next'
+    import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
+    import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu'
+    import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '~/components/ui/sidebar'
     
     const props = defineProps<{
         user: {

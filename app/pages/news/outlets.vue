@@ -1,11 +1,9 @@
 <template>
     <div class='news-sources mx-auto flex flex-col'>
-        <div v-if='loading' class='flex items-center h-[75vh]'>
-            <MazSpinner
-                color='secondary'
-                size='3em'
-            />
-            <h4 class='ml-4 mb-3'>Loading...</h4>
+        <div v-if='loading' class='flex items-center gap-4'>
+            <Spinner class='size-10 text-secondary' />
+            
+            <h4>Loading...</h4>
         </div>
         
         <div v-else class='flex flex-col items-center gap-32'>
@@ -33,6 +31,7 @@
 
 <script setup>
     import OutletCard from '~/components/news/OutletCard.vue';
+    import { Spinner } from '~/components/ui/spinner';
     
     // NewsStore
     import { storeToRefs } from 'pinia';
