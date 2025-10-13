@@ -1,17 +1,15 @@
 <template>
     <section class='single-news'>
-        <div v-if='loading' class='flex items-center h-[75vh]'>
-            <MazSpinner
-                color='secondary'
-                size='3em'
-            />
-            <h4 class='ml-4 mb-3'>Loading...</h4>
+        <div v-if='loading' class='flex items-center'>
+            <Spinner class='size-10 text-secondary' />
+            
+            <h4>Loading...</h4>
         </div>
         
         <div v-else>
             <Card
                 v-if='body && body_formatted'
-                class='bg-transparent border-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'
+                class='bg-transparent border-none shadow-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'
             >
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-12'>
@@ -87,10 +85,12 @@
                     <!--  Author + Source + Publish date  -->
                     <CardContent class='flex justify-between w-2/3'>
                         <div class='author flex items-center gap-4'>
-                            <MazAvatar
-                                :src='source_avatar'
-                                size='1.5rem'
-                            />
+                            <Avatar class='rounded-lg'>
+                                <AvatarImage :src='source_avatar' alt='avatar' />
+                                <AvatarFallback class='rounded-lg'>
+                                    S
+                                </AvatarFallback>
+                            </Avatar>
                             
                             <div class='flex flex-col items-start'>
                                 <p>Author:</p>
@@ -160,10 +160,12 @@
     const router  = useRouter();
     
     // Components
+    import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
     import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '~/components/ui/card';
     import { Badge } from '~/components/ui/badge';
     import { Skeleton } from '~/components/ui/skeleton';
     import { Button } from '~/components/ui/button';
+    import { Spinner } from '~/components/ui/spinner';
     
     // NewsStore
     import { storeToRefs } from 'pinia';
