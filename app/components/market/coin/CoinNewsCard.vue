@@ -1,5 +1,5 @@
 <template>
-    <Card class='coin-news-card h-fit xl:h-68 flex flex-col p-4 my-4 cursor-pointer' v-if='article'>
+    <Card class='coin-news-card h-fit xl:h-72 flex flex-col p-4 my-4 cursor-pointer' v-if='article'>
         <NuxtLink class='h-full' :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
             <CardHeader class='flex flex-col lg:flex-row gap-12 h-full'>
                 <!--  Main image  -->
@@ -24,7 +24,7 @@
                     />
                 </NuxtImg>
                 
-                <div class='flex flex-col justify-between'>
+                <div class='flex flex-col justify-around gap-6'>
                     <!--  Article Title + Categories  -->
                     <div class='flex flex-col items-start gap-6'>
                         <CardTitle class='article-title text-left text-xl'>
@@ -53,13 +53,13 @@
                                     rounded-size='xl'
                                 />
                                 
-                                <div class='flex flex-col items-start'>
+                                <div class='flex flex-col items-start text-sm'>
                                     <span>{{ article_author_label }}</span>
                                     <span class='text-muted-custom'>{{ source_name_label }}</span>
                                 </div>
                             </HoverCardTrigger>
                             
-                            <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-6 p-10 w-fit'>
+                            <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-10 !p-10 w-fit'>
                                 <!--  Hover card image -->
                                 <NuxtImg
                                     :src='source_avatar'
