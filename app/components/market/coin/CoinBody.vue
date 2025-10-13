@@ -37,6 +37,7 @@
     import CoinChart from '~/components/market/coin/CoinChart.vue';
     import CoinDelta from '~/components/market/coin/CoinDelta.vue';
     import CoinDescription from '~/components/market/coin/CoinDescription.vue';
+    import { Card, CardTitle, CardDescription, CardFooter, CardHeader } from '~/components/ui/card';
     
     const props = defineProps({
         coin: {

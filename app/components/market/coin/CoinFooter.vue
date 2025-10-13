@@ -3,7 +3,7 @@
         <CoinNews :coin='coin' />
     </CardFooter>
 </template>
-<script setup lang="ts">
+<script setup lang='ts'>
     import CoinNews from '~/components/market/coin/CoinNews.vue';
     
     const props = defineProps({

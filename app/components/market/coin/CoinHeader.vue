@@ -156,6 +156,7 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     import { Badge } from '~/components/ui/badge';
+    import { Card, CardTitle, CardDescription, CardFooter, CardHeader } from '~/components/ui/card';
     
     // MarketStore
     import { storeToRefs } from 'pinia';
