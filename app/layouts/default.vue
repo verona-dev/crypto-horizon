@@ -12,7 +12,7 @@
                     <!--  Mobile Trigger  -->
                     <SidebarTrigger />
                     
-                    <h1 v-if='title' class='page-title'>{{ title }}</h1>
+<!--                    <h1 v-if='title' class='page-title'>{{ title }}</h1>-->
                     
                     <slot />
                     
