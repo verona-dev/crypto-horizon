@@ -39,7 +39,7 @@
     }
     
     [data-slot='sidebar-inset'] {
-        @apply mt-4 sm:mt-6 flex flex-col justify-start max-w-[1800px] mx-auto px-4 sm:px-0 w-full md:w-4/5 max-w-7xl mx-auto;
+        /*@apply mt-4 sm:mt-6 flex flex-col justify-start max-w-[1800px] mx-auto px-4 sm:px-0 w-full md:w-4/5 max-w-7xl mx-auto;*/
         
         /*@apply mt-6 flex flex-col justify-start max-w-[1800px] mx-auto;*/
     }

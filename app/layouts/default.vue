@@ -1,6 +1,8 @@
 <template>
     <div>
         <ClientOnly>
+            <MarketBar />
+            
             <SidebarProvider :default-open='false'>
                 <AppSidebar />
                 
@@ -24,6 +26,7 @@
 </template>
 
 <script setup>
+    import MarketBar from '~/components/market/MarketBar.vue';
     import ScrollToTop from '~/components/ScrollToTop.vue';
     import AppSidebar from "~/components/AppSidebar.vue";
     import Breadcrumb from "~/components/Breadcrumb.vue";
@@ -32,4 +35,12 @@
     const route = useRoute();
     const title = computed(() => route.meta.title);
     import CoingeckoAttribution from '~/components/CoingeckoAttribution.vue';
+    
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    const MarketStore = useMarketStore();
+    const { getCoingeckoGlobalMarket } = MarketStore;
+    
+    onMounted(() => {
+        getCoingeckoGlobalMarket();
+    });
 </script>
