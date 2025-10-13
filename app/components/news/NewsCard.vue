@@ -218,9 +218,7 @@
     .news-card {
         img.main-image {
             object-fit: cover;
-            //height: 100%;
             height: 350px;
-            //width: 100%;
         }
     }
 </style>
