@@ -1,10 +1,10 @@
 <template>
-    <div class='news page'>
+    <section class='news flex flex-col items-center px-12'>
         <LoadingSpinner v-if='loading' />
         
         <div
             v-else
-             class='flex flex-col items-center'
+             class='flex flex-col items-center gap-20'
         >
             <h1 class='page-title'>Latest News</h1>
             
@@ -16,7 +16,7 @@
                 />
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script setup>
