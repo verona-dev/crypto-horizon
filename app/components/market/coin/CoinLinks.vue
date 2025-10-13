@@ -1,50 +1,52 @@
 <template>
-    <Card class='coin-links flex flex-col lg:flex-row gap-16 lg:justify-around p-10 w-full'>
+    <Card class='coin-links flex flex-col lg:flex-row gap-16 lg:justify-around p-10 lg:py-20 lg:px-12 w-full'>
         <!-- Websites -->
-        <CardContent v-if='websites' class='websites flex flex-col gap-4'>
-            <h5>Websites</h5>
+        <CardContent v-if='websites' class='websites flex flex-col gap-8'>
+            <h3>Websites</h3>
             
-            <NuxtLink
-                v-if='homepage'
-                :to='homepage'
-                external
-                target='_blank'
-                class='flex items-center link-item gap-3'
-            >
-                <NuxtIcon name='radix-icons:home' size='20' />
-                <p class='text-sm'>Homepage</p>
-            </NuxtLink>
-            
-            <NuxtLink
-                v-if='whitepaper'
-                :to='whitepaper'
-                external
-                target='_blank'
-                class='flex items-center link-item gap-2'
-            >
-                <NuxtIcon name='iconoir:open-book' size='25' />
-                <p class='text-sm'>Whitepaper</p>
-            </NuxtLink>
-            
-            <div v-for='(link, name) in official_forum' :key='name'>
+            <div class='flex flex-col gap-4'>
                 <NuxtLink
-                    v-if='link'
-                    :to='link'
+                    v-if='homepage'
+                    :to='homepage'
+                    external
+                    target='_blank'
+                    class='flex items-center link-item gap-3'
+                >
+                    <NuxtIcon name='radix-icons:home' size='20' />
+                    <p class='text-sm'>Homepage</p>
+                </NuxtLink>
+                
+                <NuxtLink
+                    v-if='whitepaper'
+                    :to='whitepaper'
                     external
                     target='_blank'
                     class='flex items-center link-item gap-2'
                 >
-                    <NuxtIcon name='radix-icons:chat-bubble' size='25' />
-                    <p class='text-sm'>Official Forum</p>
+                    <NuxtIcon name='iconoir:open-book' size='25' />
+                    <p class='text-sm'>Whitepaper</p>
                 </NuxtLink>
+                
+                <div v-for='(link, name) in official_forum' :key='name'>
+                    <NuxtLink
+                        v-if='link'
+                        :to='link'
+                        external
+                        target='_blank'
+                        class='flex items-center link-item gap-2'
+                    >
+                        <NuxtIcon name='radix-icons:chat-bubble' size='25' />
+                        <p class='text-sm'>Official Forum</p>
+                    </NuxtLink>
+                </div>
             </div>
         </CardContent>
         
         <!-- Chat -->
-        <CardContent v-if='chats.length' class='chat flex flex-col gap-4'>
-            <h5>Chat</h5>
+        <CardContent v-if='chats.length' class='chat flex flex-col gap-8'>
+            <h3>Chat</h3>
             
-            <div v-for='chat in chats' :key='chat'>
+            <div v-for='chat in chats' :key='chat' class='flex flex-col gap-4'>
                 <NuxtLink
                     v-if='chat'
                     :to='chat'
@@ -59,12 +61,13 @@
         </CardContent>
         
         <!-- Community -->
-        <CardContent v-if='socials && Object.keys(socials).length' class='community flex flex-col gap-4'>
-            <h5>Community</h5>
+        <CardContent v-if='socials && Object.keys(socials).length' class='community flex flex-col gap-6'>
+            <h3>Community</h3>
             
             <div
                 v-for='(link, name) in socials'
                 :key='name'
+                class='flex flex-col gap-4'
             >
                 <NuxtLink
                     v-if='link && name'
@@ -80,8 +83,8 @@
         </CardContent>
         
         <!-- Github -->
-        <CardContent v-if='github.length' class='github flex flex-col gap-4'>
-            <h5>Github</h5>
+        <CardContent v-if='github.length' class='github flex flex-col gap-8'>
+            <h3>Github</h3>
             
             <div v-for='link in github' :key='link'>
                 <NuxtLink
