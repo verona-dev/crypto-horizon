@@ -1,5 +1,5 @@
 <template>
-    <section class='news page'>
+    <div class='news page'>
         <LoadingSpinner v-if='loading' />
         
         <div
@@ -16,7 +16,7 @@
                 />
             </div>
         </div>
-    </section>
+    </div>
 </template>
 
 <script setup>

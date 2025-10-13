@@ -1,12 +1,12 @@
 <template>
-    <Card v-if='article' class='news-card justify-between w-[450px] py-0 gap-8'>
+    <Card v-if='article' class='news-card justify-between w-96 py-0 gap-8'>
         <CardHeader class='p-0'>
-            <div class='flex flex-col gap-6 p-8'>
+            <div class='flex flex-col gap-6 p-3'>
                 <!--  Article image  -->
                 <NuxtImg
                     :src='image_url'
                     alt='article image'
-                    class='main-image rounded-md rounded-b-none object-cover'
+                    class='main-image rounded-xl object-cover'
                     :custom='true'
                     v-slot='{ src, isLoaded, imgAttrs }'
                     preload
