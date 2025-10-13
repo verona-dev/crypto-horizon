@@ -7,12 +7,16 @@
                 <AppSidebar />
                 
                 <SidebarInset class='custom-flex'>
-                    <!--                <Breadcrumb />-->
+                    <!--
+                    <Breadcrumb />
+                    -->
                     
                     <!--  Mobile Trigger  -->
                     <SidebarTrigger />
                     
-<!--                    <h1 v-if='title' class='page-title'>{{ title }}</h1>-->
+                    <!--
+                    <h1 v-if='title' class='page-title'>{{ title }}</h1>
+                    -->
                     
                     <slot />
                     
@@ -33,7 +37,7 @@
     import { SidebarInset, SidebarProvider, SidebarTrigger, } from '~/components/ui/sidebar';
     import { useRoute } from 'vue-router';
     const route = useRoute();
-    const title = computed(() => route.meta.title);
+    // const title = computed(() => route.meta.title);
     import CoingeckoAttribution from '~/components/CoingeckoAttribution.vue';
     
     import { useMarketStore } from '~/stores/MarketStore.js';
