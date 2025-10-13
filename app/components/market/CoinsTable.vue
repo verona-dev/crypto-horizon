@@ -84,7 +84,7 @@
                     <h4 class='fetching mb-3'>Fetching data...</h4>
                     
                     <div class='flex items-center justify-center h-32'>
-                        <MazSpinner color='secondary' size='4em' />
+                        <Spinner class='size-10 text-secondary' />
                     </div>
                 </div>
             </template>
@@ -93,6 +93,7 @@
 </template>
 
 <script setup>
+    import { Spinner } from '~/components/ui/spinner';
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();

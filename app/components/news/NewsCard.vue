@@ -137,7 +137,7 @@
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
-    import { Card, CardTitle, CardDescription, CardFooter, CardHeader } from '~/components/ui/card';
+    import { Card, CardTitle, CardFooter, CardHeader } from '~/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton';
     import { Badge } from '~/components/ui/badge';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';

@@ -90,6 +90,7 @@
     import dayjs from 'dayjs';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     import CoinSupply from '~/components/market/coin/CoinSupply.vue';
+    import { Card } from '~/components/ui/card';
     
     import { Line } from 'vue-chartjs';
     import CustomLineChart from '~/utils/CustomLineChart.js';
