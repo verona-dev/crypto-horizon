@@ -1,5 +1,5 @@
 <template>
-    <section class='single-coin max-w-7xl'>
+    <div class='single-coin page'>
         <LoadingSpinner v-if='loading' />
         
         <div v-else>
@@ -14,7 +14,7 @@
                 <CoinFooter :coin='coin' />
             </Card>
         </div>
-    </section>
+    </div>
 </template>
 
 <script setup>

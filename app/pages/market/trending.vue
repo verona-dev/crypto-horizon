@@ -1,5 +1,5 @@
 <template>
-    <div class='trending flex flex-col items-center justify-center gap-60'>
+    <div class='trending page gap-60'>
         <TrendingCoins
             v-if='trending_coins'
             :coins='trending_coins'

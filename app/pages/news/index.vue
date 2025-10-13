@@ -1,27 +1,31 @@
 <template>
-    <section class='news'>
-        <div v-if='loading' class='flex items-center'>
-            <Spinner class='size-10 text-secondary' />
-            
-            <h4>Loading...</h4>
-        </div>
+    <section class='news page'>
+        <LoadingSpinner v-if='loading' />
         
-        <div v-else class='flex flex-wrap justify-center gap-24'>
-            <NewsCard
-                v-for='article in articles'
-                :key='article.ID'
-                :article='article'
-            />
+        <div
+            v-else
+             class='flex flex-col items-center'
+        >
+            <h1 class='page-title'>Latest News</h1>
+            
+            <div class='flex flex-wrap justify-center gap-24'>
+                <NewsCard
+                    v-for='article in articles'
+                    :key='article.ID'
+                    :article='article'
+                />
+            </div>
         </div>
     </section>
 </template>
 
 <script setup>
     import NewsCard from '~/components/news/NewsCard.vue';
+    import LoadingSpinner from '~/components/LoadingSpinner.vue';
+    
     // NewsStore
     import { storeToRefs } from 'pinia';
     import { useNewsStore } from '~/stores/NewsStore.js';
-    import { Spinner } from '@/components/ui/spinner/index.js';
     const NewsStore = useNewsStore();
     
     const { news, loading } = storeToRefs(NewsStore);

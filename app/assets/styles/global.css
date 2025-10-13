@@ -28,9 +28,13 @@
     }
     
     main {
-        @apply w-full md:max-w-4/5 max-w-7xl mx-auto;
+        @apply w-dvw mx-auto;
         /*@apply my-28 md:my-14 px-20 md:px-32;*/
         /*@apply flex flex-col my-28 md:my-14 px-20 md:px-32;*/
+    }
+    
+    .page {
+        @apply max-w-7xl mt-20 md:mt-8 flex flex-col items-center justify-center;
     }
     
     [data-slot='sidebar-wrapper'] {
@@ -39,6 +43,7 @@
     }
     
     [data-slot='sidebar-inset'] {
+        @apply w-dvw;
         /*@apply mt-4 sm:mt-6 flex flex-col justify-start max-w-[1800px] mx-auto px-4 sm:px-0 w-full md:w-4/5 max-w-7xl mx-auto;*/
         
         /*@apply mt-6 flex flex-col justify-start max-w-[1800px] mx-auto;*/
@@ -112,10 +117,6 @@
         @apply cursor-pointer;
     }
     
-    .custom-flex {
-        @apply flex flex-col sm:flex-row justify-center items-center;
-    }
-    
     .default-font {
         font-family: 'IBM Plex Mono', monospace;
     }
@@ -143,6 +144,10 @@
 @layer utilities {
     .text-xxs {
         font-size: 11px;
+    }
+    
+    .custom-flex {
+        @apply flex flex-col sm:flex-row justify-center items-center;
     }
 }
 

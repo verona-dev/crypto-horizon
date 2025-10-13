@@ -1,5 +1,5 @@
 <template>
-    <div class='news-sources mx-auto flex flex-col'>
+    <div class='news-outlets page'>
         <div v-if='loading' class='flex items-center gap-4'>
             <Spinner class='size-10 text-secondary' />
             
