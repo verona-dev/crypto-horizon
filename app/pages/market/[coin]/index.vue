@@ -9,7 +9,7 @@
         <div v-else>
             <Card
                 v-if='coin && coin.livecoinwatch.name'
-                class='bg-background border-none flex flex-col items-center gap-4'
+                class='bg-background border-none shadow-none flex flex-col items-center'
             >
                 <CoinHeader :coin='coin' />
                 
@@ -26,6 +26,7 @@
     import CoinBody from '~/components/market/coin/CoinBody.vue';
     import CoinFooter from '~/components/market/coin/CoinFooter.vue';
     import { Spinner } from '~/components/ui/spinner';
+    import { Card  } from '~/components/ui/card';
     
     // Router
     import { useRoute } from 'vue-router';
