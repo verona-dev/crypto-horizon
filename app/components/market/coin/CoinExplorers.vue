@@ -15,7 +15,7 @@
                 :to='main_explorer_link'
                 external
                 target='_blank'
-                class='flex items-center'
+                class='flex items-center w-full h-full'
             >
                 <NuxtIcon
                     name='radix-icons:globe'
@@ -47,13 +47,13 @@
                         <DropdownMenuItem
                             v-for='explorer in explorers'
                             :key='explorer'
-                            class='h-12 !px-0 rounded-lg focus:bg-accent focus:text-accent-foreground my-2'
+                            class='h-12 !px-0 rounded-lg my-2'
                         >
                             <NuxtLink
                                 :to='explorer.href'
                                 external
                                 target='_blank'
-                                class='h-12 px-3 rounded-lg'
+                                class='w-full h-12 px-3 rounded-lg'
                             >
                                 <div class='flex items-center gap-3 h-full'>
                                     <NuxtIcon
