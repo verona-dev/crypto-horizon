@@ -34,7 +34,7 @@
 <script setup>
     import { getTextColorClass, getBorderColorClass } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
-    import { Card, CardTitle, CardDescription, CardFooter, CardHeader } from '~/components/ui/card';
+    import { Card, CardTitle, CardContent } from '~/components/ui/card';
     
     const props = defineProps({
         delta: {

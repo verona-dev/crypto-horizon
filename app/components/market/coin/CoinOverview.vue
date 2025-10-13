@@ -370,7 +370,7 @@
     dayjs.extend(relativeTime, { rounding: Math.floor });
     import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.ts';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
-    import { Card, CardTitle, CardDescription, CardFooter, CardHeader } from '~/components/ui/card';
+    import { Card } from '~/components/ui/card';
     import { formatNumber } from '~/utils/formatUtils.js';
     
     const props = defineProps({
