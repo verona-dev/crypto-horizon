@@ -7,8 +7,8 @@
             <!--  Contract ID  -->
             <!--
             <HoverCard :openDelay='200' v-if='contract_id'>
-                <HoverCardTrigger class='info-icon'>
-                    <Badge class='badge h-12 w-24 text-md border-muted-foreground flex items-center justify-center' variant='outline'>{{ contract_id }}</Badge>
+                <HoverCardTrigger>
+                    <Badge class='badge h-12 w-24 text-base border-muted-foreground flex items-center justify-center' variant='outline'>{{ contract_id }}</Badge>
                 </HoverCardTrigger>
                 <HoverCardContent>
                     <p class='text-xs'>Contract ID</p>
@@ -25,17 +25,13 @@
             <!--  Description  -->
             <div class='flex items-center gap-2 text-muted-foreground'>
                 <HoverCard :openDelay='200' v-if='description'>
-                    <HoverCardTrigger class='info-icon cursor-auto'>
-                        <NuxtIcon
-                            name='radix-icons:info-circled'
-                            size='15'
-                            class='flex text-muted-foreground'
-                        />
+                    <HoverCardTrigger class='cursor-default'>
+                        <InfoIcon />
                     </HoverCardTrigger>
                     
-                    <HoverCardContent class='!p-6 flex flex-col !gap-3'>
-                        <p class='text-xs'>{{ title }}</p>
-                        <p class='text-xs text-muted-foreground'>{{ description }}</p>
+                    <HoverCardContent class='flex flex-col !gap-3'>
+                        <span>{{ title }}</span>
+                        <span class='text-muted-foreground'>{{ description }}</span>
                     </HoverCardContent>
                 </HoverCard>
             </div>
@@ -74,7 +70,7 @@
                         
                         <!--  Trend  -->
                         <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='info-icon cursor-default'>
+                            <HoverCardTrigger class='cursor-default'>
                                 <div
                                     class='flex items-center gap-1'
                                     :class='getTextColorClass(floor_price_change_percentage_1d)'
@@ -154,9 +150,10 @@
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTextColorClass, getTrendIcon } from '~/utils/styleUtils.js';
+    // import { Badge } from '~/components/ui/badge/index.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
-    // import { Badge } from '~/components/ui/badge/index.js';
+    import InfoIcon from '~/components/InfoIcon.vue';
     
     const props = defineProps({
         nft: {
@@ -174,7 +171,7 @@
     const floor_price = nft.value?.data?.floor_price;
     const floor_price_change_percentage_1d = nft.value?.data?.floor_price_in_usd_24h_percentage_change;
     const price_change_percentage_1d_label = formatNumber(floor_price_change_percentage_1d, {
-        style: 'percent', compact: true, decimals: 2,
+        style: 'percent',
     });
     const volume_24h = nft.value?.data?.h24_volume;
     const average_sale_price_24h = nft.value?.data?.h24_average_sale_price;

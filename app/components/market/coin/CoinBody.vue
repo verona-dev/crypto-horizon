@@ -9,6 +9,7 @@
                 <!-- Insights -->
                 <CoinInsights :coin='coin' />
             </div>
+            
             <!-- Right -->
             <div class='lg:col-span-2 xl:col-span-4 space-y-6'>
                 <!-- Chart -->

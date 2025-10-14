@@ -1,31 +1,34 @@
 <template>
-    <Card class='coin-news-card h-fit xl:h-64 flex my-4 cursor-pointer' v-if='article'>
-        <NuxtLink class='h-full w-full p-4 flex' :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
-            <!--  Source image  -->
-            <CardHeader class='flex flex-row h-full w-fit'>
-                <NuxtImg
-                    :src='image_url'
-                    alt='article image'
-                    class='main-image rounded-md'
-                    :custom='true'
-                    v-slot='{ src, isLoaded, imgAttrs }'
-                    preload
-                >
-                    <img
-                        v-if='isLoaded'
-                        v-bind='imgAttrs'
-                        :src='src'
-                        alt='article image'
+    <Card class='coin-news-card h-fit my-4 flex cursor-pointer' v-if='article'>
+        <NuxtLink class='h-full w-full p-6 flex items-between' :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
+            <!--  Article image  -->
+            <CardHeader>
+                <div class="w-44 flex items-center">
+                    <NuxtImg
+                        :src="image_url"
+                        alt="article image"
+                        class="w-full rounded-lg object-cover"
+                        :custom="true"
+                        v-slot="{ src, isLoaded, imgAttrs }"
+                        preload
                     >
-                    
-                    <Skeleton
-                        v-else
-                        class='h-[200px] w-[200px]'
-                    />
-                </NuxtImg>
+                        <img
+                            v-if="isLoaded"
+                            v-bind="imgAttrs"
+                            :src="src"
+                            alt="article image"
+                        >
+                        <Skeleton
+                            v-else
+                            class="w-full h-full"
+                        />
+                    </NuxtImg>
+                </div>
+            
             </CardHeader>
             
-            <CardContent class='flex flex-col justify-around p-6'>
+            <!--  Content  -->
+            <CardContent class='flex flex-col justify-around p-4'>
                 <!--  Article Title + Categories  -->
                 <div class='flex flex-col gap-4'>
                     <CardTitle class='article-title text-left text-xl'>
@@ -35,7 +38,7 @@
                     <div class='categories-container flex flex-wrap'>
                         <Badge
                             v-for='category in categories.slice(0, 16)'
-                            class='mr-2 mb-2 py-1 px-3'
+                            class='mr-1.5 p-1.5 bg-primary-foreground text-green-shamrock border text-[11px] font-extralight tracking-widest'
                             variant='outline'
                         >
                             {{ category.NAME }}
@@ -47,19 +50,22 @@
                 <div class='flex items-start gap-12'>
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger class='flex items-center gap-4'>
-                            <Avatar class='h-8 w-8 rounded-full'>
+                            <!--  Avatar  -->
+                            <Avatar class='h-10 w-10 rounded-full'>
                                 <AvatarImage :src='source_avatar' alt='avatar' />
                                 <AvatarFallback class='rounded-full'>
                                     S
                                 </AvatarFallback>
                             </Avatar>
                             
-                            <div class='flex flex-col items-start text-sm'>
+                            <!--  Author  -->
+                            <div class='flex flex-col items-start text-sm gap-1'>
                                 <span>{{ article_author_label }}</span>
                                 <span class='text-muted-custom'>{{ source_name_label }}</span>
                             </div>
                         </HoverCardTrigger>
                         
+                        <!--  Source  -->
                         <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-10 !p-10 w-fit'>
                             <NuxtImg
                                 :src='source_avatar'
@@ -95,15 +101,20 @@
                         </HoverCardContent>
                     </HoverCard>
                     
-                    <HoverCard :openDelay='200'>
-                        <HoverCardTrigger class='flex gap-2 mt-1'>
+                    <div class='flex flex-col text-muted-custom gap-2 mt-1'>
+                        <!--  Publish date  -->
+                        <div :openDelay='200' class='flex items-center gap-2'>
                             <NuxtIcon name='iconoir:calendar' size='16px' />
-                            <span class='text-xs'>{{ published_date_from_now }}</span>
-                        </HoverCardTrigger>
-                        <HoverCardContent class='hover-card-content w-fit'>
-                            <span class='text-sm'>{{ published_date }}</span>
-                        </HoverCardContent>
-                    </HoverCard>
+                            <span class='text-xs'>{{ published_date }}</span>
+                        </div>
+                        
+                        <!--  Reading duration  -->
+                        <div v-if='show_reading_duration' class='flex items-center gap-2'>
+                            <NuxtIcon name='iconoir:timer' size='16' />
+                            <span class='text-xs'>{{ reading_duration }} min read</span>
+                        </div>
+                    </div>
+                
                 </div>
             </CardContent>
         </NuxtLink>
@@ -111,6 +122,7 @@
 </template>
 
 <script setup>
+    import { useReadingTime } from 'maz-ui/composables';
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
@@ -126,12 +138,12 @@
     });
     
     const { article } = toRefs(props);
-    
     const guid = article.value?.GUID;
     const title = article.value?.TITLE;
     const image_url = article.value?.IMAGE_URL;
+    const body = article.value?.BODY;
     const published_date = dayjs.unix(article.value?.PUBLISHED_ON).format('MMMM D, YYYY, h:mm A');
-    const published_date_from_now = computed(() => article.value?.PUBLISHED_ON && dayjs.unix(article.value?.PUBLISHED_ON).fromNow());
+    // const published_date_from_now = computed(() => article.value?.PUBLISHED_ON && dayjs.unix(article.value?.PUBLISHED_ON).fromNow());
     
     const article_author = computed(() => article.value?.AUTHORS);
     const article_author_label = computed(() => {
@@ -140,6 +152,15 @@
         return article_author.value;
     });
     const categories = article.value?.CATEGORY_DATA;
+    const show_reading_duration = computed(() => reading_duration.value > 0);
+    const reading_duration = computed(() => {
+        if(!body) return 0;
+        
+        const { duration } = useReadingTime({
+            content: body,
+        });
+        return duration.value;
+    });
     
     const source_name = article.value?.SOURCE_DATA?.NAME;
     const source_name_label = computed(() => source_name || 'Unknown source');

@@ -123,7 +123,7 @@
     // Range/Timeframe
     const ranges = toRef(MarketStore.coin, 'ranges');
     const current_range = computed(() => ranges.value?.find(range => range.timeframe === timeframe.value));
-    const timeframe = toRef(MarketStore.coin, 'timeframe');
+    const timeframe = toRef(1);
     
     watch(timeframe, async () => {
         loading.value = true;

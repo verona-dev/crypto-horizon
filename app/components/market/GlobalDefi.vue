@@ -51,23 +51,23 @@
     const { globalDefi } = storeToRefs(MarketStore);
     
     const defi_dominance = computed(() => formatNumber(globalDefi.value?.defi_dominance, {
-        style: 'percent', decimals: 2
+        style: 'percent',
     }));
     const defi_market_cap = computed(() => formatNumber(globalDefi.value?.defi_market_cap, {
-        compact: true, decimals: 2
+        compact: true,
     }));
     const defi_to_eth_ratio = computed(() => formatNumber(globalDefi.value?.defi_to_eth_ratio, {
-        style: 'percent', decimals: 2
+        style: 'percent',
     }));
     const eth_market_cap = computed(() => formatNumber(globalDefi.value?.eth_market_cap, {
-        compact: true, decimals: 2
+        compact: true,
     }));
     const top_coin_name = computed(() => globalDefi.value?.top_coin_name);
     const top_coin_defi_dominance = computed(() => formatNumber(globalDefi.value?.top_coin_defi_dominance, {
-        style: 'percent', decimals: 2
+        style: 'percent',
     }));
     const trading_volume_24h = computed(() => formatNumber(globalDefi.value?.trading_volume_24h, {
-        compact: true, decimals: 2
+        compact: true,
     }));
 </script>
 

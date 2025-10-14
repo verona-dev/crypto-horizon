@@ -1,10 +1,6 @@
 <template>
-    <section class='single-coin max-w-7xl'>
-        <div v-if='loading' class='flex items-center gap-4'>
-            <Spinner class='size-10 text-secondary' />
-
-            <h4>Loading...</h4>
-        </div>
+    <div class='single-coin page'>
+        <LoadingSpinner v-if='loading' />
         
         <div v-else>
             <Card
@@ -18,14 +14,14 @@
                 <CoinFooter :coin='coin' />
             </Card>
         </div>
-    </section>
+    </div>
 </template>
 
 <script setup>
     import CoinHeader from '~/components/market/coin/CoinHeader.vue';
     import CoinBody from '~/components/market/coin/CoinBody.vue';
     import CoinFooter from '~/components/market/coin/CoinFooter.vue';
-    import { Spinner } from '~/components/ui/spinner';
+    import LoadingSpinner from '~/components/LoadingSpinner.vue';
     import { Card  } from '~/components/ui/card';
     
     // Router

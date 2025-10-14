@@ -8,7 +8,7 @@
             target='_blank'
         >
             <!--  Rank + Name  -->
-            <CardHeader class='!py-8 card-header flex flex-row justify-center items-center gap-3 border-b'>
+            <CardHeader class='h-24 card-header flex flex-row justify-center items-center gap-3 border-b'>
                 <Badge variant='outline'>{{ rank }}</Badge>
                 
                 <h6 class='name text-green-deco font-bold uppercase'>{{ name }}</h6>
@@ -52,17 +52,13 @@
                     <p class='text-sm'>{{ symbol }}</p>
                     
                     <HoverCard :openDelay='200' v-if='description'>
-                        <HoverCardTrigger class='info-icon cursor-default'>
-                            <NuxtIcon
-                                name='radix-icons:info-circled'
-                                size='15'
-                                class='flex text-muted-foreground'
-                            />
+                        <HoverCardTrigger class='cursor-default'>
+                             <InfoIcon />
                         </HoverCardTrigger>
                         
                         <HoverCardContent class='flex flex-col !gap-3'>
-                            <p class='text-xs'>{{ title }}</p>
-                            <p class='text-xs text-muted-foreground'>{{ description }}</p>
+                            <span>{{ title }}</span>
+                            <span class='text-muted-foreground'>{{ description }}</span>
                         </HoverCardContent>
                     </HoverCard>
                 </div>
@@ -74,7 +70,7 @@
                 
                 <!--  Trend  -->
                 <HoverCard :openDelay='200'>
-                    <HoverCardTrigger class='info-icon cursor-default'>
+                    <HoverCardTrigger class='cursor-default'>
                         <div
                             class='flex items-center gap-1'
                             :class='getTextColorClass(price_change_percentage_1d)'
@@ -133,11 +129,12 @@
 </template>
 
 <script setup>
-    import { Skeleton } from '~/components/ui/skeleton';
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Badge } from '~/components/ui/badge';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    import { Skeleton } from '~/components/ui/skeleton';
+    import InfoIcon from '~/components/InfoIcon.vue';
     
     const props = defineProps({
         coin: {
@@ -157,7 +154,7 @@
     const price_label = formatNumber(price);
     const price_change_percentage_1d = coin.value?.data?.price_change_percentage_24h?.usd;
     const price_change_percentage_1d_label = formatNumber(price_change_percentage_1d, {
-        style: 'percent', compact: true, decimals: 2,
+        style: 'percent',
     });
     const sparkline = coin.value?.data?.sparkline;
     const title = coin.value?.data?.content?.title;

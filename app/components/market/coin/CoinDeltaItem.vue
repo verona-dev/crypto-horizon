@@ -20,14 +20,12 @@
                 </CardContent>
                 
                 <CardContent class='py-2'>
-                   {{ formatNumber(delta, { style: 'percent', truncate: true }) }}
+                   {{ formatNumber(delta, { style: 'percent' }) }}
                 </CardContent>
             </Card>
         </HoverCardTrigger>
         
-        <HoverCardContent side='top' class='hover-card-content'>
-            <span class='text-sm'>{{ description }}</span>
-        </HoverCardContent>
+        <HoverCardContent side='top'>{{ description }}</HoverCardContent>
     </HoverCard>
 </template>
 

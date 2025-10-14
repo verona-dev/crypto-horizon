@@ -14,15 +14,11 @@
                 <h5>Crypto Fear and Greed Index</h5>
                 
                 <HoverCard :openDelay='200'>
-                    <HoverCardTrigger class='info-icon'>
-                        <NuxtIcon
-                            name='radix-icons:info-circled'
-                            size='15'
-                            class='flex mt-1'
-                        />
+                    <HoverCardTrigger>
+                        <InfoIcon />
                     </HoverCardTrigger>
                     
-                    <HoverCardContent class='hover-card-content flex-col gap-6'>
+                    <HoverCardContent class='flex-col gap-6'>
                     <span>
                         The CMC Fear and Greed Index is a proprietary tool developed by CoinMarketCap that measures
                         the prevailing sentiment in the cryptocurrency market.
@@ -74,10 +70,11 @@
 <script setup>
     import { Doughnut } from 'vue-chartjs';
     import { Skeleton } from '~/components/ui/skeleton';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    import InfoIcon from '~/components/InfoIcon.vue';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     const MarketStore = useMarketStore();
     
     const { fearAndGreed } = storeToRefs(MarketStore);
@@ -143,7 +140,7 @@
         const circleY = -outerRadius - 5;
         ctx.fillStyle = 'white';
         // Dot bg
-        ctx.strokeStyle = '#2c2a36';
+        ctx.strokeStyle = '#1f2230'; // tailwind.css from --card style
         ctx.lineWidth = 8;
         
         ctx.beginPath();

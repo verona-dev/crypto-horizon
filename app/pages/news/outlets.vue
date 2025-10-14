@@ -1,22 +1,12 @@
 <template>
-    <div class='news-sources mx-auto flex flex-col'>
-        <div v-if='loading' class='flex items-center gap-4'>
-            <Spinner class='size-10 text-secondary' />
-            
-            <h4>Loading...</h4>
-        </div>
+    <div class='news-outlets page'>
+        <LoadingSpinner v-if='loading' />
         
-        <div v-else class='flex flex-col items-center gap-32'>
-            <div class='xl:mt-10 flex flex-col items-center gap-4'>
-                <NuxtLink
-                    to='https://developers.coindesk.com/documentation/data-api/introduction'
-                    external
-                    target='_blank'
-                    class='text-muted-custom underline'
-                >
-                    <span>data from Coindesk Api</span>
-                </NuxtLink>
-            </div>
+        <div
+            v-else
+            class='flex flex-col items-center gap-20'
+        >
+            <h1 class='page-title'>News Outlets</h1>
             
             <div v-if='newsOutlets' class='flex flex-wrap justify-center gap-6 xl:gap-20'>
                 <OutletCard
@@ -31,7 +21,7 @@
 
 <script setup>
     import OutletCard from '~/components/news/OutletCard.vue';
-    import { Spinner } from '~/components/ui/spinner';
+    import LoadingSpinner from '~/components/LoadingSpinner.vue';
     
     // NewsStore
     import { storeToRefs } from 'pinia';

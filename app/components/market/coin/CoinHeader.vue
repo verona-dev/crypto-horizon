@@ -40,9 +40,7 @@
                                 </Badge>
                             </HoverCardTrigger>
                             
-                            <HoverCardContent class='hover-card-content'>
-                                Ranked {{ coingecko.market_cap_rank }} by market cap out of all active cryptocurrencies listed on CoinGecko.
-                            </HoverCardContent>
+                            <HoverCardContent>Ranked {{ coingecko.market_cap_rank }} by market cap out of all active cryptocurrencies listed on CoinGecko.</HoverCardContent>
                         </HoverCard>
                         
                         <!-- Symbol  -->
@@ -53,9 +51,7 @@
                             </HoverCardTrigger>
                             
                             <!--  Ico Description -->
-                            <HoverCardContent v-if='ico_description' class='hover-card-content'>
-                                {{ ico_description }}.
-                            </HoverCardContent>
+                            <HoverCardContent v-if='ico_description'>{{ ico_description }}.</HoverCardContent>
                         </HoverCard>
                         
                         <!--  Portfolio watchlist  -->
@@ -71,9 +67,7 @@
                                     {{ watchlist_portfolio }}
                                 </Badge>
                             </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                {{ watchlist_portfolio }} watchlists on Coingecko include {{ coin.symbol }}.
-                            </HoverCardContent>
+                            <HoverCardContent>{{ watchlist_portfolio }} watchlists on Coingecko include {{ coin.symbol }}.</HoverCardContent>
                         </HoverCard>
                     </CardDescription>
                 </div>
@@ -102,9 +96,7 @@
                                 </p>
                             </HoverCardTrigger>
                             
-                            <HoverCardContent class='hover-card-content'>
-                                Current coin price in &#65284;USD and price change percentage.
-                            </HoverCardContent>
+                            <HoverCardContent>Current coin price in &#65284;USD and price change percentage.</HoverCardContent>
                         </HoverCard>
                     </div>
                     
@@ -137,9 +129,7 @@
                                 </p>
                             </HoverCardTrigger>
                             
-                            <HoverCardContent class='hover-card-content'>
-                                Current coin price in BTC and {{ coin.symbol }}'s price change percentage compared to Bitcoin&#40;BTC&#41;.
-                            </HoverCardContent>
+                            <HoverCardContent>Current coin price in BTC and {{ coin.symbol }}'s price change percentage compared to Bitcoin&#40;BTC&#41;.</HoverCardContent>
                         </HoverCard>
                     </div>
                 </div>
@@ -207,19 +197,19 @@
     
     const price_change_percentage_1d = coingecko.value?.market_data?.price_change_percentage_24h;
     const price_change_percentage_1d_label = formatNumber(price_change_percentage_1d, {
-        style: 'percent', compact: true, decimals: 2,
+        style: 'percent',
     });
     const price_change_percentage_7d = coingecko.value?.market_data?.price_change_percentage_7d;
     const price_change_percentage_7d_label = formatNumber(price_change_percentage_7d, {
-        style: 'percent', compact: true, decimals: 2,
+        style: 'percent',
     });
     const price_change_percentage_30d = coingecko.value?.market_data?.price_change_percentage_30d;
     const price_change_percentage_30d_label = formatNumber(price_change_percentage_30d, {
-        style: 'percent', compact: true, decimals: 2,
+        style: 'percent',
     });
     const price_change_percentage_1y = coingecko.value?.market_data?.price_change_percentage_1y;
     const price_change_percentage_1y_label = formatNumber(price_change_percentage_1y, {
-        style: 'percent', compact: true, decimals: 2,
+        style: 'percent',
     });
     
     // Price in BTC
@@ -244,19 +234,19 @@
     
     const price_change_percentage_1d_btc = coingecko.value?.market_data?.price_change_percentage_24h_in_currency?.btc;
     const price_change_percentage_1d_btc_label = formatNumber(price_change_percentage_1d_btc, {
-        style: 'percent', compact: true, decimals: 2,
+        style: 'percent',
     });
     const price_change_percentage_7d_btc = coingecko.value?.market_data?.price_change_percentage_7d_in_currency?.btc;
     const price_change_percentage_7d_btc_label = formatNumber(price_change_percentage_7d_btc, {
-        style: 'percent', compact: true, decimals: 2,
+        style: 'percent',
     });
     const price_change_percentage_30d_btc = coingecko.value?.market_data?.price_change_percentage_30d_in_currency?.btc;
     const price_change_percentage_30d_btc_label = formatNumber(price_change_percentage_30d_btc, {
-        style: 'percent', compact: true, decimals: 2,
+        style: 'percent',
     });
     const price_change_percentage_1y_btc = coingecko.value?.market_data?.price_change_percentage_1y_in_currency?.btc;
     const price_change_percentage_1y_btc_label = formatNumber(price_change_percentage_1y_btc, {
-        style: 'percent', compact: true, decimals: 2,
+        style: 'percent',
     });
     
     const ico_description = coingecko.value?.ico_data?.short_desc;
