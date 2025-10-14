@@ -38,16 +38,12 @@
                     
                     <!--  ATH  -->
                     <TableRow v-if='ath_price'>
-                        <TableCell>
+                        <TableCell class='flex items-center gap-2'>
                             All-Time High
                             
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='info-icon'>
-                                    <NuxtIcon
-                                        name='radix-icons:info-circled'
-                                        size='15'
-                                        class='flex ml-2 bg-muted-foreground/50'
-                                    />
+                                <HoverCardTrigger>
+                                    <InfoIcon class='!mt-0' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>Coin price all-time high (ATH) in &#65284;USD and percentage change from ATH.</HoverCardContent>
                             </HoverCard>
@@ -85,16 +81,12 @@
                     
                     <!--  ATL  -->
                     <TableRow v-if='atl_price'>
-                        <TableCell>
+                        <TableCell class='flex items-center gap-2'>
                             All-Time Low
                             
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='info-icon'>
-                                    <NuxtIcon
-                                        name='radix-icons:info-circled'
-                                        size='15'
-                                        class='flex ml-2 bg-muted-foreground/50'
-                                    />
+                                <HoverCardTrigger>
+                                    <InfoIcon class='!mt-0' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>Coin price all-time low (ATL) in &#65284;USD and percentage change from ATL.</HoverCardContent>
                             </HoverCard>
@@ -133,16 +125,12 @@
                     
                     <!--  Markets  -->
                     <TableRow v-if='markets'>
-                        <TableCell>
+                        <TableCell class='flex items-center gap-2'>
                             Markets
                             
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='info-icon'>
-                                    <NuxtIcon
-                                        name='radix-icons:info-circled'
-                                        size='15'
-                                        class='flex ml-2 bg-muted-foreground/50'
-                                    />
+                                <HoverCardTrigger>
+                                    <InfoIcon class='!mt-0' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>The number of markets the coin is present at.</HoverCardContent>
                             </HoverCard>
@@ -152,16 +140,12 @@
                     
                     <!--  Pairs  -->
                     <TableRow v-if='pairs'>
-                        <TableCell>
+                        <TableCell class='flex items-center gap-2'>
                             Pairs
                             
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='info-icon'>
-                                    <NuxtIcon
-                                        name='radix-icons:info-circled'
-                                        size='15'
-                                        class='flex ml-2 bg-muted-foreground/50'
-                                    />
+                                <HoverCardTrigger>
+                                    <InfoIcon class='!mt-0' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>The number of unique markets the coin is present at.</HoverCardContent>
                             </HoverCard>
@@ -171,16 +155,12 @@
                     
                     <!--  Exchanges  -->
                     <TableRow v-if='exchanges'>
-                        <TableCell>
+                        <TableCell class='flex items-center gap-2'>
                             Exchanges
                             
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='info-icon'>
-                                    <NuxtIcon
-                                        name='radix-icons:info-circled'
-                                        size='15'
-                                        class='flex ml-2 bg-muted-foreground/50'
-                                    />
+                                <HoverCardTrigger>
+                                    <InfoIcon class='!mt-0' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>The number of exchanges the coin is present at.</HoverCardContent>
                             </HoverCard>
@@ -345,13 +325,15 @@
 
 <script setup>
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
+    import { formatNumber } from '~/utils/formatUtils.js';
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.ts';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Card } from '~/components/ui/card';
-    import { formatNumber } from '~/utils/formatUtils.js';
+    import InfoIcon from '~/components/InfoIcon.vue';
+    
     
     const props = defineProps({
         coin: {

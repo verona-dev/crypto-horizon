@@ -18,12 +18,8 @@
                         <h5 class='break-words text-center'>Market Cap</h5>
                         
                         <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='info-icon'>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='20'
-                                    class='flex bg-muted-foreground/50'
-                                />
+                            <HoverCardTrigger>
+                                <InfoIcon size='20' />
                             </HoverCardTrigger>
                             <HoverCardContent>
                                 The total market value of a cryptocurrency's circulating supply.
@@ -55,11 +51,7 @@
                         
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='20'
-                                    class='flex bg-muted-foreground/50'
-                                />
+                                <InfoIcon size='20' />
                             </HoverCardTrigger>
                             <HoverCardContent>
                                 Coin fully diluted valuation (FDV) in currency.
@@ -94,11 +86,7 @@
                             class='flex'
                         >
                             <HoverCardTrigger>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='20'
-                                    class='flex bg-muted-foreground/50'
-                                />
+                                <InfoIcon size='20' />
                             </HoverCardTrigger>
                             <HoverCardContent>A measure of how much of a cryptocurrency was traded in the last 24 hours.</HoverCardContent>
                         </HoverCard>
@@ -131,11 +119,7 @@
                             class='flex'
                         >
                             <HoverCardTrigger>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='20'
-                                    class='flex bg-muted-foreground/50'
-                                />
+                                <InfoIcon size='20' />
                             </HoverCardTrigger>
                             <HoverCardContent>The amount of coins that are circulating in the market and are in public hands. It is analogous to the flowing shares in the stock market.</HoverCardContent>
                         </HoverCard>
@@ -168,11 +152,7 @@
                             class='flex'
                         >
                             <HoverCardTrigger>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='20'
-                                    class='flex bg-muted-foreground/50'
-                                />
+                                <InfoIcon size='20' />
                             </HoverCardTrigger>
                             <HoverCardContent>
                                 Total supply = Total coins created - coins that have been burned (if any)
@@ -206,11 +186,7 @@
                             class='flex'
                         >
                             <HoverCardTrigger>
-                                <NuxtIcon
-                                    name='radix-icons:info-circled'
-                                    size='20'
-                                    class='flex bg-muted-foreground/50'
-                                />
+                                <InfoIcon size='20' />
                             </HoverCardTrigger>
                             <HoverCardContent>
                                 The best approximation of the maximum amount of coins that will exist in the forthcoming
@@ -229,12 +205,9 @@
 </template>
 
 <script setup>
-    import {
-        HoverCard,
-        HoverCardContent,
-        HoverCardTrigger,
-    } from '~/components/ui/hover-card';
     import { formatNumber } from '~/utils/formatUtils.js';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    import InfoIcon from '~/components/InfoIcon.vue';
     
     const props = defineProps({
         coin: {

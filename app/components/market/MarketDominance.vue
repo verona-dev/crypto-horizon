@@ -14,11 +14,8 @@
                 <h5>Bitcoin Dominance</h5>
                 
                 <HoverCard :openDelay='200'>
-                    <HoverCardTrigger class='info-icon flex items-center'>
-                        <NuxtIcon
-                            name='radix-icons:info-circled'
-                            size='15'
-                        />
+                    <HoverCardTrigger class='flex items-center'>
+                        <InfoIcon />
                     </HoverCardTrigger>
                     
                     <HoverCardContent class='flex-col gap-6'>
@@ -160,6 +157,8 @@
     import { Skeleton } from '~/components/ui/skeleton';
     import { Bar } from 'vue-chartjs';
     import { Table, TableBody, TableCell, TableRow, TableCaption } from '~/components/ui/table/index.js';
+    import InfoIcon from '~/components/InfoIcon.vue';
+    
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime);

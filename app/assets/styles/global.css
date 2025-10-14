@@ -130,10 +130,6 @@
         @apply truncate tracking-[0.4rem];
     }
     
-    .info-icon {
-        color: var(--primary);
-    }
-    
     .vertical-separator {
         background: var(--accent) !important;
         height: 50px;

@@ -7,7 +7,7 @@
             <!--  Contract ID  -->
             <!--
             <HoverCard :openDelay='200' v-if='contract_id'>
-                <HoverCardTrigger class='info-icon'>
+                <HoverCardTrigger>
                     <Badge class='badge h-12 w-24 text-base border-muted-foreground flex items-center justify-center' variant='outline'>{{ contract_id }}</Badge>
                 </HoverCardTrigger>
                 <HoverCardContent>
@@ -25,12 +25,8 @@
             <!--  Description  -->
             <div class='flex items-center gap-2 text-muted-foreground'>
                 <HoverCard :openDelay='200' v-if='description'>
-                    <HoverCardTrigger class='info-icon cursor-auto'>
-                        <NuxtIcon
-                            name='radix-icons:info-circled'
-                            size='15'
-                            class='flex bg-muted-foreground/50'
-                        />
+                    <HoverCardTrigger class='cursor-default'>
+                        <InfoIcon />
                     </HoverCardTrigger>
                     
                     <HoverCardContent class='flex flex-col !gap-3'>
@@ -74,7 +70,7 @@
                         
                         <!--  Trend  -->
                         <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='info-icon cursor-default'>
+                            <HoverCardTrigger class='cursor-default'>
                                 <div
                                     class='flex items-center gap-1'
                                     :class='getTextColorClass(floor_price_change_percentage_1d)'
@@ -154,9 +150,10 @@
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTextColorClass, getTrendIcon } from '~/utils/styleUtils.js';
+    // import { Badge } from '~/components/ui/badge/index.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
-    // import { Badge } from '~/components/ui/badge/index.js';
+    import InfoIcon from '~/components/InfoIcon.vue';
     
     const props = defineProps({
         nft: {

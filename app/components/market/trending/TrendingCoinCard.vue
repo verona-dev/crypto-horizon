@@ -52,12 +52,8 @@
                     <p class='text-sm'>{{ symbol }}</p>
                     
                     <HoverCard :openDelay='200' v-if='description'>
-                        <HoverCardTrigger class='info-icon cursor-default'>
-                            <NuxtIcon
-                                name='radix-icons:info-circled'
-                                size='15'
-                                class='flex bg-muted-foreground/50'
-                            />
+                        <HoverCardTrigger class='cursor-default'>
+                             <InfoIcon />
                         </HoverCardTrigger>
                         
                         <HoverCardContent class='flex flex-col !gap-3'>
@@ -74,7 +70,7 @@
                 
                 <!--  Trend  -->
                 <HoverCard :openDelay='200'>
-                    <HoverCardTrigger class='info-icon cursor-default'>
+                    <HoverCardTrigger class='cursor-default'>
                         <div
                             class='flex items-center gap-1'
                             :class='getTextColorClass(price_change_percentage_1d)'
@@ -133,11 +129,12 @@
 </template>
 
 <script setup>
-    import { Skeleton } from '~/components/ui/skeleton';
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Badge } from '~/components/ui/badge';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    import { Skeleton } from '~/components/ui/skeleton';
+    import InfoIcon from '~/components/InfoIcon.vue';
     
     const props = defineProps({
         coin: {
