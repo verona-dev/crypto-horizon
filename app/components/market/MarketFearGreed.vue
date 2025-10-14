@@ -140,7 +140,7 @@
         const circleY = -outerRadius - 5;
         ctx.fillStyle = 'white';
         // Dot bg
-        ctx.strokeStyle = '#1f2230'; // main.css from --card style
+        ctx.strokeStyle = '#1f2230'; // tailwind.css from --card style
         ctx.lineWidth = 8;
         
         ctx.beginPath();
