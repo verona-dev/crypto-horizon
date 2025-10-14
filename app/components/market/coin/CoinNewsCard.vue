@@ -1,31 +1,34 @@
 <template>
-    <Card class='coin-news-card h-fit xl:h-64 flex my-4 cursor-pointer' v-if='article'>
-        <NuxtLink class='h-full w-full p-4 flex' :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
-            <!--  Source image  -->
-            <CardHeader class='flex flex-row h-full w-fit'>
-                <NuxtImg
-                    :src='image_url'
-                    alt='article image'
-                    class='main-image rounded-md'
-                    :custom='true'
-                    v-slot='{ src, isLoaded, imgAttrs }'
-                    preload
-                >
-                    <img
-                        v-if='isLoaded'
-                        v-bind='imgAttrs'
-                        :src='src'
-                        alt='article image'
+    <Card class='coin-news-card h-fit my-4 flex cursor-pointer' v-if='article'>
+        <NuxtLink class='h-full w-full p-6 flex items-between' :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
+            <!--  Article image  -->
+            <CardHeader>
+                <div class="w-44 flex items-center">
+                    <NuxtImg
+                        :src="image_url"
+                        alt="article image"
+                        class="w-full rounded-lg object-cover"
+                        :custom="true"
+                        v-slot="{ src, isLoaded, imgAttrs }"
+                        preload
                     >
-                    
-                    <Skeleton
-                        v-else
-                        class='h-[200px] w-[200px]'
-                    />
-                </NuxtImg>
+                        <img
+                            v-if="isLoaded"
+                            v-bind="imgAttrs"
+                            :src="src"
+                            alt="article image"
+                        >
+                        <Skeleton
+                            v-else
+                            class="w-full h-full"
+                        />
+                    </NuxtImg>
+                </div>
+            
             </CardHeader>
             
-            <CardContent class='flex flex-col justify-around p-6'>
+            <!--  Content  -->
+            <CardContent class='flex flex-col justify-around p-4'>
                 <!--  Article Title + Categories  -->
                 <div class='flex flex-col gap-4'>
                     <CardTitle class='article-title text-left text-xl'>
@@ -135,13 +138,12 @@
     });
     
     const { article } = toRefs(props);
-    console.log(article.value);
     const guid = article.value?.GUID;
     const title = article.value?.TITLE;
     const image_url = article.value?.IMAGE_URL;
     const body = article.value?.BODY;
     const published_date = dayjs.unix(article.value?.PUBLISHED_ON).format('MMMM D, YYYY, h:mm A');
-    const published_date_from_now = computed(() => article.value?.PUBLISHED_ON && dayjs.unix(article.value?.PUBLISHED_ON).fromNow());
+    // const published_date_from_now = computed(() => article.value?.PUBLISHED_ON && dayjs.unix(article.value?.PUBLISHED_ON).fromNow());
     
     const article_author = computed(() => article.value?.AUTHORS);
     const article_author_label = computed(() => {
