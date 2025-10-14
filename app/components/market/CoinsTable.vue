@@ -1,6 +1,6 @@
 <template>
     <div class='mt-30 flex flex-col gap-12'>
-        <h3 class='tracking-[0.4rem] shadow-2xl'>Cryptocurrency Prices by Market Cap </h3>
+        <h3 class='tracking-widest'>Cryptocurrency Prices by Market Cap </h3>
         
         <MazTable
             :headers='[

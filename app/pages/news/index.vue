@@ -1,5 +1,5 @@
 <template>
-    <section class='news flex flex-col items-center px-12'>
+    <div class='news page flex flex-col items-center px-12'>
         <LoadingSpinner v-if='loading' />
         
         <div
@@ -16,7 +16,7 @@
                 />
             </div>
         </div>
-    </section>
+    </div>
 </template>
 
 <script setup>

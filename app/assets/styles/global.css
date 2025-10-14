@@ -62,11 +62,11 @@
 
 @layer components {
     h1 {
-        @apply text-6xl md:text-7xl 2xl:text-8xl tracking-tight;
+        @apply text-6xl md:text-7xl 2xl:text-8xl tracking-widest;
         font-family: 'Great', sans-serif;
         
         &.page-title {
-            @apply my-6 sm:my-10 xl:my-20 xl:h-24;
+            @apply my-6 sm:my-10 xl:mt-10 xl:mb-30 xl:h-2 tracking-widest;
             /*@apply my-10 xl:my-20 xl:h-24;*/
         }
     }
