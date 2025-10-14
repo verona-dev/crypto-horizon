@@ -35,7 +35,7 @@
                     <div class='categories-container flex flex-wrap'>
                         <Badge
                             v-for='category in categories.slice(0, 16)'
-                            class='mr-2 mb-2 py-1 px-3'
+                            class='mr-1.5 p-1.5 bg-primary-foreground text-green-shamrock border text-[11px] font-extralight tracking-widest'
                             variant='outline'
                         >
                             {{ category.NAME }}
@@ -47,19 +47,22 @@
                 <div class='flex items-start gap-12'>
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger class='flex items-center gap-4'>
-                            <Avatar class='h-8 w-8 rounded-full'>
+                            <!--  Avatar  -->
+                            <Avatar class='h-10 w-10 rounded-full'>
                                 <AvatarImage :src='source_avatar' alt='avatar' />
                                 <AvatarFallback class='rounded-full'>
                                     S
                                 </AvatarFallback>
                             </Avatar>
                             
-                            <div class='flex flex-col items-start text-sm'>
+                            <!--  Author  -->
+                            <div class='flex flex-col items-start text-sm gap-1'>
                                 <span>{{ article_author_label }}</span>
                                 <span class='text-muted-custom'>{{ source_name_label }}</span>
                             </div>
                         </HoverCardTrigger>
                         
+                        <!--  Source  -->
                         <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-10 !p-10 w-fit'>
                             <NuxtImg
                                 :src='source_avatar'
@@ -95,15 +98,20 @@
                         </HoverCardContent>
                     </HoverCard>
                     
-                    <HoverCard :openDelay='200'>
-                        <HoverCardTrigger class='flex gap-2 mt-1'>
+                    <div class='flex flex-col text-muted-custom gap-2 mt-1'>
+                        <!--  Publish date  -->
+                        <div :openDelay='200' class='flex items-center gap-2'>
                             <NuxtIcon name='iconoir:calendar' size='16px' />
-                            <span class='text-xs'>{{ published_date_from_now }}</span>
-                        </HoverCardTrigger>
-                        <HoverCardContent class='hover-card-content w-fit'>
-                            <span class='text-sm'>{{ published_date }}</span>
-                        </HoverCardContent>
-                    </HoverCard>
+                            <span class='text-xs'>{{ published_date }}</span>
+                        </div>
+                        
+                        <!--  Reading duration  -->
+                        <div v-if='show_reading_duration' class='flex items-center gap-2'>
+                            <NuxtIcon name='iconoir:timer' size='16' />
+                            <span class='text-xs'>{{ reading_duration }} min read</span>
+                        </div>
+                    </div>
+                
                 </div>
             </CardContent>
         </NuxtLink>
@@ -111,6 +119,7 @@
 </template>
 
 <script setup>
+    import { useReadingTime } from 'maz-ui/composables';
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
@@ -126,10 +135,11 @@
     });
     
     const { article } = toRefs(props);
-    
+    console.log(article.value);
     const guid = article.value?.GUID;
     const title = article.value?.TITLE;
     const image_url = article.value?.IMAGE_URL;
+    const body = article.value?.BODY;
     const published_date = dayjs.unix(article.value?.PUBLISHED_ON).format('MMMM D, YYYY, h:mm A');
     const published_date_from_now = computed(() => article.value?.PUBLISHED_ON && dayjs.unix(article.value?.PUBLISHED_ON).fromNow());
     
@@ -140,6 +150,15 @@
         return article_author.value;
     });
     const categories = article.value?.CATEGORY_DATA;
+    const show_reading_duration = computed(() => reading_duration.value > 0);
+    const reading_duration = computed(() => {
+        if(!body) return 0;
+        
+        const { duration } = useReadingTime({
+            content: body,
+        });
+        return duration.value;
+    });
     
     const source_name = article.value?.SOURCE_DATA?.NAME;
     const source_name_label = computed(() => source_name || 'Unknown source');
