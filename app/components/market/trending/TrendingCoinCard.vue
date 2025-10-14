@@ -8,7 +8,7 @@
             target='_blank'
         >
             <!--  Rank + Name  -->
-            <CardHeader class='!py-8 card-header flex flex-row justify-center items-center gap-3 border-b'>
+            <CardHeader class='h-24 card-header flex flex-row justify-center items-center gap-3 border-b'>
                 <Badge variant='outline'>{{ rank }}</Badge>
                 
                 <h6 class='name text-green-deco font-bold uppercase'>{{ name }}</h6>
