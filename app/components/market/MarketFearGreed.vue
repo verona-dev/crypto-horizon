@@ -22,7 +22,7 @@
                         />
                     </HoverCardTrigger>
                     
-                    <HoverCardContent class='hover-card-content flex-col gap-6'>
+                    <HoverCardContent class='flex-col gap-6'>
                     <span>
                         The CMC Fear and Greed Index is a proprietary tool developed by CoinMarketCap that measures
                         the prevailing sentiment in the cryptocurrency market.

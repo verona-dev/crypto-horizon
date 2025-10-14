@@ -28,12 +28,10 @@
                                     class='flex ml-2 mt-1'
                                 />
                             </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>
-                                    The total market value of a cryptocurrency's circulating supply.
-                                    It is analogous to the free-float capitalization in the stock market.
-                                    Market cap = Current price x Circulating supply.
-                                </span>
+                            <HoverCardContent>
+                                The total market value of a cryptocurrency's circulating supply.
+                                It is analogous to the free-float capitalization in the stock market.
+                                Market cap = Current price x Circulating supply.
                             </HoverCardContent>
                         </HoverCard>
                     </div>
@@ -69,12 +67,10 @@
                                     class='flex ml-2 mt-1'
                                 />
                             </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                    <span class='text-sm'>
-                                        Coin fully diluted valuation (FDV) in currency.
-                                        FDV and market cap of a crypto coin can be the same number when the total supply
-                                        of tokens is equal to the circulating supply of tokens.
-                                    </span>
+                            <HoverCardContent>
+                                Coin fully diluted valuation (FDV) in currency.
+                                FDV and market cap of a crypto coin can be the same number when the total supply
+                                of tokens is equal to the circulating supply of tokens.
                             </HoverCardContent>
                         </HoverCard>
                     </div>
@@ -110,9 +106,7 @@
                                     class='flex ml-2 mt-1'
                                 />
                             </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>A measure of how much of a cryptocurrency was traded in the last 24 hours.</span>
-                            </HoverCardContent>
+                            <HoverCardContent>A measure of how much of a cryptocurrency was traded in the last 24 hours.</HoverCardContent>
                         </HoverCard>
                     </div>
                     
@@ -149,11 +143,7 @@
                                     class='flex ml-2 mt-1'
                                 />
                             </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                            <span class='text-sm'>
-                                The amount of coins that are circulating in the market and are in public hands. It is analogous to the flowing shares in the stock market.
-                            </span>
-                            </HoverCardContent>
+                            <HoverCardContent>The amount of coins that are circulating in the market and are in public hands. It is analogous to the flowing shares in the stock market.</HoverCardContent>
                         </HoverCard>
                     </div>
                     
@@ -190,11 +180,9 @@
                                     class='flex ml-2 mt-1'
                                 />
                             </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                            <span class='text-sm'>
+                            <HoverCardContent>
                                 Total supply = Total coins created - coins that have been burned (if any)
                                 It is comparable to outstanding shares in the stock market.
-                            </span>
                             </HoverCardContent>
                         </HoverCard>
                     </div>
@@ -230,12 +218,11 @@
                                     class='flex ml-2 mt-1'
                                 />
                             </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                <span class='text-sm'>The best approximation of the maximum amount of coins that will exist in the forthcoming
-                                   lifespan of the cryptocurrency, minus any coins that have been verifiably burned. This is
-                                   also known as the theoretical max number of coins that can be minted, minus any coins
-                                   that have been verifiably burned.
-                                </span>
+                            <HoverCardContent>
+                                The best approximation of the maximum amount of coins that will exist in the forthcoming
+                                lifespan of the cryptocurrency, minus any coins that have been verifiably burned. This is
+                                also known as the theoretical max number of coins that can be minted, minus any coins
+                                that have been verifiably burned.
                             </HoverCardContent>
                         </HoverCard>
                     </div>

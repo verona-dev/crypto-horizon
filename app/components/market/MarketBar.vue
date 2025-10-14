@@ -36,9 +36,7 @@
                     </HoverCardTrigger>
                     
                     <!--  Ico Description -->
-                    <HoverCardContent class='hover-card-content'>
-                        Cryptocurrencies market cap change percentage in 24 hours in $USD
-                    </HoverCardContent>
+                    <HoverCardContent>Cryptocurrencies market cap change percentage in 24 hours in $USD.</HoverCardContent>
                 </HoverCard>
             </CardContent>
         </div>

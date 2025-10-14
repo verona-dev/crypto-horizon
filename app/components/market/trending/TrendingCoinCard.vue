@@ -61,8 +61,8 @@
                         </HoverCardTrigger>
                         
                         <HoverCardContent class='flex flex-col !gap-3'>
-                            <p class='text-xs'>{{ title }}</p>
-                            <p class='text-xs text-muted-foreground'>{{ description }}</p>
+                            <span>{{ title }}</span>
+                            <span class='text-muted-foreground'>{{ description }}</span>
                         </HoverCardContent>
                     </HoverCard>
                 </div>

@@ -33,9 +33,9 @@
                         />
                     </HoverCardTrigger>
                     
-                    <HoverCardContent class='!p-6 flex flex-col !gap-3'>
-                        <p class='text-xs'>{{ title }}</p>
-                        <p class='text-xs text-muted-foreground'>{{ description }}</p>
+                    <HoverCardContent class='flex flex-col !gap-3'>
+                        <span>{{ title }}</span>
+                        <span class='text-muted-foreground'>{{ description }}</span>
                     </HoverCardContent>
                 </HoverCard>
             </div>

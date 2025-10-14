@@ -49,9 +49,7 @@
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>
-                                    Coin price all-time high (ATH) in &#65284;USD and percentage change from ATH.
-                                </HoverCardContent>
+                                <HoverCardContent>Coin price all-time high (ATH) in &#65284;USD and percentage change from ATH.</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         
@@ -98,9 +96,7 @@
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>
-                                    <span>Coin price all-time low (ATL) in &#65284;USD and percentage change from ATL.</span>
-                                </HoverCardContent>
+                                <HoverCardContent>Coin price all-time low (ATL) in &#65284;USD and percentage change from ATL.</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         
@@ -148,9 +144,7 @@
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>
-                                    <span>The number of markets the coin is present at.</span>
-                                </HoverCardContent>
+                                <HoverCardContent>The number of markets the coin is present at.</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ markets }}</TableCell>
@@ -169,9 +163,7 @@
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>
-                                    <span>The number of unique markets the coin is present at.</span>
-                                </HoverCardContent>
+                                <HoverCardContent>The number of unique markets the coin is present at.</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ pairs }}</TableCell>
@@ -190,9 +182,7 @@
                                         class='flex ml-2'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>
-                                    <span>The number of exchanges the coin is present at.</span>
-                                </HoverCardContent>
+                                <HoverCardContent>The number of exchanges the coin is present at.</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ exchanges }}</TableCell>
@@ -266,9 +256,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent class='hover-card-content'>
-                                    <span>Github forks.</span>
-                                </HoverCardContent>
+                                <HoverCardContent>Github forks.</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_forks_label }}</TableCell>
@@ -287,9 +275,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent class='hover-card-content'>
-                                    <span>Github stars.</span>
-                                </HoverCardContent>
+                                <HoverCardContent>Github stars.</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_stars_label }}</TableCell>
@@ -308,9 +294,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent class='hover-card-content'>
-                                    <span>Github issues.</span>
-                                </HoverCardContent>
+                                <HoverCardContent>Github issues.</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_issues_label }}</TableCell>
@@ -329,9 +313,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent class='hover-card-content'>
-                                    <span>Github commits in the last 30 days.</span>
-                                </HoverCardContent>
+                                <HoverCardContent>Github commits in the last 30 days.</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_commits_label }}</TableCell>
@@ -350,9 +332,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent class='hover-card-content'>
-                                    <span>Github contributors.</span>
-                                </HoverCardContent>
+                                <HoverCardContent>Github contributors.</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_contributors_label }}</TableCell>

@@ -35,8 +35,7 @@
                 </div>
             </HoverCardTrigger>
             
-            <HoverCardContent class='hover-card-content'>
-                Community market sentiment is measured by tallying bullish and bearish votes from users            </HoverCardContent>
+            <HoverCardContent>Community market sentiment is measured by tallying bullish and bearish votes from users.</HoverCardContent>
         </HoverCard>
     </div>
 </template>

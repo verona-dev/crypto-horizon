@@ -40,9 +40,7 @@
                                 </Badge>
                             </HoverCardTrigger>
                             
-                            <HoverCardContent class='hover-card-content'>
-                                Ranked {{ coingecko.market_cap_rank }} by market cap out of all active cryptocurrencies listed on CoinGecko.
-                            </HoverCardContent>
+                            <HoverCardContent>Ranked {{ coingecko.market_cap_rank }} by market cap out of all active cryptocurrencies listed on CoinGecko.</HoverCardContent>
                         </HoverCard>
                         
                         <!-- Symbol  -->
@@ -53,9 +51,7 @@
                             </HoverCardTrigger>
                             
                             <!--  Ico Description -->
-                            <HoverCardContent v-if='ico_description' class='hover-card-content'>
-                                {{ ico_description }}.
-                            </HoverCardContent>
+                            <HoverCardContent v-if='ico_description'>{{ ico_description }}.</HoverCardContent>
                         </HoverCard>
                         
                         <!--  Portfolio watchlist  -->
@@ -71,9 +67,7 @@
                                     {{ watchlist_portfolio }}
                                 </Badge>
                             </HoverCardTrigger>
-                            <HoverCardContent class='hover-card-content'>
-                                {{ watchlist_portfolio }} watchlists on Coingecko include {{ coin.symbol }}.
-                            </HoverCardContent>
+                            <HoverCardContent>{{ watchlist_portfolio }} watchlists on Coingecko include {{ coin.symbol }}.</HoverCardContent>
                         </HoverCard>
                     </CardDescription>
                 </div>
@@ -102,9 +96,7 @@
                                 </p>
                             </HoverCardTrigger>
                             
-                            <HoverCardContent class='hover-card-content'>
-                                Current coin price in &#65284;USD and price change percentage.
-                            </HoverCardContent>
+                            <HoverCardContent>Current coin price in &#65284;USD and price change percentage.</HoverCardContent>
                         </HoverCard>
                     </div>
                     
@@ -137,9 +129,7 @@
                                 </p>
                             </HoverCardTrigger>
                             
-                            <HoverCardContent class='hover-card-content'>
-                                Current coin price in BTC and {{ coin.symbol }}'s price change percentage compared to Bitcoin&#40;BTC&#41;.
-                            </HoverCardContent>
+                            <HoverCardContent>Current coin price in BTC and {{ coin.symbol }}'s price change percentage compared to Bitcoin&#40;BTC&#41;.</HoverCardContent>
                         </HoverCard>
                     </div>
                 </div>
