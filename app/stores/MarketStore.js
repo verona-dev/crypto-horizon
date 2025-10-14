@@ -82,7 +82,10 @@ export const useMarketStore = defineStore('MarketStore', {
             this.loading = true;
             
             try {
-                const response = await useFetchCoingecko('coins/markets', options);
+                const response = await useFetchCoingecko('coins/markets', {
+                    vs_currency: 'usd',
+                    ...options,
+                });
                 
                 if(response) {
                     this.coins = [];
@@ -118,7 +121,8 @@ export const useMarketStore = defineStore('MarketStore', {
                         query: {
                             days: 1,
                             precision: 5,
-                        }
+                        },
+                        vs_currency: 'usd',
                     })
                 ]);
                 
@@ -166,7 +170,8 @@ export const useMarketStore = defineStore('MarketStore', {
                     query: {
                         days: this.coin.timeframe,
                         precision: 5,
-                    }
+                    },
+                    vs_currency: 'usd',
                 });
                 
                 if(response) {
