@@ -13,7 +13,6 @@ export const useMarketStore = defineStore('MarketStore', {
             livecoinwatch: {},
             symbol: '',
             chart: {},
-            timeframe: 1,
             ranges: [
                 {
                     name: 'Day',
