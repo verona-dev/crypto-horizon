@@ -17,7 +17,7 @@
                 <NuxtImg
                     :src='image_url'
                     alt='article image'
-                    class='main-image rounded-xl object-cover'
+                    class='rounded-xl object-cover'
                     :custom='true'
                     v-slot='{ src, isLoaded, imgAttrs }'
                     preload
@@ -75,7 +75,6 @@
                     <!--  Author  -->
                     <div class='flex flex-col items-start text-left text-sm'>
                         <span>by {{ article_author_label }}</span>
-                        
                         <span class='text-muted-custom'>{{ source_name_label }}</span>
                     </div>
                 </HoverCardTrigger>
