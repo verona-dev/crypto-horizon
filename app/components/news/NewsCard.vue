@@ -153,7 +153,6 @@
     const title = article.value?.TITLE;
     const image_url = article.value?.IMAGE_URL;
     const published_date = dayjs.unix(article.value?.PUBLISHED_ON).format('MMMM D, YYYY');
-    console.log(published_date);
     // const published_date_from_now = computed(() => article.value?.PUBLISHED_ON && dayjs.unix(article.value?.PUBLISHED_ON).fromNow());
     
     const article_author = computed(() => article.value?.AUTHORS);

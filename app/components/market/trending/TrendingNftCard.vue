@@ -8,7 +8,7 @@
             <!--
             <HoverCard :openDelay='200' v-if='contract_id'>
                 <HoverCardTrigger class='info-icon'>
-                    <Badge class='badge h-12 w-24 text-md border-muted-foreground flex items-center justify-center' variant='outline'>{{ contract_id }}</Badge>
+                    <Badge class='badge h-12 w-24 text-base border-muted-foreground flex items-center justify-center' variant='outline'>{{ contract_id }}</Badge>
                 </HoverCardTrigger>
                 <HoverCardContent>
                     <p class='text-xs'>Contract ID</p>
@@ -29,7 +29,7 @@
                         <NuxtIcon
                             name='radix-icons:info-circled'
                             size='15'
-                            class='flex text-muted-foreground'
+                            class='flex bg-muted-foreground/50'
                         />
                     </HoverCardTrigger>
                     

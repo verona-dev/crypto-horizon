@@ -56,7 +56,7 @@
                             <NuxtIcon
                                 name='radix-icons:info-circled'
                                 size='15'
-                                class='flex text-muted-foreground'
+                                class='flex bg-muted-foreground/50'
                             />
                         </HoverCardTrigger>
                         

@@ -14,18 +14,15 @@
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
-                    <div class='flex items-start'>
+                    <div class='flex items-center gap-2'>
                         <h5 class='break-words text-center'>Market Cap</h5>
                         
-                        <HoverCard
-                            :openDelay='200'
-                            class='flex'
-                        >
+                        <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='info-icon'>
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2 mt-1'
+                                    size='20'
+                                    class='flex bg-muted-foreground/50'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent>
@@ -53,18 +50,15 @@
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
-                    <div class='flex items-start'>
+                    <div class='flex items-center gap-2'>
                         <h5 class='break-words text-center'>Diluted Valuation</h5>
                         
-                        <HoverCard
-                            :openDelay='200'
-                            class='flex'
-                        >
+                        <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2 mt-1'
+                                    size='20'
+                                    class='flex bg-muted-foreground/50'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent>
@@ -92,7 +86,7 @@
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
-                    <div class='flex items-start'>
+                    <div class='flex items-center gap-2'>
                         <h5 class='break-words text-center'>Volume 24h</h5>
                         
                         <HoverCard
@@ -102,8 +96,8 @@
                             <HoverCardTrigger>
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2 mt-1'
+                                    size='20'
+                                    class='flex bg-muted-foreground/50'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent>A measure of how much of a cryptocurrency was traded in the last 24 hours.</HoverCardContent>
@@ -129,7 +123,7 @@
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
-                    <div class='flex items-start'>
+                    <div class='flex items-center gap-2'>
                         <h5 class='break-words text-center'>Circulating Supply</h5>
                         
                         <HoverCard
@@ -139,8 +133,8 @@
                             <HoverCardTrigger>
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2 mt-1'
+                                    size='20'
+                                    class='flex bg-muted-foreground/50'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent>The amount of coins that are circulating in the market and are in public hands. It is analogous to the flowing shares in the stock market.</HoverCardContent>
@@ -166,7 +160,7 @@
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
-                    <div class='flex items-start'>
+                    <div class='flex items-center gap-2'>
                         <h5 class='break-words text-center'>Total Supply</h5>
                         
                         <HoverCard
@@ -176,8 +170,8 @@
                             <HoverCardTrigger>
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2 mt-1'
+                                    size='20'
+                                    class='flex bg-muted-foreground/50'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent>
@@ -204,7 +198,7 @@
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
-                    <div class='flex items-start'>
+                    <div class='flex items-center gap-2'>
                         <h5 class='break-words text-center'>Max Supply</h5>
                         
                         <HoverCard
@@ -214,8 +208,8 @@
                             <HoverCardTrigger>
                                 <NuxtIcon
                                     name='radix-icons:info-circled'
-                                    size='25'
-                                    class='flex ml-2 mt-1'
+                                    size='20'
+                                    class='flex bg-muted-foreground/50'
                                 />
                             </HoverCardTrigger>
                             <HoverCardContent>

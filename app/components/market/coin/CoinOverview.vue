@@ -45,8 +45,8 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='20'
-                                        class='flex ml-2'
+                                        size='15'
+                                        class='flex ml-2 bg-muted-foreground/50'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent>Coin price all-time high (ATH) in &#65284;USD and percentage change from ATH.</HoverCardContent>
@@ -92,8 +92,8 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='20'
-                                        class='flex ml-2'
+                                        size='15'
+                                        class='flex ml-2 bg-muted-foreground/50'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent>Coin price all-time low (ATL) in &#65284;USD and percentage change from ATL.</HoverCardContent>
@@ -140,8 +140,8 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='20'
-                                        class='flex ml-2'
+                                        size='15'
+                                        class='flex ml-2 bg-muted-foreground/50'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent>The number of markets the coin is present at.</HoverCardContent>
@@ -159,8 +159,8 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='20'
-                                        class='flex ml-2'
+                                        size='15'
+                                        class='flex ml-2 bg-muted-foreground/50'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent>The number of unique markets the coin is present at.</HoverCardContent>
@@ -178,8 +178,8 @@
                                 <HoverCardTrigger class='info-icon'>
                                     <NuxtIcon
                                         name='radix-icons:info-circled'
-                                        size='20'
-                                        class='flex ml-2'
+                                        size='15'
+                                        class='flex ml-2 bg-muted-foreground/50'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent>The number of exchanges the coin is present at.</HoverCardContent>
