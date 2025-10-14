@@ -1,8 +1,19 @@
 <template>
-    <Card v-if='article' class='news-card w-[450px] py-0 gap-8'>
+    <Card v-if='article' class='news-card w-[450px] flex flex-col justify-around'>
         <!--  Article image + Title  -->
         <CardHeader class='p-4 gap-8'>
-            <div class='flex flex-col gap-3'>
+            <div class='flex flex-col gap-3 relative'>
+                <!--  Categories / Tags  -->
+                <div class='h-14 absolute top-2 left-0 px-2'>
+                    <Badge
+                        v-for='category in categories.slice(0, 4)'
+                        class='m-1.5 p-1.5 bg-primary-foreground text-green-shamrock border text-[11px] font-extralight tracking-widest'
+                        variant='outline'
+                    >
+                        {{ category.NAME }}
+                    </Badge>
+                </div>
+                
                 <NuxtImg
                     :src='image_url'
                     alt='article image'
@@ -104,22 +115,9 @@
                     </div>
                 </HoverCardContent>
             </HoverCard>
-            
-            <!--  Categories / Tags  -->
-            <!--
-                            <div class='categories-container px-6 mt-2'>
-                                <Badge
-                                    v-for='category in categories.slice(0, 4)'
-                                    class='mr-2 mb-2 py-1 px-3'
-                                    variant='outline'
-                                >
-                                    {{ category.NAME }}
-                                </Badge>
-                            </div>
-                            -->
         </CardContent>
         
-        <CardFooter class='flex justify-center'>
+        <CardFooter class='flex justify-center mt-10 mb-4'>
             <!--  Read more  -->
             <Button as-child variant='outline' class='read-more p-5'>
                 <NuxtLink
