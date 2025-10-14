@@ -171,7 +171,7 @@
     const floor_price = nft.value?.data?.floor_price;
     const floor_price_change_percentage_1d = nft.value?.data?.floor_price_in_usd_24h_percentage_change;
     const price_change_percentage_1d_label = formatNumber(floor_price_change_percentage_1d, {
-        style: 'percent', compact: true, decimals: 2,
+        style: 'percent',
     });
     const volume_24h = nft.value?.data?.h24_volume;
     const average_sale_price_24h = nft.value?.data?.h24_average_sale_price;

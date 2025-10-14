@@ -72,7 +72,7 @@
     }));
     const mcap_change = computed(() => globalMarket.value?.market_cap_change_percentage_24h_usd);
     const mcap_change_label = computed(() => formatNumber(mcap_change.value, {
-        style: 'percent', compact: true, decimals: 2
+        style: 'percent',
     }));
     
     const total_volume = computed(() => globalMarket.value?.total_volume?.usd);

@@ -20,7 +20,7 @@
                 </CardContent>
                 
                 <CardContent class='py-2'>
-                   {{ formatNumber(delta, { style: 'percent', truncate: true }) }}
+                   {{ formatNumber(delta, { style: 'percent' }) }}
                 </CardContent>
             </Card>
         </HoverCardTrigger>

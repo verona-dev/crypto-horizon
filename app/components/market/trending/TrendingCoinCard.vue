@@ -154,7 +154,7 @@
     const price_label = formatNumber(price);
     const price_change_percentage_1d = coin.value?.data?.price_change_percentage_24h?.usd;
     const price_change_percentage_1d_label = formatNumber(price_change_percentage_1d, {
-        style: 'percent', compact: true, decimals: 2,
+        style: 'percent',
     });
     const sparkline = coin.value?.data?.sparkline;
     const title = coin.value?.data?.content?.title;

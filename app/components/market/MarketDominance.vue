@@ -174,21 +174,21 @@
     
     const btc = computed(() => mcap_dominance.value?.btc);
     const btc_label = computed(() => formatNumber(btc.value , {
-        style: 'percent', decimals: 2,
+        style: 'percent',
     }));
     const eth = computed(() => mcap_dominance.value?.eth);
     const eth_label = computed(() => formatNumber(eth.value, {
-        style: 'percent', decimals: 2,
+        style: 'percent',
     }));
     const usdc = computed(() => mcap_dominance.value?.usdc);
     const usdt = computed(() => mcap_dominance.value?.usdt);
     const stablecoins = computed(() => usdc.value + usdt.value);
     const stablecoins_label = computed(() => formatNumber(stablecoins.value, {
-        style: 'percent', decimals: 2,
+        style: 'percent',
     }));
     const others_dominance = computed(() => (100 - btc.value - eth.value - stablecoins.value));
     const others_dominance_label = computed(() => formatNumber(others_dominance.value, {
-        style: 'percent', decimals: 2,
+        style: 'percent',
     }));
     
     const others_array = computed(() => Object.entries(mcap_dominance.value)
@@ -196,7 +196,7 @@
         .map(([key, value]) => ({
             name: key.toUpperCase(),
             value: formatNumber(value, {
-                style: 'percent', decimals: 2,
+                style: 'percent',
             })
         })));
     
@@ -205,7 +205,7 @@
         .map(([key, value]) => ({
             name: key.toUpperCase(),
             value: formatNumber(value, {
-                style: 'percent', decimals: 2,
+                style: 'percent',
             })
         })));
     

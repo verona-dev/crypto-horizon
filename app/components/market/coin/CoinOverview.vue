@@ -358,7 +358,7 @@
     const ath_date_label = dayjs(ath_date).format('MMM D, YYYY');
     const ath_change_percentage = coingecko.value?.market_data?.ath_change_percentage?.usd.toFixed(2);
     const ath_change_percentage_label = formatNumber(ath_change_percentage, {
-        style: 'percent', compact: true, decimals: 2,
+        style: 'percent',
     });
     
     const atl_price = formatNumber(coingecko.value?.market_data.atl?.usd);
@@ -367,7 +367,7 @@
     const atl_date_label = dayjs(atl_date).format('MMM D, YYYY');
     const atl_change_percentage = coingecko.value?.market_data?.atl_change_percentage?.usd;
     const atl_change_percentage_label = formatNumber(atl_change_percentage, {
-        style: 'percent', compact: true, decimals: 2,
+        style: 'percent',
     });
     
     const markets = livecoinwatch.value?.markets;
