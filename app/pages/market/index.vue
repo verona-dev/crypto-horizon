@@ -12,6 +12,7 @@
 </template>
 
 <script setup>
+    
     import MarketFearGreed from '~/components/market/MarketFearGreed.vue';
     import MarketDominance from '~/components/market/MarketDominance.vue';
     import CoinsTable from '~/components/market/CoinsTable.vue';
