@@ -79,6 +79,7 @@ export default defineNuxtConfig({
       '@nuxt/icon',
       'shadcn-nuxt',
       'nuxt-charts',
+      'motion-v/nuxt',
    ],
 
    nitro: {
