@@ -22,17 +22,6 @@
         <!--        <SleekLineCursor :trails='10' />-->
         
         <!--
-        <div class="absolute top-0 right-0 flex h-screen w-screen flex-col items-center justify-center">
-            <FallingStarsBg>
-                <div class="z-[1] flex items-center">
-                    <span class="text-6xl font-bold text-black dark:text-white">Inspira UI</span>
-                </div>
-            </FallingStarsBg>
-        </div>
-        -->
-        
-        
-        <!--
         <FluidCursor
             :densityDissipation='1.5'
             :pressureIterations='30'
