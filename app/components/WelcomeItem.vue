@@ -68,17 +68,18 @@
     .link-item {
         img {
             border-radius: 6px;
-            height: 250px;
+            height: 275px;
             object-fit: cover;
-            transition: all 150ms ease-out;
             width: 375px;
+            transition: all 450ms ease-out;
+            
         }
         
         &:hover {
-            transition: all 200ms ease;
             color: var(--foreground);
             
             img {
+                transition: all 300ms ease-out;
                 border-radius: 8px !important;
                 padding: 16px;
             }
@@ -90,8 +91,10 @@
         
         &:hover h2 {
             color: var(--primary);
-            //text-decoration: underline;
-            //text-underline-offset: 8px;
+            /*
+            text-decoration: underline;
+            text-underline-offset: 8px;
+            */
         }
     }
 </style>
