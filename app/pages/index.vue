@@ -11,26 +11,16 @@
         <div class='flex flex-wrap justify-center items-center gap-12 md:gap-20 2xl:gap-30'>
             <WelcomeItem
                 v-for='item in welcomeItems'
+                :item='item'
+                :key='item.title'
                 :title='item.title'
                 :src='item.src'
                 :alt='item.alt'
                 :to='item.to'
-                :key='item.title'
             />
         </div>
         
         <!--        <SleekLineCursor :trails='10' />-->
-        
-        <!--
-        <div class="absolute top-0 right-0 flex h-screen w-screen flex-col items-center justify-center">
-            <FallingStarsBg>
-                <div class="z-[1] flex items-center">
-                    <span class="text-6xl font-bold text-black dark:text-white">Inspira UI</span>
-                </div>
-            </FallingStarsBg>
-        </div>
-        -->
-        
         
         <!--
         <FluidCursor
@@ -50,24 +40,28 @@
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp',
             alt: 'market image',
             to: '/market',
+            anchor: 90,
         },
         {
             title: 'News',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545835/ai-generated-8517436_1920_vk0pnk.png',
             alt: 'news image',
             to: '/news',
+            anchor: 45,
         },
         {
             title: 'Defi',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195953/cyberpunk-bitcoin-illustration_jejcnb.webp',
             alt: 'defi image',
             to: '/defi',
+            anchor: 90,
         },
         {
             title: 'Learn',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755194748/andre-francois-mckenzie-uw3VwkDHiMI-unsplash_hs9t15.jpg',
             alt: 'learn image',
             to: '/learn',
+            anchor: 45,
         },
     ];
     
