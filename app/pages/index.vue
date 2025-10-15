@@ -1,8 +1,11 @@
 <template>
-    <div class='flex flex-col items-center gap-8 2xl:gap-32 px-20 pb-20 2xl:pb-10'>
+    <div class='flex flex-col items-center gap-8 2xl:gap-32 px-20 pb-20 2xl:pb-10 relative'>
+        <Meteors :count="30" />
+        
         <h1 class='mt-20 mb-20 2xl:mb-0 select-none break-words flex flex-col gap-3'>
             <span>Crypto</span>
             <span>Horizon</span>
+        
         </h1>
         
         <div class='flex flex-wrap justify-center items-center gap-12 md:gap-20 2xl:gap-30'>
@@ -15,10 +18,30 @@
                 :key='item.title'
             />
         </div>
+        
+        <!--        <SleekLineCursor :trails='10' />-->
+        
+        <!--
+        <div class="absolute top-0 right-0 flex h-screen w-screen flex-col items-center justify-center">
+            <FallingStarsBg>
+                <div class="z-[1] flex items-center">
+                    <span class="text-6xl font-bold text-black dark:text-white">Inspira UI</span>
+                </div>
+            </FallingStarsBg>
+        </div>
+        -->
+        
+        
+        <!--
+        <FluidCursor
+            :densityDissipation='1.5'
+            :pressureIterations='30'
+        />
+        -->
     </div>
 </template>
 
-<script setup>
+<script setup lang='ts'>
     import WelcomeItem from '~/components/WelcomeItem.vue';
     
     const welcomeItems = [
