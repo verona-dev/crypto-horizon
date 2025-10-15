@@ -52,6 +52,7 @@
         "nuxt-charts": "0.1.11",
         "pinia": "^3.0.2",
         "reka-ui": "2.3.0",
+        "simplex-noise": "4.0.3",
         "tailwindcss": "4.1.14",
         "tailwindcss-animate": "1.0.7",
         "vaul-vue": "0.4.1",
