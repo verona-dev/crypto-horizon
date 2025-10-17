@@ -2,10 +2,10 @@
     <NuxtLink
         :to='to'
         class='link-item w-[450px] flex flex-col items-center justify-center rounded-lg z-10 cursor-pointer'
-        @mouseenter='isHovered = true'
-        @mouseleave='isHovered = false'
     >
-        <div class='relative rounded-lg border border-muted flex items-center justify-center'>
+        <div
+            class='rounded-lg border border-muted flex items-center justify-center'
+        >
             <NuxtImg
                 :src='src'
                 :alt='alt'
@@ -16,9 +16,12 @@
                 <img
                     v-if='isLoaded'
                     v-bind='imgAttrs'
+                    class='!rounded-lg transition-all duration-150 ease-linear'
+                    :style='{ border: isHovered ? `1px solid var(--${border})` : "none" }'
                     :src='src'
                     :alt='alt'
-                    class='!rounded-lg'
+                    @mouseenter="isHovered = true"
+                    @mouseleave="isHovered = false"
                 >
                 
                 <Skeleton
@@ -26,19 +29,7 @@
                     class='h-[275px] w-[385px] !rounded-lg'
                 />
             </NuxtImg>
-            
-            <BorderBeam
-                v-show='isHovered'
-                :size='200'
-                :duration='15'
-                :border-width='3'
-                :anchor='anchor'
-                colorFrom='#1cd1a1'
-                colorTo='#f7931a'
-                class=''
-            />
         </div>
-        
         
         <h2 class='my-10'>{{ title }}</h2>
     </NuxtLink>
@@ -59,7 +50,7 @@
     const src = toRef(item.value?.src);
     const alt = toRef(item.value?.alt);
     const to = toRef(item.value?.to);
-    const anchor = toRef(item.value?.anchor);
+    const border = toRef(item.value?.border);
     
     const isHovered = ref(false);
 </script>
@@ -67,21 +58,22 @@
 <style scoped>
     .link-item {
         img {
+            border: 1px solid transparent;
             border-radius: 6px;
             height: 275px;
             object-fit: cover;
+            transition: all 200ms linear;
             width: 375px;
-            transition: all 450ms ease-out;
-            
         }
         
         &:hover {
             color: var(--foreground);
             
             img {
-                transition: all 300ms ease-out;
-                border-radius: 8px !important;
-                padding: 16px;
+                //transition: all 300ms ease-out;
+                //border-radius: 8px !important;
+                //border: 1px solid var(--green-shamrock);
+                padding: 12px;
             }
         }
         
