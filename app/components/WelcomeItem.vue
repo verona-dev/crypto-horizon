@@ -2,10 +2,10 @@
     <NuxtLink
         :to='to'
         class='link-item w-[450px] flex flex-col items-center justify-center rounded-lg z-10 cursor-pointer'
+        @mouseenter='isHovered = true'
+        @mouseleave='isHovered = false'
     >
-        <div
-            class='rounded-lg border border-muted flex items-center justify-center'
-        >
+        <div class='rounded-lg border border-muted flex items-center justify-center'>
             <NuxtImg
                 :src='src'
                 :alt='alt'
@@ -17,11 +17,9 @@
                     v-if='isLoaded'
                     v-bind='imgAttrs'
                     class='!rounded-lg transition-all duration-150 ease-linear'
-                    :style='{ border: isHovered ? `1px solid var(--${border})` : "none" }'
+                    :style='{ border: `1px solid var(--${color})`}'
                     :src='src'
                     :alt='alt'
-                    @mouseenter="isHovered = true"
-                    @mouseleave="isHovered = false"
                 >
                 
                 <Skeleton
@@ -31,7 +29,12 @@
             </NuxtImg>
         </div>
         
-        <h2 class='my-10'>{{ title }}</h2>
+        <h2
+            class='my-10'
+            :style='isHovered && { color: `var(--${color})` }'
+        >
+            {{ title }}
+        </h2>
     </NuxtLink>
 </template>
 
@@ -50,7 +53,7 @@
     const src = toRef(item.value?.src);
     const alt = toRef(item.value?.alt);
     const to = toRef(item.value?.to);
-    const border = toRef(item.value?.border);
+    const color = toRef(item.value?.color);
     
     const isHovered = ref(false);
 </script>
@@ -58,8 +61,6 @@
 <style scoped>
     .link-item {
         img {
-            border: 1px solid transparent;
-            border-radius: 6px;
             height: 275px;
             object-fit: cover;
             transition: all 200ms linear;
@@ -70,9 +71,6 @@
             color: var(--foreground);
             
             img {
-                //transition: all 300ms ease-out;
-                //border-radius: 8px !important;
-                //border: 1px solid var(--green-shamrock);
                 padding: 12px;
             }
         }
@@ -83,10 +81,6 @@
         
         &:hover h2 {
             color: var(--primary);
-            /*
-            text-decoration: underline;
-            text-underline-offset: 8px;
-            */
         }
     }
 </style>

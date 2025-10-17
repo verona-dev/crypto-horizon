@@ -40,28 +40,28 @@
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp',
             alt: 'market image',
             to: '/market',
-            border: 'green-shamrock',
+            color: 'green-shamrock',
         },
         {
             title: 'News',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1753545835/ai-generated-8517436_1920_vk0pnk.png',
             alt: 'news image',
             to: '/news',
-            border: 'orange-bitcoin',
+            color: 'orange-bitcoin',
         },
         {
             title: 'Defi',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1755195953/cyberpunk-bitcoin-illustration_jejcnb.webp',
             alt: 'defi image',
             to: '/defi',
-            border: 'sky',
+            color: 'sky',
         },
         {
             title: 'Learn',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1755194748/andre-francois-mckenzie-uw3VwkDHiMI-unsplash_hs9t15.jpg',
             alt: 'learn image',
             to: '/learn',
-            border: 'green-deco',
+            color: 'green-deco',
         },
     ];
     
