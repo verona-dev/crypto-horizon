@@ -5,7 +5,7 @@
         @mouseenter='isHovered = true'
         @mouseleave='isHovered = false'
     >
-        <div class='relative rounded-lg border border-muted flex items-center justify-center'>
+        <div class='rounded-lg border border-muted flex items-center justify-center'>
             <NuxtImg
                 :src='src'
                 :alt='alt'
@@ -16,9 +16,10 @@
                 <img
                     v-if='isLoaded'
                     v-bind='imgAttrs'
+                    class='!rounded-lg transition-all duration-150 ease-linear'
+                    :style='{ border: `1px solid var(--${color})`}'
                     :src='src'
                     :alt='alt'
-                    class='!rounded-lg'
                 >
                 
                 <Skeleton
@@ -26,21 +27,14 @@
                     class='h-[275px] w-[385px] !rounded-lg'
                 />
             </NuxtImg>
-            
-            <BorderBeam
-                v-show='isHovered'
-                :size='200'
-                :duration='15'
-                :border-width='3'
-                :anchor='anchor'
-                colorFrom='#1cd1a1'
-                colorTo='#f7931a'
-                class=''
-            />
         </div>
         
-        
-        <h2 class='my-10'>{{ title }}</h2>
+        <h2
+            class='my-10'
+            :style='isHovered && { color: `var(--${color})` }'
+        >
+            {{ title }}
+        </h2>
     </NuxtLink>
 </template>
 
@@ -59,7 +53,7 @@
     const src = toRef(item.value?.src);
     const alt = toRef(item.value?.alt);
     const to = toRef(item.value?.to);
-    const anchor = toRef(item.value?.anchor);
+    const color = toRef(item.value?.color);
     
     const isHovered = ref(false);
 </script>
@@ -67,21 +61,17 @@
 <style scoped>
     .link-item {
         img {
-            border-radius: 6px;
             height: 275px;
             object-fit: cover;
+            transition: all 200ms linear;
             width: 375px;
-            transition: all 450ms ease-out;
-            
         }
         
         &:hover {
             color: var(--foreground);
             
             img {
-                transition: all 300ms ease-out;
-                border-radius: 8px !important;
-                padding: 16px;
+                padding: 12px;
             }
         }
         
@@ -91,10 +81,6 @@
         
         &:hover h2 {
             color: var(--primary);
-            /*
-            text-decoration: underline;
-            text-underline-offset: 8px;
-            */
         }
     }
 </style>
