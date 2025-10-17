@@ -28,15 +28,6 @@
                 :to='item.to'
             />
         </div>
-        
-        <!--        <SleekLineCursor :trails='10' />-->
-        
-        <!--
-        <FluidCursor
-            :densityDissipation='1.5'
-            :pressureIterations='30'
-        />
-        -->
     </div>
 </template>
 
@@ -49,28 +40,28 @@
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp',
             alt: 'market image',
             to: '/market',
-            anchor: 90,
+            border: 'green-shamrock',
         },
         {
             title: 'News',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1753545835/ai-generated-8517436_1920_vk0pnk.png',
             alt: 'news image',
             to: '/news',
-            anchor: 45,
+            border: 'orange-bitcoin',
         },
         {
             title: 'Defi',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1755195953/cyberpunk-bitcoin-illustration_jejcnb.webp',
             alt: 'defi image',
             to: '/defi',
-            anchor: 90,
+            border: 'sky',
         },
         {
             title: 'Learn',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1755194748/andre-francois-mckenzie-uw3VwkDHiMI-unsplash_hs9t15.jpg',
             alt: 'learn image',
             to: '/learn',
-            anchor: 45,
+            border: 'green-deco',
         },
     ];
     
