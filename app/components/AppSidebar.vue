@@ -180,7 +180,7 @@
         
         <Separator />
         
-        <SidebarFooter class='m-2 h-16 flex items-center justify-center'>
+        <SidebarFooter class='h-20 flex items-center justify-center'>
             <NavUser :user="data.user" />
         </SidebarFooter>
         
