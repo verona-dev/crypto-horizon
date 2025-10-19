@@ -69,10 +69,6 @@
         
         &:hover {
             color: var(--foreground);
-            
-            img {
-                padding: 12px;
-            }
         }
         
         h2 {
