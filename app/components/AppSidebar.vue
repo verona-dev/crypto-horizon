@@ -1,16 +1,12 @@
 <script setup lang="ts">
     import {type SidebarProps, useSidebar} from '~/components/ui/sidebar'
-    import {
-        ChartCandlestick,
-        BookOpen,
-        Landmark,
-        GraduationCap,
-    } from 'lucide-vue-next'
+    import { ChartCandlestick, BookOpen, Landmark, GraduationCap } from 'lucide-vue-next'
     
     import NavMain from '../components/NavMain.vue'
     import NavUser from '../components/NavUser.vue'
     import NavLogo from '../components/NavLogo.vue'
     import SidebarToggle from '../components/SidebarToggle.vue'
+    import ColorMode from '~/components/ColorMode'
     
     import {
         Sidebar,
@@ -171,6 +167,10 @@
         <SidebarContent :class='{ "flex-initial" : isMobile }'>
             <NavMain :items="data.navMain" />
         </SidebarContent>
+        
+        <Separator />
+        
+        <ColorMode />
         
         <Separator />
         
