@@ -1,6 +1,6 @@
 <template>
     <div class='market page flex flex-col items-center justify-center gap-20'>
-        <Meteors :count="30" />
+        <Meteors v-if='dark_mode' :count="30" />
         
         <h1 class='page-title'>Crypto Market</h1>
         
@@ -22,6 +22,9 @@
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     const { getCmcFearAndGreed } = MarketStore;
+    
+    const colorMode = useColorMode();
+    const dark_mode = computed(() => colorMode.value === 'dark');
     
     onMounted(() => {
         getCmcFearAndGreed();
