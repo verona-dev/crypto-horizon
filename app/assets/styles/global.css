@@ -97,6 +97,9 @@
         @apply text-base;
     }
     
+    ul {
+        @apply flex justify-center w-full;
+    }
     
     p {
         @apply text-sm sm:text-base leading-5;
