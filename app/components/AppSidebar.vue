@@ -6,7 +6,7 @@
     import NavUser from '../components/NavUser.vue'
     import NavLogo from '../components/NavLogo.vue'
     import SidebarToggle from '../components/SidebarToggle.vue'
-    import ColorMode from '~/components/ColorMode'
+    import ColorMode from '~/components/ColorMode.vue'
     
     import {
         Sidebar,
