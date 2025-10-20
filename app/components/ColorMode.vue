@@ -1,5 +1,5 @@
 <template>
-    <SidebarMenu class=''>
+    <SidebarMenu>
         <SidebarMenuItem class='h-16 flex items-center justify-center'>
             <SidebarMenuButton
                 @click='toggleMode'
@@ -10,7 +10,13 @@
             >
                 <NuxtIcon
                     :name='active_mode.icon'
+                    :key='active_mode.icon'
                     class='h-5 w-5'
+                    :class='{
+                            "rounded-none": open,
+                            "light-animation": active_mode.value === "light",
+                            "dark-animation": active_mode.value === "dark"
+                        }'
                 />
             </SidebarMenuButton>
         </SidebarMenuItem>
@@ -37,3 +43,25 @@
         colorMode.preference = color_modes.value[next_index]?.value;
     };
 </script>
+
+<style scoped>
+    .light-animation {
+        animation: light-animation 0.25s forwards;
+    }
+    
+    .dark-animation {
+        animation: dark-animation 0.25s forwards;
+    }
+    
+    @keyframes light-animation {
+        from {
+            transform: rotate(90deg);
+        }
+    }
+    
+    @keyframes dark-animation {
+        from {
+            transform: rotate(-45deg);
+        }
+    }
+</style>
