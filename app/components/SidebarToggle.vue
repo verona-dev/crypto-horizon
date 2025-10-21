@@ -7,19 +7,17 @@
     const props = defineProps<{
         class?: HTMLAttributes["class"]
     }>()
+    import { Kbd, KbdGroup } from '~/components/ui/kbd';
     
     const { open, toggleSidebar, isMobile } = useSidebar()
     
-    const TooltipContent = {
-        render() {
-            return h('kbd', { class: 'flex select-none items-center gap-1 px-2 border'},
-                [
-                    h('span', { class: 'text-xl' }, '⌘'),
-                    h('span', 'E')
-                ]
-            );
-        }
-    };
+    const TooltipContent = () => {
+        return h(KbdGroup, { class: 'flex gap-2' }, [
+            h(Kbd, { class: 'border px-2' }, '⌘'),
+            h('span', { class: '' }, '+'),
+            h(Kbd, { class: 'text-xs border px-2' }, 'E')
+        ])
+    }
 </script>
 
 <template>
