@@ -42,9 +42,9 @@
     
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    const { getCoingeckoGlobalMarket } = MarketStore;
+    const { getGlobalMarket } = MarketStore;
     
     onMounted(() => {
-        getCoingeckoGlobalMarket();
+        getGlobalMarket();
     });
 </script>

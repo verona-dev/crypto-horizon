@@ -29,7 +29,7 @@ export const useMarketStore = defineStore('MarketStore', {
     }),
     
     actions: {
-        async getCoingeckoGlobalMarket() {
+        async getGlobalMarket() {
             this.loading = true;
             
             try {
