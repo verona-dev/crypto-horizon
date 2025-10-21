@@ -60,10 +60,10 @@
                     @click='toggleSidebar'
                 >
                     <NuxtIcon
-                        name='stash:burger-arrow-right-duotone'
+                        name='mynaui:sidebar'
                         data-sidebar='trigger'
                         data-slot='sidebar-trigger'
-                        :class='cn("h-8 w-8",props.class)'
+                        :class='cn("h-8 w-8 text-accent-foreground",props.class)'
                     >
                         <PanelLeft />
                         <span class='sr-only'>Toggle Menu</span>

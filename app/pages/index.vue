@@ -3,6 +3,7 @@
 <!--        <Meteors :count="30" />-->
         
         <ParticlesBg
+            v-if='dark_mode'
             class='absolute inset-0'
             :quantity='100'
             :ease='100'
@@ -33,6 +34,8 @@
 
 <script setup lang='ts'>
     import WelcomeItem from '~/components/WelcomeItem.vue';
+    const colorMode = useColorMode();
+    const dark_mode = computed(() => colorMode.value === 'dark');
     
     const welcomeItems = [
         {

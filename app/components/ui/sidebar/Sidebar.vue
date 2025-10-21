@@ -42,13 +42,16 @@ const { isMobile, state, openMobile, setOpenMobile, setOpen } = useSidebar()
     </SheetContent>
   </Sheet>
 
+    <!--
+    @mouseenter="setOpen(true)"
+    @mouseleave="setOpen(false)"
+    -->
   <div
     v-else class="group peer hidden md:block"
     :data-state="state"
     :data-collapsible="state === 'collapsed' ? collapsible : ''"
     :data-variant="variant"
     :data-side="side"
-    @mouseenter="setOpen(true)"
     @mouseleave="setOpen(false)"
   >
     <!-- This is what handles the sidebar gap on desktop  -->

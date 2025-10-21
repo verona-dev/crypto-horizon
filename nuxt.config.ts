@@ -21,8 +21,8 @@ export default defineNuxtConfig({
    ],
 
    colorMode: {
-      preference: 'dark', // default value of $colorMode.preference
-      fallback: 'base',
+      preference: 'system', // default value of $colorMode.preference
+      fallback: 'dark',
       hid: 'nuxt-color-mode-script',
       globalName: '__NUXT_COLOR_MODE__',
       classPrefix: '',
@@ -100,7 +100,7 @@ export default defineNuxtConfig({
       componentDir: './app/components/ui'
    },
 
-   ssr: true,
+   ssr: false,
 
    vite: {
       plugins: [

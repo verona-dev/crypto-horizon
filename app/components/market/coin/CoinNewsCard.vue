@@ -38,7 +38,7 @@
                     <div class='categories-container flex flex-wrap'>
                         <Badge
                             v-for='category in categories.slice(0, 16)'
-                            class='mr-1.5 p-1.5 bg-primary-foreground text-green-shamrock border text-[11px] font-extralight tracking-widest'
+                            class='mr-1.5 p-1.5 bg-transparent text-primary border text-[11px] font-extralight tracking-widest'
                             variant='outline'
                         >
                             {{ category.NAME }}

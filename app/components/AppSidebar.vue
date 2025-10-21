@@ -1,16 +1,12 @@
 <script setup lang="ts">
     import {type SidebarProps, useSidebar} from '~/components/ui/sidebar'
-    import {
-        ChartCandlestick,
-        BookOpen,
-        Landmark,
-        GraduationCap,
-    } from 'lucide-vue-next'
+    import { ChartCandlestick, BookOpen, Landmark, GraduationCap } from 'lucide-vue-next'
     
     import NavMain from '../components/NavMain.vue'
     import NavUser from '../components/NavUser.vue'
     import NavLogo from '../components/NavLogo.vue'
     import SidebarToggle from '../components/SidebarToggle.vue'
+    import ColorMode from '~/components/ColorMode.vue'
     
     import {
         Sidebar,
@@ -174,13 +170,17 @@
         
         <Separator />
         
+        <ColorMode />
+        
+        <Separator />
+        
         <div class='h-16 flex items-center'>
             <SidebarToggle />
         </div>
         
         <Separator />
         
-        <SidebarFooter class='m-2 h-16 flex items-center justify-center'>
+        <SidebarFooter class='h-20 flex items-center justify-center'>
             <NavUser :user="data.user" />
         </SidebarFooter>
         
