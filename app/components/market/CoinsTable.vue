@@ -101,10 +101,10 @@
     // State
     const { loading, coins } = storeToRefs(MarketStore);
     // Methods
-    const { getCoingeckoMarkets } = MarketStore;
+    const { getCoinsMarkets } = MarketStore;
     
     onMounted(() => {
-        getCoingeckoMarkets();
+        getCoinsMarkets();
     });
     
     // Pagination
