@@ -1,8 +1,7 @@
 <template>
     <SidebarMenu>
         <SidebarMenuItem class='h-16 flex items-center justify-center'>
-            <Button
-                ref='toggleRef'
+            <SidebarMenuButton
                 @click='toggleMode'
                 variant='outline'
                 :tooltip='active_mode.label'
@@ -10,6 +9,7 @@
                 :class='{ "rounded-none" :  open }'
             >
                 <NuxtIcon
+                    ref='toggleRef'
                     :name='active_mode.icon'
                     :key='active_mode.icon'
                     class='h-5 w-5'
@@ -19,27 +19,26 @@
                             "dark-animation": active_mode.value === "dark"
                         }'
                 />
-            </Button>
+            </SidebarMenuButton>
         </SidebarMenuItem>
     </SidebarMenu>
 
 </template>
 
 <script setup>
-    import {SidebarMenu, SidebarMenuItem} from '~/components/ui/sidebar';
+    import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '~/components/ui/sidebar';
     import { useSidebar } from './ui/sidebar/utils';
-    import { Button } from '~/components/ui/button';
     
     const { open } = useSidebar();
     const colorMode = useColorMode();
     const toggleRef = ref(null);
     
-    const active_mode = computed(() => color_modes.value.find(mode => mode.value === colorMode.value) || color_modes.value[0]);
-    
     const color_modes = computed(() => [
         { value: 'light', label: 'Toggle Dark mode', icon: 'radix-icons:moon' },
         { value: 'dark', label: 'Toggle Light mode', icon: 'radix-icons:sun' },
     ]);
+    
+    const active_mode = computed(() => color_modes.value.find(mode => mode.value === colorMode.value) || color_modes.value[0]);
     
     const toggleMode = async () => {
         if (!document.startViewTransition || !toggleRef.value) {
