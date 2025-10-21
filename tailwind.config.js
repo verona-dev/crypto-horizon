@@ -9,6 +9,7 @@ export default {
         "./error.vue",
         "./src/**/*.{html,js}"
     ],
+    darkMode: 'class',
     theme: {
         screens: {
             sm: '640px',
