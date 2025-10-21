@@ -12,7 +12,7 @@
                         value='price'
                         class='py-1.5 px-1.5 text-xs w-16'
                     >
-                       Price
+                        Price
                     </TabsTrigger>
                     
                     <TabsTrigger
@@ -91,6 +91,7 @@
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     import CoinSupply from '~/components/market/coin/CoinSupply.vue';
     import { Card } from '~/components/ui/card';
+    import { formatNumber } from '~/utils/formatUtils.js';
     
     import { Line } from 'vue-chartjs';
     import CustomLineChart from '~/utils/CustomLineChart.js';
@@ -100,6 +101,7 @@
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
     import { Spinner } from '~/components/ui/spinner/index.js';
+    import { storeToRefs } from 'pinia';
     const MarketStore = useMarketStore();
     
     // Methods
@@ -121,18 +123,16 @@
     const type = ref('price');
     
     // Range/Timeframe
-    const ranges = toRef(MarketStore.coin, 'ranges');
-    const current_range = computed(() => ranges.value?.find(range => range.timeframe === timeframe.value));
-    const timeframe = toRef(1);
+    const ranges = ref(coin.value.ranges);
     
-    watch(timeframe, async () => {
-        loading.value = true;
-        
-        await setTimeframe(timeframe.value);
-        await nextTick();
-        await getCoingeckoCoinChart();
-        
-        loading.value = false;
+    const timeframe = computed({
+        get() {
+            return coin.value.timeframe;
+        },
+        async set(value) {
+            setTimeframe(value);
+            await getCoingeckoCoinChart();
+        }
     });
     
     // Chart
@@ -254,16 +254,18 @@
                     maxTicksLimit: 7,
                     callback: function(value, index) {
                         const label = this.getLabelForValue(value);
+                        const current_range = ranges.value.find(range => range.timeframe === timeframe.value);
                         
-                        if(current_range.value.name === 'Day') {
-                            if(index === 0) {
-                                return dayjs(label).format('D. MMM');
+                        if(current_range) {
+                            if(current_range.name === 'Day') {
+                                if(index === 0) {
+                                    return dayjs(label).format('D. MMM');
+                                }
+                                return dayjs(label).minute(0).second(0).millisecond(0).format('HH:mm');
                             }
-                            return dayjs(label).minute(0).second(0).millisecond(0).format('HH:mm');
-                        }
-                        
-                        else if(current_range.value.name === 'Year') {
-                            return dayjs(label).format("MMM 'YY");
+                            else if(current_range.name === 'Year') {
+                                return dayjs(label).format("MMM 'YY");
+                            }
                         }
                         
                         return dayjs(label).format('D. MMM');
