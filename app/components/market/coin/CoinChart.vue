@@ -107,7 +107,7 @@
     // Methods
     const {
         setChartTimeframe,
-        getCoingeckoCoinChart,
+        getCoinChart,
     } = MarketStore;
     
     const props = defineProps({
@@ -131,7 +131,7 @@
         },
         async set(value) {
             setChartTimeframe(value);
-            await getCoingeckoCoinChart();
+            await getCoinChart();
         }
     });
     

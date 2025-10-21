@@ -146,7 +146,7 @@ export const useMarketStore = defineStore('MarketStore', {
             this.coin.timeframe = timeframe;
         },
         
-        async getCoingeckoCoinChart() {
+        async getCoinChart() {
             const id = this.coin.coingecko.id;
             
             try {
