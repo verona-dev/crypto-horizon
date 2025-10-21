@@ -100,7 +100,7 @@ export default defineNuxtConfig({
       componentDir: './app/components/ui'
    },
 
-   ssr: true,
+   ssr: false,
 
    vite: {
       plugins: [
