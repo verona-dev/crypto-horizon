@@ -33,7 +33,9 @@ export const useMarketStore = defineStore('MarketStore', {
             this.loading = true;
             
             try {
-                const response = await useFetchCoingecko('global');
+                const response = await useFetchCoingecko('global', {
+                    params: { vs_currency: 'usd' },
+                });
                 
                 if(response && response.data) {
                     this.globalMarket = response.data;
@@ -62,13 +64,16 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getCoinsMarkets(options) {
+        async getCoinsMarkets(options, param) {
+            const table = param === 'table';
             this.loading = true;
             
             try {
                 const response = await useFetchCoingecko('coins/markets', {
-                    vs_currency: 'usd',
-                    ...options,
+                    params: {
+                        vs_currency: 'usd',
+                        ...options,
+                    },
                 });
                 
                 if(response) {
@@ -106,7 +111,7 @@ export const useMarketStore = defineStore('MarketStore', {
                             days: 1,
                             precision: 5,
                         },
-                        vs_currency: 'usd',
+                        params: { vs_currency: 'usd' },
                     })
                 ]);
                 
@@ -155,7 +160,7 @@ export const useMarketStore = defineStore('MarketStore', {
                         days: this.coin.timeframe,
                         precision: 5,
                     },
-                    vs_currency: 'usd',
+                    params: { vs_currency: 'usd' },
                 });
                 
                 if(response) {
