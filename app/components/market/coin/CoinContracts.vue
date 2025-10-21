@@ -162,7 +162,10 @@
     // coin list with market data
     onMounted(async() => {
         platforms_summary.value = await getCoinListSummary({
-            query: { ids: platforms_list.value }
+            params: {
+                vs_currency: 'usd',
+                ids: platforms_list.value
+            }
         });
     });
 </script>
