@@ -14,7 +14,7 @@ export const useMarketStore = defineStore('MarketStore', {
             symbol: '',
             chart: {},
             timeframe: 1,
-            ranges: [
+            timeframes: [
                 { name: 'Day', label: '1d', timeframe: 1 },
                 { name: 'Week', label: '7d', timeframe: 7 },
                 { name: 'Month', label: '30d', timeframe: 30 },
@@ -142,7 +142,7 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        setTimeframe(timeframe) {
+        setChartTimeframe(timeframe) {
             this.coin.timeframe = timeframe;
         },
         
@@ -206,8 +206,8 @@ export const useMarketStore = defineStore('MarketStore', {
     },
     
     getters: {
-        getRange() {
-            return this.coin.ranges.find(range => range.timeframe === this.coin.timeframe);
+        getTimeframe() {
+            return this.coin.timeframes.find(range => range.timeframe === this.coin.timeframe);
         },
     }
 });

@@ -41,16 +41,16 @@
                 </TabsList>
             </Tabs>
             
-            <!--  Range  -->
+            <!--  Timeframe  -->
             <Tabs v-model='timeframe'>
                 <TabsList>
                     <TabsTrigger
-                        v-for='range in ranges'
-                        :key='range.timeframe'
-                        :value='range.timeframe'
+                        v-for='interval in timeframes'
+                        :key='interval.timeframe'
+                        :value='interval.timeframe'
                         class='py-1.5 px-1.5 text-xs w-10'
                     >
-                        {{ range.label.toUpperCase() }}
+                        {{ interval.label.toUpperCase() }}
                     </TabsTrigger>
                 </TabsList>
             </Tabs>
@@ -106,7 +106,7 @@
     
     // Methods
     const {
-        setTimeframe,
+        setChartTimeframe,
         getCoingeckoCoinChart,
     } = MarketStore;
     
@@ -118,20 +118,19 @@
     });
     
     const { coin } = toRefs(props);
-    const { getRange } = storeToRefs(MarketStore);
+    const { getTimeframe } = storeToRefs(MarketStore);
     
     // Tabs
     const type = ref('price');
     
-    // Range/Timeframe
-    const ranges = ref(coin.value.ranges);
-    
+    // Timeframe
+    const timeframes = ref(coin.value.timeframes);
     const timeframe = computed({
         get() {
             return coin.value.timeframe;
         },
         async set(value) {
-            setTimeframe(value);
+            setChartTimeframe(value);
             await getCoingeckoCoinChart();
         }
     });
@@ -255,7 +254,7 @@
                     maxTicksLimit: 7,
                     callback: function(value, index) {
                         const label = this.getLabelForValue(value);
-                        const current_label = computed(() => getRange.value?.label);
+                        const current_label = computed(() => getTimeframe.value?.label);
                         
                         if(current_label.value === '1d') {
                             if(index === 0) {

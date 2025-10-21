@@ -152,7 +152,7 @@
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    const { getRange } = storeToRefs(MarketStore);
+    const { getTimeframe } = storeToRefs(MarketStore);
     
     // Router
     import { useRouter } from 'vue-router';
@@ -173,7 +173,7 @@
     });
     const not_bitcoin = coin.value?.symbol !== 'BTC';
     const timeframe = computed(() => coin.value.timeframe);
-    const timeframe_label = computed(() => getRange.value?.label);
+    const timeframe_label = computed(() => getTimeframe.value?.label);
     
     // Price in USD
     const current_price = coingecko.value?.market_data?.current_price?.usd;
