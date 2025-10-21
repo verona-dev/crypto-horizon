@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-    import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '~/components/ui/sidebar';
+    import {SidebarMenu, SidebarMenuItem} from '~/components/ui/sidebar';
     import { useSidebar } from './ui/sidebar/utils';
     import { Button } from '~/components/ui/button';
     
