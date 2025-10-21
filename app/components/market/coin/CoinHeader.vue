@@ -173,7 +173,7 @@
     });
     const not_bitcoin = coin.value?.symbol !== 'BTC';
     const range_label = computed(() => getRange.value?.label);
-    const range_timeframe = computed(() => getRange.value?.timeframe);
+    const range_timeframe = ref(1);
     
     // Price in USD
     const current_price = coingecko.value?.market_data?.current_price?.usd;
