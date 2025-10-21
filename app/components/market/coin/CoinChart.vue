@@ -118,6 +118,7 @@
     });
     
     const { coin } = toRefs(props);
+    const { getRange } = storeToRefs(MarketStore);
     
     // Tabs
     const type = ref('price');
@@ -254,18 +255,16 @@
                     maxTicksLimit: 7,
                     callback: function(value, index) {
                         const label = this.getLabelForValue(value);
-                        const current_range = ranges.value.find(range => range.timeframe === timeframe.value);
+                        const current_label = computed(() => getRange.value?.label);
                         
-                        if(current_range) {
-                            if(current_range.name === 'Day') {
-                                if(index === 0) {
-                                    return dayjs(label).format('D. MMM');
-                                }
-                                return dayjs(label).minute(0).second(0).millisecond(0).format('HH:mm');
+                        if(current_label.value === '1d') {
+                            if(index === 0) {
+                                return dayjs(label).format('D. MMM');
                             }
-                            else if(current_range.name === 'Year') {
-                                return dayjs(label).format("MMM 'YY");
-                            }
+                            return dayjs(label).minute(0).second(0).millisecond(0).format('HH:mm');
+                        }
+                        else if(current_label.value === '1y') {
+                            return dayjs(label).format("MMM 'YY");
                         }
                         
                         return dayjs(label).format('D. MMM');
