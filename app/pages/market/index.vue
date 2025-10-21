@@ -21,12 +21,12 @@
     
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    const { getCmcFearAndGreed } = MarketStore;
+    const { getFearAndGreed } = MarketStore;
     
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     
     onMounted(() => {
-        getCmcFearAndGreed();
+        getFearAndGreed();
     });
 </script>

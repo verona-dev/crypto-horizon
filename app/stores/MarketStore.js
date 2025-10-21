@@ -46,7 +46,7 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         
         
-        async getCmcFearAndGreed() {
+        async getFearAndGreed() {
             this.loading = true;
             
             try {
