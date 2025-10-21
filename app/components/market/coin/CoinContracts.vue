@@ -110,7 +110,7 @@
     const MarketStore = useMarketStore();
     
     const { coin } = toRefs(props);
-    const { getCoingeckoCoinListSummary } = MarketStore;
+    const { getCoinListSummary } = MarketStore;
     const open = ref(false);
     const platforms_list = ref([]);
     const platforms_summary = ref([]);
@@ -161,7 +161,7 @@
     
     // coin list with market data
     onMounted(async() => {
-        platforms_summary.value = await getCoingeckoCoinListSummary({
+        platforms_summary.value = await getCoinListSummary({
             query: { ids: platforms_list.value }
         });
     });

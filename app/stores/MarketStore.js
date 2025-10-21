@@ -166,7 +166,7 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getCoingeckoCoinListSummary(options) {
+        async getCoinListSummary(options) {
             try {
                 return await useFetchCoingecko('coins/markets', options);
             }
