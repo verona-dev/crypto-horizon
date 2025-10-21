@@ -33,20 +33,16 @@
                         { "justify-between" : !isMobile },
                     ]'
                 >
-                    <template v-if='isMobile'>
-                        <span class='text-xl truncate'>Close Menu</span>
-                    </template>
+                    <span class='text-xs truncate'>Close Menu</span>
                     
                     <template v-if='!isMobile'>
-                        <span class='text-xs truncate'>Close Menu</span>
+                        <KbdGroup>
+                            <Kbd>⌘</Kbd>
+                            <span>+</span>
+                            <Kbd>E</Kbd>
+                        </KbdGroup>
                     </template>
-                    
-                    <kbd
-                        v-if='!isMobile'
-                        class='text-foreground border-ring pointer-events-none inline-flex select-none items-center gap-1 rounded border px-3 py-1 text-[14px] opacity-100'
-                    >
-                        <span class='text-xl'>⌘</span>E
-                    </kbd>
+                
                 </SidebarMenuButton>
             </template>
             
