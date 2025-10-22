@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import {type SidebarProps, useSidebar} from '~/components/ui/sidebar'
     import { House, ChartCandlestick, BookOpen, Landmark, GraduationCap } from 'lucide-vue-next'
-    
+    import { NuxtIcon } from "#components";
     import NavMain from '../components/NavMain.vue'
     import NavUser from '../components/NavUser.vue'
     import SidebarToggle from '../components/SidebarToggle.vue'
@@ -44,6 +44,10 @@
             avatar: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757002350/cartoon-woman-wearing-glasses_j0t0qt.jpg',
         },
         navMain: [
+            {
+                title: 'Launch Pad',
+                url: '/',
+            },
             {
                 title: 'Market',
                 url: '/market',
