@@ -1,10 +1,9 @@
 <script setup lang="ts">
     import {type SidebarProps, useSidebar} from '~/components/ui/sidebar'
-    import { ChartCandlestick, BookOpen, Landmark, GraduationCap } from 'lucide-vue-next'
+    import { House, ChartCandlestick, BookOpen, Landmark, GraduationCap } from 'lucide-vue-next'
     
     import NavMain from '../components/NavMain.vue'
     import NavUser from '../components/NavUser.vue'
-    import NavLogo from '../components/NavLogo.vue'
     import SidebarToggle from '../components/SidebarToggle.vue'
     import ColorMode from '~/components/ColorMode.vue'
     
@@ -45,6 +44,11 @@
             avatar: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757002350/cartoon-woman-wearing-glasses_j0t0qt.jpg',
         },
         navMain: [
+            {
+                title: 'Launch Pad',
+                url: '/',
+                icon: House,
+            },
             {
                 title: 'Market',
                 url: '/market',
@@ -156,10 +160,14 @@
 
 <template>
     <Sidebar v-bind='props' class='z-50'>
-        <SidebarHeader>
+        <SidebarHeader class='h-16 flex items-center justify-center'>
+            <SidebarToggle />
+            
+            <!--
             <div class='h-24 flex items-center justify-center'>
                 <NavLogo />
             </div>
+            -->
         </SidebarHeader>
         
         <Separator />
@@ -171,12 +179,6 @@
         <Separator />
         
         <ColorMode />
-        
-        <Separator />
-        
-        <div class='h-16 flex items-center'>
-            <SidebarToggle />
-        </div>
         
         <Separator />
         
