@@ -102,18 +102,20 @@
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
     import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
+    import { storeToRefs } from 'pinia';
     
     const props = defineProps({
         coin: Object,
         required: true,
     });
     const MarketStore = useMarketStore();
+    const { getCoinsMarkets } = MarketStore;
     
     const { coin } = toRefs(props);
-    const { getCoinListSummary } = MarketStore;
+    const { platformsSummary } = storeToRefs(MarketStore);
     const open = ref(false);
     const platforms_list = ref([]);
-    const platforms_summary = ref([]);
+    const platforms_summary = computed(() => platformsSummary.value);
     const disable_dropdown = computed(() => platforms_list.value?.length === 1);
     
     const platforms = Object.entries(coin.value?.platforms)
@@ -126,14 +128,16 @@
     platforms.forEach(contract => platforms_list.value.push(contract.name));
     
     const platformImageMap = computed(() => {
+        if (!platforms_summary.value) return [];
         return platforms_list.value.map(name => {
-            const platformData = platforms_summary.value.find(obj => obj.id === name);
+            const platformData = platforms_summary.value?.find(obj => obj.id === name);
             return {
                 name,
                 image: platformData?.image || null,
             };
         });
     });
+
     
     const onCopyLink = contract => {
         navigator.clipboard.writeText(contract.value);
@@ -161,11 +165,13 @@
     
     // coin list with market data
     onMounted(async() => {
-        platforms_summary.value = await getCoinListSummary({
-            params: {
-                vs_currency: 'usd',
-                ids: platforms_list.value
-            }
-        });
+        if (platforms_summary.value?.length) {
+            await getCoinsMarkets({
+                params: {
+                    vs_currency: 'usd',
+                    ids: platforms_list.value,
+                },
+            }, 'list');
+        }
     });
 </script>
