@@ -1,6 +1,6 @@
 <template>
     <SidebarMenu>
-        <SidebarMenuItem class='h-16 flex items-center justify-center'>
+        <SidebarMenuItem ref='toggleRef' class='h-16 flex items-center justify-center'>
             <SidebarMenuButton
                 @click='toggleMode'
                 variant='outline'
@@ -9,15 +9,10 @@
                 :class='{ "rounded-none" :  open }'
             >
                 <NuxtIcon
-                    ref='toggleRef'
                     :name='active_mode.icon'
                     :key='active_mode.icon'
-                    class='h-5 w-5'
-                    :class='{
-                            "rounded-none": open,
-                            "light-animation": active_mode.value === "light",
-                            "dark-animation": active_mode.value === "dark"
-                        }'
+                    class='h-5 w-5 animation'
+                    :class='{ "rounded-none": open }'
                 />
             </SidebarMenuButton>
         </SidebarMenuItem>
@@ -56,7 +51,7 @@
         
         const transition = document.startViewTransition(async () => {
             // delay added because of Firefox glitch
-            await new Promise(resolve => setTimeout(resolve, 150));
+            await new Promise(resolve => setTimeout(resolve, 200));
             
             const current_index = color_modes.value.findIndex(
                 (mode) => mode.value === colorMode.preference
@@ -75,7 +70,7 @@
                 ],
             },
             {
-                duration: 500,
+                duration: 800,
                 easing: 'ease-in-out',
                 pseudoElement: '::view-transition-new(root)',
             }
@@ -84,24 +79,13 @@
 </script>
 
 <style scoped>
-    .light-animation {
-        animation: light-animation 0.25s forwards;
+    .animation {
+        animation: rotation 0.3s forwards;
     }
     
-    .dark-animation {
-        
-        animation: dark-animation 0.25s forwards;
-    }
-    
-    @keyframes light-animation {
+    @keyframes rotation {
         from {
-            transform: rotate(90deg);
-        }
-    }
-    
-    @keyframes dark-animation {
-        from {
-            transform: rotate(-45deg);
+            transform: rotate(-60deg);
         }
     }
 </style>
