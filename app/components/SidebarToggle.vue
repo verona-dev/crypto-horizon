@@ -12,36 +12,41 @@
     const { open, toggleSidebar, isMobile } = useSidebar()
     
     const TooltipContent = () => {
-        return h(KbdGroup, { class: 'flex gap-2' }, [
-            h(Kbd, { class: 'border px-2' }, '⌘'),
+        return h(KbdGroup, { class: '' }, [
+            h(Kbd, { class: 'border rounded-md px-2 pt-0.5' }, '⌘'),
             h('span', { class: '' }, '+'),
-            h(Kbd, { class: 'text-xs border px-2' }, 'E')
+            h(Kbd, { class: 'border rounded-md px-2 pt-0.5' }, 'E')
         ])
     }
 </script>
 
 <template>
-    <SidebarMenu :class='{ "flex items-center justify-center" : !open }'>
-        <SidebarMenuItem :class=' { "w-full" : isMobile }'>
+    <SidebarMenu class=''>
+        <SidebarMenuItem class=''>
             <!--  Open  -->
             <template v-if='open || isMobile'>
                 <SidebarMenuButton
                     @click='toggleSidebar'
-                    class='w-full flex items-center justify-center rounded-none h-16'
+                    class='h-full'
                     :class='[
-                        { "px-6" : open },
+                        { "" : open },
                         { "justify-between" : !isMobile },
                     ]'
                 >
-                    <span class='text-xs truncate'>Close Menu</span>
+                    <div class='ml-2 great-font whitespace-normal'>
+                        <h5>Crypto</h5>
+                        <h5 class='ml-5'>Horizon</h5>
+                    </div>
                     
-                    <template v-if='!isMobile'>
-                        <KbdGroup>
-                            <Kbd>⌘</Kbd>
-                            <span>+</span>
-                            <Kbd>E</Kbd>
-                        </KbdGroup>
-                    </template>
+                    <NuxtIcon
+                        name='mynaui:sidebar'
+                        data-sidebar='trigger'
+                        data-slot='sidebar-trigger'
+                        :class='cn("h-4 w-4 text-accent-foreground",props.class)'
+                    >
+                        <PanelLeft />
+                        <span class='sr-only'>Toggle Menu</span>
+                    </NuxtIcon>
                 
                 </SidebarMenuButton>
             </template>
@@ -57,7 +62,7 @@
                         name='mynaui:sidebar'
                         data-sidebar='trigger'
                         data-slot='sidebar-trigger'
-                        :class='cn("h-8 w-8 text-accent-foreground",props.class)'
+                        :class='cn("h-4 w-4 text-accent-foreground",props.class)'
                     >
                         <PanelLeft />
                         <span class='sr-only'>Toggle Menu</span>
