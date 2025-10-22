@@ -30,6 +30,8 @@
                 { "flex items-center": !open && !isMobile },
             ]'
         >
+            <NavLogo />
+            
             <Collapsible
                 v-for='item in items'
                 :key='item.title'
