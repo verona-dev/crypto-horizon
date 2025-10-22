@@ -3,7 +3,6 @@
     import { ChevronRight } from "lucide-vue-next"
     import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '~/components/ui/collapsible';
     import {SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, useSidebar } from '~/components/ui/sidebar'
-    import NavLogo from '~/components/NavLogo.vue'
     
     defineProps<{
         items: {
