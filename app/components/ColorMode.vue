@@ -56,7 +56,7 @@
         
         const transition = document.startViewTransition(async () => {
             // delay added because of Firefox glitch
-            await new Promise(resolve => setTimeout(resolve, 100));
+            await new Promise(resolve => setTimeout(resolve, 150));
             
             const current_index = color_modes.value.findIndex(
                 (mode) => mode.value === colorMode.preference
