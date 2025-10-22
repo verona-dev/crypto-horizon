@@ -99,12 +99,12 @@
     const MarketStore = useMarketStore();
     
     // State
-    const { loading, coins } = storeToRefs(MarketStore);
+    const { coins } = storeToRefs(MarketStore);
     // Methods
     const { getCoinsMarkets } = MarketStore;
     
     onMounted(() => {
-        getCoinsMarkets();
+        getCoinsMarkets({}, 'table');
     });
     
     // Pagination
