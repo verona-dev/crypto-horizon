@@ -13,30 +13,16 @@ export const useMarketStore = defineStore('MarketStore', {
             livecoinwatch: {},
             symbol: '',
             chart: {},
-            ranges: [
-                {
-                    name: 'Day',
-                    label: '1d',
-                    timeframe: 1,
-                },
-                {
-                    name: 'Week',
-                    label: '7d',
-                    timeframe: 7,
-                },
-                {
-                    name: 'Month',
-                    label: '30d',
-                    timeframe: 30,
-                },
-                {
-                    name: 'Year',
-                    label: '1y',
-                    timeframe: 365,
-                },
+            timeframe: 1,
+            timeframes: [
+                { name: 'Day', label: '1d', timeframe: 1 },
+                { name: 'Week', label: '7d', timeframe: 7 },
+                { name: 'Month', label: '30d', timeframe: 30 },
+                { name: 'Year', label: '1y', timeframe: 365 },
             ],
         },
         loading: false,
+        platformsSummary : [],
         globalMarket: {},
         fearAndGreed: null,
         marketTrending: null,
@@ -44,11 +30,13 @@ export const useMarketStore = defineStore('MarketStore', {
     }),
     
     actions: {
-        async getCoingeckoGlobalMarket() {
+        async getGlobalMarket() {
             this.loading = true;
             
             try {
-                const response = await useFetchCoingecko('global');
+                const response = await useFetchCoingecko('global', {
+                    params: { vs_currency: 'usd' },
+                });
                 
                 if(response && response.data) {
                     this.globalMarket = response.data;
@@ -61,7 +49,7 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         
         
-        async getCmcFearAndGreed() {
+        async getFearAndGreed() {
             this.loading = true;
             
             try {
@@ -77,18 +65,29 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getCoingeckoMarkets(options) {
+        async getCoinsMarkets(options, tag) {
+            const table = tag === 'table';
+            const list = tag === 'list';
             this.loading = true;
             
             try {
                 const response = await useFetchCoingecko('coins/markets', {
-                    vs_currency: 'usd',
-                    ...options,
+                    params: {
+                        vs_currency: 'usd',
+                        ...options,
+                    },
                 });
                 
                 if(response) {
-                    this.coins = [];
-                    this.coins = formatCoinsTable(response);
+                    if(table) {
+                        this.coins = [];
+                        return this.coins = formatCoinsTable(response);
+                    }
+                    
+                    if(list) {
+                        this.platformsSummary = [];
+                        return this.platformsSummary = response;
+                    }
                 }
             } catch(error) {
                 console.error(error)
@@ -100,7 +99,7 @@ export const useMarketStore = defineStore('MarketStore', {
         
         async getCoin(slug) {
             const NewsStore = useNewsStore();
-
+            
             await this.getCoingeckoCoin(slug);
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
             await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
@@ -121,7 +120,7 @@ export const useMarketStore = defineStore('MarketStore', {
                             days: 1,
                             precision: 5,
                         },
-                        vs_currency: 'usd',
+                        params: { vs_currency: 'usd' },
                     })
                 ]);
                 
@@ -157,11 +156,11 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async setTimeframe(timeframe) {
+        setChartTimeframe(timeframe) {
             this.coin.timeframe = timeframe;
         },
         
-        async getCoingeckoCoinChart() {
+        async getCoinChart() {
             const id = this.coin.coingecko.id;
             
             try {
@@ -170,7 +169,7 @@ export const useMarketStore = defineStore('MarketStore', {
                         days: this.coin.timeframe,
                         precision: 5,
                     },
-                    vs_currency: 'usd',
+                    params: { vs_currency: 'usd' },
                 });
                 
                 if(response) {
@@ -178,15 +177,6 @@ export const useMarketStore = defineStore('MarketStore', {
                 }
             } catch(error) {
                 console.error(error)
-            }
-        },
-        
-        async getCoingeckoCoinListSummary(options) {
-            try {
-                return await useFetchCoingecko('coins/markets', options);
-            }
-            catch(error) {
-                console.error(error);
             }
         },
         
@@ -218,43 +208,11 @@ export const useMarketStore = defineStore('MarketStore', {
                 this.loading = false;
             }
         },
-        
-        async resetCoin() {
-          this.coin = {
-              coingecko: {},
-              livecoinwatch: {},
-              symbol: '',
-              chart: {},
-              timeframe: 1,
-              ranges: [
-                  {
-                      name: 'Day',
-                      label: '1d',
-                      timeframe: 1,
-                  },
-                  {
-                      name: 'Week',
-                      label: '7d',
-                      timeframe: 7,
-                  },
-                  {
-                      name: 'Month',
-                      label: '30d',
-                      timeframe: 30,
-                  },
-                  {
-                      name: 'Year',
-                      label: '1y',
-                      timeframe: 365,
-                  },
-              ],
-          }
-        },
     },
     
     getters: {
-        getRange() {
-            return this.coin.ranges.find(range => range.timeframe === this.coin.timeframe);
+        getTimeframe() {
+            return this.coin.timeframes.find(range => range.timeframe === this.coin.timeframe);
         },
     }
 });

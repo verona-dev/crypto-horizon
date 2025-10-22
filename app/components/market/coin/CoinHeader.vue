@@ -92,7 +92,7 @@
                                     class='flex items-center text-sm'
                                 >
                                     {{ price_change_percentage_label }}
-                                    <span class='ml-1'>&#40;{{ range_label }}&#41;</span>
+                                    <span class='ml-1'>&#40;{{ timeframe_label }}&#41;</span>
                                 </p>
                             </HoverCardTrigger>
                             
@@ -125,7 +125,7 @@
                                     class='flex items-center text-sm'
                                 >
                                     {{ price_change_percentage_btc_label }}
-                                    <span class='ml-1'>&#40;{{ range_label }}&#41;</span>
+                                    <span class='ml-1'>&#40;{{ timeframe_label }}&#41;</span>
                                 </p>
                             </HoverCardTrigger>
                             
@@ -152,7 +152,7 @@
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    const { getRange } = storeToRefs(MarketStore);
+    const { getTimeframe } = storeToRefs(MarketStore);
     
     // Router
     import { useRouter } from 'vue-router';
@@ -172,8 +172,8 @@
         style: 'decimal', compact: true, decimals: 2,
     });
     const not_bitcoin = coin.value?.symbol !== 'BTC';
-    const range_label = computed(() => getRange.value?.label);
-    const range_timeframe = computed(() => getRange.value?.timeframe);
+    const timeframe = computed(() => coin.value.timeframe);
+    const timeframe_label = computed(() => getTimeframe.value?.label);
     
     // Price in USD
     const current_price = coingecko.value?.market_data?.current_price?.usd;
@@ -182,17 +182,17 @@
     });
     
     const price_change_percentage = computed(() => {
-        if(range_timeframe.value === 1) return price_change_percentage_1d;
-        if(range_timeframe.value === 7) return price_change_percentage_7d;
-        if(range_timeframe.value === 30) return price_change_percentage_30d;
-        if(range_timeframe.value === 365) return price_change_percentage_1y;
+        if(timeframe.value === 1) return price_change_percentage_1d;
+        if(timeframe.value === 7) return price_change_percentage_7d;
+        if(timeframe.value === 30) return price_change_percentage_30d;
+        if(timeframe.value === 365) return price_change_percentage_1y;
     });
     
     const price_change_percentage_label = computed(() => {
-        if(range_timeframe.value === 1) return price_change_percentage_1d_label;
-        if(range_timeframe.value === 7) return price_change_percentage_7d_label;
-        if(range_timeframe.value === 30) return price_change_percentage_30d_label;
-        if(range_timeframe.value === 365) return price_change_percentage_1y_label;
+        if(timeframe.value === 1) return price_change_percentage_1d_label;
+        if(timeframe.value === 7) return price_change_percentage_7d_label;
+        if(timeframe.value === 30) return price_change_percentage_30d_label;
+        if(timeframe.value === 365) return price_change_percentage_1y_label;
     });
     
     const price_change_percentage_1d = coingecko.value?.market_data?.price_change_percentage_24h;
@@ -219,17 +219,17 @@
     });
     
     const price_change_percentage_btc = computed(() => {
-        if(range_timeframe.value === 1) return price_change_percentage_1d_btc;
-        if(range_timeframe.value === 7) return price_change_percentage_7d_btc;
-        if(range_timeframe.value === 30) return price_change_percentage_30d_btc;
-        if(range_timeframe.value === 365) return price_change_percentage_1y_btc;
+        if(timeframe.value === 1) return price_change_percentage_1d_btc;
+        if(timeframe.value === 7) return price_change_percentage_7d_btc;
+        if(timeframe.value === 30) return price_change_percentage_30d_btc;
+        if(timeframe.value === 365) return price_change_percentage_1y_btc;
     });
     
     const price_change_percentage_btc_label = computed(() => {
-        if(range_timeframe.value === 1) return price_change_percentage_1d_btc_label;
-        if(range_timeframe.value === 7) return price_change_percentage_7d_btc_label;
-        if(range_timeframe.value === 30) return price_change_percentage_30d_btc_label;
-        if(range_timeframe.value === 365) return price_change_percentage_1y_btc_label;
+        if(timeframe.value === 1) return price_change_percentage_1d_btc_label;
+        if(timeframe.value === 7) return price_change_percentage_7d_btc_label;
+        if(timeframe.value === 30) return price_change_percentage_30d_btc_label;
+        if(timeframe.value === 365) return price_change_percentage_1y_btc_label;
     });
     
     const price_change_percentage_1d_btc = coingecko.value?.market_data?.price_change_percentage_24h_in_currency?.btc;

@@ -12,7 +12,7 @@
                         value='price'
                         class='py-1.5 px-1.5 text-xs w-16'
                     >
-                       Price
+                        Price
                     </TabsTrigger>
                     
                     <TabsTrigger
@@ -41,16 +41,16 @@
                 </TabsList>
             </Tabs>
             
-            <!--  Range  -->
+            <!--  Timeframe  -->
             <Tabs v-model='timeframe'>
                 <TabsList>
                     <TabsTrigger
-                        v-for='range in ranges'
-                        :key='range.timeframe'
-                        :value='range.timeframe'
+                        v-for='interval in timeframes'
+                        :key='interval.timeframe'
+                        :value='interval.timeframe'
                         class='py-1.5 px-1.5 text-xs w-10'
                     >
-                        {{ range.label.toUpperCase() }}
+                        {{ interval.label.toUpperCase() }}
                     </TabsTrigger>
                 </TabsList>
             </Tabs>
@@ -91,6 +91,7 @@
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     import CoinSupply from '~/components/market/coin/CoinSupply.vue';
     import { Card } from '~/components/ui/card';
+    import { formatNumber } from '~/utils/formatUtils.js';
     
     import { Line } from 'vue-chartjs';
     import CustomLineChart from '~/utils/CustomLineChart.js';
@@ -100,12 +101,13 @@
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
     import { Spinner } from '~/components/ui/spinner/index.js';
+    import { storeToRefs } from 'pinia';
     const MarketStore = useMarketStore();
     
     // Methods
     const {
-        setTimeframe,
-        getCoingeckoCoinChart,
+        setChartTimeframe,
+        getCoinChart,
     } = MarketStore;
     
     const props = defineProps({
@@ -116,23 +118,21 @@
     });
     
     const { coin } = toRefs(props);
+    const { getTimeframe } = storeToRefs(MarketStore);
     
     // Tabs
     const type = ref('price');
     
-    // Range/Timeframe
-    const ranges = toRef(MarketStore.coin, 'ranges');
-    const current_range = computed(() => ranges.value?.find(range => range.timeframe === timeframe.value));
-    const timeframe = toRef(1);
-    
-    watch(timeframe, async () => {
-        loading.value = true;
-        
-        await setTimeframe(timeframe.value);
-        await nextTick();
-        await getCoingeckoCoinChart();
-        
-        loading.value = false;
+    // Timeframe
+    const timeframes = ref(coin.value.timeframes);
+    const timeframe = computed({
+        get() {
+            return coin.value.timeframe;
+        },
+        async set(value) {
+            setChartTimeframe(value);
+            await getCoinChart();
+        }
     });
     
     // Chart
@@ -254,15 +254,15 @@
                     maxTicksLimit: 7,
                     callback: function(value, index) {
                         const label = this.getLabelForValue(value);
+                        const current_label = computed(() => getTimeframe.value?.label);
                         
-                        if(current_range.value.name === 'Day') {
+                        if(current_label.value === '1d') {
                             if(index === 0) {
                                 return dayjs(label).format('D. MMM');
                             }
                             return dayjs(label).minute(0).second(0).millisecond(0).format('HH:mm');
                         }
-                        
-                        else if(current_range.value.name === 'Year') {
+                        else if(current_label.value === '1y') {
                             return dayjs(label).format("MMM 'YY");
                         }
                         

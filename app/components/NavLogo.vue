@@ -29,14 +29,15 @@
                 <!--  Desktop Close -->
                 <template v-else-if='!open && !isMobile'>
                     <SidebarMenuButton
-                        tooltip='Home'
+                        tooltip='Launch Pad'
                         class='hover:bg-transparent active:bg-transparent focus:bg-transparent'
                         size='lg'
                     >
                         <NuxtIcon
-                            name='my-icon:astronaut'
-                            class='h-10 w-10'
+                            name='streamline-ultimate-color:space-rocket-earth'
+                            class='h-8 w-8'
                         />
+                        
                     </SidebarMenuButton>
                 </template>
                 
