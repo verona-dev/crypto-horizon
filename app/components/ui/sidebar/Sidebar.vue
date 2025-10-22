@@ -52,7 +52,6 @@ const { isMobile, state, openMobile, setOpenMobile, setOpen } = useSidebar()
     :data-collapsible="state === 'collapsed' ? collapsible : ''"
     :data-variant="variant"
     :data-side="side"
-    @mouseleave="setOpen(false)"
   >
     <!-- This is what handles the sidebar gap on desktop  -->
     <div
