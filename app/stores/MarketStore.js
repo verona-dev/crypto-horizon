@@ -180,20 +180,6 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getCoinListSummary(options) {
-            this.loading = true;
-            
-            try {
-                return await useFetchCoingecko('coins/markets', options);
-            }
-            catch(error) {
-                console.error(error);
-            }
-            finally {
-                this.loading = false;
-            }
-        },
-        
         async getCoingeckoTrending() {
             this.loading = true;
             
