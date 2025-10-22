@@ -1,3 +1,4 @@
+/*
 @import "tailwindcss";
 @import 'tw-animate-css';
 @import './global.css';
@@ -8,7 +9,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
+!*
 
 html {
     color-scheme: light dark;
@@ -19,7 +20,7 @@ html.dark {
 html.light {
     color-scheme: light;
 }
-*/
+*!
 
 @theme inline {
     --color-background: var(--background);
@@ -109,7 +110,7 @@ html.light {
 }
 
 :root {
-    /* Graphite */
+    !* Graphite *!
     --background: #f0f0f0;
     --foreground: #333333;
     --card: #f5f5f5;
@@ -186,7 +187,7 @@ html.light {
 }
 
 .dark {
-    /* Cosmic Night */
+    !* Cosmic Night *!
     --background: #14161f;
     --foreground: #ffffff;
     --card: #1f2230;
@@ -246,3 +247,4 @@ html.light {
     }
 }
 
+*/
