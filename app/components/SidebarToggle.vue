@@ -39,7 +39,7 @@
                     </div>
                     
                     <NuxtIcon
-                        name='mynaui:sidebar'
+                        name='stash:burger-arrow-left-duotone'
                         data-sidebar='trigger'
                         data-slot='sidebar-trigger'
                         :class='cn("h-4 w-4 text-accent-foreground",props.class)'
@@ -59,7 +59,7 @@
                     @click='toggleSidebar'
                 >
                     <NuxtIcon
-                        name='mynaui:sidebar'
+                        name='stash:burger-arrow-right-duotone'
                         data-sidebar='trigger'
                         data-slot='sidebar-trigger'
                         :class='cn("h-4 w-4 text-accent-foreground",props.class)'
