@@ -18,7 +18,7 @@
 </script>
 
 <template>
-    <SidebarMenu>
+    <SidebarMenu :class='{ "items-center" : !open }'>
         <SidebarMenuItem>
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
