@@ -47,11 +47,12 @@
             {
                 title: 'Launch Pad',
                 url: '/',
+                icon: 'streamline-ultimate-color:space-rocket-earth',
             },
             {
                 title: 'Market',
                 url: '/market',
-                icon: ChartCandlestick,
+                icon: 'streamline-ultimate-color:analytics-graph-lines',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
@@ -82,7 +83,7 @@
             {
                 title: 'News',
                 url: '/news',
-                icon: BookOpen,
+                icon: 'streamline-ultimate-color:newspaper-fold',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
@@ -106,7 +107,7 @@
             {
                 title: 'Defi',
                 url: '/defi',
-                icon: Landmark,
+                icon: 'streamline-ultimate-color:cash-payment-coin-dollar',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
@@ -130,7 +131,7 @@
             {
                 title: 'Learn',
                 url: '/learn',
-                icon: GraduationCap,
+                icon: 'streamline-ultimate-color:book-close-bookmark-1',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
@@ -159,11 +160,9 @@
 
 <template>
     <Sidebar v-bind='props' class='z-50'>
-        <SidebarHeader class='h-20 flex items-center justify-center'>
+        <SidebarHeader class='h-20 flex items-center justify-center border-b'>
             <SidebarToggle />
         </SidebarHeader>
-        
-        <Separator />
         
         <SidebarContent :class='{ "flex-initial" : isMobile }'>
             <NavMain :items="data.navMain" />
