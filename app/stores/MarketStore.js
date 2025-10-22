@@ -22,6 +22,7 @@ export const useMarketStore = defineStore('MarketStore', {
             ],
         },
         loading: false,
+        platformsSummary : [],
         globalMarket: {},
         fearAndGreed: null,
         marketTrending: null,
@@ -64,8 +65,9 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getCoinsMarkets(options, param) {
-            const table = param === 'table';
+        async getCoinsMarkets(options, tag) {
+            const table = tag === 'table';
+            const list = tag === 'list';
             this.loading = true;
             
             try {
@@ -77,8 +79,15 @@ export const useMarketStore = defineStore('MarketStore', {
                 });
                 
                 if(response) {
-                    this.coins = [];
-                    this.coins = formatCoinsTable(response);
+                    if(table) {
+                        this.coins = [];
+                        return this.coins = formatCoinsTable(response);
+                    }
+                    
+                    if(list) {
+                        this.platformsSummary = [];
+                        return this.platformsSummary = response;
+                    }
                 }
             } catch(error) {
                 console.error(error)
@@ -90,7 +99,7 @@ export const useMarketStore = defineStore('MarketStore', {
         
         async getCoin(slug) {
             const NewsStore = useNewsStore();
-
+            
             await this.getCoingeckoCoin(slug);
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
             await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
@@ -172,11 +181,16 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         
         async getCoinListSummary(options) {
+            this.loading = true;
+            
             try {
                 return await useFetchCoingecko('coins/markets', options);
             }
             catch(error) {
                 console.error(error);
+            }
+            finally {
+                this.loading = false;
             }
         },
         
