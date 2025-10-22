@@ -45,11 +45,6 @@
         },
         navMain: [
             {
-                title: 'Launch Pad',
-                url: '/',
-                icon: House,
-            },
-            {
                 title: 'Market',
                 url: '/market',
                 icon: ChartCandlestick,
@@ -160,14 +155,8 @@
 
 <template>
     <Sidebar v-bind='props' class='z-50'>
-        <SidebarHeader class='h-16 flex items-center justify-center'>
+        <SidebarHeader class='h-20 flex items-center justify-center'>
             <SidebarToggle />
-            
-            <!--
-            <div class='h-24 flex items-center justify-center'>
-                <NavLogo />
-            </div>
-            -->
         </SidebarHeader>
         
         <Separator />
