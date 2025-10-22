@@ -21,7 +21,7 @@
 </script>
 
 <template>
-    <SidebarMenu class=''>
+    <SidebarMenu :class='{ "items-center" : !open }'>
         <SidebarMenuItem class=''>
             <!--  Open  -->
             <template v-if='open || isMobile'>
