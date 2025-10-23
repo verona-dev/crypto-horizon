@@ -1,7 +1,5 @@
 <script setup lang="ts">
     import {type SidebarProps, useSidebar} from '~/components/ui/sidebar'
-    import { House, ChartCandlestick, BookOpen, Landmark, GraduationCap } from 'lucide-vue-next'
-    import { NuxtIcon } from "#components";
     import NavMain from '../components/NavMain.vue'
     import NavUser from '../components/NavUser.vue'
     import SidebarToggle from '../components/SidebarToggle.vue'
@@ -47,12 +45,13 @@
             {
                 title: 'Launch Pad',
                 url: '/',
-                icon: 'streamline-ultimate-color:space-rocket-earth',
+                icon: 'ph:planet',
             },
             {
                 title: 'Market',
                 url: '/market',
-                icon: 'streamline-ultimate-color:analytics-graph-lines',
+                icon: 'ph:chart-line-up',
+                activeIcon: 'ph:chart-line-up-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
@@ -83,7 +82,8 @@
             {
                 title: 'News',
                 url: '/news',
-                icon: 'streamline-ultimate-color:newspaper-fold',
+                icon: 'ph:book-open-text',
+                activeIcon: 'ph:book-open-text-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
@@ -107,7 +107,8 @@
             {
                 title: 'Defi',
                 url: '/defi',
-                icon: 'streamline-ultimate-color:cash-payment-coin-dollar',
+                icon: 'ph:bank',
+                activeIcon: 'ph:bank-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
@@ -131,7 +132,8 @@
             {
                 title: 'Learn',
                 url: '/learn',
-                icon: 'streamline-ultimate-color:book-close-bookmark-1',
+                icon: 'ph:books',
+                activeIcon: 'ph:books-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
