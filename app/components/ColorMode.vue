@@ -1,6 +1,6 @@
 <template>
     <SidebarMenu>
-        <SidebarMenuItem ref='toggleRef' class='h-16 flex items-center justify-center'>
+        <SidebarMenuItem class='h-16 flex items-center justify-center'>
             <SidebarMenuButton
                 @click='toggleMode'
                 variant='outline'
@@ -9,6 +9,7 @@
                 :class='{ "rounded-none" :  open }'
             >
                 <NuxtIcon
+                    ref='toggleRef'
                     :name='active_mode.icon'
                     :key='active_mode.icon'
                     class='h-5 w-5 animation'
