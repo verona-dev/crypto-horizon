@@ -32,35 +32,33 @@
         >
             <!--  Open Desktop + Mobile  -->
             <template v-if='open || isMobile'>
-                <Collapsible
-                    v-for='item in items'
-                    :key='item.title'
-                    as-child
-                    :default-open='item.isActive'
-                    class='group/collapsible'
-                >
+                <template v-for='item in items' :key='item.title'>
                     <!--  Home -->
-                    <template v-if='item.url === "/"'>
-                        <NuxtLink :to='item.url'>
-                            <SidebarMenuItem>
-                                <SidebarMenuButton
-                                    tooltip='Launch Pad'
-                                    class='focus:bg-transparent peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-10 text-sm'
-                                >
-                                    <component>
-                                        <NuxtIcon
-                                            name='streamline-ultimate-color:space-rocket-earth'
-                                            class='h-6 w-6'
-                                        />
-                                    </component>
-                                    <span>{{ item.title }}</span>
-                                </SidebarMenuButton>
-                            </SidebarMenuItem>
-                        </NuxtLink>
-                    </template>
+                    <NuxtLink
+                        v-if='!item.items?.length'
+                        :to='item.url'
+                    >
+                        <SidebarMenuItem>
+                            <SidebarMenuButton
+                                tooltip='Launch Pad'
+                                class='focus:bg-transparent flex items-center'
+                            >
+                                <NuxtIcon
+                                    :name='item.icon'
+                                    class='h-5 w-5'
+                                />
+                                <span>{{ item.title }}</span>
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+                    </NuxtLink>
                     
                     <!--  Other routes -->
-                    <template v-else>
+                    <Collapsible
+                        v-else
+                        as-child
+                        :default-open='item.isActive'
+                        class='group/collapsible'
+                    >
                         <SidebarMenuItem>
                             <CollapsibleTrigger as-child>
                                 <!--  Mobile  -->
@@ -94,8 +92,9 @@
                                 </SidebarMenuSub>
                             </CollapsibleContent>
                         </SidebarMenuItem>
-                    </template>
-                </Collapsible>
+                    </Collapsible>
+                </template>
+            
             </template>
             
             <!--  Close Desktop -->
