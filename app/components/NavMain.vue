@@ -120,7 +120,7 @@
                             <NuxtIcon
                                 v-if='item.icon'
                                 :name='item.isActive ? item.activeIcon : item.icon'
-                                class='h-5 w-5'
+                                class='h-4.5 w-4.5'
                                 :class='{ "text-secondary-foreground dark:text-green-shamrock" : item.isActive }'
                             />
                         </SidebarMenuButton>
