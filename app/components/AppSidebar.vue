@@ -19,16 +19,9 @@
     })
     
     const route = useRoute()
-    const { open } = useSidebar();
     
     const isParentActive = (item_url: string, items: any[]) => {
-        if (open.value) {
-            if (!route.path.startsWith(item_url)) return false;
-            // If the parent has only one route, highlight the parent
-            if (items.length === 1) return route.path.startsWith(item_url);
-            return !items.some(child => route.path === child.url);
-        }
-        return route.path.startsWith(item_url);
+        return items.some(child => route.path === child.url) || route.path.startsWith(item_url);
     };
     
     const isChildActive = (item_url: string) => {
