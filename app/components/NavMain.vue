@@ -104,13 +104,12 @@
             </template>
             
             <!--  Close Desktop -->
-            <!--  add 2 icons, one fill for active state -->
             <template v-if='!open && !isMobile'>
                 <NuxtLink
                     v-for='item in items'
                     :key='item.title'
                     :to='item.url'
-                    class='my-2'
+                    class='my-0.5'
                 >
                     <SidebarMenuItem>
                         <SidebarMenuButton
