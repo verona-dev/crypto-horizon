@@ -1,14 +1,14 @@
 <script setup lang="ts">
-    import type { LucideIcon } from "lucide-vue-next"
     import { ChevronRight } from "lucide-vue-next"
     import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '~/components/ui/collapsible';
     import {SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, useSidebar } from '~/components/ui/sidebar'
     
     defineProps<{
         items: {
-            title: string
-            url: string
+            title?: string
+            url?: string
             icon: string
+            activeIcon: string
             isActive?: boolean
             items?: {
                 title: string
@@ -18,6 +18,11 @@
     }>()
     
     const { open, isMobile } = useSidebar();
+    const colorMode = useColorMode();
+    const darkMode = computed(() => colorMode.value === 'dark');
+    watch(darkMode, (newVal, oldVal) => {
+        console.log(newVal);
+    });
 </script>
 
 <template>
@@ -99,6 +104,7 @@
             </template>
             
             <!--  Close Desktop -->
+            <!--  add 2 icons, one fill for active state -->
             <template v-if='!open && !isMobile'>
                 <NuxtLink
                     v-for='item in items'
@@ -110,12 +116,16 @@
                         <SidebarMenuButton
                             :tooltip='item.title'
                             class='peer/menu-button w-full items-center gap-2 overflow-hidden rounded-md !p-8 text-left outline-none ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-8 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-12 text-sm group-data-[collapsible=icon]:!p-0 flex justify-center'
+                            :class='{ "bg-muted" : item.isActive}'
                             size='lg'
                         >
                             <NuxtIcon
                                 v-if='item.icon'
-                                :name='item.icon'
-                                class='h-10 w-10 dark:bg-green-shamrock'
+                                :name='item.isActive ? item.activeIcon : item.icon'
+                                class='h-10 w-10'
+                                :class='[
+                                    { "text-secondary-foreground dark:text-green-shamrock" : item.isActive },
+                                ]'
                             />
                         </SidebarMenuButton>
                     </SidebarMenuItem>
@@ -126,13 +136,10 @@
 </template>
 
 <style scoped>
-    a {
-    
-    }
     .iconify {
-        height: 1.6rem !important;
-        width: 1.6rem !important;
-        font-size: 1.6rem !important;
+        height: 1.4rem !important;
+        width: 1.4rem !important;
+        font-size: 1.4rem !important;
         //padding: 12px !important;
     }
 </style>
