@@ -5,14 +5,14 @@
                 @click='toggleMode'
                 variant='outline'
                 :tooltip='active_mode.label'
-                class='bg-sidebar w-full h-full flex items-center justify-center'
+                class='bg-sidebar h-full peer/menu-button w-full items-center overflow-hidden rounded-md text-left outline-none ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-8 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sm group-data-[collapsible=icon]:!p-0 flex justify-center'
                 :class='{ "rounded-none" :  open }'
             >
                 <NuxtIcon
                     ref='toggleRef'
                     :name='active_mode.icon'
                     :key='active_mode.icon'
-                    class='h-5 w-5 animation'
+                    class='h-4.5 w-4.5 animation'
                     :class='{ "rounded-none": open }'
                 />
             </SidebarMenuButton>
@@ -30,8 +30,8 @@
     const toggleRef = ref(null);
     
     const color_modes = computed(() => [
-        { value: 'light', label: 'Toggle Dark mode', icon: 'radix-icons:moon' },
-        { value: 'dark', label: 'Toggle Light mode', icon: 'radix-icons:sun' },
+        { value: 'light', label: 'Toggle Dark mode', icon: 'ph:moon-stars' },
+        { value: 'dark', label: 'Toggle Light mode', icon: 'ph:sun' },
     ]);
     
     const active_mode = computed(() => color_modes.value.find(mode => mode.value === colorMode.value) || color_modes.value[0]);
