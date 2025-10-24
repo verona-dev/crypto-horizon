@@ -14,7 +14,7 @@
     const TooltipContent = () => {
         return h(KbdGroup, { class: '' }, [
             h(Kbd, { class: 'border rounded-md px-2 pt-0.5' }, '⌘'),
-            h('span', { class: '' }, '+'),
+            h('span', '+'),
             h(Kbd, { class: 'border rounded-md px-2 pt-0.5' }, 'E')
         ])
     }
@@ -22,33 +22,28 @@
 
 <template>
     <SidebarMenu :class='{ "items-center" : !open }'>
-        <SidebarMenuItem class=''>
+        <SidebarMenuItem>
             <!--  Open  -->
             <template v-if='open || isMobile'>
-                <SidebarMenuButton
-                    @click='toggleSidebar'
-                    class='h-full'
-                    :class='[
-                        { "" : open },
-                        { "justify-between" : !isMobile },
-                    ]'
-                >
-                    <div class='ml-2 great-font whitespace-normal'>
+                <div class='flex justify-around items-center'>
+                    <div class='ml-2 great-font whitespace-normal select-none'>
                         <h5>Crypto</h5>
                         <h5 class='ml-5'>Horizon</h5>
                     </div>
                     
-                    <NuxtIcon
-                        name='stash:burger-arrow-left-duotone'
-                        data-sidebar='trigger'
-                        data-slot='sidebar-trigger'
-                        :class='cn("h-4 w-4 text-accent-foreground",props.class)'
-                    >
-                        <PanelLeft />
-                        <span class='sr-only'>Toggle Menu</span>
-                    </NuxtIcon>
-                
-                </SidebarMenuButton>
+                    <SidebarMenuButton @click='toggleSidebar' class='w-fit'>
+                        <NuxtIcon
+                            name='stash:burger-arrow-left-duotone'
+                            data-sidebar='trigger'
+                            data-slot='sidebar-trigger'
+                            :class='cn("h-4 w-4 text-accent-foreground",props.class)'
+                        >
+                            <PanelLeft />
+                            <span class='sr-only'>Toggle Menu</span>
+                        </NuxtIcon>
+                    </SidebarMenuButton>
+                </div>
+            
             </template>
             
             <!--  Close  -->
