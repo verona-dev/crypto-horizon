@@ -117,15 +117,12 @@
                             :tooltip='item.title'
                             class='peer/menu-button w-full items-center gap-2 overflow-hidden rounded-md !p-8 text-left outline-none ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-8 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-12 text-sm group-data-[collapsible=icon]:!p-0 flex justify-center'
                             :class='{ "bg-muted" : item.isActive}'
-                            size='lg'
                         >
                             <NuxtIcon
                                 v-if='item.icon'
                                 :name='item.isActive ? item.activeIcon : item.icon'
-                                class='h-10 w-10'
-                                :class='[
-                                    { "text-secondary-foreground dark:text-green-shamrock" : item.isActive },
-                                ]'
+                                class='h-5 w-5'
+                                :class='{ "text-secondary-foreground dark:text-green-shamrock" : item.isActive }'
                             />
                         </SidebarMenuButton>
                     </SidebarMenuItem>
@@ -134,12 +131,3 @@
         </SidebarMenu>
     </SidebarGroup>
 </template>
-
-<style scoped>
-    .iconify {
-        height: 1.4rem !important;
-        width: 1.4rem !important;
-        font-size: 1.4rem !important;
-        //padding: 12px !important;
-    }
-</style>
