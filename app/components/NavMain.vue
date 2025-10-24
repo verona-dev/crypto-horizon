@@ -18,11 +18,6 @@
     }>()
     
     const { open, isMobile } = useSidebar();
-    const colorMode = useColorMode();
-    const darkMode = computed(() => colorMode.value === 'dark');
-    watch(darkMode, (newVal, oldVal) => {
-        console.log(newVal);
-    });
 </script>
 
 <template>
