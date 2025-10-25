@@ -25,7 +25,7 @@
                             :key='nft.id'
                             class='md:basis-1/2 lg:basis-1/3'
                         >
-                            <TrendingNftCard :nft='nft' />
+                            <TrendingNftItem :nft='nft' />
                         </CarouselItem>
              
                     </CarouselContent>
@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-    import TrendingNftCard from '~/components/market/trending/TrendingNftCard.vue'
+    import TrendingNftItem from '@/components/market/trending/TrendingNftItem.vue'
     import { Skeleton } from '~/components/ui/skeleton';
     import { Carousel, CarouselContent, CarouselItem } from '~/components/ui/carousel';
     import AutoScroll from 'embla-carousel-auto-scroll';

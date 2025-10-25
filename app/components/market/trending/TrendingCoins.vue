@@ -25,7 +25,7 @@
                             :key='coin.item.id'
                             class='md:ml-10 md:basis-1/2 lg:basis-1/4'
                         >
-                            <TrendingCoinCard :coin='coin.item' />
+                            <TrendingCoinItem :coin='coin.item' />
                         </CarouselItem>
                     </CarouselContent>
                 </Carousel>
@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-    import TrendingCoinCard from '~/components/market/trending/TrendingCoinCard.vue';
+    import TrendingCoinItem from '@/components/market/trending/TrendingCoinItem.vue';
     import { Skeleton } from '~/components/ui/skeleton';
     import { Carousel, CarouselContent, CarouselItem } from '~/components/ui/carousel';
     import AutoScroll from 'embla-carousel-auto-scroll';
