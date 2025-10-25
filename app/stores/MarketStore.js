@@ -25,7 +25,7 @@ export const useMarketStore = defineStore('MarketStore', {
         platformsSummary : [],
         globalMarket: {},
         fearAndGreed: null,
-        trendingCoins: null,
+        trendingCoins: [],
         trendingNfts: null,
         globalDefi: {},
     }),
