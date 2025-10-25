@@ -12,38 +12,38 @@
     const { open, toggleSidebar, isMobile } = useSidebar()
     
     const TooltipContent = () => {
-        return h(KbdGroup, { class: 'flex gap-2' }, [
-            h(Kbd, { class: 'border px-2' }, '⌘'),
-            h('span', { class: '' }, '+'),
-            h(Kbd, { class: 'text-xs border px-2' }, 'E')
+        return h(KbdGroup, { class: '' }, [
+            h(Kbd, { class: 'border rounded-md px-2 pt-0.5' }, '⌘'),
+            h('span', '+'),
+            h(Kbd, { class: 'border rounded-md px-2 pt-0.5' }, 'E')
         ])
     }
 </script>
 
 <template>
-    <SidebarMenu :class='{ "flex items-center justify-center" : !open }'>
-        <SidebarMenuItem :class=' { "w-full" : isMobile }'>
+    <SidebarMenu :class='{ "items-center" : !open }'>
+        <SidebarMenuItem>
             <!--  Open  -->
             <template v-if='open || isMobile'>
-                <SidebarMenuButton
-                    @click='toggleSidebar'
-                    class='w-full flex items-center justify-center rounded-none h-16'
-                    :class='[
-                        { "px-6" : open },
-                        { "justify-between" : !isMobile },
-                    ]'
-                >
-                    <span class='text-xs truncate'>Close Menu</span>
+                <div class='flex justify-around items-center'>
+                    <div class='ml-2 great-font whitespace-normal select-none'>
+                        <h5>Crypto</h5>
+                        <h5 class='ml-5'>Horizon</h5>
+                    </div>
                     
-                    <template v-if='!isMobile'>
-                        <KbdGroup>
-                            <Kbd>⌘</Kbd>
-                            <span>+</span>
-                            <Kbd>E</Kbd>
-                        </KbdGroup>
-                    </template>
-                
-                </SidebarMenuButton>
+                    <SidebarMenuButton @click='toggleSidebar' class='w-fit'>
+                        <NuxtIcon
+                            name='stash:burger-arrow-left-duotone'
+                            data-sidebar='trigger'
+                            data-slot='sidebar-trigger'
+                            :class='cn("h-4 w-4 text-accent-foreground",props.class)'
+                        >
+                            <PanelLeft />
+                            <span class='sr-only'>Toggle Menu</span>
+                        </NuxtIcon>
+                    </SidebarMenuButton>
+                </div>
+            
             </template>
             
             <!--  Close  -->
@@ -54,10 +54,10 @@
                     @click='toggleSidebar'
                 >
                     <NuxtIcon
-                        name='mynaui:sidebar'
+                        name='stash:burger-arrow-right-duotone'
                         data-sidebar='trigger'
                         data-slot='sidebar-trigger'
-                        :class='cn("h-8 w-8 text-accent-foreground",props.class)'
+                        :class='cn("h-4 w-4 text-accent-foreground",props.class)'
                     >
                         <PanelLeft />
                         <span class='sr-only'>Toggle Menu</span>

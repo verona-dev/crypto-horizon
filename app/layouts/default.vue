@@ -1,12 +1,11 @@
 <template>
     <div>
         <ClientOnly>
-            <MarketBar />
-            
             <SidebarProvider :default-open='false'>
                 <AppSidebar />
                 
-                <SidebarInset class='custom-flex'>
+                <SidebarInset class='flex justify-between items-center min-h-svh pr-12'>
+                    <MarketBar />
                     <!--
                     <Breadcrumb />
                     -->
@@ -20,11 +19,11 @@
                     
                     <slot />
                     
+                    <CoingeckoAttribution />
+                    
                     <ScrollToTop />
                 </SidebarInset>
             </SidebarProvider>
-            
-            <CoingeckoAttribution />
         </ClientOnly>
     </div>
 </template>

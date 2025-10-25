@@ -1,10 +1,7 @@
 <script setup lang="ts">
     import {type SidebarProps, useSidebar} from '~/components/ui/sidebar'
-    import { ChartCandlestick, BookOpen, Landmark, GraduationCap } from 'lucide-vue-next'
-    
     import NavMain from '../components/NavMain.vue'
     import NavUser from '../components/NavUser.vue'
-    import NavLogo from '../components/NavLogo.vue'
     import SidebarToggle from '../components/SidebarToggle.vue'
     import ColorMode from '~/components/ColorMode.vue'
     
@@ -22,16 +19,9 @@
     })
     
     const route = useRoute()
-    const { open } = useSidebar();
     
     const isParentActive = (item_url: string, items: any[]) => {
-        if (open.value) {
-            if (!route.path.startsWith(item_url)) return false;
-            // If the parent has only one route, highlight the parent
-            if (items.length === 1) return route.path.startsWith(item_url);
-            return !items.some(child => route.path === child.url);
-        }
-        return route.path.startsWith(item_url);
+        return items.some(child => route.path === child.url) || route.path.startsWith(item_url);
     };
     
     const isChildActive = (item_url: string) => {
@@ -46,9 +36,21 @@
         },
         navMain: [
             {
+                title: 'Launch Pad',
+                url: '/',
+                icon: 'ph:rocket-launch',
+                planets: [
+                    'ph:planet-light',
+                    'ph:planet',
+                    'ph:planet-duotone',
+                    'ph:planet-fill'
+                ],
+            },
+            {
                 title: 'Market',
                 url: '/market',
-                icon: ChartCandlestick,
+                icon: 'ph:chart-line-up',
+                activeIcon: 'ph:chart-line-up-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
@@ -79,7 +81,8 @@
             {
                 title: 'News',
                 url: '/news',
-                icon: BookOpen,
+                icon: 'ph:book-open-text',
+                activeIcon: 'ph:book-open-text-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
@@ -103,7 +106,8 @@
             {
                 title: 'Defi',
                 url: '/defi',
-                icon: Landmark,
+                icon: 'ph:bank',
+                activeIcon: 'ph:bank-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
@@ -127,7 +131,8 @@
             {
                 title: 'Learn',
                 url: '/learn',
-                icon: GraduationCap,
+                icon: 'ph:books',
+                activeIcon: 'ph:books-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
@@ -156,13 +161,9 @@
 
 <template>
     <Sidebar v-bind='props' class='z-50'>
-        <SidebarHeader>
-            <div class='h-24 flex items-center justify-center'>
-                <NavLogo />
-            </div>
+        <SidebarHeader class='h-20 flex items-center justify-center border-b'>
+            <SidebarToggle />
         </SidebarHeader>
-        
-        <Separator />
         
         <SidebarContent :class='{ "flex-initial" : isMobile }'>
             <NavMain :items="data.navMain" />
@@ -171,12 +172,6 @@
         <Separator />
         
         <ColorMode />
-        
-        <Separator />
-        
-        <div class='h-16 flex items-center'>
-            <SidebarToggle />
-        </div>
         
         <Separator />
         
