@@ -38,7 +38,13 @@
             {
                 title: 'Launch Pad',
                 url: '/',
-                icon: 'ph:planet',
+                icon: 'ph:rocket-launch',
+                planets: [
+                    'ph:planet-light',
+                    'ph:planet',
+                    'ph:planet-duotone',
+                    'ph:planet-fill'
+                ],
             },
             {
                 title: 'Market',
