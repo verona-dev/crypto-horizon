@@ -4,7 +4,7 @@
             <SidebarProvider :default-open='false'>
                 <AppSidebar />
                 
-                <SidebarInset class='flex justify-between items-center min-h-svh'>
+                <SidebarInset class='flex justify-between items-center min-h-svh pr-12'>
                     <MarketBar />
                     <!--
                     <Breadcrumb />
