@@ -1,5 +1,5 @@
 <template>
-    <Card class='h-78 w-4/5 xl:!w-[650px]'>
+    <Card class='w-4/5 xl:!w-[650px] xl:h-fit'>
         <Skeleton
             v-if='!updated_at'
             class='w-full h-full'
@@ -7,11 +7,11 @@
         
         <CardContent
             v-else
-            class='flex flex-col justify-between w-full h-full p-8 animate-fadeIn-2000'
+            class='flex flex-col justify-between w-full h-full gap-6 p-8 animate-fadeIn-2000'
         >
             <!--  Title  -->
             <div class='flex gap-3 self-center'>
-                <h5>Bitcoin Dominance</h5>
+                <h4>Bitcoin Dominance</h4>
                 
                 <HoverCard :openDelay='200'>
                     <HoverCardTrigger class='flex items-center'>
@@ -47,19 +47,19 @@
                     <div
                         v-for='item in dataset'
                         :key='item'
-                        class='flex flex-col gap-2'
+                        class='flex flex-col gap-1'
                     >
                         <div class='flex h-8'>
                             <!--  Btc, Eth  -->
-                            <div v-if='!item.displayInfo && !item.stablecoins' class='flex items-center space-x-2'>
+                            <div v-if='!item.displayInfo && !item.stablecoins' class='flex items-center space-x-1'>
                                 <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                                 <span class='text-muted-foreground text-xs'>{{ item.name }}</span>
                             </div>
                             
                             <!--  Stablecoins  -->
-                            <div v-else-if='!item.displayInfo && item.stablecoins' class='flex items-center space-x-2'>
+                            <div v-else-if='!item.displayInfo && item.stablecoins' class='flex items-center space-x-1'>
                                 <HoverCard :openDelay='200'>
-                                    <HoverCardTrigger class='flex items-center space-x-2 h-full'>
+                                    <HoverCardTrigger class='flex items-center space-x-1 h-full'>
                                         <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                                         
                                         <span class='text-muted-foreground text-xs'>{{ item.name }}</span>
@@ -70,7 +70,7 @@
                                         />
                                     </HoverCardTrigger>
                                     
-                                    <HoverCardContent class='hover-card-content flex flex-col justify-stretch gap-8 !py-12 !px-10'>
+                                    <HoverCardContent class='flex flex-col justify-stretch gap-8 !p-10'>
                                         <span class='underline text-base'>Stablecoins</span>
                                         
                                         <Table class='w-60'>
@@ -97,7 +97,7 @@
                                 v-else
                                 :openDelay='200'
                             >
-                                <HoverCardTrigger class='flex items-center space-x-2'>
+                                <HoverCardTrigger class='flex items-center space-x-1'>
                                     <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                                     
                                     <span class='text-xs'>{{ item.name }}</span>
@@ -108,7 +108,7 @@
                                     />
                                 </HoverCardTrigger>
                                 
-                                <HoverCardContent class='flex flex-col justify-stretch gap-8 !py-12 !px-10'>
+                                <HoverCardContent class='flex flex-col justify-stretch gap-8 !p-10'>
                                     <span class='underline text-base'>Other Assets</span>
                                     
                                     <Table class='w-60'>
@@ -132,7 +132,7 @@
                             </HoverCard>
                         </div>
                         
-                        <p class='text-sm lg:text-lg font-bold'>{{ item.label }}</p>
+                        <p class='text-sm lg:text-2xl font-bold'>{{ item.label }}</p>
                     </div>
                 </div>
                 
