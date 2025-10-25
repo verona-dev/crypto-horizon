@@ -1,5 +1,5 @@
 <template>
-    <Card class='h-78 !w-4/5 xl:!w-[400px]'>
+    <Card class='!w-4/5 xl:!w-fit'>
         <Skeleton
             v-if='!fearAndGreed'
             class='w-full h-full'
@@ -11,7 +11,7 @@
         >
             <!--  Title  -->
             <div class='flex items-center gap-3'>
-                <h5>Crypto Fear and Greed Index</h5>
+                <h4>Crypto Fear and Greed Index</h4>
                 
                 <HoverCard :openDelay='200'>
                     <HoverCardTrigger>
@@ -70,6 +70,7 @@
 <script setup>
     import { Doughnut } from 'vue-chartjs';
     import { Skeleton } from '~/components/ui/skeleton';
+    import { Card, CardContent } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
     
