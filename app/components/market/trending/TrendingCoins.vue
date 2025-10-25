@@ -2,7 +2,7 @@
     <div class='flex flex-col items-center gap-20'>
         <h1 class='page-title'>Trending Coins</h1>
         
-        <Alert class='flex animate-fadeIn border-none'>
+        <div class='animate-fadeIn'>
             <Skeleton
                 v-if='!coins'
                 class='w-full h-full'
@@ -30,7 +30,7 @@
                     </CarouselContent>
                 </Carousel>
             </div>
-        </Alert>
+        </div>
     </div>
 </template>
 
@@ -39,7 +39,6 @@
     import { Skeleton } from '~/components/ui/skeleton';
     import { Carousel, CarouselContent, CarouselItem } from '~/components/ui/carousel';
     import AutoScroll from 'embla-carousel-auto-scroll';
-    import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert';
     
     const props = defineProps({
         coins: {
