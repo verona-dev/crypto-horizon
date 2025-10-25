@@ -8,6 +8,8 @@
             title?: string
             url?: string
             icon: string
+            rocket: string
+            planets: string
             activeIcon: string
             isActive?: boolean
             items?: {
@@ -35,19 +37,30 @@
                 <template v-for='item in items' :key='item.title'>
                     <!--  Home -->
                     <NuxtLink
-                        v-if='!item.items?.length'
+                        v-if='item.url === "/" && !item.items?.length'
                         :to='item.url'
                     >
                         <SidebarMenuItem>
                             <SidebarMenuButton
                                 tooltip='Launch Pad'
-                                class='focus:bg-transparent flex items-center'
+                                class='focus:bg-transparent flex items-center gap-3'
                             >
                                 <NuxtIcon
                                     :name='item.icon'
-                                    class='h-5 w-5'
+                                    class='h-5 w-5 dark:text-green-shamrock/75'
+                                    :class='{ "animate-rocket" : !isMobile }'
                                 />
                                 <span>{{ item.title }}</span>
+                                
+                                <div class='relative h-5 w-5'>
+                                    <NuxtIcon
+                                        v-for='planet in item.planets'
+                                        :key='planet'
+                                        :name='planet'
+                                        class='h-full w-full dark:text-green-shamrock/75 absolute'
+                                        :class='{ "animate-planet" : !isMobile }'
+                                    />
+                                </div>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                     </NuxtLink>
@@ -63,7 +76,10 @@
                             <CollapsibleTrigger as-child>
                                 <!--  Mobile  -->
                                 <template v-if='isMobile'>
-                                    <SidebarMenuButton :tooltip='item.title'>
+                                    <SidebarMenuButton
+                                        :tooltip='item.title'
+                                        :class='{ "!bg-transparent dark:!text-green-shamrock" : item.isActive }'
+                                    >
                                         <component :is='item.icon' v-if='item.icon' />
                                         <span>{{ item.title }}</span>
                                         <ChevronRight class='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
@@ -72,20 +88,32 @@
                                 
                                 <!--  Open Desktop  -->
                                 <template v-else>
-                                    <SidebarMenuButton :tooltip='item.title' :is-active='item.isActive'>
-                                        <component :is='item.icon' v-if='item.icon' />
+                                    <SidebarMenuButton
+                                        :tooltip='item.title'
+                                        :is-active='item.isActive'
+                                        class='flex items-center gap-3'
+                                        :class='{ "!bg-transparent dark:!text-green-shamrock" : item.isActive}'
+                                    >
+                                        <NuxtIcon
+                                            :name='item.isActive ? item.activeIcon : item.icon'
+                                            class='h-5 w-5'
+                                        />
                                         <span>{{ item.title }}</span>
                                         <ChevronRight class='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
                                     </SidebarMenuButton>
                                 </template>
                             </CollapsibleTrigger>
                             
-                            <CollapsibleContent class='mt-1.5'>
-                                <SidebarMenuSub class='pl-5'>
+                            <CollapsibleContent class='mt-0.5'>
+                                <SidebarMenuSub class='pl-6'>
                                     <SidebarMenuSubItem v-for='subItem in item.items' :key='subItem.title'>
-                                        <SidebarMenuSubButton as-child :is-active='subItem.isActive'>
+                                        <SidebarMenuSubButton
+                                            as-child
+                                            :is-active='subItem.isActive'
+                                            :class='{ "!bg-muted dark:!text-green-shamrock" : subItem.isActive }'
+                                        >
                                             <NuxtLink :to='subItem.url' class='pl-3'>
-                                                <span>{{ subItem.title }}</span>
+                                                <span>&#183; {{ subItem.title }}</span>
                                             </NuxtLink>
                                         </SidebarMenuSubButton>
                                     </SidebarMenuSubItem>
@@ -124,3 +152,33 @@
         </SidebarMenu>
     </SidebarGroup>
 </template>
+
+<style scoped>
+    @keyframes rocket {
+        0% { transform: translateY(2px); }
+        50% { transform: translateY(-2px); }
+        100% { transform: translateY(2px); }
+    }
+    
+    .animate-rocket {
+        animation: rocket 4s ease-in-out infinite;
+    }
+    
+    @keyframes planet {
+        0% { opacity: 0.1; }
+        10% { opacity: 0.2; }
+        20% { opacity: 0.4; }
+        30% { opacity: 0.6; }
+        40% { opacity: 0.8; }
+        50% { opacity: 1; }
+        60% { opacity: 0.8; }
+        70% { opacity: 0.6; }
+        80% { opacity: 0.4; }
+        90% { opacity: 0.2; }
+        100% { opacity: 0.1; }
+    }
+    
+    .animate-planet {
+        animation: planet 10s ease-in-out infinite;
+    }
+</style>
