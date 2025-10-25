@@ -138,7 +138,8 @@ html.light {
     --sidebar-foreground: #333333;
     --sidebar-primary: #606060;
     --sidebar-primary-foreground: #ffffff;
-    --sidebar-accent: #c0c0c0;
+    --sidebar-accent: #d9d9d9;
+    /*--sidebar-accent: #c0c0c0;*/
     --sidebar-accent-foreground: #333333;
     --sidebar-border: #d0d0d0;
     --sidebar-ring: #606060;
@@ -216,7 +217,8 @@ html.light {
     --sidebar-foreground: #ffffff;
     --sidebar-primary: #c1c0f6;
     --sidebar-primary-foreground: #14161f;
-    --sidebar-accent: #3b4263;
+    --sidebar-accent: #2a2f46;
+    /*--sidebar-accent: #3b4263;*/
     --sidebar-accent-foreground: #ffffff;
     --sidebar-border: #393e56;
     --sidebar-ring: #c1c0f6;
