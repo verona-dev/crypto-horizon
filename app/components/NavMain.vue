@@ -122,7 +122,6 @@
                         </SidebarMenuItem>
                     </Collapsible>
                 </template>
-            
             </template>
             
             <!--  Close Desktop -->
