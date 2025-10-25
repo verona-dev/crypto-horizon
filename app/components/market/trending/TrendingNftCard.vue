@@ -154,6 +154,7 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
     import InfoIcon from '~/components/InfoIcon.vue';
+    import { Card, CardHeader, CardContent } from '~/components/ui/card';
     
     const props = defineProps({
         nft: {
