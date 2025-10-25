@@ -181,7 +181,7 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getCoingeckoTrending() {
+        async getTrendingSearchList() {
             this.loading = true;
             
             try {
