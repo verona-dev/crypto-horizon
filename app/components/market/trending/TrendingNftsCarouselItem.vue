@@ -25,7 +25,7 @@
             <!--  Description  -->
             <div class='flex items-center gap-2 text-muted-foreground'>
                 <HoverCard :openDelay='200' v-if='description'>
-                    <HoverCardTrigger class='cursor-default'>
+                    <HoverCardTrigger>
                         <InfoIcon />
                     </HoverCardTrigger>
                     
@@ -70,7 +70,7 @@
                         
                         <!--  Trend  -->
                         <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='cursor-default'>
+                            <HoverCardTrigger>
                                 <div
                                     class='flex items-center gap-1'
                                     :class='getTextColorClass(floor_price_change_percentage_1d)'

@@ -52,7 +52,7 @@
                     <p class='text-sm'>{{ symbol }}</p>
                     
                     <HoverCard :openDelay='200' v-if='description'>
-                        <HoverCardTrigger class='cursor-default'>
+                        <HoverCardTrigger>
                              <InfoIcon />
                         </HoverCardTrigger>
                         
@@ -70,7 +70,7 @@
                 
                 <!--  Trend  -->
                 <HoverCard :openDelay='200'>
-                    <HoverCardTrigger class='cursor-default'>
+                    <HoverCardTrigger>
                         <div
                             class='flex items-center gap-1'
                             :class='getTextColorClass(price_change_percentage_1d)'
@@ -87,7 +87,7 @@
                     </HoverCardTrigger>
                     
                     <HoverCardContent class='flex flex-col !gap-3'>
-                        <p class='text-xs'>Floor Price 24h Percentage Change</p>
+                        <p class='text-xs'>Price Percentage Change 24h</p>
                     </HoverCardContent>
                 </HoverCard>
             </div>
