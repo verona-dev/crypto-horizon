@@ -25,7 +25,8 @@ export const useMarketStore = defineStore('MarketStore', {
         platformsSummary : [],
         globalMarket: {},
         fearAndGreed: null,
-        marketTrending: null,
+        trendingCoins: null,
+        trendingNfts: null,
         globalDefi: {},
     }),
     
@@ -186,7 +187,8 @@ export const useMarketStore = defineStore('MarketStore', {
             try {
                 const response = await useFetchCoingecko('search/trending');
                 if(response) {
-                    this.marketTrending = response;
+                    this.trendingCoins = response.coins;
+                    this.trendingNfts = response.nfts;
                 }
             } catch(error) {
                 console.error(error);

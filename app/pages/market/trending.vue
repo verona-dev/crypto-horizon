@@ -22,9 +22,9 @@
     
     const { getCoingeckoTrending } = MarketStore;
     
-    const { marketTrending } = storeToRefs(MarketStore);
-    const trending_coins = computed(() => marketTrending.value?.coins);
-    const trending_nfts = computed(() => marketTrending.value?.nfts);
+    const { trendingCoins, trendingNfts } = storeToRefs(MarketStore);
+    const trending_coins = computed(() => trendingCoins.value);
+    const trending_nfts = computed(() => trendingNfts.value);
     
     onMounted(() => getCoingeckoTrending());
 </script>
