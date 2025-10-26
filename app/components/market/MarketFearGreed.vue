@@ -1,5 +1,5 @@
 <template>
-    <Card class='h-96 !w-4/5 xl:!w-fit'>
+    <Card class='min-h-96 !w-4/5 xl:!w-[600px]'>
         <Skeleton
             v-if='!fearAndGreed'
             class='w-full h-full'

@@ -1,5 +1,5 @@
 <template>
-    <Card class='h-96 w-4/5 xl:!w-[650px]'>
+    <Card class='h-96 w-4/5 xl:!w-[600px]'>
         <Skeleton
             v-if='!updated_at'
             class='w-full h-full'

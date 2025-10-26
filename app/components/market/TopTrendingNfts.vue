@@ -1,5 +1,5 @@
 <template>
-    <Card class='min-h-96 !w-4/5 xl:!w-[500px]'>
+    <Card class='min-h-96 !w-4/5 xl:!w-[600px]'>
         <Skeleton
             v-if='!top_trending_nfts?.length'
             class='w-full h-full'
