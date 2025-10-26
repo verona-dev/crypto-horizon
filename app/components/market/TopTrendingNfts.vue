@@ -10,7 +10,7 @@
             <CardHeader class='flex flex-col xl:flex-row items-center p-8 border-b relative'>
                 <!--  Logo + Title + Symbol  -->
                 <div class='flex items-center gap-3'>
-                    <h4>Top Trending Nft's</h4>
+                    <CardTitle>Top Trending Nft's</CardTitle>
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
@@ -36,10 +36,10 @@
                 <Alert
                     v-for='nft in top_trending_nfts'
                     :key='nft.name'
-                    class='bg-transparent flex items-center justify-between gap-6 animate-fadeIn-2000 border-none'
+                    class='bg-transparent flex items-center gap-6 animate-fadeIn-2000 border-none'
                 >
                     <!--  Logo + Title + Symbol  -->
-                    <div class='flex items-center flex-2 gap-3'>
+                    <div class='flex items-center flex-1 gap-3'>
                         <!--  Logo  -->
                         <NuxtImg
                             :src='nft.image'
@@ -129,7 +129,7 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import { Skeleton } from '~/components/ui/skeleton';
-    import { Card, CardHeader, CardContent } from '~/components/ui/card';
+    import { Card, CardTitle, CardHeader, CardContent } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
     import { Alert } from '~/components/ui/alert';

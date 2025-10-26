@@ -10,7 +10,7 @@
             <CardHeader class='flex flex-col xl:flex-row items-center p-8 border-b relative'>
                 <!--  Logo + Title + Symbol  -->
                 <div class='flex items-center gap-3'>
-                    <h4>Top Trending Coins</h4>
+                    <CardTitle>Top Trending Coins</CardTitle>
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
@@ -36,10 +36,10 @@
                 <Alert
                     v-for='coin in top_trending_coins'
                     :key='coin.name'
-                    class='bg-transparent flex items-center justify-between gap-6 animate-fadeIn-2000 border-none'
+                    class='bg-transparent flex items-center gap-6 animate-fadeIn-2000 border-none'
                 >
                     <!--  Logo + Name + Symbol  -->
-                    <div class='flex items-center flex-2 gap-3'>
+                    <div class='flex items-center flex-1 gap-3'>
                         <!--  Logo  -->
                         <NuxtImg
                             :src='coin.image'
@@ -129,7 +129,7 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
     import { Skeleton } from '~/components/ui/skeleton';
-    import { Card, CardHeader, CardContent } from '~/components/ui/card';
+    import { Card, CardTitle, CardHeader, CardContent } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
     import { Alert } from '~/components/ui/alert';

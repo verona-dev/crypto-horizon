@@ -8,7 +8,7 @@
         <div v-else class='flex flex-col items-center gap-6'>
             <!--  Title  -->
             <CardHeader class='flex flex-row items-center gap-3 p-8 border-b'>
-                <h4>Crypto Fear and Greed Index</h4>
+                <CardTitle>Crypto Fear and Greed Index</CardTitle>
                 
                 <HoverCard :openDelay='200'>
                     <HoverCardTrigger>
@@ -71,7 +71,7 @@
 <script setup>
     import { Doughnut } from 'vue-chartjs';
     import { Skeleton } from '~/components/ui/skeleton';
-    import { Card, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
+    import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
     

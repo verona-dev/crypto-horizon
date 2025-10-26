@@ -11,7 +11,7 @@
         >
             <!--  Title  -->
             <div class='flex gap-3 self-center'>
-                <h4>Bitcoin Dominance</h4>
+                <CardTitle>Bitcoin Dominance</CardTitle>
                 
                 <HoverCard :openDelay='200'>
                     <HoverCardTrigger class='flex items-center'>
@@ -41,6 +41,7 @@
                 </HoverCard>
             </div>
             
+            <!--  Legend + Bar chart  -->
             <div class='flex flex-col gap-4'>
                 <!--  Legend  -->
                 <div class='flex justify-around'>
@@ -132,7 +133,7 @@
                             </HoverCard>
                         </div>
                         
-                        <p class='text-sm lg:text-2xl font-bold'>{{ item.label }}</p>
+                        <p class='text-sm lg:text-xl font-bold'>{{ item.label }}</p>
                     </div>
                 </div>
                 
@@ -152,7 +153,7 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
-    import { Card, CardContent } from '~/components/ui/card';
+    import { Card, CardTitle, CardContent, CardFooter} from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
     import { Bar } from 'vue-chartjs';
