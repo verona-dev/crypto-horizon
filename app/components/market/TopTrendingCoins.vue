@@ -7,9 +7,9 @@
         
         <div v-else>
             <!--  Card Header  -->
-            <CardHeader class='flex flex-col xl:flex-row items-center p-8 border-b relative'>
+            <CardHeader class='card-header'>
                 <!--  Logo + Title + Symbol  -->
-                <div class='flex items-center gap-3'>
+                <div class='card-title'>
                     <CardTitle>Top Trending Coins</CardTitle>
                     
                     <HoverCard :openDelay='200'>
@@ -18,9 +18,7 @@
                         </HoverCardTrigger>
                         
                         <HoverCardContent>
-                        <span>
                             Discover the top trending cryptocurrencies on CoinGecko. This list is sorted by coins that are most searched for in the last 3 hours.
-                        </span>
                         </HoverCardContent>
                     </HoverCard>
                 </div>
@@ -32,7 +30,7 @@
                 </Button>
             </CardHeader>
             
-            <CardContent class='flex flex-col gap-4 p-4'>
+            <CardContent class='card-content'>
                 <Alert
                     v-for='coin in top_trending_coins'
                     :key='coin.name'

@@ -5,38 +5,40 @@
             class='w-full h-full'
         />
         
-        <div v-else class='flex flex-col items-center gap-6'>
-            <!--  Title  -->
-            <CardHeader class='flex flex-row items-center gap-3 p-8 border-b'>
-                <CardTitle>Crypto Fear and Greed Index</CardTitle>
-                
-                <HoverCard :openDelay='200'>
-                    <HoverCardTrigger>
-                        <InfoIcon />
-                    </HoverCardTrigger>
+        <div v-else>
+            <CardHeader class='card-header'>
+                <div class='card-title'>
+                    <!--  Title  -->
+                    <CardTitle>Crypto Fear and Greed Index</CardTitle>
                     
-                    <HoverCardContent class='flex-col gap-6'>
+                    <HoverCard :openDelay='200'>
+                        <HoverCardTrigger>
+                            <InfoIcon />
+                        </HoverCardTrigger>
+                        
+                        <HoverCardContent class='flex-col gap-6'>
                     <span>
                         The CMC Fear and Greed Index is a proprietary tool developed by CoinMarketCap that measures
                         the prevailing sentiment in the cryptocurrency market.
                     </span>
-                        
-                        <span>
+                            
+                            <span>
                         This index ranges from 0 to 100,
                         where a lower value indicates extreme fear, and a higher value indicates extreme greed.
                         It helps investors understand the emotional state of the market, which can influence
                         buying and selling behaviors.
                     </span>
-                        
-                        <span>
+                            
+                            <span>
                         The index provides insights into whether the market may be
                         undervalued (extreme fear) or overvalued (extreme greed).
                     </span>
-                    </HoverCardContent>
-                </HoverCard>
+                        </HoverCardContent>
+                    </HoverCard>
+                </div>
             </CardHeader>
             
-            <CardContent class='flex flex-col px-6 items-center relative animate-fadeIn-2000'>
+            <CardContent class='card-content'>
                 <!--  Doughnut chart  -->
                 <div class='h-44 px-0 pb-0'>
                     <Doughnut
