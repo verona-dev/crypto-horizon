@@ -1,21 +1,21 @@
 <template>
-    <div class='market page flex flex-col items-center justify-center gap-12'>
+    <div class='market page flex flex-col items-center justify-center gap-6'>
         <h1 class='page-title'>Crypto Market</h1>
         
-        <div class='flex flex-col flex-wrap xl:flex-row items-center xl:items-start justify-center gap-12 w-screen max-w-7xl'>
+        <div class='flex flex-col flex-wrap xl:flex-row items-center xl:items-start justify-center gap-6 w-screen max-w-7xl'>
             <MarketFearGreed />
             <MarketDominance />
         </div>
         
-        <div class='flex flex-col flex-wrap xl:flex-row items-center xl:items-start justify-center gap-12 w-screen max-w-8xl'>
+        <div class='flex flex-col flex-wrap xl:flex-row items-center xl:items-start justify-center gap-6 w-screen max-w-8xl'>
             <TopTrendingCoins />
             <TopTrendingNfts />
         </div>
         
         <CoinsTable />
-        
-        <Meteors v-if='dark_mode' :count='30' />
     </div>
+    
+    <Meteors v-if='dark_mode' :count='30' />
 </template>
 
 <script setup>
