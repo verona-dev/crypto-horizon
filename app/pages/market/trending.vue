@@ -8,6 +8,7 @@
         <TrendingNftsCarousel
             v-if='trending_nfts'
             :nfts='trending_nfts'
+            id='trending-nfts'
         />
     </div>
 </template>

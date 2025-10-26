@@ -7,7 +7,10 @@
             <MarketDominance />
         </div>
         
-        <TopTrendingCoins />
+        <div class='flex items-center gap-12'>
+            <TopTrendingCoins />
+            <TopTrendingNfts />
+        </div>
         
         <CoinsTable />
         
@@ -19,6 +22,7 @@
     import MarketFearGreed from '~/components/market/MarketFearGreed.vue';
     import MarketDominance from '~/components/market/MarketDominance.vue';
     import TopTrendingCoins from '~/components/market/TopTrendingCoins.vue';
+    import TopTrendingNfts from '~/components/market/TopTrendingNfts.vue';
     import CoinsTable from '~/components/market/CoinsTable.vue';
     import { Meteors } from '~/components/ui/meteors';
     

@@ -1,6 +1,6 @@
 <template>
     <div class='flex flex-col items-center gap-20'>
-        <h1 class='text-5xl xl:text-9xl my-10'>Trending Nft's</h1>
+        <h1 class='page-title'>Trending Nft's</h1>
         
         <div class='flex animate-fadeIn'>
             <Skeleton
