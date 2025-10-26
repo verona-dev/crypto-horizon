@@ -7,26 +7,24 @@
         
         <div v-else>
             <!--  Card Header  -->
-            <CardHeader class='flex flex-row items-center justify-between border-b'>
+            <CardHeader class='flex flex-row items-center gap-3 p-8 border-b relative'>
                 <!--  Title  -->
-                <div class='flex items-center gap-3'>
-                    <h4>Top Trending Coins</h4>
+                <h4>Top Trending Coins</h4>
+                
+                <HoverCard :openDelay='200'>
+                    <HoverCardTrigger>
+                        <InfoIcon />
+                    </HoverCardTrigger>
                     
-                    <HoverCard :openDelay='200'>
-                        <HoverCardTrigger>
-                            <InfoIcon />
-                        </HoverCardTrigger>
-                        
-                        <HoverCardContent>
+                    <HoverCardContent>
                         <span>
                             Discover the top trending cryptocurrencies on CoinGecko. This list is sorted by coins that are most searched for in the last 3 hours.
                         </span>
-                        </HoverCardContent>
-                    </HoverCard>
-                </div>
+                    </HoverCardContent>
+                </HoverCard>
                 
                 <!--  See All  -->
-                <Button variant='link' class='text-xs'>
+                <Button variant='link' class='text-xs absolute top-0 right-4 h-full'>
                     <NuxtLink to='/market/trending'>See All</NuxtLink>
                     <ChevronRight />
                 </Button>
