@@ -28,13 +28,12 @@
     
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    const { getFearAndGreed, getTrendingSearchList } = MarketStore;
+    const { getTrendingSearchList } = MarketStore;
     
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     
     onMounted(() => {
-        getFearAndGreed();
         getTrendingSearchList();
     });
 </script>
