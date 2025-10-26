@@ -25,6 +25,7 @@ export const useMarketStore = defineStore('MarketStore', {
         platformsSummary : [],
         globalMarket: {},
         fearAndGreed: {},
+        cmcStatus: {},
         trendingCoins: [],
         trendingNfts: [],
         globalDefi: {},
@@ -56,8 +57,9 @@ export const useMarketStore = defineStore('MarketStore', {
             try {
                 const response = await useFetchCmc('v3/fear-and-greed/latest');
                 
-                if(response && response.data) {
+                if(response && response.data && response.status) {
                     this.fearAndGreed = response.data;
+                    this.cmcStatus = response.status
                 }
             } catch(error) {
                 console.error(error);
