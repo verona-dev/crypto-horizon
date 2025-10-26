@@ -140,8 +140,8 @@
     const { trendingCoins } = storeToRefs(MarketStore);
     const top_coins = ref([]);
     
-    watchEffect(() => {
-        if(trendingCoins.value) {
+    watch(trendingCoins, (newValue) => {
+        if(newValue) {
             top_coins.value = trendingCoins.value?.slice(0, 3).map(coin => ({
                 name: coin.item.name,
                 symbol: coin.item.symbol,
@@ -154,8 +154,4 @@
             }));
         }
     });
-    
-    watch(top_coins, (newVal) => {
-        console.log(newVal[0]);
-    })
 </script>
