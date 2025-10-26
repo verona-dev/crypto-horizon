@@ -49,7 +49,7 @@ tbody {
 
 .market {
     .card-container {
-        @apply flex flex-col justify-between animate-fadeIn;
+        @apply flex flex-col justify-between;
     }
     
     .card-header {
@@ -61,7 +61,7 @@ tbody {
     }
     
     .card-content {
-        @apply flex flex-col gap-4 p-4 relative animate-fadeIn-2000;
+        @apply flex flex-col gap-4 p-4 relative;
         
         .name {
             @apply flex items-center flex-1 gap-3;
@@ -80,8 +80,6 @@ tbody {
         @apply self-center;
     }
 }
-
-
 
 
 

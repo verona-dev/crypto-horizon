@@ -30,7 +30,7 @@
                 </Button>
             </CardHeader>
             
-            <CardContent class='card-content'>
+            <CardContent class='card-content animate-fadeIn-2000'>
                 <Alert
                     v-for='nft in top_trending_nfts'
                     :key='nft.name'

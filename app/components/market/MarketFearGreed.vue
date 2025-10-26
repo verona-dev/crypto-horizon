@@ -5,7 +5,7 @@
             class='w-full h-full'
         />
         
-        <div v-else class='card-container min-h-[450px] xl:min-h-96'>
+        <div v-else class='card-container min-h-[450px] xl:min-h-96 animate-fadeIn'>
             <CardHeader class='card-header'>
                 <!--  Title  -->
                 <div class='card-title'>
@@ -38,7 +38,7 @@
                 </div>
             </CardHeader>
             
-            <CardContent class='card-content'>
+            <CardContent class='card-content animate-fadeIn-2000'>
                 <!--  Doughnut chart  -->
                 <div class='px-0 pb-0'>
                     <Doughnut

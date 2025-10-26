@@ -5,7 +5,7 @@
             class='w-full h-full'
         />
         
-        <div v-else class='card-container min-h-96'>
+        <div v-else class='card-container min-h-96 animate-fadeIn'>
             <CardHeader class='card-header'>
                 <!--  Title  -->
                 <div class='card-title'>
@@ -40,7 +40,7 @@
                 </div>
             </CardHeader>
             
-            <CardContent class='card-content'>
+            <CardContent class='card-content animate-fadeIn-2000'>
                 <div class='h-28 xl:h-36 flex flex-col gap-10'>
                     <!--  Legend  -->
                     <div class='flex justify-around'>
