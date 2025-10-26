@@ -29,21 +29,14 @@
 </template>
 
 <script setup>
-    import MarketBar from '~/components/market/MarketBar.vue';
-    import ScrollToTop from '~/components/ScrollToTop.vue';
     import AppSidebar from "~/components/AppSidebar.vue";
     import Breadcrumb from "~/components/Breadcrumb.vue";
+    import CoingeckoAttribution from '~/components/CoingeckoAttribution.vue';
+    import MarketBar from '~/components/market/MarketBar.vue';
+    import ScrollToTop from '~/components/ScrollToTop.vue';
     import { SidebarInset, SidebarProvider, MobileSidebarTrigger, } from '~/components/ui/sidebar';
+    
     import { useRoute } from 'vue-router';
     const route = useRoute();
     // const title = computed(() => route.meta.title);
-    import CoingeckoAttribution from '~/components/CoingeckoAttribution.vue';
-    
-    import { useMarketStore } from '~/stores/MarketStore.js';
-    const MarketStore = useMarketStore();
-    const { getGlobalMarket } = MarketStore;
-    
-    onMounted(() => {
-        getGlobalMarket();
-    });
 </script>

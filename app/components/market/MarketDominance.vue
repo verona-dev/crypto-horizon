@@ -1,5 +1,5 @@
 <template>
-    <Card class='h-96 w-4/5 xl:!w-[600px]'>
+    <Card class='min-h-96 !w-4/5 xl:!w-[600px]'>
         <Skeleton
             v-if='!updated_at'
             class='w-full h-full'
@@ -153,7 +153,7 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
-    import { Card, CardTitle, CardContent, CardFooter} from '~/components/ui/card';
+    import { Card, CardTitle, CardContent, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
     import { Bar } from 'vue-chartjs';
@@ -161,17 +161,16 @@
     import InfoIcon from '~/components/InfoIcon.vue';
     
     import dayjs from 'dayjs';
-    import relativeTime from 'dayjs/plugin/relativeTime';
-    dayjs.extend(relativeTime);
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
     const { globalMarket } = storeToRefs(MarketStore);
+    const { getGlobalMarket } = MarketStore;
     
     const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage);
-    const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMM D YYYY [at] HH:mm[h]'));
+    const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMMM D YYYY [at] HH:mm[h]'));
     
     const btc = computed(() => mcap_dominance.value?.btc);
     const btc_label = computed(() => formatNumber(btc.value , {
@@ -310,6 +309,10 @@
             displayValues: {},
         },
     }));
+    
+    onMounted(() => {
+        getGlobalMarket();
+    });
 </script>
 
 <style scoped>

@@ -32,6 +32,23 @@ export const useMarketStore = defineStore('MarketStore', {
     }),
     
     actions: {
+        async getFearAndGreed() {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCmc('v3/fear-and-greed/latest');
+                
+                if(response && response.data && response.status) {
+                    this.fearAndGreed = response.data;
+                    this.cmcStatus = response.status
+                }
+            } catch(error) {
+                console.error(error);
+            } finally {
+                this.loading = false;
+            }
+        },
+        
         async getGlobalMarket() {
             this.loading = true;
             
@@ -42,24 +59,6 @@ export const useMarketStore = defineStore('MarketStore', {
                 
                 if(response && response.data) {
                     this.globalMarket = response.data;
-                }
-            } catch(error) {
-                console.error(error);
-            } finally {
-                this.loading = false;
-            }
-        },
-        
-        
-        async getFearAndGreed() {
-            this.loading = true;
-            
-            try {
-                const response = await useFetchCmc('v3/fear-and-greed/latest');
-                
-                if(response && response.data && response.status) {
-                    this.fearAndGreed = response.data;
-                    this.cmcStatus = response.status
                 }
             } catch(error) {
                 console.error(error);
