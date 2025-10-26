@@ -7,8 +7,8 @@
         
         <div v-else class='card-container min-h-96'>
             <CardHeader class='card-header'>
+                <!--  Title  -->
                 <div class='card-title'>
-                    <!--  Title  -->
                     <CardTitle>Crypto Fear and Greed Index</CardTitle>
                     
                     <HoverCard :openDelay='200'>
