@@ -1,7 +1,7 @@
 <template>
     <Card class='!w-4/5 xl:!w-fit'>
         <Skeleton
-            v-if='!top_coins.length > 0'
+            v-if='!top_trending_coins.length > 0'
             class='w-full h-full'
         />
         
@@ -32,7 +32,7 @@
             
             <CardContent class='flex flex-col gap-8 p-8'>
                 <Alert
-                    v-for='coin in top_coins'
+                    v-for='coin in top_trending_coins'
                     :key='coin.name'
                     class='bg-transparent flex justify-between animate-fadeIn-2000 border-none'
                 >
@@ -138,11 +138,11 @@
     const MarketStore = useMarketStore();
     
     const { trendingCoins } = storeToRefs(MarketStore);
-    const top_coins = ref([]);
+    const top_trending_coins = ref([]);
     
     watch(trendingCoins, (newValue) => {
         if(newValue) {
-            top_coins.value = trendingCoins.value?.slice(0, 3).map(coin => ({
+            top_trending_coins.value = trendingCoins.value?.slice(0, 3).map(coin => ({
                 name: coin.item.name,
                 symbol: coin.item.symbol,
                 image: coin.item.large,
