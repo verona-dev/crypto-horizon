@@ -41,7 +41,7 @@
             </CardHeader>
             
             <CardContent class='card-content'>
-                <div class='h-36 flex flex-col gap-10'>
+                <div class='h-28 xl:h-36 flex flex-col gap-10'>
                     <!--  Legend  -->
                     <div class='flex justify-around'>
                         <div
@@ -167,16 +167,16 @@
             </CardContent>
             
             <CardFooter class='card-footer flex flex-col md:flex-row text-xs gap-1.5'>
-                    <span>Data provided by</span>
-                    <NuxtLink
-                        to='https://www.coingecko.com/en/api/'
-                        external
-                        target='_blank'
-                        class='hover:underline text-primary'
-                    >
-                        Coingecko
-                    </NuxtLink>
-                    <span>on {{ updated_at }}</span>
+                <span>Data provided by</span>
+                <NuxtLink
+                    to='https://www.coingecko.com/en/api/'
+                    external
+                    target='_blank'
+                    class='hover:underline text-primary'
+                >
+                    Coingecko
+                </NuxtLink>
+                <span>on {{ updated_at }}</span>
             </CardFooter>
         </div>
     </Card>
@@ -188,7 +188,7 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
     import { Bar } from 'vue-chartjs';
-    import { Table, TableBody, TableCell, TableRow, TableCaption } from '~/components/ui/table/index.js';
+    import { Table, TableHeader, TableHead, TableBody, TableCell, TableRow, TableCaption } from '~/components/ui/table/index.js';
     import InfoIcon from '~/components/InfoIcon.vue';
     
     import dayjs from 'dayjs';
