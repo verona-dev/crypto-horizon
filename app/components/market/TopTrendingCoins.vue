@@ -38,7 +38,7 @@
                     :key='coin.name'
                     class='bg-transparent flex gap-12 justify-between animate-fadeIn-2000 border-none'
                 >
-                    <!--  Logo + Title + Symbol  -->
+                    <!--  Logo + Name + Symbol  -->
                     <div class='flex flex-1 gap-3'>
                         <!--  Logo  -->
                         <NuxtImg
@@ -72,7 +72,7 @@
                     <!--  Sparkline  -->
                     <div v-if='!isMobile' class='h-10 select-none flex'>
                         <NuxtImg
-                            v-if='!coin.sparkline'
+                            v-if='coin.sparkline'
                             :src='coin.sparkline'
                             alt='trending coin logo'
                             class='w-full h-full'

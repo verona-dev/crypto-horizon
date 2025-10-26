@@ -38,12 +38,12 @@
                     :key='nft.name'
                     class='bg-transparent flex gap-12 justify-between animate-fadeIn-2000 border-none'
                 >
-                    <!--  Logo + Title + Symbol  -->
+                    <!--  Logo + Name + Symbol  -->
                     <div class='flex flex-1 gap-3'>
                         <!--  Logo  -->
                         <NuxtImg
                             :src='nft.image'
-                            alt='trending coin logo'
+                            alt='trending nft logo'
                             class='w-12 h-12 rounded-full select-none'
                             :custom='true'
                             v-slot='{ src, isLoaded, imgAttrs, alt }'
@@ -64,7 +64,7 @@
                         
                         <!--  Name + Symbol  -->
                         <div class='flex flex-col gap-1'>
-                            <span class='font-bold'>{{ nft.name }}</span>
+                            <span class='font-bold truncate'>{{ nft.name }}</span>
                             <span class='text-muted-foreground text-xs'>{{ nft.symbol }}</span>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                     <!--  Sparkline  -->
                     <div v-if='!isMobile' class='h-10 select-none min-w-0 flex'>
                         <NuxtImg
-                            v-if='!nft.sparkline'
+                            v-if='nft.sparkline'
                             :src='nft.sparkline'
                             alt='trending coin logo'
                             class='w-full h-full'
