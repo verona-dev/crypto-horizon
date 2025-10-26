@@ -54,8 +54,7 @@
                 </div>
             </CardContent>
             
-            <CardFooter class='card-footer'>
-                <div class='text-xs flex items-center gap-1.5'>
+            <CardFooter class='card-footer flex flex-col md:flex-row text-xs gap-1.5'>
                     <span>Data provided by</span>
                     <NuxtLink
                         to='https://coinmarketcap.com/'
@@ -66,7 +65,6 @@
                         CoinMarketCap.com
                     </NuxtLink>
                     <span>on {{ cmc_timestamp }}</span>
-                </div>
             </CardFooter>
         </div>
     </Card>
