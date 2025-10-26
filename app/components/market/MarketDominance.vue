@@ -166,7 +166,7 @@
                 </div>
             </CardContent>
             
-            <CardFooter class='card-footer flex flex-col md:flex-row text-xs gap-1.5'>
+            <CardFooter class='card-footer flex flex-col md:flex-row mb-4 text-xs gap-1.5'>
                 <span>Data provided by</span>
                 <NuxtLink
                     to='https://www.coingecko.com/en/api/'

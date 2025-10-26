@@ -1,11 +1,11 @@
 <template>
-    <Card class='min-h-96 !w-4/5 xl:!w-[600px]'>
+    <Card class='min-h-[450px] min-h-96 !w-4/5 xl:!w-[600px]'>
         <Skeleton
             v-if='!fearAndGreed.value'
             class='w-full h-full'
         />
         
-        <div v-else class='card-container min-h-96'>
+        <div v-else class='card-container min-h-[450px] xl:min-h-96'>
             <CardHeader class='card-header'>
                 <!--  Title  -->
                 <div class='card-title'>
@@ -54,17 +54,17 @@
                 </div>
             </CardContent>
             
-            <CardFooter class='card-footer flex flex-col md:flex-row text-xs gap-1.5'>
-                    <span>Data provided by</span>
-                    <NuxtLink
-                        to='https://coinmarketcap.com/'
-                        external
-                        target='_blank'
-                        class='hover:underline text-primary'
-                    >
-                        CoinMarketCap.com
-                    </NuxtLink>
-                    <span>on {{ cmc_timestamp }}</span>
+            <CardFooter class='card-footer flex flex-col md:flex-row mb-4 text-xs gap-1.5'>
+                <span>Data provided by</span>
+                <NuxtLink
+                    to='https://coinmarketcap.com/'
+                    external
+                    target='_blank'
+                    class='hover:underline text-primary'
+                >
+                    CoinMarketCap.com
+                </NuxtLink>
+                <span>on {{ cmc_timestamp }}</span>
             </CardFooter>
         </div>
     </Card>
