@@ -1,7 +1,7 @@
 <template>
     <Card class='min-h-96 !w-4/5 xl:!w-[600px]'>
         <Skeleton
-            v-if='!fearAndGreed'
+            v-if='!fearAndGreed.value'
             class='w-full h-full'
         />
         
@@ -20,8 +20,8 @@
                         The CMC Fear and Greed Index is a proprietary tool developed by CoinMarketCap that measures
                         the prevailing sentiment in the cryptocurrency market.
                     </span>
-                     
-                     <span>
+                        
+                        <span>
                         This index ranges from 0 to 100,
                         where a lower value indicates extreme fear, and a higher value indicates extreme greed.
                         It helps investors understand the emotional state of the market, which can influence
@@ -80,7 +80,7 @@
     const MarketStore = useMarketStore();
     
     const { fearAndGreed } = storeToRefs(MarketStore);
-    // const { getCmcFearAndGreed } = MarketStore;
+    const { getFearAndGreed } = MarketStore;
     
     // const fear_and_greed_data = ref(0);
     const fear_and_greed_data = computed(() => fearAndGreed.value?.value);
@@ -176,7 +176,7 @@
         }
     });
     
-    // onMounted(() => getCmcFearAndGreed());
+    onMounted(() => getFearAndGreed());
 </script>
 
 <style scoped>
