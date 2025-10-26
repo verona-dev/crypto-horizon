@@ -1,3 +1,4 @@
+@import 'tailwindcss';
 
 /*  Sonner  */
 /*
@@ -45,6 +46,22 @@ tbody {
         width: 90% !important;
     }
 }
+
+.market {
+    .card-header {
+        @apply flex flex-col xl:flex-row items-center p-8 border-b relative;
+    }
+    
+    .card-title {
+        @apply flex items-center gap-3;
+    }
+    
+    .card-content {
+        @apply flex flex-col gap-4 p-4;
+    }
+}
+
+
 
 
 
