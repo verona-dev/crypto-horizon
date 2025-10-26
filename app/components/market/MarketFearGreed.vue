@@ -5,7 +5,7 @@
             class='w-full h-full'
         />
         
-        <div v-else>
+        <div v-else class='card-container min-h-96'>
             <CardHeader class='card-header'>
                 <div class='card-title'>
                     <!--  Title  -->
@@ -40,7 +40,7 @@
             
             <CardContent class='card-content'>
                 <!--  Doughnut chart  -->
-                <div class='h-44 px-0 pb-0'>
+                <div class='px-0 pb-0'>
                     <Doughnut
                         :data='data'
                         :options='options'
@@ -54,17 +54,19 @@
                 </div>
             </CardContent>
             
-            <CardFooter>
-                <p class='text-xs'>Data provided by
+            <CardFooter class='card-footer'>
+                <div class='text-xs flex items-center gap-1.5'>
+                    <span>Data provided by</span>
                     <NuxtLink
                         to='https://coinmarketcap.com/'
                         external
                         target='_blank'
-                        class='hover:underline'
+                        class='hover:underline text-primary'
                     >
                         CoinMarketCap.com
                     </NuxtLink>
-                </p>
+                    <span>on {{ cmc_timestamp }}</span>
+                </div>
             </CardFooter>
         </div>
     </Card>
@@ -77,16 +79,19 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
     
+    import dayjs from 'dayjs';
+    
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
-    const { fearAndGreed } = storeToRefs(MarketStore);
+    const { fearAndGreed, cmcStatus } = storeToRefs(MarketStore);
     const { getFearAndGreed } = MarketStore;
     
     // const fear_and_greed_data = ref(0);
     const fear_and_greed_data = computed(() => fearAndGreed.value?.value);
     const fear_and_greed_label = computed(() => fearAndGreed.value?.value_classification);
+    const cmc_timestamp = computed(() => dayjs(cmcStatus.value?.timestamp).format('MMMM D YYYY [at] HH:mm[h]'));
     
     const data = ref(({
         labels: ['Fear and Greed'],
@@ -185,7 +190,7 @@
     .labels-container {
         position: absolute;
         width: 100%;
-        top: 57%;
+        top: 67%;
         left: 0;
         text-align: center;
         transform: translateY(-60%);
