@@ -1,5 +1,5 @@
 <template>
-    <Card class='!w-4/5 xl:!w-fit'>
+    <Card class='min-h-96 !w-4/5 xl:!w-[500px]'>
         <Skeleton
             v-if='!top_trending_nfts?.length'
             class='w-full h-full'
@@ -8,7 +8,7 @@
         <div v-else>
             <!--  Card Header  -->
             <CardHeader class='flex flex-col xl:flex-row items-center p-8 border-b relative'>
-                <!--  Title  -->
+                <!--  Logo + Title + Symbol  -->
                 <div class='flex items-center gap-3'>
                     <h4>Top Trending Nft's</h4>
                     
@@ -32,14 +32,14 @@
                 </Button>
             </CardHeader>
             
-            <CardContent class='flex flex-col gap-8 p-8'>
+            <CardContent class='flex flex-col gap-4 p-4'>
                 <Alert
                     v-for='nft in top_trending_nfts'
                     :key='nft.name'
-                    class='bg-transparent flex gap-12 justify-between animate-fadeIn-2000 border-none'
+                    class='bg-transparent flex items-center justify-between gap-6 animate-fadeIn-2000 border-none'
                 >
-                    <!--  Logo + Name + Symbol  -->
-                    <div class='flex flex-1 gap-3'>
+                    <!--  Logo + Title + Symbol  -->
+                    <div class='flex items-center flex-2 gap-3'>
                         <!--  Logo  -->
                         <NuxtImg
                             :src='nft.image'
@@ -63,18 +63,18 @@
                         </NuxtImg>
                         
                         <!--  Name + Symbol  -->
-                        <div class='flex flex-col gap-1'>
-                            <span class='font-bold truncate'>{{ nft.name }}</span>
+                        <div class='h-20 flex flex-col justify-center gap-1'>
+                            <span class='font-bold'>{{ nft.name }}</span>
                             <span class='text-muted-foreground text-xs'>{{ nft.symbol }}</span>
                         </div>
                     </div>
                     
                     <!--  Sparkline  -->
-                    <div v-if='!isMobile' class='h-10 select-none min-w-0 flex'>
+                    <div v-if='!isMobile' class='h-8 flex-1 select-none flex'>
                         <NuxtImg
                             v-if='nft.sparkline'
                             :src='nft.sparkline'
-                            alt='trending coin logo'
+                            alt='trending nft logo'
                             class='w-full h-full'
                             :custom='true'
                             v-slot='{ src, isLoaded, imgAttrs, alt }'
@@ -147,6 +147,8 @@
     
     
     watch(trendingNfts, (newVal) => {
+        console.log(newVal[0]);
+        
         if(newVal) {
             top_trending_nfts.value = trendingNfts.value?.slice(0, 3).map(nft => ({
                 name: nft.name,
@@ -161,5 +163,9 @@
                 trend_icon: getTrendIcon(nft.data.floor_price_in_usd_24h_percentage_change),
             }));
         }
+    });
+    
+    watch(top_trending_nfts, (newValue) => {
+        console.log(newValue[0]);
     });
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <Card class='!w-4/5 xl:!w-fit'>
+    <Card class='min-h-96 !w-4/5 xl:!w-[500px]'>
         <Skeleton
             v-if='!top_trending_coins?.length'
             class='w-full h-full'
@@ -8,7 +8,7 @@
         <div v-else>
             <!--  Card Header  -->
             <CardHeader class='flex flex-col xl:flex-row items-center p-8 border-b relative'>
-                <!--  Title  -->
+                <!--  Logo + Title + Symbol  -->
                 <div class='flex items-center gap-3'>
                     <h4>Top Trending Coins</h4>
                     
@@ -32,14 +32,14 @@
                 </Button>
             </CardHeader>
             
-            <CardContent class='flex flex-col gap-8 p-8'>
+            <CardContent class='flex flex-col gap-4 p-4'>
                 <Alert
                     v-for='coin in top_trending_coins'
                     :key='coin.name'
-                    class='bg-transparent flex gap-12 justify-between animate-fadeIn-2000 border-none'
+                    class='bg-transparent flex items-center justify-between gap-6 animate-fadeIn-2000 border-none'
                 >
                     <!--  Logo + Name + Symbol  -->
-                    <div class='flex flex-1 gap-3'>
+                    <div class='flex items-center flex-2 gap-3'>
                         <!--  Logo  -->
                         <NuxtImg
                             :src='coin.image'
@@ -63,14 +63,14 @@
                         </NuxtImg>
                         
                         <!--  Name + Symbol  -->
-                        <div class='flex flex-col gap-1'>
+                        <div class='h-20 flex flex-col justify-center gap-1'>
                             <span class='font-bold'>{{ coin.name }}</span>
                             <span class='text-muted-foreground text-xs'>{{ coin.symbol }}</span>
                         </div>
                     </div>
                     
                     <!--  Sparkline  -->
-                    <div v-if='!isMobile' class='h-10 select-none flex'>
+                    <div v-if='!isMobile' class='h-10 flex-1 select-none flex'>
                         <NuxtImg
                             v-if='coin.sparkline'
                             :src='coin.sparkline'
