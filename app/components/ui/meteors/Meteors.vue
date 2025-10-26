@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute inset-0 overflow-hidden">
+    <div class="inset-0 overflow-hidden">
     <span
         v-for="index in count"
         :key="'meteor-' + index"
