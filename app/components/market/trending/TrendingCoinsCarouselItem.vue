@@ -6,9 +6,8 @@
         />
         
         <div v-else>
-            <!--  Card Header  -->
+            <!--  Rank + Logo + Name + Symbol  -->
             <CardHeader class='card-header'>
-                <!--  Logo + Name + Symbol  -->
                 <div class='flex items-center gap-3'>
                     <Badge variant='outline'>{{ rank }}</Badge>
                     
@@ -45,16 +44,50 @@
                         </HoverCardTrigger>
                         
                         <HoverCardContent class='flex flex-col !items-start !gap-3'>
-                            <div class='flex items-center gap-3'>
+                            <div class='flex flex-col gap-3'>
                                 <span>{{ title }}</span>
-                                <span>&#35;{{ mcap_rank }}</span>
+                                <span>Market cap rank&#35;{{ mcap_rank }}</span>
                             </div>
                             <span class='text-muted-foreground'>{{ description }}</span>
                         </HoverCardContent>
                     </HoverCard>
-                    
                 </div>
             </CardHeader>
+            
+            <!--  Sparkline  -->
+            <CardContent>
+                <Alert class='w-full h-full flex items-center justify-center select-none'>
+                    <NuxtImg
+                        v-if='sparkline'
+                        :src='sparkline'
+                        alt='trending coin logo'
+                        class='w-2/3 h-full'
+                        :custom='true'
+                        v-slot='{ src, isLoaded, imgAttrs, alt }'
+                        preload
+                    >
+                        <img
+                            v-if='isLoaded'
+                            v-bind='imgAttrs'
+                            :src='src'
+                            :alt='alt'
+                        >
+                        <Skeleton
+                            v-else
+                            class='w-50 h-16'
+                        />
+                    </NuxtImg>
+                    
+                    <div v-else class='w-full h-full flex flex-col items-center justify-center gap-2 mb-2'>
+                        <NuxtIcon
+                            name='my-icon:sparkline-fallback'
+                            class='w-full h-full'
+                        />
+                        
+                        <p class='text-xs'>No sparkline available</p>
+                    </div>
+                </Alert>
+            </CardContent>
         </div>
     </Card>
     
@@ -113,7 +146,7 @@
                     
                     <HoverCard :openDelay='200' v-if='description'>
                         <HoverCardTrigger>
-                             <InfoIcon />
+                            <InfoIcon />
                         </HoverCardTrigger>
                         
                         <HoverCardContent class='flex flex-col !gap-3'>
@@ -191,13 +224,14 @@
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
+    import InfoIcon from '~/components/InfoIcon.vue';
+    import { ChevronRight } from 'lucide-vue-next';
+    import { Alert } from '~/components/ui/alert';
     import { Badge } from '~/components/ui/badge';
+    import { Button } from '@/components/ui/button/index.js';
+    import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
-    import InfoIcon from '~/components/InfoIcon.vue';
-    import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
-    import { Button } from '@/components/ui/button/index.js';
-    import { ChevronRight } from 'lucide-vue-next';
     
     const props = defineProps({
         coin: {
