@@ -1,4 +1,64 @@
 <template>
+    <Card class='h-80 w-[500px]'>
+        <Skeleton
+            v-if='!coin'
+            class='w-full h-full'
+        />
+        
+        <div v-else>
+            <!--  Card Header  -->
+            <CardHeader class='card-header'>
+                <!--  Logo + Name + Symbol  -->
+                <div class='flex items-center gap-3'>
+                    <Badge variant='outline'>{{ rank }}</Badge>
+                    
+                    <!--  Logo  -->
+                    <NuxtImg
+                        v-if='image'
+                        :src='image'
+                        alt='trending coin logo'
+                        class='w-8 h-8 rounded-full select-none'
+                        :custom='true'
+                        v-slot='{ src, isLoaded, imgAttrs, alt }'
+                        preload
+                    >
+                        <img
+                            v-if='isLoaded'
+                            v-bind='imgAttrs'
+                            :src='src'
+                            :alt='alt'
+                        >
+                        
+                        <Skeleton
+                            v-else
+                            class='w-8 h-8 rounded-full'
+                        />
+                    </NuxtImg>
+                    
+                    <CardTitle>{{ name }}</CardTitle>
+                    
+                    <p class='text-sm text-muted-foreground'>{{ symbol }}</p>
+                    
+                    <HoverCard :openDelay='200'>
+                        <HoverCardTrigger>
+                            <InfoIcon />
+                        </HoverCardTrigger>
+                        
+                        <HoverCardContent class='flex flex-col !items-start !gap-3'>
+                            <div class='flex items-center gap-3'>
+                                <span>{{ title }}</span>
+                                <span>&#35;{{ mcap_rank }}</span>
+                            </div>
+                            <span class='text-muted-foreground'>{{ description }}</span>
+                        </HoverCardContent>
+                    </HoverCard>
+                    
+                </div>
+            </CardHeader>
+        </div>
+    </Card>
+    
+    
     <Card
         v-if='coin'
         class='!w-68 flex flex-col justify-center gap-6 !p-0'
@@ -135,7 +195,9 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
     import InfoIcon from '~/components/InfoIcon.vue';
-    import { Card, CardContent } from '~/components/ui/card';
+    import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
+    import { Button } from '@/components/ui/button/index.js';
+    import { ChevronRight } from 'lucide-vue-next';
     
     const props = defineProps({
         coin: {
