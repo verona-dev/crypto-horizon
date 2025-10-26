@@ -147,8 +147,6 @@
     
     
     watch(trendingNfts, (newVal) => {
-        console.log(newVal[0]);
-        
         if(newVal) {
             top_trending_nfts.value = trendingNfts.value?.slice(0, 3).map(nft => ({
                 name: nft.name,
@@ -163,9 +161,5 @@
                 trend_icon: getTrendIcon(nft.data.floor_price_in_usd_24h_percentage_change),
             }));
         }
-    });
-    
-    watch(top_trending_nfts, (newValue) => {
-        console.log(newValue[0]);
     });
 </script>
