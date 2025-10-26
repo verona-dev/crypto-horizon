@@ -167,7 +167,6 @@
     const MarketStore = useMarketStore();
     
     const { globalMarket } = storeToRefs(MarketStore);
-    const { getGlobalMarket } = MarketStore;
     
     const mcap_dominance = computed(() => globalMarket.value?.market_cap_percentage);
     const updated_at = computed(() => dayjs.unix(globalMarket.value?.updated_at).format('MMMM D YYYY [at] HH:mm[h]'));
@@ -309,10 +308,6 @@
             displayValues: {},
         },
     }));
-    
-    onMounted(() => {
-        getGlobalMarket();
-    });
 </script>
 
 <style scoped>
