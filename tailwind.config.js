@@ -21,5 +21,8 @@ export default {
             // 'sans': ['Helvetica', 'Arial', 'sans-serif'],
         },
     },
+    plugins: [
+        require('tailwindcss-animate'),
+    ],
 }
 
