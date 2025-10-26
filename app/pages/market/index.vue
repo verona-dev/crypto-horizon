@@ -2,13 +2,12 @@
     <div class='market page flex flex-col items-center justify-center gap-20'>
         <h1 class='page-title'>Crypto Market</h1>
         
-        
         <div class='flex flex-col flex-wrap xl:flex-row items-center xl:items-start justify-center gap-12 w-screen max-w-7xl'>
             <MarketFearGreed />
-            <TopTrendingCoins />
+            <MarketDominance />
         </div>
         
-        <MarketDominance />
+        <TopTrendingCoins />
         
         <CoinsTable />
         

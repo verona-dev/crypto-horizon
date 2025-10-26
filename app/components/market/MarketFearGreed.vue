@@ -1,16 +1,13 @@
 <template>
-    <Card class='!w-4/5 xl:!w-fit'>
+    <Card class='h-96 !w-4/5 xl:!w-fit'>
         <Skeleton
             v-if='!fearAndGreed'
             class='w-full h-full'
         />
         
-        <CardContent
-            v-else
-            class='flex flex-col items-center justify-around h-full relative p-8 animate-fadeIn-2000'
-        >
+        <div v-else class='flex flex-col items-center gap-6'>
             <!--  Title  -->
-            <div class='flex items-center gap-3'>
+            <CardHeader class='flex flex-row items-center gap-3 p-8 border-b'>
                 <h4>Crypto Fear and Greed Index</h4>
                 
                 <HoverCard :openDelay='200'>
@@ -23,8 +20,8 @@
                         The CMC Fear and Greed Index is a proprietary tool developed by CoinMarketCap that measures
                         the prevailing sentiment in the cryptocurrency market.
                     </span>
-                        
-                        <span>
+                     
+                     <span>
                         This index ranges from 0 to 100,
                         where a lower value indicates extreme fear, and a higher value indicates extreme greed.
                         It helps investors understand the emotional state of the market, which can influence
@@ -37,40 +34,44 @@
                     </span>
                     </HoverCardContent>
                 </HoverCard>
-            </div>
+            </CardHeader>
             
-            <!--  Doughnut chart  -->
-            <CardContent class='w-64 h-64 px-0 pb-0'>
-                <Doughnut
-                    :data='data'
-                    :options='options'
-                />
+            <CardContent class='flex flex-col px-6 items-center relative animate-fadeIn-2000'>
+                <!--  Doughnut chart  -->
+                <div class='h-44 px-0 pb-0'>
+                    <Doughnut
+                        :data='data'
+                        :options='options'
+                    />
+                </div>
+                
+                <!--  Fear and Greed labels  -->
+                <div class='labels-container great-font flex flex-col items-center gap-3'>
+                    <h2 class='text-5xl'>{{ fear_and_greed_data }}</h2>
+                    <p class='text-muted-foreground'>{{ fear_and_greed_label }}</p>
+                </div>
             </CardContent>
             
-            <!--  Fear and Greed labels  -->
-            <div class='labels-container great-font flex flex-col items-center gap-3'>
-                <h2 class='text-5xl'>{{ fear_and_greed_data }}</h2>
-                <p class='text-muted-foreground'>{{ fear_and_greed_label }}</p>
-            </div>
-            
-            <p class='text-xs self-center'>Data provided by
-                <NuxtLink
-                    to='https://coinmarketcap.com/'
-                    external
-                    target='_blank'
-                    class='hover:underline'
-                >
-                    CoinMarketCap.com
-                </NuxtLink>
-            </p>
-        </CardContent>
+            <CardFooter>
+                <p class='text-xs'>Data provided by
+                    <NuxtLink
+                        to='https://coinmarketcap.com/'
+                        external
+                        target='_blank'
+                        class='hover:underline'
+                    >
+                        CoinMarketCap.com
+                    </NuxtLink>
+                </p>
+            </CardFooter>
+        </div>
     </Card>
 </template>
 
 <script setup>
     import { Doughnut } from 'vue-chartjs';
     import { Skeleton } from '~/components/ui/skeleton';
-    import { Card, CardContent } from '~/components/ui/card';
+    import { Card, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
     
