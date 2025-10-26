@@ -1,11 +1,11 @@
 <template>
-    <Card class='min-h-96 !w-4/5 xl:!w-[600px]'>
+    <Card class='!w-4/5 xl:!w-[600px]'>
         <Skeleton
             v-if='!updated_at'
             class='w-full h-full'
         />
         
-        <div v-else class='card-container'>
+        <div v-else class='card-container min-h-96'>
             <CardHeader class='card-header'>
                 <!--  Title  -->
                 <div class='card-title'>
@@ -40,9 +40,8 @@
                 </div>
             </CardHeader>
             
-            <CardContent class='flex flex-col justify-between w-full h-full gap-6 p-8 animate-fadeIn-2000'>
-                <!--  Legend + Bar chart  -->
-                <div class='flex flex-col gap-4'>
+            <CardContent class='card-content'>
+                <div class='h-36 flex flex-col gap-10'>
                     <!--  Legend  -->
                     <div class='flex justify-around'>
                         <div
@@ -158,16 +157,29 @@
                     </div>
                     
                     <!--  Bar chart  -->
-                    <CardContent class='px-0 pb-0'>
+                    <div>
                         <Bar
                             :data='chartData'
                             :options='chartOptions'
                         />
-                    </CardContent>
+                    </div>
                 </div>
-                
-                <p class='text-xs self-center'>Coingecko data updated on {{ updated_at }}</p>
             </CardContent>
+            
+            <CardFooter class='card-footer'>
+                <div class='text-xs flex items-center gap-1.5'>
+                    <span>Data provided by</span>
+                    <NuxtLink
+                        to='https://www.coingecko.com/en/api/'
+                        external
+                        target='_blank'
+                        class='hover:underline text-primary'
+                    >
+                        Coingecko
+                    </NuxtLink>
+                    <span>on {{ updated_at }}</span>
+                </div>
+            </CardFooter>
         </div>
     </Card>
 </template>
