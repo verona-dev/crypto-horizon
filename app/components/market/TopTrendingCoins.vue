@@ -1,7 +1,7 @@
 <template>
     <Card class='!w-4/5 xl:!w-fit'>
         <Skeleton
-            v-if='!top_trending_coins.length > 0'
+            v-if='!top_trending_coins?.length'
             class='w-full h-full'
         />
         
@@ -147,7 +147,9 @@
                 symbol: coin.item.symbol,
                 image: coin.item.large,
                 price: formatNumber(coin.item.data.price),
-                price_percentage_change: formatNumber(coin.item.data.price_change_percentage_24h?.usd, { style: 'percent'}),
+                price_percentage_change: formatNumber(coin.item.data.price_change_percentage_24h?.usd, {
+                    style: 'percent'
+                }),
                 text_class: getTextColorClass(coin.item.data.price_change_percentage_24h?.usd),
                 trend_icon: getTrendIcon(coin.item.data.price_change_percentage_24h?.usd),
                 sparkline: coin.item.data.sparkline,
