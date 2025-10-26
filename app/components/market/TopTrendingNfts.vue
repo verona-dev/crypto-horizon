@@ -7,24 +7,26 @@
         
         <div v-else>
             <!--  Card Header  -->
-            <CardHeader class='flex flex-row items-center gap-3 p-8 border-b relative'>
+            <CardHeader class='flex flex-col xl:flex-row items-center p-8 border-b relative'>
                 <!--  Title  -->
-                <h4>Top Trending Nft's</h4>
-                
-                <HoverCard :openDelay='200'>
-                    <HoverCardTrigger>
-                        <InfoIcon />
-                    </HoverCardTrigger>
+                <div class='flex items-center gap-3'>
+                    <h4>Top Trending Nft's</h4>
                     
-                    <HoverCardContent>
+                    <HoverCard :openDelay='200'>
+                        <HoverCardTrigger>
+                            <InfoIcon />
+                        </HoverCardTrigger>
+                        
+                        <HoverCardContent>
                         <span>
                             Discover the top trending Nft's on CoinGecko. This list is sorted by Nft's that are most searched for in the last 3 hours.
                         </span>
-                    </HoverCardContent>
-                </HoverCard>
+                        </HoverCardContent>
+                    </HoverCard>
+                </div>
                 
                 <!--  See All  -->
-                <Button variant='link' class='text-xs absolute top-0 right-4 h-full'>
+                <Button variant='link' class='text-xs xl:absolute top-0 right-4 h-full'>
                     <NuxtLink to='/market/trending#trending-nfts'>See All</NuxtLink>
                     <ChevronRight />
                 </Button>
@@ -34,9 +36,10 @@
                 <Alert
                     v-for='nft in top_trending_nfts'
                     :key='nft.name'
-                    class='bg-transparent flex justify-between animate-fadeIn-2000 border-none'
+                    class='bg-transparent flex gap-12 justify-between animate-fadeIn-2000 border-none'
                 >
-                    <div class='xl:w-56 flex gap-3'>
+                    <!--  Logo + Title + Symbol  -->
+                    <div class='flex flex-1 gap-3'>
                         <!--  Logo  -->
                         <NuxtImg
                             :src='nft.image'
@@ -67,9 +70,9 @@
                     </div>
                     
                     <!--  Sparkline  -->
-                    <div class='h-12 xl:w-44 select-none'>
+                    <div v-if='!isMobile' class='h-10 select-none min-w-0 flex'>
                         <NuxtImg
-                            v-if='nft.sparkline'
+                            v-if='!nft.sparkline'
                             :src='nft.sparkline'
                             alt='trending coin logo'
                             class='w-full h-full'
@@ -89,11 +92,11 @@
                             />
                         </NuxtImg>
                         
-                        <p v-else class='text-xs'>No sparkline available</p>
+                        <p v-else class='text-xs self-center'>No sparkline available</p>
                     </div>
                     
                     <!--  Price  -->
-                    <div class='xl:w-24 flex flex-col items-end'>
+                    <div class='flex flex-1 flex-col items-end'>
                         <h6>{{ nft.floor_price }}</h6>
                         
                         <HoverCard :openDelay='200'>
@@ -132,6 +135,8 @@
     import { Alert } from '~/components/ui/alert';
     import { Button } from '~/components/ui/button';
     import { ChevronRight } from 'lucide-vue-next';
+    import { useSidebar } from '~/components/ui/sidebar';
+    const { isMobile } = useSidebar();
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';

@@ -7,7 +7,7 @@
             <MarketDominance />
         </div>
         
-        <div class='flex flex-col flex-wrap xl:flex-row items-center xl:items-start justify-center gap-12 w-screen max-w-7xl'>
+        <div class='flex flex-col flex-wrap xl:flex-row items-center xl:items-start justify-center gap-12 w-screen max-w-8xl'>
             <TopTrendingCoins />
             <TopTrendingNfts />
         </div>
