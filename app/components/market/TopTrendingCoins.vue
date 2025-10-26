@@ -37,7 +37,7 @@
                     class='bg-transparent flex items-center gap-6 animate-fadeIn-2000 border-none'
                 >
                     <!--  Logo + Name + Symbol  -->
-                    <div class='flex items-center flex-1 gap-3'>
+                    <div class='name'>
                         <!--  Logo  -->
                         <NuxtImg
                             :src='coin.image'
@@ -68,7 +68,7 @@
                     </div>
                     
                     <!--  Sparkline  -->
-                    <div v-if='!isMobile' class='h-10 flex-1 select-none flex'>
+                    <div v-if='!isMobile' class='sparkline h-10'>
                         <NuxtImg
                             v-if='coin.sparkline'
                             :src='coin.sparkline'
@@ -94,7 +94,7 @@
                     </div>
                     
                     <!--  Price  -->
-                    <div class='flex flex-1 flex-col items-end'>
+                    <div class='price'>
                         <h6>{{ coin.price }}</h6>
                         
                         <HoverCard :openDelay='200'>

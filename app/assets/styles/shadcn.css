@@ -58,6 +58,18 @@ tbody {
     
     .card-content {
         @apply flex flex-col gap-4 p-4;
+        
+        .name {
+            @apply flex items-center flex-1 gap-3;
+        }
+        
+        .sparkline {
+            @apply flex-1 select-none flex;
+        }
+        
+        .price {
+            @apply flex flex-1 flex-col items-end;
+        }
     }
 }
 
