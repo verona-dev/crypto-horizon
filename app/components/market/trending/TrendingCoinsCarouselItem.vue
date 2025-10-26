@@ -1,11 +1,11 @@
 <template>
-    <Card class='h-80 w-[500px]'>
+    <Card class='h-80 w-[400px]'>
         <Skeleton
             v-if='!coin'
             class='w-full h-full'
         />
         
-        <div v-else>
+        <div v-else class='card-container animate-fadeIn'>
             <!--  Rank + Logo + Name + Symbol  -->
             <CardHeader class='card-header'>
                 <div class='flex items-center gap-3'>
@@ -46,7 +46,7 @@
                         <HoverCardContent class='flex flex-col !items-start !gap-3'>
                             <div class='flex flex-col gap-3'>
                                 <span>{{ title }}</span>
-                                <span>Market cap rank&#35;{{ mcap_rank }}</span>
+                                <span>Market cap rank &#35;{{ mcap_rank }}</span>
                             </div>
                             <span class='text-muted-foreground'>{{ description }}</span>
                         </HoverCardContent>
@@ -55,13 +55,13 @@
             </CardHeader>
             
             <!--  Sparkline  -->
-            <CardContent>
-                <Alert class='w-full h-full flex items-center justify-center select-none'>
+            <CardContent class='flex items-center justify-center'>
+                <Alert class='bg-transparent w-96 h-36 p-0 flex items-center justify-center select-none'>
                     <NuxtImg
                         v-if='sparkline'
                         :src='sparkline'
                         alt='trending coin logo'
-                        class='w-2/3 h-full'
+                        class='w-full h-full'
                         :custom='true'
                         v-slot='{ src, isLoaded, imgAttrs, alt }'
                         preload
@@ -74,13 +74,13 @@
                         >
                         <Skeleton
                             v-else
-                            class='w-50 h-16'
+                            class='w-full h-full'
                         />
                     </NuxtImg>
                     
-                    <div v-else class='w-full h-full flex flex-col items-center justify-center gap-2 mb-2'>
+                    <div v-else class='w-full h-full text-muted-foreground flex flex-col items-center justify-center gap-2 mb-2'>
                         <NuxtIcon
-                            name='my-icon:sparkline-fallback'
+                            name='ph:presentation-chart-duotone'
                             class='w-full h-full'
                         />
                         
@@ -88,6 +88,31 @@
                     </div>
                 </Alert>
             </CardContent>
+            
+            <CardFooter class='flex justify-between items-center'>
+                <h5>{{ price_label }}</h5>
+                
+                <!--  Trend  -->
+                <HoverCard :openDelay='200'>
+                    <HoverCardTrigger>
+                        <div
+                            class='flex items-center gap-1'
+                            :class='getTextColorClass(price_change_percentage_1d)'
+                        >
+                            <NuxtIcon
+                                :name='getTrendIcon(price_change_percentage_1d)'
+                                size='12'
+                            />
+                            
+                            <h5>{{ price_change_percentage_1d_label }}</h5>
+                        </div>
+                    </HoverCardTrigger>
+                    
+                    <HoverCardContent class='flex flex-col !gap-3'>
+                        <p class='text-xs'>Price Percentage Change 24h</p>
+                    </HoverCardContent>
+                </HoverCard>
+            </CardFooter>
         </div>
     </Card>
     
