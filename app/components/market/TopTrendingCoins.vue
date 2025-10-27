@@ -8,7 +8,7 @@
         <div v-else>
             <!--  Card Header  -->
             <CardHeader class='card-header'>
-                <!--  Logo + Title + Symbol  -->
+                <!--  Title  -->
                 <div class='card-title'>
                     <CardTitle>Top Trending Coins</CardTitle>
                     
@@ -40,6 +40,7 @@
                     <div class='name'>
                         <!--  Logo  -->
                         <NuxtImg
+                            v-if='coin.image'
                             :src='coin.image'
                             alt='trending coin logo'
                             class='w-12 h-12 rounded-full select-none'

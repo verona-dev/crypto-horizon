@@ -8,7 +8,7 @@
         <div v-else>
             <!--  Card Header  -->
             <CardHeader class='card-header'>
-                <!--  Logo + Title + Symbol  -->
+                <!--  Title  -->
                 <div class='card-title'>
                     <CardTitle>Top Trending Nft's</CardTitle>
                     
@@ -40,6 +40,7 @@
                     <div class='name'>
                         <!--  Logo  -->
                         <NuxtImg
+                            v-if='nft.image'
                             :src='nft.image'
                             alt='trending nft logo'
                             class='w-12 h-12 rounded-full select-none'
