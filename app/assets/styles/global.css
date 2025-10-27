@@ -32,7 +32,7 @@
     }
     
     .page {
-        @apply max-w-7xl mt-8 flex flex-col items-center justify-center;
+        @apply max-w-7xl mt-8 xl:mt-12 xl:mb-60 flex flex-col items-center justify-center;
     }
     
     [data-slot='sidebar-wrapper'] {
