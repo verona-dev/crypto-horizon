@@ -1,15 +1,17 @@
 <template>
-    <Card class='h-80 w-[400px]'>
+    <Card class='w-[400px]'>
         <Skeleton
             v-if='!coin'
             class='w-full h-full'
         />
         
-        <div v-else class='card-container animate-fadeIn'>
-            <!--  Rank + Logo + Name + Symbol  -->
+        <div v-else class='h-72 p-3 flex flex-col justify-between animate-fadeIn'>
+            <!--  Logo + Name + Symbol  -->
             <CardHeader class='card-header'>
                 <div class='flex items-center gap-3'>
+                    <!--
                     <Badge variant='outline'>{{ rank }}</Badge>
+                    -->
                     
                     <!--  Logo  -->
                     <NuxtImg
@@ -56,7 +58,7 @@
             
             <!--  Sparkline  -->
             <CardContent class='flex items-center justify-center'>
-                <Alert class='bg-transparent w-96 h-36 p-0 flex items-center justify-center select-none'>
+                <Alert class='bg-transparent w-80 h-20 p-0 flex items-center justify-center select-none border-none'>
                     <NuxtImg
                         v-if='sparkline'
                         :src='sparkline'
@@ -252,7 +254,7 @@
     import InfoIcon from '~/components/InfoIcon.vue';
     import { ChevronRight } from 'lucide-vue-next';
     import { Alert } from '~/components/ui/alert';
-    import { Badge } from '~/components/ui/badge';
+    // import { Badge } from '~/components/ui/badge';
     import { Button } from '@/components/ui/button/index.js';
     import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
@@ -267,7 +269,7 @@
     const { coin } = toRefs(props);
     
     const slug = coin.value?.slug;
-    const rank = coin.value?.score + 1;
+    // const rank = coin.value?.score + 1;
     const image = coin.value?.large;
     const mcap_rank = coin.value?.market_cap_rank;
     const name = coin.value?.name;
