@@ -2,40 +2,46 @@
     <FlipCard
         v-if='nft'
         rotate='x'
-        class='!bg-transparent w-full h-96 md:w-84'
+        class='w-full md:w-96 md:h-[450px] !rounded-sm'
     
     >
         <!--  Card Front  -->
         <template #default>
-            <!--  Logo  -->
-            <NuxtImg
-                :src='image'
-                alt='trending nft logo'
-                class='size-full'
-                :custom='true'
-                v-slot='{ src, isLoaded, imgAttrs, alt }'
-                preload
-            >
-                <img
-                    v-if='isLoaded'
-                    v-bind='imgAttrs'
-                    :src='src'
-                    :alt='alt'
-                >
+            <div class='h-full flex flex-col items-center justify-around px-12'>
+                <!--  Logo  -->
+                <div class='w-40 h-40 px-2'>
+                    <NuxtImg
+                        :src='image'
+                        alt='trending nft logo'
+                        class='bg-card size-full rounded-full p-2 border-2 border-border/50'
+                        :custom='true'
+                        v-slot='{ src, isLoaded, imgAttrs, alt }'
+                        preload
+                    >
+                        <img
+                            v-if='isLoaded'
+                            v-bind='imgAttrs'
+                            :src='src'
+                            :alt='alt'
+                        >
+                        
+                        <Skeleton
+                            v-else
+                            class='size-full'
+                        />
+                    </NuxtImg>
+                </div>
                 
-                <Skeleton
-                    v-else
-                    class='size-full'
-                />
-            </NuxtImg>
+                <h5 class='break-words font-bold'>{{ name }}</h5>
+            </div>
+            
             <!--
                             <img
                                 src='https://images.unsplash.com/photo-1525373698358-041e3a460346?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
                                 alt='image'
                                 class='size-full rounded-2xl object-cover shadow-2xl shadow-black/40'
                             />-->
-            
-            <h3 class='bg-background absolute bottom-4 left-4 font-bold truncate'>{{ name }}</h3>
+        
         </template>
         
         <!--  Card Back  -->
