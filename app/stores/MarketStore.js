@@ -152,7 +152,7 @@ export const useMarketStore = defineStore('MarketStore', {
                     this.coin.livecoinwatch = formatLivecoinwatchCoin(response);
                 }
             } catch(error) {
-                console.log(error);
+                console.error(error);
             } finally {
                 this.loading = false;
             }
