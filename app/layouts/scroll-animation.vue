@@ -7,7 +7,7 @@
                 <!--            <Breadcrumb />-->
                 
                 <!--  Mobile Trigger  -->
-                <SidebarTrigger />
+                <MobileSidebarTrigger />
                 
                 <transition name='scroll-animation-layout' mode='in-out'>
                     <suspense>
@@ -25,5 +25,5 @@
     import ScrollToTop from '~/components/ScrollToTop.vue';
     import AppSidebar from '~/components/AppSidebar.vue';
     import Breadcrumb from '~/components/Breadcrumb.vue';
-    import { SidebarInset, SidebarProvider, SidebarTrigger, } from '~/components/ui/sidebar';
+    import { SidebarInset, SidebarProvider, MobileSidebarTrigger, } from '~/components/ui/sidebar';
 </script>

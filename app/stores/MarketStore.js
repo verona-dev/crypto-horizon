@@ -24,12 +24,31 @@ export const useMarketStore = defineStore('MarketStore', {
         loading: false,
         platformsSummary : [],
         globalMarket: {},
-        fearAndGreed: null,
-        marketTrending: null,
+        fearAndGreed: {},
+        cmcStatus: {},
+        trendingCoins: [],
+        trendingNfts: [],
         globalDefi: {},
     }),
     
     actions: {
+        async getFearAndGreed() {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCmc('v3/fear-and-greed/latest');
+                
+                if(response && response.data && response.status) {
+                    this.fearAndGreed = response.data;
+                    this.cmcStatus = response.status
+                }
+            } catch(error) {
+                console.error(error);
+            } finally {
+                this.loading = false;
+            }
+        },
+        
         async getGlobalMarket() {
             this.loading = true;
             
@@ -40,23 +59,6 @@ export const useMarketStore = defineStore('MarketStore', {
                 
                 if(response && response.data) {
                     this.globalMarket = response.data;
-                }
-            } catch(error) {
-                console.error(error);
-            } finally {
-                this.loading = false;
-            }
-        },
-        
-        
-        async getFearAndGreed() {
-            this.loading = true;
-            
-            try {
-                const response = await useFetchCmc('v3/fear-and-greed/latest');
-                
-                if(response && response.data) {
-                    this.fearAndGreed = response.data;
                 }
             } catch(error) {
                 console.error(error);
@@ -150,7 +152,7 @@ export const useMarketStore = defineStore('MarketStore', {
                     this.coin.livecoinwatch = formatLivecoinwatchCoin(response);
                 }
             } catch(error) {
-                console.log(error);
+                console.error(error);
             } finally {
                 this.loading = false;
             }
@@ -180,13 +182,14 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getCoingeckoTrending() {
+        async getTrendingSearchList() {
             this.loading = true;
             
             try {
                 const response = await useFetchCoingecko('search/trending');
                 if(response) {
-                    this.marketTrending = response;
+                    this.trendingCoins = response.coins;
+                    this.trendingNfts = response.nfts;
                 }
             } catch(error) {
                 console.error(error);

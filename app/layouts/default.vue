@@ -4,14 +4,14 @@
             <SidebarProvider :default-open='false'>
                 <AppSidebar />
                 
-                <SidebarInset class='flex justify-between items-center min-h-svh pr-12'>
+                <SidebarInset class='flex justify-between items-center min-h-svh md:pr-12'>
                     <MarketBar />
                     <!--
                     <Breadcrumb />
                     -->
                     
                     <!--  Mobile Trigger  -->
-                    <SidebarTrigger />
+                    <MobileSidebarTrigger />
                     
                     <!--
                     <h1 v-if='title' class='page-title'>{{ title }}</h1>
@@ -29,15 +29,16 @@
 </template>
 
 <script setup>
-    import MarketBar from '~/components/market/MarketBar.vue';
-    import ScrollToTop from '~/components/ScrollToTop.vue';
     import AppSidebar from "~/components/AppSidebar.vue";
     import Breadcrumb from "~/components/Breadcrumb.vue";
-    import { SidebarInset, SidebarProvider, SidebarTrigger, } from '~/components/ui/sidebar';
+    import CoingeckoAttribution from '~/components/CoingeckoAttribution.vue';
+    import MarketBar from '~/components/market/MarketBar.vue';
+    import ScrollToTop from '~/components/ScrollToTop.vue';
+    
+    import { SidebarInset, SidebarProvider, MobileSidebarTrigger, } from '~/components/ui/sidebar';
     import { useRoute } from 'vue-router';
     const route = useRoute();
     // const title = computed(() => route.meta.title);
-    import CoingeckoAttribution from '~/components/CoingeckoAttribution.vue';
     
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();

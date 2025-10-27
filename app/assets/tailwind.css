@@ -1,10 +1,8 @@
-@import "tailwindcss";
-@import 'tw-animate-css';
+@import 'tailwindcss';
 @import '../assets/styles/global.css';
 @import 'maz-ui/styles';
 @import '../assets/styles/shadcn.css';
 @import '../assets/styles/transitions.css';
-@plugin 'tailwindcss-animate';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -190,7 +188,8 @@ html.light {
     /* Cosmic Night */
     --background: #14161f;
     --foreground: #ffffff;
-    --card: #1f2230;
+    --card: #0D1217;
+    /*--card: #1f2230;*/
     --card-foreground: #ffffff;
     --popover: #1f2230;
     --popover-foreground: #ffffff;

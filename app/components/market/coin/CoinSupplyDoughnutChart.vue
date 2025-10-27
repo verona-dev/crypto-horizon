@@ -85,7 +85,7 @@
         maintainAspectRatio: false,
         layout: {
             padding: {
-                top: 12,
+                top: 12, // fix chart overflow
                 bottom: 12,
             }
         },

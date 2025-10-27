@@ -1,88 +1,95 @@
 <template>
-    <Card class='h-78 !w-4/5 xl:!w-[400px]'>
+    <Card class='min-h-[450px] xl:min-h-96 !w-4/5 xl:!w-[600px]'>
         <Skeleton
-            v-if='!fearAndGreed'
+            v-if='!fearAndGreed.value'
             class='w-full h-full'
         />
         
-        <CardContent
-            v-else
-            class='flex flex-col items-center justify-around h-full relative p-8 animate-fadeIn-2000'
-        >
-            <!--  Title  -->
-            <div class='flex items-center gap-3'>
-                <h5>Crypto Fear and Greed Index</h5>
-                
-                <HoverCard :openDelay='200'>
-                    <HoverCardTrigger>
-                        <InfoIcon />
-                    </HoverCardTrigger>
+        <div v-else class='card-container min-h-[450px] xl:min-h-96 animate-fadeIn'>
+            <CardHeader class='card-header'>
+                <!--  Title  -->
+                <div class='card-title'>
+                    <CardTitle>Crypto Fear and Greed Index</CardTitle>
                     
-                    <HoverCardContent class='flex-col gap-6'>
+                    <HoverCard :openDelay='200'>
+                        <HoverCardTrigger>
+                            <InfoIcon />
+                        </HoverCardTrigger>
+                        
+                        <HoverCardContent class='flex-col gap-6'>
                     <span>
                         The CMC Fear and Greed Index is a proprietary tool developed by CoinMarketCap that measures
                         the prevailing sentiment in the cryptocurrency market.
                     </span>
-                        
-                        <span>
+                            
+                            <span>
                         This index ranges from 0 to 100,
                         where a lower value indicates extreme fear, and a higher value indicates extreme greed.
                         It helps investors understand the emotional state of the market, which can influence
                         buying and selling behaviors.
                     </span>
-                        
-                        <span>
+                            
+                            <span>
                         The index provides insights into whether the market may be
                         undervalued (extreme fear) or overvalued (extreme greed).
                     </span>
-                    </HoverCardContent>
-                </HoverCard>
-            </div>
+                        </HoverCardContent>
+                    </HoverCard>
+                </div>
+            </CardHeader>
             
-            <!--  Doughnut chart  -->
-            <CardContent class='w-64 h-64 px-0 pb-0'>
-                <Doughnut
-                    :data='data'
-                    :options='options'
-                />
+            <CardContent class='card-content animate-fadeIn-2000'>
+                <!--  Doughnut chart  -->
+                <div class='h-48'>
+                    <Doughnut
+                        :data='data'
+                        :options='options'
+                    />
+                </div>
+                
+                <!--  Fear and Greed labels  -->
+                <div class='labels-container flex flex-col items-center gap-4'>
+                    <h2 class='text-6xl'>{{ fear_and_greed_data }}</h2>
+                    <h3 class='text-3xl great-font text-muted-foreground'>{{ fear_and_greed_label }}</h3>
+                </div>
             </CardContent>
             
-            <!--  Fear and Greed labels  -->
-            <div class='labels-container great-font flex flex-col items-center gap-3'>
-                <h2 class='text-5xl'>{{ fear_and_greed_data }}</h2>
-                <p class='text-muted-foreground'>{{ fear_and_greed_label }}</p>
-            </div>
-            
-            <p class='text-xs self-center'>Data provided by
+            <CardFooter class='card-footer flex flex-col md:flex-row mb-4 text-xs gap-1.5'>
+                <span>Data provided by</span>
                 <NuxtLink
                     to='https://coinmarketcap.com/'
                     external
                     target='_blank'
-                    class='hover:underline'
+                    class='hover:underline text-primary'
                 >
                     CoinMarketCap.com
                 </NuxtLink>
-            </p>
-        </CardContent>
+                <span>on {{ cmc_timestamp }}</span>
+            </CardFooter>
+        </div>
     </Card>
 </template>
 
 <script setup>
     import { Doughnut } from 'vue-chartjs';
     import { Skeleton } from '~/components/ui/skeleton';
+    import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
+    
+    import dayjs from 'dayjs';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
-    const { fearAndGreed } = storeToRefs(MarketStore);
-    // const { getCmcFearAndGreed } = MarketStore;
+    const { fearAndGreed, cmcStatus } = storeToRefs(MarketStore);
+    const { getFearAndGreed } = MarketStore;
     
     // const fear_and_greed_data = ref(0);
     const fear_and_greed_data = computed(() => fearAndGreed.value?.value);
     const fear_and_greed_label = computed(() => fearAndGreed.value?.value_classification);
+    const cmc_timestamp = computed(() => dayjs(cmcStatus.value?.timestamp).format('MMMM D YYYY [at] HH:mm[h]'));
     
     const data = ref(({
         labels: ['Fear and Greed'],
@@ -157,8 +164,8 @@
         pointerValue: fear_and_greed_data.value,
         layout: {
             padding: {
-                left:8,
-                right: 8,
+                top: 8, // fix chart overflow
+                bottom: 8,
             }
         },
         plugins: {
@@ -174,14 +181,14 @@
         }
     });
     
-    // onMounted(() => getCmcFearAndGreed());
+    onMounted(() => getFearAndGreed());
 </script>
 
 <style scoped>
     .labels-container {
         position: absolute;
         width: 100%;
-        top: 57%;
+        top: 64%;
         left: 0;
         text-align: center;
         transform: translateY(-60%);

@@ -1,8 +1,8 @@
 <template>
     <div class='flex flex-col items-center gap-20'>
-        <h1 class='text-5xl xl:text-9xl my-10'>Trending Nft's</h1>
+        <h1 class='page-title'>Trending Nft's</h1>
         
-        <Alert class='flex animate-fadeIn border-none'>
+        <div class='flex animate-fadeIn'>
             <Skeleton
                 v-if='!nfts'
                 class='w-full h-full'
@@ -25,18 +25,18 @@
                             :key='nft.id'
                             class='md:basis-1/2 lg:basis-1/3'
                         >
-                            <TrendingNftCard :nft='nft' />
+                            <TrendingNftsCarouselItem :nft='nft' />
                         </CarouselItem>
              
                     </CarouselContent>
                 </Carousel>
             </div>
-        </Alert>
+        </div>
     </div>
 </template>
 
 <script setup>
-    import TrendingNftCard from '~/components/market/trending/TrendingNftCard.vue'
+    import TrendingNftsCarouselItem from '@/components/market/trending/TrendingNftsCarouselItem.vue'
     import { Skeleton } from '~/components/ui/skeleton';
     import { Carousel, CarouselContent, CarouselItem } from '~/components/ui/carousel';
     import AutoScroll from 'embla-carousel-auto-scroll';

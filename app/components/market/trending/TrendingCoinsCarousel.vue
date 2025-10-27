@@ -2,7 +2,7 @@
     <div class='flex flex-col items-center gap-20'>
         <h1 class='page-title'>Trending Coins</h1>
         
-        <Alert class='flex animate-fadeIn border-none'>
+        <div class='animate-fadeIn'>
             <Skeleton
                 v-if='!coins'
                 class='w-full h-full'
@@ -23,23 +23,22 @@
                         <CarouselItem
                             v-for='coin in coins'
                             :key='coin.item.id'
-                            class='md:ml-10 md:basis-1/2 lg:basis-1/4'
+                            class='md:ml-10 basis-1/2 lg:basis-1/3'
                         >
-                            <TrendingCoinCard :coin='coin.item' />
+                            <TrendingCoinsCarouselItem :coin='coin.item' />
                         </CarouselItem>
                     </CarouselContent>
                 </Carousel>
             </div>
-        </Alert>
+        </div>
     </div>
 </template>
 
 <script setup>
-    import TrendingCoinCard from '~/components/market/trending/TrendingCoinCard.vue';
+    import TrendingCoinsCarouselItem from '@/components/market/trending/TrendingCoinsCarouselItem.vue';
     import { Skeleton } from '~/components/ui/skeleton';
     import { Carousel, CarouselContent, CarouselItem } from '~/components/ui/carousel';
     import AutoScroll from 'embla-carousel-auto-scroll';
-    import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert';
     
     const props = defineProps({
         coins: {
