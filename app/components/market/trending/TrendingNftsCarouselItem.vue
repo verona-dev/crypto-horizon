@@ -1,102 +1,17 @@
 <template>
-    <div class="flex items-center justify-center">
-        <FlipCard
-            rotate='x'
-            class='w-full h-96 md:w-84'
-        
-        >
-            <!--  Card Front  -->
-            <template #default>
-                <!--  Logo  -->
-                <NuxtImg
-                    :src='image'
-                    alt='trending nft logo'
-                    class='size-full'
-                    :custom='true'
-                    v-slot='{ src, isLoaded, imgAttrs, alt }'
-                    preload
-                >
-                    <img
-                        v-if='isLoaded'
-                        v-bind='imgAttrs'
-                        :src='src'
-                        :alt='alt'
-                    >
-                    
-                    <Skeleton
-                        v-else
-                        class='size-full'
-                    />
-                </NuxtImg>
-<!--
-                <img
-                    src='https://images.unsplash.com/photo-1525373698358-041e3a460346?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
-                    alt='image'
-                    class='size-full rounded-2xl object-cover shadow-2xl shadow-black/40'
-                />-->
-                
-                <h3 class='absolute bottom-4 left-4 font-bold'>{{ name }}</h3>
-            </template>
-            
-            <!--  Card Back  -->
-            <template #back>
-                <div class='flex min-h-full flex-col gap-2'>
-                    <h1 class='text-xl font-bold text-white'>Inspira UI</h1>
-                    <p
-                        class='mt-1 border-t border-t-gray-200 py-4 text-base font-medium leading-normal text-gray-100'
-                    >
-                        Inspira UI offers beautifully designed, reusable animation components and includes
-                        custom components developed by us and contributed by the community.
-                    </p>
-                </div>
-            </template>
-        </FlipCard>
-    </div>
-    
-    <Card
+    <FlipCard
         v-if='nft'
-        class='w-full md:w-84 flex flex-col gap-6 p-0 border'
+        rotate='x'
+        class='!bg-transparent w-full h-96 md:w-84'
+    
     >
-        <CardHeader class='h-24 !pb-0 flex items-center border-b'>
-            <!--  Contract ID  -->
-            <!--
-            <HoverCard :openDelay='200' v-if='contract_id'>
-                <HoverCardTrigger>
-                    <Badge class='badge h-12 w-24 text-base border-muted-foreground flex items-center justify-center' variant='outline'>{{ contract_id }}</Badge>
-                </HoverCardTrigger>
-                <HoverCardContent>
-                    <p class='text-xs'>Contract ID</p>
-                </HoverCardContent>
-            </HoverCard>
-            -->
-            
-            <!--  Name + Symbol  -->
-            <h6 class='flex flex-col flex-grow text-green-deco break-words whitespace-normal text-center font-bold uppercase overflow-hidden'>
-                {{ name }}
-                <span class='truncate text-muted-foreground w-full text-center text-sm'>{{ symbol }}</span>
-            </h6>
-            
-            <!--  Description  -->
-            <div class='flex items-center gap-2 text-muted-foreground'>
-                <HoverCard :openDelay='200' v-if='description'>
-                    <HoverCardTrigger>
-                        <InfoIcon />
-                    </HoverCardTrigger>
-                    
-                    <HoverCardContent class='flex flex-col !gap-3'>
-                        <span>{{ title }}</span>
-                        <span class='text-muted-foreground'>{{ description }}</span>
-                    </HoverCardContent>
-                </HoverCard>
-            </div>
-        </CardHeader>
-        
-        <CardContent class='flex flex-col items-center justify-center gap-10 !px-0'>
+        <!--  Card Front  -->
+        <template #default>
             <!--  Logo  -->
             <NuxtImg
                 :src='image'
                 alt='trending nft logo'
-                class='w-32 h-32 rounded-md rounded-b-none select-none'
+                class='size-full'
                 :custom='true'
                 v-slot='{ src, isLoaded, imgAttrs, alt }'
                 preload
@@ -110,102 +25,134 @@
                 
                 <Skeleton
                     v-else
-                    class='w-32 h-32'
+                    class='size-full'
                 />
             </NuxtImg>
+            <!--
+                            <img
+                                src='https://images.unsplash.com/photo-1525373698358-041e3a460346?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
+                                alt='image'
+                                class='size-full rounded-2xl object-cover shadow-2xl shadow-black/40'
+                            />-->
             
-            <div class='flex flex-col w-full px-2 gap-8'>
-                <div class='flex flex-col items-center gap-1'>
-                    <p class='uppercase text-muted-foreground text-sm'>Floor price</p>
+            <h3 class='bg-background absolute bottom-4 left-4 font-bold truncate'>{{ name }}</h3>
+        </template>
+        
+        <!--  Card Back  -->
+        <template #back>
+            <div class='flex min-h-full flex-col gap-2'>
+                <!--  Name + Symbol + Description  -->
+                <div class='flex flex-col items-center gap-3'>
+                    <h4 class=' break-words whitespace-normal font-bold uppercase'>
+                        {{ name }}
+                    </h4>
                     
-                    <div class='flex items-center gap-3'>
-                        <!--  Floor Price  -->
-                        <h6>{{ floor_price }}</h6>
+                    <!--  Description  -->
+                    <div class='flex items-center gap-2 text-muted-foreground'>
+                        <span class='truncate text-muted-foreground w-full text-center text-sm'>{{ symbol }}</span>
                         
-                        <!--  Trend  -->
-                        <HoverCard :openDelay='200'>
+                        <HoverCard v-if='description' :openDelay='200'>
                             <HoverCardTrigger>
-                                <div
-                                    class='flex items-center gap-1'
-                                    :class='getTextColorClass(floor_price_change_percentage_1d)'
-                                >
-                                    <NuxtIcon
-                                        :name='getTrendIcon(floor_price_change_percentage_1d)'
-                                        size='15'
-                                    />
-                                    
-                                    <span class='flex items-center text-sm'>{{ price_change_percentage_1d_label }}</span>
-                                    
-                                    <span class='text-sm'>&#40;24h&#41;</span>
-                                </div>
+                                <InfoIcon />
                             </HoverCardTrigger>
                             
                             <HoverCardContent class='flex flex-col !gap-3'>
-                                <p class='text-xs'>Floor Price 24h Percentage Change</p>
+                                <span>{{ title }}</span>
+                                <span class='text-muted-foreground'>{{ description }}</span>
                             </HoverCardContent>
                         </HoverCard>
                     </div>
-                
                 </div>
                 
-                <div class='flex items-center justify-around'>
-                    <!--  Sale Price  -->
-                    <div class='flex flex-col items-center gap-1'>
-                        <p class='uppercase text-muted-foreground text-sm'>Average sale price</p>
+                <div class='flex flex-col w-full px-2 gap-8 border-t border-b-border'>
+                    <!--  Sparkline  -->
+                    <div class='w-full h-24 rounded py-8 px-2 flex items-center justify-center border-t border-warning/10 select-none'>
+                        <NuxtImg
+                            v-if='sparkline'
+                            :src='sparkline'
+                            alt='trending nft logo'
+                            class='w-2/3 h-full'
+                            :custom='true'
+                            v-slot='{ src, isLoaded, imgAttrs, alt }'
+                            preload
+                        >
+                            <img
+                                v-if='isLoaded'
+                                v-bind='imgAttrs'
+                                :src='src'
+                                :alt='alt'
+                            >
+                            <Skeleton
+                                v-else
+                                class='w-50 h-16'
+                            />
+                        </NuxtImg>
                         
-                        <h6>{{ average_sale_price_24h }}</h6>
+                        <div v-else class='w-full h-full flex flex-col items-center justify-center gap-2 mb-2'>
+                            <NuxtIcon
+                                name='my-icon:sparkline-fallback'
+                                class='w-full h-full'
+                            />
+                            
+                            <p class='text-xs'>No sparkline available</p>
+                        </div>
                     </div>
                     
-                    <!--  Volume 24h  -->
+                    <!--  Floor Price + Trend  -->
                     <div class='flex flex-col items-center gap-1'>
-                        <p class='uppercase text-muted-foreground text-sm'>Volume 24h</p>
+                        <p class='uppercase text-muted-foreground text-sm'>Floor Price</p>
                         
-                        <h6>{{ volume_24h }}</h6>
+                        <div class='flex items-center gap-3'>
+                            <h6>{{ floor_price }}</h6>
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger>
+                                    <div
+                                        class='flex items-center gap-1'
+                                        :class='getTextColorClass(floor_price_change_percentage_1d)'
+                                    >
+                                        <NuxtIcon
+                                            :name='getTrendIcon(floor_price_change_percentage_1d)'
+                                            size='15'
+                                        />
+                                        
+                                        <span class='flex items-center text-sm'>{{ price_change_percentage_1d_label }}</span>
+                                        
+                                        <span class='text-sm'>&#40;24h&#41;</span>
+                                    </div>
+                                </HoverCardTrigger>
+                                
+                                <HoverCardContent class='flex flex-col !gap-3'>
+                                    <p class='text-xs'>Floor Price 24h Percentage Change</p>
+                                </HoverCardContent>
+                            </HoverCard>
+                        </div>
+                    
+                    </div>
+                    
+                    <!--  Sale Price + Volume 24h  -->
+                    <div class='flex items-center justify-around'>
+                        <div class='flex flex-col items-center gap-1'>
+                            <p class='uppercase text-muted-foreground text-sm'>Average sale price</p>
+                            
+                            <h6>{{ average_sale_price_24h }}</h6>
+                        </div>
+                        
+                        <div class='flex flex-col items-center gap-1'>
+                            <p class='uppercase text-muted-foreground text-sm'>Volume 24h</p>
+                            
+                            <h6>{{ volume_24h }}</h6>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <!--  Sparkline  -->
-            <div class='w-full h-24 rounded py-8 px-2 flex items-center justify-center border-t border-warning/10 select-none'>
-                <NuxtImg
-                    v-if='sparkline'
-                    :src='sparkline'
-                    alt='trending nft logo'
-                    class='w-2/3 h-full'
-                    :custom='true'
-                    v-slot='{ src, isLoaded, imgAttrs, alt }'
-                    preload
-                >
-                    <img
-                        v-if='isLoaded'
-                        v-bind='imgAttrs'
-                        :src='src'
-                        :alt='alt'
-                    >
-                    <Skeleton
-                        v-else
-                        class='w-50 h-16'
-                    />
-                </NuxtImg>
-                
-                <div v-else class='w-full h-full flex flex-col items-center justify-center gap-2 mb-2'>
-                    <NuxtIcon
-                        name='my-icon:sparkline-fallback'
-                        class='w-full h-full'
-                    />
-                    
-                    <p class='text-xs'>No sparkline available</p>
-                </div>
-            </div>
-        </CardContent>
-    </Card>
+        </template>
+    </FlipCard>
 </template>
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTextColorClass, getTrendIcon } from '~/utils/styleUtils.js';
-    // import { Badge } from '~/components/ui/badge/index.js';
-    import { Card, CardHeader, CardContent } from '~/components/ui/card';
     import { FlipCard } from '~/components/ui/flip-card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
