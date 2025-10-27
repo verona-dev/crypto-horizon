@@ -7,7 +7,7 @@
     >
         <!--  Card Front  -->
         <template #default>
-            <div class='h-full flex flex-col items-center justify-around px-12'>
+            <div class='h-full flex flex-col items-center justify-evenly px-12'>
                 <!--  Logo  -->
                 <div class='w-40 h-40 px-2'>
                     <NuxtImg
@@ -32,7 +32,12 @@
                     </NuxtImg>
                 </div>
                 
-                <h5 class='break-words font-bold'>{{ name }}</h5>
+                <MorphingText
+                    :texts='texts'
+                    class='lg:text-[2rem] [filter:url(#threshold)_blur(0.005px)]'
+                    :morphTime='3.5'
+                    :coolDownTime='2.5'
+                />
             </div>
         </template>
         
@@ -40,7 +45,7 @@
         <template #back>
             <div class='flex min-h-full flex-col gap-2'>
                 <!--  Name + Symbol + Description  -->
-                <div class='flex flex-col items-center gap-3'>
+                <div class='flex flex-col items-center p-4 gap-3'>
                     <h4 class=' break-words whitespace-normal font-bold uppercase'>
                         {{ name }}
                     </h4>
@@ -63,9 +68,9 @@
                 </div>
                 
                 <!--  Sparkline + Prices  -->
-                <div class='flex flex-col w-full px-2 gap-8 border-t border-b-border'>
+                <div class='flex flex-col w-full p-2 gap-8 border-t border-b-border'>
                     <!--  Sparkline  -->
-                    <div class='w-full h-24 rounded py-8 px-2 flex items-center justify-center border-t border-warning/10 select-none'>
+                    <div class='w-full h-24 rounded py-8 px-2 flex items-center justify-center select-none'>
                         <NuxtImg
                             v-if='sparkline'
                             :src='sparkline'
@@ -143,6 +148,7 @@
     import { getTextColorClass, getTrendIcon } from '~/utils/styleUtils.js';
     import { FlipCard } from '~/components/ui/flip-card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    import { MorphingText } from '~/components/ui/morphing-text';
     import { Skeleton } from '~/components/ui/skeleton';
     import InfoIcon from '~/components/InfoIcon.vue';
     
@@ -169,4 +175,5 @@
     const sparkline = nft.value?.data?.sparkline;
     const title = nft.value?.data?.content?.title;
     const description = nft.value?.data?.content?.description;
+    const texts = [ name, symbol, floor_price ];
 </script>
