@@ -34,14 +34,6 @@
                 
                 <h5 class='break-words font-bold'>{{ name }}</h5>
             </div>
-            
-            <!--
-                            <img
-                                src='https://images.unsplash.com/photo-1525373698358-041e3a460346?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
-                                alt='image'
-                                class='size-full rounded-2xl object-cover shadow-2xl shadow-black/40'
-                            />-->
-        
         </template>
         
         <!--  Card Back  -->
@@ -70,6 +62,7 @@
                     </div>
                 </div>
                 
+                <!--  Sparkline + Prices  -->
                 <div class='flex flex-col w-full px-2 gap-8 border-t border-b-border'>
                     <!--  Sparkline  -->
                     <div class='w-full h-24 rounded py-8 px-2 flex items-center justify-center border-t border-warning/10 select-none'>
@@ -111,27 +104,16 @@
                         <div class='flex items-center gap-3'>
                             <h6>{{ floor_price }}</h6>
                             
-                            <HoverCard :openDelay='200'>
-                                <HoverCardTrigger>
-                                    <div
-                                        class='flex items-center gap-1'
-                                        :class='getTextColorClass(floor_price_change_percentage_1d)'
-                                    >
-                                        <NuxtIcon
-                                            :name='getTrendIcon(floor_price_change_percentage_1d)'
-                                            size='15'
-                                        />
-                                        
-                                        <span class='flex items-center text-sm'>{{ price_change_percentage_1d_label }}</span>
-                                        
-                                        <span class='text-sm'>&#40;24h&#41;</span>
-                                    </div>
-                                </HoverCardTrigger>
+                            <div class='flex items-center gap-1' :class='getTextColorClass(floor_price_change_percentage_1d)'>
+                                <NuxtIcon
+                                    :name='getTrendIcon(floor_price_change_percentage_1d)'
+                                    size='15'
+                                />
                                 
-                                <HoverCardContent class='flex flex-col !gap-3'>
-                                    <p class='text-xs'>Floor Price 24h Percentage Change</p>
-                                </HoverCardContent>
-                            </HoverCard>
+                                <span class='flex items-center text-sm'>{{ price_change_percentage_1d_label }}</span>
+                                
+                                <span class='text-sm'>&#40;24h&#41;</span>
+                            </div>
                         </div>
                     
                     </div>
