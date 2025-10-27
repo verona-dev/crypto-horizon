@@ -40,7 +40,7 @@
             
             <CardContent class='card-content animate-fadeIn-2000'>
                 <!--  Doughnut chart  -->
-                <div class='px-0 pb-0'>
+                <div class='h-48'>
                     <Doughnut
                         :data='data'
                         :options='options'
@@ -48,9 +48,9 @@
                 </div>
                 
                 <!--  Fear and Greed labels  -->
-                <div class='labels-container great-font flex flex-col items-center gap-3'>
-                    <h2 class='text-5xl'>{{ fear_and_greed_data }}</h2>
-                    <p class='text-muted-foreground'>{{ fear_and_greed_label }}</p>
+                <div class='labels-container flex flex-col items-center gap-4'>
+                    <h2 class='text-6xl'>{{ fear_and_greed_data }}</h2>
+                    <h3 class='text-3xl great-font text-muted-foreground'>{{ fear_and_greed_label }}</h3>
                 </div>
             </CardContent>
             
@@ -164,8 +164,8 @@
         pointerValue: fear_and_greed_data.value,
         layout: {
             padding: {
-                left:8,
-                right: 8,
+                top: 8, // fix chart overflow
+                bottom: 8,
             }
         },
         plugins: {
@@ -188,7 +188,7 @@
     .labels-container {
         position: absolute;
         width: 100%;
-        top: 67%;
+        top: 64%;
         left: 0;
         text-align: center;
         transform: translateY(-60%);
