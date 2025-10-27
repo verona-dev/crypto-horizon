@@ -1,4 +1,58 @@
 <template>
+    <div class="flex items-center justify-center">
+        <FlipCard
+            rotate='x'
+            class='w-full h-96 md:w-84'
+        
+        >
+            <!--  Card Front  -->
+            <template #default>
+                <!--  Logo  -->
+                <NuxtImg
+                    :src='image'
+                    alt='trending nft logo'
+                    class='size-full'
+                    :custom='true'
+                    v-slot='{ src, isLoaded, imgAttrs, alt }'
+                    preload
+                >
+                    <img
+                        v-if='isLoaded'
+                        v-bind='imgAttrs'
+                        :src='src'
+                        :alt='alt'
+                    >
+                    
+                    <Skeleton
+                        v-else
+                        class='size-full'
+                    />
+                </NuxtImg>
+<!--
+                <img
+                    src='https://images.unsplash.com/photo-1525373698358-041e3a460346?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
+                    alt='image'
+                    class='size-full rounded-2xl object-cover shadow-2xl shadow-black/40'
+                />-->
+                
+                <h3 class='absolute bottom-4 left-4 font-bold'>{{ name }}</h3>
+            </template>
+            
+            <!--  Card Back  -->
+            <template #back>
+                <div class='flex min-h-full flex-col gap-2'>
+                    <h1 class='text-xl font-bold text-white'>Inspira UI</h1>
+                    <p
+                        class='mt-1 border-t border-t-gray-200 py-4 text-base font-medium leading-normal text-gray-100'
+                    >
+                        Inspira UI offers beautifully designed, reusable animation components and includes
+                        custom components developed by us and contributed by the community.
+                    </p>
+                </div>
+            </template>
+        </FlipCard>
+    </div>
+    
     <Card
         v-if='nft'
         class='w-full md:w-84 flex flex-col gap-6 p-0 border'
@@ -151,10 +205,11 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTextColorClass, getTrendIcon } from '~/utils/styleUtils.js';
     // import { Badge } from '~/components/ui/badge/index.js';
+    import { Card, CardHeader, CardContent } from '~/components/ui/card';
+    import { FlipCard } from '~/components/ui/flip-card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
     import InfoIcon from '~/components/InfoIcon.vue';
-    import { Card, CardHeader, CardContent } from '~/components/ui/card';
     
     const props = defineProps({
         nft: {
