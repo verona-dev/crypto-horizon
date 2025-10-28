@@ -10,33 +10,42 @@
                 :class='index === 3 || index === 6 ? "md:col-span-2" : ""'
             >
                 <template #header>
-                        <NuxtImg
-                            :src='article.image_url'
+                    <NuxtImg
+                        :src='article.image_url'
+                        alt='article image'
+                        class='h-full w-full object-cover'
+                        :custom='true'
+                        v-slot='{ src, isLoaded, imgAttrs }'
+                        preload
+                    >
+                        <img
+                            v-if='isLoaded'
+                            v-bind='imgAttrs'
+                            :src='src'
                             alt='article image'
-                            class='h-full w-full object-cover'
-                            :custom='true'
-                            v-slot='{ src, isLoaded, imgAttrs }'
-                            preload
                         >
-                            <img
-                                v-if='isLoaded'
-                                v-bind='imgAttrs'
-                                :src='src'
-                                alt='article image'
-                            >
-                            
-                            <Skeleton
-                                v-else
-                                class='h-full w-full'
-                            />
-                        </NuxtImg>
+                        
+                        <Skeleton
+                            v-else
+                            class='h-full w-full'
+                        />
+                    </NuxtImg>
                 </template>
                 
                 <template #title>
                     <strong>{{ article.title }}</strong>
                 </template>
                 
-                <template #icon> tags </template>
+                <!--  Categories / Tags  -->
+                <template #icon>
+                    <Badge
+                        v-for='category in article.categories.slice(0, 4)'
+                        class='m-1.5 p-1.5 text-primary border text-[10px] font-extralight tracking-widest'
+                        variant='outline'
+                    >
+                        {{ category.NAME }}
+                    </Badge>
+                </template>
                 
                 <template #description>
                     <p>{{ article.authors }}</p>
@@ -45,10 +54,10 @@
         </BentoGrid>
         
         <div class='flex flex-col items-center gap-20'>
-<!--            <h1 class='page-title'>Latest News</h1>-->
+            <!--            <h1 class='page-title'>Latest News</h1>-->
             
             <div class='flex flex-wrap justify-center gap-24'>
-
+                
                 <NewsCard
                     v-for='article in news'
                     :key='article.ID'
@@ -79,13 +88,15 @@
     const articles = ref([]);
     
     const getAuthorLabel = (authors, source_name) => {
-        if(authors && authors.length === 0) return 'Unknown author';
-        if(source_name && source_name === 'CoinTelegraph') return 'Cointelegraph by '
-        return '';
+        if(!authors || authors.length === 0) return 'Unknown author';
+        if(source_name === 'Cointelegraph') return authors.replace('Cointelegraph by ', '');
+        return authors;
     };
     
     watch(news, (newValue) => {
         if (newValue) {
+            // console.log(newValue[0]);
+            
             articles.value = news.value?.map(article => ({
                 authors: getAuthorLabel(article.AUTHORS, article.SOURCE_DATA?.NAME),
                 categories: article.CATEGORY_DATA,
@@ -97,7 +108,8 @@
                 source_name: article.SOURCE_DATA?.NAME || 'Unknown source',
                 title: article.TITLE,
             }));
-            console.log(articles.value[0]);
+            
+            // console.log(articles.value[0]);
         }
     });
     
