@@ -85,7 +85,7 @@
     }
     
     h6 {
-        @apply text-base;
+        @apply text-base text-left;
     }
     
     ul {
