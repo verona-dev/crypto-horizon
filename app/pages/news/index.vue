@@ -38,7 +38,7 @@
                         <div class='flex items-center gap-2'>
                             <Badge
                                 v-for='category in article.categories.slice(0, 3)'
-                                class='p-1.5 text-muted-foreground border text-[10px] font-extralight tracking-widest'
+                                class='py-1 px-1.5 text-muted-foreground border text-[10px] font-extralight tracking-widest'
                                 variant='outline'
                             >
                                 {{ category.NAME }}
@@ -54,12 +54,14 @@
                 
                 <!--  Title  -->
                 <template #title>
-                    <strong>{{ article.title }}</strong>
+                    <div class='px-2'>
+                        <strong>{{ article.title }}</strong>
+                    </div>
                 </template>
                 
                 <!--  Author + Source + Publish date + Read more  -->
                 <template #description>
-                    <div class='flex items-center justify-between'>
+                    <div class='flex items-center justify-between px-2'>
                         <HoverCard>
                             <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
                                 <!--  Avatar  -->
@@ -77,7 +79,7 @@
                                     
                                     <!--  Publish date  -->
                                     <div class='flex gap-1 text-muted-custom'>
-                                    <!--  <NuxtIcon name='ph:calendar-blank-light' size='18' /> . -->
+                                        <!--  <NuxtIcon name='ph:calendar-blank-light' size='18' /> . -->
                                         <span class='pt-0.5 text-xs'>{{ article.published_date }}</span>
                                     </div>
                                 </div>
@@ -121,7 +123,7 @@
                         </HoverCard>
                         
                         <!--  Read more  -->
-                        <Button variant='outline' class='read-more !bg-transparent mr-2 pt-2.5'>
+                        <Button variant='outline' class='read-more !bg-transparent pt-2.5'>
                             <NuxtLink
                                 :to="{
                                     path: `/news/${encodeURIComponent(article.guid)}`,
