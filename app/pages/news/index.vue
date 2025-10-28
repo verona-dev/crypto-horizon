@@ -59,11 +59,11 @@
                 
                 <!--  Author + Source + Publish date  -->
                 <template #description>
-                    <div class='flex items-center justify-between'>
+                    <div class='flex flex-col gap-4'>
                         <HoverCard>
                             <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
                                 <!--  Avatar  -->
-                                <Avatar class='h-10 w-10 rounded-full'>
+                                <Avatar class='h-12 w-12 rounded-full'>
                                     <AvatarImage :src='article.source_avatar' alt='avatar' />
                                     <AvatarFallback class='rounded-lg'>
                                         S
@@ -73,7 +73,13 @@
                                 <!--  Author  -->
                                 <div class='flex flex-col items-start text-left'>
                                     <p>{{ article.authors }}</p>
-                                    <span class='text-muted-custom text-sm'>{{ article.source_name }}</span>
+                                    <span class='text-sm'>{{ article.source_name }}</span>
+                                    
+                                    <!--  Publish date  -->
+                                    <div class='flex gap-1 text-muted-custom'>
+<!--                                        <NuxtIcon name='ph:calendar-blank-light' size='18' />-->
+                                        <span class='pt-0.5 text-xs'>{{ article.published_date }}</span>
+                                    </div>
                                 </div>
                             </HoverCardTrigger>
                             
@@ -113,14 +119,7 @@
                                 </div>
                             </HoverCardContent>
                         </HoverCard>
-                        
-                        <!--  Publish date  -->
-                        <div class='flex gap-1 text-muted-foreground'>
-                            <NuxtIcon name='ph:calendar-blank-light' size='18' />
-                            <span class='pt-0.5 text-xs'>{{ article.published_date }}</span>
-                        </div>
                     </div>
-                
                 </template>
             </BentoGridItem>
         </BentoGrid>
