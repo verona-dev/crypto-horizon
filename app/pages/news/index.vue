@@ -152,7 +152,6 @@
     import { Button } from '~/components/ui/button';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '@/components/ui/skeleton';
-    import NewsCard from '~/components/news/NewsCard.vue';
     
     // NewsStore
     import { storeToRefs } from 'pinia';
@@ -172,8 +171,6 @@
     
     const getReadingDuration = (body) => {
         if (!body) return '';
-        
-        let reading_duration;
         
         let sentences = body
             .split(/\. +|\.(?=\n)|\.(?=$)/)
@@ -205,8 +202,6 @@
     
     watch(news, (newValue) => {
         if (newValue) {
-            // console.log(newValue[0]);
-            
             articles.value = news.value?.map(article => ({
                 authors: getAuthor(article.AUTHORS, article.SOURCE_DATA?.NAME),
                 categories: article.CATEGORY_DATA,
@@ -224,8 +219,6 @@
                 source_url: getSourceUrl(article.SOURCE_DATA?.URL),
                 title: article.TITLE,
             }));
-            
-            // console.log(articles.value[0]);
         }
     });
     
