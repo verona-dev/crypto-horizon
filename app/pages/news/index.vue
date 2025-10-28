@@ -213,12 +213,13 @@
                 source_avatar: article.SOURCE_DATA?.IMAGE_URL,
                 source_key: article.SOURCE_DATA?.SOURCE_KEY,
                 source_lang: article.SOURCE_DATA?.LANG,
-                source_launch_date: dayjs.unix(article?.SOURCE_DATA?.LAUNCH_DATE).format('MMMM D, YYYY'),
+                source_launch_date: article?.SOURCE_DATA?.LAUNCH_DATE && dayjs.unix(article?.SOURCE_DATA?.LAUNCH_DATE).format('MMMM D, YYYY'),
                 source_name: article.SOURCE_DATA?.NAME || 'Unknown source',
                 source_score: article.SOURCE_DATA?.BENCHMARK_SCORE,
                 source_url: getSourceUrl(article.SOURCE_DATA?.URL),
                 title: article.TITLE,
             }));
+            
         }
     });
     
