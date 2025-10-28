@@ -59,7 +59,7 @@
                 
                 <!--  Author + Source + Publish date  -->
                 <template #description>
-                    <div class='flex flex-col gap-4'>
+                    <div class='flex items-center justify-between'>
                         <HoverCard>
                             <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
                                 <!--  Avatar  -->
@@ -77,14 +77,14 @@
                                     
                                     <!--  Publish date  -->
                                     <div class='flex gap-1 text-muted-custom'>
-<!--                                        <NuxtIcon name='ph:calendar-blank-light' size='18' />-->
+                                    <!--  <NuxtIcon name='ph:calendar-blank-light' size='18' /> . -->
                                         <span class='pt-0.5 text-xs'>{{ article.published_date }}</span>
                                     </div>
                                 </div>
                             </HoverCardTrigger>
                             
                             <!--  Source  -->
-                            <HoverCardContent class='flex !justify-between !content-between !items-between gap-6 p-10 w-fit'>
+                            <HoverCardContent class='flex !justify-between !content-between !items-between !border-border/50 gap-6 p-10 w-fit'>
                                 <NuxtImg
                                     v-if='article.source_avatar'
                                     :src='article.source_avatar'
@@ -119,6 +119,16 @@
                                 </div>
                             </HoverCardContent>
                         </HoverCard>
+                        
+                        <!--  Read more  -->
+                        <Button variant='outline' class='read-more !bg-transparent p-5'>
+                            <NuxtLink
+                                :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }"
+                                class='border-green-shamrock'
+                            >
+                                Read More
+                            </NuxtLink>
+                        </Button>
                     </div>
                 </template>
             </BentoGridItem>
@@ -144,6 +154,7 @@
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
     import { Badge } from '~/components/ui/badge';
     import { BentoGrid, BentoGridItem } from '~/components/ui/bento-grid';
+    import { Button } from '~/components/ui/button';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '@/components/ui/skeleton';
     import NewsCard from '~/components/news/NewsCard.vue';
@@ -231,3 +242,11 @@
         title: 'Latest News',
     });
 </script>
+
+<style scoped>
+    button.read-more {
+        &:hover {
+            border: 1px solid var(--green-shamrock) !important;
+        }
+    }
+</style>
