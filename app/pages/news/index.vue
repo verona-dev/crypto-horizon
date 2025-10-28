@@ -6,10 +6,10 @@
             <BentoGridItem
                 v-for='(article, index) in articles'
                 :key='article.id'
-                class='!bg-card'
+                class='!bg-card lg:row-span-2'
                 :class='index === 3 || index === 6 ? "xl:col-span-2" : ""'
             >
-                <!--  Image  -->
+                <!--  Image + Categories  -->
                 <template #header>
                     <NuxtImg
                         v-if='article.image_url'
