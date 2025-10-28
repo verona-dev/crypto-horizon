@@ -123,7 +123,13 @@
                         <!--  Read more  -->
                         <Button variant='outline' class='read-more !bg-transparent p-5'>
                             <NuxtLink
-                                :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }"
+                                :to="{
+                                    path: `/news/${encodeURIComponent(article.guid)}`,
+                                    query: {
+                                        source_key: article.source_key,
+                                        guid: article.guid,
+                                    }
+                                }"
                                 class='border-green-shamrock'
                             >
                                 Read More
