@@ -31,15 +31,8 @@
                             class='h-full w-full'
                         />
                     </NuxtImg>
-                </template>
-                
-                <!--  Title  -->
-                <template #title>
-                    <strong>{{ article.title }}</strong>
-                </template>
-                
-                <!--  Categories / Tags + Reading duration  -->
-                <template #icon>
+                    
+                    <!--  Categories / Tags + Reading duration  -->
                     <div class='flex items-center justify-between'>
                         <div>
                             <Badge
@@ -56,6 +49,11 @@
                             <span class='text-xxs'>{{ article.reading_duration }}m</span>
                         </div>
                     </div>
+                </template>
+                
+                <!--  Title  -->
+                <template #title>
+                    <strong>{{ article.title }}</strong>
                 </template>
                 
                 <!--  Author + Source + Publish date  -->
@@ -120,7 +118,7 @@
                             <span class='text-xxs'>{{ article.published_date }}</span>
                         </div>
                     </div>
-
+                
                 </template>
             </BentoGridItem>
         </BentoGrid>
