@@ -138,16 +138,6 @@
                 </template>
             </BentoGridItem>
         </BentoGrid>
-        
-        <div class='flex flex-col items-center gap-20'>
-            <div class='flex flex-wrap justify-center gap-24'>
-                <NewsCard
-                    v-for='article in news'
-                    :key='article.ID'
-                    :article='article'
-                />
-            </div>
-        </div>
     </div>
 </template>
 
