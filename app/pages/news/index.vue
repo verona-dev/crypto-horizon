@@ -70,9 +70,9 @@
                                 </Avatar>
                                 
                                 <!--  Author  -->
-                                <div class='flex flex-col items-start text-left text-sm'>
-                                    <span>{{ article.authors }}</span>
-                                    <span class='text-muted-custom'>{{ article.source_name }}</span>
+                                <div class='flex flex-col items-start text-left'>
+                                    <p>{{ article.authors }}</p>
+                                    <span class='text-muted-custom text-sm'>{{ article.source_name }}</span>
                                 </div>
                             </HoverCardTrigger>
                             
