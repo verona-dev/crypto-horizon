@@ -1,5 +1,5 @@
 <template>
-    <div class='news page flex flex-col items-center px-12'>
+    <div class='news page flex flex-col items-center px-24'>
         <h1 class='page-title'>Latest News</h1>
         
         <BentoGrid class='max-w-6xl'>
@@ -37,7 +37,7 @@
                     <div class='flex items-center justify-between px-2'>
                         <div class='flex items-center gap-2'>
                             <Badge
-                                v-for='category in article.categories.slice(0, 4)'
+                                v-for='category in article.categories.slice(0, 3)'
                                 class='p-1.5 text-muted-foreground border text-[10px] font-extralight tracking-widest'
                                 variant='outline'
                             >
