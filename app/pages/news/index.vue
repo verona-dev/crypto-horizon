@@ -12,6 +12,7 @@
                 <!--  Image  -->
                 <template #header>
                     <NuxtImg
+                        v-if='article.image_url'
                         :src='article.image_url'
                         alt='article image'
                         class='h-full w-full object-cover'
@@ -33,11 +34,11 @@
                     </NuxtImg>
                     
                     <!--  Categories / Tags + Reading duration  -->
-                    <div class='flex items-center justify-between'>
-                        <div>
+                    <div class='flex items-center justify-between px-2'>
+                        <div class='flex items-center gap-2'>
                             <Badge
-                                v-for='category in article.categories.slice(0, 3)'
-                                class='m-1.5 p-1.5 text-muted-foreground border text-[10px] font-extralight tracking-widest'
+                                v-for='category in article.categories.slice(0, 4)'
+                                class='p-1.5 text-muted-foreground border text-[10px] font-extralight tracking-widest'
                                 variant='outline'
                             >
                                 {{ category.NAME }}
@@ -77,8 +78,9 @@
                             </HoverCardTrigger>
                             
                             <!--  Source  -->
-                            <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-6 p-10 w-fit'>
+                            <HoverCardContent class='flex !justify-between !content-between !items-between gap-6 p-10 w-fit'>
                                 <NuxtImg
+                                    v-if='article.source_avatar'
                                     :src='article.source_avatar'
                                     alt='source avatar'
                                     class='rounded-md m-auto'
