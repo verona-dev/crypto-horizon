@@ -80,7 +80,7 @@
                 </HoverCardTrigger>
                 
                 <!--  Source  -->
-                <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-6 p-10 w-fit'>
+                <HoverCardContent class='flex !justify-between !content-between !items-between gap-6 p-10 w-fit'>
                     <NuxtImg
                         :src='source_avatar'
                         alt='source avatar'
