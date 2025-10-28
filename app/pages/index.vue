@@ -33,6 +33,7 @@
 </template>
 
 <script setup lang='ts'>
+    import { ParticlesBg } from '~/components/ui/particles-bg';
     import WelcomeItem from '~/components/WelcomeItem.vue';
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
