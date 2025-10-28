@@ -36,15 +36,24 @@
                     <strong>{{ article.title }}</strong>
                 </template>
                 
-                <!--  Categories / Tags  -->
+                <!--  Categories / Tags + Reading duration  -->
                 <template #icon>
-                    <Badge
-                        v-for='category in article.categories.slice(0, 4)'
-                        class='m-1.5 p-1.5 text-primary border text-[10px] font-extralight tracking-widest'
-                        variant='outline'
-                    >
-                        {{ category.NAME }}
-                    </Badge>
+                    <div class='flex items-center justify-between'>
+                        <div>
+                            <Badge
+                                v-for='category in article.categories.slice(0, 3)'
+                                class='m-1.5 p-1.5 text-primary border text-[10px] font-extralight tracking-widest'
+                                variant='outline'
+                            >
+                                {{ category.NAME }}
+                            </Badge>
+                        </div>
+                        
+                        <div v-if='article.reading_duration > 1' class='text-primary flex items-center gap-2'>
+                            <NuxtIcon name='iconoir:timer' size='16' />
+                            <span class='text-xxs'>{{ article.reading_duration }} min read</span>
+                        </div>
+                    </div>
                 </template>
                 
                 <template #description>
@@ -81,16 +90,42 @@
     // NewsStore
     import { storeToRefs } from 'pinia';
     import { useNewsStore } from '~/stores/NewsStore.js';
+    import { useReadingTime } from 'maz-ui/composables';
     const NewsStore = useNewsStore();
     
     const { news } = storeToRefs(NewsStore);
     const { getNews } = NewsStore;
     const articles = ref([]);
     
-    const getAuthorLabel = (authors, source_name) => {
+    const getAuthor = (authors, source_name) => {
         if(!authors || authors.length === 0) return 'Unknown author';
         if(source_name === 'Cointelegraph') return authors.replace('Cointelegraph by ', '');
         return authors;
+    };
+    
+    const getReadingDuration = (body) => {
+        if (!body) return '';
+        
+        let reading_duration;
+        
+        let sentences = body
+            .split(/\. +|\.(?=\n)|\.(?=$)/)
+            .map(s => s.trim())
+            .filter(s => s.length);
+        
+        for (let i = 0; i < sentences.length; i++) {
+            if (i % 3 < 2) {
+                sentences[i] = sentences[i] + '. ';
+            } else {
+                sentences[i] = sentences[i] + '.<br><br>';
+            }
+        }
+        
+        const { duration } = useReadingTime({
+            content: sentences.join(''),
+        });
+        
+        return duration.value;
     };
     
     watch(news, (newValue) => {
@@ -98,12 +133,13 @@
             // console.log(newValue[0]);
             
             articles.value = news.value?.map(article => ({
-                authors: getAuthorLabel(article.AUTHORS, article.SOURCE_DATA?.NAME),
+                authors: getAuthor(article.AUTHORS, article.SOURCE_DATA?.NAME),
                 categories: article.CATEGORY_DATA,
                 guid: article.GUID,
                 id: article.ID,
                 image_url: article.IMAGE_URL,
                 published_date: dayjs.unix(article.PUBLISHED_ON).format('MMMM D, YYYY'),
+                reading_duration: getReadingDuration(article.BODY),
                 source_key: article.SOURCE_DATA?.SOURCE_KEY,
                 source_name: article.SOURCE_DATA?.NAME || 'Unknown source',
                 title: article.TITLE,
