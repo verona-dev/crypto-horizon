@@ -6,7 +6,7 @@
             <BentoGridItem
                 v-for='(article, index) in articles'
                 :key='article.id'
-                class='!bg-card lg:row-span-2'
+                class='!bg-card lg:row-span-2 !border-border/50'
                 :class='index === 3 || index === 6 ? "xl:col-span-2" : ""'
             >
                 <!--  Image + Categories  -->
