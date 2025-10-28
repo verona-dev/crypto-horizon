@@ -113,9 +113,9 @@
                         </HoverCard>
                         
                         <!--  Publish date  -->
-                        <div class='flex items-center gap-2 text-muted-foreground'>
-                            <NuxtIcon name='iconoir:calendar' size='16' />
-                            <span class='text-xxs'>{{ article.published_date }}</span>
+                        <div class='flex gap-1 text-muted-foreground'>
+                            <NuxtIcon name='ph:calendar-blank-light' size='18' />
+                            <span class='pt-0.5 text-xs'>{{ article.published_date }}</span>
                         </div>
                     </div>
                 
