@@ -2,7 +2,7 @@
     <div class='news page flex flex-col items-center px-12'>
         <h1 class='page-title'>Latest News</h1>
         
-        <BentoGrid class='mx-auto max-w-6xl'>
+        <BentoGrid class='max-w-6xl'>
             <BentoGridItem
                 v-for='(article, index) in articles'
                 :key='article.id'
@@ -213,7 +213,7 @@
                 source_avatar: article.SOURCE_DATA?.IMAGE_URL,
                 source_key: article.SOURCE_DATA?.SOURCE_KEY,
                 source_lang: article.SOURCE_DATA?.LANG,
-                source_launch_date: dayjs.unix(article.SOURCE_DATA.LAUNCH_DATE).format('MMMM D, YYYY'),
+                source_launch_date: dayjs.unix(article?.SOURCE_DATA?.LAUNCH_DATE).format('MMMM D, YYYY'),
                 source_name: article.SOURCE_DATA?.NAME || 'Unknown source',
                 source_score: article.SOURCE_DATA?.BENCHMARK_SCORE,
                 source_url: getSourceUrl(article.SOURCE_DATA?.URL),
