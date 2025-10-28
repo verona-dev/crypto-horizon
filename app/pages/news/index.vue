@@ -10,8 +10,8 @@
             <ParticleImage
                 :image-src='titleImage'
                 :responsive-width='true'
-                :canvasWidth='900'
-                :canvasHeight='400'
+                canvasWidth='900'
+                canvasHeight='400'
                 :noise='5'
                 gravity='0.1'
                 mouseForce='7'
@@ -207,6 +207,12 @@
         return authors;
     };
     
+    const getSourceName = (source_name) => {
+        if(!source_name || source_name.length === 0) return 'Unknown source';
+        if(source_name === 'Investing.Com Crypto Opinion and Analysis') return source_name.replace('Investing.Com Crypto Opinion and Analysis', 'Investing.Com');
+        return source_name;
+    };
+    
     const getReadingDuration = (body) => {
         if (!body) return '';
         
@@ -252,11 +258,12 @@
                 source_key: article.SOURCE_DATA?.SOURCE_KEY,
                 source_lang: article.SOURCE_DATA?.LANG,
                 source_launch_date: article?.SOURCE_DATA?.LAUNCH_DATE && dayjs.unix(article?.SOURCE_DATA?.LAUNCH_DATE).format('MMMM D, YYYY'),
-                source_name: article.SOURCE_DATA?.NAME || 'Unknown source',
+                source_name: getSourceName(article.SOURCE_DATA?.NAME),
                 source_score: article.SOURCE_DATA?.BENCHMARK_SCORE,
                 source_url: getSourceUrl(article.SOURCE_DATA?.URL),
                 title: article.TITLE,
             }));
+            console.log(articles.value);
         }
     });
     
