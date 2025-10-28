@@ -130,7 +130,6 @@
                                         guid: article.guid,
                                     }
                                 }"
-                                class='border-green-shamrock'
                             >
                                 Read More
                             </NuxtLink>
