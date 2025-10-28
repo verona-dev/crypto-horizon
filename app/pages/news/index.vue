@@ -9,6 +9,7 @@
                 class='!bg-card'
                 :class='index === 3 || index === 6 ? "md:col-span-2" : ""'
             >
+                <!--  Image  -->
                 <template #header>
                     <NuxtImg
                         :src='article.image_url'
@@ -32,6 +33,7 @@
                     </NuxtImg>
                 </template>
                 
+                <!--  Title  -->
                 <template #title>
                     <strong>{{ article.title }}</strong>
                 </template>
@@ -56,17 +58,66 @@
                     </div>
                 </template>
                 
+                <!--  Author + Source  -->
                 <template #description>
-                    <p>{{ article.authors }}</p>
+                    <HoverCard>
+                        <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
+                            <!--  Avatar  -->
+                            <Avatar class='h-10 w-10 rounded-full'>
+                                <AvatarImage :src='article.source_avatar' alt='avatar' />
+                                <AvatarFallback class='rounded-lg'>
+                                    S
+                                </AvatarFallback>
+                            </Avatar>
+                            
+                            <!--  Author  -->
+                            <div class='flex flex-col items-start text-left text-sm'>
+                                <span>{{ article.authors }}</span>
+                                <span class='text-muted-custom'>{{ article.source_name }}</span>
+                            </div>
+                        </HoverCardTrigger>
+                        
+                        <!--  Source  -->
+                        <HoverCardContent class='news-hover-card flex !justify-between !content-between !items-between gap-6 p-10 w-fit'>
+                            <NuxtImg
+                                :src='article.source_avatar'
+                                alt='source avatar'
+                                class='rounded-md m-auto'
+                                height='150px'
+                                width='150px'
+                            />
+                            
+                            <div class='flex flex-col justify-between'>
+                                <div class='flex flex-col gap-2'>
+                                    <h6 class='underline mb-2' v-if='article.source_name'>{{ article.source_name }}</h6>
+                                    <span v-if='article.source_score > 0'>Score: {{ article.source_score }}</span>
+                                    <span v-if='article.source_launch_date'>Launch date: {{ article.source_launch_date }}</span>
+                                    
+                                    <div v-if='article.source_lang' class='flex items-center gap-2'>
+                                        <span>Language:</span>
+                                        <span>{{ article.source_lang }}</span>
+                                        <NuxtIcon :name="`circle-flags:lang-${article.source_lang.toLowerCase()}`" size='20px' class='self-center' />
+                                    </div>
+                                </div>
+                                
+                                <NuxtLink
+                                    v-if='article.source_url'
+                                    :to='article.source_url'
+                                    external
+                                    target='_blank'
+                                    class='self-start hover:underline'
+                                >
+                                    <span>Website</span>
+                                </NuxtLink>
+                            </div>
+                        </HoverCardContent>
+                    </HoverCard>
                 </template>
             </BentoGridItem>
         </BentoGrid>
         
         <div class='flex flex-col items-center gap-20'>
-            <!--            <h1 class='page-title'>Latest News</h1>-->
-            
             <div class='flex flex-wrap justify-center gap-24'>
-                
                 <NewsCard
                     v-for='article in news'
                     :key='article.ID'
@@ -82,8 +133,10 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
+    import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
     import { Badge } from '~/components/ui/badge';
     import { BentoGrid, BentoGridItem } from '~/components/ui/bento-grid';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '@/components/ui/skeleton';
     import NewsCard from '~/components/news/NewsCard.vue';
     
@@ -128,6 +181,14 @@
         return duration.value;
     };
     
+    const getSourceUrl = (source_url) => {
+        let url = new URL(source_url);
+        let protocol = url.protocol;
+        let host = url.host;
+        
+        return `${protocol}//${host}`;
+    };
+    
     watch(news, (newValue) => {
         if (newValue) {
             // console.log(newValue[0]);
@@ -140,8 +201,13 @@
                 image_url: article.IMAGE_URL,
                 published_date: dayjs.unix(article.PUBLISHED_ON).format('MMMM D, YYYY'),
                 reading_duration: getReadingDuration(article.BODY),
+                source_avatar: article.SOURCE_DATA?.IMAGE_URL,
                 source_key: article.SOURCE_DATA?.SOURCE_KEY,
+                source_lang: article.SOURCE_DATA?.LANG,
+                source_launch_date: dayjs.unix(article.SOURCE_DATA.LAUNCH_DATE).format('MMMM D, YYYY'),
                 source_name: article.SOURCE_DATA?.NAME || 'Unknown source',
+                source_score: article.SOURCE_DATA?.BENCHMARK_SCORE,
+                source_url: getSourceUrl(article.SOURCE_DATA?.URL),
                 title: article.TITLE,
             }));
             
