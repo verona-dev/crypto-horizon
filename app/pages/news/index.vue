@@ -2,7 +2,7 @@
     <div class='news page flex flex-col items-center px-12'>
         <h1 class='page-title'>Latest News</h1>
         
-        <BentoGrid class='mx-auto max-w-7xl'>
+        <BentoGrid class='mx-auto max-w-6xl'>
             <BentoGridItem
                 v-for='(article, index) in articles'
                 :key='article.id'
