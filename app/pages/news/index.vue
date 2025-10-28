@@ -57,7 +57,7 @@
                     <strong>{{ article.title }}</strong>
                 </template>
                 
-                <!--  Author + Source + Publish date  -->
+                <!--  Author + Source + Publish date + Read more  -->
                 <template #description>
                     <div class='flex items-center justify-between'>
                         <HoverCard>
@@ -121,7 +121,7 @@
                         </HoverCard>
                         
                         <!--  Read more  -->
-                        <Button variant='outline' class='read-more !bg-transparent p-5'>
+                        <Button variant='outline' class='read-more !bg-transparent mr-2 pt-2.5'>
                             <NuxtLink
                                 :to="{
                                     path: `/news/${encodeURIComponent(article.guid)}`,
