@@ -1,5 +1,5 @@
 <template>
-    <Alert class='w-screen flex items-center justify-center mt-16 p-3.5 z-25'>
+    <Card class='bg-background/75 w-screen flex items-center justify-center mt-16 p-3.5 z-25'>
         <NuxtLink
             to='https://www.coingecko.com/en/api/'
             target='_blank'
@@ -34,11 +34,11 @@
                 class='icon opacity-0'
             />
         </NuxtLink>
-    </Alert>
+    </Card>
 </template>
 
 <script setup>
-    import { Alert } from '~/components/ui/alert';
+    import { Card } from '~/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton';
 </script>
 
@@ -51,11 +51,6 @@
             
             .icon {
                 opacity: 1;
-            }
-            
-            .badge {
-                background-color: var(--tertiary);
-                border: 1px solid var(--tertiary);
             }
         }
     }
