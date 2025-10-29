@@ -263,7 +263,6 @@
                 source_url: getSourceUrl(article.SOURCE_DATA?.URL),
                 title: article.TITLE,
             }));
-            console.log(articles.value);
         }
     });
     
