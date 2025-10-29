@@ -1,134 +1,133 @@
 <template>
-    <Card class='coin-news-card w-2/5' v-if='article'>
-        <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
-            <!--  Article image + Categories  -->
-            <CardHeader class='gap-3 pb-4'>
-                <!--  Article image  -->
-                <div class="h-60">
-                    <NuxtImg
-                        :src='image_url'
+    <Card class='xl:w-130' v-if='article'>
+        <!--  Article image + Categories  -->
+        <CardHeader class='gap-4'>
+            <!--  Article image  -->
+            <div class='h-56'>
+                <NuxtImg
+                    :src='image_url'
+                    alt='article image'
+                    class='w-full h-full rounded-lg object-cover'
+                    :custom='true'
+                    v-slot='{ src, isLoaded, imgAttrs }'
+                    preload
+                >
+                    <img
+                        v-if='isLoaded'
+                        v-bind='imgAttrs'
+                        :src='src'
                         alt='article image'
-                        class='w-full h-full rounded-lg object-cover'
-                        :custom='true'
-                        v-slot='{ src, isLoaded, imgAttrs }'
-                        preload
                     >
-                        <img
-                            v-if='isLoaded'
-                            v-bind='imgAttrs'
-                            :src='src'
-                            alt='article image'
-                        >
-                        <Skeleton
-                            v-else
-                            class='w-full h-full rounded-lg'
-                        />
-                    </NuxtImg>
-                </div>
-                
-                <!-- Categories  -->
-                <!--
-                <div class='flex items-center gap-2'>
-                    <Badge
-                        v-for='category in categories.slice(0, 16)'
-                        class='py-1 px-1.5 text-muted-foreground border text-[10px] font-extralight tracking-widest'
-                        variant='outline'
-                    >
-                        {{ category.NAME }}
-                    </Badge>
-                </div>
-                -->
-                
-                <!-- Keywords  -->
-                <div class='self-start'>
+                    <Skeleton
+                        v-else
+                        class='w-full h-full rounded-lg'
+                    />
+                </NuxtImg>
+            </div>
+            
+            <!-- Categories  -->
+            <!--
+            <div class='flex items-center gap-2'>
+                <Badge
+                    v-for='category in categories.slice(0, 16)'
+                    class='py-1 px-1.5 text-muted-foreground border text-[10px] font-extralight tracking-widest'
+                    variant='outline'
+                >
+                    {{ category.NAME }}
+                </Badge>
+            </div>
+            -->
+            
+            <!-- Keywords  -->
+            <div class='self-start h-12'>
                     <span
                         v-for='keyword in keywords'
                         key='keyword'
-                        class='text-sky text-sm'
+                        class='text-sky text-sm truncate'
                     >
                         {{ keyword }}
                     </span>
-                </div>
-            </CardHeader>
-            
-            <!--  Content  -->
-            <CardContent class=''>
-                <!--  Article Title  -->
-                <CardTitle class='article-title text-left text-lg'>
+            </div>
+        </CardHeader>
+        
+        <!--  Article Title  -->
+        <CardContent class='h-24'>
+            <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
+                <CardTitle class='text-left text-lg hover:underline'>
                     {{ title }}
                 </CardTitle>
-                
-                <!--  Author/Source + Publish date  -->
-                <div class='flex items-start gap-12'>
-                    <HoverCard :openDelay='200'>
-                        <HoverCardTrigger class='flex items-center gap-4'>
-                            <!--  Avatar  -->
-                            <Avatar class='h-10 w-10 rounded-full'>
-                                <AvatarImage :src='source_avatar' alt='avatar' />
-                                <AvatarFallback class='rounded-full'>
-                                    S
-                                </AvatarFallback>
-                            </Avatar>
-                            
-                            <!--  Author  -->
-                            <div class='flex flex-col items-start text-sm gap-1'>
-                                <span>{{ article_author_label }}</span>
-                                <span class='text-muted-custom'>{{ source_name_label }}</span>
-                            </div>
-                        </HoverCardTrigger>
+            </NuxtLink>
+        </CardContent>
+        
+        <CardFooter class='my-4 flex items-start gap-12'>
+            <!--  Author/Source + Publish date  -->
+            <div class='flex flex-col xl:flex-row items-start gap-6 xl:gap-12'>
+                <HoverCard :openDelay='200'>
+                    <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
+                        <!--  Avatar  -->
+                        <Avatar class='h-10 w-10 rounded-full'>
+                            <AvatarImage :src='source_avatar' alt='avatar' />
+                            <AvatarFallback class='rounded-full'>S</AvatarFallback>
+                        </Avatar>
                         
-                        <!--  Source  -->
-                        <HoverCardContent class='flex !justify-between !content-between !items-between gap-10 !p-10 w-fit'>
-                            <NuxtImg
-                                :src='source_avatar'
-                                alt='source avatar'
-                                class='rounded-md m-auto'
-                                height='150px'
-                                width='150px'
-                            />
-                            
-                            <div class='flex flex-col justify-between'>
-                                <div class='flex flex-col gap-2'>
-                                    <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
-                                    <span v-if='source_score > 0'>Score: {{ source_score }}</span>
-                                    <span v-if='source_launch_date'>Launch date: {{ source_launch_date }}</span>
-                                    
-                                    <div v-if='source_lang' class='flex items-center gap-2'>
-                                        <span>Language:</span>
-                                        <span>{{ source_lang }}</span>
-                                        <NuxtIcon :name="`circle-flags:lang-${source_lang.toLowerCase()}`" size='20px' class='self-center' />
-                                    </div>
-                                </div>
-                                
-                                <NuxtLink
-                                    v-if='source_url_label'
-                                    :to='source_url_label'
-                                    external
-                                    target='_blank'
-                                    class='self-start hover:underline'
-                                >
-                                    <span>Website</span>
-                                </NuxtLink>
-                            </div>
-                        </HoverCardContent>
-                    </HoverCard>
+                        <!--  Author  -->
+                        <div class='flex flex-col items-start text-sm gap-1'>
+                            <span>{{ article_author_label }}</span>
+                            <span class='text-muted-custom'>{{ source_name_label }}</span>
+                        </div>
+                    </HoverCardTrigger>
                     
-                    <div class='flex flex-col text-muted-custom gap-2 mt-1'>
-                        <!--  Publish date  -->
-                        <div :openDelay='200' class='flex items-center gap-2'>
-                            <NuxtIcon name='iconoir:calendar' size='16px' />
-                            <span class='text-xs'>{{ published_date }}</span>
-                        </div>
+                    <!--  Source  -->
+                    <HoverCardContent class='flex !justify-between !content-between !items-between gap-10 !p-10 w-fit'>
+                        <NuxtImg
+                            :src='source_avatar'
+                            alt='source avatar'
+                            class='rounded-md m-auto'
+                            height='150px'
+                            width='150px'
+                        />
                         
-                        <!--  Reading duration  -->
-                        <div v-if='show_reading_duration' class='flex items-center gap-2'>
-                            <NuxtIcon name='iconoir:timer' size='16' />
-                            <span class='text-xs'>{{ reading_duration }} min read</span>
+                        <div class='flex flex-col justify-between'>
+                            <div class='flex flex-col gap-2'>
+                                <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
+                                <span v-if='source_score > 0'>Score: {{ source_score }}</span>
+                                <span v-if='source_launch_date'>Launch date: {{ source_launch_date }}</span>
+                                
+                                <div v-if='source_lang' class='flex items-center gap-2'>
+                                    <span>Language:</span>
+                                    <span>{{ source_lang }}</span>
+                                    <NuxtIcon :name="`circle-flags:lang-${source_lang.toLowerCase()}`" size='20px' class='self-center' />
+                                </div>
+                            </div>
+                            
+                            <NuxtLink
+                                v-if='source_url_label'
+                                :to='source_url_label'
+                                external
+                                target='_blank'
+                                class='self-start hover:underline'
+                            >
+                                <span>Website</span>
+                            </NuxtLink>
                         </div>
+                    </HoverCardContent>
+                </HoverCard>
+                
+                <div class='flex flex-col text-muted-custom gap-2 mt-1'>
+                    <!--  Publish date  -->
+                    <div :openDelay='200' class='flex items-center gap-2'>
+                        <NuxtIcon name='iconoir:calendar' size='16px' />
+                        <span class='text-xs'>{{ published_date }}</span>
+                    </div>
+                    
+                    <!--  Reading duration  -->
+                    <div v-if='show_reading_duration' class='text-muted-foreground flex items-center gap-1'>
+                        <NuxtIcon name='ph:timer-light' size='18' />
+                        <span class='text-xxs'>{{ reading_duration }}m</span>
                     </div>
                 </div>
-            </CardContent>
-        </NuxtLink>
+            </div>
+        </CardFooter>
     </Card>
 </template>
 
@@ -138,7 +137,7 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
-    import { Card, CardTitle, CardContent, CardHeader } from '~/components/ui/card';
+    import { Card, CardTitle, CardContent, CardHeader, CardFooter } from '~/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton';
     import { Badge } from '~/components/ui/badge';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
@@ -193,11 +192,3 @@
         return `${protocol}//${host}`;
     });
 </script>
-
-<style scoped>
-    .coin-news-card {
-        &:hover .article-title {
-            text-decoration: underline;
-        }
-    }
-</style>
