@@ -1,50 +1,62 @@
 <template>
-    <Card class='coin-news-card h-fit my-4 flex cursor-pointer' v-if='article'>
-        <NuxtLink class='h-full w-full p-6 flex items-between' :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
-            <!--  Article image  -->
-            <CardHeader>
-                <div class="w-44 flex items-center">
+    <Card class='coin-news-card w-2/5' v-if='article'>
+        <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
+            <!--  Article image + Categories  -->
+            <CardHeader class='gap-3 pb-4'>
+                <!--  Article image  -->
+                <div class="h-60">
                     <NuxtImg
-                        :src="image_url"
-                        alt="article image"
-                        class="w-full rounded-lg object-cover"
-                        :custom="true"
-                        v-slot="{ src, isLoaded, imgAttrs }"
+                        :src='image_url'
+                        alt='article image'
+                        class='w-full h-full rounded-lg object-cover'
+                        :custom='true'
+                        v-slot='{ src, isLoaded, imgAttrs }'
                         preload
                     >
                         <img
-                            v-if="isLoaded"
-                            v-bind="imgAttrs"
-                            :src="src"
-                            alt="article image"
+                            v-if='isLoaded'
+                            v-bind='imgAttrs'
+                            :src='src'
+                            alt='article image'
                         >
                         <Skeleton
                             v-else
-                            class="w-full h-full"
+                            class='w-full h-full rounded-lg'
                         />
                     </NuxtImg>
                 </div>
-            
+                
+                <!-- Categories  -->
+                <!--
+                <div class='flex items-center gap-2'>
+                    <Badge
+                        v-for='category in categories.slice(0, 16)'
+                        class='py-1 px-1.5 text-muted-foreground border text-[10px] font-extralight tracking-widest'
+                        variant='outline'
+                    >
+                        {{ category.NAME }}
+                    </Badge>
+                </div>
+                -->
+                
+                <!-- Keywords  -->
+                <div class='self-start'>
+                    <span
+                        v-for='keyword in keywords'
+                        key='keyword'
+                        class='text-sky text-sm'
+                    >
+                        {{ keyword }}
+                    </span>
+                </div>
             </CardHeader>
             
             <!--  Content  -->
-            <CardContent class='flex flex-col justify-around p-4'>
-                <!--  Article Title + Categories  -->
-                <div class='flex flex-col gap-4'>
-                    <CardTitle class='article-title text-left text-xl'>
-                        {{ title }}
-                    </CardTitle>
-                    
-                    <div class='categories-container flex flex-wrap'>
-                        <Badge
-                            v-for='category in categories.slice(0, 16)'
-                            class='mr-1.5 p-1.5 bg-transparent text-primary border text-[11px] font-extralight tracking-widest'
-                            variant='outline'
-                        >
-                            {{ category.NAME }}
-                        </Badge>
-                    </div>
-                </div>
+            <CardContent class=''>
+                <!--  Article Title  -->
+                <CardTitle class='article-title text-left text-lg'>
+                    {{ title }}
+                </CardTitle>
                 
                 <!--  Author/Source + Publish date  -->
                 <div class='flex items-start gap-12'>
@@ -114,7 +126,6 @@
                             <span class='text-xs'>{{ reading_duration }} min read</span>
                         </div>
                     </div>
-                
                 </div>
             </CardContent>
         </NuxtLink>
@@ -138,6 +149,8 @@
     });
     
     const { article } = toRefs(props);
+    console.log(JSON.parse(JSON.stringify(article.value)));
+    
     const guid = article.value?.GUID;
     const title = article.value?.TITLE;
     const image_url = article.value?.IMAGE_URL;
@@ -152,6 +165,7 @@
         return article_author.value;
     });
     const categories = article.value?.CATEGORY_DATA;
+    const keywords = article.value?.KEYWORDS;
     const show_reading_duration = computed(() => reading_duration.value > 0);
     const reading_duration = computed(() => {
         if(!body) return 0;
