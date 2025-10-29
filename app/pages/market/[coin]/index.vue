@@ -18,9 +18,9 @@
         <div v-if='dark_mode' class='absolute top-0 right-0 w-full h-full overflow-visible'>
             <StarsBackground
                 class='pl-[1200px]'
-                :factor="0.05"
-                :speed="75"
-                star-color="#fff"
+                :factor='0.25'
+                :speed='150'
+                star-color='#fff'
             />
         </div>
     </div>
