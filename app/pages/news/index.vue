@@ -10,8 +10,8 @@
             <ParticleImage
                 :image-src='titleImage'
                 :responsive-width='true'
-                :canvasWidth='900'
-                :canvasHeight='400'
+                canvasWidth='900'
+                canvasHeight='400'
                 :noise='5'
                 gravity='0.1'
                 mouseForce='7'
@@ -31,7 +31,7 @@
                         v-if='article.image_url'
                         :src='article.image_url'
                         alt='article image'
-                        class='h-full w-full object-cover'
+                        class='h-full w-full object-cover rounded-md'
                         :custom='true'
                         v-slot='{ src, isLoaded, imgAttrs }'
                         preload
@@ -45,7 +45,7 @@
                         
                         <Skeleton
                             v-else
-                            class='h-full w-full'
+                            class='h-full w-full rounded-md'
                         />
                     </NuxtImg>
                     
@@ -189,7 +189,6 @@
     import { ParticleImage } from '~/components/ui/particle-image';
     import { Skeleton } from '~/components/ui/skeleton';
     import titleImage from '~/assets/images/latest-news.png';
-    console.log(titleImage);
     
     // NewsStore
     import { storeToRefs } from 'pinia';
@@ -205,6 +204,12 @@
         if(!authors || authors.length === 0) return 'Unknown author';
         if(source_name === 'Cointelegraph') return authors.replace('Cointelegraph by ', '');
         return authors;
+    };
+    
+    const getSourceName = (source_name) => {
+        if(!source_name || source_name.length === 0) return 'Unknown source';
+        if(source_name === 'Investing.Com Crypto Opinion and Analysis') return source_name.replace('Investing.Com Crypto Opinion and Analysis', 'Investing.Com');
+        return source_name;
     };
     
     const getReadingDuration = (body) => {
@@ -252,7 +257,7 @@
                 source_key: article.SOURCE_DATA?.SOURCE_KEY,
                 source_lang: article.SOURCE_DATA?.LANG,
                 source_launch_date: article?.SOURCE_DATA?.LAUNCH_DATE && dayjs.unix(article?.SOURCE_DATA?.LAUNCH_DATE).format('MMMM D, YYYY'),
-                source_name: article.SOURCE_DATA?.NAME || 'Unknown source',
+                source_name: getSourceName(article.SOURCE_DATA?.NAME),
                 source_score: article.SOURCE_DATA?.BENCHMARK_SCORE,
                 source_url: getSourceUrl(article.SOURCE_DATA?.URL),
                 title: article.TITLE,
