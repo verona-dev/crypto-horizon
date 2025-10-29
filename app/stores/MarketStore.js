@@ -107,7 +107,7 @@ export const useMarketStore = defineStore('MarketStore', {
             await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
             await NewsStore.getNews( {
                 category: this.coin.symbol,
-                limit: 5,
+                limit: 6,
             });
         },
         
