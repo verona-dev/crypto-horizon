@@ -31,7 +31,7 @@
                         v-if='article.image_url'
                         :src='article.image_url'
                         alt='article image'
-                        class='h-full w-full object-cover'
+                        class='h-full w-full object-cover rounded-md'
                         :custom='true'
                         v-slot='{ src, isLoaded, imgAttrs }'
                         preload
@@ -45,7 +45,7 @@
                         
                         <Skeleton
                             v-else
-                            class='h-full w-full'
+                            class='h-full w-full rounded-md'
                         />
                     </NuxtImg>
                     
