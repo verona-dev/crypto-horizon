@@ -1,5 +1,5 @@
 <template>
-    <div v-if='loading' class='flex items-center gap-4 mb-40'>
+    <div v-if='loading' class='flex items-center gap-4 mb-40 z-10'>
         <Spinner class='size-10 text-green-shamrock' />
         
         <h4>Loading...</h4>
