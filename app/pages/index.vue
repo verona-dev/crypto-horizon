@@ -1,7 +1,5 @@
 <template>
     <div class='flex flex-col items-center gap-8 2xl:gap-32 px-20 pb-20 2xl:pb-10 relative'>
-<!--        <Meteors :count="30" />-->
-        
         <ParticlesBg
             v-if='dark_mode'
             class='absolute inset-0'
