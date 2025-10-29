@@ -189,7 +189,6 @@
     import { ParticleImage } from '~/components/ui/particle-image';
     import { Skeleton } from '~/components/ui/skeleton';
     import titleImage from '~/assets/images/latest-news.png';
-    console.log(titleImage);
     
     // NewsStore
     import { storeToRefs } from 'pinia';
