@@ -130,8 +130,6 @@
 <style scoped>
     .coin-links {
         .link-item {
-            color: var(--ring);
-            
             &:hover {
                 color: var(--foreground);
                 text-decoration: underline;
