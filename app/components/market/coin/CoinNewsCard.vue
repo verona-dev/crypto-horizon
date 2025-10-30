@@ -1,5 +1,5 @@
 <template>
-    <Card class='w-full md:w-2/3 xl:w-120 shadow-none transition duration-300 hover:shadow-2xl' v-if='article'>
+    <Card class='w-full lg:w-2/5 2xl:w-[30%] shadow-none transition duration-300 hover:shadow-2xl mx-auto' v-if='article'>
         <!--  Article image + Categories  -->
         <CardHeader class='gap-4'>
             <!--  Article image  -->
@@ -51,10 +51,11 @@
         </CardHeader>
         
         <!--  Article Title  -->
-        <CardContent class='mb-4'>
+        <CardContent class='mb-2'>
             <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
-                <CardTitle class='text-left text-base hover:underline line-clamp-2'>
-                    {{ title }}
+                <CardTitle class='roboto-font text-left text-base hover:underline line-clamp-2'>
+                    What is Bitcoin Dominance
+<!--                    {{ title }}-->
                 </CardTitle>
             </NuxtLink>
         </CardContent>
@@ -148,7 +149,6 @@
     });
     
     const { article } = toRefs(props);
-    console.log(JSON.parse(JSON.stringify(article.value)));
     
     const guid = article.value?.GUID;
     const title = article.value?.TITLE;
@@ -165,6 +165,7 @@
     });
     const categories = article.value?.CATEGORY_DATA;
     const keywords = article.value?.KEYWORDS;
+    console.log(JSON.parse(JSON.stringify(keywords)));
     const show_reading_duration = computed(() => reading_duration.value > 0);
     const reading_duration = computed(() => {
         if(!body) return 0;
