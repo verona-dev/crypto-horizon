@@ -26,34 +26,34 @@
             </div>
             
             <!-- Categories  -->
-            <!--
-            <div class='flex items-center gap-2'>
+            <div class='flex flex-wrap items-center gap-2'>
                 <Badge
-                    v-for='category in categories.slice(0, 16)'
-                    class='py-1 px-1.5 text-muted-foreground border text-[10px] font-extralight tracking-widest'
+                    v-for='category in categories_computed'
+                    class='py-1 px-1.5 capitalize text-sky text-[10px] border-border/50 line-clamp-1'
                     variant='outline'
                 >
                     {{ category.NAME }}
                 </Badge>
             </div>
-            -->
             
             <!-- Keywords  -->
+            <!--
             <div class='self-start h-6'>
                     <span
-                        v-for='keyword in keywords'
+                        v-for='keyword in keywords_computed'
                         key='keyword'
                         class='text-sky text-xs truncate'
                     >
                         {{ keyword }}
                     </span>
             </div>
+            -->
         </CardHeader>
         
         <!--  Article Title  -->
         <CardContent class='mb-2'>
             <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
-                <CardTitle class='text-left hover:underline line-clamp-2'>
+                <CardTitle class='text-left hover:underline line-clamp-3'>
                     {{ title }}
                 </CardTitle>
             </NuxtLink>
@@ -160,9 +160,37 @@
         if(source_name === 'CoinTelegraph') return article_author.value.replace('Cointelegraph by', '');
         return article_author.value;
     });
-    const categories = article.value?.CATEGORY_DATA;
-    const keywords = article.value?.KEYWORDS;
-    console.log(JSON.parse(JSON.stringify(keywords)));
+    
+    let categories = article.value?.CATEGORY_DATA;
+    const categories_computed = computed(() => {
+        let categories_mutated;
+        
+        if(categories) {
+            categories_mutated = categories.map(category => ({
+                ...category,
+                NAME: category.NAME.toLowerCase(),
+            }));
+        }
+        return categories_mutated;
+    });
+    
+    /*
+    const keywords_string = article.value?.KEYWORDS;
+    let keywords_array;
+    const keywords_computed = computed(() => {
+        if(keywords_string) {
+            keywords_array = keywords_string.split('|');
+            
+            keywords_array = keywords_array.map(keyword => {
+                const lower_case = keyword.toLowerCase()
+                return lower_case.charAt(0).toUpperCase() + lower_case.slice(1);
+            })
+            console.log(keywords_array);
+        }
+        return keywords_string;
+    });
+    */
+    
     const show_reading_duration = computed(() => reading_duration.value > 0);
     const reading_duration = computed(() => {
         if(!body) return 0;
@@ -181,7 +209,6 @@
     const source_lang = article.value?.SOURCE_DATA?.LANG;
     const source_key = article.value?.SOURCE_DATA?.SOURCE_KEY;
     const source_url = computed(() => article.value?.SOURCE_DATA?.URL);
-    
     const source_url_label = computed(() => {
         let url = new URL(source_url.value);
         let protocol = url.protocol;
