@@ -113,16 +113,16 @@
                 
                 <div class='flex flex-col text-muted-custom gap-2 mt-1'>
                     <!--  Publish date  -->
-                    <div :openDelay='200' class='flex items-center gap-2'>
-                        <NuxtIcon name='ph:calendar-blank-light' size='16px' />
-                        <span class='text-xs'>{{ published_date_from_now }}</span>
+                    <div :openDelay='200' class='flex items-center gap-1'>
+                        <NuxtIcon name='ph:calendar-blank-light' size='14px' />
+                        <span class='text-xxs'>Published {{ published_date_from_now }}</span>
                         <!--  <span class='text-xs'>{{ published_date }}</span>  -->
                     </div>
                     
                     <!--  Reading duration  -->
                     <div v-if='show_reading_duration' class='flex items-center gap-1'>
-                        <NuxtIcon name='ph:timer-light' size='18' />
-                        <span class='text-xxs'>{{ reading_duration }}m</span>
+                        <NuxtIcon name='ph:timer-light' size='14' />
+                        <span class='text-xxs'>{{ reading_duration }}m read</span>
                     </div>
                 </div>
             </div>
