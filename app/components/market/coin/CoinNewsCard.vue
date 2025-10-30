@@ -1,8 +1,8 @@
 <template>
-    <Card class='w-full lg:w-2/5 2xl:w-[30%] transition shadow-none hover:shadow-2xl duration-200 mx-auto' v-if='article'>
-        <!--  Article image + Categories  -->
+    <Card class='w-full lg:w-2/5 transition shadow-none hover:shadow-2xl duration-200 mx-auto' v-if='article'>
+        <!--  Image + Categories  -->
         <CardHeader class='gap-4'>
-            <!--  Article image  -->
+            <!--  Image  -->
             <div class='h-52'>
                 <NuxtImg
                     :src='image_url'
@@ -39,7 +39,7 @@
             -->
             
             <!-- Keywords  -->
-            <div class='self-start'>
+            <div class='self-start h-6'>
                     <span
                         v-for='keyword in keywords'
                         key='keyword'
@@ -53,15 +53,14 @@
         <!--  Article Title  -->
         <CardContent class='mb-2'>
             <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
-                <CardTitle class='font-roboto text-left text-base hover:underline line-clamp-2 font-noto-sans'>
-                    What is Bitcoin Dominance
-<!--                    {{ title }}-->
+                <CardTitle class='text-left hover:underline line-clamp-2'>
+                    {{ title }}
                 </CardTitle>
             </NuxtLink>
         </CardContent>
         
+        <!--  Author/Source + Publish date  -->
         <CardFooter class='mb-4 flex items-start gap-12'>
-            <!--  Author/Source + Publish date  -->
             <div class='flex flex-col xl:flex-row items-start gap-6 xl:gap-12'>
                 <HoverCard :openDelay='200'>
                     <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
@@ -88,17 +87,15 @@
                             width='150px'
                         />
                         
-                        <div class='flex flex-col justify-between'>
-                            <div class='flex flex-col gap-2'>
-                                <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
-                                <span v-if='source_score > 0'>Score: {{ source_score }}</span>
-                                <span v-if='source_launch_date'>Launch date: {{ source_launch_date }}</span>
-                                
-                                <div v-if='source_lang' class='flex items-center gap-2'>
-                                    <span>Language:</span>
-                                    <span>{{ source_lang }}</span>
-                                    <NuxtIcon :name="`circle-flags:lang-${source_lang.toLowerCase()}`" size='20px' class='self-center' />
-                                </div>
+                        <div class='flex flex-col justify-between gap-2'>
+                            <h6 class='underline mb-2' v-if='source_name'>{{ source_name }}</h6>
+                            <span v-if='source_score > 0'>Score: {{ source_score }}</span>
+                            <span v-if='source_launch_date'>Launch date: {{ source_launch_date }}</span>
+                            
+                            <div v-if='source_lang' class='flex items-center gap-2'>
+                                <span>Language:</span>
+                                <span>{{ source_lang }}</span>
+                                <NuxtIcon :name="`circle-flags:lang-${source_lang.toLowerCase()}`" size='20px' class='self-center' />
                             </div>
                             
                             <NuxtLink
