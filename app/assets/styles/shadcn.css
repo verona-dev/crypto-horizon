@@ -47,39 +47,5 @@ tbody {
     }
 }
 
-.market {
-    .card-container {
-        @apply flex flex-col justify-between;
-    }
-    
-    .card-header {
-        @apply flex flex-col xl:flex-row items-center p-8 border-b border-border/50 relative;
-    }
-    
-    .card-title {
-        @apply flex items-center gap-3;
-    }
-    
-    .card-content {
-        @apply flex flex-col gap-4 p-4 relative;
-        
-        .name {
-            @apply flex items-center flex-1 gap-3;
-        }
-        
-        .sparkline {
-            @apply flex-1 select-none flex;
-        }
-        
-        .price {
-            @apply flex flex-1 flex-col items-end;
-        }
-    }
-    
-    .card-footer {
-        @apply self-center;
-    }
-}
-
 
 
