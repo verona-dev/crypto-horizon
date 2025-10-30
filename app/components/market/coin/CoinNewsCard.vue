@@ -115,11 +115,12 @@
                     <!--  Publish date  -->
                     <div :openDelay='200' class='flex items-center gap-2'>
                         <NuxtIcon name='iconoir:calendar' size='16px' />
-                        <span class='text-xs'>{{ published_date }}</span>
+                        <span class='text-xs'>{{ published_date_from_now }}</span>
+                        <!--  <span class='text-xs'>{{ published_date }}</span>  -->
                     </div>
                     
                     <!--  Reading duration  -->
-                    <div v-if='show_reading_duration' class='text-muted-foreground flex items-center gap-1'>
+                    <div v-if='show_reading_duration' class='text-muted-custom flex items-center gap-1'>
                         <NuxtIcon name='ph:timer-light' size='18' />
                         <span class='text-xxs'>{{ reading_duration }}m</span>
                     </div>
@@ -152,6 +153,7 @@
     const image_url = article.value?.IMAGE_URL;
     const body = article.value?.BODY;
     const published_date = dayjs.unix(article.value?.PUBLISHED_ON).format('MMMM D, YYYY, h:mm A');
+    const published_date_from_now = dayjs.unix(article.value?.PUBLISHED_ON).fromNow();
     // const published_date_from_now = computed(() => article.value?.PUBLISHED_ON && dayjs.unix(article.value?.PUBLISHED_ON).fromNow());
     
     const article_author = computed(() => article.value?.AUTHORS);
