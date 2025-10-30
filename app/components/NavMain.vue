@@ -113,7 +113,8 @@
                                             :class='{ "!bg-muted dark:!text-green-shamrock" : subItem.isActive }'
                                         >
                                             <NuxtLink :to='subItem.url' class='pl-3'>
-                                                <span>&#183; {{ subItem.title }}</span>
+                                                <!--  &#183;  -->
+                                                <span>{{ subItem.title }}</span>
                                             </NuxtLink>
                                         </SidebarMenuSubButton>
                                     </SidebarMenuSubItem>
