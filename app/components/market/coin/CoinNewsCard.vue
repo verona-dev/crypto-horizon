@@ -1,5 +1,5 @@
 <template>
-    <Card class='w-full md:w-2/3 xl:w-120' v-if='article'>
+    <Card class='w-full md:w-2/3 xl:w-120 shadow-none transition duration-300 hover:shadow-2xl' v-if='article'>
         <!--  Article image + Categories  -->
         <CardHeader class='gap-4'>
             <!--  Article image  -->
