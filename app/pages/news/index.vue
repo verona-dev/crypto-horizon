@@ -18,11 +18,11 @@
             />
         </div>
         
-        <BentoGrid class='max-w-full xl:max-w-6xl'>
+        <BentoGrid class='xl:gap-6'>
             <BentoGridItem
                 v-for='(article, index) in articles'
                 :key='article.id'
-                class='!bg-card lg:row-span-2 !border-border/50'
+                class='!bg-card lg:row-span-2 !border-border/50 w-2/3 xl:w-full mx-auto'
                 :class='index === 3 || index === 6 ? "xl:col-span-2" : ""'
             >
                 <!--  Image + Categories  -->
