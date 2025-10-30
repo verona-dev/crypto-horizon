@@ -9,6 +9,12 @@
     src: url(../fonts/Great.ttf);
 }
 
+@font-face {
+    font-family: 'Freight';
+    font-display: swap;
+    src: url(../fonts/freight-sans-pro-medium-regular.ttf);
+}
+
 @layer base {
     * {
         @apply m-0 border-border outline-ring/50;
@@ -131,10 +137,18 @@
         font-family: 'Montserrat Variable', sans-serif;
     }
     
+    .font-freight {
+        font-family: 'Freight', serif;
+    }
+    
     .vertical-separator {
         background: var(--accent) !important;
         height: 50px;
         width: 1px;
+    }
+    
+    .news-font {
+        font-family: 'Montserrat Variable', sans-serif;
     }
 }
 
