@@ -34,7 +34,7 @@ export default {
             xl: '1280px',
         },
         fontFamily: {
-            // 'sans': ['Helvetica', 'Arial', 'sans-serif'],
+            'sans': ['Montserrat Variable', 'sans-serif'],
         },
     },
     plugins: [

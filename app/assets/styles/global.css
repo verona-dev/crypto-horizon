@@ -9,12 +9,6 @@
     src: url(../fonts/Great.ttf);
 }
 
-@font-face {
-    font-family: 'Freight';
-    font-display: swap;
-    src: url(../fonts/freight-sans-pro-medium-regular.ttf);
-}
-
 @layer base {
     * {
         @apply m-0 border-border outline-ring/50;
@@ -117,7 +111,7 @@
     }
     
     .font-default {
-        font-family: 'IBM Plex Mono', monospace;
+        font-family: 'Montserrat Variable', sans-serif;
     }
     
     .font-roboto {
@@ -135,10 +129,6 @@
     
     .font-montserrat {
         font-family: 'Montserrat Variable', sans-serif;
-    }
-    
-    .font-freight {
-        font-family: 'Freight', serif;
     }
     
     .vertical-separator {
