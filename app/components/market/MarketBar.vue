@@ -46,9 +46,6 @@
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
-    import dayjs from 'dayjs';
-    import relativeTime from 'dayjs/plugin/relativeTime';
-    dayjs.extend(relativeTime);
     
     import { Skeleton } from '~/components/ui/skeleton';
     import { Card, CardContent } from '~/components/ui/card';
