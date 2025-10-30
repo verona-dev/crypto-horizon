@@ -27,6 +27,7 @@
         "vue-tsc": "^1.6.4"
     },
     "dependencies": {
+        "@fontsource-variable/montserrat": "5.2.8",
         "@fontsource-variable/noto-sans": "5.2.7",
         "@fontsource/ibm-plex-mono": "5.2.5",
         "@iconify-json/bitcoin-icons": "1.2.2",
