@@ -61,7 +61,7 @@
 
 @layer components {
     h1 {
-        @apply text-4xl md:text-6xl xl:text-8xl tracking-widest break-words truncate;
+        @apply text-4xl md:text-6xl xl:text-8xl tracking-widest break-words;
         font-family: 'Great', sans-serif;
         
         &.page-title {
@@ -113,10 +113,6 @@
     
     button {
         @apply cursor-pointer;
-    }
-    
-    .font-default {
-        font-family: 'Montserrat Variable', sans-serif;
     }
     
     .font-roboto {
