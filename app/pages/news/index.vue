@@ -121,22 +121,20 @@
                                     width='150px'
                                 />
                                 
-                                <div class='flex flex-col justify-between'>
-                                    <div class='flex flex-col gap-2'>
-                                        <h6 class='underline mb-2' v-if='article.source_name'>{{ article.source_name }}</h6>
-                                        
-                                        <span v-if='article.source_score > 0'>Score: {{ article.source_score }}</span>
-                                        
-                                        <span v-if='article.source_launch_date'>Launch date: {{ article.source_launch_date }}</span>
-                                        
-                                        <div v-if='article.source_lang' class='flex items-center gap-2'>
-                                            <span>Language:</span>
-                                            <span>{{ article.source_lang }}</span>
-                                            <NuxtIcon
-                                                :name="`circle-flags:lang-${article.source_lang.toLowerCase()}`"
-                                                size='20px' class='self-center'
-                                            />
-                                        </div>
+                                <div class='flex flex-col justify-between gap-2'>
+                                    <h6 class='underline mb-2' v-if='article.source_name'>{{ article.source_name }}</h6>
+                                    
+                                    <span v-if='article.source_score > 0'>Score: {{ article.source_score }}</span>
+                                    
+                                    <span v-if='article.source_launch_date'>Launch date: {{ article.source_launch_date }}</span>
+                                    
+                                    <div v-if='article.source_lang' class='flex items-center gap-2'>
+                                        <span>Language:</span>
+                                        <span>{{ article.source_lang }}</span>
+                                        <NuxtIcon
+                                            :name="`circle-flags:lang-${article.source_lang.toLowerCase()}`"
+                                            size='20px' class='self-center'
+                                        />
                                     </div>
                                     
                                     <NuxtLink
