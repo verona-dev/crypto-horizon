@@ -1,5 +1,5 @@
 <template>
-    <Card class='w-full lg:w-2/5 transition shadow-none hover:shadow-2xl duration-200 mx-auto' v-if='article'>
+    <Card class='news w-full lg:w-2/5 transition shadow-none hover:shadow-2xl duration-200 mx-auto' v-if='article'>
         <!--  Image + Categories  -->
         <CardHeader class='gap-4'>
             <!--  Image  -->
@@ -51,9 +51,9 @@
         </CardHeader>
         
         <!--  Article Title  -->
-        <CardContent class='mb-2'>
+        <CardContent>
             <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
-                <CardTitle class='text-left hover:underline line-clamp-3'>
+                <CardTitle class='h-20 card-title'>
                     {{ title }}
                 </CardTitle>
             </NuxtLink>
@@ -157,7 +157,7 @@
     const article_author = computed(() => article.value?.AUTHORS);
     const article_author_label = computed(() => {
         if(article_author.value?.length === 0) return 'Unknown author';
-        if(source_name === 'CoinTelegraph') return article_author.value.replace('Cointelegraph by', '');
+        if(source_name === 'Cointelegraph') return article_author.value.replace('Cointelegraph by', '');
         return article_author.value;
     });
     
