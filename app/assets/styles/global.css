@@ -1,12 +1,14 @@
 /*  Fonts  */
 @import '@fontsource/ibm-plex-mono';
 @import '@fontsource-variable/noto-sans';
+@import '@fontsource-variable/montserrat';
 
 @font-face {
     font-family: 'Great';
     font-display: swap;
     src: url(../fonts/Great.ttf);
 }
+
 @layer base {
     * {
         @apply m-0 border-border outline-ring/50;
@@ -123,6 +125,10 @@
     
     .font-noto-sans {
         font-family: 'Noto Sans Variable', sans-serif;
+    }
+    
+    .font-montserrat {
+        font-family: 'Montserrat Variable', sans-serif;
     }
     
     .vertical-separator {
