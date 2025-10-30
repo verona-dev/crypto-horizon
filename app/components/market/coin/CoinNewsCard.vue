@@ -78,7 +78,7 @@
                     </HoverCardTrigger>
                     
                     <!--  Source  -->
-                    <HoverCardContent class='flex !justify-between !content-between !items-between gap-10 !p-10 w-fit'>
+                    <HoverCardContent class='flex !justify-between !content-between !items-between gap-10 w-fit'>
                         <NuxtImg
                             :src='source_avatar'
                             alt='source avatar'
@@ -114,13 +114,13 @@
                 <div class='flex flex-col text-muted-custom gap-2 mt-1'>
                     <!--  Publish date  -->
                     <div :openDelay='200' class='flex items-center gap-2'>
-                        <NuxtIcon name='iconoir:calendar' size='16px' />
+                        <NuxtIcon name='ph:calendar-blank-light' size='16px' />
                         <span class='text-xs'>{{ published_date_from_now }}</span>
                         <!--  <span class='text-xs'>{{ published_date }}</span>  -->
                     </div>
                     
                     <!--  Reading duration  -->
-                    <div v-if='show_reading_duration' class='text-muted-custom flex items-center gap-1'>
+                    <div v-if='show_reading_duration' class='flex items-center gap-1'>
                         <NuxtIcon name='ph:timer-light' size='18' />
                         <span class='text-xxs'>{{ reading_duration }}m</span>
                     </div>

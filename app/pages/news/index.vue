@@ -111,7 +111,7 @@
                             </HoverCardTrigger>
                             
                             <!--  Source  -->
-                            <HoverCardContent class='flex !justify-between !content-between !items-between !border-border/50 gap-6 p-10 w-fit'>
+                            <HoverCardContent class='flex !justify-between !content-between !items-between !border-border/50 gap-6 w-fit'>
                                 <NuxtImg
                                     v-if='article.source_avatar'
                                     :src='article.source_avatar'
