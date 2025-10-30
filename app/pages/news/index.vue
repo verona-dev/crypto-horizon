@@ -153,7 +153,7 @@
                         </HoverCard>
                         
                         <!--  Read more  -->
-                        <Button variant='outline' class='read-more !bg-transparent pt-2.5'>
+                        <Button variant='outline' class='read-more'>
                             <NuxtLink
                                 :to="{
                                     path: `/news/${encodeURIComponent(article.guid)}`,
