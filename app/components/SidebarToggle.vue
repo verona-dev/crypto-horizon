@@ -26,7 +26,7 @@
             <!--  Open  -->
             <template v-if='open || isMobile'>
                 <div class='flex justify-around items-center'>
-                    <div class='ml-2 great-font whitespace-normal select-none'>
+                    <div class='ml-2 font-great whitespace-normal select-none'>
                         <h5>Crypto</h5>
                         <h5 class='ml-5'>Horizon</h5>
                     </div>

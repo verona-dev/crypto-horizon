@@ -108,17 +108,21 @@
         @apply cursor-pointer;
     }
     
-    .default-font {
+    .font-default {
         font-family: 'IBM Plex Mono', monospace;
     }
     
-    .roboto-font {
+    .font-roboto {
         font-family: 'Roboto', monospace;
     }
     
-    .great-font {
+    .font-great {
         font-family: 'Great', sans-serif;
         @apply truncate tracking-[0.4rem];
+    }
+    
+    .font-noto-sans {
+        font-family: 'Noto Sans Variable', sans-serif;
     }
     
     .vertical-separator {

@@ -53,7 +53,7 @@
         <!--  Article Title  -->
         <CardContent class='mb-2'>
             <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
-                <CardTitle class='roboto-font text-left text-base hover:underline line-clamp-2'>
+                <CardTitle class='font-roboto text-left text-base hover:underline line-clamp-2 font-noto-sans'>
                     What is Bitcoin Dominance
 <!--                    {{ title }}-->
                 </CardTitle>
