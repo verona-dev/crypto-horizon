@@ -1,9 +1,9 @@
 <template>
-    <Card class='xl:w-130' v-if='article'>
+    <Card class='w-full md:w-2/3 xl:w-120' v-if='article'>
         <!--  Article image + Categories  -->
         <CardHeader class='gap-4'>
             <!--  Article image  -->
-            <div class='h-56'>
+            <div class='h-52'>
                 <NuxtImg
                     :src='image_url'
                     alt='article image'
@@ -39,11 +39,11 @@
             -->
             
             <!-- Keywords  -->
-            <div class='self-start h-12'>
+            <div class='self-start'>
                     <span
                         v-for='keyword in keywords'
                         key='keyword'
-                        class='text-sky text-sm truncate'
+                        class='text-sky text-xs truncate'
                     >
                         {{ keyword }}
                     </span>
@@ -51,15 +51,15 @@
         </CardHeader>
         
         <!--  Article Title  -->
-        <CardContent class='h-24'>
+        <CardContent class='mb-4'>
             <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
-                <CardTitle class='text-left text-lg hover:underline'>
+                <CardTitle class='text-left text-base hover:underline line-clamp-2'>
                     {{ title }}
                 </CardTitle>
             </NuxtLink>
         </CardContent>
         
-        <CardFooter class='my-4 flex items-start gap-12'>
+        <CardFooter class='mb-4 flex items-start gap-12'>
             <!--  Author/Source + Publish date  -->
             <div class='flex flex-col xl:flex-row items-start gap-6 xl:gap-12'>
                 <HoverCard :openDelay='200'>
