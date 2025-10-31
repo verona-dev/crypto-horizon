@@ -1,5 +1,5 @@
 <template>
-    <Card class='coin-links flex flex-col lg:flex-row gap-16 lg:justify-around p-10 lg:py-20 lg:px-12 w-full'>
+    <Card class='coin-links bg-background flex flex-col lg:flex-row gap-16 lg:justify-around p-10 lg:py-20 lg:px-12 w-full'>
         <!-- Websites -->
         <CardContent v-if='websites' class='websites flex flex-col gap-8'>
             <h3>Websites</h3>

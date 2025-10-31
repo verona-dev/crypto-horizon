@@ -1,5 +1,5 @@
 <template>
-    <Card class='flex flex-col gap-20 p-10 w-full'>
+    <Card class='bg-background flex flex-col gap-20 p-10 w-full'>
         <!--  Performance  -->
         <CoinPerformance :coin='coin' />
         
@@ -26,6 +26,7 @@
     import CoinContracts from '~/components/market/coin/CoinContracts.vue';
     import CoinSentiment from '~/components/market/coin/CoinSentiment.vue';
     import CoinConverter from '~/components/market/coin/CoinConverter.vue';
+    import { Card } from '~/components/ui/card';
     
     const props = defineProps({
         coin: {
