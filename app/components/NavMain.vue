@@ -43,7 +43,7 @@
                         <SidebarMenuItem>
                             <SidebarMenuButton
                                 tooltip='Launch Pad'
-                                class='focus:bg-transparent flex items-center gap-3'
+                                class='focus:bg-transparent flex items-center gap-3 hover:bg-muted/50'
                             >
                                 <NuxtIcon
                                     :name='item.icon'
@@ -91,7 +91,7 @@
                                     <SidebarMenuButton
                                         :tooltip='item.title'
                                         :is-active='item.isActive'
-                                        class='flex items-center gap-3'
+                                        class='flex items-center gap-3 hover:bg-muted/50'
                                         :class='{ "!bg-transparent dark:!text-green-shamrock" : item.isActive}'
                                     >
                                         <NuxtIcon
@@ -110,7 +110,8 @@
                                         <SidebarMenuSubButton
                                             as-child
                                             :is-active='subItem.isActive'
-                                            :class='{ "!bg-muted dark:!text-green-shamrock" : subItem.isActive }'
+                                            class='hover:bg-muted/50'
+                                            :class='{ "!bg-muted/50 dark:!text-green-shamrock" : subItem.isActive }'
                                         >
                                             <NuxtLink :to='subItem.url' class='pl-3'>
                                                 <!--  &#183;  -->
