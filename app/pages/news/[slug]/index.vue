@@ -1,6 +1,6 @@
 <template>
-    <section class='single-news page'>
-        <Breadcrumb />
+    <div class='single-news page'>
+        <!--  <Breadcrumb />  -->
         
         <div v-if='loading' class='flex items-center'>
             <Spinner class='size-10 text-secondary' />
@@ -11,10 +11,10 @@
         <div v-else>
             <Card
                 v-if='body && body_formatted'
-                class='bg-transparent border-none shadow-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'
+                class='bg-transparent shadow-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'
             >
                 <!--  Header  -->
-                <CardHeader class='flex flex-col gap-12'>
+                <CardHeader class='flex flex-col gap-12 p-0'>
                     <!--  Categories + Title  -->
                     <CardContent v-if='title' class='flex flex-col gap-8'>
                         
@@ -60,12 +60,12 @@
                     <!--  Subtitle  -->
                     <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
                     
-                    <!--  Main image  -->
+                    <!--  Main image . -->
                     <CardContent class='p-0'>
                         <NuxtImg
                             :src='image_url'
                             alt='article image'
-                            class='main-image'
+                            class='h-120 w-180 object-cover'
                             :custom='true'
                             v-slot='{ src, isLoaded, imgAttrs }'
                             preload
@@ -144,7 +144,7 @@
                 </div>
             </div>
         </template>
-    </section>
+    </div>
 </template>
 
 <script setup>
@@ -259,18 +259,6 @@
 
 <style scoped>
     .single-news {
-        [data-slot='card-header'],
-        [data-slot='card-content'] {
-            padding-left: 0 !important;
-            padding-right: 0 !important;
-        }
-        
-        img.main-image {
-            object-fit: cover;
-            height: 500px;
-            width: 800px;
-        }
-        
         .progress-container {
             align-items: center;
             background-color: var(--background);
