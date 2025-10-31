@@ -35,6 +35,7 @@ export default {
         },
         fontFamily: {
             montserrat: ['Montserrat Variable', 'sans-serif'],
+            notosans: ['Noto Sans Variable', 'sans-serif'],
             sans: ['Satoshi', 'sans-serif'],
             satoshi: ['Satoshi', 'sans-serif'],
         },

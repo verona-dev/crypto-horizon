@@ -72,6 +72,7 @@ html.light {
     --text-xxs: 11px;
     --font-montserrat: Montserrat Variable, sans-serif;
     --font-satoshi: Satoshi, sans-serif;
+    --font-notosans: Noto Sans Variable, sans-serif;
 
     --color-progress: var(--progress);
     --color-sky: var(--sky);

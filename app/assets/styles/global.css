@@ -135,10 +135,6 @@
         font-family: 'Great', sans-serif;
         @apply truncate tracking-[0.4rem];
     }
-    
-    .font-noto-sans {
-        font-family: 'Noto Sans Variable', sans-serif;
-    }
 
     .vertical-separator {
         background: var(--accent) !important;
