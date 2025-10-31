@@ -2,9 +2,9 @@
     <CardHeader v-if='coin' class='coin-header flex w-full animate-fadeIn'>
         <Card class='bg-background flex flex-col items-center justify-center relative'>
             <BorderBeam
-                :size='250'
+                :size='500'
                 :duration='25'
-                :border-width='2'
+                :border-width='1'
             />
             
             <!--  Go back -->
