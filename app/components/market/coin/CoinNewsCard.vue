@@ -53,9 +53,7 @@
         <!--  Article Title  -->
         <CardContent>
             <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
-                <CardTitle class='h-20 card-title'>
-                    {{ title }}
-                </CardTitle>
+                <CardTitle class='h-20 card-title'>{{ title }}</CardTitle>
             </NuxtLink>
         </CardContent>
         
