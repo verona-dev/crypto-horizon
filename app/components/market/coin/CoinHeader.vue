@@ -1,6 +1,12 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex w-full animate-fadeIn'>
-        <Card class='flex flex-col items-center justify-center'>
+        <Card class='bg-background flex flex-col items-center justify-center relative'>
+            <BorderBeam
+                :size='250'
+                :duration='25'
+                :border-width='2'
+            />
+            
             <!--  Go back -->
             <!--
             <NuxtLink
@@ -143,10 +149,11 @@
 <script setup>
     import { formatNumber, goBack } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
-    import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     import { Badge } from '~/components/ui/badge';
+    import { BorderBeam } from '~/components/ui/border-beam';
     import { Card, CardTitle, CardDescription, CardHeader } from '~/components/ui/card';
+    import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     
     // MarketStore
     import { storeToRefs } from 'pinia';
