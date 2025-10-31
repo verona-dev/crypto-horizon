@@ -1,12 +1,12 @@
 <template>
-    <div class='news page flex flex-col items-center px-6 md:px-12 xl:px-24'>
+    <div class='news page'>
         <div v-if='!dark_mode' class='h-[450px]'>
             <div class='h-[350px] flex items-center'>
                 <h1 class='page-title'>Latest News</h1>
             </div>
         </div>
         
-        <div v-else class="w-[900px] h-[450px]">
+        <div v-else class='w-fit xl:w-[900px] h-[450px] mx-auto'>
             <ParticleImage
                 :image-src='titleImage'
                 :responsive-width='true'
@@ -22,7 +22,7 @@
             <BentoGridItem
                 v-for='(article, index) in articles'
                 :key='article.id'
-                class='!bg-card lg:row-span-2 !border-border/50 w-2/3 xl:w-full mx-auto'
+                class='!bg-card lg:row-span-2 !border-border/50 w-full mx-auto'
                 :class='index === 3 || index === 6 ? "xl:col-span-2" : ""'
             >
                 <!--  Image + Categories  -->
