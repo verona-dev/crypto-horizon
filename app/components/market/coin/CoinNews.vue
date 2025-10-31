@@ -1,5 +1,5 @@
 <template>
-    <div v-if='articles' class='coin-news'>
+    <div v-if='articles' class='news'>
         <h3 class='mt-10 mb-24 underline'>Latest {{ symbol }} related News</h3>
         
         <div class='flex flex-wrap gap-y-12 lg:gap-y-28 2xl:gap-y-12'>
