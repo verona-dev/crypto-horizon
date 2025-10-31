@@ -34,6 +34,7 @@ export default {
             xl: '1280px',
         },
         fontFamily: {
+            great: ['Great', 'sans-serif'],
             montserrat: ['Montserrat Variable', 'sans-serif'],
             notosans: ['Noto Sans Variable', 'sans-serif'],
             sans: ['Satoshi', 'sans-serif'],
