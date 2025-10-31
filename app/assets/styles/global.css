@@ -140,9 +140,9 @@
         font-family: 'Noto Sans Variable', sans-serif;
     }
     
-    .font-montserrat {
-        font-family: 'Montserrat Variable', sans-serif;
-    }
+    /*.font-montserrat {*/
+    /*    font-family: 'Montserrat Variable', sans-serif;*/
+    /*}*/
     
     .font-satoshi {
         font-family: 'Satoshi', sans-serif;
@@ -197,6 +197,16 @@
     .news {
         .card-title {
             @apply text-left hover:underline line-clamp-3 leading-7;
+        }
+        
+        .article-title {
+            @apply
+            text-3xl md:text-4xl lg:text-5xl
+            font-medium
+            tracking-wide
+            leading-tight md:leading-snug
+            [word-spacing:0.05em]
+            ;
         }
     }
 }

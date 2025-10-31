@@ -34,7 +34,8 @@ export default {
             xl: '1280px',
         },
         fontFamily: {
-            'sans': ['Satoshi', 'sans-serif'],
+            sans: ['Satoshi', 'sans-serif'],
+            montserrat: ['Montserrat Variable', 'sans-serif'],
         },
     },
     plugins: [

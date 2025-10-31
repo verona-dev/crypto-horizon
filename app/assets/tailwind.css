@@ -70,6 +70,7 @@ html.light {
     --shadow-2xl: var(--shadow-2xl);
     
     --text-xxs: 11px;
+    --font-montserrat: Montserrat Variable, sans-serif;
 
     --color-progress: var(--progress);
     --color-sky: var(--sky);
