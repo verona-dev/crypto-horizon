@@ -51,7 +51,7 @@
     }
     
     .page {
-        @apply max-w-7xl mt-8 xl:mt-12 xl:mb-96 flex flex-col items-center justify-center relative;
+        @apply max-w-7xl mt-8 xl:mt-12 xl:mb-96 flex flex-col items-center justify-center px-6 md:px-12 xl:px-24 relative;
     }
     
     [data-slot='sidebar-wrapper'] {
