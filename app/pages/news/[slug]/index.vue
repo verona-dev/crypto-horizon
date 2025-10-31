@@ -1,5 +1,7 @@
 <template>
-    <section class='single-news'>
+    <section class='single-news page'>
+        <Breadcrumb />
+        
         <div v-if='loading' class='flex items-center'>
             <Spinner class='size-10 text-secondary' />
             
@@ -146,13 +148,14 @@
 </template>
 
 <script setup>
-    import { goBack } from '~/utils/formatUtils.js';
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
+    import { goBack } from '~/utils/formatUtils.js';
     import { useReadingTime } from 'maz-ui/composables';
     import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_ICON, useSidebar } from '~/components/ui/sidebar/utils.js';
-    const { open, isMobile } = useSidebar()
+    const { open, isMobile } = useSidebar();
+    import Breadcrumb from '~/components/Breadcrumb.vue';
     
     // Router
     import { useRoute, useRouter } from 'vue-router';

@@ -1,5 +1,5 @@
 <template>
-    <div class='w-full mb-6'>
+    <div class='w-full'>
         <Breadcrumb class='breadcrumb flex h-10 w-fit'>
             <BreadcrumbList>
                 <BreadcrumbItem v-for='(item, index) in items' :key='index'>
