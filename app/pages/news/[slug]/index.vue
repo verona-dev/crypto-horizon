@@ -35,7 +35,7 @@
                         </div>
                         
                         <!--  Author + Updated + Reading duration  -->
-                        <div class='flex items-center justify-between'>
+                        <div class='flex items-center justify-around'>
                             <div class='author flex items-center gap-6'>
                                 <Avatar class='rounded-lg'>
                                     <AvatarImage :src='source_avatar' alt='avatar' />
@@ -43,10 +43,19 @@
                                 </Avatar>
                                 
                                 <div class='flex flex-col'>
-                                    <p>Journalist</p>
-                                    <p>{{ author }}</p>
+                                    <p>By {{ author }}</p>
+                                    <span v-if='published_on'>{{ published_on_label }} UTC</span>
                                 </div>
                             </div>
+                            
+                            <div class='vertical-separator' />
+                            
+                            <div v-if='updated_on_label' class='flex flex-col gap-2 text-muted-foreground'>
+                                <span>Last updated:</span>
+                                <span class='font-bold'>{{ updated_on_label }}</span>
+                            </div>
+                            
+                            <div class='vertical-separator' />
                             
                             <div class='flex items-center gap-2 text-muted-foreground'>
                                 <NuxtIcon name='ph:timer-light' size='18' />
@@ -173,10 +182,11 @@
     const { open, isMobile } = useSidebar();
     // Components
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
-    import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
     import { Badge } from '~/components/ui/badge';
-    import { Skeleton } from '~/components/ui/skeleton';
     import { Button } from '~/components/ui/button';
+    import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
+    import { Separator } from '~/components/ui/separator';
+    import { Skeleton } from '~/components/ui/skeleton';
     import { Spinner } from '~/components/ui/spinner';
     
     // Router
@@ -201,9 +211,12 @@
     const created_on = computed(() => article.value?.CREATED_ON);
     const created_on_label = computed(() => dayjs.unix(created_on.value).format('MMMM D, YYYY, h:mm A'));
     const published_on = computed(() => article.value?.PUBLISHED_ON);
-    const published_on_label = computed(() => dayjs.unix(published_on.value).format('MMMM D, YYYY, h:mm A'));
+    const published_on_label = computed(() => dayjs.unix(published_on.value).format('MMMM D, YYYY'));
     const updated_on = computed(() => article.value?.UPDATED_ON);
-    const updated_on_label = computed(() => dayjs.unix(updated_on.value).format('MMMM D, YYYY, h:mm A'));
+    const updated_on_label = computed(() => {
+        if(updated_on.value) return dayjs.unix(updated_on.value).fromNow();
+        if(created_on.value) return dayjs.unix(created_on.value).fromNow();
+    });
     const categories = computed(() => article.value?.CATEGORY_DATA);
     const keywords = computed(() => article.value?.KEYWORDS);
     const author = computed(() => {
