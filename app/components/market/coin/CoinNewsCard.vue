@@ -41,7 +41,7 @@
             <div class='self-start h-6'>
                     <span
                         v-for='keyword in keywords_computed'
-                        key='keyword'
+                        :key='keyword'
                         class='text-sky text-xs truncate'
                     >
                         {{ keyword }}
