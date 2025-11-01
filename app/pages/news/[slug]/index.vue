@@ -80,7 +80,7 @@
                         v-if='image_url'
                         :src='image_url'
                         alt='article image'
-                        class='w-140 h-100 rounded-lg mx-auto'
+                        class='w-140 h-100 rounded-lg'
                         :custom='true'
                         v-slot='{ src, isLoaded, imgAttrs }'
                         preload
@@ -94,7 +94,7 @@
                         
                         <Skeleton
                             v-else
-                            class='w-3/4 h-120 rounded-lg'
+                            class='w-140 h-100 rounded-lg'
                         />
                     </NuxtImg>
                 </CardContent>
