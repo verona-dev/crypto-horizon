@@ -124,10 +124,6 @@
         @apply cursor-pointer;
     }
     
-    .font-roboto {
-        font-family: 'Roboto', monospace;
-    }
-    
     .font-great {
         @apply truncate tracking-[0.4rem];
     }
