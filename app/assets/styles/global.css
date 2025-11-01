@@ -117,7 +117,7 @@
     }
     
     a {
-        @apply text-center;
+        @apply cursor-pointer text-center;
     }
     
     button {
