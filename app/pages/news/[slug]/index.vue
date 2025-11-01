@@ -14,83 +14,88 @@
                 class='bg-transparent shadow-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'
             >
                 <!--  Title + Subtitle + Categories + Author + Reading duration -->
-                <CardHeader class='flex flex-col gap-12 p-0'>
-                    <div class='flex flex-col gap-10'>
-                        <!--  Title  -->
-                        <CardTitle class='article-title'>{{ title }}</CardTitle>
-                        
-                        <!--  Subtitle  -->
-                        <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
-                        
-                        <!--  Categories  -->
-                        <div v-if='categories' class='flex items-center gap-2'>
-                            <Badge
-                                v-for='category in categories'
-                                :key='category'
-                                class='!px-4 !py-1.5 text-muted-foreground border border-sky/50 font-extralight tracking-widest'
-                                variant='outline'
-                            >
-                                {{ category.NAME }}
-                            </Badge>
-                        </div>
-                        
-                        <!--  Author + Updated + Reading duration  -->
-                        <div class='flex items-center gap-24'>
-                            <div class='author flex items-center gap-6'>
-                                <Avatar class='rounded-lg'>
-                                    <AvatarImage :src='source_avatar' alt='avatar' />
-                                    <AvatarFallback class='rounded-full'>S</AvatarFallback>
-                                </Avatar>
-                                
-                                <div class='flex flex-col gap-1'>
-                                    <p>By {{ author }}</p>
-                                    <p v-if='published_on'>{{ published_on_label }} UTC</p>
-                                </div>
-                            </div>
-                            
-                            <div class='vertical-separator' />
-                            
-                            <div v-if='reading_duration > 0' class='flex items-center gap-2 text-muted-foreground'>
-                                <NuxtIcon name='ph:timer-light' size='18' />
-                                <p>{{ reading_duration }} min read</p>
-                            </div>
-                            
-                            <div class='vertical-separator' />
-                            
-                            <div v-if='updated_on_label' class='flex flex-col gap-1 text-muted-foreground'>
-                                <p>Last updated:</p>
-                                <p class='font-bold'>{{ updated_on_label }}</p>
-                            </div>
-                        </div>
+                <CardHeader class='flex flex-col gap-10'>
+                    <!--  Title  -->
+                    <CardTitle class='article-title'>{{ title }}</CardTitle>
+                    
+                    <!--  Subtitle  -->
+                    <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
+                    
+                    <!--  Categories  -->
+                    <div v-if='categories' class='flex items-center gap-2'>
+                        <Badge
+                            v-for='category in categories'
+                            :key='category'
+                            class='!px-4 !py-1.5 text-muted-foreground border border-sky/50 font-extralight tracking-widest'
+                            variant='outline'
+                        >
+                            {{ category.NAME }}
+                        </Badge>
                     </div>
                     
-                    <!--  Main image . -->
-                    <CardContent class='p-0'>
-                        <NuxtImg
-                            :src='image_url'
-                            alt='article image'
-                            class='h-120 w-180 object-cover'
-                            :custom='true'
-                            v-slot='{ src, isLoaded, imgAttrs }'
-                            preload
-                        >
-                            <img
-                                v-if='isLoaded'
-                                v-bind='imgAttrs'
-                                :src='src'
-                                alt='article image'
-                            >
+                    <!--  Author + Updated + Reading duration  -->
+                    <div class='flex items-center gap-24'>
+                        <div class='author flex items-center gap-6'>
+                            <Avatar class='rounded-lg'>
+                                <AvatarImage :src='source_avatar' alt='avatar' />
+                                <AvatarFallback class='rounded-full'>S</AvatarFallback>
+                            </Avatar>
                             
-                            <Skeleton
-                                v-else
-                                class='h-[400px] w-full'
-                            />
-                        </NuxtImg>
-                    </CardContent>
+                            <div class='flex flex-col gap-1'>
+                                <p>By {{ author }}</p>
+                                <p v-if='published_on'>{{ published_on_label }} UTC</p>
+                            </div>
+                        </div>
+                        
+                        <div class='vertical-separator' />
+                        
+                        <div v-if='reading_duration > 0' class='flex items-center gap-2 text-muted-foreground'>
+                            <NuxtIcon name='ph:timer-light' size='18' />
+                            <p>{{ reading_duration }} min read</p>
+                        </div>
+                        
+                        <div class='vertical-separator' />
+                        
+                        <div v-if='updated_on_label' class='flex flex-col gap-1 text-muted-foreground'>
+                            <p>Last updated:</p>
+                            <p class='font-bold'>{{ updated_on_label }}</p>
+                        </div>
+                    </div>
                 </CardHeader>
                 
-                <CardContent v-if='body'>
-                    <p v-for='(par, index) in body_formatted' :key='index' class='mb-14'>{{ par }}</p>
+                <!--  Image  -->
+                <CardContent>
+                    <NuxtImg
+                        v-if='image_url'
+                        :src='image_url'
+                        alt='article image'
+                        class='w-3/4 h-120 rounded-lg'
+                        :custom='true'
+                        v-slot='{ src, isLoaded, imgAttrs }'
+                        preload
+                    >
+                        <img
+                            v-if='isLoaded'
+                            v-bind='imgAttrs'
+                            :src='src'
+                            alt='article image'
+                        >
+                        
+                        <Skeleton
+                            v-else
+                            class='w-3/4 h-120 rounded-lg'
+                        />
+                    </NuxtImg>
+                    
+                    <div v-else class='w-3/4 h-120 flex items-center justify-center'>
+                        No image available
+                    </div>
+                </CardContent>
+                
+                <CardContent>
+                    <div v-if='body'>
+                        <p v-for='(par, index) in body_formatted' :key='index' class='mb-14'>{{ par }}</p>
+                    </div>
                 </CardContent>
                 
                 <CardFooter class='pb-10 pl-0'>
