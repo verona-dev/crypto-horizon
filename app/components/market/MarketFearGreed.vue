@@ -5,7 +5,10 @@
             class='w-full h-full'
         />
         
-        <div v-else class='card-container min-h-[450px] xl:min-h-96 animate-fadeIn'>
+        <div
+            v-else
+            class='card-container min-h-[450px] xl:min-h-96 animate-fadeIn'
+        >
             <CardHeader class='card-header'>
                 <!--  Title  -->
                 <div class='card-title'>
