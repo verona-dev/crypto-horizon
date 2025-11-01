@@ -3,10 +3,10 @@ import { useFetchCoindesk } from '~/composables/apiCoindesk.js';
 
 export const useNewsStore = defineStore('NewsStore', {
     state: () => ({
-        news: {},
+        news: [],
         newsOutlets: {},
         article: {},
-        coinNews : {},
+        coinNews : [],
         loading: false,
         errorFetch: null,
     }),
@@ -24,36 +24,46 @@ export const useNewsStore = defineStore('NewsStore', {
                     params.category = category;
                 }
                 
-                const response = await useFetchCoindesk('news/v1/article/list', params);
+                const { data, error } = await useFetchCoindesk('news/v1/article/list', params);
                 
-                if(response && response.Data) {
+                if(error) {
+                    this.errorFetch = error;
+                }
+                
+                if (data && data.Data) {
                     if (category) {
-                        this.coinNews = response.Data;
+                        this.coinNews = data.Data;
                     } else {
-                        this.news = response.Data;
+                        this.news = data.Data;
                     }
                 }
             } catch(error) {
                 console.error(error);
+                this.errorFetch = error;
             }
             finally {
                 this.loading = false;
             }
         },
         
-        async getNewsArticle(source_key, guid) {
+        async getArticle(source_key, guid) {
             this.loading = true;
             
             try {
-                const response = await useFetchCoindesk('news/v1/article/get', {
+                const { data, error } = await useFetchCoindesk('news/v1/article/get', {
                     source_key,
                     guid,
                 });
                 
-                if(response && response.Data) {
-                    this.article = response.Data;
+                if(error) {
+                    this.errorFetch = error;
+                }
+                
+                if(data && data.Data) {
+                    this.article = data.Data;
                 }
             } catch(error) {
+                console.error(error);
                 this.errorFetch = error;
             }
             finally {
