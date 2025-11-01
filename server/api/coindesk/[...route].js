@@ -30,8 +30,8 @@ export default defineEventHandler(async(event) => {
         return await response.json();
     } catch(error) {
         throw createError({
-            statusCode: 500,
-            statusMessage: 'Internal Server Error',
+            statusCode: error.status,
+            statusMessage: error.statusText,
         });
     }
 });
