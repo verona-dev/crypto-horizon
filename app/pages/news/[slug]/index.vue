@@ -43,22 +43,22 @@
                             
                             <div class='flex flex-col gap-1'>
                                 <p>By {{ author }}</p>
-                                <p v-if='published_on'>{{ published_on_label }} UTC</p>
+                                <span v-if='published_on' class='text-muted-foreground text-sm'>{{ published_on_label }} UTC</span>
                             </div>
                         </div>
                         
                         <div class='vertical-separator' />
                         
-                        <div v-if='reading_duration > 0' class='flex items-center gap-2 text-muted-foreground'>
+                        <div v-if='reading_duration > 0' class='flex items-center gap-2 text-muted-foreground text-sm'>
                             <NuxtIcon name='ph:timer-light' size='18' />
-                            <p>{{ reading_duration }} min read</p>
+                            <span>{{ reading_duration }} min read</span>
                         </div>
                         
                         <div class='vertical-separator' />
                         
-                        <div v-if='updated_on_label' class='flex flex-col gap-1 text-muted-foreground'>
-                            <p>Last updated:</p>
-                            <p class='font-bold'>{{ updated_on_label }}</p>
+                        <div v-if='updated_on_label' class='flex flex-col gap-1 text-muted-foreground text-sm'>
+                            <span>Last updated:</span>
+                            <span class='font-bold'>{{ updated_on_label }}</span>
                         </div>
                     </div>
                 </CardHeader>
