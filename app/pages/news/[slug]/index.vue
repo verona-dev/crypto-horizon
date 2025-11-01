@@ -45,7 +45,7 @@
                     </div>
                     
                     <!--  Author + Updated + Reading duration  -->
-                    <div class='flex items-center gap-16'>
+                    <div class='flex flex-wrap items-center gap-2 xl:gap-16'>
                         <div class='author flex items-center gap-6'>
                             <Avatar class='rounded-lg'>
                                 <AvatarImage v-if='source_avatar' :src='source_avatar' alt='avatar' />
@@ -80,7 +80,7 @@
                         v-if='image_url'
                         :src='image_url'
                         alt='article image'
-                        class='w-140 h-100 rounded-lg'
+                        class='w-140 h-100 rounded-lg mx-auto'
                         :custom='true'
                         v-slot='{ src, isLoaded, imgAttrs }'
                         preload
