@@ -33,7 +33,7 @@
                     -->
                     
                     <!--  Title + Categories -->
-                    <div v-if='title' class='flex flex-col gap-8'>
+                    <div v-if='title' class='flex flex-col gap-4'>
                         
                         <!--  Title  -->
                         <CardTitle class='article-title'>{{ title }}</CardTitle>
@@ -43,7 +43,7 @@
                             <Badge
                                 v-for='category in categories'
                                 :key='category'
-                                class='m-2 !px-4 !py-1.5'
+                                class='m-2 !px-4 !py-1.5 text-muted-foreground border border-sky/50 font-extralight tracking-widest'
                                 variant='outline'
                             >
                                 {{ category.NAME }}
