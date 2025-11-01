@@ -32,18 +32,21 @@
                     </div>
                     -->
                     
-                    <!--  Title + Categories -->
+                    <!--  Title + Subtitle + Categories + Reading duration -->
                     <div v-if='title' class='flex flex-col gap-4'>
                         
                         <!--  Title  -->
                         <CardTitle class='article-title'>{{ title }}</CardTitle>
                         
+                        <!--  Subtitle  -->
+                        <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
+                        
                         <!--  Categories  -->
-                        <div v-if='categories' class='categories-container'>
+                        <div v-if='categories' class='flex items-center gap-2'>
                             <Badge
                                 v-for='category in categories'
                                 :key='category'
-                                class='m-2 !px-4 !py-1.5 text-muted-foreground border border-sky/50 font-extralight tracking-widest'
+                                class='!px-4 !py-1.5 text-muted-foreground border border-sky/50 font-extralight tracking-widest'
                                 variant='outline'
                             >
                                 {{ category.NAME }}
@@ -52,17 +55,10 @@
                         
                         <!--  Reading duration  -->
                         <div class='flex items-center gap-2 text-muted-foreground'>
-                            <NuxtIcon
-                                name='mdi-light:clock'
-                                size='25'
-                            
-                            />
-                            <p>{{ reading_duration }} min Read</p>
+                            <NuxtIcon name='ph:timer-light' size='18' />
+                            <span>{{ reading_duration }} min read</span>
                         </div>
                     </div>
-                    
-                    <!--  Subtitle  -->
-                    <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
                     
                     <!--  Main image . -->
                     <CardContent class='p-0'>
