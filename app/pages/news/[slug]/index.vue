@@ -1,22 +1,36 @@
 <template>
     <div class='news page'>
-        <!--  <Breadcrumb />  -->
-        
-        <div v-if='loading' class='flex items-center'>
-            <Spinner class='size-10 text-secondary' />
-            
-            <h4>Loading...</h4>
-        </div>
-        
-        <div v-else>
-            <Card
-                v-if='body && body_formatted'
-                class='bg-transparent shadow-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'
+        <Card class='bg-transparent shadow-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'>
+            <!--  Article not available  -->
+            <CardContent
+                v-if='!article?.ID'
+                class='flex flex-col items-center justify-center gap-8 h-150 w-150'
             >
+                <h4 class='mb-3'>Sorry, the article is not available at the moment.</h4>
+                
+                <Button
+                    as-child
+                    variant='link'
+                >
+                    <NuxtLink @click='goBack(router, "/news")' to=''>
+                        Go back
+                    </NuxtLink>
+                </Button>
+            </CardContent>
+            
+            <!--  Article available  -->
+            <div v-else>
                 <!--  Title + Categories + Author -->
                 <CardHeader class='flex flex-col gap-10'>
                     <!--  Title  -->
-                    <CardTitle class='article-title'>{{ title }}</CardTitle>
+                    <CardTitle class='article-title'>
+                        <Skeleton
+                            v-if='!title'
+                            class='min-h-20 min-w-1'
+                        />
+                        
+                        <span v-else>{{ title }}</span>
+                    </CardTitle>
                     
                     <!--  Subtitle  -->
                     <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
@@ -43,13 +57,18 @@
                             
                             <div class='flex flex-col gap-1'>
                                 <p>By {{ author }}</p>
-                                <span v-if='published_on' class='text-muted-foreground text-sm'>{{ published_on_label }} UTC</span>
+                                <span
+                                    v-if='published_on' class='text-muted-foreground text-sm'
+                                >{{ published_on_label }} UTC</span>
                             </div>
                         </div>
                         
                         <div class='vertical-separator' />
                         
-                        <div v-if='reading_duration > 0' class='flex items-center gap-2 text-muted-foreground text-sm'>
+                        <div
+                            v-if='reading_duration > 0'
+                            class='flex items-center gap-2 text-muted-foreground text-sm'
+                        >
                             <NuxtIcon name='ph:timer-light' size='18' />
                             <span>{{ reading_duration }} min read</span>
                         </div>
@@ -104,24 +123,10 @@
                         <span style='font-size: inherit;'>{{ keywords }}</span>
                     </p>
                 </CardFooter>
-            </Card>
-            
-            <!--  Article not available  -->
-            <CardContent
-                v-else
-                class='flex flex-col justify-center gap-8 h-[50vh]'
-            >
-                <h4 class='mb-3'>Sorry, the article is not available at the moment.</h4>
-                <Button
-                    as-child
-                    variant='link'
-                >
-                    <NuxtLink @click='goBack(router, "/news")' to=''>
-                        Go back
-                    </NuxtLink>
-                </Button>
-            </CardContent>
-        </div>
+            </div>
+        </Card>
+        
+        
         
         <!-- Reading/Scroll progress bar -->
         <template v-if='show_progress_bar'>
@@ -201,7 +206,7 @@
     const categories = computed(() => article.value?.CATEGORY_DATA);
     const keywords = computed(() => article.value?.KEYWORDS);
     const author = computed(() => {
-        if(article.value?.AUTHORS.length === 0) return 'Unknown author';
+        if(article.value?.AUTHORS?.length === 0) return 'Unknown author';
         return article.value?.AUTHORS;
     });
     const body = computed(() => article.value?.BODY);
