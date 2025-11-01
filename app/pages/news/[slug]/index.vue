@@ -15,7 +15,7 @@
             >
                 <!--  Title + Subtitle + Categories + Author + Reading duration -->
                 <CardHeader class='flex flex-col gap-12 p-0'>
-                    <div class='flex flex-col gap-4'>
+                    <div class='flex flex-col gap-10'>
                         <!--  Title  -->
                         <CardTitle class='article-title'>{{ title }}</CardTitle>
                         
@@ -35,31 +35,31 @@
                         </div>
                         
                         <!--  Author + Updated + Reading duration  -->
-                        <div class='flex items-center justify-around'>
+                        <div class='flex items-center gap-24'>
                             <div class='author flex items-center gap-6'>
                                 <Avatar class='rounded-lg'>
                                     <AvatarImage :src='source_avatar' alt='avatar' />
                                     <AvatarFallback class='rounded-full'>S</AvatarFallback>
                                 </Avatar>
                                 
-                                <div class='flex flex-col'>
+                                <div class='flex flex-col gap-1'>
                                     <p>By {{ author }}</p>
-                                    <span v-if='published_on'>{{ published_on_label }} UTC</span>
+                                    <p v-if='published_on'>{{ published_on_label }} UTC</p>
                                 </div>
                             </div>
                             
                             <div class='vertical-separator' />
                             
-                            <div v-if='updated_on_label' class='flex flex-col gap-2 text-muted-foreground'>
-                                <span>Last updated:</span>
-                                <span class='font-bold'>{{ updated_on_label }}</span>
+                            <div v-if='reading_duration > 0' class='flex items-center gap-2 text-muted-foreground'>
+                                <NuxtIcon name='ph:timer-light' size='18' />
+                                <p>{{ reading_duration }} min read</p>
                             </div>
                             
                             <div class='vertical-separator' />
                             
-                            <div class='flex items-center gap-2 text-muted-foreground'>
-                                <NuxtIcon name='ph:timer-light' size='18' />
-                                <span>{{ reading_duration }} min read</span>
+                            <div v-if='updated_on_label' class='flex flex-col gap-1 text-muted-foreground'>
+                                <p>Last updated:</p>
+                                <p class='font-bold'>{{ updated_on_label }}</p>
                             </div>
                         </div>
                     </div>
@@ -86,29 +86,6 @@
                                 class='h-[400px] w-full'
                             />
                         </NuxtImg>
-                    </CardContent>
-                    
-                    <!--  Author + Source + Publish date  -->
-                    <CardContent class='flex justify-between w-2/3'>
-                        <div class='author flex items-center gap-4'>
-                            <Avatar class='rounded-lg'>
-                                <AvatarImage :src='source_avatar' alt='avatar' />
-                                <AvatarFallback class='rounded-lg'>
-                                    S
-                                </AvatarFallback>
-                            </Avatar>
-                            
-                            <div class='flex flex-col items-start'>
-                                <p>Author:</p>
-                                <p class=''>{{ author }}</p>
-                            </div>
-                        </div>
-                        
-                        <div class='flex flex-col justify-center text-muted-foreground'>
-                            <span v-if='created_on'>Created: {{ created_on_label }}</span>
-                            <span v-if='published_on'>Published: {{ published_on_label }}</span>
-                            <span v-if='updated_on'>Last updated: {{ updated_on_label }}</span>
-                        </div>
                     </CardContent>
                 </CardHeader>
                 
