@@ -13,28 +13,9 @@
                 v-if='body && body_formatted'
                 class='bg-transparent shadow-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'
             >
-                <!--  Header  -->
+                <!--  Title + Subtitle + Categories + Author + Reading duration -->
                 <CardHeader class='flex flex-col gap-12 p-0'>
-                    <!--
-                    <div class='header-nav flex items-center justify-start gap-8'>
-                        &lt;!&ndash;  Go back  &ndash;&gt;
-                        <NuxtLink
-                            @click='goBack(router, "/news")'
-                            to=''
-                            class='hover:bg-muted hover:cursor-pointer rounded-xl p-1'
-                        >
-                            <NuxtIcon
-                                name='mdi-light:arrow-left'
-                                size='50'
-                                class='flex'
-                            />
-                        </NuxtLink>
-                    </div>
-                    -->
-                    
-                    <!--  Title + Subtitle + Categories + Reading duration -->
-                    <div v-if='title' class='flex flex-col gap-4'>
-                        
+                    <div class='flex flex-col gap-4'>
                         <!--  Title  -->
                         <CardTitle class='article-title'>{{ title }}</CardTitle>
                         
@@ -53,10 +34,24 @@
                             </Badge>
                         </div>
                         
-                        <!--  Reading duration  -->
-                        <div class='flex items-center gap-2 text-muted-foreground'>
-                            <NuxtIcon name='ph:timer-light' size='18' />
-                            <span>{{ reading_duration }} min read</span>
+                        <!--  Author + Reading duration  -->
+                        <div class='flex items-center justify-between'>
+                            <div class='author flex items-center gap-6'>
+                                <Avatar class='rounded-lg'>
+                                    <AvatarImage :src='source_avatar' alt='avatar' />
+                                    <AvatarFallback class='rounded-full'>S</AvatarFallback>
+                                </Avatar>
+                                
+                                <div class='flex flex-col'>
+                                    <p>Journalist</p>
+                                    <p>{{ author }}</p>
+                                </div>
+                            </div>
+                            
+                            <div class='flex items-center gap-2 text-muted-foreground'>
+                                <NuxtIcon name='ph:timer-light' size='18' />
+                                <span>{{ reading_duration }} min read</span>
+                            </div>
                         </div>
                     </div>
                     
@@ -144,6 +139,23 @@
                 </div>
             </div>
         </template>
+        
+        <!--
+        <div class='header-nav flex items-center justify-start gap-8'>
+            &lt;!&ndash;  Go back  &ndash;&gt;
+            <NuxtLink
+                @click='goBack(router, "/news")'
+                to=''
+                class='hover:bg-muted hover:cursor-pointer rounded-xl p-1'
+            >
+                <NuxtIcon
+                    name='mdi-light:arrow-left'
+                    size='50'
+                    class='flex'
+                />
+            </NuxtLink>
+        </div>
+        -->
     </div>
 </template>
 
@@ -182,7 +194,7 @@
     })
     const { getNewsArticle } = NewsStore;
     
-    const title = computed(() => article.value?.TITLE);
+    const title = computed(() => article.value?.TITLE || '');
     const subtitle = computed(() => article.value?.SUBTITLE);
     const image_url = computed(() => article.value?.IMAGE_URL);
     const publish_date = computed(() => article.value?.PUBLISHED_ON);
