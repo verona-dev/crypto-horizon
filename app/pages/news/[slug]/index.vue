@@ -60,8 +60,8 @@
                         
                         <div class='vertical-separator' />
                         
-                        <div v-if='reading_duration > 0' class='flex items-center gap-2 text-muted-foreground text-sm'>
-                            <NuxtIcon name='ph:timer-light' size='18' />
+                        <div v-if='reading_duration > 0' class='flex items-center gap-2 text-muted-foreground text-sm font-bold'>
+                            <NuxtIcon name='ph:timer' size='18' />
                             <span>{{ reading_duration }} min read</span>
                         </div>
                         
