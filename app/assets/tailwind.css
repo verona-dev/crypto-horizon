@@ -148,9 +148,6 @@ html.light {
     --sidebar-accent-foreground: var(--accent-foreground);
     --sidebar-border: var(--border);
     --sidebar-ring: var(--ring);
-    /*--font-sans: Satoshi, sans-serif;*/
-    /*--font-serif: Georgia, serif;*/
-    /*--font-mono: Fira Code, monospace;*/
     --radius: 0.35rem;
     --shadow-x: 0px;
     --shadow-y: 2px;

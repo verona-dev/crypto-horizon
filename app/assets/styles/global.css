@@ -36,7 +36,7 @@
     }
     
     body {
-        @apply font-satoshi bg-background text-foreground overflow-x-hidden overflow-y-scroll;
+        @apply font-satoshi text-foreground overflow-x-hidden overflow-y-scroll;
     }
     
     #__nuxt {
