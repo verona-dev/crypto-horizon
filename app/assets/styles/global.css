@@ -127,17 +127,17 @@
     .font-great {
         @apply truncate tracking-[0.4rem];
     }
-
-    .vertical-separator {
-        background: var(--accent) !important;
-        height: 50px;
-        width: 1px;
-    }
 }
 
 @layer utilities {
     .custom-flex {
         @apply flex flex-col sm:flex-row justify-center items-center;
+    }
+    
+    .vertical-separator {
+        background: var(--accent) !important;
+        height: 40px;
+        width: 1px;
     }
     
     .market {
