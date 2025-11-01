@@ -96,6 +96,7 @@
                         </div>
                         
                         <div class='flex flex-col justify-center text-muted-foreground'>
+                            <span v-if='created_on'>Created: {{ created_on_label }}</span>
                             <span v-if='published_on'>Published: {{ published_on_label }}</span>
                             <span v-if='updated_on'>Last updated: {{ updated_on_label }}</span>
                         </div>
@@ -197,10 +198,12 @@
     const title = computed(() => article.value?.TITLE || '');
     const subtitle = computed(() => article.value?.SUBTITLE);
     const image_url = computed(() => article.value?.IMAGE_URL);
+    const created_on = computed(() => article.value?.CREATED_ON);
+    const created_on_label = computed(() => dayjs.unix(created_on.value).format('MMMM D, YYYY, h:mm A'));
     const published_on = computed(() => article.value?.PUBLISHED_ON);
     const published_on_label = computed(() => dayjs.unix(published_on.value).format('MMMM D, YYYY, h:mm A'));
     const updated_on = computed(() => article.value?.UPDATED_ON);
-    const updated_on_label = computed(() => dayjs.unix(updated_on.value).fromNow());
+    const updated_on_label = computed(() => dayjs.unix(updated_on.value).format('MMMM D, YYYY, h:mm A'));
     const categories = computed(() => article.value?.CATEGORY_DATA);
     const keywords = computed(() => article.value?.KEYWORDS);
     const author = computed(() => {
