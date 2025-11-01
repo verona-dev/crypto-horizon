@@ -161,13 +161,13 @@
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
     import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_ICON, useSidebar } from '~/components/ui/sidebar/utils.js';
-    const { open, isMobile } = useSidebar();
+    const { open } = useSidebar();
+    
     // Components
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
     import { Badge } from '~/components/ui/badge';
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
-    import { Separator } from '~/components/ui/separator';
     import { Skeleton } from '~/components/ui/skeleton';
     import { Spinner } from '~/components/ui/spinner';
     
@@ -191,7 +191,6 @@
     const subtitle = computed(() => article.value?.SUBTITLE);
     const image_url = computed(() => article.value?.IMAGE_URL);
     const created_on = computed(() => article.value?.CREATED_ON);
-    const created_on_label = computed(() => dayjs.unix(created_on.value).format('MMMM D, YYYY, h:mm A'));
     const published_on = computed(() => article.value?.PUBLISHED_ON);
     const published_on_label = computed(() => dayjs.unix(published_on.value).format('MMMM D, YYYY'));
     const updated_on = computed(() => article.value?.UPDATED_ON);
