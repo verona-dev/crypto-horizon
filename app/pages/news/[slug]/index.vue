@@ -1,11 +1,17 @@
 <template>
     <div class='news page'>
+        <Breadcrumb />
+        
         <Card class='bg-transparent shadow-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'>
             <!--  Article not available  -->
             <CardContent
-                v-if='!article?.ID'
-                class='flex flex-col items-center justify-center gap-8 h-150 w-150'
+                v-if='error?.statusCode'
+                class='flex flex-col justify-center items-center gap-8 w-[60vh] h-[60vh]'
             >
+                <h1 v-if='errorCode'>{{ errorCode }}</h1>
+                
+                <h2 v-if='errorMessage' class='tracking-wide'>{{ errorMessage }}</h2>
+                
                 <h4 class='mb-3'>Sorry, the article is not available at the moment.</h4>
                 
                 <Button
@@ -18,19 +24,11 @@
                 </Button>
             </CardContent>
             
-            <!--  Article available  -->
             <div v-else>
                 <!--  Title + Categories + Author -->
-                <CardHeader class='flex flex-col gap-10'>
+                <CardHeader v-if='title' class='flex flex-col gap-10'>
                     <!--  Title  -->
-                    <CardTitle class='article-title'>
-                        <Skeleton
-                            v-if='!title'
-                            class='min-h-20 min-w-1'
-                        />
-                        
-                        <span v-else>{{ title }}</span>
-                    </CardTitle>
+                    <CardTitle class='article-title'>{{ title }}</CardTitle>
                     
                     <!--  Subtitle  -->
                     <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
@@ -57,18 +55,13 @@
                             
                             <div class='flex flex-col gap-1'>
                                 <p>By {{ author }}</p>
-                                <span
-                                    v-if='published_on' class='text-muted-foreground text-sm'
-                                >{{ published_on_label }} UTC</span>
+                                <span v-if='published_on' class='text-muted-foreground text-sm'>{{ published_on_label }} UTC</span>
                             </div>
                         </div>
                         
                         <div class='vertical-separator' />
                         
-                        <div
-                            v-if='reading_duration > 0'
-                            class='flex items-center gap-2 text-muted-foreground text-sm'
-                        >
+                        <div v-if='reading_duration > 0' class='flex items-center gap-2 text-muted-foreground text-sm'>
                             <NuxtIcon name='ph:timer-light' size='18' />
                             <span>{{ reading_duration }} min read</span>
                         </div>
@@ -105,10 +98,6 @@
                             class='w-3/4 h-120 rounded-lg'
                         />
                     </NuxtImg>
-                    
-                    <div v-else class='w-3/4 h-120 flex items-center justify-center'>
-                        No image available
-                    </div>
                 </CardContent>
                 
                 <CardContent v-if='body' class='article-body'>
@@ -125,8 +114,6 @@
                 </CardFooter>
             </div>
         </Card>
-        
-        
         
         <!-- Reading/Scroll progress bar -->
         <template v-if='show_progress_bar'>
@@ -186,11 +173,14 @@
     import { useNewsStore } from '~/stores/NewsStore';
     const NewsStore = useNewsStore();
     
-    const { article, loading } = storeToRefs(NewsStore);
-    watch(article, (newValue) => {
-        console.log(newValue);
-    })
-    const { getNewsArticle } = NewsStore;
+    const { article, loading, errorFetch } = storeToRefs(NewsStore);
+    const error = computed(() => errorFetch.value);
+    const errorCode = computed(() => error.value?.statusCode);
+    const errorMessage = computed(() => error.value?.statusMessage);
+    /*    watch(article, (newValue) => {
+            console.log(newValue);
+        })*/
+    const { getArticle } = NewsStore;
     
     const title = computed(() => article.value?.TITLE || '');
     const subtitle = computed(() => article.value?.SUBTITLE);
@@ -206,7 +196,7 @@
     const categories = computed(() => article.value?.CATEGORY_DATA);
     const keywords = computed(() => article.value?.KEYWORDS);
     const author = computed(() => {
-        if(article.value?.AUTHORS?.length === 0) return 'Unknown author';
+        if(article.value?.AUTHORS.length === 0) return 'Unknown author';
         return article.value?.AUTHORS;
     });
     const body = computed(() => article.value?.BODY);
@@ -266,7 +256,7 @@
     
     onMounted(async() => {
         const { source_key, guid } = route.query;
-        await getNewsArticle(source_key, guid);
+        await getArticle(source_key, guid);
         window.addEventListener('scroll', onScroll);
     });
     
