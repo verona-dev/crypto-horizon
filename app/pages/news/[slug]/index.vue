@@ -13,7 +13,7 @@
                 v-if='body && body_formatted'
                 class='bg-transparent shadow-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'
             >
-                <!--  Title + Subtitle + Categories + Author + Reading duration -->
+                <!--  Title + Categories + Author -->
                 <CardHeader class='flex flex-col gap-10'>
                     <!--  Title  -->
                     <CardTitle class='article-title'>{{ title }}</CardTitle>
@@ -34,7 +34,7 @@
                     </div>
                     
                     <!--  Author + Updated + Reading duration  -->
-                    <div class='flex items-center gap-24'>
+                    <div class='flex items-center gap-16'>
                         <div class='author flex items-center gap-6'>
                             <Avatar class='rounded-lg'>
                                 <AvatarImage :src='source_avatar' alt='avatar' />
@@ -64,12 +64,12 @@
                 </CardHeader>
                 
                 <!--  Image  -->
-                <CardContent>
+                <CardContent class='my-8'>
                     <NuxtImg
                         v-if='image_url'
                         :src='image_url'
                         alt='article image'
-                        class='w-3/4 h-120 rounded-lg'
+                        class='w-140 h-100 rounded-lg'
                         :custom='true'
                         v-slot='{ src, isLoaded, imgAttrs }'
                         preload
@@ -92,10 +92,10 @@
                     </div>
                 </CardContent>
                 
-                <CardContent>
-                    <div v-if='body'>
-                        <p v-for='(par, index) in body_formatted' :key='index' class='mb-14'>{{ par }}</p>
-                    </div>
+                <CardContent v-if='body' class='article-body'>
+                    <p v-for='(par, index) in body_formatted' :key='index'>
+                        {{ par }}
+                    </p>
                 </CardContent>
                 
                 <CardFooter class='pb-10 pl-0'>
