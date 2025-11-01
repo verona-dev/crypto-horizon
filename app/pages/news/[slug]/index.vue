@@ -34,7 +34,7 @@
                             </Badge>
                         </div>
                         
-                        <!--  Author + Reading duration  -->
+                        <!--  Author + Updated + Reading duration  -->
                         <div class='flex items-center justify-between'>
                             <div class='author flex items-center gap-6'>
                                 <Avatar class='rounded-lg'>
@@ -96,8 +96,8 @@
                         </div>
                         
                         <div class='flex flex-col justify-center text-muted-foreground'>
-                            <span v-if='publish_date'>Published: {{ publish_date_label }}</span>
-                            <span v-if='update_date'>Last updated: {{ update_date_label }}</span>
+                            <span v-if='published_on'>Published: {{ published_on_label }}</span>
+                            <span v-if='updated_on'>Last updated: {{ updated_on_label }}</span>
                         </div>
                     </CardContent>
                 </CardHeader>
@@ -197,10 +197,10 @@
     const title = computed(() => article.value?.TITLE || '');
     const subtitle = computed(() => article.value?.SUBTITLE);
     const image_url = computed(() => article.value?.IMAGE_URL);
-    const publish_date = computed(() => article.value?.PUBLISHED_ON);
-    const publish_date_label = computed(() => dayjs.unix(publish_date.value).format('MMMM D, YYYY, h:mm A'));
-    const update_date = computed(() => article.value?.UPDATED_ON);
-    const update_date_label = computed(() => dayjs.unix(update_date.value).fromNow());
+    const published_on = computed(() => article.value?.PUBLISHED_ON);
+    const published_on_label = computed(() => dayjs.unix(published_on.value).format('MMMM D, YYYY, h:mm A'));
+    const updated_on = computed(() => article.value?.UPDATED_ON);
+    const updated_on_label = computed(() => dayjs.unix(updated_on.value).fromNow());
     const categories = computed(() => article.value?.CATEGORY_DATA);
     const keywords = computed(() => article.value?.KEYWORDS);
     const author = computed(() => {
