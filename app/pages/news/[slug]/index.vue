@@ -1,5 +1,5 @@
 <template>
-    <div class='single-news page'>
+    <div class='news page'>
         <!--  <Breadcrumb />  -->
         
         <div v-if='loading' class='flex items-center'>
@@ -15,36 +15,40 @@
             >
                 <!--  Header  -->
                 <CardHeader class='flex flex-col gap-12 p-0'>
-                    <!--  Categories + Title  -->
-                    <CardContent v-if='title' class='flex flex-col gap-8'>
+                    <!--
+                    <div class='header-nav flex items-center justify-start gap-8'>
+                        &lt;!&ndash;  Go back  &ndash;&gt;
+                        <NuxtLink
+                            @click='goBack(router, "/news")'
+                            to=''
+                            class='hover:bg-muted hover:cursor-pointer rounded-xl p-1'
+                        >
+                            <NuxtIcon
+                                name='mdi-light:arrow-left'
+                                size='50'
+                                class='flex'
+                            />
+                        </NuxtLink>
+                    </div>
+                    -->
+                    
+                    <!--  Title + Categories -->
+                    <div v-if='title' class='flex flex-col gap-8'>
                         
-                        <div class='header-nav flex items-center justify-start gap-8'>
-                            <!--  Go back  -->
-                            <NuxtLink
-                                @click='goBack(router, "/news")'
-                                to=''
-                                class='hover:bg-muted hover:cursor-pointer rounded-xl p-1'
+                        <!--  Title  -->
+                        <CardTitle class='article-title'>{{ title }}</CardTitle>
+                        
+                        <!--  Categories  -->
+                        <div v-if='categories' class='categories-container'>
+                            <Badge
+                                v-for='category in categories'
+                                :key='category'
+                                class='m-2 !px-4 !py-1.5'
+                                variant='outline'
                             >
-                                <NuxtIcon
-                                    name='mdi-light:arrow-left'
-                                    size='50'
-                                    class='flex'
-                                />
-                            </NuxtLink>
-                            
-                            <div v-if='categories' class='categories-container'>
-                                <Badge
-                                    v-for='category in categories'
-                                    :key='category'
-                                    class='m-2 !px-4 !py-1.5'
-                                    variant='outline'
-                                >
-                                    {{ category.NAME }}
-                                </Badge>
-                            </div>
+                                {{ category.NAME }}
+                            </Badge>
                         </div>
-                        
-                        <h3 class='mt-4'>{{ title }}</h3>
                         
                         <!--  Reading duration  -->
                         <div class='flex items-center gap-2 text-muted-foreground'>
@@ -55,7 +59,7 @@
                             />
                             <p>{{ reading_duration }} min Read</p>
                         </div>
-                    </CardContent>
+                    </div>
                     
                     <!--  Subtitle  -->
                     <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
@@ -148,27 +152,28 @@
 </template>
 
 <script setup>
+    import { goBack } from '~/utils/formatUtils.js';
+    import { useReadingTime } from 'maz-ui/composables';
+    import Breadcrumb from '~/components/Breadcrumb.vue';
+    
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
-    import { goBack } from '~/utils/formatUtils.js';
-    import { useReadingTime } from 'maz-ui/composables';
+    
     import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_ICON, useSidebar } from '~/components/ui/sidebar/utils.js';
     const { open, isMobile } = useSidebar();
-    import Breadcrumb from '~/components/Breadcrumb.vue';
+    // Components
+    import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
+    import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
+    import { Badge } from '~/components/ui/badge';
+    import { Skeleton } from '~/components/ui/skeleton';
+    import { Button } from '~/components/ui/button';
+    import { Spinner } from '~/components/ui/spinner';
     
     // Router
     import { useRoute, useRouter } from 'vue-router';
     const route = useRoute();
     const router  = useRouter();
-    
-    // Components
-    import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
-    import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '~/components/ui/card';
-    import { Badge } from '~/components/ui/badge';
-    import { Skeleton } from '~/components/ui/skeleton';
-    import { Button } from '~/components/ui/button';
-    import { Spinner } from '~/components/ui/spinner';
     
     // NewsStore
     import { storeToRefs } from 'pinia';
@@ -176,6 +181,9 @@
     const NewsStore = useNewsStore();
     
     const { article, loading } = storeToRefs(NewsStore);
+    watch(article, (newValue) => {
+        console.log(newValue);
+    })
     const { getNewsArticle } = NewsStore;
     
     const title = computed(() => article.value?.TITLE);
@@ -258,39 +266,37 @@
 </script>
 
 <style scoped>
-    .single-news {
-        .progress-container {
-            align-items: center;
-            background-color: var(--background);
-            bottom: 0;
-            display: flex;
-            height: 50px;
-            left: 20px;
-            padding-right: 50px;
-            position: fixed;
-            width: 100vw;
-            z-index: 10;
-            
-            @media (min-width: 770px) {
-                left: calc(v-bind(SIDEBAR_WIDTH_ICON) + 15px);
-                padding-right: calc(v-bind(SIDEBAR_WIDTH_ICON) + 50px);
-            }
-        }
+    .progress-container {
+        align-items: center;
+        background-color: var(--background);
+        bottom: 0;
+        display: flex;
+        height: 50px;
+        left: 20px;
+        padding-right: 50px;
+        position: fixed;
+        width: 100vw;
+        z-index: 10;
         
-        .bar-container {
-            background: var(--accent);
+        @media (min-width: 770px) {
+            left: calc(v-bind(SIDEBAR_WIDTH_ICON) + 15px);
+            padding-right: calc(v-bind(SIDEBAR_WIDTH_ICON) + 50px);
+        }
+    }
+    
+    .bar-container {
+        background: var(--accent);
+        border-radius: 4px;
+        margin: 0 auto;
+        height: 4px;
+        width: 100%;
+        
+        .progress-bar {
+            background-color: var(--green-patina);
             border-radius: 4px;
-            margin: 0 auto;
-            height: 4px;
-            width: 100%;
-            
-            .progress-bar {
-                background-color: var(--green-patina);
-                border-radius: 4px;
-                box-shadow: 0 0 48px 1px var(--green-patina);
-                height: 100%;
-                transition: width 0.1s ease-out;
-            }
+            box-shadow: 0 0 48px 1px var(--green-patina);
+            height: 100%;
+            transition: width 0.1s ease-out;
         }
     }
 </style>
