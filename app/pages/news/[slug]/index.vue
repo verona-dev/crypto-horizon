@@ -6,7 +6,7 @@
             <Spinner class='size-10 text-green-shamrock' />
         </div>
         
-        <Card v-else class='bg-transparent w-full h-full shadow-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'>
+        <Card v-else class='bg-transparent border-none shadow-none max-w-7xl pt-0 pb-10 mx-auto'>
             <!--  Article not available  -->
             <CardContent
                 v-if='error?.statusCode'
@@ -27,13 +27,13 @@
                 <!--  Title + Categories + Author -->
                 <CardHeader class='flex flex-col gap-10'>
                     <!--  Title  -->
-                    <CardTitle v-if='title' class='article-title h-24'>{{ title }}</CardTitle>
+                    <CardTitle v-if='title' class='article-title'>{{ title }}</CardTitle>
                     
                     <!--  Subtitle  -->
                     <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
                     
                     <!--  Categories  -->
-                    <div v-if='categories' class='flex items-center gap-2'>
+                    <div v-if='categories' class='flex flex-wrap items-center gap-2'>
                         <Badge
                             v-for='category in categories'
                             :key='category'
@@ -105,11 +105,19 @@
                     </p>
                 </CardContent>
                 
-                <CardFooter class='pb-10 pl-0'>
-                    <p v-if='keywords'>
-                        Keywords:
-                        <span style='font-size: inherit;'>{{ keywords }}</span>
-                    </p>
+                <CardFooter class='pt-6 pb-10 flex flex-col items-start gap-4'>
+                    <h5 class='underline'>Keywords</h5>
+                    
+                    <div class='flex flex-wrap items-center gap-3'>
+                        <Badge
+                            v-for='keyword in keywords_computed'
+                            :key='keyword'
+                            variant='outline'
+                            class='text-muted-foreground'
+                        >
+                            {{ keyword }}
+                        </Badge>
+                    </div>
                 </CardFooter>
             </div>
         </Card>
@@ -173,13 +181,10 @@
     const NewsStore = useNewsStore();
     
     const { article, loading, errorFetch } = storeToRefs(NewsStore);
+    const { getArticle } = NewsStore;
     const error = computed(() => errorFetch.value);
     const errorCode = computed(() => error.value?.statusCode);
     const errorMessage = computed(() => error.value?.statusMessage);
-    /*    watch(article, (newValue) => {
-            console.log(newValue);
-        })*/
-    const { getArticle } = NewsStore;
     
     const title = computed(() => article.value?.TITLE || '');
     const subtitle = computed(() => article.value?.SUBTITLE);
@@ -194,6 +199,22 @@
     });
     const categories = computed(() => article.value?.CATEGORY_DATA);
     const keywords = computed(() => article.value?.KEYWORDS);
+    
+    const keywords_computed = computed(() => {
+        const keywords_array = ref([]);
+        
+        if(keywords.value) {
+            keywords_array.value = keywords.value?.split('|');
+            
+            keywords_array.value = keywords_array.value.map(keyword => {
+                const lower_case = keyword.toLowerCase()
+                return lower_case.charAt(0).toUpperCase() + lower_case.slice(1);
+            })
+        }
+        return keywords_array.value;
+    });
+    
+    
     const author = computed(() => {
         if(article.value?.AUTHORS?.length === 0) return 'Unknown author';
         return article.value?.AUTHORS;
