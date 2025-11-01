@@ -1,8 +1,13 @@
 <template>
     <div class='news page'>
-        <Breadcrumb />
         
-        <Card class='bg-transparent shadow-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'>
+        <div v-if='!loading' class='flex items-center'>
+            <Spinner class='size-10 text-green-shamrock' />
+        </div>
+        
+        <Card v-else class='bg-transparent shadow-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'>
+            <Breadcrumb />
+            
             <!--  Article not available  -->
             <CardContent
                 v-if='error?.statusCode'
@@ -14,21 +19,16 @@
                 
                 <h4 class='mb-3'>Sorry, the article is not available at the moment.</h4>
                 
-                <Button
-                    as-child
-                    variant='link'
-                >
-                    <NuxtLink @click='goBack(router, "/news")' to=''>
-                        Go back
-                    </NuxtLink>
+                <Button variant='link'>
+                    <NuxtLink @click='goBack(router, "/news")' to=''>Go back</NuxtLink>
                 </Button>
             </CardContent>
             
             <div v-else>
                 <!--  Title + Categories + Author -->
-                <CardHeader v-if='title' class='flex flex-col gap-10'>
+                <CardHeader class='flex flex-col gap-10'>
                     <!--  Title  -->
-                    <CardTitle class='article-title'>{{ title }}</CardTitle>
+                    <CardTitle v-if='title' class='article-title h-24'>{{ title }}</CardTitle>
                     
                     <!--  Subtitle  -->
                     <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
@@ -49,12 +49,12 @@
                     <div class='flex items-center gap-16'>
                         <div class='author flex items-center gap-6'>
                             <Avatar class='rounded-lg'>
-                                <AvatarImage :src='source_avatar' alt='avatar' />
+                                <AvatarImage v-if='source_avatar' :src='source_avatar' alt='avatar' />
                                 <AvatarFallback class='rounded-full'>S</AvatarFallback>
                             </Avatar>
                             
                             <div class='flex flex-col gap-1'>
-                                <p>By {{ author }}</p>
+                                <p v-if='author'>By {{ author }}</p>
                                 <span v-if='published_on' class='text-muted-foreground text-sm'>{{ published_on_label }} UTC</span>
                             </div>
                         </div>
@@ -196,7 +196,7 @@
     const categories = computed(() => article.value?.CATEGORY_DATA);
     const keywords = computed(() => article.value?.KEYWORDS);
     const author = computed(() => {
-        if(article.value?.AUTHORS.length === 0) return 'Unknown author';
+        if(article.value?.AUTHORS?.length === 0) return 'Unknown author';
         return article.value?.AUTHORS;
     });
     const body = computed(() => article.value?.BODY);
