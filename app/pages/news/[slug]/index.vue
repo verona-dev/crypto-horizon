@@ -1,13 +1,12 @@
 <template>
     <div class='news page'>
+        <!--  <Breadcrumb />  -->
         
-        <div v-if='!loading' class='flex items-center'>
+        <div v-if='loading' class='flex items-center h-[50vh]'>
             <Spinner class='size-10 text-green-shamrock' />
         </div>
         
-        <Card v-else class='bg-transparent shadow-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'>
-            <Breadcrumb />
-            
+        <Card v-else class='bg-transparent w-full h-full shadow-none gap-12 xl:gap-20 max-w-7xl pt-0 pb-10 xl:mt-10 mb-40 mx-auto'>
             <!--  Article not available  -->
             <CardContent
                 v-if='error?.statusCode'
@@ -125,21 +124,21 @@
         </template>
         
         <!--
-        <div class='header-nav flex items-center justify-start gap-8'>
-            &lt;!&ndash;  Go back  &ndash;&gt;
-            <NuxtLink
-                @click='goBack(router, "/news")'
-                to=''
-                class='hover:bg-muted hover:cursor-pointer rounded-xl p-1'
-            >
-                <NuxtIcon
-                    name='mdi-light:arrow-left'
-                    size='50'
-                    class='flex'
-                />
-            </NuxtLink>
-        </div>
-        -->
+                <div class='header-nav flex items-center justify-start gap-8'>
+                    &lt;!&ndash;  Go back  &ndash;&gt;
+                    <NuxtLink
+                        @click='goBack(router, "/news")'
+                        to=''
+                        class='hover:bg-muted hover:cursor-pointer rounded-xl p-1'
+                    >
+                        <NuxtIcon
+                            name='mdi-light:arrow-left'
+                            size='50'
+                            class='flex'
+                        />
+                    </NuxtLink>
+                </div>
+                -->
     </div>
 </template>
 
