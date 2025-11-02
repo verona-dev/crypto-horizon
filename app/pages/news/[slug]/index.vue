@@ -117,7 +117,7 @@
                         <!--  Sentiment  -->
                         <Card
                             v-if='sentiment'
-                            class='bg-background border-border shadow-none hover:shadow-2xl flex flex-col items-center justify-between gap-4 p-16 w-full md:w-96 mx-auto'
+                            class='bg-background border-border shadow-none hover:shadow-2xl flex flex-col items-center justify-between gap-8 p-16 md:w-96 mx-auto'
                         >
                             <div class='flex items-center gap-3'>
                                 <h3>Article sentiment</h3>
@@ -141,7 +141,7 @@
                         <!--  Article Link  -->
                         <Card
                             v-if='article_url'
-                            class='bg-background border-border shadow-none hover:shadow-2xl flex flex-col items-center justify-around gap-4 p-16 w-full md:w-96 mx-auto'
+                            class='bg-background border-border shadow-none hover:shadow-2xl flex flex-col items-center justify-between gap-8 p-16 md:w-96 mx-auto'
                         >
                             <div class='flex items-center gap-3'>
                                 <h3>Original Source</h3>
