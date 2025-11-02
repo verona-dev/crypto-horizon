@@ -94,7 +94,7 @@
                         
                         <div v-else class='w-full h-full flex flex-col items-center justify-center gap-2 mb-2'>
                             <NuxtIcon
-                                name='my-icon:sparkline-fallback'
+                                name='my-icons:sparkline-fallback'
                                 class='w-full h-full'
                             />
                             

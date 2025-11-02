@@ -1,5 +1,5 @@
 <template>
-    <Card class='coin-description flex flex-col gap-20 p-10' v-if='coingecko'>
+    <Card class='coin-description bg-background flex flex-col gap-20 p-10' v-if='coingecko'>
         <div
             v-if='description_formatted'
             class='description flex flex-col gap-6'

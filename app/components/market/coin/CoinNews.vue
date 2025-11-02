@@ -1,8 +1,8 @@
 <template>
-    <div v-if='articles' class='coin-news w-full'>
-        <h3 class='my-10 underline'>Latest {{ symbol }} related Crypto News</h3>
+    <div v-if='articles' class='news'>
+        <h3 class='mt-10 mb-24 underline'>Latest {{ symbol }} related News</h3>
         
-        <div class='flex flex-col'>
+        <div class='flex flex-wrap gap-y-12 lg:gap-y-28 2xl:gap-y-12'>
             <CoinNewsCard
                 v-for='article in articles'
                 :key='article.ID'

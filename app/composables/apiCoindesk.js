@@ -1,14 +1,23 @@
 
 export async function useFetchCoindesk(route, options = {}) {
     try {
-        return await $fetch(`/api/coindesk/${route}`, {
+        const data = await $fetch(`/api/coindesk/${route}`, {
             params: {
                 lang: 'EN',
                 ...options,
             }
         });
+        return {
+            data,
+            error: null,
+        }
     } catch(error) {
-        console.error('Error fetching Coindesk data: ', error);
-        throw error;
+        return {
+            data: null,
+            error: {
+                statusCode: error.status,
+                statusMessage: error.statusText,
+            }
+        }
     }
 }

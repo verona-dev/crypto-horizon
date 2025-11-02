@@ -1,12 +1,12 @@
 <template>
-    <div class='news page flex flex-col items-center px-6 md:px-12 xl:px-24'>
+    <div class='news page'>
         <div v-if='!dark_mode' class='h-[450px]'>
             <div class='h-[350px] flex items-center'>
                 <h1 class='page-title'>Latest News</h1>
             </div>
         </div>
         
-        <div v-else class="w-[900px] h-[450px]">
+        <div v-else class='w-fit xl:w-[900px] h-[450px] mx-auto'>
             <ParticleImage
                 :image-src='titleImage'
                 :responsive-width='true'
@@ -18,11 +18,11 @@
             />
         </div>
         
-        <BentoGrid class='max-w-full xl:max-w-6xl'>
+        <BentoGrid class='xl:gap-6'>
             <BentoGridItem
                 v-for='(article, index) in articles'
                 :key='article.id'
-                class='!bg-card lg:row-span-2 !border-border/50'
+                class='!bg-card lg:row-span-2 !border-border/50 w-full mx-auto'
                 :class='index === 3 || index === 6 ? "xl:col-span-2" : ""'
             >
                 <!--  Image + Categories  -->
@@ -111,7 +111,7 @@
                             </HoverCardTrigger>
                             
                             <!--  Source  -->
-                            <HoverCardContent class='flex !justify-between !content-between !items-between !border-border/50 gap-6 p-10 w-fit'>
+                            <HoverCardContent class='flex !justify-between !content-between !items-between !border-border/50 gap-6 w-fit'>
                                 <NuxtImg
                                     v-if='article.source_avatar'
                                     :src='article.source_avatar'
@@ -121,22 +121,20 @@
                                     width='150px'
                                 />
                                 
-                                <div class='flex flex-col justify-between'>
-                                    <div class='flex flex-col gap-2'>
-                                        <h6 class='underline mb-2' v-if='article.source_name'>{{ article.source_name }}</h6>
-                                        
-                                        <span v-if='article.source_score > 0'>Score: {{ article.source_score }}</span>
-                                        
-                                        <span v-if='article.source_launch_date'>Launch date: {{ article.source_launch_date }}</span>
-                                        
-                                        <div v-if='article.source_lang' class='flex items-center gap-2'>
-                                            <span>Language:</span>
-                                            <span>{{ article.source_lang }}</span>
-                                            <NuxtIcon
-                                                :name="`circle-flags:lang-${article.source_lang.toLowerCase()}`"
-                                                size='20px' class='self-center'
-                                            />
-                                        </div>
+                                <div class='flex flex-col justify-between gap-2'>
+                                    <h6 class='underline mb-2' v-if='article.source_name'>{{ article.source_name }}</h6>
+                                    
+                                    <span v-if='article.source_score > 0'>Score: {{ article.source_score }}</span>
+                                    
+                                    <span v-if='article.source_launch_date'>Launch date: {{ article.source_launch_date }}</span>
+                                    
+                                    <div v-if='article.source_lang' class='flex items-center gap-2'>
+                                        <span>Language:</span>
+                                        <span>{{ article.source_lang }}</span>
+                                        <NuxtIcon
+                                            :name="`circle-flags:lang-${article.source_lang.toLowerCase()}`"
+                                            size='20px' class='self-center'
+                                        />
                                     </div>
                                     
                                     <NuxtLink
@@ -153,7 +151,7 @@
                         </HoverCard>
                         
                         <!--  Read more  -->
-                        <Button variant='outline' class='read-more !bg-transparent pt-2.5'>
+                        <Button variant='outline' class='read-more'>
                             <NuxtLink
                                 :to="{
                                     path: `/news/${encodeURIComponent(article.guid)}`,

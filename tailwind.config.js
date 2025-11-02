@@ -11,6 +11,22 @@ export default {
     ],
     darkMode: 'class',
     theme: {
+        extend: {
+            width: {
+                '100': '25rem',     // 400px
+                '110': '28rem',     // 448px
+                '120': '31.25rem',  // 500px
+                '130': '34.25rem',  // 548px
+                '140': '37.5rem',   // 600px
+                '150': '40.5rem',   // 648px
+                '160': '43.75rem',  // 700px
+                '170': '46.75rem',  // 748px
+                '180': '50rem',     // 800px
+                '190': '53rem',     // 848px
+                '200': '56.25rem',  // 900px
+                '210': '59.25rem',  // 948px
+            }
+        },
         screens: {
             sm: '640px',
             md: '768px',
@@ -18,7 +34,12 @@ export default {
             xl: '1280px',
         },
         fontFamily: {
-            // 'sans': ['Helvetica', 'Arial', 'sans-serif'],
+            great: ['Great', 'sans-serif'],
+            montserrat: ['Montserrat Variable', 'sans-serif'],
+            notosans: ['Noto Sans Variable', 'sans-serif'],
+            roboto: ['Roboto', 'monospace'],
+            sans: ['Satoshi', 'sans-serif'],
+            satoshi: ['Satoshi', 'sans-serif'],
         },
     },
     plugins: [

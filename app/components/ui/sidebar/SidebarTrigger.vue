@@ -30,7 +30,7 @@
         </NuxtIcon>
         
         <NuxtLink to='/'>
-            <p class='great-font'>Crypto Horizon</p>
+            <p class='font-great'>Crypto Horizon</p>
         </NuxtLink>
     </SidebarMenuButton>
 </template>

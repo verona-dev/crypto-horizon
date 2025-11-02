@@ -1,5 +1,5 @@
 <template>
-    <Card class='coin-chart flex flex-col gap-6 p-8' v-if='chart.prices'>
+    <Card class='coin-chart bg-background flex flex-col gap-6 p-8' v-if='chart.prices'>
         <!--  Tabs  -->
         <div class='tabs-container flex flex-col md:flex-row gap-12 md:gap-0 items-center justify-between'>
             <!--  Price + Market Cap  -->
@@ -27,6 +27,18 @@
             <!--  Supply Drawer  -->
             <Tabs>
                 <TabsList>
+                    <RainbowButton
+                        @click='show_drawer = true'
+                        class='text-xs w-24 flex gap-2'
+                    >
+                        <NuxtIcon
+                            name='mdi-light:chart-pie'
+                            size='15'
+                        />
+                        <span>Supply</span>
+                    </RainbowButton>
+                    
+                    <!--
                     <TabsTrigger
                         @click='show_drawer = true'
                         value='supply'
@@ -38,6 +50,7 @@
                         />
                         <span>Supply</span>
                     </TabsTrigger>
+                    -->
                 </TabsList>
             </Tabs>
             
@@ -87,14 +100,14 @@
 </template>
 
 <script setup>
-    import dayjs from 'dayjs';
+    import { formatNumber } from '~/utils/formatUtils.js';
+    import CustomLineChart from '~/utils/CustomLineChart.js';
+    import { RainbowButton } from '~/components/ui/rainbow-button';
+    import { Card } from '~/components/ui/card';
+    import { Line } from 'vue-chartjs';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     import CoinSupply from '~/components/market/coin/CoinSupply.vue';
-    import { Card } from '~/components/ui/card';
-    import { formatNumber } from '~/utils/formatUtils.js';
-    
-    import { Line } from 'vue-chartjs';
-    import CustomLineChart from '~/utils/CustomLineChart.js';
+    import dayjs from 'dayjs';
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
     ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
     

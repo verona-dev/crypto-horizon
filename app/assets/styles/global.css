@@ -1,13 +1,32 @@
 /*  Fonts  */
 @import '@fontsource/ibm-plex-mono';
 @import '@fontsource-variable/noto-sans';
+@import '@fontsource-variable/montserrat';
 
-@font-face {
-    font-family: 'Great';
-    font-display: swap;
-    src: url(../fonts/Great.ttf);
-}
+
 @layer base {
+    @font-face {
+        font-family: 'Great';
+        font-display: swap;
+        src: url(../fonts/Great.ttf);
+    }
+    
+    @font-face {
+        font-family: 'Satoshi';
+        src: url(../fonts/Satoshi-Variable.ttf) format('truetype');
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
+    }
+    
+    @font-face {
+        font-family: 'Satoshi';
+        src: url(../fonts/Satoshi-VariableItalic.ttf) format('truetype');
+        font-weight: 100 900;
+        font-style: italic;
+        font-display: swap;
+    }
+    
     * {
         @apply m-0 border-border outline-ring/50;
     }
@@ -17,8 +36,7 @@
     }
     
     body {
-        @apply bg-background text-foreground overflow-x-hidden overflow-y-scroll;
-        font-family: 'IBM Plex Mono', monospace;
+        @apply font-satoshi text-foreground overflow-x-hidden overflow-y-scroll;
     }
     
     #__nuxt {
@@ -32,7 +50,7 @@
     }
     
     .page {
-        @apply max-w-7xl mt-8 xl:mt-12 xl:mb-96 flex flex-col items-center justify-center relative;
+        @apply max-w-7xl mt-8 xl:mt-12 xl:mb-36 px-6 md:px-12 xl:px-24 flex flex-col items-center justify-center relative;
     }
     
     [data-slot='sidebar-wrapper'] {
@@ -54,8 +72,7 @@
 
 @layer components {
     h1 {
-        @apply text-4xl md:text-6xl xl:text-8xl tracking-widest break-words truncate;
-        font-family: 'Great', sans-serif;
+        @apply font-great text-4xl md:text-6xl xl:text-8xl tracking-widest break-words;
         
         &.page-title {
             @apply my-6 sm:my-10 xl:my-20;
@@ -63,8 +80,7 @@
     }
     
     h2 {
-        @apply text-3xl tracking-tight;
-        font-family: 'Great', sans-serif;
+        @apply font-great text-3xl tracking-tight;
     }
     
     h3 {
@@ -73,7 +89,7 @@
     }
     
     .global-market h3 {
-        font-family: 'Great', sans-serif;
+        @apply font-great;
     }
     
     h4 {
@@ -101,40 +117,79 @@
     }
     
     a {
-        @apply text-center;
+        @apply cursor-pointer text-center;
     }
     
     button {
         @apply cursor-pointer;
     }
     
-    .default-font {
-        font-family: 'IBM Plex Mono', monospace;
-    }
-    
-    .roboto-font {
-        font-family: 'Roboto', monospace;
-    }
-    
-    .great-font {
-        font-family: 'Great', sans-serif;
+    .font-great {
         @apply truncate tracking-[0.4rem];
-    }
-    
-    .vertical-separator {
-        background: var(--accent) !important;
-        height: 50px;
-        width: 1px;
     }
 }
 
 @layer utilities {
-    .text-xxs {
-        font-size: 11px;
-    }
-    
     .custom-flex {
         @apply flex flex-col sm:flex-row justify-center items-center;
+    }
+    
+    .vertical-separator {
+        background: var(--accent) !important;
+        height: 40px;
+        width: 1px;
+    }
+    
+    .market {
+        .card-container {
+            @apply flex flex-col justify-between;
+        }
+        
+        .card-header {
+            @apply flex flex-col xl:flex-row items-center p-8 border-b border-border/50 relative;
+        }
+        
+        .card-title {
+            @apply flex items-center gap-3;
+        }
+        
+        .card-content {
+            @apply flex flex-col gap-4 p-4 relative;
+            
+            .name {
+                @apply flex items-center flex-1 gap-3;
+            }
+            
+            .sparkline {
+                @apply flex-1 select-none flex;
+            }
+            
+            .price {
+                @apply flex flex-1 flex-col items-end;
+            }
+        }
+        
+        .card-footer {
+            @apply self-center;
+        }
+    }
+    
+    .news {
+        .card-title {
+            @apply text-left hover:underline line-clamp-3 leading-7;
+        }
+        
+        .article-title {
+            @apply text-3xl md:text-4xl lg:text-5xl font-medium tracking-wide leading-[1.3] [word-spacing:0.1em];
+        }
+        
+        .article-body {
+            @apply [word-spacing:0.1em];
+            
+            p {
+                @apply text-base leading-6 mb-8;
+            }
+        }
     }
 }
 

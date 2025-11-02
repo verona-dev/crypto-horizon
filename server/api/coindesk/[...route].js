@@ -1,6 +1,6 @@
 import { createError, getQuery } from 'h3';
 
-export default defineCachedEventHandler(async(event) => {
+export default defineEventHandler(async(event) => {
     const { coindesk_api } = useRuntimeConfig().public;
     
     const route = Array.isArray(event.context.params.route)
@@ -30,8 +30,8 @@ export default defineCachedEventHandler(async(event) => {
         return await response.json();
     } catch(error) {
         throw createError({
-            statusCode: 500,
-            statusMessage: 'Internal Server Error',
+            statusCode: error.status,
+            statusMessage: error.statusText,
         });
     }
-}, { maxAge: 60 * 60 * 5 });
+});

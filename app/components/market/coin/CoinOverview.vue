@@ -1,5 +1,5 @@
 <template>
-    <Card class='coin-overview flex flex-col gap-16 p-10 w-full'>
+    <Card class='coin-overview bg-background flex flex-col gap-16 p-10 w-full'>
         <!--  Overview  -->
         <div class='flex flex-col gap-4'>
             <!--  Overview Title  -->
@@ -19,13 +19,8 @@
                         <TableCell>Genesis</TableCell>
                         <TableCell>
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger>
-                                    {{ genesis_date_label }}
-                                </HoverCardTrigger>
-                                
-                                <HoverCardContent>
-                                    {{ generis_date_from_now }}
-                                </HoverCardContent>
+                                <HoverCardTrigger>{{ genesis_date_label }}</HoverCardTrigger>
+                                <HoverCardContent>{{ generis_date_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                     </TableRow>
@@ -51,7 +46,7 @@
                         
                         <TableCell class='flex flex-col !items-end'>
                             <!--  ATH Price  -->
-                            <div class='flex items-center'>
+                            <div class='flex flex-col items-end'>
                                 <span>{{ ath_price }}</span>
                                 
                                 <div class='ml-2 flex items-center text-xxs'>
@@ -68,13 +63,8 @@
                             
                             <!--  ATH Date -->
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='text-muted-custom'>
-                                    {{ ath_date_label }}
-                                </HoverCardTrigger>
-                                
-                                <HoverCardContent>
-                                    {{ ath_date_from_now }}
-                                </HoverCardContent>
+                                <HoverCardTrigger class='text-muted-custom text-xxs'>{{ ath_date_label }}</HoverCardTrigger>
+                                <HoverCardContent>{{ ath_date_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                     </TableRow>
@@ -94,7 +84,7 @@
                         
                         <TableCell class='flex flex-col !items-end'>
                             <!--  ATL Price  -->
-                            <div class='flex items-center'>
+                            <div class='flex flex-col items-end'>
                                 <span>{{ atl_price }}</span>
                                 
                                 <div class='ml-2 flex items-center text-xxs'>
@@ -112,13 +102,8 @@
                             
                             <!--  ATL Date -->
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='text-muted-custom'>
-                                    {{ atl_date_label }}
-                                </HoverCardTrigger>
-                                
-                                <HoverCardContent>
-                                    {{ atl_date_from_now }}
-                                </HoverCardContent>
+                                <HoverCardTrigger class='text-muted-custom text-xxs'>{{ atl_date_label }}</HoverCardTrigger>
+                                <HoverCardContent>{{ atl_date_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                     </TableRow>
@@ -179,13 +164,8 @@
                         <TableCell>Ico Start</TableCell>
                         <TableCell class='flex flex-col'>
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger>
-                                    {{ ico_start_label }}
-                                </HoverCardTrigger>
-                                
-                                <HoverCardContent>
-                                    {{ ico_start_from_now }}
-                                </HoverCardContent>
+                                <HoverCardTrigger>{{ ico_start_label }}</HoverCardTrigger>
+                                <HoverCardContent>{{ ico_start_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                     </TableRow>
@@ -195,13 +175,8 @@
                         <TableCell>Ico End</TableCell>
                         <TableCell class='flex- flex-col'>
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger>
-                                    {{ ico_end_label }}
-                                </HoverCardTrigger>
-                                
-                                <HoverCardContent>
-                                    {{ ico_end_from_now }}
-                                </HoverCardContent>
+                                <HoverCardTrigger>{{ ico_end_label }}</HoverCardTrigger>
+                                <HoverCardContent>{{ ico_end_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                     </TableRow>

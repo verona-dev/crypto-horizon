@@ -5,7 +5,10 @@
             class='w-full h-full'
         />
         
-        <div v-else class='card-container min-h-[450px] xl:min-h-96 animate-fadeIn'>
+        <div
+            v-else
+            class='card-container min-h-[450px] xl:min-h-96 animate-fadeIn'
+        >
             <CardHeader class='card-header'>
                 <!--  Title  -->
                 <div class='card-title'>
@@ -50,7 +53,7 @@
                 <!--  Fear and Greed labels  -->
                 <div class='labels-container flex flex-col items-center gap-4'>
                     <h2 class='text-6xl'>{{ fear_and_greed_data }}</h2>
-                    <h3 class='text-3xl great-font text-muted-foreground'>{{ fear_and_greed_label }}</h3>
+                    <h3 class='text-3xl font-great text-muted-foreground'>{{ fear_and_greed_label }}</h3>
                 </div>
             </CardContent>
             

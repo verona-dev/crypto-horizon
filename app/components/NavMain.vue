@@ -43,7 +43,7 @@
                         <SidebarMenuItem>
                             <SidebarMenuButton
                                 tooltip='Launch Pad'
-                                class='focus:bg-transparent flex items-center gap-3'
+                                class='focus:bg-transparent flex items-center gap-3 hover:bg-muted/50'
                             >
                                 <NuxtIcon
                                     :name='item.icon'
@@ -91,7 +91,7 @@
                                     <SidebarMenuButton
                                         :tooltip='item.title'
                                         :is-active='item.isActive'
-                                        class='flex items-center gap-3'
+                                        class='flex items-center gap-3 hover:bg-muted/50'
                                         :class='{ "!bg-transparent dark:!text-green-shamrock" : item.isActive}'
                                     >
                                         <NuxtIcon
@@ -110,10 +110,12 @@
                                         <SidebarMenuSubButton
                                             as-child
                                             :is-active='subItem.isActive'
-                                            :class='{ "!bg-muted dark:!text-green-shamrock" : subItem.isActive }'
+                                            class='hover:bg-muted/50'
+                                            :class='{ "!bg-muted/50 dark:!text-green-shamrock" : subItem.isActive }'
                                         >
                                             <NuxtLink :to='subItem.url' class='pl-3'>
-                                                <span>&#183; {{ subItem.title }}</span>
+                                                <!--  &#183;  -->
+                                                <span>{{ subItem.title }}</span>
                                             </NuxtLink>
                                         </SidebarMenuSubButton>
                                     </SidebarMenuSubItem>
@@ -135,7 +137,7 @@
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             :tooltip='item.title'
-                            class='peer/menu-button w-full items-center gap-2 overflow-hidden rounded-md !p-8 text-left outline-none ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-8 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-12 text-sm group-data-[collapsible=icon]:!p-0 flex justify-center'
+                            class='peer/menu-button w-full items-center gap-2 overflow-hidden rounded-md !p-8 text-left outline-none ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-1 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-8 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-12 text-sm group-data-[collapsible=icon]:!p-0 flex justify-center'
                             :class='{ "bg-muted" : item.isActive}'
                         >
                             <NuxtIcon

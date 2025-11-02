@@ -13,9 +13,7 @@
         <div>
             <!-- $COIN Input -->
             <div class='relative h-12'>
-                <Label
-                    for='coin' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-sm text-muted-foreground'
-                >
+                <Label for='coin' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-sm text-muted-foreground'>
                     {{ coin_symbol }}
                 </Label>
                 
@@ -23,7 +21,7 @@
                     :modelValue='coin_input'
                     type='number'
                     id='coin'
-                    class='coin-input h-full pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-bl-none rounded-br-none'
+                    class='coin-input !bg-background h-full pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-bl-none rounded-br-none'
                     :defaultValue='coin_price'
                     @input='updatePrice("coin", $event)'
                     @change='resetOnInvalidNumber($event)'
@@ -32,9 +30,7 @@
             
             <!-- $USD Input -->
             <div class='relative h-12'>
-                <Label
-                    for='usd' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-sm text-muted-foreground'
-                >
+                <Label for='usd' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-sm text-muted-foreground'>
                     USD
                 </Label>
                 
@@ -43,7 +39,7 @@
                     type='number'
                     id='usd'
                     :defaultValue='coin_input'
-                    class='usd-input h-full pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-tl-none rounded-tr-none'
+                    class='usd-input !bg-background h-full pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-tl-none rounded-tr-none'
                     @input='updatePrice("usd", $event)'
                     @change='resetOnInvalidNumber'
                 />
