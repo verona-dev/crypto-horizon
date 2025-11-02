@@ -51,7 +51,7 @@
                         
                         <TableCell class='flex flex-col !items-end'>
                             <!--  ATH Price  -->
-                            <div class='flex items-center'>
+                            <div class='flex flex-col items-end'>
                                 <span>{{ ath_price }}</span>
                                 
                                 <div class='ml-2 flex items-center text-xxs'>
@@ -68,13 +68,8 @@
                             
                             <!--  ATH Date -->
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='text-muted-custom'>
-                                    {{ ath_date_label }}
-                                </HoverCardTrigger>
-                                
-                                <HoverCardContent>
-                                    {{ ath_date_from_now }}
-                                </HoverCardContent>
+                                <HoverCardTrigger class='text-muted-custom text-xxs'>{{ ath_date_label }}</HoverCardTrigger>
+                                <HoverCardContent>{{ ath_date_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                     </TableRow>
@@ -94,7 +89,7 @@
                         
                         <TableCell class='flex flex-col !items-end'>
                             <!--  ATL Price  -->
-                            <div class='flex items-center'>
+                            <div class='flex flex-col items-end'>
                                 <span>{{ atl_price }}</span>
                                 
                                 <div class='ml-2 flex items-center text-xxs'>
@@ -112,13 +107,8 @@
                             
                             <!--  ATL Date -->
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='text-muted-custom'>
-                                    {{ atl_date_label }}
-                                </HoverCardTrigger>
-                                
-                                <HoverCardContent>
-                                    {{ atl_date_from_now }}
-                                </HoverCardContent>
+                                <HoverCardTrigger class='text-muted-custom text-xxs'>{{ atl_date_label }}</HoverCardTrigger>
+                                <HoverCardContent>{{ atl_date_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                     </TableRow>

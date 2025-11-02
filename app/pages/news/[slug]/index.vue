@@ -252,12 +252,8 @@
     const NewsStore = useNewsStore();
     
     const { article, loading, errorFetch } = storeToRefs(NewsStore);
-    
-    watch(article, newVal => {
-        console.log(newVal);
-    })
-    
     const { getArticle } = NewsStore;
+    
     const error = computed(() => errorFetch.value);
     const errorCode = computed(() => error.value?.statusCode);
     const errorMessage = computed(() => error.value?.statusMessage);
