@@ -23,7 +23,7 @@
                 </Button>
             </CardContent>
             
-            <div v-else>
+            <div v-else-if='article && !error?.statusCode'>
                 <!--  Title + Categories + Author -->
                 <CardHeader class='flex flex-col gap-10'>
                     <!--  Title  -->
@@ -106,20 +106,32 @@
                     </p>
                 </CardContent>
                 
-                <!--  Link + Keywords  -->
+                <!--  Sentiment + Link + Keywords  -->
                 <CardFooter class='pt-6 pb-10 flex flex-col !items-start gap-16'>
-                    <!--  Link  -->
-                    <Button variant='ghost' class=''>
-                        <NuxtLink
-                            :to='article_url'
-                            target='_blank'
-                            class='flex items-center gap-2'
-                            external
+                    <div class='flex flex-wrap justify-between gap-8 w-full'>
+                        <!--  Sentiment  -->
+                        <Card
+                            v-if='sentiment'
+                            class='bg-background flex flex-col items-center justify-between gap-4 p-16 w-full md:w-96'
                         >
-                            <span>Link to source</span>
-                            <NuxtIcon name='ph:arrow-square-out-light' size='14' />
-                        </NuxtLink>
-                    </Button>
+                            <h4>Article sentiment</h4>
+                            <NuxtIcon :name='sentiment?.icon' size='100' :class='sentiment?.class' />
+                            <h4 class='uppercase'>{{ sentiment?.label }}</h4>
+                        </Card>
+                        
+                        <!--  Link  -->
+                        <Button variant='ghost'>
+                            <NuxtLink
+                                :to='article_url'
+                                target='_blank'
+                                class='flex items-center gap-2'
+                                external
+                            >
+                                <span>Link to source</span>
+                                <NuxtIcon name='ph:arrow-square-out-light' size='14' />
+                            </NuxtLink>
+                        </Button>
+                    </div>
                     
                     <!--  Keywords  -->
                     <div class='flex flex-col items-start gap-4'>
@@ -279,6 +291,19 @@
     const reading_duration = ref(0);
     const show_progress_bar = computed(() => reading_duration.value > 1 && !open.value);
     const article_url = computed(() => article.value?.URL);
+    const article_sentiment = computed(() => article.value?.SENTIMENT);
+    const sentiment = computed(() => {
+        switch(article_sentiment.value) {
+            case 'POSITIVE':
+                return { label: 'Positive', icon: 'ph:smiley-light', class: 'text-progress' };
+            case 'NEUTRAL':
+                return { label: 'Neutral', icon: 'ph:smiley-meh-light', class: 'text-gray-400' };
+            case 'NEGATIVE':
+                return { label: 'Negative', icon: 'ph:smiley-sad-light', class: 'text-destructive' };
+            default:
+                return { label: 'Unknown', icon: 'ph:smiley-meh-light', color: 'text-gray-400' };
+        }
+    });
     
     const onScroll = () => {
         const scrollTop = window.scrollY || window.pageYOffset;
