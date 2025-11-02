@@ -45,7 +45,7 @@
                     </div>
                     
                     <!--  Author + Updated + Reading duration  -->
-                    <div class='flex flex-wrap items-center gap-2 xl:gap-16'>
+                    <div class='flex flex-wrap items-center gap-2 md:gap-8 xl:gap-16'>
                         <div class='author flex items-center gap-6'>
                             <Avatar class='rounded-lg'>
                                 <AvatarImage v-if='source_avatar' :src='source_avatar' alt='avatar' />
@@ -99,24 +99,42 @@
                     </NuxtImg>
                 </CardContent>
                 
+                <!--  Content  -->
                 <CardContent v-if='body' class='article-body'>
                     <p v-for='(par, index) in body_formatted' :key='index'>
                         {{ par }}
                     </p>
                 </CardContent>
                 
-                <CardFooter class='pt-6 pb-10 flex flex-col items-start gap-4'>
-                    <h5 class='underline'>Keywords</h5>
-                    
-                    <div class='flex flex-wrap items-center gap-3'>
-                        <Badge
-                            v-for='keyword in keywords_computed'
-                            :key='keyword'
-                            variant='outline'
-                            class='text-muted-foreground'
+                <!--  Link + Keywords  -->
+                <CardFooter class='pt-6 pb-10 flex flex-col !items-start gap-16'>
+                    <!--  Link  -->
+                    <Button variant='ghost' class=''>
+                        <NuxtLink
+                            :to='article_url'
+                            target='_blank'
+                            class='flex items-center gap-2'
+                            external
                         >
-                            {{ keyword }}
-                        </Badge>
+                            <span>Link to source</span>
+                            <NuxtIcon name='ph:arrow-square-out-light' size='14' />
+                        </NuxtLink>
+                    </Button>
+                    
+                    <!--  Keywords  -->
+                    <div class='flex flex-col items-start gap-4'>
+                        <h5 class='underline'>Keywords</h5>
+                        
+                        <div class='flex flex-wrap items-center gap-3'>
+                            <Badge
+                                v-for='keyword in keywords_computed'
+                                :key='keyword'
+                                variant='outline'
+                                class='text-muted-foreground'
+                            >
+                                {{ keyword }}
+                            </Badge>
+                        </div>
                     </div>
                 </CardFooter>
             </div>
@@ -181,6 +199,11 @@
     const NewsStore = useNewsStore();
     
     const { article, loading, errorFetch } = storeToRefs(NewsStore);
+    
+    watch(article, newVal => {
+        console.log(newVal);
+    })
+    
     const { getArticle } = NewsStore;
     const error = computed(() => errorFetch.value);
     const errorCode = computed(() => error.value?.statusCode);
@@ -199,7 +222,6 @@
     });
     const categories = computed(() => article.value?.CATEGORY_DATA);
     const keywords = computed(() => article.value?.KEYWORDS);
-    
     const keywords_computed = computed(() => {
         const keywords_array = ref([]);
         
@@ -213,7 +235,6 @@
         }
         return keywords_array.value;
     });
-    
     
     const author = computed(() => {
         if(article.value?.AUTHORS?.length === 0) return 'Unknown author';
@@ -257,6 +278,7 @@
     const progress = ref(0);
     const reading_duration = ref(0);
     const show_progress_bar = computed(() => reading_duration.value > 1 && !open.value);
+    const article_url = computed(() => article.value?.URL);
     
     const onScroll = () => {
         const scrollTop = window.scrollY || window.pageYOffset;
