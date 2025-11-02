@@ -19,13 +19,8 @@
                         <TableCell>Genesis</TableCell>
                         <TableCell>
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger>
-                                    {{ genesis_date_label }}
-                                </HoverCardTrigger>
-                                
-                                <HoverCardContent>
-                                    {{ generis_date_from_now }}
-                                </HoverCardContent>
+                                <HoverCardTrigger>{{ genesis_date_label }}</HoverCardTrigger>
+                                <HoverCardContent>{{ generis_date_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                     </TableRow>
@@ -169,13 +164,8 @@
                         <TableCell>Ico Start</TableCell>
                         <TableCell class='flex flex-col'>
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger>
-                                    {{ ico_start_label }}
-                                </HoverCardTrigger>
-                                
-                                <HoverCardContent>
-                                    {{ ico_start_from_now }}
-                                </HoverCardContent>
+                                <HoverCardTrigger>{{ ico_start_label }}</HoverCardTrigger>
+                                <HoverCardContent>{{ ico_start_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                     </TableRow>
@@ -185,13 +175,8 @@
                         <TableCell>Ico End</TableCell>
                         <TableCell class='flex- flex-col'>
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger>
-                                    {{ ico_end_label }}
-                                </HoverCardTrigger>
-                                
-                                <HoverCardContent>
-                                    {{ ico_end_from_now }}
-                                </HoverCardContent>
+                                <HoverCardTrigger>{{ ico_end_label }}</HoverCardTrigger>
+                                <HoverCardContent>{{ ico_end_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                     </TableRow>
