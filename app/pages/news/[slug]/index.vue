@@ -72,7 +72,7 @@
                         
                         <div class='vertical-separator' />
                         
-                        <div v-if='updated_on_label' class='flex flex-col gap-1 text-muted-foreground text-sm'>
+                        <div v-if='updated_on_label' class='flex flex-col items-center gap-1 text-muted-foreground text-sm'>
                             <span>Last updated:</span>
                             <span class='font-bold'>{{ updated_on_label }}</span>
                         </div>
@@ -111,35 +111,69 @@
                     </p>
                 </CardContent>
                 
-                <!--  Sentiment + Link + Keywords  -->
-                <CardFooter class='pt-6 pb-10 flex flex-col !items-start gap-16'>
-                    <div class='flex flex-wrap justify-between gap-8 w-full'>
+                <!--  Sentiment + Article Link + Keywords  -->
+                <CardFooter class='py-12 xl:py-24 flex flex-col !items-start gap-48'>
+                    <div class='flex flex-wrap justify-between gap-16 w-full'>
                         <!--  Sentiment  -->
                         <Card
                             v-if='sentiment'
-                            class='bg-background flex flex-col items-center justify-between gap-4 p-16 w-full md:w-96'
+                            class='bg-background border-border shadow-none hover:shadow-2xl flex flex-col items-center justify-between gap-4 p-16 w-full md:w-96 mx-auto'
                         >
-                            <h4>Article sentiment</h4>
+                            <div class='flex items-center gap-3'>
+                                <h3>Article sentiment</h3>
+                                
+                                <HoverCard :openDelay='200'>
+                                    <HoverCardTrigger>
+                                        <InfoIcon />
+                                    </HoverCardTrigger>
+                                    
+                                    <HoverCardContent class='flex-col gap-6'>
+                                        The sentiment polarity of this article. We compute this using ChatGPT.
+                                    </HoverCardContent>
+                                </HoverCard>
+                            </div>
+                            
                             <NuxtIcon :name='sentiment?.icon' size='100' :class='sentiment?.class' />
+                            
                             <h4 class='uppercase'>{{ sentiment?.label }}</h4>
                         </Card>
                         
-                        <!--  Link  -->
-                        <Button variant='ghost'>
-                            <NuxtLink
-                                :to='article_url'
-                                target='_blank'
-                                class='flex items-center gap-2'
-                                external
-                            >
-                                <span>Link to source</span>
-                                <NuxtIcon name='ph:arrow-square-out-light' size='14' />
-                            </NuxtLink>
-                        </Button>
+                        <!--  Article Link  -->
+                        <Card
+                            v-if='article_url'
+                            class='bg-background border-border shadow-none hover:shadow-2xl flex flex-col items-center justify-around gap-4 p-16 w-full md:w-96 mx-auto'
+                        >
+                            <div class='flex items-center gap-3'>
+                                <h3>Original Source</h3>
+                                
+                                <HoverCard :openDelay='200'>
+                                    <HoverCardTrigger>
+                                        <InfoIcon />
+                                    </HoverCardTrigger>
+                                    
+                                    <HoverCardContent class='flex-col gap-6'>
+                                        The web address that directs to the specific content or article on a source website.
+                                    </HoverCardContent>
+                                </HoverCard>
+                            </div>
+                            
+                            <NuxtIcon name='ph:read-cv-logo-thin' size='100' class='text-muted-foreground' />
+                            
+                            <Button variant='link' class='!pb-0'>
+                                <NuxtLink
+                                    :to='article_url'
+                                    target='_blank'
+                                    class='flex items-center gap-2'
+                                    external
+                                >
+                                    Visit Article
+                                </NuxtLink>
+                            </Button>
+                        </Card>
                     </div>
                     
                     <!--  Keywords  -->
-                    <div class='flex flex-col items-start gap-4'>
+                    <div class='flex flex-col items-start gap-8'>
                         <h5 class='underline'>Keywords</h5>
                         
                         <div class='flex flex-wrap items-center gap-3'>
@@ -202,6 +236,8 @@
     import { Badge } from '~/components/ui/badge';
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    import InfoIcon from '~/components/InfoIcon.vue';
     import { Skeleton } from '~/components/ui/skeleton';
     import { Spinner } from '~/components/ui/spinner';
     
@@ -300,13 +336,13 @@
     const sentiment = computed(() => {
         switch(article_sentiment.value) {
             case 'POSITIVE':
-                return { label: 'Positive', icon: 'ph:smiley-light', class: 'text-progress' };
+                return { label: 'Positive', icon: 'ph:smiley-thin', class: 'text-progress' };
             case 'NEUTRAL':
-                return { label: 'Neutral', icon: 'ph:smiley-meh-light', class: 'text-gray-400' };
+                return { label: 'Neutral', icon: 'ph:smiley-meh-thin', class: 'text-gray-400' };
             case 'NEGATIVE':
-                return { label: 'Negative', icon: 'ph:smiley-sad-light', class: 'text-destructive' };
+                return { label: 'Negative', icon: 'ph:smiley-sad-thin', class: 'text-destructive' };
             default:
-                return { label: 'Unknown', icon: 'ph:smiley-meh-light', color: 'text-gray-400' };
+                return { label: 'Unknown', icon: 'ph:smiley-meh-thin', color: 'text-gray-400' };
         }
     });
     
