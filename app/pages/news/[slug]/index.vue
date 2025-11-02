@@ -12,6 +12,11 @@
                 v-if='error?.statusCode'
                 class='flex flex-col justify-center items-center gap-8 w-[60vh] h-[60vh]'
             >
+                <NuxtIcon
+                    name='my-icons:server'
+                    class='w-40 h-40 xl:w-100 xl:h-100'
+                />
+                
                 <h1 v-if='errorCode'>{{ errorCode }}</h1>
                 
                 <h2 v-if='errorMessage' class='tracking-wide'>{{ errorMessage }}</h2>
