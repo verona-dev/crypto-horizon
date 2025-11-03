@@ -21,31 +21,28 @@
                                 }'
                             >
                                 <template v-if='!header.isPlaceholder'>
-                                    <template v-if='isSortable(header)'>
-                                        <div
-                                            @click='header.column.toggleSorting(header.column.getIsSorted() === "asc")'
-                                            class='flex items-center gap-2 hover:cursor-pointer '
-                                        >
-                                            <FlexRender :render='header.column.columnDef.header' :props='header.getContext()' />
-                                            
-                                            <div class='pt-2'>
-                                                <NuxtIcon
-                                                    v-if='header.column.getIsSorted() === "desc"'
-                                                    name='ph:caret-down-fill'
-                                                    size='15'
-                                                />
-                                                <NuxtIcon
-                                                    v-else-if='header.column.getIsSorted() === "asc"'
-                                                    name='ph:caret-up-fill'
-                                                    size='15'
-                                                />
-                                            </div>
+                                    <div
+                                        @click='header.column.toggleSorting(header.column.getIsSorted() === "asc")'
+                                        class='flex items-center gap-2 hover:cursor-pointer'
+                                    >
+                                        <FlexRender
+                                            :render='header.column.columnDef.header'
+                                            :props='header.getContext()'
+                                            class='text-md' />
+                                        
+                                        <div class='pt-1' v-if='isSortable(header)'>
+                                            <NuxtIcon
+                                                v-if='header.column.getIsSorted() === "desc"'
+                                                name='ph:caret-down-fill'
+                                                size='12'
+                                            />
+                                            <NuxtIcon
+                                                v-else-if='header.column.getIsSorted() === "asc"'
+                                                name='ph:caret-up-fill'
+                                                size='12'
+                                            />
                                         </div>
-                                    </template>
-                                    
-                                    <template v-else>
-                                        <FlexRender :render='header.column.columnDef.header' :props='header.getContext()' />
-                                    </template>
+                                    </div>
                                 </template>
                             </TableHead>
                         </TableRow>
@@ -61,7 +58,7 @@
                                 <TableCell
                                     v-for='cell in row.getVisibleCells()'
                                     :key='cell.id'
-                                    class='py-4 text-center'
+                                    class='py-4 text-center '
                                     :class='{
                                       "text-left": cell.column.id === "name",
                                     }'
@@ -278,10 +275,10 @@
             accessorKey: 'total_volume',
             header: () => h('p',  'Volume (24h)'),
             cell: (row) => {
-              const volume = formatNumber(row.getValue(), {
-                  compact: true, decimals: 2
-              }) ;
-              return h('div', { class: 'text-left' }, volume);
+                const volume = formatNumber(row.getValue(), {
+                    compact: true, decimals: 2
+                }) ;
+                return h('div', { class: 'text-left' }, volume);
             },
         },
         {
