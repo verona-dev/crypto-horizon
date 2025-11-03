@@ -294,27 +294,6 @@
                 return h('div', { class: 'text-left' }, circ_supply);
             },
         },
-        
-        /*
-                {
-          accessorKey: 'name',
-          header: () => h('p', { class: 'text-left text-green-shamrock' }, 'Name'),
-          cell: (row) => row.getValue(),
-        },
-        {
-                    accessorKey: 'amount',
-                    header: () => h('div', { class: 'text-right' }, 'Amount'),
-                    cell: ({ row }) => {
-                        const amount = Number.parseFloat(row.getValue('amount'))
-                        const formatted = new Intl.NumberFormat('en-US', {
-                            style: 'currency',
-                            currency: 'USD',
-                        }).format(amount)
-                        
-                        return h('div', { class: 'text-right font-medium' }, formatted)
-                    },
-                },
-             */
     ]);
     
     const table = useVueTable({
