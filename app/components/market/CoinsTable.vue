@@ -272,6 +272,16 @@
                 return h('div', { class: 'text-left' }, price);
             },
         },
+        {
+            accessorKey: 'total_volume',
+            header: () => h('p',  'Volume (24h)'),
+            cell: (row) => {
+              const volume = formatNumber(row.getValue(), {
+                  compact: true, decimals: 2
+              }) ;
+              return h('div', { class: 'text-left' }, volume);
+            },
+        },
         
         /*
                 {
