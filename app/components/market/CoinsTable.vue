@@ -59,14 +59,14 @@
                                             v-if='cell.row.getIsSelected()'
                                             @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
                                             name='ph:star-fill'
-                                            class='text-yellow-selective'
+                                            class='text-yellow-selective hover:cursor-pointer'
                                             size='16'
                                         />
                                         <NuxtIcon
                                             v-else
                                             @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
                                             name='ph:star'
-                                            class='text-muted-foreground'
+                                            class='text-muted-foreground hover:cursor-pointer'
                                             size='16'
                                         />
                                     </template>
