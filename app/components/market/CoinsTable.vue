@@ -128,6 +128,7 @@
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel } from '@tanstack/vue-table';
     import { valueUpdater } from '~/components/ui/table/utils.ts';
     import { formatNumber } from '~/utils/formatUtils.js';
+    import { getTrendClass } from '~/utils/styleUtils.js';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
@@ -168,13 +169,23 @@
         {
             accessorKey: 'current_price',
             header: () => h('p', 'Price'),
-            meta: { useHeaderSlot: true },
             cell: (row) => {
                 const price = formatNumber(row.getValue(), {
                     maximumFractionDigits: 4,
                 });
                 return h('div', { class: 'text-left' }, price);
             },
+        },
+        {
+            accessorKey: 'price_change_percentage_24h',
+            header: () => h('p', '24h %'),
+            cell: (row) => {
+                const price_change_percentage_24h = formatNumber(row.getValue(), {
+                    style: 'percent',
+                });
+                const trend = getTrendClass(row.getValue());
+                return h('div', { class: `text-left ${trend}` }, price_change_percentage_24h);
+            }
         },
         {
             accessorKey: 'market_cap',
