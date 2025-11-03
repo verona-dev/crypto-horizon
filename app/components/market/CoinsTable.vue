@@ -7,8 +7,16 @@
                 <Table>
                     <TableHeader>
                         <TableRow v-for='headerGroup in table.getHeaderGroups()' :key='headerGroup.id'>
-                            <TableHead v-for='header in headerGroup.headers' :key='header.id'>
+                            <TableHead
+                                v-for='header in headerGroup.headers'
+                                :key='header.id'
+                                class='text-center'
+                                :class='{
+                                      "flex justify-center items-center": header.column.id === "market_cap_rank",
+                                    }'
+                            >
                                 <template v-if='!header.isPlaceholder'>
+                                    <!--   Rank  -->
                                     <template v-if='header.column.id === "market_cap_rank"'>
                                         <Button
                                             variant='ghost'
@@ -40,12 +48,12 @@
                                 <TableCell
                                     v-for='cell in row.getVisibleCells()'
                                     :key='cell.id'
-                                    class='my-2 aaaaaa'
+                                    class='py-4 text-center'
                                     :class='{
-                                      "flex items-center": cell.column.id === "name",
+                                      "text-left": cell.column.id === "name",
                                     }'
                                 >
-                                    <!--   Checkbox  -->
+                                    <!--   Checkbox / Favourites  -->
                                     <template v-if='cell.column.id === "checkbox"'>
                                         <NuxtIcon
                                             v-if='cell.row.getIsSelected()'
@@ -65,15 +73,15 @@
                                     
                                     <!--   Name  -->
                                     <template v-else-if='cell.column.id === "name"'>
-                                        <div class='flex justify-center items-center h-full gap-3'>
+                                        <div class='flex items-center gap-4'>
                                             <NuxtImg
                                                 :src='cell.row.original.image'
-                                                width='30'
+                                                width='40'
                                                 alt='coin logo'
                                             />
                                             
-                                            <div class='flex flex-col'>
-                                                <p class='text-sm font-medium'>{{ cell.getValue() }}</p>
+                                            <div class='flex flex-col gap-1'>
+                                                <p class='font-medium'>{{ cell.getValue() }}</p>
                                                 <span class='uppercase text-xs text-muted-foreground'>{{ cell.row.original.symbol }}</span>
                                             </div>
                                         </div>
@@ -99,7 +107,6 @@
                 </Table>
             </div>
         </div>
-        
         
         <MazTable
             :headers='[
@@ -191,9 +198,7 @@
 
 <script setup>
     import { h } from 'vue';
-    import { ArrowUpDown, ChevronDown } from 'lucide-vue-next';
     import { Button } from '@/components/ui/button';
-    import { Checkbox } from '~/components/ui/checkbox';
     import { Spinner } from '~/components/ui/spinner';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel } from '@tanstack/vue-table';
@@ -210,25 +215,9 @@
     const sorting = ref([]);
     
     const columns = computed(() => [
-        {
-            id: 'checkbox',
-            header: () => h('p', { class: 'flex justify-center' }, 'Fav'),
-            
-            // cell: ({ row }) => h(Checkbox, {
-            //     'modelValue': row.getIsSelected(),
-            //     'onUpdate:modelValue': value => row.toggleSelected(!!value),
-            //     'ariaLabel': 'Select row',
-            // })
-        },
-        { //
-            accessorKey: 'market_cap_rank',
-            meta: { useHeaderSlot: true },
-        },
-        {
-            accessorKey: 'name',
-            header: () => h('p', 'Name'),
-            meta: { useSlot: true },
-        },
+        { id: 'checkbox', header: () => h('p',  'Fav') },
+        { accessorKey: 'market_cap_rank', meta: { useHeaderSlot: true } },
+        { accessorKey: 'name', header: () => h('p', { class: 'text-left'}, 'Name'), meta: { useSlot: true } },
         
         /*
                 {
