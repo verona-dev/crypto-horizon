@@ -210,6 +210,17 @@
             }
         },
         {
+            accessorKey: 'price_change_percentage_30d_in_currency',
+            header: () => h('p', '30d %'),
+            cell: (row) => {
+                const price_change_percentage_30d = formatNumber(row.getValue(), {
+                    style: 'percent',
+                });
+                const trend = getTrendClass(row.getValue());
+                return h('div', { class: `text-left ${trend}` }, price_change_percentage_30d);
+            }
+        },
+        {
             accessorKey: 'market_cap',
             header: () => h('p',  'Market Cap'),
             cell: (row) => {
