@@ -233,6 +233,8 @@
             'name',
             'current_price',
             'market_cap',
+            'total_volume',
+            'circulating_supply',
         ].includes(header.column.id);
     };
     
@@ -280,6 +282,16 @@
                   compact: true, decimals: 2
               }) ;
               return h('div', { class: 'text-left' }, volume);
+            },
+        },
+        {
+            accessorKey: 'circulating_supply',
+            header: () => h('p',  'Circ. Supply'),
+            cell: (row) => {
+                const circ_supply = formatNumber(row.getValue(), {
+                    compact: true, decimals: 1
+                });
+                return h('div', { class: 'text-left' }, circ_supply);
             },
         },
         
