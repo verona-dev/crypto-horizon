@@ -109,7 +109,7 @@
                         <div class='flex items-center gap-3'>
                             <h6>{{ floor_price }}</h6>
                             
-                            <div class='flex items-center gap-1' :class='getTextColorClass(floor_price_change_percentage_1d)'>
+                            <div class='flex items-center gap-1' :class='getTrendClass(floor_price_change_percentage_1d)'>
                                 <NuxtIcon
                                     :name='getTrendIcon(floor_price_change_percentage_1d)'
                                     size='15'
@@ -145,7 +145,7 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
-    import { getTextColorClass, getTrendIcon } from '~/utils/styleUtils.js';
+    import { getTrendClass, getTrendIcon } from '~/utils/styleUtils.js';
     import { FlipCard } from '~/components/ui/flip-card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { MorphingText } from '~/components/ui/morphing-text';

@@ -28,7 +28,7 @@
                             <NuxtIcon
                                 :name='getTrendIcon(item.value)'
                                 size='15'
-                                :class='getTextColorClass(item.trend)'
+                                :class='getTrendClass(item.trend)'
                             />
                             
                             {{ item.trend }}
@@ -45,7 +45,7 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
-    import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
+    import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     
     import { Skeleton } from '~/components/ui/skeleton';
     import { Card, CardContent } from '~/components/ui/card';

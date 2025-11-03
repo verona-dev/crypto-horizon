@@ -1,5 +1,5 @@
 
-export const getTextColorClass = change => {
+export const getTrendClass = change => {
     if(Math.sign(change) === -1) {
         return '!text-red-400';
     } else if(Math.sign(change) === 0){
@@ -9,7 +9,7 @@ export const getTextColorClass = change => {
     }
 };
 
-export const getBorderColorClass = change => {
+export const getBorderClass = change => {
     if (Math.sign(change) === -1) {
         return '!border-red-400';
     } else if (Math.sign(change) === 0) {

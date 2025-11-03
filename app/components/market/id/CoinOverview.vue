@@ -53,10 +53,10 @@
                                     <NuxtIcon
                                         :name='getTrendIcon(ath_change_percentage)'
                                         size='10'
-                                        :class='getTextColorClass(ath_change_percentage)'
+                                        :class='getTrendClass(ath_change_percentage)'
                                     />
                                     <span
-                                        :class='getTextColorClass(ath_change_percentage)'
+                                        :class='getTrendClass(ath_change_percentage)'
                                     >{{ ath_change_percentage_label }}</span>
                                 </div>
                             </div>
@@ -92,10 +92,10 @@
                                     <NuxtIcon
                                         :name='getTrendIcon(atl_change_percentage)'
                                         size='10'
-                                        :class='getTextColorClass(atl_change_percentage)'
+                                        :class='getTrendClass(atl_change_percentage)'
                                     />
                                     <span
-                                        :class='getTextColorClass(atl_change_percentage)'
+                                        :class='getTrendClass(atl_change_percentage)'
                                     >{{ atl_change_percentage_label }}</span>
                                 </div>
                             </div>
@@ -299,7 +299,7 @@
 </template>
 
 <script setup>
-    import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
+    import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import { formatNumber } from '~/utils/formatUtils.js';
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';

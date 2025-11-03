@@ -107,7 +107,7 @@
                     <HoverCardTrigger>
                         <div
                             class='flex items-center gap-1'
-                            :class='getTextColorClass(price_change_percentage_1d)'
+                            :class='getTrendClass(price_change_percentage_1d)'
                         >
                             <NuxtIcon
                                 :name='getTrendIcon(price_change_percentage_1d)'
@@ -129,7 +129,7 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
-    import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
+    import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import InfoIcon from '~/components/InfoIcon.vue';
     import { Alert } from '~/components/ui/alert';
     // import { Badge } from '~/components/ui/badge';

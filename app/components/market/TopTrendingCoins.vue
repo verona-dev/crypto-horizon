@@ -126,7 +126,7 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
-    import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
+    import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import { Skeleton } from '~/components/ui/skeleton';
     import { Card, CardTitle, CardHeader, CardContent } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
@@ -154,7 +154,7 @@
                 price_percentage_change: formatNumber(coin.item.data.price_change_percentage_24h?.usd, {
                     style: 'percent'
                 }),
-                text_class: getTextColorClass(coin.item.data.price_change_percentage_24h?.usd),
+                text_class: getTrendClass(coin.item.data.price_change_percentage_24h?.usd),
                 trend_icon: getTrendIcon(coin.item.data.price_change_percentage_24h?.usd),
                 sparkline: coin.item.data.sparkline,
             }));

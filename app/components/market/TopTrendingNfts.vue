@@ -126,7 +126,7 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
-    import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
+    import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import { Skeleton } from '~/components/ui/skeleton';
     import { Card, CardTitle, CardHeader, CardContent } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
@@ -156,7 +156,7 @@
                     style: 'percent'
                 }),
                 sparkline: nft.data.sparkline,
-                text_class: getTextColorClass(nft.data.floor_price_in_usd_24h_percentage_change),
+                text_class: getTrendClass(nft.data.floor_price_in_usd_24h_percentage_change),
                 trend_icon: getTrendIcon(nft.data.floor_price_in_usd_24h_percentage_change),
             }));
         }

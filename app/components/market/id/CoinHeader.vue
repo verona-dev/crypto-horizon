@@ -91,11 +91,11 @@
                                 <NuxtIcon
                                     :name='getTrendIcon(price_change_percentage)'
                                     size='15'
-                                    :class='getTextColorClass(price_change_percentage)'
+                                    :class='getTrendClass(price_change_percentage)'
                                 />
                                 
                                 <p
-                                    :class='getTextColorClass(price_change_percentage)'
+                                    :class='getTrendClass(price_change_percentage)'
                                     class='flex items-center text-sm'
                                 >
                                     {{ price_change_percentage_label }}
@@ -124,11 +124,11 @@
                                 <NuxtIcon
                                     :name='getTrendIcon(price_change_percentage_btc)'
                                     size='15'
-                                    :class='getTextColorClass(price_change_percentage_btc)'
+                                    :class='getTrendClass(price_change_percentage_btc)'
                                 />
                                 
                                 <p
-                                    :class='[getTextColorClass(price_change_percentage_btc)]'
+                                    :class='[getTrendClass(price_change_percentage_btc)]'
                                     class='flex items-center text-sm'
                                 >
                                     {{ price_change_percentage_btc_label }}
@@ -149,7 +149,7 @@
 
 <script setup>
     import { formatNumber, goBack } from '~/utils/formatUtils.js';
-    import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
+    import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import { Badge } from '~/components/ui/badge';
     import { BorderBeam } from '~/components/ui/border-beam';
     import { Card, CardTitle, CardDescription, CardHeader } from '~/components/ui/card';
