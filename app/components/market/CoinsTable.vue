@@ -1,11 +1,11 @@
 <template>
-    <div class='flex flex-col gap-12'>
+    <div class='flex flex-col gap-12 z-10'>
         <h3 class='tracking-widest'>Cryptocurrency Prices by Market Cap </h3>
         
         <div class='w-full h-180 flex flex-col gap-4'>
             <div class='border rounded-md h-120 flex flex-col flex-2/3 overflow-hidden'>
                 <Table class='bg-background'>
-                    <TableHeader>
+                    <TableHeader class='bg-background sticky top-0 z-10'>
                         <TableRow v-for='headerGroup in table.getHeaderGroups()' :key='headerGroup.id'>
                             <TableHead
                                 v-for='header in headerGroup.headers'

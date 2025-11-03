@@ -1,6 +1,6 @@
 <template>
     <div class='market page'>
-        <CoinsTable class='z-10' />
+        <CoinsTable />
         
         <div class='flex flex-col items-center justify-center gap-6 z-10'>
             <h1 class='page-title'>Crypto Market</h1>
