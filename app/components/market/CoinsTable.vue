@@ -14,7 +14,7 @@
                             <TableHead
                                 v-for='header in headerGroup.headers'
                                 :key='header.id'
-                                class='h-full'
+                                class='h-full font-bolder text-foreground'
                                 :class='{
                                     "text-center": header.column.id === "checkbox",
                                     "flex justify-center items-center": header.column.id === "market_cap_rank",
@@ -229,7 +229,12 @@
     const sorting = ref([]);
     
     const isSortable = header => {
-        return ['market_cap_rank', 'name', 'current_price'].includes(header.column.id);
+        return [
+            'market_cap_rank',
+            'name',
+            'current_price',
+            'market_cap',
+        ].includes(header.column.id);
     };
     
     const columns = computed(() => [
@@ -244,16 +249,26 @@
         },
         {
             accessorKey: 'name',
-            header: () => h('p', { class: ''}, 'Name'),
+            header: () => h('p', 'Name'),
             meta: { useSlot: true }
         },
         {
             accessorKey: 'current_price',
-            header: () => h('p', { class: '' }, 'Price'),
+            header: () => h('p', 'Price'),
             meta: { useHeaderSlot: true },
             cell: (row) => {
                 const price = formatNumber(row.getValue(), {
                     maximumFractionDigits: 4,
+                });
+                return h('div', { class: 'text-left' }, price);
+            },
+        },
+        {
+            accessorKey: 'market_cap',
+            header: () => h('p',  'Market Cap'),
+            cell: (row) => {
+                const price = formatNumber(row.getValue(), {
+                    compact: true, decimals: 2
                 });
                 return h('div', { class: 'text-left' }, price);
             },
