@@ -47,7 +47,7 @@
             </div>
         </div>
         
-
+        
         <MazTable
             :headers='[
           { label: "#", key: "rank", align: "center", sortable: false, classes: "w-20"},
@@ -58,7 +58,7 @@
           { label: "Circ. Supply", key: "c_supply", align: "center", sortable: false, classes: "" },
           { label: "24h %", key: "changePercent24Hr", align: "center", sortable: false, classes: "" },
         ]'
-            :rows='coins'
+            :rows='oldCoins'
             class=''
             hoverable
             background-even
@@ -69,7 +69,7 @@
             </template>
             
             <MazTableRow
-                v-for='(row) in coins'
+                v-for='(row) in oldCoins'
                 :key='row.id'
             >
                 <MazTableCell>
@@ -138,37 +138,49 @@
 
 <script setup>
     import { h } from 'vue';
+    import { Checkbox } from '@/components/ui/checkbox';
     import { Spinner } from '~/components/ui/spinner';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-    import { FlexRender, getCoreRowModel, useVueTable, createColumnHelper } from '@tanstack/vue-table';
+    import { FlexRender, getCoreRowModel, useVueTable } from '@tanstack/vue-table';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
     // State
-    const { coins } = storeToRefs(MarketStore);
+    const { coins, oldCoins } = storeToRefs(MarketStore);
     // Methods
     const { getCoinsMarkets } = MarketStore;
     
     const columns = computed(() => [
         {
-            accessorKey: 'rank',
-            cell: (id) => id.getValue('id'),
+            id: 'select',
+            header: () => h('p', { class: 'text-left text-green-shamrock' }, 'Add'),
+            cell: ({ row }) => h(Checkbox, {
+                'modelValue': row.getIsSelected(),
+                'onUpdate:modelValue': value => row.toggleSelected(!!value),
+                'ariaLabel': 'Select row',
+            })
         },
-/*        {
-            accessorKey: 'amount',
-            header: () => h('div', { class: 'text-right' }, 'Amount'),
-            cell: ({ row }) => {
-                const amount = Number.parseFloat(row.getValue('amount'))
-                const formatted = new Intl.NumberFormat('en-US', {
-                    style: 'currency',
-                    currency: 'USD',
-                }).format(amount)
-                
-                return h('div', { class: 'text-right font-medium' }, formatted)
-            },
-        },*/
+        {
+            accessorKey: 'market_cap_rank',
+            header: () => h('p', { class: 'text-left text-green-shamrock' }, '#'),
+            cell: (info) => info.getValue(),
+        },
+        
+        /*        {
+                    accessorKey: 'amount',
+                    header: () => h('div', { class: 'text-right' }, 'Amount'),
+                    cell: ({ row }) => {
+                        const amount = Number.parseFloat(row.getValue('amount'))
+                        const formatted = new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                        }).format(amount)
+                        
+                        return h('div', { class: 'text-right font-medium' }, formatted)
+                    },
+                },*/
     ]);
     
     /*
