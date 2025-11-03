@@ -177,6 +177,17 @@
             },
         },
         {
+            accessorKey: 'price_change_percentage_1h_in_currency',
+            header: () => h('p', '1h %'),
+            cell: (row) => {
+                const price_change_percentage_1h = formatNumber(row.getValue(), {
+                    style: 'percent',
+                });
+                const trend = getTrendClass(row.getValue());
+                return h('div', { class: `text-left ${trend}` }, price_change_percentage_1h);
+            }
+        },
+        {
             accessorKey: 'price_change_percentage_24h',
             header: () => h('p', '24h %'),
             cell: (row) => {
