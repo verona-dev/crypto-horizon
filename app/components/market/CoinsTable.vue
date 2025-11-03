@@ -3,37 +3,49 @@
         <h3 class='tracking-widest'>Cryptocurrency Prices by Market Cap </h3>
         
         <div class='w-full h-180 flex flex-col gap-4'>
-            <div class='border rounded-md h-120 flex flex-col flex-2/3 overflow-hidden'>
-                <Table class='bg-background'>
-                    <TableHeader class='bg-background sticky top-0 z-10'>
-                        <TableRow v-for='headerGroup in table.getHeaderGroups()' :key='headerGroup.id'>
+            <div class='border rounded-xl h-120 flex flex-col flex-2/3 overflow-hidden'>
+                <Table>
+                    <TableHeader class='bg-background sticky top-0 z-10 shadow-xl'>
+                        <TableRow
+                            v-for='headerGroup in table.getHeaderGroups()'
+                            :key='headerGroup.id'
+                            class='hover:bg-background h-16'
+                        >
                             <TableHead
                                 v-for='header in headerGroup.headers'
                                 :key='header.id'
-                                class='text-center'
+                                class='h-full'
                                 :class='{
+                                    "text-center": header.column.id === "checkbox",
                                     "flex justify-center items-center": header.column.id === "market_cap_rank",
                                 }'
                             >
                                 <template v-if='!header.isPlaceholder'>
-                                    <!--   Rank  -->
-                                    <!--   Price  -->
-                                    <template v-if='header.column.id === "market_cap_rank" || header.column.id === "current_price"'>
+                                    <template v-if='isSortable(header)'>
                                         <div
                                             @click='header.column.toggleSorting(header.column.getIsSorted() === "asc")'
-                                            class='hover:cursor-pointer'
+                                            class='flex items-center gap-2 hover:cursor-pointer'
                                         >
-                                            <span v-if='header.column.id === "market_cap_rank"'>#</span>
-                                            <span v-if='header.column.id === "current_price"'>Price</span>
-                                            <NuxtIcon v-if='header.column.getIsSorted() === "desc"' name='ph:caret-down-fill' size='10' />
-                                            <NuxtIcon v-if='header.column.getIsSorted() === "asc"' name='ph:caret-up-fill' size='10' />
+                                            <FlexRender :render='header.column.columnDef.header' :props='header.getContext()' />
+                                            
+                                            <div class='pt-2'>
+                                                <NuxtIcon
+                                                    v-if='header.column.getIsSorted() === "desc"'
+                                                    name='ph:caret-down-fill'
+                                                    size='15'
+                                                />
+                                                <NuxtIcon
+                                                    v-else-if='header.column.getIsSorted() === "asc"'
+                                                    name='ph:caret-up-fill'
+                                                    size='15'
+                                                />
+                                            </div>
                                         </div>
                                     </template>
-                                    <FlexRender
-                                        v-else
-                                        :render="header.column.columnDef.header"
-                                        :props="header.getContext()"
-                                    />
+                                    
+                                    <template v-else>
+                                        <FlexRender :render='header.column.columnDef.header' :props='header.getContext()' />
+                                    </template>
                                 </template>
                             </TableHead>
                         </TableRow>
@@ -199,7 +211,7 @@
 
 <script setup>
     import { h } from 'vue';
-    import { Button } from '@/components/ui/button';
+    import { Button } from '~/components/ui/button';
     import { Spinner } from '~/components/ui/spinner';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel } from '@tanstack/vue-table';
@@ -216,6 +228,10 @@
     const { coins, oldCoins } = storeToRefs(MarketStore);
     const sorting = ref([]);
     
+    const isSortable = header => {
+        return ['market_cap_rank', 'name', 'current_price'].includes(header.column.id);
+    };
+    
     const columns = computed(() => [
         {
             id: 'checkbox',
@@ -223,20 +239,23 @@
         },
         {
             accessorKey: 'market_cap_rank',
+            header: () => h('p', { class: 'text-green-shamrock' }, '#'),
             meta: { useHeaderSlot: true }
         },
         {
             accessorKey: 'name',
-            header: () => h('p', { class: 'text-left'}, 'Name'),
+            header: () => h('p', { class: ''}, 'Name'),
             meta: { useSlot: true }
         },
         {
             accessorKey: 'current_price',
+            header: () => h('p', { class: '' }, 'Price'),
             meta: { useHeaderSlot: true },
             cell: (row) => {
-                return formatNumber(row.getValue(), {
+                const price = formatNumber(row.getValue(), {
                     maximumFractionDigits: 4,
                 });
+                return h('div', { class: 'text-left' }, price);
             },
         },
         
