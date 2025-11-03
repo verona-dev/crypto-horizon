@@ -1,7 +1,51 @@
 <template>
-    <div class='mt-30 flex flex-col gap-12'>
+    <div class='mt-30 h-210 flex flex-col gap-12'>
         <h3 class='tracking-widest'>Cryptocurrency Prices by Market Cap </h3>
         
+        <div class='flex-col justify-center items-center gap-4 border rounded-md h-150 overflow-hidden'>
+            <Table>
+                <TableHeader>
+                    <TableRow v-for='headerGroup in table.getHeaderGroups()' :key='headerGroup.id'>
+                        <TableHead v-for='header in headerGroup.headers' :key='header.id'>
+                            <FlexRender
+                                v-if='!header.isPlaceholder' :render='header.column.columnDef.header'
+                                :props='header.getContext()'
+                            />
+                        </TableHead>
+                    </TableRow>
+                </TableHeader>
+                
+                <TableBody>
+                    <template v-if='table.getRowModel().rows?.length'>
+                        <TableRow
+                            v-for='row in table.getRowModel().rows'
+                            :key='row.id'
+                            :data-state='row.getIsSelected() ? "selected" : undefined'
+                        >
+                            <TableCell
+                                v-for='cell in row.getVisibleCells()'
+                                :key='cell.id'
+                            >
+                                <FlexRender
+                                    :render='cell.column.columnDef.cell'
+                                    :props='cell.getContext()'
+                                />
+                            </TableCell>
+                        </TableRow>
+                    </template>
+                    
+                    <template v-else>
+                        <TableRow>
+                            <TableCell :colspan="columns.length" class="h-24 text-center">
+                                No results.
+                            </TableCell>
+                        </TableRow>
+                    </template>
+                </TableBody>
+            </Table>
+        </div>
+        
+        <!--
         <MazTable
             :headers='[
           { label: "#", key: "rank", align: "center", sortable: false, classes: "w-20"},
@@ -18,11 +62,11 @@
             background-even
             elevation
         >
-            <!--
+            &lt;!&ndash;
             <template #title>
                 <h5>Top 100 Crypto Currencies by Market Cap</h5>
             </template>
-            -->
+            &ndash;&gt;
             
             <MazTableRow
                 v-for='(row) in coins'
@@ -89,11 +133,16 @@
                 </div>
             </template>
         </MazTable>
+        -->
     </div>
 </template>
 
 <script setup>
+    import { h } from 'vue';
     import { Spinner } from '~/components/ui/spinner';
+    import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+    import { FlexRender, getCoreRowModel, useVueTable, createColumnHelper } from '@tanstack/vue-table';
+    
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
@@ -102,6 +151,53 @@
     const { coins } = storeToRefs(MarketStore);
     // Methods
     const { getCoinsMarkets } = MarketStore;
+    
+    const columns = computed(() => [
+        {
+            accessorKey: 'id',
+            cell: (id) => id.getValue('id'),
+        },
+        {
+            accessorKey: 'amount',
+            header: () => h('div', { class: 'text-right' }, 'Amount'),
+            cell: ({ row }) => {
+                const amount = Number.parseFloat(row.getValue('amount'))
+                const formatted = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                }).format(amount)
+                
+                return h('div', { class: 'text-right font-medium' }, formatted)
+            },
+        },
+    ]);
+    
+    const data = computed(() => [
+        {
+            id: '728ed52f',
+            amount: 100,
+            status: 'pending',
+            email: 'm@example.com',
+        },
+        {
+            id: '489e1d42',
+            amount: 125,
+            status: 'processing',
+            email: 'example@gmail.com',
+        },
+        {
+            id: "3u1reuv4",
+            amount: 242,
+            status: "success",
+            email: "Abe45@gmail.com",
+        },
+    ]);
+    
+    const table = useVueTable({
+        get data() { return data.value },
+        get columns() { return columns.value },
+        getCoreRowModel: getCoreRowModel(),
+    });
     
     onMounted(() => {
         getCoinsMarkets({}, 'table');
@@ -142,40 +238,5 @@
 </script>
 
 <style>
-    .m-table {
-        max-width: 1500px !important;
-        
-        .m-table-header {
-            justify-content: center;
-            padding: 50px 0;
-        }
-        
-        .m-table-cell {
-            font-size: 0.9rem !important;
-            text-align: center;
-        }
-        
-        thead {
-            background-color: var(--primary-foreground);
-            height: 75px;
-        }
-        
-        tbody {
-            td {
-                padding: 20px 0 !important;
-            }
-        }
-        
-        .m-select-list {
-            max-height: fit-content !important;
-        }
-        
-        .m-table-footer {
-            padding: 20px;
-        }
-        
-        h4.fetching {
-            color: var(--maz-color-muted);
-        }
-    }
+
 </style>
