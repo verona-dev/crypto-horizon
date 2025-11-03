@@ -26,8 +26,28 @@
                                 <TableCell
                                     v-for='cell in row.getVisibleCells()'
                                     :key='cell.id'
+                                    class='my-2'
+                                    :class='{
+                                      "flex items-center": cell.column.id === "name",
+                                    }'
                                 >
+                                    <template v-if='cell.column.id === "name"'>
+                                        <div class='flex justify-evenly items-center h-full gap-3'>
+                                            <NuxtImg
+                                                :src='cell.row.original.image'
+                                                width='30'
+                                                alt='coin logo'
+                                            />
+                                            
+                                            <div class='flex flex-col xl:flex-row items-start'>
+                                                <p class='text-sm font-medium'>{{ cell.getValue() }}</p>
+                                                <span class='uppercase text-xs text-muted-foreground'>{{ cell.row.original.symbol }}</span>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    
                                     <FlexRender
+                                        v-else
                                         :render='cell.column.columnDef.cell'
                                         :props='cell.getContext()'
                                     />
@@ -138,19 +158,23 @@
 
 <script setup>
     import { h } from 'vue';
-    import { Checkbox } from '@/components/ui/checkbox';
+    import { ArrowUpDown, ChevronDown } from 'lucide-vue-next';
+    import { Button } from '@/components/ui/button';
+    import { Checkbox } from '~/components/ui/checkbox';
     import { Spinner } from '~/components/ui/spinner';
-    import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-    import { FlexRender, getCoreRowModel, useVueTable } from '@tanstack/vue-table';
+    import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
+    import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel } from '@tanstack/vue-table';
+    import { valueUpdater } from '~/components/ui/table/utils.ts';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
-    // State
-    const { coins, oldCoins } = storeToRefs(MarketStore);
     // Methods
     const { getCoinsMarkets } = MarketStore;
+    // State
+    const { coins, oldCoins } = storeToRefs(MarketStore);
+    const sorting = ref([]);
     
     const columns = computed(() => [
         {
@@ -162,13 +186,29 @@
                 'ariaLabel': 'Select row',
             })
         },
-        {
+        { // h('p', { class: 'text-left text-green-shamrock' }, '#')
             accessorKey: 'market_cap_rank',
-            header: () => h('p', { class: 'text-left text-green-shamrock' }, '#'),
-            cell: (info) => info.getValue(),
+            header: ({ column }) => {
+                return h(Button, {
+                    variant: 'ghost',
+                    onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+                }, () => ['#', h(ArrowUpDown, { class: 'h-4 w-4'})]);
+            },
+            cell: ( row ) => row.getValue(),
+        },
+        {
+            accessorKey: 'name',
+            header: () => h('p', { class: 'text-left' }, 'Name'),
+            meta: { useSlot: true },
         },
         
-        /*        {
+        /*
+                {
+          accessorKey: 'name',
+          header: () => h('p', { class: 'text-left text-green-shamrock' }, 'Name'),
+          cell: (row) => row.getValue(),
+        },
+        {
                     accessorKey: 'amount',
                     header: () => h('div', { class: 'text-right' }, 'Amount'),
                     cell: ({ row }) => {
@@ -180,38 +220,19 @@
                         
                         return h('div', { class: 'text-right font-medium' }, formatted)
                     },
-                },*/
-    ]);
-    
-    /*
-    
-    */
-    
-    const data = computed(() => [
-        {
-            id: '728ed52f',
-            amount: 100,
-            status: 'pending',
-            email: 'm@example.com',
-        },
-        {
-            id: '489e1d42',
-            amount: 125,
-            status: 'processing',
-            email: 'example@gmail.com',
-        },
-        {
-            id: "3u1reuv4",
-            amount: 242,
-            status: "success",
-            email: "Abe45@gmail.com",
-        },
+                },
+             */
     ]);
     
     const table = useVueTable({
         get data() { return coins.value },
         get columns() { return columns.value },
         getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: getSortedRowModel(),
+        onSortingChange: updaterOrValue => valueUpdater(updaterOrValue, sorting),
+        state: {
+            get sorting() { return sorting.value },
+        }
     });
     
     onMounted(() => {
