@@ -2,6 +2,7 @@
     <CardHeader v-if='coin' class='coin-header flex w-full animate-fadeIn'>
         <Card class='bg-background flex flex-col items-center justify-center relative'>
             <BorderBeam
+                v-if='dark_mode'
                 :size='500'
                 :duration='25'
                 :border-width='1'
@@ -154,6 +155,9 @@
     import { Card, CardTitle, CardDescription, CardHeader } from '~/components/ui/card';
     import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    
+    const colorMode = useColorMode();
+    const dark_mode = computed(() => colorMode.value === 'dark');
     
     // MarketStore
     import { storeToRefs } from 'pinia';
