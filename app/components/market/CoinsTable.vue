@@ -1,51 +1,53 @@
 <template>
-    <div class='mt-30 h-210 flex flex-col gap-12'>
+    <div class='flex flex-col gap-12'>
         <h3 class='tracking-widest'>Cryptocurrency Prices by Market Cap </h3>
         
-        <div class='flex-col justify-center items-center gap-4 border rounded-md h-150 overflow-hidden'>
-            <Table>
-                <TableHeader>
-                    <TableRow v-for='headerGroup in table.getHeaderGroups()' :key='headerGroup.id'>
-                        <TableHead v-for='header in headerGroup.headers' :key='header.id'>
-                            <FlexRender
-                                v-if='!header.isPlaceholder' :render='header.column.columnDef.header'
-                                :props='header.getContext()'
-                            />
-                        </TableHead>
-                    </TableRow>
-                </TableHeader>
-                
-                <TableBody>
-                    <template v-if='table.getRowModel().rows?.length'>
-                        <TableRow
-                            v-for='row in table.getRowModel().rows'
-                            :key='row.id'
-                            :data-state='row.getIsSelected() ? "selected" : undefined'
-                        >
-                            <TableCell
-                                v-for='cell in row.getVisibleCells()'
-                                :key='cell.id'
-                            >
+        <div class='w-full h-180 flex flex-col gap-4'>
+            <div class='border rounded-md h-120 flex flex-col flex-2/3 overflow-hidden'>
+                <Table>
+                    <TableHeader>
+                        <TableRow v-for='headerGroup in table.getHeaderGroups()' :key='headerGroup.id'>
+                            <TableHead v-for='header in headerGroup.headers' :key='header.id'>
                                 <FlexRender
-                                    :render='cell.column.columnDef.cell'
-                                    :props='cell.getContext()'
+                                    v-if='!header.isPlaceholder' :render='header.column.columnDef.header'
+                                    :props='header.getContext()'
                                 />
-                            </TableCell>
+                            </TableHead>
                         </TableRow>
-                    </template>
+                    </TableHeader>
                     
-                    <template v-else>
-                        <TableRow>
-                            <TableCell :colspan="columns.length" class="h-24 text-center">
-                                No results.
-                            </TableCell>
-                        </TableRow>
-                    </template>
-                </TableBody>
-            </Table>
+                    <TableBody>
+                        <template v-if='table.getRowModel().rows?.length'>
+                            <TableRow
+                                v-for='row in table.getRowModel().rows'
+                                :key='row.id'
+                                :data-state='row.getIsSelected() ? "selected" : undefined'
+                            >
+                                <TableCell
+                                    v-for='cell in row.getVisibleCells()'
+                                    :key='cell.id'
+                                >
+                                    <FlexRender
+                                        :render='cell.column.columnDef.cell'
+                                        :props='cell.getContext()'
+                                    />
+                                </TableCell>
+                            </TableRow>
+                        </template>
+                        
+                        <template v-else>
+                            <TableRow>
+                                <TableCell :colspan="columns.length" class="h-24 text-center">
+                                    No results.
+                                </TableCell>
+                            </TableRow>
+                        </template>
+                    </TableBody>
+                </Table>
+            </div>
         </div>
         
-        <!--
+
         <MazTable
             :headers='[
           { label: "#", key: "rank", align: "center", sortable: false, classes: "w-20"},
@@ -62,11 +64,9 @@
             background-even
             elevation
         >
-            &lt;!&ndash;
             <template #title>
                 <h5>Top 100 Crypto Currencies by Market Cap</h5>
             </template>
-            &ndash;&gt;
             
             <MazTableRow
                 v-for='(row) in coins'
@@ -133,7 +133,6 @@
                 </div>
             </template>
         </MazTable>
-        -->
     </div>
 </template>
 
@@ -154,10 +153,10 @@
     
     const columns = computed(() => [
         {
-            accessorKey: 'id',
+            accessorKey: 'rank',
             cell: (id) => id.getValue('id'),
         },
-        {
+/*        {
             accessorKey: 'amount',
             header: () => h('div', { class: 'text-right' }, 'Amount'),
             cell: ({ row }) => {
@@ -169,8 +168,12 @@
                 
                 return h('div', { class: 'text-right font-medium' }, formatted)
             },
-        },
+        },*/
     ]);
+    
+    /*
+    
+    */
     
     const data = computed(() => [
         {
@@ -194,7 +197,7 @@
     ]);
     
     const table = useVueTable({
-        get data() { return data.value },
+        get data() { return coins.value },
         get columns() { return columns.value },
         getCoreRowModel: getCoreRowModel(),
     });
