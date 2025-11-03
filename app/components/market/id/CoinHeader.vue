@@ -153,7 +153,7 @@
     import { Badge } from '~/components/ui/badge';
     import { BorderBeam } from '~/components/ui/border-beam';
     import { Card, CardTitle, CardDescription, CardHeader } from '~/components/ui/card';
-    import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
+    import CoinPublicNotice from '@/components/market/id/CoinPublicNotice.vue';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     
     const colorMode = useColorMode();

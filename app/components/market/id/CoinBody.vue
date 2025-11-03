@@ -26,11 +26,11 @@
 </template>
 
 <script setup>
-    import CoinOverview from '~/components/market/coin/CoinOverview.vue';
-    import CoinInsights from '~/components/market/coin/CoinInsights.vue';
-    import CoinChart from '~/components/market/coin/CoinChart.vue';
-    import CoinDelta from '~/components/market/coin/CoinDelta.vue';
-    import CoinDescription from '~/components/market/coin/CoinDescription.vue';
+    import CoinOverview from '@/components/market/id/CoinOverview.vue';
+    import CoinInsights from '@/components/market/id/CoinInsights.vue';
+    import CoinChart from '@/components/market/id/CoinChart.vue';
+    import CoinDelta from '@/components/market/id/CoinDelta.vue';
+    import CoinDescription from '@/components/market/id/CoinDescription.vue';
     import { CardContent } from '~/components/ui/card';
     
     const props = defineProps({

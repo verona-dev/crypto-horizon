@@ -163,7 +163,7 @@
         });
     };
     
-    // coin list with market data
+    // id list with market data
     onMounted(async() => {
         if (platforms_summary.value?.length) {
             await getCoinsMarkets({

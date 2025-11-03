@@ -146,7 +146,7 @@
     const { coin } = toRefs(props);
     
     const slug = coin.value?.slug;
-    // const rank = coin.value?.score + 1;
+    // const rank = id.value?.score + 1;
     const image = coin.value?.large;
     const mcap_rank = coin.value?.market_cap_rank;
     const name = coin.value?.name;
