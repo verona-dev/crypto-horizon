@@ -77,6 +77,7 @@ export const useMarketStore = defineStore('MarketStore', {
                 const response = await useFetchCoingecko('coins/markets', {
                     params: {
                         vs_currency: 'usd',
+                        price_change_percentage: '1h,24h,7d,30d',
                         ...options,
                     },
                 });
@@ -86,8 +87,7 @@ export const useMarketStore = defineStore('MarketStore', {
                         this.coins = response;
                         console.log(JSON.parse(JSON.stringify(this.coins[0])));
                         this.oldCoins = formatCoinsTable(response);
-                        console.log(JSON.parse(JSON.stringify(this.oldCoins[0])));
-                        return this.oldCoins;
+                        return this.coins;
                     }
                     
                     if(list) {
