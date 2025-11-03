@@ -50,60 +50,63 @@
                     
                     <TableBody>
                         <template v-if='table.getRowModel().rows?.length'>
-                            <TableRow
-                                v-for='row in table.getRowModel().rows'
-                                :key='row.id'
-                                :data-state='row.getIsSelected() ? "selected" : undefined'
-                            >
-                                <TableCell
-                                    v-for='cell in row.getVisibleCells()'
-                                    :key='cell.id'
-                                    class='py-4 text-center '
-                                    :class='{
-                                      "text-left": cell.column.id === "name",
-                                    }'
+                                <TableRow
+                                    v-for='row in table.getRowModel().rows'
+                                    :key='row.id'
+                                    :data-state='row.getIsSelected() ? "selected" : undefined'
+                                    class='hover:cursor-pointer'
                                 >
-                                    <!--   Checkbox / Favourites  -->
-                                    <template v-if='cell.column.id === "checkbox"'>
-                                        <NuxtIcon
-                                            v-if='cell.row.getIsSelected()'
-                                            @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
-                                            name='ph:star-fill'
-                                            class='text-yellow-selective hover:cursor-pointer'
-                                            size='16'
-                                        />
-                                        <NuxtIcon
-                                            v-else
-                                            @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
-                                            name='ph:star'
-                                            class='text-muted-foreground hover:cursor-pointer'
-                                            size='16'
-                                        />
-                                    </template>
-                                    
-                                    <!--   Name  -->
-                                    <template v-else-if='cell.column.id === "name"'>
-                                        <div class='flex items-center gap-4'>
-                                            <NuxtImg
-                                                :src='cell.row.original.image'
-                                                width='40'
-                                                alt='coin logo'
-                                            />
+                                    <NuxtLink :to='`/market/${row.original.id}`' class='contents'>
+                                        <TableCell
+                                            v-for='cell in row.getVisibleCells()'
+                                            :key='cell.id'
+                                            class='py-4 text-center'
+                                            :class='{ "text-left": cell.column.id === "name" }'
+                                        >
+                                            <!--   Checkbox / Favourites  -->
+                                            <template v-if='cell.column.id === "checkbox"'>
+                                                <NuxtIcon
+                                                    v-if='cell.row.getIsSelected()'
+                                                    @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
+                                                    name='ph:star-fill'
+                                                    class='text-yellow-selective hover:cursor-pointer'
+                                                    size='16'
+                                                />
+                                                <NuxtIcon
+                                                    v-else
+                                                    @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
+                                                    name='ph:star'
+                                                    class='text-muted-foreground hover:cursor-pointer'
+                                                    size='16'
+                                                />
+                                            </template>
                                             
-                                            <div class='flex flex-col gap-1'>
-                                                <p class='font-medium'>{{ cell.getValue() }}</p>
-                                                <span class='uppercase text-xs text-muted-foreground'>{{ cell.row.original.symbol }}</span>
-                                            </div>
-                                        </div>
-                                    </template>
-                                    
-                                    <FlexRender
-                                        v-else
-                                        :render='cell.column.columnDef.cell'
-                                        :props='cell.getContext()'
-                                    />
-                                </TableCell>
-                            </TableRow>
+                                            <!--   Name  -->
+                                            <template v-else-if='cell.column.id === "name"'>
+                                                <div class='flex items-center gap-4'>
+                                                    <NuxtImg
+                                                        :src='cell.row.original.image'
+                                                        width='40'
+                                                        alt='coin logo'
+                                                    />
+                                                    
+                                                    <div class='flex flex-col gap-1'>
+                                                        <p class='font-medium'>{{ cell.getValue() }}</p>
+                                                        <span
+                                                            class='uppercase text-xs text-muted-foreground'
+                                                        >{{ cell.row.original.symbol }}</span>
+                                                    </div>
+                                                </div>
+                                            </template>
+                                            
+                                            <FlexRender
+                                                v-else
+                                                :render='cell.column.columnDef.cell'
+                                                :props='cell.getContext()'
+                                            />
+                                        </TableCell>
+                                    </NuxtLink>
+                                </TableRow>
                         </template>
                         
                         <template v-else>
