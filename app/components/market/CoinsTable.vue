@@ -8,10 +8,24 @@
                     <TableHeader>
                         <TableRow v-for='headerGroup in table.getHeaderGroups()' :key='headerGroup.id'>
                             <TableHead v-for='header in headerGroup.headers' :key='header.id'>
-                                <FlexRender
-                                    v-if='!header.isPlaceholder' :render='header.column.columnDef.header'
-                                    :props='header.getContext()'
-                                />
+                                <template v-if='!header.isPlaceholder'>
+                                    <template v-if="header.column.id === 'market_cap_rank'">
+                                        <Button
+                                            variant="ghost"
+                                            @click="header.column.toggleSorting(header.column.getIsSorted() === 'asc')"
+                                        >
+                                            #
+                                            <NuxtIcon v-if='header.column.getIsSorted() === "desc"' name='ph:caret-down-fill' size='10' />
+                                            <NuxtIcon v-if='header.column.getIsSorted() === "asc"' name='ph:caret-up-fill' size='10' />
+                                        </Button>
+                                    </template>
+                                    <FlexRender
+                                        v-else
+                                        :render="header.column.columnDef.header"
+                                        :props="header.getContext()"
+                                        class='flex items-center justify-center'
+                                    />
+                                </template>
                             </TableHead>
                         </TableRow>
                     </TableHeader>
@@ -32,14 +46,14 @@
                                     }'
                                 >
                                     <template v-if='cell.column.id === "name"'>
-                                        <div class='flex justify-evenly items-center h-full gap-3'>
+                                        <div class='flex justify-center items-center h-full gap-3'>
                                             <NuxtImg
                                                 :src='cell.row.original.image'
                                                 width='30'
                                                 alt='coin logo'
                                             />
                                             
-                                            <div class='flex flex-col xl:flex-row items-start'>
+                                            <div class='flex flex-col'>
                                                 <p class='text-sm font-medium'>{{ cell.getValue() }}</p>
                                                 <span class='uppercase text-xs text-muted-foreground'>{{ cell.row.original.symbol }}</span>
                                             </div>
@@ -186,19 +200,14 @@
                 'ariaLabel': 'Select row',
             })
         },
-        { // h('p', { class: 'text-left text-green-shamrock' }, '#')
+        { //
             accessorKey: 'market_cap_rank',
-            header: ({ column }) => {
-                return h(Button, {
-                    variant: 'ghost',
-                    onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
-                }, () => ['#', h(ArrowUpDown, { class: 'h-4 w-4'})]);
-            },
             cell: ( row ) => row.getValue(),
+            meta: { useHeaderSlot: true },
         },
         {
             accessorKey: 'name',
-            header: () => h('p', { class: 'text-left' }, 'Name'),
+            header: () => h('p', 'Name'),
             meta: { useSlot: true },
         },
         
