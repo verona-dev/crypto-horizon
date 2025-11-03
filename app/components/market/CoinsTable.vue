@@ -17,17 +17,18 @@
                             >
                                 <template v-if='!header.isPlaceholder'>
                                     <!--   Rank  -->
-                                    <template v-if='header.column.id === "market_cap_rank"'>
-                                        <Button
-                                            variant='ghost'
+                                    <!--   Price  -->
+                                    <template v-if='header.column.id === "market_cap_rank" || header.column.id === "current_price"'>
+                                        <div
                                             @click='header.column.toggleSorting(header.column.getIsSorted() === "asc")'
+                                            class='hover:cursor-pointer'
                                         >
-                                            #
+                                            <span v-if='header.column.id === "market_cap_rank"'>#</span>
+                                            <span v-if='header.column.id === "current_price"'>Price</span>
                                             <NuxtIcon v-if='header.column.getIsSorted() === "desc"' name='ph:caret-down-fill' size='10' />
                                             <NuxtIcon v-if='header.column.getIsSorted() === "asc"' name='ph:caret-up-fill' size='10' />
-                                        </Button>
+                                        </div>
                                     </template>
-                                    
                                     <FlexRender
                                         v-else
                                         :render="header.column.columnDef.header"
@@ -98,7 +99,7 @@
                         
                         <template v-else>
                             <TableRow>
-                                <TableCell :colspan="columns.length" class="h-24 text-center">
+                                <TableCell :colspan='columns.length' class='h-24 text-center'>
                                     No results.
                                 </TableCell>
                             </TableRow>
@@ -203,6 +204,7 @@
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel } from '@tanstack/vue-table';
     import { valueUpdater } from '~/components/ui/table/utils.ts';
+    import { formatNumber } from '~/utils/formatUtils.js';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
@@ -215,9 +217,28 @@
     const sorting = ref([]);
     
     const columns = computed(() => [
-        { id: 'checkbox', header: () => h('p',  'Fav') },
-        { accessorKey: 'market_cap_rank', meta: { useHeaderSlot: true } },
-        { accessorKey: 'name', header: () => h('p', { class: 'text-left'}, 'Name'), meta: { useSlot: true } },
+        {
+            id: 'checkbox',
+            header: () => h('p',  'Fav')
+        },
+        {
+            accessorKey: 'market_cap_rank',
+            meta: { useHeaderSlot: true }
+        },
+        {
+            accessorKey: 'name',
+            header: () => h('p', { class: 'text-left'}, 'Name'),
+            meta: { useSlot: true }
+        },
+        {
+            accessorKey: 'current_price',
+            meta: { useHeaderSlot: true },
+            cell: (row) => {
+                return formatNumber(row.getValue(), {
+                    maximumFractionDigits: 4,
+                });
+            },
+        },
         
         /*
                 {
