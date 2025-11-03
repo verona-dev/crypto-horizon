@@ -4,7 +4,7 @@
         
         <div class='w-full h-180 flex flex-col gap-4'>
             <div class='border rounded-md h-120 flex flex-col flex-2/3 overflow-hidden'>
-                <Table>
+                <Table class='bg-background'>
                     <TableHeader>
                         <TableRow v-for='headerGroup in table.getHeaderGroups()' :key='headerGroup.id'>
                             <TableHead
@@ -12,8 +12,8 @@
                                 :key='header.id'
                                 class='text-center'
                                 :class='{
-                                      "flex justify-center items-center": header.column.id === "market_cap_rank",
-                                    }'
+                                    "flex justify-center items-center": header.column.id === "market_cap_rank",
+                                }'
                             >
                                 <template v-if='!header.isPlaceholder'>
                                     <!--   Rank  -->
