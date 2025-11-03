@@ -9,21 +9,21 @@
                         <TableRow v-for='headerGroup in table.getHeaderGroups()' :key='headerGroup.id'>
                             <TableHead v-for='header in headerGroup.headers' :key='header.id'>
                                 <template v-if='!header.isPlaceholder'>
-                                    <template v-if="header.column.id === 'market_cap_rank'">
+                                    <template v-if='header.column.id === "market_cap_rank"'>
                                         <Button
-                                            variant="ghost"
-                                            @click="header.column.toggleSorting(header.column.getIsSorted() === 'asc')"
+                                            variant='ghost'
+                                            @click='header.column.toggleSorting(header.column.getIsSorted() === "asc")'
                                         >
                                             #
                                             <NuxtIcon v-if='header.column.getIsSorted() === "desc"' name='ph:caret-down-fill' size='10' />
                                             <NuxtIcon v-if='header.column.getIsSorted() === "asc"' name='ph:caret-up-fill' size='10' />
                                         </Button>
                                     </template>
+                                    
                                     <FlexRender
                                         v-else
                                         :render="header.column.columnDef.header"
                                         :props="header.getContext()"
-                                        class='flex items-center justify-center'
                                     />
                                 </template>
                             </TableHead>
@@ -40,12 +40,31 @@
                                 <TableCell
                                     v-for='cell in row.getVisibleCells()'
                                     :key='cell.id'
-                                    class='my-2'
+                                    class='my-2 aaaaaa'
                                     :class='{
                                       "flex items-center": cell.column.id === "name",
                                     }'
                                 >
-                                    <template v-if='cell.column.id === "name"'>
+                                    <!--   Checkbox  -->
+                                    <template v-if='cell.column.id === "checkbox"'>
+                                        <NuxtIcon
+                                            v-if='cell.row.getIsSelected()'
+                                            @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
+                                            name='ph:star-fill'
+                                            class='text-yellow-selective'
+                                            size='16'
+                                        />
+                                        <NuxtIcon
+                                            v-else
+                                            @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
+                                            name='ph:star'
+                                            class='text-muted-foreground'
+                                            size='16'
+                                        />
+                                    </template>
+                                    
+                                    <!--   Name  -->
+                                    <template v-else-if='cell.column.id === "name"'>
                                         <div class='flex justify-center items-center h-full gap-3'>
                                             <NuxtImg
                                                 :src='cell.row.original.image'
@@ -192,17 +211,17 @@
     
     const columns = computed(() => [
         {
-            id: 'select',
-            header: () => h('p', { class: 'text-left text-green-shamrock' }, 'Add'),
-            cell: ({ row }) => h(Checkbox, {
-                'modelValue': row.getIsSelected(),
-                'onUpdate:modelValue': value => row.toggleSelected(!!value),
-                'ariaLabel': 'Select row',
-            })
+            id: 'checkbox',
+            header: () => h('p', { class: 'flex justify-center' }, 'Fav'),
+            
+            // cell: ({ row }) => h(Checkbox, {
+            //     'modelValue': row.getIsSelected(),
+            //     'onUpdate:modelValue': value => row.toggleSelected(!!value),
+            //     'ariaLabel': 'Select row',
+            // })
         },
         { //
             accessorKey: 'market_cap_rank',
-            cell: ( row ) => row.getValue(),
             meta: { useHeaderSlot: true },
         },
         {
