@@ -199,6 +199,17 @@
             }
         },
         {
+            accessorKey: 'price_change_percentage_7d_in_currency',
+            header: () => h('p', '7d %'),
+            cell: (row) => {
+                const price_change_percentage_7d = formatNumber(row.getValue(), {
+                    style: 'percent',
+                });
+                const trend = getTrendClass(row.getValue());
+                return h('div', { class: `text-left ${trend}` }, price_change_percentage_7d);
+            }
+        },
+        {
             accessorKey: 'market_cap',
             header: () => h('p',  'Market Cap'),
             cell: (row) => {
