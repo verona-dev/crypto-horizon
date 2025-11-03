@@ -52,7 +52,6 @@
                         <TableRow
                             v-for='row in table.getRowModel().rows'
                             :key='row.id'
-                            :data-state='row.getIsSelected() ? "selected" : undefined'
                             class='hover:cursor-pointer'
                         >
                             <TableCell
