@@ -4,7 +4,7 @@
         
         <div class='w-full h-180 flex flex-col gap-4'>
             <div class='border rounded-xl h-120 flex flex-col flex-2/3 overflow-hidden'>
-                <Table>
+                <Table class='bg-background'> <!-- leave bg-background for meteorites -->
                     <TableHeader class='bg-background sticky top-0 z-10 shadow-xl'>
                         <TableRow
                             v-for='headerGroup in table.getHeaderGroups()'
@@ -24,7 +24,7 @@
                                     <template v-if='isSortable(header)'>
                                         <div
                                             @click='header.column.toggleSorting(header.column.getIsSorted() === "asc")'
-                                            class='flex items-center gap-2 hover:cursor-pointer'
+                                            class='flex items-center gap-2 hover:cursor-pointer '
                                         >
                                             <FlexRender :render='header.column.columnDef.header' :props='header.getContext()' />
                                             
@@ -211,7 +211,6 @@
 
 <script setup>
     import { h } from 'vue';
-    import { Button } from '~/components/ui/button';
     import { Spinner } from '~/components/ui/spinner';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel } from '@tanstack/vue-table';
@@ -310,41 +309,4 @@
     onMounted(() => {
         getCoinsMarkets({}, 'table');
     });
-    
-    // Pagination
-    /*
-    const page = ref(1); // current page
-    const pageSize = ref(10); // number of items per page
-    const totalPages = computed(() => coins.value?.length / pageSize);
-    const pageTotal = computed(() => rows.value?.length);
-    const totalItems = computed(() => coins.value?.length);
-    
-    const rows = computed(() => {
-        return coins.value?.slice((page.value - 1) * pageCount.value, (page.value) * pageCount.value)
-    });
-    
-    const pageFrom = computed(() => (page.value - 1) * pageSize.value + 1);
-    const pageTo = computed(() => Math.min(page.value * pageSize.value, totalItems.value))
-    */
-    
-    // Filter
-    /*
-    const filter = ref('');
-    const filteredRows = computed(() => {
-        return rows.value.filter(row => {
-            return row.name.toLowerCase().includes(filter.value.toLowerCase()) ||
-                row.id?.toLowerCase().includes(filter.value.toLowerCase());
-        })
-    });
-    
-        // Sort
-    const sort = ref({
-        column: '',
-        direction: 'desc'
-    });
-    */
 </script>
-
-<style>
-
-</style>
