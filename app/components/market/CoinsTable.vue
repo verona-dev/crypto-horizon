@@ -4,7 +4,7 @@
             <h3 class='px-6 py-10 font-medium tracking-widest border-b'>Leading Cryptocurrencies</h3>
             
             <Table class='bg-background'> <!-- leave bg-background for meteorites -->
-                <TableHeader class='bg-background sticky top-0 z-10 shadow-xl'>
+                <TableHeader class='bg-background sticky top-0 z-10 shadow-2xl'>
                     <TableRow
                         v-for='headerGroup in table.getHeaderGroups()'
                         :key='headerGroup.id'
@@ -55,33 +55,33 @@
                             :data-state='row.getIsSelected() ? "selected" : undefined'
                             class='hover:cursor-pointer'
                         >
-                            <NuxtLink :to='`/market/${row.original.id}`' class='contents'>
-                                <TableCell
-                                    v-for='cell in row.getVisibleCells()'
-                                    :key='cell.id'
-                                    class='py-4 text-center'
-                                    :class='{ "text-left": cell.column.id === "name" }'
-                                >
-                                    <!--   Checkbox / Favourites  -->
-                                    <template v-if='cell.column.id === "checkbox"'>
-                                        <NuxtIcon
-                                            v-if='cell.row.getIsSelected()'
-                                            @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
-                                            name='ph:star-fill'
-                                            class='text-yellow-selective hover:cursor-pointer'
-                                            size='16'
-                                        />
-                                        <NuxtIcon
-                                            v-else
-                                            @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
-                                            name='ph:star'
-                                            class='text-muted-foreground hover:cursor-pointer'
-                                            size='16'
-                                        />
-                                    </template>
-                                    
+                            <TableCell
+                                v-for='cell in row.getVisibleCells()'
+                                :key='cell.id'
+                                class='py-4 text-center'
+                                :class='{ "text-left": cell.column.id === "name" }'
+                            >
+                                <!--   Checkbox / Favourites  -->
+                                <template v-if='cell.column.id === "checkbox"'>
+                                    <NuxtIcon
+                                        v-if='cell.row.getIsSelected()'
+                                        @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
+                                        name='ph:star-fill'
+                                        class='text-yellow-selective hover:cursor-pointer'
+                                        size='16'
+                                    />
+                                    <NuxtIcon
+                                        v-else
+                                        @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
+                                        name='ph:star'
+                                        class='text-muted-foreground hover:cursor-pointer'
+                                        size='16'
+                                    />
+                                </template>
+                                
+                                <NuxtLink v-else :to='`/market/${row.original.id}`'>
                                     <!--   Name  -->
-                                    <template v-else-if='cell.column.id === "name"'>
+                                    <template v-if='cell.column.id === "name"'>
                                         <div class='flex items-center gap-4'>
                                             <NuxtImg
                                                 :src='cell.row.original.image'
@@ -89,22 +89,23 @@
                                                 alt='coin logo'
                                             />
                                             
-                                            <div class='flex flex-col gap-1'>
+                                            <div class='flex flex-col items-start gap-1'>
                                                 <p class='font-medium'>{{ cell.getValue() }}</p>
-                                                <span
-                                                    class='uppercase text-xs text-muted-foreground'
-                                                >{{ cell.row.original.symbol }}</span>
+                                                <span class='uppercase text-xs text-muted-foreground'>
+                                                    {{ cell.row.original.symbol }}
+                                                </span>
                                             </div>
                                         </div>
                                     </template>
                                     
-                                    <FlexRender
-                                        v-else
-                                        :render='cell.column.columnDef.cell'
-                                        :props='cell.getContext()'
-                                    />
-                                </TableCell>
-                            </NuxtLink>
+                                    <template v-else>
+                                        <FlexRender
+                                            :render='cell.column.columnDef.cell'
+                                            :props='cell.getContext()'
+                                        />
+                                    </template>
+                                </NuxtLink>
+                            </TableCell>
                         </TableRow>
                     </template>
                     
@@ -118,94 +119,6 @@
                 </TableBody>
             </Table>
         </div>
-        
-        <!--
-    <MazTable
-        :headers='[
-      { label: "#", key: "rank", align: "center", sortable: false, classes: "w-20"},
-      { label: "Name", key: "name", sortable: false, classes: "min-w-[400px]"},
-      { label: "Price", key: "price", align: "center", sortable: false, classes: ""},
-      { label: "Market Cap", key: "marketCap", align: "center", sortable: false, classes: "" },
-      { label: "Volume (24h)", key: "volume", align: "center", sortable: false, classes: "" },
-      { label: "Circ. Supply", key: "c_supply", align: "center", sortable: false, classes: "" },
-      { label: "24h %", key: "changePercent24Hr", align: "center", sortable: false, classes: "" },
-    ]'
-        :rows='oldCoins'
-        class=''
-        hoverable
-        background-even
-        elevation
-    >
-        <template #title>
-            <h5>Top 100 Crypto Currencies by Market Cap</h5>
-        </template>
-        
-        <MazTableRow
-            v-for='(row) in oldCoins'
-            :key='row.id'
-        >
-            <MazTableCell>
-                <NuxtLink :to='`/market/${row.id}`'>
-                    {{ row.rank }}
-                </NuxtLink>
-            </MazTableCell>
-            <MazTableCell>
-                <NuxtLink :to='`/market/${row.id}`'>
-                    <div class='flex items-center gap-2'>
-                        <NuxtImg
-                            :src='row.image'
-                            width='35'
-                            class='ml-2 mr-2'
-                            alt='coin logo'
-                        />
-                        
-                        <div class='flex flex-col xl:flex-row items-start'>
-                            <div class='mr-2'>{{ row.name }}</div>
-                            <div class='text-maz-muted'>{{ row.symbol }}</div>
-                        </div>
-                    </div>
-                </NuxtLink>
-            </MazTableCell>
-            <MazTableCell>
-                <NuxtLink :to='`/market/${row.id}`'>
-                    {{ row.price }}
-                </NuxtLink>
-            </MazTableCell>
-            <MazTableCell>
-                <NuxtLink :to='`/market/${row.id}`'>
-                    {{ row.marketCap }}
-                </NuxtLink>
-            </MazTableCell>
-            <MazTableCell>
-                <NuxtLink :to='`/market/${row.id}`'>
-                    {{ row.volume }}
-                </NuxtLink>
-            </MazTableCell>
-            <MazTableCell>
-                <NuxtLink :to='`/market/${row.id}`'>
-                    {{ row.c_supply }}
-                </NuxtLink>
-            </MazTableCell>
-            <MazTableCell>
-                <NuxtLink :to='`/market/${row.id}`'>
-                    <div :class='row.trend'>
-                        {{ row.changePercent24Hr }}&#37;
-                    </div>
-                </NuxtLink>
-            </MazTableCell>
-        </MazTableRow>
-        
-        <template #no-results>
-            <div class='h-[800px] flex flex-col justify-center items-center'>
-                <h4 class='fetching mb-3'>Fetching data...</h4>
-                
-                <div class='flex items-center justify-center h-32'>
-                    <Spinner class='size-10 text-secondary' />
-                </div>
-            </div>
-        </template>
-    </MazTable>
-    -->
     </div>
 </template>
 
@@ -224,7 +137,7 @@
     // Methods
     const { getCoinsMarkets } = MarketStore;
     // State
-    const { coins, oldCoins } = storeToRefs(MarketStore);
+    const { coins } = storeToRefs(MarketStore);
     const sorting = ref([]);
     
     const isSortable = header => {
