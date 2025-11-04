@@ -182,7 +182,10 @@
     // State
     const { coins } = storeToRefs(MarketStore);
     const sorting = ref([]);
-    const columnVisibility = ref({});
+    const columnVisibility = ref({
+        circulating_supply: false,
+        total_volume: false,
+    });
     
     const isSortable = header => {
         return [
@@ -199,16 +202,6 @@
         ].includes(header.column.id);
     };
     
-    // const isFilterable = [
-    //     'price_change_percentage_1h_in_currency',
-    //     'price_change_percentage_24h',
-    //     'price_change_percentage_7d_in_currency',
-    //     'price_change_percentage_30d_in_currency',
-    //     'market_cap',
-    //     'total_volume',
-    //     'circulating_supply',
-    // ];
-    //
     const columns = computed(() => [
         {
             id: 'checkbox',
@@ -339,7 +332,7 @@
         state: {
             get sorting() { return sorting.value },
             get columnVisibility() { return columnVisibility.value },
-        }
+        },
     });
     
     onMounted(() => {
