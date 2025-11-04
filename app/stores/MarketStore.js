@@ -85,7 +85,6 @@ export const useMarketStore = defineStore('MarketStore', {
                 if(response) {
                     if(table) {
                         this.coins = response;
-                        console.log(JSON.parse(JSON.stringify(this.coins[0])));
                         return this.coins;
                     }
                     

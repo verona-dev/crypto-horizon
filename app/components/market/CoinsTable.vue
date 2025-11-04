@@ -1,167 +1,176 @@
 <template>
-    <div class='w-screen md:max-w-[1920px] h-180 px-10 md:px-32 flex flex-col gap-6 z-10'>
-        <DropdownMenu :modal='false' >
-            <DropdownMenuTrigger as-child class='flex items-center gap-4'>
-                <Button
-                    variant='outline'
-                    class='ml-auto p-5'
-                >
-                    <div class='pt-1'>
-                        <NuxtIcon name='ph:funnel-simple' size='20' />
-                    </div>
-                    Filter
-                </Button>
-            </DropdownMenuTrigger>
+    <Card class='bg-background shadow-none w-screen md:max-w-[1920px] p-10 md:px-24 z-10'>
+        <div class='w-full h-210 flex flex-col gap-6'>
+            <h3 class='font-medium tracking-widest'>Leading Cryptocurrencies by</h3>
+            <!-- <h3 class='font-medium tracking-widest'> Cryptocurrency Prices by Market Cap </h3>-->
             
-            <DropdownMenuContent align='end' class='w-56 p-1'>
-                <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Filters</DropdownMenuLabel>
-                
-                <DropdownMenuCheckboxItem
-                    v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
-                    :key='column.id'
-                    :modelValue='column.getIsVisible()'
-                    @update:modelValue='(value) => column.toggleVisibility(!!value)'
-                    class='checkbox-item capitalize h-12 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-snowy-mint'
-                    @select='event => event.preventDefault()'
-                >
-                    {{ column.columnDef.label }}
-                </DropdownMenuCheckboxItem>
-            </DropdownMenuContent>
-        </DropdownMenu>
-        
-        <div class='border rounded-xl h-120 flex flex-col flex-2/3 overflow-hidden shadow-2xl'>
-            <!--  <h3 class='px-6 py-10 font-medium tracking-widest border-b'>Leading Cryptocurrencies</h3> .  -->
-            
-            <Table class='bg-background overflow-visible'> <!-- leave bg-background for meteorites -->
-                <TableHeader
-                    class='bg-background sticky border-b top-0 z-10 shadow-xs'
-                    :class='{ "shadow-2xl" : dark_mode }'
-                >
-                    <TableRow
-                        v-for='headerGroup in table.getHeaderGroups()'
-                        :key='headerGroup.id'
-                        class='hover:bg-background h-16'
+            <DropdownMenu :modal='false'>
+                <DropdownMenuTrigger as-child class='flex items-center gap-4'>
+                    <Button
+                        variant='outline'
+                        class='ml-auto p-5'
                     >
-                        <TableHead
-                            v-for='header in headerGroup.headers'
-                            :key='header.id'
-                            class='h-full font-bolder text-foreground'
-                            :class='{
+                        <div class='pt-1'>
+                            <NuxtIcon name='ph:funnel-simple' size='20' />
+                        </div>
+                        Filter
+                    </Button>
+                </DropdownMenuTrigger>
+                
+                <DropdownMenuContent align='end' class='w-56 p-1'>
+                    <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Filters</DropdownMenuLabel>
+                    
+                    <DropdownMenuCheckboxItem
+                        v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
+                        :key='column.id'
+                        :modelValue='column.getIsVisible()'
+                        @update:modelValue='(value) => column.toggleVisibility(!!value)'
+                        class='checkbox-item capitalize h-12 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-snowy-mint'
+                        @select='event => event.preventDefault()'
+                    >
+                        {{ column.columnDef.label }}
+                    </DropdownMenuCheckboxItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+            
+            <div class='border rounded-xl h-120 flex flex-col flex-2/3 overflow-hidden shadow-2xl'>
+                <Table class='bg-background overflow-visible'> <!-- leave bg-background for meteorites -->
+                    <TableHeader
+                        class='bg-background sticky border-b top-0 z-10 shadow-xs'
+                        :class='{ "shadow-2xl" : dark_mode }'
+                    >
+                        <TableRow
+                            v-for='headerGroup in table.getHeaderGroups()'
+                            :key='headerGroup.id'
+                            class='hover:bg-background h-16'
+                        >
+                            <TableHead
+                                v-for='header in headerGroup.headers'
+                                :key='header.id'
+                                class='h-full font-bolder text-foreground'
+                                :class='{
                                     "text-center w-16": header.column.id === "checkbox",
                                     "flex justify-center items-center": header.column.id === "market_cap_rank",
                                 }'
-                        >
-                            <template v-if='!header.isPlaceholder'>
-                                <div
-                                    @click='header.column.toggleSorting(header.column.getIsSorted() === "asc")'
-                                    class='flex items-center gap-1'
-                                    :class='{ "hover:cursor-pointer" : isSortable(header)}'
-                                >
-                                    <FlexRender
-                                        :render='header.column.columnDef.header'
-                                        :props='header.getContext()'
-                                        class='text-md' />
-                                    
-                                    <div class='pt-1 w-3' v-if='isSortable(header)'>
-                                        <NuxtIcon
-                                            v-if='header.column.getIsSorted() === "desc"'
-                                            name='ph:caret-down-fill'
-                                            size='12'
-                                        />
-                                        <NuxtIcon
-                                            v-else-if='header.column.getIsSorted() === "asc"'
-                                            name='ph:caret-up-fill'
-                                            size='12'
-                                        />
-                                    </div>
-                                </div>
-                            </template>
-                        </TableHead>
-                    </TableRow>
-                </TableHeader>
-                
-                <TableBody>
-                    <template v-if='table.getRowModel().rows?.length'>
-                        <TableRow
-                            v-for='row in table.getRowModel().rows'
-                            :key='row.id'
-                            class='hover:cursor-pointer border-none !px-6'
-                        >
-                            <TableCell
-                                v-for='cell in row.getVisibleCells()'
-                                :key='cell.id'
-                                class='py-4 text-center'
-                                :class='{ "text-left": cell.column.id === "name" }'
                             >
-                                <!--   Checkbox / Favourites  -->
-                                <template v-if='cell.column.id === "checkbox"'>
-                                    <div class='pt-1'>
-                                        <NuxtIcon
-                                            v-if='cell.row.getIsSelected()'
-                                            @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
-                                            name='ph:star-fill'
-                                            class='text-yellow-selective hover:cursor-pointer'
-                                            size='16'
+                                <template v-if='!header.isPlaceholder'>
+                                    <div
+                                        @click='header.column.toggleSorting(header.column.getIsSorted() === "asc")'
+                                        class='flex items-center gap-1'
+                                        :class='{ "hover:cursor-pointer" : isSortable(header)}'
+                                    >
+                                        <FlexRender
+                                            :render='header.column.columnDef.header'
+                                            :props='header.getContext()'
+                                            class='text-md'
                                         />
-                                        <NuxtIcon
-                                            v-else
-                                            @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
-                                            name='ph:star'
-                                            class='text-muted-foreground hover:cursor-pointer'
-                                            size='16'
-                                        />
+                                        
+                                        <div class='pt-1 w-3' v-if='isSortable(header)'>
+                                            <NuxtIcon
+                                                v-if='header.column.getIsSorted() === "desc"'
+                                                name='ph:caret-down-fill'
+                                                size='12'
+                                            />
+                                            <NuxtIcon
+                                                v-else-if='header.column.getIsSorted() === "asc"'
+                                                name='ph:caret-up-fill'
+                                                size='12'
+                                            />
+                                        </div>
                                     </div>
                                 </template>
-                                
-                                <NuxtLink
-                                    v-else
-                                    :to='`/market/${row.original.id}`'
+                            </TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    
+                    <TableBody>
+                        <template v-if='table.getRowModel().rows?.length'>
+                            <TableRow
+                                v-for='row in table.getRowModel().rows'
+                                :key='row.id'
+                                class='hover:cursor-pointer border-none !px-6'
+                            >
+                                <TableCell
+                                    v-for='cell in row.getVisibleCells()'
+                                    :key='cell.id'
+                                    class='py-4 text-center'
+                                    :class='{ "text-left": cell.column.id === "name" }'
                                 >
-                                    <!--   Name  -->
-                                    <template v-if='cell.column.id === "name"'>
-                                        <div class='flex items-center gap-4 w-64'>
-                                            <NuxtImg
-                                                :src='cell.row.original.image'
-                                                width='40'
-                                                alt='coin logo'
+                                    <!--   Checkbox / Favourites  -->
+                                    <template v-if='cell.column.id === "checkbox"'>
+                                        <div class='pt-1'>
+                                            <NuxtIcon
+                                                v-if='cell.row.getIsSelected()'
+                                                @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
+                                                name='ph:star-fill'
+                                                class='text-yellow-selective hover:cursor-pointer'
+                                                size='16'
                                             />
-                                            
-                                            <div class='flex flex-col items-start gap-1 truncate'>
-                                                <p class='font-medium'>{{ cell.getValue() }}</p>
-                                                <span class='uppercase text-xs text-muted-foreground'>
-                                                    {{ cell.row.original.symbol }}
-                                                </span>
-                                            </div>
+                                            <NuxtIcon
+                                                v-else
+                                                @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
+                                                name='ph:star'
+                                                class='text-muted-foreground hover:cursor-pointer'
+                                                size='16'
+                                            />
                                         </div>
                                     </template>
                                     
-                                    <template v-else>
-                                        <FlexRender
-                                            :render='cell.column.columnDef.cell'
-                                            :props='cell.getContext()'
-                                        />
-                                    </template>
-                                </NuxtLink>
-                            </TableCell>
-                        </TableRow>
-                    </template>
-                    
-                    <template v-else>
-                        <TableRow>
-                            <TableCell :colspan='columns.length' class='h-24 text-center'>
-                                No results.
-                            </TableCell>
-                        </TableRow>
-                    </template>
-                </TableBody>
-            </Table>
+                                    <NuxtLink
+                                        v-else
+                                        :to='`/market/${row.original.id}`'
+                                    >
+                                        <!--   Name  -->
+                                        <template v-if='cell.column.id === "name"'>
+                                            <div class='flex items-center gap-4 w-64'>
+                                                <NuxtImg
+                                                    :src='cell.row.original.image'
+                                                    width='40'
+                                                    alt='coin logo'
+                                                />
+                                                
+                                                <div class='flex flex-col items-start gap-1 truncate'>
+                                                    <p class='font-medium'>{{ cell.getValue() }}</p>
+                                                    <span class='uppercase text-xs text-muted-foreground'>
+                                                    {{ cell.row.original.symbol }}
+                                                </span>
+                                                </div>
+                                            </div>
+                                        </template>
+                                        
+                                        <template v-else>
+                                            <FlexRender
+                                                :render='cell.column.columnDef.cell'
+                                                :props='cell.getContext()'
+                                            />
+                                        </template>
+                                    </NuxtLink>
+                                </TableCell>
+                            </TableRow>
+                        </template>
+                        
+                        <template v-else>
+                            <TableRow>
+                                <TableCell :colspan='columns.length' class='h-24 text-center'>
+                                    No results.
+                                </TableCell>
+                            </TableRow>
+                        </template>
+                    </TableBody>
+                </Table>
+            </div>
+            
+            <div class='flex items-center justify-center'>
+                <span class='text-xs'>Market data updated {{ last_api_update }}</span>
+            </div>
         </div>
-    </div>
+    </Card>
 </template>
 
 <script setup>
     import { h } from 'vue';
     import { Button } from '~/components/ui/button';
+    import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
     import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger,  } from '@/components/ui/dropdown-menu';
     import { Spinner } from '~/components/ui/spinner';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
@@ -169,6 +178,10 @@
     import { valueUpdater } from '~/components/ui/table/utils.ts';
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendClass } from '~/utils/styleUtils.js';
+    
+    import dayjs from 'dayjs';
+    import relativeTime from 'dayjs/plugin/relativeTime';
+    dayjs.extend(relativeTime, { rounding: Math.floor });
     
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
@@ -181,6 +194,7 @@
     const { getCoinsMarkets } = MarketStore;
     // State
     const { coins } = storeToRefs(MarketStore);
+    
     const sorting = ref([]);
     const columnVisibility = ref({
         price_change_percentage_30d_in_currency: false,
@@ -189,6 +203,7 @@
         total_supply: false,
         fully_diluted_valuation: false,
     });
+    const last_api_update = computed(() => dayjs(coins.value[0]?.last_updated).fromNow());
     
     const isSortable = header => {
         return [
