@@ -19,11 +19,13 @@
                 <DropdownMenuCheckboxItem
                     v-for='column in table.getAllColumns().filter((column) => column.getCanHide())'
                     :key='column.id'
-                    class='capitalize h-10 rounded-lg my-1 hover:cursor-pointer text-secondary-foreground/50 data-[state=checked]:text-secondary-foreground'
                     :modelValue='column.getIsVisible()'
                     @update:modelValue='(value) => {
                            column.toggleVisibility(!!value)
-                    }'>
+                    }'
+                    class='capitalize h-10 rounded-lg my-1 hover:cursor-pointer text-secondary-foreground/50 data-[state=checked]:text-secondary-foreground'
+                    @select='event => event.preventDefault()'
+                >
                     {{ column.columnDef.label }}
                 </DropdownMenuCheckboxItem>
             </DropdownMenuContent>
@@ -161,7 +163,7 @@
 <script setup>
     import { h } from 'vue';
     import { Button } from '~/components/ui/button';
-    import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+    import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger,  } from '@/components/ui/dropdown-menu';
     import { Spinner } from '~/components/ui/spinner';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel } from '@tanstack/vue-table';
