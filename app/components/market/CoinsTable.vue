@@ -84,14 +84,14 @@
                                 >
                                     <!--   Name  -->
                                     <template v-if='cell.column.id === "name"'>
-                                        <div class='flex items-center gap-4 w-60'>
+                                        <div class='flex items-center gap-4'>
                                             <NuxtImg
                                                 :src='cell.row.original.image'
                                                 width='40'
                                                 alt='coin logo'
                                             />
                                             
-                                            <div class='flex flex-col items-start gap-1'>
+                                            <div class='flex flex-col items-start gap-1 truncate'>
                                                 <p class='font-medium'>{{ cell.getValue() }}</p>
                                                 <span class='uppercase text-xs text-muted-foreground'>
                                                     {{ cell.row.original.symbol }}
