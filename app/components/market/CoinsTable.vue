@@ -7,12 +7,8 @@
                     class='ml-auto p-5'
                 >
                     <div class='pt-1'>
-                        <NuxtIcon
-                            name='ph:funnel-simple'
-                            size='20'
-                        />
+                        <NuxtIcon name='ph:funnel-simple' size='20' />
                     </div>
-                    
                     Filter
                 </Button>
             </DropdownMenuTrigger>
@@ -23,7 +19,7 @@
                 <DropdownMenuCheckboxItem
                     v-for='column in table.getAllColumns().filter((column) => column.getCanHide())'
                     :key='column.id'
-                    class='capitalize h-10 rounded-lg my-1 hover:cursor-pointer'
+                    class='capitalize h-10 rounded-lg my-1 hover:cursor-pointer text-secondary-foreground/50 data-[state=checked]:text-secondary-foreground'
                     :modelValue='column.getIsVisible()'
                     @update:modelValue='(value) => {
                            column.toggleVisibility(!!value)
@@ -88,7 +84,7 @@
                         <TableRow
                             v-for='row in table.getRowModel().rows'
                             :key='row.id'
-                            class='hover:cursor-pointer'
+                            class='hover:cursor-pointer border-none !px-6'
                         >
                             <TableCell
                                 v-for='cell in row.getVisibleCells()'
@@ -122,7 +118,7 @@
                                 >
                                     <!--   Name  -->
                                     <template v-if='cell.column.id === "name"'>
-                                        <div class='flex items-center gap-4'>
+                                        <div class='flex items-center gap-4 w-64'>
                                             <NuxtImg
                                                 :src='cell.row.original.image'
                                                 width='40'
@@ -216,6 +212,7 @@
             cell: (row) => h('div', { class: 'text-left' }, row.getValue()),
         },
         {
+            id: 'name',
             label: 'Name',
             accessorKey: 'name',
             header: () => h('p', 'Name'),
@@ -241,7 +238,7 @@
                     style: 'percent',
                 });
                 const trend = getTrendClass(row.getValue());
-                return h('div', { class: `text-left w-14 ${trend}` }, price_change_percentage_1h);
+                return h('div', { class: `text-left ${trend}` }, price_change_percentage_1h);
             }
         },
         {
@@ -253,7 +250,7 @@
                     style: 'percent',
                 });
                 const trend = getTrendClass(row.getValue());
-                return h('div', { class: `text-left w-14 ${trend}` }, price_change_percentage_24h);
+                return h('div', { class: `text-left ${trend}` }, price_change_percentage_24h);
             }
         },
         {
@@ -265,7 +262,7 @@
                     style: 'percent',
                 });
                 const trend = getTrendClass(row.getValue());
-                return h('div', { class: `text-left w-14 ${trend}` }, price_change_percentage_7d);
+                return h('div', { class: `text-left ${trend}` }, price_change_percentage_7d);
             }
         },
         {
@@ -277,7 +274,7 @@
                     style: 'percent',
                 });
                 const trend = getTrendClass(row.getValue());
-                return h('div', { class: `text-left w-14 ${trend}` }, price_change_percentage_30d);
+                return h('div', { class: `text-left ${trend}` }, price_change_percentage_30d);
             }
         },
         {
