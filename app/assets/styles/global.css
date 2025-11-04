@@ -141,6 +141,10 @@
             @apply dark:!bg-foreground dark:!text-background;
         }
         
+        span {
+            @apply dark:text-foreground;
+        }
+        
         & [data-content] {
             @apply ml-12;
         }

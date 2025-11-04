@@ -157,9 +157,7 @@
                 label: 'OK',
             },
             description: () =>
-                h('span', {
-                    class: '',
-                }, contract.value),
+                h('span', contract.value),
         });
     };
     
