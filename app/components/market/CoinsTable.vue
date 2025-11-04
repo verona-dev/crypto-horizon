@@ -1,10 +1,13 @@
 <template>
     <div class='w-screen md:max-w-[1920px] h-180 px-10 md:px-32 flex flex-col z-10'>
-        <div class='border rounded-xl h-120 flex flex-col flex-2/3 overflow-hidden'>
-            <h3 class='px-6 py-10 font-medium tracking-widest border-b'>Leading Cryptocurrencies</h3>
+        <div class='border rounded-xl h-120 flex flex-col flex-2/3 overflow-hidden shadow-2xl'>
+            <!--  <h3 class='px-6 py-10 font-medium tracking-widest border-b'>Leading Cryptocurrencies</h3> .  -->
             
-            <Table class='bg-background'> <!-- leave bg-background for meteorites -->
-                <TableHeader class='bg-background sticky top-0 z-10 shadow-2xl'>
+            <Table class='bg-background overflow-visible'> <!-- leave bg-background for meteorites -->
+                <TableHeader
+                    class='bg-background sticky border-b top-0 z-10 shadow-xs'
+                    :class='{ "shadow-2xl" : dark_mode }'
+                >
                     <TableRow
                         v-for='headerGroup in table.getHeaderGroups()'
                         :key='headerGroup.id'
@@ -132,6 +135,9 @@
     import { valueUpdater } from '~/components/ui/table/utils.ts';
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendClass } from '~/utils/styleUtils.js';
+    
+    const colorMode = useColorMode();
+    const dark_mode = computed(() => colorMode.value === 'dark');
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
