@@ -183,8 +183,9 @@
     const { coins } = storeToRefs(MarketStore);
     const sorting = ref([]);
     const columnVisibility = ref({
+        price_change_percentage_30d_in_currency: false,
         max_supply: false,
-        circulating_supply: true,
+        circulating_supply: false,
         total_supply: false,
         fully_diluted_valuation: false,
     });
@@ -215,7 +216,7 @@
             accessorKey: 'market_cap_rank',
             header: () => h('p','#'),
             meta: { useHeaderSlot: true },
-            cell: (row) => h('div', { class: 'text-left' }, row.getValue()),
+            cell: (cell) => h('div', { class: 'text-left' }, cell.getValue()),
         },
         {
             label: 'Name',
@@ -227,8 +228,8 @@
             label: 'Price',
             accessorKey: 'current_price',
             header: () => h('p', 'Price'),
-            cell: (row) => {
-                const current_price = formatNumber(row.getValue(), {
+            cell: (cell) => {
+                const current_price = formatNumber(cell.getValue(), {
                     maximumFractionDigits: 4,
                 });
                 return h('div', { class: 'text-left' }, current_price);
@@ -238,11 +239,11 @@
             label: '1h %',
             accessorKey: 'price_change_percentage_1h_in_currency',
             header: () => h('p', '1h %'),
-            cell: (row) => {
-                const price_change_percentage_1h = formatNumber(row.getValue(), {
+            cell: (cell) => {
+                const price_change_percentage_1h = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
-                const trend = getTrendClass(row.getValue());
+                const trend = getTrendClass(cell.getValue());
                 return h('div', { class: `text-left ${trend}` }, price_change_percentage_1h);
             },
             isFilterable: true,
@@ -251,11 +252,11 @@
             label: '24h %',
             accessorKey: 'price_change_percentage_24h',
             header: () => h('p', '24h %'),
-            cell: (row) => {
-                const price_change_percentage_24h = formatNumber(row.getValue(), {
+            cell: (cell) => {
+                const price_change_percentage_24h = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
-                const trend = getTrendClass(row.getValue());
+                const trend = getTrendClass(cell.getValue());
                 return h('div', { class: `text-left ${trend}` }, price_change_percentage_24h);
             },
             isFilterable: true,
@@ -264,11 +265,11 @@
             label: '7d %',
             accessorKey: 'price_change_percentage_7d_in_currency',
             header: () => h('p', '7d %'),
-            cell: (row) => {
-                const price_change_percentage_7d = formatNumber(row.getValue(), {
+            cell: (cell) => {
+                const price_change_percentage_7d = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
-                const trend = getTrendClass(row.getValue());
+                const trend = getTrendClass(cell.getValue());
                 return h('div', { class: `text-left ${trend}` }, price_change_percentage_7d);
             },
             isFilterable: true,
@@ -277,11 +278,11 @@
             label: '30d %',
             accessorKey: 'price_change_percentage_30d_in_currency',
             header: () => h('p', '30d %'),
-            cell: (row) => {
-                const price_change_percentage_30d = formatNumber(row.getValue(), {
+            cell: (cell) => {
+                const price_change_percentage_30d = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
-                const trend = getTrendClass(row.getValue());
+                const trend = getTrendClass(cell.getValue());
                 return h('div', { class: `text-left ${trend}` }, price_change_percentage_30d);
             },
             isFilterable: true,
@@ -290,8 +291,8 @@
             label: 'Market Cap',
             accessorKey: 'market_cap',
             header: () => h('p',  'Market Cap'),
-            cell: (row) => {
-                const market_cap = formatNumber(row.getValue(), {
+            cell: (cell) => {
+                const market_cap = formatNumber(cell.getValue(), {
                     compact: true, decimals: 2
                 });
                 return h('div', { class: 'text-left' }, market_cap);
@@ -302,8 +303,8 @@
             label: 'Volume 24h',
             accessorKey: 'total_volume',
             header: () => h('p',  'Volume (24h)'),
-            cell: (row) => {
-                const total_volume = formatNumber(row.getValue(), {
+            cell: (cell) => {
+                const total_volume = formatNumber(cell.getValue(), {
                     compact: true, decimals: 2
                 }) ;
                 return h('div', { class: 'text-left' }, total_volume);
@@ -320,7 +321,7 @@
                 });
                 const symbol = cell.row?.original?.symbol?.toUpperCase();
                 const label = () => cell.getValue() ? `${max_supply} ${symbol.toUpperCase()}` : max_supply;
-                return h('div', { class: 'text-left' }, label());
+                return h('div', { class: 'text-left w-24' }, label());
             },
             isFilterable: true,
         },
@@ -342,11 +343,13 @@
             label: 'Total Supply',
             accessorKey: 'total_supply',
             header: () => h('p',  'Total Supply'),
-            cell: (row) => {
-                const total_supply = formatNumber(row.getValue(), {
-                    compact: true, style: 'decimal'
+            cell: (cell) => {
+                const total_supply = formatNumber(cell.getValue(), {
+                    compact: true, style: 'decimal', decimals: 2
                 });
-                return h('div', { class: 'text-left' }, total_supply);
+                const symbol = cell.row?.original?.symbol?.toUpperCase();
+                const label = () => cell.getValue() ? `${total_supply} ${symbol.toUpperCase()}` : total_supply;
+                return h('div', { class: 'text-left' }, label());
             },
             isFilterable: true,
         },
@@ -354,8 +357,8 @@
             label: 'Fully Diluted Mcap (Fdv)',
             accessorKey: 'fully_diluted_valuation',
             header: () => h('p',  'Fdv'),
-            cell: (row) => {
-                const fully_diluted_valuation = formatNumber(row.getValue(), {
+            cell: (cell) => {
+                const fully_diluted_valuation = formatNumber(cell.getValue(), {
                     compact: true, decimals: 1
                 });
                 return h('div', { class: 'text-left' }, fully_diluted_valuation);
