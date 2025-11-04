@@ -77,6 +77,7 @@ export const useMarketStore = defineStore('MarketStore', {
                     params: {
                         vs_currency: 'usd',
                         price_change_percentage: '1h,24h,7d,30d',
+                        sparkline: true,
                         ...options,
                     },
                 });
