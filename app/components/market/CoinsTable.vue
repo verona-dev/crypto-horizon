@@ -17,12 +17,10 @@
                 <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Filters</DropdownMenuLabel>
                 
                 <DropdownMenuCheckboxItem
-                    v-for='column in table.getAllColumns().filter((column) => column.getCanHide())'
+                    v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && isFilterable.includes(column.id))'
                     :key='column.id'
                     :modelValue='column.getIsVisible()'
-                    @update:modelValue='(value) => {
-                           column.toggleVisibility(!!value)
-                    }'
+                    @update:modelValue='(value) => column.toggleVisibility(!!value)'
                     class='checkbox-item capitalize h-12 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-snowy-mint'
                     @select='event => event.preventDefault()'
                 >
@@ -201,6 +199,16 @@
         ].includes(header.column.id);
     };
     
+    const isFilterable = [
+        'price_change_percentage_1h_in_currency',
+        'price_change_percentage_24h',
+        'price_change_percentage_7d_in_currency',
+        'price_change_percentage_30d_in_currency',
+        'market_cap',
+        'total_volume',
+        'circulating_supply',
+    ];
+    
     const columns = computed(() => [
         {
             id: 'checkbox',
@@ -215,7 +223,6 @@
             cell: (row) => h('div', { class: 'text-left' }, row.getValue()),
         },
         {
-            id: 'name',
             label: 'Name',
             accessorKey: 'name',
             header: () => h('p', 'Name'),
