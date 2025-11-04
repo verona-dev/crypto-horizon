@@ -184,7 +184,7 @@
     const sorting = ref([]);
     const columnVisibility = ref({
         max_supply: false,
-        circulating_supply: false,
+        circulating_supply: true,
         total_supply: false,
         fully_diluted_valuation: false,
     });
@@ -316,7 +316,7 @@
             header: () => h('p',  'Max Supply'),
             cell: (cell) => {
                 const max_supply = formatNumber(cell.getValue(), {
-                    compact: true, style: 'decimal'
+                    compact: true, style: 'decimal',
                 });
                 const symbol = cell.row?.original?.symbol?.toUpperCase();
                 const label = () => cell.getValue() ? `${max_supply} ${symbol.toUpperCase()}` : max_supply;
@@ -328,11 +328,13 @@
             label: 'Circulating Supply',
             accessorKey: 'circulating_supply',
             header: () => h('p',  'Circ. Supply'),
-            cell: (row) => {
-                const circulating_supply = formatNumber(row.getValue(), {
-                    compact: true, style: 'decimal'
+            cell: (cell) => {
+                const circulating_supply = formatNumber(cell.getValue(), {
+                    compact: true, style: 'decimal', decimals: 2
                 });
-                return h('div', { class: 'text-left' }, circulating_supply);
+                const symbol = cell.row?.original?.symbol?.toUpperCase();
+                const label = () => cell.getValue() ? `${circulating_supply} ${symbol.toUpperCase()}` : circulating_supply;
+                return h('div', { class: 'text-left' }, label());
             },
             isFilterable: true,
         },
