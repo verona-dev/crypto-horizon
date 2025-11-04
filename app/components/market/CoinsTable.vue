@@ -13,7 +13,7 @@
                 </Button>
             </DropdownMenuTrigger>
             
-            <DropdownMenuContent align='end' class='w-52 p-1'>
+            <DropdownMenuContent align='end' class='w-56 p-1'>
                 <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Filters</DropdownMenuLabel>
                 
                 <DropdownMenuCheckboxItem
@@ -184,7 +184,7 @@
     const sorting = ref([]);
     const columnVisibility = ref({
         circulating_supply: false,
-        total_volume: false,
+        fully_diluted_valuation: false,
     });
     
     const isSortable = header => {
@@ -312,6 +312,18 @@
             label: 'Circulating Supply',
             accessorKey: 'circulating_supply',
             header: () => h('p',  'Circ. Supply'),
+            cell: (row) => {
+                const circ_supply = formatNumber(row.getValue(), {
+                    compact: true, decimals: 1
+                });
+                return h('div', { class: 'text-left' }, circ_supply);
+            },
+            isFilterable: true,
+        },
+        {
+            label: 'Fully Diluted Mcap (Fdv)',
+            accessorKey: 'fully_diluted_valuation',
+            header: () => h('p',  'Fdv'),
             cell: (row) => {
                 const circ_supply = formatNumber(row.getValue(), {
                     compact: true, decimals: 1
