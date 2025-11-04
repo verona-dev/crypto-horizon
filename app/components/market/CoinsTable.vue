@@ -98,20 +98,22 @@
                             >
                                 <!--   Checkbox / Favourites  -->
                                 <template v-if='cell.column.id === "checkbox"'>
-                                    <NuxtIcon
-                                        v-if='cell.row.getIsSelected()'
-                                        @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
-                                        name='ph:star-fill'
-                                        class='text-yellow-selective hover:cursor-pointer'
-                                        size='16'
-                                    />
-                                    <NuxtIcon
-                                        v-else
-                                        @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
-                                        name='ph:star'
-                                        class='text-muted-foreground hover:cursor-pointer'
-                                        size='16'
-                                    />
+                                    <div class='pt-1'>
+                                        <NuxtIcon
+                                            v-if='cell.row.getIsSelected()'
+                                            @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
+                                            name='ph:star-fill'
+                                            class='text-yellow-selective hover:cursor-pointer'
+                                            size='16'
+                                        />
+                                        <NuxtIcon
+                                            v-else
+                                            @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
+                                            name='ph:star'
+                                            class='text-muted-foreground hover:cursor-pointer'
+                                            size='16'
+                                        />
+                                    </div>
                                 </template>
                                 
                                 <NuxtLink
