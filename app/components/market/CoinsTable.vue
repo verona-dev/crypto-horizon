@@ -209,8 +209,9 @@
         {
             label: 'Rank',
             accessorKey: 'market_cap_rank',
-            header: () => h('p', '#'),
-            meta: { useHeaderSlot: true }
+            header: () => h('p','#'),
+            meta: { useHeaderSlot: true },
+            cell: (row) => h('div', { class: 'text-left' }, row.getValue()),
         },
         {
             label: 'Name',
