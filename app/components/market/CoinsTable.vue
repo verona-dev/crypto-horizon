@@ -17,7 +17,7 @@
                 <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Filters</DropdownMenuLabel>
                 
                 <DropdownMenuCheckboxItem
-                    v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && isFilterable.includes(column.id))'
+                    v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
                     :key='column.id'
                     :modelValue='column.getIsVisible()'
                     @update:modelValue='(value) => column.toggleVisibility(!!value)'
@@ -199,16 +199,16 @@
         ].includes(header.column.id);
     };
     
-    const isFilterable = [
-        'price_change_percentage_1h_in_currency',
-        'price_change_percentage_24h',
-        'price_change_percentage_7d_in_currency',
-        'price_change_percentage_30d_in_currency',
-        'market_cap',
-        'total_volume',
-        'circulating_supply',
-    ];
-    
+    // const isFilterable = [
+    //     'price_change_percentage_1h_in_currency',
+    //     'price_change_percentage_24h',
+    //     'price_change_percentage_7d_in_currency',
+    //     'price_change_percentage_30d_in_currency',
+    //     'market_cap',
+    //     'total_volume',
+    //     'circulating_supply',
+    // ];
+    //
     const columns = computed(() => [
         {
             id: 'checkbox',
@@ -249,7 +249,8 @@
                 });
                 const trend = getTrendClass(row.getValue());
                 return h('div', { class: `text-left ${trend}` }, price_change_percentage_1h);
-            }
+            },
+            isFilterable: true,
         },
         {
             label: '24h %',
@@ -261,7 +262,8 @@
                 });
                 const trend = getTrendClass(row.getValue());
                 return h('div', { class: `text-left ${trend}` }, price_change_percentage_24h);
-            }
+            },
+            isFilterable: true,
         },
         {
             label: '7d %',
@@ -273,7 +275,8 @@
                 });
                 const trend = getTrendClass(row.getValue());
                 return h('div', { class: `text-left ${trend}` }, price_change_percentage_7d);
-            }
+            },
+            isFilterable: true,
         },
         {
             label: '30d %',
@@ -285,7 +288,8 @@
                 });
                 const trend = getTrendClass(row.getValue());
                 return h('div', { class: `text-left ${trend}` }, price_change_percentage_30d);
-            }
+            },
+            isFilterable: true,
         },
         {
             label: 'Market Cap',
@@ -297,6 +301,7 @@
                 });
                 return h('div', { class: 'text-left' }, price);
             },
+            isFilterable: true,
         },
         {
             label: 'Volume 24h',
@@ -308,6 +313,7 @@
                 }) ;
                 return h('div', { class: 'text-left' }, volume);
             },
+            isFilterable: true,
         },
         {
             label: 'Circulating Supply',
@@ -319,6 +325,7 @@
                 });
                 return h('div', { class: 'text-left' }, circ_supply);
             },
+            isFilterable: true,
         },
     ]);
     
