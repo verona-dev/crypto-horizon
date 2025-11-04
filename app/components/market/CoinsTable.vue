@@ -227,10 +227,10 @@
             accessorKey: 'current_price',
             header: () => h('p', 'Price'),
             cell: (row) => {
-                const price = formatNumber(row.getValue(), {
+                const current_price = formatNumber(row.getValue(), {
                     maximumFractionDigits: 4,
                 });
-                return h('div', { class: 'text-left' }, price);
+                return h('div', { class: 'text-left' }, current_price);
             },
         },
         {
@@ -290,10 +290,10 @@
             accessorKey: 'market_cap',
             header: () => h('p',  'Market Cap'),
             cell: (row) => {
-                const price = formatNumber(row.getValue(), {
+                const market_cap = formatNumber(row.getValue(), {
                     compact: true, decimals: 2
                 });
-                return h('div', { class: 'text-left' }, price);
+                return h('div', { class: 'text-left' }, market_cap);
             },
             isFilterable: true,
         },
@@ -302,10 +302,10 @@
             accessorKey: 'total_volume',
             header: () => h('p',  'Volume (24h)'),
             cell: (row) => {
-                const volume = formatNumber(row.getValue(), {
+                const total_volume = formatNumber(row.getValue(), {
                     compact: true, decimals: 2
                 }) ;
-                return h('div', { class: 'text-left' }, volume);
+                return h('div', { class: 'text-left' }, total_volume);
             },
             isFilterable: true,
         },
@@ -326,10 +326,10 @@
             accessorKey: 'circulating_supply',
             header: () => h('p',  'Circ. Supply'),
             cell: (row) => {
-                const circ_supply = formatNumber(row.getValue(), {
+                const circulating_supply = formatNumber(row.getValue(), {
                     compact: true, decimals: 1
                 });
-                return h('div', { class: 'text-left' }, circ_supply);
+                return h('div', { class: 'text-left' }, circulating_supply);
             },
             isFilterable: true,
         },
