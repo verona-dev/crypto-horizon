@@ -185,6 +185,7 @@
     const columnVisibility = ref({
         max_supply: false,
         circulating_supply: false,
+        total_supply: false,
         fully_diluted_valuation: false,
     });
     
@@ -315,7 +316,7 @@
             header: () => h('p',  'Max Supply'),
             cell: (row) => {
                 const max_supply = formatNumber(row.getValue(), {
-                    compact: true, decimals: 1
+                    compact: true, style: 'decimal'
                 });
                 return h('div', { class: 'text-left' }, max_supply);
             },
@@ -327,9 +328,21 @@
             header: () => h('p',  'Circ. Supply'),
             cell: (row) => {
                 const circulating_supply = formatNumber(row.getValue(), {
-                    compact: true, decimals: 1
+                    compact: true, style: 'decimal'
                 });
                 return h('div', { class: 'text-left' }, circulating_supply);
+            },
+            isFilterable: true,
+        },
+        {
+            label: 'Total Supply',
+            accessorKey: 'total_supply',
+            header: () => h('p',  'Total Supply'),
+            cell: (row) => {
+                const total_supply = formatNumber(row.getValue(), {
+                    compact: true, style: 'decimal'
+                });
+                return h('div', { class: 'text-left' }, total_supply);
             },
             isFilterable: true,
         },
