@@ -56,7 +56,8 @@
                             <template v-if='!header.isPlaceholder'>
                                 <div
                                     @click='header.column.toggleSorting(header.column.getIsSorted() === "asc")'
-                                    class='flex items-center gap-1 hover:cursor-pointer'
+                                    class='flex items-center gap-1'
+                                    :class='{ "hover:cursor-pointer" : isSortable(header)}'
                                 >
                                     <FlexRender
                                         :render='header.column.columnDef.header'
