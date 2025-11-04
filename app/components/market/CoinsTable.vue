@@ -1,6 +1,6 @@
 <template>
     <div class='w-screen md:max-w-[1920px] h-180 px-10 md:px-32 flex flex-col gap-6 z-10'>
-        <DropdownMenu>
+        <DropdownMenu :modal='false' >
             <DropdownMenuTrigger as-child class='flex items-center gap-4'>
                 <Button
                     variant='outline'
