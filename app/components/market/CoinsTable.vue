@@ -1,19 +1,19 @@
 <template>
-    <div class='w-screen md:max-w-[1920px] h-180 px-10 md:px-32 flex flex-col z-10'>
+    <div class='w-screen md:max-w-[1920px] h-180 px-10 md:px-32 flex flex-col gap-6 z-10'>
         <DropdownMenu>
-            <DropdownMenuTrigger as-child>
+            <DropdownMenuTrigger as-child class='flex items-center gap-4'>
                 <Button
-                    variant="outline"
-                    class="ml-auto"
+                    variant='outline'
+                    class='ml-auto p-5'
                 >
-                    Columns
-                    
                     <div class='pt-1'>
                         <NuxtIcon
-                            name='ph:caret-down-fill'
-                            size='12'
+                            name='ph:funnel-simple'
+                            size='20'
                         />
                     </div>
+                    
+                    Filter
                     
                     <!--
                     <div class='pt-1'>
@@ -34,13 +34,19 @@
                     -->
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            
+            <DropdownMenuContent align='end' class='w-52'>
+                <DropdownMenuLabel class='text-lg px-4 py-4 my-1 border-b'>Filters</DropdownMenuLabel>
+                
                 <DropdownMenuCheckboxItem
-                    v-for="column in table.getAllColumns().filter((column) => column.getCanHide())" :key="column.id"
-                    class="capitalize" :modelValue="column.getIsVisible()" @update:modelValue="(value) => {
-                            column.toggleVisibility(!!value)
-                        }">
-                    {{ column.id }}
+                    v-for='column in table.getAllColumns().filter((column) => column.getCanHide())'
+                    :key='column.id'
+                    class='capitalize h-10 rounded-lg my-1 hover:cursor-pointer'
+                    :modelValue='column.getIsVisible()'
+                    @update:modelValue='(value) => {
+                           column.toggleVisibility(!!value)
+                    }'>
+                    {{ column.columnDef.label }}
                 </DropdownMenuCheckboxItem>
             </DropdownMenuContent>
         </DropdownMenu>
@@ -70,14 +76,14 @@
                             <template v-if='!header.isPlaceholder'>
                                 <div
                                     @click='header.column.toggleSorting(header.column.getIsSorted() === "asc")'
-                                    class='flex items-center gap-2 hover:cursor-pointer'
+                                    class='flex items-center gap-1 hover:cursor-pointer'
                                 >
                                     <FlexRender
                                         :render='header.column.columnDef.header'
                                         :props='header.getContext()'
                                         class='text-md' />
                                     
-                                    <div class='pt-1' v-if='isSortable(header)'>
+                                    <div class='pt-1 w-3' v-if='isSortable(header)'>
                                         <NuxtIcon
                                             v-if='header.column.getIsSorted() === "desc"'
                                             name='ph:caret-down-fill'
@@ -175,7 +181,7 @@
 <script setup>
     import { h } from 'vue';
     import { Button } from '~/components/ui/button';
-    import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+    import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
     import { Spinner } from '~/components/ui/spinner';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel } from '@tanstack/vue-table';
@@ -215,19 +221,23 @@
     const columns = computed(() => [
         {
             id: 'checkbox',
+            label: 'checkbox',
             header: () => h('p', { class: 'text-center'},  'Fav')
         },
         {
+            label: 'Rank',
             accessorKey: 'market_cap_rank',
             header: () => h('p', '#'),
             meta: { useHeaderSlot: true }
         },
         {
+            label: 'Name',
             accessorKey: 'name',
             header: () => h('p', 'Name'),
             meta: { useSlot: true },
         },
         {
+            label: 'Price',
             accessorKey: 'current_price',
             header: () => h('p', 'Price'),
             cell: (row) => {
@@ -238,6 +248,7 @@
             },
         },
         {
+            label: '1h %',
             accessorKey: 'price_change_percentage_1h_in_currency',
             header: () => h('p', '1h %'),
             cell: (row) => {
@@ -249,6 +260,7 @@
             }
         },
         {
+            label: '24h %',
             accessorKey: 'price_change_percentage_24h',
             header: () => h('p', '24h %'),
             cell: (row) => {
@@ -260,6 +272,7 @@
             }
         },
         {
+            label: '7d %',
             accessorKey: 'price_change_percentage_7d_in_currency',
             header: () => h('p', '7d %'),
             cell: (row) => {
@@ -271,6 +284,7 @@
             }
         },
         {
+            label: '30d %',
             accessorKey: 'price_change_percentage_30d_in_currency',
             header: () => h('p', '30d %'),
             cell: (row) => {
@@ -282,6 +296,7 @@
             }
         },
         {
+            label: 'Market Cap',
             accessorKey: 'market_cap',
             header: () => h('p',  'Market Cap'),
             cell: (row) => {
@@ -292,6 +307,7 @@
             },
         },
         {
+            label: 'Volume 24h',
             accessorKey: 'total_volume',
             header: () => h('p',  'Volume (24h)'),
             cell: (row) => {
@@ -302,6 +318,7 @@
             },
         },
         {
+            label: 'Circulating Supply',
             accessorKey: 'circulating_supply',
             header: () => h('p',  'Circ. Supply'),
             cell: (row) => {
