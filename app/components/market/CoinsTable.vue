@@ -1,5 +1,5 @@
 <template>
-    <div class='w-full h-180 flex flex-col gap-4 z-10'>
+    <div class='w-screen md:max-w-[1920px] h-180 px-10 md:px-32 flex flex-col z-10'>
         <div class='border rounded-xl h-120 flex flex-col flex-2/3 overflow-hidden'>
             <h3 class='px-6 py-10 font-medium tracking-widest border-b'>Leading Cryptocurrencies</h3>
             
@@ -15,7 +15,7 @@
                             :key='header.id'
                             class='h-full font-bolder text-foreground'
                             :class='{
-                                    "text-center": header.column.id === "checkbox",
+                                    "text-center w-16": header.column.id === "checkbox",
                                     "flex justify-center items-center": header.column.id === "market_cap_rank",
                                 }'
                         >
@@ -78,10 +78,13 @@
                                     />
                                 </template>
                                 
-                                <NuxtLink v-else :to='`/market/${row.original.id}`'>
+                                <NuxtLink
+                                    v-else
+                                    :to='`/market/${row.original.id}`'
+                                >
                                     <!--   Name  -->
                                     <template v-if='cell.column.id === "name"'>
-                                        <div class='flex items-center gap-4'>
+                                        <div class='flex items-center gap-4 w-60'>
                                             <NuxtImg
                                                 :src='cell.row.original.image'
                                                 width='40'
@@ -145,6 +148,10 @@
             'market_cap_rank',
             'name',
             'current_price',
+            'price_change_percentage_1h_in_currency',
+            'price_change_percentage_24h',
+            'price_change_percentage_7d_in_currency',
+            'price_change_percentage_30d_in_currency',
             'market_cap',
             'total_volume',
             'circulating_supply',
@@ -154,7 +161,7 @@
     const columns = computed(() => [
         {
             id: 'checkbox',
-            header: () => h('p',  'Fav')
+            header: () => h('p', { class: 'text-center'},  'Fav')
         },
         {
             accessorKey: 'market_cap_rank',
@@ -164,7 +171,7 @@
         {
             accessorKey: 'name',
             header: () => h('p', 'Name'),
-            meta: { useSlot: true }
+            meta: { useSlot: true },
         },
         {
             accessorKey: 'current_price',
@@ -184,7 +191,7 @@
                     style: 'percent',
                 });
                 const trend = getTrendClass(row.getValue());
-                return h('div', { class: `text-left ${trend}` }, price_change_percentage_1h);
+                return h('div', { class: `text-left w-14 ${trend}` }, price_change_percentage_1h);
             }
         },
         {
@@ -195,7 +202,7 @@
                     style: 'percent',
                 });
                 const trend = getTrendClass(row.getValue());
-                return h('div', { class: `text-left ${trend}` }, price_change_percentage_24h);
+                return h('div', { class: `text-left w-14 ${trend}` }, price_change_percentage_24h);
             }
         },
         {
@@ -206,7 +213,7 @@
                     style: 'percent',
                 });
                 const trend = getTrendClass(row.getValue());
-                return h('div', { class: `text-left ${trend}` }, price_change_percentage_7d);
+                return h('div', { class: `text-left w-14 ${trend}` }, price_change_percentage_7d);
             }
         },
         {
@@ -217,7 +224,7 @@
                     style: 'percent',
                 });
                 const trend = getTrendClass(row.getValue());
-                return h('div', { class: `text-left ${trend}` }, price_change_percentage_30d);
+                return h('div', { class: `text-left w-14 ${trend}` }, price_change_percentage_30d);
             }
         },
         {
