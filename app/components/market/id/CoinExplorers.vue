@@ -27,7 +27,7 @@
             </NuxtLink>
             
             <!--  All Explorers - Dropdown menu  -->
-            <DropdownMenu v-model:open='open'>
+            <DropdownMenu v-model:open='open' :modal='false'>
                 <DropdownMenuTrigger as-child>
                     <Button
                         variant='ghost'
