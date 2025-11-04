@@ -14,24 +14,6 @@
                     </div>
                     
                     Filter
-                    
-                    <!--
-                    <div class='pt-1'>
-                        <NuxtIcon
-                            v-show='!isFilterOpen'
-                            name='ph:caret-down-fill'
-                            size='12'
-                            class='transition-all duration-150 ease-linear'
-                        />
-                        
-                        <NuxtIcon
-                            v-show='isFilterOpen'
-                            name='ph:caret-up-fill'
-                            size='12'
-                            class='transition-all duration-150 ease-linear'
-                        />
-                    </div>
-                    -->
                 </Button>
             </DropdownMenuTrigger>
             
