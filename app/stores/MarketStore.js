@@ -8,7 +8,6 @@ import { useNewsStore } from '~/stores/NewsStore.js';
 export const useMarketStore = defineStore('MarketStore', {
     state: () => ({
         coins: [],
-        oldCoins: [],
         coin: {
             coingecko: {},
             livecoinwatch: {},
@@ -86,7 +85,6 @@ export const useMarketStore = defineStore('MarketStore', {
                     if(table) {
                         this.coins = response;
                         console.log(JSON.parse(JSON.stringify(this.coins[0])));
-                        this.oldCoins = formatCoinsTable(response);
                         return this.coins;
                     }
                     
