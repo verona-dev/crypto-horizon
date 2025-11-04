@@ -13,8 +13,8 @@
                 </Button>
             </DropdownMenuTrigger>
             
-            <DropdownMenuContent align='end' class='w-52'>
-                <DropdownMenuLabel class='text-lg px-4 py-4 my-1 border-b'>Filters</DropdownMenuLabel>
+            <DropdownMenuContent align='end' class='w-52 p-1'>
+                <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Filters</DropdownMenuLabel>
                 
                 <DropdownMenuCheckboxItem
                     v-for='column in table.getAllColumns().filter((column) => column.getCanHide())'
@@ -23,7 +23,7 @@
                     @update:modelValue='(value) => {
                            column.toggleVisibility(!!value)
                     }'
-                    class='capitalize h-10 rounded-lg my-1 hover:cursor-pointer text-secondary-foreground/50 data-[state=checked]:text-secondary-foreground'
+                    class='checkbox-item capitalize h-12 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-snowy-mint'
                     @select='event => event.preventDefault()'
                 >
                     {{ column.columnDef.label }}
@@ -331,3 +331,12 @@
         getCoinsMarkets({}, 'table');
     });
 </script>
+
+<style>
+    .checkbox-item {
+        span {
+            margin-left: 6px !important;
+            margin-top: 1px !important;
+        }
+    }
+</style>
