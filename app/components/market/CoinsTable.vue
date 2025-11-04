@@ -183,6 +183,7 @@
     const { coins } = storeToRefs(MarketStore);
     const sorting = ref([]);
     const columnVisibility = ref({
+        max_supply: false,
         circulating_supply: false,
         fully_diluted_valuation: false,
     });
@@ -309,6 +310,18 @@
             isFilterable: true,
         },
         {
+            label: 'Max Supply',
+            accessorKey: 'max_supply',
+            header: () => h('p',  'Max Supply'),
+            cell: (row) => {
+                const max_supply = formatNumber(row.getValue(), {
+                    compact: true, decimals: 1
+                });
+                return h('div', { class: 'text-left' }, max_supply);
+            },
+            isFilterable: true,
+        },
+        {
             label: 'Circulating Supply',
             accessorKey: 'circulating_supply',
             header: () => h('p',  'Circ. Supply'),
@@ -325,10 +338,10 @@
             accessorKey: 'fully_diluted_valuation',
             header: () => h('p',  'Fdv'),
             cell: (row) => {
-                const circ_supply = formatNumber(row.getValue(), {
+                const fully_diluted_valuation = formatNumber(row.getValue(), {
                     compact: true, decimals: 1
                 });
-                return h('div', { class: 'text-left' }, circ_supply);
+                return h('div', { class: 'text-left' }, fully_diluted_valuation);
             },
             isFilterable: true,
         },
