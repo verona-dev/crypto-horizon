@@ -1,5 +1,50 @@
 <template>
     <div class='w-screen md:max-w-[1920px] h-180 px-10 md:px-32 flex flex-col z-10'>
+        <DropdownMenu>
+            <DropdownMenuTrigger as-child>
+                <Button
+                    variant="outline"
+                    class="ml-auto"
+                >
+                    Columns
+                    
+                    <div class='pt-1'>
+                        <NuxtIcon
+                            name='ph:caret-down-fill'
+                            size='12'
+                        />
+                    </div>
+                    
+                    <!--
+                    <div class='pt-1'>
+                        <NuxtIcon
+                            v-show='!isFilterOpen'
+                            name='ph:caret-down-fill'
+                            size='12'
+                            class='transition-all duration-150 ease-linear'
+                        />
+                        
+                        <NuxtIcon
+                            v-show='isFilterOpen'
+                            name='ph:caret-up-fill'
+                            size='12'
+                            class='transition-all duration-150 ease-linear'
+                        />
+                    </div>
+                    -->
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+                <DropdownMenuCheckboxItem
+                    v-for="column in table.getAllColumns().filter((column) => column.getCanHide())" :key="column.id"
+                    class="capitalize" :modelValue="column.getIsVisible()" @update:modelValue="(value) => {
+                            column.toggleVisibility(!!value)
+                        }">
+                    {{ column.id }}
+                </DropdownMenuCheckboxItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+        
         <div class='border rounded-xl h-120 flex flex-col flex-2/3 overflow-hidden shadow-2xl'>
             <!--  <h3 class='px-6 py-10 font-medium tracking-widest border-b'>Leading Cryptocurrencies</h3> .  -->
             
@@ -129,6 +174,8 @@
 
 <script setup>
     import { h } from 'vue';
+    import { Button } from '~/components/ui/button';
+    import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
     import { Spinner } from '~/components/ui/spinner';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel } from '@tanstack/vue-table';
@@ -148,6 +195,7 @@
     // State
     const { coins } = storeToRefs(MarketStore);
     const sorting = ref([]);
+    const columnVisibility = ref({});
     
     const isSortable = header => {
         return [
@@ -271,8 +319,10 @@
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
         onSortingChange: updaterOrValue => valueUpdater(updaterOrValue, sorting),
+        onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, columnVisibility),
         state: {
             get sorting() { return sorting.value },
+            get columnVisibility() { return columnVisibility.value },
         }
     });
     
