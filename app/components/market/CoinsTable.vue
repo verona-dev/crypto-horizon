@@ -314,11 +314,13 @@
             label: 'Max Supply',
             accessorKey: 'max_supply',
             header: () => h('p',  'Max Supply'),
-            cell: (row) => {
-                const max_supply = formatNumber(row.getValue(), {
+            cell: (cell) => {
+                const max_supply = formatNumber(cell.getValue(), {
                     compact: true, style: 'decimal'
                 });
-                return h('div', { class: 'text-left' }, max_supply);
+                const symbol = cell.row?.original?.symbol?.toUpperCase();
+                const label = () => cell.getValue() ? `${max_supply} ${symbol.toUpperCase()}` : max_supply;
+                return h('div', { class: 'text-left' }, label());
             },
             isFilterable: true,
         },
