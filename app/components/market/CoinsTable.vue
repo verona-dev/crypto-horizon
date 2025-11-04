@@ -204,7 +204,7 @@
         {
             id: 'checkbox',
             label: 'checkbox',
-            header: () => h('p', { class: 'text-center'},  'Fav')
+            header: () => h('p', { class: 'text-center w-12'},  'Fav')
         },
         {
             label: 'Rank',
