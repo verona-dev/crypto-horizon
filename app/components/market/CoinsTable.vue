@@ -56,7 +56,7 @@
                                     <div
                                         @click='onSort(header)'
                                         class='flex items-center gap-1'
-                                        :class='{ "hover:cursor-pointer" : isSortable(header)}'
+                                        :class='{ "hover:cursor-pointer" : header.column.columnDef.isSortable }'
                                     >
                                         <FlexRender
                                             :render='header.column.columnDef.header'
@@ -64,7 +64,7 @@
                                             class='text-md'
                                         />
                                         
-                                        <div class='pt-1 w-3' v-if='isSortable(header)'>
+                                        <div class='pt-1 w-3' v-if='header.column.columnDef.isSortable'>
                                             <NuxtIcon
                                                 v-if='header.column.getIsSorted() === "desc"'
                                                 name='ph:caret-down-fill'
@@ -251,29 +251,11 @@
     });
     const lastApiUpdate = computed(() => dayjs(coins.value[0]?.last_updated).fromNow() || 'Unknown');
     
-    const isSortable = header => {
-        return [
-            'market_cap_rank',
-            'name',
-            'current_price',
-            'price_change_percentage_1h_in_currency',
-            'price_change_percentage_24h',
-            'price_change_percentage_7d_in_currency',
-            'price_change_percentage_30d_in_currency',
-            'market_cap',
-            'total_volume',
-            'max_supply',
-            'circulating_supply',
-            'total_supply',
-            'fully_diluted_valuation',
-        ].includes(header.column.id);
-    };
-    
     const columns = computed(() => [
         {
             id: 'checkbox',
             label: 'checkbox',
-            header: () => h('p', { class: 'text-center w-12'},  'Fav')
+            header: () => h('p', { class: 'text-center w-12' },  'Fav')
         },
         {
             label: 'Rank',
@@ -282,12 +264,14 @@
             header: () => h('p','#'),
             meta: { useHeaderSlot: true },
             cell: (cell) => h('div', { class: 'text-left' }, cell.getValue()),
+            isSortable: true,
         },
         {
             label: 'Name',
             accessorKey: 'name',
             header: () => h('p', 'Name'),
             meta: { useSlot: true },
+            isSortable: true,
         },
         {
             label: 'Price',
@@ -300,6 +284,7 @@
                 return h('div', { class: 'text-left' }, current_price);
             },
             isFilterable: true,
+            isSortable: true,
         },
         {
             label: '1h %',
@@ -314,6 +299,7 @@
                 return h('div', { class: `text-left ${trend}` }, price_change_percentage_1h);
             },
             isFilterable: true,
+            isSortable: true,
         },
         {
             label: '24h %',
@@ -328,6 +314,7 @@
                 return h('div', { class: `text-left ${trend}` }, price_change_percentage_24h);
             },
             isFilterable: true,
+            isSortable: true,
         },
         {
             label: '7d %',
@@ -342,6 +329,7 @@
                 return h('div', { class: `text-left ${trend}` }, price_change_percentage_7d);
             },
             isFilterable: true,
+            isSortable: true,
         },
         {
             label: '30d %',
@@ -356,6 +344,7 @@
                 return h('div', { class: `text-left ${trend}` }, price_change_percentage_30d);
             },
             isFilterable: true,
+            isSortable: true,
         },
         {
             label: 'Market Cap',
@@ -368,6 +357,7 @@
                 return h('div', { class: 'text-left' }, market_cap);
             },
             isFilterable: true,
+            isSortable: true,
         },
         {
             label: 'Volume 24h',
@@ -381,6 +371,7 @@
                 return h('div', { class: 'text-left' }, total_volume);
             },
             isFilterable: true,
+            isSortable: true,
         },
         {
             label: 'Max Supply',
@@ -395,6 +386,7 @@
                 return h('div', { class: 'text-left w-24' }, label());
             },
             isFilterable: true,
+            isSortable: true,
         },
         {
             label: 'Circulating Supply',
@@ -409,6 +401,7 @@
                 return h('div', { class: 'text-left' }, label());
             },
             isFilterable: true,
+            isSortable: true,
         },
         {
             label: 'Total Supply',
@@ -423,6 +416,7 @@
                 return h('div', { class: 'text-left' }, label());
             },
             isFilterable: true,
+            isSortable: true,
         },
         {
             label: 'Fully Diluted Mcap (Fdv)',
@@ -444,6 +438,7 @@
             header: () => h('p', 'Last 7 Days'),
             meta: { useSlot: true },
             isFilterable: true,
+            isSortable: true,
         },
     ]);
     
