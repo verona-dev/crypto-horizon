@@ -1,8 +1,7 @@
 <template>
     <Card class='bg-background shadow-none w-screen md:max-w-[1920px] p-10 md:px-24 z-10'>
         <div class='w-full h-210 flex flex-col gap-6'>
-            <h3 class='font-medium tracking-widest'>Leading Cryptocurrencies by</h3>
-            <!-- <h3 class='font-medium tracking-widest'> Cryptocurrency Prices by Market Cap </h3>-->
+            <h3 class='text-3xl font-medium tracking-widest'>Leading Cryptocurrencies by {{ sortingLabel }}</h3>
             
             <DropdownMenu :modal='false'>
                 <DropdownMenuTrigger as-child class='flex items-center gap-4'>
@@ -55,7 +54,7 @@
                             >
                                 <template v-if='!header.isPlaceholder'>
                                     <div
-                                        @click='header.column.toggleSorting(header.column.getIsSorted() === "asc")'
+                                        @click='onSort(header)'
                                         class='flex items-center gap-1'
                                         :class='{ "hover:cursor-pointer" : isSortable(header)}'
                                     >
@@ -161,7 +160,7 @@
             </div>
             
             <div class='flex items-center justify-center'>
-                <span class='text-xs'>Market data updated {{ last_api_update }}</span>
+                <span class='text-xs'>Market data updated {{ lastApiUpdate }}</span>
             </div>
         </div>
     </Card>
@@ -196,6 +195,14 @@
     const { coins } = storeToRefs(MarketStore);
     
     const sorting = ref([]);
+    const sortingLabel = ref('Market Cap');
+    const onSort = header => {
+        if(header.column.id !== 'checkbox') {
+            header.column.toggleSorting(header.column.getIsSorted() === 'asc');
+            sortingLabel.value = header.column.columnDef.titleLabel || header.column.columnDef.label;
+        }
+    };
+    
     const columnVisibility = ref({
         price_change_percentage_30d_in_currency: false,
         max_supply: false,
@@ -203,7 +210,7 @@
         total_supply: false,
         fully_diluted_valuation: false,
     });
-    const last_api_update = computed(() => dayjs(coins.value[0]?.last_updated).fromNow());
+    const lastApiUpdate = computed(() => dayjs(coins.value[0]?.last_updated).fromNow() || 'Unknown');
     
     const isSortable = header => {
         return [
@@ -216,7 +223,10 @@
             'price_change_percentage_30d_in_currency',
             'market_cap',
             'total_volume',
+            'max_supply',
             'circulating_supply',
+            'total_supply',
+            'fully_diluted_valuation',
         ].includes(header.column.id);
     };
     
@@ -228,6 +238,7 @@
         },
         {
             label: 'Rank',
+            titleLabel: 'Market Cap',
             accessorKey: 'market_cap_rank',
             header: () => h('p','#'),
             meta: { useHeaderSlot: true },
@@ -252,6 +263,7 @@
         },
         {
             label: '1h %',
+            titleLabel: '1 hour percentage change',
             accessorKey: 'price_change_percentage_1h_in_currency',
             header: () => h('p', '1h %'),
             cell: (cell) => {
@@ -265,6 +277,7 @@
         },
         {
             label: '24h %',
+            titleLabel: '24 hours percentage change',
             accessorKey: 'price_change_percentage_24h',
             header: () => h('p', '24h %'),
             cell: (cell) => {
@@ -278,6 +291,7 @@
         },
         {
             label: '7d %',
+            titleLabel: '7 days percentage change',
             accessorKey: 'price_change_percentage_7d_in_currency',
             header: () => h('p', '7d %'),
             cell: (cell) => {
@@ -291,6 +305,7 @@
         },
         {
             label: '30d %',
+            titleLabel: '30 days percentage change',
             accessorKey: 'price_change_percentage_30d_in_currency',
             header: () => h('p', '30d %'),
             cell: (cell) => {
@@ -316,6 +331,7 @@
         },
         {
             label: 'Volume 24h',
+            titleLabel: 'Trading volume in the last 24 hours',
             accessorKey: 'total_volume',
             header: () => h('p',  'Volume (24h)'),
             cell: (cell) => {
@@ -370,6 +386,7 @@
         },
         {
             label: 'Fully Diluted Mcap (Fdv)',
+            titleLabel: 'Fully Diluted Market Cap',
             accessorKey: 'fully_diluted_valuation',
             header: () => h('p',  'Fdv'),
             cell: (cell) => {
