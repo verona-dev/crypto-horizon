@@ -18,8 +18,8 @@ const formatNumber = (value, {
     
     if (style === 'percent') {
         num = num / 100;
-        minimumFractionDigits = 2;
-        maximumFractionDigits = 2;
+        // minimumFractionDigits = 2;
+        // maximumFractionDigits = 2;
     } else {
         if (num > 0 && num < 0.000001) {
             minimumFractionDigits = 8;
