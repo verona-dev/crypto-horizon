@@ -16,7 +16,7 @@
                     </Button>
                 </DropdownMenuTrigger>
                 
-                <DropdownMenuContent align='end' class='w-56 p-1'>
+                <DropdownMenuContent align='end' class='w-56 p-1 pb-0'>
                     <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Filters</DropdownMenuLabel>
                     
                     <DropdownMenuCheckboxItem
@@ -24,7 +24,7 @@
                         :key='column.id'
                         :modelValue='column.getIsVisible()'
                         @update:modelValue='(value) => column.toggleVisibility(!!value)'
-                        class='checkbox-item capitalize h-12 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-snowy-mint'
+                        class='checkbox-item capitalize h-10 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-snowy-mint'
                         @select='event => event.preventDefault()'
                     >
                         {{ column.columnDef.label }}
@@ -247,7 +247,8 @@
         circulating_supply: false,
         total_supply: false,
         fully_diluted_valuation: false,
-        sparkline_in_7d: true,
+        sparkline_in_7d: false,
+        ath_change_percentage: false,
     });
     const lastApiUpdate = computed(() => dayjs(coins.value[0]?.last_updated).fromNow() || 'Unknown');
     
@@ -437,6 +438,20 @@
             accessorKey: 'sparkline_in_7d',
             header: () => h('p', 'Last 7 Days'),
             meta: { useSlot: true },
+            isFilterable: true,
+            isSortable: true,
+        },
+        {
+            label: 'From ATH',
+            accessorKey: 'ath_change_percentage',
+            header: () => h('p', 'From ATH'),
+            cell: (cell) => {
+                const ath_change_percentage = formatNumber(cell.getValue(), {
+                    style: 'percent', decimals: 0,  minimumFractionDigits: 0, maximumFractionDigits: 0,
+                });
+                const trend = getTrendClass(cell.getValue());
+                return h('div', { class: `text-left ${trend}` }, ath_change_percentage);
+            },
             isFilterable: true,
             isSortable: true,
         },
