@@ -16,7 +16,7 @@
             </div>
         </div>
         
-<!--        <Meteors v-if='dark_mode' :count='30' />-->
+        <Meteors v-if='dark_mode' :count='30' />
     </div>
 </template>
 
