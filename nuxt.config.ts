@@ -6,7 +6,6 @@ export default defineNuxtConfig({
    devtools: { enabled: true },
 
    app: {
-      layout: 'default',
       layoutTransition: { name: 'fade', mode: 'in-out' },
       pageTransition: {
          // Name options are: 'bounce', 'fade', 'page', 'custom',

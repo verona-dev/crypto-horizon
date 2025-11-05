@@ -66,9 +66,9 @@
 </template>
 
 <script setup>
-    import CoinSupplyCircularProgressBars from '~/components/market/coin/CoinSupplyCircularProgressBars.vue';
-    import CoinSupplyDoughnutChart from '~/components/market/coin/CoinSupplyDoughnutChart.vue';
-    import CoinSupplyStackedBars from '~/components/market/coin/CoinSupplyStackedBars.vue';
+    import CoinSupplyCircularProgressBars from '@/components/market/id/CoinSupplyCircularProgressBars.vue';
+    import CoinSupplyDoughnutChart from '@/components/market/id/CoinSupplyDoughnutChart.vue';
+    import CoinSupplyStackedBars from '@/components/market/id/CoinSupplyStackedBars.vue';
     
     import {
         Drawer,

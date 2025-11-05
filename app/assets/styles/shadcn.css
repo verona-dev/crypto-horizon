@@ -32,20 +32,4 @@ tbody {
     line-height: 16px !important;
 }
 
-[data-sonner-toast] {
-    width: 500px !important;
-    display: flex !important;
-    justify-content: space-evenly !important;
-    align-items: center !important;
-    
-    & [data-content] {
-        margin-left: 50px;
-    }
-    
-    @media (max-width: 1020px) {
-        width: 90% !important;
-    }
-}
-
-
 

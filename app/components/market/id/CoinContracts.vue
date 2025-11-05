@@ -157,13 +157,11 @@
                 label: 'OK',
             },
             description: () =>
-                h('span', {
-                    class: '',
-                }, contract.value),
+                h('span', contract.value),
         });
     };
     
-    // coin list with market data
+    // id list with market data
     onMounted(async() => {
         if (platforms_summary.value?.length) {
             await getCoinsMarkets({

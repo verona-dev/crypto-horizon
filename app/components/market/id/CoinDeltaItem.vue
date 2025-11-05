@@ -6,7 +6,7 @@
         <HoverCardTrigger>
             <Card
                 class='w-28 m-4 py-4 flex flex-col items-center gap-2'
-                :class="[getTextColorClass(delta), getBorderColorClass(delta)]"
+                :class="[getTrendClass(delta), getBorderClass(delta)]"
             >
                 <CardTitle class='flex flex-col items-center'>
                     <p>{{title}}</p>
@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-    import { getTextColorClass, getBorderColorClass } from '~/utils/styleUtils.js';
+    import { getTrendClass, getBorderClass } from '~/utils/styleUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Card, CardTitle, CardContent } from '~/components/ui/card';
     

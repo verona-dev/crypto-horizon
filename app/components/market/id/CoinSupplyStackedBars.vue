@@ -15,7 +15,7 @@
 
 <script lang='ts' setup>
     import { Bar } from 'vue-chartjs';
-    import CoinSupplyTable from '~/components/market/coin/CoinSupplyTable.vue';
+    import CoinSupplyTable from '@/components/market/id/CoinSupplyTable.vue';
     
     const props = defineProps({
         coin: {
@@ -36,7 +36,7 @@
         const data = [];
         const backgroundColor = [];
         
-        // If coin has max supply
+        // If id has max supply
         if (max_supply.value) {
             labels.push('Max Supply');
             data.push(max_supply.value);
@@ -60,8 +60,8 @@
                 backgroundColor.push('#41B883');
             }
         } else {
-            // If coin does not have max supply
-            // If coin's total supply is the same as circulating supply
+            // If id does not have max supply
+            // If id's total supply is the same as circulating supply
             if(total_supply.value === circulating_supply.value) {
                 // display only TOTAL
                 // EXAMPLE: ETH

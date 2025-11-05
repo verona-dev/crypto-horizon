@@ -21,11 +21,11 @@
 </template>
 
 <script setup>
-    import CoinPerformance from '~/components/market/coin/CoinPerformance.vue';
-    import CoinExplorers from '~/components/market/coin/CoinExplorers.vue';
-    import CoinContracts from '~/components/market/coin/CoinContracts.vue';
-    import CoinSentiment from '~/components/market/coin/CoinSentiment.vue';
-    import CoinConverter from '~/components/market/coin/CoinConverter.vue';
+    import CoinPerformance from '@/components/market/id/CoinPerformance.vue';
+    import CoinExplorers from '@/components/market/id/CoinExplorers.vue';
+    import CoinContracts from '@/components/market/id/CoinContracts.vue';
+    import CoinSentiment from '@/components/market/id/CoinSentiment.vue';
+    import CoinConverter from '@/components/market/id/CoinConverter.vue';
     import { Card } from '~/components/ui/card';
     
     const props = defineProps({

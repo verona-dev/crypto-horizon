@@ -2,6 +2,7 @@
     <CardHeader v-if='coin' class='coin-header flex w-full animate-fadeIn'>
         <Card class='bg-background flex flex-col items-center justify-center relative'>
             <BorderBeam
+                v-if='dark_mode'
                 :size='500'
                 :duration='25'
                 :border-width='1'
@@ -90,11 +91,11 @@
                                 <NuxtIcon
                                     :name='getTrendIcon(price_change_percentage)'
                                     size='15'
-                                    :class='getTextColorClass(price_change_percentage)'
+                                    :class='getTrendClass(price_change_percentage)'
                                 />
                                 
                                 <p
-                                    :class='getTextColorClass(price_change_percentage)'
+                                    :class='getTrendClass(price_change_percentage)'
                                     class='flex items-center text-sm'
                                 >
                                     {{ price_change_percentage_label }}
@@ -123,11 +124,11 @@
                                 <NuxtIcon
                                     :name='getTrendIcon(price_change_percentage_btc)'
                                     size='15'
-                                    :class='getTextColorClass(price_change_percentage_btc)'
+                                    :class='getTrendClass(price_change_percentage_btc)'
                                 />
                                 
                                 <p
-                                    :class='[getTextColorClass(price_change_percentage_btc)]'
+                                    :class='[getTrendClass(price_change_percentage_btc)]'
                                     class='flex items-center text-sm'
                                 >
                                     {{ price_change_percentage_btc_label }}
@@ -148,12 +149,15 @@
 
 <script setup>
     import { formatNumber, goBack } from '~/utils/formatUtils.js';
-    import { getTrendIcon, getTextColorClass } from '~/utils/styleUtils.js';
+    import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import { Badge } from '~/components/ui/badge';
     import { BorderBeam } from '~/components/ui/border-beam';
     import { Card, CardTitle, CardDescription, CardHeader } from '~/components/ui/card';
-    import CoinPublicNotice from '~/components/market/coin/CoinPublicNotice.vue';
+    import CoinPublicNotice from '@/components/market/id/CoinPublicNotice.vue';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    
+    const colorMode = useColorMode();
+    const dark_mode = computed(() => colorMode.value === 'dark');
     
     // MarketStore
     import { storeToRefs } from 'pinia';

@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-    import CoinDeltaItem from '~/components/market/coin/CoinDeltaItem.vue';
+    import CoinDeltaItem from '@/components/market/id/CoinDeltaItem.vue';
     
     const props = defineProps({
         marketData: {

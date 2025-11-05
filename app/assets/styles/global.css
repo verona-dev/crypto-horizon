@@ -134,6 +134,26 @@
         @apply flex flex-col sm:flex-row justify-center items-center;
     }
     
+    [data-sonner-toast] {
+        @apply !bg-background dark:!text-foreground !w-120 !flex !items-center !justify-evenly !border-border;
+        
+        button {
+            @apply dark:!bg-foreground dark:!text-background;
+        }
+        
+        span {
+            @apply dark:text-foreground;
+        }
+        
+        & [data-content] {
+            @apply ml-12;
+        }
+        
+        @media (max-width: 1020px) {
+            width: 90% !important;
+        }
+    }
+    
     .vertical-separator {
         background: var(--accent) !important;
         height: 40px;

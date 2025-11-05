@@ -1,4 +1,4 @@
-import { getTextColorClass } from '~/utils/styleUtils.js';
+import { getTrendClass } from '~/utils/styleUtils.js';
 
 const formatNumber = (value, {
                           locale = 'en-US',
@@ -81,7 +81,7 @@ const formatCoinsTable = coins => {
         }),
         rank: coin?.market_cap_rank,
         symbol: coin?.symbol.toUpperCase(),
-        trend: getTextColorClass(coin?.price_change_percentage_24h),
+        trend: getTrendClass(coin?.price_change_percentage_24h),
         volume: formatNumber(coin?.total_volume, {
             compact: true, decimals: 2
         }),

@@ -30,9 +30,9 @@
 
 <script setup>
     import { Card  } from '~/components/ui/card';
-    import CoinHeader from '~/components/market/coin/CoinHeader.vue';
-    import CoinBody from '~/components/market/coin/CoinBody.vue';
-    import CoinFooter from '~/components/market/coin/CoinFooter.vue';
+    import CoinHeader from '@/components/market/id/CoinHeader.vue';
+    import CoinBody from '@/components/market/id/CoinBody.vue';
+    import CoinFooter from '@/components/market/id/CoinFooter.vue';
     import LoadingSpinner from '~/components/LoadingSpinner.vue';
     // import { StarsBackground } from '~/components/ui/bg-stars';
     
@@ -53,6 +53,6 @@
     const { getCoin } = MarketStore;
     
     onMounted(async() => {
-        await getCoin(route.params.coin);
+        await getCoin(route.params.id);
     });
 </script>

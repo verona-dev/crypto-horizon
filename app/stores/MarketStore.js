@@ -76,14 +76,16 @@ export const useMarketStore = defineStore('MarketStore', {
                 const response = await useFetchCoingecko('coins/markets', {
                     params: {
                         vs_currency: 'usd',
+                        price_change_percentage: '1h,24h,7d,30d',
+                        sparkline: true,
                         ...options,
                     },
                 });
                 
                 if(response) {
                     if(table) {
-                        this.coins = [];
-                        return this.coins = formatCoinsTable(response);
+                        this.coins = response;
+                        return this.coins;
                     }
                     
                     if(list) {

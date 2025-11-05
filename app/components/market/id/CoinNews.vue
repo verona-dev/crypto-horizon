@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-    import CoinNewsCard from '~/components/market/coin/CoinNewsCard.vue';
+    import CoinNewsCard from '@/components/market/id/CoinNewsCard.vue';
     // NewsStore
     import {storeToRefs} from 'pinia';
     import { useNewsStore } from '~/stores/NewsStore.js';

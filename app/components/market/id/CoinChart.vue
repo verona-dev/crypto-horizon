@@ -106,7 +106,7 @@
     import { Card } from '~/components/ui/card';
     import { Line } from 'vue-chartjs';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
-    import CoinSupply from '~/components/market/coin/CoinSupply.vue';
+    import CoinSupply from '@/components/market/id/CoinSupply.vue';
     import dayjs from 'dayjs';
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
     ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);

@@ -11,8 +11,8 @@
     </CardFooter>
 </template>
 <script setup lang='ts'>
-    import CoinNews from '~/components/market/coin/CoinNews.vue';
-    import CoinLinks from '~/components/market/coin/CoinLinks.vue';
+    import CoinNews from '@/components/market/id/CoinNews.vue';
+    import CoinLinks from '@/components/market/id/CoinLinks.vue';
     import { CardFooter } from '~/components/ui/card';
     
     const props = defineProps({
