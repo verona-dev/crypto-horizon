@@ -249,6 +249,7 @@
         fully_diluted_valuation: false,
         sparkline_in_7d: false,
         ath_change_percentage: false,
+        atl_change_percentage: false,
     });
     const lastApiUpdate = computed(() => dayjs(coins.value[0]?.last_updated).fromNow() || 'Unknown');
     
@@ -443,14 +444,30 @@
         },
         {
             label: 'From ATH',
+            titleLabel: 'From All Time High',
             accessorKey: 'ath_change_percentage',
             header: () => h('p', 'From ATH'),
             cell: (cell) => {
                 const ath_change_percentage = formatNumber(cell.getValue(), {
-                    style: 'percent', decimals: 0,  minimumFractionDigits: 0, maximumFractionDigits: 0,
+                    style: 'percent', minimumFractionDigits: 0, maximumFractionDigits: 0,
                 });
                 const trend = getTrendClass(cell.getValue());
                 return h('div', { class: `text-left ${trend}` }, ath_change_percentage);
+            },
+            isFilterable: true,
+            isSortable: true,
+        },
+        {
+            label: 'From ATL',
+            titleLabel: 'From All Time Low',
+            accessorKey: 'atl_change_percentage',
+            header: () => h('p', 'From ATL'),
+            cell: (cell) => {
+                const atl_change_percentage = formatNumber(cell.getValue(), {
+                    style: 'percent', minimumFractionDigits: 0, maximumFractionDigits: 0,
+                });
+                const trend = getTrendClass(cell.getValue());
+                return h('div', { class: `text-left ${trend}` }, atl_change_percentage);
             },
             isFilterable: true,
             isSortable: true,
