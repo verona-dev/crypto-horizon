@@ -247,7 +247,7 @@
         circulating_supply: false,
         total_supply: false,
         fully_diluted_valuation: false,
-        sparkline_in_7d: false,
+        sparkline_in_7d: true,
     });
     const lastApiUpdate = computed(() => dayjs(coins.value[0]?.last_updated).fromNow() || 'Unknown');
     
