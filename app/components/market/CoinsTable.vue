@@ -137,6 +137,38 @@
                                             </div>
                                         </template>
                                         
+                                        <!--   Sparkline  -->
+                                        <template v-else-if='cell.column.id === "sparkline_in_7d"'>
+                                            <div class='w-30 h-14'>
+                                                <Line
+                                                    v-if='cell.getValue().price?.length'
+                                                    :key='cell.id'
+                                                    :data='{
+                                                        labels: Array(cell.getValue().price?.length).fill(""),
+                                                        datasets: [{
+                                                              data: cell.getValue().price,
+                                                              borderColor: "rgb(14,165,233)",
+                                                              borderWidth: 2,
+                                                              backgroundColor: (context) => {
+                                                                const ctx = context.chart.ctx;
+                                                                const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
+                                                                gradient.addColorStop(0.2, "rgba(14,165,233, 0.4)");
+                                                                gradient.addColorStop(0.5, "rgba(14,165,233, 0.2)");
+                                                                gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+                                                                return gradient;
+                                                              },
+                                                              fill: true,
+                                                              tension: 0.5,
+                                                              pointRadius: 0,
+                                                              pointHoverRadius: 5,
+                                                              pointBackgroundColor: "oklch(0.985 0 0)",
+                                                        }]
+                                                    }'
+                                                    :options='chartOptions'
+                                                />
+                                            </div>
+                                        </template>
+                                        
                                         <template v-else>
                                             <FlexRender
                                                 :render='cell.column.columnDef.cell'
@@ -178,6 +210,10 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendClass } from '~/utils/styleUtils.js';
     
+    import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
+    ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
+    
+    
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
@@ -187,6 +223,7 @@
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
+    import { Line } from 'vue-chartjs';
     const MarketStore = useMarketStore();
     
     // Methods
@@ -197,7 +234,7 @@
     const sorting = ref([]);
     const sortingLabel = ref('Market Cap');
     const onSort = header => {
-        if(header.column.id !== 'checkbox') {
+        if(header.column.id !== 'checkbox' && header.column.id !== 'sparkline_in_7d') {
             header.column.toggleSorting(header.column.getIsSorted() === 'asc');
             sortingLabel.value = header.column.columnDef.titleLabel || header.column.columnDef.label;
         }
@@ -206,9 +243,11 @@
     const columnVisibility = ref({
         price_change_percentage_30d_in_currency: false,
         max_supply: false,
+        total_volume: false,
         circulating_supply: false,
         total_supply: false,
         fully_diluted_valuation: false,
+        sparkline_in_7d: false,
     });
     const lastApiUpdate = computed(() => dayjs(coins.value[0]?.last_updated).fromNow() || 'Unknown');
     
@@ -260,6 +299,7 @@
                 });
                 return h('div', { class: 'text-left' }, current_price);
             },
+            isFilterable: true,
         },
         {
             label: '1h %',
@@ -397,6 +437,14 @@
             },
             isFilterable: true,
         },
+        {
+            id: 'sparkline_in_7d',
+            label: 'Sparkline',
+            accessorKey: 'sparkline_in_7d',
+            header: () => h('p', 'Last 7 Days'),
+            meta: { useSlot: true },
+            isFilterable: true,
+        },
     ]);
     
     const table = useVueTable({
@@ -410,6 +458,36 @@
             get sorting() { return sorting.value },
             get columnVisibility() { return columnVisibility.value },
         },
+    });
+    
+    const chartOptions = ref({
+        responsive: true,
+        maintainAspectRatio: false,
+        hover: {
+            mode: null,
+        },
+        interactions: {
+            mode: 'none',
+        },
+        plugins: {
+            legend: {
+                display: false,
+            },
+            tooltip: {
+                enabled: false,
+                displayColors: false,
+            }
+        },
+        scales: {
+            x: {
+                display: false,
+                // min: 0,
+                // max: 50,
+            },
+            y: {
+                display: false,
+            },
+        }
     });
     
     onMounted(() => {
