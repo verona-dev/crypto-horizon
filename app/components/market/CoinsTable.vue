@@ -1,18 +1,17 @@
 <template>
-    <Card class='bg-background flex flex-col gap-12 shadow-none w-screen md:max-w-[1920px] p-10 md:pb-16 md:px-24 z-10'>
-        <h3 class='text-2xl font-medium tracking-widest inline-flex'>
-            <span>Leading Cryptocurrencies by</span>
-            <RadiantText
-                class='
-                bg-gradient-to-r from-transparent via-color-secondary via-50% to-color-accent
-                text-blue-500
-                mx-0 inline-flex items-center justify-center px-2 transition ease-out
-'
-                :duration='5'
+    <Card class='bg-background flex flex-col gap-12 border-none shadow-none w-screen md:max-w-[1920px] p-10 md:pb-16 md:px-24 z-10'>
+        <h3 class='text-3xl font-medium tracking-wide inline-flex flex-wrap items-end'>
+            <span>Leading Cryptocurrencies by&nbsp;</span>
+            <Text3d
+                class='text-6xl font-black uppercase'
+                :animate='false'
+                :strokeSize='4'
+                :letterSpacing='0.15'
             >
-                <span class='text-2xl font-medium tracking-widest'>✨ {{ sortingLabel }}</span>
-            </RadiantText>
+                {{ sortingLabel }}
+            </Text3d>
         </h3>
+        
         <div class='w-full h-210 flex flex-col gap-4'>
             <div class='flex items-center py-4'>
                 <!--   Search   -->
@@ -273,9 +272,9 @@
     import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger,  } from '@/components/ui/dropdown-menu';
     import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
     import { Input } from '~/components/ui/input';
-    import { RadiantText } from '~/components/ui/radiant-text';
     import { Spinner } from '~/components/ui/spinner';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
+    import { Text3d } from '~/components/ui/text-3d';
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel, getFilteredRowModel } from '@tanstack/vue-table';
     import { valueUpdater } from '~/components/ui/table/utils.ts';
     import { formatNumber } from '~/utils/formatUtils.js';
@@ -333,7 +332,7 @@
         },
         {
             label: 'Rank',
-            titleLabel: 'Market Cap',
+            titleLabel: 'Market Cap Rank',
             accessorKey: 'market_cap_rank',
             header: () => h('p', { class: 'w-7 text-center' }, '#'),
             cell: (cell) => h('div', { class: 'text-center mr-4' }, cell.getValue()),
