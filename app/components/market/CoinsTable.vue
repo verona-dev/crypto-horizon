@@ -1,9 +1,10 @@
 <template>
-    <Card class='bg-background flex flex-col gap-12 shadow-none w-screen md:max-w-[1920px] p-10 md:px-24 z-10'>
+    <Card class='bg-background flex flex-col gap-12 shadow-none w-screen md:max-w-[1920px] p-10 md:pb-16 md:px-24 z-10'>
         <h3 class='text-3xl font-medium tracking-widest'>Leading Cryptocurrencies by {{ sortingLabel }}</h3>
         
-        <div class='w-full h-210 flex flex-col '>
+        <div class='w-full h-210 flex flex-col gap-4'>
             <div class='flex items-center py-4'>
+                <!--   Search   -->
                 <Input
                     class='max-w-sm focus-visible:border-foreground/75 focus-visible:ring-[0px]'
                     placeholder='Search Coins...'
@@ -11,6 +12,7 @@
                     @update:model-value='table.getColumn("name")?.setFilterValue($event)'
                 />
                 
+                <!--   Filter Coluns   -->
                 <DropdownMenu :modal='false'>
                     <DropdownMenuTrigger as-child class='flex items-center gap-4'>
                         <Button
@@ -42,6 +44,7 @@
                 </DropdownMenu>
             </div>
             
+            <!--   Table   -->
             <div class='border rounded-xl h-120 flex flex-col flex-2/3 overflow-hidden shadow-2xl'>
                 <Table class='bg-background overflow-visible'> <!-- leave bg-background for meteorites -->
                     <TableHeader
@@ -92,68 +95,80 @@
                         </TableRow>
                     </TableHeader>
                     
-                    <TableBody>
-                        <template v-if='table.getRowModel().rows?.length'>
-                            <TableRow
-                                v-for='row in table.getRowModel().rows'
-                                :key='row.id'
-                                class='hover:cursor-pointer border-none !px-6'
-                            >
-                                <TableCell
-                                    v-for='cell in row.getVisibleCells()'
-                                    :key='cell.id'
-                                    class='py-4 text-center'
-                                    :class='{ "text-left": cell.column.id === "name" }'
+                    <TableBody class='h-130'>
+                        <template v-if='loading'>
+                            <TableRow>
+                                <TableCell :colspan='columns.length'>
+                                    <div class='flex flex-col items-center justify-center gap-4'>
+                                        <Spinner class='size-8 text-green-shamrock' />
+                                        <p>Loading coins...</p>
+                                    </div>
+                                </TableCell>
+                            </TableRow>
+                        </template>
+                        
+                        <template v-else>
+                            <template v-if='table.getRowModel().rows?.length'>
+                                <TableRow
+                                    v-for='row in table.getRowModel().rows'
+                                    :key='row.id'
+                                    class='hover:cursor-pointer border-none !px-6'
                                 >
-                                    <!--   Checkbox / Favourites  -->
-                                    <template v-if='cell.column.id === "checkbox"'>
-                                        <div class='pt-1'>
-                                            <NuxtIcon
-                                                v-if='cell.row.getIsSelected()'
-                                                @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
-                                                name='ph:star-fill'
-                                                class='text-yellow-selective hover:cursor-pointer'
-                                                size='16'
-                                            />
-                                            <NuxtIcon
-                                                v-else
-                                                @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
-                                                name='ph:star'
-                                                class='text-muted-foreground hover:cursor-pointer'
-                                                size='16'
-                                            />
-                                        </div>
-                                    </template>
-                                    
-                                    <NuxtLink
-                                        v-else
-                                        :to='`/market/${row.original.id}`'
+                                    <TableCell
+                                        v-for='cell in row.getVisibleCells()'
+                                        :key='cell.id'
+                                        class='py-4 text-center'
+                                        :class='{ "text-left": cell.column.id === "name" }'
                                     >
-                                        <!--   Name  -->
-                                        <template v-if='cell.column.id === "name"'>
-                                            <div class='flex items-center gap-4 w-64'>
-                                                <NuxtImg
-                                                    :src='cell.row.original.image'
-                                                    width='40'
-                                                    alt='coin logo'
+                                        <!--   Checkbox / Favourites  -->
+                                        <template v-if='cell.column.id === "checkbox"'>
+                                            <div class='pt-1'>
+                                                <NuxtIcon
+                                                    v-if='cell.row.getIsSelected()'
+                                                    @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
+                                                    name='ph:star-fill'
+                                                    class='text-yellow-selective hover:cursor-pointer'
+                                                    size='16'
                                                 />
-                                                
-                                                <div class='flex flex-col items-start gap-1 truncate'>
-                                                    <p class='font-medium'>{{ cell.getValue() }}</p>
-                                                    <span class='uppercase text-xs text-muted-foreground'>
-                                                    {{ cell.row.original.symbol }}
-                                                </span>
-                                                </div>
+                                                <NuxtIcon
+                                                    v-else
+                                                    @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
+                                                    name='ph:star'
+                                                    class='text-muted-foreground hover:cursor-pointer'
+                                                    size='16'
+                                                />
                                             </div>
                                         </template>
                                         
-                                        <!--   Sparkline  -->
-                                        <template v-else-if='cell.column.id === "sparkline_in_7d"'>
-                                            <div class='w-30 h-14'>
-                                                <Line
-                                                    v-if='cell.getValue().price?.length'
-                                                    :key='cell.id'
-                                                    :data='{
+                                        <NuxtLink
+                                            v-else
+                                            :to='`/market/${row.original.id}`'
+                                        >
+                                            <!--   Name  -->
+                                            <template v-if='cell.column.id === "name"'>
+                                                <div class='flex items-center gap-4 w-64'>
+                                                    <NuxtImg
+                                                        :src='cell.row.original.image'
+                                                        width='40'
+                                                        alt='coin logo'
+                                                    />
+                                                    
+                                                    <div class='flex flex-col items-start gap-1 truncate'>
+                                                        <p class='font-medium'>{{ cell.getValue() }}</p>
+                                                        <span class='uppercase text-xs text-muted-foreground'>
+                                                    {{ cell.row.original.symbol }}
+                                                </span>
+                                                    </div>
+                                                </div>
+                                            </template>
+                                            
+                                            <!--   Sparkline  -->
+                                            <template v-else-if='cell.column.id === "sparkline_in_7d"'>
+                                                <div class='w-30 h-14'>
+                                                    <Line
+                                                        v-if='cell.getValue().price?.length'
+                                                        :key='cell.id'
+                                                        :data='{
                                                         labels: Array(cell.getValue().price?.length).fill(""),
                                                         datasets: [{
                                                               data: cell.getValue().price,
@@ -174,28 +189,29 @@
                                                               pointBackgroundColor: "oklch(0.985 0 0)",
                                                         }]
                                                     }'
-                                                    :options='chartOptions'
+                                                        :options='chartOptions'
+                                                    />
+                                                </div>
+                                            </template>
+                                            
+                                            <template v-else>
+                                                <FlexRender
+                                                    :render='cell.column.columnDef.cell'
+                                                    :props='cell.getContext()'
                                                 />
-                                            </div>
-                                        </template>
-                                        
-                                        <template v-else>
-                                            <FlexRender
-                                                :render='cell.column.columnDef.cell'
-                                                :props='cell.getContext()'
-                                            />
-                                        </template>
-                                    </NuxtLink>
-                                </TableCell>
-                            </TableRow>
-                        </template>
-                        
-                        <template v-else>
-                            <TableRow>
-                                <TableCell :colspan='columns.length' class='h-24 text-center'>
-                                    No results.
-                                </TableCell>
-                            </TableRow>
+                                            </template>
+                                        </NuxtLink>
+                                    </TableCell>
+                                </TableRow>
+                            </template>
+                            
+                            <template v-else>
+                                <TableRow>
+                                    <TableCell :colspan='columns.length' class='h-120 text-center'>
+                                        No results.
+                                    </TableCell>
+                                </TableRow>
+                            </template>
                         </template>
                     </TableBody>
                 </Table>
@@ -211,7 +227,7 @@
 <script setup>
     import { h } from 'vue';
     import { Button } from '~/components/ui/button';
-    import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
+    import { Card } from '~/components/ui/card';
     import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger,  } from '@/components/ui/dropdown-menu';
     import { Input } from '~/components/ui/input';
     import { Spinner } from '~/components/ui/spinner';
@@ -241,7 +257,6 @@
     const { getCoinsMarkets } = MarketStore;
     // State
     const { coins } = storeToRefs(MarketStore);
-    
     const sorting = ref([]);
     const sortingLabel = ref('Market Cap');
     const onSort = header => {
@@ -502,6 +517,16 @@
         },
     });
     
+    // Loading state
+    const loading = ref(true);
+    
+    watch(() => table.getRowModel().rows, rows => {
+        if(rows.length > 0) {
+            loading.value = false;
+        }
+    }, { immediate: true });
+    
+    // Sparkline chart options
     const chartOptions = ref({
         responsive: true,
         maintainAspectRatio: false,
