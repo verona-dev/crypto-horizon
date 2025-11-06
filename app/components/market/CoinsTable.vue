@@ -12,7 +12,7 @@
                     @update:model-value='table.getColumn("name")?.setFilterValue($event)'
                 />
                 
-                <!--   Filter Coluns   -->
+                <!--   Filter Columns   -->
                 <DropdownMenu :modal='false'>
                     <DropdownMenuTrigger as-child class='flex items-center gap-4'>
                         <Button
@@ -96,6 +96,7 @@
                     </TableHeader>
                     
                     <TableBody class='h-130'>
+                        <!--   Loading   -->
                         <template v-if='loading'>
                             <TableRow>
                                 <TableCell :colspan='columns.length'>
@@ -108,11 +109,11 @@
                         </template>
                         
                         <template v-else>
-                            <template v-if='table.getRowModel().rows?.length'>
+                            <template v-if='isTableReady'>
                                 <TableRow
                                     v-for='row in table.getRowModel().rows'
                                     :key='row.id'
-                                    class='hover:cursor-pointer border-none !px-6'
+                                    class='hover:bg-muted/50 hover:cursor-pointer border-none !px-6'
                                 >
                                     <TableCell
                                         v-for='cell in row.getVisibleCells()'
@@ -205,10 +206,36 @@
                                 </TableRow>
                             </template>
                             
+                            <!--   No results   -->
                             <template v-else>
                                 <TableRow>
-                                    <TableCell :colspan='columns.length' class='h-120 text-center'>
-                                        No results.
+                                    <TableCell :colspan='columns.length' class='p-0'>
+                                        <Empty class='from-muted/50 to-background h-130 bg-gradient-to-b from-30%'>
+                                            <EmptyHeader class='gap-3'>
+                                                <EmptyMedia variant='icon' class='w-24 h-24'>
+                                                    <NuxtIcon
+                                                        name='ph:notches-thin'
+                                                        size='60'
+                                                    />
+                                                </EmptyMedia>
+                                                <EmptyTitle>No data available</EmptyTitle>
+                                                <EmptyDescription>No data found. Check back later for updates.</EmptyDescription>
+                                            </EmptyHeader>
+                                            <EmptyContent>
+                                                <Button
+                                                    @click='getCoinsMarkets({}, "table")'
+                                                    variant='outline'
+                                                >
+                                                    <NuxtIcon
+                                                        name='ph:repeat-thin'
+                                                        size='20'
+                                                    />
+                                                    Retry
+                                                </Button>
+                                            </EmptyContent>
+                                        </Empty>
+                                        
+                                        <!--                                        No results.-->
                                     </TableCell>
                                 </TableRow>
                             </template>
@@ -229,6 +256,7 @@
     import { Button } from '~/components/ui/button';
     import { Card } from '~/components/ui/card';
     import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger,  } from '@/components/ui/dropdown-menu';
+    import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
     import { Input } from '~/components/ui/input';
     import { Spinner } from '~/components/ui/spinner';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
@@ -256,7 +284,7 @@
     // Methods
     const { getCoinsMarkets } = MarketStore;
     // State
-    const { coins } = storeToRefs(MarketStore);
+    const { coins, loading } = storeToRefs(MarketStore);
     const sorting = ref([]);
     const sortingLabel = ref('Market Cap');
     const onSort = header => {
@@ -518,9 +546,9 @@
     });
     
     // Loading state
-    const loading = ref(true);
-    
-    watch(() => table.getRowModel().rows, rows => {
+    // const loading = ref(true);
+    const isTableReady = computed(() => table.getRowModel().rows);
+    watch(() => isTableReady.value, rows => {
         if(rows.length > 0) {
             loading.value = false;
         }
