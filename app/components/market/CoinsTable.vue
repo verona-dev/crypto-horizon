@@ -319,21 +319,21 @@
             label: 'Rank',
             titleLabel: 'Market Cap',
             accessorKey: 'market_cap_rank',
-            header: () => h('p', { class: 'text-left' }, '#'),
+            header: () => h('p', { class: 'w-7 text-center' }, '#'),
             cell: (cell) => h('div', { class: 'text-center mr-4' }, cell.getValue()),
             isSortable: true,
         },
         {
             label: 'Name',
             accessorKey: 'name',
-            header: () => h('p', { class: 'w-20' }, 'Name'),
+            header: () => h('p', { class: 'w-100' }, 'Name'),
             meta: { useSlot: true },
             isSortable: true,
         },
         {
             label: 'Price',
             accessorKey: 'current_price',
-            header: () => h('p', 'Price'),
+            header: () => h('p', { class: 'w-20' }, 'Price'),
             cell: (cell) => {
                 const current_price = formatNumber(cell.getValue(), {
                     maximumFractionDigits: 4,
@@ -347,7 +347,7 @@
             label: '1h %',
             titleLabel: '1 hour percentage change',
             accessorKey: 'price_change_percentage_1h_in_currency',
-            header: () => h('p', '1h %'),
+            header: () => h('p', { class: 'w-12' },'1h %'),
             cell: (cell) => {
                 const price_change_percentage_1h = formatNumber(cell.getValue(), {
                     style: 'percent',
@@ -362,7 +362,7 @@
             label: '24h %',
             titleLabel: '24 hours percentage change',
             accessorKey: 'price_change_percentage_24h',
-            header: () => h('p', '24h %'),
+            header: () => h('p', { class: 'w-12' },'24h %'),
             cell: (cell) => {
                 const price_change_percentage_24h = formatNumber(cell.getValue(), {
                     style: 'percent',
@@ -377,7 +377,7 @@
             label: '7d %',
             titleLabel: '7 days percentage change',
             accessorKey: 'price_change_percentage_7d_in_currency',
-            header: () => h('p', '7d %'),
+            header: () => h('p', { class: 'w-12' },'7d %'),
             cell: (cell) => {
                 const price_change_percentage_7d = formatNumber(cell.getValue(), {
                     style: 'percent',
@@ -392,7 +392,7 @@
             label: '30d %',
             titleLabel: '30 days percentage change',
             accessorKey: 'price_change_percentage_30d_in_currency',
-            header: () => h('p', '30d %'),
+            header: () => h('p', { class: 'w-12' },'30d %'),
             cell: (cell) => {
                 const price_change_percentage_30d = formatNumber(cell.getValue(), {
                     style: 'percent',
@@ -406,7 +406,7 @@
         {
             label: 'Market Cap',
             accessorKey: 'market_cap',
-            header: () => h('p',  'Market Cap'),
+            header: () => h('p',  { class: 'w-20' },'Market Cap'),
             cell: (cell) => {
                 const market_cap = formatNumber(cell.getValue(), {
                     compact: true, decimals: 2
@@ -589,12 +589,3 @@
         getCoinsMarkets({}, 'table');
     });
 </script>
-
-<style>
-    .checkbox-item {
-        span {
-            margin-left: 6px !important;
-            margin-top: 1px !important;
-        }
-    }
-</style>
