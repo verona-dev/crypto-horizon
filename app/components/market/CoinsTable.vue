@@ -99,11 +99,16 @@
                         <!--   Loading   -->
                         <template v-if='loading'>
                             <TableRow>
-                                <TableCell :colspan='columns.length'>
-                                    <div class='flex flex-col items-center justify-center gap-4'>
-                                        <Spinner class='size-8 text-green-shamrock' />
-                                        <p>Loading coins...</p>
-                                    </div>
+                                <TableCell :colspan='columns.length' class='p-0'>
+                                    <Empty class='from-muted/25 to-background h-130 bg-gradient-to-b from-50%'>
+                                        <EmptyHeader class='gap-3'>
+                                            <EmptyMedia variant='icon' class='w-16 h-16'>
+                                                <Spinner class='size-8 text-green-shamrock' />
+                                            </EmptyMedia>
+                                            <EmptyTitle>Loading coins...</EmptyTitle>
+                                            <EmptyDescription>Synchronizing with the crypto market, hold on tight!</EmptyDescription>
+                                        </EmptyHeader>
+                                    </Empty>
                                 </TableCell>
                             </TableRow>
                         </template>
@@ -210,7 +215,7 @@
                             <template v-else>
                                 <TableRow>
                                     <TableCell :colspan='columns.length' class='p-0'>
-                                        <Empty class='from-muted/50 to-background h-130 bg-gradient-to-b from-30%'>
+                                        <Empty class='from-muted/25 to-background h-130 bg-gradient-to-b from-50%'>
                                             <EmptyHeader class='gap-3'>
                                                 <EmptyMedia variant='icon' class='w-24 h-24'>
                                                     <NuxtIcon
@@ -234,8 +239,6 @@
                                                 </Button>
                                             </EmptyContent>
                                         </Empty>
-                                        
-                                        <!--                                        No results.-->
                                     </TableCell>
                                 </TableRow>
                             </template>
