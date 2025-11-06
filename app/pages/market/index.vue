@@ -1,8 +1,6 @@
 <template>
     <div class='market page'>
-        <CoinsTable />
-        
-        <div class='flex flex-col items-center justify-center gap-6 z-10'>
+        <div class='flex flex-col items-center justify-center gap-16 z-10'>
             <h1 class='page-title'>Crypto Market</h1>
             
             <div class='flex flex-col flex-wrap xl:flex-row items-center xl:items-start justify-center gap-6 w-screen max-w-7xl'>
@@ -14,9 +12,11 @@
                 <TopTrendingCoins />
                 <TopTrendingNfts />
             </div>
+            
+            <CoinsTable />
         </div>
         
-        <Meteors v-if='dark_mode' :count='30' />
+<!--        <Meteors v-if='dark_mode' :count='30' />-->
     </div>
 </template>
 
