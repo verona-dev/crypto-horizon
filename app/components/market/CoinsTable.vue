@@ -1,36 +1,46 @@
 <template>
-    <Card class='bg-background shadow-none w-screen md:max-w-[1920px] p-10 md:px-24 z-10'>
-        <div class='w-full h-210 flex flex-col gap-6'>
-            <h3 class='text-3xl font-medium tracking-widest'>Leading Cryptocurrencies by {{ sortingLabel }}</h3>
-            
-            <DropdownMenu :modal='false'>
-                <DropdownMenuTrigger as-child class='flex items-center gap-4'>
-                    <Button
-                        variant='outline'
-                        class='ml-auto p-5'
-                    >
-                        <div class='pt-1'>
-                            <NuxtIcon name='ph:funnel-simple' size='20' />
-                        </div>
-                        Filter
-                    </Button>
-                </DropdownMenuTrigger>
+    <Card class='bg-background flex flex-col gap-12 shadow-none w-screen md:max-w-[1920px] p-10 md:px-24 z-10'>
+        <h3 class='text-3xl font-medium tracking-widest'>Leading Cryptocurrencies by {{ sortingLabel }}</h3>
+        
+        <div class='w-full h-210 flex flex-col '>
+            <div class='flex items-center py-4'>
+                <Input
+                    class='max-w-sm focus-visible:border-foreground/75 focus-visible:ring-[0px]'
+                    placeholder='Search Coins...'
+                    :model-value='table.getColumn("name")?.getFilterValue()'
+                    @update:model-value='table.getColumn("name")?.setFilterValue($event)'
+                />
                 
-                <DropdownMenuContent align='end' class='w-56 p-1 pb-0'>
-                    <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Filters</DropdownMenuLabel>
+                <DropdownMenu :modal='false'>
+                    <DropdownMenuTrigger as-child class='flex items-center gap-4'>
+                        <Button
+                            variant='outline'
+                            class='ml-auto p-5 gap-2'
+                        >
+                            <div class='pt-1.5'>
+                                <NuxtIcon name='ph:table-thin' size='20' />
+                            </div>
+                            
+                            <span>Columns</span>
+                        </Button>
+                    </DropdownMenuTrigger>
                     
-                    <DropdownMenuCheckboxItem
-                        v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
-                        :key='column.id'
-                        :modelValue='column.getIsVisible()'
-                        @update:modelValue='(value) => column.toggleVisibility(!!value)'
-                        class='checkbox-item capitalize h-10 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-snowy-mint'
-                        @select='event => event.preventDefault()'
-                    >
-                        {{ column.columnDef.label }}
-                    </DropdownMenuCheckboxItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
+                    <DropdownMenuContent align='end' class='w-56 p-1 pb-0'>
+                        <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Columns</DropdownMenuLabel>
+                        
+                        <DropdownMenuCheckboxItem
+                            v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
+                            :key='column.id'
+                            :modelValue='column.getIsVisible()'
+                            @update:modelValue='(value) => column.toggleVisibility(!!value)'
+                            class='checkbox-item capitalize h-10 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-foreground/85'
+                            @select='event => event.preventDefault()'
+                        >
+                            {{ column.columnDef.label }}
+                        </DropdownMenuCheckboxItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </div>
             
             <div class='border rounded-xl h-120 flex flex-col flex-2/3 overflow-hidden shadow-2xl'>
                 <Table class='bg-background overflow-visible'> <!-- leave bg-background for meteorites -->
@@ -203,9 +213,10 @@
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
     import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger,  } from '@/components/ui/dropdown-menu';
+    import { Input } from '~/components/ui/input';
     import { Spinner } from '~/components/ui/spinner';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
-    import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel } from '@tanstack/vue-table';
+    import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel, getFilteredRowModel } from '@tanstack/vue-table';
     import { valueUpdater } from '~/components/ui/table/utils.ts';
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendClass } from '~/utils/styleUtils.js';
@@ -240,6 +251,7 @@
         }
     };
     
+    const columnFilters = ref([]);
     const columnVisibility = ref({
         price_change_percentage_30d_in_currency: false,
         max_supply: false,
@@ -480,9 +492,12 @@
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
         onSortingChange: updaterOrValue => valueUpdater(updaterOrValue, sorting),
+        onColumnFiltersChange: updaterOrValue => valueUpdater(updaterOrValue, columnFilters),
+        getFilteredRowModel: getFilteredRowModel(),
         onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, columnVisibility),
         state: {
             get sorting() { return sorting.value },
+            get columnFilters() { return columnFilters.value },
             get columnVisibility() { return columnVisibility.value },
         },
     });
