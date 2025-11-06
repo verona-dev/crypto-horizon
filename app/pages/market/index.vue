@@ -1,5 +1,5 @@
 <template>
-    <div class='market page'>
+    <div class='market page gap-24 xl:gap-48'>
         <div class='flex flex-col items-center justify-center gap-16 z-10'>
             <h1 class='page-title'>Crypto Market</h1>
             
@@ -12,11 +12,11 @@
                 <TopTrendingCoins />
                 <TopTrendingNfts />
             </div>
-            
-            <CoinsTable />
         </div>
         
-<!--        <Meteors v-if='dark_mode' :count='30' />-->
+        <CoinsTable />
+        
+        <!--   <Meteors v-if='dark_mode' :count='30' />   -->
     </div>
 </template>
 
@@ -26,14 +26,14 @@
     import TopTrendingCoins from '~/components/market/TopTrendingCoins.vue';
     import TopTrendingNfts from '~/components/market/TopTrendingNfts.vue';
     import CoinsTable from '~/components/market/CoinsTable.vue';
-    import { Meteors } from '~/components/ui/meteors';
+    // import { Meteors } from '~/components/ui/meteors';
     
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     const { getTrendingSearchList } = MarketStore;
     
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
+    // const colorMode = useColorMode();
+    // const dark_mode = computed(() => colorMode.value === 'dark');
     
     onMounted(() => {
         getTrendingSearchList();
