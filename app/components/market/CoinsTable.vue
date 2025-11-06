@@ -1,6 +1,6 @@
 <template>
     <Card class='bg-background flex flex-col gap-12 border-none shadow-none w-screen md:max-w-[1920px] p-10 md:pb-16 md:px-24 z-10'>
-        <h3 class='text-3xl title font-medium tracking-wide flex flex-col items-start gap-6'>
+        <h3 class='text-3xl title font-medium tracking-wide flex flex-col items-start gap-8'>
             <span>Leading Cryptocurrencies by</span>
             <Text3d
                 class='text-6xl xl:text-8xl font-black uppercase'
@@ -72,18 +72,25 @@
                                 :key='header.id'
                                 class='h-full font-bolder text-foreground'
                                 :class='{
-                                    "text-center w-16": header.column.id === "checkbox",
-                                    "flex justify-center items-center": header.column.id === "market_cap_rank",
+                                    "w-16": header.column.id === "checkbox",
+                                    "w-12": header.column.id === "market_cap_rank",
+                                    "w-100 bg-red-500": header.column.id === "name",
+                                    "w-20 ": header.column.id === "current_price",
                                 }'
                             >
                                 <template v-if='!header.isPlaceholder'>
                                     <div
                                         @click='onSort(header)'
                                         class='flex items-center gap-1'
-                                        :class='{ "hover:cursor-pointer" : header.column.columnDef.isSortable }'
+                                        :class='{
+                                            "hover:cursor-pointer" : header.column.columnDef.isSortable,
+                                            "flex justify-center": header.column.id === "checkbox",
+                                            "w-full flex justify-center": header.column.id === "market_cap_rank",
+
+                                        }'
                                     >
                                         <FlexRender
-                                            :render='header.column.columnDef.header'
+                                            :render='header.column.columnDef.label'
                                             :props='header.getContext()'
                                             class='text-md'
                                         />
@@ -136,7 +143,6 @@
                                         v-for='cell in row.getVisibleCells()'
                                         :key='cell.id'
                                         class='h-20 text-center'
-                                        :class='{ "text-left": cell.column.id === "name" }'
                                     >
                                         <!--   Checkbox / Favourites  -->
                                         <template v-if='cell.column.id === "checkbox"'>
@@ -164,7 +170,7 @@
                                         >
                                             <!--   Name  -->
                                             <template v-if='cell.column.id === "name"'>
-                                                <div class='flex items-center gap-4 w-64'>
+                                                <div class='flex items-center gap-4'>
                                                     <NuxtImg
                                                         :src='cell.row.original.image'
                                                         width='40'
@@ -173,9 +179,7 @@
                                                     
                                                     <div class='flex flex-col items-start gap-1 truncate'>
                                                         <p class='font-medium'>{{ cell.getValue() }}</p>
-                                                        <span class='uppercase text-xs text-muted-foreground'>
-                                                    {{ cell.row.original.symbol }}
-                                                </span>
+                                                        <span class='uppercase text-xs text-muted-foreground'>{{ cell.row.original.symbol }}</span>
                                                     </div>
                                                 </div>
                                             </template>
@@ -327,28 +331,22 @@
         {
             id: 'checkbox',
             label: 'Fav',
-            header: () => h('p', { class: 'text-center w-12' },  'Fav'),
-            cell: (cell) => h('div', { class: 'text-center' }, cell.getValue()),
+            accessorKey: 'checkbox',
         },
         {
-            label: 'Rank',
+            label: '#',
             titleLabel: 'Market Cap Rank',
             accessorKey: 'market_cap_rank',
-            header: () => h('p', { class: 'w-7 text-center' }, '#'),
-            cell: (cell) => h('div', { class: 'text-center mr-4' }, cell.getValue()),
-            isSortable: true,
         },
         {
             label: 'Name',
             accessorKey: 'name',
-            header: () => h('p', { class: 'w-100' }, 'Name'),
             meta: { useSlot: true },
             isSortable: true,
         },
         {
             label: 'Price',
             accessorKey: 'current_price',
-            header: () => h('p', { class: 'w-20' }, 'Price'),
             cell: (cell) => {
                 const current_price = formatNumber(cell.getValue(), {
                     maximumFractionDigits: 4,
