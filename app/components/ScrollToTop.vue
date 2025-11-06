@@ -20,11 +20,13 @@
     const route = useRoute();
     const scrollY = ref(0);
     const show = computed(() => {
+        /*
         if (route.path === '/market') {
             return scrollY.value > 5500;
-        } else {
-            return scrollY.value > 500;
         }
+        */
+        return scrollY.value > 500;
+        
     });
     const handleScroll = () => scrollY.value = window.scrollY;
     
