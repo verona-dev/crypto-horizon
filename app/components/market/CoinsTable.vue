@@ -284,7 +284,7 @@
     // Methods
     const { getCoinsMarkets } = MarketStore;
     // State
-    const { coins, loading } = storeToRefs(MarketStore);
+    const { coins } = storeToRefs(MarketStore);
     const sorting = ref([]);
     const sortingLabel = ref('Market Cap');
     const onSort = header => {
@@ -311,22 +311,22 @@
     const columns = computed(() => [
         {
             id: 'checkbox',
-            label: 'checkbox',
-            header: () => h('p', { class: 'text-center w-12' },  'Fav')
+            label: 'Fav',
+            header: () => h('p', { class: 'text-center w-12' },  'Fav'),
+            cell: (cell) => h('div', { class: 'text-center' }, cell.getValue()),
         },
         {
             label: 'Rank',
             titleLabel: 'Market Cap',
             accessorKey: 'market_cap_rank',
-            header: () => h('p','#'),
-            meta: { useHeaderSlot: true },
-            cell: (cell) => h('div', { class: 'text-left' }, cell.getValue()),
+            header: () => h('p', { class: 'text-left' }, '#'),
+            cell: (cell) => h('div', { class: 'text-center mr-4' }, cell.getValue()),
             isSortable: true,
         },
         {
             label: 'Name',
             accessorKey: 'name',
-            header: () => h('p', 'Name'),
+            header: () => h('p', { class: 'w-20' }, 'Name'),
             meta: { useSlot: true },
             isSortable: true,
         },
@@ -546,7 +546,7 @@
     });
     
     // Loading state
-    // const loading = ref(true);
+    const loading = ref(true);
     const isTableReady = computed(() => table.getRowModel().rows);
     watch(() => isTableReady.value, rows => {
         if(rows.length > 0) {
