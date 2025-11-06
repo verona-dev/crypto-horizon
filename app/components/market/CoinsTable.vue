@@ -6,7 +6,7 @@
             <div class='flex items-center py-4'>
                 <!--   Search   -->
                 <Input
-                    class='max-w-sm focus-visible:border-foreground/75 focus-visible:ring-[0px]'
+                    class='max-w-sm focus-visible:border-foreground/75 focus-visible:ring-[0px] p-5'
                     placeholder='Search Coins...'
                     :model-value='table.getColumn("name")?.getFilterValue()'
                     @update:model-value='table.getColumn("name")?.setFilterValue($event)'
