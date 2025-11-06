@@ -1,12 +1,13 @@
 <template>
     <Card class='bg-background flex flex-col gap-12 border-none shadow-none w-screen md:max-w-[1920px] p-10 md:pb-16 md:px-24 z-10'>
-        <h3 class='text-3xl font-medium tracking-wide inline-flex flex-wrap items-end'>
-            <span>Leading Cryptocurrencies by&nbsp;</span>
+        <h3 class='text-3xl title font-medium tracking-wide flex flex-col items-start gap-6'>
+            <span>Leading Cryptocurrencies by</span>
             <Text3d
-                class='text-6xl font-black uppercase'
+                class='text-6xl xl:text-8xl font-black uppercase'
                 :animate='false'
                 :strokeSize='4'
                 :letterSpacing='0.15'
+                :shadowColor='dark_mode ? "yellow" : "transparent"'
             >
                 {{ sortingLabel }}
             </Text3d>
@@ -283,7 +284,6 @@
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
     ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
     
-    
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
@@ -433,7 +433,7 @@
         },
         {
             label: 'Volume 24h',
-            titleLabel: 'Trading volume in the last 24 hours',
+            titleLabel: 'Trading volume 24h',
             accessorKey: 'total_volume',
             header: () => h('p',  'Volume (24h)'),
             cell: (cell) => {
@@ -494,7 +494,7 @@
             label: 'Fully Diluted Mcap (Fdv)',
             titleLabel: 'Fully Diluted Market Cap',
             accessorKey: 'fully_diluted_valuation',
-            header: () => h('p',  'Fdv'),
+            header: () => h('p',  'FDV'),
             cell: (cell) => {
                 const fully_diluted_valuation = formatNumber(cell.getValue(), {
                     compact: true, decimals: 1
@@ -502,6 +502,7 @@
                 return h('div', { class: 'text-left' }, fully_diluted_valuation);
             },
             isFilterable: true,
+            isSortable: true,
         },
         {
             id: 'sparkline_in_7d',
