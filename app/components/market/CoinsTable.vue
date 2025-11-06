@@ -106,7 +106,7 @@
                         </TableRow>
                     </TableHeader>
                     
-                    <TableBody class='h-130'>
+                    <TableBody>
                         <!--   Loading   -->
                         <template v-if='loading'>
                             <TableRow>
@@ -135,7 +135,7 @@
                                     <TableCell
                                         v-for='cell in row.getVisibleCells()'
                                         :key='cell.id'
-                                        class='py-4 text-center'
+                                        class='h-20 text-center'
                                         :class='{ "text-left": cell.column.id === "name" }'
                                     >
                                         <!--   Checkbox / Favourites  -->
@@ -511,7 +511,6 @@
             header: () => h('p', 'Last 7 Days'),
             meta: { useSlot: true },
             isFilterable: true,
-            isSortable: true,
         },
         {
             label: 'From ATH',
