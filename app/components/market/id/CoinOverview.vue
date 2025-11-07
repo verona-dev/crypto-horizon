@@ -63,7 +63,7 @@
                             
                             <!--  ATH Date -->
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='text-muted-custom text-xxs'>{{ ath_date_label }}</HoverCardTrigger>
+                                <HoverCardTrigger class='text-muted-foreground text-xxs'>{{ ath_date_label }}</HoverCardTrigger>
                                 <HoverCardContent>{{ ath_date_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
@@ -102,7 +102,7 @@
                             
                             <!--  ATL Date -->
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='text-muted-custom text-xxs'>{{ atl_date_label }}</HoverCardTrigger>
+                                <HoverCardTrigger class='text-muted-foreground text-xxs'>{{ atl_date_label }}</HoverCardTrigger>
                                 <HoverCardContent>{{ atl_date_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>

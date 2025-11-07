@@ -33,7 +33,6 @@ html.light {
     --color-tertiary: var(--tertiary);
     --color-muted: var(--muted);
     --color-muted-foreground: var(--muted-foreground);
-    --color-muted-custom: var(--muted-custom);
     --color-accent: var(--accent);
     --color-accent-foreground: var(--accent-foreground);
     --color-destructive: var(--destructive);
@@ -216,8 +215,7 @@ html.light {
     --secondary: #353958;
     --secondary-foreground: #f1f3fd;
     --muted: #2a2f46;
-    --muted-foreground: #b8bbcb;
-    --muted-custom: #9ca3af;
+    --muted-foreground: #9ca3af;
     --accent: var(--muted);
     --accent-foreground: #ffffff;
     --destructive: #EA3943;

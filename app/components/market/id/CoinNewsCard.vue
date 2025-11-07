@@ -70,7 +70,7 @@
                     <!--  Author  -->
                     <div class='flex flex-col items-start text-sm gap-1'>
                         <span>{{ article_author_label }}</span>
-                        <span class='text-muted-custom'>{{ source_name_label }}</span>
+                        <span class='text-muted-foreground'>{{ source_name_label }}</span>
                     </div>
                 </HoverCardTrigger>
                 
@@ -108,7 +108,7 @@
                 </HoverCardContent>
             </HoverCard>
             
-            <div class='flex flex-col text-muted-custom gap-2 mr-2'>
+            <div class='flex flex-col text-muted-foreground gap-2 mr-2'>
                 <!--  Publish date  -->
                 <div :openDelay='200' class='flex items-center gap-1'>
                     <NuxtIcon name='ph:calendar-blank-light' size='14px' />

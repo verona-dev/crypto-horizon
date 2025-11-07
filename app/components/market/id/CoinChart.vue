@@ -74,7 +74,7 @@
             <div v-if='loading' class='spinner-container'>
                 <div class='h-full flex flex-col items-center justify-center gap-2 pb-12'>
                     <Spinner class='size-8 text-secondary' />
-                    <!-- <span class='text-muted-custom'>Please wait a moment.</span> -->
+                    <!-- <span class='text-muted-foreground'>Please wait a moment.</span> -->
                 </div>
             </div>
             

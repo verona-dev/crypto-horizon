@@ -103,7 +103,7 @@
                                     <span class='text-sm'>{{ article.source_name }}</span>
                                     
                                     <!--  Publish date  -->
-                                    <div class='flex gap-1 text-muted-custom'>
+                                    <div class='flex gap-1 text-muted-foreground'>
                                         <!--  <NuxtIcon name='ph:calendar-blank-light' size='18' /> . -->
                                         <span class='pt-0.5 text-xs'>{{ article.published_date }}</span>
                                     </div>

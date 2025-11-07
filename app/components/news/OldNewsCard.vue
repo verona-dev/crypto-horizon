@@ -35,7 +35,7 @@
                     />
                 </NuxtImg>
                 
-                <div class='flex justify-between text-muted-custom px-2'>
+                <div class='flex justify-between text-muted-foreground px-2'>
                     <!--  Publish date  -->
                     <div class='flex items-center gap-2'>
                         <NuxtIcon name='iconoir:calendar' size='16' />
@@ -75,7 +75,7 @@
                     <!--  Author  -->
                     <div class='flex flex-col items-start text-left text-sm'>
                         <span>by {{ article_author_label }}</span>
-                        <span class='text-muted-custom'>{{ source_name_label }}</span>
+                        <span class='text-muted-foreground'>{{ source_name_label }}</span>
                     </div>
                 </HoverCardTrigger>
                 
