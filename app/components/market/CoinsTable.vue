@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-background flex flex-col gap-12 border-none shadow-none w-screen md:max-w-[1920px] p-10 md:pb-16 md:px-24 z-10'>
+    <Card class='bg-background flex flex-col gap-12 border-none shadow-none w-full z-10'>
         <h3 class='text-3xl title font-medium tracking-wide flex flex-col items-start gap-8'>
             <span>Leading Cryptocurrencies by</span>
             <Text3d
@@ -13,7 +13,7 @@
             </Text3d>
         </h3>
         
-        <div class='w-full h-210 flex flex-col gap-4'>
+        <div class='w-full flex flex-col gap-4'>
             <div class='flex items-center py-4'>
                 <!--   Search   -->
                 <Input
@@ -56,8 +56,8 @@
             </div>
             
             <!--   Table   -->
-            <div class='border rounded-xl h-120 flex flex-col flex-2/3 overflow-hidden shadow-2xl'>
-                <Table class='bg-background overflow-visible'> <!-- leave bg-background for meteorites -->
+            <div class='border rounded-xl flex flex-col shadow-2xl overflow-y-auto'>
+                <Table class='bg-background'> <!-- leave bg-background for meteorites -->
                     <TableHeader
                         class='bg-background sticky border-b top-0 z-10 shadow-xs'
                         :class='{ "shadow-2xl" : dark_mode }'
@@ -137,7 +137,7 @@
                                 <TableRow
                                     v-for='row in table.getRowModel().rows'
                                     :key='row.id'
-                                    class='hover:bg-muted/50 hover:cursor-pointer border-none !px-6'
+                                    class='hover:bg-muted/50 hover:cursor-pointer border-t-0 !px-6'
                                 >
                                     <TableCell class='h-20 text-center'>
                                         <!--   Checkbox / Favourites  -->
