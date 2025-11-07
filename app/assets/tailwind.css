@@ -54,12 +54,12 @@ html.light {
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
-
+    
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
     --radius-xl: calc(var(--radius) + 4px);
-
+    
     --shadow-2xs: var(--shadow-2xs);
     --shadow-xs: var(--shadow-xs);
     --shadow-sm: var(--shadow-sm);
@@ -76,7 +76,7 @@ html.light {
     --font-montserrat: Montserrat Variable, sans-serif;
     --font-roboto: Roboto, monospace;
     --font-satoshi: Satoshi, sans-serif;
-
+    
     --color-progress: var(--progress);
     --color-sky: var(--sky);
     --color-green-dollar: var(--green-dollar);
@@ -97,7 +97,7 @@ html.light {
     --color-orange-bitcoin: var(--orange-bitcoin);
     --color-yellow-selective: var(--yellow-selective);
     --color-warning: var(--warning);
-
+    
     --animate-meteor-effect: meteor 5s linear infinite;
     @keyframes meteor {
         0% {
@@ -110,6 +110,19 @@ html.light {
         100% {
             transform: rotate(215deg) translateX(-500px);
             opacity: 0;
+        }
+    }
+    
+    --animate-glow: glow var(--duration) infinite linear;
+    @keyframes glow {
+        0% {
+            background-position: 0% 0%;
+        }
+        50% {
+            background-position: 100% 100%;
+        }
+        to {
+            background-position: 0% 0%;
         }
     }
 }
@@ -166,7 +179,7 @@ html.light {
     --shadow-2xl: 0px 2px 0px 0px hsl(0 0% 20% / 0.38);
     --tracking-normal: 0em;
     --spacing: 0.25rem;
-
+    
     --progress: #00bc7d;
     --sky: #0ea5e9;
     --green-dollar: #27ae60;
