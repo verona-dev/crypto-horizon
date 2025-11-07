@@ -8,7 +8,10 @@ const props = defineProps<{
 </script>
 
 <template>
-  <tr :class="cn('border-b transition-colors data-[state=selected]:bg-muted', props.class)">
+  <div
+    data-slot="empty-title"
+    :class="cn('text-lg font-medium tracking-tight', props.class)"
+  >
     <slot />
-  </tr>
+  </div>
 </template>
