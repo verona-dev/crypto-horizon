@@ -32,6 +32,9 @@ export default {
             md: '768px',
             lg: '1024px',
             xl: '1280px',
+            '2xl': '1366px',
+            '3xl': '1920px',
+            '4xl': '2560px',
         },
         fontFamily: {
             great: ['Great', 'sans-serif'],
