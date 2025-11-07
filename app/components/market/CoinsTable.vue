@@ -168,8 +168,7 @@
                                             :key='cell.id'
                                             class='h-20'
                                             :class='{
-                                                "text-right": cell.column.id !== "name",
-                                                "!text-right": cell.column.id !== "sparkline_in_7d",
+                                                "flex justify-end": cell.column.id === "sparkline_in_7d",
                                             }'
                                         >
                                             <!--   Name  -->
@@ -346,8 +345,8 @@
         total_supply: 'min-w-38',
         fully_diluted_valuation: 'min-w-20',
         sparkline_in_7d: 'min-w-20',
-        ath_change_percentage: 'min-w-24',
-        atl_change_percentage: 'min-w-24',
+        ath_change_percentage: 'min-w-20',
+        atl_change_percentage: 'min-w-20',
     };
     
     const columns = computed(() => [
