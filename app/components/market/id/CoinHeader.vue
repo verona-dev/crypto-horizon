@@ -9,15 +9,6 @@
                 :borderWidth='1'
             />
             
-            <!--
-            <BorderBeam
-                v-if='dark_mode'
-                :size='500'
-                :duration='25'
-                :border-width='1'
-            />
-            -->
-            
             <!--  Go back -->
             <!--
             <NuxtLink
@@ -161,7 +152,6 @@
     import { formatNumber, goBack } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import { Badge } from '~/components/ui/badge';
-    import { BorderBeam } from '~/components/ui/border-beam';
     import { Card, CardTitle, CardDescription, CardHeader } from '~/components/ui/card';
     import CoinPublicNotice from '~/components/market/id/CoinPublicNotice.vue';
     import { GlowBorder } from '~/components/ui/glow-border';
