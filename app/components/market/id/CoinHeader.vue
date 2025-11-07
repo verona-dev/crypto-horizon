@@ -1,12 +1,21 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex w-full animate-fadeIn'>
         <Card class='bg-background flex flex-col items-center justify-center relative'>
+            <GlowBorder
+                :color='["#A07CFE", "#FE8FB5", "#FFBE7B"]'
+                :border-radius='6'
+                :duration='75'
+                :borderWidth='1'
+            />
+            
+            <!--
             <BorderBeam
                 v-if='dark_mode'
                 :size='500'
                 :duration='25'
                 :border-width='1'
             />
+            -->
             
             <!--  Go back -->
             <!--
@@ -153,7 +162,8 @@
     import { Badge } from '~/components/ui/badge';
     import { BorderBeam } from '~/components/ui/border-beam';
     import { Card, CardTitle, CardDescription, CardHeader } from '~/components/ui/card';
-    import CoinPublicNotice from '@/components/market/id/CoinPublicNotice.vue';
+    import CoinPublicNotice from '~/components/market/id/CoinPublicNotice.vue';
+    import { GlowBorder } from '~/components/ui/glow-border';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     
     const colorMode = useColorMode();
