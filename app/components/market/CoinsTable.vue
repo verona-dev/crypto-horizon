@@ -1,9 +1,9 @@
 <template>
-    <Card class='bg-background flex flex-col gap-12 border-none shadow-none w-full z-10'>
-        <h3 class='text-3xl title font-medium tracking-wide flex flex-col items-start gap-8'>
-            <span>Leading Cryptocurrencies by</span>
+    <Card class='bg-background flex flex-col gap-12 xl:gap-20 border-none shadow-none w-full h-full z-10'>
+        <h3 class='w-screen title font-medium tracking-wide flex flex-col items-start [gap:clamp(0.5rem,4vw,4rem)]'>
+            <span class='[font-size:clamp(1.5rem,5vw,3rem)]'>Leading Cryptocurrencies by</span>
             <Text3d
-                class='text-6xl xl:text-8xl font-black uppercase'
+                class='[font-size:clamp(1.4rem,5vw,5rem)] font-black uppercase'
                 :animate='false'
                 :strokeSize='4'
                 :letterSpacing='0.15'
@@ -56,10 +56,10 @@
             </div>
             
             <!--   Table   -->
-            <div class='border rounded-xl flex flex-col shadow-2xl overflow-y-auto'>
-                <Table class='bg-background'> <!-- leave bg-background for meteorites -->
+            <div class='border-t border-b rounded-none flex flex-col shadow-b-2xl overflow-auto'>
+                <Table class='!border-none'>
                     <TableHeader
-                        class='bg-background sticky border-b top-0 z-10 shadow-xs'
+                        class='bg-background h-24'
                         :class='{ "shadow-2xl" : dark_mode }'
                     >
                         <TableRow
@@ -167,18 +167,21 @@
                                             v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "checkbox")'
                                             :key='cell.id'
                                             class='h-20'
-                                            :class='{ "text-right": cell.column.id !== "name" }'
+                                            :class='{
+                                                "text-right": cell.column.id !== "name",
+                                                "!text-right": cell.column.id !== "sparkline_in_7d",
+                                            }'
                                         >
                                             <!--   Name  -->
                                             <template v-if='cell.column.id === "name"'>
-                                                <div class='flex items-center gap-4'>
+                                                <div class='flex items-center gap-4 w-96'>
                                                     <NuxtImg
                                                         :src='cell.row.original.image'
                                                         width='40'
                                                         alt='coin logo'
                                                     />
                                                     
-                                                    <div class='flex flex-col items-start gap-1 truncate'>
+                                                    <div class='flex flex-col items-start gap-1'>
                                                         <p class='font-medium'>{{ cell.getValue() }}</p>
                                                         <span class='uppercase text-xs text-muted-foreground'>{{ cell.row.original.symbol }}</span>
                                                     </div>
@@ -317,34 +320,34 @@
     const columnVisibility = ref({
         price_change_percentage_30d_in_currency: false,
         max_supply: false,
-        total_volume: false,
+        // total_volume: false,
         circulating_supply: false,
         total_supply: false,
         fully_diluted_valuation: false,
-        sparkline_in_7d: false,
+        // sparkline_in_7d: false,
         ath_change_percentage: false,
         atl_change_percentage: false,
     });
     const lastApiUpdate = computed(() => dayjs(coins.value[0]?.last_updated).fromNow() || 'Unknown');
     
     const headerWidths = {
-        checkbox: 'w-12',
-        market_cap_rank: 'w-12',
-        name: 'w-fit',
-        current_price: 'w-20',
-        price_change_percentage_1h_in_currency: 'w-20',
-        price_change_percentage_24h: 'w-20',
-        price_change_percentage_7d_in_currency: 'w-20',
-        price_change_percentage_30d_in_currency: 'w-20',
-        market_cap: 'w-28',
-        total_volume: 'w-30',
-        max_supply: 'w-30',
-        circulating_supply: 'w-38',
-        total_supply: 'w-38',
-        fully_diluted_valuation: 'w-20',
-        sparkline_in_7d: 'w-20',
-        ath_change_percentage: 'w-24',
-        atl_change_percentage: 'w-24',
+        checkbox: 'min-w-12',
+        market_cap_rank: 'min-w-12',
+        name: 'min-w-40',
+        current_price: 'min-w-20',
+        price_change_percentage_1h_in_currency: 'min-w-20',
+        price_change_percentage_24h: 'min-w-20',
+        price_change_percentage_7d_in_currency: 'min-w-20',
+        price_change_percentage_30d_in_currency: 'min-w-20',
+        market_cap: 'min-w-28',
+        total_volume: 'min-w-30',
+        max_supply: 'min-w-30',
+        circulating_supply: 'min-w-38',
+        total_supply: 'min-w-38',
+        fully_diluted_valuation: 'min-w-20',
+        sparkline_in_7d: 'min-w-20',
+        ath_change_percentage: 'min-w-24',
+        atl_change_percentage: 'min-w-24',
     };
     
     const columns = computed(() => [
