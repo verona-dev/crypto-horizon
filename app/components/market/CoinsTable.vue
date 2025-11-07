@@ -1,6 +1,6 @@
 <template>
     <Card class='bg-background flex flex-col gap-12 xl:gap-20 border-none shadow-none w-full h-full z-10'>
-        <h3 class='w-screen title font-medium tracking-wide flex flex-col items-start [gap:clamp(0.5rem,4vw,4rem)]'>
+        <h3 class='w-screen title font-medium tracking-wide flex flex-col items-start [gap:clamp(0.5rem,4vw,4rem)] animate-fadeIn'>
             <span class='[font-size:clamp(1.5rem,5vw,3rem)]'>Leading Cryptocurrencies by</span>
             <Text3d
                 class='[font-size:clamp(1.4rem,5vw,5rem)] font-black uppercase'
@@ -13,7 +13,7 @@
             </Text3d>
         </h3>
         
-        <div class='w-full flex flex-col gap-4'>
+        <div class='w-full flex flex-col gap-12'>
             <div class='flex items-center py-4'>
                 <!--   Search   -->
                 <Input
@@ -137,7 +137,7 @@
                                 <TableRow
                                     v-for='row in table.getRowModel().rows'
                                     :key='row.id'
-                                    class='hover:bg-muted/50 hover:cursor-pointer border-t-0 !px-6'
+                                    class='hover:bg-muted/50 hover:cursor-pointer border-t-0 !px-6 animate-fadeIn-2000'
                                 >
                                     <TableCell class='h-20 text-center'>
                                         <!--   Checkbox / Favourites  -->
@@ -331,10 +331,10 @@
     
     const headerWidths = {
         checkbox: 'min-w-12',
-        market_cap_rank: 'min-w-12',
-        name: 'min-w-40',
+        market_cap_rank: 'min-w-10',
+        name: 'min-w-36',
         current_price: 'min-w-20',
-        price_change_percentage_1h_in_currency: 'min-w-20',
+        price_change_percentage_1h_in_currency: 'min-w-18',
         price_change_percentage_24h: 'min-w-20',
         price_change_percentage_7d_in_currency: 'min-w-20',
         price_change_percentage_30d_in_currency: 'min-w-20',
