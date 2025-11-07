@@ -72,39 +72,47 @@
                                 :key='header.id'
                                 class='h-full font-bolder text-foreground'
                                 :class='{
-                                    "w-16": header.column.id === "checkbox",
+                                    "w-12": header.column.id === "checkbox",
                                     "w-12": header.column.id === "market_cap_rank",
-                                    "w-100 bg-red-500": header.column.id === "name",
-                                    "w-20 ": header.column.id === "current_price",
+                                    "w-20": header.column.id === "current_price",
+                                    "w-20": header.column.id === "price_change_percentage_1h_in_currency",
+                                    "w-20": header.column.id === "price_change_percentage_24h",
+                                    "w-20": header.column.id === "price_change_percentage_7d_in_currency",
+                                    "w-32": header.column.id === "market_cap",
                                 }'
                             >
                                 <template v-if='!header.isPlaceholder'>
                                     <div
                                         @click='onSort(header)'
-                                        class='flex items-center gap-1'
+                                        class='flex justify-end'
                                         :class='{
                                             "hover:cursor-pointer" : header.column.columnDef.isSortable,
-                                            "flex justify-center": header.column.id === "checkbox",
-                                            "w-full flex justify-center": header.column.id === "market_cap_rank",
-
+                                            "!justify-center items-center": header.column.id === "checkbox",
+                                            "!justify-center": header.column.id === "market_cap_rank",
+                                            "justify-start": header.column.id === "name",
                                         }'
                                     >
-                                        <FlexRender
-                                            :render='header.column.columnDef.label'
-                                            :props='header.getContext()'
-                                            class='text-md'
-                                        />
-                                        
-                                        <div class='pt-1 w-3' v-if='header.column.columnDef.isSortable'>
-                                            <NuxtIcon
-                                                v-if='header.column.getIsSorted() === "desc"'
-                                                name='ph:caret-down-fill'
-                                                size='12'
-                                            />
-                                            <NuxtIcon
-                                                v-else-if='header.column.getIsSorted() === "asc"'
-                                                name='ph:caret-up-fill'
-                                                size='12'
+                                        <div
+                                            class='flex items-center gap-1'
+                                            :class='{ "flex flex-row-reverse !justify-end" : header.column.id === "name" }'
+                                        >
+                                            <div class='pt-1 w-3' v-if='header.column.columnDef.isSortable'>
+                                                <NuxtIcon
+                                                    v-if='header.column.getIsSorted() === "desc"'
+                                                    name='ph:caret-down-fill'
+                                                    size='12'
+                                                />
+                                                <NuxtIcon
+                                                    v-else-if='header.column.getIsSorted() === "asc"'
+                                                    name='ph:caret-up-fill'
+                                                    size='12'
+                                                />
+                                            </div>
+                                            
+                                            <FlexRender
+                                                :render='header.column.columnDef.label'
+                                                :props='header.getContext()'
+                                                class='text-md'
                                             />
                                         </div>
                                     </div>
@@ -307,10 +315,9 @@
     const sorting = ref([]);
     const sortingLabel = ref('Market Cap');
     const onSort = header => {
-        if(header.column.id !== 'checkbox' && header.column.id !== 'sparkline_in_7d') {
-            header.column.toggleSorting(header.column.getIsSorted() === 'asc');
-            sortingLabel.value = header.column.columnDef.titleLabel || header.column.columnDef.label;
-        }
+        if(header.column.id === 'checkbox' || header.column.id === 'market_cap_rank' || header.column.id === 'sparkline_in_7d') return;
+        header.column.toggleSorting(header.column.getIsSorted() === 'asc');
+        sortingLabel.value = header.column.columnDef.titleLabel || header.column.columnDef.label;
     };
     
     const columnFilters = ref([]);
@@ -334,6 +341,7 @@
             accessorKey: 'checkbox',
         },
         {
+            id: 'market_cap_rank',
             label: '#',
             titleLabel: 'Market Cap Rank',
             accessorKey: 'market_cap_rank',
@@ -341,8 +349,8 @@
         {
             label: 'Name',
             accessorKey: 'name',
-            meta: { useSlot: true },
             isSortable: true,
+            meta: { useSlot: true },
         },
         {
             label: 'Price',
@@ -351,52 +359,52 @@
                 const current_price = formatNumber(cell.getValue(), {
                     maximumFractionDigits: 4,
                 });
-                return h('div', { class: 'text-left' }, current_price);
+                return h('div', { class: 'text-right' }, current_price);
             },
             isFilterable: true,
             isSortable: true,
         },
         {
+            id: 'price_change_percentage_1h_in_currency',
             label: '1h %',
-            titleLabel: '1 hour percentage change',
+            titleLabel: 'Last hour % change',
             accessorKey: 'price_change_percentage_1h_in_currency',
-            header: () => h('p', { class: 'w-12' },'1h %'),
             cell: (cell) => {
                 const price_change_percentage_1h = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
                 const trend = getTrendClass(cell.getValue());
-                return h('div', { class: `text-left ${trend}` }, price_change_percentage_1h);
+                return h('div', { class: `text-right ${trend}` }, price_change_percentage_1h);
             },
             isFilterable: true,
             isSortable: true,
         },
         {
+            id: 'price_change_percentage_24h',
             label: '24h %',
-            titleLabel: '24 hours percentage change',
+            titleLabel: 'Last day % change',
             accessorKey: 'price_change_percentage_24h',
-            header: () => h('p', { class: 'w-12' },'24h %'),
             cell: (cell) => {
                 const price_change_percentage_24h = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
                 const trend = getTrendClass(cell.getValue());
-                return h('div', { class: `text-left ${trend}` }, price_change_percentage_24h);
+                return h('div', { class: `text-right ${trend}` }, price_change_percentage_24h);
             },
             isFilterable: true,
             isSortable: true,
         },
         {
+            id: 'price_change_percentage_7d_in_currency',
             label: '7d %',
-            titleLabel: '7 days percentage change',
+            titleLabel: 'Last week % change',
             accessorKey: 'price_change_percentage_7d_in_currency',
-            header: () => h('p', { class: 'w-12' },'7d %'),
             cell: (cell) => {
                 const price_change_percentage_7d = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
                 const trend = getTrendClass(cell.getValue());
-                return h('div', { class: `text-left ${trend}` }, price_change_percentage_7d);
+                return h('div', { class: `text-right ${trend}` }, price_change_percentage_7d);
             },
             isFilterable: true,
             isSortable: true,
@@ -411,20 +419,20 @@
                     style: 'percent',
                 });
                 const trend = getTrendClass(cell.getValue());
-                return h('div', { class: `text-left ${trend}` }, price_change_percentage_30d);
+                return h('div', { class: `text-right ${trend}` }, price_change_percentage_30d);
             },
             isFilterable: true,
             isSortable: true,
         },
         {
+            id: 'market_cap',
             label: 'Market Cap',
             accessorKey: 'market_cap',
-            header: () => h('p',  { class: 'w-20' },'Market Cap'),
             cell: (cell) => {
                 const market_cap = formatNumber(cell.getValue(), {
                     compact: true, decimals: 2
                 });
-                return h('div', { class: 'text-left' }, market_cap);
+                return h('div', { class: 'text-right' }, market_cap);
             },
             isFilterable: true,
             isSortable: true,
