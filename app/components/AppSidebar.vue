@@ -56,8 +56,15 @@
                 },
                 items: [
                     {
-                        title: 'Crypto Market',
+                        title: 'Cryptocurrencies',
                         url: '/market',
+                        get isActive() {
+                            return isChildActive(this.url);
+                        }
+                    },
+                    {
+                        title: 'Global Market',
+                        url: '/market/global-market',
                         get isActive() {
                             return isChildActive(this.url);
                         }
