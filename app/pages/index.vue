@@ -1,5 +1,11 @@
 <template>
     <div class='flex flex-col items-center gap-8 2xl:gap-32 px-20 pb-20 2xl:pb-10 relative'>
+        <FluidCursor
+            v-if='dark_mode'
+            :densityDissipation='5.5'
+            :velocityDissipation='3'
+        />
+        
         <ParticlesBg
             v-if='dark_mode'
             class='absolute inset-0'
@@ -31,6 +37,7 @@
 </template>
 
 <script setup lang='ts'>
+    import { FluidCursor } from '~/components/ui/fluid-cursor';
     import { ParticlesBg } from '~/components/ui/particles-bg';
     import WelcomeItem from '~/components/WelcomeItem.vue';
     const colorMode = useColorMode();
@@ -38,7 +45,7 @@
     
     const welcomeItems = [
         {
-            title: 'Markets',
+            title: 'Market',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp',
             alt: 'market image',
             to: '/market',
