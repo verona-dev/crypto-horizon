@@ -78,13 +78,19 @@ export const useNewsStore = defineStore('NewsStore', {
             this.loading = true;
             
             try {
-                const response = await useFetchCoindesk('news/v1/source/list');
+                const { data, error } = await useFetchCoindesk('news/v1/source/list');
                 
-                if(response && response.Data) {
-                    this.newsOutlets = response.Data;
+                if(error) {
+                    this.errorFetch = error;
+                }
+                
+                if(data && data.Data) {
+                    this.newsOutlets = data.Data;
+                    
                 }
             } catch(error) {
                 console.error(error);
+                this.errorFetch = error;
             }
             finally {
                 this.loading = false;

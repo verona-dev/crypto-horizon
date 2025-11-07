@@ -2,20 +2,12 @@
     <CardHeader v-if='coin' class='coin-header flex w-full animate-fadeIn'>
         <Card class='bg-background flex flex-col items-center justify-center relative'>
             <GlowBorder
+                v-if='dark_mode'
                 :color='["#A07CFE", "#FE8FB5", "#FFBE7B"]'
                 :border-radius='6'
                 :duration='75'
                 :borderWidth='1'
             />
-            
-            <!--
-            <BorderBeam
-                v-if='dark_mode'
-                :size='500'
-                :duration='25'
-                :border-width='1'
-            />
-            -->
             
             <!--  Go back -->
             <!--
@@ -160,7 +152,6 @@
     import { formatNumber, goBack } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import { Badge } from '~/components/ui/badge';
-    import { BorderBeam } from '~/components/ui/border-beam';
     import { Card, CardTitle, CardDescription, CardHeader } from '~/components/ui/card';
     import CoinPublicNotice from '~/components/market/id/CoinPublicNotice.vue';
     import { GlowBorder } from '~/components/ui/glow-border';
