@@ -74,11 +74,21 @@
                                 :class='{
                                     "w-12": header.column.id === "checkbox",
                                     "w-12": header.column.id === "market_cap_rank",
+                                    "w-fit": header.column.id === "name",
                                     "w-20": header.column.id === "current_price",
                                     "w-20": header.column.id === "price_change_percentage_1h_in_currency",
                                     "w-20": header.column.id === "price_change_percentage_24h",
                                     "w-20": header.column.id === "price_change_percentage_7d_in_currency",
+                                    "w-20": header.column.id === "price_change_percentage_30d_in_currency",
                                     "w-32": header.column.id === "market_cap",
+                                    "w-30": header.column.id === "total_volume",
+                                    "w-30": header.column.id === "max_supply",
+                                    "w-38": header.column.id === "circulating_supply",
+                                    "w-38": header.column.id === "total_supply",
+                                    "w-20": header.column.id === "fully_diluted_valuation",
+                                    "w-20": header.column.id === "sparkline_in_7d",
+                                    "w-24": header.column.id === "ath_change_percentage",
+                                    "w-24": header.column.id === "atl_change_percentage",
                                 }'
                             >
                                 <template v-if='!header.isPlaceholder'>
@@ -411,9 +421,8 @@
         },
         {
             label: '30d %',
-            titleLabel: '30 days percentage change',
+            titleLabel: 'Last month % change',
             accessorKey: 'price_change_percentage_30d_in_currency',
-            header: () => h('p', { class: 'w-12' },'30d %'),
             cell: (cell) => {
                 const price_change_percentage_30d = formatNumber(cell.getValue(), {
                     style: 'percent',
@@ -438,15 +447,14 @@
             isSortable: true,
         },
         {
-            label: 'Volume 24h',
+            label: 'Volume (24h)',
             titleLabel: 'Trading volume 24h',
             accessorKey: 'total_volume',
-            header: () => h('p',  'Volume (24h)'),
             cell: (cell) => {
                 const total_volume = formatNumber(cell.getValue(), {
                     compact: true, decimals: 2
                 }) ;
-                return h('div', { class: 'text-left' }, total_volume);
+                return h('div', { class: 'text-right' }, total_volume);
             },
             isFilterable: true,
             isSortable: true,
@@ -454,14 +462,13 @@
         {
             label: 'Max Supply',
             accessorKey: 'max_supply',
-            header: () => h('p',  'Max Supply'),
             cell: (cell) => {
                 const max_supply = formatNumber(cell.getValue(), {
                     compact: true, style: 'decimal',
                 });
                 const symbol = cell.row?.original?.symbol?.toUpperCase();
                 const label = () => cell.getValue() ? `${max_supply} ${symbol.toUpperCase()}` : max_supply;
-                return h('div', { class: 'text-left w-24' }, label());
+                return h('div', { class: 'text-right' }, label());
             },
             isFilterable: true,
             isSortable: true,
@@ -469,14 +476,13 @@
         {
             label: 'Circulating Supply',
             accessorKey: 'circulating_supply',
-            header: () => h('p',  'Circ. Supply'),
             cell: (cell) => {
                 const circulating_supply = formatNumber(cell.getValue(), {
                     compact: true, style: 'decimal', decimals: 2
                 });
                 const symbol = cell.row?.original?.symbol?.toUpperCase();
                 const label = () => cell.getValue() ? `${circulating_supply} ${symbol.toUpperCase()}` : circulating_supply;
-                return h('div', { class: 'text-left' }, label());
+                return h('div', { class: 'text-right' }, label());
             },
             isFilterable: true,
             isSortable: true,
@@ -484,37 +490,34 @@
         {
             label: 'Total Supply',
             accessorKey: 'total_supply',
-            header: () => h('p',  'Total Supply'),
             cell: (cell) => {
                 const total_supply = formatNumber(cell.getValue(), {
                     compact: true, style: 'decimal', decimals: 2
                 });
                 const symbol = cell.row?.original?.symbol?.toUpperCase();
                 const label = () => cell.getValue() ? `${total_supply} ${symbol.toUpperCase()}` : total_supply;
-                return h('div', { class: 'text-left' }, label());
+                return h('div', { class: 'text-right' }, label());
             },
             isFilterable: true,
             isSortable: true,
         },
         {
-            label: 'Fully Diluted Mcap (Fdv)',
+            label: 'FDV',
             titleLabel: 'Fully Diluted Market Cap',
             accessorKey: 'fully_diluted_valuation',
-            header: () => h('p',  'FDV'),
             cell: (cell) => {
                 const fully_diluted_valuation = formatNumber(cell.getValue(), {
                     compact: true, decimals: 1
                 });
-                return h('div', { class: 'text-left' }, fully_diluted_valuation);
+                return h('div', { class: 'text-right' }, fully_diluted_valuation);
             },
             isFilterable: true,
             isSortable: true,
         },
         {
             id: 'sparkline_in_7d',
-            label: 'Sparkline',
+            label: 'Last 7 Days',
             accessorKey: 'sparkline_in_7d',
-            header: () => h('p', 'Last 7 Days'),
             meta: { useSlot: true },
             isFilterable: true,
         },
@@ -522,13 +525,12 @@
             label: 'From ATH',
             titleLabel: 'From All Time High',
             accessorKey: 'ath_change_percentage',
-            header: () => h('p', 'From ATH'),
             cell: (cell) => {
                 const ath_change_percentage = formatNumber(cell.getValue(), {
                     style: 'percent', minimumFractionDigits: 0, maximumFractionDigits: 0,
                 });
                 const trend = getTrendClass(cell.getValue());
-                return h('div', { class: `text-left ${trend}` }, ath_change_percentage);
+                return h('div', { class: `text-right ${trend}` }, ath_change_percentage);
             },
             isFilterable: true,
             isSortable: true,
@@ -537,13 +539,12 @@
             label: 'From ATL',
             titleLabel: 'From All Time Low',
             accessorKey: 'atl_change_percentage',
-            header: () => h('p', 'From ATL'),
             cell: (cell) => {
                 const atl_change_percentage = formatNumber(cell.getValue(), {
                     style: 'percent', minimumFractionDigits: 0, maximumFractionDigits: 0,
                 });
                 const trend = getTrendClass(cell.getValue());
-                return h('div', { class: `text-left ${trend}` }, atl_change_percentage);
+                return h('div', { class: `text-right ${trend}` }, atl_change_percentage);
             },
             isFilterable: true,
             isSortable: true,
