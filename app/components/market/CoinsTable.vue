@@ -71,25 +71,7 @@
                                 v-for='header in headerGroup.headers'
                                 :key='header.id'
                                 class='h-full font-bolder text-foreground'
-                                :class='{
-                                    "w-12": header.column.id === "checkbox",
-                                    "w-12": header.column.id === "market_cap_rank",
-                                    "w-fit": header.column.id === "name",
-                                    "w-20": header.column.id === "current_price",
-                                    "w-20": header.column.id === "price_change_percentage_1h_in_currency",
-                                    "w-20": header.column.id === "price_change_percentage_24h",
-                                    "w-20": header.column.id === "price_change_percentage_7d_in_currency",
-                                    "w-20": header.column.id === "price_change_percentage_30d_in_currency",
-                                    "w-32": header.column.id === "market_cap",
-                                    "w-30": header.column.id === "total_volume",
-                                    "w-30": header.column.id === "max_supply",
-                                    "w-38": header.column.id === "circulating_supply",
-                                    "w-38": header.column.id === "total_supply",
-                                    "w-20": header.column.id === "fully_diluted_valuation",
-                                    "w-20": header.column.id === "sparkline_in_7d",
-                                    "w-24": header.column.id === "ath_change_percentage",
-                                    "w-24": header.column.id === "atl_change_percentage",
-                                }'
+                                :class='[headerWidths[header.column.id]]'
                             >
                                 <template v-if='!header.isPlaceholder'>
                                     <div
@@ -343,6 +325,26 @@
         atl_change_percentage: false,
     });
     const lastApiUpdate = computed(() => dayjs(coins.value[0]?.last_updated).fromNow() || 'Unknown');
+    
+    const headerWidths = {
+        checkbox: 'w-12',
+        market_cap_rank: 'w-12',
+        name: 'w-fit',
+        current_price: 'w-20',
+        price_change_percentage_1h_in_currency: 'w-20',
+        price_change_percentage_24h: 'w-20',
+        price_change_percentage_7d_in_currency: 'w-20',
+        price_change_percentage_30d_in_currency: 'w-20',
+        market_cap: 'w-26',
+        total_volume: 'w-30',
+        max_supply: 'w-30',
+        circulating_supply: 'w-38',
+        total_supply: 'w-38',
+        fully_diluted_valuation: 'w-20',
+        sparkline_in_7d: 'w-20',
+        ath_change_percentage: 'w-24',
+        atl_change_percentage: 'w-24',
+    };
     
     const columns = computed(() => [
         {
