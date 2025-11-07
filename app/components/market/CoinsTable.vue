@@ -139,34 +139,35 @@
                                     :key='row.id'
                                     class='hover:bg-muted/50 hover:cursor-pointer border-none !px-6'
                                 >
-                                    <TableCell
-                                        v-for='cell in row.getVisibleCells()'
-                                        :key='cell.id'
-                                        class='h-20 text-center'
-                                    >
+                                    <TableCell class='h-20 text-center'>
                                         <!--   Checkbox / Favourites  -->
-                                        <template v-if='cell.column.id === "checkbox"'>
-                                            <div class='pt-1'>
-                                                <NuxtIcon
-                                                    v-if='cell.row.getIsSelected()'
-                                                    @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
-                                                    name='ph:star-fill'
-                                                    class='text-yellow-selective hover:cursor-pointer'
-                                                    size='16'
-                                                />
-                                                <NuxtIcon
-                                                    v-else
-                                                    @click='cell.row.toggleSelected(!cell.row.getIsSelected())'
-                                                    name='ph:star'
-                                                    class='text-muted-foreground hover:cursor-pointer'
-                                                    size='16'
-                                                />
-                                            </div>
-                                        </template>
-                                        
-                                        <NuxtLink
-                                            v-else
-                                            :to='`/market/${row.original.id}`'
+                                        <div class='pt-1'>
+                                            <NuxtIcon
+                                                v-if='row.getIsSelected()'
+                                                @click='row.toggleSelected(!row.getIsSelected())'
+                                                name='ph:star-fill'
+                                                class='text-yellow-selective hover:cursor-pointer'
+                                                size='16'
+                                            />
+                                            <NuxtIcon
+                                                v-else
+                                                @click='row.toggleSelected(!row.getIsSelected())'
+                                                name='ph:star'
+                                                class='text-muted-foreground hover:cursor-pointer'
+                                                size='16'
+                                            />
+                                        </div>
+                                    </TableCell>
+                                    
+                                    <NuxtLink
+                                        :to='`/market/${row.original.id}`'
+                                        class='contents'
+                                    >
+                                        <TableCell
+                                            v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "checkbox")'
+                                            :key='cell.id'
+                                            class='h-20'
+                                            :class='{ "text-right": cell.column.id !== "name" }'
                                         >
                                             <!--   Name  -->
                                             <template v-if='cell.column.id === "name"'>
@@ -222,8 +223,8 @@
                                                     :props='cell.getContext()'
                                                 />
                                             </template>
-                                        </NuxtLink>
-                                    </TableCell>
+                                        </TableCell>
+                                    </NuxtLink>
                                 </TableRow>
                             </template>
                             
@@ -335,7 +336,7 @@
         price_change_percentage_24h: 'w-20',
         price_change_percentage_7d_in_currency: 'w-20',
         price_change_percentage_30d_in_currency: 'w-20',
-        market_cap: 'w-26',
+        market_cap: 'w-28',
         total_volume: 'w-30',
         max_supply: 'w-30',
         circulating_supply: 'w-38',
@@ -357,6 +358,7 @@
             label: '#',
             titleLabel: 'Market Cap Rank',
             accessorKey: 'market_cap_rank',
+            cell: (cell) => h('div', { class: 'text-center' }, cell.getValue()),
         },
         {
             label: 'Name',
