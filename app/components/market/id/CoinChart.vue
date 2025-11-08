@@ -32,7 +32,7 @@
                         class='text-xs w-24 flex gap-2'
                     >
                         <NuxtIcon
-                            name='mdi-light:chart-pie'
+                            name='ph:chart-pie-slice-light'
                             size='15'
                         />
                         <span>Supply</span>
