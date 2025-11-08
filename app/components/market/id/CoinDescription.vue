@@ -6,7 +6,7 @@
         >
             <CardTitle class='flex items-center gap-2'>
                 <NuxtIcon
-                    name='mdi:about-variant'
+                    name='ph:info-light'
                     class='block text-foreground'
                     size='30'
                 />
@@ -35,9 +35,9 @@
         >
             <CardTitle class='flex items-center gap-2'>
                 <NuxtIcon
-                    name='iconoir:hashtag'
+                    name='ph:hash-light'
                     class='block'
-                    size='24'
+                    size='30'
                 />
                 <h6>Categories</h6>
             </CardTitle>
@@ -58,6 +58,7 @@
 
 <script setup>
     import { Badge } from '~/components/ui/badge';
+    import { Card, CardTitle, CardDescription } from '~/components/ui/card';
     
     const props = defineProps({
         coin: {

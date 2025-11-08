@@ -3,8 +3,9 @@
         <!--  Contracts Title  -->
         <div class='flex items-center gap-3'>
             <NuxtIcon
-                name='iconoir:page-edit'
+                name='ph:note-pencil'
                 size='20'
+                class='mt-0.5'
             />
             <h4>Contracts</h4>
         </div>
@@ -25,7 +26,7 @@
                 <p class='capitalize text-sm'>{{platforms[0].value.slice(0, 5) + '...' + platforms[0].value.slice(-5) }}</p>
                 
                 <NuxtIcon
-                    name='iconoir:copy'
+                    name='ph:copy'
                     size='15'
                     class='ml-1'
                 />
@@ -68,7 +69,7 @@
                                         
                                         <NuxtIcon
                                             v-else
-                                            name='bitcoin-icons:block-outline'
+                                            name='ph:codesandbox-logo-fill'
                                             size='25'
                                             class='self-start'
                                         />
@@ -83,7 +84,7 @@
                                 
                                 <!--  Copy contract  -->
                                 <div class='flex items-center justify-center cursor-pointer'>
-                                    <NuxtIcon name='radix-icons:copy' size='20' />
+                                    <NuxtIcon name='ph:copy' size='20' />
                                 </div>
                             </div>
                         </DropdownMenuItem>
@@ -149,7 +150,7 @@
                 }, `${coin.value?.name} (${capitalize(contract.name)}) contract copied.`),
             icon: () =>
                 h(resolveComponent('NuxtIcon'), {
-                    name: 'iconoir:check-circle-solid',
+                    name: 'ph:check-circle-light',
                     size: 30,
                     class: 'w-[50px]',
                 }),

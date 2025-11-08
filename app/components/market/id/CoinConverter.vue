@@ -3,8 +3,9 @@
         <!-- Converter Title -->
         <div class='flex items-center gap-3'>
             <NuxtIcon
-                name='iconoir:calculator'
+                name='ph:calculator'
                 size='20'
+                class='mt-0.5'
             />
             
             <h4>{{ coin_symbol }} converter</h4>

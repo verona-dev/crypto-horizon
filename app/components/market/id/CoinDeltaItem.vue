@@ -14,7 +14,7 @@
                 
                 <CardContent class='flex justify-center py-2'>
                     <NuxtIcon
-                        name='radix-icons:bar-chart'
+                        name='ph:chart-scatter-light'
                         size='30'
                     />
                 </CardContent>

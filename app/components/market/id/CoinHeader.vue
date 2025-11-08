@@ -111,9 +111,9 @@
                     
                     <!--  Price in BTC  -->
                     <div class='flex flex-col items-center gap-2 text-orange-bitcoin' v-if='not_bitcoin'>
-                        <div class='flex items-center'>
+                        <div class='flex items-center gap-2'>
                             <NuxtIcon
-                                name='mynaui:bitcoin'
+                                name='logos:bitcoin'
                                 size='45'
                             />
                             
