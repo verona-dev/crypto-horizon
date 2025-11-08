@@ -81,8 +81,6 @@
                     </NuxtLink>
                 </div>
             </div>
-            
-           
         </CardContent>
         
         <!-- Github -->
