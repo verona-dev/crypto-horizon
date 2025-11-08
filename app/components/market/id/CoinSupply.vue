@@ -33,9 +33,8 @@
                     <!--  Close button  -->
                     <DrawerClose class='w-12 flex justify-end'>
                         <NuxtIcon
-                            name='iconoir:fast-arrow-down'
-                            size='45'
-                            class='hover:bg-muted-foreground'
+                            name='ph:caret-double-down-light'
+                            size='35'
                         />
                     </DrawerClose>
                 </div>

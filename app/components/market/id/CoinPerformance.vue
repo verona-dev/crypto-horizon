@@ -4,8 +4,9 @@
         <!--  Price Title  -->
         <div class='flex items-center gap-3'>
             <NuxtIcon
-                name='iconoir:arc-3d-center-point'
+                name='ph:speedometer'
                 size='22'
+                class='mt-0.5'
             />
             <h4>Price Performance</h4>
         </div>

@@ -3,8 +3,9 @@
         <!--  Explorers Title  -->
         <div class='flex items-center gap-3'>
             <NuxtIcon
-                name='iconoir:apple-shortcuts'
-                size='20'
+                name='ph:codepen-logo'
+                size='22'
+                class='mt-0.5'
             />
             <h4>Explorers</h4>
         </div>
@@ -18,7 +19,7 @@
                 class='flex items-center w-full h-full'
             >
                 <NuxtIcon
-                    name='radix-icons:globe'
+                    name='ph:codesandbox-logo-fill'
                     size='20'
                     class='w-12'
                 />
@@ -38,7 +39,7 @@
                     </Button>
                 </DropdownMenuTrigger>
                 
-                <DropdownMenuContent class='min-w-64 rounded-lg' align='end'>
+                <DropdownMenuContent class='min-w-62 rounded-lg' align='end'>
                     <DropdownMenuLabel class='text-lg px-4 py-4 my-1'>Explorers</DropdownMenuLabel>
                     
                     <DropdownMenuSeparator />
@@ -57,7 +58,7 @@
                             >
                                 <div class='flex items-center gap-3 h-full'>
                                     <NuxtIcon
-                                        name='radix-icons:globe'
+                                        name='ph:codesandbox-logo-fill'
                                         size='20'
                                     />
                                     {{ explorer.name }}

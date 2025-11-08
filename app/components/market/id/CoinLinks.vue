@@ -10,9 +10,9 @@
                     :to='homepage'
                     external
                     target='_blank'
-                    class='flex items-center link-item gap-3'
+                    class='flex items-center link-item gap-2'
                 >
-                    <NuxtIcon name='radix-icons:home' size='20' />
+                    <NuxtIcon name='ph:house-light' size='22' />
                     <p class='text-sm'>Homepage</p>
                 </NuxtLink>
                 
@@ -23,7 +23,7 @@
                     target='_blank'
                     class='flex items-center link-item gap-2'
                 >
-                    <NuxtIcon name='iconoir:open-book' size='25' />
+                    <NuxtIcon name='ph:book-open-light' size='22' />
                     <p class='text-sm'>Whitepaper</p>
                 </NuxtLink>
                 
