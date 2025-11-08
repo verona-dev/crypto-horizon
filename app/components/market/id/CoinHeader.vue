@@ -68,7 +68,7 @@
                                 <Badge class='h-8 px-2 flex items-center gap-2 text-xs text-muted-foreground' variant='outline'>
                                 
                                 <NuxtIcon
-                                        name='uis:favorite'
+                                        name='ph:star-half-fill'
                                         class='text-yellow-selective'
                                         size='20'
                                     />
@@ -88,10 +88,11 @@
                         
                         <!--  Price change % in USD $  -->
                         <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='flex items-center'>
+                            <HoverCardTrigger class='flex items-center gap-1'>
                                 <NuxtIcon
                                     :name='getTrendIcon(price_change_percentage)'
                                     size='15'
+                                    class='mt-0.5'
                                     :class='getTrendClass(price_change_percentage)'
                                 />
                                 
