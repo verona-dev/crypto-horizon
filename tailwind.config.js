@@ -38,7 +38,6 @@ export default {
         },
         fontFamily: {
             great: ['Great', 'sans-serif'],
-            ibmPlexMono: ['IBM Plex Mono'],
             montserrat: ['Montserrat Variable', 'sans-serif'],
             notosans: ['Noto Sans Variable', 'sans-serif'],
             roboto: ['Roboto', 'monospace'],

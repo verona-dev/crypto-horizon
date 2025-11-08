@@ -29,7 +29,6 @@
     "dependencies": {
         "@fontsource-variable/montserrat": "5.2.8",
         "@fontsource-variable/noto-sans": "5.2.7",
-        "@fontsource/ibm-plex-mono": "5.2.5",
         "@iconify-json/bitcoin-icons": "1.2.2",
         "@iconify-json/ph": "1.2.2",
         "@maz-ui/nuxt": "4.1.7",
