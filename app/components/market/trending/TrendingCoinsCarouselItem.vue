@@ -8,7 +8,6 @@
         <NuxtLink
             v-else
             :to='`/market/${slug}`'
-            target='_blank'
             class='h-72 p-2 flex flex-col justify-between animate-fadeIn'
         >
             <!--  Logo + Name + Info  -->
