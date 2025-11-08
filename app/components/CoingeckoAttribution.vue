@@ -29,7 +29,7 @@
             </NuxtImg>
             
             <NuxtIcon
-                name='iconoir:open-new-window'
+                name='ph:arrow-square-out'
                 size='12'
                 class='icon opacity-0'
             />

@@ -6,7 +6,7 @@
         class='!bg-background py-5 scroll-to-top rounded-md hover:cursor-pointer'
     >
         <NuxtIcon
-            name='radix-icons:double-arrow-up'
+            name='ph:caret-double-up-light'
             class='text-foreground'
             size='18'
         />

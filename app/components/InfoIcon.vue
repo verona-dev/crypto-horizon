@@ -1,8 +1,8 @@
 <template>
     <NuxtIcon
-        name='radix-icons:info-circled'
+        name='ph:info'
         :size='size'
-        class='info-icon mt-0.5 flex bg-muted-foreground/50'
+        class='info-icon mt-0.5 flex bg-muted-foreground/75'
     />
 </template>
 
