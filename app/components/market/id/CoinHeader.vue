@@ -24,9 +24,9 @@
             -->
             
             <div class='flex flex-col items-center gap-12 p-10'>
-                <div class='flex flex-col items-center gap-4'>
+                <div class='flex flex-col justify-center items-center gap-4'>
                     <!-- Logo + Name  -->
-                    <CardTitle class='flex items-center gap-2'>
+                    <div class='flex justify-center items-center gap-6'>
                         <NuxtImg
                             v-if='coingecko?.image?.large'
                             :src='coin.coingecko.image.large'
@@ -35,8 +35,8 @@
                             height='60'
                         />
                         
-                        <h1 class='text-4xl md:text-5xl lg:text-7xl'>{{ coingecko.name }}</h1>
-                    </CardTitle>
+                        <h2>{{ coingecko.name }}</h2>
+                    </div>
                     
                     <CardDescription class='flex items-center gap-4'>
                         <!--  Rank  -->

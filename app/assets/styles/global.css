@@ -1,3 +1,6 @@
+/*  Fonts  */
+@import '@fontsource-variable/montserrat';
+@import '@fontsource/metropolis';
 
 @layer base {
     @font-face {
@@ -67,7 +70,7 @@
 
 @layer components {
     h1 {
-        @apply font-great text-4xl md:text-6xl xl:text-8xl tracking-widest break-words;
+        @apply text-4xl md:text-6xl xl:text-8xl tracking-widest break-words;
         
         &.page-title {
             @apply my-6 sm:my-10 xl:my-20;
@@ -75,7 +78,7 @@
     }
     
     h2 {
-        @apply font-great text-3xl tracking-tight;
+        @apply text-3xl md:text-5xl xl:text-7xl tracking-tight;
     }
     
     h3 {
