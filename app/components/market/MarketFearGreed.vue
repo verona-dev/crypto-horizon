@@ -80,7 +80,7 @@
     import { Skeleton } from '~/components/ui/skeleton';
     import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
-    import NewTabIcon from '@/components/NewTabIcon.vue';
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     import InfoIcon from '~/components/InfoIcon.vue';
     
     import dayjs from 'dayjs';

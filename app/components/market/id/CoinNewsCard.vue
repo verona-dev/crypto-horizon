@@ -100,9 +100,11 @@
                             :to='source_url_label'
                             external
                             target='_blank'
-                            class='self-start hover:underline'
+                            class='self-start hover:underline flex items-center gap-1'
                         >
                             <span>Website</span>
+                            
+                            <NewTabIcon/>
                         </NuxtLink>
                     </div>
                 </HoverCardContent>
@@ -127,6 +129,7 @@
 </template>
 
 <script setup>
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     import { useReadingTime } from 'maz-ui/composables';
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';

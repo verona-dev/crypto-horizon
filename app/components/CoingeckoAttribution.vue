@@ -35,6 +35,6 @@
 
 <script setup>
     import { Card } from '~/components/ui/card';
-    import NewTabIcon from '@/components/NewTabIcon.vue';
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     import { Skeleton } from '~/components/ui/skeleton';
 </script>

@@ -184,7 +184,7 @@
     import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
-    import NewTabIcon from '@/components/NewTabIcon.vue';
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     import { Table, TableHeader, TableHead, TableBody, TableCell, TableRow, TableCaption } from '~/components/ui/table/index.js';
     import { Skeleton } from '~/components/ui/skeleton';
     
