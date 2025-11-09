@@ -73,6 +73,8 @@
                         <Button as-child variant='link' class='uppercase'>
                             <NuxtLink :to='url' target='_blank' external>
                                 Visit Outlet
+                                
+                                <NewTabIcon />
                             </NuxtLink>
                         </Button>
                     </CardFooter>
@@ -83,6 +85,7 @@
 </template>
 
 <script setup>
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });

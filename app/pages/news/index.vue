@@ -142,9 +142,11 @@
                                         :to='article.source_url'
                                         external
                                         target='_blank'
-                                        class='self-start hover:underline'
+                                        class='self-start hover:underline flex items-center gap-1'
                                     >
                                         <span>Website</span>
+                                        
+                                        <NewTabIcon />
                                     </NuxtLink>
                                 </div>
                             </HoverCardContent>
@@ -172,6 +174,7 @@
 </template>
 
 <script setup>
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     

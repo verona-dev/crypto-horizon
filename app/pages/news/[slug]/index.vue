@@ -163,10 +163,12 @@
                                 <NuxtLink
                                     :to='article_url'
                                     target='_blank'
-                                    class='flex items-center gap-2'
+                                    class='flex items-center gap-1'
                                     external
                                 >
                                     Visit Article
+                                    
+                                    <NewTabIcon />
                                 </NuxtLink>
                             </Button>
                         </Card>
@@ -223,6 +225,7 @@
     import { goBack } from '~/utils/formatUtils.js';
     import { useReadingTime } from 'maz-ui/composables';
     import Breadcrumb from '~/components/Breadcrumb.vue';
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
