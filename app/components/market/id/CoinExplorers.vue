@@ -25,11 +25,7 @@
                 
                 <p>{{ main_explorer_name }}</p>
                 
-                <NuxtIcon
-                    name='ph:arrow-square-out'
-                    size='14'
-                    class='icon mb-0.5'
-                />
+                <NewTabIcon />
             </NuxtLink>
             
             <!--  All Explorers - Dropdown menu  -->
@@ -80,6 +76,7 @@
 <script setup>
     import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
     import { ChevronDown } from 'lucide-vue-next';
+    import NewTabIcon from '@/components/NewTabIcon.vue';
     
     const props = defineProps({
         links: {
