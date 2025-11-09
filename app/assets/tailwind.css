@@ -70,7 +70,9 @@ html.light {
     
     --text-xxs: 11px;
     --text-md: 14px;
+    
     --font-great: Great, sans-serif;
+    --font-metropolis: Metropolis, sans-serif;
     --font-montserrat: Montserrat Variable, sans-serif;
     --font-roboto: Roboto, monospace;
     --font-satoshi: Satoshi, sans-serif;
