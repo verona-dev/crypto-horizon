@@ -31,7 +31,7 @@
             <NuxtIcon
                 name='ph:arrow-square-out'
                 size='12'
-                class='icon opacity-0'
+                class='icon'
             />
         </NuxtLink>
     </Card>
@@ -41,17 +41,3 @@
     import { Card } from '~/components/ui/card';
     import { Skeleton } from '~/components/ui/skeleton';
 </script>
-
-<style scoped>
-    a {
-        &:hover {
-            .name {
-                text-decoration: underline;
-            }
-            
-            .icon {
-                opacity: 1;
-            }
-        }
-    }
-</style>
