@@ -35,7 +35,7 @@
     }
     
     body {
-        @apply font-satoshi text-foreground overflow-x-hidden overflow-y-scroll;
+        @apply font-metropolis text-foreground overflow-x-hidden overflow-y-scroll;
     }
     
     #__nuxt {
@@ -67,11 +67,15 @@
     ::selection {
         background: var(--accent);
     }
+    
+    .sidebar {
+        @apply font-satoshi z-50;
+    }
 }
 
 @layer components {
     h1 {
-        @apply font-metropolis text-4xl md:text-6xl xl:text-8xl tracking-widest break-words;
+        @apply text-4xl md:text-6xl xl:text-8xl tracking-widest break-words;
         
         &.page-title {
             @apply my-6 sm:my-10 xl:my-20;
@@ -79,12 +83,15 @@
     }
     
     h2 {
-        @apply font-metropolis text-3xl md:text-5xl xl:text-7xl tracking-tight;
+        @apply text-3xl md:text-5xl xl:text-7xl tracking-tight;
     }
     
     h3 {
-        @apply font-metropolis text-2xl;
-        line-height: 30px !important;
+        @apply text-2xl !leading-8;
+        
+        .text-3d {
+            @apply font-satoshi;
+        }
     }
     
     h4 {
@@ -106,7 +113,7 @@
     p {
         @apply text-sm sm:text-base leading-5;
     }
-
+    
     span {
         @apply text-inherit;
     }
