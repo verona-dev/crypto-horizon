@@ -16,15 +16,20 @@
                 :to='main_explorer_link'
                 external
                 target='_blank'
-                class='flex items-center w-full h-full'
+                class='flex justify-around items-center w-full px-2'
             >
                 <NuxtIcon
                     name='ph:codesandbox-logo-fill'
                     size='20'
-                    class='w-12'
                 />
                 
                 <p>{{ main_explorer_name }}</p>
+                
+                <NuxtIcon
+                    name='ph:arrow-square-out'
+                    size='14'
+                    class='icon mb-0.5'
+                />
             </NuxtLink>
             
             <!--  All Explorers - Dropdown menu  -->
