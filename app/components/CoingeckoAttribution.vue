@@ -28,16 +28,13 @@
                 />
             </NuxtImg>
             
-            <NuxtIcon
-                name='ph:arrow-square-out'
-                size='12'
-                class='icon'
-            />
+            <NewTabIcon />
         </NuxtLink>
     </Card>
 </template>
 
 <script setup>
     import { Card } from '~/components/ui/card';
+    import NewTabIcon from '@/components/NewTabIcon.vue';
     import { Skeleton } from '~/components/ui/skeleton';
 </script>
