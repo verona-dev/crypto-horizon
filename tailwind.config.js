@@ -42,6 +42,7 @@ export default {
             roboto: ['Roboto', 'monospace'],
             sans: ['Satoshi', 'sans-serif'],
             satoshi: ['Satoshi', 'sans-serif'],
+            workSans: ['Work Sans Variable', 'sans-serif'],
         },
     },
     plugins: [
