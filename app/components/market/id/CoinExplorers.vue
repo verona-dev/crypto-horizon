@@ -3,8 +3,9 @@
         <!--  Explorers Title  -->
         <div class='flex items-center gap-3'>
             <NuxtIcon
-                name='iconoir:apple-shortcuts'
-                size='20'
+                name='ph:codepen-logo'
+                size='22'
+                class='mt-0.5'
             />
             <h4>Explorers</h4>
         </div>
@@ -15,15 +16,16 @@
                 :to='main_explorer_link'
                 external
                 target='_blank'
-                class='flex items-center w-full h-full'
+                class='flex justify-around items-center w-full px-2'
             >
                 <NuxtIcon
-                    name='radix-icons:globe'
+                    name='ph:codesandbox-logo-fill'
                     size='20'
-                    class='w-12'
                 />
                 
                 <p>{{ main_explorer_name }}</p>
+                
+                <NewTabIcon />
             </NuxtLink>
             
             <!--  All Explorers - Dropdown menu  -->
@@ -38,7 +40,7 @@
                     </Button>
                 </DropdownMenuTrigger>
                 
-                <DropdownMenuContent class='min-w-64 rounded-lg' align='end'>
+                <DropdownMenuContent class='min-w-62 rounded-lg' align='end'>
                     <DropdownMenuLabel class='text-lg px-4 py-4 my-1'>Explorers</DropdownMenuLabel>
                     
                     <DropdownMenuSeparator />
@@ -57,7 +59,7 @@
                             >
                                 <div class='flex items-center gap-3 h-full'>
                                     <NuxtIcon
-                                        name='radix-icons:globe'
+                                        name='ph:codesandbox-logo-fill'
                                         size='20'
                                     />
                                     {{ explorer.name }}
@@ -74,6 +76,7 @@
 <script setup>
     import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
     import { ChevronDown } from 'lucide-vue-next';
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     
     const props = defineProps({
         links: {

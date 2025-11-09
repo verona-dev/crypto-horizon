@@ -19,7 +19,7 @@ export const getBorderClass = change => {
     }
 };
 
-export const getTrendIcon = (number) => number > 0 ? 'iconoir:nav-arrow-up-solid' : 'iconoir:nav-arrow-down-solid';
+export const getTrendIcon = (number) => number > 0 ? 'ph:caret-up-duotone' : 'ph:caret-down-duotone';
 
 
 // export const getIcon = symbol => `cryptocurrency-color:${symbol?.toLowerCase()}`;

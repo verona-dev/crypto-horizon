@@ -167,7 +167,7 @@
 </script>
 
 <template>
-    <Sidebar v-bind='props' class='z-50'>
+    <Sidebar v-bind='props' class='sidebar'>
         <SidebarHeader class='h-20 flex items-center justify-center border-b'>
             <SidebarToggle />
         </SidebarHeader>

@@ -77,7 +77,6 @@ export default defineNuxtConfig({
       '@nuxtjs/color-mode',
       '@nuxt/icon',
       'shadcn-nuxt',
-      'nuxt-charts',
       'motion-v/nuxt',
    ],
 

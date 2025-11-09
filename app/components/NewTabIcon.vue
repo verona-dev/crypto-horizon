@@ -1,16 +1,16 @@
 <template>
     <NuxtIcon
-        name='ph:info'
+        name='ph:arrow-up-right'
         :size='size'
-        class='info-icon mt-0.5 flex bg-muted-foreground/75'
+        class='mb-0.5'
     />
 </template>
 
 <script setup>
     const props = defineProps({
         size: {
-            type: [ String, Number ],
-            default: 15,
+            type: String,
+            default: '12',
         },
     });
 </script>

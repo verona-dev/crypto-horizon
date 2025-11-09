@@ -19,10 +19,10 @@
         :class='isMobile ? "gap-8" : "justify-between"'
     >
         <NuxtIcon
-            name='radix-icons:hamburger-menu'
+            name='ph:list'
             data-sidebar='trigger'
             data-slot='sidebar-trigger'
-            :class='cn("h-7 w-7",props.class)'
+            :class='cn("h-8 w-8",props.class)'
             @click='toggleSidebar'
         >
             <PanelLeft />

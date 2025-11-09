@@ -28,30 +28,13 @@
                 />
             </NuxtImg>
             
-            <NuxtIcon
-                name='iconoir:open-new-window'
-                size='12'
-                class='icon opacity-0'
-            />
+            <NewTabIcon />
         </NuxtLink>
     </Card>
 </template>
 
 <script setup>
     import { Card } from '~/components/ui/card';
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     import { Skeleton } from '~/components/ui/skeleton';
 </script>
-
-<style scoped>
-    a {
-        &:hover {
-            .name {
-                text-decoration: underline;
-            }
-            
-            .icon {
-                opacity: 1;
-            }
-        }
-    }
-</style>

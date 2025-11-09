@@ -72,10 +72,7 @@
                                             
                                             <span class='text-muted-foreground text-xs'>{{ item.name }}</span>
                                             
-                                            <NuxtIcon
-                                                name='solar:list-line-duotone'
-                                                size='15'
-                                            />
+                                            <InfoIcon />
                                         </HoverCardTrigger>
                                         
                                         <HoverCardContent class='flex flex-col justify-stretch gap-4'>
@@ -118,10 +115,7 @@
                                         
                                         <span class='text-xs'>{{ item.name }}</span>
                                         
-                                        <NuxtIcon
-                                            name='solar:list-line-duotone'
-                                            size='15'
-                                        />
+                                        <InfoIcon />
                                     </HoverCardTrigger>
                                     
                                     <HoverCardContent class='flex flex-col justify-stretch gap-4'>
@@ -172,9 +166,11 @@
                     to='https://www.coingecko.com/en/api/'
                     external
                     target='_blank'
-                    class='hover:underline text-primary'
+                    class='hover:underline text-primary flex items-center gap-1'
                 >
                     Coingecko
+                   
+                    <NewTabIcon />
                 </NuxtLink>
                 <span>on {{ updated_at }}</span>
             </CardFooter>
@@ -184,12 +180,13 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
+    import { Bar } from 'vue-chartjs';
     import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
-    import { Skeleton } from '~/components/ui/skeleton';
-    import { Bar } from 'vue-chartjs';
-    import { Table, TableHeader, TableHead, TableBody, TableCell, TableRow, TableCaption } from '~/components/ui/table/index.js';
     import InfoIcon from '~/components/InfoIcon.vue';
+    import NewTabIcon from '~/components/NewTabIcon.vue';
+    import { Table, TableHeader, TableHead, TableBody, TableCell, TableRow, TableCaption } from '~/components/ui/table/index.js';
+    import { Skeleton } from '~/components/ui/skeleton';
     
     import dayjs from 'dayjs';
     

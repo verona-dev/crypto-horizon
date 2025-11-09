@@ -5,8 +5,8 @@
             <!--  Overview Title  -->
             <div class='flex items-center gap-3'>
                 <NuxtIcon
-                    name='iconoir:view-grid'
-                    size='20'
+                    name='ph:squares-four-light'
+                    size='22'
                 />
                 <h4>Overview</h4>
             </div>
@@ -63,7 +63,7 @@
                             
                             <!--  ATH Date -->
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='text-muted-custom text-xxs'>{{ ath_date_label }}</HoverCardTrigger>
+                                <HoverCardTrigger class='text-muted-foreground text-xxs'>{{ ath_date_label }}</HoverCardTrigger>
                                 <HoverCardContent>{{ ath_date_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
@@ -102,7 +102,7 @@
                             
                             <!--  ATL Date -->
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='text-muted-custom text-xxs'>{{ atl_date_label }}</HoverCardTrigger>
+                                <HoverCardTrigger class='text-muted-foreground text-xxs'>{{ atl_date_label }}</HoverCardTrigger>
                                 <HoverCardContent>{{ atl_date_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
@@ -189,8 +189,8 @@
             <!--  Github Title  -->
             <div class='flex items-center gap-3'>
                 <NuxtIcon
-                    name='iconoir:github'
-                    size='20'
+                    name='ph:github-logo-light'
+                    size='22'
                 />
                 <h4>Github</h4>
             </div>
@@ -206,7 +206,7 @@
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
-                                        name='iconoir:git-fork'
+                                        name='ph:git-fork-light'
                                         size='17'
                                         class='flex ml-2 text-yellow-selective'
                                     />
@@ -225,8 +225,8 @@
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
-                                        name='iconoir:star'
-                                        size='15'
+                                        name='ph:star-light'
+                                        size='17'
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
@@ -244,8 +244,8 @@
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
-                                        name='iconoir:git-pull-request'
-                                        size='15'
+                                        name='ph:git-diff-light'
+                                        size='17'
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
@@ -263,7 +263,7 @@
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
-                                        name='radix-icons:commit'
+                                        name='ph:git-commit-light'
                                         size='17'
                                         class='flex ml-2 text-yellow-selective'
                                     />
@@ -282,8 +282,8 @@
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
-                                        name='iconoir:github'
-                                        size='15'
+                                        name='ph:users-light'
+                                        size='17'
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>

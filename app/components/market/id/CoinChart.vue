@@ -27,16 +27,32 @@
             <!--  Supply Drawer  -->
             <Tabs>
                 <TabsList>
-                    <RainbowButton
-                        @click='show_drawer = true'
-                        class='text-xs w-24 flex gap-2'
-                    >
-                        <NuxtIcon
-                            name='mdi-light:chart-pie'
-                            size='15'
-                        />
-                        <span>Supply</span>
-                    </RainbowButton>
+                    <template v-if='dark_mode'>
+                        <RainbowButton
+                            @click='show_drawer = true'
+                            class='text-xs w-24 flex gap-2'
+                        >
+                            <NuxtIcon
+                                name='ph:chart-pie-slice-light'
+                                size='15'
+                            />
+                            <span>Supply</span>
+                        </RainbowButton>
+                    </template>
+                    
+                    <template v-else>
+                        <div
+                            @click='show_drawer = true'
+                            class='rainbow-button group relative h-fit cursor-pointer items-center justify-center rounded-xl border-0 px-3 py-1 font-medium text-foreground transition-colors [background-clip:padding-box,border-box,border-box] [background-origin:border-box] [border:calc(0.08*1rem)_solid_transparent] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 before:absolute before:bottom-[-20%] before:left-1/2 before:z-0 before:h-1/5 before:w-3/5 before:-translate-x-1/2 before:bg-[linear-gradient(90deg,var(--color-1),var(--color-5),var(--color-3),var(--color-4),var(--color-2))] before:bg-[length:200%] before:[filter:blur(calc(0.8*1rem))] dark:bg-background text-xs w-24 flex gap-2'
+                        >
+                            <NuxtIcon
+                                name='ph:chart-pie-slice-light'
+                                size='15'
+                            />
+                            <span>Supply</span>
+                        </div>
+                    </template>
+                    
                     
                     <!--
                     <TabsTrigger
@@ -74,7 +90,7 @@
             <div v-if='loading' class='spinner-container'>
                 <div class='h-full flex flex-col items-center justify-center gap-2 pb-12'>
                     <Spinner class='size-8 text-secondary' />
-                    <!-- <span class='text-muted-custom'>Please wait a moment.</span> -->
+                    <!-- <span class='text-muted-foreground'>Please wait a moment.</span> -->
                 </div>
             </div>
             
@@ -110,6 +126,9 @@
     import dayjs from 'dayjs';
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
     ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
+    
+    const colorMode = useColorMode();
+    const dark_mode = computed(() => colorMode.value === 'dark');
     
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';

@@ -4,57 +4,6 @@
         @apply text-3xl;
     }
     
-    .m-table {
-        font-family: 'Noto Sans Variable', sans-serif;
-    }
-    
-    .m-table-header {
-        font-family: 'IBM Plex Mono', monospace;
-    }
-    
-    /*  CoinExplorers + CoinContracts  */
-    .main-badge {
-        background-color: var(--accent-foreground) !important;
-        border: 1px solid transparent !important;
-        border-top-right-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
-        height: 50px;
-        
-        &:hover {
-            background-color: var(--accent) !important;
-        }
-    }
-    
-    /* Dropdown icon */
-    .m-dropdown__wrapper {
-        .m-btn {
-            background-color: var(--accent-foreground) !important;
-            border-top-left-radius: 0 !important;
-            border-bottom-left-radius: 0 !important;
-            height: 50px;
-            
-            &:hover {
-                background-color: var(--accent) !important;
-            }
-        }
-    }
-    
-    /* Dropdown menus */
-    .m-dropdown.explorers-dropdown {
-        .menu {
-            background-color: var(--accent-foreground) !important;
-            width: 200px !important;
-        }
-    }
-    
-    .m-dropdown.contracts-dropdown {
-        .menu {
-            background-color: var(--accent-foreground) !important;
-            max-height: 375px !important;
-            width: 375px !important;
-        }
-    }
-    
     /* Coin supply progress bars */
     .progress-bar-container {
         @apply flex flex-col items-center gap-6;

@@ -103,7 +103,7 @@
                                     <span class='text-sm'>{{ article.source_name }}</span>
                                     
                                     <!--  Publish date  -->
-                                    <div class='flex gap-1 text-muted-custom'>
+                                    <div class='flex gap-1 text-muted-foreground'>
                                         <!--  <NuxtIcon name='ph:calendar-blank-light' size='18' /> . -->
                                         <span class='pt-0.5 text-xs'>{{ article.published_date }}</span>
                                     </div>
@@ -142,9 +142,11 @@
                                         :to='article.source_url'
                                         external
                                         target='_blank'
-                                        class='self-start hover:underline'
+                                        class='self-start hover:underline flex items-center gap-1'
                                     >
                                         <span>Website</span>
+                                        
+                                        <NewTabIcon />
                                     </NuxtLink>
                                 </div>
                             </HoverCardContent>
@@ -172,6 +174,7 @@
 </template>
 
 <script setup>
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     

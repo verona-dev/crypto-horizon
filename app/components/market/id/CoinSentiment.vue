@@ -3,7 +3,7 @@
         <!--  Sentiment Title  -->
         <div class='flex items-center gap-3'>
             <NuxtIcon
-                name='iconoir:community'
+                name='ph:users-three'
                 size='22'
             />
             <h4>Community sentiment</h4>
@@ -14,8 +14,9 @@
                 <div class='flex items-center justify-between'>
                     <div class='flex items-center gap-2 text-progress'>
                         <NuxtIcon
-                            name='iconoir:stat-up'
-                            size='30'
+                            name='ph:trend-up-light'
+                            size='20'
+                            class='mt-0.5'
                         />
                         <p>{{ sentiment_up_label }}</p>
                     </div>
@@ -28,8 +29,9 @@
                     <div class='flex items-center gap-2 text-destructive'>
                         <p>{{ sentiment_down_label }}</p>
                         <NuxtIcon
-                            name='iconoir:stat-down'
-                            size='30'
+                            name='ph:trend-down-light'
+                            size='20'
+                            class='mt-0.5'
                         />
                     </div>
                 </div>

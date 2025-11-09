@@ -4,8 +4,9 @@
         <!--  Price Title  -->
         <div class='flex items-center gap-3'>
             <NuxtIcon
-                name='iconoir:arc-3d-center-point'
+                name='ph:speedometer'
                 size='22'
+                class='mt-0.5'
             />
             <h4>Price Performance</h4>
         </div>
@@ -14,14 +15,14 @@
         <div class='flex flex-col gap-2'>
             <div class='flex justify-between items-end text-sm'>
                 <div class='flex flex-col gap-1'>
-                    <span class='text-muted-custom'>Low</span>
+                    <span class='text-muted-foreground'>Low</span>
                     <p>{{ low_24h_label }}</p>
                 </div>
                 
-                <span class='text-muted-custom'>24h Range</span>
+                <span class='text-muted-foreground'>24h Range</span>
                 
                 <div class='flex flex-col gap-1'>
-                    <span class='text-sm text-muted-custom'>High</span>
+                    <span class='text-sm text-muted-foreground'>High</span>
                     <p>{{ high_24h_label }}</p>
                 </div>
             </div>

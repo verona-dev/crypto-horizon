@@ -63,9 +63,11 @@
                     to='https://coinmarketcap.com/'
                     external
                     target='_blank'
-                    class='hover:underline text-primary'
+                    class='hover:underline text-primary flex items-center gap-1'
                 >
                     CoinMarketCap.com
+                    
+                    <NewTabIcon />
                 </NuxtLink>
                 <span>on {{ cmc_timestamp }}</span>
             </CardFooter>
@@ -78,6 +80,7 @@
     import { Skeleton } from '~/components/ui/skeleton';
     import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     import InfoIcon from '~/components/InfoIcon.vue';
     
     import dayjs from 'dayjs';

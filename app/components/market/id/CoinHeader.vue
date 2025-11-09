@@ -24,9 +24,9 @@
             -->
             
             <div class='flex flex-col items-center gap-12 p-10'>
-                <div class='flex flex-col items-center gap-4'>
+                <div class='flex flex-col justify-center items-center gap-4'>
                     <!-- Logo + Name  -->
-                    <CardTitle class='flex items-center gap-2'>
+                    <div class='flex justify-center items-center gap-6'>
                         <NuxtImg
                             v-if='coingecko?.image?.large'
                             :src='coin.coingecko.image.large'
@@ -35,8 +35,8 @@
                             height='60'
                         />
                         
-                        <h1 class='text-4xl md:text-5xl lg:text-7xl'>{{ coingecko.name }}</h1>
-                    </CardTitle>
+                        <h2>{{ coingecko.name }}</h2>
+                    </div>
                     
                     <CardDescription class='flex items-center gap-4'>
                         <!--  Rank  -->
@@ -68,7 +68,7 @@
                                 <Badge class='h-8 px-2 flex items-center gap-2 text-xs text-muted-foreground' variant='outline'>
                                 
                                 <NuxtIcon
-                                        name='uis:favorite'
+                                        name='ph:star-half-fill'
                                         class='text-yellow-selective'
                                         size='20'
                                     />
@@ -88,10 +88,11 @@
                         
                         <!--  Price change % in USD $  -->
                         <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='flex items-center'>
+                            <HoverCardTrigger class='flex items-center gap-1'>
                                 <NuxtIcon
                                     :name='getTrendIcon(price_change_percentage)'
                                     size='15'
+                                    class='mt-0.5'
                                     :class='getTrendClass(price_change_percentage)'
                                 />
                                 
@@ -110,9 +111,9 @@
                     
                     <!--  Price in BTC  -->
                     <div class='flex flex-col items-center gap-2 text-orange-bitcoin' v-if='not_bitcoin'>
-                        <div class='flex items-center'>
+                        <div class='flex items-center gap-2'>
                             <NuxtIcon
-                                name='mynaui:bitcoin'
+                                name='logos:bitcoin'
                                 size='45'
                             />
                             

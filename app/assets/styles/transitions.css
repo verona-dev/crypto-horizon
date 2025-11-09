@@ -1,3 +1,4 @@
+/*
 @keyframes fadeIn {
     0% { opacity: 0; }
     5% { opacity: 0.05; }
@@ -29,6 +30,7 @@
 .animate-fadeIn-2000 {
     animation: fadeIn 2s ease-out forwards;
 }
+*/
 
 /* Page */
 .page-enter-active,

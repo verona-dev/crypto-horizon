@@ -259,10 +259,6 @@
 
 <style>
     .coin-supply-progress-bars {
-        a {
-            color: var(--maz-color-muted);
-        }
-        
         .item-container {
             display: flex;
             flex-direction: column;

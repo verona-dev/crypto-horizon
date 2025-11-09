@@ -6,7 +6,7 @@
     >
         <div class='flex px-8'>
             <NuxtIcon
-                name='iconoir:shield-alert'
+                name='ph:shield-warning-light'
                 size='30'
                 class='text-warning'
             />

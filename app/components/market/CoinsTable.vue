@@ -1,6 +1,6 @@
 <template>
     <Card class='bg-background flex flex-col gap-12 xl:gap-20 border-none shadow-none w-full h-full z-10'>
-        <h3 class='w-screen title font-medium tracking-wide flex flex-col items-start [gap:clamp(0.5rem,4vw,4rem)] animate-fadeIn'>
+        <h3 class='title w-screen flex flex-col items-start [gap:clamp(0.5rem,4vw,4rem)]'>
             <span class='[font-size:clamp(1.5rem,5vw,3rem)]'>Leading Cryptocurrencies by</span>
             <Text3d
                 class='[font-size:clamp(1.4rem,5vw,5rem)] font-black uppercase'
