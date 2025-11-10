@@ -2,7 +2,7 @@
     <FlipCard
         v-if='nft'
         rotate='x'
-        class='w-full md:w-96 md:min-h-110 !rounded-sm'
+        class='w-full md:w-96 md:min-h-120 !rounded-sm'
     
     >
         <!--  Card Front  -->

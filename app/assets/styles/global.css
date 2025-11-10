@@ -80,14 +80,14 @@
 @layer components {
     h1 {
         @apply text-7xl md:text-8xl 2xl:text-9xl tracking-widest break-words;
+    }
+    
+    h2 {
+        @apply text-5xl md:text-8xl 2xl:text-9xl tracking-tight;
         
         &.page-title {
             @apply my-6 sm:my-10 xl:my-20;
         }
-    }
-    
-    h2 {
-        @apply text-3xl md:text-5xl 2xl:text-7xl tracking-tight;
     }
     
     h3 {
