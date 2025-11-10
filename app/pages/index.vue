@@ -1,5 +1,5 @@
 <template>
-    <div class='flex flex-col items-center gap-8 2xl:gap-32 px-20 pb-20 2xl:pb-10 relative'>
+    <div class='homepage flex flex-col items-center gap-8 2xl:gap-32 px-20 pb-20 2xl:pb-10 relative'>
         <FluidCursor
             v-if='dark_mode'
             :densityDissipation='5.5'
@@ -16,7 +16,7 @@
             refresh
         />
         
-        <h1 class='font-great mt-20 mb-20 2xl:mb-0 select-none break-words flex flex-col gap-3'>
+        <h1 class='mt-20 mb-20 2xl:mb-0 select-none break-words flex flex-col gap-3'>
             <span>Crypto</span>
             <span>Horizon</span>
         </h1>

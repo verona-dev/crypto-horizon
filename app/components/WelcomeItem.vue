@@ -1,7 +1,7 @@
 <template>
     <NuxtLink
         :to='to'
-        class='link-item w-[450px] flex flex-col items-center justify-center rounded-lg z-10 cursor-pointer'
+        class='link-item w-[450px] xl:w-1/3 flex flex-col items-center justify-center rounded-lg z-10 cursor-pointer'
         @mouseenter='isHovered = true'
         @mouseleave='isHovered = false'
     >
@@ -61,10 +61,10 @@
 <style scoped>
     .link-item {
         img {
-            height: 275px;
+            height: 300px;
             object-fit: cover;
             transition: all 200ms linear;
-            width: 375px;
+            width: 425px;
         }
         
         &:hover {
