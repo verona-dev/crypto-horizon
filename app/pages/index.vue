@@ -1,11 +1,13 @@
 <template>
-    <div class='flex flex-col items-center gap-8 2xl:gap-32 px-20 pb-20 2xl:pb-10 relative'>
+    <div class='homepage flex flex-col items-center gap-8 2xl:gap-32 px-20 pb-20 2xl:pb-10 relative'>
         <FluidCursor
+            v-if='dark_mode'
             :densityDissipation='5.5'
             :velocityDissipation='3'
         />
         
         <ParticlesBg
+            v-if='dark_mode'
             class='absolute inset-0'
             :quantity='100'
             :ease='100'
