@@ -29,12 +29,12 @@
             </NuxtImg>
         </div>
         
-        <h2
+        <h3
             class='my-10'
             :style='isHovered && { color: `var(--${color})` }'
         >
             {{ title }}
-        </h2>
+        </h3>
     </NuxtLink>
 </template>
 
