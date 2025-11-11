@@ -11,13 +11,17 @@
     
     const { open, toggleSidebar, isMobile } = useSidebar()
     
-    const TooltipContent = () => {
-        return h(KbdGroup, { class: '' }, [
-            h(Kbd, { class: 'border rounded-md px-2 pt-0.5' }, '⌘'),
-            h('span', '+'),
-            h(Kbd, { class: 'border rounded-md px-2 pt-0.5' }, 'E')
-        ])
-    }
+    const TooltipContent = defineComponent({
+        name: 'TooltipContent',
+        setup() {
+            return () =>
+                h('KbdGroup', { class: 'flex items-center gap-2' }, [
+                    h('Kbd', { class: 'border rounded-md px-2 pt-0.5' }, '⌘'),
+                    h('span', {}, '+'),
+                    h('Kbd', { class: 'border rounded-md px-2 pt-0.5' }, 'E')
+                ])
+        }
+    })
 </script>
 
 <template>
