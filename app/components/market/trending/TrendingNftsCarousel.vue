@@ -1,6 +1,6 @@
 <template>
     <div class='flex flex-col items-center gap-20'>
-        <h1 class='page-title'>Trending Nft's</h1>
+        <h2 class='page-title'>Trending Nft's</h2>
         
         <div class='flex animate-fadeIn'>
             <Skeleton
@@ -27,7 +27,6 @@
                         >
                             <TrendingNftsCarouselItem :nft='nft' />
                         </CarouselItem>
-             
                     </CarouselContent>
                 </Carousel>
             </div>

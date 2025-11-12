@@ -2,7 +2,7 @@
   <div
     :class="
       cn(
-        'grid lg:auto-rows-[18rem] grid-cols-1 xl:grid-cols-3 gap-4 max-w-7xl mx-auto ',
+        'grid lg:auto-rows-[14rem] grid-cols-1 xl:grid-cols-3 gap-4 max-w-7xl mx-auto ',
         props.class,
       )
     "

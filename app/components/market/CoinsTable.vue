@@ -102,7 +102,7 @@
                                             </div>
                                             
                                             <FlexRender
-                                                :render='header.column.columnDef.label'
+                                                :render='() => h("span", header.column.columnDef.label)'
                                                 :props='header.getContext()'
                                                 class='text-md'
                                             />

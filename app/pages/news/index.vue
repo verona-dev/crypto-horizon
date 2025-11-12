@@ -31,7 +31,7 @@
                         v-if='article.image_url'
                         :src='article.image_url'
                         alt='article image'
-                        class='h-full w-full object-cover rounded-md'
+                        class='h-1/2 w-full object-cover rounded-md'
                         :custom='true'
                         v-slot='{ src, isLoaded, imgAttrs }'
                         preload

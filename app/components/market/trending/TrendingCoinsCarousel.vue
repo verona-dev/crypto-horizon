@@ -1,6 +1,6 @@
 <template>
     <div class='flex flex-col items-center gap-20'>
-        <h1 class='page-title'>Trending Coins</h1>
+        <h2 class='page-title'>Trending Coins</h2>
         
         <div class='animate-fadeIn'>
             <Skeleton
