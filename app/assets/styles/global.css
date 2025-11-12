@@ -99,15 +99,15 @@
     }
     
     h4 {
-        @apply text-xl;
+        @apply text-xl md:text-3xl 2xl:text-4xl;
     }
     
     h5 {
-        @apply text-lg;
+        @apply text-xl;
     }
     
     h6 {
-        @apply text-base text-left;
+        @apply text-lg text-left;
     }
     
     ul {
