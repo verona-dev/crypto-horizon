@@ -92,7 +92,6 @@
                                 <NuxtIcon
                                     :name='getTrendIcon(price_change_percentage)'
                                     size='15'
-                                    class='mt-0.5'
                                     :class='getTrendClass(price_change_percentage)'
                                 />
                                 
@@ -122,7 +121,7 @@
                         
                         <!--  Price change % in BTC  -->
                         <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='flex items-center'>
+                            <HoverCardTrigger class='flex items-center gap-1'>
                                 <NuxtIcon
                                     :name='getTrendIcon(price_change_percentage_btc)'
                                     size='15'
