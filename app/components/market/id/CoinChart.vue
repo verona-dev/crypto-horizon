@@ -288,7 +288,7 @@
                         const label = this.getLabelForValue(value);
                         const current_label = computed(() => getTimeframe.value?.label);
                         
-                        if(current_label.value === '1d') {
+                        if(current_label.value === '24h') {
                             if(index === 0) {
                                 return dayjs(label).format('D. MMM');
                             }

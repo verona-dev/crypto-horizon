@@ -15,7 +15,7 @@ export const useMarketStore = defineStore('MarketStore', {
             chart: {},
             timeframe: 1,
             timeframes: [
-                { name: 'Day', label: '1d', timeframe: 1 },
+                { name: 'Day', label: '24h', timeframe: 1 },
                 { name: 'Week', label: '7d', timeframe: 7 },
                 { name: 'Month', label: '30d', timeframe: 30 },
                 { name: 'Year', label: '1y', timeframe: 365 },
