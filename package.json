@@ -37,6 +37,8 @@
         "@tanstack/vue-table": "8.21.3",
         "@vueuse/core": "13.3.0",
         "chart.js": "4.5.0",
+        "chartjs-adapter-date-fns": "3.0.0",
+        "chartjs-plugin-annotation": "3.1.0",
         "dayjs": "1.11.13",
         "embla-carousel-auto-scroll": "8.6.0",
         "embla-carousel-vue": "8.6.0",
