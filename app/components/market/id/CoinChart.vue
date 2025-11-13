@@ -132,6 +132,7 @@
     import { Line } from 'vue-chartjs';
     import CustomLineChart from '~/utils/CustomLineChart.js';
     import 'chartjs-adapter-date-fns';
+    import annotationPlugin from 'chartjs-plugin-annotation';
     import {
         CategoryScale,
         Chart as ChartJS,
@@ -146,6 +147,7 @@
         Tooltip
     } from 'chart.js';
     ChartJS.register(
+        annotationPlugin,
         CategoryScale,
         CustomLineChart,
         Filler,
@@ -259,6 +261,23 @@
             easing: 'easeOutSine',
         },
         plugins: {
+            annotation: {
+                annotations: {
+                    label1: {
+                        type: 'label',
+                        xValue: timestamps.value[timestamps.value.length - 1],
+                        yValue: chart_data.value[chart_data.value.length - 1],
+                        backgroundColor: 'red',
+                        color: '#fff',
+                        content: `${formatNumber(chart_data.value[chart_data.value.length - 1], {
+                            compact: true, decimals: 2
+                        })}`,
+                        borderRadius: 4,
+                        padding: 8,
+                        position: 'end',
+                    }
+                },
+            },
             tooltip: {
                 enabled: true,
                 backgroundColor: 'oklch(0.21 0.006 285.885)',
