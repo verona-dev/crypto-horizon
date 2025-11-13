@@ -189,9 +189,7 @@
     
     // Price in USD
     const current_price = coingecko.value?.market_data?.current_price?.usd;
-    const current_price_label = formatNumber(current_price, {
-        maximumFractionDigits: 4,
-    });
+    const current_price_label = formatNumber(current_price);
     
     const price_change_percentage = computed(() => {
         if(timeframe.value === 1) return price_change_percentage_1d;
