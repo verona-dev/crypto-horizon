@@ -188,8 +188,8 @@
     const timeframe_label = computed(() => getTimeframe.value?.label);
     
     // Price in USD
-    const current_price = coingecko.value?.market_data?.current_price?.usd;
-    const current_price_label = formatNumber(current_price);
+    const current_price = computed(() => coingecko.value?.market_data?.current_price?.usd);
+    const current_price_label = computed(() => formatNumber(current_price.value));
     
     const price_change_percentage = computed(() => {
         if(timeframe.value === 1) return price_change_percentage_1d;
