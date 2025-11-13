@@ -170,12 +170,7 @@
     const dark_mode = computed(() => colorMode.value === 'dark');
     
     const MarketStore = useMarketStore();
-    
-    // Methods
-    const {
-        setChartTimeframe,
-        getCoinChart,
-    } = MarketStore;
+    const { setChartTimeframe, getCoinChart } = MarketStore;
     
     const props = defineProps({
         coin: {
@@ -267,11 +262,9 @@
                         type: 'label',
                         xValue: timestamps.value[timestamps.value.length - 1],
                         yValue: chart_data.value[chart_data.value.length - 1],
-                        backgroundColor: 'red',
+                        backgroundColor: '#2a2f46', // --muted
                         color: '#fff',
-                        content: `${formatNumber(chart_data.value[chart_data.value.length - 1], {
-                            compact: true, decimals: 2
-                        })}`,
+                        content: `${formatNumber(chart_data.value[chart_data.value.length - 1])}`,
                         borderRadius: 4,
                         padding: 8,
                         position: 'end',
