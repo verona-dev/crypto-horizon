@@ -117,23 +117,56 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
-    import CustomLineChart from '~/utils/CustomLineChart.js';
     import { RainbowButton } from '~/components/ui/rainbow-button';
     import { Card } from '~/components/ui/card';
-    import { Line } from 'vue-chartjs';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     import CoinSupply from '@/components/market/id/CoinSupply.vue';
-    import dayjs from 'dayjs';
-    import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
-    ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
     
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
+    // Dayjs
+    import dayjs from 'dayjs';
+    import customParseFormat from 'dayjs/plugin/customParseFormat';
+    dayjs.extend(customParseFormat);
+    
+    // Chartjs
+    
+    import { Line } from 'vue-chartjs';
+    import CustomLineChart from '~/utils/CustomLineChart.js';
+    import 'chartjs-adapter-date-fns';
+    import {
+        CategoryScale,
+        Chart as ChartJS,
+        Filler,
+        Legend,
+        LinearScale,
+        LineController,
+        LineElement,
+        PointElement,
+        TimeScale,
+        Title,
+        Tooltip
+    } from 'chart.js';
+    ChartJS.register(
+        CategoryScale,
+        CustomLineChart,
+        Filler,
+        Legend,
+        LinearScale,
+        LineController,
+        LineElement,
+        PointElement,
+        TimeScale,
+        Title,
+        Tooltip,
+    );
     
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
     import { Spinner } from '~/components/ui/spinner/index.js';
     import { storeToRefs } from 'pinia';
+    
+    const colorMode = useColorMode();
+    const dark_mode = computed(() => colorMode.value === 'dark');
+    
     const MarketStore = useMarketStore();
     
     // Methods
@@ -213,7 +246,7 @@
         ],
     }));
     
-    const options = {
+    const options = computed(() => ({
         responsive: true,
         maintainAspectRatio: false,
         interaction: {
@@ -251,8 +284,8 @@
                 bodySpacing: 6,
                 callbacks: {
                     title: function(context) {
-                        const timestamps = Number(context[0]?.label); // scales.x.ticks.callback() this.getLabelForValue converted it to String
-                        return dayjs(timestamps).format('MMM D, YYYY, HH:mm:ss');
+                        const date = dayjs(context[0]?.label, "MMM D, YYYY, HH:mm:ss");
+                        return date.format("MMM D, YYYY, HH:mm[h]");
                     },
                     label: function(context) {
                         const index = context.dataIndex;
@@ -278,6 +311,7 @@
         },
         scales: {
             x: {
+                type: 'time',
                 title: {
                     display: false,
                 },
@@ -285,20 +319,19 @@
                     color: 'oklch(0.705 0.015 286.067)',
                     maxTicksLimit: 7,
                     callback: function(value, index) {
-                        const label = this.getLabelForValue(value);
-                        const current_label = computed(() => getTimeframe.value?.label);
+                        const current_timeframe = computed(() => getTimeframe.value?.label);
                         
-                        if(current_label.value === '24h') {
+                        if(current_timeframe.value === '24h') {
                             if(index === 0) {
-                                return dayjs(label).format('D. MMM');
+                                return dayjs(value).format('D. MMM');
                             }
-                            return dayjs(label).minute(0).second(0).millisecond(0).format('HH:mm');
+                            return dayjs(value).minute(0).second(0).millisecond(0).format('HH:mm');
                         }
-                        else if(current_label.value === '1y') {
-                            return dayjs(label).format("MMM 'YY");
+                        else if(current_timeframe.value === '1y') {
+                            return dayjs(value).format("MMM 'YY");
                         }
                         
-                        return dayjs(label).format('D. MMM');
+                        return dayjs(value).format('D. MMM');
                     }
                 },
             },
@@ -314,16 +347,13 @@
                 ticks: {
                     color: 'oklch(0.705 0.015 286.067)',
                     callback: function(value) {
-                        return formatNumber(value, {
-                            compact: true,
-                            decimals: 1,
-                        });
+                        return formatNumber(value);
                     }
                 },
                 offset: true,
             },
         },
-    };
+    }));
     
     // Drawer
     const show_drawer = ref(false);
