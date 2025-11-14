@@ -268,6 +268,8 @@
                         borderRadius: 4,
                         padding: 8,
                         position: 'end',
+                        yAdjust: 10,
+                        xAdjust: 0,
                     }
                 },
             },
