@@ -128,7 +128,6 @@
     dayjs.extend(customParseFormat);
     
     // Chartjs
-    
     import { Line } from 'vue-chartjs';
     import CustomLineChart from '~/utils/CustomLineChart.js';
     import 'chartjs-adapter-date-fns';
@@ -222,13 +221,14 @@
                 data: chart_data.value, // y-axis
                 
                 // Line
-                borderColor: 'rgba(22,199,132, 0.9)',
+                borderColor: 'rgba(22,199,132)',
                 borderWidth: 2,
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
                     const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-                    gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
-                    gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
+                    gradient.addColorStop(0.2, 'rgb(22,199,132)');
+                    gradient.addColorStop(0.5, 'rgba(22,199,132, 0.8)');
+                    gradient.addColorStop(0.75, 'rgba(22,199,132, 0.4)');
                     gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
                     return gradient;
                 },
@@ -255,9 +255,17 @@
             duration: 1000,
             easing: 'easeOutSine',
         },
+        borderDash: [ 0.1, 3 ],
         plugins: {
             annotation: {
                 annotations: {
+/*                    line1: {
+                        type: 'line',
+                        yMin: chart_data.value[chart_data.value.length - 1],
+                        yMax: chart_data.value[chart_data.value.length - 1],
+                        borderColor: 'rgb(255, 99, 132)',
+                        borderWidth: 2,
+                    },*/
                     label1: {
                         type: 'label',
                         xValue: timestamps.value[timestamps.value.length - 1],
@@ -270,32 +278,32 @@
                         position: 'end',
                         yAdjust: 10,
                         xAdjust: 0,
-                    }
+                    },
                 },
             },
             tooltip: {
                 enabled: true,
-                backgroundColor: 'oklch(0.21 0.006 285.885)',
+                backgroundColor: '#1f2230', // --popover
                 padding: {
                     top: 24,
                     right: 28,
                     bottom: 24,
                     left: 28
                 },
-                caretPadding: 8,
-                caretSize: 8,
+                caretPadding: 16,
+                caretSize: 0,
                 cornerRadius: 8,
                 displayColors: false, // disable the color box
-                titleMarginBottom: 16,
+                titleMarginBottom: 24,
                 titleFont: {
                     size: 14,
                     weight: 'normal',
                 },
                 bodyFont: {
-                    size: 14,
+                    size: 12,
                     weight: 'bold',
                 },
-                bodySpacing: 6,
+                bodySpacing: 8,
                 callbacks: {
                     title: function(context) {
                         const date = dayjs(context[0]?.label, "MMM D, YYYY, HH:mm:ss");
