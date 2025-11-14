@@ -301,13 +301,12 @@
                 },
                 bodyFont: {
                     size: 12,
-                    weight: 'bold',
+                    weight: 'bolder',
                 },
                 bodySpacing: 8,
                 callbacks: {
                     title: function(context) {
-                        const date = dayjs(context[0]?.label, "MMM D, YYYY, HH:mm:ss");
-                        return date.format("MMM D, YYYY, HH:mm[h]");
+                        return dayjs(context[0]?.parsed.x).format("MMM D, YYYY, HH:mm:ss");
                     },
                     label: function(context) {
                         const index = context.dataIndex;
