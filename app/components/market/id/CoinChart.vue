@@ -378,6 +378,10 @@
             nextTick(() => type.value = 'price');
         }
     });
+    
+    onMounted(async() => {
+        await getCoinChart();
+    });
 </script>
 
 <style scoped>
