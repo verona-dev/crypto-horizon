@@ -226,9 +226,8 @@
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
                     const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-                    gradient.addColorStop(0.2, 'rgb(22,199,132)');
-                    gradient.addColorStop(0.5, 'rgba(22,199,132, 0.8)');
-                    gradient.addColorStop(0.75, 'rgba(22,199,132, 0.4)');
+                    gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
+                    gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
                     gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
                     return gradient;
                 },
@@ -255,7 +254,7 @@
             duration: 1000,
             easing: 'easeOutSine',
         },
-        borderDash: [ 0.1, 3 ],
+        // borderDash: [ 0.1, 3 ],
         plugins: {
             annotation: {
                 annotations: {
