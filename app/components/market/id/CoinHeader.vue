@@ -31,8 +31,8 @@
                             v-if='coingecko?.image?.large'
                             :src='coin.coingecko.image.large'
                             alt='symbol'
-                            width='60'
-                            height='60'
+                            width='80'
+                            height='80'
                         />
                         
                         <h2>{{ coingecko.name }}</h2>
@@ -113,6 +113,7 @@
                         <div class='flex items-center gap-2'>
                             <NuxtIcon
                                 name='logos:bitcoin'
+                                class='mb-0.5'
                                 size='45'
                             />
                             
