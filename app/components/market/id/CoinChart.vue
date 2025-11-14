@@ -24,6 +24,12 @@
                 </TabsList>
             </Tabs>
             
+            <!--  Switch  -->
+            <Switch
+                :model-value='sniper_mode'
+                @update:model-value='onSwitch'
+            />
+            
             <!--  Supply Drawer  -->
             <Tabs>
                 <TabsList>
@@ -119,6 +125,7 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { RainbowButton } from '~/components/ui/rainbow-button';
     import { Card } from '~/components/ui/card';
+    import { Switch } from '@/components/ui/switch';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     import CoinSupply from '@/components/market/id/CoinSupply.vue';
     
@@ -184,6 +191,13 @@
     // Tabs
     const type = ref('price');
     
+    // Switch
+    const sniper_mode = ref(false);
+    const onSwitch = () => {
+        sniper_mode.value = !sniper_mode.value;
+        console.log(sniper_mode.value);
+    };
+    
     // Timeframe
     const timeframes = ref(coin.value.timeframes);
     const timeframe = computed({
@@ -226,9 +240,18 @@
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
                     const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-                    gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
-                    gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
-                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                    
+                    if(sniper_mode.value) {
+                        gradient.addColorStop(0.2, 'rgba(22,199,132, 1)');
+                        gradient.addColorStop(0.5, 'rgba(22,199,132, 0.7)');
+                        gradient.addColorStop(0.8, 'rgba(22,199,132, 0.2)');
+                        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                    } else {
+                        gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
+                        gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
+                        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                    }
+                    
                     return gradient;
                 },
                 fill: true,
@@ -254,17 +277,22 @@
             duration: 1000,
             easing: 'easeOutSine',
         },
+        elements: {
+            line: {
+                borderDash: sniper_mode.value ? [ 0.1, 3 ] : [],
+            },
+        },
         // borderDash: [ 0.1, 3 ],
         plugins: {
             annotation: {
                 annotations: {
-/*                    line1: {
-                        type: 'line',
-                        yMin: chart_data.value[chart_data.value.length - 1],
-                        yMax: chart_data.value[chart_data.value.length - 1],
-                        borderColor: 'rgb(255, 99, 132)',
-                        borderWidth: 2,
-                    },*/
+                    /*                    line1: {
+                                            type: 'line',
+                                            yMin: chart_data.value[chart_data.value.length - 1],
+                                            yMax: chart_data.value[chart_data.value.length - 1],
+                                            borderColor: 'rgb(255, 99, 132)',
+                                            borderWidth: 2,
+                                        },*/
                     label1: {
                         type: 'label',
                         xValue: timestamps.value[timestamps.value.length - 1],
