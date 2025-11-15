@@ -25,14 +25,16 @@
             </Tabs>
             
             <!--  Switch  -->
-            <div class="flex items-center space-x-2">
+            <div class="flex items-center space-x-1">
                 <Switch
                     id='sniper_mode'
                     :model-value='sniper_mode'
                     @update:model-value='onToggleSniper'
+                    :class='{ "shadow-none" : !dark_mode }'
                 >
                     <template #thumb>
                         <NuxtIcon
+                            v-if='sniper_mode'
                             name='ph:crosshair-simple-light'
                             size='14'
                             class='mb-0.5'
@@ -114,10 +116,10 @@
             
             <div class='w-full'>
                 <Line
-                    ref='chartRef'
-                    v-if='data.datasets?.length'
-                    :data='data'
-                    :options='options'
+                    ref='chart_ref'
+                    v-if='chart_config.data?.datasets?.length'
+                    :data='chart_config.data'
+                    :options='chart_config.options'
                     :height='400'
                     :type='"customLineChart"'
                 />
@@ -140,7 +142,6 @@
     import { Switch } from '@/components/ui/switch';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     import CoinSupply from '@/components/market/id/CoinSupply.vue';
-    import { Moon, Sun } from 'lucide-vue-next';
     
     // Dayjs
     import dayjs from 'dayjs';
@@ -152,6 +153,7 @@
     import CustomLineChart from '~/utils/CustomLineChart.js';
     import 'chartjs-adapter-date-fns';
     import annotationPlugin from 'chartjs-plugin-annotation';
+    
     import {
         CategoryScale,
         Chart as ChartJS,
@@ -165,6 +167,7 @@
         Title,
         Tooltip
     } from 'chart.js';
+    
     ChartJS.register(
         annotationPlugin,
         CategoryScale,
@@ -222,216 +225,234 @@
     
     // Chart
     const chart = computed(() => coin.value?.chart);
-    const chartRef = ref(null);
+    const chart_ref = ref(null);
     const timestamps = computed(() => chart.value?.prices?.map(item => item[0]));
     const prices = computed(() => chart.value?.prices?.map(item => item[1]));
     const volumes = computed(() => chart.value?.total_volumes?.map(item => item[1]));
     const m_caps = computed(() => chart.value?.market_caps?.map(item => item[1]));
     const chart_data = computed(() => type.value === 'price' ? prices.value : m_caps.value);
     const loading = ref(false);
+    Tooltip.positioners.myCustomPositioner = function() {
+        return {
+            x: 0,
+            y: -100
+        };
+    };
     
     watch(chart_data, () => {
-        const chartInstance = chartRef.value?.chart;
+        const chartInstance = chart_ref.value?.chart;
         
         if (chartInstance) {
             chartInstance.update();
         }
     }, { deep: true });
     
-    const data = computed(() => ({
-        labels: timestamps.value, // x-axis
-        datasets: [
-            {
-                data: chart_data.value, // y-axis
-                
-                // Line
-                borderColor: chart_styles.value?.datasets?.borderColor,
-                borderWidth: chart_styles.value?.datasets?.borderWidth,
-                backgroundColor: chart_styles.value?.datasets?.backgroundColor,
-                fill: true,
-                tension: 0.5,
-                
-                // Point
-                pointRadius: 0,
-                pointHoverRadius: 5,
-                pointBackgroundColor: 'oklch(0.985 0 0)',
+    const chart_config = computed(() => {
+        const computed_styles = {
+            datasets: {
+                borderColor: sniper_mode.value ? 'rgba(22,199,132, 0.7)' : 'rgba(22,199,132)',
+                borderWidth: sniper_mode.value ? 1 : 2,
+                backgroundColor: (context) => {
+                    const ctx = context.chart.ctx;
+                    const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
+                    
+                    if(sniper_mode.value) {
+                        gradient.addColorStop(0.2, 'rgba(22,199,132, 0.7)');
+                        gradient.addColorStop(0.5, 'rgba(22,199,132, 0.7)');
+                        gradient.addColorStop(0.8, 'rgba(22,199,132, 0.2)');
+                        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                    } else {
+                        gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
+                        gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
+                        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                    }
+                    
+                    return gradient;
+                },
             },
-        ],
-    }));
-    
-    const options = computed(() => ({
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: {
-            mode: 'nearest',
-            axis: 'x',
-            intersect: false,
-        },
-        animation: {
-            duration: 1000,
-            easing: 'easeOutSine',
-        },
-        elements: chart_styles.value?.elements?.line,
-        plugins: {
-            annotation: {
-                annotations: {
-                    /*
-                          line1: {
-                          type: 'line',
-                          yMin: chart_data.value[chart_data.value.length - 1],
-                          yMax: chart_data.value[chart_data.value.length - 1],
-                          borderColor: 'rgb(255, 99, 132)',
-                          borderWidth: 2,
-                      },
-                      */
-                    ...(!sniper_mode.value && {
-                        label1: {
-                            type: 'label',
-                            xValue: timestamps.value[timestamps.value.length - 1],
-                            yValue: chart_data.value[chart_data.value.length - 1],
-                            backgroundColor: '#2a2f46', // --muted
-                            color: '#fff',
-                            content: `${formatNumber(chart_data.value[chart_data.value.length - 1])}`,
-                            borderRadius: 4,
-                            padding: 8,
-                            position: 'end',
-                            yAdjust: 10,
-                            xAdjust: 0,
-                        },
-                    }),
+            elements: {
+                line: {
+                    borderDash: sniper_mode.value ? [ 0.1, 3 ] : [],
                 },
             },
             tooltip: {
-                enabled: true,
-                backgroundColor: '#1f2230', // --popover
+                body: {
+                    size: sniper_mode.value ? 14 : 12,
+                    weight: 'bolder',
+                },
+                bodySpacing: sniper_mode.value ? 0 : 8,
+                caretPadding: sniper_mode.value ? 80 : 16,
+                caretSize: sniper_mode.value ? 0 : 8,
+                position: sniper_mode.value ? 'myCustomPositioner' : 'average',
                 padding: {
-                    top: 24,
-                    right: 28,
-                    bottom: 24,
-                    left: 28
+                    top: sniper_mode.value ? 12 : 24,
+                    right: sniper_mode.value ? 12 : 28,
+                    bottom: sniper_mode.value ? 12 : 24,
+                    left: sniper_mode.value ? 12 : 28,
                 },
-                titleMarginBottom: chart_styles.value?.tooltip?.titleMarginBottom,
-                yAlign: chart_styles.value?.tooltip?.yAlign,
-                caretPadding: chart_styles.value?.tooltip?.caretPadding,
-                caretSize: 0,
-                cornerRadius: 8,
-                displayColors: false, // disable the color box
-                titleFont: chart_styles.value?.tooltip?.title,
-                bodyFont: chart_styles.value?.tooltip?.body,
-                callbacks: {
-                    title: function(context) {
-                        return dayjs(context[0]?.parsed.x).format("MMM D, YYYY, HH:mm:ss");
+                title: {
+                    size: sniper_mode.value ? 14 : 14,
+                    weight: 'normal',
+                },
+                titleMarginBottom: sniper_mode.value ? 12 : 12,
+                yAlign: sniper_mode.value ? 'top' : '',
+            },
+        };
+        
+        // Data
+        const datasets = [{
+            labels: timestamps.value, // x-axis
+            data: chart_data.value, // y-axis
+            
+            // Line
+            borderColor: computed_styles.datasets?.borderColor,
+            borderWidth: computed_styles.datasets?.borderWidth,
+            backgroundColor: computed_styles.datasets?.backgroundColor,
+            fill: true,
+            tension: 0.5,
+            
+            // Point
+            pointRadius: 0,
+            pointHoverRadius: 5,
+            pointBackgroundColor: 'oklch(0.985 0 0)',
+        }];
+        
+        // Options
+        const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                mode: 'nearest',
+                axis: 'x',
+                intersect: false,
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeOutSine',
+            },
+            elements: computed_styles.elements,
+            plugins: {
+                annotation: {
+                    annotations: {
+                        /*
+                              line1: {
+                              type: 'line',
+                              yMin: chart_data.value[chart_data.value.length - 1],
+                              yMax: chart_data.value[chart_data.value.length - 1],
+                              borderColor: 'rgb(255, 99, 132)',
+                              borderWidth: 2,
+                          },
+                          */
+                        ...(!sniper_mode.value && {
+                            label1: {
+                                type: 'label',
+                                xValue: timestamps.value[timestamps.value.length - 1],
+                                yValue: chart_data.value[chart_data.value.length - 1],
+                                backgroundColor: '#2a2f46', // --muted
+                                color: '#fff',
+                                content: `${formatNumber(chart_data.value[chart_data.value.length - 1])}`,
+                                borderRadius: 4,
+                                padding: 8,
+                                position: 'end',
+                                yAdjust: 10,
+                                xAdjust: 0,
+                            },
+                        }),
                     },
-                    label: function(context) {
-                        const index = context.dataIndex;
-                        const amount = formatNumber(context.parsed.y, {
-                            truncate: true,
-                        });
-                        const volume = formatNumber(volumes.value[index]);
-                        const label = type.value === 'price' ? 'Price' : 'Market Cap';
-                        
-                        return [
-                            `${label}: ${amount}`,
-                            `Vol: ${volume}`,
-                        ];
+                },
+                tooltip: {
+                    enabled: true,
+                    backgroundColor: '#1f2230', // --popover
+                    bodyFont: computed_styles.tooltip.body,
+                    callbacks: {
+                        title: function(context) {
+                            return dayjs(context[0]?.parsed.x).format("MMM D, YYYY, HH:mm:ss");
+                        },
+                        label: function(context) {
+                            const index = context.dataIndex;
+                            const amount = formatNumber(context.parsed.y, {
+                                truncate: true,
+                            });
+                            const volume = formatNumber(volumes.value[index]);
+                            const label = type.value === 'price' ? 'Price' : 'Market Cap';
+                            
+                            return [
+                                `${label}: ${amount}`,
+                                `Vol: ${volume}`,
+                            ];
+                        }
+                    },
+                    caretPadding: computed_styles.tooltip.caretPadding,
+                    caretSize: computed_styles.tooltip.caretSize,
+                    cornerRadius: 8,
+                    displayColors: false, // disable the color box
+                    padding: computed_styles.tooltip.padding,
+                    position: computed_styles.tooltip.position,
+                    titleFont: computed_styles.tooltip.title,
+                    titleMarginBottom: computed_styles.tooltip.titleMarginBottom,
+                    yAlign: computed_styles.tooltip.yAlign,
+                },
+                legend: {
+                    display: false,
+                    labels: {
+                        color: 'oklch(0.705 0.015 286.067)',
                     }
                 },
             },
-            legend: {
-                display: false,
-                labels: {
-                    color: 'oklch(0.705 0.015 286.067)',
-                }
-            },
-        },
-        scales: {
-            x: {
-                type: 'time',
-                title: {
-                    display: false,
-                },
-                ticks: {
-                    color: 'oklch(0.705 0.015 286.067)',
-                    maxTicksLimit: 7,
-                    callback: function(value, index) {
-                        const current_timeframe = computed(() => getTimeframe.value?.label);
-                        
-                        if(current_timeframe.value === '24h') {
-                            if(index === 0) {
-                                return dayjs(value).format('D. MMM');
+            scales: {
+                x: {
+                    type: 'time',
+                    title: {
+                        display: false,
+                    },
+                    ticks: {
+                        color: 'oklch(0.705 0.015 286.067)',
+                        maxTicksLimit: 7,
+                        callback: function(value, index) {
+                            const current_timeframe = computed(() => getTimeframe.value?.label);
+                            
+                            if(current_timeframe.value === '24h') {
+                                if(index === 0) {
+                                    return dayjs(value).format('D. MMM');
+                                }
+                                return dayjs(value).minute(0).second(0).millisecond(0).format('HH:mm');
                             }
-                            return dayjs(value).minute(0).second(0).millisecond(0).format('HH:mm');
+                            else if(current_timeframe.value === '1y') {
+                                return dayjs(value).format("MMM 'YY");
+                            }
+                            
+                            return dayjs(value).format('D. MMM');
                         }
-                        else if(current_timeframe.value === '1y') {
-                            return dayjs(value).format("MMM 'YY");
+                    },
+                },
+                y: {
+                    position: 'right',
+                    title: {
+                        display: false,
+                    },
+                    beginAtZero: false,
+                    grid: {
+                        color: 'rgba(78,135,176,0.35)',
+                    },
+                    ticks: {
+                        color: 'oklch(0.705 0.015 286.067)',
+                        callback: function(value) {
+                            return formatNumber(value);
                         }
-                        
-                        return dayjs(value).format('D. MMM');
-                    }
+                    },
+                    offset: true,
                 },
             },
-            y: {
-                position: 'right',
-                title: {
-                    display: false,
-                },
-                beginAtZero: false,
-                grid: {
-                    color: 'rgba(78,135,176,0.35)',
-                },
-                ticks: {
-                    color: 'oklch(0.705 0.015 286.067)',
-                    callback: function(value) {
-                        return formatNumber(value);
-                    }
-                },
-                offset: true,
+        };
+        
+        return {
+            data: {
+                labels: datasets[0].labels,
+                datasets: datasets,
             },
-        },
-    }));
-    
-    const chart_styles = computed(() => ({
-        datasets: {
-            borderColor: sniper_mode.value ? 'rgba(22,199,132, 0.7)' : 'rgba(22,199,132)',
-            borderWidth: sniper_mode.value ? 1 : 2,
-            backgroundColor: (context) => {
-                const ctx = context.chart.ctx;
-                const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-                
-                if(sniper_mode.value) {
-                    gradient.addColorStop(0.2, 'rgba(22,199,132, 0.7)');
-                    gradient.addColorStop(0.5, 'rgba(22,199,132, 0.7)');
-                    gradient.addColorStop(0.8, 'rgba(22,199,132, 0.2)');
-                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-                } else {
-                    gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
-                    gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
-                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-                }
-                
-                return gradient;
-            },
-        },
-        elements: {
-            line: {
-                borderDash: sniper_mode.value ? [ 0.1, 3 ] : [],
-            },
-        },
-        tooltip: {
-            bodySpacing: sniper_mode.value ? 0 : 8,
-            caretPadding: sniper_mode.value ? 80 : 16,
-            title: {
-                size: sniper_mode.value ? 14 : 14,
-                weight: 'normal',
-            },
-            titleMarginBottom: sniper_mode.value ? 24 : 12,
-            body: {
-                size: sniper_mode.value ? 24 : 12,
-                weight: 'bolder',
-            },
-            yAlign: sniper_mode.value ? 'top' : '',
-        },
-    }));
+            options: options,
+        };
+    });
     
     // Drawer
     const show_drawer = ref(false);
