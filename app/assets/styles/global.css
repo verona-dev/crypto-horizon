@@ -27,15 +27,15 @@
     }
     
     * {
-        @apply m-0 border-border outline-ring/50;
+        @apply m-0;
     }
     
     html {
-        @apply bg-background scheme-light dark:scheme-dark;
+        @apply scheme-light dark:scheme-dark;
     }
     
     body {
-        @apply font-metropolis text-foreground overflow-x-hidden overflow-y-scroll;
+        @apply font-metropolis bg-background text-foreground overflow-x-hidden overflow-y-scroll;
     }
     
     .homepage {
