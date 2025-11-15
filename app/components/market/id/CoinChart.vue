@@ -245,9 +245,9 @@
                 data: chart_data.value, // y-axis
                 
                 // Line
-                borderColor: 'rgba(22,199,132)',
-                borderWidth: 2,
-                backgroundColor: chart_styles.value?.backgroundColor,
+                borderColor: chart_styles.value?.datasets?.borderColor,
+                borderWidth: chart_styles.value?.datasets?.borderWidth,
+                backgroundColor: chart_styles.value?.datasets?.backgroundColor,
                 fill: true,
                 tension: 0.5,
                 
@@ -391,22 +391,26 @@
     }));
     
     const chart_styles = computed(() => ({
-        backgroundColor: (context) => {
-            const ctx = context.chart.ctx;
-            const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-            
-            if(sniper_mode.value) {
-                gradient.addColorStop(0.2, 'rgba(22,199,132, 1)');
-                gradient.addColorStop(0.5, 'rgba(22,199,132, 0.7)');
-                gradient.addColorStop(0.8, 'rgba(22,199,132, 0.2)');
-                gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-            } else {
-                gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
-                gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
-                gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-            }
-            
-            return gradient;
+        datasets: {
+            borderColor: sniper_mode.value ? 'rgba(22,199,132, 0.7)' : 'rgba(22,199,132)',
+            borderWidth: sniper_mode.value ? 1 : 2,
+            backgroundColor: (context) => {
+                const ctx = context.chart.ctx;
+                const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
+                
+                if(sniper_mode.value) {
+                    gradient.addColorStop(0.2, 'rgba(22,199,132, 0.7)');
+                    gradient.addColorStop(0.5, 'rgba(22,199,132, 0.7)');
+                    gradient.addColorStop(0.8, 'rgba(22,199,132, 0.2)');
+                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                } else {
+                    gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
+                    gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
+                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                }
+                
+                return gradient;
+            },
         },
         elements: {
             line: {
@@ -422,7 +426,7 @@
             },
             titleMarginBottom: sniper_mode.value ? 24 : 12,
             body: {
-                size: sniper_mode.value ? 16 : 12,
+                size: sniper_mode.value ? 24 : 12,
                 weight: 'bolder',
             },
             yAlign: sniper_mode.value ? 'top' : '',
