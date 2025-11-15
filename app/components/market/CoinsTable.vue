@@ -137,7 +137,7 @@
                                 <TableRow
                                     v-for='row in table.getRowModel().rows'
                                     :key='row.id'
-                                    class='hover:bg-muted/50 hover:cursor-pointer border-t-0 !px-6 animate-fadeIn-2000'
+                                    class='hover:bg-muted/50 hover:cursor-pointer border-t-0 !px-6 animate-fadeIn'
                                 >
                                     <TableCell class='h-20 text-center'>
                                         <!--   Checkbox / Favourites  -->
