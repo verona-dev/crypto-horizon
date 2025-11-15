@@ -247,23 +247,7 @@
                 // Line
                 borderColor: 'rgba(22,199,132)',
                 borderWidth: 2,
-                backgroundColor: (context) => {
-                    const ctx = context.chart.ctx;
-                    const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-                    
-                    if(sniper_mode.value) {
-                        gradient.addColorStop(0.2, 'rgba(22,199,132, 1)');
-                        gradient.addColorStop(0.5, 'rgba(22,199,132, 0.7)');
-                        gradient.addColorStop(0.8, 'rgba(22,199,132, 0.2)');
-                        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-                    } else {
-                        gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
-                        gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
-                        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-                    }
-                    
-                    return gradient;
-                },
+                backgroundColor: chart_styles.value?.backgroundColor,
                 fill: true,
                 tension: 0.5,
                 
@@ -287,35 +271,34 @@
             duration: 1000,
             easing: 'easeOutSine',
         },
-        elements: {
-            line: {
-                borderDash: sniper_mode.value ? [ 0.1, 3 ] : [],
-            },
-        },
-        // borderDash: [ 0.1, 3 ],
+        elements: chart_styles.value?.elements?.line,
         plugins: {
             annotation: {
                 annotations: {
-                    /*                    line1: {
-                                            type: 'line',
-                                            yMin: chart_data.value[chart_data.value.length - 1],
-                                            yMax: chart_data.value[chart_data.value.length - 1],
-                                            borderColor: 'rgb(255, 99, 132)',
-                                            borderWidth: 2,
-                                        },*/
-                    label1: {
-                        type: 'label',
-                        xValue: timestamps.value[timestamps.value.length - 1],
-                        yValue: chart_data.value[chart_data.value.length - 1],
-                        backgroundColor: '#2a2f46', // --muted
-                        color: '#fff',
-                        content: `${formatNumber(chart_data.value[chart_data.value.length - 1])}`,
-                        borderRadius: 4,
-                        padding: 8,
-                        position: 'end',
-                        yAdjust: 10,
-                        xAdjust: 0,
-                    },
+                    /*
+                          line1: {
+                          type: 'line',
+                          yMin: chart_data.value[chart_data.value.length - 1],
+                          yMax: chart_data.value[chart_data.value.length - 1],
+                          borderColor: 'rgb(255, 99, 132)',
+                          borderWidth: 2,
+                      },
+                      */
+                    ...(!sniper_mode.value && {
+                        label1: {
+                            type: 'label',
+                            xValue: timestamps.value[timestamps.value.length - 1],
+                            yValue: chart_data.value[chart_data.value.length - 1],
+                            backgroundColor: '#2a2f46', // --muted
+                            color: '#fff',
+                            content: `${formatNumber(chart_data.value[chart_data.value.length - 1])}`,
+                            borderRadius: 4,
+                            padding: 8,
+                            position: 'end',
+                            yAdjust: 10,
+                            xAdjust: 0,
+                        },
+                    }),
                 },
             },
             tooltip: {
@@ -327,20 +310,14 @@
                     bottom: 24,
                     left: 28
                 },
-                caretPadding: 16,
+                titleMarginBottom: chart_styles.value?.tooltip?.titleMarginBottom,
+                yAlign: chart_styles.value?.tooltip?.yAlign,
+                caretPadding: chart_styles.value?.tooltip?.caretPadding,
                 caretSize: 0,
                 cornerRadius: 8,
                 displayColors: false, // disable the color box
-                titleMarginBottom: 24,
-                titleFont: {
-                    size: 14,
-                    weight: 'normal',
-                },
-                bodyFont: {
-                    size: 12,
-                    weight: 'bolder',
-                },
-                bodySpacing: 8,
+                titleFont: chart_styles.value?.tooltip?.title,
+                bodyFont: chart_styles.value?.tooltip?.body,
                 callbacks: {
                     title: function(context) {
                         return dayjs(context[0]?.parsed.x).format("MMM D, YYYY, HH:mm:ss");
@@ -410,6 +387,45 @@
                 },
                 offset: true,
             },
+        },
+    }));
+    
+    const chart_styles = computed(() => ({
+        backgroundColor: (context) => {
+            const ctx = context.chart.ctx;
+            const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
+            
+            if(sniper_mode.value) {
+                gradient.addColorStop(0.2, 'rgba(22,199,132, 1)');
+                gradient.addColorStop(0.5, 'rgba(22,199,132, 0.7)');
+                gradient.addColorStop(0.8, 'rgba(22,199,132, 0.2)');
+                gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            } else {
+                gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
+                gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
+                gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            }
+            
+            return gradient;
+        },
+        elements: {
+            line: {
+                borderDash: sniper_mode.value ? [ 0.1, 3 ] : [],
+            },
+        },
+        tooltip: {
+            bodySpacing: sniper_mode.value ? 0 : 8,
+            caretPadding: sniper_mode.value ? 80 : 16,
+            title: {
+                size: sniper_mode.value ? 14 : 14,
+                weight: 'normal',
+            },
+            titleMarginBottom: sniper_mode.value ? 24 : 12,
+            body: {
+                size: sniper_mode.value ? 16 : 12,
+                weight: 'bolder',
+            },
+            yAlign: sniper_mode.value ? 'top' : '',
         },
     }));
     
