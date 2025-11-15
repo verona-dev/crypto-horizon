@@ -25,10 +25,22 @@
             </Tabs>
             
             <!--  Switch  -->
-            <Switch
-                :model-value='sniper_mode'
-                @update:model-value='onSwitch'
-            />
+            <div class="flex items-center space-x-2">
+                <Switch
+                    id='sniper_mode'
+                    :model-value='sniper_mode'
+                    @update:model-value='onToggleSniper'
+                >
+                    <template #thumb>
+                        <NuxtIcon
+                            name='ph:crosshair-simple-light'
+                            size='14'
+                            class='mb-0.5'
+                        />
+                    </template>
+                </Switch>
+                <label for='sniper_mode' class='text-xxs cursor-pointer'>Sniper Mode</label>
+            </div>
             
             <!--  Supply Drawer  -->
             <Tabs>
@@ -128,6 +140,7 @@
     import { Switch } from '@/components/ui/switch';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     import CoinSupply from '@/components/market/id/CoinSupply.vue';
+    import { Moon, Sun } from 'lucide-vue-next';
     
     // Dayjs
     import dayjs from 'dayjs';
@@ -193,10 +206,7 @@
     
     // Switch
     const sniper_mode = ref(false);
-    const onSwitch = () => {
-        sniper_mode.value = !sniper_mode.value;
-        console.log(sniper_mode.value);
-    };
+    const onToggleSniper = () => sniper_mode.value = !sniper_mode.value;
     
     // Timeframe
     const timeframes = ref(coin.value.timeframes);
@@ -419,6 +429,10 @@
 </script>
 
 <style scoped>
+    button[data-state='checked'] {
+        background-color: var(--green-shamrock);
+    }
+    
     .chart-container {
         position: relative;
         
