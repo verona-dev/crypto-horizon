@@ -1,5 +1,9 @@
 <template>
-    <Card class='coin-chart bg-background flex flex-col gap-6 p-8' v-if='chart.prices'>
+    <Card
+        v-if='chart.prices'
+        class='coin-chart bg-background flex flex-col gap-6 p-8'
+        :class='{ "bg-popover/25" : sniper_mode }'
+    >
         <!--  Tabs  -->
         <div class='tabs-container flex flex-col md:flex-row gap-12 md:gap-0 items-center justify-between'>
             <!--  Price + Market Cap  -->
@@ -107,12 +111,14 @@
         
         <!--  Chart  -->
         <div class='chart-container'>
+            <!--
             <div v-if='loading' class='spinner-container'>
                 <div class='h-full flex flex-col items-center justify-center gap-2 pb-12'>
                     <Spinner class='size-8 text-secondary' />
-                    <!-- <span class='text-muted-foreground'>Please wait a moment.</span> -->
+                    &lt;!&ndash; <span class='text-muted-foreground'>Please wait a moment.</span> &ndash;&gt;
                 </div>
             </div>
+            -->
             
             <div class='w-full'>
                 <Line
@@ -231,7 +237,6 @@
     const volumes = computed(() => chart.value?.total_volumes?.map(item => item[1]));
     const m_caps = computed(() => chart.value?.market_caps?.map(item => item[1]));
     const chart_data = computed(() => type.value === 'price' ? prices.value : m_caps.value);
-    const loading = ref(false);
     Tooltip.positioners.myCustomPositioner = function() {
         return {
             x: 0,
@@ -474,6 +479,7 @@
         background-color: var(--green-shamrock);
     }
     
+    /*
     .chart-container {
         position: relative;
         
@@ -487,4 +493,5 @@
             bottom: 0;
         }
     }
+    */
 </style>
