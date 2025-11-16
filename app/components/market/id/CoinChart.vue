@@ -281,6 +281,7 @@
                 pointBorderColor: sniper_mode.value ? 'oklch(0.985 0 0)' : '',
                 pointBorderWidth: sniper_mode.value ? 2 : 0,
             },
+            dottedLineColor: dark_mode.value ? '#9ca3af' : '#2a2f46',
             elements: {
                 line: {
                     borderDash: sniper_mode.value ? [ 0.1, 3 ] : [],
@@ -333,10 +334,17 @@
             pointBorderWidth: computed_styles.datasets?.pointBorderWidth,
         }];
         
+        // line1 offset
+        const line1_value = chart_data.value[chart_data.value.length - 1];
+        const line1_offset = line1_value * 0.00075;
+        
         // Options
         const options = {
             responsive: true,
             maintainAspectRatio: false,
+            
+            dottedLineColor: computed_styles.dottedLineColor,
+            
             interaction: {
                 mode: 'nearest',
                 axis: 'x',
@@ -350,15 +358,14 @@
             plugins: {
                 annotation: {
                     annotations: {
-                        /*
-                              line1: {
-                              type: 'line',
-                              yMin: chart_data.value[chart_data.value.length - 1],
-                              yMax: chart_data.value[chart_data.value.length - 1],
-                              borderColor: 'rgb(255, 99, 132)',
-                              borderWidth: 2,
-                          },
-                          */
+                        line1: {
+                            type: 'line',
+                            yMin: line1_value + line1_offset,
+                            yMax: line1_value + line1_offset,
+                            borderColor: computed_styles.dottedLineColor,
+                            borderWidth: 2,
+                            borderDash: [1, 3],
+                        },
                         ...(!sniper_mode.value && {
                             label1: {
                                 type: 'label',

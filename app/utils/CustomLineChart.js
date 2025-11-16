@@ -10,13 +10,15 @@ class CustomLineChart extends LineController {
             const x = activePoint.element.x;
             const topY = this.chart.scales.y.top;
             const bottomY = this.chart.scales.y.bottom;
+            const dottedLineColor = this.options.dottedLineColor;
             
             ctx.save();
             ctx.beginPath();
+            ctx.setLineDash([1, 3]);
             ctx.moveTo(x, bottomY);
             ctx.lineTo(x, topY);
-            ctx.lineWidth = 1;
-            ctx.strokeStyle = 'oklch(0.442 0.017 285.786)';
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = dottedLineColor;
             ctx.stroke();
             ctx.restore();
         }
