@@ -54,7 +54,7 @@
                     <template v-if='dark_mode'>
                         <RainbowButton
                             @click='show_drawer = true'
-                            class='text-xs w-24 flex gap-2'
+                            class='text-xs w-24 flex gap-2 rounded-md'
                         >
                             <NuxtIcon
                                 name='ph:chart-pie-slice-light'
