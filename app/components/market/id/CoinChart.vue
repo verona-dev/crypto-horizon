@@ -2,7 +2,7 @@
     <Card
         v-if='chart.prices'
         class='coin-chart bg-background flex flex-col gap-6 p-8'
-        :class='{ "bg-popover/25" : sniper_mode }'
+        :class='{ "bg-popover/50" : sniper_mode }'
     >
         <!--  Tabs  -->
         <div class='tabs-container flex flex-col md:flex-row gap-12 md:gap-0 items-center justify-between'>
@@ -214,7 +214,7 @@
     const type = ref('price');
     
     // Switch
-    const sniper_mode = ref(false);
+    const sniper_mode = ref(true);
     const onToggleSniper = () => sniper_mode.value = !sniper_mode.value;
     
     // Timeframe
@@ -256,8 +256,6 @@
     const chart_config = computed(() => {
         const computed_styles = {
             datasets: {
-                borderColor: sniper_mode.value ? 'rgba(22,199,132, 0.7)' : 'rgba(22,199,132)',
-                borderWidth: sniper_mode.value ? 1 : 2,
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
                     const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
@@ -275,6 +273,13 @@
                     
                     return gradient;
                 },
+                borderColor: sniper_mode.value ? 'rgba(22,199,132, 0.7)' : 'rgba(22,199,132)',
+                borderWidth: sniper_mode.value ? 0 : 1,
+                
+                pointHoverRadius: sniper_mode.value ? 16 : 5,
+                pointStyle: sniper_mode.value ? 'crossRot' : 'circle',
+                pointBorderColor: sniper_mode.value ? 'oklch(0.985 0 0)' : '',
+                pointBorderWidth: sniper_mode.value ? 2 : 0,
             },
             elements: {
                 line: {
@@ -319,8 +324,12 @@
             
             // Point
             pointRadius: 0,
-            pointHoverRadius: 5,
             pointBackgroundColor: 'oklch(0.985 0 0)',
+            
+            pointHoverRadius: computed_styles.datasets?.pointHoverRadius,
+            pointStyle: computed_styles.datasets?.pointStyle,
+            pointBorderColor: computed_styles.datasets?.pointBorderColor,
+            pointBorderWidth: computed_styles.datasets?.pointBorderWidth,
         }];
         
         // Options
