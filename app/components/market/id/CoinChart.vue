@@ -238,7 +238,7 @@
     const m_caps = computed(() => chart.value?.market_caps?.map(item => item[1]));
     const chart_data = computed(() => type.value === 'price' ? prices.value : m_caps.value);
     
-    Tooltip.positioners.myCustomPositioner = function() {
+    Tooltip.positioners.fixed_tooltip = function() {
         return {
             x: 0,
             y: -80
@@ -304,26 +304,18 @@
             lineBorderColor: (first_price > current_price) ? '#c9374c' : '#00bc7d',
             tooltip: {
                 body: {
-                    size: sniper_mode.value ? 14 : 12,
+                    size: sniper_mode.value ? 16 : 14,
                     weight: 'bolder',
                 },
                 bodySpacing: sniper_mode.value ? 0 : 8,
-                borderColor: sniper_mode.value ? '#393e56' : '#2a2f46', // --border : --muted
-                caretPadding: sniper_mode.value ? 80 : 16,
                 caretSize: sniper_mode.value ? 0 : 8,
-                position: sniper_mode.value ? 'myCustomPositioner' : 'average',
                 padding: {
-                    top: sniper_mode.value ? 12 : 24,
-                    right: sniper_mode.value ? 12 : 28,
-                    bottom: sniper_mode.value ? 12 : 24,
-                    left: sniper_mode.value ? 12 : 28,
+                    top: sniper_mode.value ? 12 : 20,
+                    right: sniper_mode.value ? 16 : 24,
+                    bottom: sniper_mode.value ? 12 : 20,
+                    left: sniper_mode.value ? 16 : 24,
                 },
-                title: {
-                    size: sniper_mode.value ? 14 : 14,
-                    weight: 'normal',
-                },
-                titleMarginBottom: sniper_mode.value ? 12 : 12,
-                yAlign: sniper_mode.value ? 'top' : '',
+                position: sniper_mode.value ? 'fixed_tooltip' : 'average',
             },
         };
         
@@ -353,7 +345,7 @@
         const options = {
             responsive: true,
             maintainAspectRatio: false,
-            // reference from CustomLineChart.js
+            // referenced in CustomLineChart.js
             custom_line: {
                 color: computed_styles.custom_line.color,
                 dash_length: computed_styles.custom_line.dash_length, // separate since CustomLineChart converts the array into a number so only the first one is accessible
@@ -391,7 +383,9 @@
                                 yValue: current_price,
                                 backgroundColor: computed_styles.lineBorderColor,
                                 color: '#fff',
-                                content: `${formatNumber(current_price)}`,
+                                content: `${formatNumber(current_price, {
+                                    style: 'decimal',
+                                })}`,
                                 borderRadius: 4,
                                 padding: 8,
                                 position: 'end',
@@ -403,7 +397,7 @@
                     enabled: true,
                     backgroundColor: '#1f2230', // --popover
                     bodyFont: computed_styles.tooltip.body,
-                    borderColor: computed_styles.tooltip.borderColor,
+                    borderColor: '#393e56', // --border
                     borderWidth: 1,
                     callbacks: {
                         title: function(context) {
@@ -423,15 +417,17 @@
                             ];
                         }
                     },
-                    caretPadding: computed_styles.tooltip.caretPadding,
+                    caretPadding: 16,
                     caretSize: computed_styles.tooltip.caretSize,
                     cornerRadius: 8,
                     displayColors: false, // disable the color box
                     padding: computed_styles.tooltip.padding,
                     position: computed_styles.tooltip.position,
-                    titleFont: computed_styles.tooltip.title,
-                    titleMarginBottom: computed_styles.tooltip.titleMarginBottom,
-                    yAlign: computed_styles.tooltip.yAlign,
+                    titleFont:  {
+                        size: 14,
+                        weight: 'normal',
+                    },
+                    titleMarginBottom: 14,
                 },
                 legend: {
                     display: false,
