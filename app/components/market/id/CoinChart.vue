@@ -265,7 +265,7 @@
                     if(sniper_mode.value) {
                         gradient.addColorStop(0.2, 'rgba(156,163,175, 0.8)'); // --muted-foreground
                         gradient.addColorStop(0.5, 'rgba(156,163,175, 0.6)');
-                        gradient.addColorStop(0.8, 'rgba(156,163,175, 0.4)');
+                        gradient.addColorStop(0.9, 'rgba(156,163,175, 0.4)');
                         gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
                     } else {
                         if(first_price.value > current_price.value) {
@@ -382,9 +382,11 @@
                                 yValue: current_price.value,
                                 backgroundColor: computed_styles.lineBorderColor,
                                 color: '#fff',
-                                content: current_price.value,
+                                content: formatNumber(current_price.value, {
+                                    style: 'decimal' , decimals: 0,
+                                }),
                                 borderRadius: 4,
-                                padding: 8,
+                                padding: 6,
                                 position: 'end',
                                 yAdjust: 15,
                             },
