@@ -281,9 +281,7 @@
                     
                     return gradient;
                 },
-                // borderColor: sniper_mode.value ? 'rgba(22,199,132, 0.7)' : 'rgb(22,199,132)',
                 borderWidth: sniper_mode.value ? 0 : 1,
-                
                 pointHoverRadius: sniper_mode.value ? 16 : 5,
                 pointStyle: sniper_mode.value ? 'crossRot' : 'circle',
                 pointBorderColor: sniper_mode.value ? 'oklch(0.985 0 0)' : '',
