@@ -254,8 +254,8 @@
     }, { deep: true });
     
     const chart_config = computed(() => {
-        const first_price = computed(() => chart_data.value[0]);
-        const current_price = computed(() => chart_data.value[chart_data.value.length - 1]);
+        const first_price = chart_data.value[0];
+        const current_price = chart_data.value[chart_data.value.length - 1];
         
         const computed_styles = {
             datasets: {
@@ -264,19 +264,25 @@
                     const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
                     
                     if(sniper_mode.value) {
-                        gradient.addColorStop(0.2, 'rgba(22,199,132, 0.7)');
-                        gradient.addColorStop(0.5, 'rgba(22,199,132, 0.7)');
-                        gradient.addColorStop(0.8, 'rgba(22,199,132, 0.2)');
+                        gradient.addColorStop(0.2, 'rgba(156,163,175, 0.8)'); // --muted-foreground
+                        gradient.addColorStop(0.5, 'rgba(156,163,175, 0.6)');
+                        gradient.addColorStop(0.8, 'rgba(156,163,175, 0.4)');
                         gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
                     } else {
-                        gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
-                        gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
-                        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                        if(first_price > current_price) {
+                            gradient.addColorStop(0.2, 'rgba(201,55,76, 0.7)'); // --red-brick
+                            gradient.addColorStop(0.5, 'rgba(201,55,76, 0.5)');
+                            gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                        } else {
+                            gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
+                            gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
+                            gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                        }
                     }
                     
                     return gradient;
                 },
-                borderColor: sniper_mode.value ? 'rgba(22,199,132, 0.7)' : 'rgba(22,199,132)',
+                // borderColor: sniper_mode.value ? 'rgba(22,199,132, 0.7)' : 'rgb(22,199,132)',
                 borderWidth: sniper_mode.value ? 0 : 1,
                 
                 pointHoverRadius: sniper_mode.value ? 16 : 5,
@@ -285,7 +291,7 @@
                 pointBorderWidth: sniper_mode.value ? 2 : 0,
             },
             custom_line: {
-                color: dark_mode.value ? '#0ea5e9' : '#2a2f46',
+                color: dark_mode.value ? '#9ca3af' : '#2a2f46',
                 dash_length: 1.5,
                 dash_gap: 6,
                 width: 1,
@@ -295,14 +301,7 @@
                     borderDash: sniper_mode.value ? [ 0.1, 3 ] : [],
                 },
             },
-            annotations: {
-                get backgroundColor() {
-                    if(first_price.value > current_price.value) {
-                        return '#c9374c';
-                    }
-                    return '#00bc7d';
-                },
-            },
+            lineBorderColor: (first_price > current_price) ? '#c9374c' : '#00bc7d',
             tooltip: {
                 body: {
                     size: sniper_mode.value ? 14 : 12,
@@ -334,7 +333,7 @@
             data: chart_data.value, // y-axis
             
             // Line
-            borderColor: computed_styles.datasets?.borderColor,
+            borderColor: computed_styles.lineBorderColor,
             borderWidth: computed_styles.datasets?.borderWidth,
             backgroundColor: computed_styles.datasets?.backgroundColor,
             fill: true,
@@ -354,7 +353,6 @@
         const options = {
             responsive: true,
             maintainAspectRatio: false,
-            
             // reference from CustomLineChart.js
             custom_line: {
                 color: computed_styles.custom_line.color,
@@ -362,7 +360,6 @@
                 dash_gap: computed_styles.custom_line.dash_gap,
                 width: computed_styles.custom_line.width,
             },
-            
             interaction: {
                 mode: 'nearest',
                 axis: 'x',
@@ -380,8 +377,8 @@
                             // First price - Horizontal line - in sync with CustomLineChart.js
                             horizontal_line: {
                                 type: 'line',
-                                yMin: first_price.value,
-                                yMax: first_price.value,
+                                yMin: first_price,
+                                yMax: first_price,
                                 borderColor: computed_styles.custom_line.color,
                                 borderWidth: computed_styles.custom_line.width,
                                 borderDash: [ computed_styles.custom_line.dash_length, computed_styles.custom_line.dash_gap ],
@@ -391,10 +388,10 @@
                             current_price: {
                                 type: 'label',
                                 xValue: timestamps.value[timestamps.value.length - 1],
-                                yValue: current_price.value,
-                                backgroundColor: computed_styles.annotations.backgroundColor,
+                                yValue: current_price,
+                                backgroundColor: computed_styles.lineBorderColor,
                                 color: '#fff',
-                                content: `${formatNumber(current_price.value)}`,
+                                content: `${formatNumber(current_price)}`,
                                 borderRadius: 4,
                                 padding: 8,
                                 position: 'end',
@@ -495,7 +492,6 @@
                 datasets,
             },
             options,
-            computed_styles,
         };
     });
     
