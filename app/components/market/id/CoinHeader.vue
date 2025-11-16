@@ -165,7 +165,7 @@
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    const { getTimeframe } = storeToRefs(MarketStore);
+    const { getTimeframe, getCoinPrice } = storeToRefs(MarketStore);
     
     // Router
     import { useRouter } from 'vue-router';
@@ -189,7 +189,7 @@
     const timeframe_label = computed(() => getTimeframe.value?.label);
     
     // Price in USD
-    const current_price = computed(() => coingecko.value?.market_data?.current_price?.usd);
+    const current_price = computed(() => getCoinPrice.value);
     const current_price_label = computed(() => formatNumber(current_price.value));
     
     const price_change_percentage = computed(() => {
