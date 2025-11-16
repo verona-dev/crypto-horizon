@@ -219,5 +219,8 @@ export const useMarketStore = defineStore('MarketStore', {
         getTimeframe() {
             return this.coin.timeframes.find(range => range.timeframe === this.coin.timeframe);
         },
+        getCoinPrice() {
+          return this.coin.coingecko.market_data?.current_price?.usd;
+        },
     }
 });
