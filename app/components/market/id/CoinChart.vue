@@ -124,6 +124,7 @@
                 <Line
                     ref='chart_ref'
                     v-if='chart_config.data?.datasets?.length'
+                    :key='`chart-${timeframe.value}`'
                     :data='chart_config.data'
                     :options='chart_config.options'
                     :height='400'
