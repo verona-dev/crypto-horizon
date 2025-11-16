@@ -245,6 +245,7 @@
     const chart_data = computed(() => type.value === 'price' ? prices.value : m_caps.value);
     const first_price = computed(() => chart_data.value[0]);
     const current_price = computed(() => getCoinPrice.value);
+    const current_timeframe = computed(() => getTimeframe.value?.label);
     
     Tooltip.positioners.fixed_tooltip = function() {
         return {
@@ -319,6 +320,20 @@
                     left: sniper_mode.value ? 16 : 24,
                 },
                 position: sniper_mode.value ? 'fixed_tooltip' : 'average',
+            },
+            scales: {
+                x: {
+                    get maxTicksLimit() {
+                        if(current_timeframe.value === '24h' || current_timeframe.value === '1y') {
+                            return 6;
+                        } else if(current_timeframe.value === '7d') {
+                            return 7;
+                        } else if(current_timeframe.value === '30d') {
+                            return 10;
+                        }
+                        return 8;
+                    },
+                },
             },
         };
         
@@ -448,10 +463,8 @@
                     },
                     ticks: {
                         color: 'oklch(0.705 0.015 286.067)',
-                        maxTicksLimit: 7,
-                        callback: function(value, index) {
-                            const current_timeframe = computed(() => getTimeframe.value?.label);
-                            
+                        maxTicksLimit: computed_styles.scales.x.maxTicksLimit,
+                        callback: function(value, index, ticks) {
                             if(current_timeframe.value === '24h') {
                                 if(index === 0) {
                                     return dayjs(value).format('D. MMM');
@@ -463,7 +476,7 @@
                             }
                             
                             return dayjs(value).format('D. MMM');
-                        }
+                        },
                     },
                 },
                 y: {
