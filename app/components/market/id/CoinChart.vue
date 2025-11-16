@@ -145,6 +145,7 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { RainbowButton } from '~/components/ui/rainbow-button';
     import { Card } from '~/components/ui/card';
+    // import { Spinner } from '~/components/ui/spinner/index.js';
     import { Switch } from '@/components/ui/switch';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     import CoinSupply from '@/components/market/id/CoinSupply.vue';
@@ -191,7 +192,6 @@
     
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
-    import { Spinner } from '~/components/ui/spinner/index.js';
     import { storeToRefs } from 'pinia';
     
     const colorMode = useColorMode();
@@ -237,6 +237,7 @@
     const volumes = computed(() => chart.value?.total_volumes?.map(item => item[1]));
     const m_caps = computed(() => chart.value?.market_caps?.map(item => item[1]));
     const chart_data = computed(() => type.value === 'price' ? prices.value : m_caps.value);
+    
     Tooltip.positioners.myCustomPositioner = function() {
         return {
             x: 0,
