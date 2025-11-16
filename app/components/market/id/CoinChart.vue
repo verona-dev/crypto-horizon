@@ -208,7 +208,7 @@
     });
     
     const { coin } = toRefs(props);
-    const { getTimeframe } = storeToRefs(MarketStore);
+    const { getTimeframe, getCoinPrice } = storeToRefs(MarketStore);
     
     // Tabs
     const type = ref('price');
@@ -237,6 +237,8 @@
     const volumes = computed(() => chart.value?.total_volumes?.map(item => item[1]));
     const m_caps = computed(() => chart.value?.market_caps?.map(item => item[1]));
     const chart_data = computed(() => type.value === 'price' ? prices.value : m_caps.value);
+    const first_price = computed(() => chart_data.value[0]);
+    const current_price = computed(() => getCoinPrice.value);
     
     Tooltip.positioners.fixed_tooltip = function() {
         return {
@@ -254,9 +256,6 @@
     }, { deep: true });
     
     const chart_config = computed(() => {
-        const first_price = chart_data.value[0];
-        const current_price = chart_data.value[chart_data.value.length - 1];
-        
         const computed_styles = {
             datasets: {
                 backgroundColor: (context) => {
@@ -269,7 +268,7 @@
                         gradient.addColorStop(0.8, 'rgba(156,163,175, 0.4)');
                         gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
                     } else {
-                        if(first_price > current_price) {
+                        if(first_price.value > current_price.value) {
                             gradient.addColorStop(0.2, 'rgba(201,55,76, 0.7)'); // --red-brick
                             gradient.addColorStop(0.5, 'rgba(201,55,76, 0.5)');
                             gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
@@ -301,7 +300,7 @@
                     borderDash: sniper_mode.value ? [ 0.1, 3 ] : [],
                 },
             },
-            lineBorderColor: (first_price > current_price) ? '#c9374c' : '#00bc7d',
+            lineBorderColor: (first_price.value > current_price.value) ? '#c9374c' : '#00bc7d',
             tooltip: {
                 body: {
                     size: sniper_mode.value ? 16 : 14,
@@ -369,8 +368,8 @@
                             // First price - Horizontal line - in sync with CustomLineChart.js
                             horizontal_line: {
                                 type: 'line',
-                                yMin: first_price,
-                                yMax: first_price,
+                                yMin: first_price.value,
+                                yMax: first_price.value,
                                 borderColor: computed_styles.custom_line.color,
                                 borderWidth: computed_styles.custom_line.width,
                                 borderDash: [ computed_styles.custom_line.dash_length, computed_styles.custom_line.dash_gap ],
@@ -380,15 +379,14 @@
                             current_price: {
                                 type: 'label',
                                 xValue: timestamps.value[timestamps.value.length - 1],
-                                yValue: current_price,
+                                yValue: current_price.value,
                                 backgroundColor: computed_styles.lineBorderColor,
                                 color: '#fff',
-                                content: `${formatNumber(current_price, {
-                                    style: 'decimal',
-                                })}`,
+                                content: current_price.value,
                                 borderRadius: 4,
                                 padding: 8,
                                 position: 'end',
+                                yAdjust: 15,
                             },
                         }),
                     },
