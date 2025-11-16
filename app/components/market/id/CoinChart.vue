@@ -214,7 +214,7 @@
     const type = ref('price');
     
     // Switch
-    const sniper_mode = ref(true);
+    const sniper_mode = ref(false);
     const onToggleSniper = () => sniper_mode.value = !sniper_mode.value;
     
     // Timeframe
@@ -241,7 +241,7 @@
     Tooltip.positioners.myCustomPositioner = function() {
         return {
             x: 0,
-            y: -100
+            y: -80
         };
     };
     
@@ -292,6 +292,7 @@
                     weight: 'bolder',
                 },
                 bodySpacing: sniper_mode.value ? 0 : 8,
+                borderColor: sniper_mode.value ? '#393e56' : '#2a2f46', // --border : --muted
                 caretPadding: sniper_mode.value ? 80 : 16,
                 caretSize: sniper_mode.value ? 0 : 8,
                 position: sniper_mode.value ? 'myCustomPositioner' : 'average',
@@ -379,6 +380,8 @@
                     enabled: true,
                     backgroundColor: '#1f2230', // --popover
                     bodyFont: computed_styles.tooltip.body,
+                    borderColor: computed_styles.tooltip.borderColor,
+                    borderWidth: 1,
                     callbacks: {
                         title: function(context) {
                             return dayjs(context[0]?.parsed.x).format("MMM D, YYYY, HH:mm:ss");
