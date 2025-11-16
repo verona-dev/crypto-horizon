@@ -246,10 +246,10 @@
     };
     
     watch(chart_data, () => {
-        const chartInstance = chart_ref.value?.chart;
+        const chart_instance = chart_ref.value?.chart;
         
-        if (chartInstance) {
-            chartInstance.update();
+        if (chart_instance) {
+            chart_instance.update();
         }
     }, { deep: true });
     
@@ -281,7 +281,12 @@
                 pointBorderColor: sniper_mode.value ? 'oklch(0.985 0 0)' : '',
                 pointBorderWidth: sniper_mode.value ? 2 : 0,
             },
-            dottedLineColor: dark_mode.value ? '#9ca3af' : '#2a2f46',
+            
+            custom_line: {
+                color: dark_mode.value ? '#9ca3af' : '#2a2f46',
+                width: 2,
+            },
+            
             elements: {
                 line: {
                     borderDash: sniper_mode.value ? [ 0.1, 3 ] : [],
@@ -310,6 +315,15 @@
                 titleMarginBottom: sniper_mode.value ? 12 : 12,
                 yAlign: sniper_mode.value ? 'top' : '',
             },
+            annotation: {
+                horizontal_line_value: chart_data.value[chart_data.value.length - 1],
+                get horizontal_line_offset() {
+                    return this.horizontal_line_value * 0.00075;
+                },
+                get yMinMax() {
+                  return this.horizontal_line_value + this.horizontal_line_offset;
+                },
+            },
         };
         
         // Data
@@ -334,16 +348,16 @@
             pointBorderWidth: computed_styles.datasets?.pointBorderWidth,
         }];
         
-        // line1 offset
-        const line1_value = chart_data.value[chart_data.value.length - 1];
-        const line1_offset = line1_value * 0.00075;
-        
         // Options
         const options = {
             responsive: true,
             maintainAspectRatio: false,
             
-            dottedLineColor: computed_styles.dottedLineColor,
+            // reference from CustomLineChart.js
+            custom_line: {
+                color: computed_styles.custom_line.color,
+                width: computed_styles.custom_line.width,
+            },
             
             interaction: {
                 mode: 'nearest',
@@ -358,12 +372,12 @@
             plugins: {
                 annotation: {
                     annotations: {
-                        line1: {
+                        horizontal_line: {
                             type: 'line',
-                            yMin: line1_value + line1_offset,
-                            yMax: line1_value + line1_offset,
-                            borderColor: computed_styles.dottedLineColor,
-                            borderWidth: 2,
+                            yMin: computed_styles.annotation.yMinMax,
+                            yMax: computed_styles.annotation.yMinMax,
+                            borderColor: computed_styles.custom_line.color,
+                            borderWidth: computed_styles.custom_line.width,
                             borderDash: [1, 3],
                         },
                         ...(!sniper_mode.value && {
@@ -473,9 +487,9 @@
         return {
             data: {
                 labels: datasets[0].labels,
-                datasets: datasets,
+                datasets,
             },
-            options: options,
+            options,
         };
     });
     
