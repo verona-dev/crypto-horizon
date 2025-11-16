@@ -63,31 +63,6 @@ const formatNumber = (value, {
     return new Intl.NumberFormat(locale, options).format(num);
 };
 
-const formatCoinsTable = coins => {
-    return coins?.map(coin => ({
-        ...coin,
-        changePercent24Hr: coin?.price_change_percentage_24h?.toFixed(2),
-        c_supply: formatNumber(coin?.circulating_supply, {
-            compact: true, style: 'decimal', decimals: 2
-        }),
-        icon: coin?.symbol,
-        id: coin?.id,
-        marketCap: formatNumber(coin?.market_cap, {
-            compact: true, decimals: 2
-        }),
-        name: coin?.name,
-        price: formatNumber(coin?.current_price, {
-            maximumFractionDigits: 4,
-        }),
-        rank: coin?.market_cap_rank,
-        symbol: coin?.symbol.toUpperCase(),
-        trend: getTrendClass(coin?.price_change_percentage_24h),
-        volume: formatNumber(coin?.total_volume, {
-            compact: true, decimals: 2
-        }),
-    }));
-};
-
 const formatCoingeckoCoin = coin => {
     return {
         ...coin,
@@ -146,7 +121,6 @@ const goBack = (router, path) => {
 
 export {
     formatNumber,
-    formatCoinsTable,
     formatCoingeckoCoin,
     formatLivecoinwatchCoin,
     capitalize,
