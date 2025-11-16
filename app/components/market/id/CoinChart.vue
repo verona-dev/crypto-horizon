@@ -292,8 +292,8 @@
             custom_line: {
                 color: dark_mode.value ? '#9ca3af' : '#2a2f46',
                 dash_length: 1.5,
-                dash_gap: 6,
-                width: 1,
+                dash_gap: 8,
+                width: 1.5,
             },
             elements: {
                 line: {
