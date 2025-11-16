@@ -254,6 +254,9 @@
     }, { deep: true });
     
     const chart_config = computed(() => {
+        const first_price = computed(() => chart_data.value[0]);
+        const current_price = computed(() => chart_data.value[chart_data.value.length - 1]);
+        
         const computed_styles = {
             datasets: {
                 backgroundColor: (context) => {
@@ -281,17 +284,23 @@
                 pointBorderColor: sniper_mode.value ? 'oklch(0.985 0 0)' : '',
                 pointBorderWidth: sniper_mode.value ? 2 : 0,
             },
-            
             custom_line: {
                 color: dark_mode.value ? '#0ea5e9' : '#2a2f46',
                 dash_length: 1.5,
-                dash_gap: 4,
+                dash_gap: 6,
                 width: 1,
             },
-            
             elements: {
                 line: {
                     borderDash: sniper_mode.value ? [ 0.1, 3 ] : [],
+                },
+            },
+            annotations: {
+                get backgroundColor() {
+                    if(first_price.value > current_price.value) {
+                        return '#c9374c';
+                    }
+                    return '#00bc7d';
                 },
             },
             tooltip: {
@@ -316,15 +325,6 @@
                 },
                 titleMarginBottom: sniper_mode.value ? 12 : 12,
                 yAlign: sniper_mode.value ? 'top' : '',
-            },
-            annotation: {
-                horizontal_line_value: chart_data.value[chart_data.value.length - 1],
-                get horizontal_line_offset() {
-                    return this.horizontal_line_value * 0.00075;
-                },
-                get yMinMax() {
-                  return this.horizontal_line_value + this.horizontal_line_offset;
-                },
             },
         };
         
@@ -376,31 +376,28 @@
             plugins: {
                 annotation: {
                     annotations: {
-                        // Horizontal line - in sync with CustomLineChart.js
-                        horizontal_line: {
-                            type: 'line',
-                            yMin: computed_styles.annotation.yMinMax,
-                            yMax: computed_styles.annotation.yMinMax,
-                            borderColor: computed_styles.custom_line.color,
-                            borderWidth: computed_styles.custom_line.width,
-                            borderDash: [ computed_styles.custom_line.dash_length, computed_styles.custom_line.dash_gap ],
-                        },
-                        // Current Price "tooltip"
                         ...(!sniper_mode.value && {
+                            // First price - Horizontal line - in sync with CustomLineChart.js
+                            horizontal_line: {
+                                type: 'line',
+                                yMin: first_price.value,
+                                yMax: first_price.value,
+                                borderColor: computed_styles.custom_line.color,
+                                borderWidth: computed_styles.custom_line.width,
+                                borderDash: [ computed_styles.custom_line.dash_length, computed_styles.custom_line.dash_gap ],
+                            },
+                            
+                            // Current Price - Tooltip
                             current_price: {
                                 type: 'label',
                                 xValue: timestamps.value[timestamps.value.length - 1],
-                                yValue: chart_data.value[chart_data.value.length - 1],
-                                backgroundColor: '#c9374c', // --muted
+                                yValue: current_price.value,
+                                backgroundColor: computed_styles.annotations.backgroundColor,
                                 color: '#fff',
-                                content: `${formatNumber(chart_data.value[chart_data.value.length - 1], {
-                                    compact: true, decimals: 1,
-                                })}`,
+                                content: `${formatNumber(current_price.value)}`,
                                 borderRadius: 4,
                                 padding: 8,
                                 position: 'end',
-                                yAdjust: 10,
-                                xAdjust: 0,
                             },
                         }),
                     },
