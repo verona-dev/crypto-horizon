@@ -77,7 +77,6 @@
                         </div>
                     </template>
                     
-                    
                     <!--
                     <TabsTrigger
                         @click='show_drawer = true'
@@ -111,14 +110,16 @@
         
         <!--  Chart  -->
         <div class='chart-container'>
-            <!--
             <div v-if='loading' class='spinner-container'>
-                <div class='h-full flex flex-col items-center justify-center gap-2 pb-12'>
-                    <Spinner class='size-8 text-secondary' />
-                    &lt;!&ndash; <span class='text-muted-foreground'>Please wait a moment.</span> &ndash;&gt;
+                <div class='h-full text-foreground flex flex-col items-center justify-center gap-2 pb-16'>
+                    <Spinner class='size-8' />
+                    
+                    <div class='flex flex-col items-center gap-1'>
+                        <span class='text-lg'>Loading data</span>
+                        <span class='text-sm text-foreground/75'>Please wait a moment.</span>
+                    </div>
                 </div>
             </div>
-            -->
             
             <div class='w-full'>
                 <Line
@@ -146,7 +147,7 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { RainbowButton } from '~/components/ui/rainbow-button';
     import { Card } from '~/components/ui/card';
-    // import { Spinner } from '~/components/ui/spinner/index.js';
+    import { Spinner } from '~/components/ui/spinner/index.js';
     import { Switch } from '@/components/ui/switch';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     import CoinSupply from '@/components/market/id/CoinSupply.vue';
@@ -210,6 +211,7 @@
     
     const { coin } = toRefs(props);
     const { getTimeframe, getCoinPrice } = storeToRefs(MarketStore);
+    const loading = ref(false);
     
     // Tabs
     const type = ref('price');
@@ -220,14 +222,17 @@
     
     // Timeframe
     const timeframes = ref(coin.value.timeframes);
-    const timeframe = computed({
-        get() {
-            return coin.value.timeframe;
-        },
-        async set(value) {
-            setChartTimeframe(value);
-            await getCoinChart();
-        }
+    const timeframe = ref(coin.value.timeframe);
+    
+    watch(timeframe, async(newTimeframe) => {
+        loading.value = true;
+        
+        setChartTimeframe(newTimeframe);
+        await getCoinChart();
+        
+        setTimeout(() => {
+            loading.value = false;
+        }, 750);
     });
     
     // Chart
@@ -356,9 +361,8 @@
                 intersect: false,
             },
             animation: {
-                enabled: false,
-                // duration: 1000,
-                // easing: 'easeIn',
+                duration: 750,
+                easing: 'easeOutQuint',
             },
             elements: computed_styles.elements,
             plugins: {
@@ -511,7 +515,6 @@
         background-color: var(--green-shamrock);
     }
     
-    /*
     .chart-container {
         position: relative;
         
@@ -525,5 +528,4 @@
             bottom: 0;
         }
     }
-    */
 </style>
