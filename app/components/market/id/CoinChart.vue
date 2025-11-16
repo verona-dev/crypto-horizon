@@ -283,8 +283,10 @@
             },
             
             custom_line: {
-                color: dark_mode.value ? '#9ca3af' : '#2a2f46',
-                width: 2,
+                color: dark_mode.value ? '#0ea5e9' : '#2a2f46',
+                dash_length: 1.5,
+                dash_gap: 4,
+                width: 1,
             },
             
             elements: {
@@ -356,6 +358,8 @@
             // reference from CustomLineChart.js
             custom_line: {
                 color: computed_styles.custom_line.color,
+                dash_length: computed_styles.custom_line.dash_length, // separate since CustomLineChart converts the array into a number so only the first one is accessible
+                dash_gap: computed_styles.custom_line.dash_gap,
                 width: computed_styles.custom_line.width,
             },
             
@@ -372,22 +376,26 @@
             plugins: {
                 annotation: {
                     annotations: {
+                        // Horizontal line - in sync with CustomLineChart.js
                         horizontal_line: {
                             type: 'line',
                             yMin: computed_styles.annotation.yMinMax,
                             yMax: computed_styles.annotation.yMinMax,
                             borderColor: computed_styles.custom_line.color,
                             borderWidth: computed_styles.custom_line.width,
-                            borderDash: [1, 3],
+                            borderDash: [ computed_styles.custom_line.dash_length, computed_styles.custom_line.dash_gap ],
                         },
+                        // Current Price "tooltip"
                         ...(!sniper_mode.value && {
-                            label1: {
+                            current_price: {
                                 type: 'label',
                                 xValue: timestamps.value[timestamps.value.length - 1],
                                 yValue: chart_data.value[chart_data.value.length - 1],
-                                backgroundColor: '#2a2f46', // --muted
+                                backgroundColor: '#c9374c', // --muted
                                 color: '#fff',
-                                content: `${formatNumber(chart_data.value[chart_data.value.length - 1])}`,
+                                content: `${formatNumber(chart_data.value[chart_data.value.length - 1], {
+                                    compact: true, decimals: 1,
+                                })}`,
                                 borderRadius: 4,
                                 padding: 8,
                                 position: 'end',
@@ -490,6 +498,7 @@
                 datasets,
             },
             options,
+            computed_styles,
         };
     });
     

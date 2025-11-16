@@ -12,10 +12,12 @@ class CustomLineChart extends LineController {
             const bottomY = this.chart.scales.y.bottom;
             const lineColor = this.options.custom_line.color;
             const lineWidth = this.options.custom_line.width;
+            const lineDashLength = this.options.custom_line.dash_length;
+            const lineDashGap = this.options.custom_line.dash_gap;
             
             ctx.save();
             ctx.beginPath();
-            ctx.setLineDash([1, 3]);
+            ctx.setLineDash([lineDashLength, lineDashGap]);
             ctx.moveTo(x, bottomY);
             ctx.lineTo(x, topY);
             ctx.lineWidth = lineWidth;
