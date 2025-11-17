@@ -263,7 +263,25 @@
     }, { deep: true });
     
     const chart_config = computed(() => {
+        // Conditional data
         const computed_styles = {
+            annotation: {
+                horizontal_line_tooltip: {
+                    backgroundColor: dark_mode.value ? '#606060' : '#353958', //  light-mode-primary : --secondary
+                },
+                current_price_tooltip: {
+                    backgroundColor:  (first_price.value > current_price.value) ? '#EA3943' : '#1f8c4d', // --destructive : random
+                },
+                borderRadius: 4,
+                color: '#fff',
+                padding: 6,
+            },
+            custom_line: {
+                color: dark_mode.value ? '#9ca3af' : '#2a2f46',
+                dash_length: 1,
+                dash_gap: 6,
+                width: 1,
+            },
             datasets: {
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
@@ -294,18 +312,26 @@
                 pointBorderColor: sniper_mode.value ? 'oklch(0.985 0 0)' : '',
                 pointBorderWidth: sniper_mode.value ? 2 : 0,
             },
-            custom_line: {
-                color: dark_mode.value ? '#9ca3af' : '#2a2f46',
-                dash_length: 1,
-                dash_gap: 6,
-                width: 1,
-            },
             elements: {
                 line: {
                     borderDash: sniper_mode.value ? [ 0.1, 3 ] : [],
                 },
             },
-            lineBorderColor: (first_price.value > current_price.value) ? '#c9374c' : '#00bc7d',
+            lineBorderColor: (first_price.value > current_price.value) ? '#c9374c' : '#00bc7d', // --red-brick : --progress
+            scales: {
+                x: {
+                    get maxTicksLimit() {
+                        if(current_timeframe.value === '24h' || current_timeframe.value === '1y') {
+                            return 6;
+                        } else if(current_timeframe.value === '7d') {
+                            return 7;
+                        } else if(current_timeframe.value === '30d') {
+                            return 10;
+                        }
+                        return 8;
+                    },
+                },
+            },
             tooltip: {
                 body: {
                     size: sniper_mode.value ? 16 : 14,
@@ -320,20 +346,6 @@
                     left: sniper_mode.value ? 16 : 24,
                 },
                 position: sniper_mode.value ? 'fixed_tooltip' : 'average',
-            },
-            scales: {
-                x: {
-                    get maxTicksLimit() {
-                        if(current_timeframe.value === '24h' || current_timeframe.value === '1y') {
-                            return 6;
-                        } else if(current_timeframe.value === '7d') {
-                            return 7;
-                        } else if(current_timeframe.value === '30d') {
-                            return 10;
-                        }
-                        return 8;
-                    },
-                },
             },
         };
         
@@ -384,7 +396,7 @@
                 annotation: {
                     annotations: {
                         ...(!sniper_mode.value && {
-                            // First price - Horizontal line - in sync with CustomLineChart.js
+                            // Horizontal line - in sync with CustomLineChart.js
                             horizontal_line: {
                                 type: 'line',
                                 yMin: first_price.value,
@@ -394,18 +406,34 @@
                                 borderDash: [ computed_styles.custom_line.dash_length, computed_styles.custom_line.dash_gap ],
                             },
                             
+                            // Horizontal line tooltip
+                            horizontal_line_tooltip: {
+                                type: 'label',
+                                xValue: timestamps.value[0],
+                                yValue: first_price.value,
+                                backgroundColor: computed_styles.annotation.horizontal_line_tooltip.backgroundColor,
+                                color: computed_styles.annotation.color,
+                                content: formatNumber(first_price.value, {
+                                    style: 'decimal', decimals: 0
+                                }),
+                                borderRadius: computed_styles.annotation.borderRadius,
+                                padding: computed_styles.annotation.padding,
+                                position: 'start',
+                                yAdjust: -15,
+                            },
+                            
                             // Current Price - Tooltip
-                            current_price: {
+                            current_price_tooltip: {
                                 type: 'label',
                                 xValue: timestamps.value[timestamps.value.length - 1],
                                 yValue: current_price.value,
-                                backgroundColor: computed_styles.lineBorderColor,
-                                color: '#fff',
+                                backgroundColor: computed_styles.annotation.current_price_tooltip.backgroundColor,
+                                color: computed_styles.annotation.color,
                                 content: formatNumber(current_price.value, {
                                     style: 'decimal' , decimals: 0,
                                 }),
-                                borderRadius: 4,
-                                padding: 6,
+                                borderRadius: computed_styles.annotation.borderRadius,
+                                padding: computed_styles.annotation.padding,
                                 position: 'end',
                                 yAdjust: 15,
                             },
