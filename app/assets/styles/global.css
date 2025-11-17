@@ -99,7 +99,7 @@
     }
     
     h4 {
-        @apply text-xl md:text-3xl 2xl:text-4xl;
+        @apply text-lg md:text-xl 2xl:text-2xl;
     }
     
     h5 {
