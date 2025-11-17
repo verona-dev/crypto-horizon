@@ -206,7 +206,7 @@
     
     .news {
         .card-title {
-            @apply text-left hover:underline line-clamp-3 leading-7;
+            @apply text-xl text-left hover:underline line-clamp-3 leading-7;
         }
         
         .article-title {
