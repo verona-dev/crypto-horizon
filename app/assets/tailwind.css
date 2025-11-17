@@ -246,7 +246,7 @@ html.light {
     --chart-3: #93d1e9;
     --chart-4: #6bb29f;
     --chart-5: #f3abe0;
-    --sidebar: var(--card);
+    --sidebar: var(--popover);
     --sidebar-foreground: var(--foreground);
     --sidebar-primary: var(--primary);
     --sidebar-primary-foreground: var(--primary-foreground);
