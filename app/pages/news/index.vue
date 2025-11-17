@@ -100,7 +100,7 @@
                                 <!--  Author  -->
                                 <div class='flex flex-col items-start text-left'>
                                     <!--  <p class='truncate text-md'>{{ article.authors }}</p>  -->
-                                    <span class='text-sm'>{{ article.source_name }}</span>
+                                    <span class='text-sm capitalize'>{{ article.source_name }}</span>
                                     
                                     <!--  Publish date  -->
                                     <div class='flex gap-1 text-muted-foreground'>
@@ -209,6 +209,7 @@
     
     const getSourceName = (source_name) => {
         if(!source_name || source_name.length === 0) return 'Unknown source';
+        if(source_name === 'Forbes Digital Assets') return 'Forbes';
         if(source_name === 'Investing.Com Crypto Opinion and Analysis' || source_name === 'Investing.com Crypto News') return 'Investing';
         return source_name;
     };
