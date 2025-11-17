@@ -53,7 +53,7 @@
     }
     
     .page {
-        @apply max-w-7xl mt-8 xl:mt-12 xl:mb-36 px-6 md:px-12 xl:px-24 flex flex-col items-center justify-center relative;
+        @apply max-w-screen-2xl mt-8 xl:mt-12 xl:mb-36 px-6 md:px-12 xl:px-24 flex flex-col items-center justify-center relative;
     }
     
     [data-slot='sidebar-wrapper'] {
