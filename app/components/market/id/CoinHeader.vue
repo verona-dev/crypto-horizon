@@ -143,6 +143,7 @@
                     </div>
                 </div>
                 
+                <!--  Public Notice  -->
                 <CoinPublicNotice :public-notice='coingecko.public_notice' />
             </div>
         </Card>
