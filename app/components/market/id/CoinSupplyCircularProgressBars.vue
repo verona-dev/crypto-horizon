@@ -15,17 +15,13 @@
                 
                 <div class='label-container'>
                     <div class='flex items-center gap-2'>
-                        <h5 class='break-words text-center'>Market Cap</h5>
+                        <h5 class='break-words text-center'>{{ glossary.market_cap.label }}</h5>
                         
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
                                 <InfoIcon size='20' />
                             </HoverCardTrigger>
-                            <HoverCardContent>
-                                The total market value of a cryptocurrency's circulating supply.
-                                It is analogous to the free-float capitalization in the stock market.
-                                Market cap = Current price x Circulating supply.
-                            </HoverCardContent>
+                            <HoverCardContent>{{ glossary.market_cap.description }}</HoverCardContent>
                         </HoverCard>
                     </div>
                     
@@ -208,6 +204,7 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
+    import glossary from '~/assets/data/market/glossary.json';
     
     const props = defineProps({
         coin: {
