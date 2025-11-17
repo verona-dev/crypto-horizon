@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-background h-20 w-screen flex items-center justify-center mt-16 p-3.5 z-25'>
+    <Card class='bg-sidebar h-20 w-screen flex items-center justify-center mt-16 p-3.5 z-25'>
         <NuxtLink
             to='https://www.coingecko.com/en/api/'
             target='_blank'
