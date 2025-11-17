@@ -1,0 +1,16 @@
+{
+    "ath": "Coin price all-time high (ATH) in $USD",
+    "atl": "Coin price all-time low (ATL) in $USD",
+    "exchanges": "The number of exchanges the coin is present at.",
+    "github": {
+        "commits": "Github commits",
+        "contributors": "Github contributors.",
+        "forks": "Github forks.",
+        "issues": "Github issues.",
+        "stars": "Github stars."
+
+    },
+    "market_cap": "testing json",
+    "markets": "The number of markets the coin is present at.",
+    "pairs": "The number of unique markets the coin is present at."
+}
