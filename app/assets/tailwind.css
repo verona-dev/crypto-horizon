@@ -1,7 +1,6 @@
 @import 'tailwindcss';
 @import '../assets/styles/global.css';
 @import 'maz-ui/styles';
-@import '../assets/styles/shadcn.css';
 @import '../assets/styles/transitions.css';
 
 @custom-variant dark (&:is(.dark *));
