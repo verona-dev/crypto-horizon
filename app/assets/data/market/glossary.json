@@ -1,7 +1,24 @@
 {
-    "ath": "Coin price all-time high (ATH) in $USD",
-    "atl": "Coin price all-time low (ATL) in $USD",
-    "exchanges": "The number of exchanges the coin is present at.",
+    "ath": {
+        "label": "All-Time High",
+        "description": "Coin price all-time high (ATH) in $USD"
+    },
+    "atl": {
+        "label": "All-Time Low",
+       "description" : "Coin price all-time low (ATL) in $USD"
+    },
+    "country_origin": {
+        "label": "Origin Country",
+        "description": "Coin country of origin"
+    },
+    "exchanges": {
+        "label": "Exchanges",
+        "description": "The number of exchanges the coin is present at."
+    },
+    "genesis": {
+        "label": "Genesis",
+        "description": "Coin genesis date"
+    },
     "github": {
         "commits": "Github commits",
         "contributors": "Github contributors.",
@@ -10,7 +27,28 @@
         "stars": "Github stars."
 
     },
-    "market_cap": "testing json",
-    "markets": "The number of markets the coin is present at.",
-    "pairs": "The number of unique markets the coin is present at."
+    "hashing_algorithm": {
+        "label": "Hashing Algorithm",
+        "description":"Blockchain hashing algorithm"
+    },
+    "ico_end": {
+        "label": "Ico End",
+        "description": "Ico end date"
+    },
+    "ico_start": {
+        "label": "Ico Start",
+        "description": "Ico start date"
+    },
+    "market_cap": {
+        "label": "Market Cap",
+        "description": "The total market value of a cryptocurrency's circulating supply. It is analogous to the free-float capitalization in the stock market. Market cap = Current price x Circulating supply."
+    },
+    "markets": {
+        "label": "Markets",
+       "description" : "The number of markets the coin is present at."
+    },
+    "pairs": {
+        "label": "Pairs",
+       "description" : "The number of unique markets the coin is present at."
+    }
 }
