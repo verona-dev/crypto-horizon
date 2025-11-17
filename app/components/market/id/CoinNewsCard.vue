@@ -28,7 +28,8 @@
             <!-- Categories  -->
             <div class='flex flex-wrap items-center gap-2'>
                 <Badge
-                    v-for='category in categories_computed'
+                    v-for='category in categories_computed.slice(0, 4)'
+                    :key='category'
                     class='py-1 px-1.5 capitalize text-sky text-[10px] border-border/50 line-clamp-1'
                     variant='outline'
                 >
@@ -53,7 +54,7 @@
         <!--  Article Title  -->
         <CardContent>
             <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
-                <CardTitle class='h-20 card-title'>{{ title }}</CardTitle>
+                <CardTitle class='card-title !line-clamp-2'>{{ title }}</CardTitle>
             </NuxtLink>
         </CardContent>
         
@@ -69,8 +70,8 @@
                     
                     <!--  Author  -->
                     <div class='flex flex-col items-start text-left text-sm gap-1'>
-                        <span class='truncate'>{{ author_label }}</span>
-                        <span class='text-muted-foreground'>{{ source_name_label }}</span>
+                        <span class='truncate capitalize'>{{ author_label }}</span>
+                        <span class='text-muted-foreground capitalize'>{{ source_name_label }}</span>
                     </div>
                 </HoverCardTrigger>
                 
