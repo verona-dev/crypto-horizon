@@ -1,5 +1,5 @@
 <template>
-    <div class='single-coin page relative'>
+    <div class='single-coin page'>
         <LoadingSpinner v-if='loading' />
         
         <div v-else class='z-10'>
