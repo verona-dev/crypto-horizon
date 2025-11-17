@@ -164,6 +164,16 @@
         }
     }
     
+    .hover-card-content {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        max-width: 450px !important;
+        width: 100% !important;
+        font-size: 12px !important;
+        line-height: 16px !important;
+    }
+    
     .vertical-separator {
         background: var(--accent) !important;
         height: 40px;
