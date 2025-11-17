@@ -40,7 +40,7 @@
                                 <HoverCardTrigger>
                                     <InfoIcon class='!mt-0' />
                                 </HoverCardTrigger>
-                                <HoverCardContent>Coin price all-time high (ATH) in &#65284;USD and percentage change from ATH.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.ath }} and percentage change from ATH.</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         
@@ -78,7 +78,7 @@
                                 <HoverCardTrigger>
                                     <InfoIcon class='!mt-0' />
                                 </HoverCardTrigger>
-                                <HoverCardContent>Coin price all-time low (ATL) in &#65284;USD and percentage change from ATL.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.atl }} and percentage change from ATL.</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         
@@ -117,7 +117,7 @@
                                 <HoverCardTrigger>
                                     <InfoIcon class='!mt-0' />
                                 </HoverCardTrigger>
-                                <HoverCardContent>The number of markets the coin is present at.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.markets }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ markets }}</TableCell>
@@ -132,7 +132,7 @@
                                 <HoverCardTrigger>
                                     <InfoIcon class='!mt-0' />
                                 </HoverCardTrigger>
-                                <HoverCardContent>The number of unique markets the coin is present at.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.pairs }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ pairs }}</TableCell>
@@ -147,7 +147,7 @@
                                 <HoverCardTrigger>
                                     <InfoIcon class='!mt-0' />
                                 </HoverCardTrigger>
-                                <HoverCardContent>The number of exchanges the coin is present at.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.exchanges }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ exchanges }}</TableCell>
@@ -211,7 +211,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>Github forks.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.github.forks }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_forks_label }}</TableCell>
@@ -230,7 +230,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>Github stars.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.github.stars }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_stars_label }}</TableCell>
@@ -249,7 +249,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>Github issues.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.github.issues }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_issues_label }}</TableCell>
@@ -268,7 +268,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>Github commits in the last 30 days.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.github.commits }} in the last 30 days.</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_commits_label }}</TableCell>
@@ -287,7 +287,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>Github contributors.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.github.contributors }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_contributors_label }}</TableCell>
@@ -301,14 +301,15 @@
 <script setup>
     import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import { formatNumber } from '~/utils/formatUtils.js';
+    import glossary from '~/assets/data/market/glossary.json';
+    import { Card } from '~/components/ui/card';
+    import InfoIcon from '~/components/InfoIcon.vue';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.ts';
+    
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
-    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.ts';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
-    import { Card } from '~/components/ui/card';
-    import InfoIcon from '~/components/InfoIcon.vue';
-    
     
     const props = defineProps({
         coin: {
@@ -317,6 +318,7 @@
         }
     });
     
+    console.log(glossary);
     const { coin } = toRefs(props);
     const livecoinwatch = toRef(coin.value.livecoinwatch);
     const coingecko = toRef(coin.value.coingecko);
