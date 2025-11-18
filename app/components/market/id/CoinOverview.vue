@@ -21,7 +21,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.genesis.description }}</HoverCardContent>
                             </HoverCard>
@@ -41,7 +41,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.country_origin.description }}</HoverCardContent>
                             </HoverCard>
@@ -56,7 +56,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.ath.description }}</HoverCardContent>
                             </HoverCard>
@@ -94,7 +94,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.atl.description }}</HoverCardContent>
                             </HoverCard>
@@ -133,7 +133,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.markets.description }}</HoverCardContent>
                             </HoverCard>
@@ -148,7 +148,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.pairs.description }}</HoverCardContent>
                             </HoverCard>
@@ -163,7 +163,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.exchanges.description }}</HoverCardContent>
                             </HoverCard>
@@ -178,7 +178,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.hashing_algorithm.description }}</HoverCardContent>
                             </HoverCard>
@@ -193,7 +193,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.ico_start.description }}</HoverCardContent>
                             </HoverCard>
@@ -213,7 +213,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.ico_end.description }}</HoverCardContent>
                             </HoverCard>
