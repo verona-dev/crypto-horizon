@@ -100,7 +100,6 @@ const goBack = (router, path) => {
 
 export {
     formatNumber,
-    formatCoingeckoCoin,
     formatLivecoinwatchCoin,
     capitalize,
     goBack,
