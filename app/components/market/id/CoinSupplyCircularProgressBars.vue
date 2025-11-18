@@ -9,7 +9,7 @@
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ market_cap_bar_label }}</p>
+                        <p>{{ market_cap_compact }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
@@ -25,7 +25,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ market_cap_label }}</span>
+                    <span class='mt-2'>{{ market_cap_full }}</span>
                 </div>
             </div>
             
@@ -214,8 +214,8 @@
     const market_data = computed(() => coin.value?.coingecko?.market_data);
     
     const market_cap = computed(() => market_data.value?.market_cap?.usd);
-    const market_cap_label = market_data.value.market_cap_label;
-    const market_cap_bar_label = computed(() => formatNumber(market_cap.value, {
+    const market_cap_full =formatNumber(market_cap.value);
+    const market_cap_compact = computed(() => formatNumber(market_cap.value, {
         compact: true, decimals: 1
     }));
     
