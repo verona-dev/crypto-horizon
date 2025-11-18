@@ -63,15 +63,6 @@ const formatNumber = (value, {
     return new Intl.NumberFormat(locale, options).format(num);
 };
 
-const formatCoingeckoCoin = coin => {
-    return {
-        ...coin,
-        market_data: {
-            ...coin.market_data,
-        },
-    }
-};
-
 const formatLivecoinwatchCoin = coin => {
     return {
         ...coin,
