@@ -25,7 +25,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ market_cap_full }}</span>
+                    <span class='mt-2'>{{ market_cap_value }}</span>
                 </div>
             </div>
             
@@ -53,7 +53,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ fully_diluted_valuation_full }}</span>
+                    <span class='mt-2'>{{ fully_diluted_valuation_value }}</span>
                 </div>
             </div>
             
@@ -84,7 +84,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ volume_full }}</span>
+                    <span class='mt-2'>{{ volume_value }}</span>
                 </div>
             </div>
             
@@ -214,19 +214,19 @@
     const market_data = computed(() => coin.value?.coingecko?.market_data);
     
     const market_cap = computed(() => market_data.value?.market_cap?.usd);
-    const market_cap_full =formatNumber(market_cap.value);
+    const market_cap_value =formatNumber(market_cap.value);
     const market_cap_compact = computed(() => formatNumber(market_cap.value, {
         compact: true, decimals: 1
     }));
     
     const fully_diluted_valuation = computed(() => market_data.value?.fully_diluted_valuation?.usd);
-    const fully_diluted_valuation_full = computed(() => formatNumber(fully_diluted_valuation.value));
+    const fully_diluted_valuation_value = computed(() => formatNumber(fully_diluted_valuation.value));
     const fully_diluted_valuation_compact = computed(() => formatNumber(fully_diluted_valuation.value, {
         compact: true, decimals: 1
     }));
     
     const volume = computed(() => market_data.value?.total_volume?.usd);
-    const volume_full = formatNumber(volume.value);
+    const volume_value = formatNumber(volume.value);
     const volume_compact = computed(() => formatNumber(volume.value, {
         compact: true, decimals: 1
     }));
