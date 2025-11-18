@@ -363,7 +363,6 @@
         }
     });
     
-    console.log(glossary);
     const { coin } = toRefs(props);
     const livecoinwatch = toRef(coin.value.livecoinwatch);
     const coingecko = toRef(coin.value.coingecko);
