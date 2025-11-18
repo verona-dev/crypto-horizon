@@ -12,22 +12,22 @@
                 <!--  Max Supply  -->
                 <TableRow v-if='max_supply'>
                     <TableCell class='font-medium'>Max Supply</TableCell>
-                    <TableCell>{{ max_supply_label }}</TableCell>
+                    <TableCell>{{ max_supply_value }}</TableCell>
                 </TableRow>
                 <!--  Total Supply  -->
                 <TableRow v-if='total_supply'>
                     <TableCell class='font-medium'>Total Supply</TableCell>
-                    <TableCell>{{ total_supply_label }}</TableCell>
+                    <TableCell>{{ total_supply_value }}</TableCell>
                 </TableRow>
                 <!--  Circulating Supply  -->
                 <TableRow v-if='circulating_supply'>
                     <TableCell class='font-medium'>Circulating Supply</TableCell>
-                    <TableCell>{{ circulating_supply_label }}</TableCell>
+                    <TableCell>{{ circulating_supply_value }}</TableCell>
                 </TableRow>
                 <!--  Remaining Supply  -->
                 <TableRow v-if='remaining_supply'>
                     <TableCell class='font-medium'>Remaining Supply</TableCell>
-                    <TableCell>{{ remaining_supply_label }}</TableCell>
+                    <TableCell>{{ remaining_supply_value }}</TableCell>
                 </TableRow>
             </TableBody>
         </Table>
@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table';
+    import { Table, TableBody, TableCell, TableRow, TableHeader, TableHead } from '~/components/ui/table';
     import { formatNumber } from '~/utils/formatUtils.js';
     
     const props = defineProps({
@@ -49,20 +49,20 @@
     const { coin } = toRefs(props);
     const market_data = computed(() => coin.value?.coingecko?.market_data);
     const max_supply = computed(() => market_data.value?.max_supply);
-    const max_supply_label = computed(() => formatNumber(max_supply.value, {
+    const max_supply_value = computed(() => formatNumber(max_supply.value, {
         style: 'decimal'
     }));
     
     const total_supply = computed(() =>  market_data.value?.total_supply);
-    const total_supply_label = computed(() => formatNumber(total_supply.value, {
+    const total_supply_value = computed(() => formatNumber(total_supply.value, {
         style: 'decimal'
     }));
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
-    const circulating_supply_label = computed(() => formatNumber(market_data.value?.circulating_supply, {
+    const circulating_supply_value = computed(() => formatNumber(market_data.value?.circulating_supply, {
         style: 'decimal'
     }));
     const remaining_supply = computed(() => max_supply.value - total_supply.value);
-    const remaining_supply_label = computed(() => formatNumber(remaining_supply.value, {
+    const remaining_supply_value = computed(() => formatNumber(remaining_supply.value, {
         style: 'decimal'
     }));
 </script>
