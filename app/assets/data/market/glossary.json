@@ -11,7 +11,7 @@
     },
     "circulating_supply": {
         "label": "Circulating Supply",
-        "description": "The amount of coins that are circulating in the market and are tradeable by the public. It is comparable to looking at shares readily available in the market (not held & locked by insiders, governments)."
+        "description": "The amount of coins that are circulating in the market and are tradeable by the public.\n\n It is comparable to looking at shares readily available in the market (not held & locked by insiders, governments)."
     },
     "country_origin": {
         "label": "Origin Country",
@@ -62,8 +62,12 @@
         "label": "Pairs",
         "description" : "The number of unique markets the coin is present at."
     },
+    "total_supply": {
+        "label": "Total Supply",
+        "description": "Total Supply = Onchain supply - burned tokens.\n\n The amount of coins that have already been created, minus any coins that have been burned (removed from circulation).\n\n It is comparable to outstanding shares in the stock market."
+    },
     "volume": {
         "label": "Trading Volume 24h",
-        "description": "A measure of a cryptocurrency trading volume across all tracked platforms in the last 24 hours. This is tracked on a rolling 24-hour basis with no open/closing times."
+        "description": "A measure of a cryptocurrency trading volume across all tracked platforms in the last 24 hours.\n This is tracked on a rolling 24-hour basis with no open/closing times."
     }
 }

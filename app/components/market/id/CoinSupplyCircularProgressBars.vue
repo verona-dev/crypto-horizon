@@ -131,13 +131,13 @@
                 >
                     <template #default>
                         <p v-if='max_supply'>{{ total_supply_percentage }}&#37;</p>
-                        <p v-else>{{ formatNumber(total_supply, { compact: true, style: 'decimal', decimals: 2 }) }}</p>
+                        <p v-else>{{ total_supply_compact }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
                     <div class='flex items-center gap-2'>
-                        <h5 class='break-words text-center'>Total Supply</h5>
+                        <h5>{{ glossary.total_supply.label }}</h5>
                         
                         <HoverCard
                             :openDelay='200'
@@ -146,14 +146,11 @@
                             <HoverCardTrigger>
                                 <InfoIcon size='20' />
                             </HoverCardTrigger>
-                            <HoverCardContent>
-                                Total supply = Total coins created - coins that have been burned (if any)
-                                It is comparable to outstanding shares in the stock market.
-                            </HoverCardContent>
+                            <HoverCardContent>{{ glossary.total_supply.description }}</HoverCardContent>
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ total_supply_label }} {{ symbol }}</span>
+                    <span class='mt-2'>{{ total_supply_value }} {{ symbol }}</span>
                 </div>
             </div>
             
@@ -240,17 +237,20 @@
     }));
     const circulating_supply_percentage = computed(() => (circulating_supply.value / max_supply.value) * 100);
     
+    const total_supply = computed(() =>  market_data.value?.total_supply);
+    const total_supply_value = computed(() => formatNumber(total_supply.value, {
+        style: 'decimal', decimals: 1
+    }));
+    const total_supply_compact = computed(() => formatNumber(total_supply.value, {
+        compact: true, style: 'decimal', decimals: 1
+    }));
+    const total_supply_percentage = computed(() => Math.floor((total_supply.value / max_supply.value) * 100));
+    
     const max_supply = computed(() => market_data.value?.max_supply);
     const max_supply_label = market_data.value?.max_supply_label;
     const max_supply_bar_label = computed(() => formatNumber(max_supply.value, {
         compact: true, style: 'decimal', decimals: 1
     }));
-    
-    const total_supply = computed(() =>  market_data.value?.total_supply);
-    const total_supply_label = computed(() => formatNumber(total_supply.value, {
-        style: 'decimal', decimals: 1
-    }));
-    const total_supply_percentage = computed(() => Math.floor((total_supply.value / max_supply.value) * 100));
     
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
