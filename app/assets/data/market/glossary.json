@@ -1,23 +1,30 @@
 {
     "ath": {
+        "acronym": "ATH",
         "label": "All-Time High",
-        "description": "Coin price all-time high (ATH) in $USD"
+        "description": "Coin price all-time high (ATH) in $USD."
     },
     "atl": {
+        "acronym": "ATL",
         "label": "All-Time Low",
-       "description" : "Coin price all-time low (ATL) in $USD"
+        "description" : "Coin price all-time low (ATL) in $USD."
     },
     "country_origin": {
         "label": "Origin Country",
-        "description": "Coin country of origin"
+        "description": "Coin country of origin."
     },
     "exchanges": {
         "label": "Exchanges",
         "description": "The number of exchanges the coin is present at."
     },
+    "fully_diluted_valuation": {
+        "acronym": "FDV",
+        "label": "Fully Diluted Valuation",
+        "description": "Fully Diluted Valuation (FDV) = Current Price x Total Supply.\n\n Fully Diluted Valuation (FDV) is the theoretical market capitalization of a coin if the entirety of its supply is in circulation, based on its current market price. The FDV value is theoretical as increasing the circulating supply of a coin may impact its market price. Also depending on the tokenomics, emission schedule or lock-up period of a coin's supply, it may take a significant time before its entire supply is released into circulation."
+    },
     "genesis": {
         "label": "Genesis",
-        "description": "Coin genesis date"
+        "description": "Coin genesis date."
     },
     "github": {
         "commits": "Github commits",
@@ -29,15 +36,15 @@
     },
     "hashing_algorithm": {
         "label": "Hashing Algorithm",
-        "description":"Blockchain hashing algorithm"
+        "description":"Blockchain hashing algorithm."
     },
     "ico_end": {
         "label": "Ico End",
-        "description": "Ico end date"
+        "description": "Ico end date."
     },
     "ico_start": {
         "label": "Ico Start",
-        "description": "Ico start date"
+        "description": "Ico start date."
     },
     "market_cap": {
         "label": "Market Cap",
@@ -45,10 +52,10 @@
     },
     "markets": {
         "label": "Markets",
-       "description" : "The number of markets the coin is present at."
+        "description" : "The number of markets the coin is present at."
     },
     "pairs": {
         "label": "Pairs",
-       "description" : "The number of unique markets the coin is present at."
+        "description" : "The number of unique markets the coin is present at."
     }
 }
