@@ -52,7 +52,7 @@
     },
     "market_cap": {
         "label": "Market Cap",
-        "description": "Market Cap = Current price x Circulating Supply.\n\n The total market value of a cryptocurrency's circulating supply. It is analogous to the free-float capitalization in the stock market.\n\n Similar to the stock market’s measurement of multiplying price per share by shares readily available in the market (not held & locked by insiders, governments)."
+        "description": "Market Cap = Current price x Circulating Supply \n\n The total market value of a cryptocurrency's circulating supply. It is analogous to the free-float capitalization in the stock market.\n\n Similar to the stock market’s measurement of multiplying price per share by shares readily available in the market (not held & locked by insiders, governments)."
     },
     "markets": {
         "label": "Markets",
@@ -60,7 +60,7 @@
     },
     "max_supply": {
         "label": "Max Supply",
-        "description": "Max Supply = Theoretical maximum as coded.\n\n The best approximation of the maximum amount of coins that will exist in the forthcoming lifespan of the cryptocurrency, minus any coins that have been verifiably burned.\n\n This is also known as the theoretical max number of coins that can be minted, minus any coins that have been verifiably burned."
+        "description": "Max Supply = Theoretical maximum as coded \n\n The best approximation of the maximum amount of coins that will exist in the forthcoming lifespan of the cryptocurrency, minus any coins that have been verifiably burned.\n\n This is also known as the theoretical max number of coins that can be minted, minus any coins that have been verifiably burned."
     },
     "pairs": {
         "label": "Pairs",
@@ -68,11 +68,11 @@
     },
     "remaining_supply": {
         "label": "Remaining Supply",
-        "description":"Max Supply - Total Supply"
+        "description":"Remaining Supply = Max Supply - Total Supply \n\n Shows how many tokens have not yet been minted or distributed but could still come into circulation until the max supply is reached.\n\n In cases where the max supply is undefined, remaining supply may be meaningless or infinite."
     },
     "total_supply": {
         "label": "Total Supply",
-        "description": "Total Supply = Onchain supply - burned tokens.\n\n The amount of coins that have already been created, minus any coins that have been burned (removed from circulation).\n\n It is comparable to outstanding shares in the stock market."
+        "description": "Total Supply = Onchain supply - burned tokens \n\n The amount of coins that have already been created, minus any coins that have been burned (removed from circulation).\n\n It is comparable to outstanding shares in the stock market."
     },
     "volume": {
         "label": "Trading Volume 24h",
