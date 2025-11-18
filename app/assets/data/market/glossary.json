@@ -57,5 +57,9 @@
     "pairs": {
         "label": "Pairs",
         "description" : "The number of unique markets the coin is present at."
+    },
+    "volume": {
+        "label": "Trading Volume 24h",
+        "description": "A measure of a cryptocurrency trading volume across all tracked platforms in the last 24 hours. This is tracked on a rolling 24-hour basis with no open/closing times."
     }
 }

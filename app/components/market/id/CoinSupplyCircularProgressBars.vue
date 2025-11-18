@@ -15,7 +15,7 @@
                 
                 <div class='label-container'>
                     <div class='flex items-center gap-2'>
-                        <h5 class='break-words text-center'>{{ glossary.market_cap.label }}</h5>
+                        <h5>{{ glossary.market_cap.label }}</h5>
                         
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
@@ -29,7 +29,7 @@
                 </div>
             </div>
             
-            <!--  Diluted Valuation  -->
+            <!--  Fully Diluted Valuation  -->
             <div v-if='fully_diluted_valuation' class='item-container'>
                 <MazCircularProgressBar
                     :percentage='100'
@@ -43,7 +43,7 @@
                 
                 <div class='label-container'>
                     <div class='flex items-center gap-2'>
-                        <h5 class='break-words text-center'>{{ glossary.fully_diluted_valuation.label }}</h5>
+                        <h5>{{ glossary.fully_diluted_valuation.label }}</h5>
                         
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
@@ -65,13 +65,13 @@
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ volume_bar_label }}</p>
+                        <p>{{ volume_compact }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
                     <div class='flex items-center gap-2'>
-                        <h5 class='break-words text-center'>Volume 24h</h5>
+                        <h5>{{ glossary.volume.label }}</h5>
                         
                         <HoverCard
                             :openDelay='200'
@@ -80,11 +80,11 @@
                             <HoverCardTrigger>
                                 <InfoIcon size='20' />
                             </HoverCardTrigger>
-                            <HoverCardContent>A measure of how much of a cryptocurrency was traded in the last 24 hours.</HoverCardContent>
+                            <HoverCardContent>{{ glossary.volume.description }}</HoverCardContent>
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ volume_label }}</span>
+                    <span class='mt-2'>{{ volume_full }}</span>
                 </div>
             </div>
             
@@ -219,6 +219,18 @@
         compact: true, decimals: 1
     }));
     
+    const fully_diluted_valuation = computed(() => market_data.value?.fully_diluted_valuation?.usd);
+    const fully_diluted_valuation_full = computed(() => formatNumber(fully_diluted_valuation.value));
+    const fully_diluted_valuation_compact = computed(() => formatNumber(fully_diluted_valuation.value, {
+        compact: true, decimals: 1
+    }));
+    
+    const volume = computed(() => market_data.value?.total_volume?.usd);
+    const volume_full = formatNumber(volume.value);
+    const volume_compact = computed(() => formatNumber(volume.value, {
+        compact: true, decimals: 1
+    }));
+    
     const max_supply = computed(() => market_data.value?.max_supply);
     const max_supply_label = market_data.value?.max_supply_label;
     const max_supply_bar_label = computed(() => formatNumber(max_supply.value, {
@@ -234,18 +246,6 @@
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
     const circulating_supply_label = market_data.value?.circulating_supply_label;
     const circulating_supply_percentage = computed(() => (circulating_supply.value / max_supply.value) * 100);
-    
-    const volume = computed(() => market_data.value?.total_volume?.usd);
-    const volume_label = market_data.value?.volume_label;
-    const volume_bar_label = computed(() => formatNumber(volume.value, {
-        compact: true, decimals: 1
-    }));
-    
-    const fully_diluted_valuation = computed(() => market_data.value?.fully_diluted_valuation?.usd);
-    const fully_diluted_valuation_full = computed(() => formatNumber(fully_diluted_valuation.value));
-    const fully_diluted_valuation_compact = computed(() => formatNumber(fully_diluted_valuation.value, {
-        compact: true, decimals: 1
-    }));
     
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
