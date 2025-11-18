@@ -20,7 +20,7 @@
     "fully_diluted_valuation": {
         "acronym": "FDV",
         "label": "Fully Diluted Valuation",
-        "description": "Fully Diluted Valuation (FDV) = Current Price x Total Supply.\n\n Fully Diluted Valuation (FDV) is the theoretical market capitalization of a coin if the entirety of its supply is in circulation, based on its current market price. The FDV value is theoretical as increasing the circulating supply of a coin may impact its market price. Also depending on the tokenomics, emission schedule or lock-up period of a coin's supply, it may take a significant time before its entire supply is released into circulation."
+        "description": "Fully Diluted Valuation (FDV) = Current Price x Total Supply.\n\n Fully Diluted Valuation (FDV) is the theoretical market capitalization of a coin if the entirety of its supply is in circulation, based on its current market price.\n\n The FDV value is theoretical as increasing the circulating supply of a coin may impact its market price. Also depending on the tokenomics, emission schedule or lock-up period of a coin's supply, it may take a significant time before its entire supply is released into circulation."
     },
     "genesis": {
         "label": "Genesis",
