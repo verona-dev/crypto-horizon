@@ -41,7 +41,7 @@
     },
     "market_cap": {
         "label": "Market Cap",
-        "description": "The total market value of a cryptocurrency's circulating supply. It is analogous to the free-float capitalization in the stock market. Market cap = Current price x Circulating supply."
+        "description": "Market Cap = Current price x Circulating Supply.\n\nThe total market value of a cryptocurrency's circulating supply. It is analogous to the free-float capitalization in the stock market.\n\n Similar to the stock market’s measurement of multiplying price per share by shares readily available in the market (not held & locked by insiders, governments)."
     },
     "markets": {
         "label": "Markets",
