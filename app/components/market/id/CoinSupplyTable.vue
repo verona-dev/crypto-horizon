@@ -49,7 +49,9 @@
     const { coin } = toRefs(props);
     const market_data = computed(() => coin.value?.coingecko?.market_data);
     const max_supply = computed(() => market_data.value?.max_supply);
-    const max_supply_label = market_data.value?.max_supply_label;
+    const max_supply_label = computed(() => formatNumber(max_supply.value, {
+        style: 'decimal'
+    }));
     
     const total_supply = computed(() =>  market_data.value?.total_supply);
     const total_supply_label = computed(() => formatNumber(total_supply.value, {

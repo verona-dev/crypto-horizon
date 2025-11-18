@@ -52,11 +52,15 @@
     },
     "market_cap": {
         "label": "Market Cap",
-        "description": "Market Cap = Current price x Circulating Supply.\n\nThe total market value of a cryptocurrency's circulating supply. It is analogous to the free-float capitalization in the stock market.\n\n Similar to the stock market’s measurement of multiplying price per share by shares readily available in the market (not held & locked by insiders, governments)."
+        "description": "Market Cap = Current price x Circulating Supply.\n\n The total market value of a cryptocurrency's circulating supply. It is analogous to the free-float capitalization in the stock market.\n\n Similar to the stock market’s measurement of multiplying price per share by shares readily available in the market (not held & locked by insiders, governments)."
     },
     "markets": {
         "label": "Markets",
         "description" : "The number of markets the coin is present at."
+    },
+    "max_supply": {
+        "label": "Max Supply",
+        "description": "Max Supply = Theoretical maximum as coded.\n\n The best approximation of the maximum amount of coins that will exist in the forthcoming lifespan of the cryptocurrency, minus any coins that have been verifiably burned.\n\n This is also known as the theoretical max number of coins that can be minted, minus any coins that have been verifiably burned."
     },
     "pairs": {
         "label": "Pairs",

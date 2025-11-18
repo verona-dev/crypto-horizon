@@ -162,13 +162,13 @@
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ max_supply_bar_label }}</p>
+                        <p>{{ max_supply_compact }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
                     <div class='flex items-center gap-2'>
-                        <h5 class='break-words text-center'>Max Supply</h5>
+                        <h5>{{ glossary.max_supply.label }}</h5>
                         
                         <HoverCard
                             :openDelay='200'
@@ -177,16 +177,11 @@
                             <HoverCardTrigger>
                                 <InfoIcon size='20' />
                             </HoverCardTrigger>
-                            <HoverCardContent>
-                                The best approximation of the maximum amount of coins that will exist in the forthcoming
-                                lifespan of the cryptocurrency, minus any coins that have been verifiably burned. This is
-                                also known as the theoretical max number of coins that can be minted, minus any coins
-                                that have been verifiably burned.
-                            </HoverCardContent>
+                            <HoverCardContent>{{ glossary.max_supply.description }}</HoverCardContent>
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ max_supply_label }} {{ symbol }}</span>
+                    <span class='mt-2'>{{ max_supply_value }} {{ symbol }}</span>
                 </div>
             </div>
         </div>
@@ -239,7 +234,7 @@
     
     const total_supply = computed(() =>  market_data.value?.total_supply);
     const total_supply_value = computed(() => formatNumber(total_supply.value, {
-        style: 'decimal', decimals: 1
+        style: 'decimal',
     }));
     const total_supply_compact = computed(() => formatNumber(total_supply.value, {
         compact: true, style: 'decimal', decimals: 1
@@ -247,8 +242,10 @@
     const total_supply_percentage = computed(() => Math.floor((total_supply.value / max_supply.value) * 100));
     
     const max_supply = computed(() => market_data.value?.max_supply);
-    const max_supply_label = market_data.value?.max_supply_label;
-    const max_supply_bar_label = computed(() => formatNumber(max_supply.value, {
+    const max_supply_value = computed(() => formatNumber(market_data.value?.max_supply, {
+        style: 'decimal',
+    }));
+    const max_supply_compact = computed(() => formatNumber(max_supply.value, {
         compact: true, style: 'decimal', decimals: 1
     }));
     
