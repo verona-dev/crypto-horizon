@@ -9,31 +9,27 @@
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ market_cap_bar_label }}</p>
+                        <p>{{ market_cap_compact }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
                     <div class='flex items-center gap-2'>
-                        <h5 class='break-words text-center'>Market Cap</h5>
+                        <h5>{{ glossary.market_cap.label }}</h5>
                         
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
                                 <InfoIcon size='20' />
                             </HoverCardTrigger>
-                            <HoverCardContent>
-                                The total market value of a cryptocurrency's circulating supply.
-                                It is analogous to the free-float capitalization in the stock market.
-                                Market cap = Current price x Circulating supply.
-                            </HoverCardContent>
+                            <HoverCardContent>{{ glossary.market_cap.description }}</HoverCardContent>
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ market_cap_label }}</span>
+                    <span class='mt-2'>{{ market_cap_value }}</span>
                 </div>
             </div>
             
-            <!--  Diluted Valuation  -->
+            <!--  Fully Diluted Valuation  -->
             <div v-if='fully_diluted_valuation' class='item-container'>
                 <MazCircularProgressBar
                     :percentage='100'
@@ -41,27 +37,23 @@
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ fully_diluted_bar_valuation }}</p>
+                        <p>{{ fully_diluted_valuation_compact }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
                     <div class='flex items-center gap-2'>
-                        <h5 class='break-words text-center'>Diluted Valuation</h5>
+                        <h5>{{ glossary.fully_diluted_valuation.label }}</h5>
                         
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
                                 <InfoIcon size='20' />
                             </HoverCardTrigger>
-                            <HoverCardContent>
-                                Coin fully diluted valuation (FDV) in currency.
-                                FDV and market cap of a crypto coin can be the same number when the total supply
-                                of tokens is equal to the circulating supply of tokens.
-                            </HoverCardContent>
+                            <HoverCardContent>{{ glossary.fully_diluted_valuation.description }}</HoverCardContent>
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ fully_diluted_valuation_label }}</span>
+                    <span class='mt-2'>{{ fully_diluted_valuation_value }}</span>
                 </div>
             </div>
             
@@ -73,13 +65,13 @@
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ volume_bar_label }}</p>
+                        <p>{{ volume_compact }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
                     <div class='flex items-center gap-2'>
-                        <h5 class='break-words text-center'>Volume 24h</h5>
+                        <h5>{{ glossary.volume.label }}</h5>
                         
                         <HoverCard
                             :openDelay='200'
@@ -88,11 +80,11 @@
                             <HoverCardTrigger>
                                 <InfoIcon size='20' />
                             </HoverCardTrigger>
-                            <HoverCardContent>A measure of how much of a cryptocurrency was traded in the last 24 hours.</HoverCardContent>
+                            <HoverCardContent>{{ glossary.volume.description }}</HoverCardContent>
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ volume_label }}</span>
+                    <span class='mt-2'>{{ volume_value }}</span>
                 </div>
             </div>
             
@@ -106,13 +98,13 @@
                 >
                     <template #default>
                         <p v-if='max_supply'>{{ Math.floor(circulating_supply_percentage) }}&#37;</p>
-                        <p v-else>{{ formatNumber(circulating_supply, { compact: true, style: 'decimal', decimals: 2 }) }}</p>
+                        <p v-else>{{ circulating_supply_compact }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
                     <div class='flex items-center gap-2'>
-                        <h5 class='break-words text-center'>Circulating Supply</h5>
+                        <h5>{{ glossary.circulating_supply.label }}</h5>
                         
                         <HoverCard
                             :openDelay='200'
@@ -121,11 +113,11 @@
                             <HoverCardTrigger>
                                 <InfoIcon size='20' />
                             </HoverCardTrigger>
-                            <HoverCardContent>The amount of coins that are circulating in the market and are in public hands. It is analogous to the flowing shares in the stock market.</HoverCardContent>
+                            <HoverCardContent>{{ glossary.circulating_supply.description }}</HoverCardContent>
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ circulating_supply_label }} {{ symbol }}</span>
+                    <span class='mt-2'>{{ circulating_supply_value }} {{ symbol }}</span>
                 </div>
             </div>
             
@@ -139,13 +131,13 @@
                 >
                     <template #default>
                         <p v-if='max_supply'>{{ total_supply_percentage }}&#37;</p>
-                        <p v-else>{{ formatNumber(total_supply, { compact: true, style: 'decimal', decimals: 2 }) }}</p>
+                        <p v-else>{{ total_supply_compact }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
                     <div class='flex items-center gap-2'>
-                        <h5 class='break-words text-center'>Total Supply</h5>
+                        <h5>{{ glossary.total_supply.label }}</h5>
                         
                         <HoverCard
                             :openDelay='200'
@@ -154,14 +146,11 @@
                             <HoverCardTrigger>
                                 <InfoIcon size='20' />
                             </HoverCardTrigger>
-                            <HoverCardContent>
-                                Total supply = Total coins created - coins that have been burned (if any)
-                                It is comparable to outstanding shares in the stock market.
-                            </HoverCardContent>
+                            <HoverCardContent>{{ glossary.total_supply.description }}</HoverCardContent>
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ total_supply_label }} {{ symbol }}</span>
+                    <span class='mt-2'>{{ total_supply_value }} {{ symbol }}</span>
                 </div>
             </div>
             
@@ -173,13 +162,13 @@
                     size='125px'
                 >
                     <template #default>
-                        <p>{{ max_supply_bar_label }}</p>
+                        <p>{{ max_supply_compact }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
                     <div class='flex items-center gap-2'>
-                        <h5 class='break-words text-center'>Max Supply</h5>
+                        <h5>{{ glossary.max_supply.label }}</h5>
                         
                         <HoverCard
                             :openDelay='200'
@@ -188,16 +177,11 @@
                             <HoverCardTrigger>
                                 <InfoIcon size='20' />
                             </HoverCardTrigger>
-                            <HoverCardContent>
-                                The best approximation of the maximum amount of coins that will exist in the forthcoming
-                                lifespan of the cryptocurrency, minus any coins that have been verifiably burned. This is
-                                also known as the theoretical max number of coins that can be minted, minus any coins
-                                that have been verifiably burned.
-                            </HoverCardContent>
+                            <HoverCardContent>{{ glossary.max_supply.description }}</HoverCardContent>
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ max_supply_label }} {{ symbol }}</span>
+                    <span class='mt-2'>{{ max_supply_value }} {{ symbol }}</span>
                 </div>
             </div>
         </div>
@@ -208,6 +192,7 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
+    import glossary from '~/assets/data/market/glossary.json';
     
     const props = defineProps({
         coin: {
@@ -221,37 +206,47 @@
     const market_data = computed(() => coin.value?.coingecko?.market_data);
     
     const market_cap = computed(() => market_data.value?.market_cap?.usd);
-    const market_cap_label = market_data.value.market_cap_label;
-    const market_cap_bar_label = computed(() => formatNumber(market_cap.value, {
-        compact: true, decimals: 1
-    }));
-    
-    const max_supply = computed(() => market_data.value?.max_supply);
-    const max_supply_label = market_data.value?.max_supply_label;
-    const max_supply_bar_label = computed(() => formatNumber(max_supply.value, {
-        compact: true, style: 'decimal'
-    }));
-    
-    const total_supply = computed(() =>  market_data.value?.total_supply);
-    const total_supply_label = computed(() => formatNumber(total_supply.value, {
-        style: 'decimal'
-    }));
-    const total_supply_percentage = computed(() => Math.floor((total_supply.value / max_supply.value) * 100));
-    
-    const circulating_supply = computed(() => market_data.value?.circulating_supply);
-    const circulating_supply_label = market_data.value?.circulating_supply_label;
-    const circulating_supply_percentage = computed(() => (circulating_supply.value / max_supply.value) * 100);
-    
-    const volume = computed(() => market_data.value?.total_volume?.usd);
-    const volume_label = market_data.value?.volume_label;
-    const volume_bar_label = computed(() => formatNumber(volume.value, {
+    const market_cap_value =formatNumber(market_cap.value);
+    const market_cap_compact = computed(() => formatNumber(market_cap.value, {
         compact: true, decimals: 1
     }));
     
     const fully_diluted_valuation = computed(() => market_data.value?.fully_diluted_valuation?.usd);
-    const fully_diluted_valuation_label = computed(() => market_data.value?.fully_diluted_valuation_label);
-    const fully_diluted_bar_valuation = computed(() => formatNumber(fully_diluted_valuation.value, {
+    const fully_diluted_valuation_value = computed(() => formatNumber(fully_diluted_valuation.value));
+    const fully_diluted_valuation_compact = computed(() => formatNumber(fully_diluted_valuation.value, {
         compact: true, decimals: 1
+    }));
+    
+    const volume = computed(() => market_data.value?.total_volume?.usd);
+    const volume_value = formatNumber(volume.value);
+    const volume_compact = computed(() => formatNumber(volume.value, {
+        compact: true, decimals: 1
+    }));
+    
+    const circulating_supply = computed(() => market_data.value?.circulating_supply);
+    const circulating_supply_value = computed(() => formatNumber(circulating_supply.value, {
+        style: 'decimal',
+    }));
+    const circulating_supply_compact = computed(() => formatNumber(circulating_supply.value, {
+        compact: true, style: 'decimal', decimals: 1
+    }));
+    const circulating_supply_percentage = computed(() => (circulating_supply.value / max_supply.value) * 100);
+    
+    const total_supply = computed(() =>  market_data.value?.total_supply);
+    const total_supply_value = computed(() => formatNumber(total_supply.value, {
+        style: 'decimal',
+    }));
+    const total_supply_compact = computed(() => formatNumber(total_supply.value, {
+        compact: true, style: 'decimal', decimals: 1
+    }));
+    const total_supply_percentage = computed(() => Math.floor((total_supply.value / max_supply.value) * 100));
+    
+    const max_supply = computed(() => market_data.value?.max_supply);
+    const max_supply_value = computed(() => formatNumber(market_data.value?.max_supply, {
+        style: 'decimal',
+    }));
+    const max_supply_compact = computed(() => formatNumber(max_supply.value, {
+        compact: true, style: 'decimal', decimals: 1
     }));
     
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);

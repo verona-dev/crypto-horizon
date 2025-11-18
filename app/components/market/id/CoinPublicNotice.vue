@@ -1,8 +1,7 @@
 <template>
-    <!--  Public Notice  -->
     <Alert
         v-if='publicNotice'
-        class='my-6 px-0 w-3/4 flex items-center animate-fadeIn border border-warning/50'
+        class='my-6 px-0 w-3/4 flex items-center animate-fadeIn border border-warning/25'
     >
         <div class='flex px-8'>
             <NuxtIcon
@@ -12,7 +11,7 @@
             />
         </div>
         
-        <div class='notice-content flex flex-col gap-2 border-l border-warning/50 p-6'>
+        <div class='notice-content flex flex-col gap-2 border-l border-warning/25 p-6'>
             <AlertTitle class='uppercase underline text-warning text-sm'>Public notice</AlertTitle>
             <AlertDescription v-html='publicNoticeFormatted' class='text-xs' />
         </div>

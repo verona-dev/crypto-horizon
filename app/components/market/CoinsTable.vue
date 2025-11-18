@@ -106,6 +106,13 @@
                                                 :props='header.getContext()'
                                                 class='text-md'
                                             />
+                                            
+                                            <HoverCard v-if='header.column.columnDef.description' :openDelay='200' class='flex'>
+                                                <HoverCardTrigger>
+                                                    <InfoIcon />
+                                                </HoverCardTrigger>
+                                                <HoverCardContent>{{ header.column.columnDef.description }}</HoverCardContent>
+                                            </HoverCard>
                                         </div>
                                     </div>
                                 </template>
@@ -137,7 +144,7 @@
                                 <TableRow
                                     v-for='row in table.getRowModel().rows'
                                     :key='row.id'
-                                    class='hover:bg-muted/50 hover:cursor-pointer border-t-0 !px-6 animate-fadeIn-2000'
+                                    class='hover:bg-muted/50 hover:cursor-pointer border-t-0 !px-6 animate-fadeIn'
                                 >
                                     <TableCell class='h-20 text-center'>
                                         <!--   Checkbox / Favourites  -->
@@ -275,18 +282,21 @@
 
 <script setup>
     import { h } from 'vue';
+    import { formatNumber } from '~/utils/formatUtils.js';
+    import { getTrendClass } from '~/utils/styleUtils.js';
     import { Button } from '~/components/ui/button';
     import { Card } from '~/components/ui/card';
     import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger,  } from '@/components/ui/dropdown-menu';
     import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index.ts';
+    import InfoIcon from '@/components/InfoIcon.vue';
     import { Input } from '~/components/ui/input';
     import { Spinner } from '~/components/ui/spinner';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { Text3d } from '~/components/ui/text-3d';
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel, getFilteredRowModel } from '@tanstack/vue-table';
     import { valueUpdater } from '~/components/ui/table/utils.ts';
-    import { formatNumber } from '~/utils/formatUtils.js';
-    import { getTrendClass } from '~/utils/styleUtils.js';
+    import glossary from '~/assets/data/market/glossary.json';
     
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
     ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
@@ -303,8 +313,8 @@
     import { Line } from 'vue-chartjs';
     const MarketStore = useMarketStore();
     
-    // Methods
     const { getCoinsMarkets } = MarketStore;
+    
     // State
     const { coins } = storeToRefs(MarketStore);
     const sorting = ref([]);
@@ -312,7 +322,7 @@
     const onSort = header => {
         if(header.column.id === 'checkbox' || header.column.id === 'market_cap_rank' || header.column.id === 'sparkline_in_7d') return;
         header.column.toggleSorting(header.column.getIsSorted() === 'asc');
-        sortingLabel.value = header.column.columnDef.titleLabel || header.column.columnDef.label;
+        sortingLabel.value = header.column.columnDef.pageTitle || header.column.columnDef.label;
     };
     
     const columnFilters = ref([]);
@@ -332,7 +342,7 @@
     const headerWidths = {
         checkbox: 'min-w-12',
         market_cap_rank: 'min-w-10',
-        name: 'min-w-36',
+        name: 'w-32',
         current_price: 'min-w-20',
         price_change_percentage_1h_in_currency: 'min-w-18',
         price_change_percentage_24h: 'min-w-20',
@@ -358,7 +368,6 @@
         {
             id: 'market_cap_rank',
             label: '#',
-            titleLabel: 'Market Cap Rank',
             accessorKey: 'market_cap_rank',
             cell: (cell) => h('div', { class: 'text-center' }, cell.getValue()),
         },
@@ -383,7 +392,7 @@
         {
             id: 'price_change_percentage_1h_in_currency',
             label: '1h %',
-            titleLabel: 'Last hour % change',
+            pageTitle: 'Last hour % change',
             accessorKey: 'price_change_percentage_1h_in_currency',
             cell: (cell) => {
                 const price_change_percentage_1h = formatNumber(cell.getValue(), {
@@ -398,7 +407,7 @@
         {
             id: 'price_change_percentage_24h',
             label: '24h %',
-            titleLabel: 'Last day % change',
+            pageTitle: 'Last day % change',
             accessorKey: 'price_change_percentage_24h',
             cell: (cell) => {
                 const price_change_percentage_24h = formatNumber(cell.getValue(), {
@@ -413,7 +422,7 @@
         {
             id: 'price_change_percentage_7d_in_currency',
             label: '7d %',
-            titleLabel: 'Last week % change',
+            pageTitle: 'Last week % change',
             accessorKey: 'price_change_percentage_7d_in_currency',
             cell: (cell) => {
                 const price_change_percentage_7d = formatNumber(cell.getValue(), {
@@ -427,7 +436,7 @@
         },
         {
             label: '30d %',
-            titleLabel: 'Last month % change',
+            pageTitle: 'Last month % change',
             accessorKey: 'price_change_percentage_30d_in_currency',
             cell: (cell) => {
                 const price_change_percentage_30d = formatNumber(cell.getValue(), {
@@ -441,8 +450,9 @@
         },
         {
             id: 'market_cap',
-            label: 'Market Cap',
+            label: glossary.market_cap.label,
             accessorKey: 'market_cap',
+            description: glossary.market_cap.description,
             cell: (cell) => {
                 const market_cap = formatNumber(cell.getValue(), {
                     compact: true, decimals: 2
@@ -453,9 +463,10 @@
             isSortable: true,
         },
         {
-            label: 'Volume (24h)',
-            titleLabel: 'Trading volume 24h',
+            label: glossary.volume.label_short,
+            pageTitle: glossary.volume.label,
             accessorKey: 'total_volume',
+            description: glossary.volume.description,
             cell: (cell) => {
                 const total_volume = formatNumber(cell.getValue(), {
                     compact: true, decimals: 2
@@ -466,8 +477,9 @@
             isSortable: true,
         },
         {
-            label: 'Max Supply',
+            label: glossary.max_supply.label,
             accessorKey: 'max_supply',
+            description: glossary.max_supply.description,
             cell: (cell) => {
                 const max_supply = formatNumber(cell.getValue(), {
                     compact: true, style: 'decimal',
@@ -480,8 +492,9 @@
             isSortable: true,
         },
         {
-            label: 'Circulating Supply',
+            label: glossary.circulating_supply.label,
             accessorKey: 'circulating_supply',
+            description: glossary.circulating_supply.description,
             cell: (cell) => {
                 const circulating_supply = formatNumber(cell.getValue(), {
                     compact: true, style: 'decimal', decimals: 2
@@ -494,8 +507,9 @@
             isSortable: true,
         },
         {
-            label: 'Total Supply',
+            label: glossary.total_supply.label,
             accessorKey: 'total_supply',
+            description: glossary.total_supply.description,
             cell: (cell) => {
                 const total_supply = formatNumber(cell.getValue(), {
                     compact: true, style: 'decimal', decimals: 2
@@ -508,9 +522,10 @@
             isSortable: true,
         },
         {
-            label: 'FDV',
-            titleLabel: 'Fully Diluted Market Cap',
+            label: glossary.fully_diluted_valuation.acronym,
+            pageTitle: glossary.fully_diluted_valuation.label,
             accessorKey: 'fully_diluted_valuation',
+            description: glossary.fully_diluted_valuation.description,
             cell: (cell) => {
                 const fully_diluted_valuation = formatNumber(cell.getValue(), {
                     compact: true, decimals: 1
@@ -529,7 +544,7 @@
         },
         {
             label: 'From ATH',
-            titleLabel: 'From All Time High',
+            pageTitle: 'From All Time High',
             accessorKey: 'ath_change_percentage',
             cell: (cell) => {
                 const ath_change_percentage = formatNumber(cell.getValue(), {
@@ -543,7 +558,7 @@
         },
         {
             label: 'From ATL',
-            titleLabel: 'From All Time Low',
+            pageTitle: 'From All Time Low',
             accessorKey: 'atl_change_percentage',
             cell: (cell) => {
                 const atl_change_percentage = formatNumber(cell.getValue(), {

@@ -117,10 +117,10 @@
                         <!--  Sentiment  -->
                         <Card
                             v-if='sentiment'
-                            class='bg-background border-border shadow-none hover:shadow-2xl flex flex-col items-center justify-between gap-8 p-16 md:w-96 mx-auto'
+                            class='bg-background border-border shadow-none hover:shadow-2xl flex flex-col items-center justify-between gap-8 p-16 md:w-110 mx-auto'
                         >
                             <div class='flex items-center gap-3'>
-                                <h3>Article sentiment</h3>
+                                <h4>Article sentiment</h4>
                                 
                                 <HoverCard :openDelay='200'>
                                     <HoverCardTrigger>
@@ -135,16 +135,16 @@
                             
                             <NuxtIcon :name='sentiment?.icon' size='100' :class='sentiment?.class' />
                             
-                            <h4 class='uppercase'>{{ sentiment?.label }}</h4>
+                            <h5 class='uppercase'>{{ sentiment?.label }}</h5>
                         </Card>
                         
                         <!--  Article Link  -->
                         <Card
                             v-if='article_url'
-                            class='bg-background border-border shadow-none hover:shadow-2xl flex flex-col items-center justify-between gap-8 p-16 md:w-96 mx-auto'
+                            class='bg-background border-border shadow-none hover:shadow-2xl flex flex-col items-center justify-between gap-8 p-16 md:w-110 mx-auto'
                         >
                             <div class='flex items-center gap-3'>
-                                <h3>Original Source</h3>
+                                <h4>Original Source</h4>
                                 
                                 <HoverCard :openDelay='200'>
                                     <HoverCardTrigger>
@@ -157,16 +157,16 @@
                                 </HoverCard>
                             </div>
                             
-                            <NuxtIcon name='ph:read-cv-logo-thin' size='100' class='text-muted-foreground' />
+                            <NuxtIcon name='ph:read-cv-logo-thin' size='100' class='' />
                             
                             <Button variant='link' class='!pb-0'>
                                 <NuxtLink
                                     :to='article_url'
                                     target='_blank'
-                                    class='flex items-center gap-1'
+                                    class='flex items-center gap-1 uppercase text-foreground'
                                     external
                                 >
-                                    Visit Article
+                                    <h5>Visit Article</h5>
                                     
                                     <NewTabIcon />
                                 </NuxtLink>

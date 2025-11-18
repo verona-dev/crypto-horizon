@@ -3,7 +3,7 @@
         v-if='show'
         @click='scrollOnClick'
         variant='outline'
-        class='!bg-background py-5 scroll-to-top rounded-md hover:cursor-pointer'
+        class='scroll-to-top fixed bottom-28 right-12 transition-all duration-100 ease-linear py-5 rounded-md hover:cursor-pointer shadow-2xl z-50'
     >
         <NuxtIcon
             name='ph:caret-double-up-light'
@@ -45,18 +45,3 @@
         window.removeEventListener('scroll', handleScroll);
     });
 </script>
-
-<style scoped>
-    .scroll-to-top {
-        position: fixed;
-        bottom: 75px;
-        right: 50px;
-        z-index: 100;
-        transition: all 250ms linear;
-        box-shadow: 5px 5px 100px -6px var(--secondary);
-        
-        &:hover {
-            border:1px solid var(--secondary) !important;
-        }
-    }
-</style>

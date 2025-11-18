@@ -1,0 +1,82 @@
+{
+    "ath": {
+        "acronym": "ATH",
+        "label": "All-Time High",
+        "description": "Coin price all-time high (ATH) in $USD."
+    },
+    "atl": {
+        "acronym": "ATL",
+        "label": "All-Time Low",
+        "description" : "Coin price all-time low (ATL) in $USD."
+    },
+    "circulating_supply": {
+        "label": "Circulating Supply",
+        "description": "The amount of coins that are circulating in the market and are tradeable by the public.\n\n It is comparable to looking at shares readily available in the market (not held & locked by insiders, governments)."
+    },
+    "country_origin": {
+        "label": "Origin Country",
+        "description": "Coin country of origin."
+    },
+    "exchanges": {
+        "label": "Exchanges",
+        "description": "The number of exchanges the coin is present at."
+    },
+    "fully_diluted_valuation": {
+        "acronym": "FDV",
+        "label": "Fully Diluted Valuation",
+        "description": "Fully Diluted Valuation (FDV) = Current Price x Total Supply.\n\n Fully Diluted Valuation (FDV) is the theoretical market capitalization of a coin if the entirety of its supply is in circulation, based on its current market price.\n\n The FDV value is theoretical as increasing the circulating supply of a coin may impact its market price. Also depending on the tokenomics, emission schedule or lock-up period of a coin's supply, it may take a significant time before its entire supply is released into circulation."
+    },
+    "genesis": {
+        "label": "Genesis",
+        "description": "Coin genesis date."
+    },
+    "github": {
+        "commits": "Github commits",
+        "contributors": "Github contributors.",
+        "forks": "Github forks.",
+        "issues": "Github issues.",
+        "stars": "Github stars."
+
+    },
+    "hashing_algorithm": {
+        "label": "Hashing Algorithm",
+        "description":"Blockchain hashing algorithm."
+    },
+    "ico_end": {
+        "label": "Ico End",
+        "description": "Ico end date."
+    },
+    "ico_start": {
+        "label": "Ico Start",
+        "description": "Ico start date."
+    },
+    "market_cap": {
+        "label": "Market Cap",
+        "description": "Market Cap = Current price x Circulating Supply \n\n The total market value of a cryptocurrency's circulating supply. It is analogous to the free-float capitalization in the stock market.\n\n Similar to the stock market’s measurement of multiplying price per share by shares readily available in the market (not held & locked by insiders, governments)."
+    },
+    "markets": {
+        "label": "Markets",
+        "description" : "The number of markets the coin is present at."
+    },
+    "max_supply": {
+        "label": "Max Supply",
+        "description": "Max Supply = Theoretical maximum as coded \n\n The best approximation of the maximum amount of coins that will exist in the forthcoming lifespan of the cryptocurrency, minus any coins that have been verifiably burned.\n\n This is also known as the theoretical max number of coins that can be minted, minus any coins that have been verifiably burned."
+    },
+    "pairs": {
+        "label": "Pairs",
+        "description" : "The number of unique markets the coin is present at."
+    },
+    "remaining_supply": {
+        "label": "Remaining Supply",
+        "description":"Remaining Supply = Max Supply - Total Supply \n\n Shows how many tokens have not yet been minted or distributed but could still come into circulation until the max supply is reached.\n\n In cases where the max supply is undefined, remaining supply may be meaningless or infinite."
+    },
+    "total_supply": {
+        "label": "Total Supply",
+        "description": "Total Supply = Onchain supply - burned tokens \n\n The amount of coins that have already been created, minus any coins that have been burned (removed from circulation).\n\n It is comparable to outstanding shares in the stock market."
+    },
+    "volume": {
+        "label_short": "Volume (24h)",
+        "label": "Trading Volume 24h",
+        "description": "A measure of a cryptocurrency trading volume across all tracked platforms in the last 24 hours.\n This is tracked on a rolling 24-hour basis with no open/closing times."
+    }
+}

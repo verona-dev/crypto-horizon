@@ -16,7 +16,16 @@
                 <TableBody>
                     <!--  Genesis  -->
                     <TableRow v-if='genesis_date'>
-                        <TableCell>Genesis</TableCell>
+                        <TableCell class='flex items-center gap-2'>
+                            {{ glossary.genesis.label }}
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger>
+                                    <InfoIcon />
+                                </HoverCardTrigger>
+                                <HoverCardContent>{{ glossary.genesis.description }}</HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
                         <TableCell>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>{{ genesis_date_label }}</HoverCardTrigger>
@@ -27,20 +36,29 @@
                     
                     <!--  Origin  -->
                     <TableRow v-if='country_origin'>
-                        <TableCell>Origin Country</TableCell>
+                        <TableCell class='flex items-center gap-2'>
+                            {{ glossary.country_origin.label }}
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger>
+                                    <InfoIcon />
+                                </HoverCardTrigger>
+                                <HoverCardContent>{{ glossary.country_origin.description }}</HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
                         <TableCell>{{ country_origin }}</TableCell>
                     </TableRow>
                     
                     <!--  ATH  -->
                     <TableRow v-if='ath_price'>
                         <TableCell class='flex items-center gap-2'>
-                            All-Time High
+                            {{ glossary.ath.label }}
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
-                                <HoverCardContent>Coin price all-time high (ATH) in &#65284;USD and percentage change from ATH.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.ath.description }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         
@@ -72,13 +90,13 @@
                     <!--  ATL  -->
                     <TableRow v-if='atl_price'>
                         <TableCell class='flex items-center gap-2'>
-                            All-Time Low
+                            {{ glossary.atl.label }}
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
-                                <HoverCardContent>Coin price all-time low (ATL) in &#65284;USD and percentage change from ATL.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.atl.description }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         
@@ -111,13 +129,13 @@
                     <!--  Markets  -->
                     <TableRow v-if='markets'>
                         <TableCell class='flex items-center gap-2'>
-                            Markets
+                            {{ glossary.markets.label }}
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
-                                <HoverCardContent>The number of markets the coin is present at.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.markets.description }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ markets }}</TableCell>
@@ -126,13 +144,13 @@
                     <!--  Pairs  -->
                     <TableRow v-if='pairs'>
                         <TableCell class='flex items-center gap-2'>
-                            Pairs
+                            {{ glossary.pairs.label }}
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
-                                <HoverCardContent>The number of unique markets the coin is present at.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.pairs.description }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ pairs }}</TableCell>
@@ -141,13 +159,13 @@
                     <!--  Exchanges  -->
                     <TableRow v-if='exchanges'>
                         <TableCell class='flex items-center gap-2'>
-                            Exchanges
+                            {{ glossary.exchanges.label }}
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon class='!mt-0' />
+                                    <InfoIcon />
                                 </HoverCardTrigger>
-                                <HoverCardContent>The number of exchanges the coin is present at.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.exchanges.description }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ exchanges }}</TableCell>
@@ -155,13 +173,31 @@
                     
                     <!--  Hashing Algorithm  -->
                     <TableRow v-if='hashing_algorithm'>
-                        <TableCell>Hashing Algorithm</TableCell>
+                        <TableCell class='flex items-center gap-2'>
+                            {{ glossary.hashing_algorithm.label }}
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger>
+                                    <InfoIcon />
+                                </HoverCardTrigger>
+                                <HoverCardContent>{{ glossary.hashing_algorithm.description }}</HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
                         <TableCell>{{ hashing_algorithm }}</TableCell>
                     </TableRow>
                     
                     <!--  Ico Start  -->
                     <TableRow v-if='ico_start'>
-                        <TableCell>Ico Start</TableCell>
+                        <TableCell class='flex items-center gap-2'>
+                            {{ glossary.ico_start.label }}
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger>
+                                    <InfoIcon />
+                                </HoverCardTrigger>
+                                <HoverCardContent>{{ glossary.ico_start.description }}</HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
                         <TableCell class='flex flex-col'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>{{ ico_start_label }}</HoverCardTrigger>
@@ -172,7 +208,16 @@
                     
                     <!--  Ico End  -->
                     <TableRow v-if='ico_end'>
-                        <TableCell>Ico End</TableCell>
+                        <TableCell class='flex items-center gap-2'>
+                            {{ glossary.ico_end.label }}
+                            
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger>
+                                    <InfoIcon />
+                                </HoverCardTrigger>
+                                <HoverCardContent>{{ glossary.ico_end.description }}</HoverCardContent>
+                            </HoverCard>
+                        </TableCell>
                         <TableCell class='flex- flex-col'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>{{ ico_end_label }}</HoverCardTrigger>
@@ -211,7 +256,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>Github forks.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.github.forks }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_forks_label }}</TableCell>
@@ -230,7 +275,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>Github stars.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.github.stars }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_stars_label }}</TableCell>
@@ -249,7 +294,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>Github issues.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.github.issues }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_issues_label }}</TableCell>
@@ -268,7 +313,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>Github commits in the last 30 days.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.github.commits }} in the last 30 days.</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_commits_label }}</TableCell>
@@ -287,7 +332,7 @@
                                         class='flex ml-2 text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
-                                <HoverCardContent>Github contributors.</HoverCardContent>
+                                <HoverCardContent>{{ glossary.github.contributors }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
                         <TableCell>{{ github_contributors_label }}</TableCell>
@@ -301,14 +346,15 @@
 <script setup>
     import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import { formatNumber } from '~/utils/formatUtils.js';
+    import glossary from '~/assets/data/market/glossary.json';
+    import { Card } from '~/components/ui/card';
+    import InfoIcon from '~/components/InfoIcon.vue';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.ts';
+    
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
-    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.ts';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
-    import { Card } from '~/components/ui/card';
-    import InfoIcon from '~/components/InfoIcon.vue';
-    
     
     const props = defineProps({
         coin: {

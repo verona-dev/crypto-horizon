@@ -27,15 +27,15 @@
     }
     
     * {
-        @apply m-0 border-border outline-ring/50;
+        @apply m-0;
     }
     
     html {
-        @apply bg-background scheme-light dark:scheme-dark;
+        @apply scheme-light dark:scheme-dark;
     }
     
     body {
-        @apply font-metropolis text-foreground overflow-x-hidden overflow-y-scroll;
+        @apply font-metropolis bg-background text-foreground overflow-x-hidden overflow-y-scroll;
     }
     
     .homepage {
@@ -53,7 +53,7 @@
     }
     
     .page {
-        @apply max-w-7xl mt-8 xl:mt-12 xl:mb-36 px-6 md:px-12 xl:px-24 flex flex-col items-center justify-center relative;
+        @apply max-w-screen-2xl mt-8 xl:mt-12 xl:mb-36 px-6 md:px-12 xl:px-24 flex flex-col items-center justify-center relative;
     }
     
     [data-slot='sidebar-wrapper'] {
@@ -99,15 +99,15 @@
     }
     
     h4 {
-        @apply text-xl;
+        @apply text-lg md:text-xl 2xl:text-2xl;
     }
     
     h5 {
-        @apply text-lg;
+        @apply text-xl;
     }
     
     h6 {
-        @apply text-base text-left;
+        @apply text-lg text-left;
     }
     
     ul {
@@ -164,6 +164,13 @@
         }
     }
     
+    .hover-card-content {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        line-height: 16px !important;
+    }
+    
     .vertical-separator {
         background: var(--accent) !important;
         height: 40px;
@@ -206,7 +213,7 @@
     
     .news {
         .card-title {
-            @apply text-left hover:underline line-clamp-3 leading-7;
+            @apply text-xl text-left hover:underline line-clamp-3 leading-7;
         }
         
         .article-title {

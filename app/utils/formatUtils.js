@@ -63,52 +63,6 @@ const formatNumber = (value, {
     return new Intl.NumberFormat(locale, options).format(num);
 };
 
-const formatCoinsTable = coins => {
-    return coins?.map(coin => ({
-        ...coin,
-        changePercent24Hr: coin?.price_change_percentage_24h?.toFixed(2),
-        c_supply: formatNumber(coin?.circulating_supply, {
-            compact: true, style: 'decimal', decimals: 2
-        }),
-        icon: coin?.symbol,
-        id: coin?.id,
-        marketCap: formatNumber(coin?.market_cap, {
-            compact: true, decimals: 2
-        }),
-        name: coin?.name,
-        price: formatNumber(coin?.current_price, {
-            maximumFractionDigits: 4,
-        }),
-        rank: coin?.market_cap_rank,
-        symbol: coin?.symbol.toUpperCase(),
-        trend: getTrendClass(coin?.price_change_percentage_24h),
-        volume: formatNumber(coin?.total_volume, {
-            compact: true, decimals: 2
-        }),
-    }));
-};
-
-const formatCoingeckoCoin = coin => {
-    return {
-        ...coin,
-        market_data: {
-            ...coin.market_data,
-            market_cap_label: formatNumber(coin.market_data.market_cap.usd),
-            max_supply_label: formatNumber(coin.market_data.max_supply, {
-                style: 'decimal'
-            }),
-            total_supply_label: formatNumber(coin.market_data.total_supply, {
-                style: 'decimal'
-            }),
-            circulating_supply_label: formatNumber(coin.market_data.circulating_supply, {
-                style: 'decimal'
-            }),
-            fully_diluted_valuation_label: formatNumber(coin.market_data.fully_diluted_valuation?.usd),
-            volume_label: formatNumber(coin.market_data.total_volume?.usd),
-        },
-    }
-};
-
 const formatLivecoinwatchCoin = coin => {
     return {
         ...coin,
@@ -146,8 +100,6 @@ const goBack = (router, path) => {
 
 export {
     formatNumber,
-    formatCoinsTable,
-    formatCoingeckoCoin,
     formatLivecoinwatchCoin,
     capitalize,
     goBack,

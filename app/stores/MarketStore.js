@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { useFetchCoingecko } from '~/composables/apiCoingecko';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 import { useFetchCmc } from '~/composables/apiCmc.js';
-import { formatCoinsTable, formatCoingeckoCoin, formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
+import { formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
 import { useNewsStore } from '~/stores/NewsStore.js';
 
 export const useMarketStore = defineStore('MarketStore', {
@@ -15,7 +15,7 @@ export const useMarketStore = defineStore('MarketStore', {
             chart: {},
             timeframe: 1,
             timeframes: [
-                { name: 'Day', label: '1d', timeframe: 1 },
+                { name: 'Day', label: '24h', timeframe: 1 },
                 { name: 'Week', label: '7d', timeframe: 7 },
                 { name: 'Month', label: '30d', timeframe: 30 },
                 { name: 'Year', label: '1y', timeframe: 365 },
@@ -129,7 +129,7 @@ export const useMarketStore = defineStore('MarketStore', {
                 ]);
                 
                 if (coinResponse) {
-                    this.coin.coingecko = formatCoingeckoCoin(coinResponse);
+                    this.coin.coingecko = coinResponse;
                 }
                 
                 if (chartResponse) {
@@ -218,6 +218,9 @@ export const useMarketStore = defineStore('MarketStore', {
     getters: {
         getTimeframe() {
             return this.coin.timeframes.find(range => range.timeframe === this.coin.timeframe);
+        },
+        getCoinPrice() {
+          return this.coin.coingecko.market_data?.current_price?.usd;
         },
     }
 });

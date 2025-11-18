@@ -1,7 +1,7 @@
 <template>
     <Drawer v-model:open='isOpen'>
         <DrawerContent>
-            <DrawerHeader class='border-b'>
+            <DrawerHeader class='border-b select-text'>
                 <div class='my-6 flex items-start justify-between px-4 relative'>
                     <!--  Spacer  -->
                     <div class='w-12'></div>
@@ -40,7 +40,7 @@
                 </div>
             </DrawerHeader>
             
-            <DrawerFooter class='mt-6 overflow-y-auto'>
+            <DrawerFooter class='mt-6 overflow-y-auto select-text'>
                 <CoinSupplyCircularProgressBars
                     v-if='selected === "progress-bars"'
                     :coin='coin'

@@ -99,8 +99,8 @@
                                 
                                 <!--  Author  -->
                                 <div class='flex flex-col items-start text-left'>
-                                    <p>{{ article.authors }}</p>
-                                    <span class='text-sm'>{{ article.source_name }}</span>
+                                    <!--  <p class='truncate text-md'>{{ article.authors }}</p>  -->
+                                    <span class='text-sm capitalize'>{{ article.source_name }}</span>
                                     
                                     <!--  Publish date  -->
                                     <div class='flex gap-1 text-muted-foreground'>
@@ -209,8 +209,14 @@
     
     const getSourceName = (source_name) => {
         if(!source_name || source_name.length === 0) return 'Unknown source';
-        if(source_name === 'Investing.Com Crypto Opinion and Analysis') return source_name.replace('Investing.Com Crypto Opinion and Analysis', 'Investing.Com');
+        if(source_name === 'Forbes Digital Assets') return 'Forbes';
+        if(source_name === 'Investing.Com Crypto Opinion and Analysis' || source_name === 'Investing.com Crypto News') return 'Investing';
         return source_name;
+    };
+    
+    const getDate = (updated_on, created_on) => {
+        if(updated_on) return dayjs.unix(updated_on).fromNow();
+        else if(created_on) return dayjs.unix(created_on).fromNow();
     };
     
     const getReadingDuration = (body) => {
@@ -252,7 +258,7 @@
                 guid: article.GUID,
                 id: article.ID,
                 image_url: article.IMAGE_URL,
-                published_date: dayjs.unix(article.PUBLISHED_ON).format('MMMM D, YYYY'),
+                published_date: getDate(article.UPDATED_ON, article.CREATED_ON), // updated_on instead of published_on
                 reading_duration: getReadingDuration(article.BODY),
                 source_avatar: article.SOURCE_DATA?.IMAGE_URL,
                 source_key: article.SOURCE_DATA?.SOURCE_KEY,

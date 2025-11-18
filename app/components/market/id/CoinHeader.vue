@@ -31,8 +31,8 @@
                             v-if='coingecko?.image?.large'
                             :src='coin.coingecko.image.large'
                             alt='symbol'
-                            width='60'
-                            height='60'
+                            width='80'
+                            height='80'
                         />
                         
                         <h2>{{ coingecko.name }}</h2>
@@ -92,7 +92,6 @@
                                 <NuxtIcon
                                     :name='getTrendIcon(price_change_percentage)'
                                     size='15'
-                                    class='mt-0.5'
                                     :class='getTrendClass(price_change_percentage)'
                                 />
                                 
@@ -114,6 +113,7 @@
                         <div class='flex items-center gap-2'>
                             <NuxtIcon
                                 name='logos:bitcoin'
+                                class='mb-0.5'
                                 size='45'
                             />
                             
@@ -122,7 +122,7 @@
                         
                         <!--  Price change % in BTC  -->
                         <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='flex items-center'>
+                            <HoverCardTrigger class='flex items-center gap-1'>
                                 <NuxtIcon
                                     :name='getTrendIcon(price_change_percentage_btc)'
                                     size='15'
@@ -143,6 +143,7 @@
                     </div>
                 </div>
                 
+                <!--  Public Notice  -->
                 <CoinPublicNotice :public-notice='coingecko.public_notice' />
             </div>
         </Card>
@@ -165,7 +166,7 @@
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    const { getTimeframe } = storeToRefs(MarketStore);
+    const { getTimeframe, getCoinPrice } = storeToRefs(MarketStore);
     
     // Router
     import { useRouter } from 'vue-router';
@@ -189,10 +190,8 @@
     const timeframe_label = computed(() => getTimeframe.value?.label);
     
     // Price in USD
-    const current_price = coingecko.value?.market_data?.current_price?.usd;
-    const current_price_label = formatNumber(current_price, {
-        maximumFractionDigits: 4,
-    });
+    const current_price = computed(() => getCoinPrice.value);
+    const current_price_label = computed(() => formatNumber(current_price.value));
     
     const price_change_percentage = computed(() => {
         if(timeframe.value === 1) return price_change_percentage_1d;

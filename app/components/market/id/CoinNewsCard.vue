@@ -28,7 +28,8 @@
             <!-- Categories  -->
             <div class='flex flex-wrap items-center gap-2'>
                 <Badge
-                    v-for='category in categories_computed'
+                    v-for='category in categories_computed.slice(0, 4)'
+                    :key='category'
                     class='py-1 px-1.5 capitalize text-sky text-[10px] border-border/50 line-clamp-1'
                     variant='outline'
                 >
@@ -53,7 +54,7 @@
         <!--  Article Title  -->
         <CardContent>
             <NuxtLink :to="{ path: `/news/${encodeURIComponent(guid)}`, query: { source_key, guid } }">
-                <CardTitle class='h-20 card-title'>{{ title }}</CardTitle>
+                <CardTitle class='card-title !line-clamp-2'>{{ title }}</CardTitle>
             </NuxtLink>
         </CardContent>
         
@@ -68,9 +69,9 @@
                     </Avatar>
                     
                     <!--  Author  -->
-                    <div class='flex flex-col items-start text-sm gap-1'>
-                        <span>{{ article_author_label }}</span>
-                        <span class='text-muted-foreground'>{{ source_name_label }}</span>
+                    <div class='flex flex-col items-start text-left text-sm gap-1'>
+                        <span class='truncate capitalize'>{{ author_label }}</span>
+                        <span class='text-muted-foreground capitalize'>{{ source_name_label }}</span>
                     </div>
                 </HoverCardTrigger>
                 
@@ -113,14 +114,13 @@
             <div class='flex flex-col text-muted-foreground gap-2 mr-2'>
                 <!--  Publish date  -->
                 <div :openDelay='200' class='flex items-center gap-1'>
-                    <NuxtIcon name='ph:calendar-blank-light' size='14px' />
-                    <span class='text-xxs'>Published {{ published_date_from_now }}</span>
-                    <!--  <span class='text-xs'>{{ published_date }}</span>  -->
+                    <NuxtIcon name='ph:calendar-blank-light' size='14px' class='mb-0.5' />
+                    <span class='text-xxs'>{{ published_date_from_now }}</span>
                 </div>
                 
                 <!--  Reading duration  -->
                 <div v-if='show_reading_duration' class='flex items-center gap-1'>
-                    <NuxtIcon name='ph:timer-light' size='14' />
+                    <NuxtIcon name='ph:timer-light' size='14' class='mb-0.5' />
                     <span class='text-xxs'>{{ reading_duration }}m read</span>
                 </div>
             </div>
@@ -152,14 +152,21 @@
     const image_url = article.value?.IMAGE_URL;
     const body = article.value?.BODY;
     // const published_date = dayjs.unix(article.value?.PUBLISHED_ON).format('MMMM D, YYYY, h:mm A');
-    const published_date_from_now = dayjs.unix(article.value?.PUBLISHED_ON).fromNow();
+    const updated_on = computed(() => article.value?.UPDATED_ON);
+    const created_on = computed(() => article.value?.CREATED_ON);
+    // const published_date_from_now = dayjs.unix(article.value?.PUBLISHED_ON).fromNow();
     // const published_date_from_now = computed(() => article.value?.PUBLISHED_ON && dayjs.unix(article.value?.PUBLISHED_ON).fromNow());
     
-    const article_author = computed(() => article.value?.AUTHORS);
-    const article_author_label = computed(() => {
-        if(article_author.value?.length === 0) return 'Unknown author';
-        if(source_name === 'Cointelegraph') return article_author.value.replace('Cointelegraph by', '');
-        return article_author.value;
+    const published_date_from_now = computed(() => {
+        if(updated_on.value) return dayjs.unix(updated_on.value).fromNow();
+        else if(created_on.value) return dayjs.unix(created_on.value).fromNow();
+    });
+    
+    const author = computed(() => article.value?.AUTHORS);
+    const author_label = computed(() => {
+        if(author.value?.length === 0) return 'Unknown author';
+        if(source_name === 'Cointelegraph') return author.value.replace('Cointelegraph by', '');
+        return author.value;
     });
     
     let categories = article.value?.CATEGORY_DATA;

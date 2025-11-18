@@ -10,13 +10,18 @@ class CustomLineChart extends LineController {
             const x = activePoint.element.x;
             const topY = this.chart.scales.y.top;
             const bottomY = this.chart.scales.y.bottom;
+            const lineColor = this.options.custom_line.color;
+            const lineWidth = this.options.custom_line.width;
+            const lineDashLength = this.options.custom_line.dash_length;
+            const lineDashGap = this.options.custom_line.dash_gap;
             
             ctx.save();
             ctx.beginPath();
+            ctx.setLineDash([lineDashLength, lineDashGap]);
             ctx.moveTo(x, bottomY);
             ctx.lineTo(x, topY);
-            ctx.lineWidth = 1;
-            ctx.strokeStyle = 'oklch(0.442 0.017 285.786)';
+            ctx.lineWidth = lineWidth;
+            ctx.strokeStyle = lineColor;
             ctx.stroke();
             ctx.restore();
         }

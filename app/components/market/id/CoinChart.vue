@@ -1,5 +1,9 @@
 <template>
-    <Card class='coin-chart bg-background flex flex-col gap-6 p-8' v-if='chart.prices'>
+    <Card
+        v-if='chart.prices'
+        class='coin-chart bg-background flex flex-col gap-6 p-8'
+        :class='{ "bg-popover/50" : sniper_mode }'
+    >
         <!--  Tabs  -->
         <div class='tabs-container flex flex-col md:flex-row gap-12 md:gap-0 items-center justify-between'>
             <!--  Price + Market Cap  -->
@@ -24,13 +28,33 @@
                 </TabsList>
             </Tabs>
             
+            <!--  Switch  -->
+            <div class="flex items-center space-x-1">
+                <Switch
+                    id='sniper_mode'
+                    :model-value='sniper_mode'
+                    @update:model-value='onToggleSniper'
+                    :class='{ "shadow-none" : !dark_mode }'
+                >
+                    <template #thumb>
+                        <NuxtIcon
+                            v-if='sniper_mode'
+                            name='ph:crosshair-simple-light'
+                            size='14'
+                            class='mb-0.5'
+                        />
+                    </template>
+                </Switch>
+                <label for='sniper_mode' class='text-xxs cursor-pointer'>Sniper Mode</label>
+            </div>
+            
             <!--  Supply Drawer  -->
             <Tabs>
                 <TabsList>
                     <template v-if='dark_mode'>
                         <RainbowButton
                             @click='show_drawer = true'
-                            class='text-xs w-24 flex gap-2'
+                            class='text-xs w-24 flex gap-2 rounded-md'
                         >
                             <NuxtIcon
                                 name='ph:chart-pie-slice-light'
@@ -52,7 +76,6 @@
                             <span>Supply</span>
                         </div>
                     </template>
-                    
                     
                     <!--
                     <TabsTrigger
@@ -88,18 +111,23 @@
         <!--  Chart  -->
         <div class='chart-container'>
             <div v-if='loading' class='spinner-container'>
-                <div class='h-full flex flex-col items-center justify-center gap-2 pb-12'>
-                    <Spinner class='size-8 text-secondary' />
-                    <!-- <span class='text-muted-foreground'>Please wait a moment.</span> -->
+                <div class='h-full text-foreground flex flex-col items-center justify-center gap-2 pb-16'>
+                    <Spinner class='size-8' />
+                    
+                    <div class='flex flex-col items-center gap-1'>
+                        <span class='text-lg'>Loading data</span>
+                        <span class='text-sm text-foreground/75'>Please wait a moment.</span>
+                    </div>
                 </div>
             </div>
             
             <div class='w-full'>
                 <Line
-                    ref='chartRef'
-                    v-if='data.datasets?.length'
-                    :data='data'
-                    :options='options'
+                    ref='chart_ref'
+                    v-if='chart_config.data?.datasets?.length'
+                    :key='`chart-${timeframe.value}`'
+                    :data='chart_config.data'
+                    :options='chart_config.options'
                     :height='400'
                     :type='"customLineChart"'
                 />
@@ -117,30 +145,62 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
-    import CustomLineChart from '~/utils/CustomLineChart.js';
     import { RainbowButton } from '~/components/ui/rainbow-button';
     import { Card } from '~/components/ui/card';
-    import { Line } from 'vue-chartjs';
+    import { Spinner } from '~/components/ui/spinner/index.js';
+    import { Switch } from '@/components/ui/switch';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     import CoinSupply from '@/components/market/id/CoinSupply.vue';
+    
+    // Dayjs
     import dayjs from 'dayjs';
-    import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
-    ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
+    import customParseFormat from 'dayjs/plugin/customParseFormat';
+    dayjs.extend(customParseFormat);
+    
+    // Chartjs
+    import { Line } from 'vue-chartjs';
+    import CustomLineChart from '~/utils/CustomLineChart.js';
+    import 'chartjs-adapter-date-fns';
+    import annotationPlugin from 'chartjs-plugin-annotation';
+    
+    import {
+        CategoryScale,
+        Chart as ChartJS,
+        Filler,
+        Legend,
+        LinearScale,
+        LineController,
+        LineElement,
+        PointElement,
+        TimeScale,
+        Title,
+        Tooltip
+    } from 'chart.js';
+    
+    ChartJS.register(
+        annotationPlugin,
+        CategoryScale,
+        CustomLineChart,
+        Filler,
+        Legend,
+        LinearScale,
+        LineController,
+        LineElement,
+        PointElement,
+        TimeScale,
+        Title,
+        Tooltip,
+    );
+    
+    // MarketStore
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    import { storeToRefs } from 'pinia';
     
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     
-    // MarketStore
-    import { useMarketStore } from '~/stores/MarketStore.js';
-    import { Spinner } from '~/components/ui/spinner/index.js';
-    import { storeToRefs } from 'pinia';
     const MarketStore = useMarketStore();
-    
-    // Methods
-    const {
-        setChartTimeframe,
-        getCoinChart,
-    } = MarketStore;
+    const { setChartTimeframe, getCoinChart } = MarketStore;
     
     const props = defineProps({
         coin: {
@@ -150,180 +210,331 @@
     });
     
     const { coin } = toRefs(props);
-    const { getTimeframe } = storeToRefs(MarketStore);
+    const { getTimeframe, getCoinPrice } = storeToRefs(MarketStore);
+    const loading = ref(false);
     
     // Tabs
     const type = ref('price');
     
+    // Switch
+    const sniper_mode = ref(false);
+    const onToggleSniper = () => sniper_mode.value = !sniper_mode.value;
+    
     // Timeframe
     const timeframes = ref(coin.value.timeframes);
-    const timeframe = computed({
-        get() {
-            return coin.value.timeframe;
-        },
-        async set(value) {
-            setChartTimeframe(value);
-            await getCoinChart();
-        }
+    const timeframe = ref(coin.value.timeframe);
+    
+    watch(timeframe, async(newTimeframe) => {
+        loading.value = true;
+        
+        setChartTimeframe(newTimeframe);
+        await getCoinChart();
+        
+        setTimeout(() => {
+            loading.value = false;
+        }, 750);
     });
     
     // Chart
     const chart = computed(() => coin.value?.chart);
-    const chartRef = ref(null);
+    const chart_ref = ref(null);
     const timestamps = computed(() => chart.value?.prices?.map(item => item[0]));
     const prices = computed(() => chart.value?.prices?.map(item => item[1]));
     const volumes = computed(() => chart.value?.total_volumes?.map(item => item[1]));
     const m_caps = computed(() => chart.value?.market_caps?.map(item => item[1]));
     const chart_data = computed(() => type.value === 'price' ? prices.value : m_caps.value);
-    const loading = ref(false);
+    const first_price = computed(() => chart_data.value[0]);
+    const current_price = computed(() => getCoinPrice.value);
+    const current_timeframe = computed(() => getTimeframe.value?.label);
+    
+    Tooltip.positioners.fixed_tooltip = function() {
+        return {
+            x: 0,
+            y: -80
+        };
+    };
     
     watch(chart_data, () => {
-        const chartInstance = chartRef.value?.chart;
+        const chart_instance = chart_ref.value?.chart;
         
-        if (chartInstance) {
-            chartInstance.update();
+        if (chart_instance) {
+            chart_instance.update();
         }
     }, { deep: true });
     
-    const data = computed(() => ({
-        labels: timestamps.value, // x-axis
-        datasets: [
-            {
-                data: chart_data.value, // y-axis
-                
-                // Line
-                borderColor: 'rgba(22,199,132, 0.9)',
-                borderWidth: 2,
+    const chart_config = computed(() => {
+        // Conditional data
+        const computed_styles = {
+            annotation: {
+                horizontal_line_tooltip: {
+                    backgroundColor: dark_mode.value ? '#606060' : '#353958', //  light-mode-primary : --secondary
+                },
+                current_price_tooltip: {
+                    backgroundColor:  (first_price.value > current_price.value) ? '#EA3943' : '#1f8c4d', // --destructive : random
+                },
+                borderRadius: 4,
+                color: '#fff',
+                padding: 6,
+            },
+            custom_line: {
+                color: dark_mode.value ? '#9ca3af' : '#2a2f46',
+                dash_length: 1,
+                dash_gap: 6,
+                width: 1,
+            },
+            datasets: {
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
                     const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-                    gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
-                    gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
-                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                    
+                    if(sniper_mode.value) {
+                        gradient.addColorStop(0.2, 'rgba(156,163,175, 0.8)'); // --muted-foreground
+                        gradient.addColorStop(0.5, 'rgba(156,163,175, 0.6)');
+                        gradient.addColorStop(0.9, 'rgba(156,163,175, 0.4)');
+                        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                    } else {
+                        if(first_price.value > current_price.value) {
+                            gradient.addColorStop(0.2, 'rgba(201,55,76, 0.7)'); // --red-brick
+                            gradient.addColorStop(0.5, 'rgba(201,55,76, 0.5)');
+                            gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                        } else {
+                            gradient.addColorStop(0.2, 'rgba(22,199,132, 0.4)');
+                            gradient.addColorStop(0.5, 'rgba(22,199,132, 0.2)');
+                            gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                        }
+                    }
+                    
                     return gradient;
                 },
-                fill: true,
-                tension: 0.5,
-                
-                // Point
-                pointRadius: 0,
-                pointHoverRadius: 5,
-                pointBackgroundColor: 'oklch(0.985 0 0)',
+                borderWidth: sniper_mode.value ? 0 : 1,
+                pointHoverRadius: sniper_mode.value ? 16 : 5,
+                pointStyle: sniper_mode.value ? 'crossRot' : 'circle',
+                pointBorderColor: sniper_mode.value ? 'oklch(0.985 0 0)' : '',
+                pointBorderWidth: sniper_mode.value ? 2 : 0,
             },
-        ],
-    }));
-    
-    const options = {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: {
-            mode: 'nearest',
-            axis: 'x',
-            intersect: false,
-        },
-        animation: {
-            duration: 1000,
-            easing: 'easeOutSine',
-        },
-        plugins: {
-            tooltip: {
-                enabled: true,
-                backgroundColor: 'oklch(0.21 0.006 285.885)',
-                padding: {
-                    top: 24,
-                    right: 28,
-                    bottom: 24,
-                    left: 28
+            elements: {
+                line: {
+                    borderDash: sniper_mode.value ? [ 0.1, 3 ] : [],
                 },
-                caretPadding: 8,
-                caretSize: 8,
-                cornerRadius: 8,
-                displayColors: false, // disable the color box
-                titleMarginBottom: 16,
-                titleFont: {
-                    size: 14,
-                    weight: 'normal',
-                },
-                bodyFont: {
-                    size: 14,
-                    weight: 'bold',
-                },
-                bodySpacing: 6,
-                callbacks: {
-                    title: function(context) {
-                        const timestamps = Number(context[0]?.label); // scales.x.ticks.callback() this.getLabelForValue converted it to String
-                        return dayjs(timestamps).format('MMM D, YYYY, HH:mm:ss');
+            },
+            lineBorderColor: (first_price.value > current_price.value) ? '#c9374c' : '#00bc7d', // --red-brick : --progress
+            scales: {
+                x: {
+                    get maxTicksLimit() {
+                        if(current_timeframe.value === '24h' || current_timeframe.value === '1y') {
+                            return 6;
+                        } else if(current_timeframe.value === '7d') {
+                            return 7;
+                        } else if(current_timeframe.value === '30d') {
+                            return 10;
+                        }
+                        return 8;
                     },
-                    label: function(context) {
-                        const index = context.dataIndex;
-                        const amount = formatNumber(context.parsed.y, {
-                            truncate: true,
-                        });
-                        const volume = formatNumber(volumes.value[index]);
-                        const label = type.value === 'price' ? 'Price' : 'Market Cap';
-                        
-                        return [
-                            `${label}: ${amount}`,
-                            `Vol: ${volume}`,
-                        ];
+                },
+            },
+            tooltip: {
+                body: {
+                    size: sniper_mode.value ? 16 : 14,
+                    weight: 'bolder',
+                },
+                bodySpacing: sniper_mode.value ? 0 : 8,
+                caretSize: sniper_mode.value ? 0 : 8,
+                padding: {
+                    top: sniper_mode.value ? 12 : 20,
+                    right: sniper_mode.value ? 16 : 24,
+                    bottom: sniper_mode.value ? 12 : 20,
+                    left: sniper_mode.value ? 16 : 24,
+                },
+                position: sniper_mode.value ? 'fixed_tooltip' : 'average',
+            },
+        };
+        
+        // Data
+        const datasets = [{
+            labels: timestamps.value, // x-axis
+            data: chart_data.value, // y-axis
+            
+            // Line
+            borderColor: computed_styles.lineBorderColor,
+            borderWidth: computed_styles.datasets?.borderWidth,
+            backgroundColor: computed_styles.datasets?.backgroundColor,
+            fill: true,
+            tension: 0.5,
+            
+            // Point
+            pointRadius: 0,
+            pointBackgroundColor: 'oklch(0.985 0 0)',
+            
+            pointHoverRadius: computed_styles.datasets?.pointHoverRadius,
+            pointStyle: computed_styles.datasets?.pointStyle,
+            pointBorderColor: computed_styles.datasets?.pointBorderColor,
+            pointBorderWidth: computed_styles.datasets?.pointBorderWidth,
+        }];
+        
+        // Options
+        const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            // referenced in CustomLineChart.js
+            custom_line: {
+                color: computed_styles.custom_line.color,
+                dash_length: computed_styles.custom_line.dash_length, // separate since CustomLineChart converts the array into a number so only the first one is accessible
+                dash_gap: computed_styles.custom_line.dash_gap,
+                width: computed_styles.custom_line.width,
+            },
+            interaction: {
+                mode: 'nearest',
+                axis: 'x',
+                intersect: false,
+            },
+            animation: {
+                duration: 750,
+                easing: 'easeOutQuint',
+            },
+            elements: computed_styles.elements,
+            plugins: {
+                annotation: {
+                    annotations: {
+                        ...(!sniper_mode.value && {
+                            // Horizontal line - in sync with CustomLineChart.js
+                            horizontal_line: {
+                                type: 'line',
+                                yMin: first_price.value,
+                                yMax: first_price.value,
+                                borderColor: computed_styles.custom_line.color,
+                                borderWidth: computed_styles.custom_line.width,
+                                borderDash: [ computed_styles.custom_line.dash_length, computed_styles.custom_line.dash_gap ],
+                            },
+                            
+                            // Horizontal line tooltip
+                            horizontal_line_tooltip: {
+                                type: 'label',
+                                xValue: timestamps.value[0],
+                                yValue: first_price.value,
+                                backgroundColor: computed_styles.annotation.horizontal_line_tooltip.backgroundColor,
+                                color: computed_styles.annotation.color,
+                                content: formatNumber(first_price.value, {
+                                    style: 'decimal', decimals: 0
+                                }),
+                                borderRadius: computed_styles.annotation.borderRadius,
+                                padding: computed_styles.annotation.padding,
+                                position: 'start',
+                                yAdjust: -15,
+                            },
+                            
+                            // Current Price - Tooltip
+                            current_price_tooltip: {
+                                type: 'label',
+                                xValue: timestamps.value[timestamps.value.length - 1],
+                                yValue: current_price.value,
+                                backgroundColor: computed_styles.annotation.current_price_tooltip.backgroundColor,
+                                color: computed_styles.annotation.color,
+                                content: formatNumber(current_price.value, {
+                                    style: 'decimal' , decimals: 0,
+                                }),
+                                borderRadius: computed_styles.annotation.borderRadius,
+                                padding: computed_styles.annotation.padding,
+                                position: 'end',
+                                yAdjust: 15,
+                            },
+                        }),
+                    },
+                },
+                tooltip: {
+                    enabled: true,
+                    backgroundColor: '#1f2230', // --popover
+                    bodyFont: computed_styles.tooltip.body,
+                    borderColor: '#393e56', // --border
+                    borderWidth: 1,
+                    callbacks: {
+                        title: function(context) {
+                            return dayjs(context[0]?.parsed.x).format("MMM D, YYYY, HH:mm:ss");
+                        },
+                        label: function(context) {
+                            const index = context.dataIndex;
+                            const amount = formatNumber(context.parsed.y, {
+                                truncate: true,
+                            });
+                            const volume = formatNumber(volumes.value[index]);
+                            const label = type.value === 'price' ? 'Price' : 'Market Cap';
+                            
+                            return [
+                                `${label}: ${amount}`,
+                                `Vol: ${volume}`,
+                            ];
+                        }
+                    },
+                    caretPadding: 16,
+                    caretSize: computed_styles.tooltip.caretSize,
+                    cornerRadius: 8,
+                    displayColors: false, // disable the color box
+                    padding: computed_styles.tooltip.padding,
+                    position: computed_styles.tooltip.position,
+                    titleFont:  {
+                        size: 14,
+                        weight: 'normal',
+                    },
+                    titleMarginBottom: 14,
+                },
+                legend: {
+                    display: false,
+                    labels: {
+                        color: 'oklch(0.705 0.015 286.067)',
                     }
                 },
             },
-            legend: {
-                display: false,
-                labels: {
-                    color: 'oklch(0.705 0.015 286.067)',
-                }
-            },
-        },
-        scales: {
-            x: {
-                title: {
-                    display: false,
-                },
-                ticks: {
-                    color: 'oklch(0.705 0.015 286.067)',
-                    maxTicksLimit: 7,
-                    callback: function(value, index) {
-                        const label = this.getLabelForValue(value);
-                        const current_label = computed(() => getTimeframe.value?.label);
-                        
-                        if(current_label.value === '1d') {
-                            if(index === 0) {
-                                return dayjs(label).format('D. MMM');
+            scales: {
+                x: {
+                    type: 'time',
+                    title: {
+                        display: false,
+                    },
+                    ticks: {
+                        color: 'oklch(0.705 0.015 286.067)',
+                        maxTicksLimit: computed_styles.scales.x.maxTicksLimit,
+                        callback: function(value, index, ticks) {
+                            if(current_timeframe.value === '24h') {
+                                if(index === 0) {
+                                    return dayjs(value).format('D. MMM');
+                                }
+                                return dayjs(value).minute(0).second(0).millisecond(0).format('HH:mm');
                             }
-                            return dayjs(label).minute(0).second(0).millisecond(0).format('HH:mm');
+                            else if(current_timeframe.value === '1y') {
+                                return dayjs(value).format("MMM 'YY");
+                            }
+                            
+                            return dayjs(value).format('D. MMM');
+                        },
+                    },
+                },
+                y: {
+                    position: 'right',
+                    title: {
+                        display: false,
+                    },
+                    beginAtZero: false,
+                    grid: {
+                        color: 'rgba(78,135,176,0.35)',
+                    },
+                    ticks: {
+                        color: 'oklch(0.705 0.015 286.067)',
+                        callback: function(value) {
+                            return formatNumber(value);
                         }
-                        else if(current_label.value === '1y') {
-                            return dayjs(label).format("MMM 'YY");
-                        }
-                        
-                        return dayjs(label).format('D. MMM');
-                    }
+                    },
+                    offset: true,
                 },
             },
-            y: {
-                position: 'right',
-                title: {
-                    display: false,
-                },
-                beginAtZero: false,
-                grid: {
-                    color: 'rgba(78,135,176,0.35)',
-                },
-                ticks: {
-                    color: 'oklch(0.705 0.015 286.067)',
-                    callback: function(value) {
-                        return formatNumber(value, {
-                            compact: true,
-                            decimals: 1,
-                        });
-                    }
-                },
-                offset: true,
+        };
+        
+        return {
+            data: {
+                labels: datasets[0].labels,
+                datasets,
             },
-        },
-    };
+            options,
+        };
+    });
     
     // Drawer
     const show_drawer = ref(false);
@@ -334,9 +545,17 @@
             nextTick(() => type.value = 'price');
         }
     });
+    
+    onMounted(async() => {
+        await getCoinChart();
+    });
 </script>
 
 <style scoped>
+    button[data-state='checked'] {
+        background-color: var(--green-shamrock);
+    }
+    
     .chart-container {
         position: relative;
         

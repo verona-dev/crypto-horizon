@@ -5,7 +5,7 @@
     >
         <HoverCardTrigger>
             <Card
-                class='w-28 m-4 py-4 flex flex-col items-center gap-2'
+                class='w-20 m-4 py-4 flex flex-col items-center gap-2 rounded-lg'
                 :class="[getTrendClass(delta), getBorderClass(delta)]"
             >
                 <CardTitle class='flex flex-col items-center'>
@@ -15,13 +15,11 @@
                 <CardContent class='flex justify-center py-2'>
                     <NuxtIcon
                         name='ph:chart-scatter-light'
-                        size='30'
+                        size='25'
                     />
                 </CardContent>
                 
-                <CardContent class='py-2'>
-                   {{ formatNumber(delta, { style: 'percent' }) }}
-                </CardContent>
+                <CardContent class='py-2 text-sm'>{{ formatNumber(delta, { style: 'percent' }) }}</CardContent>
             </Card>
         </HoverCardTrigger>
         
