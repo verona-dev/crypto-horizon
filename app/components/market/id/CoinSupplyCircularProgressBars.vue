@@ -98,13 +98,13 @@
                 >
                     <template #default>
                         <p v-if='max_supply'>{{ Math.floor(circulating_supply_percentage) }}&#37;</p>
-                        <p v-else>{{ formatNumber(circulating_supply, { compact: true, style: 'decimal', decimals: 2 }) }}</p>
+                        <p v-else>{{ circulating_supply_compact }}</p>
                     </template>
                 </MazCircularProgressBar>
                 
                 <div class='label-container'>
                     <div class='flex items-center gap-2'>
-                        <h5 class='break-words text-center'>Circulating Supply</h5>
+                        <h5>{{ glossary.circulating_supply.label }}</h5>
                         
                         <HoverCard
                             :openDelay='200'
@@ -113,11 +113,11 @@
                             <HoverCardTrigger>
                                 <InfoIcon size='20' />
                             </HoverCardTrigger>
-                            <HoverCardContent>The amount of coins that are circulating in the market and are in public hands. It is analogous to the flowing shares in the stock market.</HoverCardContent>
+                            <HoverCardContent>{{ glossary.circulating_supply.description }}</HoverCardContent>
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ circulating_supply_label }} {{ symbol }}</span>
+                    <span class='mt-2'>{{ circulating_supply_value }} {{ symbol }}</span>
                 </div>
             </div>
             
@@ -231,21 +231,26 @@
         compact: true, decimals: 1
     }));
     
+    const circulating_supply = computed(() => market_data.value?.circulating_supply);
+    const circulating_supply_value = computed(() => formatNumber(circulating_supply.value, {
+        style: 'decimal',
+    }));
+    const circulating_supply_compact = computed(() => formatNumber(circulating_supply.value, {
+        compact: true, style: 'decimal', decimals: 1
+    }));
+    const circulating_supply_percentage = computed(() => (circulating_supply.value / max_supply.value) * 100);
+    
     const max_supply = computed(() => market_data.value?.max_supply);
     const max_supply_label = market_data.value?.max_supply_label;
     const max_supply_bar_label = computed(() => formatNumber(max_supply.value, {
-        compact: true, style: 'decimal'
+        compact: true, style: 'decimal', decimals: 1
     }));
     
     const total_supply = computed(() =>  market_data.value?.total_supply);
     const total_supply_label = computed(() => formatNumber(total_supply.value, {
-        style: 'decimal'
+        style: 'decimal', decimals: 1
     }));
     const total_supply_percentage = computed(() => Math.floor((total_supply.value / max_supply.value) * 100));
-    
-    const circulating_supply = computed(() => market_data.value?.circulating_supply);
-    const circulating_supply_label = market_data.value?.circulating_supply_label;
-    const circulating_supply_percentage = computed(() => (circulating_supply.value / max_supply.value) * 100);
     
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>

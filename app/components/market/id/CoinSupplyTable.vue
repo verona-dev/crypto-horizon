@@ -54,7 +54,9 @@
     const total_supply = computed(() =>  market_data.value?.total_supply);
     const total_supply_label = market_data.value?.total_supply_label;
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
-    const circulating_supply_label = market_data.value?.circulating_supply_label;
+    const circulating_supply_label = computed(() => formatNumber(market_data.value?.circulating_supply, {
+        style: 'decimal'
+    }));
     const remaining_supply = computed(() => max_supply.value - total_supply.value);
     const remaining_supply_label = computed(() => formatNumber(remaining_supply.value, {
         style: 'decimal'

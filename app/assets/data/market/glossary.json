@@ -9,6 +9,10 @@
         "label": "All-Time Low",
         "description" : "Coin price all-time low (ATL) in $USD."
     },
+    "circulating_supply": {
+        "label": "Circulating Supply",
+        "description": "The amount of coins that are circulating in the market and are tradeable by the public. It is comparable to looking at shares readily available in the market (not held & locked by insiders, governments)."
+    },
     "country_origin": {
         "label": "Origin Country",
         "description": "Coin country of origin."
