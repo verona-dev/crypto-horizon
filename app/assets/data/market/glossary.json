@@ -75,6 +75,7 @@
         "description": "Total Supply = Onchain supply - burned tokens \n\n The amount of coins that have already been created, minus any coins that have been burned (removed from circulation).\n\n It is comparable to outstanding shares in the stock market."
     },
     "volume": {
+        "label_short": "Volume (24h)",
         "label": "Trading Volume 24h",
         "description": "A measure of a cryptocurrency trading volume across all tracked platforms in the last 24 hours.\n This is tracked on a rolling 24-hour basis with no open/closing times."
     }
