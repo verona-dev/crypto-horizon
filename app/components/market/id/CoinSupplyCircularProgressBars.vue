@@ -43,17 +43,13 @@
                 
                 <div class='label-container'>
                     <div class='flex items-center gap-2'>
-                        <h5 class='break-words text-center'>Diluted Valuation</h5>
+                        <h5 class='break-words text-center'>{{ glossary.fully_diluted_valuation.label }}</h5>
                         
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
                                 <InfoIcon size='20' />
                             </HoverCardTrigger>
-                            <HoverCardContent>
-                                Coin fully diluted valuation (FDV) in currency.
-                                FDV and market cap of a crypto coin can be the same number when the total supply
-                                of tokens is equal to the circulating supply of tokens.
-                            </HoverCardContent>
+                            <HoverCardContent>{{ glossary.fully_diluted_valuation.description }}</HoverCardContent>
                         </HoverCard>
                     </div>
                     
