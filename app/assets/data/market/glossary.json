@@ -66,6 +66,10 @@
         "label": "Pairs",
         "description" : "The number of unique markets the coin is present at."
     },
+    "remaining_supply": {
+        "label": "Remaining Supply",
+        "description":"Max Supply - Total Supply"
+    },
     "total_supply": {
         "label": "Total Supply",
         "description": "Total Supply = Onchain supply - burned tokens.\n\n The amount of coins that have already been created, minus any coins that have been burned (removed from circulation).\n\n It is comparable to outstanding shares in the stock market."
