@@ -1,10 +1,7 @@
 <template>
     <CardFooter class='coin-footer w-full flex flex-col gap-8 xl:gap-20'>
         <!-- Links -->
-        <CoinLinks
-            :livecoinwatchLinks='livecoinwatch.links'
-            :coingeckoLinks='coingecko.links'
-        />
+        <CoinLinks :links='links' />
         
         <!-- News -->
         <CoinNews :coin='coin' />
@@ -23,7 +20,5 @@
     });
     
     const { coin } = toRefs(props);
-    
-    const coingecko = toRef(coin.value?.coingecko);
-    const livecoinwatch = toRef(coin.value?.livecoinwatch);
+    const links = toRef(coin.value.links.socials);
 </script>
