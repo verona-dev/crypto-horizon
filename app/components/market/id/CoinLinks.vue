@@ -1,10 +1,13 @@
 <template>
-    <Card class='coin-links bg-background flex flex-col lg:flex-row gap-16 lg:justify-around p-10 lg:py-20 lg:px-12 w-full'>
-        <CardContent v-if='links' class='websites flex flex-col gap-8'>
-            <h3>Links</h3>
-            
+    <Card class='coin-links bg-background flex flex-col 2xl:flex-row gap-16 p-10 lg:py-20 lg:px-12 w-full'>
+        <CardContent
+            v-if='links.main'
+            class='flex flex-col gap-9'
+        >
             <!-- Websites -->
-            <div class='flex flex-col gap-4'>
+            <h3>Project</h3>
+            
+            <div class='flex flex-wrap 2xl:flex-col gap-9 2xl:gap-3'>
                 <CoinLinkCard
                     v-for='link in links.main'
                     :key='link'
@@ -13,20 +16,37 @@
             </div>
         </CardContent>
         
-                <!--
-                <div v-for='(link, name) in official_forum' :key='name'>
-                    <NuxtLink
-                        v-if='link'
-                        :to='link'
-                        external
-                        target='_blank'
-                        class='flex items-center link-item gap-2'
-                    >
-                        <NuxtIcon name='ph:chat-centered-text-light' size='22' />
-                        <p class='text-sm'>Official Forum</p>
-                    </NuxtLink>
-                </div>
-                -->
+        <CardContent
+            v-if='links.socials'
+            class='flex flex-col gap-9'
+        >
+            <!-- Socials -->
+            <h3>Socials</h3>
+            
+            <div class='flex flex-wrap 2xl:flex-col gap-9 2xl:gap-3'>
+                <CoinLinkCard
+                    v-for='link in links.socials'
+                    :key='link'
+                    :link='link'
+                    category='socials'
+                />
+            </div>
+        </CardContent>
+        
+        <!--
+        <div v-for='(link, name) in official_forum' :key='name'>
+            <NuxtLink
+                v-if='link'
+                :to='link'
+                external
+                target='_blank'
+                class='flex items-center link-item gap-2'
+            >
+                <NuxtIcon name='ph:chat-centered-text-light' size='22' />
+                <p class='text-sm'>Official Forum</p>
+            </NuxtLink>
+        </div>
+        -->
         
         <!--
         &lt;!&ndash; Chat &ndash;&gt;
@@ -44,29 +64,6 @@
                     <NuxtIcon name='ph:chat-teardrop-light' size='22' />
                     <p class='text-sm'>{{ chat }}</p>
                 </NuxtLink>
-            </div>
-        </CardContent>
-        
-        &lt;!&ndash; Community &ndash;&gt;
-        <CardContent v-if='socials && Object.keys(socials).length' class='community flex flex-col gap-8'>
-            <h3>Community</h3>
-            
-            <div class='flex flex-col gap-4'>
-                <div
-                    v-for='(link, name) in socials'
-                    :key='name'
-                >
-                    <NuxtLink
-                        v-if='link && name'
-                        :to='link'
-                        external
-                        target='_blank'
-                        class='flex items-center link-item gap-3'
-                    >
-                        <NuxtIcon :name='`ph:${name}-logo-light`' size='22' />
-                        <p class='text-sm'>{{ name }}</p>
-                    </NuxtLink>
-                </div>
             </div>
         </CardContent>
         
