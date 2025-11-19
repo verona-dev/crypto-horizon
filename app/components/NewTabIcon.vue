@@ -2,7 +2,6 @@
     <NuxtIcon
         name='ph:arrow-up-right'
         :size='size'
-        class='mb-0.5'
     />
 </template>
 

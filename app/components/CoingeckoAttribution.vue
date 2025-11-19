@@ -28,7 +28,7 @@
                 />
             </NuxtImg>
             
-            <NewTabIcon />
+            <NewTabIcon class='mb-0.5' />
         </NuxtLink>
     </Card>
 </template>
