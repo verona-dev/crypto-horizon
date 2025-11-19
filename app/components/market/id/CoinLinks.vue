@@ -5,16 +5,32 @@
             <h3>Websites</h3>
             
             <div class='flex flex-col gap-4'>
-                <NuxtLink
+                <Card
                     v-if='homepage'
-                    :to='homepage'
-                    external
-                    target='_blank'
-                    class='flex items-center link-item gap-2'
+                    class='!bg-background border-border/100 min-w-80 rounded-lg shadow-none px-4 py-3 flex items-center link-item gap-2'
                 >
-                    <NuxtIcon name='ph:house-light' size='22' />
-                    <p class='text-sm'>Homepage</p>
-                </NuxtLink>
+                    <NuxtIcon name='ph:house-light' size='22' class='mb-0.5' />
+                    <CardTitle class='text-sm flex-1'>Homepage</CardTitle>
+                    
+                    <div class='flex items-center gap-4 justify-self-end'>
+                        <Button variant='outline' @click='onCopy(homepage)'>
+                            <NuxtIcon
+                                name='ph:copy'
+                                size='15'
+                            />
+                        </Button>
+                        
+                        <NuxtLink
+                            v-if='homepage'
+                            :to='homepage'
+                            external
+                            target='_blank'
+                            class='link-as-button'
+                        >
+                            <NewTabIcon />
+                        </NuxtLink>
+                    </div>
+                </Card>
                 
                 <NuxtLink
                     v-if='whitepaper'
@@ -104,8 +120,11 @@
 </template>
 
 <script setup>
-    import { Card, CardContent } from '~/components/ui/card';
-    
+    import { Button } from '@/components/ui/button/index.ts';
+    import { Card, CardTitle, CardDescription, CardHeader, CardContent } from '~/components/ui/card';
+    import NewTabIcon from '~/components/NewTabIcon';
+    import { toast } from 'vue-sonner';
+    import { h, resolveComponent } from 'vue';
     
     const props = defineProps({
         livecoinwatchLinks: {
@@ -126,14 +145,28 @@
     const chats = computed(() => coingeckoLinks.value?.chat_url);
     const github = computed(() => coingeckoLinks.value?.repos_url?.github);
     const socials = computed(() => livecoinwatchLinks.value?.socials);
+    
+    // console.log(websites.value);
+    
+    const onCopy = (url) => {
+        navigator.clipboard.writeText(url);
+        
+        toast(``, {
+            title: () =>
+                h('h6', {
+                    class: 'font-medium',
+                }, 'Link copied to clipboard.'),
+            icon: () =>
+                h(resolveComponent('NuxtIcon'), {
+                    name: 'ph:check-circle-light',
+                    size: 30,
+                    class: 'w-[50px]',
+                }),
+            action: {
+                label: 'OK',
+            },
+            description: () =>
+                h('span', url),
+        });
+    };
 </script>
-
-<style scoped>
-    .coin-links {
-        .link-item {
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-    }
-</style>
