@@ -63,26 +63,13 @@ const formatNumber = (value, {
     return new Intl.NumberFormat(locale, options).format(num);
 };
 
-const formatLivecoinwatchCoin = coin => {
-    return {
-        ...coin,
-        links: extractLinks(coin?.links),
-    }
-};
-
-const extractLinks = externalLinks => {
-    let links = {
-        socials: {},
-    };
+const formatLinks = (oldLinks, newLinks) => {
+    let links = { ...oldLinks };
     
-    for (let key in externalLinks) {
-        if (externalLinks.hasOwnProperty(key)) {
-            if(key === 'website' || key === 'whitepaper') {
-                links[key] = externalLinks[key];
-            } else {
-                if(externalLinks[key] !== null) {
-                    links.socials[key] = externalLinks[key];
-                }
+    for (let key in newLinks) {
+        if (newLinks.hasOwnProperty(key)) {
+            if(newLinks[key] !== null && newLinks[key] !== 'github') {
+                links[key] = newLinks[key];
             }
         }
     }
@@ -100,7 +87,7 @@ const goBack = (router, path) => {
 
 export {
     formatNumber,
-    formatLivecoinwatchCoin,
+    formatLinks,
     capitalize,
     goBack,
 };

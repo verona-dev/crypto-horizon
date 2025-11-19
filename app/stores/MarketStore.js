@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { useFetchCoingecko } from '~/composables/apiCoingecko';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 import { useFetchCmc } from '~/composables/apiCmc.js';
-import { formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
+import { formatLinks } from '~/utils/formatUtils.js';
 import { useNewsStore } from '~/stores/NewsStore.js';
 
 export const useMarketStore = defineStore('MarketStore', {
@@ -13,6 +13,11 @@ export const useMarketStore = defineStore('MarketStore', {
             livecoinwatch: {},
             symbol: '',
             chart: {},
+            links: {
+                facebook_username: null,
+                github: {},
+            },
+            linksArr: [],
             timeframe: 1,
             timeframes: [
                 { name: 'Day', label: '24h', timeframe: 1 },
@@ -130,6 +135,13 @@ export const useMarketStore = defineStore('MarketStore', {
                 
                 if (coinResponse) {
                     this.coin.coingecko = coinResponse;
+                    
+                    if(coinResponse.links?.facebook_username) {
+                        this.coin.links.facebook_username = coinResponse.links.facebook_username;
+                    }
+                    if(coinResponse.links?.repos_url?.github) {
+                        this.coin.links.github = coinResponse.links.repos_url?.github
+                    }
                 }
                 
                 if (chartResponse) {
@@ -151,7 +163,8 @@ export const useMarketStore = defineStore('MarketStore', {
                 const response = await useFetchLiveCoinWatch(route, options);
                 
                 if(response && route === 'coins/single') {
-                    this.coin.livecoinwatch = formatLivecoinwatchCoin(response);
+                    this.coin.livecoinwatch = response;
+                    this.coin.links = formatLinks(this.coin.links, response.links);
                 }
             } catch(error) {
                 console.error(error);
