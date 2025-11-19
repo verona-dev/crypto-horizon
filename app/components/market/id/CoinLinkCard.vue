@@ -1,18 +1,20 @@
 <template>
     <Card
         v-if='link'
-        class='!bg-background min-w-80 px-4 py-3 flex items-center gap-2 rounded-lg
-               hover:border-green-shamrock transition-all duration-500 ease-out border-border/100 shadow-none'
+        class='!bg-background w-52 2xl:min-w-84 p-16 2xl:px-4 2xl:py-3 flex flex-col 2xl:flex-row items-center gap-6 2xl:gap-3 rounded-lg
+                hover:border-green-shamrock/75 transition-all duration-500 ease-out border-border/100 shadow-none'
     >
-        <NuxtIcon
-            :name='icon'
-            size='22'
-            class='mb-0.5'
-        />
+        <div class='flex flex-col 2xl:flex-row items-center gap-2 2xl:gap-3 w-full'>
+            <NuxtIcon
+                :name='icon'
+                size='25'
+                class='mt-0.5'
+            />
+            
+            <CardTitle class='text-lg font-satoshi flex-1 capitalize'>{{ name }}</CardTitle>
+        </div>
         
-        <CardTitle class='text-sm flex-1 capitalize'>{{ name }}</CardTitle>
-        
-        <div class='flex items-center gap-4 justify-self-end'>
+        <div class='flex items-center gap-3 justify-self-end'>
             <Button variant='outline' @click='onCopy(src)'>
                 <NuxtIcon
                     name='ph:copy'
@@ -43,18 +45,23 @@
         link: {
             type: Object,
             required: true,
-        }
+        },
+        category: {
+            type: String,
+        },
     });
     
-    const { link } = toRefs(props);
+    const { link, category } = toRefs(props);
     const name = ref(link.value?.key);
     const src = ref(link.value?.value);
     const icon = computed(() => {
-        if(name.value === 'website') return 'ph:house-light';
-        if(name.value === 'whitepaper') return 'ph:book-open-light';
+        if(name.value === 'website') return 'ph:house-thin';
+        else if(name.value === 'whitepaper') return 'ph:book-open-thin';
+        else if(category.value === 'socials') return `ph:${name.value}-logo-thin`;
+        else return 'ph:link-light';
     });
     
-    // console.log(link.value);
+    console.log(link.value);
     
     const onCopy = (url) => {
         navigator.clipboard.writeText(url);
