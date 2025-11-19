@@ -1,48 +1,19 @@
 <template>
     <Card class='coin-links bg-background flex flex-col lg:flex-row gap-16 lg:justify-around p-10 lg:py-20 lg:px-12 w-full'>
-        <!-- Websites -->
-        <CardContent v-if='websites' class='websites flex flex-col gap-8'>
-            <h3>Websites</h3>
+        <CardContent v-if='links' class='websites flex flex-col gap-8'>
+            <h3>Links</h3>
             
+            <!-- Websites -->
             <div class='flex flex-col gap-4'>
-                <Card
-                    v-if='homepage'
-                    class='!bg-background border-border/100 min-w-80 rounded-lg shadow-none px-4 py-3 flex items-center link-item gap-2'
-                >
-                    <NuxtIcon name='ph:house-light' size='22' class='mb-0.5' />
-                    <CardTitle class='text-sm flex-1'>Homepage</CardTitle>
-                    
-                    <div class='flex items-center gap-4 justify-self-end'>
-                        <Button variant='outline' @click='onCopy(homepage)'>
-                            <NuxtIcon
-                                name='ph:copy'
-                                size='15'
-                            />
-                        </Button>
-                        
-                        <NuxtLink
-                            v-if='homepage'
-                            :to='homepage'
-                            external
-                            target='_blank'
-                            class='link-as-button'
-                        >
-                            <NewTabIcon />
-                        </NuxtLink>
-                    </div>
-                </Card>
-                
-                <NuxtLink
-                    v-if='whitepaper'
-                    :to='whitepaper'
-                    external
-                    target='_blank'
-                    class='flex items-center link-item gap-2'
-                >
-                    <NuxtIcon name='ph:book-open-light' size='22' />
-                    <p class='text-sm'>Whitepaper</p>
-                </NuxtLink>
-                
+                <CoinLinkCard
+                    v-for='link in links.main'
+                    :key='link'
+                    :link='link'
+                />
+            </div>
+        </CardContent>
+        
+                <!--
                 <div v-for='(link, name) in official_forum' :key='name'>
                     <NuxtLink
                         v-if='link'
@@ -55,10 +26,10 @@
                         <p class='text-sm'>Official Forum</p>
                     </NuxtLink>
                 </div>
-            </div>
-        </CardContent>
+                -->
         
-        <!-- Chat -->
+        <!--
+        &lt;!&ndash; Chat &ndash;&gt;
         <CardContent v-if='chats.length' class='chat flex flex-col gap-8'>
             <h3>Chat</h3>
             
@@ -76,7 +47,7 @@
             </div>
         </CardContent>
         
-        <!-- Community -->
+        &lt;!&ndash; Community &ndash;&gt;
         <CardContent v-if='socials && Object.keys(socials).length' class='community flex flex-col gap-8'>
             <h3>Community</h3>
             
@@ -99,7 +70,7 @@
             </div>
         </CardContent>
         
-        <!-- Github -->
+        &lt;!&ndash; Github &ndash;&gt;
         <CardContent v-if='github.length' class='github flex flex-col gap-8'>
             <h3>Github</h3>
             
@@ -116,57 +87,29 @@
                 </NuxtLink>
             </div>
         </CardContent>
+        -->
     </Card>
 </template>
 
 <script setup>
-    import { Button } from '@/components/ui/button/index.ts';
     import { Card, CardTitle, CardDescription, CardHeader, CardContent } from '~/components/ui/card';
-    import NewTabIcon from '~/components/NewTabIcon';
-    import { toast } from 'vue-sonner';
-    import { h, resolveComponent } from 'vue';
+    import CoinLinkCard from '@/components/market/id/CoinLinkCard.vue';
     
     const props = defineProps({
-        livecoinwatchLinks: {
-            type: Object,
-            required: true,
-        },
-        coingeckoLinks: {
+        links: {
             type: Object,
             required: true,
         }
     });
     
-    const { livecoinwatchLinks, coingeckoLinks } = toRefs(props);
-    const websites = computed(() => homepage.value || whitepaper.value || official_forum.value);
-    const homepage = computed(() => coingeckoLinks.value?.homepage[0]);
-    const whitepaper = computed(() => coingeckoLinks.value?.whitepaper);
-    const official_forum = computed(() => coingeckoLinks.value?.official_forum_url);
-    const chats = computed(() => coingeckoLinks.value?.chat_url);
-    const github = computed(() => coingeckoLinks.value?.repos_url?.github);
-    const socials = computed(() => livecoinwatchLinks.value?.socials);
+    const { links } = toRefs(props);
+    // const websites = computed(() => homepage.value || whitepaper.value || official_forum.value);
+    // const homepage = computed(() => coingeckoLinks.value?.homepage[0]);
+    // const whitepaper = computed(() => coingeckoLinks.value?.whitepaper);
+    // const official_forum = computed(() => coingeckoLinks.value?.official_forum_url);
+    // const chats = computed(() => coingeckoLinks.value?.chat_url);
+    // const github = computed(() => coingeckoLinks.value?.repos_url?.github);
+    // const socials = computed(() => livecoinwatchLinks.value?.socials);
     
-    // console.log(websites.value);
-    
-    const onCopy = (url) => {
-        navigator.clipboard.writeText(url);
-        
-        toast(``, {
-            title: () =>
-                h('h6', {
-                    class: 'font-medium',
-                }, 'Link copied to clipboard.'),
-            icon: () =>
-                h(resolveComponent('NuxtIcon'), {
-                    name: 'ph:check-circle-light',
-                    size: 30,
-                    class: 'w-[50px]',
-                }),
-            action: {
-                label: 'OK',
-            },
-            description: () =>
-                h('span', url),
-        });
-    };
+    console.log(links.value);
 </script>
