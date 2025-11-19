@@ -64,15 +64,31 @@ const formatNumber = (value, {
 };
 
 const formatLinks = (oldLinks, newLinks) => {
-    let links = { ...oldLinks };
+    let links = {
+        main: { ...oldLinks.main },
+        socials: { ...oldLinks.socials },
+        github: oldLinks.github,
+    };
     
     for (let key in newLinks) {
         if (newLinks.hasOwnProperty(key)) {
-            if(newLinks[key] !== null && newLinks[key] !== 'github') {
-                links[key] = newLinks[key];
+            if(newLinks[key] !== null) {
+                if(key === 'website' || key === 'whitepaper') {
+                    links.main[key] = newLinks[key];
+                } else {
+                    links.socials[key] = newLinks[key];
+                }
             }
         }
     }
+    
+    links.main = Object.entries(links.main).map(([key, value]) => ({
+        key, value
+    }));
+    
+    links.socials = Object.entries(links.socials).map(([key, value]) => ({
+        key, value
+    }));
     
     return links;
 };
