@@ -13,7 +13,7 @@
         <div class='h-12 flex items-center justify-between border rounded-lg'>
             <!--  Main Contract  -->
             <div
-                class='flex items-center justify-evenly w-full cursor-pointer'
+                class='flex items-center justify-evenly w-full h-full cursor-pointer'
                 @click='onCopyLink(platforms[0])'
             >
                 <NuxtImg
