@@ -29,7 +29,7 @@
             </Tabs>
             
             <!--  Switch  -->
-            <div class="flex items-center space-x-1">
+            <div class='flex items-center space-x-1'>
                 <Switch
                     id='sniper_mode'
                     :model-value='sniper_mode'
