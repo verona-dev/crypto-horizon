@@ -54,6 +54,7 @@
                             v-for='contract in platforms'
                             :key='contract'
                             @click='onCopyLink(contract)'
+                            @select='(event) => event.preventDefault()'
                             class='py-3 my-2 rounded-lg cursor-pointer'
                         >
                             <div class='px-3 flex justify-between items-center w-full'>
@@ -143,22 +144,13 @@
     const onCopyLink = contract => {
         navigator.clipboard.writeText(contract.value);
         
-        toast(``, {
-            title: () =>
-                h('h6', {
-                    class: 'font-medium',
-                }, `${coin.value?.name} (${capitalize(contract.name)}) contract copied.`),
-            icon: () =>
-                h(resolveComponent('NuxtIcon'), {
-                    name: 'ph:check-circle-light',
-                    size: 30,
-                    class: 'w-[50px]',
-                }),
-            action: {
-                label: 'OK',
-            },
+        toast.promise(() => new Promise((resolve) => setTimeout(resolve, 750)), {
+            loading: `Loading ${coin.value?.name} contract address...`,
+            success: (data) => `${coin.value?.name} address on ${capitalize(contract.name)} copied.`,
+            error: (data) => 'Error',
             description: () =>
                 h('span', contract.value),
+            class: '!w-100 !h-20 !flex !gap-3',
         });
     };
     
