@@ -145,7 +145,7 @@
     }
     
     [data-sonner-toast] {
-        @apply !bg-popover-foreground dark:!bg-popover !text-background dark:!text-foreground !w-120 !flex !items-center !justify-evenly !border-border;
+        @apply !bg-popover-foreground dark:!bg-popover !text-background dark:!text-foreground !border-border;
         
         button {
             @apply !bg-background dark:!bg-foreground !text-foreground dark:!text-background;
@@ -155,13 +155,17 @@
             @apply text-sky;
         }
         
+        /*
         & [data-content] {
             @apply ml-12;
         }
+        */
         
+        /*
         @media (max-width: 1020px) {
             width: 90% !important;
         }
+        */
     }
     
     .link-as-button {
