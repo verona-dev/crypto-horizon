@@ -35,16 +35,7 @@
                     :model-value='sniper_mode'
                     @update:model-value='onToggleSniper'
                     :class='{ "shadow-none" : !dark_mode }'
-                >
-                    <template #thumb>
-                        <NuxtIcon
-                            v-if='sniper_mode'
-                            name='ph:crosshair-simple-light'
-                            size='14'
-                            class='mb-0.5'
-                        />
-                    </template>
-                </Switch>
+                />
                 <label for='sniper_mode' class='text-xxs cursor-pointer'>Sniper Mode</label>
             </div>
             
