@@ -20,5 +20,5 @@
     });
     
     const { coin } = toRefs(props);
-    const links = toRef(coin.value.links.socials);
+    const links = toRef(coin.value?.links);
 </script>
