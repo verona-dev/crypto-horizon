@@ -1,22 +1,22 @@
 <template>
     <Card
         v-if='link'
-        class='!bg-background w-52 2xl:min-w-84 p-12 2xl:px-3 2xl:py-3 flex flex-col 2xl:flex-row items-center gap-6 2xl:gap-3 rounded-lg
+        class='!bg-background w-52 2xl:min-w-76 p-12 2xl:pl-4 2xl:pr-2 2xl:py-3 flex flex-col 2xl:flex-row gap-6 2xl:gap-3 rounded-lg
                 hover:border-green-shamrock/75 hover:shadow-2xl transition-all duration-500 ease-out border-border/50 shadow-md'
     >
-        <div class='flex flex-col 2xl:flex-row items-center gap-2 2xl:gap-3 w-full'>
+        <!--  Logo + Name  -->
+        <div class='flex flex-1 flex-col 2xl:flex-row items-center gap-2 2xl:gap-3 w-full'>
             <NuxtIcon
                 :name='platform_icon'
                 size='30'
                 class='mt-0.5'
             />
             
-            
             <CardTitle class='text-lg font-satoshi flex-1 capitalize'>{{ name }}</CardTitle>
-            <!--   <span v-if='social_handle' class='text-xs font-satoshi'>{{ src }}</span>   -->
         </div>
         
-        <div class='flex items-center gap-3 justify-self-end'>
+        <!--  Copy + Open link -->
+        <div class='flex items-center gap-1 justify-self-end'>
             <TooltipProvider :delayDuration='250'>
                 <Tooltip>
                     <TooltipTrigger>
@@ -77,16 +77,15 @@
     const { link, category } = toRefs(props);
     const name = ref(link.value?.key);
     const src = ref(link.value?.value);
-    // const social_handle = computed(() => category.value === 'socials');
     const platform_icon = computed(() => {
-        if(name.value === 'website') return 'ph:house-thin';
-        if(name.value === 'forum') return 'ph:chat-centered-text-thin';
-        else if(name.value === 'whitepaper') return 'ph:book-open-thin';
+        if(name.value === 'chat') return 'ph:chat-teardrop-thin';
+        else if(name.value === 'forum') return 'ph:chat-centered-text-thin';
         else if(category.value === 'socials') return `ph:${name.value}-logo-thin`;
+        else if(category.value === 'github') return 'ph:github-logo-thin';
+        else if(name.value === 'website') return 'ph:house-thin';
+        else if(name.value === 'whitepaper') return 'ph:book-open-thin';
         else return 'ph:link-light';
     });
-    
-    // console.log(link.value);
     
     const onCopy = (name, src) => {
         navigator.clipboard.writeText(src);
