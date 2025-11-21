@@ -13,13 +13,7 @@ export const useMarketStore = defineStore('MarketStore', {
             livecoinwatch: {},
             symbol: '',
             chart: {},
-            links: {
-                main: {},
-                socials: {
-                    facebook: null,
-                },
-                github: {},
-            },
+            links: {},
             linksArr: [],
             timeframe: 1,
             timeframes: [
@@ -113,8 +107,15 @@ export const useMarketStore = defineStore('MarketStore', {
             const NewsStore = useNewsStore();
             
             await this.getCoingeckoCoin(slug);
+            
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
-            await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
+            
+            const liveCoinWatchResponse = await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
+            
+            if(liveCoinWatchResponse) {
+                await this.formatCoinLinks();
+            }
+            
             await NewsStore.getNews( {
                 category: this.coin.symbol,
                 limit: 6,
@@ -138,13 +139,6 @@ export const useMarketStore = defineStore('MarketStore', {
                 
                 if (coinResponse) {
                     this.coin.coingecko = coinResponse;
-                    
-                    if(coinResponse.links?.facebook_username) {
-                        this.coin.links.socials.facebook = coinResponse.links.facebook_username;
-                    }
-                    if(coinResponse.links?.repos_url?.github) {
-                        this.coin.links.github = coinResponse.links.repos_url?.github
-                    }
                 }
                 
                 if (chartResponse) {
@@ -159,6 +153,10 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
+        async formatCoinLinks() {
+            this.coin.links = formatLinks(this.coin?.coingecko?.links, this.coin?.livecoinwatch?.links);
+        },
+        
         async getLiveCoinWatch(route, options) {
             this.loading = true;
             
@@ -167,20 +165,7 @@ export const useMarketStore = defineStore('MarketStore', {
                 
                 if(response && route === 'coins/single') {
                     this.coin.livecoinwatch = response;
-                    
-                    const facebookData = this.coin.links.socials?.facebook;
-                    
-                    this.coin.links = {
-                        main: {},
-                        socials: {},
-                        github: {},
-                    };
-                    
-                    if (facebookData) {
-                        this.coin.links.socials.facebook = facebookData;
-                    }
-                    
-                    this.coin.links = formatLinks(this.coin.links, response.links);
+                    return response;
                 }
             } catch(error) {
                 console.error(error);
@@ -249,7 +234,7 @@ export const useMarketStore = defineStore('MarketStore', {
             return this.coin.timeframes.find(range => range.timeframe === this.coin.timeframe);
         },
         getCoinPrice() {
-          return this.coin.coingecko.market_data?.current_price?.usd;
+            return this.coin.coingecko.market_data?.current_price?.usd;
         },
     }
 });
