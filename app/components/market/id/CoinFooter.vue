@@ -1,7 +1,10 @@
 <template>
     <CardFooter class='coin-footer w-full flex flex-col gap-8 xl:gap-20'>
         <!-- Links -->
-        <CoinLinks :links='links' />
+        <CoinLinks
+            :links='links'
+            :symbol='symbol'
+        />
         
         <!-- News -->
         <CoinNews :coin='coin' />
@@ -20,5 +23,6 @@
     });
     
     const { coin } = toRefs(props);
-    const links = toRef(coin.value?.links);
+    const links = coin.value?.links;
+    const symbol = toRef(coin.value?.symbol);
 </script>
