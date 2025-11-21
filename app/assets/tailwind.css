@@ -228,7 +228,8 @@ html.light {
     --card-foreground: #ffffff;
     --popover: #1f2230;
     --popover-foreground: #ffffff;
-    --primary: #c1c0f6;
+    --primary: #ffffff;
+    /*--primary: #c1c0f6;*/
     --primary-foreground: #14161f;
     --secondary: #353958;
     --secondary-foreground: #f1f3fd;
