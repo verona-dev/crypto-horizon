@@ -2,6 +2,7 @@
     <CardFooter class='coin-footer w-full flex flex-col gap-8 xl:gap-20'>
         <!-- Links -->
         <CoinLinks
+            v-if='links'
             :links='links'
             :symbol='symbol'
         />
@@ -23,6 +24,6 @@
     });
     
     const { coin } = toRefs(props);
-    const links = coin.value?.links;
+    const links = computed(() => coin.value?.links);
     const symbol = toRef(coin.value?.symbol);
 </script>
