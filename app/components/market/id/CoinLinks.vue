@@ -10,7 +10,7 @@
             <div class='flex flex-wrap 2xl:flex-col gap-9 2xl:gap-3'>
                 <CoinLinkCard
                     v-for='link in links.main'
-                    :key='link'
+                    :key='`${symbol}-${link.key}`'
                     :link='link'
                 />
             </div>
@@ -95,6 +95,10 @@
     const props = defineProps({
         links: {
             type: Object,
+            required: true,
+        },
+        symbol: {
+            type: String,
             required: true,
         }
     });
