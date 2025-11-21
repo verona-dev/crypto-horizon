@@ -63,35 +63,36 @@ const formatNumber = (value, {
     return new Intl.NumberFormat(locale, options).format(num);
 };
 
-const formatLinks = (oldLinks, newLinks) => {
+const formatLinks = (coingeckoLinks, livecoinwatchLinks) => {
+    const chat = coingeckoLinks.chat_url;
+    const facebook = coingeckoLinks.facebook_username;
+    const forum = coingeckoLinks.official_forum_url[0];
+    const github = coingeckoLinks.repos_url?.github;
+    
+    const website = livecoinwatchLinks.website;
+    const whitepaper = livecoinwatchLinks.whitepaper;
+    
     let links = {
-        main: { ...oldLinks.main },
-        socials: { ...oldLinks.socials },
-        github: oldLinks.github,
+        main: [],
+        socials: [],
+        github: [],
     };
     
-    for (let key in newLinks) {
-        if (newLinks.hasOwnProperty(key) && newLinks[key] !== null) {
-            if(key === 'website' || key === 'whitepaper') {
-                links.main[key] = newLinks[key];
-            } else {
-                links.socials[key] = newLinks[key];
+    if(chat.length) links.main.push({ key: 'chat', value: chat, });
+    if (facebook) links.socials.push({ key: "facebook", value: `https://www.facebook.com/${facebook}` });
+    if(forum) links.main.push({ key: 'forum', value: forum, });
+    if(github) links.github = github;
+    if (website) links.main.push({ key: 'website', value: website });
+    if (whitepaper) links.main.push({ key: 'whitepaper', value: whitepaper });
+    
+    for (let key in livecoinwatchLinks) {
+        if (livecoinwatchLinks[key] !== null) {
+            if (key !== 'website' && key !== 'whitepaper' && livecoinwatchLinks[key]) {
+                links.socials.push({ key: key, value: livecoinwatchLinks[key] });
             }
         }
     }
-    
-    if(oldLinks.socials?.facebook) {
-        links.socials.facebook = `https://www.facebook.com/${oldLinks.socials.facebook}`;
-    }
-    
-    links.main = Object.entries(links.main)
-       .filter(([_, value]) => value !== null)
-       .map(([key, value]) => ({ key, value }));
-    
-    links.socials = Object.entries(links.socials)
-       .filter(([_, value]) => value !== null)
-       .map(([key, value]) => ({ key, value }));
-    
+
     return links;
 };
 
