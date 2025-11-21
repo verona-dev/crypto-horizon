@@ -14,7 +14,6 @@
             
             <CardTitle class='text-lg font-satoshi flex-1 capitalize'>{{ name }}</CardTitle>
             <!--   <span v-if='social_handle' class='text-xs font-satoshi'>{{ src }}</span>   -->
-        
         </div>
         
         <div class='flex items-center gap-3 justify-self-end'>
@@ -78,7 +77,7 @@
     const { link, category } = toRefs(props);
     const name = ref(link.value?.key);
     const src = ref(link.value?.value);
-    const social_handle = computed(() => category.value === 'socials');
+    // const social_handle = computed(() => category.value === 'socials');
     const platform_icon = computed(() => {
         if(name.value === 'website') return 'ph:house-thin';
         else if(name.value === 'whitepaper') return 'ph:book-open-thin';
@@ -93,8 +92,8 @@
         
         toast.promise(() => new Promise((resolve) => setTimeout(resolve, 750)), {
             loading: 'Copying...',
-            success: (data) => `${capitalize(name)} link copied to clipboard.`,
-            error: (data) => 'Error',
+            success: () => `${capitalize(name)} link copied to clipboard.`,
+            error: () => 'Error',
             class: '!flex !gap-3',
         });
     };
