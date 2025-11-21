@@ -71,24 +71,26 @@ const formatLinks = (oldLinks, newLinks) => {
     };
     
     for (let key in newLinks) {
-        if (newLinks.hasOwnProperty(key)) {
-            if(newLinks[key] !== null) {
-                if(key === 'website' || key === 'whitepaper') {
-                    links.main[key] = newLinks[key];
-                } else {
-                    links.socials[key] = newLinks[key];
-                }
+        if (newLinks.hasOwnProperty(key) && newLinks[key] !== null) {
+            if(key === 'website' || key === 'whitepaper') {
+                links.main[key] = newLinks[key];
+            } else {
+                links.socials[key] = newLinks[key];
             }
         }
     }
     
-    links.main = Object.entries(links.main).map(([key, value]) => ({
-        key, value
-    }));
+    if(oldLinks.socials?.facebook) {
+        links.socials.facebook = `https://www.facebook.com/${oldLinks.socials.facebook}`;
+    }
     
-    links.socials = Object.entries(links.socials).map(([key, value]) => ({
-        key, value
-    }));
+    links.main = Object.entries(links.main)
+       .filter(([_, value]) => value !== null)
+       .map(([key, value]) => ({ key, value }));
+    
+    links.socials = Object.entries(links.socials)
+       .filter(([_, value]) => value !== null)
+       .map(([key, value]) => ({ key, value }));
     
     return links;
 };
