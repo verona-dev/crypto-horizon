@@ -139,7 +139,7 @@ export const useMarketStore = defineStore('MarketStore', {
                 if (coinResponse) {
                     this.coin.coingecko = coinResponse;
                     
-                    if(coinResponse.links?.socials?.facebook) {
+                    if(coinResponse.links?.facebook_username) {
                         this.coin.links.socials.facebook = coinResponse.links.facebook_username;
                     }
                     if(coinResponse.links?.repos_url?.github) {
@@ -167,7 +167,20 @@ export const useMarketStore = defineStore('MarketStore', {
                 
                 if(response && route === 'coins/single') {
                     this.coin.livecoinwatch = response;
-                    this.coin.links.socials = formatLinks(this.coin.links.socials, response.links);
+                    
+                    const facebookData = this.coin.links.socials?.facebook;
+                    
+                    this.coin.links = {
+                        main: {},
+                        socials: {},
+                        github: {},
+                    };
+                    
+                    if (facebookData) {
+                        this.coin.links.socials.facebook = facebookData;
+                    }
+                    
+                    this.coin.links = formatLinks(this.coin.links, response.links);
                 }
             } catch(error) {
                 console.error(error);
