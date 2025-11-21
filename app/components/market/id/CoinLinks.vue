@@ -1,16 +1,12 @@
 <template>
     <Card class='coin-links bg-background flex flex-col 2xl:flex-row gap-16 p-10 lg:py-20 lg:px-12 w-full'>
-        <CardContent
-            v-if='links.main'
-            class='flex flex-col gap-9'
-        >
+        <CardContent class='flex flex-col gap-9'>
             <!-- Websites -->
             <h3>Project</h3>
             
             <div class='flex flex-wrap 2xl:flex-col gap-9 2xl:gap-3'>
                 <CoinLinkCard
                     v-for='link in links.main'
-                    :key='`${symbol}-${link.key}`'
                     :link='link'
                 />
             </div>
@@ -32,7 +28,7 @@
                 />
             </div>
         </CardContent>
-        
+
         <!--
         <div v-for='(link, name) in official_forum' :key='name'>
             <NuxtLink
@@ -104,8 +100,4 @@
     });
     
     const { links } = toRefs(props);
-    // const official_forum = computed(() => coingeckoLinks.value?.official_forum_url);
-    // const chats = computed(() => coingeckoLinks.value?.chat_url);
-    
-    // console.log(links.value);
 </script>
