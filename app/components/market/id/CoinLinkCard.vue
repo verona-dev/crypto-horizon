@@ -80,6 +80,7 @@
     // const social_handle = computed(() => category.value === 'socials');
     const platform_icon = computed(() => {
         if(name.value === 'website') return 'ph:house-thin';
+        if(name.value === 'forum') return 'ph:chat-centered-text-thin';
         else if(name.value === 'whitepaper') return 'ph:book-open-thin';
         else if(category.value === 'socials') return `ph:${name.value}-logo-thin`;
         else return 'ph:link-light';
