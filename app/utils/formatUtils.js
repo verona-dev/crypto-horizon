@@ -81,7 +81,11 @@ const formatLinks = (coingeckoLinks, livecoinwatchLinks) => {
     if(chat.length) links.main.push({ key: 'chat', value: chat, });
     if (facebook) links.socials.push({ key: "facebook", value: `https://www.facebook.com/${facebook}` });
     if(forum) links.main.push({ key: 'forum', value: forum, });
-    if(github) links.github = github;
+    if(github) {
+        github.forEach((src, index) => {
+            links.github.push({ key: `repository ${index + 1}`, value: src, });
+        })
+    };
     if (website) links.main.push({ key: 'website', value: website });
     if (whitepaper) links.main.push({ key: 'whitepaper', value: whitepaper });
     
