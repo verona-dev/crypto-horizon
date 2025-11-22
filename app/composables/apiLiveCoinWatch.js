@@ -1,12 +1,22 @@
 
 export async function useFetchLiveCoinWatch(route, options = {}) {
     try {
-        return await $fetch(`/api/livecoinwatch/${route}`, {
+        const data = await $fetch(`/api/livecoinwatch/${route}`, {
             method: 'POST',
             body: options
         });
+        
+        return {
+            data,
+            error: null,
+        }
     } catch (error) {
-        console.error('Error fetching Livecoinwatch data:', error);
-        throw error;
+        return {
+            data: null,
+            error: {
+                statusCode: error.status,
+                statusMessage: error.statusText,
+            }
+        }
     }
 }

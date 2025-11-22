@@ -14,7 +14,6 @@ export const useMarketStore = defineStore('MarketStore', {
             symbol: '',
             chart: {},
             links: {},
-            linksArr: [],
             timeframe: 1,
             timeframes: [
                 { name: 'Day', label: '24h', timeframe: 1 },
@@ -109,10 +108,10 @@ export const useMarketStore = defineStore('MarketStore', {
             await this.getCoingeckoCoin(slug);
             
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
+            const { data, error } = await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
             
-            const liveCoinWatchResponse = await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
-            
-            if(liveCoinWatchResponse) {
+            if(data || error) {
+                // data or error because waiting for livecoinwatch api before formatting the links
                 await this.formatCoinLinks();
             }
             
@@ -161,14 +160,19 @@ export const useMarketStore = defineStore('MarketStore', {
             this.loading = true;
             
             try {
-                const response = await useFetchLiveCoinWatch(route, options);
+                const { data, error } = await useFetchLiveCoinWatch(route, options);
                 
-                if(response && route === 'coins/single') {
-                    this.coin.livecoinwatch = response;
-                    return response;
+                if(data && route === 'coins/single') {
+                    this.coin.livecoinwatch = data;
+                    return { data, error: null };
+                }
+                return {
+                    data: null,
+                    error: error || new Error('Not Found'),
                 }
             } catch(error) {
                 console.error(error);
+                return { data: null, error };
             } finally {
                 this.loading = false;
             }
@@ -180,7 +184,7 @@ export const useMarketStore = defineStore('MarketStore', {
         
         async getCoinChart() {
             const id = this.coin.coingecko.id;
-            
+
             try {
                 const response = await useFetchCoingecko(`coins/${id}/market_chart`, {
                     query: {
