@@ -8,7 +8,7 @@
         <div class='tabs-container flex flex-col md:flex-row gap-12 md:gap-0 items-center justify-between'>
             <!--  Price + Market Cap  -->
             <Tabs
-                v-model='type'
+                v-model='valuation_tab'
                 default-value='price'
             >
                 <TabsList>
@@ -153,35 +153,8 @@
     import CustomLineChart from '~/utils/CustomLineChart.js';
     import 'chartjs-adapter-date-fns';
     import annotationPlugin from 'chartjs-plugin-annotation';
-    
-    import {
-        CategoryScale,
-        Chart as ChartJS,
-        Filler,
-        Legend,
-        LinearScale,
-        LineController,
-        LineElement,
-        PointElement,
-        TimeScale,
-        Title,
-        Tooltip
-    } from 'chart.js';
-    
-    ChartJS.register(
-        annotationPlugin,
-        CategoryScale,
-        CustomLineChart,
-        Filler,
-        Legend,
-        LinearScale,
-        LineController,
-        LineElement,
-        PointElement,
-        TimeScale,
-        Title,
-        Tooltip,
-    );
+    import { CategoryScale, Chart as ChartJS, Filler, Legend, LinearScale, LineController, LineElement, PointElement, TimeScale, Title, Tooltip } from 'chart.js';
+    ChartJS.register(annotationPlugin, CategoryScale, CustomLineChart, Filler, Legend, LinearScale, LineController, LineElement, PointElement, TimeScale, Title, Tooltip );
     
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
@@ -205,7 +178,7 @@
     const loading = ref(false);
     
     // Tabs
-    const type = ref('price');
+    const valuation_tab = ref('price');
     
     // Switch
     const sniper_mode = ref(false);
@@ -233,11 +206,12 @@
     const prices = computed(() => chart.value?.prices?.map(item => item[1]));
     const volumes = computed(() => chart.value?.total_volumes?.map(item => item[1]));
     const m_caps = computed(() => chart.value?.market_caps?.map(item => item[1]));
-    const chart_data = computed(() => type.value === 'price' ? prices.value : m_caps.value);
+    const chart_data = computed(() => valuation_tab.value === 'price' ? prices.value : m_caps.value);
     const first_price = computed(() => chart_data.value[0]);
     const current_price = computed(() => getCoinPrice.value);
     const current_timeframe = computed(() => getTimeframe.value?.label);
     
+    // Fixed tooltip for sniper mode
     Tooltip.positioners.fixed_tooltip = function() {
         return {
             x: 0,
@@ -257,10 +231,10 @@
         // Conditional data
         const computed_styles = {
             annotation: {
-                horizontal_line_tooltip: {
+                starting_valuation_tooltip: {
                     backgroundColor: dark_mode.value ? '#606060' : '#353958', //  light-mode-primary : --secondary
                 },
-                current_price_tooltip: {
+                current_valuation_tooltip: {
                     backgroundColor:  (first_price.value > current_price.value) ? '#EA3943' : '#1f8c4d', // --destructive : random
                 },
                 borderRadius: 4,
@@ -387,8 +361,8 @@
                 annotation: {
                     annotations: {
                         ...(!sniper_mode.value && {
-                            // Horizontal line - in sync with CustomLineChart.js
-                            horizontal_line: {
+                            // Starting Valuation - Dotted Line - in sync with CustomLineChart.js
+                            starting_valuation_line: {
                                 type: 'line',
                                 yMin: first_price.value,
                                 yMax: first_price.value,
@@ -397,12 +371,12 @@
                                 borderDash: [ computed_styles.custom_line.dash_length, computed_styles.custom_line.dash_gap ],
                             },
                             
-                            // Horizontal line tooltip
-                            horizontal_line_tooltip: {
+                            // Starting Valuation - Tooltip
+                            starting_valuation_tooltip: {
                                 type: 'label',
                                 xValue: timestamps.value[0],
                                 yValue: first_price.value,
-                                backgroundColor: computed_styles.annotation.horizontal_line_tooltip.backgroundColor,
+                                backgroundColor: computed_styles.annotation.starting_valuation_tooltip.backgroundColor,
                                 color: computed_styles.annotation.color,
                                 content: formatNumber(first_price.value, {
                                     style: 'decimal', decimals: 0
@@ -413,12 +387,12 @@
                                 yAdjust: -15,
                             },
                             
-                            // Current Price - Tooltip
-                            current_price_tooltip: {
+                            // Current Valuation - Tooltip
+                            current_valuation_tooltip: {
                                 type: 'label',
                                 xValue: timestamps.value[timestamps.value.length - 1],
                                 yValue: current_price.value,
-                                backgroundColor: computed_styles.annotation.current_price_tooltip.backgroundColor,
+                                backgroundColor: computed_styles.annotation.current_valuation_tooltip.backgroundColor,
                                 color: computed_styles.annotation.color,
                                 content: formatNumber(current_price.value, {
                                     style: 'decimal' , decimals: 0,
@@ -447,7 +421,7 @@
                                 truncate: true,
                             });
                             const volume = formatNumber(volumes.value[index]);
-                            const label = type.value === 'price' ? 'Price' : 'Market Cap';
+                            const label = valuation_tab.value === 'price' ? 'Price' : 'Market Cap';
                             
                             return [
                                 `${label}: ${amount}`,
@@ -532,8 +506,8 @@
     const onHandleDrawer = bool => show_drawer.value = bool;
     watch(show_drawer, () => {
         // Switch to the price type once the supply drawer is closed
-        if(type.value === 'supply' && !show_drawer.value) {
-            nextTick(() => type.value = 'price');
+        if(valuation_tab.value === 'supply' && !show_drawer.value) {
+            nextTick(() => valuation_tab.value = 'price');
         }
     });
     
