@@ -525,10 +525,6 @@
             nextTick(() => valuation_tab.value = 'price');
         }
     });
-    
-    onMounted(async() => {
-        await getCoinChart();
-    });
 </script>
 
 <style scoped>
