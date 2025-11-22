@@ -120,12 +120,14 @@
     const platforms_summary = computed(() => platformsSummary.value);
     const disable_dropdown = computed(() => platforms_list.value?.length === 1);
     
-    const platforms = Object.entries(coin.value?.platforms)
-        .filter(([key, value]) => key.trim() !== '' && value.trim() !== '')
-        .map(([key, value]) => ({
-            'name': key,
-            'value': value
-        }));
+    const platforms = coin.value?.platforms
+        ? Object.entries(coin.value.platforms)
+            .filter(([key, value]) => key.trim() !== '' && value?.trim() !== '')
+            .map(([key, value]) => ({
+                name: key,
+                value: value
+            }))
+        : [];
     
     platforms.forEach(contract => platforms_list.value.push(contract.name));
     
