@@ -218,6 +218,21 @@
         .card-footer {
             @apply self-center;
         }
+        
+    }
+    
+    .coin-links {
+        .card-content {
+            @apply flex flex-col gap-12;
+        }
+        
+        .cards-container {
+            @apply flex flex-wrap 2xl:flex-col gap-9 2xl:gap-3;
+        }
+        
+        .coin-link-card {
+            @apply flex-1 items-center;
+        }
     }
     
     .news {
