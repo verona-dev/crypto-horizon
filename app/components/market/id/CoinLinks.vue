@@ -1,47 +1,53 @@
 <template>
     <Card class='coin-links bg-background flex flex-col 2xl:flex-row gap-16 p-10 lg:py-20 lg:px-12 w-full'>
-        <CardContent class='flex flex-col gap-12'>
+        <CardContent
+            v-if='links.main'
+            class='card-content'
+        >
             <!-- Project -->
             <h3>Project</h3>
             
-            <div class='flex flex-wrap 2xl:flex-col gap-9 2xl:gap-3'>
+            <div class='cards-container'>
                 <CoinLinkCard
                     v-for='link in links.main'
                     :link='link'
+                    class='coin-link-card'
                 />
             </div>
         </CardContent>
         
         <CardContent
             v-if='links.socials'
-            class='flex flex-col gap-12'
+            class='card-content'
         >
             <!-- Socials -->
             <h3>Socials</h3>
             
-            <div class='flex flex-wrap 2xl:flex-col gap-9 2xl:gap-3'>
+            <div class='cards-container'>
                 <CoinLinkCard
                     v-for='link in links.socials'
                     :key='link'
                     :link='link'
                     category='socials'
+                    class='coin-link-card'
                 />
             </div>
         </CardContent>
         
         <CardContent
             v-if='links.github'
-            class='flex flex-col gap-12'
+            class='card-content'
         >
             <!-- Github -->
             <h3>Github</h3>
             
-            <div class='flex flex-wrap 2xl:flex-col gap-9 2xl:gap-3'>
+            <div class='cards-container'>
                 <CoinLinkCard
                     v-for='link in links.github'
                     :key='link'
                     :link='link'
                     category='github'
+                    class='coin-link-card'
                 />
             </div>
         </CardContent>
