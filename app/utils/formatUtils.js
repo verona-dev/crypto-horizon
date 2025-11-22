@@ -64,6 +64,8 @@ const formatNumber = (value, {
 };
 
 const formatLinks = (coingeckoLinks, livecoinwatchLinks) => {
+    livecoinwatchLinks = livecoinwatchLinks || {};
+    
     const chat = coingeckoLinks.chat_url;
     const facebook = coingeckoLinks.facebook_username;
     const forum = coingeckoLinks.official_forum_url[0];
