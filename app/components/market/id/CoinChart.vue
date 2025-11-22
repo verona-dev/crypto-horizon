@@ -190,7 +190,6 @@
     
     watch(timeframe, async(newTimeframe) => {
         loading.value = true;
-        
         setChartTimeframe(newTimeframe);
         await getCoinChart();
         
@@ -207,8 +206,18 @@
     const volumes = computed(() => chart.value?.total_volumes?.map(item => item[1]));
     const m_caps = computed(() => chart.value?.market_caps?.map(item => item[1]));
     const chart_data = computed(() => valuation_tab.value === 'price' ? prices.value : m_caps.value);
-    const first_price = computed(() => chart_data.value[0]);
+    const starting_valuation = computed(() => chart_data.value[0]);
+    
+    // Current
     const current_price = computed(() => getCoinPrice.value);
+    const current_m_cap = computed(() => chart_data.value[chart_data.value.length - 1]);
+    const current_valuation = computed(() => {
+        if(valuation_tab.value === 'price') {
+            return current_price.value;
+        } else if(valuation_tab.value === 'mcap') {
+            return current_m_cap.value;
+        }
+    });
     const current_timeframe = computed(() => getTimeframe.value?.label);
     
     // Fixed tooltip for sniper mode
@@ -221,7 +230,7 @@
     
     watch(chart_data, () => {
         const chart_instance = chart_ref.value?.chart;
-        
+
         if (chart_instance) {
             chart_instance.update();
         }
@@ -233,9 +242,19 @@
             annotation: {
                 starting_valuation_tooltip: {
                     backgroundColor: dark_mode.value ? '#606060' : '#353958', //  light-mode-primary : --secondary
+                    content: valuation_tab.value === 'price' ? formatNumber(starting_valuation.value, {
+                        style: 'decimal',
+                    }) : formatNumber(starting_valuation.value, {
+                        compact: true, style: 'decimal', decimals: 3
+                    }),
                 },
                 current_valuation_tooltip: {
-                    backgroundColor:  (first_price.value > current_price.value) ? '#EA3943' : '#1f8c4d', // --destructive : random
+                    backgroundColor:  (starting_valuation.value > current_price.value) ? '#EA3943' : '#1f8c4d', // --destructive : random
+                    content: valuation_tab.value === 'price' ? formatNumber(current_valuation.value, {
+                        style: 'decimal',
+                    }) : formatNumber(current_valuation.value, {
+                        compact: true, style: 'decimal', decimals: 3
+                    }),
                 },
                 borderRadius: 4,
                 color: '#fff',
@@ -258,7 +277,7 @@
                         gradient.addColorStop(0.9, 'rgba(156,163,175, 0.4)');
                         gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
                     } else {
-                        if(first_price.value > current_price.value) {
+                        if(starting_valuation.value > current_price.value) {
                             gradient.addColorStop(0.2, 'rgba(201,55,76, 0.7)'); // --red-brick
                             gradient.addColorStop(0.5, 'rgba(201,55,76, 0.5)');
                             gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
@@ -282,7 +301,7 @@
                     borderDash: sniper_mode.value ? [ 0.1, 3 ] : [],
                 },
             },
-            lineBorderColor: (first_price.value > current_price.value) ? '#c9374c' : '#00bc7d', // --red-brick : --progress
+            lineBorderColor: (starting_valuation.value > current_price.value) ? '#c9374c' : '#00bc7d', // --red-brick : --progress
             scales: {
                 x: {
                     get maxTicksLimit() {
@@ -364,8 +383,8 @@
                             // Starting Valuation - Dotted Line - in sync with CustomLineChart.js
                             starting_valuation_line: {
                                 type: 'line',
-                                yMin: first_price.value,
-                                yMax: first_price.value,
+                                yMin: starting_valuation.value,
+                                yMax: starting_valuation.value,
                                 borderColor: computed_styles.custom_line.color,
                                 borderWidth: computed_styles.custom_line.width,
                                 borderDash: [ computed_styles.custom_line.dash_length, computed_styles.custom_line.dash_gap ],
@@ -375,12 +394,10 @@
                             starting_valuation_tooltip: {
                                 type: 'label',
                                 xValue: timestamps.value[0],
-                                yValue: first_price.value,
+                                yValue: starting_valuation.value,
                                 backgroundColor: computed_styles.annotation.starting_valuation_tooltip.backgroundColor,
                                 color: computed_styles.annotation.color,
-                                content: formatNumber(first_price.value, {
-                                    style: 'decimal', decimals: 0
-                                }),
+                                content: computed_styles.annotation.starting_valuation_tooltip.content,
                                 borderRadius: computed_styles.annotation.borderRadius,
                                 padding: computed_styles.annotation.padding,
                                 position: 'start',
@@ -391,12 +408,10 @@
                             current_valuation_tooltip: {
                                 type: 'label',
                                 xValue: timestamps.value[timestamps.value.length - 1],
-                                yValue: current_price.value,
+                                yValue: current_valuation.value,
                                 backgroundColor: computed_styles.annotation.current_valuation_tooltip.backgroundColor,
                                 color: computed_styles.annotation.color,
-                                content: formatNumber(current_price.value, {
-                                    style: 'decimal' , decimals: 0,
-                                }),
+                                content: computed_styles.annotation.current_valuation_tooltip.content,
                                 borderRadius: computed_styles.annotation.borderRadius,
                                 padding: computed_styles.annotation.padding,
                                 position: 'end',
