@@ -29,9 +29,13 @@ export default defineEventHandler(async (event) => {
         
         return await response.json();
     } catch (error) {
-        throw createError({
-            statusCode: 500,
-            statusMessage: 'Internal Server Error',
-        });
+        if (error.statusCode) {
+            throw error;
+        } else {
+            throw createError({
+                statusCode: 500,
+                statusMessage: 'Failed to fetch Livecoinwatch data',
+            });
+        }
     }
 });
