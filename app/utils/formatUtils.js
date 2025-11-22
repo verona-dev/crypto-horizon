@@ -63,30 +63,40 @@ const formatNumber = (value, {
     return new Intl.NumberFormat(locale, options).format(num);
 };
 
-const formatLivecoinwatchCoin = coin => {
-    return {
-        ...coin,
-        links: extractLinks(coin?.links),
-    }
-};
-
-const extractLinks = externalLinks => {
+const formatLinks = (coingeckoLinks, livecoinwatchLinks) => {
+    const chat = coingeckoLinks.chat_url;
+    const facebook = coingeckoLinks.facebook_username;
+    const forum = coingeckoLinks.official_forum_url[0];
+    const github = coingeckoLinks.repos_url?.github;
+    
+    const website = livecoinwatchLinks.website;
+    const whitepaper = livecoinwatchLinks.whitepaper;
+    
     let links = {
-        socials: {},
+        main: [],
+        socials: [],
+        github: [],
     };
     
-    for (let key in externalLinks) {
-        if (externalLinks.hasOwnProperty(key)) {
-            if(key === 'website' || key === 'whitepaper') {
-                links[key] = externalLinks[key];
-            } else {
-                if(externalLinks[key] !== null) {
-                    links.socials[key] = externalLinks[key];
-                }
+    if(chat.length) links.main.push({ key: 'chat', value: chat, });
+    if (facebook) links.socials.push({ key: "facebook", value: `https://www.facebook.com/${facebook}` });
+    if(forum) links.main.push({ key: 'forum', value: forum, });
+    if(github) {
+        github.forEach((src, index) => {
+            links.github.push({ key: `repository ${index + 1}`, value: src, });
+        })
+    };
+    if (website) links.main.push({ key: 'website', value: website });
+    if (whitepaper) links.main.push({ key: 'whitepaper', value: whitepaper });
+    
+    for (let key in livecoinwatchLinks) {
+        if (livecoinwatchLinks[key] !== null) {
+            if (key !== 'website' && key !== 'whitepaper' && livecoinwatchLinks[key]) {
+                links.socials.push({ key: key, value: livecoinwatchLinks[key] });
             }
         }
     }
-    
+
     return links;
 };
 
@@ -100,7 +110,7 @@ const goBack = (router, path) => {
 
 export {
     formatNumber,
-    formatLivecoinwatchCoin,
+    formatLinks,
     capitalize,
     goBack,
 };

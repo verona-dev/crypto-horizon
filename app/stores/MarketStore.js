@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { useFetchCoingecko } from '~/composables/apiCoingecko';
 import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 import { useFetchCmc } from '~/composables/apiCmc.js';
-import { formatLivecoinwatchCoin } from '~/utils/formatUtils.js';
+import { formatLinks } from '~/utils/formatUtils.js';
 import { useNewsStore } from '~/stores/NewsStore.js';
 
 export const useMarketStore = defineStore('MarketStore', {
@@ -13,6 +13,8 @@ export const useMarketStore = defineStore('MarketStore', {
             livecoinwatch: {},
             symbol: '',
             chart: {},
+            links: {},
+            linksArr: [],
             timeframe: 1,
             timeframes: [
                 { name: 'Day', label: '24h', timeframe: 1 },
@@ -105,8 +107,15 @@ export const useMarketStore = defineStore('MarketStore', {
             const NewsStore = useNewsStore();
             
             await this.getCoingeckoCoin(slug);
+            
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
-            await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
+            
+            const liveCoinWatchResponse = await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
+            
+            if(liveCoinWatchResponse) {
+                await this.formatCoinLinks();
+            }
+            
             await NewsStore.getNews( {
                 category: this.coin.symbol,
                 limit: 6,
@@ -144,6 +153,10 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
+        async formatCoinLinks() {
+            this.coin.links = formatLinks(this.coin?.coingecko?.links, this.coin?.livecoinwatch?.links);
+        },
+        
         async getLiveCoinWatch(route, options) {
             this.loading = true;
             
@@ -151,7 +164,8 @@ export const useMarketStore = defineStore('MarketStore', {
                 const response = await useFetchLiveCoinWatch(route, options);
                 
                 if(response && route === 'coins/single') {
-                    this.coin.livecoinwatch = formatLivecoinwatchCoin(response);
+                    this.coin.livecoinwatch = response;
+                    return response;
                 }
             } catch(error) {
                 console.error(error);
@@ -220,7 +234,7 @@ export const useMarketStore = defineStore('MarketStore', {
             return this.coin.timeframes.find(range => range.timeframe === this.coin.timeframe);
         },
         getCoinPrice() {
-          return this.coin.coingecko.market_data?.current_price?.usd;
+            return this.coin.coingecko.market_data?.current_price?.usd;
         },
     }
 });
