@@ -107,6 +107,6 @@
         }));
     });
     
-    const main_explorer_link = explorers.value[0].href;
-    const main_explorer_name = explorers.value[0].name;
+    const main_explorer_link = explorers.value[0]?.href;
+    const main_explorer_name = explorers.value[0]?.name;
 </script>

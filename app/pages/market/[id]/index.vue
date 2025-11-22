@@ -4,7 +4,7 @@
         
         <div v-else class='z-10'>
             <Card
-                v-if='coin && coin.livecoinwatch.name'
+                v-if='coin'
                 class='bg-transparent border-none shadow-none flex flex-col items-center'
             >
                 <CoinHeader :coin='coin' />
