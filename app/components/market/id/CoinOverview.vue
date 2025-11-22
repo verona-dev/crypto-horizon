@@ -382,7 +382,7 @@
         style: 'percent',
     });
     
-    const atl_price = formatNumber(coingecko.value?.market_data.atl?.usd);
+    const atl_price = formatNumber(coingecko.value?.market_data?.atl?.usd);
     const atl_date = coingecko.value?.market_data?.atl_date?.usd;
     const atl_date_from_now = dayjs(atl_date).fromNow();
     const atl_date_label = dayjs(atl_date).format('MMM D, YYYY');
@@ -391,10 +391,10 @@
         style: 'percent',
     });
     
-    const markets = livecoinwatch.value?.markets;
-    const pairs = livecoinwatch.value?.pairs;
-    const exchanges = livecoinwatch.value?.exchanges;
-    const hashing_algorithm = coingecko.value?.hashing_algorithm;
+    const markets = toRef(livecoinwatch.value?.markets ?? '');
+    const pairs = toRef(livecoinwatch.value?.pairs ?? '');
+    const exchanges = toRef(livecoinwatch.value?.exchanges ?? '');
+    const hashing_algorithm = toRef(coingecko.value?.hashing_algorithm ?? '');
     
     const ico = coingecko.value?.ico_data;
     const ico_start = ico?.ico_start_date;
