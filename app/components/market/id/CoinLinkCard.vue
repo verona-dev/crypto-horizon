@@ -82,7 +82,7 @@
         else if(name.value === 'forum') return 'ph:chat-centered-text-thin';
         else if(category.value === 'socials') return `ph:${name.value}-logo-thin`;
         else if(category.value === 'github') return 'ph:github-logo-thin';
-        else if(name.value === 'website') return 'ph:house-thin';
+        else if(name.value === 'homepage') return 'ph:house-thin';
         else if(name.value === 'whitepaper') return 'ph:book-open-thin';
         else return 'ph:link-light';
     });
