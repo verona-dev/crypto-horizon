@@ -364,8 +364,8 @@
     });
     
     const { coin } = toRefs(props);
-    const livecoinwatch = toRef(coin.value.livecoinwatch);
-    const coingecko = toRef(coin.value.coingecko);
+    const livecoinwatch = toRef(coin.value?.livecoinwatch);
+    const coingecko = toRef(coin.value?.coingecko);
     
     const genesis_date = coingecko.value?.genesis_date;
     const generis_date_from_now = dayjs(genesis_date).fromNow();
