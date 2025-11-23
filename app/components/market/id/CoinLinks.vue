@@ -1,7 +1,7 @@
 <template>
     <Card class='coin-links bg-background flex flex-col 2xl:flex-row gap-16 p-10 lg:py-20 lg:px-12 w-full'>
         <CardContent
-            v-if='links.main'
+            v-if='links.main?.length'
             class='card-content'
         >
             <!-- Project -->
@@ -17,7 +17,7 @@
         </CardContent>
         
         <CardContent
-            v-if='links.socials'
+            v-if='links.socials?.length'
             class='card-content'
         >
             <!-- Socials -->
@@ -35,7 +35,7 @@
         </CardContent>
         
         <CardContent
-            v-if='links.github'
+            v-if='links.github?.length'
             class='card-content'
         >
             <!-- Github -->
