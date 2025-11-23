@@ -182,7 +182,7 @@
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
     const livecoinwatch = toRef(coin.value?.livecoinwatch);
-    const livecoinwatch_symbol = computed(() => livecoinwatch.value?.symbol || 'Unknown');
+    const livecoinwatch_symbol = computed(() => livecoinwatch.value?.symbol || '');
     const watchlist_portfolio = formatNumber(coingecko.value?.watchlist_portfolio_users, {
         style: 'decimal', compact: true, decimals: 2,
     });
