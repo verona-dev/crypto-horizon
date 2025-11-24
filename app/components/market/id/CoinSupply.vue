@@ -12,11 +12,8 @@
                         
                         <DrawerDescription>Exploring Key Metrics</DrawerDescription>
                         
-                        <Select
-                            v-model='selected'
-                            default-value='progress-bars'
-                        >
-                            <SelectTrigger class='w-56 mt-4 p-5' data-size='default'>
+                        <Select v-model='selected' default-value='progress-bars'>
+                            <SelectTrigger class='w-56 mt-4 py-5 pl-4 pr-3 focus:ring-0' data-size='default'>
                                 <SelectValue class='w-2/3'/>
                             </SelectTrigger>
                             
@@ -69,24 +66,8 @@
     import CoinSupplyDoughnutChart from '@/components/market/id/CoinSupplyDoughnutChart.vue';
     import CoinSupplyStackedBars from '@/components/market/id/CoinSupplyStackedBars.vue';
     
-    import {
-        Drawer,
-        DrawerClose,
-        DrawerContent,
-        DrawerDescription,
-        DrawerFooter,
-        DrawerHeader,
-        DrawerTitle,
-    } from '~/components/ui/drawer';
-    
-    import {
-        Select,
-        SelectContent,
-        SelectGroup,
-        SelectItem,
-        SelectTrigger,
-        SelectValue,
-    } from '~/components/ui/select';
+    import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
+    import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
     
     const props = defineProps({
         coin: {
