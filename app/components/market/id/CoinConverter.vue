@@ -20,12 +20,12 @@
                 
                 <Input
                     :modelValue='coin_input'
-                    type='number'
+                    type='text'
                     id='coin'
                     class='coin-input !bg-background h-full pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-bl-none rounded-br-none'
                     :defaultValue='coin_price'
-                    @input='updatePrice("coin", $event)'
-                    @change='resetOnInvalidNumber($event)'
+                    @input='(e: Event) => onInput("coin", e)'
+                    @change='resetOnInvalidNumber'
                 />
             </div>
             
@@ -37,11 +37,11 @@
                 
                 <Input
                     :modelValue='usd_input'
-                    type='number'
+                    type='text'
                     id='usd'
-                    :defaultValue='coin_input'
                     class='usd-input !bg-background h-full pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-tl-none rounded-tr-none'
-                    @input='updatePrice("usd", $event)'
+                    :defaultValue='coin_input'
+                    @input='(e: Event) => onInput("usd", e)'
                     @change='resetOnInvalidNumber'
                 />
             </div>
@@ -68,47 +68,58 @@
         if (rate == null) return 0;
         return Math.round(rate * 100) / 100;
     });
-    const coin_input = ref(1);
-    const usd_input = ref(coin_price.value || 1);
+    const coin_input = ref('1');
+    const usd_input = ref(String(coin_price.value || 1));
     
-    const isNumberValid = (event: any) => {
-        const input = event.target?.value;
-        const isNumber = !isNaN(input);
-        const isNotEmpty = input.trim() !== '';
-        
-        return isNumber && isNotEmpty;
+    const isValidNumber = (value: string) => {
+        return /^\d*\.?\d*$/.test(value) && value.trim() !== '';
     };
     
-    const updatePrice = (type: 'coin' | 'usd', event: any) => {
-        if(isNumberValid(event)) {
-            const inputValue = parseFloat(event.target.value);
+    const onInput = (type: 'coin' | 'usd', event: Event) => {
+        let input = event?.target;
+        let sanitized_input = input?.value.replace(/[^\d.]/g, '');
+        const numbers = sanitized_input.split('.');
+        
+        if (numbers.length > 2) {
+            sanitized_input = numbers.shift() + '.' + numbers.join('');
+        }
+        
+        input.value = sanitized_input;
+        
+        if (isValidNumber(sanitized_input)) {
+            const inputVal = parseFloat(sanitized_input);
             
             if (type === 'coin') {
-                usd_input.value = Math.round(inputValue * coin_price.value * 100) / 100;
+                usd_input.value = String(Math.round(inputVal * coin_price.value * 100) / 100);
+                coin_input.value = sanitized_input;
+            } else {
+                coin_input.value = String(
+                    Math.round((inputVal / coin_price.value) * 10000) / 10000
+                );
+                usd_input.value = sanitized_input;
             }
-            
-            if(type === 'usd') {
-                coin_input.value = Math.round((inputValue / coin_price.value) * 10000) / 10000;
-            }
+        } else {
+            resetInputs();
         }
     };
     
-    const resetOnInvalidNumber = (event: any) => {
-        if(!isNumberValid(event)) {
+    const resetOnInvalidNumber = (event: Event) => {
+        const input = event.target;
+        if (!isValidNumber(input?.value)) {
             resetInputs();
         }
     };
     
     const resetInputs = () => {
-        coin_input.value = 1;
-        usd_input.value = coin_price.value;
+        coin_input.value = '1';
+        usd_input.value = String(coin_price.value);
     };
 </script>
 
 <style>
     .coin-converter {
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
+        input[type="text"]::-webkit-outer-spin-button,
+        input[type="text"]::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
