@@ -43,6 +43,7 @@
 
 <script setup>
     import CoinDeltaItem from '@/components/market/id/CoinDeltaItem.vue';
+    import { Card } from '~/components/ui/card';
     
     const props = defineProps({
         marketData: {
