@@ -4,7 +4,7 @@
         <CoinPerformance :coin='coin' />
         
         <!--  Explorers  -->
-        <CoinExplorers :links='coingecko.links'/>
+        <CoinExplorers v-if='links' :links='links'/>
         
         <!--  Contracts  -->
         <CoinContracts :coin='coingecko' />
@@ -37,6 +37,7 @@
     
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
+    const links = computed(() => coingecko.value?.links);
     const sentiment_up_percentage = coingecko.value?.sentiment_votes_up_percentage;
     const sentiment_down_percentage = coingecko.value?.sentiment_votes_down_percentage;
 </script>

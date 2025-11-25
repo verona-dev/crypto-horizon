@@ -64,13 +64,15 @@ const formatNumber = (value, {
 };
 
 const formatLinks = (coingeckoLinks, livecoinwatchLinks) => {
-    const chat = coingeckoLinks.chat_url;
+    livecoinwatchLinks = livecoinwatchLinks || {};
+    
+    const chat = coingeckoLinks.chat_url[0] || null;
     const facebook = coingeckoLinks.facebook_username;
     const forum = coingeckoLinks.official_forum_url[0];
     const github = coingeckoLinks.repos_url?.github;
     
-    const website = livecoinwatchLinks.website;
-    const whitepaper = livecoinwatchLinks.whitepaper;
+    const homepage = livecoinwatchLinks.website || coingeckoLinks.homepage[0];
+    const whitepaper = livecoinwatchLinks.whitepaper || coingeckoLinks.whitepaper;
     
     let links = {
         main: [],
@@ -78,16 +80,16 @@ const formatLinks = (coingeckoLinks, livecoinwatchLinks) => {
         github: [],
     };
     
-    if(chat.length) links.main.push({ key: 'chat', value: chat, });
-    if (facebook) links.socials.push({ key: "facebook", value: `https://www.facebook.com/${facebook}` });
+    if(chat) links.main.push({ key: 'chat', value: chat, });
+    if(facebook) links.socials.push({ key: "facebook", value: `https://www.facebook.com/${facebook}` });
     if(forum) links.main.push({ key: 'forum', value: forum, });
     if(github) {
         github.forEach((src, index) => {
             links.github.push({ key: `repository ${index + 1}`, value: src, });
         })
     };
-    if (website) links.main.push({ key: 'website', value: website });
-    if (whitepaper) links.main.push({ key: 'whitepaper', value: whitepaper });
+    if(homepage) links.main.push({ key: 'homepage', value: homepage });
+    if(whitepaper) links.main.push({ key: 'whitepaper', value: whitepaper });
     
     for (let key in livecoinwatchLinks) {
         if (livecoinwatchLinks[key] !== null) {

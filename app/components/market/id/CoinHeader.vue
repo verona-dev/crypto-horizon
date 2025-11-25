@@ -55,7 +55,7 @@
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='symbol flex items-center gap-4'>
                                 <h2 class='text-xl'>{{ coin.symbol }}</h2>
-                                <h2 v-if='livecoinwatch.symbol' class='text-xl'>{{ livecoinwatch.symbol }}</h2>
+                                <h2 v-if='livecoinwatch_symbol' class='text-xl'>{{ livecoinwatch_symbol }}</h2>
                             </HoverCardTrigger>
                             
                             <!--  Ico Description -->
@@ -182,6 +182,7 @@
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
     const livecoinwatch = toRef(coin.value?.livecoinwatch);
+    const livecoinwatch_symbol = computed(() => livecoinwatch.value?.symbol || '');
     const watchlist_portfolio = formatNumber(coingecko.value?.watchlist_portfolio_users, {
         style: 'decimal', compact: true, decimals: 2,
     });

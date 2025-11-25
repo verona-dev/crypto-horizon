@@ -24,7 +24,7 @@ export const useNewsStore = defineStore('NewsStore', {
                 };
                 
                 if(category) {
-                    params.category = category;
+                    params.categories = category;
                 }
                 
                 const { data, error } = await useFetchCoindesk('news/v1/article/list', params);

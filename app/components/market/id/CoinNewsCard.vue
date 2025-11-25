@@ -115,7 +115,7 @@
                 <!--  Publish date  -->
                 <div :openDelay='200' class='flex items-center gap-1'>
                     <NuxtIcon name='ph:calendar-blank-light' size='14px' class='mb-0.5' />
-                    <span class='text-xxs'>{{ published_date_from_now }}</span>
+                    <span class='text-xxs truncate'>{{ published_date_from_now }}</span>
                 </div>
                 
                 <!--  Reading duration  -->

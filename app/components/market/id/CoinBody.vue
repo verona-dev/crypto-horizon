@@ -16,7 +16,7 @@
                 <CoinChart :coin='coin' />
                 
                 <!-- Delta -->
-                <CoinDelta :marketData='coingecko.market_data' />
+                <CoinDelta v-if='market_data' :marketData='market_data' />
                 
                 <!-- Description -->
                 <CoinDescription :coin='coin' />
@@ -42,4 +42,5 @@
     
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
+    const market_data = computed(() => coingecko.value?.market_data);
 </script>

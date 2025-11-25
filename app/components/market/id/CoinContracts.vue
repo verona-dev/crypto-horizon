@@ -44,7 +44,7 @@
                     </Button>
                 </DropdownMenuTrigger>
                 
-                <DropdownMenuContent class='min-w-76 rounded-lg' align='end'>
+                <DropdownMenuContent class='bg-popover min-w-76 rounded-lg' align='end'>
                     <DropdownMenuLabel class='text-lg px-4 py-4 my-1'>Contracts</DropdownMenuLabel>
                     
                     <DropdownMenuSeparator />
@@ -120,12 +120,14 @@
     const platforms_summary = computed(() => platformsSummary.value);
     const disable_dropdown = computed(() => platforms_list.value?.length === 1);
     
-    const platforms = Object.entries(coin.value?.platforms)
-        .filter(([key, value]) => key.trim() !== '' && value.trim() !== '')
-        .map(([key, value]) => ({
-            'name': key,
-            'value': value
-        }));
+    const platforms = coin.value?.platforms
+        ? Object.entries(coin.value.platforms)
+            .filter(([key, value]) => key.trim() !== '' && value?.trim() !== '')
+            .map(([key, value]) => ({
+                name: key,
+                value: value
+            }))
+        : [];
     
     platforms.forEach(contract => platforms_list.value.push(contract.name));
     

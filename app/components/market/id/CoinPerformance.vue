@@ -73,6 +73,16 @@
     });
     
     const progress = computed(() => {
+        // fix for error: Invalid prop `value` of value `NaN` supplied to `ProgressRoot`
+        if (
+            current_price === undefined ||
+            high_24h_computed.value === undefined ||
+            low_24h_computed.value === undefined ||
+            high_24h_computed.value === null ||
+            low_24h_computed.value === null
+        ) {
+            return 0;
+        }
         const range = high_24h_computed.value - low_24h_computed.value;
         if (range < 0.005) return 99; // for stablecoins, since range can be as low as .001
         return ((current_price - low_24h_computed.value) / range) * 100;
