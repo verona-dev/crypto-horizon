@@ -28,7 +28,7 @@
                         </Button>
                     </TooltipTrigger>
                     
-                    <TooltipContent :side-offset='5'>
+                    <TooltipContent :side-offset='7'>
                         <p class='text-xs'>Copy link</p>
                     </TooltipContent>
                 </Tooltip>
@@ -47,7 +47,7 @@
                         </NuxtLink>
                     </TooltipTrigger>
                     
-                    <TooltipContent :side-offset="5">
+                    <TooltipContent :side-offset='7'>
                         <p class='text-xs'>Open link in a new tab</p>
                     </TooltipContent>
                 </Tooltip>
