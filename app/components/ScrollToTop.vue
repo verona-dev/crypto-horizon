@@ -15,7 +15,6 @@
 
 <script setup>
     import { Button } from '~/components/ui/button';
-    import { useRoute } from '#app';
     
     const route = useRoute();
     const scrollY = ref(0);

@@ -169,7 +169,6 @@
     const { getTimeframe, getCoinPrice } = storeToRefs(MarketStore);
     
     // Router
-    import { useRoute } from '#app';
     const router  = useRouter();
     
     const props = defineProps({
