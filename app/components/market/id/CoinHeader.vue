@@ -169,7 +169,7 @@
     const { getTimeframe, getCoinPrice } = storeToRefs(MarketStore);
     
     // Router
-    import { useRouter } from 'vue-router';
+    import { useRoute } from '#app';
     const router  = useRouter();
     
     const props = defineProps({

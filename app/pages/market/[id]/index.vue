@@ -40,7 +40,7 @@
     // const dark_mode = computed(() => colorMode.value === 'dark');
     
     // Router
-    import { useRoute } from 'vue-router';
+    import { useRoute } from '#app';
     const route = useRoute();
     // MarketStore
     import { storeToRefs } from 'pinia';

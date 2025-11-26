@@ -36,7 +36,7 @@
     import ScrollToTop from '~/components/ScrollToTop.vue';
     
     import { SidebarInset, SidebarProvider, MobileSidebarTrigger, } from '~/components/ui/sidebar';
-    import { useRoute } from 'vue-router';
+    import { useRoute } from '#app';
     const route = useRoute();
     // const title = computed(() => route.meta.title);
     

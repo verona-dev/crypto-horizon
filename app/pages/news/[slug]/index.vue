@@ -245,7 +245,7 @@
     import { Spinner } from '~/components/ui/spinner';
     
     // Router
-    import { useRoute, useRouter } from 'vue-router';
+    import { useRoute, useRouter } from '#app';
     const route = useRoute();
     const router  = useRouter();
     
