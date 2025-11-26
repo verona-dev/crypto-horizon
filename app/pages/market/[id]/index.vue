@@ -40,8 +40,8 @@
     // const dark_mode = computed(() => colorMode.value === 'dark');
     
     // Router
-    import { useRoute } from 'vue-router';
     const route = useRoute();
+    
     // MarketStore
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
@@ -49,10 +49,23 @@
     
     // State
     const { coin, loading } = storeToRefs(MarketStore);
+    // const coin_name = computed(() => coin.value?.name);
+    const id = computed(() => route.params?.id);
     // Methods
     const { getCoin } = MarketStore;
     
     onMounted(async() => {
         await getCoin(route.params.id);
+        // console.log(JSON.parse(JSON.stringify(route)));
+        // console.log(coin_name.value);
+    });
+    
+    useHead({
+        title: `Market | ${id.value}`,
+        meta: [
+            { name: 'description', content: `Cryptocurrency ${id.value}.` },
+            { property: 'og:title', content:  `Cryptocurrency ${id.value}.` },
+            { property: 'og:description', content:  `Cryptocurrency ${id.value}.` },
+        ],
     });
 </script>

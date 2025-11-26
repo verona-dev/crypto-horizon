@@ -14,6 +14,7 @@ export const useMarketStore = defineStore('MarketStore', {
             symbol: '',
             chart: {},
             links: {},
+            name: '',
             timeframe: 1,
             timeframes: [
                 { name: 'Day', label: '24h', timeframe: 1 },
@@ -108,6 +109,8 @@ export const useMarketStore = defineStore('MarketStore', {
             await this.getCoingeckoCoin(slug);
             
             this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
+            this.coin.name = this.coin?.coingecko?.name;
+            
             const { data, error } = await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
             
             if(data || error) {
