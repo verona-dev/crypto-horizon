@@ -6,6 +6,12 @@ export default defineNuxtConfig({
    devtools: { enabled: true },
 
    app: {
+      head: {
+         // title: 'Crypto Horizon',
+         htmlAttrs: {
+            lang: 'en',
+         },
+      },
       layoutTransition: { name: 'fade', mode: 'in-out' },
       pageTransition: {
          // Name options are: 'bounce', 'fade', 'page', 'custom',
