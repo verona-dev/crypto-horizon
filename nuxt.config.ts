@@ -7,7 +7,7 @@ export default defineNuxtConfig({
 
    app: {
       head: {
-         // title: 'Crypto Horizon',
+         title: 'Crypto Horizon',
          htmlAttrs: {
             lang: 'en',
          },
