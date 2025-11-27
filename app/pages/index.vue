@@ -41,6 +41,7 @@
     import WelcomeItem from '~/components/WelcomeItem.vue';
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
+    const page_title = 'Launch Pad';
     
     const welcomeItems = [
         {
@@ -73,8 +74,12 @@
         },
     ];
     
+    useHead({
+        title: page_title,
+    });
+    
     definePageMeta({
-        title: 'Launch Pad',
+        title: page_title,
         layout: 'welcome',
     })
 </script>
