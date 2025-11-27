@@ -14,6 +14,10 @@
     // const colorMode = useColorMode();
     // const dark_mode = computed(() => colorMode.value === 'dark');
     
+    definePageMeta({
+        title: 'Market',
+    });
+    
     onMounted(() => {
         getTrendingSearchList();
     });
