@@ -74,6 +74,7 @@
     ];
     
     definePageMeta({
+        title: 'Launch Pad',
         layout: 'welcome',
     })
 </script>
