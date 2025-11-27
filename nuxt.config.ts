@@ -2,12 +2,47 @@
 import { defineNuxtConfig } from 'nuxt/config';
 import tailwindcss from '@tailwindcss/vite';
 
+const site_name = 'Crypto Horizon';
+
 export default defineNuxtConfig({
    devtools: { enabled: true },
 
+   // SEO
+   site: {
+      url: process.env.SITE_URL, // canonical URL
+      name: site_name, // used in Title and Meta tags
+      description: 'Welcome to my crypto project!' // used in Meta tags
+   },
+
+   seo: { // seo utils
+      enabled: true,
+      meta: {
+         description: 'This is Seo util meta description',
+      },
+   },
+
+   ogImage: {
+      enabled: false
+   },
+   sitemap: {
+      enabled: false
+   },
+   robots: {
+      enabled: false
+   },
+   schemaOrg: {
+      enabled: false
+   },
+   linkChecker: {
+      enabled: false
+   },
+
+   // Project
    app: {
       head: {
-         title: 'Crypto Horizon',
+         titleTemplate: (pageTitle?: string) => {
+            return pageTitle ? `${pageTitle} | ${site_name}` : site_name;
+         },
          htmlAttrs: {
             lang: 'en',
          },
