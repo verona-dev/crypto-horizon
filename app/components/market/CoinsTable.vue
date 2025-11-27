@@ -104,7 +104,7 @@
                                             <FlexRender
                                                 :render='() => h("span", header.column.columnDef.label)'
                                                 :props='header.getContext()'
-                                                class='text-md'
+                                                class='text-md truncate'
                                             />
                                             
                                             <HoverCard v-if='header.column.columnDef.description' :openDelay='200' class='flex'>
@@ -273,6 +273,7 @@
                 </Table>
             </div>
             
+            <!--   Update status   -->
             <div class='flex items-center justify-center'>
                 <span class='text-xs'>Market data updated {{ lastApiUpdate }}</span>
             </div>
