@@ -41,7 +41,6 @@
     import WelcomeItem from '~/components/WelcomeItem.vue';
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
-    const page_title = 'Launch Pad';
     
     const welcomeItems = [
         {
@@ -74,14 +73,15 @@
         },
     ];
     
-    useHead({
-        title: page_title,
+    useSeoMeta({
+        title: 'Launchpad: The Crypto Universe Gateway',
+        ogTitle: 'CryptoHorizon Launchpad: The Crypto Universe Gateway 🚀',
+        description: 'Our Homepage. Start your crypto journey with real-time prices, charts, news, and learning resources. Explore the crypto universe with our space shuttle.',
     });
     
     definePageMeta({
-        title: page_title,
         layout: 'welcome',
-    })
+    });
 </script>
 
 <style scoped>
