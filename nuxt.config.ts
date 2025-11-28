@@ -24,6 +24,9 @@ export default defineNuxtConfig({
          colorScheme: 'dark light',
          description: description,
 
+         ogSiteName: site_name,
+         ogUrl: process.env.SITE_URL, // canonical URL
+         ogTitle: site_name,
          ogDescription: description,
          ogImage: {
             url: '',
@@ -33,10 +36,7 @@ export default defineNuxtConfig({
             alt: 'Project image',
          },
          ogLocale: 'en_US',
-         ogSiteName: site_name,
-         ogTitle: site_name,
          ogType: 'website',
-         ogUrl: process.env.SITE_URL, // canonical URL
          robots: 'index, follow',
          themeColor: [
             { content: '#14161f', media: '(prefers-color-scheme: dark)' },
