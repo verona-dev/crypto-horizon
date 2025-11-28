@@ -3,6 +3,7 @@ import { defineNuxtConfig } from 'nuxt/config';
 import tailwindcss from '@tailwindcss/vite';
 
 const site_name = 'CryptoHorizon';
+const description = 'Track real-time cryptocurrency prices, charts, latest news, market capitalization, DeFi analytics, and educational resources. Your ultimate crypto dashboard.';
 
 export default defineNuxtConfig({
    devtools: { enabled: true },
@@ -11,7 +12,7 @@ export default defineNuxtConfig({
    site: {
       url: process.env.SITE_URL, // canonical URL
       name: site_name, // used in Title and Meta tags
-      description: 'Track real-time cryptocurrency prices, charts, latest news, market capitalization, DeFi analytics, and educational resources. Your ultimate crypto dashboard.' // used in Meta tags
+      description: description, // used in Meta tags
    },
 
    // seo-utils
@@ -21,13 +22,21 @@ export default defineNuxtConfig({
          applicationName: site_name,
          author: 'verona-dev',
          colorScheme: 'dark light',
-         description: 'Track real-time cryptocurrency prices, charts, latest news, market capitalization, DeFi analytics, and educational resources. Your ultimate crypto dashboard.',
-         ogImage: '',
+         description: description,
+
+         ogDescription: description,
+         ogImage: {
+            url: '',
+            type: 'image/jpeg',
+            width: 1200,
+            height: 620,
+            alt: 'Project image',
+         },
          ogLocale: 'en_US',
          ogSiteName: site_name,
          ogTitle: site_name,
          ogType: 'website',
-         ogUrl: process.env.SITE_URL,
+         ogUrl: process.env.SITE_URL, // canonical URL
          robots: 'index, follow',
          themeColor: [
             { content: '#14161f', media: '(prefers-color-scheme: dark)' },
