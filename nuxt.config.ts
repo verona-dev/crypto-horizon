@@ -159,6 +159,7 @@ export default defineNuxtConfig({
          livecoinwatch_api_key: process.env.LIVECOINWATCH_API_KEY,
          coindesk_api: process.env.COINDESK_API_KEY,
          cmc_api_key: process.env.CMC_API_KEY,
+         site_url: process.env.SITE_URL,
       },
    },
 
