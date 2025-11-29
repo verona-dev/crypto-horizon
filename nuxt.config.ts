@@ -2,17 +2,80 @@
 import { defineNuxtConfig } from 'nuxt/config';
 import tailwindcss from '@tailwindcss/vite';
 
+const site_name = 'CryptoHorizon';
+const site_description = 'Track real-time cryptocurrency prices, charts, latest news, market capitalization, DeFi analytics, and educational resources. Your ultimate crypto dashboard.';
+const site_url = process.env.SITE_URL;
+
 export default defineNuxtConfig({
    devtools: { enabled: true },
 
+   // SEO
+   site: {
+      url: site_url, // canonical URL
+      name: site_name, // used in Title and Meta tags
+      description: site_description, // used in Meta tags
+   },
+
+   // seo-utils
+   seo: {
+      enabled: true,
+      meta: {
+         applicationName: site_name,
+         author: 'verona-dev',
+         colorScheme: 'dark light',
+         description: site_description,
+
+         ogSiteName: site_name,
+         ogUrl: site_url, // canonical URL
+         ogTitle: site_name,
+         ogDescription: site_description,
+         ogImage: {
+            url: '',
+            type: 'image/jpeg',
+            width: 1200,
+            height: 620,
+            alt: 'Project image',
+         },
+         ogLocale: 'en_US',
+         ogType: 'website',
+         robots: 'index, follow',
+         themeColor: [
+            { content: '#14161f', media: '(prefers-color-scheme: dark)' },
+            { content: '#f0f0f0', media: '(prefers-color-scheme: light)' },
+         ],
+      },
+   },
+
+   ogImage: {
+      enabled: false
+   },
+   sitemap: {
+      enabled: false
+   },
+   robots: {
+      enabled: false
+   },
+   schemaOrg: {
+      enabled: false
+   },
+   linkChecker: {
+      enabled: false
+   },
+
+   // Project
    app: {
       head: {
-         // title: 'Crypto Horizon',
+         titleTemplate: (pageTitle?: string) => {
+            return pageTitle ? `${pageTitle} | ${site_name}` : site_name;
+         },
          htmlAttrs: {
             lang: 'en',
          },
       },
       layoutTransition: { name: 'fade', mode: 'in-out' },
+      link: [
+         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ],
       pageTransition: {
          // Name options are: 'bounce', 'fade', 'page', 'custom',
          // Mode options are: 'out-in','in-out',
@@ -77,13 +140,14 @@ export default defineNuxtConfig({
    },
 
    modules: [
-      '@nuxt/image',
-      '@pinia/nuxt',
-      '@maz-ui/nuxt',
-      '@nuxtjs/color-mode',
-      '@nuxt/icon',
-      'shadcn-nuxt',
-      'motion-v/nuxt',
+     '@nuxt/image',
+     '@pinia/nuxt',
+     '@maz-ui/nuxt',
+     '@nuxtjs/color-mode',
+     '@nuxt/icon',
+     'shadcn-nuxt',
+     'motion-v/nuxt',
+     '@nuxtjs/seo',
    ],
 
    nitro: {
@@ -96,6 +160,7 @@ export default defineNuxtConfig({
          livecoinwatch_api_key: process.env.LIVECOINWATCH_API_KEY,
          coindesk_api: process.env.COINDESK_API_KEY,
          cmc_api_key: process.env.CMC_API_KEY,
+         site_url: process.env.SITE_URL,
       },
    },
 

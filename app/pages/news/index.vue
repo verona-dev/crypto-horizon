@@ -2,7 +2,7 @@
     <div class='news page'>
         <div v-if='!dark_mode' class='h-[450px]'>
             <div class='h-[350px] flex items-center'>
-                <h1 class='page-title'>Latest News</h1>
+                <h1 class='page-title'>{{ page_title }}</h1>
             </div>
         </div>
         
@@ -200,6 +200,7 @@
     const { news } = storeToRefs(NewsStore);
     const { getNews } = NewsStore;
     const articles = ref([]);
+    const page_title = 'Latest News';
     
     const getAuthor = (authors, source_name) => {
         if(!authors || authors.length === 0) return 'Unknown author';
@@ -276,8 +277,12 @@
         await getNews({ limit: 10 });
     });
     
+    useHead({
+        title: page_title,
+    });
+    
     definePageMeta({
-        title: 'Latest News',
+        title: page_title,
     });
 </script>
 

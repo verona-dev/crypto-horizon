@@ -73,9 +73,15 @@
         },
     ];
     
+    useSeoMeta({
+        title: 'Launchpad: The Crypto Universe Gateway',
+        ogTitle: 'CryptoHorizon Launchpad: The Crypto Universe Gateway 🚀',
+        description: 'Our Homepage. Start your crypto journey with real-time prices, charts, news, and learning resources. Explore the crypto universe with our space shuttle.',
+    });
+    
     definePageMeta({
         layout: 'welcome',
-    })
+    });
 </script>
 
 <style scoped>

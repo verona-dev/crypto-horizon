@@ -187,7 +187,7 @@ export const useMarketStore = defineStore('MarketStore', {
         
         async getCoinChart() {
             const id = this.coin.coingecko.id;
-
+            
             try {
                 const response = await useFetchCoingecko(`coins/${id}/market_chart`, {
                     query: {
@@ -202,6 +202,24 @@ export const useMarketStore = defineStore('MarketStore', {
                 }
             } catch(error) {
                 console.error(error)
+            }
+        },
+        
+        resetCoin() {
+            this.coin = {
+                coingecko: {},
+                livecoinwatch: {},
+                symbol: '',
+                chart: {},
+                links: {},
+                name: '',
+                timeframe: 1,
+                timeframes: [
+                    { name: 'Day', label: '24h', timeframe: 1 },
+                    { name: 'Week', label: '7d', timeframe: 7 },
+                    { name: 'Month', label: '30d', timeframe: 30 },
+                    { name: 'Year', label: '1y', timeframe: 365 },
+                ],
             }
         },
         
