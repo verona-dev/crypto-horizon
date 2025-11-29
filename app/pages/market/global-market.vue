@@ -32,6 +32,18 @@
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     
+    const title = 'Global Crypto Market Dashboard: Fear & Greed, BTC Dominance, Trending Coins & NFTs';
+    const description = 'Live insights into global crypto market data: Fear & Greed Index, Bitcoin dominance, trending coins, and trending NFTs. Track market sentiment and trends in real time.';
+    const keywords = 'crypto fear and greed index, market dominance, bitcoin dominance, ethereum dominance, stablecoins dominance, trending cryptocurrencies, top NFTs, crypto trends, trending NFTs, crypto market sentiment, global crypto data, crypto analytics, BTC market cap share';
+    
+    useSeoMeta({
+        title,
+        description,
+        ogTitle: title,
+        ogDescription: description,
+        keywords,
+    });
+    
     onMounted(() => {
         getTrendingSearchList();
     });
