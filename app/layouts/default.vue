@@ -30,13 +30,13 @@
 
 <script setup>
     import AppSidebar from '~/components/AppSidebar.vue';
-    import Breadcrumb from '~/components/Breadcrumb.vue';
+    // import Breadcrumb from '~/components/Breadcrumb.vue';
     import CoingeckoAttribution from '~/components/CoingeckoAttribution.vue';
     import MarketBar from '~/components/market/MarketBar.vue';
     import ScrollToTop from '~/components/ScrollToTop.vue';
     
     import { SidebarInset, SidebarProvider, MobileSidebarTrigger, } from '~/components/ui/sidebar';
-    const route = useRoute();
+    // const route = useRoute();
     // const title = computed(() => route.meta.title);
     
     import { useMarketStore } from '~/stores/MarketStore.js';
