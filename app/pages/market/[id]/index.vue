@@ -65,18 +65,20 @@
             : `Coin price, market cap, charts, and trading information.`
     );
     
+    /*
     const url = computed(() =>
         id.value
             ? `${process.env.SITE_URL}/market/${id.value}`
             : `${process.env.SITE_URL}`
     );
+    */
     
     useSeoMeta({
         title,
         description,
         ogTitle: title,
         ogDescription: description,
-        ogUrl: url,
+        // ogUrl: url,
     });
     
     onMounted(async() => {
