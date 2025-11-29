@@ -14,13 +14,16 @@
     // const colorMode = useColorMode();
     // const dark_mode = computed(() => colorMode.value === 'dark');
     
+    const title = 'Cryptocurrency Prices, Charts, and Market Capitalization';
+    const description = 'Live cryptocurrency prices, market cap, volume, circulating supply, and price charts for 10,000+ coins. Track Bitcoin, Ethereum, and 10,000+ altcoins in real time.';
+    const url = computed(() => `${process.env.SITE_URL}/market`);
+    
     useSeoMeta({
-        title: 'Cryptocurrency Prices, Charts, and Market Capitalization',
-        description: 'Live cryptocurrency prices, market cap, volume, circulating supply, and price charts for 10,000+ coins. Track Bitcoin, Ethereum, and altcoins in real time.',
-        
-        ogTitle: 'Live Cryptocurrency Prices & Market Data',
-        ogDescription: 'Real-time crypto prices, market cap, volume, and charts for Bitcoin, Ethereum, and 10,000+ altcoins.',
-        ogUrl: `${process.env.SITE_URL}/market`,
+        title ,
+        description,
+        ogTitle: title,
+        ogDescription: description,
+        ogUrl: url,
     });
     
     onMounted(() => {
