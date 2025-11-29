@@ -9,7 +9,7 @@
     
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    const { getTrendingSearchList } = MarketStore;
+    const { getTrendingSearchList, resetCoin } = MarketStore;
     
     // const colorMode = useColorMode();
     // const dark_mode = computed(() => colorMode.value === 'dark');
@@ -23,11 +23,8 @@
         ogUrl: `${process.env.SITE_URL}/market`,
     });
     
-    definePageMeta({
-        title: 'Cryptocurrency Prices, Charts, and Market Capitalization',
-    });
-    
     onMounted(() => {
         getTrendingSearchList();
+        resetCoin();
     });
 </script>
