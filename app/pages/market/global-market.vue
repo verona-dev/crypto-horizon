@@ -34,7 +34,7 @@
     const route = useRoute();
     const config = useRuntimeConfig();
     
-    const title = 'Global Crypto Market Dashboard: Fear & Greed, BTC Dominance, Trending Coins & NFTs';
+    const title = 'Global Crypto Dashboard: Fear & Greed, BTC Dominance, Trending Coins & NFTs';
     const description = 'Live insights into global crypto market data: Fear & Greed Index, Bitcoin dominance, trending coins, and trending NFTs. Track market sentiment and trends in real time.';
     const url = computed(() => `${config.public.site_url}${route.path}`);
     const keywords = 'crypto fear and greed index, market dominance, bitcoin dominance, ethereum dominance, stablecoins dominance, trending cryptocurrencies, top NFTs, crypto trends, trending NFTs, crypto market sentiment, global crypto data, crypto analytics, BTC market cap share';
