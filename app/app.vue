@@ -11,4 +11,17 @@
 
 <script>
     import 'vue-sonner/style.css';
+    
+    const route = useRoute();
+    const config = useRuntimeConfig();
+    const url = computed(() => `${config.public.site_url}${route.path}`);
+    
+    useHead(() => ({
+        link: [
+            {
+                rel: 'canonical',
+                href: url,
+            },
+        ],
+    }));
 </script>
