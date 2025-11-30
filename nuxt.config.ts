@@ -40,12 +40,16 @@ export default defineNuxtConfig({
          },
          ogLocale: 'en_US',
          ogType: 'website',
-         robots: 'index, follow',
+         // robots: 'index, follow',
          themeColor: [
             { content: '#14161f', media: '(prefers-color-scheme: dark)' },
             { content: '#f0f0f0', media: '(prefers-color-scheme: light)' },
          ],
       },
+   },
+
+   robots: {
+      enabled: true,
    },
 
    ogImage: {
@@ -54,9 +58,7 @@ export default defineNuxtConfig({
    sitemap: {
       enabled: false
    },
-   robots: {
-      enabled: false
-   },
+
    schemaOrg: {
       enabled: false
    },
@@ -142,14 +144,14 @@ export default defineNuxtConfig({
    },
 
    modules: [
-     '@nuxt/image',
-     '@pinia/nuxt',
-     '@maz-ui/nuxt',
-     '@nuxtjs/color-mode',
-     '@nuxt/icon',
-     'shadcn-nuxt',
-     'motion-v/nuxt',
-     '@nuxtjs/seo',
+      '@nuxt/image',
+      '@pinia/nuxt',
+      '@maz-ui/nuxt',
+      '@nuxtjs/color-mode',
+      '@nuxt/icon',
+      'shadcn-nuxt',
+      'motion-v/nuxt',
+      '@nuxtjs/seo',
    ],
 
    nitro: {
