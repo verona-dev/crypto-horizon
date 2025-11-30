@@ -273,16 +273,26 @@
         }
     });
     
+    // SEO
+    const route = useRoute();
+    const config = useRuntimeConfig();
+    
+    const title = 'Latest Cryptocurrency News & Blockchain Updates';
+    const description = 'Breaking crypto news: Bitcoin, Ethereum, DeFi, NFTs, regulations, and market trends. Stay updated with real-time articles from top sources.';
+    const url = computed(() => `${config.public.site_url}${route.path}`);
+    const keywords = 'crypto news, cryptocurrency news, Bitcoin news, Ethereum news, blockchain news, crypto updates, DeFi news, NFT news, crypto market news, latest crypto, crypto headlines, crypto rumors, altcoin news, crypto regulation, Web3 news';
+    
+    useSeoMeta({
+        title,
+        description,
+        ogTitle: title,
+        ogDescription: description,
+        ogUrl: url,
+        keywords,
+    });
+    
     onMounted(async() => {
         await getNews({ limit: 10 });
-    });
-    
-    useHead({
-        title: page_title,
-    });
-    
-    definePageMeta({
-        title: page_title,
     });
 </script>
 

@@ -65,18 +65,28 @@
             color: 'sky',
         },
         {
-            title: 'Learn',
+            title: 'Academy',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1755194748/andre-francois-mckenzie-uw3VwkDHiMI-unsplash_hs9t15.jpg',
-            alt: 'learn image',
-            to: '/learn',
+            alt: 'academy image',
+            to: '/academy',
             color: 'green-deco',
         },
     ];
     
+    // SEO
+    const route = useRoute();
+    const config = useRuntimeConfig();
+    
+    const title = 'Launchpad – The Crypto Universe Gateway';
+    const description = 'Launch into the world of crypto with real-time data, charts, news, and learning tools. Powered by space-grade tech.';
+    const url = computed(() => `${config.public.site_url}${route.path}`);
+    
     useSeoMeta({
-        title: 'Launchpad: The Crypto Universe Gateway',
-        ogTitle: 'CryptoHorizon Launchpad: The Crypto Universe Gateway 🚀',
-        description: 'Our Homepage. Start your crypto journey with real-time prices, charts, news, and learning resources. Explore the crypto universe with our space shuttle.',
+        title,
+        description,
+        ogTitle: title,
+        ogDescription: description,
+        ogUrl: url,
     });
     
     definePageMeta({
