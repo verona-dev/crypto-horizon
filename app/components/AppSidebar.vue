@@ -136,8 +136,8 @@
                 ],
             },
             {
-                title: 'Learn',
-                url: '/learn',
+                title: 'Academy',
+                url: '/academy',
                 icon: 'ph:books',
                 activeIcon: 'ph:books-fill',
                 get isActive() {
@@ -146,14 +146,14 @@
                 items: [
                     {
                         title: 'Learn',
-                        url: '/learn',
+                        url: '/academy',
                         get isActive() {
                             return isChildActive(this.url);
                         }
                     },
                     {
                         title: 'Dyor',
-                        url: '/learn/dyor',
+                        url: '/academy/dyor',
                         get isActive() {
                             return isChildActive(this.url);
                         }

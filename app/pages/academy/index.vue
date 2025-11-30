@@ -1,5 +1,5 @@
 <template>
-    <div class='learn'>
+    <div class='academy'>
         <h6>Coming Soon...</h6>
     </div>
 </template>
@@ -9,7 +9,3 @@
         title: 'Academy'
     });
 </script>
-
-<style scoped>
-    .learn {}
-</style>

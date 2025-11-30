@@ -65,10 +65,10 @@
             color: 'sky',
         },
         {
-            title: 'Learn',
+            title: 'Academy',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1755194748/andre-francois-mckenzie-uw3VwkDHiMI-unsplash_hs9t15.jpg',
-            alt: 'learn image',
-            to: '/learn',
+            alt: 'academy image',
+            to: '/academy',
             color: 'green-deco',
         },
     ];
