@@ -21,6 +21,11 @@
         ogDescription: description,
         ogUrl: url,
         keywords,
-        robots: 'noindex, nofollow',
+    });
+    
+    useHead({
+        meta: [
+            { name: 'robots', content: 'noindex, nofollow' }
+        ]
     });
 </script>
