@@ -31,6 +31,8 @@
     
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
+    
+    // SEO
     const route = useRoute();
     const config = useRuntimeConfig();
     
