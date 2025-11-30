@@ -30,7 +30,7 @@
     const route = useRoute();
     const config = useRuntimeConfig();
     
-    const title = "Trending Cryptocurrencies & NFT's";
+    const title = 'Trending Cryptocurrencies & NFTs';
     const description = 'Discover the most talked-about cryptocurrencies and NFTs right now. Track real-time trends, price surges, and viral projects in the crypto space.';
     const url = computed(() => `${config.public.site_url}${route.path}`);
     const keywords = 'trending cryptocurrencies, trending NFTs, crypto trends today, most talked about crypto, viral NFTs, trending coins, crypto hype, NFT floor price surge, trending altcoins, crypto social volume, trending crypto projects, NFT volume spike, trending memecoins, trending NFT collections';
