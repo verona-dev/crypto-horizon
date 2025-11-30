@@ -260,7 +260,7 @@
     const errorCode = computed(() => error.value?.statusCode);
     const errorMessage = computed(() => error.value?.statusMessage);
     
-    const title = computed(() => article.value?.TITLE || '');
+    const title = computed(() => article.value?.TITLE);
     const subtitle = computed(() => article.value?.SUBTITLE);
     const image_url = computed(() => article.value?.IMAGE_URL);
     const created_on = computed(() => article.value?.CREATED_ON);
@@ -359,6 +359,21 @@
             reading_duration.value = duration.value;
         }
     }, { immediate: true });
+    
+    // SEO
+    const config = useRuntimeConfig();
+    const description = computed(() => `${body_formatted.value[0]?.slice(0,150)}...`) || 'Read the full story on CryptoHorizon';
+    const url = computed(() => `${config.public.site_url}${route.path}`);
+    const seo_keywords = computed(() => categories.value?.map(item => item.CATEGORY.toLowerCase()).join(', '));
+    
+    useSeoMeta({
+        title,
+        description,
+        ogTitle: title,
+        ogDescription: description,
+        ogUrl: url,
+        keywords: seo_keywords,
+    });
     
     onMounted(async() => {
         const { source_key, guid } = route.query;
