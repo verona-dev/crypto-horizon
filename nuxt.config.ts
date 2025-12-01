@@ -32,8 +32,8 @@ export default defineNuxtConfig({
          ogTitle: site_name,
          ogDescription: site_description,
          ogImage: {
-            url: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545824/bitcoin-8629504_nbvzjj.jpg',
-            type: 'image/jpg',
+            url: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp',
+            type: 'image/webp',
             width: 1200,
             height: 620,
             alt: 'Project image',
