@@ -50,9 +50,7 @@ export default defineNuxtConfig({
 
    robots: {
       enabled: true,
-      config: {
-         disallow: ['/market/exchanges'],
-      },
+      disallow: ['market/exchanges'],
    },
 
    ogImage: {
