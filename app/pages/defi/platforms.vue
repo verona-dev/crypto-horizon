@@ -21,6 +21,7 @@
         ogDescription: description,
         ogUrl: url,
         keywords,
+        robots: 'noindex, nofollow',
     });
     
     useHead({
