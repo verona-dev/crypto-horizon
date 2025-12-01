@@ -52,6 +52,7 @@ export default defineNuxtConfig({
       disallow: [
          '/market/exchanges',
          '/defi',
+         '/academy',
       ],
    },
 
