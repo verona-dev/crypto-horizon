@@ -49,10 +49,10 @@ export default defineNuxtConfig({
    },
 
    robots: {
-      enabled: true,
       disallow: [
          '/market/exchanges',
          '/defi',
+         '/academy',
       ],
    },
 
