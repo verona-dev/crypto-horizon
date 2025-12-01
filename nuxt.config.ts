@@ -52,7 +52,9 @@ export default defineNuxtConfig({
       disallow: [
          '/market/exchanges',
          '/defi',
+         '/defi/platforms',
          '/academy',
+         '/academy/dyor',
       ],
    },
 
