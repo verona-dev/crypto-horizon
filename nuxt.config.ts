@@ -48,6 +48,10 @@ export default defineNuxtConfig({
       },
    },
 
+   linkChecker: {
+      enabled: true
+   },
+
    robots: {
       disallow: [
          '/market/exchanges',
@@ -67,9 +71,6 @@ export default defineNuxtConfig({
       enabled: false
    },
    schemaOrg: {
-      enabled: false
-   },
-   linkChecker: {
       enabled: false
    },
 
