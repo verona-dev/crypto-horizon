@@ -50,9 +50,9 @@
     
     // State
     const { coin, loading } = storeToRefs(MarketStore);
-    
     const id = computed(() => route.params?.id);
     
+    // SEO
     const title = computed(() =>
         coin.value?.name
             ? `${coin.value.name} Price: ${coin.value?.symbol} Live Price Chart, Market Cap, and News Today`
@@ -65,20 +65,11 @@
             : `Coin price, market cap, charts, and trading information.`
     );
     
-    /*
-    const url = computed(() =>
-        id.value
-            ? `${process.env.SITE_URL}/market/${id.value}`
-            : `${process.env.SITE_URL}`
-    );
-    */
-    
     useSeoMeta({
         title,
         description,
         ogTitle: title,
         ogDescription: description,
-        // ogUrl: url,
     });
     
     onMounted(async() => {

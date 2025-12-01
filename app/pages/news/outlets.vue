@@ -32,12 +32,8 @@
     const { getNewsOutlets } = NewsStore;
     
     // SEO
-    const route = useRoute();
-    const config = useRuntimeConfig();
-    
     const title = 'Crypto News Outlets Directory';
     const description = 'Discover the most reliable and trusted sources for cryptocurrency news, analysis, and insights. Browse by outlet and visit their websites.';
-    const url = computed(() => `${config.public.site_url}${route.path}`);
     const keywords = 'crypto news websites, best crypto news outlets, reliable crypto media, top Bitcoin news sites, Ethereum news portals, DeFi news sources, NFT news websites, crypto analysis, crypto insights, crypto journalism, trusted crypto media, crypto news directory, crypto media landscape';
         
     useSeoMeta({
@@ -45,7 +41,6 @@
         description,
         ogTitle: title,
         ogDescription: description,
-        ogUrl: url,
         keywords,
     });
     

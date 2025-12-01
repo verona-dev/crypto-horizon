@@ -16,14 +16,12 @@
     
     const title = 'Cryptocurrency Prices, Charts, and Market Capitalization';
     const description = 'Live cryptocurrency prices, market cap, volume, circulating supply, and price charts for 10,000+ coins. Track Bitcoin, Ethereum, and 10,000+ altcoins in real time.';
-    // const url = computed(() => `${process.env.SITE_URL}/market`);
     
     useSeoMeta({
         title ,
         description,
         ogTitle: title,
         ogDescription: description,
-        // ogUrl: url,
     });
     
     onMounted(() => {
