@@ -2,7 +2,7 @@
 import { defineNuxtConfig } from 'nuxt/config';
 import tailwindcss from '@tailwindcss/vite';
 
-const site_name = 'CryptoHorizon';
+const site_name = 'The Crypto Universe Gateway | Crypto Horizon';
 const site_description = 'Track real-time cryptocurrency prices, charts, latest news, market capitalization, DeFi analytics, and educational resources. Your ultimate crypto dashboard.';
 const site_url = process.env.SITE_URL;
 
@@ -51,14 +51,6 @@ export default defineNuxtConfig({
    linkChecker: {
       enabled: true
    },
-
-/*   ogImage: {
-      url: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757866406/GettyImages-471296532-c-db7bc08_edtsqo.webp',
-      type: 'image/webp',
-      width: 1200,
-      height: 620,
-      alt: 'Project image',
-   },*/
 
    robots: {
       disallow: [
