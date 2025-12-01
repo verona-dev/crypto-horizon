@@ -50,14 +50,17 @@ export default defineNuxtConfig({
 
    robots: {
       enabled: true,
-      disallow: ['/market/exchanges'],
+      disallow: [
+         '/market/exchanges',
+         '/defi',
+      ],
    },
 
    ogImage: {
       enabled: false
    },
    sitemap: {
-      enabled: false
+      enabled: true,
    },
 
    schemaOrg: {
