@@ -361,9 +361,7 @@
     }, { immediate: true });
     
     // SEO
-    const config = useRuntimeConfig();
     const description = computed(() => `${body_formatted.value[0]?.slice(0,150)}...`) || 'Read the full story on CryptoHorizon';
-    const url = computed(() => `${config.public.site_url}${route.path}`);
     const seo_keywords = computed(() => categories.value?.map(item => item.CATEGORY.toLowerCase()).join(', '));
     
     useSeoMeta({
@@ -371,7 +369,6 @@
         description,
         ogTitle: title,
         ogDescription: description,
-        ogUrl: url,
         keywords: seo_keywords,
     });
     
