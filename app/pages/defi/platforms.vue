@@ -22,10 +22,4 @@
         ogUrl: url,
         keywords,
     });
-    
-    useHead({
-        meta: [
-            { name: 'robots', content: 'noindex, nofollow' }
-        ]
-    });
 </script>
