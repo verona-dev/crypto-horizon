@@ -58,13 +58,14 @@ export default defineNuxtConfig({
       ],
    },
 
-   ogImage: {
-      enabled: false
-   },
    sitemap: {
       enabled: true,
    },
 
+
+   ogImage: {
+      enabled: false
+   },
    schemaOrg: {
       enabled: false
    },
