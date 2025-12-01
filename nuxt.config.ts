@@ -32,8 +32,8 @@ export default defineNuxtConfig({
          ogTitle: site_name,
          ogDescription: site_description,
          ogImage: {
-            url: '',
-            type: 'image/jpeg',
+            url: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757866406/GettyImages-471296532-c-db7bc08_edtsqo.webp',
+            type: 'image/webp',
             width: 1200,
             height: 620,
             alt: 'Project image',
@@ -52,6 +52,14 @@ export default defineNuxtConfig({
       enabled: true
    },
 
+/*   ogImage: {
+      url: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757866406/GettyImages-471296532-c-db7bc08_edtsqo.webp',
+      type: 'image/webp',
+      width: 1200,
+      height: 620,
+      alt: 'Project image',
+   },*/
+
    robots: {
       disallow: [
          '/market/exchanges',
@@ -66,10 +74,6 @@ export default defineNuxtConfig({
       enabled: true,
    },
 
-
-   ogImage: {
-      enabled: false
-   },
    schemaOrg: {
       enabled: false
    },
