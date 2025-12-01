@@ -23,6 +23,9 @@
     const url = computed(() => `${config.public.site_url}${route.path}`);
     const keywords = 'what is DeFi, DeFi explained, decentralized finance, DeFi basics, how DeFi works, DeFi vs CeFi, DeFi lending, yield farming, liquidity pools, DeFi risks, smart contracts, blockchain finance, crypto lending, DeFi applications';
     
+    import { useRobotsRule } from '#imports';
+    useRobotsRule({ noindex: true, nofollow: true });
+    
     useSeoMeta({
         title,
         description,
@@ -30,7 +33,7 @@
         ogDescription: description,
         ogUrl: url,
         keywords,
-        robots: 'noindex, nofollow',
+        // robots: 'noindex, nofollow',
     });
     
     onMounted(() => getCoingeckoGlobalDefi());
