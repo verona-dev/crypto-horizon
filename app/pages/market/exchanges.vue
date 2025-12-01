@@ -20,6 +20,6 @@
         ogDescription: description,
         ogUrl: url,
         keywords,
-        // robots: 'noindex, nofollow',
+        robots: 'noindex, nofollow',
     });
 </script>
