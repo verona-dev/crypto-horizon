@@ -48,6 +48,17 @@ export default defineNuxtConfig({
       },
    },
 
+   nitro: {
+      logLevel: 'verbose',
+      routeRules: {
+         '/market/exchanges': {
+            headers: {
+               'X-Robots-Tag': 'noindex, nofollow',
+            },
+         },
+      },
+   },
+
    robots: {
       enabled: true,
       disallow: ['market/exchanges'],
@@ -154,10 +165,6 @@ export default defineNuxtConfig({
       'motion-v/nuxt',
       '@nuxtjs/seo',
    ],
-
-   nitro: {
-      logLevel: 'verbose',
-   },
 
    runtimeConfig: {
       public: {
