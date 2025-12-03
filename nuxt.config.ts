@@ -2,7 +2,7 @@
 import { defineNuxtConfig } from 'nuxt/config';
 import tailwindcss from '@tailwindcss/vite';
 
-const site_name = 'The Crypto Universe Gateway | Crypto Horizon';
+const site_name = 'Crypto Horizon';
 const site_description = 'Track real-time cryptocurrency prices, charts, latest news, market capitalization, DeFi analytics, and educational resources. Your ultimate crypto dashboard.';
 const site_url = process.env.SITE_URL;
 
