@@ -74,7 +74,7 @@
     ];
     
     // SEO
-    const title = 'Crypto Horizon – The Crypto Universe Gateway';
+    const title = 'The Crypto Universe Gateway';
     const description = 'Launch into the world of crypto with real-time data, charts, news, and learning tools. Powered by space-grade tech.';
     
     useSeoMeta({
