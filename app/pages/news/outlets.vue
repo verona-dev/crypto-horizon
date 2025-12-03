@@ -41,6 +41,8 @@
         description,
         ogTitle: title,
         ogDescription: description,
+        twitterTitle: title,
+        twitterDescription: description,
         keywords,
     });
     
