@@ -81,11 +81,9 @@
     useSeoMeta({
         title,
         description,
-        
         ogTitle: title,
         ogDescription: description,
         ogImage: site_image,
-        
         twitterTitle: title,
         twitterDescription: description,
         twitterImage: site_image,
