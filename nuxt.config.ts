@@ -70,9 +70,9 @@ export default defineNuxtConfig({
    // Project
    app: {
       head: {
-         titleTemplate: (pageTitle?: string) => {
+         /*titleTemplate: (pageTitle?: string) => {
             return pageTitle ? `${pageTitle} | ${site_name}` : site_name;
-         },
+         },*/
          htmlAttrs: {
             lang: 'en',
          },
