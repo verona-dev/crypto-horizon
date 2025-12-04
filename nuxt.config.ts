@@ -154,6 +154,9 @@ export default defineNuxtConfig({
 
    nitro: {
       logLevel: 'verbose',
+      prerender: {
+         routes: ['/market']
+      },
    },
 
    runtimeConfig: {
@@ -171,7 +174,7 @@ export default defineNuxtConfig({
       componentDir: './app/components/ui'
    },
 
-   ssr: false,
+   ssr: true, // true for ogImage
 
    vite: {
       plugins: [
