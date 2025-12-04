@@ -4,8 +4,10 @@ export default defineNuxtPlugin(() => {
    const route = useRoute();
 
    const site_name = 'Crypto Horizon';
-   const current_url = computed(() => `${config.public.site_url}${route.path}`);
+   // const current_url = computed(() => `${config.public.site_url}${route.path}`);
    const site_image = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp';
+   const head = useRequestURL();
+   const current_url = head.href;
 
    useHead({
       titleTemplate: (pageTitle?: string) => {

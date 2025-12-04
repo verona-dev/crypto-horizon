@@ -70,9 +70,9 @@ export default defineNuxtConfig({
    // Project
    app: {
       head: {
-         titleTemplate: (pageTitle?: string) => {
+         /*titleTemplate: (pageTitle?: string) => {
             return pageTitle ? `${pageTitle} | ${site_name}` : site_name;
-         },
+         },*/
          htmlAttrs: {
             lang: 'en',
          },
@@ -154,6 +154,9 @@ export default defineNuxtConfig({
 
    nitro: {
       logLevel: 'verbose',
+      prerender: {
+         routes: ['/market']
+      },
    },
 
    runtimeConfig: {
@@ -171,7 +174,7 @@ export default defineNuxtConfig({
       componentDir: './app/components/ui'
    },
 
-   ssr: false,
+   ssr: true, // true for ogImage
 
    vite: {
       plugins: [
