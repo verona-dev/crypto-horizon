@@ -18,5 +18,6 @@ export default defineNuxtPlugin(() => {
          alt: 'Project image',
       },
       twitterImage: site_image,
+      twitterImageAlt: 'Live cryptocurrency price table and charts',
    });
 });
