@@ -89,6 +89,18 @@
         twitterImage: site_image,
     });
     
+    /*
+    useHead({
+        link: [
+            {
+                rel: 'icon',
+                type: 'image/x-icon',
+                href: '/favicon.ico'
+            }
+        ]
+    });
+    */
+    
     definePageMeta({
         layout: 'welcome',
     });
