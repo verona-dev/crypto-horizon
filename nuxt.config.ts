@@ -5,7 +5,6 @@ import tailwindcss from '@tailwindcss/vite';
 const site_name = 'Crypto Horizon';
 const site_description = 'Track real-time cryptocurrency prices, charts, latest news, market capitalization, DeFi analytics, and educational resources. Your ultimate crypto dashboard.';
 const site_url = process.env.SITE_URL;
-const site_image = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp';
 
 export default defineNuxtConfig({
    devtools: { enabled: true },
@@ -23,6 +22,7 @@ export default defineNuxtConfig({
    seo: {
       enabled: true,
       meta: {
+         // ogImage options in /plugins/global-meta.ts
          applicationName: site_name,
          author: 'verona-dev',
          colorScheme: 'dark light',
@@ -32,13 +32,6 @@ export default defineNuxtConfig({
          ogUrl: site_url, // canonical URL
          ogTitle: site_name,
          ogDescription: site_description,
-         ogImage: {
-            url: site_image,
-            type: 'image/webp',
-            width: 1200,
-            height: 620,
-            alt: 'Project image',
-         },
          ogLocale: 'en_US',
          ogType: 'website',
          robots: 'index, follow',
@@ -49,8 +42,6 @@ export default defineNuxtConfig({
          twitterCard: 'summary_large_image',
          twitterTitle: site_name,
          twitterDescription: site_description,
-         twitterImage: site_image,
-         twitterImageAlt: 'Live cryptocurrency price table and charts',
       },
    },
 
@@ -87,10 +78,6 @@ export default defineNuxtConfig({
          },
       },
       layoutTransition: { name: 'fade', mode: 'in-out' },
-      link: [
-         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-         { rel: 'apple-touch-icon', href: '/favicon.ico' },
-      ],
       pageTransition: {
          // Name options are: 'bounce', 'fade', 'page', 'custom',
          // Mode options are: 'out-in','in-out',
