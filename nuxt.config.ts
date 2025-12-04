@@ -32,13 +32,6 @@ export default defineNuxtConfig({
          ogUrl: site_url, // canonical URL
          ogTitle: site_name,
          ogDescription: site_description,
-         ogImage: {
-            url: site_image,
-            type: 'image/webp',
-            width: 1200,
-            height: 620,
-            alt: 'Project image',
-         },
          ogLocale: 'en_US',
          ogType: 'website',
          robots: 'index, follow',
