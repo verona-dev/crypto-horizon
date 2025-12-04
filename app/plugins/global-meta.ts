@@ -1,5 +1,9 @@
 
 export default defineNuxtPlugin(() => {
+   const config = useRuntimeConfig();
+   const route = useRoute();
+
+   const url = `${config.public.site_url}${route.path}`;
    const site_image = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp';
 
    useHead({
@@ -10,6 +14,7 @@ export default defineNuxtPlugin(() => {
    });
 
    useSeoMeta({
+      ogUrl: url,
       ogImage: {
          url: site_image,
          type: 'image/webp',
