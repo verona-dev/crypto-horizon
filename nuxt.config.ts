@@ -81,10 +81,6 @@ export default defineNuxtConfig({
          },
       },
       layoutTransition: { name: 'fade', mode: 'in-out' },
-      link: [
-         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-         { rel: 'apple-touch-icon', href: '/favicon.ico' },
-      ],
       pageTransition: {
          // Name options are: 'bounce', 'fade', 'page', 'custom',
          // Mode options are: 'out-in','in-out',
