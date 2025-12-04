@@ -18,6 +18,5 @@ export default defineNuxtPlugin(() => {
          alt: 'Project image',
       },
       twitterImage: site_image,
-      twitterCard: 'summary_large_image',
    });
 });

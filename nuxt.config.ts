@@ -23,6 +23,7 @@ export default defineNuxtConfig({
    seo: {
       enabled: true,
       meta: {
+         // other options in /plugins/global-meta.ts
          applicationName: site_name,
          author: 'verona-dev',
          colorScheme: 'dark light',

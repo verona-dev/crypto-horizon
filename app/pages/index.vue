@@ -76,30 +76,15 @@
     // SEO
     const title = 'Launchpad: The Crypto Universe Gateway';
     const description = 'Launch into the world of cryptocurrencies with real-time data, charts, news, and learning tools. Powered by space-grade tech.';
-    const site_image = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp';
     
     useSeoMeta({
         title,
         description,
         ogTitle: title,
         ogDescription: description,
-        ogImage: site_image,
         twitterTitle: title,
         twitterDescription: description,
-        twitterImage: site_image,
     });
-    
-    /*
-    useHead({
-        link: [
-            {
-                rel: 'icon',
-                type: 'image/x-icon',
-                href: '/favicon.ico'
-            }
-        ]
-    });
-    */
     
     definePageMeta({
         layout: 'welcome',
