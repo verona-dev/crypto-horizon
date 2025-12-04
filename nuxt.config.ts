@@ -12,7 +12,7 @@ export default defineNuxtConfig({
    // SEO
    // site-config
    site: {
-      url: site_url, // canonical URL
+      // url: site_url, // canonical URL
       // name: site_name, // used in Title and Meta tags
       // description: site_description, // used in Meta tags
       defaultLocale: 'en_US',
@@ -70,9 +70,9 @@ export default defineNuxtConfig({
    // Project
    app: {
       head: {
-         titleTemplate: (pageTitle?: string) => {
+        /* titleTemplate: (pageTitle?: string) => {
             return pageTitle ? `${pageTitle} | ${site_name}` : site_name;
-         },
+         },*/
          htmlAttrs: {
             lang: 'en',
          },
