@@ -17,6 +17,13 @@
     const title = 'Cryptocurrency Prices, Charts, and Market Capitalization';
     const description = 'Live cryptocurrency prices, market cap, volume, circulating supply, and price charts for 10,000+ coins. Track Bitcoin, Ethereum, and 10,000+ altcoins in real time.';
     
+    useHead({
+        title: 'This is Market Title',
+        meta: [
+            { property: 'og:title', content: 'This is OG Title' },
+        ],
+    });
+    
     useSeoMeta({
         title,
         description,
