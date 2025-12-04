@@ -26,12 +26,12 @@ export default defineNuxtConfig({
          applicationName: site_name,
          author: 'verona-dev',
          colorScheme: 'dark light',
-         description: site_description,
+         // description: site_description,
 
          ogSiteName: site_name,
-         ogUrl: site_url, // canonical URL
-         ogTitle: site_name,
-         ogDescription: site_description,
+         // ogUrl: site_url, // canonical URL
+         // ogTitle: site_name,
+         // ogDescription: site_description,
          ogLocale: 'en_US',
          ogType: 'website',
          robots: 'index, follow',
@@ -40,8 +40,8 @@ export default defineNuxtConfig({
             { content: '#f0f0f0', media: '(prefers-color-scheme: light)' },
          ],
          twitterCard: 'summary_large_image',
-         twitterTitle: site_name,
-         twitterDescription: site_description,
+         // twitterTitle: site_name,
+         // twitterDescription: site_description,
       },
    },
 
