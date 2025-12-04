@@ -3,7 +3,7 @@ import { defineNuxtConfig } from 'nuxt/config';
 import tailwindcss from '@tailwindcss/vite';
 
 const site_name = 'Crypto Horizon';
-const site_description = 'Track real-time cryptocurrency prices, charts, latest news, market capitalization, DeFi analytics, and educational resources. Your ultimate crypto dashboard.';
+// const site_description = 'Track real-time cryptocurrency prices, charts, latest news, market capitalization, DeFi analytics, and educational resources. Your ultimate crypto dashboard.';
 const site_url = process.env.SITE_URL;
 
 export default defineNuxtConfig({
@@ -12,9 +12,9 @@ export default defineNuxtConfig({
    // SEO
    // site-config
    site: {
-      url: site_url, // canonical URL
+      // url: site_url, // canonical URL
       name: site_name, // used in Title and Meta tags
-      description: site_description, // used in Meta tags
+      // description: site_description, // used in Meta tags
       defaultLocale: 'en_US',
    },
 
@@ -26,12 +26,12 @@ export default defineNuxtConfig({
          applicationName: site_name,
          author: 'verona-dev',
          colorScheme: 'dark light',
-         description: site_description,
+         // description: site_description,
 
          ogSiteName: site_name,
-         ogUrl: site_url, // canonical URL
-         ogTitle: site_name,
-         ogDescription: site_description,
+         // ogUrl: site_url, // canonical URL
+         // ogTitle: site_name,
+         // ogDescription: site_description,
          ogLocale: 'en_US',
          ogType: 'website',
          robots: 'index, follow',
@@ -40,8 +40,8 @@ export default defineNuxtConfig({
             { content: '#f0f0f0', media: '(prefers-color-scheme: light)' },
          ],
          twitterCard: 'summary_large_image',
-         twitterTitle: site_name,
-         twitterDescription: site_description,
+         // twitterTitle: site_name,
+         // twitterDescription: site_description,
       },
    },
 
