@@ -11,9 +11,6 @@
     const MarketStore = useMarketStore();
     const { getTrendingSearchList, resetCoin } = MarketStore;
     
-    // const colorMode = useColorMode();
-    // const dark_mode = computed(() => colorMode.value === 'dark');
-    
     // SEO
     const title = 'Cryptocurrency Prices, Charts, and Market Capitalization';
     const description = 'Live cryptocurrency prices, market cap, volume, circulating supply, and price charts for 10,000+ coins. Track Bitcoin, Ethereum, and 10,000+ altcoins in real time.';
