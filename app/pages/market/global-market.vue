@@ -18,7 +18,7 @@
     </div>
 </template>
 
-<script setup>
+<script lang='ts' setup>
     import MarketFearGreed from '~/components/market/MarketFearGreed.vue';
     import MarketDominance from '~/components/market/MarketDominance.vue';
     import TopTrendingCoins from '~/components/market/TopTrendingCoins.vue';
