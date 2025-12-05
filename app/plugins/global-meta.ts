@@ -8,6 +8,9 @@ export default defineNuxtPlugin(() => {
       // titleTemplate: (pageTitle?: string) => {
       //    return pageTitle ? `${pageTitle} | ${site_name}` : site_name;
       // },
+      meta: [
+         { name: 'robots', content: 'index, follow' },
+      ],
       link: [
          { rel: 'canonical', href: current_url },
          { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
