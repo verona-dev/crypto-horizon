@@ -1,6 +1,6 @@
 
 export default defineNuxtPlugin(() => {
-   const site_image = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp';
+   const site_image = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1761173267/crypto-horizon_-_logo-12_js96kq.png';
    const head = useRequestURL();
    const current_url = computed(() => head.href);
 
@@ -19,7 +19,7 @@ export default defineNuxtPlugin(() => {
       ogUrl: current_url,
       ogImage: {
          url: site_image,
-         type: 'image/webp',
+         type: 'image/png',
          width: 1200,
          height: 620,
          alt: 'Project image',
