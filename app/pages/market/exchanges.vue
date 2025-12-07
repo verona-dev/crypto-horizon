@@ -8,15 +8,9 @@
     // SEO
     const title = 'Crypto Exchanges: Ranked by Volume & Trust Score';
     const description = 'Compare crypto exchanges by trading volume, trust score, supported coins, fees, and more. Find the best CEX and DEX platforms for trading Bitcoin, Ethereum, and altcoins.';
-    const keywords = 'crypto exchanges, best crypto exchange, top cryptocurrency exchanges, CEX, centralized exchange, Binance, Coinbase, Kraken, exchange volume, trust score, crypto trading platforms, exchange rankings, compare crypto exchanges, high volume exchanges';
     
-    useSeoMeta({
+    definePageMeta({
         title,
         description,
-        ogTitle: title,
-        ogDescription: description,
-        twitterTitle: title,
-        twitterDescription: description,
-        keywords,
     });
 </script>
