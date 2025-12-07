@@ -75,18 +75,7 @@
     
     // SEO
     const title = 'Launchpad: The Crypto Universe Gateway';
-    const description = 'Launch into the world of cryptocurrencies with real-time data, charts, news, and learning tools. Powered by space-grade tech.';
-    
-    /*
-    useSeoMeta({
-        title,
-        description,
-        ogTitle: title,
-        ogDescription: description,
-        twitterTitle: title,
-        twitterDescription: description,
-    });
-    */
+    const description = 'Track real-time cryptocurrency prices, charts, latest news, market capitalization, DeFi analytics, and educational resources. Your ultimate crypto dashboard.';
     
     definePageMeta({
         layout: 'welcome',
