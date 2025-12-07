@@ -37,7 +37,6 @@
     const description = 'Live insights into global crypto market data: Fear & Greed Index, Bitcoin dominance, trending coins, and trending NFTs. Track market sentiment and trends in real time.';
     
     definePageMeta({
-        layout: 'welcome',
         title,
         description,
     });
