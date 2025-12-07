@@ -77,17 +77,7 @@
     const title = 'Launchpad: The Crypto Universe Gateway';
     const description = 'Launch into the world of cryptocurrencies with real-time data, charts, news, and learning tools. Powered by space-grade tech.';
     
-    useHead({
-        title,
-        meta: [
-            { name: 'description', content: description },
-            { property: 'og:title', content: title },
-            { property: 'og:description', content: description },
-            { name: 'twitter:title', content: title },
-            { name: 'twitter:description', content: description },
-        ],
-    });
-    
+    /*
     useSeoMeta({
         title,
         description,
@@ -96,9 +86,12 @@
         twitterTitle: title,
         twitterDescription: description,
     });
+    */
     
     definePageMeta({
         layout: 'welcome',
+        title,
+        description,
     });
 </script>
 
