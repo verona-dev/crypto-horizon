@@ -144,8 +144,8 @@ export default defineNuxtConfig({
    },
 
    modules: [
-      '@nuxt/image',
       '@pinia/nuxt',
+      '@nuxt/image',
       '@maz-ui/nuxt',
       '@nuxtjs/color-mode',
       '@nuxt/icon',
