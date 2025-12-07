@@ -74,11 +74,6 @@
         twitterDescription: description,
     });
     
-    definePageMeta({
-        title,
-        description,
-    });
-    
     onMounted(async() => {
         await getCoin(id.value);
     });
