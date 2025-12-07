@@ -24,11 +24,6 @@
         twitterDescription: description,
     });
     
-    definePageMeta({
-        title,
-        description,
-    });
-    
     onMounted(() => {
         getTrendingSearchList();
         resetCoin();
