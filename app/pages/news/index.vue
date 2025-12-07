@@ -276,16 +276,10 @@
     // SEO
     const title = 'Latest Cryptocurrency News & Blockchain Updates';
     const description = 'Breaking crypto news: Bitcoin, Ethereum, DeFi, NFTs, regulations, and market trends. Stay updated with real-time articles from top sources.';
-    const keywords = 'crypto news, cryptocurrency news, Bitcoin news, Ethereum news, blockchain news, crypto updates, DeFi news, NFT news, crypto market news, latest crypto, crypto headlines, crypto rumors, altcoin news, crypto regulation, Web3 news';
     
-    useSeoMeta({
+    definePageMeta({
         title,
         description,
-        ogTitle: title,
-        ogDescription: description,
-        twitterTitle: title,
-        twitterDescription: description,
-        keywords,
     });
     
     onMounted(async() => {
