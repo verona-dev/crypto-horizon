@@ -362,10 +362,16 @@
     
     // SEO
     const description = computed(() => `${body_formatted.value[0]?.slice(0,150)}...`) || 'Read the full story on CryptoHorizon';
+    const seo_keywords = computed(() => categories.value?.map(item => item.CATEGORY.toLowerCase()).join(', '));
     
-    definePageMeta({
+    useSeoMeta({
         title,
         description,
+        ogTitle: title,
+        ogDescription: description,
+        twitterTitle: title,
+        twitterDescription: description,
+        keywords: seo_keywords,
     });
     
     onMounted(async() => {
