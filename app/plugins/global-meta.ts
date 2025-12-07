@@ -13,6 +13,9 @@ export default defineNuxtPlugin(() => {
       meta: [
          { name: 'robots', content: 'index, follow' },
       ],
+      htmlAttrs: {
+         lang: 'en',
+      },
       link: [
          { rel: 'canonical', href: current_url },
          { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
