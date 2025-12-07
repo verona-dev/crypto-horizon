@@ -5,7 +5,7 @@ export default defineNuxtPlugin(() => {
    const site_image = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1761173267/crypto-horizon_-_logo-12_js96kq.png';
    const head = useRequestURL();
    const current_url = computed(() => head.href);
-   const page_meta = route.meta;
+   const page_meta = (route.meta);
    const page_title = page_meta.title as string;
    const page_description = page_meta.description as string;
 
@@ -14,7 +14,21 @@ export default defineNuxtPlugin(() => {
       //    return pageTitle ? `${pageTitle} | ${site_name}` : site_name;
       // },
       titleTemplate: `%s | ${site_title}`,
+      title: page_title,
       meta: [
+         { name: 'description', content: page_description },
+         { property: 'og:title', content: page_title },
+         { property: 'og:description', content: page_description },
+         { property: 'og:url', content: current_url },
+         { property: 'og:image', content: site_image },
+         { property: 'og:image:type', content: 'image/png' },
+         { property: 'og:image:width', content: '1200' },
+         { property: 'og:image:height', content: '620' },
+         { property: 'og:image:alt', content: 'Project image' },
+         { name: 'twitter:title', content: page_title },
+         { name: 'twitter:description', content: page_description },
+         { name: 'twitter:image', content: site_image },
+         { name: 'twitter:image:alt', content: 'Live cryptocurrency price table and charts' },
          { name: 'robots', content: 'index, follow' },
       ],
       htmlAttrs: {
