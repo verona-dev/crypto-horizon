@@ -35,27 +35,11 @@
     // SEO
     const title = 'Global Market Dashboard: Fear & Greed, BTC Dominance, Trending Coins & NFTs';
     const description = 'Live insights into global crypto market data: Fear & Greed Index, Bitcoin dominance, trending coins, and trending NFTs. Track market sentiment and trends in real time.';
-    const keywords = 'crypto fear and greed index, market dominance, bitcoin dominance, ethereum dominance, stablecoins dominance, trending cryptocurrencies, top NFTs, crypto trends, trending NFTs, crypto market sentiment, global crypto data, crypto analytics, BTC market cap share';
     
-    useHead({
-        title,
-        meta: [
-            { name: 'description', content: description },
-            { property: 'og:title', content: title },
-            { property: 'og:description', content: description },
-            { name: 'twitter:title', content: title },
-            { name: 'twitter:description', content: description },
-        ],
-    });
-    
-    useSeoMeta({
+    definePageMeta({
+        layout: 'welcome',
         title,
         description,
-        ogTitle: title,
-        ogDescription: description,
-        twitterTitle: title,
-        twitterDescription: description,
-        keywords,
     });
     
     onMounted(() => {
