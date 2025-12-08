@@ -16,6 +16,7 @@ export default defineNuxtConfig({
       name: site_name, // used in Title and Meta tags
       // description: site_description, // used in Meta tags
       defaultLocale: 'en_US',
+      trailingSlash: false,
    },
 
    // seo-utils
