@@ -32,7 +32,7 @@
     const { getNewsOutlets } = NewsStore;
     
     // SEO
-    const title = 'Crypto News Outlets Directory';
+    const title = 'News Outlets Directory';
     const description = 'Discover the most reliable and trusted sources for cryptocurrency news, analysis, and insights. Browse by outlet and visit their websites.';
     
     definePageMeta({

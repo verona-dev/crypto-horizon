@@ -31,14 +31,14 @@
     const title = 'Trending Cryptocurrencies & NFTs';
     const description = 'Discover the most talked-about cryptocurrencies and NFTs right now. Track real-time trends, price surges, and viral projects in the crypto space.';
     
-    useSeoMeta({
-        title,
-        description,
-        ogTitle: title,
-        ogDescription: description,
-        twitterTitle: title,
-        twitterDescription: description,
-    });
+    // useSeoMeta({
+    //     title,
+    //     description,
+    //     ogTitle: title,
+    //     ogDescription: description,
+    //     twitterTitle: title,
+    //     twitterDescription: description,
+    // });
     
     definePageMeta({
         title,
