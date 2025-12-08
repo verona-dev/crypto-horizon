@@ -13,7 +13,7 @@ export default defineNuxtPlugin(() => {
       // titleTemplate: (pageTitle?: string) => {
       //    return pageTitle ? `${pageTitle} | ${site_name}` : site_name;
       // },
-      titleTemplate: `${page_title} | ${site_title}`,
+      titleTemplate: `%s | ${site_title}`,
       title: page_title,
       meta: [
          { name: 'description', content: page_description },
