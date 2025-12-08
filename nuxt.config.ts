@@ -34,7 +34,7 @@ export default defineNuxtConfig({
          // ogDescription: site_description,
          ogLocale: 'en_US',
          ogType: 'website',
-         robots: 'index, follow',
+         // robots: 'index, follow',
          themeColor: [
             { content: '#14161f', media: '(prefers-color-scheme: dark)' },
             { content: '#f0f0f0', media: '(prefers-color-scheme: light)' },
