@@ -50,12 +50,21 @@ export default defineNuxtConfig({
    },
 
    robots: {
-      disallow: [
-         '/market/exchanges',
-         '/defi',
-         '/defi/platforms',
-         '/academy',
-         '/academy/dyor',
+      groups: [
+         {
+            userAgent: '*',
+            disallow: [
+               '/market/exchanges',
+               '/defi',
+               '/defi/platforms',
+               '/academy',
+               '/academy/dyor',
+            ],
+         },
+         {
+            userAgent: 'facebookexternalhit',
+            allow: '/',
+         },
       ],
    },
 
