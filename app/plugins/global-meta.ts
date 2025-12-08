@@ -42,12 +42,12 @@ export default defineNuxtPlugin(() => {
    });
 
    useSeoMeta({
-      title: page_title,
-      description: page_description,
-      ogTitle: page_title,
-      ogDescription: page_description,
-      twitterTitle: page_title,
-      twitterDescription: page_description,
+      // title: page_title,
+      // description: page_description,
+      // ogTitle: page_title,
+      // ogDescription: page_description,
+      // twitterTitle: page_title,
+      // twitterDescription: page_description,
       ogUrl: current_url,
       ogImage: {
          url: site_image,
