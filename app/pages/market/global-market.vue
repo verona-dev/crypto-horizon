@@ -36,6 +36,13 @@
     const title = 'Global Market Dashboard: Fear & Greed, BTC Dominance, Trending Coins & NFTs';
     const description = 'Live insights into global crypto market data: Fear & Greed Index, Bitcoin dominance, trending coins, and trending NFTs. Track market sentiment and trends in real time.';
     
+    useHead({
+        title,
+        meta: [
+            { name: 'description', content: description }
+        ],
+    });
+    
     definePageMeta({
         title,
         description,

@@ -14,9 +14,9 @@ export default defineNuxtPlugin(() => {
       //    return pageTitle ? `${pageTitle} | ${site_name}` : site_name;
       // },
       titleTemplate: `%s | ${site_title}`,
-      title: page_title,
+      // title: page_title,
       meta: [
-         { name: 'description', content: page_description },
+         // { name: 'description', content: page_description },
          // { property: 'og:title', content: page_title },
          // { property: 'og:description', content: page_description },
          // { property: 'og:url', content: current_url },
@@ -25,10 +25,10 @@ export default defineNuxtPlugin(() => {
          // { property: 'og:image:width', content: '1200' },
          // { property: 'og:image:height', content: '620' },
          // { property: 'og:image:alt', content: 'Project image' },
-         { name: 'twitter:title', content: page_title },
-         { name: 'twitter:description', content: page_description },
-         { name: 'twitter:image', content: site_image },
-         { name: 'twitter:image:alt', content: 'Live cryptocurrency price table and charts' },
+         // { name: 'twitter:title', content: page_title },
+         // { name: 'twitter:description', content: page_description },
+         // { name: 'twitter:image', content: site_image },
+         // { name: 'twitter:image:alt', content: 'Live cryptocurrency price table and charts' },
          { name: 'robots', content: 'index, follow' },
       ],
       htmlAttrs: {
@@ -56,6 +56,7 @@ export default defineNuxtPlugin(() => {
          height: 620,
          alt: 'Project image',
       },
+      twitterCard: 'summary_large_image',
       twitterImage: site_image,
       twitterImageAlt: 'Live cryptocurrency price table and charts',
    });

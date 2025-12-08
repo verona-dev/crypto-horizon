@@ -39,7 +39,7 @@ export default defineNuxtConfig({
             { content: '#14161f', media: '(prefers-color-scheme: dark)' },
             { content: '#f0f0f0', media: '(prefers-color-scheme: light)' },
          ],
-         twitterCard: 'summary_large_image',
+         // twitterCard: 'summary_large_image',
          // twitterTitle: site_name,
          // twitterDescription: site_description,
       },
