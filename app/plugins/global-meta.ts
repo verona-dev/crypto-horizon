@@ -14,11 +14,11 @@ export default defineNuxtPlugin(() => {
       //    return pageTitle ? `${pageTitle} | ${site_name}` : site_name;
       // },
       titleTemplate: `%s | ${site_title}`,
-      // title: page_title,
+      title: page_title,
       meta: [
-         // { name: 'description', content: page_description },
-         // { property: 'og:title', content: page_title },
-         // { property: 'og:description', content: page_description },
+         { name: 'description', content: page_description },
+         { property: 'og:title', content: page_title },
+         { property: 'og:description', content: page_description },
          // { property: 'og:url', content: current_url },
          // { property: 'og:image', content: site_image },
          // { property: 'og:image:type', content: 'image/png' },
