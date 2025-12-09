@@ -65,13 +65,18 @@
             : `Coin price, market cap, charts, and trading information.`
     );
     
-    useSeoMeta({
+    // useSeoMeta({
+    //     title,
+    //     description,
+    //     ogTitle: title,
+    //     ogDescription: description,
+    //     twitterTitle: title,
+    //     twitterDescription: description,
+    // });
+    
+    definePageMeta({
         title,
         description,
-        ogTitle: title,
-        ogDescription: description,
-        twitterTitle: title,
-        twitterDescription: description,
     });
     
     onMounted(async() => {
