@@ -18,15 +18,6 @@
     const title = 'What is DeFi? Your Complete Guide to Decentralized Finance';
     const description = 'Learn what Decentralized Finance (DeFi) is, how it works, key use cases like lending, borrowing, and yield farming, and why it’s transforming finance without banks.';
     
-    // useSeoMeta({
-    //     title,
-    //     description,
-    //     ogTitle: title,
-    //     ogDescription: description,
-    //     twitterTitle: title,
-    //     twitterDescription: description,
-    // });
-    
     definePageMeta({
         title,
         description,
