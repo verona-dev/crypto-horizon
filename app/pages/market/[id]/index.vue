@@ -65,6 +65,15 @@
             : `Coin price, market cap, charts, and trading information.`
     );
     
+    useHead({
+        title: title,
+        meta: [
+            { name: 'description', content: description },
+            { property: 'og:title', content: title },
+            { property: 'og:description', content: description },
+        ],
+    });
+    
     // useSeoMeta({
     //     title,
     //     description,
@@ -74,10 +83,10 @@
     //     twitterDescription: description,
     // });
     
-    definePageMeta({
-        title,
-        description,
-    });
+    // definePageMeta({
+    //     title,
+    //     description,
+    // });
     
     onMounted(async() => {
         await getCoin(id.value);
