@@ -65,38 +65,27 @@
             : `Coin price, market cap, charts, and trading information.`
     );
     
-    // useHead({
-    //     title: title,
-    //     meta: [
-    //         { name: 'description', content: description },
-    //         { property: 'og:title', content: title },
-    //         { property: 'og:description', content: description },
-    //     ],
-    // });
+    const path = computed(() => route.fullPath);
     
-    // useSeoMeta({
-    //     title,
-    //     description,
-    //     ogTitle: title,
-    //     ogDescription: description,
-    //     twitterTitle: title,
-    //     twitterDescription: description,
-    // });
-    
-    definePageMeta({
-        title: 'Loading...',
-        description: 'Loading coin data...',
+    useHead({
+        title: title,
+        meta: [
+            { name: 'description', content: description },
+            { property: 'og:title', content: title },
+            { property: 'og:description', content: description },
+            { property: 'og:url', content: path },
+            { name: 'robots', content: 'index, follow' },
+        ],
     });
     
-    watch(
-        () => coin.value,
-        newCoin => {
-            if(newCoin) {
-                route.meta.title = title.value;
-                route.meta.description = description.value;
-            }
-        }
-    );
+    useSeoMeta({
+        title: title,
+        description: description,
+        ogTitle: title,
+        ogDescription: description,
+        twitterTitle: title,
+        twitterDescription: description,
+    });
     
     onMounted(async() => {
         await getCoin(id.value);
