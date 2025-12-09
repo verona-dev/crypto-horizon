@@ -362,16 +362,27 @@
     
     // SEO
     const description = computed(() => `${body_formatted.value[0]?.slice(0,150)}...`) || 'Read the full story on CryptoHorizon';
-    const seo_keywords = computed(() => categories.value?.map(item => item.CATEGORY.toLowerCase()).join(', '));
+    const path = computed(() => route.fullPath);
+    
+    useHead({
+        title: title,
+        meta: [
+            { name: 'description', content: description },
+            { property: 'og:title', content: title },
+            { property: 'og:description', content: description },
+            { property: 'og:url', content: path },
+            { name: 'robots', content: 'index, follow' },
+        ],
+    });
     
     useSeoMeta({
-        title,
-        description,
+        title: title,
+        description: description,
         ogTitle: title,
         ogDescription: description,
         twitterTitle: title,
         twitterDescription: description,
-        keywords: seo_keywords,
+        ogUrl: path,
     });
     
     onMounted(async() => {

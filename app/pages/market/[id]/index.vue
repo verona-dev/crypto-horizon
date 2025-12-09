@@ -85,6 +85,7 @@
         ogDescription: description,
         twitterTitle: title,
         twitterDescription: description,
+        ogUrl: path,
     });
     
     onMounted(async() => {
