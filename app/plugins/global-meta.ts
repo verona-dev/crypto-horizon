@@ -19,7 +19,7 @@ export default defineNuxtPlugin(() => {
          { name: 'description', content: page_description },
          { property: 'og:title', content: page_title },
          { property: 'og:description', content: page_description },
-         // { property: 'og:url', content: current_url },
+         { property: 'og:url', content: current_url },
          // { property: 'og:image', content: site_image },
          // { property: 'og:image:type', content: 'image/png' },
          // { property: 'og:image:width', content: '1200' },
