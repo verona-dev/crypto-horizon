@@ -55,24 +55,24 @@
     // SEO
     const title = computed(() =>
         coin.value?.name
-            ? `${coin.value.name} Price: ${coin.value?.symbol} Live Price Chart, Market Cap, and News Today`
+            ? `${coin.value?.name} Price: ${coin.value?.symbol} Live Price Chart, Market Cap, and News Today`
             : 'Price: Live Price Chart, Market Cap, and News Today'
     );
     
     const description = computed(() =>
         coin.value?.name
-            ? `${coin.value.name} (${coin.value.symbol}) price, market cap, charts, and trading information.`
+            ? `${coin.value?.name} (${coin.value?.symbol}) price, market cap, charts, and trading information.`
             : `Coin price, market cap, charts, and trading information.`
     );
     
-    useHead({
-        title: title,
-        meta: [
-            { name: 'description', content: description },
-            { property: 'og:title', content: title },
-            { property: 'og:description', content: description },
-        ],
-    });
+    // useHead({
+    //     title: title,
+    //     meta: [
+    //         { name: 'description', content: description },
+    //         { property: 'og:title', content: title },
+    //         { property: 'og:description', content: description },
+    //     ],
+    // });
     
     // useSeoMeta({
     //     title,
@@ -83,10 +83,20 @@
     //     twitterDescription: description,
     // });
     
-    // definePageMeta({
-    //     title,
-    //     description,
-    // });
+    definePageMeta({
+        title: 'Loading...',
+        description: 'Loading coin data...',
+    });
+    
+    watch(
+        () => coin.value,
+        newCoin => {
+            if(newCoin) {
+                route.meta.title = title.value;
+                route.meta.description = description.value;
+            }
+        }
+    );
     
     onMounted(async() => {
         await getCoin(id.value);
