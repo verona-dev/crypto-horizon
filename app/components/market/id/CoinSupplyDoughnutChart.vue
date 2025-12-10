@@ -3,6 +3,7 @@
     <div class='my-10 flex-col lg:flex-row flex items-center justify-center gap-16'>
         <div class='w-52 lg:w-[450px] h-52 lg:h-[450px]'>
             <Doughnut
+                v-if='market_data_computed'
                 :data='data'
                 :options='options'
             />
@@ -28,15 +29,18 @@
     const max_supply = computed(() => market_data.value?.max_supply);
     const total_supply = computed(() =>  market_data.value?.total_supply);
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
-    const remaining_supply = computed(() => max_supply.value - total_supply.value);
+    const remaining_supply = computed(() => {
+        if(max_supply.value) return max_supply.value - total_supply.value;
+        return null;
+    });
     
-    const content = computed(() => {
+    const market_data_computed = computed(() => {
         const labels = [];
         const data = [];
         const backgroundColor = [];
         
         // If id has max supply
-        if(max_supply.value) {
+        if(max_supply.value || total_supply.value) {
             // display TOTAL and REMAINING
             // EXAMPLE: BTC, XRP, BNB
             
@@ -69,11 +73,11 @@
     });
     
     const data = ref(({
-        labels: content.value?.labels,
+        labels: market_data_computed.value?.labels,
         datasets: [
             {
                 backgroundColor: ['#fef0ca', '#41B883'],
-                data: content.value?.data,
+                data: market_data_computed.value?.data,
                 cutout: '50%',
                 hoverOffset: 20,
             },
