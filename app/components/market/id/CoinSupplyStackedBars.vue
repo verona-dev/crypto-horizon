@@ -29,9 +29,12 @@
     const max_supply = computed(() => market_data.value?.max_supply);
     const total_supply = computed(() =>  market_data.value?.total_supply);
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
-    const remaining_supply = computed(() => max_supply.value - total_supply.value);
+    const remaining_supply = computed(() => {
+        if(max_supply.value) return max_supply.value - total_supply.value;
+        return null;
+    });
     
-    const content = computed(() => {
+    const market_data_computed = computed(() => {
         const labels = [];
         const data = [];
         const backgroundColor = [];
@@ -77,12 +80,12 @@
     });
     
     const data = ref({
-        labels: content.value?.labels,
+        labels: market_data_computed.value?.labels,
         datasets: [
             {
                 label: 'Supply',
-                backgroundColor: content.value?.backgroundColor,
-                data: content.value?.data,
+                backgroundColor: market_data_computed.value?.backgroundColor,
+                data: market_data_computed.value?.data,
             }
         ],
     });
