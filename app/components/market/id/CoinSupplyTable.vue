@@ -64,28 +64,42 @@
             });
         }
         
-        // Total Supply
-        if(total_supply.value) {
-            items.push({
-                key: 'total_supply',
-                label: glossary.total_supply.label,
-                description: glossary.total_supply.description,
-                value: formatNumber(total_supply.value, {
-                    style: 'decimal'
-                }),
-            });
-        }
-        
-        // Circulating Supply
-        if(circulating_supply.value) {
-            items.push({
-                key: 'circulating_supply',
-                label: glossary.circulating_supply.label,
-                description: glossary.circulating_supply.description,
-                value: formatNumber(circulating_supply.value, {
-                    style: 'decimal'
+        if(total_supply.value === circulating_supply.value) {
+            // Total Supply
+            if(total_supply.value) {
+                items.push({
+                    key: 'total_supply',
+                    label: glossary.total_supply.label,
+                    description: glossary.total_supply.description,
+                    value: formatNumber(total_supply.value, {
+                        style: 'decimal'
+                    }),
+                });
+            }
+        } else {
+            // Total Supply
+            if(total_supply.value) {
+                items.push({
+                    key: 'total_supply',
+                    label: glossary.total_supply.label,
+                    description: glossary.total_supply.description,
+                    value: formatNumber(total_supply.value, {
+                        style: 'decimal'
+                    }),
+                });
+            }
+            
+            // Circulating Supply
+            if(circulating_supply.value) {
+                items.push({
+                    key: 'circulating_supply',
+                    label: glossary.circulating_supply.label,
+                    description: glossary.circulating_supply.description,
+                    value: formatNumber(circulating_supply.value, {
+                        style: 'decimal'
+                    })
                 })
-            })
+            }
         }
         
         // Remaining Supply
@@ -106,5 +120,8 @@
     const max_supply = computed(() => market_data.value?.max_supply);
     const total_supply = computed(() =>  market_data.value?.total_supply);
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
-    const remaining_supply = computed(() => max_supply.value - total_supply.value);
+    const remaining_supply = computed(() => {
+        if(max_supply.value) return max_supply.value - total_supply.value;
+        return null;
+    });
 </script>
