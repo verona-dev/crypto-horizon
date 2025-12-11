@@ -64,42 +64,28 @@
             });
         }
         
-        if(total_supply.value === circulating_supply.value) {
-            // Total Supply
-            if(total_supply.value) {
-                items.push({
-                    key: 'total_supply',
-                    label: glossary.total_supply.label,
-                    description: glossary.total_supply.description,
-                    value: formatNumber(total_supply.value, {
-                        style: 'decimal'
-                    }),
-                });
-            }
-        } else {
-            // Total Supply
-            if(total_supply.value) {
-                items.push({
-                    key: 'total_supply',
-                    label: glossary.total_supply.label,
-                    description: glossary.total_supply.description,
-                    value: formatNumber(total_supply.value, {
-                        style: 'decimal'
-                    }),
-                });
-            }
-            
-            // Circulating Supply
-            if(circulating_supply.value) {
-                items.push({
-                    key: 'circulating_supply',
-                    label: glossary.circulating_supply.label,
-                    description: glossary.circulating_supply.description,
-                    value: formatNumber(circulating_supply.value, {
-                        style: 'decimal'
-                    })
+        // Total Supply
+        if(total_supply.value) {
+            items.push({
+                key: 'total_supply',
+                label: glossary.total_supply.label,
+                description: glossary.total_supply.description,
+                value: formatNumber(total_supply.value, {
+                    style: 'decimal'
+                }),
+            });
+        }
+        
+        // Circulating Supply
+        if(circulating_supply.value) {
+            items.push({
+                key: 'circulating_supply',
+                label: glossary.circulating_supply.label,
+                description: glossary.circulating_supply.description,
+                value: formatNumber(circulating_supply.value, {
+                    style: 'decimal'
                 })
-            }
+            })
         }
         
         // Remaining Supply
