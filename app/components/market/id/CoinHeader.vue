@@ -257,8 +257,11 @@
         style: 'percent',
     });
     const price_change_percentage_1y_btc = coingecko.value?.market_data?.price_change_percentage_1y_in_currency?.btc;
-    const price_change_percentage_1y_btc_label = formatNumber(price_change_percentage_1y_btc, {
-        style: 'percent',
+    const price_change_percentage_1y_btc_label = computed(() => {
+        if(!price_change_percentage_1y_btc) return '0.00%';
+        return formatNumber(price_change_percentage_1y_btc, {
+            style: 'percent',
+        });
     });
     
     const ico_description = coingecko.value?.ico_data?.short_desc;
