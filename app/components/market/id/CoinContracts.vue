@@ -44,7 +44,7 @@
                     </Button>
                 </DropdownMenuTrigger>
                 
-                <DropdownMenuContent class='bg-popover min-w-76 rounded-lg' align='end'>
+                <DropdownMenuContent class='min-w-76 rounded-lg' align='end'>
                     <DropdownMenuLabel class='text-lg px-4 py-4 my-1'>Contracts</DropdownMenuLabel>
                     
                     <DropdownMenuSeparator />
