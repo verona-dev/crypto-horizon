@@ -19,7 +19,10 @@ export const getBorderClass = change => {
     }
 };
 
-export const getTrendIcon = (number) => number > 0 ? 'ph:caret-up-duotone' : 'ph:caret-down-duotone';
+export const getTrendIcon = number => {
+    if(number === 0) return 'ph:minus';
+    return number > 0 ? 'ph:caret-up-duotone' : 'ph:caret-down-duotone';
+};
 
 
 // export const getIcon = symbol => `cryptocurrency-color:${symbol?.toLowerCase()}`;
