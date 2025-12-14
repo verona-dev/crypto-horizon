@@ -175,15 +175,14 @@
                     </div>
                     
                     <!--  Keywords  -->
-                    <div class='flex flex-col items-start gap-8'>
+                    <div v-if='show_keywords' class='flex flex-col items-start gap-8'>
                         <h5 class='underline'>Keywords</h5>
                         
                         <div class='flex flex-wrap items-center gap-3'>
                             <Badge
                                 v-for='keyword in keywords_computed'
                                 :key='keyword'
-                                variant='outline'
-                                class='text-muted-foreground'
+                                class='hover:bg-primary'
                             >
                                 {{ keyword }}
                             </Badge>
@@ -286,6 +285,7 @@
         }
         return keywords_array.value;
     });
+    const show_keywords = computed(() => !!keywords_computed.value?.length);
     
     const author = computed(() => {
         if(article.value?.AUTHORS?.length === 0) return 'Unknown author';
