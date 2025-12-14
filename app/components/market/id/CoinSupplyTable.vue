@@ -106,5 +106,8 @@
     const max_supply = computed(() => market_data.value?.max_supply);
     const total_supply = computed(() =>  market_data.value?.total_supply);
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
-    const remaining_supply = computed(() => max_supply.value - total_supply.value);
+    const remaining_supply = computed(() => {
+        if(max_supply.value) return max_supply.value - total_supply.value;
+        return null;
+    });
 </script>

@@ -3,6 +3,7 @@
     <div class='my-10 flex-col xl:flex-row flex items-center justify-center gap-16 '>
         <div class='w-full xl:w-[450px] h-96 xl:h-[450px]'>
             <Bar
+                v-if='market_data_computed'
                 :data='data'
                 :options='options'
             />
@@ -29,60 +30,50 @@
     const max_supply = computed(() => market_data.value?.max_supply);
     const total_supply = computed(() =>  market_data.value?.total_supply);
     const circulating_supply = computed(() => market_data.value?.circulating_supply);
-    const remaining_supply = computed(() => max_supply.value - total_supply.value);
+    const remaining_supply = computed(() => {
+        if(max_supply.value) return max_supply.value - total_supply.value;
+        return null;
+    });
     
-    const content = computed(() => {
+    const market_data_computed = computed(() => {
         const labels = [];
         const data = [];
         const backgroundColor = [];
         
-        // If id has max supply
-        if (max_supply.value) {
+        if(max_supply.value) {
             labels.push('Max Supply');
             data.push(max_supply.value);
             backgroundColor.push('#00b1f5');
-            
-            if(total_supply.value) {
-                labels.push('Total Supply');
-                data.push(total_supply.value);
-                backgroundColor.push('#fef0ca');
-            }
-            
-            if(circulating_supply.value) {
-                labels.push('Circulating Supply');
-                data.push(circulating_supply.value);
-                backgroundColor.push('#e787c0');
-            }
-            
-            if(remaining_supply.value) {
-                labels.push('Remaining Supply');
-                data.push(remaining_supply.value);
-                backgroundColor.push('#41B883');
-            }
-        } else {
-            // If id does not have max supply
-            // If id's total supply is the same as circulating supply
-            if(total_supply.value === circulating_supply.value) {
-                // display only TOTAL
-                // EXAMPLE: ETH
-                if(total_supply.value) {
-                    labels.push('Total Supply');
-                    data.push(total_supply.value);
-                    backgroundColor.push('#fef0ca');
-                }
-            }
+        }
+        
+        if(total_supply.value) {
+            labels.push('Total Supply');
+            data.push(total_supply.value);
+            backgroundColor.push('#fef0ca');
+        }
+        
+        if(circulating_supply.value) {
+            labels.push('Circulating Supply');
+            data.push(circulating_supply.value);
+            backgroundColor.push('#e787c0');
+        }
+        
+        if(remaining_supply.value) {
+            labels.push('Remaining Supply');
+            data.push(remaining_supply.value);
+            backgroundColor.push('#41B883');
         }
         
         return { labels, data, backgroundColor };
     });
     
     const data = ref({
-        labels: content.value?.labels,
+        labels: market_data_computed.value?.labels,
         datasets: [
             {
                 label: 'Supply',
-                backgroundColor: content.value?.backgroundColor,
-                data: content.value?.data,
+                backgroundColor: market_data_computed.value?.backgroundColor,
+                data: market_data_computed.value?.data,
             }
         ],
     });
