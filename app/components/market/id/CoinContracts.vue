@@ -118,7 +118,7 @@
     const open = ref(false);
     const platforms_list = ref([]);
     const platforms_summary = computed(() => platformsSummary.value);
-    const disable_dropdown = computed(() => platforms_list.value?.length === 1);
+    const disable_dropdown = computed(() => platforms_list.value?.length < 1);
     
     const platforms = coin.value?.platforms
         ? Object.entries(coin.value.platforms)
@@ -130,6 +130,7 @@
         : [];
     
     platforms.forEach(contract => platforms_list.value.push(contract.name));
+    console.log(platforms_list.value.length > 1);
     
     const platformImageMap = computed(() => {
         if (!platforms_summary.value) return [];
