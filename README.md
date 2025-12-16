@@ -1,5 +1,5 @@
 
-![Logo](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1761173267/crypto-horizon_-_logo-12_js96kq.png)
+![Logo](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765824731/1._global-market-narrow_ot3df3.png)
 
 
 # Crypto Horizon
@@ -14,20 +14,20 @@ https://crypto-horizon-app.netlify.app/
 ![Launchpad](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1761174707/crypto-horizon-gif_aiwq8c.gif)
 
 
-## Tech Stack and Modules
+## 🛠️ Tech Stack and Modules
 
 **Frontend:**
 [Vue 3](https://vuejs.org/),
 [Nuxt 4](https://nuxt.com/)
 
+**Backend/Database:**
+[Nuxt Server API](https://nuxt.com/docs/4.x/guide/concepts/server-engine),
+[Supabase](https://supabase.com/)
+
 **UI/Styling:**
 [TailwindCSS 4](https://tailwindcss.com/),
 [Shadcn-vue](https://www.shadcn-vue.com/),
 [MazUI](https://maz-ui.com/)
-
-**Backend/Database:**
-[Nuxt Server API (powered by Nitro Server Engine)](https://nuxt.com/docs/4.x/guide/concepts/server-engine),
-[Supabase](https://supabase.com/)
 
 **Modules:**
 [Pinia Store](https://pinia.vuejs.org/),
@@ -42,13 +42,14 @@ https://crypto-horizon-app.netlify.app/
 **Icons:**
 [Phosphor](https://phosphoricons.com/)
 
+**Api:**
+[Coingecko](https://docs.coingecko.com/),
+[Livecoinwatch](http://livecoinwatch.github.io/lcw-api-docs/),
+[Coinmarketcap](https://coinmarketcap.com/api/documentation/v1/),
+[CoinDesk](https://developers.coindesk.com/documentation/data-api/news)
 
-## Prerequisites
 
-- [Node.js](https://nodejs.org/en/blog/release/v22.16.0) v22.16.0 LTS
-
-
-## Api
+## 📚 Api Integration
 
 [Coingecko](https://docs.coingecko.com/)
 
@@ -59,38 +60,19 @@ https://crypto-horizon-app.netlify.app/
 [CoinDesk](https://developers.coindesk.com/documentation/data-api/news)
 
 
-## Environment Variables
+## Prerequisites
 
-To run this project, you will need to add the following environment variables to your .env file
-
-`COINGECKO_API_KEY`
-
-`LIVECOINWATCH_API_KEY`
-
-`CMC_API_KEY`
-
-`COINDESK_API_KEY`
-
-`SITE_URL`
+- [Node.js](https://nodejs.org/en/blog/release/v22.16.0) v22.16.0 LT
+- Environment Variables
 
 
 ## Run Locally
 
-Clone the project
+Clone and install the dependencies
 
 ```bash
 git clone https://github.com/verona-dev/crypto-horizon.git
-```
-
-Go to the project directory
-
-```bash
 cd crypto-horizon
-```
-
-Install dependencies
-
-```bash
 npm install
 ```
 
@@ -100,7 +82,7 @@ npm install
 Start the development server on `http://localhost:3000`
 
 ```bash
-npm run start
+npm run dev
 ```
 
 
@@ -121,5 +103,5 @@ npm run preview
 
 ## Authors
 
-- [@verona-dev](https://github.com/verona-dev/) 🚀 Frontend developer & crypto enthusiast.
+- [@verona-dev](https://github.com/verona-dev/) - Frontend developer & crypto enthusiast.
 
