@@ -18,7 +18,6 @@
 </div>
 
 ---
-
 ## ✨ Features
 
 - 📊 Real-time cryptocurrency market data: Track live prices, market cap, and 24h volume for thousands of coins
@@ -47,15 +46,15 @@
 
 ## 🎬 Screenshots
 
-|                                            Market                                             |                                         Coin Details                                          |
-|:---------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------:|
-| ![Market](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765824736/2._market_drgxla.png) | ![Coins](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765824737/3._bitcoin_du1ldy.png) |
-|  Track thousands of cryptocurrencies with real-time prices, market cap, and trading volume.   |       Dive into individual coins: price charts, social metrics, and blockchain details.       |
+|                                                    Market                                                     |                                                 Coin Details                                                  |
+|:-------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------:|
+| ![Market](https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1765824736/2._market_drgxla.png)   | ![Coins](https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1765824737/3._bitcoin_du1ldy.png)   |
+|          Track thousands of cryptocurrencies with real-time prices, market cap, and trading volume.           |               Dive into individual coins: price charts, social metrics, and blockchain details.               |
 
-|                                       Global Market Overview                                        |                                            News Hub                                            |
-|:---------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------:|
-| ![Coins](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765824732/1._global-market_whxstf.png) | ![News](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765890837/4._coin-news_i3891v.png) |
-|            Monitor Bitcoin dominance, Fear & Greed Index, and macro trends in one place.            |             Stay updated with the latest crypto news and coin-specific headlines.              |
+|                                               Global Market Overview                                                |                                                   News Hub                                                    |
+|:-------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------:|
+| ![Coins](https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1765824732/1._global-market_whxstf.png)   | ![News](https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1765890837/4._coin-news_i3891v.png)  |
+|                    Monitor Bitcoin dominance, Fear & Greed Index, and macro trends in one place.                    |                     Stay updated with the latest crypto news and coin-specific headlines.                     |
 
 ## ⚠️ Prerequisites
 
