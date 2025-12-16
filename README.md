@@ -1,7 +1,7 @@
 
 <div align="center">
   <a href="https://crypto-horizon-app.netlify.app/">
-    <img alt="Crypto Horizon preview" src="https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765824731/1._global-market-narrow_ot3df3.png" style="border-radius: 10px;">
+    <img alt="Crypto Horizon preview" src="https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765891224/5._launchpad-narrow_yfbrpw.png" style="border-radius: 10px;">
   </a>
 
  <p>
@@ -47,6 +47,19 @@
 - [Livecoinwatch](http://livecoinwatch.github.io/lcw-api-docs/): Cryptocurrency social links and market data
 - [Coinmarketcap](https://coinmarketcap.com/api/documentation/v1/): Cryptocurrency fear and greed data
 - [CoinDesk](https://developers.coindesk.com/documentation/data-api/news): Latest cryptocurrency news, analysis, and market insights
+
+
+## 🎬 Screenshots
+
+|                                            Market                                             |                                         Coin Details                                          |
+|:---------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------:|
+| ![Market](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765824736/2._market_drgxla.png) | ![Coins](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765824737/3._bitcoin_du1ldy.png) |
+|  Track thousands of cryptocurrencies with real-time prices, market cap, and trading volume.   |       Dive into individual coins: price charts, social metrics, and blockchain details.       |
+
+|                                       Global Market Overview                                        |                                            News Hub                                            |
+|:---------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------:|
+| ![Coins](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765824732/1._global-market_whxstf.png) | ![News](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765890837/4._coin-news_i3891v.png) |
+|            Monitor Bitcoin dominance, Fear & Greed Index, and macro trends in one place.            |             Stay updated with the latest crypto news and coin-specific headlines.              |
 
 
 ## ⚠️ Prerequisites
