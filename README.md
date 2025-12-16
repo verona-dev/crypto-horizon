@@ -1,125 +1,101 @@
 
-![Logo](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1761173267/crypto-horizon_-_logo-12_js96kq.png)
+<div align="center">
+  <a href="https://crypto-horizon-app.netlify.app/">
+    <img alt="Crypto Horizon preview" src="https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765891224/5._launchpad-narrow_yfbrpw.png" style="border-radius: 10px;">
+  </a>
 
+ <p>
+    <b>Crypto Horizon</b> - <i>From Bitcoin to DeFi: track, analyze, and explore the crypto universe</i>
+ </p>
 
-# Crypto Horizon
+ <p>
+   <b>
+     ·
+     <a href="https://crypto-horizon-app.netlify.app/">Demo</a>
+     ·
+   </b>
+ </p>
+</div>
 
-Crypto Horizon is your all-in-one dashboard for real-time cryptocurrency tracking, analytics, and news. Built for developers and enthusiasts.
+---
+## 🌔 Features
 
-## Demo
+- 📊 Real-time cryptocurrency market data: Track live prices, market cap, and 24h volume for thousands of coins
+- 🔍 Single coin insights: Detailed stats for each cryptocurrency, including price history, contracts, and blockchain data
+- 🌍 Global market overview: Fear & Greed Index, Bitcoin dominance, and trending coins at a glance
+- 📈 Interactive price charts: Visualize price movements, market cap trends, and trading volume with customizable timeframes
+- 📰 Crypto news hub: Global and coin-specific news aggregated from top sources
+- 🏦 DeFi analytics: Track DeFi protocols, TVL (Total Value Locked), and yield farming opportunities
+- 🎓 Crypto Academy: Learn the basics of blockchain, trading, and decentralized finance
 
-https://crypto-horizon-app.netlify.app/
+## 📡 Tech Stack
 
-## Screenshots
-![Launchpad](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1761174707/crypto-horizon-gif_aiwq8c.gif)
+- **Frontend**: Vue 3 + Nuxt 4
+- **Backend/Database**: Nuxt Server API + Supabase
+- **UI/Styling**: TailwindCSS 4 + Shadcn-vue + MazUI
+- **Modules**: Pinia Store + Tanstack Table + Chart.js + Day.js
+- **Animation**: GSAP + Motion
+- **Icons**: Phosphor
 
+## 🛸 Api Integration
 
-## Tech Stack and Modules
+- [Coingecko](https://docs.coingecko.com/): Real-time cryptocurrency prices, market data, and historical trends
+- [Livecoinwatch](http://livecoinwatch.github.io/lcw-api-docs/): Cryptocurrency social links and market data
+- [Coinmarketcap](https://coinmarketcap.com/api/documentation/v1/): Cryptocurrency fear and greed data
+- [CoinDesk](https://developers.coindesk.com/documentation/data-api/news): Latest cryptocurrency news, analysis, and market insights
 
-**Frontend:**
-[Vue 3](https://vuejs.org/),
-[Nuxt 4](https://nuxt.com/)
+## 📷 Screenshots
 
-**UI/Styling:**
-[TailwindCSS 4](https://tailwindcss.com/),
-[Shadcn-vue](https://www.shadcn-vue.com/),
-[MazUI](https://maz-ui.com/)
+|                                                   Market                                                    |                                                 Coin Details                                                  |
+|:-----------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------:|
+| ![Market](https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1765824736/2._market_drgxla.png) |  ![Coins](https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1765824737/3._bitcoin_du1ldy.png)  |
+|         Track thousands of cryptocurrencies with real-time prices, market cap, and trading volume.          |               Dive into individual coins: price charts, social metrics, and blockchain details.               |
 
-**Backend/Database:**
-[Nuxt Server API (powered by Nitro Server Engine)](https://nuxt.com/docs/4.x/guide/concepts/server-engine),
-[Supabase](https://supabase.com/)
+|                                               Global Market Overview                                               |                                                   News Hub                                                    |
+|:------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------:|
+| ![Coins](https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1765824732/1._global-market_whxstf.png)  | ![News](https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1765890837/4._coin-news_i3891v.png)  |
+|                   Monitor Bitcoin dominance, Fear & Greed Index, and macro trends in one place.                    |                     Stay updated with the latest crypto news and coin-specific headlines.                     |
 
-**Modules:**
-[Pinia Store](https://pinia.vuejs.org/),
-[Tanstack Table](https://tanstack.com/table),
-[Chart.js](https://www.chartjs.org/docs/latest/),
-[Day.js](https://day.js.org/)
+## 🛩️ Getting Started
 
-**Animation:**
-[GSAP](https://gsap.com/),
-[Motion](https://motion.dev/)
+### ⚠️ Prerequisites
+- Node.js **v22.16.0 LTS**
+- Environment variables (see `.env.example`)
 
-**Icons:**
-[Phosphor](https://phosphoricons.com/)
-
-
-## Prerequisites
-
-- [Node.js](https://nodejs.org/en/blog/release/v22.16.0) v22.16.0 LTS
-
-
-## Api
-
-[Coingecko](https://docs.coingecko.com/)
-
-[Livecoinwatch](http://livecoinwatch.github.io/lcw-api-docs/)
-
-[Coinmarketcap](https://coinmarketcap.com/api/documentation/v1/)
-
-[CoinDesk](https://developers.coindesk.com/documentation/data-api/news)
-
-
-## Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
-
-`COINGECKO_API_KEY`
-
-`LIVECOINWATCH_API_KEY`
-
-`CMC_API_KEY`
-
-`COINDESK_API_KEY`
-
-`SITE_URL`
-
-
-## Run Locally
-
-Clone the project
-
+### 1. Clone and Install the dependencies
 ```bash
 git clone https://github.com/verona-dev/crypto-horizon.git
-```
-
-Go to the project directory
-
-```bash
 cd crypto-horizon
-```
-
-Install dependencies
-
-```bash
 npm install
 ```
 
-
-## Development Server
-
-Start the development server on `http://localhost:3000`
-
+### 2. Run the Development Server
+Start the development server on [http://localhost:3000](http://localhost:3000):
 ```bash
-npm run start
+npm run dev
 ```
 
+---
 
-## Production
+## 📜 License
 
-Build the application for production:
+This project is licensed under the [MIT License](https://opensource.org/license/mit/) – **free for personal and non-commercial use only**.
 
-```bash
-npm run build
-```
+- **Allowed**: Use, modify, and distribute for **non-commercial purposes**.
+- **Not Allowed**: Commercial use, resale, or redistribution as part of a paid product/service.
+- **Data Sources**: Uses free APIs—comply with their terms.
 
-Locally preview production build:
+© 2025 Crypto Horizon
 
-```bash
-npm run preview
-```
+---
+
+## 👨‍🚀 Authors
+
+[![forthebadge](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=MADE+BY&secondaryLabel=VERONA-DEV&primaryBGColor=%23000000&secondaryBGColor=%2300DC82&primaryTextColor=%23FFFFFF&primaryFontSize=12&primaryFontWeight=600&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryTextColor=%23444444&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase&secondaryIcon=github&secondaryIconColor=%23444444&secondaryIconSize=16&secondaryIconPosition=right)](https://github.com/verona-dev)
+
+[![forthebadge](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=WITH&secondaryLabel=NUXT&primaryBGColor=%23000000&secondaryBGColor=%2300DC82&primaryTextColor=%23FFFFFF&primaryFontSize=12&primaryFontWeight=600&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryTextColor=%23444444&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase&secondaryIcon=nuxt&secondaryIconColor=%23444444&secondaryIconSize=16&secondaryIconPosition=right)](https://nuxt.com/)
+
+![forthebadge](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=WORKS+ON&secondaryLabel=MY+MACHINE&primaryBGColor=%23000000&secondaryBGColor=%2300DC82&primaryTextColor=%23FFFFFF&primaryFontSize=12&primaryFontWeight=600&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryTextColor=%23444444&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase)
 
 
-## Authors
-
-- [@verona-dev](https://github.com/verona-dev/) 🚀 Frontend developer & crypto enthusiast.
 
