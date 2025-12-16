@@ -91,6 +91,11 @@ This project is licensed under the [MIT License](https://opensource.org/license/
 
 ## 👨‍🚀 Authors
 
-[@verona-dev](https://github.com/verona-dev/) - Frontend developer & crypto enthusiast.
+[![forthebadge](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=MADE+BY&secondaryLabel=VERONA-DEV&primaryBGColor=%23000000&secondaryBGColor=%2300DC82&primaryTextColor=%23FFFFFF&primaryFontSize=12&primaryFontWeight=600&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryTextColor=%23444444&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase&secondaryIcon=github&secondaryIconColor=%23444444&secondaryIconSize=16&secondaryIconPosition=right)](https://github.com/verona-dev)
 
-[![forthebadge](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=BUILT&secondaryLabel=WITH+NUXT&primaryBGColor=%23000000&secondaryBGColor=%2300CED1&primaryTextColor=%23FFFFFF&primaryFontSize=12&primaryFontWeight=600&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryTextColor=%23FFFFFF&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase&secondaryIcon=nuxt&secondaryIconColor=%23FFFFFF&secondaryIconSize=16&secondaryIconPosition=right)](https://nuxt.com/)
+[![forthebadge](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=WITH&secondaryLabel=NUXT&primaryBGColor=%23000000&secondaryBGColor=%2300DC82&primaryTextColor=%23FFFFFF&primaryFontSize=12&primaryFontWeight=600&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryTextColor=%23444444&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase&secondaryIcon=nuxt&secondaryIconColor=%23444444&secondaryIconSize=16&secondaryIconPosition=right)](https://nuxt.com/)
+
+![forthebadge](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=WORKS+ON&secondaryLabel=MY+MACHINE&primaryBGColor=%23000000&secondaryBGColor=%2300DC82&primaryTextColor=%23FFFFFF&primaryFontSize=12&primaryFontWeight=600&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryTextColor=%23444444&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase)
+
+
+
