@@ -19,7 +19,6 @@
 
 ---
 
-
 ## ✨ Features
 
 - 📊 Real-time cryptocurrency market data: Track live prices, market cap, and 24h volume for thousands of coins
@@ -30,7 +29,6 @@
 - 🏦 DeFi analytics: Track DeFi protocols, TVL (Total Value Locked), and yield farming opportunities
 - 🎓 Crypto Academy: Learn the basics of blockchain, trading, and decentralized finance
 
-
 ## 🛠️ Tech Stack and Modules
 
 - **Frontend**: Vue 3 + Nuxt 4
@@ -40,14 +38,12 @@
 - **Animation**: GSAP + Motion
 - **Icons**: Phosphor
 
-
 ## 📚 Api Integration
 
 - [Coingecko](https://docs.coingecko.com/): Real-time cryptocurrency prices, market data, and historical trends
 - [Livecoinwatch](http://livecoinwatch.github.io/lcw-api-docs/): Cryptocurrency social links and market data
 - [Coinmarketcap](https://coinmarketcap.com/api/documentation/v1/): Cryptocurrency fear and greed data
 - [CoinDesk](https://developers.coindesk.com/documentation/data-api/news): Latest cryptocurrency news, analysis, and market insights
-
 
 ## 🎬 Screenshots
 
@@ -61,12 +57,10 @@
 | ![Coins](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765824732/1._global-market_whxstf.png) | ![News](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765890837/4._coin-news_i3891v.png) |
 |            Monitor Bitcoin dominance, Fear & Greed Index, and macro trends in one place.            |             Stay updated with the latest crypto news and coin-specific headlines.              |
 
-
 ## ⚠️ Prerequisites
 
 - Node.js v22.16.0 LTS
 - Environment Variables
-
 
 ## 🚀 Getting Started
 
@@ -84,6 +78,19 @@ Start the development server on `http://localhost:3000`
 npm run dev
 ```
 
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](https://opensource.org/license/mit/) – **free for personal and non-commercial use only**.
+
+- **Allowed**: Use, modify, and distribute for **non-commercial purposes**.
+- **Not Allowed**: Commercial use, resale, or redistribution as part of a paid product/service.
+- **Data Sources**: Uses free APIs—comply with their terms.
+
+© 2025 Crypto Horizon
+
+---
 
 ## 👤 Authors
 
