@@ -1,24 +1,23 @@
 
-# Crypto Horizon
+<div align="center">
+  <a href="https://crypto-horizon-app.netlify.app/">
+    <img alt="Crypto Horizon preview" src="https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765824731/1._global-market-narrow_ot3df3.png" style="border-radius: 10px;">
+  </a>
 
-Crypto Horizon is your all-in-one dashboard for real-time cryptocurrency tracking, analytics, and news. Built for developers and enthusiasts.
+ <p>
+    <b>Crypto Horizon</b> - <i>From Bitcoin to DeFi: track, analyze, and explore the crypto universe</i>
+ </p>
 
-![Logo](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765824731/1._global-market-narrow_ot3df3.png)
+ <p>
+   <b>
+     ·
+     <a href="https://crypto-horizon-app.netlify.app/">Demo</a>
+     ·
+   </b>
+ </p>
+</div>
 
-
-## 🖥️ Demo
-
-Try the live demo [here](https://crypto-horizon-app.netlify.app/)
-
-
-## 🛠️ Tech Stack and Modules
-
-- **Frontend**: Vue 3 + Nuxt 4
-- **Backend/Database**: Nuxt Server API + Supabase
-- **UI/Styling**: TailwindCSS 4 + Shadcn-vue + MazUI
-- **Modules**: Pinia Store + Tanstack Table + Chart.js + Day.js
-- **Animation**: GSAP + Motion
-- **Icons**: Phosphor
+---
 
 
 ## ✨ Features
@@ -30,6 +29,16 @@ Try the live demo [here](https://crypto-horizon-app.netlify.app/)
 - 📰 Crypto news hub: Global and coin-specific news aggregated from top sources
 - 🏦 DeFi analytics: Track DeFi protocols, TVL (Total Value Locked), and yield farming opportunities
 - 🎓 Crypto Academy: Learn the basics of blockchain, trading, and decentralized finance
+
+
+## 🛠️ Tech Stack and Modules
+
+- **Frontend**: Vue 3 + Nuxt 4
+- **Backend/Database**: Nuxt Server API + Supabase
+- **UI/Styling**: TailwindCSS 4 + Shadcn-vue + MazUI
+- **Modules**: Pinia Store + Tanstack Table + Chart.js + Day.js
+- **Animation**: GSAP + Motion
+- **Icons**: Phosphor
 
 
 ## 📚 Api Integration
