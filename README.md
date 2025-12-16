@@ -56,23 +56,21 @@
 | ![Coins](https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1765824732/1._global-market_whxstf.png)   | ![News](https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1765890837/4._coin-news_i3891v.png)  |
 |                    Monitor Bitcoin dominance, Fear & Greed Index, and macro trends in one place.                    |                     Stay updated with the latest crypto news and coin-specific headlines.                     |
 
-## ⚠️ Prerequisites
-
-- Node.js v22.16.0 LTS
-- Environment Variables
-
 ## 🚀 Getting Started
 
-1. Clone and install the dependencies
+### ⚠️ Prerequisites
+- Node.js **v22.16.0 LTS**
+- Environment variables (see `.env.example`)
+
+### 1. Clone and Install the dependencies
 ```bash
 git clone https://github.com/verona-dev/crypto-horizon.git
 cd crypto-horizon
 npm install
 ```
 
-2. Run the Development Server
-
-Start the development server on `http://localhost:3000`
+### 2. Run the Development Server
+Start the development server on [http://localhost:3000](http://localhost:3000):
 ```bash
 npm run dev
 ```
