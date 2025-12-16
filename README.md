@@ -1,107 +1,58 @@
 
-![Logo](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765824731/1._global-market-narrow_ot3df3.png)
-
-
 # Crypto Horizon
 
 Crypto Horizon is your all-in-one dashboard for real-time cryptocurrency tracking, analytics, and news. Built for developers and enthusiasts.
 
-## Demo
+![Logo](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1765824731/1._global-market-narrow_ot3df3.png)
 
-https://crypto-horizon-app.netlify.app/
 
-## Screenshots
-![Launchpad](https://res.cloudinary.com/dgcyv1ehi/image/upload/v1761174707/crypto-horizon-gif_aiwq8c.gif)
+## 🖥️ Demo
+
+Try the live demo [here](https://crypto-horizon-app.netlify.app/)
 
 
 ## 🛠️ Tech Stack and Modules
 
-**Frontend:**
-[Vue 3](https://vuejs.org/),
-[Nuxt 4](https://nuxt.com/)
-
-**Backend/Database:**
-[Nuxt Server API](https://nuxt.com/docs/4.x/guide/concepts/server-engine),
-[Supabase](https://supabase.com/)
-
-**UI/Styling:**
-[TailwindCSS 4](https://tailwindcss.com/),
-[Shadcn-vue](https://www.shadcn-vue.com/),
-[MazUI](https://maz-ui.com/)
-
-**Modules:**
-[Pinia Store](https://pinia.vuejs.org/),
-[Tanstack Table](https://tanstack.com/table),
-[Chart.js](https://www.chartjs.org/docs/latest/),
-[Day.js](https://day.js.org/)
-
-**Animation:**
-[GSAP](https://gsap.com/),
-[Motion](https://motion.dev/)
-
-**Icons:**
-[Phosphor](https://phosphoricons.com/)
-
-**Api:**
-[Coingecko](https://docs.coingecko.com/),
-[Livecoinwatch](http://livecoinwatch.github.io/lcw-api-docs/),
-[Coinmarketcap](https://coinmarketcap.com/api/documentation/v1/),
-[CoinDesk](https://developers.coindesk.com/documentation/data-api/news)
+- **Frontend**: Vue 3 + Nuxt 4
+- **Backend/Database**: Nuxt Server API + Supabase
+- **UI/Styling**: TailwindCSS 4 + Shadcn-vue + MazUI
+- **Modules**: Pinia Store + Tanstack Table + Chart.js + Day.js
+- **Animation**: GSAP + Motion
+- **Icons**: Phosphor
 
 
 ## 📚 Api Integration
 
-[Coingecko](https://docs.coingecko.com/)
-
-[Livecoinwatch](http://livecoinwatch.github.io/lcw-api-docs/)
-
-[Coinmarketcap](https://coinmarketcap.com/api/documentation/v1/)
-
-[CoinDesk](https://developers.coindesk.com/documentation/data-api/news)
+- [Coingecko](https://docs.coingecko.com/): Crypto data
+- [Livecoinwatch](http://livecoinwatch.github.io/lcw-api-docs/): Crypto data
+- [Coinmarketcap](https://coinmarketcap.com/api/documentation/v1/): Crypto data
+- [CoinDesk](https://developers.coindesk.com/documentation/data-api/news): Crypto news
 
 
-## Prerequisites
+## ⚠️ Prerequisites
 
-- [Node.js](https://nodejs.org/en/blog/release/v22.16.0) v22.16.0 LT
+- Node.js v22.16.0 LTS
 - Environment Variables
 
 
-## Run Locally
+## 🚀 Getting Started
 
-Clone and install the dependencies
-
+1. Clone and install the dependencies
 ```bash
 git clone https://github.com/verona-dev/crypto-horizon.git
 cd crypto-horizon
 npm install
 ```
 
-
-## Development Server
+2. Run the Development Server
 
 Start the development server on `http://localhost:3000`
-
 ```bash
 npm run dev
 ```
 
 
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-
-## Authors
+## 👤 Authors
 
 - [@verona-dev](https://github.com/verona-dev/) - Frontend developer & crypto enthusiast.
 
