@@ -162,6 +162,7 @@ export default defineNuxtConfig({
       'shadcn-nuxt',
       'motion-v/nuxt',
       '@nuxtjs/seo',
+      '@nuxtjs/supabase',
    ],
 
    nitro: {
@@ -187,6 +188,17 @@ export default defineNuxtConfig({
    },
 
    ssr: true, // true for ogImage
+
+   supabase: {
+      redirect: false,
+      /*
+      redirectOptions: {
+         login: "/login",
+         callback: "/confirm",
+         exclude: ["/", "/register"],
+      },
+      */
+   },
 
    vite: {
       plugins: [
