@@ -162,6 +162,7 @@ export default defineNuxtConfig({
       'shadcn-nuxt',
       'motion-v/nuxt',
       '@nuxtjs/seo',
+      '@nuxtjs/supabase',
    ],
 
    nitro: {
