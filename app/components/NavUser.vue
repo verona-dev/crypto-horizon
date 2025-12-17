@@ -1,8 +1,14 @@
 <script setup lang='ts'>
-    import { ChevronsUpDown, LogIn, MailPlus } from 'lucide-vue-next'
+    import { ChevronsUpDown, LogIn } from 'lucide-vue-next'
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
     import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu'
     import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '~/components/ui/sidebar'
+    
+    // AuthStore
+    import { storeToRefs } from 'pinia';
+    import { useAuthStore } from '~/stores/AuthStore.js';
+    const AuthStore = useAuthStore();
+    const { authModal } = storeToRefs(AuthStore);
     
     const props = defineProps<{
         user: {
@@ -14,7 +20,7 @@
     
     const { open, isMobile } = useSidebar()
     
-    const onClick = () => alert('Coming soon!');
+    const onOpenAuthModal = () => authModal.value = true;
 </script>
 
 <template>
@@ -66,19 +72,11 @@
             
                     <DropdownMenuGroup>
                         <DropdownMenuItem
-                            @click='onClick'
-                            class='cursor-pointer py-3 mb-2'
-                        >
-                            <MailPlus />
-                            Register
-                        </DropdownMenuItem>
-                        
-                        <DropdownMenuItem
-                            @click='onClick'
+                            @click='onOpenAuthModal'
                             class='cursor-pointer py-3'
                         >
                             <LogIn />
-                            Log In
+                            Sign In
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
                 </DropdownMenuContent>
