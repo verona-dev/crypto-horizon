@@ -2,7 +2,7 @@
 export default defineNuxtPlugin(() => {
    const route = useRoute();
    const site_title = 'Crypto Horizon';
-   const site_image = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1761173267/crypto-horizon_-_logo-12_js96kq.png';
+   const site_image = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766068749/crypto-horizon_-_logo-12_yutbki.png';
    const head = useRequestURL();
    const current_url = computed(() => head.href);
    const page_meta = computed(() => route.meta);
