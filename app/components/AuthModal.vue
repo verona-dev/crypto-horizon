@@ -27,6 +27,7 @@
             <DialogFooter class='w-96 mx-auto gap-4'>
                 <DialogClose>
                     <Button variant='outline'>
+                        <Spinner v-if='loading' class='animate-spin' />
                         Cancel
                     </Button>
                 </DialogClose>
@@ -40,6 +41,7 @@
 <script setup>
     import { Button } from '~/components/ui/button';
     import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
+    import { Spinner } from '@/components/ui/spinner';
     
     // AuthStore
     import { storeToRefs } from 'pinia';
