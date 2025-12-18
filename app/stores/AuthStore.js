@@ -14,19 +14,37 @@ export const useAuthStore = defineStore('AuthStore', {
             try {
                 this.loading = true;
                 
-                const { error } = await supabase.auth?.signInWithOtp({
-                    email: email
+                const { data, error } = await supabase.auth?.signInWithOtp({
+                    email
                 });
                 
-                if(error) throw error;
+                if(error) {
+                    throw error;
+                };
                 
-                alert('check your email');
+                return { data, error };
             } catch(error) {
                 console.error(error);
                 
-                alert(error?.error_description || error?.message)
+                return { data: null, error };
             } finally {
                 this.loading = false;
+            }
+        },
+        
+        async verifyOtp(email, otpCode) {
+            const supabase = useSupabaseClient();
+            
+            try {
+                const { data, error } = await supabase.auth?.verifyOtp({
+                    email,
+                    token: otpCode,
+                    type: 'email',
+                });
+                
+                return { data, error };
+            } catch(error) {
+                console.error(error);
             }
         },
         
@@ -34,15 +52,21 @@ export const useAuthStore = defineStore('AuthStore', {
             const supabase = useSupabaseClient();
             const user = useSupabaseUser();
             
-            const { data } = await supabase
-               .from('profiles')
-               .select(`username, website, avatar_url`)
-               .eq('id', user.value.id)
-               .single()
-            
-            if(data) {
-                this.user = data;
+            if(user.value) {
+                this.user = user.value;
             }
+            
+            console.log(this.user);
+            
+            // const { data } = await supabase
+            //    .from('profiles')
+            //    .select(`username, website, avatar_url`)
+            //    .eq('id', user.value.id)
+            //    .single()
+            //
+            // if(data) {
+            //     this.user = data;
+            // }
             
             // console.log(this.user);
         }
