@@ -4,6 +4,7 @@ export const useAuthStore = defineStore('AuthStore', {
     state: () => ({
         authModal: false,
         loading: false,
+        user: null,
     }),
     
     actions: {
@@ -13,7 +14,7 @@ export const useAuthStore = defineStore('AuthStore', {
             try {
                 this.loading = true;
                 
-                const { error } = await supabase.auth.signInWithOtp({
+                const { error } = await supabase.auth?.signInWithOtp({
                     email: email
                 });
                 
@@ -28,5 +29,22 @@ export const useAuthStore = defineStore('AuthStore', {
                 this.loading = false;
             }
         },
+        
+        async getUser() {
+            const supabase = useSupabaseClient();
+            const user = useSupabaseUser();
+            
+            const { data } = await supabase
+               .from('profiles')
+               .select(`username, website, avatar_url`)
+               .eq('id', user.value.id)
+               .single()
+            
+            if(data) {
+                this.user = data;
+            }
+            
+            // console.log(this.user);
+        }
     },
 });
