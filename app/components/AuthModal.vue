@@ -81,10 +81,12 @@
     import { Input } from '~/components/ui/input';
     import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '~/components/ui/pin-input';
     import { Spinner } from '~/components/ui/spinner';
+    import { toast } from 'vue-sonner';
     
     // AuthStore
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
+    import { h } from 'vue';
     const AuthStore = useAuthStore();
     const { signInWithOtp, verifyOtp } = AuthStore;
     const { loading, authModal } = storeToRefs(AuthStore);
@@ -118,7 +120,7 @@
     
     const button_label = computed(() => {
         if(loading.value) return 'Sending...';
-        else return 'Submit';
+        else return 'Send Code';
     });
     
     const otp_input = ref([]);
@@ -128,16 +130,27 @@
         const joined_otp_input = otp_input.value.join('');
         const { data, error } = await verifyOtp(email.value, joined_otp_input);
         
+        if(error) {
+            console.error('OTP verification failed:', error);
+            return;
+        }
+        
         if(data?.session?.access_token) {
+            displayToast();
             resetState();
             console.log(data);
         }
         
-        if(error) {
-            console.log(error);
-        }
-        
         loading.value = false;
+    };
+    
+    const displayToast = () => {
+        toast.promise(() => new Promise((resolve) => setTimeout(resolve, 750)), {
+            success: () => 'Houston, we have a login!',
+            error: () => 'We’re experiencing interference from a black hole. Check your connection and try again.',
+            class: '!flex !gap-3',
+            description: () => h('span', 'Welcome back, space traveler.'),
+        });
     };
     
     const resetState = () => {
