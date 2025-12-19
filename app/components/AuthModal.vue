@@ -28,15 +28,15 @@
             
             <DialogFooter class='flex !flex-col gap-4 items-center'>
                 <!--   Submit buttons   -->
-                <div class='w-80 mx-auto flex flex-col gap-4'>
-                    <Button @click='onEmailSubmit' class='py-5'>
+                <div class='w-full mx-auto flex items-center gap-4'>
+                    <DialogClose class='flex-1'>
+                        <Button variant='outline' class='w-full py-5\'>Cancel</Button>
+                    </DialogClose>
+                    
+                    <Button @click='onEmailSubmit' class='py-5 w-3/4'>
                         <Spinner v-if='loading' class='animate-spin' />
                         <span>{{ button_label }}</span>
                     </Button>
-                    
-                    <DialogClose>
-                        <Button variant='outline' class='w-full py-5'>Cancel</Button>
-                    </DialogClose>
                 </div>
                 
                 <!--   Status  -->
@@ -67,6 +67,8 @@
                             </template>
                         </template>
                     </PinInputGroup>
+                    
+                    <Spinner v-if='loading' class='animate-spin' />
                 </PinInput>
             </DialogFooter>
         </DialogContent>
@@ -122,15 +124,27 @@
     const otp_input = ref([]);
     const show_otp_input = ref(false);
     const onOtpSubmit = async() => {
+        loading.value = true;
         const joined_otp_input = otp_input.value.join('');
         const { data, error } = await verifyOtp(email.value, joined_otp_input);
         
-        if(data) {
+        if(data?.session?.access_token) {
+            resetState();
             console.log(data);
         }
         
         if(error) {
             console.log(error);
         }
+        
+        loading.value = false;
+    };
+    
+    const resetState = () => {
+        authModal.value = false;
+        status_label.value = '';
+        status_label_visible.value = false;
+        show_otp_input.value = false;
+        otp_input.value = [];
     };
 </script>
