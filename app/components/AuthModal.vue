@@ -1,6 +1,6 @@
 <template>
     <Dialog v-model:open='authModal' class='flex items-center gap-2'>
-        <DialogContent class='p-10 sm:max-w-150 h-150 flex flex-col'>
+        <DialogContent class='p-10 sm:max-w-150 h-170 flex flex-col'>
             <!--   Stepper   -->
             <Form
                 v-slot='{ meta, validate, setFieldError, errors }'
@@ -18,7 +18,7 @@
                         @submit.prevent='() => validate()'
                         class='flex flex-col gap-8 w-full h-full'
                     >
-                        <DialogHeader class='flex flex-col gap-16 h-full'>
+                        <DialogHeader class='flex flex-col gap-18 h-full'>
                             <!--   Stepper Title   -->
                             <div class='flex flex-col gap-2'>
                                 <DialogTitle class='text-4xl'>
@@ -100,9 +100,9 @@
                                                 />
                                             </FormControl>
                                             
-                                            <FormMessage />
-                                            
                                             <span class='text-xxs text-muted-foreground'>Signing in will automatically create an account if your email isn’t already registered.</span>
+                                            
+                                            <FormMessage />
                                         </FormItem>
                                     </FormField>
                                 </template>
