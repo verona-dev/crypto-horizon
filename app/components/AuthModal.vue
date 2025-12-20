@@ -6,7 +6,7 @@
                 v-slot='{ meta, validate, setFieldError, errors }'
                 as=''
                 keep-values
-                :validation-schema='toTypedSchema(formSchema[stepIndex - 1])'
+                :validation-schema='toTypedSchema(formSchema[stepIndex - 1] || z.object({}))'
                 class='w-full h-full'
             >
                 <Stepper
@@ -208,13 +208,6 @@
         z.object({
             email: z.string().email(),
         }),
-        z.object({
-            password: z.string().min(2).max(50),
-        }).refine(
-            (values) => {
-                return values.password
-            }
-        ),
     ];
     
     const stepIndex = ref(1);
