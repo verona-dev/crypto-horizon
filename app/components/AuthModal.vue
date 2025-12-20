@@ -22,13 +22,20 @@
                     >
                         <DialogHeader class='flex flex-col gap-16 h-full'>
                             <!--   Stepper Title   -->
-                            <div>
-                                <DialogTitle class='text-4xl'>Authenticate</DialogTitle>
-                                <DialogDescription>Sign in via OTP code with your email below.</DialogDescription>
+                            <div class='flex flex-col gap-2'>
+                                <DialogTitle class='text-4xl'>
+                                    <span v-if='stepIndex === 1'>Authenticate</span>
+                                    <span v-if='stepIndex === 2'>Verify OTP</span>
+                                </DialogTitle>
+                                
+                                <DialogDescription>
+                                    <span v-if='stepIndex === 1'>Sign in via OTP code with your email below.</span>
+                                    <span v-if='stepIndex === 2'>Please enter the eight digit verification code we sent to {{ email }}.</span>
+                                
+                                </DialogDescription>
                             </div>
                             
                             <!--   Stepper Navigation   -->
-                            <!--
                             <div class='flex items-center gap-2'>
                                 <StepperItem
                                     v-for='(step, index) in steps'
@@ -51,12 +58,12 @@
                                             :disabled="index >= (modelValue || 0)"
                                         >
                                             <Check v-if='state === "completed"' class='size-5' />
-                                            <Circle v-if='state === "active"' />
+                                            <Mail v-if='state === "active" && stepIndex === 1' />
+                                            <LockKeyhole v-if='state === "active" && stepIndex === 2' />
                                             <Dot v-if='state === "inactive"' />
                                         </Button>
                                     </StepperTrigger>
                                     
-                                    &lt;!&ndash;   Step Title   &ndash;&gt;
                                     <div class='mt-5 flex flex-col items-center text-center'>
                                         <StepperTitle
                                             :class='[state === "active" && "text-primary"]'
@@ -74,7 +81,7 @@
                                     </div>
                                 </StepperItem>
                             </div>
-                            -->
+                            
                             
                             <!--   Stepper Body   -->
                             <div :class='{ "mx-auto" : stepIndex === 2}'>
@@ -92,6 +99,7 @@
                                                     type='email'
                                                     class='inputField !w-full focus-visible:border-foreground/75 focus-visible:ring-[0px] py-5'
                                                     placeholder='Enter email'
+                                                    @input='validate()'
                                                 />
                                             </FormControl>
                                             
@@ -110,7 +118,7 @@
                                         @complete='onOtpSubmit'
                                         id='pin-input'
                                         placeholder=''
-                                        class='mx-auto'
+                                        class='flex flex-col items-start gap-4'
                                         otp
                                         required
                                     >
@@ -126,7 +134,9 @@
                                             </template>
                                         </PinInputGroup>
                                         
-                                        <Spinner v-if='loading' class='animate-spin' />
+                                        <span class='text-sm'>
+                                            Resend available in 00:00 seconds.
+                                        </span>
                                     </PinInput>
                                 </template>
                             </div>
@@ -135,28 +145,22 @@
                         <!--   Stepper Buttons   -->
                         <DialogFooter class='flex !flex-col'>
                             <div v-if='stepIndex === 1'>
-                                <div class='flex items-center justify-between gap-6 mt-4'>
-                                    <DialogClose>
-                                        <Button variant='outline' size='lg'>Cancel</Button>
-                                    </DialogClose>
-                                    
-                                    <Button
-                                        @click='meta.valid && nextStep() && onEmailSubmit()'
-                                        :type='meta.valid ? "button" : "submit"'
-                                        class='flex-1'
-                                        size='lg'
-                                        :disabled='!meta.valid'
-                                    >
-                                        <Spinner v-if='loading' class='animate-spin' />
-                                        <span>Send OTP Code</span>
-                                    </Button>
-                                </div>
+                                <Button
+                                    @click='meta.valid && nextStep() && onEmailSubmit(values)'
+                                    :type='meta.valid ? "button" : "submit"'
+                                    class='w-full'
+                                    size='lg'
+                                    :disabled='!meta.valid'
+                                >
+                                    <Spinner v-if='loading' class='animate-spin' />
+                                    <span>Send OTP Code</span>
+                                </Button>
                             </div>
                             
                             <div v-else class='flex items-center justify-between mt-4'>
                                 <Button
                                     :disabled='isPrevDisabled'
-                                    variant='outline'
+                                    :variant='stepIndex === 1 ? "outline": "link"'
                                     @click='prevStep()'
                                     size='lg'
                                 >
@@ -194,7 +198,7 @@
     import { toTypedSchema } from '@vee-validate/zod';
     import * as z from 'zod';
     import { Button } from '~/components/ui/button';
-    import { Check, Circle, Dot } from 'lucide-vue-next';
+    import { Check, Dot, Mail, LockKeyhole } from 'lucide-vue-next';
     import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogClose } from '@/components/ui/dialog';
     import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
     import { Input } from '~/components/ui/input';
@@ -229,13 +233,13 @@
     const steps = [
         {
             step: 1,
-            title: 'Your details',
-            description: 'Provide your email',
+            title: '1. Enter your email',
+            description: '',
         },
         {
             step: 2,
-            title: 'Check your email',
-            description: 'Enter OTP Code',
+            title: '2. Enter OTP Code',
+            description: '',
         },
     ];
     
