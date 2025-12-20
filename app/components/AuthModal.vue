@@ -121,6 +121,7 @@
                                         class='flex flex-col items-start gap-4'
                                         otp
                                         required
+                                        @vue:mounted='startCountdown'
                                     >
                                         <PinInputGroup class='gap-1'>
                                             <template v-for='(id, index) in 8' :key='id'>
@@ -134,8 +135,8 @@
                                             </template>
                                         </PinInputGroup>
                                         
-                                        <span class='text-sm'>
-                                            Resend available in 00:00 seconds.
+                                        <span v-if='remaining !== 0' class='text-sm'>
+                                            Resend available in {{ remaining }} seconds.
                                         </span>
                                     </PinInput>
                                 </template>
@@ -152,7 +153,6 @@
                                     size='lg'
                                     :disabled='!meta.valid'
                                 >
-                                    <Spinner v-if='loading' class='animate-spin' />
                                     <span>Send OTP Code</span>
                                 </Button>
                             </div>
@@ -206,6 +206,7 @@
     import { Spinner } from '~/components/ui/spinner';
     import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '@/components/ui/stepper';
     import { toast } from 'vue-sonner';
+    import { useCountdown } from '@vueuse/core';
     
     // AuthStore
     import { storeToRefs } from 'pinia';
@@ -251,11 +252,11 @@
     
     const onEmailSubmit = async(values) => {
         console.log(values);
+        
         if (!email.value) {
             alert('Please enter a valid email');
             return;
         }
-        
         const { error } = await signInWithOtp(email.value);
         
         if (error) {
@@ -291,6 +292,11 @@
         
         loading.value = false;
     };
+    
+    // Countdown
+    const countdownSeconds = ref(60);
+    const { remaining, start } = useCountdown(countdownSeconds);
+    const startCountdown = () => start(countdownSeconds);
     
     const displayToast = () => {
         toast.promise(() => new Promise((resolve) => setTimeout(resolve, 750)), {
