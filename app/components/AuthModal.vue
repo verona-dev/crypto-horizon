@@ -90,6 +90,7 @@
                                     <FormField
                                         v-slot='{ componentField }'
                                         name='email'
+                                        v-model='email'
                                     >
                                         <FormItem>
                                             <!--<FormLabel>Email</FormLabel>-->
@@ -147,7 +148,7 @@
                         <DialogFooter class='flex !flex-col'>
                             <div v-if='stepIndex === 1'>
                                 <Button
-                                    @click='meta.valid && nextStep() && onEmailSubmit(values)'
+                                    @click='goToNextStep(meta, nextStep)'
                                     :type='meta.valid ? "button" : "submit"'
                                     class='w-full'
                                     size='lg'
@@ -250,8 +251,8 @@
     const status_label_computed = computed(() => status_label.value);
     const status_label_visible = ref(false);
     
-    const onEmailSubmit = async(values) => {
-        console.log(values);
+    const onEmailSubmit = async() => {
+        console.log(email.value)
         
         if (!email.value) {
             alert('Please enter a valid email');
@@ -270,6 +271,12 @@
             status_label_visible.value = true;
             status_label.value = 'Check your email';
         }
+    };
+    
+    const goToNextStep = (meta: any, nextStep: any) => {
+        meta.valid;
+        onEmailSubmit();
+        nextStep();
     };
     
     // OTP
