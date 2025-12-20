@@ -252,8 +252,6 @@
     const status_label_visible = ref(false);
     
     const onEmailSubmit = async() => {
-        console.log(email.value)
-        
         if (!email.value) {
             alert('Please enter a valid email');
             return;
