@@ -3,21 +3,19 @@
         <DialogContent class='p-10 sm:max-w-150 h-150 flex flex-col'>
             <!--   Stepper   -->
             <Form
-                v-slot='{ meta, values, validate }'
+                v-slot='{ meta, validate, setFieldError, errors }'
                 as=''
                 keep-values
                 :validation-schema='toTypedSchema(formSchema[stepIndex - 1])'
                 class='w-full h-full'
             >
                 <Stepper
-                    v-slot='{ isNextDisabled, isPrevDisabled, nextStep, prevStep, modelValue }'
+                    v-slot='{ isPrevDisabled, nextStep, prevStep, modelValue }'
                     v-model='stepIndex'
                     class='block w-full h-full'
                 >
                     <form
-                        @submit.prevent='() => {
-                                validate()
-                            }'
+                        @submit.prevent='() => validate()'
                         class='flex flex-col gap-8 w-full h-full'
                     >
                         <DialogHeader class='flex flex-col gap-16 h-full'>
@@ -82,18 +80,16 @@
                                 </StepperItem>
                             </div>
                             
-                            
                             <!--   Stepper Body   -->
                             <div :class='{ "mx-auto" : stepIndex === 2}'>
                                 <!--  Step 1: Email input  -->
                                 <template v-if='stepIndex === 1'>
                                     <FormField
                                         v-slot='{ componentField }'
-                                        name='email'
                                         v-model='email'
+                                        name='email'
                                     >
                                         <FormItem>
-                                            <!--<FormLabel>Email</FormLabel>-->
                                             <FormControl>
                                                 <Input
                                                     v-bind='componentField'
@@ -136,7 +132,7 @@
                                             </template>
                                         </PinInputGroup>
                                         
-                                        <span v-if='remaining !== 0' class='text-sm'>
+                                        <span v-if='remaining !== 0' class='text-xs'>
                                             Resend available in {{ remaining }} seconds.
                                         </span>
                                     </PinInput>
@@ -148,7 +144,7 @@
                         <DialogFooter class='flex !flex-col'>
                             <div v-if='stepIndex === 1'>
                                 <Button
-                                    @click='goToNextStep(meta, nextStep)'
+                                    @click='() => onEmailSubmit(setFieldError, errors, nextStep, meta)'
                                     :type='meta.valid ? "button" : "submit"'
                                     class='w-full'
                                     size='lg'
@@ -177,16 +173,6 @@
                                     Verify
                                 </Button>
                             </div>
-                            
-                            <!--
-                            <div class='flex !flex-col gap-4 items-center justify-center border border-red-300 py-4'>
-                                <p>Terminal for errors</p>
-                                &lt;!&ndash;  Status  &ndash;&gt;
-                                <p v-if='status_label_visible' class='text-destructive text-sm'>
-                                    {{ status_label_computed }}
-                                </p>
-                            </div>
-                            -->
                         </DialogFooter>
                     </form>
                 </Stepper>
@@ -198,13 +184,13 @@
 <script lang='ts' setup>
     import { toTypedSchema } from '@vee-validate/zod';
     import * as z from 'zod';
+    import { useForm } from 'vee-validate';
     import { Button } from '~/components/ui/button';
     import { Check, Dot, Mail, LockKeyhole } from 'lucide-vue-next';
-    import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogClose } from '@/components/ui/dialog';
-    import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+    import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+    import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '~/components/ui/input';
     import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '~/components/ui/pin-input';
-    import { Spinner } from '~/components/ui/spinner';
     import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '@/components/ui/stepper';
     import { toast } from 'vue-sonner';
     import { useCountdown } from '@vueuse/core';
@@ -246,35 +232,25 @@
     ];
     
     // Email
+    const { setFieldError } = useForm();
     const email = ref('veronadev@tuta.io');
-    const status_label = ref('');
-    const status_label_computed = computed(() => status_label.value);
-    const status_label_visible = ref(false);
-    
-    const onEmailSubmit = async() => {
-        if (!email.value) {
-            alert('Please enter a valid email');
-            return;
-        }
+    const onEmailSubmit = async (setFieldError: any, errors: any, nextStep: any, meta: any) => {
         const { error } = await signInWithOtp(email.value);
         
         if (error) {
-            status_label_visible.value = true;
-            status_label.value = error.message;
+            setFieldError('email', error.message);
             
             setTimeout(() => {
-                status_label_visible.value = false;
+                setFieldError('email', '');
             }, 5000);
-        } else {
-            status_label_visible.value = true;
-            status_label.value = 'Check your email';
+            
+            return false;
         }
-    };
-    
-    const goToNextStep = (meta: any, nextStep: any) => {
-        meta.valid;
-        onEmailSubmit();
-        nextStep();
+        
+        setFieldError('email', '');
+        nextTick(() => nextStep());
+        
+        return true;
     };
     
     // OTP
@@ -314,8 +290,7 @@
     
     const resetState = () => {
         authModal.value = false;
-        status_label.value = '';
-        status_label_visible.value = false;
         otp_input.value = [];
+        setFieldError('email', '');
     };
 </script>
