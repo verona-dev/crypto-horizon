@@ -1,33 +1,35 @@
 <template>
-    <Dialog v-model:open='authModal'>
-        <DialogContent class='p-10 sm:max-w-150 flex flex-col !gap-12'>
+    <Dialog v-model:open='authModal' class='flex items-center gap-2'>
+        <DialogContent class='p-10 sm:max-w-150 h-150 flex flex-col'>
             <!--   Stepper   -->
             <Form
                 v-slot='{ meta, values, validate }'
                 as=''
                 keep-values
                 :validation-schema='toTypedSchema(formSchema[stepIndex - 1])'
+                class='w-full h-full'
             >
                 <Stepper
                     v-slot='{ isNextDisabled, isPrevDisabled, nextStep, prevStep, modelValue }'
                     v-model='stepIndex'
-                    class='block w-full'
+                    class='block w-full h-full'
                 >
                     <form
                         @submit.prevent='() => {
                                 validate()
-                                if (stepIndex === steps.length && meta.valid) {
-                                  onEmailSubmit(values)
-                                }
                             }'
-                        class='flex flex-col gap-8'
+                        class='flex flex-col gap-8 w-full h-full'
                     >
-                        <!--   Stepper Header   -->
-                        <DialogHeader class='flex flex-col'>
-                            <DialogTitle class='text-4xl'>Authenticate</DialogTitle>
-                            <DialogDescription>Sign in via OTP code with your email below.</DialogDescription>
+                        <DialogHeader class='flex flex-col gap-16 h-full'>
+                            <!--   Stepper Title   -->
+                            <div>
+                                <DialogTitle class='text-4xl'>Authenticate</DialogTitle>
+                                <DialogDescription>Sign in via OTP code with your email below.</DialogDescription>
+                            </div>
                             
-                            <div class='flex items-center'>
+                            <!--   Stepper Navigation   -->
+                            <!--
+                            <div class='flex items-center gap-2'>
                                 <StepperItem
                                     v-for='(step, index) in steps'
                                     :key='step.step'
@@ -40,14 +42,13 @@
                                         class='absolute left-[calc(50%+20px)] right-[calc(-50%+10px)] top-5 block h-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
                                     />
                                     
-                                    <!--   Stepper Icons   -->
                                     <StepperTrigger as-child>
                                         <Button
                                             :variant='state === "completed" || state === "active" ? "default" : "outline"'
                                             size='icon'
                                             class='z-10 rounded-full shrink-0'
                                             :class='[state === "active" && "ring-2 ring-ring ring-offset-2 ring-offset-background"]'
-                                            :disabled="state !== 'completed' && (index >= (modelValue || 0) && !meta.valid)"
+                                            :disabled="index >= (modelValue || 0)"
                                         >
                                             <Check v-if='state === "completed"' class='size-5' />
                                             <Circle v-if='state === "active"' />
@@ -55,7 +56,7 @@
                                         </Button>
                                     </StepperTrigger>
                                     
-                                    <!--   Stepper Title   -->
+                                    &lt;!&ndash;   Step Title   &ndash;&gt;
                                     <div class='mt-5 flex flex-col items-center text-center'>
                                         <StepperTitle
                                             :class='[state === "active" && "text-primary"]'
@@ -73,125 +74,118 @@
                                     </div>
                                 </StepperItem>
                             </div>
+                            -->
+                            
+                            <!--   Stepper Body   -->
+                            <div :class='{ "mx-auto" : stepIndex === 2}'>
+                                <!--  Step 1: Email input  -->
+                                <template v-if='stepIndex === 1'>
+                                    <FormField
+                                        v-slot='{ componentField }'
+                                        name='email'
+                                    >
+                                        <FormItem>
+                                            <!--<FormLabel>Email</FormLabel>-->
+                                            <FormControl>
+                                                <Input
+                                                    v-bind='componentField'
+                                                    type='email'
+                                                    class='inputField !w-full focus-visible:border-foreground/75 focus-visible:ring-[0px] py-5'
+                                                    placeholder='Enter email'
+                                                />
+                                            </FormControl>
+                                            
+                                            <FormMessage />
+                                            
+                                            <span class='text-xxs text-muted-foreground'>Signing in will automatically create an account if your email isn’t already registered.</span>
+                                        </FormItem>
+                                    </FormField>
+                                </template>
+                                
+                                <!--  Step 2: OTP Code  -->
+                                <template v-if='stepIndex === 2'>
+                                    <!--   OTP Pin Input   -->
+                                    <PinInput
+                                        v-model='otp_input'
+                                        @complete='onOtpSubmit'
+                                        id='pin-input'
+                                        placeholder=''
+                                        class='mx-auto'
+                                        otp
+                                        required
+                                    >
+                                        <PinInputGroup class='gap-1'>
+                                            <template v-for='(id, index) in 8' :key='id'>
+                                                <PinInputSlot
+                                                    class='h-10 w-10 rounded-md border focus-visible:border-foreground/75 focus-visible:ring-[0px]'
+                                                    :index='index'
+                                                />
+                                                <template v-if='index !== 7'>
+                                                    <PinInputSeparator />
+                                                </template>
+                                            </template>
+                                        </PinInputGroup>
+                                        
+                                        <Spinner v-if='loading' class='animate-spin' />
+                                    </PinInput>
+                                </template>
+                            </div>
                         </DialogHeader>
                         
-                        <!--   Stepper Body   -->
+                        <!--   Stepper Buttons   -->
                         <DialogFooter class='flex !flex-col'>
-                            <!--  Step 1: Email input  -->
-                            <template v-if='stepIndex === 1'>
-                                <FormField
-                                    v-slot='{ componentField }'
-                                    name='email'
-                                >
-                                    <FormItem>
-                                        <FormLabel>Email</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                v-bind='componentField'
-                                                type='email'
-                                                class='inputField !w-full focus-visible:border-foreground/75 focus-visible:ring-[0px] py-5'
-                                                placeholder='Enter email'
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                </FormField>
-                            </template>
-                            
-                            <!--  Step 2: OTP Code  -->
-                            <template v-if='stepIndex === 2'>
-                                <!--   OTP Pin Input   -->
-                                <PinInput
-                                    v-model='otp_input'
-                                    @complete='onOtpSubmit'
-                                    id='pin-input'
-                                    placeholder=''
-                                    class='mx-auto'
-                                    otp
-                                    required
-                                >
-                                    <PinInputGroup class='gap-1'>
-                                        <template v-for='(id, index) in 8' :key='id'>
-                                            <PinInputSlot
-                                                class='rounded-md border'
-                                                :index='index'
-                                            />
-                                            <template v-if='index !== 7'>
-                                                <PinInputSeparator />
-                                            </template>
-                                        </template>
-                                    </PinInputGroup>
+                            <div v-if='stepIndex === 1'>
+                                <div class='flex items-center justify-between gap-6 mt-4'>
+                                    <DialogClose>
+                                        <Button variant='outline' size='lg'>Cancel</Button>
+                                    </DialogClose>
                                     
-                                    <Spinner v-if='loading' class='animate-spin' />
-                                </PinInput>
-                            </template>
-                            
-                            <!--  Stepper Buttons  -->
-                            <div>
-                                <div v-if='stepIndex === 1'>
-                                    <div class='flex items-center justify-between mt-4'>
-                                        <DialogClose>
-                                            <Button variant='outline' size='lg'>Cancel</Button>
-                                        </DialogClose>
-                                        
-                                        <Button
-                                            @click='meta.valid && nextStep() && onEmailSubmit'
-                                            :type='meta.valid ? "button" : "submit"'
-                                            class=''
-                                            size='lg'
-                                            :disabled='!meta.valid'
-                                        >
-                                            <Spinner v-if='loading' class='animate-spin' />
-                                            <span>Send OTP Code</span>
-                                        </Button>
-                                    </div>
-                                </div>
-                                
-                                <div v-else class='flex items-center justify-between mt-4'>
                                     <Button
-                                        :disabled='isPrevDisabled'
-                                        variant='outline'
-                                        size='sm'
-                                        @click='prevStep()'
+                                        @click='meta.valid && nextStep() && onEmailSubmit()'
+                                        :type='meta.valid ? "button" : "submit"'
+                                        class='flex-1'
+                                        size='lg'
+                                        :disabled='!meta.valid'
                                     >
-                                        Back
+                                        <Spinner v-if='loading' class='animate-spin' />
+                                        <span>Send OTP Code</span>
                                     </Button>
-                                    
-                                    <div class='flex items-center gap-3'>
-                                        <Button
-                                            v-if='stepIndex !== 2'
-                                            :type='meta.valid ? "button" : "submit"'
-                                            :disabled='isNextDisabled'
-                                            size='sm'
-                                            @click='meta.valid && nextStep()'
-                                        >
-                                            Next
-                                        </Button>
-                                        
-                                        <Button
-                                            v-if='stepIndex === 2'
-                                            size='sm'
-                                            type='submit'
-                                        >
-                                            Submit
-                                        </Button>
-                                    </div>
                                 </div>
                             </div>
+                            
+                            <div v-else class='flex items-center justify-between mt-4'>
+                                <Button
+                                    :disabled='isPrevDisabled'
+                                    variant='outline'
+                                    @click='prevStep()'
+                                    size='lg'
+                                >
+                                    Back
+                                </Button>
+                                
+                                <Button
+                                    v-if='stepIndex === 2'
+                                    @click='onOtpSubmit'
+                                    type='submit'
+                                    size='lg'
+                                >
+                                    Verify
+                                </Button>
+                            </div>
+                            
+                            <!--
+                            <div class='flex !flex-col gap-4 items-center justify-center border border-red-300 py-4'>
+                                <p>Terminal for errors</p>
+                                &lt;!&ndash;  Status  &ndash;&gt;
+                                <p v-if='status_label_visible' class='text-destructive text-sm'>
+                                    {{ status_label_computed }}
+                                </p>
+                            </div>
+                            -->
                         </DialogFooter>
                     </form>
                 </Stepper>
             </Form>
-            
-            <!--
-            <DialogFooter class='flex !flex-col gap-4 items-center justify-center border border-red-300 py-4'>
-                <p>Terminal for errors</p>
-                &lt;!&ndash;   Status  &ndash;&gt;
-                <p v-if='status_label_visible' class='text-destructive text-sm'>
-                    {{ status_label_computed }}
-                </p>
-            </DialogFooter>
-            -->
         </DialogContent>
     </Dialog>
 </template>
@@ -251,7 +245,8 @@
     const status_label_computed = computed(() => status_label.value);
     const status_label_visible = ref(false);
     
-    const onEmailSubmit = async() => {
+    const onEmailSubmit = async(values) => {
+        console.log(values);
         if (!email.value) {
             alert('Please enter a valid email');
             return;
