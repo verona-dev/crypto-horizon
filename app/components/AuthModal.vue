@@ -15,7 +15,7 @@
             
             <!--   Stepper   -->
             <Form
-                v-slot='{ meta, validate, setFieldError, errors }'
+                v-slot='{ meta, validate, setFieldError }'
                 as=''
                 keep-values
                 :validation-schema='toTypedSchema(formSchema[stepIndex - 1] || z.object({}))'
@@ -122,39 +122,51 @@
                                     </FormField>
                                 </template>
                                 
-                                <!--  Step 2: OTP Code  -->
+                                <!--  Step 2: OTP Pin Input  -->
                                 <template v-if='stepIndex === 2'>
-                                    <!--   OTP Pin Input   -->
-                                    <PinInput
-                                        v-model='otp_input'
-                                        @complete='onOtpSubmit'
-                                        id='pin-input'
-                                        placeholder=''
-                                        class='flex flex-col items-start gap-6'
-                                        otp
-                                        required
-                                        @vue:mounted='startCountdown'
-                                    >
-                                        <PinInputGroup class='gap-1'>
-                                            <template v-for='(id, index) in 8' :key='id'>
-                                                <PinInputSlot
-                                                    class='h-12 w-12 text-xl font-bold font-satoshi rounded-md border focus-visible:border-foreground/75 focus-visible:ring-[0px]'
-                                                    :index='index'
-                                                />
-                                                <template v-if='index !== 7'>
-                                                    <PinInputSeparator />
-                                                </template>
-                                            </template>
-                                        </PinInputGroup>
-                                        
-                                        <div class='otp-labels text-sm'>
-                                            <span>Didn't get the email?&nbsp;</span>
-                                            <span
-                                                @click='onEmailSubmit(setFieldError, errors, nextStep, meta)'
-                                                class='font-bold underline cursor-pointer'>Click to resend</span>
-                                            <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
-                                        </div>
-                                    </PinInput>
+                                    <FormField name='otp'>
+                                        <FormItem>
+                                            <FormLabel>OTP</FormLabel>
+                                            
+                                            <FormControl>
+                                                <!--   OTP Pin Input   -->
+                                                <PinInput
+                                                    v-model='otp_input'
+                                                    @complete='onVerifyOtp(setFieldError)'
+                                                    id='pin-input'
+                                                    placeholder=''
+                                                    class='flex flex-col items-start gap-6'
+                                                    otp
+                                                    required
+                                                    @vue:mounted='startCountdown'
+                                                >
+                                                    <PinInputGroup class='gap-1'>
+                                                        <template v-for='(id, index) in 8' :key='id'>
+                                                            <PinInputSlot
+                                                                class='h-12 w-12 text-xl font-bold font-satoshi rounded-md border focus-visible:border-foreground/75 focus-visible:ring-[0px]'
+                                                                :index='index'
+                                                            />
+                                                            <template v-if='index !== 7'>
+                                                                <PinInputSeparator />
+                                                            </template>
+                                                        </template>
+                                                    </PinInputGroup>
+                                                    
+                                                    <div class='otp-labels text-sm'>
+                                                        <span>Didn't get the email?&nbsp;</span>
+                                                        <span
+                                                            @click='() => onResendEmail(setFieldError)'
+                                                            class='font-bold underline cursor-pointer'
+                                                        >Click to resend</span>
+                                                        
+                                                        <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
+                                                    </div>
+                                                </PinInput>
+                                            </FormControl>
+                                            
+                                            <FormMessage />
+                                        </FormItem>
+                                    </FormField>
                                 </template>
                             </div>
                         </DialogHeader>
@@ -163,12 +175,13 @@
                         <DialogFooter class='flex !flex-col'>
                             <div v-if='stepIndex === 1'>
                                 <Button
-                                    @click='() => onEmailSubmit(setFieldError, errors, nextStep, meta)'
+                                    @click='() => onEmailSubmit(setFieldError, nextStep)'
                                     :type='meta.valid ? "button" : "submit"'
                                     class='w-full'
                                     size='lg'
                                     :disabled='!meta.valid'
                                 >
+                                    <Spinner v-if='loading' class='animate-spin' />
                                     <span>Login</span>
                                 </Button>
                             </div>
@@ -185,7 +198,7 @@
                                 
                                 <Button
                                     v-if='stepIndex === 2'
-                                    @click='onOtpSubmit'
+                                    @click="() => onVerifyOtp(setFieldError)"
                                     type='submit'
                                     size='lg'
                                 >
@@ -210,6 +223,7 @@
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '~/components/ui/input';
     import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '~/components/ui/pin-input';
+    import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '@/components/ui/stepper';
     import { toast } from 'vue-sonner';
     import { useCountdown } from '@vueuse/core';
@@ -246,45 +260,63 @@
     // Email
     const { setFieldError } = useForm();
     const email = ref('');
-    const onEmailSubmit = async (setFieldError: any, errors: any, nextStep: any, meta: any) => {
-        console.log('submit email')
+    const onEmailSubmit = async(setFieldError: any, nextStep: any) => {
         const { error } = await signInWithOtp(email.value);
         
         if (error) {
-            setFieldError('email', error.message);
-            
+            setFieldError('email', `Email not sent: ${error.message}`);
             setTimeout(() => {
                 setFieldError('email', '');
-            }, 5000);
-            
+            }, 10000);
             return false;
         }
         
-        setFieldError('email', '');
-        nextTick(() => nextStep());
+        // resetFieldErrors();
+        nextStep && nextTick(() => nextStep());
+        
+        return true;
+    };
+    const onResendEmail = async(setFieldError: any) => {
+        const { error } = await signInWithOtp(email.value);
+        
+        if (error) {
+            // set the field error to "otp" since we are on step-2 (otp fields)
+            setFieldError('otp', `Resend failed: ${error.message}`);
+            setTimeout(() => {
+                setFieldError('otp', '');
+            }, 10000);
+            return false;
+        }
+        
+        startCountdown();
         
         return true;
     };
     
     // OTP
     const otp_input = ref([]);
-    const onOtpSubmit = async() => {
-        loading.value = true;
-        const joined_otp_input = otp_input.value.join('');
-        const { data, error } = await verifyOtp(email.value, joined_otp_input);
+    const onVerifyOtp = async(setFieldError: any) => {
+        const joined_otp_input = otp_input.value?.join('');
+        const result = await verifyOtp(email.value, joined_otp_input);
+        console.log('result', result);
         
-        if(error) {
-            console.error('OTP verification failed:', error);
-            return;
+        if(result?.error) {
+            setFieldError('otp', `Verification failed: ${result.error.message}`);
+            setTimeout(() => {
+                setFieldError('otp', '');
+            }, 10000);
+            return false;
         }
         
-        if(data?.session?.access_token) {
+        if(result?.data?.session?.access_token) {
             displayToast();
             resetState();
-            console.log(data);
+            console.log(result);
         }
         
         loading.value = false;
+        
+        return true;
     };
     
     // Countdown
@@ -292,6 +324,7 @@
     const { remaining, start } = useCountdown(countdownSeconds);
     const startCountdown = () => start(countdownSeconds);
     
+    // Utils
     const displayToast = () => {
         toast.promise(() => new Promise((resolve) => setTimeout(resolve, 750)), {
             success: () => 'Houston, we have a login!',
@@ -305,5 +338,6 @@
         authModal.value = false;
         otp_input.value = [];
         setFieldError('email', '');
+        setFieldError('otp', '');
     };
 </script>
