@@ -34,12 +34,12 @@
                             <!--   Stepper Title   -->
                             <div class='flex flex-col gap-2'>
                                 <DialogTitle class='text-4xl'>
-                                    <span v-if='stepIndex === 1'>Sign in with email</span>
-                                    <span v-if='stepIndex === 2'>Verify OTP</span>
+                                    <span v-if='stepIndex === 1'>Welcome back!</span>
+                                    <span v-if='stepIndex === 2'>Enter OTP</span>
                                 </DialogTitle>
                                 
                                 <DialogDescription>
-                                    <span v-if='stepIndex === 1'>Sign in via OTP code with your email below.</span>
+                                    <span v-if='stepIndex === 1'>Enter your email to receive a one-time password (OTP).</span>
                                     <span v-if='stepIndex === 2'>Please enter the eight digit verification code we sent to {{ email }}.</span>
                                 </DialogDescription>
                             </div>
@@ -102,17 +102,20 @@
                                         name='email'
                                     >
                                         <FormItem>
+                                            <FormLabel>Email</FormLabel>
+                                            
                                             <FormControl>
                                                 <Input
                                                     v-bind='componentField'
                                                     type='email'
                                                     class='inputField !w-full focus-visible:border-foreground/75 focus-visible:ring-[0px] py-5'
-                                                    placeholder='Enter your email address'
+                                                    placeholder='name@example.com'
                                                     @input='validate()'
                                                 />
                                             </FormControl>
                                             
-                                            <span class='text-xxs text-muted-foreground'>Signing in will automatically create an account if your email isn’t already registered.</span>
+                                            <!-- <span class='text-xxs text-muted-foreground'>Signing in will automatically create an account if your email isn’t already registered.</span> -->
+                                            <span class='text-xxs text-muted-foreground'>No account? One will be created automatically.</span>
                                             
                                             <FormMessage />
                                         </FormItem>
@@ -127,7 +130,7 @@
                                         @complete='onOtpSubmit'
                                         id='pin-input'
                                         placeholder=''
-                                        class='flex flex-col items-start gap-4'
+                                        class='flex flex-col items-start gap-6'
                                         otp
                                         required
                                         @vue:mounted='startCountdown'
@@ -135,7 +138,7 @@
                                         <PinInputGroup class='gap-1'>
                                             <template v-for='(id, index) in 8' :key='id'>
                                                 <PinInputSlot
-                                                    class='h-10 w-10 rounded-md border focus-visible:border-foreground/75 focus-visible:ring-[0px]'
+                                                    class='h-12 w-12 text-xl font-bold font-satoshi rounded-md border focus-visible:border-foreground/75 focus-visible:ring-[0px]'
                                                     :index='index'
                                                 />
                                                 <template v-if='index !== 7'>
@@ -144,9 +147,13 @@
                                             </template>
                                         </PinInputGroup>
                                         
-                                        <span v-if='remaining !== 0' class='text-xs'>
-                                            Resend available in {{ remaining }} seconds.
-                                        </span>
+                                        <div class='otp-labels text-sm'>
+                                            <span>Didn't get the email?&nbsp;</span>
+                                            <span
+                                                @click='onEmailSubmit(setFieldError, errors, nextStep, meta)'
+                                                class='font-bold underline cursor-pointer'>Click to resend</span>
+                                            <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
+                                        </div>
                                     </PinInput>
                                 </template>
                             </div>
@@ -162,7 +169,7 @@
                                     size='lg'
                                     :disabled='!meta.valid'
                                 >
-                                    <span>Send OTP Code</span>
+                                    <span>Login</span>
                                 </Button>
                             </div>
                             
@@ -200,7 +207,7 @@
     import { Button } from '~/components/ui/button';
     import { Check, X, Dot, Mail, LockKeyhole } from 'lucide-vue-next';
     import { Dialog, DialogContent, DialogClose, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-    import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
+    import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '~/components/ui/input';
     import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '~/components/ui/pin-input';
     import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '@/components/ui/stepper';
@@ -240,6 +247,7 @@
     const { setFieldError } = useForm();
     const email = ref('');
     const onEmailSubmit = async (setFieldError: any, errors: any, nextStep: any, meta: any) => {
+        console.log('submit email')
         const { error } = await signInWithOtp(email.value);
         
         if (error) {
