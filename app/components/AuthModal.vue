@@ -1,6 +1,18 @@
 <template>
-    <Dialog v-model:open='authModal' class='flex items-center gap-2'>
-        <DialogContent class='p-10 sm:max-w-150 h-170 flex flex-col'>
+    <Dialog
+        v-model:open='authModal'
+        class='flex items-center gap-2'
+    >
+        <DialogContent class='p-10 sm:max-w-150 h-170 flex flex-col [&>button:last-child]:hidden'>
+            <DialogClose as-child>
+                <Button
+                    variant='ghost'
+                    class='absolute top-4 right-4'
+                >
+                    <X class='size-5' />
+                </Button>
+            </DialogClose>
+            
             <!--   Stepper   -->
             <Form
                 v-slot='{ meta, validate, setFieldError, errors }'
@@ -22,19 +34,19 @@
                             <!--   Stepper Title   -->
                             <div class='flex flex-col gap-2'>
                                 <DialogTitle class='text-4xl'>
-                                    <span v-if='stepIndex === 1'>Authenticate</span>
+                                    <span v-if='stepIndex === 1'>Sign in with email</span>
                                     <span v-if='stepIndex === 2'>Verify OTP</span>
                                 </DialogTitle>
                                 
                                 <DialogDescription>
                                     <span v-if='stepIndex === 1'>Sign in via OTP code with your email below.</span>
                                     <span v-if='stepIndex === 2'>Please enter the eight digit verification code we sent to {{ email }}.</span>
-                                
                                 </DialogDescription>
                             </div>
                             
-                            <!--   Stepper Navigation   -->
-                            <div class='flex items-center gap-2'>
+                            <!--   Stepper Navigation  -->
+                            <!--   hidden instead of removal because the stepper component breaks  -->
+                            <div class='flex items-center gap-2 hidden'>
                                 <StepperItem
                                     v-for='(step, index) in steps'
                                     :key='step.step'
@@ -95,7 +107,7 @@
                                                     v-bind='componentField'
                                                     type='email'
                                                     class='inputField !w-full focus-visible:border-foreground/75 focus-visible:ring-[0px] py-5'
-                                                    placeholder='Enter email'
+                                                    placeholder='Enter your email address'
                                                     @input='validate()'
                                                 />
                                             </FormControl>
@@ -186,8 +198,8 @@
     import * as z from 'zod';
     import { useForm } from 'vee-validate';
     import { Button } from '~/components/ui/button';
-    import { Check, Dot, Mail, LockKeyhole } from 'lucide-vue-next';
-    import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+    import { Check, X, Dot, Mail, LockKeyhole } from 'lucide-vue-next';
+    import { Dialog, DialogContent, DialogClose, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
     import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '~/components/ui/input';
     import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '~/components/ui/pin-input';
@@ -226,7 +238,7 @@
     
     // Email
     const { setFieldError } = useForm();
-    const email = ref('veronadev@tuta.io');
+    const email = ref('');
     const onEmailSubmit = async (setFieldError: any, errors: any, nextStep: any, meta: any) => {
         const { error } = await signInWithOtp(email.value);
         
