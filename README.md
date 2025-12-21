@@ -35,7 +35,7 @@
 - **UI/Styling**: TailwindCSS 4 + Shadcn + MazUI
 - **Modules**: Pinia Store + Tanstack Table + Chart.js + Day.js
 - **Animation**: GSAP + Motion
-- **Icons**: Phosphor
+- **Icons**: Phosphor, Lucide
 
 ## 🛸 Api Integration
 
