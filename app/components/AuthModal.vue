@@ -30,7 +30,7 @@
                 
                 <Skeleton
                     v-else
-                    class='w-44 h-44 rounded-full'
+                    class='w-44 h-44 rounded-full self-center'
                 />
             </NuxtImg>
             
