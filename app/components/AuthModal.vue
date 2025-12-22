@@ -322,7 +322,6 @@
     const onVerifyOtp = async(setFieldError: any) => {
         const joined_otp_input = otp_input.value?.join('');
         const result = await verifyOtp(email.value, joined_otp_input);
-        console.log('result', result);
         
         if(result?.error) {
             setFieldError('otp', `Verification failed: ${result.error.message}`);
