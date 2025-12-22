@@ -48,7 +48,7 @@
                 >
                     <form
                         @submit.prevent='() => validate()'
-                        class='flex flex-col gap-8'
+                        class='flex flex-col gap-16'
                     >
                         <DialogHeader class='flex flex-col gap-8'>
                             <!--   Stepper Title   -->
@@ -204,7 +204,7 @@
                                     :disabled='!meta.valid'
                                 >
                                     <Spinner v-if='loading' class='animate-spin' />
-                                    <span>Send Code</span>
+                                    <span>Continue</span>
                                 </Button>
                             </div>
                             
