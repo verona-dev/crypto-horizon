@@ -12,7 +12,7 @@ const { name, formMessageId } = useFormField()
         v-slot='{ message }'
         :name='toValue(name)'
         as='div'
-        class='text-[0.8rem] font-medium text-destructive pt-6'
+        class='text-[0.8rem] font-medium text-destructive mt-6'
     >
         <Card class='w-full bg-gradient-to-br from-zinc-900/95 to-black/95 border border-red-500/50 backdrop-blur-xl shadow-2xl'>
             <CardHeader class='py-3'>
@@ -22,7 +22,7 @@ const { name, formMessageId } = useFormField()
                         <div class='w-2.5 h-2.5 bg-yellow-500/60 rounded-full'></div>
                         <div class='w-2.5 h-2.5 bg-green-500/40 rounded-full'></div>
                     </div>
-                    <h6 class='text-xs font-mono uppercase tracking-widest text-red-400 border-r border-red-500/30 pr-3'>
+                    <h6 class='text-xs font-mono uppercase tracking-widest text-red-400 pr-3'>
                         Error
                     </h6>
                 </div>
