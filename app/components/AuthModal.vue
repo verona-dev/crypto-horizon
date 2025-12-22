@@ -17,7 +17,7 @@
             <NuxtImg
                 src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
                 alt='crypto horizon login logo'
-                class='w-40 h-40 rounded-full select-none self-center'
+                class='w-44 h-44 rounded-full select-none self-center p-1.5 border-2 border-secondary'
                 :custom='true'
                 v-slot='{ src, isLoaded, imgAttrs }'
                 preload
@@ -30,7 +30,7 @@
                 
                 <Skeleton
                     v-else
-                    class='w-40 h-40 rounded-full'
+                    class='w-44 h-44 rounded-full'
                 />
             </NuxtImg>
             
@@ -40,18 +40,17 @@
                 as=''
                 keep-values
                 :validation-schema='toTypedSchema(formSchema[stepIndex - 1] || z.object({}))'
-                class='w-full h-full'
             >
                 <Stepper
                     v-slot='{ isPrevDisabled, nextStep, prevStep, modelValue }'
                     v-model='stepIndex'
-                    class='block w-full h-full'
+                    class='block'
                 >
                     <form
                         @submit.prevent='() => validate()'
-                        class='flex flex-col gap-8 w-full h-full '
+                        class='flex flex-col gap-8'
                     >
-                        <DialogHeader class='flex flex-col gap-18 h-full'>
+                        <DialogHeader class='flex flex-col gap-8'>
                             <!--   Stepper Title   -->
                             <div class='flex flex-col gap-2'>
                                 <DialogTitle class='text-4xl'>
@@ -60,10 +59,12 @@
                                 </DialogTitle>
                                 
                                 <DialogDescription>
-                                    <span v-if='stepIndex === 1'>Enter your email to login with a one-time password (OTP).</span>
+                                    <span v-if='stepIndex === 1'>Enter your email to sign-up with a one-time password (OTP).</span>
                                     <span v-if='stepIndex === 2'>Please enter the eight digit verification code we sent to {{ email }}.</span>
                                 </DialogDescription>
                             </div>
+                            
+                            <Separator class='!p-0 !m-0' />
                             
                             <!--   Stepper Navigation  -->
                             <!--   hidden instead of removal because the stepper component breaks  -->
@@ -136,7 +137,7 @@
                                             </FormControl>
                                             
                                             <!-- <span class='text-xxs text-muted-foreground'>Signing in will automatically create an account if your email isn’t already registered.</span> -->
-                                            <span class='text-xxs text-muted-foreground'>No account? One will be created automatically.</span>
+                                            <span class='text-xxs text-muted-foreground'>New astronaut? We’ll automatically create an account on first sign-up.</span>
                                             
                                             <FormMessage />
                                         </FormItem>
@@ -203,7 +204,7 @@
                                     :disabled='!meta.valid'
                                 >
                                     <Spinner v-if='loading' class='animate-spin' />
-                                    <span>Login</span>
+                                    <span>Send Code</span>
                                 </Button>
                             </div>
                             
@@ -245,7 +246,8 @@
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '~/components/ui/input';
     import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '~/components/ui/pin-input';
-    import {Skeleton} from '@/components/ui/skeleton';
+    import { Separator } from '~/components/ui/separator';
+    import { Skeleton } from '@/components/ui/skeleton';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '@/components/ui/stepper';
     import { toast } from 'vue-sonner';
