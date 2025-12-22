@@ -49,26 +49,17 @@ export const useAuthStore = defineStore('AuthStore', {
         },
         
         async getUser() {
-            const supabase = useSupabaseClient();
-            const user = useSupabaseUser();
+            const { data, error } = await $fetch('/api/supabase/get-user');
             
-            if(user.value) {
-                this.user = user.value;
+            try {
+                if(error) throw error;
+                if(data) {
+                    console.log(data);
+                    return { data };
+                };
+            } catch(error) {
+                console.error(error);
             }
-            
-            console.log(this.user);
-            
-            // const { data } = await supabase
-            //    .from('profiles')
-            //    .select(`username, website, avatar_url`)
-            //    .eq('id', user.value.id)
-            //    .single()
-            //
-            // if(data) {
-            //     this.user = data;
-            // }
-            
-            // console.log(this.user);
         }
     },
 });
