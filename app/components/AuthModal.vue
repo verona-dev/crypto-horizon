@@ -3,7 +3,7 @@
         v-model:open='authModal'
         class='flex items-center gap-2'
     >
-        <DialogContent class='p-10 sm:max-w-150 h-170 flex flex-col [&>button:last-child]:hidden'>
+        <DialogContent class='p-16 sm:max-w-150 flex flex-col gap-12 !rounded-xl [&>button:last-child]:hidden'>
             <DialogClose as-child>
                 <Button
                     variant='ghost'
@@ -12,6 +12,27 @@
                     <X class='size-5' />
                 </Button>
             </DialogClose>
+            
+            <!--  Logo  -->
+            <NuxtImg
+                src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
+                alt='crypto horizon login logo'
+                class='w-40 h-40 rounded-full select-none self-center'
+                :custom='true'
+                v-slot='{ src, isLoaded, imgAttrs }'
+                preload
+            >
+                <img
+                    v-if='isLoaded'
+                    v-bind='imgAttrs'
+                    :src='src'
+                >
+                
+                <Skeleton
+                    v-else
+                    class='w-40 h-40 rounded-full'
+                />
+            </NuxtImg>
             
             <!--   Stepper   -->
             <Form
@@ -28,18 +49,18 @@
                 >
                     <form
                         @submit.prevent='() => validate()'
-                        class='flex flex-col gap-8 w-full h-full'
+                        class='flex flex-col gap-8 w-full h-full '
                     >
                         <DialogHeader class='flex flex-col gap-18 h-full'>
                             <!--   Stepper Title   -->
                             <div class='flex flex-col gap-2'>
                                 <DialogTitle class='text-4xl'>
-                                    <span v-if='stepIndex === 1'>Welcome back!</span>
+                                    <span v-if='stepIndex === 1'>Welcome to Crypto Horizon</span>
                                     <span v-if='stepIndex === 2'>Enter OTP</span>
                                 </DialogTitle>
                                 
                                 <DialogDescription>
-                                    <span v-if='stepIndex === 1'>Enter your email to receive a one-time password (OTP).</span>
+                                    <span v-if='stepIndex === 1'>Enter your email to login with a one-time password (OTP).</span>
                                     <span v-if='stepIndex === 2'>Please enter the eight digit verification code we sent to {{ email }}.</span>
                                 </DialogDescription>
                             </div>
@@ -214,6 +235,7 @@
 </template>
 
 <script lang='ts' setup>
+    import { h } from 'vue';
     import { toTypedSchema } from '@vee-validate/zod';
     import * as z from 'zod';
     import { useForm } from 'vee-validate';
@@ -223,6 +245,7 @@
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '~/components/ui/input';
     import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '~/components/ui/pin-input';
+    import {Skeleton} from '@/components/ui/skeleton';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '@/components/ui/stepper';
     import { toast } from 'vue-sonner';
@@ -231,7 +254,6 @@
     // AuthStore
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
-    import { h } from 'vue';
     const AuthStore = useAuthStore();
     const { signInWithOtp, verifyOtp } = AuthStore;
     const { loading, authModal } = storeToRefs(AuthStore);
