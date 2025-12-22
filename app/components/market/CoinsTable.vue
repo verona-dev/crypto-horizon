@@ -180,7 +180,7 @@
                                         >
                                             <!--   Name  -->
                                             <template v-if='cell.column.id === "name"'>
-                                                <div class='flex items-center gap-4 w-96'>
+                                                <div class='flex items-center gap-4 w-88'>
                                                     <NuxtImg
                                                         :src='cell.row.original.image'
                                                         width='40'
