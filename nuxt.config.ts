@@ -174,12 +174,12 @@ export default defineNuxtConfig({
 
    runtimeConfig: {
       public: {
-         coingecko_api_key: process.env.COINGECKO_API_KEY,
-         livecoinwatch_api_key: process.env.LIVECOINWATCH_API_KEY,
-         coindesk_api: process.env.COINDESK_API_KEY,
-         cmc_api_key: process.env.CMC_API_KEY,
          site_url: process.env.SITE_URL,
       },
+      coingecko_api_key: process.env.COINGECKO_API_KEY,
+      livecoinwatch_api_key: process.env.LIVECOINWATCH_API_KEY,
+      coindesk_api: process.env.COINDESK_API_KEY,
+      cmc_api_key: process.env.CMC_API_KEY,
    },
 
    shadcn: {
