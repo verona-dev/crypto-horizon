@@ -334,7 +334,6 @@
         if(result?.data?.session?.access_token) {
             displayToast();
             resetState();
-            console.log(result);
         }
         
         loading.value = false;
