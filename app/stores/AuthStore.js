@@ -49,17 +49,21 @@ export const useAuthStore = defineStore('AuthStore', {
         },
         
         async getUser() {
-            const { data, error } = await $fetch('/api/supabase/get-user');
-            
             try {
+                const { data, error } = await $fetch('/api/supabase/get-user');
+                
                 if(error) throw error;
+                
                 if(data) {
+                    this.user = data;
+                    
                     console.log(data);
+                    
                     return { data };
                 };
             } catch(error) {
                 console.error(error);
             }
-        }
+        },
     },
 });
