@@ -191,6 +191,13 @@ export default defineNuxtConfig({
 
    supabase: {
       redirect: false,
+      cookieOptions: {
+         name: 'sb',
+         lifetime: 60 * 60 * 8,
+         path: '/',
+         sameSite: 'lax',
+         secure: true,
+      }
       /*
       redirectOptions: {
          login: "/login",
