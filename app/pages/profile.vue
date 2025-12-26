@@ -1,6 +1,7 @@
 <template>
     <div class='profile'>
-        this is profile page
+        profile page:
+        {{ profile }}
     </div>
 </template>
 
@@ -9,10 +10,11 @@
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
-    const { getUser } = AuthStore;
+    const { getProfile } = AuthStore;
+    const { profile } = storeToRefs(AuthStore);
     
-    onMounted(() => {
-        getUser();
+    onMounted(async() => {
+       await getProfile();
     });
     
     definePageMeta({

@@ -4,7 +4,7 @@ export const useAuthStore = defineStore('AuthStore', {
     state: () => ({
         authModal: false,
         loading: false,
-        user: {},
+        profile: {},
     }),
     
     actions: {
@@ -48,16 +48,15 @@ export const useAuthStore = defineStore('AuthStore', {
             }
         },
         
-        async getUser() {
+        async getProfile() {
             try {
-                const { data, error } = await $fetch('/api/supabase/get-user', {
+                const { data, error } = await $fetch('/api/supabase/get-profile', {
                     headers: useRequestHeaders(['cookie']),
                 });
                 
                 if(error) throw error;
                 
-                this.user = data;
-                
+                this.profile = data;
             } catch(error) {
                 console.error(error);
             }
