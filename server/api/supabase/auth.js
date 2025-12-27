@@ -5,6 +5,13 @@ export default defineEventHandler(async(event) => {
     const body = await readBody(event);
     const { email } = body;
     
+    if(!email) {
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'Email is required',
+        });
+    }
+    
     try {
         const { data, error } = await client.auth.signInWithOtp({
             email
@@ -15,8 +22,8 @@ export default defineEventHandler(async(event) => {
         console.error(error);
         
         throw createError({
-            statusCode: 500,
-            statusMessage: 'Internal Server Error',
+            statusCode: error.statusCode || 500,
+            statusMessage: error.statusMessage || 'Internal Server Error',
         });
     }
 });
