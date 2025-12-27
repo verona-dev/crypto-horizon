@@ -12,7 +12,7 @@ export const useAuthStore = defineStore('AuthStore', {
             try {
                 this.loading = true;
                 
-                const { data, error } = await $fetch('/api/supabase/auth', {
+                const { data, error } = await $fetch('/api/supabase/auth/sign-in-otp', {
                     method: 'POST',
                     body: { email },
                 });
@@ -32,13 +32,10 @@ export const useAuthStore = defineStore('AuthStore', {
         },
         
         async verifyOtp(email, otpCode) {
-            const supabase = useSupabaseClient();
-            
             try {
-                const { data, error } = await supabase.auth?.verifyOtp({
-                    email,
-                    token: otpCode,
-                    type: 'email',
+                const { data, error } = await $fetch('/api/supabase/auth/verify-otp', {
+                    method: 'POST',
+                    body: { email, otpCode },
                 });
                 
                 return { data, error };
