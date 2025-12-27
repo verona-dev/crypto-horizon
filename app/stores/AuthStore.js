@@ -9,13 +9,12 @@ export const useAuthStore = defineStore('AuthStore', {
     
     actions: {
         async signInWithOtp(email) {
-            const supabase = useSupabaseClient();
-            
             try {
                 this.loading = true;
                 
-                const { data, error } = await supabase.auth?.signInWithOtp({
-                    email
+                const { data, error } = await $fetch('/api/supabase/auth', {
+                    method: 'POST',
+                    body: { email },
                 });
                 
                 if(error) {
