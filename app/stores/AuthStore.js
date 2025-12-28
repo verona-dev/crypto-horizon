@@ -4,7 +4,6 @@ export const useAuthStore = defineStore('AuthStore', {
     state: () => ({
         authModal: false,
         loading: false,
-        profile: {},
     }),
     
     actions: {
