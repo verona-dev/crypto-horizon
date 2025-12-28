@@ -10,17 +10,35 @@
     const AuthStore = useAuthStore();
     const { authModal } = storeToRefs(AuthStore);
     
-    const props = defineProps<{
-        user: {
-            name: string
-            email: string
-            avatar: string
-        }
-    }>()
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { profile } = storeToRefs(ProfileStore);
     
     const { open, isMobile } = useSidebar()
     
     const onOpenAuthModal = () => authModal.value = true;
+    
+    const logged_in = computed(() => profile.value);
+    const avatar = computed(() => {
+        if(logged_in.value) {
+            return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757002350/portrait-futuristic-female-humanoid-with-advanced-technology_k4wj3u.jpg';
+        }
+        return '';
+        // return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757002350/cartoon-woman-wearing-glasses_j0t0qt.jpg';
+    });
+    const username = computed(() => {
+        if(logged_in.value) {
+            return profile.value?.username;
+        }
+        return 'Guest';
+    });
+    const user_email = computed(() => {
+        if(logged_in.value) {
+            return profile.value?.email;
+        }
+        return null;
+    });
 </script>
 
 <template>
@@ -30,15 +48,15 @@
                 <DropdownMenuTrigger as-child>
                     <SidebarMenuButton size='lg'>
                         <Avatar class='h-8 w-8 rounded-lg'>
-                            <AvatarImage :src='user.avatar' :alt='user.name' />
+                            <AvatarImage :src='avatar' alt='avatar' />
                             <AvatarFallback class='rounded-lg'>
                                 G
                             </AvatarFallback>
                         </Avatar>
                         
-                        <div class='flex-1 text-left text-sm leading-tight'>
-                            <span class='truncate font-medium'>{{ user.name }}</span>
-                            <span class='truncate text-xs'>{{ user.email }}</span>
+                        <div class='flex flex-col flex-1 text-left text-sm leading-tight'>
+                            <span class='truncate font-medium'>{{ username }}</span>
+                            <span class='truncate text-xs'>{{ user_email }}</span>
                         </div>
                         
                         <ChevronsUpDown class='ml-auto size-4' />
@@ -50,26 +68,26 @@
                     class='w-[--reka-dropdown-menu-trigger-width] min-w-56'
                     :side='isMobile ? "bottom" : "right"'
                     align='end'
-                    :side-offset='4'
+                    :side-offset='12'
                 >
                     <DropdownMenuLabel class='p-0 font-normal'>
                         <div class='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
                             <Avatar class='h-8 w-8 rounded-lg'>
-                                <AvatarImage :src='user.avatar' :alt='user.name' />
+                                <AvatarImage :src='avatar' alt='avatar' />
                                 <AvatarFallback class='rounded-lg'>
                                     G
                                 </AvatarFallback>
                             </Avatar>
                             
                             <div class='grid flex-1 text-left text-sm leading-tight'>
-                                <span class='truncate font-semibold'>{{ user.name }}</span>
-                                <span class='truncate text-xs'>{{ user.email }}</span>
+                                <span class='truncate font-semibold'>{{ username }}</span>
+                                <span class='truncate text-xs'>{{ user_email }}</span>
                             </div>
                         </div>
                     </DropdownMenuLabel>
                     
                     <DropdownMenuSeparator />
-            
+                    
                     <DropdownMenuGroup>
                         <DropdownMenuItem
                             @click='onOpenAuthModal'
