@@ -6,12 +6,11 @@
 </template>
 
 <script setup>
-    // AuthStore
-    import { storeToRefs } from 'pinia';
-    import { useAuthStore } from '~/stores/AuthStore.js';
-    const AuthStore = useAuthStore();
-    const { getProfile } = AuthStore;
-    const { profile } = storeToRefs(AuthStore);
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { getProfile } = ProfileStore;
+    const { profile } = storeToRefs(ProfileStore);
     
     onMounted(async() => {
        await getProfile();
