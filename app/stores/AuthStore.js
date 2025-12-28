@@ -43,19 +43,5 @@ export const useAuthStore = defineStore('AuthStore', {
                 console.error(error);
             }
         },
-        
-        async getProfile() {
-            try {
-                const { data, error } = await $fetch('/api/supabase/get-profile', {
-                    headers: useRequestHeaders(['cookie']),
-                });
-                
-                if(error) throw error;
-                
-                this.profile = data;
-            } catch(error) {
-                console.error(error);
-            }
-        },
     },
 });
