@@ -8,7 +8,7 @@ export const useProfileStore = defineStore('ProfileStore', {
     actions: {
         async getProfile() {
             try {
-                const { data, error } = await $fetch('/api/supabase/get-profile', {
+                const { data, error } = await $fetch('/api/supabase/profile/get-profile', {
                     headers: useRequestHeaders(['cookie']),
                 });
                 
