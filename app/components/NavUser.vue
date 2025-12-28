@@ -76,7 +76,7 @@
                             class='cursor-pointer py-3'
                         >
                             <LogIn />
-                            Sign In
+                            Login / Register
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
                 </DropdownMenuContent>

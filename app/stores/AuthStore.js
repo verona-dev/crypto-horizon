@@ -4,28 +4,57 @@ export const useAuthStore = defineStore('AuthStore', {
     state: () => ({
         authModal: false,
         loading: false,
+        profile: {},
     }),
     
     actions: {
         async signInWithOtp(email) {
-            const supabase = useSupabaseClient();
-            
             try {
                 this.loading = true;
                 
-                const { error } = await supabase.auth.signInWithOtp({
-                    email: email
+                const { data, error } = await $fetch('/api/supabase/auth/sign-in-otp', {
+                    method: 'POST',
+                    body: { email },
+                });
+                
+                if(error) {
+                    throw error;
+                };
+                
+                return { data, error };
+            } catch(error) {
+                console.error(error);
+                
+                return { data: null, error };
+            } finally {
+                this.loading = false;
+            }
+        },
+        
+        async verifyOtp(email, otpCode) {
+            try {
+                const { data, error } = await $fetch('/api/supabase/auth/verify-otp', {
+                    method: 'POST',
+                    body: { email, otpCode },
+                });
+                
+                return { data, error };
+            } catch(error) {
+                console.error(error);
+            }
+        },
+        
+        async getProfile() {
+            try {
+                const { data, error } = await $fetch('/api/supabase/get-profile', {
+                    headers: useRequestHeaders(['cookie']),
                 });
                 
                 if(error) throw error;
                 
-                alert('check your email');
+                this.profile = data;
             } catch(error) {
                 console.error(error);
-                
-                alert(error?.error_description || error?.message)
-            } finally {
-                this.loading = false;
             }
         },
     },

@@ -130,7 +130,6 @@
         : [];
     
     platforms.forEach(contract => platforms_list.value.push(contract.name));
-    console.log(platforms_list.value.length > 1);
     
     const platformImageMap = computed(() => {
         if (!platforms_summary.value) return [];
