@@ -348,7 +348,7 @@
     // Success
     const onLoggedIn = () => {
         resetState();
-        displayToast();
+        // displayToast();
     };
     
     // Countdown
@@ -357,6 +357,7 @@
     const startCountdown = () => start(countdownSeconds);
     
     // Utils
+    /*
     const displayToast = () => {
         toast.promise(() => new Promise((resolve) => setTimeout(resolve, 750)), {
             success: () => 'Houston, we have a login!',
@@ -365,6 +366,7 @@
             description: () => h('span', 'Welcome back, space traveler.'),
         });
     };
+    */
     
     const resetState = () => {
         authModal.value = false;
