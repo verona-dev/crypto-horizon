@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-    import { ChevronsUpDown, LogIn } from 'lucide-vue-next'
+    import { ChevronsUpDown, LogIn, LogOut } from 'lucide-vue-next'
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
     import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu'
     import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '~/components/ui/sidebar'
@@ -9,6 +9,7 @@
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
     const { authModal } = storeToRefs(AuthStore);
+    const { logOut } = AuthStore;
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
@@ -63,7 +64,7 @@
                     </SidebarMenuButton>
                 </DropdownMenuTrigger>
                 
-                <!--  Popup  -->
+                <!--  Dropdown  -->
                 <DropdownMenuContent
                     class='w-[--reka-dropdown-menu-trigger-width] min-w-56'
                     :side='isMobile ? "bottom" : "right"'
@@ -89,12 +90,24 @@
                     <DropdownMenuSeparator />
                     
                     <DropdownMenuGroup>
+                        <!--  Login  -->
                         <DropdownMenuItem
+                            v-if='!logged_in'
                             @click='onOpenAuthModal'
                             class='cursor-pointer py-3'
                         >
                             <LogIn />
                             Login / Register
+                        </DropdownMenuItem>
+                        
+                        <!--  Logout  -->
+                        <DropdownMenuItem
+                            v-else
+                            @click='logOut'
+                            class='cursor-pointer py-3'
+                        >
+                            <LogOut />
+                            LogOut
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
                 </DropdownMenuContent>
