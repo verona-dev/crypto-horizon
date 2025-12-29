@@ -211,6 +211,7 @@
                                 
                                 <Button
                                     v-if='stepIndex === 2'
+                                    :disabled='isPrevDisabled'
                                     @click="() => onVerifyOtp(setFieldError, nextStep)"
                                     type='submit'
                                     size='lg'
@@ -233,7 +234,7 @@
 </template>
 
 <script lang='ts' setup>
-    import { h } from 'vue';
+    // import { h } from 'vue';
     import { toTypedSchema } from '@vee-validate/zod';
     import * as z from 'zod';
     import { useForm } from 'vee-validate';
@@ -247,7 +248,7 @@
     import { Skeleton } from '@/components/ui/skeleton';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
-    import { toast } from 'vue-sonner';
+    // import { toast } from 'vue-sonner';
     import { useCountdown } from '@vueuse/core';
     
     // AuthStore
