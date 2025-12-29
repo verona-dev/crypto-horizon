@@ -21,6 +21,7 @@
     const onOpenAuthModal = () => authModal.value = true;
     
     const logged_in = computed(() => profile.value);
+    
     const avatar = computed(() => {
         if(logged_in.value) {
             return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757002350/portrait-futuristic-female-humanoid-with-advanced-technology_k4wj3u.jpg';
@@ -28,18 +29,30 @@
         return '';
         // return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757002350/cartoon-woman-wearing-glasses_j0t0qt.jpg';
     });
+    
     const username = computed(() => {
         if(logged_in.value) {
             return profile.value?.username;
         }
         return 'Guest';
     });
+    
     const user_email = computed(() => {
         if(logged_in.value) {
             return profile.value?.email;
         }
         return null;
     });
+    
+    const onLogOut = async() => {
+        const route = useRoute();
+        
+        if(route.path === '/profile') {
+            await navigateTo('/', { replace: true });
+        }
+        
+        await logOut();
+    };
 </script>
 
 <template>
@@ -69,7 +82,7 @@
                     class='w-[--reka-dropdown-menu-trigger-width] min-w-56'
                     :side='isMobile ? "bottom" : "right"'
                     align='end'
-                    :side-offset='12'
+                    :side-offset='14'
                 >
                     <DropdownMenuLabel class='p-0 font-normal'>
                         <div class='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
@@ -89,6 +102,20 @@
                     
                     <DropdownMenuSeparator />
                     
+                    <!--  Profile  -->
+                    <DropdownMenuItem
+                        v-if='logged_in'
+                        class='cursor-pointer py-3'
+                        as-child
+                    >
+                        <NuxtLink to='/profile'>
+                            <NuxtIcon name='ph:user' size='18' />
+                            Profile
+                        </NuxtLink>
+                    </DropdownMenuItem>
+                    
+                    <DropdownMenuSeparator />
+                    
                     <DropdownMenuGroup>
                         <!--  Login  -->
                         <DropdownMenuItem
@@ -103,7 +130,7 @@
                         <!--  Logout  -->
                         <DropdownMenuItem
                             v-else
-                            @click='logOut'
+                            @click='onLogOut'
                             class='cursor-pointer py-3'
                         >
                             <NuxtIcon name='ph:sign-out' size='18' />

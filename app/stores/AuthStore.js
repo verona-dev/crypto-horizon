@@ -53,7 +53,6 @@ export const useAuthStore = defineStore('AuthStore', {
                 });
                 
                 ProfileStore.profile = null;
-                await navigateTo('/', { replace: true });
             } catch(error) {
                 console.error('Logout failed:', error);
             }
