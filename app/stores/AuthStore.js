@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
+import { useProfileStore } from '~/stores/ProfileStore.js';
 
 export const useAuthStore = defineStore('AuthStore', {
     state: () => ({
         authModal: false,
         loading: false,
-        profile: {},
     }),
     
     actions: {
@@ -44,17 +44,17 @@ export const useAuthStore = defineStore('AuthStore', {
             }
         },
         
-        async getProfile() {
+        async logOut() {
+            const ProfileStore = useProfileStore();
+            
             try {
-                const { data, error } = await $fetch('/api/supabase/get-profile', {
-                    headers: useRequestHeaders(['cookie']),
+                await $fetch('/api/supabase/auth/logout', {
+                    method: 'POST',
                 });
                 
-                if(error) throw error;
-                
-                this.profile = data;
+                ProfileStore.profile = null;
             } catch(error) {
-                console.error(error);
+                console.error('Logout failed:', error);
             }
         },
     },

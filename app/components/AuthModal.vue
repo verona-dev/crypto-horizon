@@ -56,11 +56,13 @@
                                 <DialogTitle class='text-4xl'>
                                     <span v-if='stepIndex === 1'>Welcome to Crypto Horizon</span>
                                     <span v-if='stepIndex === 2'>Enter OTP</span>
+                                    <span v-if='stepIndex === 3'>Welcome Back!</span>
                                 </DialogTitle>
                                 
                                 <DialogDescription>
                                     <span v-if='stepIndex === 1'>Enter your email to sign-up with a one-time password (OTP).</span>
                                     <span v-if='stepIndex === 2'>Please enter the eight digit verification code we sent to {{ email }}.</span>
+                                    <span v-if='stepIndex === 3'>You are now logged in.</span>
                                 </DialogDescription>
                             </div>
                             
@@ -95,22 +97,6 @@
                                             <Dot v-if='state === "inactive"' />
                                         </Button>
                                     </StepperTrigger>
-                                    
-                                    <div class='mt-5 flex flex-col items-center text-center'>
-                                        <StepperTitle
-                                            :class='[state === "active" && "text-primary"]'
-                                            class='text-sm font-semibold transition lg:text-base'
-                                        >
-                                            {{ step.title }}
-                                        </StepperTitle>
-                                        
-                                        <StepperDescription
-                                            :class='[state === "active" && "text-primary"]'
-                                            class='sr-only text-xs text-muted-foreground transition md:not-sr-only lg:text-sm'
-                                        >
-                                            {{ step.description }}
-                                        </StepperDescription>
-                                    </div>
                                 </StepperItem>
                             </div>
                             
@@ -154,7 +140,7 @@
                                                 <!--   OTP Pin Input   -->
                                                 <PinInput
                                                     v-model='otp_input'
-                                                    @complete='onVerifyOtp(setFieldError)'
+                                                    @complete='onVerifyOtp(setFieldError, nextStep)'
                                                     id='pin-input'
                                                     placeholder=''
                                                     class='flex flex-col items-start gap-6'
@@ -190,6 +176,11 @@
                                         </FormItem>
                                     </FormField>
                                 </template>
+                                
+                                <!--  Step 3: Logged In  -->
+                                <template v-if='stepIndex === 3'>
+                                    This window will close in 5s.
+                                </template>
                             </div>
                         </DialogHeader>
                         
@@ -208,10 +199,10 @@
                                 </Button>
                             </div>
                             
-                            <div v-else class='flex items-center justify-between mt-4'>
+                            <div v-if='stepIndex === 2' class='flex items-center justify-between mt-4'>
                                 <Button
                                     :disabled='isPrevDisabled'
-                                    :variant='stepIndex === 1 ? "outline": "link"'
+                                    variant='link'
                                     @click='prevStep()'
                                     size='lg'
                                 >
@@ -220,11 +211,18 @@
                                 
                                 <Button
                                     v-if='stepIndex === 2'
-                                    @click="() => onVerifyOtp(setFieldError)"
+                                    :disabled='isPrevDisabled'
+                                    @click="() => onVerifyOtp(setFieldError, nextStep)"
                                     type='submit'
                                     size='lg'
                                 >
                                     Verify
+                                </Button>
+                            </div>
+                            
+                            <div v-if='stepIndex === 3'>
+                                <Button @click='onLoggedIn'>
+                                    Close
                                 </Button>
                             </div>
                         </DialogFooter>
@@ -236,7 +234,7 @@
 </template>
 
 <script lang='ts' setup>
-    import { h } from 'vue';
+    // import { h } from 'vue';
     import { toTypedSchema } from '@vee-validate/zod';
     import * as z from 'zod';
     import { useForm } from 'vee-validate';
@@ -249,8 +247,8 @@
     import { Separator } from '~/components/ui/separator';
     import { Skeleton } from '@/components/ui/skeleton';
     import { Spinner } from '@/components/ui/spinner';
-    import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '@/components/ui/stepper';
-    import { toast } from 'vue-sonner';
+    import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
+    // import { toast } from 'vue-sonner';
     import { useCountdown } from '@vueuse/core';
     
     // AuthStore
@@ -259,6 +257,11 @@
     const AuthStore = useAuthStore();
     const { signInWithOtp, verifyOtp } = AuthStore;
     const { loading, authModal } = storeToRefs(AuthStore);
+    
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { getProfile } = ProfileStore;
     
     // Stepper
     const formSchema = [
@@ -271,13 +274,12 @@
     const steps = [
         {
             step: 1,
-            title: '1. Enter your email',
-            description: '',
         },
         {
             step: 2,
-            title: '2. Enter OTP Code',
-            description: '',
+        },
+        {
+            step: 3,
         },
     ];
     
@@ -319,7 +321,7 @@
     
     // OTP
     const otp_input = ref([]);
-    const onVerifyOtp = async(setFieldError: any) => {
+    const onVerifyOtp = async(setFieldError: any, nextStep:any) => {
         const joined_otp_input = otp_input.value?.join('');
         const result = await verifyOtp(email.value, joined_otp_input);
         
@@ -332,13 +334,22 @@
         }
         
         if(result?.data?.session?.access_token) {
-            displayToast();
-            resetState();
+            await getProfile();
+            setTimeout(() => {
+                onLoggedIn();
+            }, 5000);
+            nextStep && nextTick(() => nextStep());
         }
         
         loading.value = false;
         
         return true;
+    };
+    
+    // Success
+    const onLoggedIn = () => {
+        resetState();
+        // displayToast();
     };
     
     // Countdown
@@ -347,6 +358,7 @@
     const startCountdown = () => start(countdownSeconds);
     
     // Utils
+    /*
     const displayToast = () => {
         toast.promise(() => new Promise((resolve) => setTimeout(resolve, 750)), {
             success: () => 'Houston, we have a login!',
@@ -355,6 +367,7 @@
             description: () => h('span', 'Welcome back, space traveler.'),
         });
     };
+    */
     
     const resetState = () => {
         authModal.value = false;

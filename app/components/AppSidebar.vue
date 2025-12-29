@@ -29,11 +29,6 @@
     };
     
     const data = {
-        user: {
-            name: 'Guest',
-            email: '',
-            avatar: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757002350/cartoon-woman-wearing-glasses_j0t0qt.jpg',
-        },
         navMain: [
             {
                 title: 'Launch Pad',
@@ -183,7 +178,7 @@
         <Separator />
         
         <SidebarFooter class='h-20 flex items-center justify-center'>
-            <NavUser :user="data.user" />
+            <NavUser />
         </SidebarFooter>
         
         <SidebarRail />
