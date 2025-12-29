@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-    import { ChevronsUpDown, LogIn, LogOut } from 'lucide-vue-next'
+    import { ChevronsUpDown } from 'lucide-vue-next'
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
     import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu'
     import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '~/components/ui/sidebar'
@@ -96,7 +96,7 @@
                             @click='onOpenAuthModal'
                             class='cursor-pointer py-3'
                         >
-                            <LogIn />
+                            <NuxtIcon name='ph:sign-in' size='18' />
                             Login / Register
                         </DropdownMenuItem>
                         
@@ -106,7 +106,7 @@
                             @click='logOut'
                             class='cursor-pointer py-3'
                         >
-                            <LogOut />
+                            <NuxtIcon name='ph:sign-out' size='18' />
                             LogOut
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
