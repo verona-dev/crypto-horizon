@@ -17,6 +17,10 @@ export default defineEventHandler(async(event) => {
             email
         });
         
+        if(error) {
+            throw error;
+        }
+        
         return { data, error };
     } catch(error) {
         console.error(error);
