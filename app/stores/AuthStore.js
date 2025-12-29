@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { useProfileStore } from '~/stores/ProfileStore.js';
 
 export const useAuthStore = defineStore('AuthStore', {
     state: () => ({
@@ -40,6 +41,21 @@ export const useAuthStore = defineStore('AuthStore', {
                 return { data, error };
             } catch(error) {
                 console.error(error);
+            }
+        },
+        
+        async logOut() {
+            const ProfileStore = useProfileStore();
+            
+            try {
+                await $fetch('/api/supabase/auth/logout', {
+                    method: 'POST',
+                });
+                
+                ProfileStore.profile = null;
+                await navigateTo('/');
+            } catch(error) {
+                console.error('Logout failed:', error);
             }
         },
     },
