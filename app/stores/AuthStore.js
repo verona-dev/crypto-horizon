@@ -7,6 +7,13 @@ export const useAuthStore = defineStore('AuthStore', {
         loading: false,
     }),
     
+    getters: {
+        isAuthenticated: () => {
+            const user = useSupabaseUser();
+            return !!user.value;
+        }
+    },
+    
     actions: {
         async signInWithOtp(email) {
             try {
