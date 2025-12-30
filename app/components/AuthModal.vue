@@ -347,13 +347,7 @@
     
     // Success
     const onLoggedIn = async() => {
-        // const router = useRouter();
-        // await router.replace(router.currentRoute.value.fullPath);
-        // reloadNuxtApp();
-        // console.log('router updated');
-        
-        // navigateTo(router.currentRoute.value.fullPath, { replace: true });
-        
+        reloadNuxtApp();
         resetState();
         // displayToast();
     };
