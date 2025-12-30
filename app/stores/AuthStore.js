@@ -32,11 +32,17 @@ export const useAuthStore = defineStore('AuthStore', {
         },
         
         async verifyOtp(email, otpCode) {
+            const ProfileStore = useProfileStore();
+            
             try {
                 const { data, error } = await $fetch('/api/supabase/auth/verify-otp', {
                     method: 'POST',
                     body: { email, otpCode },
                 });
+                
+                if(data) {
+                    await ProfileStore.getProfile();
+                }
                 
                 return { data, error };
             } catch(error) {

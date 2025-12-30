@@ -334,7 +334,6 @@
         }
         
         if(result?.data?.session?.access_token) {
-            await getProfile();
             setTimeout(() => {
                 onLoggedIn();
             }, 5000);
@@ -347,7 +346,14 @@
     };
     
     // Success
-    const onLoggedIn = () => {
+    const onLoggedIn = async() => {
+        // const router = useRouter();
+        // await router.replace(router.currentRoute.value.fullPath);
+        // reloadNuxtApp();
+        // console.log('router updated');
+        
+        // navigateTo(router.currentRoute.value.fullPath, { replace: true });
+        
         resetState();
         // displayToast();
     };

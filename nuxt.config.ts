@@ -197,7 +197,7 @@ export default defineNuxtConfig({
          path: '/',
          sameSite: 'lax',
          secure: true,
-      }
+      },
       /*
       redirectOptions: {
          login: "/login",
