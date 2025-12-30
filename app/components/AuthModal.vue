@@ -334,7 +334,6 @@
         }
         
         if(result?.data?.session?.access_token) {
-            await getProfile();
             setTimeout(() => {
                 onLoggedIn();
             }, 5000);
@@ -347,7 +346,8 @@
     };
     
     // Success
-    const onLoggedIn = () => {
+    const onLoggedIn = async() => {
+        reloadNuxtApp();
         resetState();
         // displayToast();
     };
