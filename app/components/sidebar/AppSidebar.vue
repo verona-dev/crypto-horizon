@@ -3,16 +3,10 @@
     import NavMain from './NavMain.vue'
     import NavUser from '../NavUser.vue'
     import SidebarToggle from './SidebarToggle.vue'
+    import SidebarLogo from './SidebarLogo.vue'
     import ColorMode from '@/components/sidebar/ColorMode.vue'
-    
-    import {
-        Sidebar,
-        SidebarContent,
-        SidebarFooter,
-        SidebarHeader,
-        SidebarRail,
-    } from '@/components/ui/sidebar'
-    
+    import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
+    import { Separator } from '@/components/ui/separator'
     
     const props = withDefaults(defineProps<SidebarProps>(), {
         collapsible: "icon",
@@ -164,7 +158,7 @@
 <template>
     <Sidebar v-bind='props' class='sidebar'>
         <SidebarHeader class='h-20 flex items-center justify-center border-b'>
-            <SidebarToggle />
+            <SidebarLogo />
         </SidebarHeader>
         
         <SidebarContent :class='{ "flex-initial" : isMobile }'>
@@ -175,14 +169,10 @@
         
         <ColorMode />
         
-        <Separator />
-        
         <NavUser />
         
-        <Separator />
-        
-        <SidebarFooter class='h-20 flex items-center justify-center'>
-<!--            <NavUser />-->
+        <SidebarFooter class='h-12 flex items-center justify-center'>
+            <SidebarToggle />
         </SidebarFooter>
         
         <SidebarRail />
