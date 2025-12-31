@@ -24,10 +24,9 @@
     
     const avatar = computed(() => {
         if(logged_in.value) {
-            return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757002350/portrait-futuristic-female-humanoid-with-advanced-technology_k4wj3u.jpg';
+            return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_100/v1757869820/cat-7710382_zqbc1t.jpg';
         }
-        return '';
-        // return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757002350/cartoon-woman-wearing-glasses_j0t0qt.jpg';
+        return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_100/v1757002350/cartoon-woman-wearing-glasses_j0t0qt.jpg';
     });
     
     const username = computed(() => {
