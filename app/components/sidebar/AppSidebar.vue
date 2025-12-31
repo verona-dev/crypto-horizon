@@ -1,9 +1,9 @@
 <script setup lang="ts">
-    import {type SidebarProps, useSidebar} from '~/components/ui/sidebar'
-    import NavMain from '../components/NavMain.vue'
-    import NavUser from '../components/NavUser.vue'
-    import SidebarToggle from '../components/SidebarToggle.vue'
-    import ColorMode from '~/components/ColorMode.vue'
+    import {type SidebarProps, useSidebar} from '@/components/ui/sidebar'
+    import NavMain from './NavMain.vue'
+    import NavUser from '../NavUser.vue'
+    import SidebarToggle from './SidebarToggle.vue'
+    import ColorMode from '@/components/sidebar/ColorMode.vue'
     
     import {
         Sidebar,
@@ -11,7 +11,7 @@
         SidebarFooter,
         SidebarHeader,
         SidebarRail,
-    } from '~/components/ui/sidebar'
+    } from '@/components/ui/sidebar'
     
     
     const props = withDefaults(defineProps<SidebarProps>(), {
@@ -177,8 +177,12 @@
         
         <Separator />
         
+        <NavUser />
+        
+        <Separator />
+        
         <SidebarFooter class='h-20 flex items-center justify-center'>
-            <NavUser />
+<!--            <NavUser />-->
         </SidebarFooter>
         
         <SidebarRail />

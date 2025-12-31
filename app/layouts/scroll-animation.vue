@@ -23,7 +23,7 @@
 
 <script setup>
     import ScrollToTop from '~/components/ScrollToTop.vue';
-    import AppSidebar from '~/components/AppSidebar.vue';
+    import AppSidebar from '@/components/sidebar/AppSidebar.vue';
     import Breadcrumb from '~/components/Breadcrumb.vue';
     import { SidebarInset, SidebarProvider, MobileSidebarTrigger, } from '~/components/ui/sidebar';
 </script>

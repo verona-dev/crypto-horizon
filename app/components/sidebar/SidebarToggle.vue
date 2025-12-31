@@ -1,13 +1,13 @@
 <script setup lang="ts">
     import type { HTMLAttributes } from "vue"
     import { PanelLeft } from "lucide-vue-next"
-    import { cn } from "~/lib/utils"
-    import { useSidebar } from "./ui/sidebar/utils"
-    import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '~/components/ui/sidebar'
+    import { cn } from "@/lib/utils"
+    import { useSidebar } from "../ui/sidebar/utils"
+    import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '@/components/ui/sidebar'
     const props = defineProps<{
         class?: HTMLAttributes["class"]
     }>()
-    import { Kbd, KbdGroup } from '~/components/ui/kbd';
+    import { Kbd, KbdGroup } from '@/components/ui/kbd';
     
     const { open, toggleSidebar, isMobile } = useSidebar()
     
@@ -47,7 +47,6 @@
                         </NuxtIcon>
                     </SidebarMenuButton>
                 </div>
-            
             </template>
             
             <!--  Close  -->

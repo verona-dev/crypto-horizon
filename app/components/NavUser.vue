@@ -57,7 +57,7 @@
 
 <template>
     <SidebarMenu>
-        <SidebarMenuItem>
+        <SidebarMenuItem class='h-16 flex items-center justify-center'>
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
                     <SidebarMenuButton size='lg'>

@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-    import AppSidebar from '~/components/AppSidebar.vue';
+    import AppSidebar from '@/components/sidebar/AppSidebar.vue';
     // import Breadcrumb from '~/components/Breadcrumb.vue';
     import CoingeckoAttribution from '~/components/CoingeckoAttribution.vue';
     import MarketBar from '~/components/market/MarketBar.vue';

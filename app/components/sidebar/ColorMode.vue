@@ -22,8 +22,8 @@
 </template>
 
 <script setup>
-    import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '~/components/ui/sidebar';
-    import { useSidebar } from './ui/sidebar/utils';
+    import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '@/components/ui/sidebar/index.ts';
+    import { useSidebar } from '../ui/sidebar/utils.ts';
     
     const { open } = useSidebar();
     const colorMode = useColorMode();

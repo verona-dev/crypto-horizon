@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import { ChevronRight } from 'lucide-vue-next'
-    import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '~/components/ui/collapsible';
-    import {SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, useSidebar } from '~/components/ui/sidebar'
+    import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+    import {SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, useSidebar } from '@/components/ui/sidebar'
     
     defineProps<{
         items: {
