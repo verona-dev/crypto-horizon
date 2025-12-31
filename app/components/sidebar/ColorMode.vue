@@ -1,20 +1,25 @@
 <template>
-    <SidebarMenu>
-        <SidebarMenuItem class='h-12 flex items-center justify-center'>
+    <SidebarMenu class='h-16'>
+        <SidebarMenuItem
+            :class='[
+                { "flex items-center w-full h-full p-2" : open },
+                { "pl-2" : !isMobile }
+            ]'
+        >
             <SidebarMenuButton
                 @click='toggleMode'
-                variant='outline'
                 :tooltip='active_mode.label'
-                class='bg-sidebar sidebar-menu-button'
-                :class='{ "rounded-none" :  open }'
+                class='sidebar-menu-button'
+                :class='{ "flex gap-3.5" :  open }'
             >
                 <NuxtIcon
                     ref='toggleRef'
                     :name='active_mode.icon'
                     :key='active_mode.icon'
                     class='h-4 w-4 animation'
-                    :class='{ "rounded-none": open }'
                 />
+                
+                <span v-if='open || isMobile'>Toggle Theme</span>
             </SidebarMenuButton>
         </SidebarMenuItem>
     </SidebarMenu>
@@ -25,13 +30,13 @@
     import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '@/components/ui/sidebar/index.ts';
     import { useSidebar } from '../ui/sidebar/utils.ts';
     
-    const { open } = useSidebar();
+    const { open, isMobile } = useSidebar();
     const colorMode = useColorMode();
     const toggleRef = ref(null);
     
     const color_modes = computed(() => [
-        { value: 'light', label: 'Toggle Dark mode', icon: 'ph:moon-stars' },
-        { value: 'dark', label: 'Toggle Light mode', icon: 'ph:sun' },
+        { value: 'light', label: 'Toggle Dark mode', icon: 'ph:moon-stars-duotone' },
+        { value: 'dark', label: 'Toggle Light mode', icon: 'ph:sun-dim-duotone' },
     ]);
     
     const active_mode = computed(() => color_modes.value.find(mode => mode.value === colorMode.value) || color_modes.value[0]);
