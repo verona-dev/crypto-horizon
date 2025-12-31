@@ -6,7 +6,6 @@
     import SidebarLogo from './SidebarLogo.vue'
     import ColorMode from '@/components/sidebar/ColorMode.vue'
     import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
-    import { Separator } from '@/components/ui/separator'
     
     const props = withDefaults(defineProps<SidebarProps>(), {
         collapsible: "icon",
@@ -164,8 +163,6 @@
         <SidebarContent :class='{ "flex-initial" : isMobile }'>
             <NavMain :items="data.navMain" />
         </SidebarContent>
-        
-        <Separator />
         
         <ColorMode />
         
