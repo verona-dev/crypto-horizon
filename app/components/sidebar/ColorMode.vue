@@ -1,6 +1,6 @@
 <template>
     <SidebarMenu>
-        <SidebarMenuItem class='h-16 flex items-center justify-center'>
+        <SidebarMenuItem class='h-12 flex items-center justify-center'>
             <SidebarMenuButton
                 @click='toggleMode'
                 variant='outline'
