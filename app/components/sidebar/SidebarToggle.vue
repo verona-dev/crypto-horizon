@@ -39,7 +39,7 @@
                 :class='{ "flex gap-3.5" :  open }'
             >
                 <NuxtIcon
-                    :name='open? "stash:burger-arrow-left-duotone": "stash:burger-arrow-right-duotone"'
+                    :name='open? "ph:caret-double-left": "ph:caret-double-right"'
                     data-sidebar='trigger'
                     data-slot='sidebar-trigger'
                     :class='cn("h-4 w-4 text-accent-foreground",props.class)'
