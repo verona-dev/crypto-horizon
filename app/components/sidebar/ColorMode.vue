@@ -39,7 +39,7 @@
     
     const color_modes = computed(() => [
         { value: 'light', label: 'Toggle Dark mode', icon: open.value ? 'ph:moon-stars-duotone' : 'ph:moon-stars' },
-        { value: 'dark', label: 'Toggle Light mode', icon: open.value ? 'ph:sun-horizon-duotone' : 'ph:sun-dim-duotone' },
+        { value: 'dark', label: 'Toggle Light mode', icon: open.value ? 'ph:sun-dim-duotone' : 'ph:sun' },
     ]);
     
     const active_mode = computed(() => color_modes.value.find(mode => mode.value === colorMode.value) || color_modes.value[0]);

@@ -24,9 +24,9 @@
     
     const avatar = computed(() => {
         if(logged_in.value) {
-            return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_100/v1757869820/cat-7710382_zqbc1t.jpg';
+            return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_100/v1757869821/astronaut-7787907_zy26rf.jpg';
         }
-        return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_100/v1757002350/cartoon-woman-wearing-glasses_j0t0qt.jpg';
+        return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_100/v1767208523/original-528efd43cf00778a5007f2146a0cdeeb_yuxkuv.webp';
     });
     
     const username = computed(() => {
@@ -94,7 +94,7 @@
                 >
                     <DropdownMenuLabel class='p-0 font-normal'>
                         <div class='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
-                            <Avatar class='h-8 w-8 rounded-lg'>
+                            <Avatar class='h-16 w-16 rounded-lg'>
                                 <AvatarImage :src='avatar' alt='avatar' />
                                 <AvatarFallback class='rounded-lg'>
                                     G
@@ -113,7 +113,7 @@
                     <!--  Profile  -->
                     <DropdownMenuItem
                         v-if='logged_in'
-                        class='cursor-pointer py-3'
+                        class='m-1 p-3 cursor-pointer rounded-lg'
                         as-child
                     >
                         <NuxtLink to='/profile'>
@@ -122,14 +122,12 @@
                         </NuxtLink>
                     </DropdownMenuItem>
                     
-                    <DropdownMenuSeparator />
-                    
                     <DropdownMenuGroup>
                         <!--  Login  -->
                         <DropdownMenuItem
                             v-if='!logged_in'
                             @click='onOpenAuthModal'
-                            class='cursor-pointer py-3'
+                            class='m-1 p-3 cursor-pointer rounded-lg'
                         >
                             <NuxtIcon name='ph:sign-in' size='18' />
                             Login / Register
@@ -139,8 +137,8 @@
                         <DropdownMenuItem
                             v-else
                             @click='onLogOut'
-                            class='cursor-pointer py-3'
-                        >
+                            class='m-1 p-3 cursor-pointer rounded-lg'
+                             >
                             <NuxtIcon name='ph:sign-out' size='18' />
                             LogOut
                         </DropdownMenuItem>
