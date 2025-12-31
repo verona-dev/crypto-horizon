@@ -3,10 +3,11 @@
     import { cn } from "@/lib/utils"
     import { useSidebar } from "../ui/sidebar/utils"
     import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '@/components/ui/sidebar'
+    import { Kbd, KbdGroup } from '@/components/ui/kbd'
+    
     const props = defineProps<{
         class?: HTMLAttributes["class"]
     }>()
-    import { Kbd, KbdGroup } from '@/components/ui/kbd';
     
     const { open, toggleSidebar, isMobile } = useSidebar()
     
@@ -24,42 +25,28 @@
 </script>
 
 <template>
-    <SidebarMenu :class='{ "" : !open }'>
-        <SidebarMenuItem>
-            <!--  Open  -->
-            <template v-if='open || isMobile'>
-                <div class='flex'>
-                    <SidebarMenuButton
-                        @click='toggleSidebar'
-                        class='flex items-center gap-3'
-                    >
-                        <NuxtIcon
-                            name='stash:burger-arrow-left-duotone'
-                            data-sidebar='trigger'
-                            data-slot='sidebar-trigger'
-                            :class='cn("h-4 w-4 text-accent-foreground",props.class)'
-                        />
-                        
-                        <span>Collapse</span>
-                    </SidebarMenuButton>
-                </div>
-            </template>
-            
-            <!--  Close  -->
-            <template v-if='!open && !isMobile'>
-                <SidebarMenuButton
-                    :tooltip='TooltipContent'
-                    class='justify-center flex-col'
-                    @click='toggleSidebar'
-                >
-                    <NuxtIcon
-                        name='stash:burger-arrow-right-duotone'
-                        data-sidebar='trigger'
-                        data-slot='sidebar-trigger'
-                        :class='cn("h-4 w-4 text-accent-foreground",props.class)'
-                    />
-                </SidebarMenuButton>
-            </template>
+    <SidebarMenu class='h-16'>
+        <SidebarMenuItem
+            :class='[
+                { "flex items-center w-full h-full p-2" : open },
+                { "pl-2" : !isMobile }
+            ]'
+        >
+            <SidebarMenuButton
+                @click='toggleSidebar'
+                :tooltip='TooltipContent'
+                class='sidebar-menu-button'
+                :class='{ "flex gap-3.5" :  open }'
+            >
+                <NuxtIcon
+                    :name='open? "stash:burger-arrow-left-duotone": "stash:burger-arrow-right-duotone"'
+                    data-sidebar='trigger'
+                    data-slot='sidebar-trigger'
+                    :class='cn("h-4 w-4 text-accent-foreground",props.class)'
+                />
+                
+                <span v-if='open || isMobile'>Collapse</span>
+            </SidebarMenuButton>
         </SidebarMenuItem>
     </SidebarMenu>
 </template>
