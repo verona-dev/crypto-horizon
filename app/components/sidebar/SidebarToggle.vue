@@ -16,9 +16,9 @@
         setup() {
             return () =>
                 h('KbdGroup', { class: 'flex items-center gap-2' }, [
-                    h('Kbd', { class: 'border rounded-md px-2 pt-0.5' }, '⌘'),
+                    h('Kbd', { class: 'border rounded-md py-0.5 px-2' }, '⌘'),
                     h('span', {}, '+'),
-                    h('Kbd', { class: 'border rounded-md px-2 pt-0.5' }, 'E')
+                    h('Kbd', { class: 'border rounded-md py-0.5 px-2' }, 'E')
                 ])
         }
     })
@@ -42,7 +42,7 @@
                     :name='open? "ph:caret-double-left": "ph:caret-double-right"'
                     data-sidebar='trigger'
                     data-slot='sidebar-trigger'
-                    :class='cn("h-4 w-4 text-accent-foreground",props.class)'
+                    :class='cn("h-4 w-4",props.class)'
                 />
                 
                 <span v-if='open || isMobile'>Collapse</span>
