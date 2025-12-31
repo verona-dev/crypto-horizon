@@ -56,11 +56,20 @@
 </script>
 
 <template>
-    <SidebarMenu>
-        <SidebarMenuItem class='h-12 flex items-center justify-center'>
+    <SidebarMenu class='h-14'>
+        <SidebarMenuItem
+            :class='[
+                { "flex items-center w-full h-full p-2" : open },
+                { "pl-2" : !isMobile }
+            ]'
+        >
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
-                    <SidebarMenuButton size='lg'>
+                    <SidebarMenuButton
+                        size='lg'
+                        class=' '
+                        :class='{ "pl-1 pr-2.5 flex gap-1.5" :  open }'
+                    >
                         <Avatar class='h-8 w-8 rounded-lg'>
                             <AvatarImage :src='avatar' alt='avatar' />
                             <AvatarFallback class='rounded-lg'>
@@ -82,7 +91,7 @@
                     class='w-[--reka-dropdown-menu-trigger-width] min-w-56'
                     :side='isMobile ? "bottom" : "right"'
                     align='end'
-                    :side-offset='open ? 6: 12'
+                    :side-offset='open ? 14: 12'
                 >
                     <DropdownMenuLabel class='p-0 font-normal'>
                         <div class='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>

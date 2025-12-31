@@ -25,7 +25,11 @@
 </script>
 
 <template>
-    <SidebarMenu class='h-16'>
+    <SidebarMenu
+        class='h-14 mb-1'
+        :class='{ "px-1" :  open }'
+    
+    >
         <SidebarMenuItem
             :class='[
                 { "flex items-center w-full h-full p-2" : open },
