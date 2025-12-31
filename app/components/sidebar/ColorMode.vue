@@ -1,5 +1,8 @@
 <template>
-    <SidebarMenu class='h-16'>
+    <SidebarMenu
+        class='h-14'
+        :class='{ "px-1" :  open }'
+    >
         <SidebarMenuItem
             :class='[
                 { "flex items-center w-full h-full p-2" : open },
@@ -9,7 +12,7 @@
             <SidebarMenuButton
                 @click='toggleMode'
                 :tooltip='active_mode.label'
-                class='sidebar-menu-button'
+                class='sidebar-menu-button '
                 :class='{ "flex gap-3.5" :  open }'
             >
                 <NuxtIcon
@@ -35,8 +38,8 @@
     const toggleRef = ref(null);
     
     const color_modes = computed(() => [
-        { value: 'light', label: 'Toggle Dark mode', icon: 'ph:moon-stars-duotone' },
-        { value: 'dark', label: 'Toggle Light mode', icon: 'ph:sun-dim-duotone' },
+        { value: 'light', label: 'Toggle Dark mode', icon: open.value ? 'ph:moon-stars-duotone' : 'ph:moon-stars' },
+        { value: 'dark', label: 'Toggle Light mode', icon: open.value ? 'ph:sun-horizon-duotone' : 'ph:sun-dim-duotone' },
     ]);
     
     const active_mode = computed(() => color_modes.value.find(mode => mode.value === colorMode.value) || color_modes.value[0]);
