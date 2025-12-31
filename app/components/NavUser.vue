@@ -57,7 +57,7 @@
 
 <template>
     <SidebarMenu>
-        <SidebarMenuItem class='h-16 flex items-center justify-center'>
+        <SidebarMenuItem class='h-12 flex items-center justify-center'>
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
                     <SidebarMenuButton size='lg'>
@@ -82,7 +82,7 @@
                     class='w-[--reka-dropdown-menu-trigger-width] min-w-56'
                     :side='isMobile ? "bottom" : "right"'
                     align='end'
-                    :side-offset='14'
+                    :side-offset='open ? 6: 12'
                 >
                     <DropdownMenuLabel class='p-0 font-normal'>
                         <div class='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
