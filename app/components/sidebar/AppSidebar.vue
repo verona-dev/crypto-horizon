@@ -168,9 +168,7 @@
         
         <NavUser />
         
-        <SidebarFooter class='h-12 flex items-center justify-center'>
-            <SidebarToggle />
-        </SidebarFooter>
+        <SidebarToggle />
         
         <SidebarRail />
     </Sidebar>
