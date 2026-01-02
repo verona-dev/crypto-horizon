@@ -7,14 +7,14 @@
         items: {
             title?: string
             url?: string
-            icon: string
-            rocket: string
-            planets: string
-            activeIcon: string
+            icon?: string
+            rocket?: string
+            planets?: string[]
+            activeIcon?: string
             isActive?: boolean
             items?: {
-                title: string
-                url: string
+                title?: string
+                url?: string
             }[]
         }[]
     }>()

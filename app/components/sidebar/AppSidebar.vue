@@ -5,7 +5,13 @@
     import SidebarToggle from './SidebarToggle.vue'
     import SidebarLogo from './SidebarLogo.vue'
     import ColorMode from '@/components/sidebar/ColorMode.vue'
-    import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
+    import { Sidebar, SidebarContent, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
+    
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { profile } = storeToRefs(ProfileStore);
+    const logged_in = computed(() => profile.value);
     
     const props = withDefaults(defineProps<SidebarProps>(), {
         collapsible: "icon",
@@ -21,8 +27,8 @@
         return route.path === item_url;
     };
     
-    const data = {
-        navMain: [
+    const nav_data = computed(() => {
+        const navMain = [
             {
                 title: 'Launch Pad',
                 url: '/',
@@ -148,10 +154,33 @@
                     },
                 ],
             },
-        ],
-    };
+        ];
+        
+        if(logged_in.value) {
+            navMain.push({
+                title: 'Profile',
+                url: '/profile',
+                icon: 'ph:user',
+                activeIcon: 'ph:user-fill',
+                get isActive() {
+                    return isParentActive(this.url, this.items);
+                },
+                items: [
+                    {
+                        title: 'My Profile',
+                        url: '/profile',
+                        get isActive() {
+                            return isChildActive(this.url);
+                        }
+                    },
+                ],
+            });
+        }
+        
+        return navMain;
+    });
     
-    const { isMobile } = useSidebar()
+    const { isMobile } = useSidebar();
 </script>
 
 <template>
@@ -161,7 +190,7 @@
         </SidebarHeader>
         
         <SidebarContent :class='{ "flex-initial" : isMobile }'>
-            <NavMain :items="data.navMain" />
+            <NavMain :items='nav_data' />
         </SidebarContent>
         
         <ColorMode />
