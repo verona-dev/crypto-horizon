@@ -5,7 +5,7 @@
                 <AppSidebar />
                 
                 <SidebarInset class='flex justify-between items-center min-h-svh'>
-                    <MarketBar />
+                    <!--  <MarketBar />  -->
                     <!--
                     <Breadcrumb />
                     -->
@@ -31,10 +31,11 @@
 </template>
 
 <script setup>
-    import AppSidebar from '@/components/sidebar/AppSidebar.vue';
+    import AppSidebar from '~/components/sidebar/AppSidebar.vue';
+    import AuthModal from '~/components/AuthModal.vue';
     // import Breadcrumb from '~/components/Breadcrumb.vue';
     import CoingeckoAttribution from '~/components/CoingeckoAttribution.vue';
-    import MarketBar from '~/components/market/MarketBar.vue';
+    // import MarketBar from '~/components/market/MarketBar.vue';
     import ScrollToTop from '~/components/ScrollToTop.vue';
     import { SidebarInset, SidebarProvider, MobileSidebarTrigger, } from '~/components/ui/sidebar';
     
@@ -47,12 +48,11 @@
     // const route = useRoute();
     // const title = computed(() => route.meta.title);
     
-    import { useMarketStore } from '~/stores/MarketStore.js';
-    import AuthModal from '@/components/AuthModal.vue';
-    const MarketStore = useMarketStore();
-    const { getGlobalMarket } = MarketStore;
-    
-    onMounted(() => {
-        getGlobalMarket();
-    });
+    // import { useMarketStore } from '~/stores/MarketStore.js';
+    // const MarketStore = useMarketStore();
+    // const { getGlobalMarket } = MarketStore;
+    //
+    // onMounted(() => {
+    //     getGlobalMarket();
+    // });
 </script>
