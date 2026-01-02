@@ -55,24 +55,15 @@
 </script>
 
 <template>
-    <SidebarMenu
-        class='h-14'
-        :class='{ "px-1" :  open }'
-    >
-        <SidebarMenuItem
-            :class='[
-                { "flex items-center w-full h-full p-2" : open },
-                { "pl-2" : !isMobile }
-            ]'
-        >
+    <SidebarMenu class='h-14'>
+        <SidebarMenuItem :class='{ "flex items-center" : open }'>
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
                     <SidebarMenuButton
                         size='lg'
-                        class=''
-                        :class='open ? "pr-2.5 flex gap-2" : "ml-0.5 hover:bg-transparent active:bg-transparent"'
+                        :class='open ? "mx-3 pl-1 pr-2.5 flex gap-2.5 rounded-md" : "ml-3 hover:bg-transparent active:bg-transparent"'
                     >
-                        <Avatar class='h-7 w-7 rounded-lg'>
+                        <Avatar class='h-6 w-6 rounded-lg'>
                             <AvatarImage :src='avatar' alt='avatar' />
                             <AvatarFallback class='rounded-lg'>
                                 G
@@ -93,7 +84,7 @@
                     class='w-[--reka-dropdown-menu-trigger-width] min-w-56'
                     :side='isMobile ? "bottom" : "right"'
                     align='end'
-                    :side-offset='open ? 14: 12'
+                    :side-offset='open ? 16 : 8'
                 >
                     <DropdownMenuLabel class='p-0 font-normal'>
                         <div class='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
