@@ -30,6 +30,7 @@
             :class='[
                 isMobile ? "gap-8 items-stretch" : "gap-3",
                 { "flex items-center": !open && !isMobile },
+                { "px-1" :  open }
             ]'
         >
             <!--  Open Desktop + Mobile  -->
@@ -43,16 +44,16 @@
                         <SidebarMenuItem>
                             <SidebarMenuButton
                                 tooltip='Launch Pad'
-                                class='focus:bg-transparent flex items-center gap-3 hover:bg-muted/50'
+                                class='sidebar-menu-button'
                             >
                                 <NuxtIcon
                                     :name='item.icon'
-                                    class='h-5 w-5 dark:text-green-shamrock/75'
+                                    class='h-4 w-4 dark:text-green-shamrock/75'
                                     :class='{ "animate-rocket" : !isMobile }'
                                 />
                                 <span>{{ item.title }}</span>
                                 
-                                <div class='relative h-5 w-5'>
+                                <div class='relative h-4 w-4'>
                                     <NuxtIcon
                                         v-for='planet in item.planets'
                                         :key='planet'
@@ -91,12 +92,12 @@
                                     <SidebarMenuButton
                                         :tooltip='item.title'
                                         :is-active='item.isActive'
-                                        class='flex items-center gap-3 hover:bg-muted/50'
+                                        class='sidebar-menu-button'
                                         :class='{ "!bg-transparent dark:!text-green-shamrock" : item.isActive}'
                                     >
                                         <NuxtIcon
                                             :name='item.isActive ? item.activeIcon : item.icon'
-                                            class='h-5 w-5'
+                                            class='h-4 w-4'
                                         />
                                         <span>{{ item.title }}</span>
                                         <ChevronRight class='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
@@ -110,7 +111,7 @@
                                         <SidebarMenuSubButton
                                             as-child
                                             :is-active='subItem.isActive'
-                                            class='hover:bg-muted/50'
+                                            class='sidebar-menu-button'
                                             :class='{ "!bg-muted/50 dark:!text-green-shamrock" : subItem.isActive }'
                                         >
                                             <NuxtLink :to='subItem.url' class='pl-3'>
@@ -137,13 +138,13 @@
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             :tooltip='item.title'
-                            class='peer/menu-button !p-8 sidebar-menu-button'
+                            class='sidebar-menu-button'
                             :class='{ "bg-muted" : item.isActive}'
                         >
                             <NuxtIcon
                                 v-if='item.icon'
                                 :name='item.isActive ? item.activeIcon : item.icon'
-                                class='h-4.5 w-4.5'
+                                class='h-4 w-4'
                                 :class='{ "text-secondary-foreground dark:text-green-shamrock" : item.isActive }'
                             />
                         </SidebarMenuButton>
