@@ -55,7 +55,10 @@
 </script>
 
 <template>
-    <SidebarMenu class='h-14'>
+    <SidebarMenu
+        class='h-14'
+        :class='{ "px-1" :  open }'
+    >
         <SidebarMenuItem
             :class='[
                 { "flex items-center w-full h-full p-2" : open },
@@ -66,10 +69,10 @@
                 <DropdownMenuTrigger as-child>
                     <SidebarMenuButton
                         size='lg'
-                        class=' '
-                        :class='{ "pl-1 pr-2.5 flex gap-1.5" :  open }'
+                        class=''
+                        :class='open ? "pr-2.5 flex gap-2" : "ml-0.5 hover:bg-transparent active:bg-transparent"'
                     >
-                        <Avatar class='h-8 w-8 rounded-lg'>
+                        <Avatar class='h-7 w-7 rounded-lg'>
                             <AvatarImage :src='avatar' alt='avatar' />
                             <AvatarFallback class='rounded-lg'>
                                 G
