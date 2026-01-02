@@ -104,24 +104,25 @@
                     
                     <DropdownMenuSeparator />
                     
-                    <!--  Profile  -->
-                    <DropdownMenuItem
-                        v-if='logged_in'
-                        class='m-1 p-3 cursor-pointer rounded-lg'
-                        as-child
-                    >
-                        <NuxtLink to='/profile'>
-                            <NuxtIcon name='ph:user' size='18' />
-                            Profile
-                        </NuxtLink>
-                    </DropdownMenuItem>
                     
-                    <DropdownMenuGroup>
+                    <DropdownMenuGroup class='p-1.5'>
+                        <!--  Profile  -->
+                        <DropdownMenuItem
+                            v-if='logged_in'
+                            class='py-3 mb-1 cursor-pointer rounded-lg'
+                            as-child
+                        >
+                            <NuxtLink to='/profile'>
+                                <NuxtIcon name='ph:user' size='18' />
+                                Profile
+                            </NuxtLink>
+                        </DropdownMenuItem>
+                        
                         <!--  Login  -->
                         <DropdownMenuItem
                             v-if='!logged_in'
                             @click='onOpenAuthModal'
-                            class='m-1 p-3 cursor-pointer rounded-lg'
+                            class='py-3 cursor-pointer rounded-lg'
                         >
                             <NuxtIcon name='ph:sign-in' size='18' />
                             Login / Register
@@ -129,10 +130,10 @@
                         
                         <!--  Logout  -->
                         <DropdownMenuItem
-                            v-else
+                            v-if='logged_in'
                             @click='onLogOut'
-                            class='m-1 p-3 cursor-pointer rounded-lg'
-                             >
+                            class='py-3 cursor-pointer rounded-lg'
+                        >
                             <NuxtIcon name='ph:sign-out' size='18' />
                             LogOut
                         </DropdownMenuItem>
