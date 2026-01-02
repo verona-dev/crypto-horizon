@@ -12,7 +12,7 @@
             <SidebarMenuButton
                 @click='toggleMode'
                 :tooltip='active_mode.label'
-                class='sidebar-menu-button '
+                class='sidebar-menu-button'
                 :class='{ "flex gap-3.5" :  open }'
             >
                 <NuxtIcon
@@ -26,7 +26,6 @@
             </SidebarMenuButton>
         </SidebarMenuItem>
     </SidebarMenu>
-
 </template>
 
 <script setup>
