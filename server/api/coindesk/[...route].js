@@ -1,7 +1,7 @@
 import { createError, getQuery } from 'h3';
 
 export default defineEventHandler(async(event) => {
-    const { coindesk_api } = useRuntimeConfig().public;
+    const { coindesk_api } = useRuntimeConfig();
     
     const route = Array.isArray(event.context.params.route)
        ? event.context.params.route.join('/')

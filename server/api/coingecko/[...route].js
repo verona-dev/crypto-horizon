@@ -1,7 +1,7 @@
 import { createError, getQuery } from 'h3';
 
 export default defineCachedEventHandler(async (event) => {
-    const { coingecko_api_key } = useRuntimeConfig().public;
+    const { coingecko_api_key } = useRuntimeConfig();
     
     const route = event.context.params?.route || '';
     const queryEvent = getQuery(event);
