@@ -1,18 +1,17 @@
 <script setup lang="ts">
-    import {type SidebarProps, useSidebar} from '~/components/ui/sidebar'
-    import NavMain from '../components/NavMain.vue'
-    import NavUser from '../components/NavUser.vue'
-    import SidebarToggle from '../components/SidebarToggle.vue'
-    import ColorMode from '~/components/ColorMode.vue'
+    import {type SidebarProps, useSidebar} from '@/components/ui/sidebar'
+    import NavMain from './NavMain.vue'
+    import NavUser from '../NavUser.vue'
+    import SidebarToggle from './SidebarToggle.vue'
+    import SidebarLogo from './SidebarLogo.vue'
+    import ColorMode from '@/components/sidebar/ColorMode.vue'
+    import { Sidebar, SidebarContent, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
     
-    import {
-        Sidebar,
-        SidebarContent,
-        SidebarFooter,
-        SidebarHeader,
-        SidebarRail,
-    } from '~/components/ui/sidebar'
-    
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { profile } = storeToRefs(ProfileStore);
+    const logged_in = computed(() => profile.value);
     
     const props = withDefaults(defineProps<SidebarProps>(), {
         collapsible: "icon",
@@ -28,8 +27,8 @@
         return route.path === item_url;
     };
     
-    const data = {
-        navMain: [
+    const nav_data = computed(() => {
+        const navMain = [
             {
                 title: 'Launch Pad',
                 url: '/',
@@ -155,31 +154,50 @@
                     },
                 ],
             },
-        ],
-    };
+        ];
+        
+        if(logged_in.value) {
+            navMain.push({
+                title: 'Profile',
+                url: '/profile',
+                icon: 'ph:user',
+                activeIcon: 'ph:user-fill',
+                get isActive() {
+                    return isParentActive(this.url, this.items);
+                },
+                items: [
+                    {
+                        title: 'My Profile',
+                        url: '/profile',
+                        get isActive() {
+                            return isChildActive(this.url);
+                        }
+                    },
+                ],
+            });
+        }
+        
+        return navMain;
+    });
     
-    const { isMobile } = useSidebar()
+    const { isMobile } = useSidebar();
 </script>
 
 <template>
     <Sidebar v-bind='props' class='sidebar'>
         <SidebarHeader class='h-20 flex items-center justify-center border-b'>
-            <SidebarToggle />
+            <SidebarLogo />
         </SidebarHeader>
         
         <SidebarContent :class='{ "flex-initial" : isMobile }'>
-            <NavMain :items="data.navMain" />
+            <NavMain :items='nav_data' />
         </SidebarContent>
-        
-        <Separator />
         
         <ColorMode />
         
-        <Separator />
+        <NavUser />
         
-        <SidebarFooter class='h-20 flex items-center justify-center'>
-            <NavUser />
-        </SidebarFooter>
+        <SidebarToggle />
         
         <SidebarRail />
     </Sidebar>

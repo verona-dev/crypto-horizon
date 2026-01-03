@@ -1,37 +1,44 @@
 <template>
-    <SidebarMenu>
-        <SidebarMenuItem class='h-16 flex items-center justify-center'>
+    <SidebarMenu
+        class='h-14'
+        :class='{ "px-1" :  open }'
+    >
+        <SidebarMenuItem
+            :class='[
+                { "flex items-center w-full h-full p-2" : open },
+                { "pl-2" : !isMobile }
+            ]'
+        >
             <SidebarMenuButton
                 @click='toggleMode'
-                variant='outline'
                 :tooltip='active_mode.label'
-                class='bg-sidebar h-full peer/menu-button w-full items-center overflow-hidden rounded-md text-left outline-none ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-1 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-8 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sm group-data-[collapsible=icon]:!p-0 flex justify-center'
-                :class='{ "rounded-none" :  open }'
+                class='sidebar-menu-button'
+                :class='{ "flex gap-3.5" :  open }'
             >
                 <NuxtIcon
                     ref='toggleRef'
                     :name='active_mode.icon'
                     :key='active_mode.icon'
-                    class='h-4.5 w-4.5 animation'
-                    :class='{ "rounded-none": open }'
+                    class='h-4 w-4 animation'
                 />
+                
+                <span v-if='open || isMobile'>Toggle Theme</span>
             </SidebarMenuButton>
         </SidebarMenuItem>
     </SidebarMenu>
-
 </template>
 
 <script setup>
-    import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '~/components/ui/sidebar';
-    import { useSidebar } from './ui/sidebar/utils';
+    import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '@/components/ui/sidebar/index.ts';
+    import { useSidebar } from '../ui/sidebar/utils.ts';
     
-    const { open } = useSidebar();
+    const { open, isMobile } = useSidebar();
     const colorMode = useColorMode();
     const toggleRef = ref(null);
     
     const color_modes = computed(() => [
-        { value: 'light', label: 'Toggle Dark mode', icon: 'ph:moon-stars' },
-        { value: 'dark', label: 'Toggle Light mode', icon: 'ph:sun' },
+        { value: 'light', label: 'Toggle Dark mode', icon: open.value ? 'ph:moon-stars-duotone' : 'ph:moon-stars' },
+        { value: 'dark', label: 'Toggle Light mode', icon: open.value ? 'ph:sun-dim-duotone' : 'ph:sun' },
     ]);
     
     const active_mode = computed(() => color_modes.value.find(mode => mode.value === colorMode.value) || color_modes.value[0]);

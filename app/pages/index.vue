@@ -74,7 +74,7 @@
     ];
     
     // SEO
-    const title = 'Launchpad: The Crypto Universe Gateway';
+    const title = 'The Crypto Universe Gateway';
     const description = 'Track real-time cryptocurrency prices, charts, latest news, market capitalization, DeFi analytics, and educational resources. Your ultimate crypto dashboard.';
     
     definePageMeta({
