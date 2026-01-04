@@ -23,9 +23,9 @@
     
     const avatar = computed(() => {
         if(logged_in.value) {
-            return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_100/v1757869821/astronaut-7787907_zy26rf.jpg';
+            return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_100/v1757869820/cat-7710382_zqbc1t.jpg';
         }
-        return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_100/v1767208523/original-528efd43cf00778a5007f2146a0cdeeb_yuxkuv.webp';
+        return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_100/v1767535202/astronaut-3_oauvzn.png';
     });
     
     const username = computed(() => {
