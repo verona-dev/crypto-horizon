@@ -123,7 +123,7 @@
                                             </FormControl>
                                             
                                             <!-- <span class='text-xxs text-muted-foreground'>Signing in will automatically create an account if your email isn’t already registered.</span> -->
-                                            <span class='text-xxs text-muted-foreground'>New astronaut? We’ll automatically create an account on first sign-up.</span>
+                                            <span class='text-xs text-snowy-mint/75'>New astronaut? We’ll automatically create an account on first sign-up.</span>
                                             
                                             <FormMessage />
                                         </FormItem>
