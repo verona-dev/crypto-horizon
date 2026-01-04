@@ -5,7 +5,7 @@
     import SidebarToggle from './SidebarToggle.vue'
     import SidebarLogo from './SidebarLogo.vue'
     import ColorMode from '@/components/sidebar/ColorMode.vue'
-    import { Sidebar, SidebarContent, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
+    import { Sidebar, SidebarContent, SidebarHeader, SidebarFooter, SidebarRail } from '@/components/ui/sidebar'
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
@@ -193,11 +193,11 @@
             <NavMain :items='nav_data' />
         </SidebarContent>
         
-        <ColorMode />
-        
-        <NavUser />
-        
-        <SidebarToggle />
+        <SidebarFooter class='px-0'>
+            <ColorMode />
+            <NavUser />
+            <SidebarToggle />
+        </SidebarFooter>
         
         <SidebarRail />
     </Sidebar>
