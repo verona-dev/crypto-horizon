@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-    import { ChevronsUpDown } from 'lucide-vue-next'
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
     import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu'
     import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '~/components/ui/sidebar'
@@ -75,7 +74,7 @@
                             <span class='truncate text-xs'>{{ user_email }}</span>
                         </div>
                         
-                        <ChevronsUpDown class='ml-auto size-4' />
+                        <NuxtIcon name='ph:dots-three-vertical-bold' size='18' />
                     </SidebarMenuButton>
                 </DropdownMenuTrigger>
                 
