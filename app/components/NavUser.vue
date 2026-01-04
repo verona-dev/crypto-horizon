@@ -103,10 +103,9 @@
                     
                     <DropdownMenuSeparator />
                     
-                    <DropdownMenuGroup class='p-1.5'>
+                    <DropdownMenuGroup v-if='logged_in'>
                         <!--  Profile  -->
                         <DropdownMenuItem
-                            v-if='logged_in'
                             class='py-3 mb-1 cursor-pointer rounded-lg'
                             as-child
                         >
@@ -116,11 +115,15 @@
                             </NuxtLink>
                         </DropdownMenuItem>
                         
+                        <DropdownMenuSeparator />
+                    </DropdownMenuGroup>
+                    
+                    <DropdownMenuGroup>
                         <!--  Login  -->
                         <DropdownMenuItem
                             v-if='!logged_in'
                             @click='onOpenAuthModal'
-                            class='py-3 cursor-pointer rounded-lg'
+                            class='py-3 mt-1 cursor-pointer rounded-lg'
                         >
                             <NuxtIcon name='ph:sign-in' size='18' />
                             Login / Register
@@ -130,7 +133,7 @@
                         <DropdownMenuItem
                             v-if='logged_in'
                             @click='onLogOut'
-                            class='py-3 cursor-pointer rounded-lg'
+                            class='py-3 mt-1 cursor-pointer rounded-lg'
                         >
                             <NuxtIcon name='ph:sign-out' size='18' />
                             LogOut
