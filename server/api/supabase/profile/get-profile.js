@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
     
     const { data, error } = await client
        .from('profiles')
-       .select(`avatar_url, bio, location, updated_at, username, website_url`)
+       .select(`avatar_url, bio, dob, location, updated_at, username`)
        .single()
     
     if (error) {
@@ -16,12 +16,12 @@ export default defineEventHandler(async (event) => {
     
     const profile = {
         avatar_url: data.avatar_url,
-        bio: data.description,
+        bio: data.bio,
+        dob: data.dob,
         email: user?.email,
         location: data.location,
         updated_at: data.updated_at,
         username: data.username,
-        website_url: data.website_url,
     };
     
     return { data: profile, error };
