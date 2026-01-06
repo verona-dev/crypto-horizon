@@ -4,27 +4,29 @@
         
         <div class='h-140 flex flex-col xl:flex-row items-center gap-6'>
             <!--  Avatar + Username  -->
-            <Card class='h-full flex flex-col p-6 gap-12 !shadow-none'>
-                <CardHeader class='items-center capitalize'>
+            <Card class='bg-popover h-full xl:w-120 flex flex-col items-center p-6 gap-8 !shadow-none'>
+                <CardHeader class='items-center'>
                     <CardTitle class='text-4xl'>{{ username }}</CardTitle>
-                    <CardDescription class='text-lg'>&#8226; {{ astronaut_type }} &#8226;</CardDescription>
+                    <CardDescription class='text-lg capitalize'>&#8226; {{ astronaut_type }} &#8226;</CardDescription>
                 </CardHeader>
                 
                 <CardContent>
-                    <Avatar class='h-72 w-72 rounded-full'>
-                        <AvatarImage
-                            src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757869820/cat-7710382_zqbc1t.jpg'
-                            alt='avatar'
-                        />
-                        <AvatarFallback class='rounded-full'>A</AvatarFallback>
-                    </Avatar>
+                    <div class='p-2 rounded-full shadow-lg'>
+                        <Avatar class='h-72 w-72 rounded-full ring-offset-background ring-12 ring-ebony-clay ring-offset-1'>
+                            <AvatarImage
+                                src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757869820/cat-7710382_zqbc1t.jpg'
+                                alt='avatar'
+                            />
+                            <AvatarFallback class='rounded-full'>A</AvatarFallback>
+                        </Avatar>
+                    </div>
                 </CardContent>
             </Card>
             
             <!--  Personal information -->
-            <Card class='h-full xl:w-180 flex flex-col p-6 !shadow-none'>
-                <CardHeader class='items-center'>
-                    <CardTitle class='capitalize'>Personal information</CardTitle>
+            <Card class='bg-popover h-full xl:w-120 flex flex-col p-6 !shadow-none'>
+                <CardHeader>
+                    <CardTitle>Personal Information</CardTitle>
                 </CardHeader>
                 
                 <CardContent class='flex flex-col gap-4'>
@@ -33,14 +35,12 @@
                         :key='item.name'
                         class='flex flex-col gap-0'
                     >
-                        <span class='text-muted-foreground'>{{ item.label }}</span>
-                        <span>{{ item.value }}</span>
+                        <span class='text-md text-muted-foreground'>{{ item.label }}</span>
+                        <span :class='{ "capitalize" : item.name === "astronaut_type" }'>{{ item.value }}</span>
                     </div>
                 </CardContent>
             </Card>
         </div>
-        
-        {{ profile }}
     </div>
 </template>
 
@@ -64,11 +64,11 @@
     
     const personal_information = ref([
         { name: 'username', label: 'Username', value: username.value },
+        { name: 'email', label: 'Email', value: profile.value?.email },
         { name: 'astronaut_type', label: 'Astronaut Type', value: astronaut_type.value },
         { name: 'location', label: 'Location', value: profile.value?.location },
         { name: 'dob', label: 'Date of birth', value: dayjs.utc(profile.value?.dob).local().format('DD MMM YYYY') },
         { name: 'bio', label: 'Bio', value: profile.value?.bio },
-        { name: 'email', label: 'Email', value: profile.value?.email },
         { name: 'updated_at', label: 'Last updated', value: dayjs(profile.value?.updated_at).fromNow() },
     ]);
 </script>
