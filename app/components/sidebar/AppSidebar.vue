@@ -107,8 +107,8 @@
             {
                 title: 'Defi',
                 url: '/defi',
-                icon: 'ph:bank',
-                activeIcon: 'ph:bank-fill',
+                icon: 'ph:piggy-bank',
+                activeIcon: 'ph:piggy-bank-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
@@ -132,8 +132,8 @@
             {
                 title: 'Academy',
                 url: '/academy',
-                icon: 'ph:books',
-                activeIcon: 'ph:books-fill',
+                icon: 'ph:lightbulb-filament',
+                activeIcon: 'ph:lightbulb-filament-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
