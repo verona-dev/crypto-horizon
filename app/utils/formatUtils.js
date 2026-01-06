@@ -1,4 +1,3 @@
-import { getTrendClass } from '~/utils/styleUtils.js';
 
 const formatNumber = (value, {
                           locale = 'en-US',

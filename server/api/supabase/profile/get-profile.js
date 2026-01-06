@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
     
     const { data, error } = await client
        .from('profiles')
-       .select(`astronaut_type, avatar_url, bio, dob, location, updated_at, username`)
+       .select('*')
        .single()
     
     if (error) {
