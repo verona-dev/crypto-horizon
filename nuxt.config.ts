@@ -65,6 +65,10 @@ export default defineNuxtConfig({
             userAgent: 'facebookexternalhit',
             allow: '/',
          },
+         {
+            userAgent: ['GPTBot', 'ChatGPT-User'],
+            disallow: ['/']
+         },
       ],
    },
 
