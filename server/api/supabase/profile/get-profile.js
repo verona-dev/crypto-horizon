@@ -20,6 +20,7 @@ export default defineEventHandler(async (event) => {
         bio: data.bio,
         dob: data.dob,
         email: user?.email,
+        last_sign_in: data.last_sign_in,
         location: data.location,
         updated_at: data.updated_at,
         username: data.username,
