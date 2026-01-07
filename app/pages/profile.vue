@@ -80,4 +80,22 @@
         { name: 'bio', label: 'Bio', value: profile.value?.bio },
         { name: 'updated_at', label: 'Last updated', value: dayjs(profile.value?.updated_at).fromNow() },
     ]);
+    
+    // SEO
+    const title = 'Private Profile';
+    
+    definePageMeta({
+        title,
+        description: title,
+    });
+    
+    useSeoMeta({
+        robots: 'noindex, nofollow',
+        title,
+        description: title,
+        ogTitle: undefined,
+        ogDescription: undefined,
+        ogImage: undefined,
+        twitterCard: undefined,
+    });
 </script>
