@@ -58,7 +58,7 @@
 
 <script setup>
     import { capitalize } from '@/utils/formatUtils.js';
-    import { Button } from '@/components/ui/button/index.ts';
+    import { Button } from '~/components/ui/button';
     import { Card, CardTitle } from '@/components/ui/card/index.ts';
     import NewTabIcon from '@/components/NewTabIcon.vue';
     import { toast } from 'vue-sonner';
