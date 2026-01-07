@@ -8,13 +8,49 @@
         
         <CardContent>
             <div class='p-2 rounded-full shadow-lg'>
-                <Avatar class='h-52 w-52 rounded-full ring-offset-background ring-10 ring-secondary ring-offset-1'>
-                    <AvatarImage
-                        src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757869820/cat-7710382_zqbc1t.jpg'
-                        alt='avatar'
-                    />
-                    <AvatarFallback class='rounded-full'>A</AvatarFallback>
-                </Avatar>
+                <TooltipProvider :delayDuration='250'>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <Avatar
+                                @click='toggleDrawerVisibility'
+                                class='h-52 w-52 rounded-full ring-offset-background ring-10 ring-secondary ring-offset-1 hover:opacity-85 hover:cursor-pointer hover:ring-green-shamrock'
+                            >
+                                <AvatarImage
+                                    :src='avatar_src'
+                                    alt='avatar'
+                                />
+                                <AvatarFallback class='rounded-full'>A</AvatarFallback>
+                            </Avatar>
+                        </TooltipTrigger>
+                        
+                        <TooltipContent :side-offset='15' side='right'>
+                            <p class='text-xs'>Change Avatar</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+                
+                <Drawer v-model:open='drawer_visibility'>
+                    <DrawerContent>
+                        <div class='mx-auto w-full max-w-sm'>
+                            <DrawerHeader>
+                                <DrawerTitle>Avatar</DrawerTitle>
+                                <DrawerDescription>Change your profile avatar.</DrawerDescription>
+                            </DrawerHeader>
+                            
+                            <div class='p-4 pb-0'>
+                                Content
+                            </div>
+                            
+                            <DrawerFooter>
+                                <DrawerClose as-child>
+                                    <Button variant='outline'>
+                                        Cancel
+                                    </Button>
+                                </DrawerClose>
+                            </DrawerFooter>
+                        </div>
+                    </DrawerContent>
+                </Drawer>
             </div>
         </CardContent>
         
@@ -30,7 +66,10 @@
 <script setup>
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
     import { Badge } from '~/components/ui/badge';
+    import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
+    import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
+    import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
     
     const props = defineProps({
         username: String,
@@ -38,4 +77,8 @@
     });
     
     const { username, astronautType } = toRefs(props);
+    
+    const avatar_src = ref('https://oqnuuqvoiolgpdpkhyby.supabase.co/storage/v1/object/public/avatars/avatar-6.webp');
+    const drawer_visibility = ref(false);
+    const toggleDrawerVisibility = () => drawer_visibility.value = !drawer_visibility.value;
 </script>
