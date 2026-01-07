@@ -2,9 +2,9 @@
     <div class='profile page gap-12'>
         <h3>Profile</h3>
         
-        <div class='h-120 flex flex-col xl:flex-row items-center gap-6'>
+        <div class='w-full flex flex-col xl:flex-row items-center justify-center gap-6'>
             <!--  Avatar + Username  -->
-            <Card class='bg-popover h-full xl:w-fit flex flex-col items-center p-6 gap-4 !shadow-none relative'>
+            <Card class='bg-popover h-full xl:h-120 w-full md:w-4/5 xl:w-fit flex flex-col items-center p-6 gap-4 !shadow-none relative'>
                 <CardHeader class='items-center gap-2'>
                     <CardTitle class='text-4xl'>{{ username }}</CardTitle>
                     
@@ -32,13 +32,13 @@
             </Card>
             
             <!--  Personal information -->
-            <Card class='bg-popover h-full xl:w-140 flex flex-col p-6 !shadow-none'>
-                <CardHeader class='px-4'>
-                    <CardTitle>Personal Information</CardTitle>
+            <Card class='bg-popover h-full xl:h-120 w-full md:w-4/5 xl:w-140 flex flex-col p-6 gap-4 !shadow-none'>
+                <CardHeader class='xl:mt-1'>
+                    <CardTitle class='text-2xl'>Personal Information</CardTitle>
                 </CardHeader>
                 
-                <div class='h-full xl:flex'>
-                    <CardContent class='flex-1 flex flex-col gap-6 p-4'>
+                <div class='flex'>
+                    <CardContent class='flex-1 flex flex-col gap-6'>
                         <div
                             v-for='item in personal_information.slice(0, 4)'
                             :key='item.name'
@@ -49,7 +49,7 @@
                         </div>
                     </CardContent>
                     
-                    <CardContent class='flex-1 flex flex-col gap-6 p-4'>
+                    <CardContent class='flex-1 flex flex-col gap-6'>
                         <div
                             v-for='item in personal_information.slice(4, personal_information.length)'
                             :key='item.name'
