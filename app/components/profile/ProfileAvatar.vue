@@ -3,7 +3,6 @@
     <Card class='bg-popover h-full xl:h-120 w-full md:w-4/5 xl:w-fit flex flex-col items-center p-6 gap-4 !shadow-none relative'>
         <CardHeader class='items-center gap-2'>
             <CardTitle class='text-4xl'>{{ username }}</CardTitle>
-            
             <CardDescription class='text-lg capitalize'>&#8226; {{ astronaut_type }} &#8226;</CardDescription>
         </CardHeader>
         
