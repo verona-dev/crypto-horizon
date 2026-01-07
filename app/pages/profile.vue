@@ -5,10 +5,9 @@
         <div class='w-full flex flex-col xl:flex-row items-center justify-center gap-6'>
             <ProfileAvatar
                 :username='username'
-                :astronaut_type='astronaut_type'
+                :astronaut-type='astronaut_type'
             />
             
-            <!--  Personal information -->
             <ProfileInformation :profile='profile_formatted' />
         </div>
     </div>
