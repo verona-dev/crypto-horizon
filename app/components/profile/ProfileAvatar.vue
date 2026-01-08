@@ -1,5 +1,5 @@
 <template>
-    <Card v-if='avatars' class='bg-popover h-full xl:h-120 w-full md:w-4/5 xl:w-fit flex flex-col items-center p-6 gap-4 !shadow-none relative'>
+    <Card class='bg-popover h-full xl:h-120 w-full md:w-4/5 xl:w-fit flex flex-col items-center p-6 gap-4 !shadow-none relative'>
         <CardHeader class='items-center gap-2'>
             <CardTitle class='text-4xl'>{{ username }}</CardTitle>
             <CardDescription class='text-lg capitalize'>&#8226; {{ astronautType }} &#8226;</CardDescription>
@@ -11,7 +11,7 @@
                     <Tooltip>
                         <TooltipTrigger>
                             <Avatar
-                                @click='toggleDrawerVisibility'
+                                @click='toggleAvatarSelection'
                                 class='h-52 w-52 rounded-full ring-offset-background ring-10 ring-secondary ring-offset-1 hover:cursor-pointer hover:ring-green-shamrock'
                             >
                                 <AvatarImage
@@ -31,7 +31,7 @@
                 <!--  Avatar Change  -->
                 <Drawer v-model:open='drawer_visibility'>
                     <DrawerContent>
-                        <div class='mx-auto w-full max-w-sm'>
+                        <div class='mx-auto w-full max-w-sm lg:max-w-lg'>
                             <DrawerHeader>
                                 <DrawerTitle>Select your avatar</DrawerTitle>
                                 <DrawerDescription>Click to select your profile avatar.</DrawerDescription>
@@ -39,19 +39,25 @@
                             
                             <ToggleGroup
                                 type='single'
-                                class='flex flex-wrap my-24 p-4 border w-fit border-orange-300'
+                                class='flex flex-wrap my-12 py-8 border border-orange-300'
                             >
-                                <ToggleGroupItem
-                                    v-for='(avatar, index) in avatars'
-                                    :value='index'
-                                    class='w-20 h-20 relative border rounded-lg'
-                                >
-                                    <Avatar class='rounded-lg w-fit h-fit'>
-                                        <AvatarImage :src='avatar' alt='avatar image' />
-                                        <AvatarFallback>Av</AvatarFallback>
-                                    </Avatar>
-                                    <BadgeCheck class='absolute bottom-1 -right-1 size-4.5 rounded-full fill-blue-500 text-white'></BadgeCheck>
-                                </ToggleGroupItem>
+                                <template v-for='(avatar, index) in avatars' :key='index'>
+                                    <ToggleGroupItem
+                                        v-slot='{ pressed }'
+                                        :value='index'
+                                        class='w-20 h-20 relative rounded-lg'
+                                    >
+                                        <Avatar class='rounded-lg w-fit h-fit'>
+                                            <AvatarImage :src='avatar' alt='avatar image' />
+                                            <AvatarFallback>Av</AvatarFallback>
+                                        </Avatar>
+                                        
+                                        <BadgeCheck
+                                            v-if='pressed'
+                                            class='absolute bottom-1 -right-1 size-4.5 rounded-full fill-blue-500 text-white'
+                                        />
+                                    </ToggleGroupItem>
+                                </template>
                             </ToggleGroup>
                             
                             <DrawerFooter>
@@ -88,17 +94,25 @@
     import { ToggleGroup, ToggleGroupItem } from '~/components/ui/toggle-group';
     import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
     
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { avatars } = storeToRefs(ProfileStore);
+    const { getAvatars } = ProfileStore;
+    
     const props = defineProps({
         username: String,
         astronautType: String,
-        avatars: Array,
     });
     
-    const { username, astronautType, avatars } = toRefs(props);
+    const { username, astronautType } = toRefs(props);
     
     const avatar_src = ref('https://oqnuuqvoiolgpdpkhyby.supabase.co/storage/v1/object/public/avatars/avatar-6.webp');
     const drawer_visibility = ref(false);
-    const toggleDrawerVisibility = () => drawer_visibility.value = !drawer_visibility.value;
+    const toggleAvatarSelection = async() => {
+        drawer_visibility.value = !drawer_visibility.value;
+        await getAvatars();
+    };
     
     const onSelect = () => {
         console.log('selected');
