@@ -18,7 +18,12 @@ export default defineEventHandler(async(event) => {
         const { data: { publicUrl } } = client
            .storage
            .from('avatars')
-           .getPublicUrl(file.name)
+           .getPublicUrl(file.name, {
+               transform: {
+                   width: 256,
+                   height: 256,
+               },
+           })
         return publicUrl;
     });
     
