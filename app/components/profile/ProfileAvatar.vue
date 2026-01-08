@@ -70,9 +70,7 @@
                                         Done
                                     </Button>
                                     
-                                    <Button variant='outline'>
-                                        Cancel
-                                    </Button>
+                                    <Button variant='outline'>Cancel</Button>
                                 </DrawerClose>
                             </DrawerFooter>
                         </div>
