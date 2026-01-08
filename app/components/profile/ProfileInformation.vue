@@ -35,7 +35,7 @@
     
     const props = defineProps({
         profile: {
-            type: Object,
+            type: Array,
             required: true,
         }
     });

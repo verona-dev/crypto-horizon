@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-popover h-full xl:h-120 w-full md:w-4/5 xl:w-fit flex flex-col items-center p-6 gap-4 !shadow-none relative'>
+    <Card v-if='avatars' class='bg-popover h-full xl:h-120 w-full md:w-4/5 xl:w-fit flex flex-col items-center p-6 gap-4 !shadow-none relative'>
         <CardHeader class='items-center gap-2'>
             <CardTitle class='text-4xl'>{{ username }}</CardTitle>
             <CardDescription class='text-lg capitalize'>&#8226; {{ astronautType }} &#8226;</CardDescription>
@@ -37,15 +37,22 @@
                                 <DrawerDescription>Click to select your profile avatar.</DrawerDescription>
                             </DrawerHeader>
                             
-                            <div class='my-24 p-4 border w-fit'>
-                                <div class='relative'>
-                                    <Avatar class='size-16 rounded-md'>
-                                        <AvatarImage src='https://github.com/shadcn.png' alt='@shadcn' />
-                                        <AvatarFallback>CN</AvatarFallback>
+                            <ToggleGroup
+                                type='single'
+                                class='flex flex-wrap my-24 p-4 border w-fit border-orange-300'
+                            >
+                                <ToggleGroupItem
+                                    v-for='(avatar, index) in avatars'
+                                    :value='index'
+                                    class='w-20 h-20 relative border rounded-lg'
+                                >
+                                    <Avatar class='rounded-lg w-fit h-fit'>
+                                        <AvatarImage :src='avatar' alt='avatar image' />
+                                        <AvatarFallback>Av</AvatarFallback>
                                     </Avatar>
                                     <BadgeCheck class='absolute bottom-1 -right-1 size-4.5 rounded-full fill-blue-500 text-white'></BadgeCheck>
-                                </div>
-                            </div>
+                                </ToggleGroupItem>
+                            </ToggleGroup>
                             
                             <DrawerFooter>
                                 <Button @click='onSelect'>Done</Button>
@@ -72,20 +79,22 @@
 </template>
 
 <script setup>
+    import { BadgeCheck } from 'lucide-vue-next';
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
     import { Badge } from '~/components/ui/badge';
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
+    import { ToggleGroup, ToggleGroupItem } from '~/components/ui/toggle-group';
     import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
-    import { BadgeCheck } from 'lucide-vue-next';
     
     const props = defineProps({
         username: String,
         astronautType: String,
+        avatars: Array,
     });
     
-    const { username, astronautType } = toRefs(props);
+    const { username, astronautType, avatars } = toRefs(props);
     
     const avatar_src = ref('https://oqnuuqvoiolgpdpkhyby.supabase.co/storage/v1/object/public/avatars/avatar-6.webp');
     const drawer_visibility = ref(false);
@@ -93,5 +102,6 @@
     
     const onSelect = () => {
         console.log('selected');
+        console.log(avatars.value);
     };
 </script>

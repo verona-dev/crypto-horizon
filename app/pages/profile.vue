@@ -6,6 +6,7 @@
             <ProfileAvatar
                 :username='username'
                 :astronaut-type='astronaut_type'
+                :avatars='avatars'
             />
             
             <ProfileInformation :profile='profile_formatted' />
@@ -26,7 +27,7 @@
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
-    const { profile } = storeToRefs(ProfileStore);
+    const { profile, avatars } = storeToRefs(ProfileStore);
     const { getAvatars } = ProfileStore;
     
     const username = ref(profile.value?.username);
