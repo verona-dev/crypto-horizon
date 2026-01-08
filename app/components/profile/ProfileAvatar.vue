@@ -32,20 +32,21 @@
                 <Drawer v-model:open='drawer_visibility'>
                     <DrawerContent>
                         <div class='mx-auto w-full max-w-sm lg:max-w-lg'>
-                            <DrawerHeader>
-                                <DrawerTitle>Select your avatar</DrawerTitle>
-                                <DrawerDescription>Click to select your profile avatar.</DrawerDescription>
+                            <DrawerHeader class='my-6'>
+                                <DrawerTitle class='text-3xl'>Choose an avatar</DrawerTitle>
+                                <DrawerDescription class='text-md'>Click to select your profile avatar.</DrawerDescription>
                             </DrawerHeader>
                             
                             <ToggleGroup
+                                v-model='selected_avatar'
                                 type='single'
-                                class='flex flex-wrap my-12 py-8 border border-orange-300'
+                                class='flex flex-wrap my-12 p-4'
                             >
-                                <template v-for='(avatar, index) in avatars' :key='index'>
+                                <template v-for='avatar in avatars' :key='index'>
                                     <ToggleGroupItem
                                         v-slot='{ pressed }'
-                                        :value='index'
-                                        class='w-20 h-20 relative rounded-lg'
+                                        :value='avatar'
+                                        class='w-24 h-24 m-2 relative rounded-lg border border-transparent data-[state=on]:bg-transparent'
                                     >
                                         <Avatar class='rounded-lg w-fit h-fit'>
                                             <AvatarImage :src='avatar' alt='avatar image' />
@@ -54,13 +55,13 @@
                                         
                                         <BadgeCheck
                                             v-if='pressed'
-                                            class='absolute bottom-1 -right-1 size-4.5 rounded-full fill-blue-500 text-white'
+                                            class='absolute bottom-1 -right-1 size-4.5 rounded-full fill-progress/80 text-white'
                                         />
                                     </ToggleGroupItem>
                                 </template>
                             </ToggleGroup>
                             
-                            <DrawerFooter>
+                            <DrawerFooter class='mb-16'>
                                 <Button @click='onSelect'>Done</Button>
                                 
                                 <DrawerClose as-child>
@@ -107,6 +108,7 @@
     
     const { username, astronautType } = toRefs(props);
     
+    const selected_avatar = ref();
     const avatar_src = ref('https://oqnuuqvoiolgpdpkhyby.supabase.co/storage/v1/object/public/avatars/avatar-6.webp');
     const drawer_visibility = ref(false);
     const toggleAvatarSelection = async() => {
@@ -115,7 +117,7 @@
     };
     
     const onSelect = () => {
-        console.log('selected');
         console.log(avatars.value);
+        console.log(selected_avatar.value);
     };
 </script>
