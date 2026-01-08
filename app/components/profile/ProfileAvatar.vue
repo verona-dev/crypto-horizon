@@ -7,22 +7,22 @@
         
         <CardContent>
             <div class='p-2 rounded-full shadow-lg'>
-                <TooltipProvider :delayDuration='250'>
+                <TooltipProvider :delayDuration='150'>
                     <Tooltip>
-                        <TooltipTrigger>
+                        <TooltipTrigger @mouseenter='show_tooltip = true'>
                             <Avatar
                                 @click='toggleAvatarSelection'
                                 class='h-52 w-52 rounded-full ring-offset-background ring-10 ring-secondary ring-offset-1 hover:cursor-pointer hover:ring-green-shamrock'
                             >
                                 <AvatarImage
-                                    :src='avatar_src'
+                                    :src='profile_avatar'
                                     alt='avatar'
                                 />
                                 <AvatarFallback class='rounded-full'>A</AvatarFallback>
                             </Avatar>
                         </TooltipTrigger>
                         
-                        <TooltipContent :side-offset='15' side='right'>
+                        <TooltipContent v-if='show_tooltip' :side-offset='15' side='right'>
                             <p class='text-xs'>Change Avatar</p>
                         </TooltipContent>
                     </Tooltip>
@@ -42,7 +42,7 @@
                                 type='single'
                                 class='flex flex-wrap my-12 p-4'
                             >
-                                <template v-for='avatar in avatars' :key='index'>
+                                <template v-for='avatar in avatars' :key='avatar'>
                                     <ToggleGroupItem
                                         v-slot='{ pressed }'
                                         :value='avatar'
@@ -62,9 +62,14 @@
                             </ToggleGroup>
                             
                             <DrawerFooter class='mb-16'>
-                                <Button @click='onSelect'>Done</Button>
-                                
                                 <DrawerClose as-child>
+                                    <Button
+                                        @click='onSubmit'
+                                        :disabled='is_current_avatar_selected'
+                                    >
+                                        Done
+                                    </Button>
+                                    
                                     <Button variant='outline'>
                                         Cancel
                                     </Button>
@@ -92,14 +97,15 @@
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
+    import { toast } from 'vue-sonner';
     import { ToggleGroup, ToggleGroupItem } from '~/components/ui/toggle-group';
     import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
-    const { avatars } = storeToRefs(ProfileStore);
-    const { getAvatars } = ProfileStore;
+    const { avatars, profile } = storeToRefs(ProfileStore);
+    const { getAvatars, updateAvatar, getProfile } = ProfileStore;
     
     const props = defineProps({
         username: String,
@@ -108,16 +114,37 @@
     
     const { username, astronautType } = toRefs(props);
     
-    const selected_avatar = ref();
-    const avatar_src = ref('https://oqnuuqvoiolgpdpkhyby.supabase.co/storage/v1/object/public/avatars/avatar-6.webp');
+    const show_tooltip = ref(false);
+    const profile_avatar = computed(() => profile.value?.avatar_url);
+    const selected_avatar = ref(profile_avatar.value);
     const drawer_visibility = ref(false);
+    const is_current_avatar_selected = computed(() => profile_avatar.value === selected_avatar.value);
+    
     const toggleAvatarSelection = async() => {
         drawer_visibility.value = !drawer_visibility.value;
         await getAvatars();
     };
     
-    const onSelect = () => {
-        console.log(avatars.value);
-        console.log(selected_avatar.value);
+    const displayToast = (message) => {
+        toast.promise(() => new Promise((resolve) => setTimeout(resolve, 250)), {
+            success: () => message,
+        });
+    };
+    
+    watch(profile_avatar, () => {
+        displayToast('Avatar updated successfully.');
+    });
+    
+    const onSubmit = async() => {
+        if(profile_avatar.value !== selected_avatar.value) {
+            const { success } = await updateAvatar(selected_avatar.value);
+            
+            if(success) {
+                await getProfile();
+            }
+        } else {
+            displayToast('Cannot update avatar.');
+        }
+        show_tooltip.value = false;
     };
 </script>
