@@ -12,7 +12,7 @@
                         <TooltipTrigger @mouseenter='show_tooltip = true'>
                             <Avatar
                                 @click='toggleAvatarSelection'
-                                class='h-52 w-52 rounded-full ring-offset-background ring-10 ring-secondary ring-offset-1 hover:cursor-pointer hover:ring-green-shamrock'
+                                class='h-52 w-52 rounded-full ring-offset-background ring-10 ring-secondary hover:cursor-pointer hover:ring-green-shamrock'
                             >
                                 <AvatarImage
                                     :src='profile_avatar'
