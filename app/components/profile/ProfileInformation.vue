@@ -1,10 +1,23 @@
 <template>
-    <Card class='bg-popover h-full xl:h-120 w-full md:w-4/5 xl:w-140 flex flex-col p-6 gap-4 !shadow-none'>
-        <CardHeader class='xl:mt-1'>
+    <Card class='bg-popover h-full xl:h-120 w-full md:w-4/5 xl:w-140 flex flex-col !justify-around p-6 gap-4 !shadow-none'>
+        <CardHeader class='flex-row justify-between rounded-xl border-1 border-transparent hover:border-green-shamrock'>
             <CardTitle class='text-2xl'>Personal Information</CardTitle>
+            
+            <Button
+                class='w-fit'
+                variant='outline'
+                size='sm'
+            >
+                <NuxtIcon
+                    name='ph:pencil-simple-line'
+                    size='14'
+                />
+                
+                Edit
+            </Button>
         </CardHeader>
         
-        <div class='flex'>
+        <div class='flex p-6 border rounded-xl'>
             <CardContent class='flex-1 flex flex-col gap-6'>
                 <div
                     v-for='item in profile.slice(0, 4)'
@@ -31,6 +44,7 @@
 </template>
 
 <script setup>
+    import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
     
     const props = defineProps({
