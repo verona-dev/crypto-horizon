@@ -40,7 +40,7 @@
                             <ToggleGroup
                                 v-model='selected_avatar'
                                 type='single'
-                                class='flex flex-wrap my-12 h-64 p-4'
+                                class='flex flex-wrap my-12 xl:h-64 p-4'
                             >
                                 <div v-if='!avatars' class='flex flex-wrap justify-evenly'>
                                     <template v-for='n in 8' :key='n'>
@@ -69,15 +69,17 @@
                                 </template>
                             </ToggleGroup>
                             
-                            <DrawerFooter class='mb-16'>
+                            <DrawerFooter class='mb-16 gap-4'>
                                 <DrawerClose as-child>
                                     <Button
                                         @click='onSubmit'
-                                        :disabled='is_current_avatar_selected'
+                                        :disabled='is_current_avatar_selected || !selected_avatar'
                                     >
-                                        Done
+                                        {{ button_label }}
                                     </Button>
-                                    
+                                </DrawerClose>
+                                
+                                <DrawerClose as-child>
                                     <Button variant='outline'>Cancel</Button>
                                 </DrawerClose>
                             </DrawerFooter>
@@ -126,6 +128,7 @@
     const selected_avatar = ref(profile_avatar.value);
     const drawer_visibility = ref(false);
     const is_current_avatar_selected = computed(() => profile_avatar.value === selected_avatar.value);
+    const button_label = computed(() => is_current_avatar_selected.value || !selected_avatar.value ? 'Current Avatar' : 'Select Avatar');
     
     const toggleAvatarSelection = async() => {
         drawer_visibility.value = !drawer_visibility.value;
