@@ -23,7 +23,7 @@
     
     const avatar = computed(() => {
         if(logged_in.value) {
-            return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_256/v1757869820/cat-7710382_zqbc1t.jpg';
+            return profile.value?.avatar_url;
         }
         return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_256/v1767535202/astronaut-3_oauvzn.png';
     });
@@ -64,9 +64,7 @@
                     >
                         <Avatar class='h-6 w-6 rounded-lg'>
                             <AvatarImage :src='avatar' alt='avatar' />
-                            <AvatarFallback class='rounded-lg'>
-                                G
-                            </AvatarFallback>
+                            <AvatarFallback class='rounded-lg'>G</AvatarFallback>
                         </Avatar>
                         
                         <div class='flex flex-col flex-1 text-left text-sm leading-tight'>
