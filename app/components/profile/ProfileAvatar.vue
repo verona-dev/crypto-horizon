@@ -22,7 +22,7 @@
                             </Avatar>
                         </TooltipTrigger>
                         
-                        <TooltipContent v-if='show_tooltip' :side-offset='15' side='right'>
+                        <TooltipContent v-if='show_tooltip' :side-offset='15' side='left'>
                             <p class='text-xs'>Change Avatar</p>
                         </TooltipContent>
                     </Tooltip>
@@ -40,24 +40,32 @@
                             <ToggleGroup
                                 v-model='selected_avatar'
                                 type='single'
-                                class='flex flex-wrap my-12 p-4'
+                                class='flex flex-wrap my-12 h-64 p-4'
                             >
-                                <template v-for='avatar in avatars' :key='avatar'>
-                                    <ToggleGroupItem
-                                        v-slot='{ pressed }'
-                                        :value='avatar'
-                                        class='w-24 h-24 m-2 relative rounded-lg border border-transparent data-[state=on]:bg-transparent'
-                                    >
-                                        <Avatar class='rounded-lg w-fit h-fit'>
-                                            <AvatarImage :src='avatar' alt='avatar image' />
-                                            <AvatarFallback>Av</AvatarFallback>
-                                        </Avatar>
-                                        
-                                        <BadgeCheck
-                                            v-if='pressed'
-                                            class='absolute bottom-1 -right-1 size-4.5 rounded-full fill-progress/80 text-white'
-                                        />
-                                    </ToggleGroupItem>
+                                <div v-if='!avatars' class='flex flex-wrap justify-evenly'>
+                                    <template v-for='n in 8' :key='n'>
+                                        <Skeleton class='w-20 h-20 m-3.5 rounded-lg' />
+                                    </template>
+                                </div>
+                                
+                                <template v-else>
+                                    <template v-for='avatar in avatars' :key='avatar'>
+                                        <ToggleGroupItem
+                                            v-slot='{ pressed }'
+                                            :value='avatar'
+                                            class='w-24 h-24 m-2 relative rounded-lg border border-transparent data-[state=on]:bg-transparent'
+                                        >
+                                            <Avatar class='rounded-lg w-fit h-fit'>
+                                                <AvatarImage :src='avatar' alt='avatar image' />
+                                                <AvatarFallback>Av</AvatarFallback>
+                                            </Avatar>
+                                            
+                                            <BadgeCheck
+                                                v-if='pressed'
+                                                class='absolute bottom-1 -right-1 size-4.5 rounded-full fill-progress/80 text-white'
+                                            />
+                                        </ToggleGroupItem>
+                                    </template>
                                 </template>
                             </ToggleGroup>
                             
@@ -95,6 +103,7 @@
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
+    import { Skeleton } from '~/components/ui/skeleton';
     import { toast } from 'vue-sonner';
     import { ToggleGroup, ToggleGroupItem } from '~/components/ui/toggle-group';
     import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
