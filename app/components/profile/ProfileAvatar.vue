@@ -11,7 +11,7 @@
                     <Tooltip>
                         <TooltipTrigger @mouseenter='show_tooltip = true'>
                             <Avatar
-                                @click='toggleAvatarSelection'
+                                @click='toggleAvatarChange'
                                 class='h-52 w-52 rounded-full ring-offset-background ring-10 ring-secondary hover:cursor-pointer hover:ring-green-shamrock'
                             >
                                 <AvatarImage
@@ -130,7 +130,7 @@
     const is_current_avatar_selected = computed(() => profile_avatar.value === selected_avatar.value);
     const button_label = computed(() => is_current_avatar_selected.value || !selected_avatar.value ? 'Current Avatar' : 'Select Avatar');
     
-    const toggleAvatarSelection = async() => {
+    const toggleAvatarChange = async() => {
         drawer_visibility.value = !drawer_visibility.value;
         await getAvatars();
     };
