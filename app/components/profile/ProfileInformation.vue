@@ -4,7 +4,7 @@
             <CardTitle class='text-2xl'>Personal Information</CardTitle>
             
             <Button
-                @click='toggleEditDrawer'
+                @click='onHandleDrawer'
                 class='w-fit'
                 variant='ghost'
                 size='sm'
@@ -43,44 +43,19 @@
         </div>
         
         <!--  Edit Profile  -->
-        <Drawer v-model:open='drawer_visibility'>
-            <DrawerContent>
-                <div class='mx-auto w-full max-w-sm lg:max-w-lg'>
-                    <DrawerHeader class='my-6'>
-                        <DrawerTitle class='text-3xl'>Edit Profile</DrawerTitle>
-                        <DrawerDescription class='text-md'>Click on any field to update your profile.</DrawerDescription>
-                    </DrawerHeader>
-                    
-                    <div class='grid gap-4'>
-                        <div class='grid gap-3'>
-                            <Label for='name-1'>Username</Label>
-                            <Input id='name-1' name='name' :default-value='username' />
-                        </div>
-                    </div>
-                    
-                    <DrawerFooter class='mb-16 gap-4'>
-                        <DrawerClose as-child>
-                            <Button @click='onSubmit'>
-                                Save
-                            </Button>
-                        </DrawerClose>
-                        
-                        <DrawerClose as-child>
-                            <Button variant='outline'>Cancel</Button>
-                        </DrawerClose>
-                    </DrawerFooter>
-                </div>
-            </DrawerContent>
-        </Drawer>
+        <ProfileEdit
+            v-if='show_drawer'
+            :profile='profile'
+            :showDrawer='show_drawer'
+            @handleDrawer='onHandleDrawer'
+        />
     </Card>
 </template>
 
 <script setup>
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
-    import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
-    import { Input } from '~/components/ui/input';
-    import { Label } from '~/components/ui/label';
+    import ProfileEdit from '~/components/profile/ProfileEdit.vue';
     
     const props = defineProps({
         profile: {
@@ -90,16 +65,6 @@
     });
     
     const { profile } = toRefs(props);
-    const username = ref(props.profile[0].value || '');
-    console.log(username.value);
-    
-    const drawer_visibility = ref(false);
-    
-    const toggleEditDrawer = () => {
-      drawer_visibility.value = !drawer_visibility.value;
-    };
-    
-    const onSubmit = async() => {
-        console.log('submit');
-    };
+    const show_drawer = ref(false);
+    const onHandleDrawer = bool => show_drawer.value = bool;
 </script>
