@@ -9,7 +9,10 @@
             <div class='p-2 rounded-full shadow-lg'>
                 <TooltipProvider :delayDuration='150'>
                     <Tooltip>
-                        <TooltipTrigger @mouseenter='show_tooltip = true'>
+                        <TooltipTrigger
+                            @mouseenter='show_tooltip = true'
+                            @mouseleave='show_tooltip = false'
+                        >
                             <Avatar
                                 @click='toggleAvatarChange'
                                 class='h-52 w-52 rounded-full ring-offset-background ring-10 ring-secondary hover:cursor-pointer hover:ring-green-shamrock'
