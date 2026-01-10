@@ -116,7 +116,7 @@
                                                 <Input
                                                     v-bind='componentField'
                                                     type='email'
-                                                    class='inputField !w-full focus-visible:border-foreground/75 focus-visible:ring-[0px] py-5'
+                                                    class='inputField !w-full'
                                                     placeholder='name@example.com'
                                                     @input='validate()'
                                                 />
@@ -151,7 +151,7 @@
                                                     <PinInputGroup class='gap-1'>
                                                         <template v-for='(id, index) in 8' :key='id'>
                                                             <PinInputSlot
-                                                                class='h-12 w-12 text-xl font-bold font-satoshi rounded-md border focus-visible:border-foreground/75 focus-visible:ring-[0px]'
+                                                                class='h-12 w-12 text-xl font-bold font-satoshi rounded-md border'
                                                                 :index='index'
                                                             />
                                                             <template v-if='index !== 7'>
