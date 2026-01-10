@@ -1,7 +1,7 @@
 <template>
     <Drawer v-model:open='drawer_visibility'>
         <DrawerContent>
-            <div class='mx-auto w-full max-w-sm lg:max-w-2xl grid gap-6'>
+            <div class='mx-auto w-full max-w-md md:max-w-2xl grid gap-6'>
                 <DrawerHeader>
                     <DrawerTitle class='text-3xl'>Edit Profile</DrawerTitle>
                     <DrawerDescription class='text-md'>Click on any field to update your profile.</DrawerDescription>
@@ -40,7 +40,7 @@
                                     >
                                         <Card
                                             :class='cn(
-                                          "relative transition-all shadow-none hover:shadow-xl h-full py-6",
+                                          "relative transition-all shadow-none hover:shadow-xl h-full md:py-6 w-full",
                                                   astronaut_type === option.value && "border-primary/75 shadow-2xl",
                                             )'
                                         >
@@ -49,11 +49,11 @@
                                                 class='absolute -top-3 -right-2 size-6 rounded-full fill-card text-primary/75'
                                             />
                                             
-                                            <div class='p-6 space-y-12'>
+                                            <div class='flex md:flex-col items-center p-6 space-x-8 md:space-x-0 md:space-y-12'>
                                                 <div class='flex items-center justify-center'>
                                                     <NuxtIcon
                                                         :name='option.icon'
-                                                        size='68'
+                                                        :size='isMobile ? "44" : "68"'
                                                     />
                                                     
                                                     <RadioGroupItem
@@ -63,7 +63,7 @@
                                                     />
                                                 </div>
                                                 
-                                                <div class='space-y-1'>
+                                                <div class='md:space-y-1'>
                                                     <h4 class='font-semibold'>{{ option.title }}</h4>
                                                     <p class='text-sm text-muted-foreground'>
                                                         {{ option.description }}
@@ -103,6 +103,7 @@
     import { Input } from '~/components/ui/input';
     import { Label } from '~/components/ui/label';
     import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+    import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '~/components/ui/sidebar';
     
     const props = defineProps({
         profile: {
@@ -113,6 +114,7 @@
     });
     
     const { profile, showDrawer } = toRefs(props);
+    const { isMobile } = useSidebar();
     
     // Drawer
     const drawer_visibility = ref(showDrawer.value);
