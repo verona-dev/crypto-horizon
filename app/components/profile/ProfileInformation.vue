@@ -51,6 +51,13 @@
                         <DrawerDescription class='text-md'>Click on any field to update your profile.</DrawerDescription>
                     </DrawerHeader>
                     
+                    <div class='grid gap-4'>
+                        <div class='grid gap-3'>
+                            <Label for='name-1'>Username</Label>
+                            <Input id='name-1' name='name' :default-value='username' />
+                        </div>
+                    </div>
+                    
                     <DrawerFooter class='mb-16 gap-4'>
                         <DrawerClose as-child>
                             <Button @click='onSubmit'>
@@ -72,6 +79,8 @@
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
+    import { Input } from '~/components/ui/input';
+    import { Label } from '~/components/ui/label';
     
     const props = defineProps({
         profile: {
@@ -81,6 +90,8 @@
     });
     
     const { profile } = toRefs(props);
+    const username = ref(props.profile[0].value || '');
+    console.log(username.value);
     
     const drawer_visibility = ref(false);
     
