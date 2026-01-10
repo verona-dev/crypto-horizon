@@ -21,20 +21,31 @@
                     </div>
                     
                     <!--  Edit Astronaut Type  -->
-                    <RadioGroup default-value='comfortable'>
-                        <div class='flex items-center space-x-2'>
-                            <RadioGroupItem id='r1' value='default' />
-                            <Label for='r1'>Default</Label>
-                        </div>
-                        <div class='flex items-center space-x-2'>
-                            <RadioGroupItem id='r2' value='comfortable' />
-                            <Label for='r2'>Comfortable</Label>
-                        </div>
-                        <div class='flex items-center space-x-2'>
-                            <RadioGroupItem id='r3' value='compact' />
-                            <Label for='r3'>Compact</Label>
-                        </div>
-                    </RadioGroup>
+                    <ToggleGroup
+                        v-model='astronaut_type'
+                        @update:model-value='handleAstronautType'
+                        type='single'
+                        class='flex flex-wrap my-12 xl:h-64 p-4'
+                    >
+                        <template
+                            v-for='option in astronaut_type_options'
+                            :key='option'
+                        >
+                            <ToggleGroupItem
+                                v-slot='{ pressed }'
+                                :id='option.value'
+                                :value='option.value'
+                                class='w-24 h-24 m-2 relative rounded-lg border border-transparent data-[state=on]:bg-transparent'
+                            >
+                                {{ option.label }}
+                                
+                                <BadgeCheck
+                                    v-if='pressed'
+                                    class='absolute bottom-1 -right-1 size-4.5 rounded-full fill-progress/80 text-white'
+                                />
+                            </ToggleGroupItem>
+                        </template>
+                    </ToggleGroup>
                 </div>
                 
                 <DrawerFooter class='mb-16 gap-4'>
@@ -54,11 +65,12 @@
 </template>
 
 <script setup>
+    import { BadgeCheck, CircleCheck, CpuIcon } from 'lucide-vue-next';
     import { Button } from '~/components/ui/button';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
     import { Input } from '~/components/ui/input';
     import { Label } from '~/components/ui/label';
-    import { RadioGroup, RadioGroupItem } from '~/components/ui/radio-group';
+    import { ToggleGroup, ToggleGroupItem } from '~/components/ui/toggle-group';
     
     const props = defineProps({
         profile: {
@@ -69,12 +81,40 @@
     });
     
     const { profile, showDrawer } = toRefs(props);
-    console.log(profile.value);
-    const username = ref(profile.value[0]?.value || '');
     
+    // Drawer
     const drawer_visibility = ref(showDrawer.value);
     const emit = defineEmits(['handleDrawer']);
     watch(drawer_visibility, bool => emit('handleDrawer', bool));
+    
+    console.log(profile.value);
+    
+    // Username
+    const username = ref(profile.value[0]?.value || '');
+    
+    // Astronaut Type
+    const astronaut_type = ref(profile.value[2]?.value || '');
+    const astronaut_type_options = [
+        {
+            value: 'explorer',
+            label: 'Explorer',
+            description: 'Specializes in discovering new planets.',
+        },
+        {
+            value: 'engineer',
+            label: 'Engineer',
+            description: 'Specializes in repairing systems.',
+        },
+        {
+            value: 'pilot',
+            label: 'Pilot',
+            description: 'Specializes in piloting ships through asteroid fields, gravitational anomalies, and hyperspace jumps.',
+        },
+    ];
+    
+    const handleAstronautType = () => {
+        console.log('changed type');
+    };
     
     const onSubmit = async() => {
         console.log('submit');
