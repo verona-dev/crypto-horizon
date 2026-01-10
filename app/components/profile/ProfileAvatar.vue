@@ -64,9 +64,9 @@
                                                 <AvatarFallback>Av</AvatarFallback>
                                             </Avatar>
                                             
-                                            <BadgeCheck
+                                            <CircleCheck
                                                 v-if='pressed'
-                                                class='absolute bottom-1 -right-1 size-4.5 rounded-full fill-progress/80 text-white'
+                                                class='absolute bottom-0 right-0 size-5 rounded-full fill-card text-primary/75'
                                             />
                                         </ToggleGroupItem>
                                     </template>
@@ -103,7 +103,7 @@
 </template>
 
 <script setup>
-    import { BadgeCheck } from 'lucide-vue-next';
+    import { CircleCheck } from 'lucide-vue-next';
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
     import { Badge } from '~/components/ui/badge';
     import { Button } from '~/components/ui/button';
