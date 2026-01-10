@@ -14,7 +14,7 @@
                             @mouseleave='show_tooltip = false'
                         >
                             <Avatar
-                                @click='toggleAvatarChange'
+                                @click='toggleDrawer'
                                 class='h-52 w-52 rounded-full ring-offset-background ring-10 ring-secondary hover:cursor-pointer hover:ring-green-shamrock'
                             >
                                 <AvatarImage
@@ -42,6 +42,7 @@
                             
                             <ToggleGroup
                                 v-model='selected_avatar'
+                                @update:model-value='handleAvatarSelection'
                                 type='single'
                                 class='flex flex-wrap my-12 xl:h-64 p-4'
                             >
@@ -131,11 +132,18 @@
     const selected_avatar = ref(profile_avatar.value);
     const drawer_visibility = ref(false);
     const is_current_avatar_selected = computed(() => profile_avatar.value === selected_avatar.value);
-    const button_label = computed(() => is_current_avatar_selected.value || !selected_avatar.value ? 'Current Avatar' : 'Select Avatar');
+    const button_label = computed(() => is_current_avatar_selected.value ? 'Current Avatar' : 'Select Avatar');
     
-    const toggleAvatarChange = async() => {
+    const toggleDrawer = async() => {
         drawer_visibility.value = !drawer_visibility.value;
         await getAvatars();
+    };
+    
+    const handleAvatarSelection = (newValue) => {
+        if(!newValue) {
+            return selected_avatar.value = profile_avatar.value;
+        };
+        selected_avatar.value = newValue;
     };
     
     const displayToast = (message) => {
