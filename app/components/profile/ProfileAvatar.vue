@@ -118,7 +118,7 @@
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
     const { avatars, profile } = storeToRefs(ProfileStore);
-    const { getAvatars, updateAvatar, getProfile } = ProfileStore;
+    const { getAvatars, updateProfile, getProfile } = ProfileStore;
     
     const props = defineProps({
         username: String,
@@ -150,7 +150,7 @@
     
     const onSubmit = async() => {
         if(profile_avatar.value !== selected_avatar.value) {
-            const { success } = await updateAvatar(selected_avatar.value);
+            const { success } = await updateProfile({ avatar_url: selected_avatar.value });
             
             if(success) {
                 await getProfile();
