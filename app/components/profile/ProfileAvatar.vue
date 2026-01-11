@@ -147,14 +147,13 @@
         selected_avatar.value = newValue;
     };
     
-    watch(profile_avatar, () => displayToast('Avatar updated successfully.'));
-    
     const onSubmit = async() => {
         if(profile_avatar.value !== selected_avatar.value) {
             const { success } = await updateProfile({ avatar_url: selected_avatar.value });
             
             if(success) {
                 await getProfile();
+                displayToast('Avatar updated successfully.')
             }
         } else {
             displayToast('Cannot update avatar.');
