@@ -35,17 +35,18 @@ export const useProfileStore = defineStore('ProfileStore', {
             }
         },
         
-        async updateAvatar(avatarUrl) {
+        async updateProfile(payload) {
+            console.log(payload);
             try {
-                const { success, error } = await $fetch('/api/supabase/user/profile/avatar', {
+                const { success, error } = await $fetch('/api/supabase/user/profile/update-profile', {
                     method: 'POST',
                     headers: useRequestHeaders(['cookie']),
-                    body: { avatarUrl },
+                    body: payload,
                 });
-
+                
                 return { success, error };
-            } catch (error) {
-                console.error('Error updating avatar:', error);
+            } catch(error) {
+                console.error(error);
             }
         },
     },
