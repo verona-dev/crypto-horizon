@@ -78,6 +78,7 @@
                                     <Button
                                         @click='onSubmit'
                                         :disabled='is_current_avatar_selected || !selected_avatar'
+                                        class='disabled:pointer-events-auto disabled:cursor-not-allowed'
                                     >
                                         {{ button_label }}
                                     </Button>
@@ -132,7 +133,7 @@
     const selected_avatar = ref(profile_avatar.value);
     const drawer_visibility = ref(false);
     const is_current_avatar_selected = computed(() => profile_avatar.value === selected_avatar.value);
-    const button_label = computed(() => is_current_avatar_selected.value ? 'Current Avatar' : 'Select Avatar');
+    const button_label = computed(() => is_current_avatar_selected.value ? 'Current Avatar' : 'Save Changes');
     
     const toggleDrawer = async() => {
         drawer_visibility.value = !drawer_visibility.value;
