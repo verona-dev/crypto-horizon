@@ -4,7 +4,6 @@ export default defineEventHandler(async (event) => {
     const client = await serverSupabaseClient(event);
     const user = await serverSupabaseUser(event);
     const body = await readBody(event);
-    const { avatarUrl } = body;
     
     if (!user) {
         throw createError({
@@ -16,7 +15,7 @@ export default defineEventHandler(async (event) => {
     try {
         const { error } = await client
            .from('profiles')
-           .update({ avatar_url: avatarUrl })
+           .update(body)
            .eq('id', user.sub);
         
         if (error) {
