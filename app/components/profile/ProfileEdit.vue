@@ -13,7 +13,8 @@
                         <Label for='username' class='text-xl font-semibold tracking-tight'>Username</Label>
                         
                         <Input
-                            :default-value='username'
+                            v-model='selected_username'
+                            :default-value='selected_username'
                             id='username'
                             name='username'
                             type='text'
@@ -79,10 +80,9 @@
                     <DrawerClose as-child>
                         <Button
                             @click='onSubmit'
-                            :disabled='is_current_type_selected'
                             class='disabled:pointer-events-auto disabled:cursor-not-allowed'
                         >
-                            {{ button_label }}
+                            Save Changes
                         </Button>
                     </DrawerClose>
                     
@@ -100,7 +100,7 @@
     import { CircleCheck } from 'lucide-vue-next';
     import { Button } from '~/components/ui/button';
     import { Card } from '~/components/ui/card';
-    import { displayToast } from '~/utils/toast.js';
+    import { displayToast, displayCustomToast } from '~/utils/toast.js';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
     import { Input } from '~/components/ui/input';
     import { Label } from '~/components/ui/label';
@@ -127,17 +127,19 @@
     const drawer_visibility = ref(showDrawer.value);
     const emit = defineEmits(['handleDrawer']);
     watch(drawer_visibility, bool => emit('handleDrawer', bool));
-    const is_current_type_selected = computed(() => current_astronaut_type.value === selected_astronaut_type.value);
     const button_label = computed(() => is_current_type_selected.value ? 'Current Type' : 'Save Changes');
     
-    console.log(profile.value);
+    // console.log(profile.value);
     
     // Username
-    const username = ref(profile.value[0]?.value || '');
+    const current_username = computed(() => profile.value[0].value || '');
+    const selected_username = ref(current_username.value || '');
+    const is_username_current = computed(() => current_username.value === selected_username.value);
     
     // Astronaut Type
-    const current_astronaut_type = computed(() => profile.value[2]?.value || '');
-    const selected_astronaut_type = ref(profile.value[2]?.value || '');
+    const current_astronaut_type = computed(() => profile.value[2].value || '');
+    const selected_astronaut_type = ref(profile.value[2].value || '');
+    const is_current_type_selected = computed(() => current_astronaut_type.value === selected_astronaut_type.value);
     const astronaut_type_options = [
         {
             value: 'explorer',
@@ -160,15 +162,28 @@
     ];
     
     const onSubmit = async() => {
-        if(current_astronaut_type.value !== selected_astronaut_type.value) {
-            const { success } = await updateProfile({ astronaut_type: selected_astronaut_type.value });
-            
-            if(success) {
-                await getProfile();
-                displayToast('Astronaut type updated successfully.')
-            } else {
-                displayToast('Cannot update astronaut type.');
-            }
+        let payload = {};
+        
+        if(!is_username_current.value) {
+            payload.username = selected_username.value;
+        }
+        
+        if(!is_current_type_selected.value) {
+            payload.astronaut_type = selected_astronaut_type.value;
+        }
+        
+        if(Object.keys(payload).length === 0) {
+            displayToast('No changes detected.');
+            return;
+        }
+        
+        const { success } = await updateProfile(payload);
+        
+        if(success) {
+            await getProfile();
+            displayCustomToast(payload.username, payload.astronaut_type);
+        } else {
+            displayToast('Cannot update astronaut type.');
         }
     };
-</script>yle>
+</script>
