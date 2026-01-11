@@ -37,14 +37,14 @@
                                         name='country'
                                         class='justify-between file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 min-w-0 rounded-md border bg-transparent px-3 py-5 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm'
                                     >
-                                        {{ selectedFramework?.label || 'Select framework...' }}
+                                        {{ selectedFramework?.label || 'Search Country...' }}
                                         <ChevronsUpDownIcon class='opacity-50' />
                                     </Button>
                                 </PopoverTrigger>
                                 
-                                <PopoverContent class='w-[200px] p-0'>
+                                <PopoverContent class='w-full md:w-64 p-0'>
                                     <Command>
-                                        <CommandInput class='h-9' placeholder='Search framework...' />
+                                        <CommandInput class='h-9' placeholder='Search Country...' />
                                         <CommandList>
                                             <CommandEmpty>No framework found.</CommandEmpty>
                                             <CommandGroup>
@@ -74,7 +74,7 @@
                     
                     <!--  Edit Astronaut Type  -->
                     <div class='grid gap-4'>
-                        <h3 class='text-xl font-semibold tracking-tight'>Astronaut Type</h3>
+                        <Label for='astronaut-type' class='font-semibold tracking-tight'>Astronaut Type</Label>
                         
                         <RadioGroup v-model='selected_astronaut_type'>
                             <div class='grid gap-4 md:grid-cols-3'>
