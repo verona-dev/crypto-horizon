@@ -4,8 +4,8 @@
         
         <div class='w-full flex flex-col xl:flex-row items-center justify-center gap-6'>
             <ProfileAvatar
-                :username='username'
-                :astronaut-type='astronaut_type'
+                :username='profile.username'
+                :astronaut-type='profile.astronaut_type'
             />
             
             <ProfileInformation :profile='profile_formatted' />
@@ -28,13 +28,10 @@
     const ProfileStore = useProfileStore();
     const { profile } = storeToRefs(ProfileStore);
     
-    const username = ref(profile.value?.username);
-    const astronaut_type = ref(profile.value?.astronaut_type);
-    
     const profile_formatted = computed(() => [
-        { name: 'username', label: 'Username', value: username.value },
+        { name: 'username', label: 'Username', value: profile.value?.username },
         { name: 'email', label: 'Email', value: profile.value?.email },
-        { name: 'astronaut_type', label: 'Astronaut Type', value: astronaut_type.value },
+        { name: 'astronaut_type', label: 'Astronaut Type', value: profile.value?.astronaut_type },
         { name: 'location', label: 'Location', value: profile.value?.location },
         { name: 'bio', label: 'Bio', value: profile.value?.bio },
         { name: 'dob', label: 'Date of birth', value: profile.value?.dob ? dayjs.utc(profile.value?.dob).local().format('DD MMM YYYY') : '-' },
