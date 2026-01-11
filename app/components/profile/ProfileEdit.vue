@@ -2,24 +2,74 @@
     <Drawer v-model:open='drawer_visibility'>
         <DrawerContent>
             <div class='mx-auto w-full max-w-md md:max-w-2xl grid gap-6'>
-                <DrawerHeader>
+                <DrawerHeader class='mt-4'>
                     <DrawerTitle class='text-3xl'>Edit Profile</DrawerTitle>
                     <DrawerDescription class='text-md'>Click on any field to update your profile.</DrawerDescription>
                 </DrawerHeader>
                 
                 <div class='grid gap-12 p-4'>
-                    <!--  Edit Username  -->
-                    <div class='grid gap-2'>
-                        <Label for='username' class='text-xl font-semibold tracking-tight'>Username</Label>
+                    <div class='flex flex-col gap-6 md:flex-row justify-between'>
+                        <!--  Edit Username  -->
+                        <div class='grid gap-2 w-full md:w-64'>
+                            <Label for='username' class='font-semibold tracking-tight'>Username</Label>
+                            
+                            <Input
+                                v-model='selected_username'
+                                :default-value='selected_username'
+                                id='username'
+                                name='username'
+                                type='text'
+                                placeholder='Type username here'
+                            />
+                        </div>
                         
-                        <Input
-                            v-model='selected_username'
-                            :default-value='selected_username'
-                            id='username'
-                            name='username'
-                            type='text'
-                            placeholder='Type username here'
-                        />
+                        <!--  Edit Country  -->
+                        <div class='grid gap-2 w-full md:w-64'>
+                            <Label for='country' class='font-semibold tracking-tight'>Country</Label>
+                            
+                            <Popover v-model:open='open'>
+                                <PopoverTrigger as-child>
+                                    <Button
+                                        variant='outline'
+                                        role='combobox'
+                                        :aria-expanded='open'
+                                        id='country'
+                                        name='country'
+                                        class='justify-between file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 min-w-0 rounded-md border bg-transparent px-3 py-5 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm'
+                                    >
+                                        {{ selectedFramework?.label || 'Select framework...' }}
+                                        <ChevronsUpDownIcon class='opacity-50' />
+                                    </Button>
+                                </PopoverTrigger>
+                                
+                                <PopoverContent class='w-[200px] p-0'>
+                                    <Command>
+                                        <CommandInput class='h-9' placeholder='Search framework...' />
+                                        <CommandList>
+                                            <CommandEmpty>No framework found.</CommandEmpty>
+                                            <CommandGroup>
+                                                <CommandItem
+                                                    v-for='framework in frameworks'
+                                                    :key='framework.value'
+                                                    :value='framework.value'
+                                                    @select='(ev) => {
+                                              selectFramework(ev.detail.value)
+                                            }'
+                                                >
+                                                    {{ framework.label }}
+                                                    <CheckIcon
+                                                        :class='cn(
+                                              "ml-auto",
+                                                     value === framework.value ? "opacity-100" : "opacity-0",
+                                                )'
+                                                    />
+                                                </CommandItem>
+                                            </CommandGroup>
+                                        </CommandList>
+                                    </Command>
+                                </PopoverContent>
+                            </Popover>
+                        </div>
                     </div>
                     
                     <!--  Edit Astronaut Type  -->
@@ -100,10 +150,13 @@
     import { CircleCheck } from 'lucide-vue-next';
     import { Button } from '~/components/ui/button';
     import { Card } from '~/components/ui/card';
+    import { CheckIcon, ChevronsUpDownIcon } from 'lucide-vue-next';
+    import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '~/components/ui/command';
     import { displayToast, displayCustomToast } from '~/utils/toast.js';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
     import { Input } from '~/components/ui/input';
     import { Label } from '~/components/ui/label';
+    import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover';
     import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
     import { useSidebar } from '~/components/ui/sidebar';
     
@@ -127,7 +180,6 @@
     const drawer_visibility = ref(showDrawer.value);
     const emit = defineEmits(['handleDrawer']);
     watch(drawer_visibility, bool => emit('handleDrawer', bool));
-    const button_label = computed(() => is_current_type_selected.value ? 'Current Type' : 'Save Changes');
     
     // console.log(profile.value);
     
@@ -158,6 +210,39 @@
             title: 'Pilot',
             description: 'Specializes in piloting ships.',
             icon: 'ph:airplane-takeoff-thin',
+        },
+    ];
+    
+    // Country
+    const open = ref(false)
+    const value = ref('')
+    const selectedFramework = computed(() =>
+        frameworks.find(framework => framework.value === value.value),
+    )
+    function selectFramework(selectedValue) {
+        value.value = selectedValue === value.value ? '' : selectedValue
+        open.value = false
+    }
+    const frameworks = [
+        {
+            value: 'next.js',
+            label: 'Next.js',
+        },
+        {
+            value: 'sveltekit',
+            label: 'SvelteKit',
+        },
+        {
+            value: 'nuxt.js',
+            label: 'Nuxt.js',
+        },
+        {
+            value: 'remix',
+            label: 'Remix',
+        },
+        {
+            value: 'astro',
+            label: 'Astro',
         },
     ];
     
