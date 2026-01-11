@@ -25,7 +25,7 @@
                     <div class='grid gap-4'>
                         <h3 class='text-xl font-semibold tracking-tight'>Astronaut Type</h3>
                         
-                        <RadioGroup v-model='astronaut_type'>
+                        <RadioGroup v-model='selected_astronaut_type'>
                             <div class='grid gap-4 md:grid-cols-3'>
                                 <template
                                     v-for='option in astronaut_type_options'
@@ -38,11 +38,11 @@
                                         <Card
                                             :class='cn(
                                           "relative transition-all shadow-none hover:shadow-xl h-full md:py-6 w-full",
-                                                  astronaut_type === option.value && "border-primary/75 shadow-2xl",
+                                                  selected_astronaut_type === option.value && "border-primary/75 shadow-2xl",
                                             )'
                                         >
                                             <CircleCheck
-                                                v-if='astronaut_type === option.value'
+                                                v-if='selected_astronaut_type === option.value'
                                                 class='absolute -top-3 -right-2 size-6 rounded-full fill-card text-primary/75'
                                             />
                                             
@@ -77,8 +77,12 @@
                 
                 <DrawerFooter class='mb-16 gap-4'>
                     <DrawerClose as-child>
-                        <Button @click='onSubmit'>
-                            Save
+                        <Button
+                            @click='onSubmit'
+                            :disabled='current_astronaut_type === selected_astronaut_type'
+                            class='disabled:pointer-events-auto disabled:cursor-not-allowed'
+                        >
+                            Save Changes
                         </Button>
                     </DrawerClose>
                     
@@ -130,7 +134,8 @@
     const username = ref(profile.value[0]?.value || '');
     
     // Astronaut Type
-    const astronaut_type = ref(profile.value[2]?.value || '');
+    const current_astronaut_type = computed(() => profile.value[2]?.value || '');
+    const selected_astronaut_type = ref(profile.value[2]?.value || '');
     const astronaut_type_options = [
         {
             value: 'explorer',
@@ -153,13 +158,15 @@
     ];
     
     const onSubmit = async() => {
-        const { success } = await updateProfile({ astronaut_type: astronaut_type.value });
-        
-        if(success) {
-            await getProfile();
-            displayToast('Astronaut type updated successfully.')
-        } else {
-            displayToast('Cannot update astronaut type.');
+        if(current_astronaut_type.value !== selected_astronaut_type.value) {
+            const { success } = await updateProfile({ astronaut_type: selected_astronaut_type.value });
+            
+            if(success) {
+                await getProfile();
+                displayToast('Astronaut type updated successfully.')
+            } else {
+                displayToast('Cannot update astronaut type.');
+            }
         }
     };
 </script>yle>
