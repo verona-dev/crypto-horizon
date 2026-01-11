@@ -36,7 +36,6 @@ export const useProfileStore = defineStore('ProfileStore', {
         },
         
         async updateProfile(payload) {
-            console.log(payload);
             try {
                 const { success, error } = await $fetch('/api/supabase/user/profile/update', {
                     method: 'POST',

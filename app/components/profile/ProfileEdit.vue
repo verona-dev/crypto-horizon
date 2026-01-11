@@ -79,10 +79,10 @@
                     <DrawerClose as-child>
                         <Button
                             @click='onSubmit'
-                            :disabled='current_astronaut_type === selected_astronaut_type'
+                            :disabled='is_current_type_selected'
                             class='disabled:pointer-events-auto disabled:cursor-not-allowed'
                         >
-                            Save Changes
+                            {{ button_label }}
                         </Button>
                     </DrawerClose>
                     
@@ -127,6 +127,8 @@
     const drawer_visibility = ref(showDrawer.value);
     const emit = defineEmits(['handleDrawer']);
     watch(drawer_visibility, bool => emit('handleDrawer', bool));
+    const is_current_type_selected = computed(() => current_astronaut_type.value === selected_astronaut_type.value);
+    const button_label = computed(() => is_current_type_selected.value ? 'Current Type' : 'Save Changes');
     
     console.log(profile.value);
     
