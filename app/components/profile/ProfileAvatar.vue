@@ -108,9 +108,9 @@
     import { Badge } from '~/components/ui/badge';
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
+    import { displayToast } from '~/utils/toast.js';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
     import { Skeleton } from '~/components/ui/skeleton';
-    import { toast } from 'vue-sonner';
     import { ToggleGroup, ToggleGroupItem } from '~/components/ui/toggle-group';
     import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
     
@@ -146,15 +146,7 @@
         selected_avatar.value = newValue;
     };
     
-    const displayToast = (message) => {
-        toast.promise(() => new Promise((resolve) => setTimeout(resolve, 250)), {
-            success: () => message,
-        });
-    };
-    
-    watch(profile_avatar, () => {
-        displayToast('Avatar updated successfully.');
-    });
+    watch(profile_avatar, () => displayToast('Avatar updated successfully.'));
     
     const onSubmit = async() => {
         if(profile_avatar.value !== selected_avatar.value) {
