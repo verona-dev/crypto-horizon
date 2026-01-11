@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
             dob: data.dob,
             email: user?.email,
             last_sign_in: data.last_sign_in,
-            location: data.location,
+            country: data.country,
             updated_at: data.updated_at,
             username: data.username,
         };
