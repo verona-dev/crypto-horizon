@@ -25,10 +25,7 @@
                     <div class='grid gap-4'>
                         <h3 class='text-xl font-semibold tracking-tight'>Astronaut Type</h3>
                         
-                        <RadioGroup
-                            v-model='astronaut_type'
-                            @update:model-value='handleAstronautType'
-                        >
+                        <RadioGroup v-model='astronaut_type'>
                             <div class='grid gap-4 md:grid-cols-3'>
                                 <template
                                     v-for='option in astronaut_type_options'
@@ -99,11 +96,12 @@
     import { CircleCheck } from 'lucide-vue-next';
     import { Button } from '~/components/ui/button';
     import { Card } from '~/components/ui/card';
+    import { displayToast } from '~/utils/toast.js';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
     import { Input } from '~/components/ui/input';
     import { Label } from '~/components/ui/label';
     import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-    import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '~/components/ui/sidebar';
+    import { useSidebar } from '~/components/ui/sidebar';
     
     const props = defineProps({
         profile: {
@@ -112,6 +110,11 @@
         },
         showDrawer: Boolean,
     });
+    
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { updateProfile, getProfile } = ProfileStore;
     
     const { profile, showDrawer } = toRefs(props);
     const { isMobile } = useSidebar();
@@ -149,11 +152,14 @@
         },
     ];
     
-    const handleAstronautType = () => {
-        console.log('changed type');
-    };
-    
     const onSubmit = async() => {
-        console.log('submit');
+        const { success } = await updateProfile({ astronaut_type: astronaut_type.value });
+        
+        if(success) {
+            await getProfile();
+            displayToast('Astronaut type updated successfully.')
+        } else {
+            displayToast('Cannot update astronaut type.');
+        }
     };
 </script>yle>
