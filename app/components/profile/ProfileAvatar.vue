@@ -137,7 +137,9 @@
     
     const toggleDrawer = async() => {
         drawer_visibility.value = !drawer_visibility.value;
-        await getAvatars();
+        if(!avatars.value) {
+            await getAvatars();
+        }
     };
     
     const handleAvatarSelection = (newValue) => {
