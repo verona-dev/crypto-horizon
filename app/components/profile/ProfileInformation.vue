@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-popover h-full xl:h-120 w-full md:w-4/5 xl:w-140 flex flex-col !justify-around p-6 gap-4 !shadow-none'>
+    <Card class='bg-popover h-full xl:h-120 w-full md:w-4/5 xl:w-160 flex flex-col !justify-around p-6 gap-4 !shadow-none'>
         <CardHeader class='flex-row justify-between rounded-xl border'>
             <CardTitle class='text-2xl'>Personal Information</CardTitle>
             
@@ -23,10 +23,17 @@
                 <div
                     v-for='item in profile.slice(0, 4)'
                     :key='item.name'
-                    class='flex flex-col gap-0'
+                    class='flex flex-col gap-0 w-fit'
                 >
                     <span class='text-md text-muted-foreground'>{{ item.label }}</span>
-                    <span :class='{ "capitalize" : item.name === "astronaut_type" }'>{{ item.value }}</span>
+                    
+                    <template v-if='item.name === "country"'>
+                        <span>{{ item.value.name }}</span>
+                    </template>
+                    
+                    <template v-else>
+                        <span :class='{ "capitalize" : item.name === "astronaut_type" }'>{{ item.value }}</span>
+                    </template>
                 </div>
             </CardContent>
             
