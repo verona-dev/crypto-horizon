@@ -23,7 +23,7 @@ export const useProfileStore = defineStore('ProfileStore', {
         
         async getAvatars() {
             try {
-                const { data, error } = await $fetch('/api/supabase/user/avatars/list', {
+                const { data, error } = await $fetch('/api/supabase/user/avatars', {
                     headers: useRequestHeaders(['cookie']),
                 });
                 
@@ -38,7 +38,7 @@ export const useProfileStore = defineStore('ProfileStore', {
         async updateProfile(payload) {
             try {
                 const { success, error } = await $fetch('/api/supabase/user/profile/update', {
-                    method: 'POST',
+                    method: 'PATCH',
                     headers: useRequestHeaders(['cookie']),
                     body: payload,
                 });
