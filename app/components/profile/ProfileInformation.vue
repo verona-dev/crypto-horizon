@@ -27,9 +27,10 @@
                 >
                     <span class='text-md text-muted-foreground'>{{ item.label }}</span>
                     
-                    <template v-if='item.name === "country"'>
+                    <div v-if='item.name === "country"' class='flex items-center gap-2'>
+                        <ProfileCountryFlag :country='item.value' :size='"w-4 h-4"' />
                         <span>{{ item.value.name }}</span>
-                    </template>
+                    </div>
                     
                     <template v-else>
                         <span :class='{ "capitalize" : item.name === "astronaut_type" }'>{{ item.value }}</span>
@@ -62,6 +63,7 @@
 <script setup>
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
+    import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
     import ProfileEdit from '~/components/profile/ProfileEdit.vue';
     
     const props = defineProps({

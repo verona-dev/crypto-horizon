@@ -35,9 +35,13 @@
                                         :aria-expanded='countries_dropdown'
                                         id='country'
                                         name='country'
-                                        class='justify-between file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 min-w-0 rounded-md border bg-transparent px-3 py-5 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm'
+                                        class='justify-between px-3 py-5'
                                     >
-                                        {{ selected_country?.name || 'Select Country...' }}
+                                        <div class='flex items-center gap-2'>
+                                            <ProfileCountryFlag :country='selected_country' />
+                                            
+                                            <span>{{ selected_country?.name || 'Select Country...' }}</span>
+                                        </div>
                                         <ChevronsUpDownIcon class='opacity-50' />
                                     </Button>
                                 </PopoverTrigger>
@@ -53,11 +57,13 @@
                                                     v-for='country in countries'
                                                     :key='country.code'
                                                     :value='country.code'
-                                                    @select='(ev) => {
-                                                        selectCountry(ev.detail.value as string)
-                                                    }'
+                                                    @select='(ev) => selectCountry(ev.detail.value as string)'
+                                                    class='py-3 px-2 pl-1 gap-3 cursor-pointer'
                                                 >
-                                                    {{ country.name }}
+                                                    <ProfileCountryFlag :country='country' class='ml-1' />
+                                                    
+                                                    <span>{{ country.name }}</span>
+                                                    
                                                     <CheckIcon
                                                         :class='cn(
                                                       "ml-auto",
@@ -158,6 +164,7 @@
     import { Input } from '~/components/ui/input';
     import { Label } from '~/components/ui/label';
     import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover';
+    import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
     import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
     import { useSidebar } from '~/components/ui/sidebar';
     
@@ -219,7 +226,7 @@
     // Country
     const countries_dropdown = ref(false);
     const current_country = ref(profile.value[3]?.value || '');
-    const old_selection = ref('AF');
+    const old_selection = ref(current_country.value?.code);
     const selected_country = computed(() => countries.value?.find(country => country.code === old_selection.value));
     const is_current_country_selected = computed(() => current_country.value === selected_country.value);
     
