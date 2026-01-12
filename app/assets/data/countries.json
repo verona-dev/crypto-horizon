@@ -1,0 +1,1502 @@
+[
+    {
+        "code": "AF",
+        "name": "Afghanistan",
+        "timezone": "Afghanistan Standard Time",
+        "utc": "UTC+04:30"
+    },
+    {
+        "code": "AX",
+        "name": "Åland Islands",
+        "timezone": "FLE Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "AL",
+        "name": "Albania",
+        "timezone": "Central Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "DZ",
+        "name": "Algeria",
+        "timezone": "W. Central Africa Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "AS",
+        "name": "American Samoa",
+        "timezone": "UTC-11",
+        "utc": "UTC-11:00"
+    },
+    {
+        "code": "AD",
+        "name": "Andorra",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "AO",
+        "name": "Angola",
+        "timezone": "W. Central Africa Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "AI",
+        "name": "Anguilla",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "AQ",
+        "name": "Antarctica",
+        "timezone": "Pacific SA Standard Time",
+        "utc": "UTC-03:00"
+    },
+    {
+        "code": "AG",
+        "name": "Antigua and Barbuda",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "AR",
+        "name": "Argentina",
+        "timezone": "Argentina Standard Time",
+        "utc": "UTC-03:00"
+    },
+    {
+        "code": "AM",
+        "name": "Armenia",
+        "timezone": "Caucasus Standard Time",
+        "utc": "UTC+04:00"
+    },
+    {
+        "code": "AW",
+        "name": "Aruba",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "AU",
+        "name": "Australia",
+        "timezone": "AUS Eastern Standard Time",
+        "utc": "UTC+10:00"
+    },
+    {
+        "code": "AT",
+        "name": "Austria",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "AZ",
+        "name": "Azerbaijan",
+        "timezone": "Azerbaijan Standard Time",
+        "utc": "UTC+04:00"
+    },
+    {
+        "code": "BS",
+        "name": "Bahamas, The",
+        "timezone": "Eastern Standard Time",
+        "utc": "UTC-05:00"
+    },
+    {
+        "code": "BH",
+        "name": "Bahrain",
+        "timezone": "Arab Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "BD",
+        "name": "Bangladesh",
+        "timezone": "Bangladesh Standard Time",
+        "utc": "UTC+06:00"
+    },
+    {
+        "code": "BB",
+        "name": "Barbados",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "BY",
+        "name": "Belarus",
+        "timezone": "Belarus Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "BE",
+        "name": "Belgium",
+        "timezone": "Romance Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "BZ",
+        "name": "Belize",
+        "timezone": "Central America Standard Time",
+        "utc": "UTC-06:00"
+    },
+    {
+        "code": "BJ",
+        "name": "Benin",
+        "timezone": "W. Central Africa Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "BM",
+        "name": "Bermuda",
+        "timezone": "Atlantic Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "BT",
+        "name": "Bhutan",
+        "timezone": "Bangladesh Standard Time",
+        "utc": "UTC+06:00"
+    },
+    {
+        "code": "VE",
+        "name": "Bolivarian Republic of Venezuela",
+        "timezone": "Venezuela Standard Time",
+        "utc": "UTC-04:30"
+    },
+    {
+        "code": "BO",
+        "name": "Bolivia",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "BQ",
+        "name": "Bonaire, Sint Eustatius and Saba",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "BA",
+        "name": "Bosnia and Herzegovina",
+        "timezone": "Central European Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "BW",
+        "name": "Botswana",
+        "timezone": "South Africa Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "BV",
+        "name": "Bouvet Island",
+        "timezone": "UTC",
+        "utc": "UTC"
+    },
+    {
+        "code": "BR",
+        "name": "Brazil",
+        "timezone": "E. South America Standard Time",
+        "utc": "UTC-03:00"
+    },
+    {
+        "code": "IO",
+        "name": "British Indian Ocean Territory",
+        "timezone": "Central Asia Standard Time",
+        "utc": "UTC+06:00"
+    },
+    {
+        "code": "BN",
+        "name": "Brunei",
+        "timezone": "Singapore Standard Time",
+        "utc": "UTC+08:00"
+    },
+    {
+        "code": "BG",
+        "name": "Bulgaria",
+        "timezone": "FLE Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "BF",
+        "name": "Burkina Faso",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "BI",
+        "name": "Burundi",
+        "timezone": "South Africa Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "CV",
+        "name": "Cabo Verde",
+        "timezone": "Cape Verde Standard Time",
+        "utc": "UTC-01:00"
+    },
+    {
+        "code": "KH",
+        "name": "Cambodia",
+        "timezone": "SE Asia Standard Time",
+        "utc": "UTC+07:00"
+    },
+    {
+        "code": "CM",
+        "name": "Cameroon",
+        "timezone": "W. Central Africa Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "CA",
+        "name": "Canada",
+        "timezone": "Eastern Standard Time",
+        "utc": "UTC-05:00"
+    },
+    {
+        "code": "KY",
+        "name": "Cayman Islands",
+        "timezone": "SA Pacific Standard Time",
+        "utc": "UTC-05:00"
+    },
+    {
+        "code": "CF",
+        "name": "Central African Republic",
+        "timezone": "W. Central Africa Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "TD",
+        "name": "Chad",
+        "timezone": "W. Central Africa Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "CL",
+        "name": "Chile",
+        "timezone": "Pacific SA Standard Time",
+        "utc": "UTC-03:00"
+    },
+    {
+        "code": "CN",
+        "name": "China",
+        "timezone": "China Standard Time",
+        "utc": "UTC+08:00"
+    },
+    {
+        "code": "CX",
+        "name": "Christmas Island",
+        "timezone": "SE Asia Standard Time",
+        "utc": "UTC+07:00"
+    },
+    {
+        "code": "CC",
+        "name": "Cocos (Keeling) Islands",
+        "timezone": "Myanmar Standard Time",
+        "utc": "UTC+06:30"
+    },
+    {
+        "code": "CO",
+        "name": "Colombia",
+        "timezone": "SA Pacific Standard Time",
+        "utc": "UTC-05:00"
+    },
+    {
+        "code": "KM",
+        "name": "Comoros",
+        "timezone": "E. Africa Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "CG",
+        "name": "Congo",
+        "timezone": "W. Central Africa Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "CD",
+        "name": "Congo (DRC)",
+        "timezone": "W. Central Africa Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "CK",
+        "name": "Cook Islands",
+        "timezone": "Hawaiian Standard Time",
+        "utc": "UTC-10:00"
+    },
+    {
+        "code": "CR",
+        "name": "Costa Rica",
+        "timezone": "Central America Standard Time",
+        "utc": "UTC-06:00"
+    },
+    {
+        "code": "CI",
+        "name": "Côte d'Ivoire",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "HR",
+        "name": "Croatia",
+        "timezone": "Central European Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "CU",
+        "name": "Cuba",
+        "timezone": "Eastern Standard Time",
+        "utc": "UTC-05:00"
+    },
+    {
+        "code": "CW",
+        "name": "Curaçao",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "CY",
+        "name": "Cyprus",
+        "timezone": "E. Europe Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "CZ",
+        "name": "Czech Republic",
+        "timezone": "Central Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "TL",
+        "name": "Democratic Republic of Timor-Leste",
+        "timezone": "Tokyo Standard Time",
+        "utc": "UTC+09:00"
+    },
+    {
+        "code": "DK",
+        "name": "Denmark",
+        "timezone": "Romance Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "DJ",
+        "name": "Djibouti",
+        "timezone": "E. Africa Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "DM",
+        "name": "Dominica",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "DO",
+        "name": "Dominican Republic",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "EC",
+        "name": "Ecuador",
+        "timezone": "SA Pacific Standard Time",
+        "utc": "UTC-05:00"
+    },
+    {
+        "code": "EG",
+        "name": "Egypt",
+        "timezone": "Egypt Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "SV",
+        "name": "El Salvador",
+        "timezone": "Central America Standard Time",
+        "utc": "UTC-06:00"
+    },
+    {
+        "code": "GQ",
+        "name": "Equatorial Guinea",
+        "timezone": "W. Central Africa Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "ER",
+        "name": "Eritrea",
+        "timezone": "E. Africa Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "EE",
+        "name": "Estonia",
+        "timezone": "FLE Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "ET",
+        "name": "Ethiopia",
+        "timezone": "E. Africa Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "FK",
+        "name": "Falkland Islands (Islas Malvinas)",
+        "timezone": "SA Eastern Standard Time",
+        "utc": "UTC-03:00"
+    },
+    {
+        "code": "FO",
+        "name": "Faroe Islands",
+        "timezone": "GMT Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "FJ",
+        "name": "Fiji Islands",
+        "timezone": "Fiji Standard Time",
+        "utc": "UTC+12:00"
+    },
+    {
+        "code": "FI",
+        "name": "Finland",
+        "timezone": "FLE Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "FR",
+        "name": "France",
+        "timezone": "Romance Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "GF",
+        "name": "French Guiana",
+        "timezone": "SA Eastern Standard Time",
+        "utc": "UTC-03:00"
+    },
+    {
+        "code": "PF",
+        "name": "French Polynesia",
+        "timezone": "Hawaiian Standard Time",
+        "utc": "UTC-10:00"
+    },
+    {
+        "code": "TF",
+        "name": "French Southern and Antarctic Lands",
+        "timezone": "West Asia Standard Time",
+        "utc": "UTC+05:00"
+    },
+    {
+        "code": "GA",
+        "name": "Gabon",
+        "timezone": "W. Central Africa Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "GM",
+        "name": "Gambia, The",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "GE",
+        "name": "Georgia",
+        "timezone": "Georgian Standard Time",
+        "utc": "UTC+04:00"
+    },
+    {
+        "code": "DE",
+        "name": "Germany",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "GH",
+        "name": "Ghana",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "GI",
+        "name": "Gibraltar",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "GR",
+        "name": "Greece",
+        "timezone": "GTB Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "GL",
+        "name": "Greenland",
+        "timezone": "Greenland Standard Time",
+        "utc": "UTC-03:00"
+    },
+    {
+        "code": "GD",
+        "name": "Grenada",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "GP",
+        "name": "Guadeloupe",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "GU",
+        "name": "Guam",
+        "timezone": "West Pacific Standard Time",
+        "utc": "UTC+10:00"
+    },
+    {
+        "code": "GT",
+        "name": "Guatemala",
+        "timezone": "Central America Standard Time",
+        "utc": "UTC-06:00"
+    },
+    {
+        "code": "GG",
+        "name": "Guernsey",
+        "timezone": "GMT Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "GN",
+        "name": "Guinea",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "GW",
+        "name": "Guinea-Bissau",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "GY",
+        "name": "Guyana",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "HT",
+        "name": "Haiti",
+        "timezone": "Eastern Standard Time",
+        "utc": "UTC-05:00"
+    },
+    {
+        "code": "HM",
+        "name": "Heard Island and McDonald Islands",
+        "timezone": "Mauritius Standard Time",
+        "utc": "UTC+04:00"
+    },
+    {
+        "code": "HN",
+        "name": "Honduras",
+        "timezone": "Central America Standard Time",
+        "utc": "UTC-06:00"
+    },
+    {
+        "code": "HK",
+        "name": "Hong Kong SAR",
+        "timezone": "China Standard Time",
+        "utc": "UTC+08:00"
+    },
+    {
+        "code": "HU",
+        "name": "Hungary",
+        "timezone": "Central Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "IS",
+        "name": "Iceland",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "IN",
+        "name": "India",
+        "timezone": "India Standard Time",
+        "utc": "UTC+05:30"
+    },
+    {
+        "code": "ID",
+        "name": "Indonesia",
+        "timezone": "SE Asia Standard Time",
+        "utc": "UTC+07:00"
+    },
+    {
+        "code": "IR",
+        "name": "Iran",
+        "timezone": "Iran Standard Time",
+        "utc": "UTC+03:30"
+    },
+    {
+        "code": "IQ",
+        "name": "Iraq",
+        "timezone": "Arabic Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "IE",
+        "name": "Ireland",
+        "timezone": "GMT Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "IL",
+        "name": "Israel",
+        "timezone": "Israel Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "IT",
+        "name": "Italy",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "JM",
+        "name": "Jamaica",
+        "timezone": "SA Pacific Standard Time",
+        "utc": "UTC-05:00"
+    },
+    {
+        "code": "SJ",
+        "name": "Jan Mayen",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "JP",
+        "name": "Japan",
+        "timezone": "Tokyo Standard Time",
+        "utc": "UTC+09:00"
+    },
+    {
+        "code": "JE",
+        "name": "Jersey",
+        "timezone": "GMT Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "JO",
+        "name": "Jordan",
+        "timezone": "Jordan Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "KZ",
+        "name": "Kazakhstan",
+        "timezone": "Central Asia Standard Time",
+        "utc": "UTC+06:00"
+    },
+    {
+        "code": "KE",
+        "name": "Kenya",
+        "timezone": "E. Africa Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "KI",
+        "name": "Kiribati",
+        "timezone": "UTC+12",
+        "utc": "UTC+12:00"
+    },
+    {
+        "code": "KR",
+        "name": "Korea",
+        "timezone": "Korea Standard Time",
+        "utc": "UTC+09:00"
+    },
+    {
+        "code": "XK",
+        "name": "Kosovo",
+        "timezone": "Central European Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "KW",
+        "name": "Kuwait",
+        "timezone": "Arab Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "KG",
+        "name": "Kyrgyzstan",
+        "timezone": "Central Asia Standard Time",
+        "utc": "UTC+06:00"
+    },
+    {
+        "code": "LA",
+        "name": "Laos",
+        "timezone": "SE Asia Standard Time",
+        "utc": "UTC+07:00"
+    },
+    {
+        "code": "LV",
+        "name": "Latvia",
+        "timezone": "FLE Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "LB",
+        "name": "Lebanon",
+        "timezone": "Middle East Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "LS",
+        "name": "Lesotho",
+        "timezone": "South Africa Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "LR",
+        "name": "Liberia",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "LY",
+        "name": "Libya",
+        "timezone": "E. Europe Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "LI",
+        "name": "Liechtenstein",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "LT",
+        "name": "Lithuania",
+        "timezone": "FLE Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "LU",
+        "name": "Luxembourg",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "MO",
+        "name": "Macao SAR",
+        "timezone": "China Standard Time",
+        "utc": "UTC+08:00"
+    },
+    {
+        "code": "MK",
+        "name": "Macedonia, Former Yugoslav Republic of",
+        "timezone": "Central European Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "MG",
+        "name": "Madagascar",
+        "timezone": "E. Africa Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "MW",
+        "name": "Malawi",
+        "timezone": "South Africa Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "MY",
+        "name": "Malaysia",
+        "timezone": "Singapore Standard Time",
+        "utc": "UTC+08:00"
+    },
+    {
+        "code": "MV",
+        "name": "Maldives",
+        "timezone": "West Asia Standard Time",
+        "utc": "UTC+05:00"
+    },
+    {
+        "code": "ML",
+        "name": "Mali",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "MT",
+        "name": "Malta",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "IM",
+        "name": "Man, Isle of",
+        "timezone": "GMT Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "MH",
+        "name": "Marshall Islands",
+        "timezone": "UTC+12",
+        "utc": "UTC+12:00"
+    },
+    {
+        "code": "MQ",
+        "name": "Martinique",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "MR",
+        "name": "Mauritania",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "MU",
+        "name": "Mauritius",
+        "timezone": "Mauritius Standard Time",
+        "utc": "UTC+04:00"
+    },
+    {
+        "code": "YT",
+        "name": "Mayotte",
+        "timezone": "E. Africa Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "MX",
+        "name": "Mexico",
+        "timezone": "Central Standard Time (Mexico)",
+        "utc": "UTC-06:00"
+    },
+    {
+        "code": "FM",
+        "name": "Micronesia",
+        "timezone": "West Pacific Standard Time",
+        "utc": "UTC+10:00"
+    },
+    {
+        "code": "MD",
+        "name": "Moldova",
+        "timezone": "GTB Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "MC",
+        "name": "Monaco",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "MN",
+        "name": "Mongolia",
+        "timezone": "Ulaanbaatar Standard Time",
+        "utc": "UTC+08:00"
+    },
+    {
+        "code": "ME",
+        "name": "Montenegro",
+        "timezone": "Central European Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "MS",
+        "name": "Montserrat",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "MA",
+        "name": "Morocco",
+        "timezone": "Morocco Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "MZ",
+        "name": "Mozambique",
+        "timezone": "South Africa Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "MM",
+        "name": "Myanmar",
+        "timezone": "Myanmar Standard Time",
+        "utc": "UTC+06:30"
+    },
+    {
+        "code": "NA",
+        "name": "Namibia",
+        "timezone": "Namibia Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "NR",
+        "name": "Nauru",
+        "timezone": "UTC+12",
+        "utc": "UTC+12:00"
+    },
+    {
+        "code": "NP",
+        "name": "Nepal",
+        "timezone": "Nepal Standard Time",
+        "utc": "UTC+05:45"
+    },
+    {
+        "code": "NL",
+        "name": "Netherlands",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "NC",
+        "name": "New Caledonia",
+        "timezone": "Central Pacific Standard Time",
+        "utc": "UTC+11:00"
+    },
+    {
+        "code": "NZ",
+        "name": "New Zealand",
+        "timezone": "New Zealand Standard Time",
+        "utc": "UTC+12:00"
+    },
+    {
+        "code": "NI",
+        "name": "Nicaragua",
+        "timezone": "Central America Standard Time",
+        "utc": "UTC-06:00"
+    },
+    {
+        "code": "NE",
+        "name": "Niger",
+        "timezone": "W. Central Africa Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "NG",
+        "name": "Nigeria",
+        "timezone": "W. Central Africa Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "NU",
+        "name": "Niue",
+        "timezone": "UTC-11",
+        "utc": "UTC-11:00"
+    },
+    {
+        "code": "NF",
+        "name": "Norfolk Island",
+        "timezone": "Central Pacific Standard Time",
+        "utc": "UTC+11:00"
+    },
+    {
+        "code": "KP",
+        "name": "North Korea",
+        "timezone": "Korea Standard Time",
+        "utc": "UTC+09:00"
+    },
+    {
+        "code": "MP",
+        "name": "Northern Mariana Islands",
+        "timezone": "West Pacific Standard Time",
+        "utc": "UTC+10:00"
+    },
+    {
+        "code": "NO",
+        "name": "Norway",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "OM",
+        "name": "Oman",
+        "timezone": "Arabian Standard Time",
+        "utc": "UTC+04:00"
+    },
+    {
+        "code": "PK",
+        "name": "Pakistan",
+        "timezone": "Pakistan Standard Time",
+        "utc": "UTC+05:00"
+    },
+    {
+        "code": "PW",
+        "name": "Palau",
+        "timezone": "Tokyo Standard Time",
+        "utc": "UTC+09:00"
+    },
+    {
+        "code": "PS",
+        "name": "Palestinian Authority",
+        "timezone": "Egypt Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "PA",
+        "name": "Panama",
+        "timezone": "SA Pacific Standard Time",
+        "utc": "UTC-05:00"
+    },
+    {
+        "code": "PG",
+        "name": "Papua New Guinea",
+        "timezone": "West Pacific Standard Time",
+        "utc": "UTC+10:00"
+    },
+    {
+        "code": "PY",
+        "name": "Paraguay",
+        "timezone": "Paraguay Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "PE",
+        "name": "Peru",
+        "timezone": "SA Pacific Standard Time",
+        "utc": "UTC-05:00"
+    },
+    {
+        "code": "PH",
+        "name": "Philippines",
+        "timezone": "Singapore Standard Time",
+        "utc": "UTC+08:00"
+    },
+    {
+        "code": "PN",
+        "name": "Pitcairn Islands",
+        "timezone": "Pacific Standard Time",
+        "utc": "UTC-08:00"
+    },
+    {
+        "code": "PL",
+        "name": "Poland",
+        "timezone": "Central European Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "PT",
+        "name": "Portugal",
+        "timezone": "GMT Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "PR",
+        "name": "Puerto Rico",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "QA",
+        "name": "Qatar",
+        "timezone": "Arab Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "RE",
+        "name": "Reunion",
+        "timezone": "Mauritius Standard Time",
+        "utc": "UTC+04:00"
+    },
+    {
+        "code": "RO",
+        "name": "Romania",
+        "timezone": "GTB Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "RU",
+        "name": "Russia",
+        "timezone": "Russian Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "RW",
+        "name": "Rwanda",
+        "timezone": "South Africa Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "BL",
+        "name": "Saint Barthélemy",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "SH",
+        "name": "Saint Helena, Ascension and Tristan da Cunha",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "KN",
+        "name": "Saint Kitts and Nevis",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "LC",
+        "name": "Saint Lucia",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "MF",
+        "name": "Saint Martin (French part)",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "PM",
+        "name": "Saint Pierre and Miquelon",
+        "timezone": "Greenland Standard Time",
+        "utc": "UTC-03:00"
+    },
+    {
+        "code": "VC",
+        "name": "Saint Vincent and the Grenadines",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "WS",
+        "name": "Samoa",
+        "timezone": "Samoa Standard Time",
+        "utc": "UTC+13:00"
+    },
+    {
+        "code": "SM",
+        "name": "San Marino",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "ST",
+        "name": "São Tomé and Príncipe",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "SA",
+        "name": "Saudi Arabia",
+        "timezone": "Arab Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "SN",
+        "name": "Senegal",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "RS",
+        "name": "Serbia",
+        "timezone": "Central Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "SC",
+        "name": "Seychelles",
+        "timezone": "Mauritius Standard Time",
+        "utc": "UTC+04:00"
+    },
+    {
+        "code": "SL",
+        "name": "Sierra Leone",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "SG",
+        "name": "Singapore",
+        "timezone": "Singapore Standard Time",
+        "utc": "UTC+08:00"
+    },
+    {
+        "code": "SX",
+        "name": "Sint Maarten (Dutch part)",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "SK",
+        "name": "Slovakia",
+        "timezone": "Central Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "SI",
+        "name": "Slovenia",
+        "timezone": "Central Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "SB",
+        "name": "Solomon Islands",
+        "timezone": "Central Pacific Standard Time",
+        "utc": "UTC+11:00"
+    },
+    {
+        "code": "SO",
+        "name": "Somalia",
+        "timezone": "E. Africa Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "ZA",
+        "name": "South Africa",
+        "timezone": "South Africa Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "GS",
+        "name": "South Georgia and the South Sandwich Islands",
+        "timezone": "UTC-02",
+        "utc": "UTC-02:00"
+    },
+    {
+        "code": "SS",
+        "name": "South Sudan",
+        "timezone": "E. Africa Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "ES",
+        "name": "Spain",
+        "timezone": "Romance Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "LK",
+        "name": "Sri Lanka",
+        "timezone": "Sri Lanka Standard Time",
+        "utc": "UTC+05:30"
+    },
+    {
+        "code": "SD",
+        "name": "Sudan",
+        "timezone": "E. Africa Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "SR",
+        "name": "Suriname",
+        "timezone": "SA Eastern Standard Time",
+        "utc": "UTC-03:00"
+    },
+    {
+        "code": "SJ",
+        "name": "Svalbard",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "SZ",
+        "name": "Swaziland",
+        "timezone": "South Africa Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "SE",
+        "name": "Sweden",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "CH",
+        "name": "Switzerland",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "SY",
+        "name": "Syria",
+        "timezone": "Syria Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "TW",
+        "name": "Taiwan",
+        "timezone": "Taipei Standard Time",
+        "utc": "UTC+08:00"
+    },
+    {
+        "code": "TJ",
+        "name": "Tajikistan",
+        "timezone": "West Asia Standard Time",
+        "utc": "UTC+05:00"
+    },
+    {
+        "code": "TZ",
+        "name": "Tanzania",
+        "timezone": "E. Africa Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "TH",
+        "name": "Thailand",
+        "timezone": "SE Asia Standard Time",
+        "utc": "UTC+07:00"
+    },
+    {
+        "code": "TG",
+        "name": "Togo",
+        "timezone": "Greenwich Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "TK",
+        "name": "Tokelau",
+        "timezone": "Tonga Standard Time",
+        "utc": "UTC+13:00"
+    },
+    {
+        "code": "TO",
+        "name": "Tonga",
+        "timezone": "Tonga Standard Time",
+        "utc": "UTC+13:00"
+    },
+    {
+        "code": "TT",
+        "name": "Trinidad and Tobago",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "TN",
+        "name": "Tunisia",
+        "timezone": "W. Central Africa Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "TR",
+        "name": "Turkey",
+        "timezone": "Turkey Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "TM",
+        "name": "Turkmenistan",
+        "timezone": "West Asia Standard Time",
+        "utc": "UTC+05:00"
+    },
+    {
+        "code": "TC",
+        "name": "Turks and Caicos Islands",
+        "timezone": "Eastern Standard Time",
+        "utc": "UTC-05:00"
+    },
+    {
+        "code": "TV",
+        "name": "Tuvalu",
+        "timezone": "UTC+12",
+        "utc": "UTC+12:00"
+    },
+    {
+        "code": "UM",
+        "name": "U.S. Minor Outlying Islands",
+        "timezone": "UTC-11",
+        "utc": "UTC-11:00"
+    },
+    {
+        "code": "UG",
+        "name": "Uganda",
+        "timezone": "E. Africa Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "UA",
+        "name": "Ukraine",
+        "timezone": "FLE Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "AE",
+        "name": "United Arab Emirates",
+        "timezone": "Arabian Standard Time",
+        "utc": "UTC+04:00"
+    },
+    {
+        "code": "GB",
+        "name": "United Kingdom",
+        "timezone": "GMT Standard Time",
+        "utc": "UTC"
+    },
+    {
+        "code": "US",
+        "name": "United States",
+        "timezone": "Pacific Standard Time",
+        "utc": "UTC-08:00"
+    },
+    {
+        "code": "UY",
+        "name": "Uruguay",
+        "timezone": "Montevideo Standard Time",
+        "utc": "UTC-03:00"
+    },
+    {
+        "code": "UZ",
+        "name": "Uzbekistan",
+        "timezone": "West Asia Standard Time",
+        "utc": "UTC+05:00"
+    },
+    {
+        "code": "VU",
+        "name": "Vanuatu",
+        "timezone": "Central Pacific Standard Time",
+        "utc": "UTC+11:00"
+    },
+    {
+        "code": "VA",
+        "name": "Vatican City",
+        "timezone": "W. Europe Standard Time",
+        "utc": "UTC+01:00"
+    },
+    {
+        "code": "VN",
+        "name": "Vietnam",
+        "timezone": "SE Asia Standard Time",
+        "utc": "UTC+07:00"
+    },
+    {
+        "code": "VI",
+        "name": "Virgin Islands, U.S.",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "VG",
+        "name": "Virgin Islands, British",
+        "timezone": "SA Western Standard Time",
+        "utc": "UTC-04:00"
+    },
+    {
+        "code": "WF",
+        "name": "Wallis and Futuna",
+        "timezone": "UTC+12",
+        "utc": "UTC+12:00"
+    },
+    {
+        "code": "YE",
+        "name": "Yemen",
+        "timezone": "Arab Standard Time",
+        "utc": "UTC+03:00"
+    },
+    {
+        "code": "ZM",
+        "name": "Zambia",
+        "timezone": "South Africa Standard Time",
+        "utc": "UTC+02:00"
+    },
+    {
+        "code": "ZW",
+        "name": "Zimbabwe",
+        "timezone": "South Africa Standard Time",
+        "utc": "UTC+02:00"
+    }
+]
