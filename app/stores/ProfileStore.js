@@ -4,6 +4,7 @@ export const useProfileStore = defineStore('ProfileStore', {
     state: () => ({
         profile: null,
         avatars: null,
+        countries: [],
     }),
     
     actions: {
@@ -16,6 +17,20 @@ export const useProfileStore = defineStore('ProfileStore', {
                 if(error) throw error;
                 
                 this.profile = data;
+            } catch(error) {
+                console.error(error);
+            }
+        },
+        
+        async updateProfile(payload) {
+            try {
+                const { success, error } = await $fetch('/api/supabase/user/profile/update', {
+                    method: 'PATCH',
+                    headers: useRequestHeaders(['cookie']),
+                    body: payload,
+                });
+                
+                return { success, error };
             } catch(error) {
                 console.error(error);
             }
@@ -35,18 +50,16 @@ export const useProfileStore = defineStore('ProfileStore', {
             }
         },
         
-        async updateProfile(payload) {
-            try {
-                const { success, error } = await $fetch('/api/supabase/user/profile/update', {
-                    method: 'PATCH',
-                    headers: useRequestHeaders(['cookie']),
-                    body: payload,
-                });
-                
-                return { success, error };
-            } catch(error) {
-                console.error(error);
-            }
+        async getCountries() {
+          try {
+              const data = await $fetch('/api/supabase/user/profile/countries');
+              
+              if(data) {
+                  this.countries = data;
+              }
+          } catch(error) {
+              console.error(error);
+          }
         },
     },
 });
