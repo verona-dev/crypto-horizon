@@ -159,7 +159,7 @@
     import { Card } from '~/components/ui/card';
     import { CheckIcon, ChevronsUpDownIcon } from 'lucide-vue-next';
     import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '~/components/ui/command';
-    import { displayToast, displayCustomToast } from '~/utils/toast.js';
+    import { displayToast } from '~/utils/toast.js';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
     import { Input } from '~/components/ui/input';
     import { Label } from '~/components/ui/label';
