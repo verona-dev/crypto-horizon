@@ -184,7 +184,7 @@
     const emit = defineEmits(['handleDrawer']);
     watch(drawer_visibility, bool => emit('handleDrawer', bool));
     
-    console.log(profile.value);
+    // console.log(profile.value);
     
     // Username
     const current_username = computed(() => profile.value[0]?.value || '');
@@ -240,7 +240,7 @@
         }
         
         if(!is_current_country_selected.value && selected_country.value) {
-            payload.country = selected_country.value?.name;
+            payload.country = selected_country.value;
         }
         
         if(Object.keys(payload).length === 0) {
