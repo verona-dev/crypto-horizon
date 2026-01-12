@@ -33,9 +33,9 @@
         { name: 'email', label: 'Email', value: profile.value?.email },
         { name: 'astronaut_type', label: 'Astronaut Type', value: profile.value?.astronaut_type },
         { name: 'country', label: 'Country', value: profile.value?.country },
+        { name: 'timezone', label: 'Timezone', value: profile.value?.country?.timezone },
         { name: 'bio', label: 'Bio', value: profile.value?.bio },
         { name: 'dob', label: 'Date of birth', value: profile.value?.dob ? dayjs.utc(profile.value?.dob).local().format('DD MMM YYYY') : '-' },
-        { name: 'last_sign_in', label: 'Last sign in', value: profile.value?.last_sign_in ? dayjs(profile.value?.last_sign_in).fromNow() : '-' },
         { name: 'updated_at', label: 'Last profile update', value: profile.value?.updated_at ? dayjs(profile.value?.updated_at).fromNow() : '-' },
     ]);
     
