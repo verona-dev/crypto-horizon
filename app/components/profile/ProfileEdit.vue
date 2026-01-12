@@ -27,17 +27,17 @@
                         <div class='grid gap-2 w-full md:w-64'>
                             <Label for='country' class='font-semibold tracking-tight'>Country</Label>
                             
-                            <Popover v-model:open='open'>
+                            <Popover v-model:open='countries_dropdown'>
                                 <PopoverTrigger as-child>
                                     <Button
                                         variant='outline'
                                         role='combobox'
-                                        :aria-expanded='open'
+                                        :aria-expanded='countries_dropdown'
                                         id='country'
                                         name='country'
                                         class='justify-between file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 min-w-0 rounded-md border bg-transparent px-3 py-5 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm'
                                     >
-                                        {{ selectedFramework?.label || 'Search Country...' }}
+                                        {{ selected_country?.name || 'Select Country...' }}
                                         <ChevronsUpDownIcon class='opacity-50' />
                                     </Button>
                                 </PopoverTrigger>
@@ -45,23 +45,24 @@
                                 <PopoverContent class='w-full md:w-64 p-0'>
                                     <Command>
                                         <CommandInput class='h-9' placeholder='Search Country...' />
+                                        
                                         <CommandList>
-                                            <CommandEmpty>No framework found.</CommandEmpty>
+                                            <CommandEmpty>No country found.</CommandEmpty>
                                             <CommandGroup>
                                                 <CommandItem
-                                                    v-for='framework in frameworks'
-                                                    :key='framework.value'
-                                                    :value='framework.value'
+                                                    v-for='country in countries'
+                                                    :key='country.code'
+                                                    :value='country.code'
                                                     @select='(ev) => {
-                                              selectFramework(ev.detail.value)
-                                            }'
+                                                        selectCountry(ev.detail.value as string)
+                                                    }'
                                                 >
-                                                    {{ framework.label }}
+                                                    {{ country.name }}
                                                     <CheckIcon
                                                         :class='cn(
-                                              "ml-auto",
-                                                     value === framework.value ? "opacity-100" : "opacity-0",
-                                                )'
+                                                      "ml-auto",
+                                                             old_selection === country.code ? "opacity-100" : "opacity-0",
+                                                        )'
                                                     />
                                                 </CommandItem>
                                             </CommandGroup>
@@ -145,7 +146,7 @@
     </Drawer>
 </template>
 
-<script setup>
+<script lang='ts' setup>
     import { cn } from '@/lib/utils';
     import { CircleCheck } from 'lucide-vue-next';
     import { Button } from '~/components/ui/button';
@@ -169,9 +170,11 @@
     });
     
     // ProfileStore
+    import { storeToRefs } from 'pinia';
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
-    const { updateProfile, getProfile } = ProfileStore;
+    const { updateProfile, getProfile, getCountries } = ProfileStore;
+    const { countries } = storeToRefs(ProfileStore);
     
     const { profile, showDrawer } = toRefs(props);
     const { isMobile } = useSidebar();
@@ -184,13 +187,13 @@
     // console.log(profile.value);
     
     // Username
-    const current_username = computed(() => profile.value[0].value || '');
+    const current_username = computed(() => profile.value[0]?.value || '');
     const selected_username = ref(current_username.value || '');
     const is_username_current = computed(() => current_username.value === selected_username.value);
     
     // Astronaut Type
-    const current_astronaut_type = computed(() => profile.value[2].value || '');
-    const selected_astronaut_type = ref(profile.value[2].value || '');
+    const current_astronaut_type = computed(() => profile.value[2]?.value || '');
+    const selected_astronaut_type = ref(profile.value[2]?.value || '');
     const is_current_type_selected = computed(() => current_astronaut_type.value === selected_astronaut_type.value);
     const astronaut_type_options = [
         {
@@ -214,37 +217,14 @@
     ];
     
     // Country
-    const open = ref(false)
-    const value = ref('')
-    const selectedFramework = computed(() =>
-        frameworks.find(framework => framework.value === value.value),
-    )
-    function selectFramework(selectedValue) {
-        value.value = selectedValue === value.value ? '' : selectedValue
-        open.value = false
-    }
-    const frameworks = [
-        {
-            value: 'next.js',
-            label: 'Next.js',
-        },
-        {
-            value: 'sveltekit',
-            label: 'SvelteKit',
-        },
-        {
-            value: 'nuxt.js',
-            label: 'Nuxt.js',
-        },
-        {
-            value: 'remix',
-            label: 'Remix',
-        },
-        {
-            value: 'astro',
-            label: 'Astro',
-        },
-    ];
+    const countries_dropdown = ref(false);
+    const old_selection = ref('AF');
+    const selected_country = computed(() => countries.value?.find(country => country.code === old_selection.value));
+    
+    const selectCountry = (selectedValue: string) => {
+        old_selection.value = selectedValue === old_selection.value ? '' : selectedValue
+        countries_dropdown.value = false
+    };
     
     const onSubmit = async() => {
         let payload = {};
@@ -271,4 +251,10 @@
             displayToast('Cannot update astronaut type.');
         }
     };
+    
+    onMounted(async() => {
+        if(!countries.value?.length) {
+            await getCountries();
+        }
+    });
 </script>
