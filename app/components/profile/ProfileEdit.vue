@@ -95,7 +95,7 @@
                                     >
                                         <Card
                                             :class='cn(
-                                          "relative transition-all shadow-none hover:shadow-xl h-full md:py-6 w-full",
+                                          "py-4 px-2 relative transition-all shadow-none hover:shadow-xl h-full w-full",
                                                   selected_astronaut_type === option.value && "border-primary/75 shadow-2xl",
                                             )'
                                         >
@@ -104,7 +104,7 @@
                                                 class='absolute -top-3 -right-2 size-6 rounded-full fill-card text-primary/75'
                                             />
                                             
-                                            <div class='flex md:flex-col items-center p-6 space-x-8 md:space-x-0 md:space-y-12'>
+                                            <div class='flex md:flex-col items-center p-6 space-x-8 md:space-x-0 md:space-y-8'>
                                                 <div class='flex items-center justify-center'>
                                                     <NuxtIcon
                                                         :name='option.icon'
