@@ -184,7 +184,7 @@
     const emit = defineEmits(['handleDrawer']);
     watch(drawer_visibility, bool => emit('handleDrawer', bool));
     
-    // console.log(profile.value);
+    console.log(profile.value);
     
     // Username
     const current_username = computed(() => profile.value[0]?.value || '');
@@ -218,8 +218,10 @@
     
     // Country
     const countries_dropdown = ref(false);
+    const current_country = ref(profile.value[3]?.value || '');
     const old_selection = ref('AF');
     const selected_country = computed(() => countries.value?.find(country => country.code === old_selection.value));
+    const is_current_country_selected = computed(() => current_country.value === selected_country.value);
     
     const selectCountry = (selectedValue: string) => {
         old_selection.value = selectedValue === old_selection.value ? '' : selectedValue
@@ -237,16 +239,20 @@
             payload.astronaut_type = selected_astronaut_type.value;
         }
         
+        if(!is_current_country_selected.value) {
+            payload.country = selected_country.value?.name;
+        }
+        
         if(Object.keys(payload).length === 0) {
             displayToast('No changes detected.');
             return;
         }
         
-        const { success } = await updateProfile(payload);
+        const success = await updateProfile(payload);
         
         if(success) {
             await getProfile();
-            displayCustomToast(payload.username, payload.astronaut_type);
+            displayToast('Successfully updated profile.');
         } else {
             displayToast('Cannot update astronaut type.');
         }
