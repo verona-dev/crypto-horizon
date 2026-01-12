@@ -4,7 +4,7 @@
             <CardTitle class='text-2xl'>Personal Information</CardTitle>
             
             <Button
-                @click='onHandleDrawer'
+                @click='onHandleDrawer(true)'
                 class='w-fit'
                 variant='ghost'
                 size='sm'

@@ -239,7 +239,7 @@
             payload.astronaut_type = selected_astronaut_type.value;
         }
         
-        if(!is_current_country_selected.value) {
+        if(!is_current_country_selected.value && selected_country.value) {
             payload.country = selected_country.value?.name;
         }
         
