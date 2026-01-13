@@ -109,10 +109,32 @@ const goBack = (router, path) => {
     else return router.push(path);
 };
 
+const parseDateStringToObject = (dateStr) => {
+    // From YYYY-MM-DD to object
+    let [year, month, day] = dateStr.split('-').map(Number);
+    return {
+        era: 'AD',
+        year,
+        month,
+        day,
+        calendar: { identifier: 'gregory' }
+    };
+};
+
+const parseDateObjectToString = (dateObj) => {
+    // From object to YYYY-MM-DD
+    const year = dateObj.year;
+    const month = dateObj.month;
+    const day = dateObj.day;
+    return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+};
+
 export {
     formatNumber,
     formatLinks,
     capitalize,
     goBack,
+    parseDateStringToObject,
+    parseDateObjectToString,
 };
 
