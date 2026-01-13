@@ -32,10 +32,10 @@
         { name: 'username', label: 'Username', value: profile.value?.username },
         { name: 'email', label: 'Email', value: profile.value?.email },
         { name: 'astronaut_type', label: 'Astronaut Type', value: profile.value?.astronaut_type },
+        { name: 'dob', label: 'Date of birth', value: profile.value?.dob ? profile.value?.dob : '-' },
         { name: 'country', label: 'Country', value: profile.value?.country },
         { name: 'timezone', label: 'Timezone', value: profile.value?.country?.timezone },
         { name: 'bio', label: 'Bio', value: profile.value?.bio },
-        { name: 'dob', label: 'Date of birth', value: profile.value?.dob ? profile.value?.dob : '-' },
         { name: 'updated_at', label: 'Last profile update', value: profile.value?.updated_at ? dayjs(profile.value?.updated_at).fromNow() : '-' },
     ]);
     
