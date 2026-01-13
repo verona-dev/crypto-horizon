@@ -88,11 +88,9 @@
                                 <Button
                                     id='date'
                                     variant='outline'
-                                    class='w-48 justify-between font-normal'
+                                    class='w-full md:w-64 px-3 py-5 justify-between'
                                 >
-                                    {{
-                                        selected_date ? selected_date.toDate(getLocalTimeZone()).toLocaleDateString() : 'Select date'
-                                    }}
+                                    <span>{{ selected_date ? selected_date.toDate(getLocalTimeZone()).toLocaleDateString() : 'Select date' }}</span>
                                     <ChevronDownIcon />
                                 </Button>
                             </PopoverTrigger>
@@ -100,16 +98,17 @@
                             <PopoverContent class='w-auto overflow-hidden p-0' align='start'>
                                 <Calendar
                                     :model-value='selected_date'
+                                    :locale='locale'
                                     :week-starts-on='1'
-                                    :min-value='new CalendarDate(1925, 1, 1)'
+                                    :min-value='new CalendarDate(1900, 1, 1)'
                                     :max-value='date_today'
-                                    format='YYYY-MM-DD'
                                     @update:model-value='(value: any) => {
                                          if (value) {
-                                         selected_date = value
-                                         calendar_visibility = false
-                                    }
-                                  }'
+                                             selected_date = value
+                                             calendar_visibility = false
+                                             console.log(value)
+                                         }
+                                    }'
                                 />
                             </PopoverContent>
                         </Popover>
@@ -191,20 +190,21 @@
 <script lang='ts' setup>
     import { Button } from '~/components/ui/button';
     import { Calendar } from '~/components/ui/calendar';
+    import { CalendarDate, getLocalTimeZone, today } from '@internationalized/date';
     import { Card } from '~/components/ui/card';
     import { CircleCheck, CheckIcon, ChevronsUpDownIcon, ChevronDownIcon } from 'lucide-vue-next';
     import { cn } from '@/lib/utils';
     import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '~/components/ui/command';
     import { displayToast } from '~/utils/toast.js';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
-    import { CalendarDate, getLocalTimeZone, today } from '@internationalized/date';
+    import { format as formatDate } from 'date-fns';
     import { Input } from '~/components/ui/input';
     import { Label } from '~/components/ui/label';
     import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover';
     import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
     import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
     import { useSidebar } from '~/components/ui/sidebar';
-    import { format as formatDate } from 'date-fns';
+    import { parseDateStringToObject, parseDateObjectToString } from '~/utils/formatUtils.js';
     
     const props = defineProps({
         profile: {
@@ -229,6 +229,7 @@
     const emit = defineEmits(['handleDrawer']);
     watch(drawer_visibility, bool => emit('handleDrawer', bool));
     
+    // console.log('profile: ', profile.value);
     
     // Username
     const current_username = computed(() => profile.value[0]?.value || '');
@@ -262,7 +263,7 @@
     
     // Country
     const countries_dropdown_visibility = ref(false);
-    const current_country = ref(profile.value[3]?.value || '');
+    const current_country = ref(profile.value[4]?.value || '');
     const old_selection = ref(current_country.value?.code);
     const selected_country = computed(() => countries.value?.find(country => country.code === old_selection.value));
     const is_current_country_selected = computed(() => current_country.value === selected_country.value);
@@ -273,11 +274,20 @@
     };
     
     // Date of birth
+    const locale = ref('en-US');
     const calendar_visibility = ref(false);
-    const current_dob = computed(() => profile.value[6]?.value || '');
+    
+    const current_dob = computed(() => profile.value[3]?.value || '');
+    const current_dob_to_obj = computed(() => parseDateStringToObject(current_dob.value));
+    
     const date_today = ref(today(getLocalTimeZone()));
+    const date_today_formatted = computed(() => formatDate(date_today.value, 'yyyy-MM-dd'));
+    
     const selected_date = ref(date_today.value);
+    
     const selected_date_formatted = computed(() => formatDate(selected_date.value, 'yyyy-MM-dd'));
+    const selected_date_formatted_2 = computed(() => parseDateObjectToString(selected_date.value));
+    
     const is_current_selected = computed(() => current_dob.value === selected_date_formatted.value);
     
     const onSubmit = async() => {
