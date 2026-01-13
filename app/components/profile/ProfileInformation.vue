@@ -32,7 +32,8 @@
                 </div>
                 
                 <template v-else>
-                    <span :class='{ "capitalize" : item.name === "astronaut_type" }'>{{ item.value }}</span>
+                    <span v-if='item.name === "dob"'>{{ dayjs(item.value).format('DD.MM.YYYY') }}</span>
+                    <span v-else :class='{ "capitalize" : item.name === "astronaut_type" }'>{{ item.value }}</span>
                 </template>
             </div>
         </CardContent>
@@ -50,6 +51,7 @@
 <script setup>
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
+    import dayjs from 'dayjs';
     import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
     import ProfileEdit from '~/components/profile/ProfileEdit.vue';
     
