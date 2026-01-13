@@ -99,6 +99,8 @@
                                 <Calendar
                                     :model-value='date'
                                     layout='month-and-year'
+                                    :week-starts-on='1'
+                                    :max-value='date_today'
                                     @update:model-value='(value: any) => {
                                          if (value) {
                                          date = value
@@ -184,27 +186,21 @@
 </template>
 
 <script lang='ts' setup>
-    import { cn } from '@/lib/utils';
-    import { CircleCheck } from 'lucide-vue-next';
     import { Button } from '~/components/ui/button';
+    import { Calendar } from '~/components/ui/calendar';
     import { Card } from '~/components/ui/card';
-    import { CheckIcon, ChevronsUpDownIcon } from 'lucide-vue-next';
+    import { CircleCheck, CheckIcon, ChevronsUpDownIcon, ChevronDownIcon } from 'lucide-vue-next';
+    import { cn } from '@/lib/utils';
     import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '~/components/ui/command';
     import { displayToast } from '~/utils/toast.js';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
+    import { getLocalTimeZone, today } from '@internationalized/date';
     import { Input } from '~/components/ui/input';
     import { Label } from '~/components/ui/label';
     import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover';
     import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
     import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
     import { useSidebar } from '~/components/ui/sidebar';
-    
-    // Date
-    import { getLocalTimeZone, today } from '@internationalized/date';
-    import { ChevronDownIcon } from 'lucide-vue-next';
-    import { Calendar } from '~/components/ui/calendar';
-    const date = ref(today(getLocalTimeZone()));
-    const calendar_visibility = ref(false);
     
     const props = defineProps({
         profile: {
@@ -229,7 +225,6 @@
     const emit = defineEmits(['handleDrawer']);
     watch(drawer_visibility, bool => emit('handleDrawer', bool));
     
-    // console.log(profile.value);
     
     // Username
     const current_username = computed(() => profile.value[0]?.value || '');
@@ -273,6 +268,12 @@
         countries_dropdown_visibility.value = false
     };
     
+    // Date of birth
+    const calendar_visibility = ref(false);
+    const current_dob = ref(profile.value[6]?.value || '');
+    const date = ref(today(getLocalTimeZone()));
+    const date_today = ref(today(getLocalTimeZone()));
+    
     const onSubmit = async() => {
         let payload = {};
         
@@ -287,6 +288,7 @@
         if(!is_current_country_selected.value && selected_country.value) {
             payload.country = selected_country.value;
         }
+        
         
         if(Object.keys(payload).length === 0) {
             displayToast('No changes detected.');
