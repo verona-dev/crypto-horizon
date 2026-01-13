@@ -35,7 +35,7 @@
         { name: 'country', label: 'Country', value: profile.value?.country },
         { name: 'timezone', label: 'Timezone', value: profile.value?.country?.timezone },
         { name: 'bio', label: 'Bio', value: profile.value?.bio },
-        { name: 'dob', label: 'Date of birth', value: profile.value?.dob ? dayjs.utc(profile.value?.dob).local().format('DD MMM YYYY') : '-' },
+        { name: 'dob', label: 'Date of birth', value: profile.value?.dob ? profile.value?.dob : '-' },
         { name: 'updated_at', label: 'Last profile update', value: profile.value?.updated_at ? dayjs(profile.value?.updated_at).fromNow() : '-' },
     ]);
     
