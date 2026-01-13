@@ -90,20 +90,23 @@
                                     variant='outline'
                                     class='w-48 justify-between font-normal'
                                 >
-                                    {{ date ? date.toDate(getLocalTimeZone()).toLocaleDateString() : 'Select date' }}
+                                    {{
+                                        selected_date ? selected_date.toDate(getLocalTimeZone()).toLocaleDateString() : 'Select date'
+                                    }}
                                     <ChevronDownIcon />
                                 </Button>
                             </PopoverTrigger>
                             
                             <PopoverContent class='w-auto overflow-hidden p-0' align='start'>
                                 <Calendar
-                                    :model-value='date'
-                                    layout='month-and-year'
+                                    :model-value='selected_date'
                                     :week-starts-on='1'
+                                    :min-value='new CalendarDate(1925, 1, 1)'
                                     :max-value='date_today'
+                                    format='YYYY-MM-DD'
                                     @update:model-value='(value: any) => {
                                          if (value) {
-                                         date = value
+                                         selected_date = value
                                          calendar_visibility = false
                                     }
                                   }'
@@ -194,13 +197,14 @@
     import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '~/components/ui/command';
     import { displayToast } from '~/utils/toast.js';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
-    import { getLocalTimeZone, today } from '@internationalized/date';
+    import { CalendarDate, getLocalTimeZone, today } from '@internationalized/date';
     import { Input } from '~/components/ui/input';
     import { Label } from '~/components/ui/label';
     import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover';
     import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
     import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
     import { useSidebar } from '~/components/ui/sidebar';
+    import { format as formatDate } from 'date-fns';
     
     const props = defineProps({
         profile: {
@@ -270,9 +274,11 @@
     
     // Date of birth
     const calendar_visibility = ref(false);
-    const current_dob = ref(profile.value[6]?.value || '');
-    const date = ref(today(getLocalTimeZone()));
+    const current_dob = computed(() => profile.value[6]?.value || '');
     const date_today = ref(today(getLocalTimeZone()));
+    const selected_date = ref(date_today.value);
+    const selected_date_formatted = computed(() => formatDate(selected_date.value, 'yyyy-MM-dd'));
+    const is_current_selected = computed(() => current_dob.value === selected_date_formatted.value);
     
     const onSubmit = async() => {
         let payload = {};
@@ -289,6 +295,9 @@
             payload.country = selected_country.value;
         }
         
+        if(!is_current_selected.value && selected_date_formatted.value) {
+            payload.dob = selected_date_formatted.value;
+        }
         
         if(Object.keys(payload).length === 0) {
             displayToast('No changes detected.');
