@@ -27,12 +27,12 @@
                         <div class='grid gap-2 w-full md:w-64'>
                             <Label for='country' class='font-semibold tracking-tight'>Country</Label>
                             
-                            <Popover v-model:open='countries_dropdown'>
+                            <Popover v-model:open='countries_dropdown_visibility'>
                                 <PopoverTrigger as-child>
                                     <Button
                                         variant='outline'
                                         role='combobox'
-                                        :aria-expanded='countries_dropdown'
+                                        :aria-expanded='countries_dropdown_visibility'
                                         id='country'
                                         name='country'
                                         class='justify-between px-3 py-5'
@@ -77,6 +77,37 @@
                                 </PopoverContent>
                             </Popover>
                         </div>
+                    </div>
+                    
+                    <!--  Edit Date of birth  -->
+                    <div class='flex flex-col gap-3'>
+                        <Label for='date' class='font-semibold tracking-tight'>Date of birth</Label>
+                        
+                        <Popover v-model:open='calendar_visibility'>
+                            <PopoverTrigger as-child>
+                                <Button
+                                    id='date'
+                                    variant='outline'
+                                    class='w-48 justify-between font-normal'
+                                >
+                                    {{ date ? date.toDate(getLocalTimeZone()).toLocaleDateString() : 'Select date' }}
+                                    <ChevronDownIcon />
+                                </Button>
+                            </PopoverTrigger>
+                            
+                            <PopoverContent class='w-auto overflow-hidden p-0' align='start'>
+                                <Calendar
+                                    :model-value='date'
+                                    layout='month-and-year'
+                                    @update:model-value='(value: any) => {
+                                         if (value) {
+                                         date = value
+                                         calendar_visibility = false
+                                    }
+                                  }'
+                                />
+                            </PopoverContent>
+                        </Popover>
                     </div>
                     
                     <!--  Edit Astronaut Type  -->
@@ -168,6 +199,13 @@
     import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
     import { useSidebar } from '~/components/ui/sidebar';
     
+    // Date
+    import { getLocalTimeZone, today } from '@internationalized/date';
+    import { ChevronDownIcon } from 'lucide-vue-next';
+    import { Calendar } from '~/components/ui/calendar';
+    const date = ref(today(getLocalTimeZone()));
+    const calendar_visibility = ref(false);
+    
     const props = defineProps({
         profile: {
             type: Array,
@@ -224,7 +262,7 @@
     ];
     
     // Country
-    const countries_dropdown = ref(false);
+    const countries_dropdown_visibility = ref(false);
     const current_country = ref(profile.value[3]?.value || '');
     const old_selection = ref(current_country.value?.code);
     const selected_country = computed(() => countries.value?.find(country => country.code === old_selection.value));
@@ -232,7 +270,7 @@
     
     const selectCountry = (selectedValue: string) => {
         old_selection.value = selectedValue === old_selection.value ? '' : selectedValue
-        countries_dropdown.value = false
+        countries_dropdown_visibility.value = false
     };
     
     const onSubmit = async() => {
