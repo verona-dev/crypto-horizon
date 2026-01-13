@@ -18,37 +18,24 @@
             </Button>
         </CardHeader>
         
-        <div class='flex p-6 rounded-xl'>
-            <CardContent class='flex-1 flex flex-col gap-6'>
-                <div
-                    v-for='item in profile.slice(0, 4)'
-                    :key='item.name'
-                    class='flex flex-col gap-0 w-fit'
-                >
-                    <span class='text-md text-muted-foreground'>{{ item.label }}</span>
-                    
-                    <div v-if='item.name === "country"' class='flex items-center gap-2'>
-                        <ProfileCountryFlag :country='item.value' :size='"w-4 h-4"' />
-                        <span>{{ item.value.name }}</span>
-                    </div>
-                    
-                    <template v-else>
-                        <span :class='{ "capitalize" : item.name === "astronaut_type" }'>{{ item.value }}</span>
-                    </template>
+        <CardContent class='space-y-2 flex justify-between flex-wrap'>
+            <div
+                v-for='item in profile'
+                :key='item.name'
+                class='flex flex-col p-2 h-16 w-full md:w-1/2 xl:w-64'
+            >
+                <span class='text-sm text-muted-foreground'>{{ item.label }}</span>
+                
+                <div v-if='item.name === "country"' class='flex items-center gap-2'>
+                    <ProfileCountryFlag :country='item.value' size='w-4 h-4' />
+                    <span>{{ item.value.name }}</span>
                 </div>
-            </CardContent>
-            
-            <CardContent class='flex-1 flex flex-col gap-6'>
-                <div
-                    v-for='item in profile.slice(4, profile.length)'
-                    :key='item.name'
-                    class='flex flex-col gap-0'
-                >
-                    <span class='text-md text-muted-foreground'>{{ item.label }}</span>
+                
+                <template v-else>
                     <span :class='{ "capitalize" : item.name === "astronaut_type" }'>{{ item.value }}</span>
-                </div>
-            </CardContent>
-        </div>
+                </template>
+            </div>
+        </CardContent>
         
         <!--  Edit Profile  -->
         <ProfileEdit
