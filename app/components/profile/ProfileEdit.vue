@@ -106,7 +106,7 @@
                                          if (value) {
                                              selected_date = value
                                              calendar_visibility = false
-                                             console.log(value)
+                                             console.log("@update:model:" ,value)
                                          }
                                     }'
                                 />
@@ -204,7 +204,7 @@
     import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
     import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
     import { useSidebar } from '~/components/ui/sidebar';
-    import { parseDateStringToObject, parseDateObjectToString } from '~/utils/formatUtils.js';
+    import { parseDateStringToObject } from '~/utils/formatUtils.js';
     
     const props = defineProps({
         profile: {
@@ -228,8 +228,6 @@
     const drawer_visibility = ref(showDrawer.value);
     const emit = defineEmits(['handleDrawer']);
     watch(drawer_visibility, bool => emit('handleDrawer', bool));
-    
-    // console.log('profile: ', profile.value);
     
     // Username
     const current_username = computed(() => profile.value[0]?.value || '');
@@ -276,19 +274,12 @@
     // Date of birth
     const locale = ref('en-US');
     const calendar_visibility = ref(false);
-    
-    const current_dob = computed(() => profile.value[3]?.value || '');
-    const current_dob_to_obj = computed(() => parseDateStringToObject(current_dob.value));
-    
+    const dob = computed(() => profile.value[3]?.value || '');
+    const dob_to_obj = ref(parseDateStringToObject(dob.value));
     const date_today = ref(today(getLocalTimeZone()));
-    const date_today_formatted = computed(() => formatDate(date_today.value, 'yyyy-MM-dd'));
-    
-    const selected_date = ref(date_today.value);
-    
-    const selected_date_formatted = computed(() => formatDate(selected_date.value, 'yyyy-MM-dd'));
-    const selected_date_formatted_2 = computed(() => parseDateObjectToString(selected_date.value));
-    
-    const is_current_selected = computed(() => current_dob.value === selected_date_formatted.value);
+    const selected_date = ref(dob_to_obj.value);
+    const selected_date_formatted = computed(() => formatDate(selected_date.value, 'yyyy-MM-dd HH:mm:ss'));
+    const is_current_selected = computed(() => dob.value === selected_date_formatted.value);
     
     const onSubmit = async() => {
         let payload = {};
