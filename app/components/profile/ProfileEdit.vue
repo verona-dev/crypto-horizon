@@ -196,7 +196,7 @@
     import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '~/components/ui/command';
     import { displayToast } from '~/utils/toast.js';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
-    import { format as formatDate } from 'date-fns';
+    import { format as formatDate, isEqual } from 'date-fns';
     import { Input } from '~/components/ui/input';
     import { Label } from '~/components/ui/label';
     import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover';
@@ -222,6 +222,8 @@
     
     const { profile, showDrawer } = toRefs(props);
     const { isMobile } = useSidebar();
+    
+    // console.log(JSON.parse(JSON.stringify(profile.value)));
     
     // Drawer
     const drawer_visibility = ref(showDrawer.value);
@@ -263,8 +265,7 @@
     const current_country = ref(profile.value[4]?.value || '');
     const old_selection = ref(current_country.value?.code);
     const selected_country = computed(() => countries.value?.find(country => country.code === old_selection.value));
-    const is_current_country_selected = computed(() => current_country.value === selected_country.value);
-    
+    const is_current_country_selected = computed(() => current_country.value?.name === selected_country.value?.name);
     const selectCountry = (selectedValue: string) => {
         old_selection.value = selectedValue === old_selection.value ? '' : selectedValue
         countries_dropdown_visibility.value = false
@@ -277,8 +278,8 @@
     const dob_to_obj = ref(parseDateStringToObject(dob.value));
     const date_today = ref(today(getLocalTimeZone()));
     const selected_date = ref(dob_to_obj.value);
-    const selected_date_formatted = computed(() => formatDate(selected_date.value, 'yyyy-MM-dd HH:mm:ss'));
-    const is_current_selected = computed(() => dob.value === selected_date_formatted.value);
+    const selected_date_formatted = computed(() => formatDate(selected_date.value, `yyyy-MM-dd HH:mm:ss+00:00`));
+    const is_current_dob_selected = computed(() => isEqual(dob.value, selected_date_formatted.value));
     
     const onSubmit = async() => {
         let payload = {};
@@ -295,7 +296,7 @@
             payload.country = selected_country.value;
         }
         
-        if(!is_current_selected.value && selected_date_formatted.value) {
+        if(!is_current_dob_selected.value && selected_date.value) {
             payload.dob = selected_date_formatted.value;
         }
         
