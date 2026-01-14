@@ -98,6 +98,7 @@
                             <PopoverContent class='w-auto overflow-hidden p-0' align='start'>
                                 <Calendar
                                     :model-value='selected_date'
+                                    weekday-format='short'
                                     :locale='locale'
                                     :week-starts-on='1'
                                     :min-value='new CalendarDate(1900, 1, 1)'
