@@ -112,17 +112,7 @@
                                              calendar_visibility = false
                                          }
                                     }'
-                                    class='rounded-md border shadow-sm **:data-[slot=calendar-cell-trigger]:size-12!'
-                                >
-                                    <template #calendar-heading='{ date, month }'>
-                                        <div class='flex gap-2 items-center'>
-                                            <div>
-                                                Custom heading
-                                            </div>
-                                            <component :is='month' :date='date' />
-                                        </div>
-                                    </template>
-                                </Calendar>
+                                />
                             </PopoverContent>
                         </Popover>
                     </div>
@@ -294,7 +284,6 @@
     const date_today = ref(today(getLocalTimeZone()));
     const selected_date = ref(dob_to_obj.value);
     const selected_date_label = computed(() => dayjs(selected_date.value.toDate(getLocalTimeZone())).format('D MMMM YYYY'));
-    console.log(selected_date_label.value)
     const selected_date_formatted = computed(() => formatDate(selected_date.value, `yyyy-MM-dd HH:mm:ss+00:00`));
     const is_current_dob_selected = computed(() => isEqual(dob.value, selected_date_formatted.value));
     
