@@ -106,7 +106,6 @@
                                          if (value) {
                                              selected_date = value
                                              calendar_visibility = false
-                                             console.log("@update:model:" ,value)
                                          }
                                     }'
                                 />
