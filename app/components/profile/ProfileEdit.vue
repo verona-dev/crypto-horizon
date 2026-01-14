@@ -90,7 +90,10 @@
                                     variant='outline'
                                     class='w-full md:w-64 px-3 py-5 justify-between'
                                 >
-                                    <span>{{ selected_date ? selected_date.toDate(getLocalTimeZone()).toLocaleDateString(locale) : 'Select date' }}</span>
+                                    <div class='flex items-center gap-3'>
+                                        <CalendarIcon class='mb-0.5' />
+                                        <span>{{ selected_date ? selected_date_label : 'Select date' }}</span>
+                                    </div>
                                     <ChevronDownIcon />
                                 </Button>
                             </PopoverTrigger>
@@ -109,7 +112,17 @@
                                              calendar_visibility = false
                                          }
                                     }'
-                                />
+                                    class='rounded-md border shadow-sm **:data-[slot=calendar-cell-trigger]:size-12!'
+                                >
+                                    <template #calendar-heading='{ date, month }'>
+                                        <div class='flex gap-2 items-center'>
+                                            <div>
+                                                Custom heading
+                                            </div>
+                                            <component :is='month' :date='date' />
+                                        </div>
+                                    </template>
+                                </Calendar>
                             </PopoverContent>
                         </Popover>
                     </div>
@@ -192,9 +205,10 @@
     import { Calendar } from '~/components/ui/calendar';
     import { CalendarDate, getLocalTimeZone, today } from '@internationalized/date';
     import { Card } from '~/components/ui/card';
-    import { CircleCheck, CheckIcon, ChevronsUpDownIcon, ChevronDownIcon } from 'lucide-vue-next';
+    import { CircleCheck, CheckIcon, ChevronsUpDownIcon, ChevronDownIcon, CalendarIcon } from 'lucide-vue-next';
     import { cn } from '@/lib/utils';
     import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '~/components/ui/command';
+    import dayjs from 'dayjs';
     import { displayToast } from '~/utils/toast.js';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
     import { format as formatDate, isEqual } from 'date-fns';
@@ -279,6 +293,8 @@
     const dob_to_obj = ref(parseDateStringToObject(dob.value));
     const date_today = ref(today(getLocalTimeZone()));
     const selected_date = ref(dob_to_obj.value);
+    const selected_date_label = computed(() => dayjs(selected_date.value.toDate(getLocalTimeZone())).format('D MMMM YYYY'));
+    console.log(selected_date_label.value)
     const selected_date_formatted = computed(() => formatDate(selected_date.value, `yyyy-MM-dd HH:mm:ss+00:00`));
     const is_current_dob_selected = computed(() => isEqual(dob.value, selected_date_formatted.value));
     
