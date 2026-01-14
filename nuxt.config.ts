@@ -13,7 +13,7 @@ export default defineNuxtConfig({
       // url: site_url, // canonical URL
       name: site_name, // used in Title and Meta tags
       // description: site_description, // used in Meta tags
-      defaultLocale: 'en_US',
+      defaultLocale: 'en-GB',
       trailingSlash: false,
    },
 
@@ -31,7 +31,7 @@ export default defineNuxtConfig({
          // ogUrl: site_url, // canonical URL
          // ogTitle: site_name,
          // ogDescription: site_description,
-         ogLocale: 'en_US',
+         ogLocale: 'en-GB',
          ogType: 'website',
          // robots: 'index, follow',
          themeColor: [
@@ -148,8 +148,8 @@ export default defineNuxtConfig({
          darkModeStrategy: 'class',
       },
       translations: {
-         locale: 'en',
-         fallbackLocale: 'en',
+         locale: 'en-GB',
+         fallbackLocale: 'en-US',
       },
    },
 

@@ -90,7 +90,7 @@
                                     variant='outline'
                                     class='w-full md:w-64 px-3 py-5 justify-between'
                                 >
-                                    <span>{{ selected_date ? selected_date.toDate(getLocalTimeZone()).toLocaleDateString() : 'Select date' }}</span>
+                                    <span>{{ selected_date ? selected_date.toDate(getLocalTimeZone()).toLocaleDateString(locale) : 'Select date' }}</span>
                                     <ChevronDownIcon />
                                 </Button>
                             </PopoverTrigger>
@@ -273,7 +273,7 @@
     };
     
     // Date of birth
-    const locale = ref('en-US');
+    const locale = ref('en-GB');
     const calendar_visibility = ref(false);
     const dob = computed(() => profile.value[3]?.value || '');
     const dob_to_obj = ref(parseDateStringToObject(dob.value));
