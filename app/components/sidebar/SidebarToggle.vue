@@ -26,7 +26,7 @@
 
 <template>
     <SidebarMenu
-        class='h-14 mb-1'
+        class='h-14'
         :class='{ "px-1" :  open }'
     >
         <SidebarMenuItem

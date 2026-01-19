@@ -116,14 +116,14 @@
                                                 <Input
                                                     v-bind='componentField'
                                                     type='email'
-                                                    class='inputField !w-full focus-visible:border-foreground/75 focus-visible:ring-[0px] py-5'
+                                                    class='inputField !w-full'
                                                     placeholder='name@example.com'
                                                     @input='validate()'
                                                 />
                                             </FormControl>
                                             
                                             <!-- <span class='text-xxs text-muted-foreground'>Signing in will automatically create an account if your email isn’t already registered.</span> -->
-                                            <span class='text-xxs text-muted-foreground'>New astronaut? We’ll automatically create an account on first sign-up.</span>
+                                            <span class='text-xs text-snowy-mint/75'>New astronaut? We’ll automatically create an account on first sign-up.</span>
                                             
                                             <FormMessage />
                                         </FormItem>
@@ -151,7 +151,7 @@
                                                     <PinInputGroup class='gap-1'>
                                                         <template v-for='(id, index) in 8' :key='id'>
                                                             <PinInputSlot
-                                                                class='h-12 w-12 text-xl font-bold font-satoshi rounded-md border focus-visible:border-foreground/75 focus-visible:ring-[0px]'
+                                                                class='h-12 w-12 text-xl font-bold font-satoshi rounded-md border'
                                                                 :index='index'
                                                             />
                                                             <template v-if='index !== 7'>

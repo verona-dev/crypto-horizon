@@ -5,7 +5,7 @@
     import SidebarToggle from './SidebarToggle.vue'
     import SidebarLogo from './SidebarLogo.vue'
     import ColorMode from '@/components/sidebar/ColorMode.vue'
-    import { Sidebar, SidebarContent, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
+    import { Sidebar, SidebarContent, SidebarHeader, SidebarFooter, SidebarRail } from '@/components/ui/sidebar'
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
@@ -107,8 +107,8 @@
             {
                 title: 'Defi',
                 url: '/defi',
-                icon: 'ph:bank',
-                activeIcon: 'ph:bank-fill',
+                icon: 'ph:piggy-bank',
+                activeIcon: 'ph:piggy-bank-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
@@ -132,8 +132,8 @@
             {
                 title: 'Academy',
                 url: '/academy',
-                icon: 'ph:books',
-                activeIcon: 'ph:books-fill',
+                icon: 'ph:lightbulb-filament',
+                activeIcon: 'ph:lightbulb-filament-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
                 },
@@ -193,11 +193,11 @@
             <NavMain :items='nav_data' />
         </SidebarContent>
         
-        <ColorMode />
-        
-        <NavUser />
-        
-        <SidebarToggle />
+        <SidebarFooter class='px-0'>
+            <ColorMode />
+            <NavUser />
+            <SidebarToggle />
+        </SidebarFooter>
         
         <SidebarRail />
     </Sidebar>

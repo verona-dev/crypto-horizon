@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-    import { ChevronsUpDown } from 'lucide-vue-next'
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
     import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu'
     import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '~/components/ui/sidebar'
@@ -24,9 +23,9 @@
     
     const avatar = computed(() => {
         if(logged_in.value) {
-            return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_100/v1757869821/astronaut-7787907_zy26rf.jpg';
+            return profile.value?.avatar_url;
         }
-        return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_100/v1767208523/original-528efd43cf00778a5007f2146a0cdeeb_yuxkuv.webp';
+        return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_256/v1767535202/astronaut-3_oauvzn.png';
     });
     
     const username = computed(() => {
@@ -65,9 +64,7 @@
                     >
                         <Avatar class='h-6 w-6 rounded-lg'>
                             <AvatarImage :src='avatar' alt='avatar' />
-                            <AvatarFallback class='rounded-lg'>
-                                G
-                            </AvatarFallback>
+                            <AvatarFallback class='rounded-lg'>G</AvatarFallback>
                         </Avatar>
                         
                         <div class='flex flex-col flex-1 text-left text-sm leading-tight'>
@@ -75,7 +72,7 @@
                             <span class='truncate text-xs'>{{ user_email }}</span>
                         </div>
                         
-                        <ChevronsUpDown class='ml-auto size-4' />
+                        <NuxtIcon name='ph:dots-three-vertical-bold' size='18' />
                     </SidebarMenuButton>
                 </DropdownMenuTrigger>
                 
@@ -104,10 +101,9 @@
                     
                     <DropdownMenuSeparator />
                     
-                    <DropdownMenuGroup class='p-1.5'>
+                    <DropdownMenuGroup v-if='logged_in'>
                         <!--  Profile  -->
                         <DropdownMenuItem
-                            v-if='logged_in'
                             class='py-3 mb-1 cursor-pointer rounded-lg'
                             as-child
                         >
@@ -117,11 +113,15 @@
                             </NuxtLink>
                         </DropdownMenuItem>
                         
+                        <DropdownMenuSeparator />
+                    </DropdownMenuGroup>
+                    
+                    <DropdownMenuGroup>
                         <!--  Login  -->
                         <DropdownMenuItem
                             v-if='!logged_in'
                             @click='onOpenAuthModal'
-                            class='py-3 cursor-pointer rounded-lg'
+                            class='py-3 mt-1 cursor-pointer rounded-lg'
                         >
                             <NuxtIcon name='ph:sign-in' size='18' />
                             Login / Register
@@ -131,7 +131,7 @@
                         <DropdownMenuItem
                             v-if='logged_in'
                             @click='onLogOut'
-                            class='py-3 cursor-pointer rounded-lg'
+                            class='py-3 mt-1 cursor-pointer rounded-lg'
                         >
                             <NuxtIcon name='ph:sign-out' size='18' />
                             LogOut

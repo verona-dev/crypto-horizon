@@ -3,12 +3,14 @@ import { defineStore } from 'pinia';
 export const useProfileStore = defineStore('ProfileStore', {
     state: () => ({
         profile: null,
+        avatars: null,
+        countries: [],
     }),
     
     actions: {
         async getProfile() {
             try {
-                const { data, error } = await $fetch('/api/supabase/profile/get-profile', {
+                const { data, error } = await $fetch('/api/supabase/user/profile', {
                     headers: useRequestHeaders(['cookie']),
                 });
                 
@@ -18,6 +20,46 @@ export const useProfileStore = defineStore('ProfileStore', {
             } catch(error) {
                 console.error(error);
             }
+        },
+        
+        async updateProfile(payload) {
+            try {
+                const { success, error } = await $fetch('/api/supabase/user/profile/update', {
+                    method: 'PATCH',
+                    headers: useRequestHeaders(['cookie']),
+                    body: payload,
+                });
+                
+                return { success, error };
+            } catch(error) {
+                console.error(error);
+            }
+        },
+        
+        async getAvatars() {
+            try {
+                const { data, error } = await $fetch('/api/supabase/user/avatars', {
+                    headers: useRequestHeaders(['cookie']),
+                });
+                
+                if(error) throw error;
+                
+                this.avatars = data;
+            } catch(error) {
+                console.error(error);
+            }
+        },
+        
+        async getCountries() {
+          try {
+              const data = await $fetch('/api/supabase/user/profile/countries');
+              
+              if(data) {
+                  this.countries = data;
+              }
+          } catch(error) {
+              console.error(error);
+          }
         },
     },
 });

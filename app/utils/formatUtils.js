@@ -1,4 +1,5 @@
-import { getTrendClass } from '~/utils/styleUtils.js';
+import { CalendarDate } from '@internationalized/date';
+import { parseISO } from 'date-fns';
 
 const formatNumber = (value, {
                           locale = 'en-US',
@@ -110,10 +111,20 @@ const goBack = (router, path) => {
     else return router.push(path);
 };
 
+const parseDateStringToObject = (dateStr) => {
+    const date = parseISO(dateStr);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    
+    return new CalendarDate(year, month, day);
+};
+
 export {
     formatNumber,
     formatLinks,
     capitalize,
     goBack,
+    parseDateStringToObject,
 };
 
