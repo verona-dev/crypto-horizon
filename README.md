@@ -20,13 +20,13 @@
 ---
 ## 🌔 Features
 
-- 📊 Real-time cryptocurrency market data: Track live prices, market cap, and 24h volume for thousands of coins
-- 🔍 Single coin insights: Detailed stats for each cryptocurrency, including price history, contracts, and blockchain data
-- 🌍 Global market overview: Fear & Greed Index, Bitcoin dominance, and trending coins at a glance
-- 📈 Interactive price charts: Visualize price movements, market cap trends, and trading volume with customizable timeframes
-- 📰 Crypto news hub: Global and coin-specific news aggregated from top sources
-- 🏦 DeFi analytics: Track DeFi protocols, TVL (Total Value Locked), and yield farming opportunities
-- 🎓 Crypto Academy: Learn the basics of blockchain, trading, and decentralized finance
+- Real-time cryptocurrency market data: Track live prices, market cap, and 24h volume for thousands of coins
+- Single coin insights: Detailed stats for each cryptocurrency, including price history, contracts, and blockchain data
+- Global market overview: Fear & Greed Index, Bitcoin dominance, and trending coins at a glance
+- Interactive price charts: Visualize price movements, market cap trends, and trading volume with customizable timeframes
+- Crypto news hub: Global and coin-specific news aggregated from top sources
+- DeFi analytics: Track DeFi protocols, TVL (Total Value Locked), and yield farming opportunities
+- Crypto Academy: Learn the basics of blockchain, trading, and decentralized finance
 
 ## 📡 Tech Stack
 
@@ -58,34 +58,22 @@
 
 ## 🛩️ Getting Started
 
-### ⚠️ Prerequisites
-- Node.js **v22.16.0 LTS**
+#### Prerequisites
+- Node.js v22.16.0 LTS
 - Environment variables (see `.env.example`)
 
-### 1. Clone and Install the dependencies
+#### Clone and Install the dependencies
 ```bash
 git clone https://github.com/verona-dev/crypto-horizon.git
 cd crypto-horizon
 npm install
 ```
 
-### 2. Run the Development Server
+#### Run the Development Server
 Start the development server on [http://localhost:3000](http://localhost:3000):
 ```bash
 npm run dev
 ```
-
----
-
-## 📜 License
-
-This project is licensed under the [MIT License](https://opensource.org/license/mit/) – **free for personal and non-commercial use only**.
-
-- **Allowed**: Use, modify, and distribute for **non-commercial purposes**.
-- **Not Allowed**: Commercial use, resale, or redistribution as part of a paid product/service.
-- **Data Sources**: Uses free APIs—comply with their terms.
-
-© 2025 Crypto Horizon
 
 ---
 
@@ -97,5 +85,12 @@ This project is licensed under the [MIT License](https://opensource.org/license/
 
 ![forthebadge](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=WORKS+ON&secondaryLabel=MY+MACHINE&primaryBGColor=%23000000&secondaryBGColor=%2300DC82&primaryTextColor=%23FFFFFF&primaryFontSize=12&primaryFontWeight=600&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryTextColor=%23444444&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase)
 
+---
 
+## 📜 License
 
+This project is licensed under the [MIT License](https://opensource.org/license/mit/) – free for personal and non-commercial use only.
+
+- Allowed: Use, modify, and distribute for non-commercial purposes.
+- Not Allowed: Commercial use, resale, or redistribution as part of a paid product/service.
+- Data Sources: Uses free APIs—comply with their terms.
