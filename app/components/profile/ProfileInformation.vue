@@ -28,7 +28,7 @@
                 
                 <div v-if='item.name === "country"' class='flex items-center gap-2'>
                     <ProfileCountryFlag :country='item.value' size='w-4 h-4' />
-                    <span>{{ item.value.name }}</span>
+                    <span>{{ item.value?.name }}</span>
                 </div>
                 
                 <template v-else>

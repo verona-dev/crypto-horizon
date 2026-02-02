@@ -18,6 +18,7 @@
                                 class='h-52 w-52 rounded-full ring-offset-background ring-10 ring-secondary hover:cursor-pointer hover:ring-green-shamrock'
                             >
                                 <AvatarImage
+                                    v-if='profile_avatar'
                                     :src='profile_avatar'
                                     alt='avatar'
                                 />
