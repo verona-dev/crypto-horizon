@@ -58,7 +58,8 @@ export default defineNuxtConfig({
                '/defi/platforms',
                '/academy',
                '/academy/dyor',
-               '/profile'
+               '/profile',
+               '/animations'
             ],
          },
          {
