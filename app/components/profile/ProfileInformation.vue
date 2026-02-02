@@ -1,7 +1,7 @@
 <template>
-    <Card class='bg-popover h-full xl:h-120 w-full md:w-4/5 xl:w-160 flex flex-col !justify-around p-6 gap-4 !shadow-none'>
-        <CardHeader class='flex-row justify-between rounded-xl border'>
-            <CardTitle class='text-2xl'>Personal Information</CardTitle>
+    <Card class='bg-popover h-full xl:h-120 w-full md:w-4/5 xl:w-160 flex flex-col !justify-around p-4 gap-4 !shadow-none'>
+        <CardHeader class='flex-row justify-between'>
+            <CardTitle class='text-3xl'>Personal Information</CardTitle>
             
             <Button
                 @click='onHandleDrawer(true)'
@@ -28,7 +28,7 @@
                 
                 <div v-if='item.name === "country"' class='flex items-center gap-2'>
                     <ProfileCountryFlag :country='item.value' size='w-4 h-4' />
-                    <span>{{ item.value.name }}</span>
+                    <span>{{ item.value?.name }}</span>
                 </div>
                 
                 <template v-else>

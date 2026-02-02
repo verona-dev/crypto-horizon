@@ -1,120 +1,129 @@
 <template>
     <Drawer v-model:open='drawer_visibility'>
         <DrawerContent>
-            <div class='mx-auto w-full max-w-md md:max-w-2xl grid gap-6'>
-                <DrawerHeader class='mt-4'>
+            <div class='mx-auto w-full max-w-md md:max-w-3xl grid gap-6'>
+                <DrawerHeader>
                     <DrawerTitle class='text-3xl'>Edit Profile</DrawerTitle>
                     <DrawerDescription class='text-md'>Click on any field to update your profile.</DrawerDescription>
                 </DrawerHeader>
                 
                 <div class='grid gap-12 p-4'>
-                    <div class='flex flex-col gap-6 md:flex-row justify-between'>
-                        <!--  Edit Username  -->
-                        <div class='grid gap-2 w-full md:w-64'>
-                            <Label for='username' class='font-semibold tracking-tight'>Username</Label>
-                            
-                            <Input
-                                v-model='selected_username'
-                                :default-value='selected_username'
-                                id='username'
-                                name='username'
-                                type='text'
-                                placeholder='Type username here'
-                            />
-                        </div>
-                        
-                        <!--  Edit Country  -->
-                        <div class='grid gap-2 w-full md:w-64'>
-                            <Label for='country' class='font-semibold tracking-tight'>Country</Label>
-                            
-                            <Popover v-model:open='countries_dropdown_visibility'>
-                                <PopoverTrigger as-child>
-                                    <Button
-                                        variant='outline'
-                                        role='combobox'
-                                        :aria-expanded='countries_dropdown_visibility'
-                                        id='country'
-                                        name='country'
-                                        class='justify-between px-3 py-5'
-                                    >
-                                        <div class='flex items-center gap-2'>
-                                            <ProfileCountryFlag :country='selected_country' />
-                                            
-                                            <span>{{ selected_country?.name || 'Select Country...' }}</span>
-                                        </div>
-                                        <ChevronsUpDownIcon class='opacity-50' />
-                                    </Button>
-                                </PopoverTrigger>
+                    <div class='flex flex-col gap-6 flex-wrap md:flex-row justify-between'>
+                        <div class='flex items-center gap-6 w-full'>
+                            <!--  Edit Username  -->
+                            <div class='grid gap-2 flex-1'>
+                                <Label for='username' class='font-semibold tracking-tight'>Username</Label>
                                 
-                                <PopoverContent class='w-full md:w-64 p-0'>
-                                    <Command>
-                                        <CommandInput class='h-9' placeholder='Search Country...' />
-                                        
-                                        <CommandList>
-                                            <CommandEmpty>No country found.</CommandEmpty>
-                                            <CommandGroup>
-                                                <CommandItem
-                                                    v-for='country in countries'
-                                                    :key='country.code'
-                                                    :value='country.code'
-                                                    @select='(ev) => selectCountry(ev.detail.value as string)'
-                                                    class='py-3 px-2 pl-1 gap-3 cursor-pointer'
-                                                >
-                                                    <ProfileCountryFlag :country='country' class='ml-1' />
-                                                    
-                                                    <span>{{ country.name }}</span>
-                                                    
-                                                    <CheckIcon
-                                                        :class='cn(
+                                <Input
+                                    v-model='selected_username'
+                                    :default-value='selected_username'
+                                    id='username'
+                                    name='username'
+                                    type='text'
+                                    placeholder='Type username here'
+                                    class='text-sm'
+                                />
+                            </div>
+                            
+                            <!--  Edit Country  -->
+                            <div class='grid gap-2 flex-1'>
+                                <Label for='country' class='font-semibold tracking-tight'>Country</Label>
+                                
+                                <Popover v-model:open='countries_dropdown_visibility'>
+                                    <PopoverTrigger as-child>
+                                        <Button
+                                            variant='outline'
+                                            role='combobox'
+                                            :aria-expanded='countries_dropdown_visibility'
+                                            id='country'
+                                            name='country'
+                                            class='justify-between px-3 py-5'
+                                        >
+                                            <div class='flex items-center gap-2'>
+                                                <ProfileCountryFlag :country='selected_country' />
+                                                
+                                                <span>{{ selected_country?.name || 'Select Country...' }}</span>
+                                            </div>
+                                            <ChevronsUpDownIcon class='opacity-50' />
+                                        </Button>
+                                    </PopoverTrigger>
+                                    
+                                    <PopoverContent class='w-full md:w-64 p-0'>
+                                        <Command>
+                                            <CommandInput class='h-9' placeholder='Search Country...' />
+                                            
+                                            <CommandList>
+                                                <CommandEmpty>No country found.</CommandEmpty>
+                                                <CommandGroup>
+                                                    <CommandItem
+                                                        v-for='country in countries'
+                                                        :key='country.code'
+                                                        :value='country.code'
+                                                        @select='(ev) => selectCountry(ev.detail.value as string)'
+                                                        class='py-3 px-2 pl-1 gap-3 cursor-pointer'
+                                                    >
+                                                        <ProfileCountryFlag :country='country' class='ml-1' />
+                                                        
+                                                        <span>{{ country.name }}</span>
+                                                        
+                                                        <CheckIcon
+                                                            :class='cn(
                                                       "ml-auto",
                                                              old_selection === country.code ? "opacity-100" : "opacity-0",
                                                         )'
-                                                    />
-                                                </CommandItem>
-                                            </CommandGroup>
-                                        </CommandList>
-                                    </Command>
+                                                        />
+                                                    </CommandItem>
+                                                </CommandGroup>
+                                            </CommandList>
+                                        </Command>
+                                    </PopoverContent>
+                                </Popover>
+                            </div>
+                        </div>
+                        
+                        <!--  Edit Date of birth  -->
+                        <div class='grid gap-2 w-full'>
+                            <Label for='date' class='font-semibold tracking-tight'>Date of birth</Label>
+                            
+                            <Popover v-model:open='calendar_visibility'>
+                                <PopoverTrigger as-child>
+                                    <Button
+                                        id='date'
+                                        variant='outline'
+                                        class='w-full px-3 py-5 justify-between'
+                                    >
+                                        <div class='flex items-center gap-3'>
+                                            <CalendarIcon class='mb-0.5' />
+                                            <span>{{ selected_date ? selected_date_label : 'Select date' }}</span>
+                                        </div>
+                                        <ChevronDownIcon />
+                                    </Button>
+                                </PopoverTrigger>
+                                
+                                <PopoverContent class='w-auto overflow-hidden p-0' align='start'>
+                                    <Calendar
+                                        :model-value='selected_date'
+                                        weekday-format='short'
+                                        :locale='locale'
+                                        :week-starts-on='1'
+                                        :min-value='new CalendarDate(1900, 1, 1)'
+                                        :max-value='date_today'
+                                        @update:model-value='(value: any) => {
+                                             if (value) {
+                                                 selected_date = value
+                                                 calendar_visibility = false
+                                             }
+                                        }'
+                                    />
                                 </PopoverContent>
                             </Popover>
                         </div>
-                    </div>
-                    
-                    <!--  Edit Date of birth  -->
-                    <div class='flex flex-col gap-3'>
-                        <Label for='date' class='font-semibold tracking-tight'>Date of birth</Label>
                         
-                        <Popover v-model:open='calendar_visibility'>
-                            <PopoverTrigger as-child>
-                                <Button
-                                    id='date'
-                                    variant='outline'
-                                    class='w-full md:w-64 px-3 py-5 justify-between'
-                                >
-                                    <div class='flex items-center gap-3'>
-                                        <CalendarIcon class='mb-0.5' />
-                                        <span>{{ selected_date ? selected_date_label : 'Select date' }}</span>
-                                    </div>
-                                    <ChevronDownIcon />
-                                </Button>
-                            </PopoverTrigger>
-                            
-                            <PopoverContent class='w-auto overflow-hidden p-0' align='start'>
-                                <Calendar
-                                    :model-value='selected_date'
-                                    weekday-format='short'
-                                    :locale='locale'
-                                    :week-starts-on='1'
-                                    :min-value='new CalendarDate(1900, 1, 1)'
-                                    :max-value='date_today'
-                                    @update:model-value='(value: any) => {
-                                         if (value) {
-                                             selected_date = value
-                                             calendar_visibility = false
-                                         }
-                                    }'
-                                />
-                            </PopoverContent>
-                        </Popover>
+                        <!--  Edit Bio  -->
+                        <div class='grid gap-2 w-full'>
+                            <Label for='bio' class='font-semibold tracking-tight'>Bio</Label>
+                            <Textarea v-model='selected_bio' id='bio' class='text-sm' />
+                        </div>
                     </div>
                     
                     <!--  Edit Astronaut Type  -->
@@ -133,7 +142,7 @@
                                     >
                                         <Card
                                             :class='cn(
-                                          "py-4 px-2 relative transition-all shadow-none hover:shadow-xl h-full w-full",
+                                          "py-0 xl:py-4 px-2 relative transition-all shadow-none hover:shadow-xl h-full w-full",
                                                   selected_astronaut_type === option.value && "border-primary/75 shadow-2xl",
                                             )'
                                         >
@@ -171,7 +180,7 @@
                     </div>
                 </div>
                 
-                <DrawerFooter class='mb-16 gap-4'>
+                <DrawerFooter class='mb-4 xl:mb-16 gap-4'>
                     <DrawerClose as-child>
                         <Button
                             @click='onSubmit'
@@ -204,11 +213,12 @@
     import { format as formatDate, isEqual } from 'date-fns';
     import { Input } from '~/components/ui/input';
     import { Label } from '~/components/ui/label';
+    import { parseDateStringToObject } from '~/utils/formatUtils.js';
     import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover';
     import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
-    import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+    import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+    import { Textarea } from '@/components/ui/textarea';
     import { useSidebar } from '~/components/ui/sidebar';
-    import { parseDateStringToObject } from '~/utils/formatUtils.js';
     
     const props = defineProps({
         profile: {
@@ -228,8 +238,6 @@
     const { profile, showDrawer } = toRefs(props);
     const { isMobile } = useSidebar();
     
-    // console.log(JSON.parse(JSON.stringify(profile.value)));
-    
     // Drawer
     const drawer_visibility = ref(showDrawer.value);
     const emit = defineEmits(['handleDrawer']);
@@ -239,6 +247,22 @@
     const current_username = computed(() => profile.value[0]?.value || '');
     const selected_username = ref(current_username.value || '');
     const is_username_current = computed(() => current_username.value === selected_username.value);
+    
+    // Country
+    const countries_dropdown_visibility = ref(false);
+    const current_country = ref(profile.value[4]?.value || '');
+    const old_selection = ref(current_country.value?.code);
+    const selected_country = computed(() => countries.value?.find(country => country.code === old_selection.value));
+    const is_current_country_selected = computed(() => current_country.value?.name === selected_country.value?.name);
+    const selectCountry = (selectedValue: string) => {
+        old_selection.value = selectedValue === old_selection.value ? '' : selectedValue
+        countries_dropdown_visibility.value = false
+    };
+    
+    // Bio
+    const current_bio = computed(() => profile.value[6]?.value || '');
+    const selected_bio = ref(current_bio.value || '');
+    const is_current_bio = computed(() => current_bio.value === selected_bio.value);
     
     // Astronaut Type
     const current_astronaut_type = computed(() => profile.value[2]?.value || '');
@@ -265,17 +289,6 @@
         },
     ];
     
-    // Country
-    const countries_dropdown_visibility = ref(false);
-    const current_country = ref(profile.value[4]?.value || '');
-    const old_selection = ref(current_country.value?.code);
-    const selected_country = computed(() => countries.value?.find(country => country.code === old_selection.value));
-    const is_current_country_selected = computed(() => current_country.value?.name === selected_country.value?.name);
-    const selectCountry = (selectedValue: string) => {
-        old_selection.value = selectedValue === old_selection.value ? '' : selectedValue
-        countries_dropdown_visibility.value = false
-    };
-    
     // Date of birth
     const locale = ref('en-GB');
     const calendar_visibility = ref(false);
@@ -294,16 +307,20 @@
             payload.username = selected_username.value;
         }
         
-        if(!is_current_type_selected.value) {
-            payload.astronaut_type = selected_astronaut_type.value;
-        }
-        
         if(!is_current_country_selected.value && selected_country.value) {
             payload.country = selected_country.value;
         }
         
         if(!is_current_dob_selected.value && selected_date.value) {
             payload.dob = selected_date_formatted.value;
+        }
+        
+        if(!is_current_bio.value) {
+            payload.bio = selected_bio.value;
+        }
+        
+        if(!is_current_type_selected.value) {
+            payload.astronaut_type = selected_astronaut_type.value;
         }
         
         if(Object.keys(payload).length === 0) {

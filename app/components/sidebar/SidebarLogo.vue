@@ -10,8 +10,8 @@
             <!--  Open  -->
             <template v-if='open || isMobile'>
                 <SidebarMenuButton class=' full h-full justify-evenly select-none hover:cursor-default hover:bg-transparent active:bg-transparent'>
-                    <NuxtImg
-                        src='logo/btc-planet.png'
+                    <img
+                        src='assets/logo/btc-planet.png'
                         alt='crypto horizon logo'
                         width='40'
                         height='40'
@@ -27,8 +27,8 @@
             
             <!--  Close  -->
             <template v-else>
-                <NuxtImg
-                    src='logo/btc-planet.png'
+                <img
+                    src='assets/logo/btc-planet.png'
                     alt='crypto horizon logo'
                     width='40'
                     height='40'
