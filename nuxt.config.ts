@@ -140,6 +140,7 @@ export default defineNuxtConfig({
          'xxl': 1536,
          '2xl': 2048
       },
+      provider: 'none',
    },
 
    mazUi: {
