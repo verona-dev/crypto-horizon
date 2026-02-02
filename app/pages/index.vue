@@ -26,10 +26,6 @@
                 v-for='item in welcomeItems'
                 :item='item'
                 :key='item.title'
-                :title='item.title'
-                :src='item.src'
-                :alt='item.alt'
-                :to='item.to'
             />
         </div>
     </div>
@@ -42,7 +38,12 @@
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     
-    const welcomeItems = [
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { profile } = storeToRefs(ProfileStore);
+    
+    const baseItems = ref([
         {
             title: 'Market',
             src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp',
@@ -71,7 +72,25 @@
             to: '/academy',
             color: 'green-deco',
         },
-    ];
+    ]);
+    
+    const profileItem = {
+        title: 'Profile',
+        src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757869845/ai-generated-9248643_rvsgge.jpg',
+        alt: 'profile image',
+        to: '/profile',
+        color: 'sky',
+    };
+    
+    const welcomeItems = computed(() => {
+        const items = [...baseItems.value];
+        
+        if(profile.value) {
+            items.push(profileItem);
+        }
+        
+        return items;
+    });
     
     // SEO
     const title = 'The Crypto Universe Gateway';
