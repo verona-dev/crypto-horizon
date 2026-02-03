@@ -1,7 +1,7 @@
 <template>
-    <div class='bg-popover p-4 w-full rounded-xl border'>
+    <Card class='bg-popover p-6 w-full rounded-xl border'>
         <VMap
-            :zoom='1'
+            :zoom='2'
             :max-bounds='worldBounds'
             :min-zoom='1'
             :center='coordinates'
@@ -20,11 +20,12 @@
                 </VMapPinIcon>
             </VMapMarker>
         </VMap>
-    </div>
+    </Card>
 </template>
 
 <script setup>
     import { VMap, VMapArcGisAeroTileLayer, VMapMarker, VMapPinIcon } from 'vue-map-ui';
+    import { Card } from '~/components/ui/card';
     
     const props = defineProps({
         coordinates: {

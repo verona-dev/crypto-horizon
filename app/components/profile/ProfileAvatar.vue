@@ -15,7 +15,7 @@
                         >
                             <Avatar
                                 @click='toggleDrawer'
-                                class='h-52 w-52 rounded-full ring-offset-background ring-10 ring-secondary hover:cursor-pointer hover:ring-green-shamrock'
+                                class='h-52 w-52 rounded-full ring-offset-background ring-10 ring-secondary hover:cursor-pointer hover:ring-border-hover'
                             >
                                 <AvatarImage
                                     v-if='profile_avatar'
