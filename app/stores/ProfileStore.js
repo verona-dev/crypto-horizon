@@ -36,6 +36,23 @@ export const useProfileStore = defineStore('ProfileStore', {
             }
         },
         
+        async addToWatchlist(payload) {
+            console.log(payload);
+            try {
+                const { data, error } = await $fetch('/api/supabase/user/profile/watchlist', {
+                    method: 'PATCH',
+                    headers: useRequestHeaders(['cookie']),
+                    body: payload,
+                });
+                
+                console.log(data);
+                
+                return { data, error };
+            } catch(error) {
+                console.error(error);
+            }
+        },
+        
         async getAvatars() {
             try {
                 const { data, error } = await $fetch('/api/supabase/user/avatars', {
