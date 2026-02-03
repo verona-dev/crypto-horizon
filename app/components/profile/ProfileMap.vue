@@ -3,6 +3,7 @@
         <VMap
             :zoom='1'
             :max-bounds='worldBounds'
+            :min-zoom='1'
             :center='coordinates'
             style='height: 400px'
             class='rounded-xl shadow-2xl !bg-popover'
