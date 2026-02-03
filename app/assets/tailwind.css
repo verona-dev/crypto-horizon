@@ -111,6 +111,31 @@ html.light {
     --color-yellow-selective: var(--yellow-selective);
     --color-warning: var(--warning);
     
+    --color-blue-cove: var(--blue-cove);
+    --color-blue-fountain: var(--blue-fountain);
+    --color-blue-oxford: var(--blue-oxford);
+    --color-blue-pacific: var(--blue-pacific);
+    --color-blue-sky: var(--blue-sky);
+    --color-gray-dull: var(--gray-dull);
+    --color-gray-gull: var(--gray-gull);
+    --color-green-aquamarine: var(--green-aquamarine);
+    --color-green-feijoa: var(--green-feijoa);
+    --color-green-fern: var(--green-fern);
+    --color-green-haze: var(--green-haze);
+    --color-green-lochinvar: var(--green-lochinvar);
+    --color-green-deep: var(--green-deep);
+    --color-magenta-hopbush: var(--magenta-hopbush);
+    --color-green-niagara: var(--green-niagara);
+    --color-pink-rouge: var(--pink-rouge);
+    --color-purple-wisteria: var(--purple-wisteria);
+    --color-red-carmine: var(--red-carmine);
+    --color-teal: var(--teal);
+    --color-yellow-colonial: var(--yellow-colonial);
+    --color-yellow-daisy: var(--yellow-daisy);
+    --color-yellow-manz: var(--yellow-manz);
+    --color-white-ivory: var(--white-ivory);
+    --color-white-sand: var(--white-sand);
+    
     --animate-meteor-effect: meteor 5s linear infinite;
     @keyframes meteor {
         0% {
@@ -221,6 +246,31 @@ html.light {
     --orange-bitcoin: #f7931a;
     --yellow-selective: #ffb900;
     --warning: oklch(83.7% 0.128 66.29);
+    
+    --blue-cove: #7393bc;
+    --blue-fountain: #50b8b1;
+    --blue-oxford: #3d4756;
+    --blue-pacific: #00b1bc;
+    --blue-sky: #0069a8;
+    --gray-dull: #edeade;
+    --gray-gull: #a1acbd;
+    --green-aquamarine: #77fac7;
+    --green-feijoa: #93e883;
+    --green-fern: #6eae62;
+    --green-haze: #00a566;
+    --green-lochinvar: #288c84;
+    --green-niagara: #16a085;
+    --green-deep: #008a5e;
+    --magenta-hopbush: #d65fa3;
+    --pink-rouge: #a04668;
+    --purple-wisteria: #9866b7;
+    --red-carmine: #b33a3c;
+    --teal: #008080;
+    --yellow-colonial: #eee8a9;
+    --yellow-manz: #ecec6d;
+    --yellow-daisy: #f9f871;
+    --white-ivory: #faf9f6;
+    --white-sand: #f4f4f5;
 }
 
 .dark {
