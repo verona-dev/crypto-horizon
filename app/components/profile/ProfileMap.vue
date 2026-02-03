@@ -1,7 +1,10 @@
 <template>
-    <section class='section'>
-        <h2>Simple Map</h2>
-        <VMap style='height: 200px; width: 800px'>
+    <section class='border w-full rounded-xl'>
+        <VMap
+            :zoom='1'
+            style='height: 400px'
+            class='rounded-xl'
+        >
             <VMapArcGisAeroTileLayer />
             
             <VMapAttributionControl />
