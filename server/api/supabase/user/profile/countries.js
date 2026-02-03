@@ -1,19 +1,27 @@
-import countries from '~/assets/data/countries.json';
+import { serverSupabaseClient } from '#supabase/server';
 
-export default defineCachedEventHandler(() => {
+export default defineCachedEventHandler(async(event) => {
     try {
-        if(!countries) {
+        const client = await serverSupabaseClient(event);
+        
+        const { data, error } = await client
+           .storage
+           .from('countries')
+           .download('countries.json');
+        
+        if(error) {
             throw createError({
                 statusCode: 500,
-                statusMessage: 'Countries data is missing or invalid',
-            })
+                statusMessage: 'Failed to download countries from server',
+            });
         }
         
-        return countries;
+        const countries = await data.text();
+        return JSON.parse(countries);
     } catch(error) {
         throw createError({
             statusCode: 500,
-            statusMessage: 'Failed to load countries data.',
-        })
+            statusMessage: 'Failed to download countries from server',
+        });
     }
 }, { maxAge: 60 * 60 * 24 * 30 });
