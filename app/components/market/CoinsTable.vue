@@ -151,14 +151,14 @@
                                         <div class='pt-1'>
                                             <NuxtIcon
                                                 v-if='row.getIsSelected()'
-                                                @click='row.toggleSelected(!row.getIsSelected())'
+                                                @click.prevent='onAddToWatchlist(row)'
                                                 name='ph:star-fill'
                                                 class='text-yellow-selective hover:cursor-pointer'
                                                 size='16'
                                             />
                                             <NuxtIcon
                                                 v-else
-                                                @click='row.toggleSelected(!row.getIsSelected())'
+                                                @click.prevent='onAddToWatchlist(row)'
                                                 name='ph:star'
                                                 class='text-muted-foreground hover:cursor-pointer'
                                                 size='16'
@@ -309,12 +309,27 @@
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     
+    // MarketStore
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     import { Line } from 'vue-chartjs';
     const MarketStore = useMarketStore();
-    
     const { getCoinsMarkets } = MarketStore;
+    
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { addToWatchlist } = ProfileStore;
+    
+    const onAddToWatchlist = (row) => {
+        row.toggleSelected(!row.getIsSelected());
+        
+        let payload = {
+            watchlist: row.original.id
+        };
+        
+        addToWatchlist(payload);
+    };
     
     // State
     const { coins } = storeToRefs(MarketStore);

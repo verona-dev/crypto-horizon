@@ -50,7 +50,6 @@
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
-    import { ParticlesBg } from '@/components/ui/particles-bg/index.ts';
     const ProfileStore = useProfileStore();
     const { profile } = storeToRefs(ProfileStore);
     
