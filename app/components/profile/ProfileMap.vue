@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-popover p-6 w-full rounded-xl border'>
+    <Card class='bg-popover p-6 w-full md:w-4/5 xl:w-full rounded-xl border'>
         <VMap
             :zoom='2'
             :max-bounds='worldBounds'
