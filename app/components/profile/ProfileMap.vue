@@ -1,13 +1,13 @@
 <template>
-    <section class='border w-full rounded-xl'>
+    <div class='bg-popover p-4 w-full rounded-xl border'>
         <VMap
             :zoom='1'
+            :max-bounds='worldBounds'
+            :center='coordinates'
             style='height: 400px'
-            class='rounded-xl'
+            class='rounded-xl shadow-2xl !bg-popover'
         >
             <VMapArcGisAeroTileLayer />
-            
-            <VMapAttributionControl />
             
             <VMapMarker :latlng='coordinates'>
                 <VMapPinIcon color='#e74645'>
@@ -19,11 +19,11 @@
                 </VMapPinIcon>
             </VMapMarker>
         </VMap>
-    </section>
+    </div>
 </template>
 
 <script setup>
-    import { VMap, VMapArcGisAeroTileLayer, VMapAttributionControl, VMapMarker, VMapPinIcon } from 'vue-map-ui';
+    import { VMap, VMapArcGisAeroTileLayer, VMapMarker, VMapPinIcon } from 'vue-map-ui';
     
     const props = defineProps({
         coordinates: {
@@ -31,4 +31,9 @@
             required: true,
         },
     });
+    
+    const worldBounds = [
+        [-90, -180],
+        [90, 180],
+    ];
 </script>
