@@ -46,9 +46,7 @@
         { name: 'updated_at', label: 'Last profile update', value: profile.value?.updated_at ? dayjs(profile.value?.updated_at).fromNow() : '-' },
     ]);
     
-    const coordinates = ref([33, 65]);
-    
-    // console.log(profile_formatted.value);
+    const coordinates = computed(() => profile.value?.country ? [profile.value?.country.lat, profile.value?.country.long] : []);
     
     // SEO
     const title = 'Private Profile';
