@@ -1,5 +1,5 @@
 <template>
-    <div class='profile page gap-12'>
+    <div class='profile page gap-12 flex-col'>
         <h3>Profile</h3>
         
         <div class='w-full flex flex-col xl:flex-row items-center justify-center gap-6'>
@@ -10,12 +10,17 @@
             
             <ProfileInformation :profile='profile_formatted' />
         </div>
+        
+        <client-only>
+            <ProfileMap :coordinates='coordinates' />
+        </client-only>
     </div>
 </template>
 
 <script setup>
     import ProfileAvatar from '~/components/profile/ProfileAvatar.vue';
     import ProfileInformation from '~/components/profile/ProfileInformation.vue';
+    import ProfileMap from '~/components/profile/ProfileMap.vue';
     
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
@@ -38,6 +43,7 @@
         { name: 'bio', label: 'Bio', value: profile.value?.bio },
         { name: 'updated_at', label: 'Last profile update', value: profile.value?.updated_at ? dayjs(profile.value?.updated_at).fromNow() : '-' },
     ]);
+    const coordinates = ref([-50, -20]);
     
     // console.log(profile_formatted.value);
     
