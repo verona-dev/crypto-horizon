@@ -50,6 +50,7 @@ html.light {
     --color-destructive: var(--destructive);
     --color-destructive-foreground: var(--destructive-foreground);
     --color-border: var(--border);
+    --color-border-hover: var(--border-hover);
     --color-input: var(--input);
     --color-ring: var(--ring);
     --color-chart-1: var(--chart-1);
@@ -192,6 +193,7 @@ html.light {
     --destructive: #cc3333;
     --destructive-foreground: #ffffff;
     --border: #d0d0d0;
+    --border-hover: var(--blue-pacific);
     --input: #e0e0e0;
     --ring: #606060;
     --chart-1: #606060;
