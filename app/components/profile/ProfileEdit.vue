@@ -48,7 +48,7 @@
                                         </Button>
                                     </PopoverTrigger>
                                     
-                                    <PopoverContent class='w-full md:w-64 p-0'>
+                                    <PopoverContent class='w-full md:w-76 p-0'>
                                         <Command>
                                             <CommandInput class='h-9' placeholder='Search Country...' />
                                             
@@ -332,7 +332,7 @@
         
         if(success) {
             await getProfile();
-            displayToast('Successfully updated profile.');
+            displayToast('Profile updated successfully.');
         } else {
             displayToast('Cannot update astronaut type.');
         }

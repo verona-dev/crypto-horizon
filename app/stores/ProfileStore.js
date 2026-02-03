@@ -51,15 +51,15 @@ export const useProfileStore = defineStore('ProfileStore', {
         },
         
         async getCountries() {
-          try {
-              const data = await $fetch('/api/supabase/user/profile/countries');
-              
-              if(data) {
-                  this.countries = data;
-              }
-          } catch(error) {
-              console.error(error);
-          }
+            try {
+                const data = await $fetch('/api/supabase/user/profile/countries');
+                
+                if(!data) return;
+                
+                this.countries = data;
+            } catch(error) {
+                console.error(error);
+            }
         },
     },
 });

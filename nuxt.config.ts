@@ -7,78 +7,12 @@ const site_name = 'Crypto Horizon';
 export default defineNuxtConfig({
    devtools: { enabled: true },
 
-   // SEO
-   // site-config
    site: {
       // url: site_url, // canonical URL
       name: site_name, // used in Title and Meta tags
       // description: site_description, // used in Meta tags
       defaultLocale: 'en-GB',
       trailingSlash: false,
-   },
-
-   // seo-utils
-   seo: {
-      enabled: true,
-      meta: {
-         // ogImage options in /plugins/global-meta.ts
-         applicationName: site_name,
-         author: 'verona-dev',
-         colorScheme: 'dark light',
-         // description: site_description,
-
-         ogSiteName: site_name,
-         // ogUrl: site_url, // canonical URL
-         // ogTitle: site_name,
-         // ogDescription: site_description,
-         ogLocale: 'en-GB',
-         ogType: 'website',
-         // robots: 'index, follow',
-         themeColor: [
-            { content: '#14161f', media: '(prefers-color-scheme: dark)' },
-            { content: '#f0f0f0', media: '(prefers-color-scheme: light)' },
-         ],
-         // twitterCard: 'summary_large_image',
-         // twitterTitle: site_name,
-         // twitterDescription: site_description,
-      },
-   },
-
-   linkChecker: {
-      enabled: true
-   },
-
-   robots: {
-      groups: [
-         {
-            userAgent: '*',
-            disallow: [
-               '/market/exchanges',
-               '/defi',
-               '/defi/platforms',
-               '/academy',
-               '/academy/dyor',
-               '/profile',
-               '/animations'
-            ],
-         },
-         {
-            userAgent: 'facebookexternalhit',
-            allow: '/',
-         },
-         {
-            userAgent: ['GPTBot', 'ChatGPT-User'],
-            disallow: ['/']
-         },
-      ],
-   },
-
-   sitemap: {
-      enabled: true,
-   },
-
-   schemaOrg: {
-      enabled: false
    },
 
    // Project
@@ -143,6 +77,10 @@ export default defineNuxtConfig({
       provider: 'none',
    },
 
+   linkChecker: {
+      enabled: true
+   },
+
    mazUi: {
       theme: {
          preset: 'maz-ui',
@@ -174,6 +112,31 @@ export default defineNuxtConfig({
       },
    },
 
+   robots: {
+      groups: [
+         {
+            userAgent: '*',
+            disallow: [
+               '/market/exchanges',
+               '/defi',
+               '/defi/platforms',
+               '/academy',
+               '/academy/dyor',
+               '/profile',
+               '/animations'
+            ],
+         },
+         {
+            userAgent: 'facebookexternalhit',
+            allow: '/',
+         },
+         {
+            userAgent: ['GPTBot', 'ChatGPT-User'],
+            disallow: ['/']
+         },
+      ],
+   },
+
    runtimeConfig: {
       public: {
          site_url: process.env.SITE_URL,
@@ -184,9 +147,44 @@ export default defineNuxtConfig({
       cmc_api_key: process.env.CMC_API_KEY,
    },
 
+   schemaOrg: {
+      enabled: false
+   },
+
    shadcn: {
       prefix: '',
       componentDir: './app/components/ui'
+   },
+
+   // seo-utils
+   seo: {
+      enabled: true,
+      meta: {
+         // ogImage options in /plugins/global-meta.ts
+         applicationName: site_name,
+         author: 'verona-dev',
+         colorScheme: 'dark light',
+         // description: site_description,
+
+         ogSiteName: site_name,
+         // ogUrl: site_url, // canonical URL
+         // ogTitle: site_name,
+         // ogDescription: site_description,
+         ogLocale: 'en-GB',
+         ogType: 'website',
+         // robots: 'index, follow',
+         themeColor: [
+            { content: '#14161f', media: '(prefers-color-scheme: dark)' },
+            { content: '#f0f0f0', media: '(prefers-color-scheme: light)' },
+         ],
+         // twitterCard: 'summary_large_image',
+         // twitterTitle: site_name,
+         // twitterDescription: site_description,
+      },
+   },
+
+   sitemap: {
+      enabled: true,
    },
 
    ssr: true, // true for ogImage
