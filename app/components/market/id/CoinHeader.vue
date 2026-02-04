@@ -1,6 +1,6 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex w-full animate-fadeIn'>
-        <Card class='bg-background flex flex-col items-center justify-center relative'>
+        <Card class='bg-background flex flex-col items-center justify-center relative border-none'>
             <GlowBorder
                 v-if='dark_mode'
                 :color='["#A07CFE", "#FE8FB5", "#FFBE7B"]'
