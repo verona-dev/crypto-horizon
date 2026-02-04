@@ -12,10 +12,11 @@ export default defineEventHandler(async (event) => {
         });
     }
     console.log(body);
+    
     try {
         const { data, error } = await client
            .from('profiles')
-           .update(body)
+           .update({ watchlist: body })
            .eq('id', user.sub)
            .select()
            .single();
