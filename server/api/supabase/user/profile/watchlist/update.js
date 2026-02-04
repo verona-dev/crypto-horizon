@@ -11,7 +11,6 @@ export default defineEventHandler(async (event) => {
             statusMessage: 'Unauthorized',
         });
     }
-    console.log(body);
     
     try {
         const { data, error } = await client

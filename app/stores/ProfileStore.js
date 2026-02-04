@@ -37,7 +37,6 @@ export const useProfileStore = defineStore('ProfileStore', {
         },
         
         async addToWatchlist(payload) {
-            console.log(payload);
             try {
                 const { data, error } = await $fetch('/api/supabase/user/profile/watchlist/update', {
                     method: 'PATCH',
@@ -45,7 +44,9 @@ export const useProfileStore = defineStore('ProfileStore', {
                     body: payload,
                 });
                 
-                console.log(data);
+                if(error) throw error;
+                
+                this.profile = data;
                 
                 return { data, error };
             } catch(error) {
