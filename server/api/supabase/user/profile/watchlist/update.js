@@ -12,13 +12,13 @@ export default defineEventHandler(async (event) => {
         });
     }
     
+    const { coin } = body;
+    
     try {
-        const { data, error } = await client
-           .from('profiles')
-           .update({ watchlist: body })
-           .eq('id', user.sub)
-           .select()
-           .single();
+        const { data, error } = await client.rpc('add_to_watchlist', {
+            p_id: user.sub,
+            coin: coin
+        });
         
         if (error) {
             throw createError({
@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
         
         return { data, error };
     } catch (error) {
-        console.error('Unexpected error:', error);
+        console.error('Error updating watchlist:', error);
         
         throw createError({
             statusCode: 500,
