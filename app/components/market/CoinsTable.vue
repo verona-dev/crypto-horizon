@@ -187,7 +187,7 @@
                                                         alt='coin logo'
                                                     />
                                                     
-                                                    <div class='flex flex-col items-start gap-1'>
+                                                    <div class='flex flex-col items-start gap-1 truncate'>
                                                         <p class='font-medium'>{{ cell.getValue() }}</p>
                                                         <span class='uppercase text-xs text-muted-foreground'>{{ cell.row.original.symbol }}</span>
                                                     </div>
@@ -323,12 +323,7 @@
     
     const onAddToWatchlist = (row) => {
         row.toggleSelected(!row.getIsSelected());
-        
-        let payload = {
-            watchlist: row.original.id
-        };
-        
-        addToWatchlist(payload);
+        addToWatchlist([row.original.id]);
     };
     
     // State
