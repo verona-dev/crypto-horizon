@@ -319,11 +319,11 @@
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
-    const { addToWatchlist } = ProfileStore;
+    const { toggleWatchlistCoin } = ProfileStore;
     
     const onAddToWatchlist = (row) => {
         row.toggleSelected(!row.getIsSelected());
-        addToWatchlist({ coin: row.original.id});
+        toggleWatchlistCoin({ coin: row.original.id});
     };
     
     // State
