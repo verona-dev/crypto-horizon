@@ -42,9 +42,9 @@
                         <!--  Rank  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
-                                <Badge class='h-8 px-2 py-1 text-muted-foreground' variant='outline'>
-                                
-                                &#35;{{ coingecko.market_cap_rank }}
+                                <Badge class='h-12 py-2 px-4 text-muted-foreground' variant='outline'>
+                                    
+                                    &#35;{{ coingecko.market_cap_rank }}
                                 </Badge>
                             </HoverCardTrigger>
                             
@@ -65,17 +65,18 @@
                         <!--  Portfolio watchlist  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
-                                <Badge class='h-8 px-2 flex items-center gap-2 text-xs text-muted-foreground' variant='outline'>
-                                
-                                <NuxtIcon
-                                        name='ph:star-half-fill'
-                                        class='text-yellow-selective'
+                                <Badge class='h-12 py-2 px-4 flex items-center gap-2 text-xs text-muted-foreground hover:border-border-hover' variant='outline'>
+                                    <NuxtIcon
+                                        @click.prevent='onToggleWatchlistCoin()'
+                                        :name='isCoinInWatchlist ? "ph:star-half-fill" : "ph:star"'
+                                        class='hover:cursor-pointer mb-0.5'
+                                        :class='isCoinInWatchlist ? "text-yellow-selective" : "text-muted-foreground"'
                                         size='20'
                                     />
-                                    {{ watchlist_portfolio }}
+                                    {{ coingecko_watchlists }}
                                 </Badge>
                             </HoverCardTrigger>
-                            <HoverCardContent>{{ watchlist_portfolio }} watchlists on Coingecko include {{ coin.symbol }}.</HoverCardContent>
+                            <HoverCardContent>{{ coingecko_watchlists }} watchlists on Coingecko include {{ coin.symbol }}.</HoverCardContent>
                         </HoverCard>
                     </CardDescription>
                 </div>
@@ -168,8 +169,14 @@
     const MarketStore = useMarketStore();
     const { getTimeframe, getCoinPrice } = storeToRefs(MarketStore);
     
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { profile } = storeToRefs(ProfileStore);
+    const { toggleWatchlistCoin } = ProfileStore;
+    
     // Router
-    const router  = useRouter();
+    // const router  = useRouter();
     
     const props = defineProps({
         coin: {
@@ -182,12 +189,21 @@
     const coingecko = toRef(coin.value?.coingecko);
     const livecoinwatch = toRef(coin.value?.livecoinwatch);
     const livecoinwatch_symbol = computed(() => livecoinwatch.value?.symbol || '');
-    const watchlist_portfolio = formatNumber(coingecko.value?.watchlist_portfolio_users, {
-        style: 'decimal', compact: true, decimals: 2,
-    });
+    const coin_id = ref(coingecko.value?.id);
     const not_bitcoin = coin.value?.symbol !== 'BTC';
     const timeframe = computed(() => coin.value.timeframe);
     const timeframe_label = computed(() => getTimeframe.value?.label);
+    
+    // Watchlist
+    const coingecko_watchlists = formatNumber(coingecko.value?.watchlist_portfolio_users, {
+        style: 'decimal', compact: true, decimals: 2,
+    });
+    const watchlist = computed(() => profile.value?.watchlist);
+    const isCoinInWatchlist = computed(() => watchlist.value?.includes(coin_id.value));
+    
+    const onToggleWatchlistCoin = () => {
+        toggleWatchlistCoin({ coin: coin_id.value });
+    };
     
     // Price in USD
     const current_price = computed(() => getCoinPrice.value);
