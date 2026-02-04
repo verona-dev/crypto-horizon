@@ -32,6 +32,7 @@ export default defineEventHandler(async (event) => {
             country: data.country,
             updated_at: data.updated_at,
             username: data.username,
+            watchlist: data.watchlist,
         };
         
         return { data: profile, error };
