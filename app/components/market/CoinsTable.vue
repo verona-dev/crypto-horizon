@@ -146,38 +146,44 @@
                                     :key='row.id'
                                     class='hover:bg-muted/50 hover:cursor-pointer border-t-0 !px-6 animate-fadeIn'
                                 >
+                                    <!--   Checkbox / Favourites  -->
                                     <TableCell class='h-20 text-center'>
-                                        <!--   Checkbox / Favourites  -->
                                         <div class='pt-1'>
                                             <NuxtIcon
-                                                v-if='row.getIsSelected()'
-                                                @click.prevent='onAddToWatchlist(row)'
-                                                name='ph:star-fill'
-                                                class='text-yellow-selective hover:cursor-pointer'
-                                                size='16'
-                                            />
-                                            <NuxtIcon
-                                                v-else
-                                                @click.prevent='onAddToWatchlist(row)'
-                                                name='ph:star'
-                                                class='text-muted-foreground hover:cursor-pointer'
+                                                @click.prevent='onToggleWatchlistCoin(row)'
+                                                :name='isCoinInWatchlist(row.original.id) ? "ph:star-fill" : "ph:star"'
+                                                class='hover:cursor-pointer'
+                                                :class='isCoinInWatchlist(row.original.id) ? "text-yellow-selective" : "text-muted-foreground"'
                                                 size='16'
                                             />
                                         </div>
                                     </TableCell>
-                                    
+                             
                                     <NuxtLink
                                         :to='`/market/${row.original.id}`'
                                         class='contents'
                                     >
                                         <TableCell
-                                            v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "checkbox")'
+                                            v-for='cell in row.getVisibleCells()'
                                             :key='cell.id'
                                             class='h-20'
                                             :class='{
                                                 "flex justify-end": cell.column.id === "sparkline_in_7d",
                                             }'
                                         >
+                                            <!--   Checkbox / Favourites  -->
+<!--
+                                            <template v-if='cell.column.id === "checkbox"'>
+                                                <NuxtIcon
+                                                    @click.prevent='onToggleWatchlistCoin(cell.row)'
+                                                    :name='isCoinInWatchlist(cell.row.original.id) ? "ph:star-fill" : "ph:star"'
+                                                    class='hover:cursor-pointer'
+                                                    :class='isCoinInWatchlist(cell.row.original.id) ? "text-yellow-selective" : "text-muted-foreground"'
+                                                    size='16'
+                                                />
+                                            </template>
+                                            -->
+                                            
                                             <!--   Name  -->
                                             <template v-if='cell.column.id === "name"'>
                                                 <div class='flex items-center gap-4 w-88'>
@@ -319,15 +325,27 @@
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
+    const { profile } = storeToRefs(ProfileStore);
     const { toggleWatchlistCoin } = ProfileStore;
-    
-    const onAddToWatchlist = (row) => {
-        row.toggleSelected(!row.getIsSelected());
-        toggleWatchlistCoin({ coin: row.original.id});
-    };
     
     // State
     const { coins } = storeToRefs(MarketStore);
+    
+    // Watchlist
+    const watchlist = computed(() => profile.value?.watchlist);
+    const isCoinInWatchlist = computed(() => {
+        return (coin) => {
+            return watchlist.value?.includes(coin);
+        };
+    });
+    
+    const onToggleWatchlistCoin = (row) => {
+        const coin = row.original.id || '';
+        row.toggleSelected(!row.getIsSelected());
+        toggleWatchlistCoin({ coin });
+    };
+    
+    // Sorting + Filtering
     const sorting = ref([]);
     const sortingLabel = ref('Market Cap');
     const onSort = header => {

@@ -45,7 +45,10 @@ export const useProfileStore = defineStore('ProfileStore', {
                     body: JSON.stringify(payload),
                 });
                 
-                if(error) throw error;
+                if(error) {
+                    displayToast('There was an issue updating your watchlist.');
+                    throw error;
+                };
                 
                 if(data && data[0]) {
                     this.profile.watchlist = data[0]?.watchlist;
