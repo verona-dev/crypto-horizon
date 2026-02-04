@@ -171,19 +171,6 @@
                                                 "flex justify-end": cell.column.id === "sparkline_in_7d",
                                             }'
                                         >
-                                            <!--   Checkbox / Favourites  -->
-<!--
-                                            <template v-if='cell.column.id === "checkbox"'>
-                                                <NuxtIcon
-                                                    @click.prevent='onToggleWatchlistCoin(cell.row)'
-                                                    :name='isCoinInWatchlist(cell.row.original.id) ? "ph:star-fill" : "ph:star"'
-                                                    class='hover:cursor-pointer'
-                                                    :class='isCoinInWatchlist(cell.row.original.id) ? "text-yellow-selective" : "text-muted-foreground"'
-                                                    size='16'
-                                                />
-                                            </template>
-                                            -->
-                                            
                                             <!--   Name  -->
                                             <template v-if='cell.column.id === "name"'>
                                                 <div class='flex items-center gap-4 w-88'>
