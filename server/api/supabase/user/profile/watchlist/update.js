@@ -15,8 +15,8 @@ export default defineEventHandler(async (event) => {
     const { coin } = body;
     
     try {
-        const { data, error } = await client.rpc('add_to_watchlist', {
-            p_id: user.sub,
+        const { data, error } = await client.rpc('toggle_watchlist', {
+            id: user.sub,
             coin: coin
         });
         
