@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { displayToast } from '~/utils/toast.js';
 
 export const useProfileStore = defineStore('ProfileStore', {
     state: () => ({
@@ -48,6 +49,7 @@ export const useProfileStore = defineStore('ProfileStore', {
                 
                 if(data && data[0]) {
                     this.profile.watchlist = data[0]?.watchlist;
+                    displayToast('Your watchlist was updated successfully.');
                 }
                 
                 return { data, error };
