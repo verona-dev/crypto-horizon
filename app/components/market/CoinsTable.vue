@@ -323,7 +323,7 @@
     
     const onAddToWatchlist = (row) => {
         row.toggleSelected(!row.getIsSelected());
-        addToWatchlist(row.original.id);
+        addToWatchlist({ coin: row.original.id});
     };
     
     // State

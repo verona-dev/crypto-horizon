@@ -41,12 +41,14 @@ export const useProfileStore = defineStore('ProfileStore', {
                 const { data, error } = await $fetch('/api/supabase/user/profile/watchlist/update', {
                     method: 'PATCH',
                     headers: useRequestHeaders(['cookie']),
-                    body: payload,
+                    body: JSON.stringify(payload),
                 });
                 
                 if(error) throw error;
                 
-                this.profile = data;
+                if(data && data[0]) {
+                    this.profile.watchlist = data[0]?.watchlist;
+                }
                 
                 return { data, error };
             } catch(error) {
