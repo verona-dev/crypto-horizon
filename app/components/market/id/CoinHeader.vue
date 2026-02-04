@@ -42,8 +42,7 @@
                         <!--  Rank  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
-                                <Badge class='h-12 py-2 px-4 text-muted-foreground' variant='outline'>
-                                    
+                                <Badge class='h-12 py-2 px-4 text-lg text-muted-foreground' variant='outline'>
                                     &#35;{{ coingecko.market_cap_rank }}
                                 </Badge>
                             </HoverCardTrigger>
@@ -65,13 +64,13 @@
                         <!--  Portfolio watchlist  -->
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
-                                <Badge class='h-12 py-2 px-4 flex items-center gap-2 text-xs text-muted-foreground hover:border-border-hover' variant='outline'>
+                                <Badge class='h-12 py-2 px-4 flex items-center gap-2 text-lg text-muted-foreground' variant='outline'>
                                     <NuxtIcon
                                         @click.prevent='onToggleWatchlistCoin()'
-                                        :name='isCoinInWatchlist ? "ph:star-half-fill" : "ph:star"'
-                                        class='hover:cursor-pointer mb-0.5'
-                                        :class='isCoinInWatchlist ? "text-yellow-selective" : "text-muted-foreground"'
-                                        size='20'
+                                        :name='isCoinInWatchlist ? "ph:star-fill" : "ph:star-duotone"'
+                                        class='hover:cursor-pointer'
+                                        :class='isCoinInWatchlist ? "text-yellow-selective" : "text-yellow-selective/75"'
+                                        size='28'
                                     />
                                     {{ coingecko_watchlists }}
                                 </Badge>
