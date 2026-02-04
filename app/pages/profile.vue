@@ -1,8 +1,6 @@
 <template>
     <div class='profile page gap-12 flex-col'>
-        <!--
-        <h3>Profile</h3>
-        -->
+        <ProfileWatchlist />
         
         <div class='flex flex-col items-center gap-6'>
             <div class='w-full flex flex-col xl:flex-row items-center justify-center gap-6'>
@@ -37,6 +35,7 @@
     import ProfileAvatar from '~/components/profile/ProfileAvatar.vue';
     import ProfileInformation from '~/components/profile/ProfileInformation.vue';
     import ProfileMap from '~/components/profile/ProfileMap.vue';
+    import ProfileWatchlist from '~/components/profile/ProfileWatchlist.vue';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
     
     import dayjs from 'dayjs';
