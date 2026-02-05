@@ -1,8 +1,8 @@
 <template>
     <div class='profile page gap-12 flex-col'>
-        <ProfileWatchlist />
-        
         <div class='flex flex-col items-center gap-6'>
+            <ProfileWatchlist />
+            
             <div class='w-full flex flex-col xl:flex-row items-center justify-center gap-6'>
                 <ProfileAvatar
                     :username='profile.username'
