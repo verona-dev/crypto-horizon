@@ -164,7 +164,7 @@
                                         class='contents'
                                     >
                                         <TableCell
-                                            v-for='cell in row.getVisibleCells()'
+                                            v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "checkbox")'
                                             :key='cell.id'
                                             class='h-20'
                                             :class='{
