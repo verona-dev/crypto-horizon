@@ -155,6 +155,28 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
+        async getCoingeckoCoinSimple(id) {
+            this.loading = true;
+            const coin = 'bitcoin';
+            
+            try {
+                const response = await useFetchCoingecko(`simple/price`, {
+                    params: {
+                        id: coin,
+                        vs_currency: 'usd',
+                        include_market_cap: true,
+                        include_24hr_vol: true,
+                    },
+                });
+                
+                if(response) {
+                    console.log(response);
+                }
+            } catch(error) {
+                console.error(error);
+            }
+        },
+        
         async formatCoinLinks() {
             this.coin.links = formatLinks(this.coin?.coingecko?.links, this.coin?.livecoinwatch?.links);
         },
