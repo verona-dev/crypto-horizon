@@ -21,16 +21,17 @@
     
     const logged_in = computed(() => profile.value);
     
+    const guest_avatar = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_256/v1767535202/astronaut-3_oauvzn.png';
     const avatar = computed(() => {
         if(logged_in.value) {
-            return profile.value?.avatar_url;
+            return profile.value?.avatar_url || guest_avatar;
         }
-        return 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_256/v1767535202/astronaut-3_oauvzn.png';
+        return guest_avatar;
     });
     
     const username = computed(() => {
         if(logged_in.value) {
-            return profile.value?.username;
+            return profile.value?.username || 'User';
         }
         return 'Guest';
     });
@@ -39,7 +40,7 @@
         if(logged_in.value) {
             return profile.value?.email;
         }
-        return null;
+        return '';
     });
     
     const onLogOut = async() => {

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { displayToast } from '~/utils/toast.js';
 
 export const useProfileStore = defineStore('ProfileStore', {
     state: () => ({
@@ -31,6 +32,30 @@ export const useProfileStore = defineStore('ProfileStore', {
                 });
                 
                 return { success, error };
+            } catch(error) {
+                console.error(error);
+            }
+        },
+        
+        async toggleWatchlistCoin(payload) {
+            try {
+                const { data, error } = await $fetch('/api/supabase/user/profile/watchlist/update', {
+                    method: 'PATCH',
+                    headers: useRequestHeaders(['cookie']),
+                    body: JSON.stringify(payload),
+                });
+                
+                if(error) {
+                    displayToast('There was an issue updating your watchlist.');
+                    throw error;
+                };
+                
+                if(data && data[0]) {
+                    this.profile.watchlist = data[0]?.watchlist;
+                    displayToast('Your watchlist was updated successfully.');
+                }
+                
+                return { data, error };
             } catch(error) {
                 console.error(error);
             }

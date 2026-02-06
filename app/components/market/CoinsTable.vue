@@ -146,26 +146,19 @@
                                     :key='row.id'
                                     class='hover:bg-muted/50 hover:cursor-pointer border-t-0 !px-6 animate-fadeIn'
                                 >
+                                    <!--   Checkbox / Favourites  -->
                                     <TableCell class='h-20 text-center'>
-                                        <!--   Checkbox / Favourites  -->
                                         <div class='pt-1'>
                                             <NuxtIcon
-                                                v-if='row.getIsSelected()'
-                                                @click='row.toggleSelected(!row.getIsSelected())'
-                                                name='ph:star-fill'
-                                                class='text-yellow-selective hover:cursor-pointer'
-                                                size='16'
-                                            />
-                                            <NuxtIcon
-                                                v-else
-                                                @click='row.toggleSelected(!row.getIsSelected())'
-                                                name='ph:star'
-                                                class='text-muted-foreground hover:cursor-pointer'
+                                                @click.prevent='onToggleWatchlistCoin(row)'
+                                                :name='isCoinInWatchlist(row.original.id) ? "ph:star-fill" : "ph:star"'
+                                                class='hover:cursor-pointer'
+                                                :class='isCoinInWatchlist(row.original.id) ? "text-yellow-selective" : "text-muted-foreground"'
                                                 size='16'
                                             />
                                         </div>
                                     </TableCell>
-                                    
+                             
                                     <NuxtLink
                                         :to='`/market/${row.original.id}`'
                                         class='contents'
@@ -187,7 +180,7 @@
                                                         alt='coin logo'
                                                     />
                                                     
-                                                    <div class='flex flex-col items-start gap-1'>
+                                                    <div class='flex flex-col items-start gap-1 truncate'>
                                                         <p class='font-medium'>{{ cell.getValue() }}</p>
                                                         <span class='uppercase text-xs text-muted-foreground'>{{ cell.row.original.symbol }}</span>
                                                     </div>
@@ -309,15 +302,37 @@
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     
+    // MarketStore
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     import { Line } from 'vue-chartjs';
     const MarketStore = useMarketStore();
-    
     const { getCoinsMarkets } = MarketStore;
+    
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { profile } = storeToRefs(ProfileStore);
+    const { toggleWatchlistCoin } = ProfileStore;
     
     // State
     const { coins } = storeToRefs(MarketStore);
+    
+    // Watchlist
+    const watchlist = computed(() => profile.value?.watchlist);
+    const isCoinInWatchlist = computed(() => {
+        return (coin) => {
+            return watchlist.value?.includes(coin);
+        };
+    });
+    
+    const onToggleWatchlistCoin = (row) => {
+        const coin = row.original.id || '';
+        row.toggleSelected(!row.getIsSelected());
+        toggleWatchlistCoin({ coin });
+    };
+    
+    // Sorting + Filtering
     const sorting = ref([]);
     const sortingLabel = ref('Market Cap');
     const onSort = header => {
