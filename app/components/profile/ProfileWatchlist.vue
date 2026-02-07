@@ -7,7 +7,7 @@
             {{ coin }}
         </p>
     </div>-->
-    <Card class='bg-popover p-6 w-full md:w-4/5 xl:w-full border hover:border-border/50'>
+    <Card class='bg-popover p-6 w-full md:w-4/5 xl:w-full'>
         <Table class=''>
             <TableCaption>A list of your watchlist coins.</TableCaption>
             <TableHeader>
@@ -30,7 +30,6 @@
             </TableBody>
         </Table>
     </Card>
-
 </template>
 
 <script setup>
