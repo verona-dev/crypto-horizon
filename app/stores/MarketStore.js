@@ -103,6 +103,25 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
+        async getWatchlistCoinsMarkets(payload) {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko('coins/markets', {
+                    params: {
+                        ids: payload,
+                        vs_currency: 'usd',
+                    },
+                });
+                
+                return response;
+            } catch(error) {
+                console.error(error);
+            } finally {
+                this.loading = false;
+            }
+        },
+        
         async getCoin(slug) {
             const NewsStore = useNewsStore();
             
@@ -152,28 +171,6 @@ export const useMarketStore = defineStore('MarketStore', {
             }
             finally {
                 this.loading = false;
-            }
-        },
-        
-        async getCoingeckoCoinSimple(id) {
-            this.loading = true;
-            const coin = 'bitcoin';
-            
-            try {
-                const response = await useFetchCoingecko(`simple/price`, {
-                    params: {
-                        id: coin,
-                        vs_currency: 'usd',
-                        include_market_cap: true,
-                        include_24hr_vol: true,
-                    },
-                });
-                
-                if(response) {
-                    console.log(response);
-                }
-            } catch(error) {
-                console.error(error);
             }
         },
         
