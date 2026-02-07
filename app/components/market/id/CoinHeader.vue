@@ -172,7 +172,7 @@
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
     const { profile } = storeToRefs(ProfileStore);
-    const { toggleWatchlistCoin } = ProfileStore;
+    const { updateWatchlist } = ProfileStore;
     
     // Router
     // const router  = useRouter();
@@ -201,7 +201,7 @@
     const isCoinInWatchlist = computed(() => watchlist.value?.includes(coin_id.value));
     
     const onToggleWatchlistCoin = () => {
-        toggleWatchlistCoin({ coin: coin_id.value });
+        updateWatchlist({ coin: coin_id.value });
     };
     
     // Price in USD

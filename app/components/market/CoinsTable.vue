@@ -313,7 +313,7 @@
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
     const { profile } = storeToRefs(ProfileStore);
-    const { toggleWatchlistCoin } = ProfileStore;
+    const { updateWatchlist } = ProfileStore;
     
     // State
     const { coins } = storeToRefs(MarketStore);
@@ -329,7 +329,7 @@
     const onToggleWatchlistCoin = (row) => {
         const coin = row.original.id || '';
         row.toggleSelected(!row.getIsSelected());
-        toggleWatchlistCoin({ coin });
+        updateWatchlist({ coin });
     };
     
     // Sorting + Filtering

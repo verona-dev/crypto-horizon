@@ -37,7 +37,7 @@ export const useProfileStore = defineStore('ProfileStore', {
             }
         },
         
-        async toggleWatchlistCoin(payload) {
+        async updateWatchlist(payload) {
             try {
                 const { data, error } = await $fetch('/api/supabase/user/profile/watchlist/update', {
                     method: 'PATCH',
