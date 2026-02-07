@@ -4,6 +4,8 @@ import { displayToast } from '~/utils/toast.js';
 export const useProfileStore = defineStore('ProfileStore', {
     state: () => ({
         profile: null,
+        watchlist: [],
+        watchlistData: [],
         avatars: null,
         countries: [],
     }),
@@ -17,7 +19,14 @@ export const useProfileStore = defineStore('ProfileStore', {
                 
                 if(error) throw error;
                 
-                this.profile = data;
+                if(data) {
+                    this.profile = data;
+                    
+                    if(data.watchlist) {
+                        this.watchlist = data?.watchlist;
+                        await this.getWatchlistData();
+                    }
+                }
             } catch(error) {
                 console.error(error);
             }
@@ -51,11 +60,35 @@ export const useProfileStore = defineStore('ProfileStore', {
                 };
                 
                 if(data && data[0]) {
-                    this.profile.watchlist = data[0]?.watchlist;
+                    this.watchlist = data[0]?.watchlist;
                     displayToast('Your watchlist was updated successfully.');
                 }
                 
                 return { data, error };
+            } catch(error) {
+                console.error(error);
+            }
+        },
+        
+        async getWatchlistData() {
+            const MarketStore = useMarketStore();
+            
+            try {
+                const { data, error } = await $fetch('/api/supabase/user/profile/watchlist', {
+                    method: 'PATCH',
+                    headers: useRequestHeaders(['cookie']),
+                    body: JSON.stringify(this.watchlist),
+                });
+                
+                if(error) throw error;
+                
+                if(data && data.watchlist) {
+                    const response = await MarketStore.getWatchlistCoinsMarkets(data.watchlist);
+                    
+                    if(response) {
+                        this.watchlistData = response;
+                    }
+                }
             } catch(error) {
                 console.error(error);
             }
