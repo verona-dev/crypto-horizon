@@ -66,7 +66,7 @@
                             <HoverCardTrigger>
                                 <Badge class='h-12 py-2 px-4 flex items-center gap-2 text-lg text-muted-foreground' variant='outline'>
                                     <NuxtIcon
-                                        @click.prevent='onToggleWatchlistCoin()'
+                                        @click.prevent='updateWatchlist({ coin: coin_id })'
                                         :name='isCoinInWatchlist ? "ph:star-fill" : "ph:star-duotone"'
                                         class='hover:cursor-pointer'
                                         :class='isCoinInWatchlist ? "text-yellow-selective" : "text-yellow-selective/75"'
@@ -171,7 +171,7 @@
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
-    const { profile } = storeToRefs(ProfileStore);
+    const { watchlist } = storeToRefs(ProfileStore);
     const { updateWatchlist } = ProfileStore;
     
     // Router
@@ -197,12 +197,7 @@
     const coingecko_watchlists = formatNumber(coingecko.value?.watchlist_portfolio_users, {
         style: 'decimal', compact: true, decimals: 2,
     });
-    const watchlist = computed(() => profile.value?.watchlist);
     const isCoinInWatchlist = computed(() => watchlist.value?.includes(coin_id.value));
-    
-    const onToggleWatchlistCoin = () => {
-        updateWatchlist({ coin: coin_id.value });
-    };
     
     // Price in USD
     const current_price = computed(() => getCoinPrice.value);
