@@ -86,7 +86,7 @@ export const useProfileStore = defineStore('ProfileStore', {
                 if(error) throw error;
                 
                 if(data && data.watchlist) {
-                    const response = await MarketStore.getWatchlistCoinsMarkets(data.watchlist);
+                    const response = await MarketStore.getWatchlistCoins(data.watchlist);
                     
                     if(response) {
                         this.watchlistData = response;

@@ -103,9 +103,7 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getWatchlistCoinsMarkets(payload) {
-            this.loading = true;
-            
+        async getWatchlistCoins(payload) {
             try {
                 const response = await useFetchCoingecko('coins/markets', {
                     params: {
@@ -117,8 +115,6 @@ export const useMarketStore = defineStore('MarketStore', {
                 return response;
             } catch(error) {
                 console.error(error);
-            } finally {
-                this.loading = false;
             }
         },
         
