@@ -150,7 +150,7 @@
                                     <TableCell class='h-20 text-center'>
                                         <div class='pt-1'>
                                             <NuxtIcon
-                                                @click.prevent='onToggleWatchlistCoin(row)'
+                                                @click.prevent='onUpdateWatchlist(row)'
                                                 :name='isCoinInWatchlist(row.original.id) ? "ph:star-fill" : "ph:star"'
                                                 class='hover:cursor-pointer'
                                                 :class='isCoinInWatchlist(row.original.id) ? "text-yellow-selective" : "text-muted-foreground"'
@@ -312,24 +312,23 @@
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
-    const { profile } = storeToRefs(ProfileStore);
-    const { toggleWatchlistCoin } = ProfileStore;
+    const { watchlist } = storeToRefs(ProfileStore);
+    const { updateWatchlist } = ProfileStore;
     
     // State
     const { coins } = storeToRefs(MarketStore);
     
     // Watchlist
-    const watchlist = computed(() => profile.value?.watchlist);
     const isCoinInWatchlist = computed(() => {
         return (coin) => {
             return watchlist.value?.includes(coin);
         };
     });
     
-    const onToggleWatchlistCoin = (row) => {
+    const onUpdateWatchlist = (row) => {
         const coin = row.original.id || '';
         row.toggleSelected(!row.getIsSelected());
-        toggleWatchlistCoin({ coin });
+        updateWatchlist({ coin });
     };
     
     // Sorting + Filtering

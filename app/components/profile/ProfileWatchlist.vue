@@ -1,71 +1,163 @@
 <template>
-<!--    <div class='watchlist'>
-        <p
-            v-for='coin in watchlist'
-            :key='coin'
-        >
-            {{ coin }}
-        </p>
-    </div>-->
-    <Card class='bg-popover p-6 w-full md:w-4/5 xl:w-full border hover:border-border/50'>
-        <Table class=''>
-            <TableCaption>A list of your watchlist coins.</TableCaption>
-            <TableHeader>
-                <TableRow>
-                    <TableHead class='border w-28'>Symbol</TableHead>
-                    <TableHead class='border w-64'>Name</TableHead>
-                    <TableHead class='border'>Price</TableHead>
-                </TableRow>
-            </TableHeader>
-            
-            <TableBody>
-                <TableRow
-                    v-for='coin in watchlist'
-                    :key='coin'
-                >
-                    <TableCell class="font-medium">INV001</TableCell>
-                    <TableCell>{{ coin }}</TableCell>
-                    <TableCell>$250.00</TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
+    <Card class='bg-popover p-6 w-full md:w-4/5 xl:w-full'>
+        <CardHeader class='items-center gap-2'>
+            <CardTitle class='text-3xl'>Watchlist</CardTitle>
+            <CardDescription class='text-lg'>A list of your saved coins</CardDescription>
+        </CardHeader>
+        
+        <CardContent class='[&>div]:max-h-120'>
+            <Table>
+                <!--   <TableCaption>A list of your watchlist coins.</TableCaption>  -->
+                <TableHeader>
+                    <TableRow class='h-18 sticky top-0 bg-popover *:whitespace-nowrap after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-border after:content-[""] z-10'>
+                        <TableHead class='w-10 text-center'>&#35;</TableHead>
+                        <TableHead>Name</TableHead>
+                        <TableHead class='text-center'>Price</TableHead>
+                        <TableHead class='text-center'>24h &#37;</TableHead>
+                        <TableHead class='w-32 text-center'>
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='flex flex-reverse !justify-start items-center gap-1'>
+                                    <InfoIcon />
+                                    <span>{{ glossary.market_cap.label }}</span>
+                                </HoverCardTrigger>
+                                <HoverCardContent> {{ glossary.market_cap.description }}</HoverCardContent>
+                            </HoverCard>
+                        </TableHead>
+                        <TableHead class='text-center'>
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='flex flex-reverse !justify-start items-center gap-1'>
+                                    <InfoIcon />
+                                    <span>{{ glossary.ath.acronym }}</span>
+                                </HoverCardTrigger>
+                                <HoverCardContent> {{ glossary.ath.description }}</HoverCardContent>
+                            </HoverCard>
+                        </TableHead>
+                        <TableHead class='text-center'>
+                            <HoverCard :openDelay='200'>
+                                <HoverCardTrigger class='flex flex-reverse !justify-start items-center gap-1'>
+                                    <InfoIcon />
+                                    <span>{{ glossary.atl.acronym }}</span>
+                                </HoverCardTrigger>
+                                <HoverCardContent> {{ glossary.atl.description }}</HoverCardContent>
+                            </HoverCard>
+                        </TableHead>
+                        <TableHead class='text-center'>Details</TableHead>
+                        <TableHead class='text-center'>Action</TableHead>
+                    </TableRow>
+                </TableHeader>
+                
+                <TableBody>
+                    <TableRow
+                        v-for='coin in watchlistData'
+                        :key='coin.id'
+                        class='hover:bg-muted/50 text-center'
+                    >
+                        <TableCell class='h-16 text-center'>{{ coin.market_cap_rank }}</TableCell>
+                        
+                        <TableCell class='flex items-center gap-2 h-16'>
+                            <NuxtImg
+                                :src='coin.image'
+                                alt='coin logo'
+                                class='w-6 rounded-full'
+                            />
+                            
+                            <div class='flex items-center gap-2 truncate'>
+                                <p class='font-medium'>{{ coin.name }}</p>
+                                <p class='uppercase text-muted-foreground'>{{ coin.symbol }}</p>
+                            </div>
+                        </TableCell>
+                        
+                        <TableCell>{{ formatNumber(coin.current_price, { maximumFractionDigits: 4 }) }}</TableCell>
+                        
+                        <TableCell class='z-0' :class='getTrendClass(coin.price_change_percentage_24h)'>
+                            <div class='flex items-center gap-1 z-0'>
+                                <NuxtIcon
+                                    :name='getTrendIcon(coin.price_change_percentage_24h)'
+                                    size='13'
+                                    class='z-0'
+                                />
+                                <span>{{ formatNumber(coin.price_change_percentage_24h, { style: 'percent' }) }}</span>
+                            </div>
+                        </TableCell>
+                        
+                        <TableCell>{{ formatNumber(coin.market_cap, { compact: true, decimals: 2 }) }}</TableCell>
+                        
+                        <TableCell>{{ formatNumber(coin.ath, { compact: true, decimals: 2 }) }}</TableCell>
+                        
+                        <TableCell>{{ formatNumber(coin.atl, { compact: true, decimals: 2 }) }}</TableCell>
+                        
+                        <TableCell>
+                            <Button
+                                @click='navigateTo(`/market/${coin.id}`)'
+                                class='w-fit h-fit px-0'
+                                variant='link'
+                                size='sm'
+                            >
+                                View Coin
+                            </Button>
+                        </TableCell>
+                        
+                        <TableCell>
+                            <Button
+                                @click='updateWatchlist({ coin: coin.id })'
+                                variant='destructive'
+                                size='sm'
+                            >
+                                Remove
+                            </Button>
+                        </TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+        </CardContent>
     </Card>
-
 </template>
 
 <script setup>
-    import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+    import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
-    
-    // MarketStore
-    import { storeToRefs } from 'pinia';
-    import { useMarketStore } from '~/stores/MarketStore.js';
-    const MarketStore = useMarketStore();
-    const { getCoingeckoCoinSimple } = MarketStore;
+    import { formatNumber } from '~/utils/formatUtils.js';
+    import { getTrendClass, getTrendIcon } from '~/utils/styleUtils.js';
+    import glossary from '~/assets/data/market/glossary.json';
+    import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
     
     // ProfileStore
+    import { storeToRefs } from 'pinia';
     import { useProfileStore } from '~/stores/ProfileStore.js';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index.ts';
+    import InfoIcon from '@/components/InfoIcon.vue';
     const ProfileStore = useProfileStore();
-    const { profile } = storeToRefs(ProfileStore);
+    const { watchlistData } = storeToRefs(ProfileStore);
+    const { updateWatchlist } = ProfileStore;
     
-    const watchlist = ref(profile.value?.watchlist);
-    
-    const invoices = [
-        {
-            invoice: 'INV001',
-            paymentStatus: 'Paid',
-            totalAmount: '$250.00',
-            paymentMethod: 'Credit Card',
-        },
-        {
-            invoice: 'INV002',
-            paymentStatus: 'Pending',
-            totalAmount: '$150.00',
-            paymentMethod: 'PayPal',
-        },
-    ];
-    
-    onMounted(async() => {
-        await getCoingeckoCoinSimple();
-    });
+    /*
+    const coin = {
+        ath: 3.65,
+        ath_change_percentage: -60.93771,
+        ath_date: "2025-07-18T03:40:53.808Z",
+        atl: 0.00268621,
+        atl_change_percentage: 52924.91024,
+        atl_date: "2014-05-22T00:00:00.000Z",
+        circulating_supply: 60917315351,
+        current_price: 1.42,
+        fully_diluted_valuation: 142237794778,
+        high_24h: 1.53,
+        id: "ripple",
+        image: "https://coin-images.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png?1696501442",
+        last_updated: "2026-02-07T12:30:02.474Z",
+        low_24h: 1.37,
+        market_cap: 86659820107,
+        market_cap_change_24h: 3063892668,
+        market_cap_change_percentage_24h: 3.66512,
+        market_cap_rank: 5,
+        max_supply: 100000000000,
+        name: "XRP",
+        price_change_24h: 0.054315,
+        price_change_percentage_24h: 3.96444,
+        roi: null,
+        symbol: "xrp",
+        total_supply: 99985721048,
+        total_volume: 9807206076,
+    };
+    */
 </script>
