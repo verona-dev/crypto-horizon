@@ -36,10 +36,6 @@ export default defineNuxtConfig({
       },
    },
 
-   css: [
-      '~/assets/tailwind.css',
-   ],
-
    colorMode: {
       preference: 'system', // default value of $colorMode.preference
       fallback: 'dark',
@@ -51,6 +47,10 @@ export default defineNuxtConfig({
    },
 
    compatibilityDate: '2024-07-23',
+
+   css: [
+      '~/assets/tailwind.css',
+   ],
 
    icon: {
       componentName: 'NuxtIcon',
@@ -94,15 +94,16 @@ export default defineNuxtConfig({
    },
 
    modules: [
-      '@pinia/nuxt',
-      '@nuxt/image',
-      '@maz-ui/nuxt',
-      '@nuxtjs/color-mode',
-      '@nuxt/icon',
-      'shadcn-nuxt',
-      'motion-v/nuxt',
-      '@nuxtjs/seo',
-      '@nuxtjs/supabase',
+     '@pinia/nuxt',
+     '@nuxt/image',
+     '@maz-ui/nuxt',
+     '@nuxtjs/color-mode',
+     '@nuxt/icon',
+     'shadcn-nuxt',
+     'motion-v/nuxt',
+     '@nuxtjs/seo',
+     '@nuxtjs/supabase',
+     '@nuxt/eslint',
    ],
 
    nitro: {
