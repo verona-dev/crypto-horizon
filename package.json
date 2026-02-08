@@ -38,6 +38,7 @@
         "vue-tsc": "^1.6.4"
     },
     "dependencies": {
+        "@antfu/eslint-config": "7.3.0",
         "@fontsource-variable/montserrat": "5.2.8",
         "@fontsource-variable/work-sans": "5.2.8",
         "@fontsource/metropolis": "5.2.5",
