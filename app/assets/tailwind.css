@@ -104,6 +104,7 @@ html.light {
     --color-pink-blush: var(--pink-blush);
     --color-blue-hippie: var(--blue-hippie);
     --color-blue-bunker: var(--blue-bunker);
+    --color-blue-steele: var(--blue-steele);
     --color-red-brick: var(--red-brick);
     --color-gray-mine: var(--gray-mine);
     --color-gray-dove: var(--gray-dove);
@@ -240,6 +241,7 @@ html.light {
     --blue-victoria: #4a478a;
     --pink-blush: #da8a8b;
     --blue-bunker: #0d1217;
+    --blue-steele: #1f2230;
     --blue-hippie: #5591a9;
     --red-brick: #c9374c;
     --gray-mine: #333136;
@@ -279,10 +281,10 @@ html.light {
     /* Cosmic Night */
     --background: #14161f;
     --foreground: #ffffff;
-    --card: #0D1217;
-    /*--card: #1f2230;*/
+    --card: var(--popover);
+    /*--card: var(--blue-bunker;*/
     --card-foreground: #ffffff;
-    --popover: #1f2230;
+    --popover: var(--blue-steele);
     --popover-foreground: #ffffff;
     --primary: #ffffff;
     /*--primary: #c1c0f6;*/
