@@ -43,6 +43,7 @@ export const useProfileStore = defineStore('ProfileStore', {
                 return { success, error };
             } catch(error) {
                 console.error(error);
+                throw error;
             }
         },
         
@@ -68,6 +69,7 @@ export const useProfileStore = defineStore('ProfileStore', {
                 return { data, error };
             } catch(error) {
                 console.error(error);
+                throw error;
             }
         },
         
