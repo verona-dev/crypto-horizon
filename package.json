@@ -11,7 +11,8 @@
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "format": "prettier --check .",
-        "format:fix": "prettier --write ."
+        "format:fix": "prettier --write .",
+        "prettier:market": "prettier --write app/components/market/"
     },
     "devDependencies": {
         "@nuxt/eslint": "1.14.0",
@@ -23,9 +24,9 @@
         "@types/node": "24.7.2",
         "class-variance-authority": "0.7.1",
         "clsx": "2.1.1",
-        "eslint": "^9.28.0",
+        "eslint": "9.39.2",
         "eslint-config-prettier": "10.1.8",
-        "eslint-plugin-prettier": "5.5.5",
+        "eslint-plugin-vue": "10.7.0",
         "nuxt": "4.2.1",
         "prettier": "3.8.1",
         "tailwind-merge": "3.3.1",
