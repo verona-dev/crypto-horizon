@@ -150,7 +150,7 @@
                                     <TableCell class='h-20 text-center'>
                                         <div class='pt-1'>
                                             <NuxtIcon
-                                                @click.prevent='onToggleWatchlistCoin(row)'
+                                                @click.prevent='onUpdateWatchlist(row)'
                                                 :name='isCoinInWatchlist(row.original.id) ? "ph:star-fill" : "ph:star"'
                                                 class='hover:cursor-pointer'
                                                 :class='isCoinInWatchlist(row.original.id) ? "text-yellow-selective" : "text-muted-foreground"'
@@ -326,7 +326,7 @@
         };
     });
     
-    const onToggleWatchlistCoin = (row) => {
+    const onUpdateWatchlist = (row) => {
         const coin = row.original.id || '';
         row.toggleSelected(!row.getIsSelected());
         updateWatchlist({ coin });
