@@ -312,14 +312,13 @@
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
-    const { profile } = storeToRefs(ProfileStore);
+    const { watchlist } = storeToRefs(ProfileStore);
     const { updateWatchlist } = ProfileStore;
     
     // State
     const { coins } = storeToRefs(MarketStore);
     
     // Watchlist
-    const watchlist = computed(() => profile.value?.watchlist);
     const isCoinInWatchlist = computed(() => {
         return (coin) => {
             return watchlist.value?.includes(coin);
