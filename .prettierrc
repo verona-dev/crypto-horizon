@@ -6,5 +6,6 @@
     "singleQuote": true,
     "tabWidth": 4,
     "trailingComma": "all",
-    "singleAttributePerLine": true
+    "singleAttributePerLine": true,
+    "vueIndentScriptAndStyle": true
 }
