@@ -35,6 +35,7 @@
                             <HoverCardContent> {{ glossary.atl.description }}</HoverCardContent>
                         </HoverCard>
                     </TableHead>
+                    <TableHead>Details</TableHead>
                 </TableRow>
             </TableHeader>
             
@@ -75,6 +76,17 @@
                     <TableCell>{{ formatNumber(coin.ath, { compact: true, decimals: 2 }) }}</TableCell>
                     
                     <TableCell>{{ formatNumber(coin.atl, { compact: true, decimals: 2 }) }}</TableCell>
+                    
+                    <TableCell>
+                        <Button
+                            @click='navigateTo(`/market/${coin.id}`)'
+                            class='w-fit h-fit px-0'
+                            variant='link'
+                            size='sm'
+                        >
+                            View Coin
+                        </Button>
+                    </TableCell>
                 </TableRow>
             </TableBody>
         </Table>
@@ -82,10 +94,11 @@
 </template>
 
 <script setup>
+    import { Button } from '~/components/ui/button';
+    import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendClass, getTrendIcon } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
-    import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
     import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
     
     // ProfileStore
