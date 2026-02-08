@@ -17,13 +17,22 @@
                             <HoverCardContent> {{ glossary.market_cap.description }}</HoverCardContent>
                         </HoverCard>
                     </TableHead>
-                    <TableHead class='w-32'>
+                    <TableHead class='w-24'>
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger class='flex flex-reverse !justify-start items-center gap-1'>
                                 <InfoIcon />
                                 <span>{{ glossary.ath.acronym }}</span>
                             </HoverCardTrigger>
                             <HoverCardContent> {{ glossary.ath.description }}</HoverCardContent>
+                        </HoverCard>
+                    </TableHead>
+                    <TableHead class='w-24'>
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger class='flex flex-reverse !justify-start items-center gap-1'>
+                                <InfoIcon />
+                                <span>{{ glossary.atl.acronym }}</span>
+                            </HoverCardTrigger>
+                            <HoverCardContent> {{ glossary.atl.description }}</HoverCardContent>
                         </HoverCard>
                     </TableHead>
                 </TableRow>
@@ -64,6 +73,8 @@
                     <TableCell>{{ formatNumber(coin.market_cap, { compact: true, decimals: 2 }) }}</TableCell>
                     
                     <TableCell>{{ formatNumber(coin.ath, { compact: true, decimals: 2 }) }}</TableCell>
+                    
+                    <TableCell>{{ formatNumber(coin.atl, { compact: true, decimals: 2 }) }}</TableCell>
                 </TableRow>
             </TableBody>
         </Table>
