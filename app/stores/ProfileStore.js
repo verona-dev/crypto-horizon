@@ -61,6 +61,7 @@ export const useProfileStore = defineStore('ProfileStore', {
                 
                 if(data && data[0]) {
                     this.watchlist = data[0]?.watchlist;
+                    await this.getWatchlistData();
                     displayToast('Your watchlist was updated successfully.');
                 }
                 

@@ -1,10 +1,10 @@
 <template>
-    <Card class='bg-popover p-6 w-full md:w-4/5 xl:w-full !min-h-72 !h-full'>
+    <Card class='bg-popover p-6 w-full md:w-4/5 xl:w-full'>
         <Table>
             <TableCaption>A list of your watchlist coins.</TableCaption>
             <TableHeader>
                 <TableRow>
-                    <TableHead>Rank</TableHead>
+                    <TableHead>&#35;</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>Price</TableHead>
                     <TableHead>24h &#37;</TableHead>
@@ -36,6 +36,7 @@
                         </HoverCard>
                     </TableHead>
                     <TableHead>Details</TableHead>
+                    <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
             
@@ -43,8 +44,9 @@
                 <TableRow
                     v-for='coin in watchlistData'
                     :key='coin.id'
+                    class='!y-12 hover:bg-muted/50'
                 >
-                    <TableCell>&#35;{{ coin.market_cap_rank }}</TableCell>
+                    <TableCell>{{ coin.market_cap_rank }}</TableCell>
                     
                     <TableCell class='flex items-center gap-2'>
                         <NuxtImg
@@ -87,6 +89,17 @@
                             View Coin
                         </Button>
                     </TableCell>
+                    
+                    <TableCell>
+                        <Button
+                            @click='updateWatchlist({ coin: coin.id })'
+                            class='h-fit px-2'
+                            variant='destructive'
+                            size='sm'
+                        >
+                            Remove
+                        </Button>
+                    </TableCell>
                 </TableRow>
             </TableBody>
         </Table>
@@ -108,6 +121,7 @@
     import InfoIcon from '@/components/InfoIcon.vue';
     const ProfileStore = useProfileStore();
     const { watchlistData } = storeToRefs(ProfileStore);
+    const { updateWatchlist } = ProfileStore;
     
     /*
     const watchlist = ref([
