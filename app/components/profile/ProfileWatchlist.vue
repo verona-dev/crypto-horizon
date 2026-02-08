@@ -1,5 +1,5 @@
 <template>
-    <Card v-if='watchlistData.length' class='bg-popover p-6 w-full md:w-4/5 xl:w-full'>
+    <Card class='bg-popover p-6 w-full md:w-4/5 xl:w-full !min-h-72 !h-full'>
         <Table>
             <TableCaption>A list of your watchlist coins.</TableCaption>
             <TableHeader>
