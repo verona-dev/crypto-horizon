@@ -6,7 +6,5 @@
     "singleQuote": true,
     "tabWidth": 4,
     "trailingComma": "all",
-    "plugins": ["@xeonlink/prettier-plugin-organize-attributes"],
-    "attributeGroups": ["^class$", "^(id|name)$", "$DEFAULT", "^aria-"],
-    "attributeSort": "ASC"
+    "singleAttributePerLine": true
 }
