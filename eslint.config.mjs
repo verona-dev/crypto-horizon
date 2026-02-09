@@ -47,6 +47,10 @@ export default withNuxt([
                 'ignoreWhenEmpty': true,
                 'allowEmptyLines': false,
             }],
+            'vue/max-attributes-per-line': ['error', {
+                singleline: 2,
+                multiline: { max: 1 },
+            }],
         },
     },
 ]);
