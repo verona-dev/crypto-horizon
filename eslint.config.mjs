@@ -43,6 +43,10 @@ export default withNuxt([
             'vue/padding-lines-in-component-definition': ['error', {
                 'groupSingleLineProperties': true,
             }],
+            'vue/multiline-html-element-content-newline': ['error', {
+                'ignoreWhenEmpty': true,
+                'allowEmptyLines': false,
+            }],
         },
     },
 ]);
