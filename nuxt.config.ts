@@ -52,12 +52,19 @@ export default defineNuxtConfig({
 
     eslint: {
         config: {
-            stylistic: {
-                indent: 2,
-                quotes: 'single',
-                semi: false,
-                jsx: true,
-            },
+            // stylistic: {
+            //     indent: 4,
+            //     quotes: 'single',
+            //     semi: true,
+            //     jsx: true,
+            //     'comma-dangle': 'always-multiline',
+            // },
+            // vue: {
+            //     'singleline-html-element-content-newline': true,
+            //     'script-indent': [4, { baseIndent: 1 }],
+            //     'html-indent': 4,
+            //     'html-quotes': 'double',
+            // },
         },
     },
 
