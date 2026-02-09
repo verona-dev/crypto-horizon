@@ -18,8 +18,8 @@ export default withNuxt([
                 'ignoreWhenEmpty': true,
             }],
             'vue/html-closing-bracket-newline': ['error', {
-                singleline: 'never', // Closing bracket never on a new line for single-line elements
-                multiline: 'always',  // Closing bracket on a new line for multiline elements
+                singleline: 'never',
+                multiline: 'always',
                 'selfClosingTag': {
                     'singleline': 'never',
                     'multiline': 'always',
@@ -36,6 +36,9 @@ export default withNuxt([
             }],
             'vue/html-indent': ['error', 4],
             'vue/html-quotes': ['error', 'single'],
+            'vue/padding-line-between-tags': ['error', [
+                { blankLine: 'always', prev: '*', next: '*' },
+            ]],
         },
     },
 ]);
