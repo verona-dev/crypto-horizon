@@ -17,7 +17,10 @@ export default withNuxt([
                 'ignoreWhenNoAttributes': true,
                 'ignoreWhenEmpty': true,
             }],
-            'vue/script-indent': ['error', 4, { baseIndent: 1 }],
+            'vue/script-indent': ['error', 0, {
+                baseIndent: 4, // <script setup>
+                switchCase: 1,
+            }],
             'vue/html-indent': ['error', 4],
             'vue/html-quotes': ['error', 'single'],
         },
