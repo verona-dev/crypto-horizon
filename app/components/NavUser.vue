@@ -132,11 +132,12 @@
                         <!--  Login  -->
                         <DropdownMenuItem
                             v-if='!logged_in'
-                            @click='onOpenAuthModal'
                             class='py-3 mt-1 cursor-pointer rounded-lg'
                         >
-                            <NuxtIcon name='ph:sign-in' size='18' />
-                            Login / Register
+                            <NuxtLink to='/register' class='flex items-center gap-2'>
+                                <NuxtIcon name='ph:sign-in' size='18' />
+                                Login / Register
+                            </NuxtLink>
                         </DropdownMenuItem>
                         
                         <!--  Demo account  -->
