@@ -1,8 +1,13 @@
 <template>
     <Card class='bg-popover p-6 w-full md:w-4/5 xl:w-full'>
         <CardHeader class='items-center gap-2'>
-            <CardTitle class='text-3xl'>Watchlist</CardTitle>
-            <CardDescription class='text-lg'>A list of your saved coins</CardDescription>
+            <CardTitle class='text-3xl'>
+                Watchlist
+            </CardTitle>
+
+            <CardDescription class='text-lg'>
+                A list of your saved coins
+            </CardDescription>
         </CardHeader>
         
         <CardContent class='[&>div]:max-h-120'>
@@ -10,39 +15,63 @@
                 <!--   <TableCaption>A list of your watchlist coins.</TableCaption>  -->
                 <TableHeader>
                     <TableRow class='h-18 sticky top-0 bg-popover *:whitespace-nowrap after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-border after:content-[""] z-10'>
-                        <TableHead class='w-10 text-center'>&#35;</TableHead>
+                        <TableHead class='w-10 text-center'>
+                            &#35;
+                        </TableHead>
+
                         <TableHead>Name</TableHead>
-                        <TableHead class='text-center'>Price</TableHead>
-                        <TableHead class='text-center'>24h &#37;</TableHead>
+
+                        <TableHead class='text-center'>
+                            Price
+                        </TableHead>
+
+                        <TableHead class='text-center'>
+                            24h &#37;
+                        </TableHead>
+
                         <TableHead class='w-32 text-center'>
-                            <HoverCard :openDelay='200'>
+                            <HoverCard :open-delay='200'>
                                 <HoverCardTrigger class='flex flex-reverse !justify-start items-center gap-1'>
                                     <InfoIcon />
+
                                     <span>{{ glossary.market_cap.label }}</span>
                                 </HoverCardTrigger>
+
                                 <HoverCardContent> {{ glossary.market_cap.description }}</HoverCardContent>
                             </HoverCard>
                         </TableHead>
+
                         <TableHead class='text-center'>
-                            <HoverCard :openDelay='200'>
+                            <HoverCard :open-delay='200'>
                                 <HoverCardTrigger class='flex flex-reverse !justify-start items-center gap-1'>
                                     <InfoIcon />
+
                                     <span>{{ glossary.ath.acronym }}</span>
                                 </HoverCardTrigger>
+
                                 <HoverCardContent> {{ glossary.ath.description }}</HoverCardContent>
                             </HoverCard>
                         </TableHead>
+
                         <TableHead class='text-center'>
-                            <HoverCard :openDelay='200'>
+                            <HoverCard :open-delay='200'>
                                 <HoverCardTrigger class='flex flex-reverse !justify-start items-center gap-1'>
                                     <InfoIcon />
+
                                     <span>{{ glossary.atl.acronym }}</span>
                                 </HoverCardTrigger>
+
                                 <HoverCardContent> {{ glossary.atl.description }}</HoverCardContent>
                             </HoverCard>
                         </TableHead>
-                        <TableHead class='text-center'>Details</TableHead>
-                        <TableHead class='text-center'>Action</TableHead>
+
+                        <TableHead class='text-center'>
+                            Details
+                        </TableHead>
+
+                        <TableHead class='text-center'>
+                            Action
+                        </TableHead>
                     </TableRow>
                 </TableHeader>
                 
@@ -52,7 +81,9 @@
                         :key='coin.id'
                         class='hover:bg-muted/50 text-center'
                     >
-                        <TableCell class='h-16 text-center'>{{ coin.market_cap_rank }}</TableCell>
+                        <TableCell class='h-16 text-center'>
+                            {{ coin.market_cap_rank }}
+                        </TableCell>
                         
                         <TableCell class='flex items-center gap-2 h-16'>
                             <NuxtImg
@@ -62,8 +93,13 @@
                             />
                             
                             <div class='flex items-center gap-2 truncate'>
-                                <p class='font-medium'>{{ coin.name }}</p>
-                                <p class='uppercase text-muted-foreground'>{{ coin.symbol }}</p>
+                                <p class='font-medium'>
+                                    {{ coin.name }}
+                                </p>
+
+                                <p class='uppercase text-muted-foreground'>
+                                    {{ coin.symbol }}
+                                </p>
                             </div>
                         </TableCell>
                         
@@ -76,6 +112,7 @@
                                     size='13'
                                     class='z-0'
                                 />
+
                                 <span>{{ formatNumber(coin.price_change_percentage_24h, { style: 'percent' }) }}</span>
                             </div>
                         </TableCell>
@@ -88,10 +125,10 @@
                         
                         <TableCell>
                             <Button
-                                @click='navigateTo(`/market/${coin.id}`)'
                                 class='w-fit h-fit px-0'
                                 variant='link'
                                 size='sm'
+                                @click='navigateTo(`/market/${coin.id}`)'
                             >
                                 View Coin
                             </Button>
@@ -99,9 +136,9 @@
                         
                         <TableCell>
                             <Button
-                                @click='updateWatchlist({ coin: coin.id })'
                                 variant='destructive'
                                 size='sm'
+                                @click='updateWatchlist({ coin: coin.id })'
                             >
                                 Remove
                             </Button>

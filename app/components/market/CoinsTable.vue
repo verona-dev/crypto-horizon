@@ -2,17 +2,18 @@
     <Card class='bg-background flex flex-col gap-12 xl:gap-20 border-none shadow-none w-full h-full z-10'>
         <h3 class='title w-screen flex flex-col items-start [gap:clamp(0.5rem,4vw,4rem)]'>
             <span class='[font-size:clamp(1.5rem,5vw,3rem)]'>Leading Cryptocurrencies by</span>
+
             <Text3d
                 class='[font-size:clamp(1.4rem,5vw,5rem)] font-black uppercase'
                 :animate='false'
-                :strokeSize='4'
-                :letterSpacing='0.15'
-                :shadowColor='dark_mode ? "yellow" : "transparent"'
+                :stroke-size='4'
+                :letter-spacing='0.15'
+                :shadow-color='dark_mode ? "yellow" : "transparent"'
             >
                 {{ sortingLabel }}
             </Text3d>
         </h3>
-        
+
         <div class='w-full flex flex-col gap-12'>
             <div class='flex items-center py-4'>
                 <!--   Search   -->
@@ -22,31 +23,41 @@
                     :model-value='table.getColumn("name")?.getFilterValue()'
                     @update:model-value='table.getColumn("name")?.setFilterValue($event)'
                 />
-                
                 <!--   Filter Columns   -->
                 <DropdownMenu :modal='false'>
-                    <DropdownMenuTrigger as-child class='flex items-center gap-4'>
+                    <DropdownMenuTrigger
+                        as-child
+                        class='flex items-center gap-4'
+                    >
                         <Button
                             variant='outline'
                             class='ml-auto p-5 gap-2'
                         >
                             <div class='pt-1.5'>
-                                <NuxtIcon name='ph:table-thin' size='20' />
+                                <NuxtIcon
+                                    name='ph:table-thin'
+                                    size='20'
+                                />
                             </div>
                             
                             <span>Columns</span>
                         </Button>
                     </DropdownMenuTrigger>
                     
-                    <DropdownMenuContent align='end' class='w-56 p-1 pb-0'>
-                        <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Columns</DropdownMenuLabel>
+                    <DropdownMenuContent
+                        align='end'
+                        class='w-56 p-1 pb-0'
+                    >
+                        <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>
+                            Columns
+                        </DropdownMenuLabel>
                         
                         <DropdownMenuCheckboxItem
                             v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
                             :key='column.id'
-                            :modelValue='column.getIsVisible()'
-                            @update:modelValue='(value) => column.toggleVisibility(!!value)'
+                            :model-value='column.getIsVisible()'
                             class='checkbox-item capitalize h-10 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-foreground/85'
+                            @update:model-value='(value) => column.toggleVisibility(!!value)'
                             @select='event => event.preventDefault()'
                         >
                             {{ column.columnDef.label }}
@@ -75,7 +86,6 @@
                             >
                                 <template v-if='!header.isPlaceholder'>
                                     <div
-                                        @click='onSort(header)'
                                         class='flex justify-end'
                                         :class='{
                                             "hover:cursor-pointer" : header.column.columnDef.isSortable,
@@ -83,17 +93,22 @@
                                             "!justify-center": header.column.id === "market_cap_rank",
                                             "justify-start": header.column.id === "name",
                                         }'
+                                        @click='onSort(header)'
                                     >
                                         <div
                                             class='flex items-center gap-1'
                                             :class='{ "flex flex-row-reverse !justify-end" : header.column.id === "name" }'
                                         >
-                                            <div class='pt-1 w-3' v-if='header.column.columnDef.isSortable'>
+                                            <div
+                                                v-if='header.column.columnDef.isSortable'
+                                                class='pt-1 w-3'
+                                            >
                                                 <NuxtIcon
                                                     v-if='header.column.getIsSorted() === "desc"'
                                                     name='ph:caret-down-fill'
                                                     size='12'
                                                 />
+
                                                 <NuxtIcon
                                                     v-else-if='header.column.getIsSorted() === "asc"'
                                                     name='ph:caret-up-fill'
@@ -107,11 +122,18 @@
                                                 class='text-md truncate'
                                             />
                                             
-                                            <HoverCard v-if='header.column.columnDef.description' :openDelay='200' class='flex'>
+                                            <HoverCard
+                                                v-if='header.column.columnDef.description'
+                                                :open-delay='200'
+                                                class='flex'
+                                            >
                                                 <HoverCardTrigger>
                                                     <InfoIcon />
                                                 </HoverCardTrigger>
-                                                <HoverCardContent>{{ header.column.columnDef.description }}</HoverCardContent>
+
+                                                <HoverCardContent>
+                                                    {{ header.column.columnDef.description }}
+                                                </HoverCardContent>
                                             </HoverCard>
                                         </div>
                                     </div>
@@ -124,14 +146,26 @@
                         <!--   Loading   -->
                         <template v-if='loading'>
                             <TableRow>
-                                <TableCell :colspan='columns.length' class='p-0'>
+                                <TableCell
+                                    :colspan='columns.length'
+                                    class='p-0'
+                                >
                                     <Empty class='from-muted/25 to-background h-130 bg-gradient-to-b from-50%'>
                                         <EmptyHeader class='gap-3'>
-                                            <EmptyMedia variant='icon' class='w-16 h-16'>
+                                            <EmptyMedia
+                                                variant='icon'
+                                                class='w-16 h-16'
+                                            >
                                                 <Spinner class='size-8 text-green-shamrock' />
                                             </EmptyMedia>
-                                            <EmptyTitle>Loading coins...</EmptyTitle>
-                                            <EmptyDescription>Synchronizing with the crypto market, hold on tight!</EmptyDescription>
+
+                                            <EmptyTitle>
+                                                Loading coins...
+                                            </EmptyTitle>
+
+                                            <EmptyDescription>
+                                                Synchronizing with the crypto market, hold on tight!
+                                            </EmptyDescription>
                                         </EmptyHeader>
                                     </Empty>
                                 </TableCell>
@@ -150,15 +184,15 @@
                                     <TableCell class='h-20 text-center'>
                                         <div class='pt-1'>
                                             <NuxtIcon
-                                                @click.prevent='onUpdateWatchlist(row)'
                                                 :name='isCoinInWatchlist(row.original.id) ? "ph:star-fill" : "ph:star"'
                                                 class='hover:cursor-pointer'
                                                 :class='isCoinInWatchlist(row.original.id) ? "text-yellow-selective" : "text-muted-foreground"'
                                                 size='16'
+                                                @click.prevent='onUpdateWatchlist(row)'
                                             />
                                         </div>
                                     </TableCell>
-                             
+                                    
                                     <NuxtLink
                                         :to='`/market/${row.original.id}`'
                                         class='contents'
@@ -181,7 +215,10 @@
                                                     />
                                                     
                                                     <div class='flex flex-col items-start gap-1 truncate'>
-                                                        <p class='font-medium'>{{ cell.getValue() }}</p>
+                                                        <p class='font-medium'>
+                                                            {{ cell.getValue() }}
+                                                        </p>
+
                                                         <span class='uppercase text-xs text-muted-foreground'>{{ cell.row.original.symbol }}</span>
                                                     </div>
                                                 </div>
@@ -194,26 +231,26 @@
                                                         v-if='cell.getValue().price?.length'
                                                         :key='cell.id'
                                                         :data='{
-                                                        labels: Array(cell.getValue().price?.length).fill(""),
-                                                        datasets: [{
-                                                              data: cell.getValue().price,
-                                                              borderColor: "rgb(14,165,233)",
-                                                              borderWidth: 2,
-                                                              backgroundColor: (context) => {
-                                                                const ctx = context.chart.ctx;
-                                                                const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-                                                                gradient.addColorStop(0.2, "rgba(14,165,233, 0.4)");
-                                                                gradient.addColorStop(0.5, "rgba(14,165,233, 0.2)");
-                                                                gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
-                                                                return gradient;
-                                                              },
-                                                              fill: true,
-                                                              tension: 0.5,
-                                                              pointRadius: 0,
-                                                              pointHoverRadius: 5,
-                                                              pointBackgroundColor: "oklch(0.985 0 0)",
-                                                        }]
-                                                    }'
+                                                            labels: Array(cell.getValue().price?.length).fill(""),
+                                                            datasets: [{
+                                                                data: cell.getValue().price,
+                                                                borderColor: "rgb(14,165,233)",
+                                                                borderWidth: 2,
+                                                                backgroundColor: (context) => {
+                                                                    const ctx = context.chart.ctx;
+                                                                    const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
+                                                                    gradient.addColorStop(0.2, "rgba(14,165,233, 0.4)");
+                                                                    gradient.addColorStop(0.5, "rgba(14,165,233, 0.2)");
+                                                                    gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+                                                                    return gradient;
+                                                                },
+                                                                fill: true,
+                                                                tension: 0.5,
+                                                                pointRadius: 0,
+                                                                pointHoverRadius: 5,
+                                                                pointBackgroundColor: "oklch(0.985 0 0)",
+                                                            }]
+                                                        }'
                                                         :options='chartOptions'
                                                     />
                                                 </div>
@@ -233,22 +270,35 @@
                             <!--   No results   -->
                             <template v-else>
                                 <TableRow>
-                                    <TableCell :colspan='columns.length' class='p-0'>
+                                    <TableCell
+                                        :colspan='columns.length'
+                                        class='p-0'
+                                    >
                                         <Empty class='from-muted/25 to-background h-130 bg-gradient-to-b from-50%'>
                                             <EmptyHeader class='gap-3'>
-                                                <EmptyMedia variant='icon' class='w-24 h-24'>
+                                                <EmptyMedia
+                                                    variant='icon'
+                                                    class='w-24 h-24'
+                                                >
                                                     <NuxtIcon
                                                         name='ph:notches-thin'
                                                         size='60'
                                                     />
                                                 </EmptyMedia>
-                                                <EmptyTitle>No data available</EmptyTitle>
-                                                <EmptyDescription>No data found. Check back later for updates.</EmptyDescription>
+
+                                                <EmptyTitle>
+                                                    No data available
+                                                </EmptyTitle>
+
+                                                <EmptyDescription>
+                                                    No data found. Check back later for updates.
+                                                </EmptyDescription>
                                             </EmptyHeader>
+
                                             <EmptyContent>
                                                 <Button
-                                                    @click='getCoinsMarkets({}, "table")'
                                                     variant='outline'
+                                                    @click='getCoinsMarkets({}, "table")'
                                                 >
                                                     <NuxtIcon
                                                         name='ph:repeat-thin'
@@ -280,9 +330,9 @@
     import { getTrendClass } from '~/utils/styleUtils.js';
     import { Button } from '~/components/ui/button';
     import { Card } from '~/components/ui/card';
-    import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger,  } from '@/components/ui/dropdown-menu';
+    import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger  } from '@/components/ui/dropdown-menu';
     import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index.ts';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index';
     import InfoIcon from '@/components/InfoIcon.vue';
     import { Input } from '~/components/ui/input';
     import { Spinner } from '~/components/ui/spinner';
@@ -293,24 +343,24 @@
     import glossary from '~/assets/data/market/glossary.json';
     
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
-    ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
     
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
-    dayjs.extend(relativeTime, { rounding: Math.floor });
-    
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
     
     // MarketStore
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     import { Line } from 'vue-chartjs';
-    const MarketStore = useMarketStore();
-    const { getCoinsMarkets } = MarketStore;
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
+    ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
+    dayjs.extend(relativeTime, { rounding: Math.floor });
+    
+    const colorMode = useColorMode();
+    const dark_mode = computed(() => colorMode.value === 'dark');
+    const MarketStore = useMarketStore();
+    const { getCoinsMarkets } = MarketStore;
     const ProfileStore = useProfileStore();
     const { watchlist } = storeToRefs(ProfileStore);
     const { updateWatchlist } = ProfileStore;
@@ -320,12 +370,12 @@
     
     // Watchlist
     const isCoinInWatchlist = computed(() => {
-        return (coin) => {
+        return coin => {
             return watchlist.value?.includes(coin);
         };
     });
     
-    const onUpdateWatchlist = (row) => {
+    const onUpdateWatchlist = row => {
         const coin = row.original.id || '';
         row.toggleSelected(!row.getIsSelected());
         updateWatchlist({ coin });
@@ -384,7 +434,7 @@
             id: 'market_cap_rank',
             label: '#',
             accessorKey: 'market_cap_rank',
-            cell: (cell) => h('div', { class: 'text-center' }, cell.getValue()),
+            cell: cell => h('div', { class: 'text-center' }, cell.getValue()),
         },
         {
             label: 'Name',
@@ -395,7 +445,7 @@
         {
             label: 'Price',
             accessorKey: 'current_price',
-            cell: (cell) => {
+            cell: cell => {
                 const current_price = formatNumber(cell.getValue(), {
                     maximumFractionDigits: 4,
                 });
@@ -409,7 +459,7 @@
             label: '1h %',
             pageTitle: 'Last hour % change',
             accessorKey: 'price_change_percentage_1h_in_currency',
-            cell: (cell) => {
+            cell: cell => {
                 const price_change_percentage_1h = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
@@ -424,7 +474,7 @@
             label: '24h %',
             pageTitle: 'Last day % change',
             accessorKey: 'price_change_percentage_24h',
-            cell: (cell) => {
+            cell: cell => {
                 const price_change_percentage_24h = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
@@ -439,7 +489,7 @@
             label: '7d %',
             pageTitle: 'Last week % change',
             accessorKey: 'price_change_percentage_7d_in_currency',
-            cell: (cell) => {
+            cell: cell => {
                 const price_change_percentage_7d = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
@@ -453,7 +503,7 @@
             label: '30d %',
             pageTitle: 'Last month % change',
             accessorKey: 'price_change_percentage_30d_in_currency',
-            cell: (cell) => {
+            cell: cell => {
                 const price_change_percentage_30d = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
@@ -468,9 +518,9 @@
             label: glossary.market_cap.label,
             accessorKey: 'market_cap',
             description: glossary.market_cap.description,
-            cell: (cell) => {
+            cell: cell => {
                 const market_cap = formatNumber(cell.getValue(), {
-                    compact: true, decimals: 2
+                    compact: true, decimals: 2,
                 });
                 return h('div', { class: 'text-right' }, market_cap);
             },
@@ -482,9 +532,9 @@
             pageTitle: glossary.volume.label,
             accessorKey: 'total_volume',
             description: glossary.volume.description,
-            cell: (cell) => {
+            cell: cell => {
                 const total_volume = formatNumber(cell.getValue(), {
-                    compact: true, decimals: 2
+                    compact: true, decimals: 2,
                 }) ;
                 return h('div', { class: 'text-right' }, total_volume);
             },
@@ -495,7 +545,7 @@
             label: glossary.max_supply.label,
             accessorKey: 'max_supply',
             description: glossary.max_supply.description,
-            cell: (cell) => {
+            cell: cell => {
                 const max_supply = formatNumber(cell.getValue(), {
                     compact: true, style: 'decimal',
                 });
@@ -510,9 +560,9 @@
             label: glossary.circulating_supply.label,
             accessorKey: 'circulating_supply',
             description: glossary.circulating_supply.description,
-            cell: (cell) => {
+            cell: cell => {
                 const circulating_supply = formatNumber(cell.getValue(), {
-                    compact: true, style: 'decimal', decimals: 2
+                    compact: true, style: 'decimal', decimals: 2,
                 });
                 const symbol = cell.row?.original?.symbol?.toUpperCase();
                 const label = () => cell.getValue() ? `${circulating_supply} ${symbol.toUpperCase()}` : circulating_supply;
@@ -525,9 +575,9 @@
             label: glossary.total_supply.label,
             accessorKey: 'total_supply',
             description: glossary.total_supply.description,
-            cell: (cell) => {
+            cell: cell => {
                 const total_supply = formatNumber(cell.getValue(), {
-                    compact: true, style: 'decimal', decimals: 2
+                    compact: true, style: 'decimal', decimals: 2,
                 });
                 const symbol = cell.row?.original?.symbol?.toUpperCase();
                 const label = () => cell.getValue() ? `${total_supply} ${symbol.toUpperCase()}` : total_supply;
@@ -541,9 +591,9 @@
             pageTitle: glossary.fully_diluted_valuation.label,
             accessorKey: 'fully_diluted_valuation',
             description: glossary.fully_diluted_valuation.description,
-            cell: (cell) => {
+            cell: cell => {
                 const fully_diluted_valuation = formatNumber(cell.getValue(), {
-                    compact: true, decimals: 1
+                    compact: true, decimals: 1,
                 });
                 return h('div', { class: 'text-right' }, fully_diluted_valuation);
             },
@@ -561,7 +611,7 @@
             label: 'From ATH',
             pageTitle: 'From All Time High',
             accessorKey: 'ath_change_percentage',
-            cell: (cell) => {
+            cell: cell => {
                 const ath_change_percentage = formatNumber(cell.getValue(), {
                     style: 'percent', minimumFractionDigits: 0, maximumFractionDigits: 0,
                 });
@@ -575,7 +625,7 @@
             label: 'From ATL',
             pageTitle: 'From All Time Low',
             accessorKey: 'atl_change_percentage',
-            cell: (cell) => {
+            cell: cell => {
                 const atl_change_percentage = formatNumber(cell.getValue(), {
                     style: 'percent', minimumFractionDigits: 0, maximumFractionDigits: 0,
                 });
@@ -588,8 +638,8 @@
     ]);
     
     const table = useVueTable({
-        get data() { return coins.value },
-        get columns() { return columns.value },
+        get data() { return coins.value; },
+        get columns() { return columns.value; },
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
         onSortingChange: updaterOrValue => valueUpdater(updaterOrValue, sorting),
@@ -597,9 +647,9 @@
         getFilteredRowModel: getFilteredRowModel(),
         onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, columnVisibility),
         state: {
-            get sorting() { return sorting.value },
-            get columnFilters() { return columnFilters.value },
-            get columnVisibility() { return columnVisibility.value },
+            get sorting() { return sorting.value; },
+            get columnFilters() { return columnFilters.value; },
+            get columnVisibility() { return columnVisibility.value; },
         },
     });
     
@@ -629,7 +679,7 @@
             tooltip: {
                 enabled: false,
                 displayColors: false,
-            }
+            },
         },
         scales: {
             x: {
@@ -640,7 +690,7 @@
             y: {
                 display: false,
             },
-        }
+        },
     });
     
     onMounted(() => {
