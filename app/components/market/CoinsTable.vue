@@ -5,9 +5,9 @@
             <Text3d
                 class='[font-size:clamp(1.4rem,5vw,5rem)] font-black uppercase'
                 :animate='false'
-                :strokeSize='4'
-                :letterSpacing='0.15'
-                :shadowColor='dark_mode ? "yellow" : "transparent"'
+                :stroke-size='4'
+                :letter-spacing='0.15'
+                :shadow-color='dark_mode ? "yellow" : "transparent"'
             >
                 {{ sortingLabel }}
             </Text3d>
@@ -44,9 +44,9 @@
                         <DropdownMenuCheckboxItem
                             v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
                             :key='column.id'
-                            :modelValue='column.getIsVisible()'
-                            @update:modelValue='(value) => column.toggleVisibility(!!value)'
+                            :model-value='column.getIsVisible()'
                             class='checkbox-item capitalize h-10 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-foreground/85'
+                            @update:model-value='(value) => column.toggleVisibility(!!value)'
                             @select='event => event.preventDefault()'
                         >
                             {{ column.columnDef.label }}
@@ -75,7 +75,6 @@
                             >
                                 <template v-if='!header.isPlaceholder'>
                                     <div
-                                        @click='onSort(header)'
                                         class='flex justify-end'
                                         :class='{
                                             "hover:cursor-pointer" : header.column.columnDef.isSortable,
@@ -83,12 +82,13 @@
                                             "!justify-center": header.column.id === "market_cap_rank",
                                             "justify-start": header.column.id === "name",
                                         }'
+                                        @click='onSort(header)'
                                     >
                                         <div
                                             class='flex items-center gap-1'
                                             :class='{ "flex flex-row-reverse !justify-end" : header.column.id === "name" }'
                                         >
-                                            <div class='pt-1 w-3' v-if='header.column.columnDef.isSortable'>
+                                            <div v-if='header.column.columnDef.isSortable' class='pt-1 w-3'>
                                                 <NuxtIcon
                                                     v-if='header.column.getIsSorted() === "desc"'
                                                     name='ph:caret-down-fill'
@@ -107,7 +107,7 @@
                                                 class='text-md truncate'
                                             />
                                             
-                                            <HoverCard v-if='header.column.columnDef.description' :openDelay='200' class='flex'>
+                                            <HoverCard v-if='header.column.columnDef.description' :open-delay='200' class='flex'>
                                                 <HoverCardTrigger>
                                                     <InfoIcon />
                                                 </HoverCardTrigger>
@@ -150,15 +150,15 @@
                                     <TableCell class='h-20 text-center'>
                                         <div class='pt-1'>
                                             <NuxtIcon
-                                                @click.prevent='onUpdateWatchlist(row)'
                                                 :name='isCoinInWatchlist(row.original.id) ? "ph:star-fill" : "ph:star"'
                                                 class='hover:cursor-pointer'
                                                 :class='isCoinInWatchlist(row.original.id) ? "text-yellow-selective" : "text-muted-foreground"'
                                                 size='16'
+                                                @click.prevent='onUpdateWatchlist(row)'
                                             />
                                         </div>
                                     </TableCell>
-                             
+                                    
                                     <NuxtLink
                                         :to='`/market/${row.original.id}`'
                                         class='contents'
@@ -194,26 +194,26 @@
                                                         v-if='cell.getValue().price?.length'
                                                         :key='cell.id'
                                                         :data='{
-                                                        labels: Array(cell.getValue().price?.length).fill(""),
-                                                        datasets: [{
-                                                              data: cell.getValue().price,
-                                                              borderColor: "rgb(14,165,233)",
-                                                              borderWidth: 2,
-                                                              backgroundColor: (context) => {
-                                                                const ctx = context.chart.ctx;
-                                                                const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
-                                                                gradient.addColorStop(0.2, "rgba(14,165,233, 0.4)");
-                                                                gradient.addColorStop(0.5, "rgba(14,165,233, 0.2)");
-                                                                gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
-                                                                return gradient;
-                                                              },
-                                                              fill: true,
-                                                              tension: 0.5,
-                                                              pointRadius: 0,
-                                                              pointHoverRadius: 5,
-                                                              pointBackgroundColor: "oklch(0.985 0 0)",
-                                                        }]
-                                                    }'
+                                                            labels: Array(cell.getValue().price?.length).fill(""),
+                                                            datasets: [{
+                                                                data: cell.getValue().price,
+                                                                borderColor: "rgb(14,165,233)",
+                                                                borderWidth: 2,
+                                                                backgroundColor: (context) => {
+                                                                    const ctx = context.chart.ctx;
+                                                                    const gradient = ctx.createLinearGradient(0, 0, 0, context.chart.height);
+                                                                    gradient.addColorStop(0.2, "rgba(14,165,233, 0.4)");
+                                                                    gradient.addColorStop(0.5, "rgba(14,165,233, 0.2)");
+                                                                    gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+                                                                    return gradient;
+                                                                },
+                                                                fill: true,
+                                                                tension: 0.5,
+                                                                pointRadius: 0,
+                                                                pointHoverRadius: 5,
+                                                                pointBackgroundColor: "oklch(0.985 0 0)",
+                                                            }]
+                                                        }'
                                                         :options='chartOptions'
                                                     />
                                                 </div>
@@ -247,8 +247,8 @@
                                             </EmptyHeader>
                                             <EmptyContent>
                                                 <Button
-                                                    @click='getCoinsMarkets({}, "table")'
                                                     variant='outline'
+                                                    @click='getCoinsMarkets({}, "table")'
                                                 >
                                                     <NuxtIcon
                                                         name='ph:repeat-thin'
@@ -293,24 +293,24 @@
     import glossary from '~/assets/data/market/glossary.json';
     
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
-    ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
     
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
-    dayjs.extend(relativeTime, { rounding: Math.floor });
-    
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
     
     // MarketStore
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     import { Line } from 'vue-chartjs';
-    const MarketStore = useMarketStore();
-    const { getCoinsMarkets } = MarketStore;
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
+    ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
+    dayjs.extend(relativeTime, { rounding: Math.floor });
+    
+    const colorMode = useColorMode();
+    const dark_mode = computed(() => colorMode.value === 'dark');
+    const MarketStore = useMarketStore();
+    const { getCoinsMarkets } = MarketStore;
     const ProfileStore = useProfileStore();
     const { watchlist } = storeToRefs(ProfileStore);
     const { updateWatchlist } = ProfileStore;
