@@ -11,14 +11,14 @@ export default withNuxt([
             'max-len': ['error', { code: 250 }],
             'semi': ['error', 'always'],
             'quotes': ['error', 'single'],
-            'indent': ['error', 4],
+            // 'indent': ['error', 4],
             'comma-dangle': ['error', 'always-multiline'],
             'vue/singleline-html-element-content-newline': ['error', {
                 'ignoreWhenNoAttributes': true,
                 'ignoreWhenEmpty': true,
             }],
-            'vue/script-indent': ['error', 0, {
-                baseIndent: 4, // <script setup>
+            'vue/script-indent': ['error', 4, {
+                baseIndent: 1,
                 switchCase: 1,
             }],
             'vue/html-indent': ['error', 4],
