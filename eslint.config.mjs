@@ -14,15 +14,15 @@ export default withNuxt([
             // 'indent': ['error', 4],
             'comma-dangle': ['error', 'always-multiline'],
             'vue/singleline-html-element-content-newline': ['error', {
-                'ignoreWhenNoAttributes': true,
-                'ignoreWhenEmpty': true,
+                ignoreWhenNoAttributes: true,
+                ignoreWhenEmpty: true,
             }],
             'vue/html-closing-bracket-newline': ['error', {
                 singleline: 'never',
                 multiline: 'always',
-                'selfClosingTag': {
-                    'singleline': 'never',
-                    'multiline': 'always',
+                selfClosingTag: {
+                    singleline: 'never',
+                    multiline: 'always',
                 },
             }],
             'vue/html-closing-bracket-spacing': ['error', {
@@ -41,11 +41,11 @@ export default withNuxt([
             ]],
             'vue/padding-line-between-blocks' : ['error', 'always'],
             'vue/padding-lines-in-component-definition': ['error', {
-                'groupSingleLineProperties': true,
+                groupSingleLineProperties: true,
             }],
             'vue/multiline-html-element-content-newline': ['error', {
-                'ignoreWhenEmpty': true,
-                'allowEmptyLines': false,
+                ignoreWhenEmpty: true,
+                allowEmptyLines: false,
             }],
             'vue/max-attributes-per-line': ['error', {
                 singleline: 2,

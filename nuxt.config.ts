@@ -50,24 +50,6 @@ export default defineNuxtConfig({
 
     css: ['~/assets/tailwind.css'],
 
-    eslint: {
-        config: {
-            // stylistic: {
-            //     indent: 4,
-            //     quotes: 'single',
-            //     semi: true,
-            //     jsx: true,
-            //     'comma-dangle': 'always-multiline',
-            // },
-            // vue: {
-            //     'singleline-html-element-content-newline': true,
-            //     'script-indent': [4, { baseIndent: 1 }],
-            //     'html-indent': 4,
-            //     'html-quotes': 'double',
-            // },
-        },
-    },
-
     icon: {
         componentName: 'NuxtIcon',
         cssLayer: 'base',
