@@ -20,6 +20,10 @@ export default withNuxt([
             'vue/html-closing-bracket-newline': ['error', {
                 singleline: 'never', // Closing bracket never on a new line for single-line elements
                 multiline: 'always',  // Closing bracket on a new line for multiline elements
+                'selfClosingTag': {
+                    'singleline': 'never',
+                    'multiline': 'always',
+                },
             }],
             'vue/html-closing-bracket-spacing': ['error', {
                 startTag: 'never',
