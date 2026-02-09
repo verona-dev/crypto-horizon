@@ -2,6 +2,7 @@
     <Card class='bg-background flex flex-col gap-12 xl:gap-20 border-none shadow-none w-full h-full z-10'>
         <h3 class='title w-screen flex flex-col items-start [gap:clamp(0.5rem,4vw,4rem)]'>
             <span class='[font-size:clamp(1.5rem,5vw,3rem)]'>Leading Cryptocurrencies by</span>
+            
             <Text3d
                 class='[font-size:clamp(1.4rem,5vw,5rem)] font-black uppercase'
                 :animate='false'
@@ -39,7 +40,9 @@
                     </DropdownMenuTrigger>
                     
                     <DropdownMenuContent align='end' class='w-56 p-1 pb-0'>
-                        <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Columns</DropdownMenuLabel>
+                        <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>
+                            Columns
+                        </DropdownMenuLabel>
                         
                         <DropdownMenuCheckboxItem
                             v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
@@ -181,7 +184,9 @@
                                                     />
                                                     
                                                     <div class='flex flex-col items-start gap-1 truncate'>
-                                                        <p class='font-medium'>{{ cell.getValue() }}</p>
+                                                        <p class='font-medium'>
+                                                            {{ cell.getValue() }}
+                                                        </p>
                                                         <span class='uppercase text-xs text-muted-foreground'>{{ cell.row.original.symbol }}</span>
                                                     </div>
                                                 </div>
@@ -280,9 +285,9 @@
     import { getTrendClass } from '~/utils/styleUtils.js';
     import { Button } from '~/components/ui/button';
     import { Card } from '~/components/ui/card';
-    import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger,  } from '@/components/ui/dropdown-menu';
+    import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger  } from '@/components/ui/dropdown-menu';
     import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index.ts';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index';
     import InfoIcon from '@/components/InfoIcon.vue';
     import { Input } from '~/components/ui/input';
     import { Spinner } from '~/components/ui/spinner';
@@ -320,12 +325,12 @@
     
     // Watchlist
     const isCoinInWatchlist = computed(() => {
-        return (coin) => {
+        return coin => {
             return watchlist.value?.includes(coin);
         };
     });
     
-    const onUpdateWatchlist = (row) => {
+    const onUpdateWatchlist = row => {
         const coin = row.original.id || '';
         row.toggleSelected(!row.getIsSelected());
         updateWatchlist({ coin });
@@ -384,7 +389,7 @@
             id: 'market_cap_rank',
             label: '#',
             accessorKey: 'market_cap_rank',
-            cell: (cell) => h('div', { class: 'text-center' }, cell.getValue()),
+            cell: cell => h('div', { class: 'text-center' }, cell.getValue()),
         },
         {
             label: 'Name',
@@ -395,7 +400,7 @@
         {
             label: 'Price',
             accessorKey: 'current_price',
-            cell: (cell) => {
+            cell: cell => {
                 const current_price = formatNumber(cell.getValue(), {
                     maximumFractionDigits: 4,
                 });
@@ -409,7 +414,7 @@
             label: '1h %',
             pageTitle: 'Last hour % change',
             accessorKey: 'price_change_percentage_1h_in_currency',
-            cell: (cell) => {
+            cell: cell => {
                 const price_change_percentage_1h = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
@@ -424,7 +429,7 @@
             label: '24h %',
             pageTitle: 'Last day % change',
             accessorKey: 'price_change_percentage_24h',
-            cell: (cell) => {
+            cell: cell => {
                 const price_change_percentage_24h = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
@@ -439,7 +444,7 @@
             label: '7d %',
             pageTitle: 'Last week % change',
             accessorKey: 'price_change_percentage_7d_in_currency',
-            cell: (cell) => {
+            cell: cell => {
                 const price_change_percentage_7d = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
@@ -453,7 +458,7 @@
             label: '30d %',
             pageTitle: 'Last month % change',
             accessorKey: 'price_change_percentage_30d_in_currency',
-            cell: (cell) => {
+            cell: cell => {
                 const price_change_percentage_30d = formatNumber(cell.getValue(), {
                     style: 'percent',
                 });
@@ -468,9 +473,9 @@
             label: glossary.market_cap.label,
             accessorKey: 'market_cap',
             description: glossary.market_cap.description,
-            cell: (cell) => {
+            cell: cell => {
                 const market_cap = formatNumber(cell.getValue(), {
-                    compact: true, decimals: 2
+                    compact: true, decimals: 2,
                 });
                 return h('div', { class: 'text-right' }, market_cap);
             },
@@ -482,9 +487,9 @@
             pageTitle: glossary.volume.label,
             accessorKey: 'total_volume',
             description: glossary.volume.description,
-            cell: (cell) => {
+            cell: cell => {
                 const total_volume = formatNumber(cell.getValue(), {
-                    compact: true, decimals: 2
+                    compact: true, decimals: 2,
                 }) ;
                 return h('div', { class: 'text-right' }, total_volume);
             },
@@ -495,7 +500,7 @@
             label: glossary.max_supply.label,
             accessorKey: 'max_supply',
             description: glossary.max_supply.description,
-            cell: (cell) => {
+            cell: cell => {
                 const max_supply = formatNumber(cell.getValue(), {
                     compact: true, style: 'decimal',
                 });
@@ -510,9 +515,9 @@
             label: glossary.circulating_supply.label,
             accessorKey: 'circulating_supply',
             description: glossary.circulating_supply.description,
-            cell: (cell) => {
+            cell: cell => {
                 const circulating_supply = formatNumber(cell.getValue(), {
-                    compact: true, style: 'decimal', decimals: 2
+                    compact: true, style: 'decimal', decimals: 2,
                 });
                 const symbol = cell.row?.original?.symbol?.toUpperCase();
                 const label = () => cell.getValue() ? `${circulating_supply} ${symbol.toUpperCase()}` : circulating_supply;
@@ -525,9 +530,9 @@
             label: glossary.total_supply.label,
             accessorKey: 'total_supply',
             description: glossary.total_supply.description,
-            cell: (cell) => {
+            cell: cell => {
                 const total_supply = formatNumber(cell.getValue(), {
-                    compact: true, style: 'decimal', decimals: 2
+                    compact: true, style: 'decimal', decimals: 2,
                 });
                 const symbol = cell.row?.original?.symbol?.toUpperCase();
                 const label = () => cell.getValue() ? `${total_supply} ${symbol.toUpperCase()}` : total_supply;
@@ -541,9 +546,9 @@
             pageTitle: glossary.fully_diluted_valuation.label,
             accessorKey: 'fully_diluted_valuation',
             description: glossary.fully_diluted_valuation.description,
-            cell: (cell) => {
+            cell: cell => {
                 const fully_diluted_valuation = formatNumber(cell.getValue(), {
-                    compact: true, decimals: 1
+                    compact: true, decimals: 1,
                 });
                 return h('div', { class: 'text-right' }, fully_diluted_valuation);
             },
@@ -561,7 +566,7 @@
             label: 'From ATH',
             pageTitle: 'From All Time High',
             accessorKey: 'ath_change_percentage',
-            cell: (cell) => {
+            cell: cell => {
                 const ath_change_percentage = formatNumber(cell.getValue(), {
                     style: 'percent', minimumFractionDigits: 0, maximumFractionDigits: 0,
                 });
@@ -575,7 +580,7 @@
             label: 'From ATL',
             pageTitle: 'From All Time Low',
             accessorKey: 'atl_change_percentage',
-            cell: (cell) => {
+            cell: cell => {
                 const atl_change_percentage = formatNumber(cell.getValue(), {
                     style: 'percent', minimumFractionDigits: 0, maximumFractionDigits: 0,
                 });
@@ -588,8 +593,8 @@
     ]);
     
     const table = useVueTable({
-        get data() { return coins.value },
-        get columns() { return columns.value },
+        get data() { return coins.value; },
+        get columns() { return columns.value; },
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
         onSortingChange: updaterOrValue => valueUpdater(updaterOrValue, sorting),
@@ -597,9 +602,9 @@
         getFilteredRowModel: getFilteredRowModel(),
         onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, columnVisibility),
         state: {
-            get sorting() { return sorting.value },
-            get columnFilters() { return columnFilters.value },
-            get columnVisibility() { return columnVisibility.value },
+            get sorting() { return sorting.value; },
+            get columnFilters() { return columnFilters.value; },
+            get columnVisibility() { return columnVisibility.value; },
         },
     });
     
@@ -629,7 +634,7 @@
             tooltip: {
                 enabled: false,
                 displayColors: false,
-            }
+            },
         },
         scales: {
             x: {
@@ -640,7 +645,7 @@
             y: {
                 display: false,
             },
-        }
+        },
     });
     
     onMounted(() => {
