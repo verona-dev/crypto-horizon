@@ -14,7 +14,7 @@ export default withNuxt([
             // 'indent': ['error', 4],
             'comma-dangle': ['error', 'always-multiline'],
             'vue/singleline-html-element-content-newline': ['error', {
-                'ignoreWhenNoAttributes': false,
+                'ignoreWhenNoAttributes': true,
                 'ignoreWhenEmpty': true,
             }],
             'vue/html-closing-bracket-newline': ['error', {
