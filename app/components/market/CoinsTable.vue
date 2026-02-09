@@ -26,20 +26,29 @@
                 
                 <!--   Filter Columns   -->
                 <DropdownMenu :modal='false'>
-                    <DropdownMenuTrigger as-child class='flex items-center gap-4'>
+                    <DropdownMenuTrigger
+                        as-child
+                        class='flex items-center gap-4'
+                    >
                         <Button
                             variant='outline'
                             class='ml-auto p-5 gap-2'
                         >
                             <div class='pt-1.5'>
-                                <NuxtIcon name='ph:table-thin' size='20' />
+                                <NuxtIcon
+                                    name='ph:table-thin'
+                                    size='20'
+                                />
                             </div>
                             
                             <span>Columns</span>
                         </Button>
                     </DropdownMenuTrigger>
                     
-                    <DropdownMenuContent align='end' class='w-56 p-1 pb-0'>
+                    <DropdownMenuContent
+                        align='end'
+                        class='w-56 p-1 pb-0'
+                    >
                         <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>
                             Columns
                         </DropdownMenuLabel>
@@ -91,7 +100,10 @@
                                             class='flex items-center gap-1'
                                             :class='{ "flex flex-row-reverse !justify-end" : header.column.id === "name" }'
                                         >
-                                            <div v-if='header.column.columnDef.isSortable' class='pt-1 w-3'>
+                                            <div
+                                                v-if='header.column.columnDef.isSortable'
+                                                class='pt-1 w-3'
+                                            >
                                                 <NuxtIcon
                                                     v-if='header.column.getIsSorted() === "desc"'
                                                     name='ph:caret-down-fill'
@@ -110,11 +122,17 @@
                                                 class='text-md truncate'
                                             />
                                             
-                                            <HoverCard v-if='header.column.columnDef.description' :open-delay='200' class='flex'>
+                                            <HoverCard
+                                                v-if='header.column.columnDef.description'
+                                                :open-delay='200'
+                                                class='flex'
+                                            >
                                                 <HoverCardTrigger>
                                                     <InfoIcon />
                                                 </HoverCardTrigger>
-                                                <HoverCardContent>{{ header.column.columnDef.description }}</HoverCardContent>
+                                                <HoverCardContent>
+                                                    {{ header.column.columnDef.description }}
+                                                </HoverCardContent>
                                             </HoverCard>
                                         </div>
                                     </div>
@@ -127,14 +145,24 @@
                         <!--   Loading   -->
                         <template v-if='loading'>
                             <TableRow>
-                                <TableCell :colspan='columns.length' class='p-0'>
+                                <TableCell
+                                    :colspan='columns.length'
+                                    class='p-0'
+                                >
                                     <Empty class='from-muted/25 to-background h-130 bg-gradient-to-b from-50%'>
                                         <EmptyHeader class='gap-3'>
-                                            <EmptyMedia variant='icon' class='w-16 h-16'>
+                                            <EmptyMedia
+                                                variant='icon'
+                                                class='w-16 h-16'
+                                            >
                                                 <Spinner class='size-8 text-green-shamrock' />
                                             </EmptyMedia>
-                                            <EmptyTitle>Loading coins...</EmptyTitle>
-                                            <EmptyDescription>Synchronizing with the crypto market, hold on tight!</EmptyDescription>
+                                            <EmptyTitle>
+                                                Loading coins...
+                                            </EmptyTitle>
+                                            <EmptyDescription>
+                                                Synchronizing with the crypto market, hold on tight!
+                                            </EmptyDescription>
                                         </EmptyHeader>
                                     </Empty>
                                 </TableCell>
@@ -238,17 +266,27 @@
                             <!--   No results   -->
                             <template v-else>
                                 <TableRow>
-                                    <TableCell :colspan='columns.length' class='p-0'>
+                                    <TableCell
+                                        :colspan='columns.length'
+                                        class='p-0'
+                                    >
                                         <Empty class='from-muted/25 to-background h-130 bg-gradient-to-b from-50%'>
                                             <EmptyHeader class='gap-3'>
-                                                <EmptyMedia variant='icon' class='w-24 h-24'>
+                                                <EmptyMedia
+                                                    variant='icon'
+                                                    class='w-24 h-24'
+                                                >
                                                     <NuxtIcon
                                                         name='ph:notches-thin'
                                                         size='60'
                                                     />
                                                 </EmptyMedia>
-                                                <EmptyTitle>No data available</EmptyTitle>
-                                                <EmptyDescription>No data found. Check back later for updates.</EmptyDescription>
+                                                <EmptyTitle>
+                                                    No data available
+                                                </EmptyTitle>
+                                                <EmptyDescription>
+                                                    No data found. Check back later for updates.
+                                                </EmptyDescription>
                                             </EmptyHeader>
                                             <EmptyContent>
                                                 <Button
