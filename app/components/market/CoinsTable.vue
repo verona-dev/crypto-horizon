@@ -2,7 +2,7 @@
     <Card class='bg-background flex flex-col gap-12 xl:gap-20 border-none shadow-none w-full h-full z-10'>
         <h3 class='title w-screen flex flex-col items-start [gap:clamp(0.5rem,4vw,4rem)]'>
             <span class='[font-size:clamp(1.5rem,5vw,3rem)]'>Leading Cryptocurrencies by</span>
-            
+
             <Text3d
                 class='[font-size:clamp(1.4rem,5vw,5rem)] font-black uppercase'
                 :animate='false'
@@ -13,7 +13,7 @@
                 {{ sortingLabel }}
             </Text3d>
         </h3>
-        
+
         <div class='w-full flex flex-col gap-12'>
             <div class='flex items-center py-4'>
                 <!--   Search   -->
@@ -23,7 +23,6 @@
                     :model-value='table.getColumn("name")?.getFilterValue()'
                     @update:model-value='table.getColumn("name")?.setFilterValue($event)'
                 />
-                
                 <!--   Filter Columns   -->
                 <DropdownMenu :modal='false'>
                     <DropdownMenuTrigger
@@ -109,6 +108,7 @@
                                                     name='ph:caret-down-fill'
                                                     size='12'
                                                 />
+
                                                 <NuxtIcon
                                                     v-else-if='header.column.getIsSorted() === "asc"'
                                                     name='ph:caret-up-fill'
@@ -130,6 +130,7 @@
                                                 <HoverCardTrigger>
                                                     <InfoIcon />
                                                 </HoverCardTrigger>
+
                                                 <HoverCardContent>
                                                     {{ header.column.columnDef.description }}
                                                 </HoverCardContent>
@@ -157,9 +158,11 @@
                                             >
                                                 <Spinner class='size-8 text-green-shamrock' />
                                             </EmptyMedia>
+
                                             <EmptyTitle>
                                                 Loading coins...
                                             </EmptyTitle>
+
                                             <EmptyDescription>
                                                 Synchronizing with the crypto market, hold on tight!
                                             </EmptyDescription>
@@ -215,6 +218,7 @@
                                                         <p class='font-medium'>
                                                             {{ cell.getValue() }}
                                                         </p>
+
                                                         <span class='uppercase text-xs text-muted-foreground'>{{ cell.row.original.symbol }}</span>
                                                     </div>
                                                 </div>
@@ -281,13 +285,16 @@
                                                         size='60'
                                                     />
                                                 </EmptyMedia>
+
                                                 <EmptyTitle>
                                                     No data available
                                                 </EmptyTitle>
+
                                                 <EmptyDescription>
                                                     No data found. Check back later for updates.
                                                 </EmptyDescription>
                                             </EmptyHeader>
+
                                             <EmptyContent>
                                                 <Button
                                                     variant='outline'
