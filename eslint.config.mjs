@@ -14,8 +14,17 @@ export default withNuxt([
             // 'indent': ['error', 4],
             'comma-dangle': ['error', 'always-multiline'],
             'vue/singleline-html-element-content-newline': ['error', {
-                'ignoreWhenNoAttributes': true,
+                'ignoreWhenNoAttributes': false,
                 'ignoreWhenEmpty': true,
+            }],
+            'vue/html-closing-bracket-newline': ['error', {
+                singleline: 'never', // Closing bracket never on a new line for single-line elements
+                multiline: 'always',  // Closing bracket on a new line for multiline elements
+            }],
+            'vue/html-closing-bracket-spacing': ['error', {
+                startTag: 'never',
+                endTag: 'never',
+                selfClosingTag: 'always',
             }],
             'vue/script-indent': ['error', 4, {
                 baseIndent: 1,
