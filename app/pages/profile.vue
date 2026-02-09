@@ -17,7 +17,7 @@
             <ProfileWatchlist />
         </div>
         
-        <div class="absolute inset-0 h-screen w-screen">
+        <div class='absolute inset-0 h-screen w-screen'>
             <SnowfallBg
                 v-if='dark_mode'
                 color='eee8a9'
@@ -41,17 +41,18 @@
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     import utc from 'dayjs/plugin/utc';
-    dayjs.extend(relativeTime);
-    dayjs.extend(utc);
-    
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
-    const { profile, watchlistData } = storeToRefs(ProfileStore);
+    const { profile } = storeToRefs(ProfileStore);
     const { getProfile } = ProfileStore;
+    
+    const colorMode = useColorMode();
+    const dark_mode = computed(() => colorMode.value === 'dark');
+    
+    dayjs.extend(relativeTime);
+    dayjs.extend(utc);
     
     const profile_formatted = computed(() => [
         { name: 'username', label: 'Username', value: profile.value?.username },

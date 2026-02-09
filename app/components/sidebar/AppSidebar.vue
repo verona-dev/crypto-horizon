@@ -1,11 +1,11 @@
 <script setup lang="ts">
-    import {type SidebarProps, useSidebar} from '@/components/ui/sidebar'
-    import NavMain from './NavMain.vue'
-    import NavUser from '../NavUser.vue'
-    import SidebarToggle from './SidebarToggle.vue'
-    import SidebarLogo from './SidebarLogo.vue'
-    import ColorMode from '@/components/sidebar/ColorMode.vue'
-    import { Sidebar, SidebarContent, SidebarHeader, SidebarFooter, SidebarRail } from '@/components/ui/sidebar'
+    import {type SidebarProps, useSidebar} from '@/components/ui/sidebar';
+    import NavMain from './NavMain.vue';
+    import NavUser from '../NavUser.vue';
+    import SidebarToggle from './SidebarToggle.vue';
+    import SidebarLogo from './SidebarLogo.vue';
+    import ColorMode from '@/components/sidebar/ColorMode.vue';
+    import { Sidebar, SidebarContent, SidebarHeader, SidebarFooter, SidebarRail } from '@/components/ui/sidebar';
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
@@ -14,12 +14,12 @@
     const logged_in = computed(() => profile.value);
     
     const props = withDefaults(defineProps<SidebarProps>(), {
-        collapsible: "icon",
-    })
+        collapsible: 'icon',
+    });
     
     const route = useRoute()
     
-    const isParentActive = (item_url: string, items: any[]) => {
+    const isParentActive = (item_url: string, items: never[]) => {
         return items.some(child => route.path === child.url) || route.path.startsWith(item_url);
     };
     
@@ -195,7 +195,9 @@
         
         <SidebarFooter class='px-0'>
             <ColorMode />
+
             <NavUser />
+
             <SidebarToggle />
         </SidebarFooter>
         

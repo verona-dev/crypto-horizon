@@ -8,12 +8,13 @@
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
     const { authModal } = storeToRefs(AuthStore);
-    const { logOut } = AuthStore;
+    const { signInAnonymous, logOut } = AuthStore;
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
     const { profile } = storeToRefs(ProfileStore);
+    // const { getProfile } = ProfileStore;
     
     const { open, isMobile } = useSidebar()
     
@@ -42,6 +43,16 @@
         }
         return '';
     });
+    
+    /*
+    const onSignInAnonymous = async() => {
+        const { data, error } = await signInAnonymous();
+        
+        if(data?.session?.access_token) {
+            console.log(data)
+        }
+    };
+    */
     
     const onLogOut = async() => {
         const route = useRoute();
@@ -127,6 +138,18 @@
                             <NuxtIcon name='ph:sign-in' size='18' />
                             Login / Register
                         </DropdownMenuItem>
+                        
+                        <!--  Demo account  -->
+                        <!--
+                        <DropdownMenuItem
+                            v-if='!logged_in'
+                            @click='onSignInAnonymous'
+                            class='py-3 mt-1 cursor-pointer rounded-lg'
+                        >
+                            <NuxtIcon name='ph:user' size='18' />
+                            Demo Account
+                        </DropdownMenuItem>
+                        -->
                         
                         <!--  Logout  -->
                         <DropdownMenuItem

@@ -11,7 +11,7 @@ export const useAuthStore = defineStore('AuthStore', {
         isAuthenticated: () => {
             const user = useSupabaseUser();
             return !!user.value;
-        }
+        },
     },
     
     actions: {
@@ -35,6 +35,24 @@ export const useAuthStore = defineStore('AuthStore', {
                 return { data: null, error };
             } finally {
                 this.loading = false;
+            }
+        },
+        
+        async signInAnonymous() {
+            try {
+                const { data, error } = await $fetch('/api/supabase/auth/sign-in-anonymous', {
+                    method: 'POST',
+                });
+                
+                if (error) {
+                    console.error('Sign-in error:', error);
+                    throw new Error(`Failed to sign in anonymously: ${error.statusMessage}`);
+                }
+                
+                return { data, error };
+            } catch (error) {
+                console.error('Unexpected error:', error);
+                throw new Error(`Sign-in failed: ${error.message}`);
             }
         },
         
