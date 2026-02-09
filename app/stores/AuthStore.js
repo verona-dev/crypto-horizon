@@ -15,6 +15,25 @@ export const useAuthStore = defineStore('AuthStore', {
     },
     
     actions: {
+        async signUp(payload) {
+            try {
+                const { data, error } = await $fetch('/api/supabase/auth/sign-up', {
+                    method: 'POST',
+                    body: payload
+                });
+                
+                if(error) {
+                    throw error;
+                }
+                
+                if(data) {
+                    console.log(data);
+                }
+            } catch(error) {
+                console.error(error);
+            }
+        },
+        
         async signInWithOtp(email) {
             try {
                 this.loading = true;
