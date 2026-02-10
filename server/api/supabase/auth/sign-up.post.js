@@ -9,6 +9,9 @@ export default defineEventHandler(async (event) => {
         const { data, error } = await client.auth.signUp({
             email,
             password,
+            options: {
+                emailRedirectTo: 'http://localhost:3000/verify',
+            }
         });
         
         if (error) {

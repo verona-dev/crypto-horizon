@@ -136,7 +136,7 @@
                         >
                             <NuxtLink to='/register' class='flex items-center gap-2'>
                                 <NuxtIcon name='ph:sign-in' size='18' />
-                                Login / Register
+                                Register
                             </NuxtLink>
                         </DropdownMenuItem>
                         

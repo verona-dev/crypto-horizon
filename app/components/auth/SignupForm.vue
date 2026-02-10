@@ -143,7 +143,6 @@
     );
     
     const onCreateAccount = async() => {
-        console.log(email, password);
         await signUp({
             email: email.value,
             password: password.value
