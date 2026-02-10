@@ -323,7 +323,7 @@
     const otp_input = ref([]);
     const onVerifyOtp = async(setFieldError: any, nextStep:any) => {
         const joined_otp_input = otp_input.value?.join('');
-        const result = await verifyOtp(email.value, joined_otp_input);
+        const result = await verifyOtp({ email: email.value, token: joined_otp_input});
         
         if(result?.error) {
             setFieldError('otp', `Verification failed: ${result.error.message}`);

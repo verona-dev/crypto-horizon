@@ -75,14 +75,16 @@ export const useAuthStore = defineStore('AuthStore', {
             }
         },
         
-        async verifyOtp(email, otpCode) {
+        async verifyOtp(payload) {
             const ProfileStore = useProfileStore();
             
             try {
                 const { data, error } = await $fetch('/api/supabase/auth/verify-otp', {
                     method: 'POST',
-                    body: { email, otpCode },
+                    body: { payload },
                 });
+                
+                if(error) throw error;
                 
                 if(data) {
                     await ProfileStore.getProfile();
