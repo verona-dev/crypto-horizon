@@ -1,5 +1,5 @@
 <template>
-    <div class='bg-background flex flex-col items-center justify-center gap-8 p-6 md:p-10 w-full max-w-xl'>
+    <div class='bg-background flex flex-col items-center justify-center gap-8 p-6 md:p-10 w-full'>
         <!--  Logo  -->
         <NuxtImg
             src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
@@ -21,7 +21,7 @@
             />
         </NuxtImg>
         
-        <div class='flex flex-col gap-6 max-w-lg'>
+        <div class='flex flex-col gap-6'>
             <SignupFormOtp v-if='otp_signup' />
             
             <SignupForm v-else />

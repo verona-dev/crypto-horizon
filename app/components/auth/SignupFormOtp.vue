@@ -22,6 +22,7 @@
                             <FieldDescription>Already have an account? <a href='/login'>Login</a></FieldDescription>
                         </div>
                         
+                        <!--
                         <div v-if='stepIndex === 2' class='flex flex-col items-center gap-2'>
                             <h1 class="text-3xl font-bold">Enter verification code</h1>
                             <FieldDescription>We sent a 6-digit code to your email address</FieldDescription>
@@ -31,10 +32,11 @@
                             <h1 class="text-3xl font-bold">Welcome back!</h1>
                             <FieldDescription>Redirecting...</FieldDescription>
                         </div>
+                        -->
                     </div>
                     
                     <!--   Stepper Navigation  -->
-                    <div v-if='stepIndex !== 3' class='flex items-center gap-2'>
+                    <div class='flex w-full items-start gap-2'>
                         <StepperItem
                             v-for='(step, index) in steps'
                             :key='step.step'
@@ -61,6 +63,21 @@
                                     <Dot v-if='state === "inactive"' />
                                 </Button>
                             </StepperTrigger>
+                            
+                            <div class='mt-5 flex flex-col items-center text-center'>
+                                <StepperTitle
+                                    :class='[state === "active" && "text-primary"]'
+                                    class='text-sm font-semibold transition lg:text-base'
+                                >
+                                    {{ step.title }}
+                                </StepperTitle>
+                                <StepperDescription
+                                    :class='[state === "active" && "text-primary"]'
+                                    class='sr-only text-xs text-muted-foreground transition md:not-sr-only lg:text-sm'
+                                >
+                                    {{ step.description }}
+                                </StepperDescription>
+                            </div>
                         </StepperItem>
                     </div>
                     
@@ -155,7 +172,7 @@
                             :disabled='!meta.valid'
                         >
                             <Spinner v-if='loading' class='animate-spin' />
-                            <span>Continue</span>
+                            <span>Create Account</span>
                         </Button>
                     </div>
                     
@@ -174,9 +191,6 @@
 </template>
 
 <script setup lang='ts'>
-    import type { HTMLAttributes } from 'vue';
-    import { GalleryVerticalEnd } from 'lucide-vue-next';
-    import { cn } from '@/lib/utils';
     import { Button } from '@/components/ui/button';
     import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from '@/components/ui/field';
     import { Input } from '@/components/ui/input';
@@ -186,29 +200,18 @@
     import { useForm } from 'vee-validate';
     import { Check, X, Dot, Mail, LockKeyhole } from 'lucide-vue-next';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
-    import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '~/components/ui/pin-input';
-    import { Separator } from '~/components/ui/separator';
-    import { Skeleton } from '@/components/ui/skeleton';
+    import { PinInput, PinInputGroup, PinInputSlot } from '~/components/ui/pin-input';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
-    // import { toast } from 'vue-sonner';
     import { useCountdown } from '@vueuse/core';
     
-    const props = defineProps<{
-        class?: HTMLAttributes['class']
-    }>();
     
     // AuthStore
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
     const { signInWithOtp, verifyOtp } = AuthStore;
-    const { loading, authModal } = storeToRefs(AuthStore);
-    
-    // ProfileStore
-    import { useProfileStore } from '~/stores/ProfileStore.js';
-    const ProfileStore = useProfileStore();
-    const { getProfile } = ProfileStore;
+    const { loading } = storeToRefs(AuthStore);
     
     // Stepper
     const formSchema = [
@@ -223,16 +226,22 @@
         }), // Step 3
     ];
     
-    const stepIndex = ref(3);
+    const stepIndex = ref(1);
     const steps = [
         {
             step: 1,
+            title: 'Email',
+            description: 'Provide your name and email',
         },
         {
             step: 2,
+            title: 'Enter verification code',
+            description: 'We sent a 6-digit code to your email address',
         },
         {
             step: 3,
+            title: 'Welcome back!',
+            description: 'Redirecting...',
         },
     ];
     
