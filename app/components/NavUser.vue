@@ -134,8 +134,19 @@
                             v-if='!logged_in'
                             class='py-3 mt-1 cursor-pointer rounded-lg'
                         >
+                            <NuxtLink to='/login' class='flex items-center gap-2'>
+                                <NuxtIcon name='ph:sign-in' size='20' />
+                                Login
+                            </NuxtLink>
+                        </DropdownMenuItem>
+                        
+                        <!--  Register  -->
+                        <DropdownMenuItem
+                            v-if='!logged_in'
+                            class='py-3 mt-1 cursor-pointer rounded-lg'
+                        >
                             <NuxtLink to='/register' class='flex items-center gap-2'>
-                                <NuxtIcon name='ph:sign-in' size='18' />
+                                <NuxtIcon name='ph:user-plus' size='20' />
                                 Register
                             </NuxtLink>
                         </DropdownMenuItem>
