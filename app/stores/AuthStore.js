@@ -81,7 +81,7 @@ export const useAuthStore = defineStore('AuthStore', {
             try {
                 const { data, error } = await $fetch('/api/supabase/auth/verify-otp', {
                     method: 'POST',
-                    body: { payload },
+                    body: payload,
                 });
                 
                 if(error) throw error;
