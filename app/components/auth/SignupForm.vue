@@ -27,7 +27,13 @@
                                 />
                             </FormControl>
                             
+                            <FieldDescription v-if='otp_signup' class='text-xs'>
+                                New astronaut? We’ll automatically create an account on first sign-up.
+                            </FieldDescription>
+                            
+                            <!--
                             <FormMessage />
+                            -->
                         </FormItem>
                     </FormField>
                     
@@ -53,7 +59,9 @@
                                 </FieldDescription>
                             </FormControl>
                             
+                            <!--
                             <FormMessage />
+                            -->
                         </FormItem>
                     </FormField>
                     
@@ -71,9 +79,9 @@
                         <Button
                             @click='onToggleOtpSignup'
                             type='button'
-                            variant='outline'
-                            class='!w-fit mx-auto hover:underline !hover:bg-transparent !hover:opacity-100'
+                            variant='link'
                         >
+                            
                             {{ otp_signup ? 'Use password signup instead' : 'Use OTP signup instead' }}
                         </Button>
                     </Field>
