@@ -84,7 +84,6 @@
                                         <Input
                                             v-bind='componentField'
                                             type='email'
-                                            class='!w-full'
                                             placeholder='name@example.com'
                                             @input='validate()'
                                         />
@@ -308,28 +307,39 @@
     
     // OTP
     const otp_input = ref([]);
-    const onVerifyOtp = async(setFieldError: any, nextStep:any) => {
+    
+    const onVerifyOtp = async (setFieldError: any, nextStep: any) => {
         const joined_otp_input = otp_input.value?.join('');
-        const result = await verifyOtp(email.value, joined_otp_input);
-        
-        if(result?.error) {
-            setFieldError('otp', `Verification failed: ${result.error.message}`);
+        try {
+            const { data, error } = await verifyOtp({ email: email.value, otpCode: joined_otp_input });
+            
+            if (error) {
+                const errorMessage = error.message || 'Verification failed';
+                setFieldError('otp', errorMessage);
+                setTimeout(() => {
+                    setFieldError('otp', '');
+                }, 10000);
+                return false;
+            }
+            
+            if (data?.session?.access_token) {
+                setTimeout(() => {
+                    onLoggedIn();
+                }, 5000);
+                nextStep && nextTick(() => nextStep());
+            }
+            
+            loading.value = false;
+            return true;
+        } catch (error: any) {
+            const errorMessage = error.message || 'Verification failed';
+            setFieldError('otp', errorMessage);
             setTimeout(() => {
                 setFieldError('otp', '');
             }, 10000);
+            loading.value = false;
             return false;
         }
-        
-        if(result?.data?.session?.access_token) {
-            setTimeout(() => {
-                onLoggedIn();
-            }, 5000);
-            nextStep && nextTick(() => nextStep());
-        }
-        
-        loading.value = false;
-        
-        return true;
     };
     
     // Success
