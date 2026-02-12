@@ -15,26 +15,6 @@
                 class='flex flex-col gap-6'
             >
                 <div class='flex flex-col gap-8'>
-                    <!--   Stepper Title   -->
-                    <div class='flex flex-col items-center gap-2'>
-                        <div v-if='stepIndex === 1' class='flex flex-col items-center gap-2'>
-                            <h1 class='text-3xl font-bold'>Welcome!</h1>
-                            <FieldDescription>Already have an account? <a href='/login'>Login</a></FieldDescription>
-                        </div>
-                        
-                        <!--
-                        <div v-if='stepIndex === 2' class='flex flex-col items-center gap-2'>
-                            <h1 class="text-3xl font-bold">Enter verification code</h1>
-                            <FieldDescription>We sent a 6-digit code to your email address</FieldDescription>
-                        </div>
-                        
-                        <div v-if='stepIndex === 3' class='flex flex-col items-center gap-2'>
-                            <h1 class="text-3xl font-bold">Welcome back!</h1>
-                            <FieldDescription>Redirecting...</FieldDescription>
-                        </div>
-                        -->
-                    </div>
-                    
                     <!--   Stepper Navigation  -->
                     <div class='flex w-full items-start gap-2'>
                         <StepperItem
@@ -63,22 +43,25 @@
                                     <Dot v-if='state === "inactive"' />
                                 </Button>
                             </StepperTrigger>
-                            
-                            <div class='mt-5 flex flex-col items-center text-center'>
-                                <StepperTitle
-                                    :class='[state === "active" && "text-primary"]'
-                                    class='text-sm font-semibold transition lg:text-base'
-                                >
-                                    {{ step.title }}
-                                </StepperTitle>
-                                <StepperDescription
-                                    :class='[state === "active" && "text-primary"]'
-                                    class='sr-only text-xs text-muted-foreground transition md:not-sr-only lg:text-sm'
-                                >
-                                    {{ step.description }}
-                                </StepperDescription>
-                            </div>
                         </StepperItem>
+                    </div>
+                    
+                    <!--   Stepper Title   -->
+                    <div class='flex flex-col items-center gap-2'>
+                        <div v-if='stepIndex === 1' class='flex flex-col items-center gap-2'>
+                            <h1 class='text-3xl font-bold'>Welcome!</h1>
+                            <FieldDescription>Already have an account? <a href='/login'>Login</a></FieldDescription>
+                        </div>
+                        
+                        <div v-if='stepIndex === 2' class='flex flex-col items-center gap-2'>
+                            <h1 class="text-3xl font-bold">Enter verification code</h1>
+                            <FieldDescription>We sent a 6-digit code to your email address</FieldDescription>
+                        </div>
+                        
+                        <div v-if='stepIndex === 3' class='flex flex-col items-center gap-2'>
+                            <h1 class="text-3xl font-bold">Welcome back!</h1>
+                            <FieldDescription>Redirecting...</FieldDescription>
+                        </div>
                     </div>
                     
                     <!--   Stepper Body   -->
