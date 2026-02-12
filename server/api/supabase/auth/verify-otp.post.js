@@ -21,7 +21,13 @@ export default defineEventHandler(async(event) => {
     try {
         const { data, error } = await client.auth.verifyOtp(payload);
         
-        if(error) throw error;
+        if (error) {
+            console.error('Supabase OTP verification error:', error);
+            throw createError({
+                statusCode: error.status || 400,
+                statusMessage: error.message || 'Failed to verify OTP',
+            });
+        }
         
         return { data, error };
     } catch(error) {
