@@ -1,205 +1,210 @@
 <template>
-    <div :class='cn("flex flex-col gap-6", props.class)'>
-        <Form
-            v-slot='{ meta, validate, setFieldError }'
-            as=''
-            keep-values
-            :validation-schema='toTypedSchema(formSchema[stepIndex - 1] || z.object({}))'
+    <Form
+        v-slot='{ meta, validate, setFieldError }'
+        as=''
+        keep-values
+        :validation-schema='toTypedSchema(formSchema[stepIndex - 1] || z.object({}))'
+    >
+        <Stepper
+            v-slot='{ isPrevDisabled, nextStep, prevStep, modelValue }'
+            v-model='stepIndex'
+            class='block'
         >
-            <Stepper
-                v-slot='{ isPrevDisabled, nextStep, prevStep, modelValue }'
-                v-model='stepIndex'
-                class='block'
+            <form
+                @submit.prevent='() => validate()'
+                class='flex flex-col gap-6'
             >
-                <form
-                    @submit.prevent='() => validate()'
-                    class='flex flex-col gap-16'
-                >
-                    <div class='flex flex-col gap-8'>
-                        <!--   Stepper Title   -->
-                        <div class='flex flex-col gap-2'>
-                            <div class='text-4xl'>
-                                <span v-if='stepIndex === 1'>Welcome to Crypto Horizon</span>
-                                <span v-if='stepIndex === 2'>Enter OTP</span>
-                                <span v-if='stepIndex === 3'>Welcome Back!</span>
-                            </div>
-                            
-                            <div>
-                                <span v-if='stepIndex === 1'>Enter your email to sign-up with a one-time password (OTP).</span>
-                                <span v-if='stepIndex === 2'>Please enter the eight digit verification code we sent to {{ email }}.</span>
-                                <span v-if='stepIndex === 3'>You are now logged in.</span>
-                            </div>
+                <div class='flex flex-col gap-8'>
+                    <!--   Stepper Title   -->
+                    <div class='flex flex-col gap-2'>
+                        <div class='text-4xl'>
+<!--                            <span v-if='stepIndex === 1' class='font-bold'>
+                                OTP Signup
+                            </span>-->
+                            <span v-if='stepIndex === 2'>Enter OTP</span>
+                            <span v-if='stepIndex === 3'>Welcome Back!</span>
                         </div>
                         
-                        <Separator class='!p-0 !m-0' />
-                        
-                        <!--   Stepper Navigation  -->
-                        <!--   hidden instead of removal because the stepper component breaks  -->
-                        <div class='flex items-center gap-2 hidden'>
-                            <StepperItem
-                                v-for='(step, index) in steps'
-                                :key='step.step'
-                                v-slot='{ state }'
-                                class='relative flex w-full flex-col items-center justify-center'
-                                :step='step.step'
-                            >
-                                <StepperSeparator
-                                    v-if='step.step !== steps[steps.length - 1].step'
-                                    class='absolute left-[calc(50%+20px)] right-[calc(-50%+10px)] top-5 block h-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
-                                />
-                                
-                                <StepperTrigger as-child>
-                                    <Button
-                                        :variant='state === "completed" || state === "active" ? "default" : "outline"'
-                                        size='icon'
-                                        class='z-10 rounded-full shrink-0'
-                                        :class='[state === "active" && "ring-2 ring-ring ring-offset-2 ring-offset-background"]'
-                                        :disabled="index >= (modelValue || 0)"
-                                    >
-                                        <Check v-if='state === "completed"' class='size-5' />
-                                        <Mail v-if='state === "active" && stepIndex === 1' />
-                                        <LockKeyhole v-if='state === "active" && stepIndex === 2' />
-                                        <Dot v-if='state === "inactive"' />
-                                    </Button>
-                                </StepperTrigger>
-                            </StepperItem>
-                        </div>
-                        
-                        <!--   Stepper Body   -->
-                        <div :class='{ "mx-auto" : stepIndex === 2}'>
-                            <!--  Step 1: Email input  -->
-                            <template v-if='stepIndex === 1'>
-                                <FormField
-                                    v-slot='{ componentField }'
-                                    v-model='email'
-                                    name='email'
-                                >
-                                    <FormItem>
-                                        <FormLabel>Email</FormLabel>
-                                        
-                                        <FormControl>
-                                            <Input
-                                                v-bind='componentField'
-                                                type='email'
-                                                class='!w-full'
-                                                placeholder='name@example.com'
-                                                @input='validate()'
-                                            />
-                                        </FormControl>
-                                        
-                                        <!-- <span class='text-xxs text-muted-foreground'>Signing in will automatically create an account if your email isn’t already registered.</span> -->
-                                        <span class='text-xs text-snowy-mint/75'>New astronaut? We’ll automatically create an account on first sign-up.</span>
-                                        
-                                        <FormMessage />
-                                    </FormItem>
-                                </FormField>
-                            </template>
-                            
-                            <!--  Step 2: OTP Pin Input  -->
-                            <template v-if='stepIndex === 2'>
-                                <FormField name='otp'>
-                                    <FormItem>
-                                        <FormLabel>OTP</FormLabel>
-                                        
-                                        <FormControl>
-                                            <!--   OTP Pin Input   -->
-                                            <PinInput
-                                                v-model='otp_input'
-                                                @complete='onVerifyOtp(setFieldError, nextStep)'
-                                                id='pin-input'
-                                                placeholder=''
-                                                class='flex flex-col items-start gap-6'
-                                                otp
-                                                required
-                                                @vue:mounted='startCountdown'
-                                            >
-                                                <PinInputGroup class='gap-1'>
-                                                    <template v-for='(id, index) in 8' :key='id'>
-                                                        <PinInputSlot
-                                                            class='h-12 w-12 text-xl font-bold font-satoshi rounded-md border'
-                                                            :index='index'
-                                                        />
-                                                        <template v-if='index !== 7'>
-                                                            <PinInputSeparator />
-                                                        </template>
-                                                    </template>
-                                                </PinInputGroup>
-                                                
-                                                <div class='otp-labels text-sm'>
-                                                    <span>Didn't get the email?&nbsp;</span>
-                                                    <span
-                                                        @click='() => onResendEmail(setFieldError)'
-                                                        class='font-bold underline cursor-pointer'
-                                                    >Click to resend</span>
-                                                    
-                                                    <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
-                                                </div>
-                                            </PinInput>
-                                        </FormControl>
-                                        
-                                        <FormMessage />
-                                    </FormItem>
-                                </FormField>
-                            </template>
-                            
-                            <!--  Step 3: Logged In  -->
-                            <template v-if='stepIndex === 3'>
-                                This window will close in 5s.
-                            </template>
+                        <div>
+<!--                            <FieldDescription v-if='stepIndex === 1'>
+                                Enter your email to sign-up with a one-time password (OTP).
+                            </FieldDescription>-->
+                            <span v-if='stepIndex === 2'>Please enter the eight digit verification code we sent to {{ email }}.</span>
+                            <span v-if='stepIndex === 3'>You are now logged in.</span>
                         </div>
                     </div>
                     
-                    <!--   Stepper Buttons   -->
-                    <div class='flex !flex-col'>
-                        <div v-if='stepIndex === 1'>
-                            <Button
-                                @click='() => onEmailSubmit(setFieldError, nextStep)'
-                                :type='meta.valid ? "button" : "submit"'
-                                class='w-full'
-                                size='lg'
-                                :disabled='!meta.valid'
-                            >
-                                <Spinner v-if='loading' class='animate-spin' />
-                                <span>Continue</span>
-                            </Button>
-                        </div>
-                        
-                        <div v-if='stepIndex === 2' class='flex items-center justify-between mt-4'>
-                            <Button
-                                :disabled='isPrevDisabled'
-                                variant='link'
-                                @click='prevStep()'
-                                size='lg'
-                            >
-                                Back
-                            </Button>
+<!--                    <Separator class='!p-0 !m-0' />-->
+                    
+                    <!--   Stepper Navigation  -->
+                    <!--   hidden instead of removal because the stepper component breaks  -->
+                    <div class='flex items-center gap-2 hidden'>
+                        <StepperItem
+                            v-for='(step, index) in steps'
+                            :key='step.step'
+                            v-slot='{ state }'
+                            class='relative flex w-full flex-col items-center justify-center'
+                            :step='step.step'
+                        >
+                            <StepperSeparator
+                                v-if='step.step !== steps[steps.length - 1].step'
+                                class='absolute left-[calc(50%+20px)] right-[calc(-50%+10px)] top-5 block h-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
+                            />
                             
-                            <Button
-                                v-if='stepIndex === 2'
-                                :disabled='isPrevDisabled'
-                                @click="() => onVerifyOtp(setFieldError, nextStep)"
-                                type='submit'
-                                size='lg'
-                            >
-                                Verify
-                            </Button>
-                        </div>
-                        
-                        <div v-if='stepIndex === 3'>
-                            <Button @click='onLoggedIn'>
-                                Close
-                            </Button>
-                        </div>
+                            <StepperTrigger as-child>
+                                <Button
+                                    :variant='state === "completed" || state === "active" ? "default" : "outline"'
+                                    size='icon'
+                                    class='z-10 rounded-full shrink-0'
+                                    :class='[state === "active" && "ring-2 ring-ring ring-offset-2 ring-offset-background"]'
+                                    :disabled="index >= (modelValue || 0)"
+                                >
+                                    <Check v-if='state === "completed"' class='size-5' />
+                                    <Mail v-if='state === "active" && stepIndex === 1' />
+                                    <LockKeyhole v-if='state === "active" && stepIndex === 2' />
+                                    <Dot v-if='state === "inactive"' />
+                                </Button>
+                            </StepperTrigger>
+                        </StepperItem>
                     </div>
-                </form>
-            </Stepper>
-        </Form>
-        
-        <FieldDescription class='px-6 text-center'>
-            By clicking continue, you agree to our <a href='#'>Terms of Service</a>
-            and <a href='#'>Privacy Policy</a>.
-        </FieldDescription>
-    </div>
+                    
+                    <!--   Stepper Body   -->
+                    <div :class='{ "mx-auto" : stepIndex === 2}'>
+                        <!--  Step 1: Email input  -->
+                        <template v-if='stepIndex === 1'>
+                            <FormField
+                                v-slot='{ componentField }'
+                                v-model='email'
+                                name='email'
+                            >
+                                <FormItem>
+                                    <FormLabel>Email</FormLabel>
+                                    
+                                    <FormControl>
+                                        <Input
+                                            v-bind='componentField'
+                                            type='email'
+                                            class='!w-full'
+                                            placeholder='name@example.com'
+                                            @input='validate()'
+                                        />
+                                    </FormControl>
+                                    
+                                    <!-- <span class='text-xxs text-muted-foreground'>Signing in will automatically create an account if your email isn’t already registered.</span> -->
+                                    <!--
+                                    <FieldDescription class='text-xs'>
+                                        New astronaut? We’ll automatically create an account on first sign-up.
+                                    </FieldDescription>
+                                    -->
+                                    
+                                    <!--
+                                    <FormMessage />
+                                    -->
+                                </FormItem>
+                            </FormField>
+                        </template>
+                        
+                        <!--  Step 2: OTP Pin Input  -->
+                        <template v-if='stepIndex === 2'>
+                            <FormField name='otp'>
+                                <FormItem>
+                                    <FormLabel>OTP</FormLabel>
+                                    
+                                    <FormControl>
+                                        <!--   OTP Pin Input   -->
+                                        <PinInput
+                                            v-model='otp_input'
+                                            @complete='onVerifyOtp(setFieldError, nextStep)'
+                                            id='pin-input'
+                                            placeholder=''
+                                            class='flex flex-col items-start gap-6'
+                                            otp
+                                            required
+                                            @vue:mounted='startCountdown'
+                                        >
+                                            <PinInputGroup class='gap-1'>
+                                                <template v-for='(id, index) in 8' :key='id'>
+                                                    <PinInputSlot
+                                                        class='h-12 w-12 text-xl font-bold font-satoshi rounded-md border'
+                                                        :index='index'
+                                                    />
+                                                    <template v-if='index !== 7'>
+                                                        <PinInputSeparator />
+                                                    </template>
+                                                </template>
+                                            </PinInputGroup>
+                                            
+                                            <div class='otp-labels text-sm'>
+                                                <span>Didn't get the email?&nbsp;</span>
+                                                <span
+                                                    @click='() => onResendEmail(setFieldError)'
+                                                    class='font-bold underline cursor-pointer'
+                                                >Click to resend</span>
+                                                
+                                                <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
+                                            </div>
+                                        </PinInput>
+                                    </FormControl>
+                                    
+                                    <!--
+                                    <FormMessage />
+                                    -->
+                                </FormItem>
+                            </FormField>
+                        </template>
+                        
+                        <!--  Step 3: Logged In  -->
+                        <template v-if='stepIndex === 3'>
+                            This window will close in 5s.
+                        </template>
+                    </div>
+                </div>
+                
+                <!--   Stepper Buttons   -->
+                <div class='flex !flex-col'>
+                    <div v-if='stepIndex === 1'>
+                        <Button
+                            @click='() => onEmailSubmit(setFieldError, nextStep)'
+                            :type='meta.valid ? "button" : "submit"'
+                            class='w-full'
+                            size='lg'
+                            :disabled='!meta.valid'
+                        >
+                            <Spinner v-if='loading' class='animate-spin' />
+                            <span>Continue</span>
+                        </Button>
+                    </div>
+                    
+                    <div v-if='stepIndex === 2' class='flex items-center justify-between mt-4'>
+                        <Button
+                            :disabled='isPrevDisabled'
+                            variant='link'
+                            @click='prevStep()'
+                            size='lg'
+                        >
+                            Back
+                        </Button>
+                        
+                        <Button
+                            v-if='stepIndex === 2'
+                            :disabled='isPrevDisabled'
+                            @click="() => onVerifyOtp(setFieldError, nextStep)"
+                            type='submit'
+                            size='lg'
+                        >
+                            Verify
+                        </Button>
+                    </div>
+                    
+                    <div v-if='stepIndex === 3'>
+                        <Button @click='onLoggedIn'>
+                            Close
+                        </Button>
+                    </div>
+                </div>
+            </form>
+        </Stepper>
+    </Form>
 </template>
 
 <script setup lang='ts'>
