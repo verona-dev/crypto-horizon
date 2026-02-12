@@ -33,6 +33,7 @@
                     
                     <!--   Password   -->
                     <FormField
+                        v-if='!otp_signup'
                         v-slot='{ componentField }'
                         v-model='email'
                         name='email'
@@ -63,6 +64,17 @@
                             type='submit'
                         >
                             Create Account
+                        </Button>
+                    </Field>
+                    
+                    <Field>
+                        <Button
+                            @click='onToggleOtpSignup'
+                            type='button'
+                            variant='outline'
+                            class='!w-fit mx-auto hover:underline !hover:bg-transparent !hover:opacity-100'
+                        >
+                            {{ otp_signup ? 'Use password signup instead' : 'Use OTP signup instead' }}
                         </Button>
                     </Field>
                     
@@ -129,6 +141,11 @@
     
     const email = ref('');
     const password = ref('');
+    const otp_signup = ref(true);
+    
+    const onToggleOtpSignup = () => {
+        otp_signup.value = !otp_signup.value;
+    };
     
     // const formSchema = [
     //     z.object({ email: z.string().email() }),
