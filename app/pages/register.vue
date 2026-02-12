@@ -21,16 +21,6 @@
             />
         </NuxtImg>
         
-        <div class='flex flex-col items-center gap-2'>
-            <h1 class='text-3xl font-bold'>
-                Welcome!
-            </h1>
-            
-            <FieldDescription>
-                Already have an account? <a href='/login'>Login</a>
-            </FieldDescription>
-        </div>
-        
         <div class='flex flex-col gap-6 max-w-sm'>
             <SignupFormOtp v-if='otp_signup' />
             

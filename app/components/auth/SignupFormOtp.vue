@@ -16,25 +16,21 @@
             >
                 <div class='flex flex-col gap-8'>
                     <!--   Stepper Title   -->
-                    <div class='flex flex-col gap-2'>
-                        <div class='text-4xl'>
-<!--                            <span v-if='stepIndex === 1' class='font-bold'>
-                                OTP Signup
-                            </span>-->
-                            <span v-if='stepIndex === 2'>Enter OTP</span>
-                            <span v-if='stepIndex === 3'>Welcome Back!</span>
+                    <div class='flex flex-col items-center gap-2'>
+                        <div v-if='stepIndex === 1' class='flex flex-col items-center gap-2'>
+                            <h1 class='text-3xl font-bold'>Welcome!</h1>
+                            <FieldDescription>Already have an account? <a href='/login'>Login</a></FieldDescription>
                         </div>
                         
-                        <div>
-<!--                            <FieldDescription v-if='stepIndex === 1'>
-                                Enter your email to sign-up with a one-time password (OTP).
-                            </FieldDescription>-->
-                            <span v-if='stepIndex === 2'>Please enter the eight digit verification code we sent to {{ email }}.</span>
-                            <span v-if='stepIndex === 3'>You are now logged in.</span>
+                        <div v-if='stepIndex === 2'>
+                            <h1 class="text-3xl font-bold">Enter verification code</h1>
+                            <FieldDescription>We sent a 6-digit code to your email address</FieldDescription>
+                        </div>
+                        
+                        <div v-if='stepIndex === 3'>
+                            Welcome Back!
                         </div>
                     </div>
-                    
-<!--                    <Separator class='!p-0 !m-0' />-->
                     
                     <!--   Stepper Navigation  -->
                     <!--   hidden instead of removal because the stepper component breaks  -->
@@ -133,15 +129,13 @@
                                                 </template>
                                             </PinInputGroup>
                                             
-                                            <div class='otp-labels text-sm'>
-                                                <span>Didn't get the email?&nbsp;</span>
-                                                <span
-                                                    @click='() => onResendEmail(setFieldError)'
-                                                    class='font-bold underline cursor-pointer'
-                                                >Click to resend</span>
-                                                
+                                            <FieldDescription class='text-center'>
+                                                Didn't receive the code? <span
+                                                @click='() => onResendEmail(setFieldError)'
+                                                class='font-bold underline cursor-pointer'
+                                            >Resend</span>
                                                 <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
-                                            </div>
+                                            </FieldDescription>
                                         </PinInput>
                                     </FormControl>
                                     
