@@ -22,19 +22,19 @@
                             <FieldDescription>Already have an account? <a href='/login'>Login</a></FieldDescription>
                         </div>
                         
-                        <div v-if='stepIndex === 2'>
+                        <div v-if='stepIndex === 2' class='flex flex-col items-center gap-2'>
                             <h1 class="text-3xl font-bold">Enter verification code</h1>
                             <FieldDescription>We sent a 6-digit code to your email address</FieldDescription>
                         </div>
                         
-                        <div v-if='stepIndex === 3'>
-                            Welcome Back!
+                        <div v-if='stepIndex === 3' class='flex flex-col items-center gap-2'>
+                            <h1 class="text-3xl font-bold">Welcome back!</h1>
+                            <FieldDescription>Redirecting...</FieldDescription>
                         </div>
                     </div>
                     
                     <!--   Stepper Navigation  -->
-                    <!--   hidden instead of removal because the stepper component breaks  -->
-                    <div class='flex items-center gap-2 hidden'>
+                    <div v-if='stepIndex !== 3' class='flex items-center gap-2'>
                         <StepperItem
                             v-for='(step, index) in steps'
                             :key='step.step'
@@ -85,7 +85,6 @@
                                         />
                                     </FormControl>
                                     
-                                    <!-- <span class='text-xxs text-muted-foreground'>Signing in will automatically create an account if your email isn’t already registered.</span> -->
                                     <!--
                                     <FieldDescription class='text-xs'>
                                         New astronaut? We’ll automatically create an account on first sign-up.
@@ -120,16 +119,13 @@
                                             <PinInputGroup class='gap-1'>
                                                 <template v-for='(id, index) in 8' :key='id'>
                                                     <PinInputSlot
-                                                        class='h-12 w-12 text-xl font-bold font-satoshi rounded-md border'
+                                                        class='h-12 w-12 mx-1 text-xl font-bold font-satoshi rounded-lg border'
                                                         :index='index'
                                                     />
-                                                    <template v-if='index !== 7'>
-                                                        <PinInputSeparator />
-                                                    </template>
                                                 </template>
                                             </PinInputGroup>
                                             
-                                            <FieldDescription class='text-center'>
+                                            <FieldDescription class='mx-auto'>
                                                 Didn't receive the code? <span
                                                 @click='() => onResendEmail(setFieldError)'
                                                 class='font-bold underline cursor-pointer'
@@ -144,11 +140,6 @@
                                     -->
                                 </FormItem>
                             </FormField>
-                        </template>
-                        
-                        <!--  Step 3: Logged In  -->
-                        <template v-if='stepIndex === 3'>
-                            This window will close in 5s.
                         </template>
                     </div>
                 </div>
@@ -168,32 +159,14 @@
                         </Button>
                     </div>
                     
-                    <div v-if='stepIndex === 2' class='flex items-center justify-between mt-4'>
-                        <Button
-                            :disabled='isPrevDisabled'
-                            variant='link'
-                            @click='prevStep()'
-                            size='lg'
-                        >
-                            Back
-                        </Button>
-                        
-                        <Button
-                            v-if='stepIndex === 2'
-                            :disabled='isPrevDisabled'
-                            @click="() => onVerifyOtp(setFieldError, nextStep)"
-                            type='submit'
-                            size='lg'
-                        >
-                            Verify
-                        </Button>
-                    </div>
-                    
-                    <div v-if='stepIndex === 3'>
-                        <Button @click='onLoggedIn'>
-                            Close
-                        </Button>
-                    </div>
+                    <Button
+                        v-if='stepIndex === 2'
+                        :disabled='isPrevDisabled'
+                        @click="() => onVerifyOtp(setFieldError, nextStep)"
+                        type='submit'
+                    >
+                        Verify
+                    </Button>
                 </div>
             </form>
         </Stepper>
@@ -250,7 +223,7 @@
         }), // Step 3
     ];
     
-    const stepIndex = ref(1);
+    const stepIndex = ref(3);
     const steps = [
         {
             step: 1,
@@ -301,7 +274,6 @@
     
     // OTP
     const otp_input = ref([]);
-    
     const onVerifyOtp = async (setFieldError: any, nextStep: any) => {
         const joined_otp_input = otp_input.value?.join('');
         try {
@@ -340,7 +312,7 @@
     const onLoggedIn = async() => {
         reloadNuxtApp();
         resetState();
-        // displayToast();
+        navigateTo('/');
     };
     
     // Countdown

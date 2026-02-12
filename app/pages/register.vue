@@ -21,7 +21,7 @@
             />
         </NuxtImg>
         
-        <div class='flex flex-col gap-6 max-w-sm'>
+        <div class='flex flex-col gap-6 max-w-lg'>
             <SignupFormOtp v-if='otp_signup' />
             
             <SignupForm v-else />
