@@ -301,13 +301,12 @@
             }
             
             if (data?.session?.access_token) {
-                setTimeout(() => {
-                    onLoggedIn();
-                }, 5000);
-                nextStep && nextTick(() => nextStep());
+                await onLoggedIn();
+                return;
             }
             
             loading.value = false;
+            
             return true;
         } catch (error: any) {
             const errorMessage = error.message || 'Verification failed';
@@ -322,9 +321,8 @@
     
     // Success
     const onLoggedIn = async() => {
-        reloadNuxtApp();
         resetState();
-        navigateTo('/');
+        reloadNuxtApp();
     };
     
     // Countdown
