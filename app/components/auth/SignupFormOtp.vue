@@ -14,7 +14,38 @@
                 @submit.prevent='() => validate()'
                 class='flex flex-col gap-6'
             >
-                <div class='flex flex-col gap-8'>
+                <div class='flex flex-col gap-4'>
+                    <!--   Stepper Title   -->
+                    <div
+                        v-for='(step, index) in steps'
+                        :key='step.step'
+                    >
+                        <div
+                           v-if='stepIndex === step.step'
+                           class='flex flex-col items-center gap-2'
+                        >
+                            <FieldTitle class='text-3xl font-bold' v-html='step.title'></FieldTitle>
+                            <FieldDescription v-if='step.description' v-html='step.description'></FieldDescription>
+                        </div>
+                        
+                        <!--
+                        <div v-if='stepIndex === 1' class='flex flex-col items-center gap-2'>
+                            <h1 class='text-3xl font-bold'>Welcome!</h1>
+                            <FieldDescription>Already have an account? <a href='/login'>Login</a></FieldDescription>
+                        </div>
+                        
+                        <div v-if='stepIndex === 2' class='flex flex-col items-center gap-2'>
+                            <h1 class="text-3xl font-bold">Enter verification code</h1>
+                            <FieldDescription>We sent a 6-digit code to your email address</FieldDescription>
+                        </div>
+                        
+                        <div v-if='stepIndex === 3' class='flex flex-col items-center gap-2'>
+                            <h1 class="text-3xl font-bold">Welcome back!</h1>
+                            <FieldDescription>Redirecting...</FieldDescription>
+                        </div>
+                        -->
+                    </div>
+                    
                     <!--   Stepper Navigation  -->
                     <div class='flex w-full items-start gap-2'>
                         <StepperItem
@@ -25,7 +56,7 @@
                             :step='step.step'
                         >
                             <StepperSeparator
-                                v-if='step.step !== steps[steps.length - 1].step'
+                                v-if='step.step !== steps[steps.length - 1]?.step'
                                 class='absolute left-[calc(50%+20px)] right-[calc(-50%+10px)] top-5 block h-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
                             />
                             
@@ -44,24 +75,6 @@
                                 </Button>
                             </StepperTrigger>
                         </StepperItem>
-                    </div>
-                    
-                    <!--   Stepper Title   -->
-                    <div class='flex flex-col items-center gap-2'>
-                        <div v-if='stepIndex === 1' class='flex flex-col items-center gap-2'>
-                            <h1 class='text-3xl font-bold'>Welcome!</h1>
-                            <FieldDescription>Already have an account? <a href='/login'>Login</a></FieldDescription>
-                        </div>
-                        
-                        <div v-if='stepIndex === 2' class='flex flex-col items-center gap-2'>
-                            <h1 class="text-3xl font-bold">Enter verification code</h1>
-                            <FieldDescription>We sent a 6-digit code to your email address</FieldDescription>
-                        </div>
-                        
-                        <div v-if='stepIndex === 3' class='flex flex-col items-center gap-2'>
-                            <h1 class="text-3xl font-bold">Welcome back!</h1>
-                            <FieldDescription>Redirecting...</FieldDescription>
-                        </div>
                     </div>
                     
                     <!--   Stepper Body   -->
@@ -175,7 +188,7 @@
 
 <script setup lang='ts'>
     import { Button } from '@/components/ui/button';
-    import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from '@/components/ui/field';
+    import { Field, FieldTitle, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from '@/components/ui/field';
     import { Input } from '@/components/ui/input';
     // import { h } from 'vue';
     import { toTypedSchema } from '@vee-validate/zod';
@@ -213,8 +226,8 @@
     const steps = [
         {
             step: 1,
-            title: 'Email',
-            description: 'Provide your name and email',
+            title: 'Welcome!',
+            description: 'Already have an account? <a href="/login">Login</a>',
         },
         {
             step: 2,
@@ -223,10 +236,17 @@
         },
         {
             step: 3,
-            title: 'Welcome back!',
+            title: 'Logged in!',
             description: 'Redirecting...',
         },
     ];
+    
+    const emit = defineEmits(['stepChange']);
+    
+    watch(stepIndex, (newVal, oldVal) => {
+        console.log(newVal);
+        emit('stepChange', stepIndex.value)
+    });
     
     // Email
     const { setFieldError } = useForm();

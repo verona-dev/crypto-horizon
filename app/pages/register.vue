@@ -21,11 +21,19 @@
             />
         </NuxtImg>
         
-        <div class='flex flex-col gap-6'>
-            <SignupFormOtp v-if='otp_signup' />
+        <div class='flex flex-col gap-6 w-lg'>
+            <SignupFormOtp
+                v-if='otp_signup'
+                @step-change='onStepChange'
+            />
             
             <SignupForm v-else />
-            
+        </div>
+        
+        <div
+            v-if='step_1'
+            class='flex flex-col gap-6'
+        >
             <Field>
                 <Button
                     @click='onToggleOtpSignup'
@@ -58,8 +66,12 @@
     import { Button } from '@/components/ui/button/index.ts';
     
     const otp_signup = ref(true);
+    const onToggleOtpSignup = () => otp_signup.value = !otp_signup.value;
     
-    const onToggleOtpSignup = () => {
-        otp_signup.value = !otp_signup.value;
+    const step = ref(1);
+    const step_1 = computed(() => step.value === 1);
+    const onStepChange = (stepIndex) => {
+        console.log(stepIndex);
+        step.value = stepIndex;
     };
 </script>
