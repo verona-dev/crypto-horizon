@@ -71,7 +71,6 @@
     const step = ref(1);
     const step_1 = computed(() => step.value === 1);
     const onStepChange = (stepIndex) => {
-        console.log(stepIndex);
         step.value = stepIndex;
     };
 </script>
