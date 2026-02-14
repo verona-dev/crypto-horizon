@@ -158,6 +158,8 @@
     );
     
     const stepIndex = ref(1);
+    const emit = defineEmits(['otpStepChange']);
+    watch(stepIndex, () => emit('otpStepChange', stepIndex.value));
     const steps = [
         {
             step: 1,
@@ -170,12 +172,6 @@
             description: 'Link sent!',
         },
     ];
-    
-    const emit = defineEmits(['otpStepChange']);
-    
-    watch(stepIndex, () => {
-        emit('otpStepChange', stepIndex.value)
-    });
     
     // Email
     const email = ref('');
@@ -192,7 +188,6 @@
             return false;
         }
         
-        // resetFieldErrors();
         nextStep && nextTick(() => nextStep());
         
         return true;
