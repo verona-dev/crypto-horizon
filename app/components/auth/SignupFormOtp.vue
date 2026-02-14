@@ -21,8 +21,8 @@
                         :key='step.step'
                     >
                         <div
-                           v-if='stepIndex === step.step'
-                           class='flex flex-col items-center gap-2'
+                            v-if='stepIndex === step.step'
+                            class='flex flex-col items-center gap-2'
                         >
                             <FieldTitle class='text-3xl font-bold' v-html='step.title'></FieldTitle>
                             <FieldDescription v-if='step.description' v-html='step.description'></FieldDescription>
@@ -138,11 +138,14 @@
                                                 </template>
                                             </PinInputGroup>
                                             
-                                            <FieldDescription class='mx-auto'>
-                                                Didn't receive the code? <span
-                                                @click='() => onResendEmail(setFieldError)'
-                                                class='font-bold underline cursor-pointer'
-                                            >Resend</span>
+                                            <FieldDescription class='mx-auto'>Didn't receive the code?
+                                                <span
+                                                    @click='() => onResendEmail(setFieldError)'
+                                                    class='font-bold underline cursor-pointer'
+                                                >
+                                                    Resend
+                                                </span>
+                                                
                                                 <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
                                             </FieldDescription>
                                         </PinInput>
@@ -174,7 +177,7 @@
                     
                     <Button
                         v-if='stepIndex === 2'
-                        :disabled='isPrevDisabled'
+                        :disabled='joined_otp_input.length !== 8'
                         @click="() => onVerifyOtp(setFieldError, nextStep)"
                         type='submit'
                     >
@@ -222,7 +225,7 @@
         }), // Step 3
     ];
     
-    const stepIndex = ref(1);
+    const stepIndex = ref(2);
     const steps = [
         {
             step: 1,
@@ -250,7 +253,6 @@
     
     // Email
     const { setFieldError } = useForm();
-    const email = ref('');
     const onEmailSubmit = async(setFieldError: any, nextStep: any) => {
         const { error } = await signInWithOtp(email.value);
         
@@ -286,10 +288,10 @@
     
     // OTP
     const otp_input = ref([]);
+    const joined_otp_input = computed(() => otp_input.value?.join(''));
     const onVerifyOtp = async (setFieldError: any, nextStep: any) => {
-        const joined_otp_input = otp_input.value?.join('');
         try {
-            const { data, error } = await verifyOtp({ email: email.value, otpCode: joined_otp_input });
+            const { data, error } = await verifyOtp({ email: email.value, otpCode: joined_otp_input.value });
             
             if (error) {
                 const errorMessage = error.message || 'Verification failed';
