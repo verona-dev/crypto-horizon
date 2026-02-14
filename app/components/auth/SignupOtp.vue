@@ -14,10 +14,7 @@
                 @submit.prevent='() => validate()'
                 class='flex flex-col gap-6'
             >
-                <div
-                    class='flex flex-col gap-4'
-                    :class='{"gap-8" : stepIndex === 2}'
-                >
+                <div class='flex flex-col gap-4'>
                     <!--   Stepper Title   -->
                     <div
                         v-for='(step, index) in steps'
@@ -85,12 +82,6 @@
                                     </FormControl>
                                     
                                     <!--
-                                    <FieldDescription class='text-xs'>
-                                        New astronaut? We’ll automatically create an account on first sign-up.
-                                    </FieldDescription>
-                                    -->
-                                    
-                                    <!--
                                     <FormMessage />
                                     -->
                                 </FormItem>
@@ -123,7 +114,7 @@
                 </div>
                 
                 <!--   Stepper Buttons   -->
-                <template v-if='stepIndex === 1' class='flex !flex-col'>
+                <template v-if='stepIndex === 1'>
                     <Button
                         @click='() => onEmailSubmit(setFieldError, nextStep)'
                         :type='meta.valid ? "button" : "submit"'
@@ -142,12 +133,12 @@
 
 <script setup lang='ts'>
     import { Button } from '@/components/ui/button';
-    import { Field, FieldTitle, FieldDescription, FieldGroup } from '@/components/ui/field';
+    import { FieldTitle, FieldDescription } from '@/components/ui/field';
     import { Input } from '@/components/ui/input';
     import { toTypedSchema } from '@vee-validate/zod';
     import * as z from 'zod';
     import { useForm } from 'vee-validate';
-    import { Check, X, Dot, Mail, UserLock } from 'lucide-vue-next';
+    import { Check, Dot, Mail, UserLock } from 'lucide-vue-next';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
@@ -167,7 +158,7 @@
         })
     );
     
-    const stepIndex = ref(1);
+    const stepIndex = ref(2);
     const steps = [
         {
             step: 1,
@@ -177,7 +168,7 @@
         {
             step: 2,
             title: 'Verify Your Account',
-            description: '',
+            description: 'Link sent!',
         },
     ];
     
