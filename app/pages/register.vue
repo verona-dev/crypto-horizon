@@ -22,9 +22,9 @@
         </NuxtImg>
         
         <div class='flex flex-col gap-6 w-lg'>
-            <LoginFormOtp
+            <SignupFormOtp
                 v-if='otp_signup'
-                @step-change='onStepChange'
+                @otp-step-change='onOtpStepChange'
             />
             
             <SignupForm v-else />
@@ -61,16 +61,17 @@
     import { Field, FieldDescription, FieldSeparator } from '@/components/ui/field/index.ts';
     import { Skeleton } from '@/components/ui/skeleton/index.ts';
     import SignupForm from '@/components/auth/SignupForm.vue';
-    import LoginFormOtp from '@/components/auth/LoginFormOtp.vue';
+    import SignupFormOtp from '@/components/auth/SignupFormOtp.vue';
     import SignupSocials from '@/components/auth/SignupSocials.vue';
     import { Button } from '@/components/ui/button/index.ts';
     
     const otp_signup = ref(true);
     const onToggleOtpSignup = () => otp_signup.value = !otp_signup.value;
     
-    const step = ref(1);
-    const step_1 = computed(() => step.value === 1);
-    const onStepChange = (stepIndex) => {
-        step.value = stepIndex;
+    const otpStep = ref(1);
+    const step_1 = computed(() => otpStep.value === 1);
+    const onOtpStepChange = (otpStepIndex) => {
+        console.log(otpStepIndex);
+        otpStep.value = otpStepIndex;
     };
 </script>
