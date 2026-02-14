@@ -6,7 +6,7 @@
         :validation-schema='validationSchema'
     >
         <Stepper
-            v-slot='{ isPrevDisabled, nextStep, prevStep, modelValue }'
+            v-slot='{ nextStep, modelValue }'
             v-model='stepIndex'
             class='block'
         >
@@ -30,7 +30,7 @@
                     </div>
                     
                     <!--   Stepper Navigation  -->
-                    <div class='flex w-full items-start gap-2'>
+                    <div class='flex gap-2'>
                         <StepperItem
                             v-for='(step, index) in steps'
                             :key='step.step'
@@ -142,7 +142,6 @@
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
-    import { useCountdown } from '@vueuse/core';
     
     // AuthStore
     import { storeToRefs } from 'pinia';
@@ -158,7 +157,7 @@
         })
     );
     
-    const stepIndex = ref(2);
+    const stepIndex = ref(1);
     const steps = [
         {
             step: 1,
@@ -197,37 +196,5 @@
         nextStep && nextTick(() => nextStep());
         
         return true;
-    };
-    
-    const onResendEmail = async(setFieldError: any) => {
-        const { error } = await signInWithOtp(email.value);
-        
-        if (error) {
-            // set the field error to "otp" since we are on step-2 (otp fields)
-            setFieldError('otp', `Resend failed: ${error.message}`);
-            setTimeout(() => {
-                setFieldError('otp', '');
-            }, 10000);
-            return false;
-        }
-        
-        startCountdown();
-        
-        return true;
-    };
-    
-    // Success
-    const resetForm = async() => {
-        resetState();
-        reloadNuxtApp();
-    };
-    
-    // Countdown
-    const countdownSeconds = ref(60);
-    const { remaining, start } = useCountdown(countdownSeconds);
-    const startCountdown = () => start(countdownSeconds);
-    
-    const resetState = () => {
-        setFieldError('email', '');
     };
 </script>
