@@ -225,7 +225,7 @@
         }), // Step 3
     ];
     
-    const stepIndex = ref(2);
+    const stepIndex = ref(1);
     const steps = [
         {
             step: 1,
@@ -252,6 +252,7 @@
     });
     
     // Email
+    const email = ref('');
     const { setFieldError } = useForm();
     const onEmailSubmit = async(setFieldError: any, nextStep: any) => {
         const { error } = await signInWithOtp(email.value);
@@ -303,8 +304,12 @@
             }
             
             if (data?.session?.access_token) {
-                await onLoggedIn();
-                return;
+                nextStep && nextTick(() => {
+                    setTimeout(() => {
+                        resetForm();
+                    }, 2500);
+                    nextStep()
+                });
             }
             
             loading.value = false;
@@ -322,7 +327,7 @@
     };
     
     // Success
-    const onLoggedIn = async() => {
+    const resetForm = async() => {
         resetState();
         reloadNuxtApp();
     };
