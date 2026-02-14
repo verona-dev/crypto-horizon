@@ -22,12 +22,12 @@
         </NuxtImg>
         
         <div class='flex flex-col gap-6 w-lg'>
-            <SignupFormOtp
+            <SignupOtp
                 v-if='otp_signup'
                 @otp-step-change='onOtpStepChange'
             />
             
-            <SignupForm v-else />
+            <SignupPassword v-else />
         </div>
         
         <div
@@ -60,8 +60,8 @@
 <script setup>
     import { Field, FieldDescription, FieldSeparator } from '@/components/ui/field/index.ts';
     import { Skeleton } from '@/components/ui/skeleton/index.ts';
-    import SignupForm from '@/components/auth/SignupForm.vue';
-    import SignupFormOtp from '@/components/auth/SignupFormOtp.vue';
+    import SignupPassword from '@/components/auth/SignupPassword.vue';
+    import SignupOtp from '@/components/auth/SignupOtp.vue';
     import SignupSocials from '@/components/auth/SignupSocials.vue';
     import { Button } from '@/components/ui/button/index.ts';
     

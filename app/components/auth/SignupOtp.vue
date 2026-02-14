@@ -167,7 +167,7 @@
         })
     );
     
-    const stepIndex = ref(2);
+    const stepIndex = ref(1);
     const steps = [
         {
             step: 1,
