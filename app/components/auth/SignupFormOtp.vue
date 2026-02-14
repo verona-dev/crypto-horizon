@@ -22,7 +22,7 @@
                     >
                         <div
                             v-if='stepIndex === step.step'
-                            class='flex flex-col items-center gap-2'
+                            class='flex flex-col items-center gap-4'
                         >
                             <FieldTitle class='text-3xl font-bold' v-html='step.title'></FieldTitle>
                             <FieldDescription v-if='step.description' v-html='step.description'></FieldDescription>
@@ -53,7 +53,7 @@
                                 >
                                     <Check v-if='state === "completed"' class='size-5' />
                                     <Mail v-if='state === "active" && stepIndex === 1' />
-                                    <LockKeyhole v-if='state === "active" && stepIndex === 2' />
+                                    <Shield v-if='state === "active" && stepIndex === 2' />
                                     <Dot v-if='state === "inactive"' />
                                 </Button>
                             </StepperTrigger>
@@ -96,17 +96,15 @@
                         
                         <!--  Step 2: Verify your account -->
                         <template v-if='stepIndex === 2'>
-                            <FormField name='otp'>
+                            <FormField name='verify'>
                                 <FormItem>
-                                    <FormLabel>OTP</FormLabel>
-                                    
-                                    <FormControl>
-                                        Verify your account
-                                    </FormControl>
-                                    
-                                    <!--
-                                    <FormMessage />
-                                    -->
+                                    <Button variant='ghost'>
+                                        <NuxtIcon
+                                            name='ph:house'
+                                            size='17'
+                                        />
+                                        Go home
+                                    </Button>
                                 </FormItem>
                             </FormField>
                         </template>
@@ -133,14 +131,13 @@
 
 <script setup lang='ts'>
     import { Button } from '@/components/ui/button';
-    import { Field, FieldTitle, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from '@/components/ui/field';
+    import { Field, FieldTitle, FieldDescription, FieldGroup } from '@/components/ui/field';
     import { Input } from '@/components/ui/input';
     import { toTypedSchema } from '@vee-validate/zod';
     import * as z from 'zod';
     import { useForm } from 'vee-validate';
-    import { Check, X, Dot, Mail, LockKeyhole } from 'lucide-vue-next';
+    import { Check, X, Dot, Mail, Shield } from 'lucide-vue-next';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
-    import { PinInput, PinInputGroup, PinInputSlot } from '~/components/ui/pin-input';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
     import { useCountdown } from '@vueuse/core';
