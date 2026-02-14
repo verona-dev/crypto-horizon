@@ -31,12 +31,12 @@
         </div>
         
         <div
-            v-if='step_1'
+            v-if='show_toggle'
             class='flex flex-col gap-6'
         >
             <Field>
                 <Button
-                    @click='onToggleOtpSignup'
+                    @click='onToggleSignupMode'
                     type='button'
                     variant='link'
                 >
@@ -66,12 +66,9 @@
     import { Button } from '@/components/ui/button/index.ts';
     
     const otp_signup = ref(true);
-    const onToggleOtpSignup = () => otp_signup.value = !otp_signup.value;
+    const onToggleSignupMode = () => otp_signup.value = !otp_signup.value;
     
-    const otpStep = ref(1);
-    const step_1 = computed(() => otpStep.value === 1);
-    const onOtpStepChange = (otpStepIndex) => {
-        console.log(otpStepIndex);
-        otpStep.value = otpStepIndex;
-    };
+    const otpStepper = ref(1);
+    const show_toggle = computed(() => otpStepper.value === 1);
+    const onOtpStepChange = otpStepIndex => otpStepper.value = otpStepIndex;
 </script>
