@@ -81,9 +81,7 @@
                                         />
                                     </FormControl>
                                     
-                                    <!--
                                     <FormMessage />
-                                    -->
                                 </FormItem>
                             </FormField>
                         </template>
@@ -181,7 +179,7 @@
         const { error } = await signInWithOtp(email.value);
         
         if (error) {
-            setFieldError('email', `Email not sent: ${error.message}`);
+            setFieldError('email', `${error.message}`);
             setTimeout(() => {
                 setFieldError('email', '');
             }, 10000);
