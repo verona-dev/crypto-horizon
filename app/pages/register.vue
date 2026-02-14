@@ -22,7 +22,7 @@
         </NuxtImg>
         
         <div class='flex flex-col gap-6 w-lg'>
-            <SignupFormOtp
+            <LoginFormOtp
                 v-if='otp_signup'
                 @step-change='onStepChange'
             />
@@ -61,7 +61,7 @@
     import { Field, FieldDescription, FieldSeparator } from '@/components/ui/field/index.ts';
     import { Skeleton } from '@/components/ui/skeleton/index.ts';
     import SignupForm from '@/components/auth/SignupForm.vue';
-    import SignupFormOtp from '@/components/auth/SignupFormOtp.vue';
+    import LoginFormOtp from '@/components/auth/LoginFormOtp.vue';
     import SignupSocials from '@/components/auth/SignupSocials.vue';
     import { Button } from '@/components/ui/button/index.ts';
     
