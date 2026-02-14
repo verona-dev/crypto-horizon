@@ -70,7 +70,7 @@
                                 >
                                     <Check v-if='state === "completed"' class='size-5' />
                                     <Mail v-if='state === "active" && stepIndex === 1' />
-                                    <LockKeyhole v-if='state === "active" && stepIndex === 2' />
+                                    <UserLock v-if='state === "active" && stepIndex === 2' />
                                     <Dot v-if='state === "inactive"' />
                                 </Button>
                             </StepperTrigger>
@@ -197,7 +197,7 @@
     import { toTypedSchema } from '@vee-validate/zod';
     import * as z from 'zod';
     import { useForm } from 'vee-validate';
-    import { Check, X, Dot, Mail, LockKeyhole } from 'lucide-vue-next';
+    import { Check, X, Dot, Mail, UserLock } from 'lucide-vue-next';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { PinInput, PinInputGroup, PinInputSlot } from '~/components/ui/pin-input';
     import { Spinner } from '@/components/ui/spinner';

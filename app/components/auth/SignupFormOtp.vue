@@ -14,7 +14,10 @@
                 @submit.prevent='() => validate()'
                 class='flex flex-col gap-6'
             >
-                <div class='flex flex-col gap-4'>
+                <div
+                    class='flex flex-col gap-4'
+                    :class='{"gap-8" : stepIndex === 2}'
+                >
                     <!--   Stepper Title   -->
                     <div
                         v-for='(step, index) in steps'
@@ -53,7 +56,7 @@
                                 >
                                     <Check v-if='state === "completed"' class='size-5' />
                                     <Mail v-if='state === "active" && stepIndex === 1' />
-                                    <Shield v-if='state === "active" && stepIndex === 2' />
+                                    <UserLock v-if='state === "active" && stepIndex === 2' />
                                     <Dot v-if='state === "inactive"' />
                                 </Button>
                             </StepperTrigger>
@@ -61,7 +64,7 @@
                     </div>
                     
                     <!--   Stepper Body   -->
-                    <div :class='{ "mx-auto" : stepIndex === 2}'>
+                    <div :class='{ "mx-auto1" : stepIndex === 2}'>
                         <!--  Step 1: Email input  -->
                         <template v-if='stepIndex === 1'>
                             <FormField
@@ -97,14 +100,22 @@
                         <!--  Step 2: Verify your account -->
                         <template v-if='stepIndex === 2'>
                             <FormField name='verify'>
-                                <FormItem>
-                                    <Button variant='ghost'>
-                                        <NuxtIcon
-                                            name='ph:house'
-                                            size='17'
-                                        />
-                                        Go home
-                                    </Button>
+                                <FormItem class='flex flex-col items-center gap-8'>
+                                    <div class='flex flex-col items-center gap-2'>
+                                        <p>We sent a verification link to your email address.</p>
+                                        <p>Please check your inbox and click the link to verify your account.</p>
+                                    </div>
+        
+                                   
+                                    <NuxtLink to='/'>
+                                        <Button variant='outline' size='lg'>
+                                            <NuxtIcon
+                                                name='ph:house'
+                                                size='17'
+                                            />
+                                            Go home
+                                        </Button>
+                                    </NuxtLink>
                                 </FormItem>
                             </FormField>
                         </template>
@@ -136,7 +147,7 @@
     import { toTypedSchema } from '@vee-validate/zod';
     import * as z from 'zod';
     import { useForm } from 'vee-validate';
-    import { Check, X, Dot, Mail, Shield } from 'lucide-vue-next';
+    import { Check, X, Dot, Mail, UserLock } from 'lucide-vue-next';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
@@ -156,7 +167,7 @@
         })
     );
     
-    const stepIndex = ref(1);
+    const stepIndex = ref(2);
     const steps = [
         {
             step: 1,
@@ -166,7 +177,7 @@
         {
             step: 2,
             title: 'Verify Your Account',
-            description: 'We sent a verification link to your email address. Please check your inbox and click the link to verify your account.',
+            description: '',
         },
     ];
     
