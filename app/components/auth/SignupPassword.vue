@@ -12,57 +12,55 @@
         >
             <form
                 @submit.prevent='() => validate()'
-                class='flex flex-col gap-2'
+                class='flex flex-col gap-4'
             >
-                <div class='flex flex-col gap-4'>
-                    <!--   Stepper Title   -->
+                <!--   Stepper Title   -->
+                <div
+                    v-for='step in steps'
+                    :key='step.step'
+                >
                     <div
-                        v-for='step in steps'
-                        :key='step.step'
+                        v-if='step_index === step.step'
+                        class='flex flex-col items-center gap-2'
                     >
-                        <div
-                            v-if='step_index === step.step'
-                            class='flex flex-col items-center gap-2'
-                        >
-                            <FieldTitle class='text-3xl font-bold' v-html='step.title'></FieldTitle>
-                            <FieldDescription v-if='step.description' v-html='step.description'></FieldDescription>
-                        </div>
-                    </div>
-                    
-                    <!--   Stepper Navigation  -->
-                    <div class='flex gap-2 my-4'>
-                        <StepperItem
-                            v-for='(step, index) in steps'
-                            :key='step.step'
-                            v-slot='{ state }'
-                            class='relative flex w-full flex-col items-center justify-center'
-                            :step='step.step'
-                        >
-                            <StepperSeparator
-                                v-if='step.step !== steps[steps.length - 1]?.step'
-                                class='absolute left-[calc(50%+20px)] right-[calc(-50%+10px)] top-5 block h-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
-                            />
-                            
-                            <StepperTrigger as-child>
-                                <Button
-                                    :variant='state === "completed" || state === "active" ? "default" : "outline"'
-                                    size='icon'
-                                    class='z-10 rounded-full shrink-0'
-                                    :class='[state === "active" && "ring-2 ring-ring ring-offset-2 ring-offset-background"]'
-                                    :disabled="index >= (modelValue || 0)"
-                                >
-                                    <Check v-if='state === "completed"' class='size-5' />
-                                    <Mail v-if='state === "active" && step_index === 1' />
-                                    <UserLock v-if='state === "active" && step_index === 2' />
-                                    <Dot v-if='state === "inactive"' />
-                                </Button>
-                            </StepperTrigger>
-                        </StepperItem>
+                        <FieldTitle class='text-3xl font-bold' v-html='step.title'></FieldTitle>
+                        <FieldDescription v-if='step.description' v-html='step.description'></FieldDescription>
                     </div>
                 </div>
                 
+                <!--   Stepper Navigation  -->
+                <div class='flex gap-2 my-4'>
+                    <StepperItem
+                        v-for='(step, index) in steps'
+                        :key='step.step'
+                        v-slot='{ state }'
+                        class='relative flex w-full flex-col items-center justify-center'
+                        :step='step.step'
+                    >
+                        <StepperSeparator
+                            v-if='step.step !== steps[steps.length - 1]?.step'
+                            class='absolute left-[calc(50%+20px)] right-[calc(-50%+10px)] top-5 block h-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
+                        />
+                        
+                        <StepperTrigger as-child>
+                            <Button
+                                :variant='state === "completed" || state === "active" ? "default" : "outline"'
+                                size='icon'
+                                class='z-10 rounded-full shrink-0'
+                                :class='[state === "active" && "ring-2 ring-ring ring-offset-2 ring-offset-background"]'
+                                :disabled="index >= (modelValue || 0)"
+                            >
+                                <Check v-if='state === "completed"' class='size-5' />
+                                <Mail v-if='state === "active" && step_index === 1' />
+                                <UserLock v-if='state === "active" && step_index === 2' />
+                                <Dot v-if='state === "inactive"' />
+                            </Button>
+                        </StepperTrigger>
+                    </StepperItem>
+                </div>
+                
                 <!--   Stepper Body   -->
-                <FieldGroup class='gap-6'>
+                <FieldGroup>
                     <!--  Step 1: Email input  -->
                     <template v-if='step_index === 1'>
                         <FormField
@@ -115,21 +113,21 @@
                     <template v-if='step_index === 2'>
                         <VerificationSent />
                     </template>
-                    
-                    <!--   Stepper Buttons   -->
-                    <template v-if='step_index === 1'>
-                        <Button
-                            @click='() => onCreateAccount(nextStep)'
-                            :type='meta.valid ? "button" : "submit"'
-                            class='w-full'
-                            size='lg'
-                            :disabled='!meta.valid'
-                        >
-                            <Spinner v-if='loading' class='animate-spin' />
-                            <span>Create Account</span>
-                        </Button>
-                    </template>
                 </FieldGroup>
+                
+                <!--   Stepper Buttons   -->
+                <template v-if='step_index === 1'>
+                    <Button
+                        @click='() => onCreateAccount(nextStep)'
+                        :type='meta.valid ? "button" : "submit"'
+                        class='w-full'
+                        size='lg'
+                        :disabled='!meta.valid'
+                    >
+                        <Spinner v-if='loading' class='animate-spin' />
+                        <span>Create Account</span>
+                    </Button>
+                </template>
             </form>
         </Stepper>
     </Form>
@@ -138,7 +136,7 @@
 <script setup lang='ts'>
     import * as z from 'zod';
     import { Button } from '@/components/ui/button';
-    import {Field, FieldDescription, FieldGroup, FieldTitle} from '@/components/ui/field';
+    import { FieldDescription, FieldGroup, FieldTitle} from '@/components/ui/field';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
     const { setFieldError } = useForm();

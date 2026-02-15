@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-blue-bunker p-8 border-none'>
+    <Card class='bg-blue-bunker p-8 border-none mt-8 flex flex-col items-center'>
         <CardContent class='flex flex-col items-center justify-center gap-6'>
             <!--  Logo  -->
             <NuxtImg
