@@ -27,7 +27,6 @@
                 :speed='0.5'
             />
         </div>
-    
     </div>
 </template>
 

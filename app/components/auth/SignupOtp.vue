@@ -79,6 +79,7 @@
                                             v-bind='componentField'
                                             type='email'
                                             placeholder='name@example.com'
+                                            class='!bg-blue-bunker/75'
                                         />
                                     </FormControl>
                                     
@@ -99,7 +100,7 @@
                     <Button
                         @click='() => onCreateAccount(nextStep)'
                         :type='meta.valid ? "button" : "submit"'
-                        class='w-full'
+                        class='w-full disabled:opacity-75'
                         size='lg'
                         :disabled='!meta.valid'
                     >
