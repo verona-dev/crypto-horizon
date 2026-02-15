@@ -1,5 +1,5 @@
 <template>
-    <div class='bg-background flex flex-col items-center justify-center gap-4 p-6 border md:p-0'>
+    <Card class='bg-transparent flex flex-col !items-center justify-center gap-4 p-6 border-none'>
         <!--  Logo  -->
         <NuxtImg
             src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
@@ -21,16 +21,16 @@
             />
         </NuxtImg>
         
-        <div class='flex flex-col gap-4 w-full md:w-md lg:w-lg'>
+        <CardContent class='flex flex-col w-full'>
             <SignupOtp
                 v-if='otp_signup'
                 @otp-step-change='onOtpStepChange'
             />
             
             <SignupPassword v-else />
-        </div>
+        </CardContent>
         
-        <div>
+        <CardContent>
             <Field>
                 <Button
                     @click='onToggleSignupMode'
@@ -41,32 +41,33 @@
                     {{ otp_signup ? 'Use password signup instead' : 'Use OTP signup instead' }}
                 </Button>
             </Field>
-        </div>
+        </CardContent>
         
-        <div
+        <CardContent
             v-if='show_toggle'
-            class='flex flex-col gap-8 w-full md:w-md lg:w-lg'
+            class='flex flex-col gap-8 w-full'
         >
             
             <FieldSeparator>Or</FieldSeparator>
             
             <SignupSocials />
             
-            <FieldDescription class='px-6 text-center'>
+            <FieldDescription class='text-center'>
                 By clicking continue, you agree to our <a href='#'>Terms of Service</a>
                 and <a href='#'>Privacy Policy</a>.
             </FieldDescription>
-        </div>
-    </div>
+        </CardContent>
+    </Card>
 </template>
 
 <script setup>
-    import { Field, FieldDescription, FieldSeparator } from '@/components/ui/field/index.ts';
-    import { Skeleton } from '@/components/ui/skeleton/index.ts';
+    import { Button } from '@/components/ui/button/index';
+    import { Card, CardContent } from '~/components/ui/card';
+    import { Field, FieldDescription, FieldSeparator } from '@/components/ui/field/index';
     import SignupPassword from '@/components/auth/SignupPassword.vue';
     import SignupOtp from '@/components/auth/SignupOtp.vue';
     import SignupSocials from '@/components/auth/SignupSocials.vue';
-    import { Button } from '@/components/ui/button/index.ts';
+    import { Skeleton } from '@/components/ui/skeleton/index';
     
     const otp_signup = ref(true);
     const onToggleSignupMode = () => otp_signup.value = !otp_signup.value;

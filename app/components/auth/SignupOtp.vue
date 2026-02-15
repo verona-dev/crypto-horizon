@@ -30,7 +30,7 @@
                     </div>
                     
                     <!--   Stepper Navigation  -->
-                    <div class='flex gap-2'>
+                    <div class='flex gap-2 my-4'>
                         <StepperItem
                             v-for='(step, index) in steps'
                             :key='step.step'
