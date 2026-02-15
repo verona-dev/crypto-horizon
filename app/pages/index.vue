@@ -4,6 +4,7 @@
             v-if='dark_mode'
             :densityDissipation='5.5'
             :velocityDissipation='3'
+            class='z-1'
         />
         
         <ParticlesBg

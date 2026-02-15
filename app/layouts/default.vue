@@ -32,7 +32,7 @@
 
 <script setup>
     import AppSidebar from '~/components/sidebar/AppSidebar.vue';
-    import AuthModal from '~/components/AuthModal.vue';
+    import AuthModal from '~/components/auth/AuthModal.vue';
     // import Breadcrumb from '~/components/Breadcrumb.vue';
     import CoingeckoAttribution from '~/components/CoingeckoAttribution.vue';
     import MarketBar from '~/components/market/MarketBar.vue';

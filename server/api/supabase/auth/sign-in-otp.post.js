@@ -18,7 +18,10 @@ export default defineEventHandler(async(event) => {
         });
         
         if(error) {
-            throw error;
+            throw createError({
+                statusCode: error.status || 500,
+                statusMessage: error.message || 'Unexpected error during sign-in',
+            });
         }
         
         return { data, error };
@@ -26,8 +29,8 @@ export default defineEventHandler(async(event) => {
         console.error(error);
         
         throw createError({
-            statusCode: error.statusCode || 500,
-            statusMessage: error.statusMessage || 'Internal Server Error',
+            statusCode: error.status || 500,
+            statusMessage: error.message || 'Internal Server Error',
         });
     }
 });

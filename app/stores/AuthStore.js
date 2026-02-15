@@ -15,6 +15,25 @@ export const useAuthStore = defineStore('AuthStore', {
     },
     
     actions: {
+        async signUp(payload) {
+            try {
+                const { data, error } = await $fetch('/api/supabase/auth/sign-up', {
+                    method: 'POST',
+                    body: payload
+                });
+                
+                if(error) {
+                    throw error;
+                }
+                
+                if(data) {
+                    console.log(data);
+                }
+            } catch(error) {
+                console.error(error);
+            }
+        },
+        
         async signInWithOtp(email) {
             try {
                 this.loading = true;
@@ -56,14 +75,16 @@ export const useAuthStore = defineStore('AuthStore', {
             }
         },
         
-        async verifyOtp(email, otpCode) {
+        async verifyOtp(payload) {
             const ProfileStore = useProfileStore();
             
             try {
                 const { data, error } = await $fetch('/api/supabase/auth/verify-otp', {
                     method: 'POST',
-                    body: { email, otpCode },
+                    body: payload,
                 });
+                
+                if(error) throw error;
                 
                 if(data) {
                     await ProfileStore.getProfile();

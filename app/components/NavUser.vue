@@ -7,7 +7,7 @@
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
-    const { authModal } = storeToRefs(AuthStore);
+    // const { authModal } = storeToRefs(AuthStore);
     const { signInAnonymous, logOut } = AuthStore;
     
     // ProfileStore
@@ -18,27 +18,27 @@
     
     const { open, isMobile } = useSidebar()
     
-    const onOpenAuthModal = () => authModal.value = true;
+    // const onOpenAuthModal = () => authModal.value = true;
     
-    const logged_in = computed(() => profile.value);
+    const authenticated = computed(() => profile.value);
     
     const guest_avatar = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_256/v1767535202/astronaut-3_oauvzn.png';
     const avatar = computed(() => {
-        if(logged_in.value) {
+        if(authenticated.value) {
             return profile.value?.avatar_url || guest_avatar;
         }
         return guest_avatar;
     });
     
     const username = computed(() => {
-        if(logged_in.value) {
+        if(authenticated.value) {
             return profile.value?.username || 'User';
         }
         return 'Guest';
     });
     
     const user_email = computed(() => {
-        if(logged_in.value) {
+        if(authenticated.value) {
             return profile.value?.email;
         }
         return '';
@@ -113,7 +113,8 @@
                     
                     <DropdownMenuSeparator />
                     
-                    <DropdownMenuGroup v-if='logged_in'>
+                    <!--  Authenticated user  -->
+                    <DropdownMenuGroup v-if='authenticated'>
                         <!--  Profile  -->
                         <DropdownMenuItem
                             class='py-3 mb-1 cursor-pointer rounded-lg'
@@ -126,17 +127,39 @@
                         </DropdownMenuItem>
                         
                         <DropdownMenuSeparator />
-                    </DropdownMenuGroup>
-                    
-                    <DropdownMenuGroup>
-                        <!--  Login  -->
+                        
+                        <!--  Logout  -->
                         <DropdownMenuItem
-                            v-if='!logged_in'
-                            @click='onOpenAuthModal'
+                            @click='onLogOut'
                             class='py-3 mt-1 cursor-pointer rounded-lg'
                         >
-                            <NuxtIcon name='ph:sign-in' size='18' />
-                            Login / Register
+                            <NuxtIcon name='ph:sign-out' size='18' />
+                            LogOut
+                        </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                    
+                    <!--  Public user  -->
+                    <DropdownMenuGroup v-else>
+                        <!--  Login  -->
+                        <DropdownMenuItem
+                            class='py-3 mt-1 cursor-pointer rounded-lg'
+                            as-child
+                        >
+                            <NuxtLink to='/login' class=''>
+                                <NuxtIcon name='ph:sign-in' size='20' />
+                                Login
+                            </NuxtLink>
+                        </DropdownMenuItem>
+                        
+                        <!--  Register  -->
+                        <DropdownMenuItem
+                            class='py-3 mt-1 cursor-pointer rounded-lg'
+                            as-child
+                        >
+                            <NuxtLink to='/register' class=''>
+                                <NuxtIcon name='ph:user-plus' size='20' />
+                                Register
+                            </NuxtLink>
                         </DropdownMenuItem>
                         
                         <!--  Demo account  -->
@@ -150,16 +173,6 @@
                             Demo Account
                         </DropdownMenuItem>
                         -->
-                        
-                        <!--  Logout  -->
-                        <DropdownMenuItem
-                            v-if='logged_in'
-                            @click='onLogOut'
-                            class='py-3 mt-1 cursor-pointer rounded-lg'
-                        >
-                            <NuxtIcon name='ph:sign-out' size='18' />
-                            LogOut
-                        </DropdownMenuItem>
                     </DropdownMenuGroup>
                 </DropdownMenuContent>
             </DropdownMenu>
