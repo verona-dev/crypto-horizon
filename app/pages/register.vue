@@ -47,9 +47,8 @@
             
             <div
                 v-if='show_toggle'
-                class='flex flex-col gap-8 w-full'
+                class='flex flex-col gap-8'
             >
-                
                 <FieldSeparator>Or</FieldSeparator>
                 
                 <SignupSocials />

@@ -89,25 +89,7 @@
                         
                         <!--  Step 2: Verify your account -->
                         <template v-if='step_index === 2'>
-                            <FormField name='verify'>
-                                <FormItem class='flex flex-col items-center gap-8'>
-                                    <div class='flex flex-col items-center gap-2'>
-                                        <p>We sent a verification link to your email address.</p>
-                                        <p>Please check your inbox and click the link to verify your account.</p>
-                                    </div>
-        
-                                   
-                                    <NuxtLink to='/'>
-                                        <Button variant='outline' size='lg'>
-                                            <NuxtIcon
-                                                name='ph:house'
-                                                size='17'
-                                            />
-                                            Go home
-                                        </Button>
-                                    </NuxtLink>
-                                </FormItem>
-                            </FormField>
+                            <VerificationSent />
                         </template>
                     </FieldGroup>
                 </div>
@@ -142,6 +124,7 @@
     const { setFieldError } = useForm();
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
+    import VerificationSent from '@/components/auth/VerificationSent.vue';
     
     // AuthStore
     import { storeToRefs } from 'pinia';
