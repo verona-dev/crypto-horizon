@@ -1,5 +1,5 @@
 <template>
-    <div class='bg-background flex flex-col items-center justify-center gap-8 p-6 md:p-10 w-full'>
+    <div class='bg-background flex flex-col items-center justify-center gap-4 p-6 border md:p-0'>
         <!--  Logo  -->
         <NuxtImg
             src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
@@ -21,7 +21,7 @@
             />
         </NuxtImg>
         
-        <div class='flex flex-col gap-6 w-full md:w-md lg:w-lg'>
+        <div class='flex flex-col gap-4 w-full md:w-md lg:w-lg'>
             <SignupOtp
                 v-if='otp_signup'
                 @otp-step-change='onOtpStepChange'
@@ -30,10 +30,7 @@
             <SignupPassword v-else />
         </div>
         
-        <div
-            v-if='show_toggle'
-            class='flex flex-col gap-6 w-full md:w-md lg:w-lg'
-        >
+        <div>
             <Field>
                 <Button
                     @click='onToggleSignupMode'
@@ -44,6 +41,12 @@
                     {{ otp_signup ? 'Use password signup instead' : 'Use OTP signup instead' }}
                 </Button>
             </Field>
+        </div>
+        
+        <div
+            v-if='show_toggle'
+            class='flex flex-col gap-8 w-full md:w-md lg:w-lg'
+        >
             
             <FieldSeparator>Or</FieldSeparator>
             
