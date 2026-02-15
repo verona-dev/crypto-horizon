@@ -17,7 +17,7 @@
                 <div class='flex flex-col gap-4'>
                     <!--   Stepper Title   -->
                     <div
-                        v-for='(step, index) in steps'
+                        v-for='step in steps'
                         :key='step.step'
                     >
                         <div

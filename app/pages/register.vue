@@ -68,7 +68,7 @@
     const otp_signup = ref(true);
     const onToggleSignupMode = () => otp_signup.value = !otp_signup.value;
     
-    const otpStepper = ref(1);
-    const show_toggle = computed(() => otpStepper.value === 1);
-    const onOtpStepChange = otpStepIndex => otpStepper.value = otpStepIndex;
+    const otp_stepper = ref(1);
+    const show_toggle = computed(() => otp_stepper.value === 1);
+    const onOtpStepChange = otpStepIndex => otp_stepper.value = otpStepIndex;
 </script>
