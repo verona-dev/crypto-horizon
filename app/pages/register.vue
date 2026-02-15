@@ -1,37 +1,37 @@
 <template>
-    <Card class='bg-transparent flex flex-col !items-center justify-center gap-4 p-6 border-none'>
-        <!--  Logo  -->
-        <NuxtImg
-            src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
-            alt='crypto horizon login logo'
-            class='w-44 h-44 rounded-full select-none self-center p-1.5 border-2 border-secondary'
-            :custom='true'
-            v-slot='{ src, isLoaded, imgAttrs }'
-            preload
-        >
-            <img
-                v-if='isLoaded'
-                v-bind='imgAttrs'
-                :src='src'
+    <Card class='bg-blue-bunker p-12 border-none'>
+        <CardContent class='flex flex-col items-center justify-center gap-6'>
+            <!--  Logo  -->
+            <NuxtImg
+                src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
+                alt='crypto horizon login logo'
+                class='w-44 h-44 rounded-full select-none self-center p-1.5 border-2 border-secondary'
+                :custom='true'
+                v-slot='{ src, isLoaded, imgAttrs }'
+                preload
             >
+                <img
+                    v-if='isLoaded'
+                    v-bind='imgAttrs'
+                    :src='src'
+                >
+                
+                <Skeleton
+                    v-else
+                    class='w-44 h-44 rounded-full self-center'
+                />
+            </NuxtImg>
             
-            <Skeleton
-                v-else
-                class='w-44 h-44 rounded-full self-center'
-            />
-        </NuxtImg>
-        
-        <CardContent class='flex flex-col w-full'>
-            <SignupOtp
-                v-if='otp_signup'
-                @otp-step-change='onOtpStepChange'
-            />
+            <div class='flex flex-col w-full'>
+                <SignupOtp
+                    v-if='otp_signup'
+                    @otp-step-change='onOtpStepChange'
+                />
+                
+                <SignupPassword v-else />
+            </div>
             
-            <SignupPassword v-else />
-        </CardContent>
-        
-        <CardContent>
-            <Field>
+            <Field class=''>
                 <Button
                     @click='onToggleSignupMode'
                     type='button'
@@ -41,21 +41,21 @@
                     {{ otp_signup ? 'Use password signup instead' : 'Use OTP signup instead' }}
                 </Button>
             </Field>
-        </CardContent>
-        
-        <CardContent
-            v-if='show_toggle'
-            class='flex flex-col gap-8 w-full'
-        >
             
-            <FieldSeparator>Or</FieldSeparator>
-            
-            <SignupSocials />
-            
-            <FieldDescription class='text-center'>
-                By clicking continue, you agree to our <a href='#'>Terms of Service</a>
-                and <a href='#'>Privacy Policy</a>.
-            </FieldDescription>
+            <div
+                v-if='show_toggle'
+                class='flex flex-col gap-8 w-full'
+            >
+                
+                <FieldSeparator>Or</FieldSeparator>
+                
+                <SignupSocials />
+                
+                <FieldDescription class='text-center'>
+                    By clicking continue, you agree to our <a href='#'>Terms of Service</a>
+                    and <a href='#'>Privacy Policy</a>.
+                </FieldDescription>
+            </div>
         </CardContent>
     </Card>
 </template>
