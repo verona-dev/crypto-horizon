@@ -61,7 +61,7 @@
                     </div>
                     
                     <!--   Stepper Body   -->
-                    <div :class='{ "mx-auto1" : step_index === 2}'>
+                    <FieldGroup :class='{ "mx-auto1" : step_index === 2}'>
                         <!--  Step 1: Email input  -->
                         <template v-if='step_index === 1'>
                             <FormField
@@ -109,7 +109,7 @@
                                 </FormItem>
                             </FormField>
                         </template>
-                    </div>
+                    </FieldGroup>
                 </div>
                 
                 <!--   Stepper Buttons   -->
@@ -134,7 +134,7 @@
     import * as z from 'zod';
     import { Button } from '@/components/ui/button';
     import { Check, Dot, Mail, UserLock } from 'lucide-vue-next';
-    import { FieldTitle, FieldDescription } from '@/components/ui/field';
+    import { FieldTitle, FieldDescription, FieldGroup } from '@/components/ui/field';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
     import { toTypedSchema } from '@vee-validate/zod';
@@ -183,7 +183,7 @@
             setFieldError('email', `${error.message}`);
             setTimeout(() => {
                 setFieldError('email', '');
-            }, 10000);
+            }, 5000);
             return false;
         }
         

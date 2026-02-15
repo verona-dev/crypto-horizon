@@ -1,6 +1,6 @@
 <template>
     <Card class='bg-blue-bunker p-8 border-none'>
-        <CardContent class='flex flex-col items-center justify-center gap-8'>
+        <CardContent class='flex flex-col items-center justify-center gap-6'>
             <!--  Logo  -->
             <NuxtImg
                 src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
@@ -28,7 +28,10 @@
                     @otp-step-change='onOtpStepChange'
                 />
                 
-                <SignupPassword v-else />
+                <SignupPassword
+                    v-else
+                    @password-step-change='onPasswordStepChange'
+                />
             </div>
             
             <Field>
@@ -73,6 +76,11 @@
     const onToggleSignupMode = () => otp_signup.value = !otp_signup.value;
     
     const otp_stepper = ref(1);
-    const show_toggle = computed(() => otp_stepper.value === 1);
+    const password_stepper = ref(1);
+    
+    const show_toggle = computed(() => {
+        return otp_stepper.value === 1 && password_stepper.value === 1;
+    });
     const onOtpStepChange = otpStepIndex => otp_stepper.value = otpStepIndex;
+    const onPasswordStepChange = passwordStepIndex => password_stepper.value = passwordStepIndex;
 </script>

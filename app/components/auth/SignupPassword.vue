@@ -12,7 +12,7 @@
         >
             <form
                 @submit.prevent='() => validate()'
-                class='flex flex-col gap-8'
+                class='flex flex-col gap-2'
             >
                 <div class='flex flex-col gap-4'>
                     <!--   Stepper Title   -->
@@ -62,15 +62,13 @@
                 </div>
                 
                 <!--   Stepper Body   -->
-                <FieldGroup>
+                <FieldGroup class='gap-6'>
                     <!--  Step 1: Email input  -->
                     <template v-if='step_index === 1'>
                         <FormField
                             v-slot='{ componentField }'
                             v-model='email'
                             name='email'
-                            :validateOnBlur='false'
-                            :validateOnChange='false'
                         >
                             <FormItem>
                                 <FormLabel>Email</FormLabel>
@@ -183,9 +181,9 @@
     );
     
     // Stepper
-    const step_index = ref(1);
-    const emit = defineEmits(['otpStepChange']);
-    watch(step_index, () => emit('otpStepChange', step_index.value));
+    const step_index = ref(2);
+    const emit = defineEmits(['passwordStepChange']);
+    watch(step_index, () => emit('passwordStepChange', step_index.value));
     const steps = [
         {
             step: 1,
@@ -201,14 +199,25 @@
     
     // Email
     const email = ref('');
-    
     // Password
     const password = ref('');
     
-    const onCreateAccount = async() => {
-        await signUp({
+    const onCreateAccount = async(nextStep: any) => {
+        const { error } = await signUp({
             email: email.value,
             password: password.value
         });
+        
+        if(error) {
+            setFieldError('email', `${error.message}`);
+            setTimeout(() => {
+                setFieldError('email', '');
+            }, 5000);
+            return false;
+        }
+        
+        nextStep && nextTick(() => nextStep());
+        
+        return true;
     };
 </script>
