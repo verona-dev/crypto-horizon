@@ -1,6 +1,6 @@
 <template>
-    <Card class='bg-blue-bunker p-12 border-none'>
-        <CardContent class='flex flex-col items-center justify-center gap-6'>
+    <Card class='bg-blue-bunker p-8 border-none'>
+        <CardContent class='flex flex-col items-center justify-center gap-8'>
             <!--  Logo  -->
             <NuxtImg
                 src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
