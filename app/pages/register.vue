@@ -1,6 +1,16 @@
 <template>
-    <Card class='bg-blue-bunker p-8 border-none mt-8 flex flex-col items-center'>
-        <CardContent class='flex flex-col items-center justify-center gap-6'>
+    <div class='absolute inset-0 h-screen w-screen'>
+        <SnowfallBg
+            color='7393bc'
+            class='absolute inset-0 !z-0'
+            :min-radius='0.2'
+            :max-radius='2'
+            :speed='0.1'
+            :quantity='150'
+        />
+    </div>
+    <Card class='bg-transparent p-8 mt-8 xl:min-w-150 flex flex-col items-center border-none shadow-none'>
+        <CardContent class='w-full flex flex-col items-center justify-center gap-6'>
             <!--  Logo  -->
             <NuxtImg
                 src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
@@ -71,6 +81,7 @@
     import SignupOtp from '@/components/auth/SignupOtp.vue';
     import SignupSocials from '@/components/auth/SignupSocials.vue';
     import { Skeleton } from '@/components/ui/skeleton/index';
+    import { SnowfallBg } from '~/components/ui/snowfall-bg';
     
     const otp_signup = ref(false);
     const onToggleSignupMode = () => otp_signup.value = !otp_signup.value;
