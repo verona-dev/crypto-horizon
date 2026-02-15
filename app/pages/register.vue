@@ -34,21 +34,22 @@
                 />
             </div>
             
-            <Field>
-                <Button
-                    @click='onToggleSignupMode'
-                    type='button'
-                    variant='link'
-                >
-                    
-                    {{ otp_signup ? 'Use password signup instead' : 'Use OTP signup instead' }}
-                </Button>
-            </Field>
-            
             <div
                 v-if='show_toggle'
                 class='flex flex-col gap-8'
             >
+                <Field @click='onToggleSignupMode'>
+                    <Button type='button' variant='link'>
+                        <Button variant='ghost' size='icon'>
+                            <NuxtIcon
+                                name='ph:arrows-left-right'
+                                size='18'
+                            />
+                        </Button>
+                        {{ otp_signup ? 'Use password signup instead' : 'Use OTP signup instead' }}
+                    </Button>
+                </Field>
+                
                 <FieldSeparator>Or</FieldSeparator>
                 
                 <SignupSocials />

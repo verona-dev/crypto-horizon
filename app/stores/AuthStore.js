@@ -17,6 +17,8 @@ export const useAuthStore = defineStore('AuthStore', {
     actions: {
         async signUp(payload) {
             try {
+                this.loading = true;
+                
                 const { data, error } = await $fetch('/api/supabase/auth/sign-up', {
                     method: 'POST',
                     body: payload
@@ -26,11 +28,13 @@ export const useAuthStore = defineStore('AuthStore', {
                     throw error;
                 }
                 
-                if(data) {
-                    console.log(data);
-                }
+                return { data, error };
             } catch(error) {
                 console.error(error);
+                
+                return { data: null, error };
+            } finally {
+                this.loading = false;
             }
         },
         
