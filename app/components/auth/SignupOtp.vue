@@ -1,6 +1,6 @@
 <template>
     <Form
-        v-slot='{ meta, validate, setFieldError }'
+        v-slot='{ meta, validate }'
         as=''
         keep-values
         :validation-schema='validation_schema'
@@ -68,6 +68,8 @@
                                 v-slot='{ componentField }'
                                 v-model='email'
                                 name='email'
+                                :validateOnBlur='false'
+                                :validateOnChange='false'
                             >
                                 <FormItem>
                                     <FormLabel>Email</FormLabel>
