@@ -31,7 +31,7 @@
                 <SignupPassword v-else />
             </div>
             
-            <Field class=''>
+            <Field>
                 <Button
                     @click='onToggleSignupMode'
                     type='button'
@@ -69,7 +69,7 @@
     import SignupSocials from '@/components/auth/SignupSocials.vue';
     import { Skeleton } from '@/components/ui/skeleton/index';
     
-    const otp_signup = ref(true);
+    const otp_signup = ref(false);
     const onToggleSignupMode = () => otp_signup.value = !otp_signup.value;
     
     const otp_stepper = ref(1);

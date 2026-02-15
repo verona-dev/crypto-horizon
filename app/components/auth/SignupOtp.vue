@@ -115,7 +115,7 @@
                 <!--   Stepper Buttons   -->
                 <template v-if='step_index === 1'>
                     <Button
-                        @click='() => onEmailSubmit(nextStep)'
+                        @click='() => onCreateAccount(nextStep)'
                         :type='meta.valid ? "button" : "submit"'
                         class='w-full'
                         size='lg'
@@ -131,14 +131,15 @@
 </template>
 
 <script setup lang='ts'>
+    import * as z from 'zod';
     import { Button } from '@/components/ui/button';
+    import { Check, Dot, Mail, UserLock } from 'lucide-vue-next';
     import { FieldTitle, FieldDescription } from '@/components/ui/field';
+    import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
     import { toTypedSchema } from '@vee-validate/zod';
-    import * as z from 'zod';
     import { useForm } from 'vee-validate';
-    import { Check, Dot, Mail, UserLock } from 'lucide-vue-next';
-    import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
+    const { setFieldError } = useForm();
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
     
@@ -174,9 +175,8 @@
     
     // Email
     const email = ref('');
-    const { setFieldError } = useForm();
     
-    const onEmailSubmit = async(nextStep: any) => {
+    const onCreateAccount = async(nextStep: any) => {
         const { error } = await signInWithOtp(email.value);
         
         if (error) {
