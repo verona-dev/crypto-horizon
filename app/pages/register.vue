@@ -21,7 +21,7 @@
             />
         </NuxtImg>
         
-        <div class='flex flex-col gap-6 w-lg'>
+        <div class='flex flex-col gap-6 w-full md:w-md lg:w-lg'>
             <SignupOtp
                 v-if='otp_signup'
                 @otp-step-change='onOtpStepChange'
@@ -32,7 +32,7 @@
         
         <div
             v-if='show_toggle'
-            class='flex flex-col gap-6'
+            class='flex flex-col gap-6 w-full md:w-md lg:w-lg'
         >
             <Field>
                 <Button

@@ -12,7 +12,7 @@
         >
             <form
                 @submit.prevent='() => validate()'
-                class='flex flex-col gap-6'
+                class='flex flex-col gap-8'
             >
                 <div class='flex flex-col gap-4'>
                     <!--   Stepper Title   -->
@@ -22,7 +22,7 @@
                     >
                         <div
                             v-if='step_index === step.step'
-                            class='flex flex-col items-center gap-4'
+                            class='flex flex-col items-center gap-2'
                         >
                             <FieldTitle class='text-3xl font-bold' v-html='step.title'></FieldTitle>
                             <FieldDescription v-if='step.description' v-html='step.description'></FieldDescription>
@@ -156,7 +156,7 @@
         })
     );
     
-    const step_index = ref(1);
+    const step_index = ref(2);
     const emit = defineEmits(['otpStepChange']);
     watch(step_index, () => emit('otpStepChange', step_index.value));
     const steps = [

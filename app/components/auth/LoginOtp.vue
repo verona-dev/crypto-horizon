@@ -22,7 +22,7 @@
                     >
                         <div
                             v-if='stepIndex === step.step'
-                            class='flex flex-col items-center gap-4'
+                            class='flex flex-col items-center gap-2'
                         >
                             <FieldTitle class='text-3xl font-bold' v-html='step.title'></FieldTitle>
                             <FieldDescription v-if='step.description' v-html='step.description'></FieldDescription>
