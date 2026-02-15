@@ -3,11 +3,11 @@
         v-slot='{ meta, validate, setFieldError }'
         as=''
         keep-values
-        :validation-schema='validationSchema'
+        :validation-schema='validation_schema'
     >
         <Stepper
             v-slot='{ nextStep, modelValue }'
-            v-model='stepIndex'
+            v-model='step_index'
             class='block'
         >
             <form
@@ -21,7 +21,7 @@
                         :key='step.step'
                     >
                         <div
-                            v-if='stepIndex === step.step'
+                            v-if='step_index === step.step'
                             class='flex flex-col items-center gap-4'
                         >
                             <FieldTitle class='text-3xl font-bold' v-html='step.title'></FieldTitle>
@@ -52,8 +52,8 @@
                                     :disabled="index >= (modelValue || 0)"
                                 >
                                     <Check v-if='state === "completed"' class='size-5' />
-                                    <Mail v-if='state === "active" && stepIndex === 1' />
-                                    <UserLock v-if='state === "active" && stepIndex === 2' />
+                                    <Mail v-if='state === "active" && step_index === 1' />
+                                    <UserLock v-if='state === "active" && step_index === 2' />
                                     <Dot v-if='state === "inactive"' />
                                 </Button>
                             </StepperTrigger>
@@ -61,9 +61,9 @@
                     </div>
                     
                     <!--   Stepper Body   -->
-                    <div :class='{ "mx-auto1" : stepIndex === 2}'>
+                    <div :class='{ "mx-auto1" : step_index === 2}'>
                         <!--  Step 1: Email input  -->
-                        <template v-if='stepIndex === 1'>
+                        <template v-if='step_index === 1'>
                             <FormField
                                 v-slot='{ componentField }'
                                 v-model='email'
@@ -77,7 +77,6 @@
                                             v-bind='componentField'
                                             type='email'
                                             placeholder='name@example.com'
-                                            @input='validate()'
                                         />
                                     </FormControl>
                                     
@@ -87,7 +86,7 @@
                         </template>
                         
                         <!--  Step 2: Verify your account -->
-                        <template v-if='stepIndex === 2'>
+                        <template v-if='step_index === 2'>
                             <FormField name='verify'>
                                 <FormItem class='flex flex-col items-center gap-8'>
                                     <div class='flex flex-col items-center gap-2'>
@@ -112,9 +111,9 @@
                 </div>
                 
                 <!--   Stepper Buttons   -->
-                <template v-if='stepIndex === 1'>
+                <template v-if='step_index === 1'>
                     <Button
-                        @click='() => onEmailSubmit(setFieldError, nextStep)'
+                        @click='() => onEmailSubmit(nextStep)'
                         :type='meta.valid ? "button" : "submit"'
                         class='w-full'
                         size='lg'
@@ -149,15 +148,15 @@
     const { loading } = storeToRefs(AuthStore);
     
     // Stepper
-    const validationSchema = toTypedSchema(
+    const validation_schema = toTypedSchema(
         z.object({
             email: z.string().email('Invalid email'),
         })
     );
     
-    const stepIndex = ref(1);
+    const step_index = ref(1);
     const emit = defineEmits(['otpStepChange']);
-    watch(stepIndex, () => emit('otpStepChange', stepIndex.value));
+    watch(step_index, () => emit('otpStepChange', step_index.value));
     const steps = [
         {
             step: 1,
@@ -175,7 +174,7 @@
     const email = ref('');
     const { setFieldError } = useForm();
     
-    const onEmailSubmit = async(setFieldError: any, nextStep: any) => {
+    const onEmailSubmit = async(nextStep: any) => {
         const { error } = await signInWithOtp(email.value);
         
         if (error) {

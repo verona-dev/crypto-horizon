@@ -39,11 +39,11 @@
                 v-slot='{ meta, validate, setFieldError }'
                 as=''
                 keep-values
-                :validation-schema='toTypedSchema(formSchema[stepIndex - 1] || z.object({}))'
+                :validation-schema='toTypedSchema(validation_schema[step_index - 1] || z.object({}))'
             >
                 <Stepper
                     v-slot='{ isPrevDisabled, nextStep, prevStep, modelValue }'
-                    v-model='stepIndex'
+                    v-model='step_index'
                     class='block'
                 >
                     <form
@@ -54,15 +54,15 @@
                             <!--   Stepper Title   -->
                             <div class='flex flex-col gap-2'>
                                 <DialogTitle class='text-4xl'>
-                                    <span v-if='stepIndex === 1'>Welcome to Crypto Horizon</span>
-                                    <span v-if='stepIndex === 2'>Enter OTP</span>
-                                    <span v-if='stepIndex === 3'>Welcome Back!</span>
+                                    <span v-if='step_index === 1'>Welcome to Crypto Horizon</span>
+                                    <span v-if='step_index === 2'>Enter OTP</span>
+                                    <span v-if='step_index === 3'>Welcome Back!</span>
                                 </DialogTitle>
                                 
                                 <DialogDescription>
-                                    <span v-if='stepIndex === 1'>Enter your email to sign-up with a one-time password (OTP).</span>
-                                    <span v-if='stepIndex === 2'>Please enter the eight digit verification code we sent to {{ email }}.</span>
-                                    <span v-if='stepIndex === 3'>You are now logged in.</span>
+                                    <span v-if='step_index === 1'>Enter your email to sign-up with a one-time password (OTP).</span>
+                                    <span v-if='step_index === 2'>Please enter the eight digit verification code we sent to {{ email }}.</span>
+                                    <span v-if='step_index === 3'>You are now logged in.</span>
                                 </DialogDescription>
                             </div>
                             
@@ -92,8 +92,8 @@
                                             :disabled="index >= (modelValue || 0)"
                                         >
                                             <Check v-if='state === "completed"' class='size-5' />
-                                            <Mail v-if='state === "active" && stepIndex === 1' />
-                                            <LockKeyhole v-if='state === "active" && stepIndex === 2' />
+                                            <Mail v-if='state === "active" && step_index === 1' />
+                                            <LockKeyhole v-if='state === "active" && step_index === 2' />
                                             <Dot v-if='state === "inactive"' />
                                         </Button>
                                     </StepperTrigger>
@@ -101,9 +101,9 @@
                             </div>
                             
                             <!--   Stepper Body   -->
-                            <div :class='{ "mx-auto" : stepIndex === 2}'>
+                            <div :class='{ "mx-auto" : step_index === 2}'>
                                 <!--  Step 1: Email input  -->
-                                <template v-if='stepIndex === 1'>
+                                <template v-if='step_index === 1'>
                                     <FormField
                                         v-slot='{ componentField }'
                                         v-model='email'
@@ -131,7 +131,7 @@
                                 </template>
                                 
                                 <!--  Step 2: OTP Pin Input  -->
-                                <template v-if='stepIndex === 2'>
+                                <template v-if='step_index === 2'>
                                     <FormField name='otp'>
                                         <FormItem>
                                             <FormLabel>OTP</FormLabel>
@@ -178,7 +178,7 @@
                                 </template>
                                 
                                 <!--  Step 3: Logged In  -->
-                                <template v-if='stepIndex === 3'>
+                                <template v-if='step_index === 3'>
                                     This window will close in 5s.
                                 </template>
                             </div>
@@ -186,7 +186,7 @@
                         
                         <!--   Stepper Buttons   -->
                         <DialogFooter class='flex !flex-col'>
-                            <div v-if='stepIndex === 1'>
+                            <div v-if='step_index === 1'>
                                 <Button
                                     @click='() => onEmailSubmit(setFieldError, nextStep)'
                                     :type='meta.valid ? "button" : "submit"'
@@ -199,7 +199,7 @@
                                 </Button>
                             </div>
                             
-                            <div v-if='stepIndex === 2' class='flex items-center justify-between mt-4'>
+                            <div v-if='step_index === 2' class='flex items-center justify-between mt-4'>
                                 <Button
                                     :disabled='isPrevDisabled'
                                     variant='link'
@@ -210,7 +210,7 @@
                                 </Button>
                                 
                                 <Button
-                                    v-if='stepIndex === 2'
+                                    v-if='step_index === 2'
                                     :disabled='isPrevDisabled'
                                     @click="() => onVerifyOtp(setFieldError, nextStep)"
                                     type='submit'
@@ -220,7 +220,7 @@
                                 </Button>
                             </div>
                             
-                            <div v-if='stepIndex === 3'>
+                            <div v-if='step_index === 3'>
                                 <Button @click='onLoggedIn'>
                                     Close
                                 </Button>
@@ -264,13 +264,13 @@
     const { getProfile } = ProfileStore;
     
     // Stepper
-    const formSchema = [
+    const validation_schema = [
         z.object({
             email: z.string().email(),
         }),
     ];
     
-    const stepIndex = ref(1);
+    const step_index = ref(1);
     const steps = [
         {
             step: 1,
@@ -353,9 +353,9 @@
     };
     
     // Countdown
-    const countdownSeconds = ref(60);
-    const { remaining, start } = useCountdown(countdownSeconds);
-    const startCountdown = () => start(countdownSeconds);
+    const countdown_seconds = ref(60);
+    const { remaining, start } = useCountdown(countdown_seconds);
+    const startCountdown = () => start(countdown_seconds);
     
     // Utils
     /*
