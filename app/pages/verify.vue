@@ -30,6 +30,10 @@
     const token = ref(route.query.token);
     const verified = ref(false);
     
+    definePageMeta({
+        middleware: 'verify',
+    });
+    
     onMounted(async() => {
         if(token.value) {
           const { error } = await verifyOtp({ token: token.value });
@@ -41,8 +45,6 @@
                   navigateTo('/profile');
               }, 3000);
           }
-        } else {
-            navigateTo('/');
         }
     });
 </script>
