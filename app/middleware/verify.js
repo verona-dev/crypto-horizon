@@ -1,9 +1,9 @@
 
 export default defineNuxtRouteMiddleware(async(to, from) => {
     const route = useRoute();
-    const token = route.query.token;
+    const code = route.query.code;
     
-    if(!token) {
+    if(!code) {
         return navigateTo('/');
     }
 });

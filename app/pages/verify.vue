@@ -1,9 +1,5 @@
 <template>
-    <div v-if='!verified' class='flex flex-col justify-center items-center gap-12'>
-        <h3>Verifying your account...</h3>
-    </div>
-    
-    <div v-else class='flex flex-col justify-center items-center gap-12'>
+    <div class='page gap-24'>
         <NuxtIcon
             name='ph:seal-check'
             size='120'
@@ -12,39 +8,30 @@
         
         <h3>Account verified successfully!</h3>
         
-        <Button variant='outline'>
-            <NuxtLink to='/'>Go Home</NuxtLink>
-        </Button>
+        <div class='flex gap-8'>
+            <NuxtLink to='/'>
+                <Button variant='outline' size='lg' class='w-42'>Go Home</Button>
+            </NuxtLink>
+            
+            <NuxtLink to='/profile'>
+                <Button variant='outline' size='lg' class='w-42'>Profile</Button>
+            
+            </NuxtLink>
+        </div>
     </div>
 </template>
 
 <script setup>
     import { Button } from '@/components/ui/button';
-    const route = useRoute();
     
-    // AuthStore
-    import { useAuthStore } from '~/stores/AuthStore.js';
-    const AuthStore = useAuthStore();
-    const { verifyOtp } = AuthStore;
-    
-    const token = ref(route.query.token);
-    const verified = ref(false);
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { getProfile } = ProfileStore;
     
     definePageMeta({
         middleware: 'verify',
     });
     
-    onMounted(async() => {
-        if(token.value) {
-          const { error } = await verifyOtp({ token: token.value });
-          
-          if(!error) {
-              verified.value = true;
-              
-              setTimeout(() => {
-                  navigateTo('/profile');
-              }, 3000);
-          }
-        }
-    });
+    onMounted(async() => await getProfile());
 </script>
