@@ -11,7 +11,7 @@
             />
         </section>
         
-        <Card class='bg-transparent flex flex-col items-center p-8 mt-4 border-none shadow-none'>
+        <Card class='bg-transparent p-8 mt-4 xl:min-w-150 flex flex-col items-center border-none shadow-none'>
             <CardContent class='w-full flex flex-col items-center justify-center gap-6'>
                 <!--  Logo  -->
                 <NuxtImg
