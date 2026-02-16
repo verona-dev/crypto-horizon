@@ -1,6 +1,6 @@
 <template>
     <Form
-        v-slot='{ meta, validate }'
+        v-slot='{ meta, validate, setFieldError }'
         as=''
         keep-values
         :validation-schema='validation_schema'
@@ -120,7 +120,7 @@
                 <!--   Stepper Buttons   -->
                 <template v-if='step_index === 1'>
                     <Button
-                        @click='() => onCreateAccount(nextStep)'
+                        @click='() => onCreateAccount(setFieldError, nextStep)'
                         :type='meta.valid ? "button" : "submit"'
                         class='w-full disabled:opacity-75'
                         size='lg'
@@ -141,11 +141,9 @@
     import { FieldDescription, FieldGroup, FieldTitle} from '@/components/ui/field';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
-    const { setFieldError } = useForm();
-    import { toTypedSchema } from '@vee-validate/zod';
-    import { useForm } from 'vee-validate';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
+    import { toTypedSchema } from '@vee-validate/zod';
     import VerificationSent from '@/components/auth/VerificationSent.vue';
     
     // AuthStore
@@ -185,7 +183,7 @@
     // Password
     const password = ref('');
     
-    const onCreateAccount = async(nextStep: any) => {
+    const onCreateAccount = async(setFieldError: any, nextStep: any) => {
         const { error } = await signUp({
             email: email.value,
             password: password.value
