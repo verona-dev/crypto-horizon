@@ -3,7 +3,6 @@ import { useProfileStore } from '~/stores/ProfileStore.js';
 
 export const useAuthStore = defineStore('AuthStore', {
     state: () => ({
-        authModal: false,
         loading: false,
     }),
     

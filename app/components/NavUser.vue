@@ -7,7 +7,6 @@
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
-    // const { authModal } = storeToRefs(AuthStore);
     const { signInAnonymous, logOut } = AuthStore;
     
     // ProfileStore
@@ -17,8 +16,6 @@
     // const { getProfile } = ProfileStore;
     
     const { open, isMobile } = useSidebar()
-    
-    // const onOpenAuthModal = () => authModal.value = true;
     
     const authenticated = computed(() => profile.value);
     
