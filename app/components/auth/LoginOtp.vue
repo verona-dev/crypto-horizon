@@ -6,7 +6,7 @@
         :validation-schema='validation_schema'
     >
         <Stepper
-            v-slot='{ isPrevDisabled, nextStep, prevStep, modelValue }'
+            v-slot='{ nextStep, modelValue }'
             v-model='step_index'
             class='block'
         >
@@ -27,23 +27,6 @@
                             <FieldTitle class='text-3xl font-bold' v-html='step.title'></FieldTitle>
                             <FieldDescription v-if='step.description' v-html='step.description'></FieldDescription>
                         </div>
-                        
-                        <!--
-                        <div v-if='stepIndex === 1' class='flex flex-col items-center gap-2'>
-                            <h1 class='text-3xl font-bold'>Welcome!</h1>
-                            <FieldDescription>Already have an account? <a href='/login'>Login</a></FieldDescription>
-                        </div>
-                        
-                        <div v-if='stepIndex === 2' class='flex flex-col items-center gap-2'>
-                            <h1 class="text-3xl font-bold">Enter verification code</h1>
-                            <FieldDescription>We sent a 6-digit code to your email address</FieldDescription>
-                        </div>
-                        
-                        <div v-if='stepIndex === 3' class='flex flex-col items-center gap-2'>
-                            <h1 class="text-3xl font-bold">Welcome back!</h1>
-                            <FieldDescription>Redirecting...</FieldDescription>
-                        </div>
-                        -->
                     </div>
                     
                     <!--   Stepper Navigation  -->
@@ -78,7 +61,7 @@
                     </div>
                     
                     <!--   Stepper Body   -->
-                    <div :class='{ "mx-auto" : step_index === 2}'>
+                    <FieldGroup :class='{ "mx-auto1" : step_index === 2}'>
                         <!--  Step 1: Email input  -->
                         <template v-if='step_index === 1'>
                             <FormField
@@ -96,6 +79,8 @@
                                             v-bind='componentField'
                                             type='email'
                                             placeholder='name@example.com'
+                                            class='dark:bg-blue-bunker/75'
+                                            required
                                         />
                                     </FormControl>
                                     
@@ -104,227 +89,90 @@
                             </FormField>
                         </template>
                         
-                        <!--  Step 2: OTP Pin Input  -->
+                        <!--  Step 2: Verify your account -->
                         <template v-if='step_index === 2'>
-                            <FormField name='otp'>
-                                <FormItem>
-                                    <FormLabel>OTP</FormLabel>
-                                    
-                                    <FormControl>
-                                        <!--   OTP Pin Input   -->
-                                        <PinInput
-                                            v-model='otp_input'
-                                            @complete='onVerifyOtp(setFieldError, nextStep)'
-                                            id='pin-input'
-                                            placeholder=''
-                                            class='flex flex-col items-start gap-6'
-                                            otp
-                                            required
-                                            @vue:mounted='startCountdown'
-                                        >
-                                            <PinInputGroup class='gap-1'>
-                                                <template v-for='(id, index) in 8' :key='id'>
-                                                    <PinInputSlot
-                                                        class='h-12 w-12 mx-1 text-xl font-bold font-satoshi rounded-lg border'
-                                                        :index='index'
-                                                    />
-                                                </template>
-                                            </PinInputGroup>
-                                            
-                                            <FieldDescription class='mx-auto'>Didn't receive the code?
-                                                <span
-                                                    @click='() => onResendEmail(setFieldError)'
-                                                    class='font-bold underline cursor-pointer'
-                                                >
-                                                    Resend
-                                                </span>
-                                                
-                                                <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
-                                            </FieldDescription>
-                                        </PinInput>
-                                    </FormControl>
-                                    
-                                    <FormMessage />
-                                </FormItem>
-                            </FormField>
+                            <VerificationSent />
                         </template>
-                    </div>
+                    </FieldGroup>
                 </div>
                 
                 <!--   Stepper Buttons   -->
-                <div class='flex !flex-col'>
-                    <div v-if='step_index === 1'>
-                        <Button
-                            @click='() => onEmailSubmit(setFieldError, nextStep)'
-                            :type='meta.valid ? "button" : "submit"'
-                            class='w-full'
-                            size='lg'
-                            :disabled='!meta.valid'
-                        >
-                            <Spinner v-if='loading' class='animate-spin' />
-                            <span>Create Account</span>
-                        </Button>
-                    </div>
-                    
+                <template v-if='step_index === 1'>
                     <Button
-                        v-if='step_index === 2'
-                        :disabled='joined_otp_input.length !== 8'
-                        @click="() => onVerifyOtp(setFieldError, nextStep)"
-                        type='submit'
+                        @click='() => onCreateAccount(setFieldError, nextStep)'
+                        :type='meta.valid ? "button" : "submit"'
+                        class='w-full disabled:opacity-75'
+                        size='lg'
+                        :disabled='!meta.valid'
                     >
-                        Verify
+                        <Spinner v-if='loading' class='animate-spin' />
+                        <span>Login</span>
                     </Button>
-                </div>
+                </template>
             </form>
         </Stepper>
     </Form>
 </template>
 
 <script setup lang='ts'>
-    import { Button } from '@/components/ui/button';
-    import { Field, FieldTitle, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from '@/components/ui/field';
-    import { Input } from '@/components/ui/input';
-    // import { h } from 'vue';
-    import { toTypedSchema } from '@vee-validate/zod';
     import * as z from 'zod';
-    import { useForm } from 'vee-validate';
-    import { Check, X, Dot, Mail, UserLock } from 'lucide-vue-next';
+    import { Button } from '@/components/ui/button';
+    import { Check, Dot, Mail, UserLock } from 'lucide-vue-next';
+    import { FieldTitle, FieldDescription, FieldGroup } from '@/components/ui/field';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
-    import { PinInput, PinInputGroup, PinInputSlot } from '~/components/ui/pin-input';
+    import { Input } from '@/components/ui/input';
+    import { toTypedSchema } from '@vee-validate/zod';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
-    import { useCountdown } from '@vueuse/core';
+    import VerificationSent from '@/components/auth/VerificationSent.vue';
     
     // AuthStore
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
-    const { signInWithOtp, verifyOtp } = AuthStore;
+    const { signInWithOtp } = AuthStore;
     const { loading } = storeToRefs(AuthStore);
     
     // Stepper
     const validation_schema = toTypedSchema(
         z.object({
             email: z.string().email('Invalid email'),
-            password: z.string().min(8, 'Password must be at least 8 chars'),
         })
     );
     
     const step_index = ref(1);
+    const emit = defineEmits(['otpStepChange']);
+    watch(step_index, () => emit('otpStepChange', step_index.value));
     const steps = [
         {
             step: 1,
             title: 'Welcome!',
-            description: 'Already have an account? <a href="/login">Login</a>',
+            description: 'Don’t have an account? <a href="/register">Register</a>',
         },
         {
             step: 2,
-            title: 'Enter verification code',
-            description: 'We sent a 6-digit code to your email address',
-        },
-        {
-            step: 3,
-            title: 'Logged in!',
-            description: 'Redirecting...',
+            title: 'Verify Your Account',
+            description: 'Link sent!',
         },
     ];
     
-    const emit = defineEmits(['stepChange']);
-    
-    watch(step_index, (newVal, oldVal) => {
-        console.log(newVal);
-        emit('stepChange', step_index.value)
-    });
-    
     // Email
     const email = ref('');
-    const { setFieldError } = useForm();
-    const onEmailSubmit = async(setFieldError: any, nextStep: any) => {
+    
+    const onCreateAccount = async(setFieldError: any, nextStep: any) => {
         const { error } = await signInWithOtp(email.value);
         
         if (error) {
-            setFieldError('email', `Email not sent: ${error.message}`);
+            console.log(error)
+            setFieldError('email', `${error.message}`);
             setTimeout(() => {
                 setFieldError('email', '');
-            }, 10000);
+            }, 5000);
             return false;
         }
         
-        // resetFieldErrors();
         nextStep && nextTick(() => nextStep());
         
         return true;
-    };
-    const onResendEmail = async(setFieldError: any) => {
-        const { error } = await signInWithOtp(email.value);
-        
-        if (error) {
-            // set the field error to "otp" since we are on step-2 (otp fields)
-            setFieldError('otp', `Resend failed: ${error.message}`);
-            setTimeout(() => {
-                setFieldError('otp', '');
-            }, 10000);
-            return false;
-        }
-        
-        startCountdown();
-        
-        return true;
-    };
-    
-    // OTP
-    const otp_input = ref([]);
-    const joined_otp_input = computed(() => otp_input.value?.join(''));
-    const onVerifyOtp = async (setFieldError: any, nextStep: any) => {
-        try {
-            const { data, error } = await verifyOtp({ email: email.value, otpCode: joined_otp_input.value });
-            
-            if (error) {
-                const errorMessage = error.message || 'Verification failed';
-                setFieldError('otp', errorMessage);
-                setTimeout(() => {
-                    setFieldError('otp', '');
-                }, 10000);
-                return false;
-            }
-            
-            if (data?.session?.access_token) {
-                nextStep && nextTick(() => {
-                    setTimeout(() => {
-                        resetForm();
-                    }, 2500);
-                    nextStep()
-                });
-            }
-            
-            loading.value = false;
-            
-            return true;
-        } catch (error: any) {
-            const errorMessage = error.message || 'Verification failed';
-            setFieldError('otp', errorMessage);
-            setTimeout(() => {
-                setFieldError('otp', '');
-            }, 10000);
-            loading.value = false;
-            return false;
-        }
-    };
-    
-    // Success
-    const resetForm = async() => {
-        resetState();
-        reloadNuxtApp();
-    };
-    
-    // Countdown
-    const countdownSeconds = ref(60);
-    const { remaining, start } = useCountdown(countdownSeconds);
-    const startCountdown = () => start(countdownSeconds);
-    
-    const resetState = () => {
-        otp_input.value = [];
-        setFieldError('email', '');
-        setFieldError('otp', '');
     };
 </script>
