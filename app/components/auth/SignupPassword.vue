@@ -76,7 +76,8 @@
                                         v-bind='componentField'
                                         type='email'
                                         placeholder='name@example.com'
-                                        class='!bg-blue-bunker/75'
+                                        class='dark:bg-blue-bunker/75'
+                                        required
                                     />
                                 </FormControl>
                                 
@@ -98,7 +99,7 @@
                                         v-bind='componentField'
                                         id='password'
                                         type='password'
-                                        class='!bg-blue-bunker/75'
+                                        class='dark:bg-blue-bunker/75'
                                         required
                                     />
                                     <FieldDescription>
@@ -122,7 +123,7 @@
                     <Button
                         @click='() => onCreateAccount(setFieldError, nextStep)'
                         :type='meta.valid ? "button" : "submit"'
-                        class='w-full disabled:opacity-75'
+                        class='w-full dark:disabled:opacity-75'
                         size='lg'
                         :disabled='!meta.valid'
                     >

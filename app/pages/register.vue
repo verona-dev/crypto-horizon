@@ -2,6 +2,7 @@
     <div class='page'>
         <section class='absolute inset-0 h-screen w-screen'>
             <SnowfallBg
+                v-if='dark_mode'
                 color='7393bc'
                 class='absolute inset-0 !z-0'
                 :min-radius='0.2'
@@ -11,7 +12,7 @@
             />
         </section>
         
-        <Card class='bg-transparent p-8 mt-4 xl:min-w-150 flex flex-col items-center border-none shadow-none'>
+        <Card class='bg-transparent p-8 xl:min-w-150 flex flex-col items-center border-none shadow-none'>
             <CardContent class='w-full flex flex-col items-center justify-center gap-6'>
                 <!--  Logo  -->
                 <NuxtImg
@@ -86,15 +87,16 @@
     import { Skeleton } from '@/components/ui/skeleton/index';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
     
+    const colorMode = useColorMode();
+    const dark_mode = computed(() => colorMode.value === 'dark');
+    
     const otp_signup = ref(false);
     const onToggleSignupMode = () => otp_signup.value = !otp_signup.value;
     
     const otp_stepper = ref(1);
     const password_stepper = ref(1);
     
-    const show_toggle = computed(() => {
-        return otp_stepper.value === 1 && password_stepper.value === 1;
-    });
+    const show_toggle = computed(() => otp_stepper.value === 1 && password_stepper.value === 1);
     const onOtpStepChange = otpStepIndex => otp_stepper.value = otpStepIndex;
     const onPasswordStepChange = passwordStepIndex => password_stepper.value = passwordStepIndex;
     

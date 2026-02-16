@@ -79,7 +79,8 @@
                                             v-bind='componentField'
                                             type='email'
                                             placeholder='name@example.com'
-                                            class='!bg-blue-bunker/75'
+                                            class='dark:bg-blue-bunker/75'
+                                            required
                                         />
                                     </FormControl>
                                     
