@@ -25,25 +25,16 @@
                 </SidebarInset>
             </SidebarProvider>
         </ClientOnly>
-        
-        <AuthModal v-if='authModal' />
     </div>
 </template>
 
 <script setup>
     import AppSidebar from '~/components/sidebar/AppSidebar.vue';
-    import AuthModal from '~/components/auth/AuthModal.vue';
     // import Breadcrumb from '~/components/Breadcrumb.vue';
     import CoingeckoAttribution from '~/components/CoingeckoAttribution.vue';
     import MarketBar from '~/components/market/MarketBar.vue';
     import ScrollToTop from '~/components/ScrollToTop.vue';
     import { SidebarInset, SidebarProvider, MobileSidebarTrigger, } from '~/components/ui/sidebar';
-    
-    // AuthStore
-    import { storeToRefs } from 'pinia';
-    import { useAuthStore } from '~/stores/AuthStore.js';
-    const AuthStore = useAuthStore();
-    const { authModal } = storeToRefs(AuthStore);
     
     // const route = useRoute();
     // const title = computed(() => route.meta.title);
