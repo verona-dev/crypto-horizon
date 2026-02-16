@@ -1,28 +1,48 @@
 <template>
-    <div class='flex flex-col justify-center items-center gap-12'>
-        <h2>Thank you for verifying your account.</h2>
+    <div v-if='!verified' class='flex flex-col justify-center items-center gap-12'>
+        <h3>Verifying your account...</h3>
+    </div>
+    
+    <div v-else class='flex flex-col justify-center items-center gap-12'>
+        <NuxtIcon
+            name='ph:seal-check'
+            size='120'
+            class='bg-progress'
+        />
         
-        <Button variant="outline">
+        <h3>Account verified successfully!</h3>
+        
+        <Button variant='outline'>
             <NuxtLink to='/'>Go Home</NuxtLink>
         </Button>
     </div>
 </template>
 
 <script setup>
-    import { Button } from '@/components/ui/button'
+    import { Button } from '@/components/ui/button';
     const route = useRoute();
     
     // AuthStore
-    import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
     const { verifyOtp } = AuthStore;
     
     const token = ref(route.query.token);
+    const verified = ref(false);
     
     onMounted(async() => {
         if(token.value) {
-          await verifyOtp({ token: token.value });
+          const { error } = await verifyOtp({ token: token.value });
+          
+          if(!error) {
+              verified.value = true;
+              
+              setTimeout(() => {
+                  navigateTo('/profile');
+              }, 3000);
+          }
+        } else {
+            navigateTo('/');
         }
     });
 </script>
