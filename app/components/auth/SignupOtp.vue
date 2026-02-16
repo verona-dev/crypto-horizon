@@ -3,26 +3,26 @@
         v-slot='{ meta, validate, setFieldError }'
         as=''
         keep-values
-        :validation-schema='validationSchema'
+        :validation-schema='validation_schema'
     >
         <Stepper
             v-slot='{ nextStep, modelValue }'
-            v-model='stepIndex'
+            v-model='step_index'
             class='block'
         >
             <form
                 @submit.prevent='() => validate()'
-                class='flex flex-col gap-6'
+                class='flex flex-col gap-8'
             >
                 <div class='flex flex-col gap-4'>
                     <!--   Stepper Title   -->
                     <div
-                        v-for='(step, index) in steps'
+                        v-for='step in steps'
                         :key='step.step'
                     >
                         <div
-                            v-if='stepIndex === step.step'
-                            class='flex flex-col items-center gap-4'
+                            v-if='step_index === step.step'
+                            class='flex flex-col items-center gap-2'
                         >
                             <FieldTitle class='text-3xl font-bold' v-html='step.title'></FieldTitle>
                             <FieldDescription v-if='step.description' v-html='step.description'></FieldDescription>
@@ -30,7 +30,7 @@
                     </div>
                     
                     <!--   Stepper Navigation  -->
-                    <div class='flex gap-2'>
+                    <div class='flex gap-2 my-4'>
                         <StepperItem
                             v-for='(step, index) in steps'
                             :key='step.step'
@@ -52,8 +52,8 @@
                                     :disabled="index >= (modelValue || 0)"
                                 >
                                     <Check v-if='state === "completed"' class='size-5' />
-                                    <Mail v-if='state === "active" && stepIndex === 1' />
-                                    <UserLock v-if='state === "active" && stepIndex === 2' />
+                                    <Mail v-if='state === "active" && step_index === 1' />
+                                    <UserLock v-if='state === "active" && step_index === 2' />
                                     <Dot v-if='state === "inactive"' />
                                 </Button>
                             </StepperTrigger>
@@ -61,13 +61,15 @@
                     </div>
                     
                     <!--   Stepper Body   -->
-                    <div :class='{ "mx-auto1" : stepIndex === 2}'>
+                    <FieldGroup :class='{ "mx-auto1" : step_index === 2}'>
                         <!--  Step 1: Email input  -->
-                        <template v-if='stepIndex === 1'>
+                        <template v-if='step_index === 1'>
                             <FormField
                                 v-slot='{ componentField }'
                                 v-model='email'
                                 name='email'
+                                :validateOnBlur='false'
+                                :validateOnChange='false'
                             >
                                 <FormItem>
                                     <FormLabel>Email</FormLabel>
@@ -77,7 +79,8 @@
                                             v-bind='componentField'
                                             type='email'
                                             placeholder='name@example.com'
-                                            @input='validate()'
+                                            class='dark:bg-blue-bunker/75'
+                                            required
                                         />
                                     </FormControl>
                                     
@@ -87,36 +90,18 @@
                         </template>
                         
                         <!--  Step 2: Verify your account -->
-                        <template v-if='stepIndex === 2'>
-                            <FormField name='verify'>
-                                <FormItem class='flex flex-col items-center gap-8'>
-                                    <div class='flex flex-col items-center gap-2'>
-                                        <p>We sent a verification link to your email address.</p>
-                                        <p>Please check your inbox and click the link to verify your account.</p>
-                                    </div>
-        
-                                   
-                                    <NuxtLink to='/'>
-                                        <Button variant='outline' size='lg'>
-                                            <NuxtIcon
-                                                name='ph:house'
-                                                size='17'
-                                            />
-                                            Go home
-                                        </Button>
-                                    </NuxtLink>
-                                </FormItem>
-                            </FormField>
+                        <template v-if='step_index === 2'>
+                            <VerificationSent />
                         </template>
-                    </div>
+                    </FieldGroup>
                 </div>
                 
                 <!--   Stepper Buttons   -->
-                <template v-if='stepIndex === 1'>
+                <template v-if='step_index === 1'>
                     <Button
-                        @click='() => onEmailSubmit(setFieldError, nextStep)'
+                        @click='() => onCreateAccount(setFieldError, nextStep)'
                         :type='meta.valid ? "button" : "submit"'
-                        class='w-full'
+                        class='w-full disabled:opacity-75'
                         size='lg'
                         :disabled='!meta.valid'
                     >
@@ -130,16 +115,16 @@
 </template>
 
 <script setup lang='ts'>
+    import * as z from 'zod';
     import { Button } from '@/components/ui/button';
-    import { FieldTitle, FieldDescription } from '@/components/ui/field';
+    import { Check, Dot, Mail, UserLock } from 'lucide-vue-next';
+    import { FieldTitle, FieldDescription, FieldGroup } from '@/components/ui/field';
+    import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
     import { toTypedSchema } from '@vee-validate/zod';
-    import * as z from 'zod';
-    import { useForm } from 'vee-validate';
-    import { Check, Dot, Mail, UserLock } from 'lucide-vue-next';
-    import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
+    import VerificationSent from '@/components/auth/VerificationSent.vue';
     
     // AuthStore
     import { storeToRefs } from 'pinia';
@@ -149,15 +134,15 @@
     const { loading } = storeToRefs(AuthStore);
     
     // Stepper
-    const validationSchema = toTypedSchema(
+    const validation_schema = toTypedSchema(
         z.object({
             email: z.string().email('Invalid email'),
         })
     );
     
-    const stepIndex = ref(1);
+    const step_index = ref(1);
     const emit = defineEmits(['otpStepChange']);
-    watch(stepIndex, () => emit('otpStepChange', stepIndex.value));
+    watch(step_index, () => emit('otpStepChange', step_index.value));
     const steps = [
         {
             step: 1,
@@ -173,16 +158,16 @@
     
     // Email
     const email = ref('');
-    const { setFieldError } = useForm();
     
-    const onEmailSubmit = async(setFieldError: any, nextStep: any) => {
+    const onCreateAccount = async(setFieldError: any, nextStep: any) => {
         const { error } = await signInWithOtp(email.value);
         
         if (error) {
+            console.log(error)
             setFieldError('email', `${error.message}`);
             setTimeout(() => {
                 setFieldError('email', '');
-            }, 10000);
+            }, 5000);
             return false;
         }
         

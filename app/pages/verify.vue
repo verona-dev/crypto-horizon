@@ -1,28 +1,37 @@
 <template>
-    <div class='flex flex-col justify-center items-center gap-12'>
-        <h2>Thank you for verifying your account.</h2>
+    <div class='page gap-24'>
+        <NuxtIcon
+            name='ph:seal-check'
+            size='120'
+            class='bg-progress'
+        />
         
-        <Button variant="outline">
-            <NuxtLink to='/'>Go Home</NuxtLink>
-        </Button>
+        <h3>Account verified successfully!</h3>
+        
+        <div class='flex gap-8'>
+            <NuxtLink to='/'>
+                <Button variant='outline' size='lg' class='w-42'>Go Home</Button>
+            </NuxtLink>
+            
+            <NuxtLink to='/profile'>
+                <Button variant='outline' size='lg' class='w-42'>Profile</Button>
+            
+            </NuxtLink>
+        </div>
     </div>
 </template>
 
 <script setup>
-    import { Button } from '@/components/ui/button'
-    const route = useRoute();
+    import { Button } from '@/components/ui/button';
     
-    // AuthStore
-    import { storeToRefs } from 'pinia';
-    import { useAuthStore } from '~/stores/AuthStore.js';
-    const AuthStore = useAuthStore();
-    const { verifyOtp } = AuthStore;
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { getProfile } = ProfileStore;
     
-    const token = ref(route.query.token);
-    
-    onMounted(async() => {
-        if(token.value) {
-          await verifyOtp({ token: token.value });
-        }
+    definePageMeta({
+        middleware: 'verify',
     });
+    
+    onMounted(async() => await getProfile());
 </script>

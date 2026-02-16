@@ -27,7 +27,6 @@
                 :speed='0.5'
             />
         </div>
-    
     </div>
 </template>
 
@@ -73,6 +72,7 @@
     definePageMeta({
         title,
         description: title,
+        middleware: 'auth',
     });
     
     useSeoMeta({

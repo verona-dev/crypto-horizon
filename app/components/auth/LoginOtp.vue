@@ -3,26 +3,26 @@
         v-slot='{ meta, validate, setFieldError }'
         as=''
         keep-values
-        :validation-schema='toTypedSchema(formSchema[stepIndex - 1] || z.object({}))'
+        :validation-schema='validation_schema'
     >
         <Stepper
             v-slot='{ isPrevDisabled, nextStep, prevStep, modelValue }'
-            v-model='stepIndex'
+            v-model='step_index'
             class='block'
         >
             <form
                 @submit.prevent='() => validate()'
-                class='flex flex-col gap-6'
+                class='flex flex-col gap-8'
             >
                 <div class='flex flex-col gap-4'>
                     <!--   Stepper Title   -->
                     <div
-                        v-for='(step, index) in steps'
+                        v-for='step in steps'
                         :key='step.step'
                     >
                         <div
-                            v-if='stepIndex === step.step'
-                            class='flex flex-col items-center gap-4'
+                            v-if='step_index === step.step'
+                            class='flex flex-col items-center gap-2'
                         >
                             <FieldTitle class='text-3xl font-bold' v-html='step.title'></FieldTitle>
                             <FieldDescription v-if='step.description' v-html='step.description'></FieldDescription>
@@ -47,7 +47,7 @@
                     </div>
                     
                     <!--   Stepper Navigation  -->
-                    <div class='flex w-full items-start gap-2'>
+                    <div class='flex gap-2 my-4'>
                         <StepperItem
                             v-for='(step, index) in steps'
                             :key='step.step'
@@ -69,8 +69,8 @@
                                     :disabled="index >= (modelValue || 0)"
                                 >
                                     <Check v-if='state === "completed"' class='size-5' />
-                                    <Mail v-if='state === "active" && stepIndex === 1' />
-                                    <UserLock v-if='state === "active" && stepIndex === 2' />
+                                    <Mail v-if='state === "active" && step_index === 1' />
+                                    <UserLock v-if='state === "active" && step_index === 2' />
                                     <Dot v-if='state === "inactive"' />
                                 </Button>
                             </StepperTrigger>
@@ -78,13 +78,15 @@
                     </div>
                     
                     <!--   Stepper Body   -->
-                    <div :class='{ "mx-auto" : stepIndex === 2}'>
+                    <div :class='{ "mx-auto" : step_index === 2}'>
                         <!--  Step 1: Email input  -->
-                        <template v-if='stepIndex === 1'>
+                        <template v-if='step_index === 1'>
                             <FormField
                                 v-slot='{ componentField }'
                                 v-model='email'
                                 name='email'
+                                :validateOnBlur='false'
+                                :validateOnChange='false'
                             >
                                 <FormItem>
                                     <FormLabel>Email</FormLabel>
@@ -94,25 +96,16 @@
                                             v-bind='componentField'
                                             type='email'
                                             placeholder='name@example.com'
-                                            @input='validate()'
                                         />
                                     </FormControl>
                                     
-                                    <!--
-                                    <FieldDescription class='text-xs'>
-                                        New astronaut? We’ll automatically create an account on first sign-up.
-                                    </FieldDescription>
-                                    -->
-                                    
-                                    <!--
                                     <FormMessage />
-                                    -->
                                 </FormItem>
                             </FormField>
                         </template>
                         
                         <!--  Step 2: OTP Pin Input  -->
-                        <template v-if='stepIndex === 2'>
+                        <template v-if='step_index === 2'>
                             <FormField name='otp'>
                                 <FormItem>
                                     <FormLabel>OTP</FormLabel>
@@ -151,9 +144,7 @@
                                         </PinInput>
                                     </FormControl>
                                     
-                                    <!--
                                     <FormMessage />
-                                    -->
                                 </FormItem>
                             </FormField>
                         </template>
@@ -162,7 +153,7 @@
                 
                 <!--   Stepper Buttons   -->
                 <div class='flex !flex-col'>
-                    <div v-if='stepIndex === 1'>
+                    <div v-if='step_index === 1'>
                         <Button
                             @click='() => onEmailSubmit(setFieldError, nextStep)'
                             :type='meta.valid ? "button" : "submit"'
@@ -176,7 +167,7 @@
                     </div>
                     
                     <Button
-                        v-if='stepIndex === 2'
+                        v-if='step_index === 2'
                         :disabled='joined_otp_input.length !== 8'
                         @click="() => onVerifyOtp(setFieldError, nextStep)"
                         type='submit'
@@ -204,7 +195,6 @@
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
     import { useCountdown } from '@vueuse/core';
     
-    
     // AuthStore
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
@@ -213,19 +203,14 @@
     const { loading } = storeToRefs(AuthStore);
     
     // Stepper
-    const formSchema = [
-        z.object({ email: z.string().email() }), // Step 1
-        z.object({}), // Step 2 (OTP handled manually)
+    const validation_schema = toTypedSchema(
         z.object({
-            password: z.string().min(8, "Password must be at least 8 chars"),
-            confirmPassword: z.string(),
-        }).refine((data) => data.password === data.confirmPassword, {
-            message: "Passwords don't match",
-            path: ["confirmPassword"],
-        }), // Step 3
-    ];
+            email: z.string().email('Invalid email'),
+            password: z.string().min(8, 'Password must be at least 8 chars'),
+        })
+    );
     
-    const stepIndex = ref(1);
+    const step_index = ref(1);
     const steps = [
         {
             step: 1,
@@ -246,9 +231,9 @@
     
     const emit = defineEmits(['stepChange']);
     
-    watch(stepIndex, (newVal, oldVal) => {
+    watch(step_index, (newVal, oldVal) => {
         console.log(newVal);
-        emit('stepChange', stepIndex.value)
+        emit('stepChange', step_index.value)
     });
     
     // Email
