@@ -97,4 +97,8 @@
     });
     const onOtpStepChange = otpStepIndex => otp_stepper.value = otpStepIndex;
     const onPasswordStepChange = passwordStepIndex => password_stepper.value = passwordStepIndex;
+    
+    definePageMeta({
+        middleware: 'auth',
+    });
 </script>

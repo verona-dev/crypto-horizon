@@ -72,6 +72,7 @@
     definePageMeta({
         title,
         description: title,
+        middleware: 'auth',
     });
     
     useSeoMeta({
