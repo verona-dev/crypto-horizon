@@ -149,7 +149,7 @@
                 <!--   Stepper Buttons   -->
                 <template v-if='step_index === 1'>
                     <Button
-                        @click='() => onEmailSubmit(setFieldError, nextStep)'
+                        @click='() => onLogin(setFieldError, nextStep)'
                         :type='meta.valid ? "button" : "submit"'
                         class='w-full disabled:opacity-75'
                         size='lg'
@@ -218,7 +218,7 @@
     const { setFieldError } = useForm();
     const email = ref('');
     
-    const onEmailSubmit = async(setFieldError: any, nextStep: any) => {
+    const onLogin = async(setFieldError: any, nextStep: any) => {
         const { error } = await loginOtp(email.value);
         
         if (error) {
