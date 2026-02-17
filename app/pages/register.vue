@@ -37,7 +37,7 @@
                 
                 <div class='flex flex-col w-full'>
                     <RegisterOtp
-                        v-if='otp_signup'
+                        v-if='default_signup'
                         @otp-step-change='onOtpStepChange'
                     />
                     
@@ -59,7 +59,7 @@
                                     size='18'
                                 />
                             </Button>
-                            {{ otp_signup ? 'Use password signup instead' : 'Use OTP signup instead' }}
+                            {{ default_signup ? 'Use password signup instead' : 'Use OTP signup instead' }}
                         </Button>
                     </Field>
                     
@@ -90,8 +90,8 @@
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     
-    const otp_signup = ref(false);
-    const onToggleSignupMode = () => otp_signup.value = !otp_signup.value;
+    const default_signup = ref(true);
+    const onToggleSignupMode = () => default_signup.value = !default_signup.value;
     
     const otp_stepper = ref(1);
     const password_stepper = ref(1);
