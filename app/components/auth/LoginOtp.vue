@@ -236,6 +236,7 @@
     };
     
     const onResendEmail = async(setFieldError: any) => {
+        // Supabase resend uses same route for otp login
         const { error } = await loginOtp(email.value);
         
         if (error) {
