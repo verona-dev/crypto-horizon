@@ -13,7 +13,7 @@ export default defineEventHandler(async(event) => {
     }
     
     try {
-        const { data, error } = await client.auth.loginOtp({
+        const { data, error } = await client.auth.signInWithOtp({
             email,
         });
         
