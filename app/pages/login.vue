@@ -65,7 +65,7 @@
                     
                     <FieldSeparator>Or</FieldSeparator>
                     
-                    <SignupSocials />
+                    <RegisterOAuth />
                     
                     <FieldDescription class='text-center'>
                         By clicking continue, you agree to our <a href='#'>Terms of Service</a>
@@ -83,7 +83,7 @@
     import { Field, FieldDescription, FieldSeparator } from '@/components/ui/field/index';
     import LoginPassword from '@/components/auth/LoginPassword.vue';
     import LoginOtp from '@/components/auth/LoginOtp.vue';
-    import SignupSocials from '@/components/auth/SignupSocials.vue';
+    import RegisterOAuth from '@/components/auth/RegisterOAuth.vue';
     import { Skeleton } from '@/components/ui/skeleton/index';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
     
