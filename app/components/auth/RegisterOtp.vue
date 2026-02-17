@@ -91,7 +91,17 @@
                         
                         <!--  Step 2: Verify your account -->
                         <template v-if='step_index === 2'>
-                            <VerificationSent />
+                            <VerificationSent @vue:mounted='startCountdown' />
+                            
+                            <div class='text-sm mx-auto my-2'>
+                                <span>Didn't get the email?&nbsp;</span>
+                                <span
+                                    @click='() => onResendEmail(setFieldError)'
+                                    class='font-bold underline cursor-pointer'
+                                >Click to resend</span>
+                                
+                                <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
+                            </div>
                         </template>
                     </FieldGroup>
                 </div>
@@ -124,6 +134,7 @@
     import { toTypedSchema } from '@vee-validate/zod';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
+    import { useCountdown } from '@vueuse/core';
     import VerificationSent from '@/components/auth/VerificationSent.vue';
     
     // AuthStore
@@ -140,7 +151,7 @@
         })
     );
     
-    const step_index = ref(1);
+    const step_index = ref(2);
     const emit = defineEmits(['otpStepChange']);
     watch(step_index, () => emit('otpStepChange', step_index.value));
     const steps = [
@@ -175,4 +186,27 @@
         
         return true;
     };
+    
+    const onResendEmail = async(setFieldError: any) => {
+        // Supabase resend uses same route for otp register
+        const { error } = await loginOtp(email.value);
+        
+        if (error) {
+            // set the field error to "otp" since we are on step-2 (otp fields)
+            setFieldError('otp', `Resend failed: ${error.message}`);
+            setTimeout(() => {
+                setFieldError('otp', '');
+            }, 10000);
+            return false;
+        }
+        
+        startCountdown();
+        
+        return true;
+    };
+    
+    // Countdown
+    const countdown_seconds = ref(60);
+    const { remaining, start } = useCountdown(countdown_seconds);
+    const startCountdown = () => start(countdown_seconds);
 </script>

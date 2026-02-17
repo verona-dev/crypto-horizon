@@ -120,7 +120,7 @@
                                                 </template>
                                             </PinInputGroup>
                                             
-                                            <div class='otp-labels text-sm'>
+                                            <div class='text-sm'>
                                                 <span>Didn't get the email?&nbsp;</span>
                                                 <span
                                                     @click='() => onResendEmail(setFieldError)'
