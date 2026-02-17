@@ -19,11 +19,11 @@ export default defineEventHandler(async (event) => {
         });
         
         if (error) {
-            console.error('Sign-up error:', error);
+            console.error('Registration error:', error);
             
             throw createError({
                 statusCode: error.status || 500,
-                statusMessage: error.message || 'Unexpected error during sign-up',
+                statusMessage: error.message || 'Unexpected error during registration',
             });
         }
         
@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
         
         throw createError({
             statusCode: error.status || 500,
-            statusMessage: error.message || 'Unexpected error during sign-up',
+            statusMessage: error.message || 'Unexpected error during registration',
         });
     }
 });
