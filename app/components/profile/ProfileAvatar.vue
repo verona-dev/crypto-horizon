@@ -106,7 +106,7 @@
         
         <CardFooter class='flex flex-col items-center gap-4'>
             <Button
-                @click='logOut'
+                @click='onLogOut'
                 variant='outline'
                 size='sm'
             >
@@ -180,5 +180,13 @@
             displayToast('Cannot update avatar.');
         }
         show_tooltip.value = false;
+    };
+    
+    const onLogOut = async() => {
+        const { error } = await logOut();
+        
+        if(!error) {
+            reloadNuxtApp();
+        }
     };
 </script>
