@@ -112,16 +112,18 @@
                         </FormField>
                     </template>
                     
-                    <!--  Step 2: Verify your account -->
+                    <!--  Step 2: Logged In -->
+                    <!--
                     <template v-if='step_index === 2'>
-                        <VerificationSent />
+                        This window will close in 5s.
                     </template>
+                    -->
                 </FieldGroup>
                 
                 <!--   Stepper Buttons   -->
                 <template v-if='step_index === 1'>
                     <Button
-                        @click='() => onCreateAccount(setFieldError, nextStep)'
+                        @click='() => onLogin(setFieldError, nextStep)'
                         :type='meta.valid ? "button" : "submit"'
                         class='w-full dark:disabled:opacity-75'
                         size='lg'
@@ -145,15 +147,19 @@
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
     import { toTypedSchema } from '@vee-validate/zod';
-    import VerificationSent from '@/components/auth/VerificationSent.vue';
     
     // AuthStore
     import {storeToRefs} from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     import {Check, Dot, Mail, UserLock} from 'lucide-vue-next';
     const AuthStore = useAuthStore();
-    const { signUp } = AuthStore;
+    const { signInWithPassword } = AuthStore;
     const { loading } = storeToRefs(AuthStore);
+    
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { getProfile } = ProfileStore;
     
     const validation_schema = toTypedSchema(
         z.object({
@@ -174,8 +180,8 @@
         },
         {
             step: 2,
-            title: 'Verify Your Account',
-            description: 'Link sent!',
+            title: 'Welcome back!',
+            description: 'You are now logged in.',
         },
     ];
     
@@ -184,8 +190,8 @@
     // Password
     const password = ref('');
     
-    const onCreateAccount = async(setFieldError: any, nextStep: any) => {
-        const { error } = await signUp({
+    const onLogin = async(setFieldError: any, nextStep: any) => {
+        const { data, error } = await signInWithPassword({
             email: email.value,
             password: password.value
         });
@@ -194,11 +200,19 @@
             setFieldError('email', `${error.message}`);
             setTimeout(() => {
                 setFieldError('email', '');
-            }, 5000);
+            }, 2500);
             return false;
         }
         
-        nextStep && nextTick(() => nextStep());
+        if(data?.session?.access_token) {
+            const { error } = await getProfile();
+            
+            if(!error) {
+                reloadNuxtApp();
+                
+                nextStep && nextTick(() => nextStep());
+            }
+        }
         
         return true;
     };

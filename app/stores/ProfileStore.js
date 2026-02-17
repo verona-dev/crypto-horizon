@@ -27,6 +27,8 @@ export const useProfileStore = defineStore('ProfileStore', {
                         await this.getWatchlistData();
                     }
                 }
+                
+                return { data, error };
             } catch(error) {
                 console.error(error);
             }
