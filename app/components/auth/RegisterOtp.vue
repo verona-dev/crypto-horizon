@@ -154,6 +154,7 @@
     const step_index = ref(1);
     const emit = defineEmits(['otpStepChange']);
     watch(step_index, () => emit('otpStepChange', step_index.value));
+    
     const steps = [
         {
             step: 1,

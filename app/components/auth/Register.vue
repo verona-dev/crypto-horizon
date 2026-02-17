@@ -131,7 +131,7 @@
                 <!--   Stepper Buttons   -->
                 <template v-if='step_index === 1'>
                     <Button
-                        @click='() => onCreateAccount(setFieldError, nextStep)'
+                        @click='onCreateAccount(setFieldError, nextStep)'
                         :type='meta.valid ? "button" : "submit"'
                         class='w-full dark:disabled:opacity-75'
                         size='lg'
@@ -177,6 +177,7 @@
     const step_index = ref(1);
     const emit = defineEmits(['passwordStepChange']);
     watch(step_index, () => emit('passwordStepChange', step_index.value));
+    
     const steps = [
         {
             step: 1,
@@ -206,12 +207,10 @@
             setTimeout(() => {
                 setFieldError('email', '');
             }, 5000);
-            return false;
+            return;
         }
         
         nextStep && nextTick(() => nextStep());
-        
-        return true;
     };
     
     const onResendEmail = async() => {
