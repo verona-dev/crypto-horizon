@@ -3,28 +3,25 @@ import { serverSupabaseClient } from '#supabase/server';
 export default defineEventHandler(async(event) => {
     const client = await serverSupabaseClient(event);
     const body = await readBody(event);
-    const { email, otpCode, token } = body;
+    const { email, token } = body;
     
-    let payload;
-    
-    // Login
-    if(email && otpCode) {
-        payload = { email, token: otpCode, type: 'email' };
-    } else if(token) {
-        // Register
-        payload = { token, type: 'email' };
-    } else {
+    if(!email || !token) {
         throw createError({
             statusCode: 400,
-            statusMessage: 'Invalid request. Email or OTP code or token are required',
+            statusMessage: 'Email and password are required',
         });
     }
     
     try {
-        const { data, error } = await client.auth.verifyOtp(payload);
+        const { data, error } = await client.auth.verifyOtp({
+            email,
+            token,
+            type: 'email',
+        });
         
         if (error) {
             console.error('Supabase OTP verification error:', error);
+            
             throw createError({
                 statusCode: error.status || 400,
                 statusMessage: error.message || 'Failed to verify OTP',
