@@ -83,7 +83,7 @@ export const useAuthStore = defineStore('AuthStore', {
         
         async signInAnonymous() {
             try {
-                const { data, error } = await $fetch('/api/supabase/auth/sign-in-anonymous', {
+                const { data, error } = await $fetch('/api/supabase/auth/login-anonymous', {
                     method: 'POST',
                 });
                 
