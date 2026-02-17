@@ -37,6 +37,28 @@ export const useAuthStore = defineStore('AuthStore', {
             }
         },
         
+        async signInWithPassword(payload) {
+            console.log(payload);
+          try {
+              this.loading = true;
+              
+              const { data, error } = await $fetch('/api/supabase/auth/sign-in', {
+                  method: 'POST',
+                  body: payload
+              });
+              
+              if(error) {
+                  throw error;
+              }
+              
+              return { data, error };
+          } catch(error) {
+              console.error(error);
+          } finally {
+              this.loading = false;
+          }
+        },
+        
         async signInWithOtp(email) {
             try {
                 this.loading = true;
@@ -103,11 +125,15 @@ export const useAuthStore = defineStore('AuthStore', {
             const ProfileStore = useProfileStore();
             
             try {
-                await $fetch('/api/supabase/auth/logout', {
+                const { error } = await $fetch('/api/supabase/auth/logout', {
                     method: 'POST',
                 });
                 
-                ProfileStore.profile = null;
+                if(!error) {
+                    reloadNuxtApp();
+                    
+                    ProfileStore.profile = null;
+                }
             } catch(error) {
                 console.error('Logout failed:', error);
             }
