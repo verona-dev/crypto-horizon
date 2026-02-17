@@ -130,7 +130,7 @@
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
-    const { signInWithOtp } = AuthStore;
+    const { loginOtp } = AuthStore;
     const { loading } = storeToRefs(AuthStore);
     
     // Stepper
@@ -160,7 +160,7 @@
     const email = ref('');
     
     const onCreateAccount = async(setFieldError: any, nextStep: any) => {
-        const { error } = await signInWithOtp(email.value);
+        const { error } = await loginOtp(email.value);
         
         if (error) {
             console.log(error)

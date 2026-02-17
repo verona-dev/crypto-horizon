@@ -58,7 +58,7 @@ export const useAuthStore = defineStore('AuthStore', {
           }
         },
         
-        async signInWithOtp(email) {
+        async loginOtp(email) {
             try {
                 this.loading = true;
                 

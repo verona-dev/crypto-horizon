@@ -183,7 +183,7 @@
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
     
-    const { signInWithOtp, verifyOtp } = AuthStore;
+    const { loginOtp, verifyOtp } = AuthStore;
     const { loading } = storeToRefs(AuthStore);
     
     // Stepper
@@ -219,7 +219,7 @@
     const email = ref('');
     
     const onEmailSubmit = async(setFieldError: any, nextStep: any) => {
-        const { error } = await signInWithOtp(email.value);
+        const { error } = await loginOtp(email.value);
         
         if (error) {
             console.log(error)
@@ -236,7 +236,7 @@
     };
     
     const onResendEmail = async(setFieldError: any) => {
-        const { error } = await signInWithOtp(email.value);
+        const { error } = await loginOtp(email.value);
         
         if (error) {
             // set the field error to "otp" since we are on step-2 (otp fields)

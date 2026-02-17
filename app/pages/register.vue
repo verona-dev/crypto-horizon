@@ -36,12 +36,12 @@
                 </NuxtImg>
                 
                 <div class='flex flex-col w-full'>
-                    <SignupOtp
+                    <RegisterOtp
                         v-if='otp_signup'
                         @otp-step-change='onOtpStepChange'
                     />
                     
-                    <SignupPassword
+                    <Register
                         v-else
                         @password-step-change='onPasswordStepChange'
                     />
@@ -81,8 +81,8 @@
     import { Button } from '@/components/ui/button/index';
     import { Card, CardContent } from '~/components/ui/card';
     import { Field, FieldDescription, FieldSeparator } from '@/components/ui/field/index';
-    import SignupPassword from '@/components/auth/SignupPassword.vue';
-    import SignupOtp from '@/components/auth/SignupOtp.vue';
+    import Register from '@/components/auth/Register.vue';
+    import RegisterOtp from '@/components/auth/RegisterOtp.vue';
     import RegisterOAuth from '@/components/auth/RegisterOAuth.vue';
     import { Skeleton } from '@/components/ui/skeleton/index';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
