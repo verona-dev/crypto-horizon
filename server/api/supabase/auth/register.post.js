@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     }
     
     try {
-        const { data, error } = await client.auth.register({
+        const { data, error } = await client.auth.signUp({
             email,
             password,
         });
