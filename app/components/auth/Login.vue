@@ -176,7 +176,7 @@
         {
             step: 1,
             title: 'Welcome!',
-            description: 'Don’t have an account? <a href="/register">Register</a>',
+            description: 'Don’t have an account? <NuxtLink to="/register">Register</a>',
         },
         {
             step: 2,
