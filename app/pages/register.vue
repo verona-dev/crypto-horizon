@@ -12,7 +12,7 @@
             />
         </section>
         
-        <Card class='bg-transparent p-8 xl:min-w-150 flex flex-col items-center border-none shadow-none'>
+        <Card class='bg-transparent p-8 min-w-full xl:min-w-150 flex flex-col items-center border-none shadow-none'>
             <CardContent class='w-full flex flex-col items-center justify-center gap-6'>
                 <!--  Logo  -->
                 <NuxtImg

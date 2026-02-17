@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-popover h-full xl:h-120 w-full md:w-4/5 xl:w-fit flex flex-col items-center p-6 gap-4 !shadow-none relative'>
+    <Card class='bg-popover h-full w-full md:w-4/5 xl:w-fit flex flex-col items-center p-6 gap-4 !shadow-none relative'>
         <CardHeader class='items-center gap-2'>
             <CardTitle class='text-3xl'>{{ username }}</CardTitle>
             <CardDescription class='text-lg capitalize'>&#8226; {{ astronautType }} &#8226;</CardDescription>
@@ -95,11 +95,23 @@
             </div>
         </CardContent>
         
-        <CardFooter>
-            <Badge class='bg-emerald-600/10 dark:bg-emerald-600/20 hover:bg-emerald-600/10 text-emerald-500 shadow-none rounded-full'>
+        <CardContent>
+            <Badge
+                class='bg-emerald-600/10 dark:bg-emerald-600/20 hover:bg-emerald-600/10 text-emerald-500 shadow-none rounded-full'
+            >
                 <div class='h-1.5 w-1.5 rounded-full bg-emerald-500 mr-1' />
                 <span class='text-xxs'>Connected</span>
             </Badge>
+        </CardContent>
+        
+        <CardFooter class='flex flex-col items-center gap-4'>
+            <Button
+                @click='onLogOut'
+                variant='outline'
+                size='sm'
+            >
+                Logout
+            </Button>
         </CardFooter>
     </Card>
 </template>
@@ -115,6 +127,12 @@
     import { Skeleton } from '~/components/ui/skeleton';
     import { ToggleGroup, ToggleGroupItem } from '~/components/ui/toggle-group';
     import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
+    
+    // AuthStore
+    import { storeToRefs } from 'pinia';
+    import { useAuthStore } from '~/stores/AuthStore.js';
+    const AuthStore = useAuthStore();
+    const { logOut } = AuthStore;
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
@@ -162,5 +180,13 @@
             displayToast('Cannot update avatar.');
         }
         show_tooltip.value = false;
+    };
+    
+    const onLogOut = async() => {
+        const { error } = await logOut();
+        
+        if(!error) {
+            reloadNuxtApp();
+        }
     };
 </script>

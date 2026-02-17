@@ -9,6 +9,8 @@ export default defineEventHandler(async(event) => {
         if(error) {
             throw error;
         }
+        
+        return { error };
     } catch(error) {
         throw createError({
             statusCode: error.statusCode || 500,

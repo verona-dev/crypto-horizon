@@ -1,10 +1,10 @@
 <template>
     <div class='profile page gap-12 flex-col'>
         <div class='flex flex-col items-center gap-6'>
-            <div class='w-full flex flex-col xl:flex-row items-center justify-center gap-6'>
+            <div class='xl:h-140 h-full w-full flex flex-col xl:flex-row items-center justify-center gap-6'>
                 <ProfileAvatar
-                    :username='profile.username'
-                    :astronaut-type='profile.astronaut_type'
+                    :username='username'
+                    :astronaut-type='astronaut_type'
                 />
                 
                 <ProfileInformation :profile='profile_formatted' />
@@ -53,6 +53,9 @@
     dayjs.extend(relativeTime);
     dayjs.extend(utc);
     
+    const username = ref(profile.value?.username || '');
+    const astronaut_type = ref(profile.value?.astronaut_type || '');
+    
     const profile_formatted = computed(() => [
         { name: 'username', label: 'Username', value: profile.value?.username },
         { name: 'email', label: 'Email', value: profile.value?.email },
@@ -64,7 +67,7 @@
         { name: 'updated_at', label: 'Last profile update', value: profile.value?.updated_at ? dayjs(profile.value?.updated_at).fromNow() : '-' },
     ]);
     
-    const coordinates = computed(() => profile.value?.country ? [profile.value?.country.lat, profile.value?.country.long] : []);
+    const coordinates = computed(() => profile.value?.country ? [profile.value?.country.lat, profile.value?.country.long] : ['', '']);
     
     // SEO
     const title = 'Private Profile';
