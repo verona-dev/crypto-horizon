@@ -123,7 +123,7 @@
                                             <div class='text-sm'>
                                                 <span>Didn't get the email?&nbsp;</span>
                                                 <span
-                                                    @click='() => onResendEmail(setFieldError)'
+                                                    @click='onResendEmail(setFieldError)'
                                                     class='font-bold underline cursor-pointer'
                                                 >Click to resend</span>
                                                 
@@ -236,7 +236,7 @@
     };
     
     const onResendEmail = async(setFieldError: any) => {
-        // Supabase resend uses same route for otp login
+        // Supabase resend-code uses the same route for otp register/login
         const { error } = await loginOtp(email.value);
         
         if (error) {
@@ -245,12 +245,10 @@
             setTimeout(() => {
                 setFieldError('otp', '');
             }, 10000);
-            return false;
+            return;
         }
         
         startCountdown();
-        
-        return true;
     };
     
     // OTP
@@ -265,7 +263,7 @@
             setTimeout(() => {
                 setFieldError('otp', '');
             }, 10000);
-            return false;
+            return;
         }
         
         if(result?.data?.session?.access_token) {
@@ -274,10 +272,6 @@
             }, 2500);
             nextStep && nextTick(() => nextStep());
         }
-        
-        loading.value = false;
-        
-        return true;
     };
     
     const onLoggedIn = async() => {

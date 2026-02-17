@@ -96,7 +96,7 @@
                             <div class='text-sm mx-auto my-2'>
                                 <span>Didn't get the email?&nbsp;</span>
                                 <span
-                                    @click='() => onResendEmail(setFieldError)'
+                                    @click='onResendEmail'
                                     class='font-bold underline cursor-pointer'
                                 >Click to resend</span>
                                 
@@ -151,7 +151,7 @@
         })
     );
     
-    const step_index = ref(2);
+    const step_index = ref(1);
     const emit = defineEmits(['otpStepChange']);
     watch(step_index, () => emit('otpStepChange', step_index.value));
     const steps = [
@@ -179,30 +179,17 @@
             setTimeout(() => {
                 setFieldError('email', '');
             }, 5000);
-            return false;
+            return;
         }
         
         nextStep && nextTick(() => nextStep());
-        
-        return true;
     };
     
-    const onResendEmail = async(setFieldError: any) => {
-        // Supabase resend uses same route for otp register
+    const onResendEmail = async() => {
+        // Supabase resend-registration uses the same route for otp register/login
         const { error } = await loginOtp(email.value);
-        
-        if (error) {
-            // set the field error to "otp" since we are on step-2 (otp fields)
-            setFieldError('otp', `Resend failed: ${error.message}`);
-            setTimeout(() => {
-                setFieldError('otp', '');
-            }, 10000);
-            return false;
-        }
-        
+        if (error) return;
         startCountdown();
-        
-        return true;
     };
     
     // Countdown
