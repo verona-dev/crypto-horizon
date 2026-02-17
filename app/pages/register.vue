@@ -65,7 +65,7 @@
                     
                     <FieldSeparator>Or</FieldSeparator>
                     
-                    <RegisterOAuth />
+                    <LoginOAuth />
                     
                     <FieldDescription class='text-center'>
                         By clicking continue, you agree to our <a href='#'>Terms of Service</a>
@@ -83,7 +83,7 @@
     import { Field, FieldDescription, FieldSeparator } from '@/components/ui/field/index';
     import Register from '@/components/auth/Register.vue';
     import RegisterOtp from '@/components/auth/RegisterOtp.vue';
-    import RegisterOAuth from '@/components/auth/RegisterOAuth.vue';
+    import LoginOAuth from '@/components/auth/LoginOAuth.vue';
     import { Skeleton } from '@/components/ui/skeleton/index';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
     
