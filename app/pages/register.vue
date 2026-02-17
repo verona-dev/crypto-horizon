@@ -59,7 +59,7 @@
                                     size='18'
                                 />
                             </Button>
-                            {{ is_otp_default ? 'Use password signup instead' : 'Use OTP signup instead' }}
+                            {{ is_otp_default ? 'Use registration with password instead' : 'Use OTP registration instead' }}
                         </Button>
                     </Field>
                     
