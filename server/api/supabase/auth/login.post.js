@@ -13,11 +13,11 @@ export default defineEventHandler(async(event) => {
         });
         
         if (error) {
-            console.error('Sign-in error:', error);
+            console.error('Login error:', error);
             
             throw createError({
                 statusCode: error.status || 500,
-                statusMessage: error.message || 'Unexpected error during sign-in',
+                statusMessage: error.message || 'Unexpected error during login',
             });
         }
         
@@ -27,7 +27,7 @@ export default defineEventHandler(async(event) => {
         
         throw createError({
             statusCode: error.status || 500,
-            statusMessage: error.message || 'Unexpected error during sign-in',
+            statusMessage: error.message || 'Unexpected error during login',
         });
     }
 });

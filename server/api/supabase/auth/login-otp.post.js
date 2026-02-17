@@ -20,7 +20,7 @@ export default defineEventHandler(async(event) => {
         if(error) {
             throw createError({
                 statusCode: error.status || 500,
-                statusMessage: error.message || 'Unexpected error during sign-in',
+                statusMessage: error.message || 'Unexpected error during login',
             });
         }
         

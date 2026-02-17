@@ -7,11 +7,11 @@ export default defineEventHandler(async (event) => {
         const { data, error } = await client.auth.signInAnonymously();
         
         if (error) {
-            console.error('Anonymous sign-in error:', error);
+            console.error('Anonymous login error:', error);
             
             throw createError({
                 statusCode: 500,
-                statusMessage: `Anonymous sign-in failed: ${error.message}`,
+                statusMessage: `Anonymous login failed: ${error.message}`,
             });
         }
         
@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
         
         throw createError({
             statusCode: error.statusCode || 500,
-            statusMessage: error.statusMessage || 'Unexpected error during sign-in',
+            statusMessage: error.statusMessage || 'Unexpected error during login',
         });
     }
 });

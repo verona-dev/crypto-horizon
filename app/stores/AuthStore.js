@@ -88,14 +88,14 @@ export const useAuthStore = defineStore('AuthStore', {
                 });
                 
                 if (error) {
-                    console.error('Sign-in error:', error);
+                    console.error('Login error:', error);
                     throw new Error(`Failed to sign in anonymously: ${error.statusMessage}`);
                 }
                 
                 return { data, error };
             } catch (error) {
                 console.error('Unexpected error:', error);
-                throw new Error(`Sign-in failed: ${error.message}`);
+                throw new Error(`Login failed: ${error.message}`);
             }
         },
         
