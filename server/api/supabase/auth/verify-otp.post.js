@@ -23,7 +23,7 @@ export default defineEventHandler(async(event) => {
             console.error('Supabase OTP verification error:', error);
             
             throw createError({
-                statusCode: error.status || 400,
+                statusCode: error.status || 500,
                 statusMessage: error.message || 'Failed to verify OTP',
             });
         }
