@@ -108,10 +108,10 @@
                                             required
                                             @vue:mounted='startCountdown'
                                         >
-                                            <PinInputGroup class='gap-1'>
+                                            <PinInputGroup class='gap-1 mx-auto'>
                                                 <template v-for='(id, index) in 8' :key='id'>
                                                     <PinInputSlot
-                                                        class='h-12 w-12 text-xl font-bold font-satoshi rounded-md border'
+                                                        class='h-10 xl:h-12 w-10 xl:w-12 text-sm xl:text-xl font-bold font-satoshi rounded-md border'
                                                         :index='index'
                                                     />
                                                     <template v-if='index !== 7'>
@@ -193,7 +193,7 @@
         })
     );
     
-    const step_index = ref(1);
+    const step_index = ref(2);
     const emit = defineEmits(['otpStepChange']);
     watch(step_index, () => emit('otpStepChange', step_index.value));
     const steps = [
