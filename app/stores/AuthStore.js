@@ -37,6 +37,27 @@ export const useAuthStore = defineStore('AuthStore', {
             }
         },
         
+        async resendEmail(email) {
+            try {
+                this.loading = true;
+                
+                const { error } = await $fetch('/api/supabase/auth/resend-email', {
+                    method: 'POST',
+                    body: email
+                });
+                
+                if(error) {
+                    throw error;
+                }
+                
+                return { error };
+            } catch(error) {
+                console.error(error);
+            } finally {
+                this.loading = false;
+            }
+        },
+        
         async loginPassword(payload) {
           try {
               this.loading = true;
