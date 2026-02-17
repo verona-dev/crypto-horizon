@@ -7,9 +7,11 @@ export default defineEventHandler(async(event) => {
     
     let payload;
     
+    // Login
     if(email && otpCode) {
         payload = { email, token: otpCode, type: 'email' };
     } else if(token) {
+        // Register
         payload = { token, type: 'email' };
     } else {
         throw createError({

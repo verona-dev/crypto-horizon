@@ -90,7 +90,7 @@
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     
-    const otp_signup = ref(false);
+    const otp_signup = ref(true);
     const onToggleSignupMode = () => otp_signup.value = !otp_signup.value;
     
     const otp_stepper = ref(1);

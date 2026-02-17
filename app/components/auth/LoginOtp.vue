@@ -137,9 +137,11 @@
                         </template>
                         
                         <!--  Step 3: Logged In  -->
+                        <!--
                         <template v-if='step_index === 3'>
                             This window will close in 5s.
                         </template>
+                        -->
                     </FieldGroup>
                 </div>
                 
@@ -214,6 +216,7 @@
     // Email
     const { setFieldError } = useForm();
     const email = ref('');
+    
     const onEmailSubmit = async(setFieldError: any, nextStep: any) => {
         const { error } = await signInWithOtp(email.value);
         
@@ -231,12 +234,29 @@
         return true;
     };
     
+    const onResendEmail = async(setFieldError: any) => {
+        const { error } = await signInWithOtp(email.value);
+        
+        if (error) {
+            // set the field error to "otp" since we are on step-2 (otp fields)
+            setFieldError('otp', `Resend failed: ${error.message}`);
+            setTimeout(() => {
+                setFieldError('otp', '');
+            }, 10000);
+            return false;
+        }
+        
+        startCountdown();
+        
+        return true;
+    };
+    
     // OTP
     const otp_input = ref([]);
     
     const onVerifyOtp = async(setFieldError: any, nextStep:any) => {
         const joined_otp_input = otp_input.value?.join('');
-        const result = await verifyOtp({ email: email.value, token: joined_otp_input});
+        const result = await verifyOtp({ email: email.value, otpCode: joined_otp_input});
         
         if(result?.error) {
             setFieldError('otp', `Verification failed: ${result.error.message}`);
