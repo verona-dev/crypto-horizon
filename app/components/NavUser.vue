@@ -7,7 +7,7 @@
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
-    const { signInAnonymous, logOut } = AuthStore;
+    const { loginAnonymous, logOut } = AuthStore;
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
