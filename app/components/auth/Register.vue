@@ -170,7 +170,7 @@
         {
             step: 1,
             title: 'Welcome!',
-            description: 'Already have an account? <NuxtLink to="/login">Login</a>',
+            description: 'Already have an account? <NuxtLink to="/login">Login</NuxtLink>',
         },
         {
             step: 2,

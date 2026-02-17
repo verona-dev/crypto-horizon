@@ -200,7 +200,7 @@
         {
             step: 1,
             title: 'Welcome!',
-            description: 'Don’t have an account? <NuxtLink to="/register">Register</a>',
+            description: 'Don’t have an account? <NuxtLink to="/register">Register</NuxtLink>',
         },
         {
             step: 2,
