@@ -14,11 +14,11 @@ export const useAuthStore = defineStore('AuthStore', {
     },
     
     actions: {
-        async signUp(payload) {
+        async register(payload) {
             try {
                 this.loading = true;
                 
-                const { data, error } = await $fetch('/api/supabase/auth/sign-up', {
+                const { data, error } = await $fetch('/api/supabase/auth/register', {
                     method: 'POST',
                     body: payload
                 });

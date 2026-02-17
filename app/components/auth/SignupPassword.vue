@@ -152,7 +152,7 @@
     import { useAuthStore } from '~/stores/AuthStore.js';
     import {Check, Dot, Mail, UserLock} from 'lucide-vue-next';
     const AuthStore = useAuthStore();
-    const { signUp } = AuthStore;
+    const { register } = AuthStore;
     const { loading } = storeToRefs(AuthStore);
     
     const validation_schema = toTypedSchema(
@@ -185,7 +185,7 @@
     const password = ref('');
     
     const onCreateAccount = async(setFieldError: any, nextStep: any) => {
-        const { error } = await signUp({
+        const { error } = await register({
             email: email.value,
             password: password.value
         });
