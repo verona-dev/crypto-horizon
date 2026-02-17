@@ -149,7 +149,7 @@
                 <!--   Stepper Buttons   -->
                 <template v-if='step_index === 1'>
                     <Button
-                        @click='() => onLogin(setFieldError, nextStep)'
+                        @click='onLogin(setFieldError, nextStep)'
                         :type='meta.valid ? "button" : "submit"'
                         class='w-full disabled:opacity-75'
                         size='lg'

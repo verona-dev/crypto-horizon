@@ -127,7 +127,7 @@
                 <!--   Stepper Buttons   -->
                 <template v-if='step_index === 1'>
                     <Button
-                        @click='() => onLogin(setFieldError, nextStep)'
+                        @click='onLogin(setFieldError, nextStep)'
                         :type='meta.valid ? "button" : "submit"'
                         class='w-full dark:disabled:opacity-75'
                         size='lg'
@@ -205,7 +205,7 @@
             setTimeout(() => {
                 setFieldError('email', '');
             }, 2500);
-            return false;
+            return;
         }
         
         if(data?.session?.access_token) {
@@ -213,11 +213,8 @@
             
             if(!error) {
                 reloadNuxtApp();
-                
                 nextStep && nextTick(() => nextStep());
             }
         }
-        
-        return true;
     };
 </script>
