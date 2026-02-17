@@ -61,7 +61,7 @@
                 
                 <!--   Stepper Body   -->
                 <FieldGroup>
-                    <!--  Step 1: Email input  -->
+                    <!--  Step 1: Email  -->
                     <template v-if='step_index === 1'>
                         <FormField
                             v-slot='{ componentField }'
@@ -85,7 +85,7 @@
                             </FormItem>
                         </FormField>
                         
-                        <!--   Password   -->
+                        <!--  Step 1: Password   -->
                         <FormField
                             v-slot='{ componentField }'
                             v-model='password'
@@ -115,6 +115,16 @@
                     <!--  Step 2: Verify your account -->
                     <template v-if='step_index === 2'>
                         <VerificationSent />
+                        
+                        <div class='text-sm mx-auto my-2'>
+                            <span>Didn't get the email?&nbsp;</span>
+                            <span
+                                @click='onResendEmail'
+                                class='font-bold underline cursor-pointer'
+                            >Click to resend</span>
+                            
+                            <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
+                        </div>
                     </template>
                 </FieldGroup>
                 
@@ -139,20 +149,21 @@
 <script setup lang='ts'>
     import * as z from 'zod';
     import { Button } from '@/components/ui/button';
+    import { Check, Dot, Mail, UserLock } from 'lucide-vue-next';
     import { FieldDescription, FieldGroup, FieldTitle} from '@/components/ui/field';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
     import { toTypedSchema } from '@vee-validate/zod';
+    import { useCountdown } from '@vueuse/core';
     import VerificationSent from '@/components/auth/VerificationSent.vue';
     
     // AuthStore
     import {storeToRefs} from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
-    import {Check, Dot, Mail, UserLock} from 'lucide-vue-next';
     const AuthStore = useAuthStore();
-    const { register } = AuthStore;
+    const { register, resendEmail } = AuthStore;
     const { loading } = storeToRefs(AuthStore);
     
     const validation_schema = toTypedSchema(
@@ -202,4 +213,15 @@
         
         return true;
     };
+    
+    const onResendEmail = async() => {
+        const { error } = await resendEmail(email.value);
+        if (error) return;
+        startCountdown();
+    };
+    
+    // Countdown
+    const countdown_seconds = ref(60);
+    const { remaining, start } = useCountdown(countdown_seconds);
+    const startCountdown = () => start(countdown_seconds);
 </script>
