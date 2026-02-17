@@ -124,11 +124,19 @@ export const useAuthStore = defineStore('AuthStore', {
             const ProfileStore = useProfileStore();
             
             try {
+                const route = useRoute();
+                
+                if(route.path === '/profile') {
+                    await navigateTo('/', { replace: true });
+                }
+                
                 const { error } = await $fetch('/api/supabase/auth/logout', {
                     method: 'POST',
                 });
                 
                 if(!error) {
+                    reloadNuxtApp();
+                    
                     ProfileStore.profile = null;
                 }
             } catch(error) {

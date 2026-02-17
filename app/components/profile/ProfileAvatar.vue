@@ -182,11 +182,5 @@
         show_tooltip.value = false;
     };
     
-    const onLogOut = async() => {
-        const { error } = await logOut();
-        
-        if(!error) {
-            reloadNuxtApp();
-        }
-    };
+    const onLogOut = async() => await logOut();
 </script>
