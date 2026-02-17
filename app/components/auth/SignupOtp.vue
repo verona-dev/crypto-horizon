@@ -61,7 +61,7 @@
                     </div>
                     
                     <!--   Stepper Body   -->
-                    <FieldGroup :class='{ "mx-auto1" : step_index === 2}'>
+                    <FieldGroup :class='{ "mx-auto" : step_index === 2}'>
                         <!--  Step 1: Email input  -->
                         <template v-if='step_index === 1'>
                             <FormField
