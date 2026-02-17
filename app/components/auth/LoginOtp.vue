@@ -54,6 +54,7 @@
                                     <Check v-if='state === "completed"' class='size-5' />
                                     <Mail v-if='state === "active" && step_index === 1' />
                                     <UserLock v-if='state === "active" && step_index === 2' />
+                                    <User v-if='state === "active" && step_index === 3' />
                                     <Dot v-if='state === "inactive"' />
                                 </Button>
                             </StepperTrigger>
@@ -166,7 +167,7 @@
 <script setup lang='ts'>
     import * as z from 'zod';
     import { Button } from '@/components/ui/button';
-    import { Check, Dot, Mail, UserLock } from 'lucide-vue-next';
+    import { Check, Dot, Mail, UserLock, User } from 'lucide-vue-next';
     import { FieldTitle, FieldDescription, FieldGroup } from '@/components/ui/field';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
@@ -256,7 +257,7 @@
     
     const onVerifyOtp = async(setFieldError: any, nextStep:any) => {
         const joined_otp_input = otp_input.value?.join('');
-        const result = await verifyOtp({ email: email.value, otpCode: joined_otp_input});
+        const result = await verifyOtp({ email: email.value, token: joined_otp_input});
         
         if(result?.error) {
             setFieldError('otp', `Verification failed: ${result.error.message}`);
@@ -269,7 +270,7 @@
         if(result?.data?.session?.access_token) {
             setTimeout(() => {
                 onLoggedIn();
-            }, 5000);
+            }, 2500);
             nextStep && nextTick(() => nextStep());
         }
         

@@ -52,7 +52,7 @@
                             >
                                 <Check v-if='state === "completed"' class='size-5' />
                                 <Mail v-if='state === "active" && step_index === 1' />
-                                <UserLock v-if='state === "active" && step_index === 2' />
+                                <User v-if='state === "active" && step_index === 2' />
                                 <Dot v-if='state === "inactive"' />
                             </Button>
                         </StepperTrigger>
@@ -141,6 +141,7 @@
 <script setup lang='ts'>
     import * as z from 'zod';
     import { Button } from '@/components/ui/button';
+    import { Check, Dot, Mail, User } from 'lucide-vue-next';
     import { FieldDescription, FieldGroup, FieldTitle} from '@/components/ui/field';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
@@ -149,9 +150,8 @@
     import { toTypedSchema } from '@vee-validate/zod';
     
     // AuthStore
-    import {storeToRefs} from 'pinia';
+    import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
-    import {Check, Dot, Mail, UserLock} from 'lucide-vue-next';
     const AuthStore = useAuthStore();
     const { signInWithPassword } = AuthStore;
     const { loading } = storeToRefs(AuthStore);
