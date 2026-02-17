@@ -153,7 +153,7 @@
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
-    const { signInWithPassword } = AuthStore;
+    const { loginPassword } = AuthStore;
     const { loading } = storeToRefs(AuthStore);
     
     // ProfileStore
@@ -191,7 +191,7 @@
     const password = ref('');
     
     const onLogin = async(setFieldError: any, nextStep: any) => {
-        const { data, error } = await signInWithPassword({
+        const { data, error } = await loginPassword({
             email: email.value,
             password: password.value
         });

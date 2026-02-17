@@ -37,7 +37,7 @@ export const useAuthStore = defineStore('AuthStore', {
             }
         },
         
-        async signInWithPassword(payload) {
+        async loginPassword(payload) {
           try {
               this.loading = true;
               
