@@ -175,14 +175,13 @@
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
     import { toTypedSchema } from '@vee-validate/zod';
-    import {useCountdown} from '@vueuse/core';
-    import {useForm} from 'vee-validate';
+    import { useCountdown } from '@vueuse/core';
+    import { useForm } from 'vee-validate';
     
     // AuthStore
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
-    
     const { loginOtp, verifyOtp } = AuthStore;
     const { loading } = storeToRefs(AuthStore);
     
