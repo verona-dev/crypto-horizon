@@ -10,8 +10,10 @@
         >
             <NuxtIcon
                 :name='provider.icon'
-                size='18'
+                size='20'
             />
+            
+            <span class='text-sm'>{{ provider.label }}</span>
         </Button>
     </div>
 </template>
@@ -25,9 +27,10 @@
     const { loginOAuth } = AuthStore;
     
     const providers = [
-        { name: 'apple', icon: 'ph:apple-logo' },
-        { name: 'google', icon: 'ph:google-logo' },
-        { name: 'github', icon: 'ph:github-logo' },
+        { name: 'github', label: 'Github', icon: 'ph:github-logo' },
+        { name: 'linkedin_oidc', label: 'Linkedin', icon: 'ph:linkedin-logo' },
+        // { name: 'apple', icon: 'ph:apple-logo' },
+        // { name: 'google', icon: 'ph:google-logo' },
     ];
     
     const onLoginOAuth = async (provider) => {
