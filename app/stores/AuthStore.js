@@ -102,6 +102,29 @@ export const useAuthStore = defineStore('AuthStore', {
             }
         },
         
+        async loginOAuth(provider) {
+            try {
+                this.loading = true;
+                
+                const { data, error } = await $fetch('/api/supabase/auth/login-oauth', {
+                    method: 'POST',
+                    body: { provider },
+                });
+                
+                if(error) {
+                    throw error;
+                };
+                
+                return { data, error };
+            } catch(error) {
+                console.error(error);
+                
+                return { data: null, error };
+            } finally {
+                this.loading = false;
+            }
+        },
+        
         async loginAnonymous() {
             try {
                 const { data, error } = await $fetch('/api/supabase/auth/login-anonymous', {
