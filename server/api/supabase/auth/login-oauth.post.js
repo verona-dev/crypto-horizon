@@ -14,7 +14,7 @@ export default defineEventHandler(async(event) => {
     
     try {
         const { data, error } = await client.auth.signInWithOAuth({
-            provider
+            provider,
         });
         
         if(error) {
