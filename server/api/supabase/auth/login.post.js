@@ -3,34 +3,31 @@ import { serverSupabaseClient } from '#supabase/server';
 export default defineEventHandler(async(event) => {
     const client = await serverSupabaseClient(event);
     const body = await readBody(event);
-    const { email } = body;
-    
-    if(!email) {
-        throw createError({
-            statusCode: 400,
-            statusMessage: 'Email is required',
-        });
-    }
+    const { email, password } = body;
+    console.log(body);
     
     try {
-        const { data, error } = await client.auth.signInWithOtp({
+        const { data, error } = await client.auth.signInWithPassword({
             email,
+            password,
         });
         
-        if(error) {
+        if (error) {
+            console.error('Login error:', error);
+            
             throw createError({
                 statusCode: error.status || 500,
-                statusMessage: error.message || 'Unexpected error during sign-in',
+                statusMessage: error.message || 'Unexpected error during login',
             });
         }
         
         return { data, error };
-    } catch(error) {
-        console.error(error);
+    } catch (error) {
+        console.error('Error occurred', error);
         
         throw createError({
             statusCode: error.status || 500,
-            statusMessage: error.message || 'Internal Server Error',
+            statusMessage: error.message || 'Unexpected error during login',
         });
     }
 });

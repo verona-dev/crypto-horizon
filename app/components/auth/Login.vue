@@ -52,7 +52,7 @@
                             >
                                 <Check v-if='state === "completed"' class='size-5' />
                                 <Mail v-if='state === "active" && step_index === 1' />
-                                <UserLock v-if='state === "active" && step_index === 2' />
+                                <User v-if='state === "active" && step_index === 2' />
                                 <Dot v-if='state === "inactive"' />
                             </Button>
                         </StepperTrigger>
@@ -67,6 +67,8 @@
                             v-slot='{ componentField }'
                             v-model='email'
                             name='email'
+                            :validateOnBlur='false'
+                            :validateOnChange='false'
                         >
                             <FormItem>
                                 <FormLabel>Email</FormLabel>
@@ -100,6 +102,8 @@
                                         id='password'
                                         type='password'
                                         class='dark:bg-blue-bunker/75'
+                                        :validateOnBlur='false'
+                                        :validateOnChange='false'
                                         required
                                     />
                                     <FieldDescription>
@@ -123,7 +127,7 @@
                 <!--   Stepper Buttons   -->
                 <template v-if='step_index === 1'>
                     <Button
-                        @click='() => onLogin(setFieldError, nextStep)'
+                        @click='onLogin(setFieldError, nextStep)'
                         :type='meta.valid ? "button" : "submit"'
                         class='w-full dark:disabled:opacity-75'
                         size='lg'
@@ -141,6 +145,7 @@
 <script setup lang='ts'>
     import * as z from 'zod';
     import { Button } from '@/components/ui/button';
+    import { Check, Dot, Mail, User } from 'lucide-vue-next';
     import { FieldDescription, FieldGroup, FieldTitle} from '@/components/ui/field';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
@@ -149,11 +154,10 @@
     import { toTypedSchema } from '@vee-validate/zod';
     
     // AuthStore
-    import {storeToRefs} from 'pinia';
+    import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
-    import {Check, Dot, Mail, UserLock} from 'lucide-vue-next';
     const AuthStore = useAuthStore();
-    const { signInWithPassword } = AuthStore;
+    const { loginPassword } = AuthStore;
     const { loading } = storeToRefs(AuthStore);
     
     // ProfileStore
@@ -175,8 +179,8 @@
     const steps = [
         {
             step: 1,
-            title: 'Welcome!',
-            description: 'Don’t have an account? <a href="/register">Register</a>',
+            title: '',
+            description: '',
         },
         {
             step: 2,
@@ -191,7 +195,7 @@
     const password = ref('');
     
     const onLogin = async(setFieldError: any, nextStep: any) => {
-        const { data, error } = await signInWithPassword({
+        const { data, error } = await loginPassword({
             email: email.value,
             password: password.value
         });
@@ -200,8 +204,8 @@
             setFieldError('email', `${error.message}`);
             setTimeout(() => {
                 setFieldError('email', '');
-            }, 2500);
-            return false;
+            }, 5000);
+            return;
         }
         
         if(data?.session?.access_token) {
@@ -209,11 +213,8 @@
             
             if(!error) {
                 reloadNuxtApp();
-                
                 nextStep && nextTick(() => nextStep());
             }
         }
-        
-        return true;
     };
 </script>

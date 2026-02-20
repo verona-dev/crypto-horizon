@@ -5,6 +5,13 @@ export default defineEventHandler(async (event) => {
     const body = await readBody(event);
     const { email, password } = body;
     
+    if(!email || !password) {
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'Email and password are required',
+        });
+    }
+    
     try {
         const { data, error } = await client.auth.signUp({
             email,
@@ -12,11 +19,11 @@ export default defineEventHandler(async (event) => {
         });
         
         if (error) {
-            console.error('Sign-up error:', error);
+            console.error('Registration error:', error);
             
             throw createError({
                 statusCode: error.status || 500,
-                statusMessage: error.message || 'Unexpected error during sign-up',
+                statusMessage: error.message || 'Unexpected error during registration',
             });
         }
         
@@ -26,7 +33,7 @@ export default defineEventHandler(async (event) => {
         
         throw createError({
             statusCode: error.status || 500,
-            statusMessage: error.message || 'Unexpected error during sign-up',
+            statusMessage: error.message || 'Unexpected error during registration',
         });
     }
 });

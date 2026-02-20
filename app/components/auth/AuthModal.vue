@@ -255,7 +255,7 @@
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
-    const { signInWithOtp, verifyOtp } = AuthStore;
+    const { loginOtp, verifyOtp } = AuthStore;
     const { loading } = storeToRefs(AuthStore);
     const authModal = ref(false);
     
@@ -283,7 +283,7 @@
     const { setFieldError } = useForm();
     const email = ref('');
     const onEmailSubmit = async(setFieldError: any, nextStep: any) => {
-        const { error } = await signInWithOtp(email.value);
+        const { error } = await loginOtp(email.value);
         
         if (error) {
             setFieldError('email', `Email not sent: ${error.message}`);
@@ -299,7 +299,7 @@
         return true;
     };
     const onResendEmail = async(setFieldError: any) => {
-        const { error } = await signInWithOtp(email.value);
+        const { error } = await loginOtp(email.value);
         
         if (error) {
             // set the field error to "otp" since we are on step-2 (otp fields)

@@ -12,7 +12,7 @@
             />
         </section>
         
-        <Card class='bg-transparent p-8 min-w-full xl:min-w-150 flex flex-col items-center border-none shadow-none'>
+        <Card class='bg-card-dark p-8 w-full md:w-150 flex flex-col items-center border-none shadow-none'>
             <CardContent class='w-full flex flex-col items-center justify-center gap-6'>
                 <!--  Logo  -->
                 <NuxtImg
@@ -36,19 +36,24 @@
                 </NuxtImg>
                 
                 <div class='flex flex-col w-full'>
-                    <SignupOtp
-                        v-if='otp_signup'
+                    <div v-if='first_step' class='flex flex-col items-center gap-2'>
+                        <FieldTitle class='text-3xl font-bold'>Welcome!</FieldTitle>
+                        <FieldDescription>Already have an account? <NuxtLink to="/login">Login</NuxtLink></FieldDescription>
+                    </div>
+                    
+                    <RegisterOtp
+                        v-if='is_otp_default'
                         @otp-step-change='onOtpStepChange'
                     />
                     
-                    <SignupPassword
+                    <Register
                         v-else
                         @password-step-change='onPasswordStepChange'
                     />
                 </div>
                 
                 <div
-                    v-if='show_toggle'
+                    v-if='first_step'
                     class='flex flex-col gap-8'
                 >
                     <Field @click='onToggleSignupMode'>
@@ -59,13 +64,13 @@
                                     size='18'
                                 />
                             </Button>
-                            {{ otp_signup ? 'Use password signup instead' : 'Use OTP signup instead' }}
+                            {{ is_otp_default ? 'Use registration with password instead' : 'Use OTP registration instead' }}
                         </Button>
                     </Field>
                     
-                    <FieldSeparator>Or</FieldSeparator>
+                    <FieldSeparator>Or continue with</FieldSeparator>
                     
-                    <SignupSocials />
+                    <LoginOAuth />
                     
                     <FieldDescription class='text-center'>
                         By clicking continue, you agree to our <a href='#'>Terms of Service</a>
@@ -80,23 +85,23 @@
 <script setup>
     import { Button } from '@/components/ui/button/index';
     import { Card, CardContent } from '~/components/ui/card';
-    import { Field, FieldDescription, FieldSeparator } from '@/components/ui/field/index';
-    import SignupPassword from '@/components/auth/SignupPassword.vue';
-    import SignupOtp from '@/components/auth/SignupOtp.vue';
-    import SignupSocials from '@/components/auth/SignupSocials.vue';
+    import { Field, FieldDescription, FieldSeparator, FieldTitle } from '@/components/ui/field/index';
+    import Register from '@/components/auth/Register.vue';
+    import RegisterOtp from '@/components/auth/RegisterOtp.vue';
+    import LoginOAuth from '@/components/auth/LoginOAuth.vue';
     import { Skeleton } from '@/components/ui/skeleton/index';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
     
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     
-    const otp_signup = ref(false);
-    const onToggleSignupMode = () => otp_signup.value = !otp_signup.value;
+    const is_otp_default = ref(true);
+    const onToggleSignupMode = () => is_otp_default.value = !is_otp_default.value;
     
     const otp_stepper = ref(1);
     const password_stepper = ref(1);
     
-    const show_toggle = computed(() => otp_stepper.value === 1 && password_stepper.value === 1);
+    const first_step = computed(() => otp_stepper.value === 1 && password_stepper.value === 1);
     const onOtpStepChange = otpStepIndex => otp_stepper.value = otpStepIndex;
     const onPasswordStepChange = passwordStepIndex => password_stepper.value = passwordStepIndex;
     

@@ -14,11 +14,11 @@ export const useAuthStore = defineStore('AuthStore', {
     },
     
     actions: {
-        async signUp(payload) {
+        async register(payload) {
             try {
                 this.loading = true;
                 
-                const { data, error } = await $fetch('/api/supabase/auth/sign-up', {
+                const { data, error } = await $fetch('/api/supabase/auth/register', {
                     method: 'POST',
                     body: payload
                 });
@@ -37,11 +37,32 @@ export const useAuthStore = defineStore('AuthStore', {
             }
         },
         
-        async signInWithPassword(payload) {
+        async resendEmail(email) {
+            try {
+                this.loading = true;
+                
+                const { error } = await $fetch('/api/supabase/auth/resend-email', {
+                    method: 'POST',
+                    body: email
+                });
+                
+                if(error) {
+                    throw error;
+                }
+                
+                return { error };
+            } catch(error) {
+                console.error(error);
+            } finally {
+                this.loading = false;
+            }
+        },
+        
+        async loginPassword(payload) {
           try {
               this.loading = true;
               
-              const { data, error } = await $fetch('/api/supabase/auth/sign-in', {
+              const { data, error } = await $fetch('/api/supabase/auth/login', {
                   method: 'POST',
                   body: payload
               });
@@ -58,11 +79,11 @@ export const useAuthStore = defineStore('AuthStore', {
           }
         },
         
-        async signInWithOtp(email) {
+        async loginOtp(email) {
             try {
                 this.loading = true;
                 
-                const { data, error } = await $fetch('/api/supabase/auth/sign-in-otp', {
+                const { data, error } = await $fetch('/api/supabase/auth/login-otp', {
                     method: 'POST',
                     body: { email },
                 });
@@ -81,21 +102,44 @@ export const useAuthStore = defineStore('AuthStore', {
             }
         },
         
-        async signInAnonymous() {
+        async loginOAuth(provider) {
             try {
-                const { data, error } = await $fetch('/api/supabase/auth/sign-in-anonymous', {
+                this.loading = true;
+                
+                const { data, error } = await $fetch('/api/supabase/auth/login-oauth', {
+                    method: 'POST',
+                    body: { provider },
+                });
+                
+                if(error) {
+                    throw error;
+                };
+                
+                return { data, error };
+            } catch(error) {
+                console.error(error);
+                
+                return { data: null, error };
+            } finally {
+                this.loading = false;
+            }
+        },
+        
+        async loginAnonymous() {
+            try {
+                const { data, error } = await $fetch('/api/supabase/auth/login-anonymous', {
                     method: 'POST',
                 });
                 
                 if (error) {
-                    console.error('Sign-in error:', error);
+                    console.error('Login error:', error);
                     throw new Error(`Failed to sign in anonymously: ${error.statusMessage}`);
                 }
                 
                 return { data, error };
             } catch (error) {
                 console.error('Unexpected error:', error);
-                throw new Error(`Sign-in failed: ${error.message}`);
+                throw new Error(`Login failed: ${error.message}`);
             }
         },
         
@@ -124,11 +168,19 @@ export const useAuthStore = defineStore('AuthStore', {
             const ProfileStore = useProfileStore();
             
             try {
+                const route = useRoute();
+                
+                if(route.path === '/profile') {
+                    await navigateTo('/', { replace: true });
+                }
+                
                 const { error } = await $fetch('/api/supabase/auth/logout', {
                     method: 'POST',
                 });
                 
                 if(!error) {
+                    reloadNuxtApp();
+                    
                     ProfileStore.profile = null;
                 }
             } catch(error) {

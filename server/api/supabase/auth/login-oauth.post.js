@@ -3,28 +3,24 @@ import { serverSupabaseClient } from '#supabase/server';
 export default defineEventHandler(async(event) => {
     const client = await serverSupabaseClient(event);
     const body = await readBody(event);
-    const { email, token } = body;
+    const { provider } = body;
     
-    if(!email || !token) {
+    if(!provider) {
         throw createError({
             statusCode: 400,
-            statusMessage: 'Email and password are required',
+            statusMessage: 'Provider is required',
         });
     }
     
     try {
-        const { data, error } = await client.auth.verifyOtp({
-            email,
-            token,
-            type: 'email',
+        const { data, error } = await client.auth.signInWithOAuth({
+            provider,
         });
         
-        if (error) {
-            console.error('Supabase OTP verification error:', error);
-            
+        if(error) {
             throw createError({
                 statusCode: error.status || 500,
-                statusMessage: error.message || 'Failed to verify OTP',
+                statusMessage: error.message || 'Unexpected error during login',
             });
         }
         
@@ -33,8 +29,8 @@ export default defineEventHandler(async(event) => {
         console.error(error);
         
         throw createError({
-            statusCode: error.statusCode || 500,
-            statusMessage: error.statusMessage || 'Failed to verify OTP',
+            statusCode: error.status || 500,
+            statusMessage: error.message || 'Internal Server Error',
         });
     }
 });

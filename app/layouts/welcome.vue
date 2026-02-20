@@ -5,10 +5,5 @@
                 <slot />
             </ClientOnly>
         </main>
-        <CoingeckoAttribution />
     </div>
 </template>
-
-<script>
-    import CoingeckoAttribution from '~/components/CoingeckoAttribution.vue';
-</script>

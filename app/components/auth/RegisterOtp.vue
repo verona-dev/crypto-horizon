@@ -61,7 +61,7 @@
                     </div>
                     
                     <!--   Stepper Body   -->
-                    <FieldGroup :class='{ "mx-auto1" : step_index === 2}'>
+                    <FieldGroup :class='{ "mx-auto" : step_index === 2}'>
                         <!--  Step 1: Email input  -->
                         <template v-if='step_index === 1'>
                             <FormField
@@ -91,7 +91,17 @@
                         
                         <!--  Step 2: Verify your account -->
                         <template v-if='step_index === 2'>
-                            <VerificationSent />
+                            <VerificationSent @vue:mounted='startCountdown' />
+                            
+                            <div class='text-sm mx-auto my-2'>
+                                <span>Didn't get the email?&nbsp;</span>
+                                <span
+                                    @click='onResendEmail'
+                                    class='font-bold underline cursor-pointer'
+                                >Click to resend</span>
+                                
+                                <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
+                            </div>
                         </template>
                     </FieldGroup>
                 </div>
@@ -124,30 +134,32 @@
     import { toTypedSchema } from '@vee-validate/zod';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
+    import { useCountdown } from '@vueuse/core';
     import VerificationSent from '@/components/auth/VerificationSent.vue';
     
     // AuthStore
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
-    const { signInWithOtp } = AuthStore;
+    const { loginOtp } = AuthStore;
     const { loading } = storeToRefs(AuthStore);
     
     // Stepper
     const validation_schema = toTypedSchema(
         z.object({
-            email: z.string().email('Invalid email'),
+            email: z.string().email(),
         })
     );
     
     const step_index = ref(1);
     const emit = defineEmits(['otpStepChange']);
     watch(step_index, () => emit('otpStepChange', step_index.value));
+    
     const steps = [
         {
             step: 1,
-            title: 'Welcome!',
-            description: 'Already have an account? <a href="/login">Login</a>',
+            title: '',
+            description: '',
         },
         {
             step: 2,
@@ -160,7 +172,7 @@
     const email = ref('');
     
     const onCreateAccount = async(setFieldError: any, nextStep: any) => {
-        const { error } = await signInWithOtp(email.value);
+        const { error } = await loginOtp(email.value);
         
         if (error) {
             console.log(error)
@@ -168,11 +180,21 @@
             setTimeout(() => {
                 setFieldError('email', '');
             }, 5000);
-            return false;
+            return;
         }
         
         nextStep && nextTick(() => nextStep());
-        
-        return true;
     };
+    
+    const onResendEmail = async() => {
+        // Supabase resend-registration uses the same route for otp register/login
+        const { error } = await loginOtp(email.value);
+        if (error) return;
+        startCountdown();
+    };
+    
+    // Countdown
+    const countdown_seconds = ref(60);
+    const { remaining, start } = useCountdown(countdown_seconds);
+    const startCountdown = () => start(countdown_seconds);
 </script>
