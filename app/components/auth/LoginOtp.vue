@@ -261,14 +261,14 @@
             setFieldError('otp', `Verification failed: ${result.error.message}`);
             setTimeout(() => {
                 setFieldError('otp', '');
-            }, 10000);
+            }, 5000);
             return;
         }
         
         if(result?.data?.session?.access_token) {
             setTimeout(() => {
                 onLoggedIn();
-            }, 2500);
+            }, 5000);
             nextStep && nextTick(() => nextStep());
         }
     };
