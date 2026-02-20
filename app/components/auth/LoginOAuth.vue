@@ -1,19 +1,21 @@
 <template>
-    <div class='flex items-center justify-evenly'>
+    <div class='flex items-center'>
         <Button
             v-for='provider in providers'
             :key='provider.name'
             @click='onLoginOAuth(provider.name)'
             variant='outline'
             type='button'
-            class='flex-1 mx-2 rounded-lg'
+            class='flex-1 mx-2.5 h-12 rounded-lg'
         >
             <NuxtIcon
                 :name='provider.icon'
-                size='20'
+                size='24'
             />
             
+            <!--
             <span class='text-sm'>{{ provider.label }}</span>
+            -->
         </Button>
     </div>
 </template>
@@ -29,6 +31,7 @@
     const providers = [
         { name: 'github', label: 'Github', icon: 'ph:github-logo' },
         { name: 'linkedin_oidc', label: 'Linkedin', icon: 'ph:linkedin-logo' },
+        { name: 'figma', label: 'Figma', icon: 'ph:figma-logo' },
         // { name: 'apple', icon: 'ph:apple-logo' },
         // { name: 'google', icon: 'ph:google-logo' },
     ];
