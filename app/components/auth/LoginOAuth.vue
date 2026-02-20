@@ -6,11 +6,11 @@
             @click='onLoginOAuth(provider.name)'
             variant='outline'
             type='button'
-            class='flex-1 mx-2.5 h-12 rounded-lg'
+            class='flex-1 mx-2.5 h-10 rounded-lg'
         >
             <NuxtIcon
                 :name='provider.icon'
-                size='24'
+                size='20'
             />
             
             <!--
