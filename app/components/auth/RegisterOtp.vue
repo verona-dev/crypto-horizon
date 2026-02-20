@@ -147,7 +147,7 @@
     // Stepper
     const validation_schema = toTypedSchema(
         z.object({
-            email: z.string().email('Invalid email'),
+            email: z.string().email(),
         })
     );
     
