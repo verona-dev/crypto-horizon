@@ -49,6 +49,19 @@ export const useProfileStore = defineStore('ProfileStore', {
             }
         },
         
+        async deleteProfile() {
+          try {
+              const { data, error } = await $fetch('/api/supabase/user/profile/delete',{
+                  method: 'DELETE',
+                  headers: useRequestHeaders(['cookie']),
+              });
+              
+              return { data, error };
+          } catch(error) {
+              console.error(error);
+          }
+        },
+        
         async updateWatchlist(payload) {
             try {
                 const { data, error } = await $fetch('/api/supabase/user/profile/watchlist/update', {
