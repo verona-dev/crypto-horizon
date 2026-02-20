@@ -181,8 +181,8 @@
     const steps = [
         {
             step: 1,
-            title: 'Welcome!',
-            description: 'Already have an account? <NuxtLink to="/login">Login</NuxtLink>',
+            title: '',
+            description: '',
         },
         {
             step: 2,

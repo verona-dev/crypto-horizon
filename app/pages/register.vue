@@ -36,6 +36,11 @@
                 </NuxtImg>
                 
                 <div class='flex flex-col w-full'>
+                    <div class='flex flex-col items-center gap-2'>
+                        <FieldTitle class='text-3xl font-bold'>Welcome!</FieldTitle>
+                        <FieldDescription>Already have an account? <NuxtLink to="/login">Login</NuxtLink></FieldDescription>
+                    </div>
+                    
                     <RegisterOtp
                         v-if='is_otp_default'
                         @otp-step-change='onOtpStepChange'
@@ -80,7 +85,7 @@
 <script setup>
     import { Button } from '@/components/ui/button/index';
     import { Card, CardContent } from '~/components/ui/card';
-    import { Field, FieldDescription, FieldSeparator } from '@/components/ui/field/index';
+    import { Field, FieldDescription, FieldSeparator, FieldTitle } from '@/components/ui/field/index';
     import Register from '@/components/auth/Register.vue';
     import RegisterOtp from '@/components/auth/RegisterOtp.vue';
     import LoginOAuth from '@/components/auth/LoginOAuth.vue';
