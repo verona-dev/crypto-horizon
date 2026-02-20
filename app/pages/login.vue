@@ -36,7 +36,7 @@
                 </NuxtImg>
                 
                 <div class='flex flex-col w-full'>
-                    <div class='flex flex-col items-center gap-2'>
+                    <div v-if='first_step' class='flex flex-col items-center gap-2'>
                         <FieldTitle class='text-3xl font-bold'>Welcome!</FieldTitle>
                         <FieldDescription>Don’t have an account? <NuxtLink to='/register'>Register</NuxtLink></FieldDescription>
                     </div>
@@ -53,7 +53,7 @@
                 </div>
                 
                 <div
-                    v-if='show_toggle'
+                    v-if='first_step'
                     class='flex flex-col gap-8'
                 >
                     <Field @click='onToggleSignupMode'>
@@ -95,13 +95,13 @@
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     
-    const is_otp_default = ref(true);
+    const is_otp_default = ref(false);
     const onToggleSignupMode = () => is_otp_default.value = !is_otp_default.value;
     
     const otp_stepper = ref(1);
     const password_stepper = ref(1);
     
-    const show_toggle = computed(() => otp_stepper.value === 1 && password_stepper.value === 1);
+    const first_step = computed(() => otp_stepper.value === 1 && password_stepper.value === 1);
     const onOtpStepChange = otpStepIndex => otp_stepper.value = otpStepIndex;
     const onPasswordStepChange = passwordStepIndex => password_stepper.value = passwordStepIndex;
     

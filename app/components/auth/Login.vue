@@ -173,7 +173,7 @@
     );
     
     // Stepper
-    const step_index = ref(1);
+    const step_index = ref(2);
     const emit = defineEmits(['passwordStepChange']);
     watch(step_index, () => emit('passwordStepChange', step_index.value));
     const steps = [
