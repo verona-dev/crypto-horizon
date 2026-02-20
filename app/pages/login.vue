@@ -35,6 +35,11 @@
                     />
                 </NuxtImg>
                 
+                <div class='flex flex-col items-center gap-2'>
+                    <FieldTitle class='text-3xl font-bold'>Welcome to Crypto Horizon</FieldTitle>
+                    <FieldDescription>Don’t have an account? <NuxtLink to='/register'>Register</NuxtLink></FieldDescription>
+                </div>
+                
                 <div class='flex flex-col w-full'>
                     <LoginOtp
                         v-if='is_otp_default'
@@ -80,7 +85,7 @@
 <script setup>
     import { Button } from '@/components/ui/button/index';
     import { Card, CardContent } from '~/components/ui/card';
-    import { Field, FieldDescription, FieldSeparator } from '@/components/ui/field/index';
+    import { Field, FieldDescription, FieldSeparator, FieldTitle } from '@/components/ui/field/index';
     import Login from '@/components/auth/Login.vue';
     import LoginOtp from '@/components/auth/LoginOtp.vue';
     import LoginOAuth from '@/components/auth/LoginOAuth.vue';
