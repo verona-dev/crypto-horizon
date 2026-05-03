@@ -1,10 +1,8 @@
-import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server';
+import { serverSupabaseServiceRole, serverSupabaseUser } from '#supabase/server';
 
 export default defineEventHandler(async (event) => {
-    const supabase = await serverSupabaseClient(event);
+    const supabase = serverSupabaseServiceRole(event);
     const user = await serverSupabaseUser(event);
-    const body = await readBody(event);
-    
     
     if (!user) {
         throw createError({
@@ -20,8 +18,8 @@ export default defineEventHandler(async (event) => {
         
         if (error) {
             throw createError({
-                statusCode: 500,
-                statusMessage: 'Failed to delete account',
+                statusCode: 403,
+                statusMessage: error.message || 'Failed to delete account',
             });
         }
         
