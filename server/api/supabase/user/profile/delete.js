@@ -1,7 +1,7 @@
 import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server';
 
 export default defineEventHandler(async (event) => {
-    const client = await serverSupabaseClient(event);
+    const supabase = await serverSupabaseClient(event);
     const user = await serverSupabaseUser(event);
     const body = await readBody(event);
     
@@ -16,12 +16,12 @@ export default defineEventHandler(async (event) => {
     const id = user.sub;
     
     try {
-        const { data, error } = await client.auth.admin.deleteUser(id);
+        const { data, error } = await supabase.auth.admin.deleteUser(id);
         
         if (error) {
             throw createError({
                 statusCode: 500,
-                statusMessage: 'Failed to update avatar',
+                statusMessage: 'Failed to delete account',
             });
         }
         
