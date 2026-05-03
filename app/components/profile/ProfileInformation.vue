@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-popover !min-h-full !h-full w-full md:w-4/5 xl:w-160 flex flex-col !justify-around p-4 gap-4 !shadow-none'>
+    <Card class='bg-popover !min-h-full !h-full w-full md:w-4/5 xl:w-160 flex flex-col !justify-around p-5 gap-4 !shadow-none'>
         <CardHeader class='flex-row justify-between'>
             <CardTitle class='text-3xl'>Personal Information</CardTitle>
             
@@ -38,6 +38,16 @@
             </div>
         </CardContent>
         
+        <CardFooter>
+            <Button
+                @click='onDeleteAccount'
+                variant='destructive'
+                class='md:w-4/5 xl:w-full'
+            >
+                Delete account
+            </Button>
+        </CardFooter>
+        
         <!--  Edit Profile  -->
         <ProfileEdit
             v-if='show_drawer'
@@ -62,7 +72,17 @@
         }
     });
     
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { deleteProfile } = ProfileStore;
+    
     const { profile } = toRefs(props);
     const show_drawer = ref(false);
     const onHandleDrawer = bool => show_drawer.value = bool;
+    
+    const onDeleteAccount = async() => {
+        console.log('deleted');
+        // await deleteProfile();
+    };
 </script>

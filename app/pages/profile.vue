@@ -15,14 +15,6 @@
             </client-only>
             
             <ProfileWatchlist />
-            
-            <Button
-                @click='onDeleteAccount'
-                variant='destructive'
-                class='md:w-4/5 xl:w-full'
-            >
-                Delete account
-            </Button>
         </div>
         
         <div class='absolute inset-0 h-screen w-screen'>
@@ -39,7 +31,6 @@
 </template>
 
 <script setup>
-    import { Button } from '~/components/ui/button';
     import ProfileAvatar from '~/components/profile/ProfileAvatar.vue';
     import ProfileInformation from '~/components/profile/ProfileInformation.vue';
     import ProfileMap from '~/components/profile/ProfileMap.vue';
@@ -54,7 +45,7 @@
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
     const { profile } = storeToRefs(ProfileStore);
-    const { getProfile, deleteProfile } = ProfileStore;
+    const { getProfile } = ProfileStore;
     
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
@@ -80,10 +71,6 @@
     
     // SEO
     const title = 'Private Profile';
-    
-    const onDeleteAccount = async() => {
-        await deleteProfile();
-    };
     
     definePageMeta({
         title,
