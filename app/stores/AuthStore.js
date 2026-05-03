@@ -180,7 +180,6 @@ export const useAuthStore = defineStore('AuthStore', {
                 
                 if(!error) {
                     reloadNuxtApp();
-                    
                     ProfileStore.profile = null;
                 }
             } catch(error) {
