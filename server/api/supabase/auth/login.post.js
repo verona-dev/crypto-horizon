@@ -4,7 +4,7 @@ export default defineEventHandler(async(event) => {
     const client = await serverSupabaseClient(event);
     const body = await readBody(event);
     const { email, password } = body;
-    console.log(body);
+    // console.log(body);
     
     try {
         const { data, error } = await client.auth.signInWithPassword({

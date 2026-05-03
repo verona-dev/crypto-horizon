@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-popover !min-h-full !h-full w-full md:w-4/5 xl:w-160 flex flex-col !justify-around p-4 gap-4 !shadow-none'>
+    <Card class='bg-popover !min-h-full !h-full w-full md:w-4/5 xl:w-160 flex flex-col !justify-around p-5 gap-4 !shadow-none'>
         <CardHeader class='flex-row justify-between'>
             <CardTitle class='text-3xl'>Personal Information</CardTitle>
             
@@ -38,6 +38,42 @@
             </div>
         </CardContent>
         
+        <CardFooter>
+            <Dialog>
+                <DialogTrigger class='w-full'>
+                    <Button variant='destructive' class='w-full'>
+                        Delete Account
+                    </Button>
+                </DialogTrigger>
+                
+                <DialogContent class='p-10 gap-8'>
+                    <DialogHeader class='gap-4'>
+                        <DialogTitle>Are you absolutely sure?</DialogTitle>
+                        <DialogDescription>
+                            This action cannot be undone. This will permanently delete your account
+                            and remove your data from our servers.
+                        </DialogDescription>
+                    </DialogHeader>
+                    
+                    <DialogFooter class='flex items-center !justify-between'>
+                        <DialogClose as-child class='flex-1'>
+                            <Button variant='outline'>
+                                Cancel
+                            </Button>
+                        </DialogClose>
+                        
+                        <Button
+                            @click='onDeleteAccount'
+                            variant='destructive'
+                            class='flex-1'
+                        >
+                            Delete Account
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+        </CardFooter>
+        
         <!--  Edit Profile  -->
         <ProfileEdit
             v-if='show_drawer'
@@ -50,10 +86,19 @@
 
 <script setup>
     import { Button } from '~/components/ui/button';
-    import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
-    import dayjs from 'dayjs';
+    import { Card, CardTitle, CardContent, CardHeader, CardFooter } from '~/components/ui/card';
+    import {
+        Dialog,
+        DialogContent,
+        DialogDescription,
+        DialogFooter,
+        DialogHeader,
+        DialogTitle,
+        DialogTrigger,
+    } from '@/components/ui/dialog'
     import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
     import ProfileEdit from '~/components/profile/ProfileEdit.vue';
+    import dayjs from 'dayjs';
     
     const props = defineProps({
         profile: {
@@ -62,7 +107,17 @@
         }
     });
     
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { deleteProfile } = ProfileStore;
+    
     const { profile } = toRefs(props);
     const show_drawer = ref(false);
     const onHandleDrawer = bool => show_drawer.value = bool;
+    
+    const onDeleteAccount = async() => {
+        console.log('deleted');
+        await deleteProfile();
+    };
 </script>
