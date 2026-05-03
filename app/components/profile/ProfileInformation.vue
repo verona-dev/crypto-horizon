@@ -39,13 +39,39 @@
         </CardContent>
         
         <CardFooter>
-            <Button
-                @click='onDeleteAccount'
-                variant='destructive'
-                class='md:w-4/5 xl:w-full'
-            >
-                Delete account
-            </Button>
+            <Dialog>
+                <DialogTrigger class='w-full'>
+                    <Button variant='destructive' class='w-full'>
+                        Delete Account
+                    </Button>
+                </DialogTrigger>
+                
+                <DialogContent class='p-10 gap-8'>
+                    <DialogHeader class='gap-4'>
+                        <DialogTitle>Are you absolutely sure?</DialogTitle>
+                        <DialogDescription>
+                            This action cannot be undone. This will permanently delete your account
+                            and remove your data from our servers.
+                        </DialogDescription>
+                    </DialogHeader>
+                    
+                    <DialogFooter class='flex items-center !justify-between'>
+                        <DialogClose as-child class='flex-1'>
+                            <Button variant='outline'>
+                                Cancel
+                            </Button>
+                        </DialogClose>
+                        
+                        <Button
+                            @click='onDeleteAccount'
+                            variant='destructive'
+                            class='flex-1'
+                        >
+                            Delete Account
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </CardFooter>
         
         <!--  Edit Profile  -->
@@ -60,10 +86,19 @@
 
 <script setup>
     import { Button } from '~/components/ui/button';
-    import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
-    import dayjs from 'dayjs';
+    import { Card, CardTitle, CardContent, CardHeader, CardFooter } from '~/components/ui/card';
+    import {
+        Dialog,
+        DialogContent,
+        DialogDescription,
+        DialogFooter,
+        DialogHeader,
+        DialogTitle,
+        DialogTrigger,
+    } from '@/components/ui/dialog'
     import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
     import ProfileEdit from '~/components/profile/ProfileEdit.vue';
+    import dayjs from 'dayjs';
     
     const props = defineProps({
         profile: {
@@ -83,6 +118,6 @@
     
     const onDeleteAccount = async() => {
         console.log('deleted');
-        // await deleteProfile();
+        await deleteProfile();
     };
 </script>
