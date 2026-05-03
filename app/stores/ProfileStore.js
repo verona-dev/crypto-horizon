@@ -56,6 +56,11 @@ export const useProfileStore = defineStore('ProfileStore', {
                   headers: useRequestHeaders(['cookie']),
               });
               
+              if(!error) {
+                  reloadNuxtApp();
+                  this.profile = null;
+              }
+              
               return { data, error };
           } catch(error) {
               console.error(error);
