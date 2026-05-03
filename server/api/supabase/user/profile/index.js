@@ -1,7 +1,7 @@
 import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server';
 
 export default defineEventHandler(async (event) => {
-    const client = await serverSupabaseClient(event);
+    const supabase = await serverSupabaseClient(event);
     const user = await serverSupabaseUser(event);
     
     if(!user) {
@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     }
     
     try {
-        const { data, error } = await client
+        const { data, error } = await supabase
            .from('profiles')
            .select('*')
            .single()
