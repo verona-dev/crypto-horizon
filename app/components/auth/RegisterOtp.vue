@@ -14,7 +14,7 @@
                 @submit.prevent='() => validate()'
                 class='flex flex-col gap-8'
             >
-                <div class='flex flex-col gap-4'>
+                <div class='flex flex-col gap-6'>
                     <!--   Stepper Title   -->
                     <div
                         v-for='step in steps'
@@ -30,7 +30,7 @@
                     </div>
                     
                     <!--   Stepper Body   -->
-                    <FieldGroup :class='{ "mx-auto" : step_index === 2}'>
+                    <FieldGroup :class='{ "mx-auto gap-10" : step_index === 2}'>
                         <!--  Step 1: Email input  -->
                         <template v-if='step_index === 1'>
                             <FormField
@@ -62,14 +62,17 @@
                         <template v-if='step_index === 2'>
                             <VerificationSent @vue:mounted='startCountdown' />
                             
-                            <div class='text-sm mx-auto my-2'>
+                            <div class='flex flex-col gap-2 text-sm text-center text-muted-foreground'>
                                 <span>Didn't get the email?&nbsp;</span>
-                                <span
-                                    @click='onResendEmail'
-                                    class='font-bold underline cursor-pointer'
-                                >Click to resend</span>
                                 
-                                <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
+                                <div>
+                                    <span
+                                        @click='onResendEmail'
+                                        class='font-bold underline cursor-pointer'
+                                    >Resend code</span>
+                                    
+                                    <span v-if='remaining !== 0'>&nbsp;{{ remaining }}s</span>
+                                </div>
                             </div>
                         </template>
                     </FieldGroup>
@@ -132,7 +135,7 @@
         {
             step: 2,
             title: 'Verify Your Account',
-            description: 'Link sent!',
+            description: '',
         },
     ];
     
@@ -150,6 +153,8 @@
             }, 5000);
             return;
         }
+        
+        step_index.value = 2;
         
         nextStep && nextTick(() => nextStep());
     };
