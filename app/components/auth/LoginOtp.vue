@@ -33,7 +33,7 @@
                                         <Input
                                             v-bind='componentField'
                                             type='email'
-                                            placeholder='name@example.com'
+                                            placeholder='Enter your email'
                                             class='dark:bg-blue-bunker/75'
                                             required
                                         />
@@ -114,13 +114,12 @@
 <script setup lang='ts'>
     import * as z from 'zod';
     import { Button } from '@/components/ui/button';
-    import { Check, Dot, Mail, UserLock, User } from 'lucide-vue-next';
-    import { FieldTitle, FieldDescription, FieldGroup } from '@/components/ui/field';
+    import { FieldGroup } from '@/components/ui/field';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
     import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '@/components/ui/pin-input';
     import { Spinner } from '@/components/ui/spinner';
-    import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
+    import { Stepper } from '@/components/ui/stepper';
     import { toTypedSchema } from '@vee-validate/zod';
     import { useCountdown } from '@vueuse/core';
     import { useForm } from 'vee-validate';
