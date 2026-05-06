@@ -93,12 +93,11 @@
 <script setup lang='ts'>
     import * as z from 'zod';
     import { Button } from '@/components/ui/button';
-    import { Check, Dot, Mail, User } from 'lucide-vue-next';
-    import { FieldDescription, FieldGroup, FieldTitle} from '@/components/ui/field';
+    import { FieldDescription, FieldGroup} from '@/components/ui/field';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
     import { Spinner } from '@/components/ui/spinner';
-    import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
+    import { Stepper } from '@/components/ui/stepper';
     import { toTypedSchema } from '@vee-validate/zod';
     
     // AuthStore
