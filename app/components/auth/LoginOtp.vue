@@ -12,9 +12,12 @@
         >
             <form
                 @submit.prevent='() => validate()'
-                class='flex flex-col gap-8'
+                class='flex flex-col'
             >
-                <div class='flex flex-col gap-6'>
+                <div
+                    class='flex flex-col'
+                    :class='{"gap-6" : step_index === 2}'
+                >
                     <!--   Stepper Title   -->
                     <div
                         v-for='step in steps'
@@ -101,7 +104,7 @@
                                             class='font-bold underline cursor-pointer'
                                         >Click to resend</span>
                                         
-                                        <span v-if='remaining !== 0'>&nbsp;{{ remaining }}s</span>
+0                                        <span v-if='remaining !== 0'>&nbsp;{{ remaining }}s</span>
                                     </div>
                                 
                                 </div>
