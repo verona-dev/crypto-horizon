@@ -35,7 +35,7 @@
                     />
                 </NuxtImg>
                 
-                <div class='flex flex-col w-full'>
+                <div class='flex flex-col w-full gap-8'>
                     <div v-if='first_step' class='flex flex-col items-center gap-2'>
                         <FieldTitle class='text-3xl font-bold'>Welcome!</FieldTitle>
                         <FieldDescription>Don’t have an account? <NuxtLink to='/register'>Register</NuxtLink></FieldDescription>
@@ -54,7 +54,7 @@
                 
                 <div
                     v-if='first_step'
-                    class='flex flex-col gap-8'
+                    class='flex flex-col gap-8 w-full'
                 >
                     <Field @click='onToggleSignupMode'>
                         <Button type='button' variant='link'>
@@ -64,7 +64,7 @@
                                     size='18'
                                 />
                             </Button>
-                            {{ is_otp_default ? 'Use password login instead' : 'Use OTP login instead' }}
+                            {{ is_otp_default ? 'Login with password' : 'Use OTP login instead' }}
                         </Button>
                     </Field>
                     
@@ -72,10 +72,12 @@
                     
                     <LoginOAuth />
                     
+                    <!--
                     <FieldDescription class='text-center'>
                         By clicking continue, you agree to our <a href='#'>Terms of Service</a>
                         and <a href='#'>Privacy Policy</a>.
                     </FieldDescription>
+                    -->
                 </div>
             </CardContent>
         </Card>
