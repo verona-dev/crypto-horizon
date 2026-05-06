@@ -99,9 +99,7 @@
                                         <span
                                             @click='onResendEmail(setFieldError)'
                                             class='font-bold underline cursor-pointer'
-                                        >
-                                            Click to resend
-                                        </span>
+                                        >Click to resend</span>
                                         
                                         <span v-if='remaining !== 0'>&nbsp;{{ remaining }}s</span>
                                     </div>
