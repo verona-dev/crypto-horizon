@@ -46,7 +46,7 @@
                         @otp-step-change='onOtpStepChange'
                     />
                     
-                    <RegisterForm
+                    <RegisterPassword
                         v-else
                         @password-step-change='onPasswordStepChange'
                     />
@@ -86,7 +86,7 @@
     import { Button } from '@/components/ui/button/index';
     import { Card, CardContent } from '~/components/ui/card';
     import { Field, FieldDescription, FieldSeparator, FieldTitle } from '@/components/ui/field/index';
-    import RegisterForm from '@/components/auth/RegisterForm.vue';
+    import RegisterPassword from '@/components/auth/RegisterPassword.vue';
     import RegisterOtp from '@/components/auth/RegisterOtp.vue';
     import LoginOAuth from '@/components/auth/LoginOAuth.vue';
     import { Skeleton } from '@/components/ui/skeleton/index';
