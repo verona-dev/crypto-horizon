@@ -13,7 +13,7 @@
         </section>
         
         <Card class='bg-card-dark p-8 w-full md:w-150 flex flex-col items-center border-none shadow-none'>
-            <CardContent class='w-full flex flex-col items-center justify-center gap-6'>
+            <CardContent class='w-full flex flex-col items-center justify-center gap-4'>
                 <!--  Logo  -->
                 <NuxtImg
                     src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
@@ -37,7 +37,7 @@
                 
                 <div class='flex flex-col w-full gap-8'>
                     <div v-if='first_step' class='flex flex-col items-center gap-2'>
-                        <FieldTitle class='text-3xl font-bold'>Welcome!</FieldTitle>
+                        <FieldTitle class='text-3xl font-bold'>Welcome</FieldTitle>
                         <FieldDescription>Don’t have an account? <NuxtLink to='/register'>Register</NuxtLink></FieldDescription>
                     </div>
                     
