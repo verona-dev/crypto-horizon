@@ -30,6 +30,7 @@
                     </div>
                     
                     <!--   Stepper Navigation  -->
+                    <!--
                     <div class='flex gap-2 my-4'>
                         <StepperItem
                             v-for='(step, index) in steps'
@@ -59,6 +60,7 @@
                             </StepperTrigger>
                         </StepperItem>
                     </div>
+                    -->
                     
                     <!--   Stepper Body   -->
                     <FieldGroup :class='{ "mx-auto" : step_index === 2}'>
