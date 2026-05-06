@@ -54,7 +54,7 @@
                 
                 <div
                     v-if='first_step'
-                    class='flex flex-col gap-8'
+                    class='flex flex-col gap-8 w-full'
                 >
                     <Field @click='onToggleSignupMode'>
                         <Button type='button' variant='link'>
@@ -64,7 +64,7 @@
                                     size='18'
                                 />
                             </Button>
-                            {{ is_otp_default ? 'Use registration with password instead' : 'Use OTP registration instead' }}
+                            {{ is_otp_default ? 'Register with password' : 'Use OTP registration instead' }}
                         </Button>
                     </Field>
                     
@@ -72,10 +72,12 @@
                     
                     <LoginOAuth />
                     
+                    <!--
                     <FieldDescription class='text-center'>
                         By clicking continue, you agree to our <a href='#'>Terms of Service</a>
                         and <a href='#'>Privacy Policy</a>.
                     </FieldDescription>
+                    -->
                 </div>
             </CardContent>
         </Card>
