@@ -57,13 +57,14 @@
                     class='flex flex-col gap-8 w-full'
                 >
                     <Field @click='onToggleSignupMode'>
-                        <Button type='button' variant='link'>
-                            <Button variant='ghost' size='icon'>
-                                <NuxtIcon
-                                    name='ph:arrows-left-right'
-                                    size='18'
-                                />
-                            </Button>
+                        <Button
+                            variant='ghost'
+                            size='lg'
+                        >
+                            <NuxtIcon
+                                name='ph:arrows-left-right'
+                                size='18'
+                            />
                             {{ is_otp_default ? 'Register with password' : 'Use OTP registration instead' }}
                         </Button>
                     </Field>
