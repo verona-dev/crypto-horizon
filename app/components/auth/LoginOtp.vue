@@ -14,9 +14,23 @@
                 @submit.prevent='() => validate()'
                 class='flex flex-col gap-8'
             >
-                <div class='flex flex-col gap-4'>
+                <div class='flex flex-col gap-6'>
+                    <!--   Stepper Title   -->
+                    <div
+                        v-for='step in steps'
+                        :key='step.step'
+                    >
+                        <div
+                            v-if='step_index === step.step'
+                            class='flex flex-col items-center gap-2'
+                        >
+                            <FieldTitle class='text-3xl font-bold' v-html='step.title'></FieldTitle>
+                            <FieldDescription v-if='step.description' v-html='step.description'></FieldDescription>
+                        </div>
+                    </div>
+                    
                     <!--   Stepper Body   -->
-                    <FieldGroup :class='{ "mx-auto" : step_index === 2}'>
+                    <FieldGroup :class='{ "mx-auto gap-10" : step_index === 2}'>
                         <!--  Step 1: Email input  -->
                         <template v-if='step_index === 1'>
                             <FormField
@@ -47,8 +61,8 @@
                         <!--  Step 2: OTP Pin Input  -->
                         <template v-if='step_index === 2'>
                             <FormField name='otp'>
-                                <FormItem>
-                                    <FormLabel>OTP</FormLabel>
+                                <FormItem class='flex flex-col gap-2'>
+                                    <FormLabel>Verification Code</FormLabel>
                                     
                                     <FormControl>
                                         <!--   OTP Pin Input   -->
@@ -57,15 +71,14 @@
                                             @complete='onVerifyOtp(setFieldError, nextStep)'
                                             id='pin-input'
                                             placeholder=''
-                                            class='flex flex-col items-start gap-6'
                                             otp
                                             required
                                             @vue:mounted='startCountdown'
                                         >
-                                            <PinInputGroup class='gap-1 mx-auto'>
+                                            <PinInputGroup class='gap-1'>
                                                 <template v-for='(id, index) in 8' :key='id'>
                                                     <PinInputSlot
-                                                        class='h-10 xl:h-12 w-10 xl:w-12 text-sm xl:text-xl font-bold font-satoshi rounded-md border'
+                                                        class='h-12 xl:h-14 w-10 xl:w-12 text-sm xl:text-xl font-bold font-satoshi rounded-md border'
                                                         :index='index'
                                                     />
                                                     <template v-if='index !== 7'>
@@ -73,21 +86,27 @@
                                                     </template>
                                                 </template>
                                             </PinInputGroup>
-                                            
-                                            <div class='text-sm'>
-                                                <span>Didn't get the email?&nbsp;</span>
-                                                <span
-                                                    @click='onResendEmail(setFieldError)'
-                                                    class='font-bold underline cursor-pointer'
-                                                >Click to resend</span>
-                                                
-                                                <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
-                                            </div>
                                         </PinInput>
                                     </FormControl>
                                     
                                     <FormMessage />
                                 </FormItem>
+                                
+                                <div class='flex flex-col gap-2 text-sm text-center text-muted-foreground w-full'>
+                                    <span>Didn't get the email?&nbsp;</span>
+                                    
+                                    <div>
+                                        <span
+                                            @click='onResendEmail(setFieldError)'
+                                            class='font-bold underline cursor-pointer'
+                                        >
+                                            Click to resend
+                                        </span>
+                                        
+                                        <span v-if='remaining !== 0'>&nbsp;{{ remaining }}s</span>
+                                    </div>
+                                
+                                </div>
                             </FormField>
                         </template>
                     </FieldGroup>
@@ -114,7 +133,7 @@
 <script setup lang='ts'>
     import * as z from 'zod';
     import { Button } from '@/components/ui/button';
-    import { FieldGroup } from '@/components/ui/field';
+    import { FieldGroup, FieldTitle, FieldDescription } from '@/components/ui/field';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
     import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '@/components/ui/pin-input';
@@ -174,6 +193,8 @@
             }, 5000);
             return false;
         }
+        
+        step_index.value = 2;
         
         nextStep && nextTick(() => nextStep());
         
