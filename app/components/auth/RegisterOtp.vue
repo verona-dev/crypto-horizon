@@ -14,7 +14,7 @@
                 @submit.prevent='() => validate()'
                 class='flex flex-col gap-8'
             >
-                <div class='flex flex-col gap-4'>
+                <div class='flex flex-col gap-6'>
                     <!--   Stepper Title   -->
                     <div
                         v-for='step in steps'
@@ -29,39 +29,8 @@
                         </div>
                     </div>
                     
-                    <!--   Stepper Navigation  -->
-                    <div class='flex gap-2 my-4'>
-                        <StepperItem
-                            v-for='(step, index) in steps'
-                            :key='step.step'
-                            v-slot='{ state }'
-                            class='relative flex w-full flex-col items-center justify-center'
-                            :step='step.step'
-                        >
-                            <StepperSeparator
-                                v-if='step.step !== steps[steps.length - 1]?.step'
-                                class='absolute left-[calc(50%+20px)] right-[calc(-50%+10px)] top-5 block h-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
-                            />
-                            
-                            <StepperTrigger as-child>
-                                <Button
-                                    :variant='state === "completed" || state === "active" ? "default" : "outline"'
-                                    size='icon'
-                                    class='z-10 rounded-full shrink-0'
-                                    :class='[state === "active" && "ring-2 ring-ring ring-offset-2 ring-offset-background"]'
-                                    :disabled="index >= (modelValue || 0)"
-                                >
-                                    <Check v-if='state === "completed"' class='size-5' />
-                                    <Mail v-if='state === "active" && step_index === 1' />
-                                    <UserLock v-if='state === "active" && step_index === 2' />
-                                    <Dot v-if='state === "inactive"' />
-                                </Button>
-                            </StepperTrigger>
-                        </StepperItem>
-                    </div>
-                    
                     <!--   Stepper Body   -->
-                    <FieldGroup :class='{ "mx-auto" : step_index === 2}'>
+                    <FieldGroup :class='{ "mx-auto gap-10" : step_index === 2}'>
                         <!--  Step 1: Email input  -->
                         <template v-if='step_index === 1'>
                             <FormField
@@ -78,7 +47,7 @@
                                         <Input
                                             v-bind='componentField'
                                             type='email'
-                                            placeholder='name@example.com'
+                                            placeholder='Enter your email'
                                             class='dark:bg-blue-bunker/75'
                                             required
                                         />
@@ -93,14 +62,17 @@
                         <template v-if='step_index === 2'>
                             <VerificationSent @vue:mounted='startCountdown' />
                             
-                            <div class='text-sm mx-auto my-2'>
+                            <div class='flex flex-col gap-2 text-sm text-center text-muted-foreground'>
                                 <span>Didn't get the email?&nbsp;</span>
-                                <span
-                                    @click='onResendEmail'
-                                    class='font-bold underline cursor-pointer'
-                                >Click to resend</span>
                                 
-                                <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
+                                <div>
+                                    <span
+                                        @click='onResendEmail'
+                                        class='font-bold underline cursor-pointer'
+                                    >Resend code</span>
+                                    
+                                    <span v-if='remaining !== 0'>&nbsp;{{ remaining }}s</span>
+                                </div>
                             </div>
                         </template>
                     </FieldGroup>
@@ -127,13 +99,12 @@
 <script setup lang='ts'>
     import * as z from 'zod';
     import { Button } from '@/components/ui/button';
-    import { Check, Dot, Mail, UserLock } from 'lucide-vue-next';
     import { FieldTitle, FieldDescription, FieldGroup } from '@/components/ui/field';
     import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
     import { toTypedSchema } from '@vee-validate/zod';
     import { Spinner } from '@/components/ui/spinner';
-    import { Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@/components/ui/stepper';
+    import { Stepper } from '@/components/ui/stepper';
     import { useCountdown } from '@vueuse/core';
     import VerificationSent from '@/components/auth/VerificationSent.vue';
     
@@ -164,7 +135,7 @@
         {
             step: 2,
             title: 'Verify Your Account',
-            description: 'Link sent!',
+            description: '',
         },
     ];
     
@@ -182,6 +153,8 @@
             }, 5000);
             return;
         }
+        
+        step_index.value = 2;
         
         nextStep && nextTick(() => nextStep());
     };

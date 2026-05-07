@@ -13,7 +13,7 @@
         </section>
         
         <Card class='bg-card-dark p-8 w-full md:w-150 flex flex-col items-center border-none shadow-none'>
-            <CardContent class='w-full flex flex-col items-center justify-center gap-6'>
+            <CardContent class='w-full flex flex-col items-center justify-center gap-4'>
                 <!--  Logo  -->
                 <NuxtImg
                     src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
@@ -37,7 +37,7 @@
                 
                 <div class='flex flex-col w-full'>
                     <div v-if='first_step' class='flex flex-col items-center gap-2'>
-                        <FieldTitle class='text-3xl font-bold'>Welcome!</FieldTitle>
+                        <FieldTitle class='text-3xl font-bold'>Welcome</FieldTitle>
                         <FieldDescription>Already have an account? <NuxtLink to="/login">Login</NuxtLink></FieldDescription>
                     </div>
                     
@@ -46,7 +46,7 @@
                         @otp-step-change='onOtpStepChange'
                     />
                     
-                    <Register
+                    <RegisterPassword
                         v-else
                         @password-step-change='onPasswordStepChange'
                     />
@@ -54,17 +54,18 @@
                 
                 <div
                     v-if='first_step'
-                    class='flex flex-col gap-8'
+                    class='flex flex-col gap-8 w-full'
                 >
                     <Field @click='onToggleSignupMode'>
-                        <Button type='button' variant='link'>
-                            <Button variant='ghost' size='icon'>
-                                <NuxtIcon
-                                    name='ph:arrows-left-right'
-                                    size='18'
-                                />
-                            </Button>
-                            {{ is_otp_default ? 'Use registration with password instead' : 'Use OTP registration instead' }}
+                        <Button
+                            variant='ghost'
+                            size='lg'
+                        >
+                            <NuxtIcon
+                                name='ph:arrows-left-right'
+                                size='18'
+                            />
+                            {{ is_otp_default ? 'Register with password' : 'Use OTP registration instead' }}
                         </Button>
                     </Field>
                     
@@ -72,10 +73,12 @@
                     
                     <LoginOAuth />
                     
+                    <!--
                     <FieldDescription class='text-center'>
                         By clicking continue, you agree to our <a href='#'>Terms of Service</a>
                         and <a href='#'>Privacy Policy</a>.
                     </FieldDescription>
+                    -->
                 </div>
             </CardContent>
         </Card>
@@ -86,7 +89,7 @@
     import { Button } from '@/components/ui/button/index';
     import { Card, CardContent } from '~/components/ui/card';
     import { Field, FieldDescription, FieldSeparator, FieldTitle } from '@/components/ui/field/index';
-    import Register from '@/components/auth/Register.vue';
+    import RegisterPassword from '@/components/auth/RegisterPassword.vue';
     import RegisterOtp from '@/components/auth/RegisterOtp.vue';
     import LoginOAuth from '@/components/auth/LoginOAuth.vue';
     import { Skeleton } from '@/components/ui/skeleton/index';
