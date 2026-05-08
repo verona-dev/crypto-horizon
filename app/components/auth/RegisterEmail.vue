@@ -1,6 +1,6 @@
 <template>
     <Form
-        v-slot='{ meta, validate, setFieldError }'
+        v-slot='{ meta, validate }'
         as=''
         keep-values
         :validation-schema='validation_schema'
@@ -67,9 +67,9 @@
                                 
                                 <div>
                                     <span
-                                        @click='onResendEmail'
+                                        @click='onResendEmail()'
                                         class='font-bold underline cursor-pointer'
-                                    >Resend code</span>
+                                    >Resend email</span>
                                     
                                     <span v-if='remaining !== 0'>&nbsp;{{ remaining }}s</span>
                                 </div>
@@ -81,7 +81,7 @@
                 <!--   Stepper Buttons   -->
                 <template v-if='step_index === 1'>
                     <Button
-                        @click='onCreateAccount(setFieldError, nextStep)'
+                        @click='onCreateAccount(nextStep)'
                         :type='meta.valid ? "button" : "submit"'
                         class='w-full disabled:opacity-75'
                         size='lg'
@@ -105,6 +105,7 @@
     import { toTypedSchema } from '@vee-validate/zod';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper } from '@/components/ui/stepper';
+    import { toast } from 'vue-sonner';
     import { useCountdown } from '@vueuse/core';
     import VerificationSent from '@/components/auth/VerificationSent.vue';
     
@@ -142,28 +143,28 @@
     // Email
     const email = ref('');
     
-    const onCreateAccount = async(setFieldError: any, nextStep: any) => {
+    const onCreateAccount = async(nextStep: any) => {
         const { error } = await loginOtp(email.value);
         
         if (error) {
-            console.log(error)
-            setFieldError('email', `${error.message}`);
-            setTimeout(() => {
-                setFieldError('email', '');
-            }, 5000);
-            return;
+            return toast.error(error.message);
         }
         
         step_index.value = 2;
-        
         nextStep && nextTick(() => nextStep());
     };
     
     const onResendEmail = async() => {
         // Supabase resend-registration uses the same route for otp register/login
         const { error } = await loginOtp(email.value);
-        if (error) return;
-        startCountdown();
+        
+        if (error) {
+            return toast.error(error.message);
+        };
+        
+        if(!error) {
+            startCountdown();
+        }
     };
     
     // Countdown
