@@ -65,7 +65,7 @@
                                 name='ph:arrows-left-right'
                                 size='18'
                             />
-                            {{ is_otp_default ? 'Register with password' : 'Use OTP registration instead' }}
+                            {{ is_otp_default ? 'Register with password' : 'Use email registration instead' }}
                         </Button>
                     </Field>
                     
