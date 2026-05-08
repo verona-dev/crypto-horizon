@@ -1,5 +1,5 @@
 <template>
-    <div class='news-outlets page'>
+    <div class='page'>
         <LoadingSpinner v-if='loading' />
         
         <div
