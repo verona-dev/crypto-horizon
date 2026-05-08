@@ -158,6 +158,7 @@
         }
         
         current_step.value = 2;
+        
         nextStep && nextTick(() => nextStep());
     };
     
