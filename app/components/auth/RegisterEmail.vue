@@ -58,7 +58,7 @@
                             </FormField>
                         </template>
                         
-                        <!--  Step 2: Verify your account -->
+                        <!--   Resend email   -->
                         <template v-if='step_index === 2'>
                             <VerificationSent @vue:mounted='startCountdown' />
                             
@@ -81,7 +81,7 @@
                 <!--   Stepper Buttons   -->
                 <template v-if='step_index === 1'>
                     <Button
-                        @click='() => onCreateAccount(setFieldError, nextStep)'
+                        @click='onCreateAccount(setFieldError, nextStep)'
                         :type='meta.valid ? "button" : "submit"'
                         class='w-full disabled:opacity-75'
                         size='lg'

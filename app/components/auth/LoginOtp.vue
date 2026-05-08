@@ -12,7 +12,7 @@
         >
             <form
                 @submit.prevent='() => validate()'
-                class='flex flex-col'
+                class='flex flex-col gap-8'
             >
                 <div
                     class='flex flex-col'
@@ -95,6 +95,7 @@
                                     <FormMessage />
                                 </FormItem>
                                 
+                                <!--   Resend email   -->
                                 <div class='flex flex-col gap-2 text-sm text-center text-muted-foreground w-full'>
                                     <span>Didn't get the email?&nbsp;</span>
                                     
@@ -104,7 +105,7 @@
                                             class='font-bold underline cursor-pointer'
                                         >Click to resend</span>
                                         
-0                                        <span v-if='remaining !== 0'>&nbsp;{{ remaining }}s</span>
+                                        <span v-if='remaining !== 0'>&nbsp;{{ remaining }}s</span>
                                     </div>
                                 
                                 </div>
