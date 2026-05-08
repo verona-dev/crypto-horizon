@@ -4,7 +4,10 @@
         
         <NuxtLayout>
             <NuxtPage />
-            <Toaster position='top-center' />
+            <Toaster
+                position='top-center'
+                :expand='true'
+            />
         </NuxtLayout>
     </div>
 </template>
