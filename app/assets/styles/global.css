@@ -53,7 +53,7 @@
     }
     
     .page {
-        @apply w-full max-w-screen-2xl mt-8 xl:mt-12 xl:mb-36 px-6 md:px-12 xl:px-24 flex flex-col items-center justify-center relative;
+        @apply flex flex-col justify-center items-center w-screen min-h-[calc(100vh-6rem)] relative p-12 md:py-24 md:px-42;
     }
     
     [data-slot='sidebar-wrapper'] {
