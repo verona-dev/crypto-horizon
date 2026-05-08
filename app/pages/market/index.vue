@@ -1,5 +1,5 @@
 <template>
-    <div class='page md:max-w-[1920px]'>
+    <div class='page'>
         <CoinsTable />
     </div>
 </template>
