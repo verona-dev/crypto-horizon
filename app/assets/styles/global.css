@@ -150,10 +150,10 @@
     }
     
     [data-sonner-toast] {
-        @apply !bg-popover-foreground dark:!bg-popover !text-background dark:!text-foreground !border-border;
+        /*@apply !bg-popover-foreground dark:!bg-popover !text-background dark:!text-foreground !border-border;*/
         
         button {
-            @apply !bg-background dark:!bg-foreground !text-foreground dark:!text-background;
+            /*@apply !bg-background dark:!bg-foreground !text-foreground dark:!text-background;*/
         }
         
         span:not(.iconify) {
