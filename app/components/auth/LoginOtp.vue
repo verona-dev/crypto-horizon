@@ -1,13 +1,13 @@
 <template>
     <Form
-        v-slot='{ meta, validate, setFieldError }'
+        v-slot='{ meta, validate }'
         as=''
         keep-values
         :validation-schema='validation_schema'
     >
         <Stepper
             v-slot='{ nextStep, modelValue }'
-            v-model='step_index'
+            v-model='current_step'
             class='block'
         >
             <form
@@ -16,7 +16,7 @@
             >
                 <div
                     class='flex flex-col'
-                    :class='{"gap-6" : step_index === 2}'
+                    :class='{"gap-6" : current_step === 2}'
                 >
                     <!--   Stepper Title   -->
                     <div
@@ -24,7 +24,7 @@
                         :key='step.step'
                     >
                         <div
-                            v-if='step_index === step.step'
+                            v-if='current_step === step.step'
                             class='flex flex-col items-center gap-2'
                         >
                             <FieldTitle class='text-3xl font-bold' v-html='step.title'></FieldTitle>
@@ -33,9 +33,9 @@
                     </div>
                     
                     <!--   Stepper Body   -->
-                    <FieldGroup :class='{ "mx-auto gap-10" : step_index === 2}'>
+                    <FieldGroup :class='{ "mx-auto gap-10" : current_step === 2}'>
                         <!--  Step 1: Email input  -->
-                        <template v-if='step_index === 1'>
+                        <template v-if='current_step === 1'>
                             <FormField
                                 v-slot='{ componentField }'
                                 v-model='email'
@@ -55,30 +55,28 @@
                                             required
                                         />
                                     </FormControl>
-                                    
-                                    <FormMessage />
                                 </FormItem>
                             </FormField>
                         </template>
                         
                         <!--  Step 2: OTP Pin Input  -->
-                        <template v-if='step_index === 2'>
+                        <template v-if='current_step === 2'>
                             <FormField name='otp'>
                                 <FormItem class='flex flex-col gap-2'>
                                     <FormLabel>Verification Code</FormLabel>
                                     
-                                    <FormControl>
+                                    <FormControl class=''>
                                         <!--   OTP Pin Input   -->
                                         <PinInput
                                             v-model='otp_input'
-                                            @complete='onVerifyOtp(setFieldError, nextStep)'
+                                            @complete='onVerifyOtp(nextStep)'
                                             id='pin-input'
                                             placeholder=''
                                             otp
                                             required
                                             @vue:mounted='startCountdown'
                                         >
-                                            <PinInputGroup class='gap-1'>
+                                            <PinInputGroup class='gap-1 w-full justify-between'>
                                                 <template v-for='(id, index) in 8' :key='id'>
                                                     <PinInputSlot
                                                         class='h-12 xl:h-14 w-10 xl:w-12 text-sm xl:text-xl font-bold font-satoshi rounded-md border'
@@ -91,8 +89,6 @@
                                             </PinInputGroup>
                                         </PinInput>
                                     </FormControl>
-                                    
-                                    <FormMessage />
                                 </FormItem>
                                 
                                 <!--   Resend email   -->
@@ -101,7 +97,7 @@
                                     
                                     <div>
                                         <span
-                                            @click='onResendEmail(setFieldError)'
+                                            @click='onResendEmail()'
                                             class='font-bold underline cursor-pointer'
                                         >Click to resend</span>
                                         
@@ -110,14 +106,22 @@
                                 
                                 </div>
                             </FormField>
+                            
+                            <Button
+                                variant='link'
+                                size='sm'
+                                @click='current_step = 1'
+                            >
+                               Back
+                            </Button>
                         </template>
                     </FieldGroup>
                 </div>
                 
                 <!--   Stepper Buttons   -->
-                <template v-if='step_index === 1'>
+                <template v-if='current_step === 1'>
                     <Button
-                        @click='onLogin(setFieldError, nextStep)'
+                        @click='onLogin(nextStep)'
                         :type='meta.valid ? "button" : "submit"'
                         class='w-full disabled:opacity-75'
                         size='lg'
@@ -136,14 +140,14 @@
     import * as z from 'zod';
     import { Button } from '@/components/ui/button';
     import { FieldGroup, FieldTitle, FieldDescription } from '@/components/ui/field';
-    import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
+    import { Form, FormControl, FormField, FormLabel, FormItem } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
     import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '@/components/ui/pin-input';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper } from '@/components/ui/stepper';
+    import { toast } from 'vue-sonner';
     import { toTypedSchema } from '@vee-validate/zod';
     import { useCountdown } from '@vueuse/core';
-    import { useForm } from 'vee-validate';
     
     // AuthStore
     import { storeToRefs } from 'pinia';
@@ -159,9 +163,9 @@
         })
     );
     
-    const step_index = ref(1);
+    const current_step = ref(1);
     const emit = defineEmits(['otpStepChange']);
-    watch(step_index, () => emit('otpStepChange', step_index.value));
+    watch(current_step, () => emit('otpStepChange', current_step.value));
     const steps = [
         {
             step: 1,
@@ -181,39 +185,26 @@
     ];
     
     // Email
-    const { setFieldError } = useForm();
     const email = ref('');
     
-    const onLogin = async(setFieldError: any, nextStep: any) => {
+    const onLogin = async(nextStep: any) => {
         const { error } = await loginOtp(email.value);
         
         if (error) {
-            console.log(error)
-            setFieldError('email', `${error.message}`);
-            setTimeout(() => {
-                setFieldError('email', '');
-            }, 5000);
-            return false;
+            return toast.error(error.message);
         }
         
-        step_index.value = 2;
+        current_step.value = 2;
         
         nextStep && nextTick(() => nextStep());
-        
-        return true;
     };
     
-    const onResendEmail = async(setFieldError: any) => {
+    const onResendEmail = async() => {
         // Supabase resend-code uses the same route for otp register/login
         const { error } = await loginOtp(email.value);
         
         if (error) {
-            // set the field error to "otp" since we are on step-2 (otp fields)
-            setFieldError('otp', `Resend failed: ${error.message}`);
-            setTimeout(() => {
-                setFieldError('otp', '');
-            }, 10000);
-            return;
+            return toast.error(error.message);
         }
         
         startCountdown();
@@ -222,15 +213,11 @@
     // OTP
     const otp_input = ref([]);
     
-    const onVerifyOtp = async(setFieldError: any, nextStep:any) => {
+    const onVerifyOtp = async(nextStep:any) => {
         const joined_otp_input = otp_input.value?.join('');
         const result = await verifyOtp({ email: email.value, token: joined_otp_input});
         
         if(result?.error) {
-            setFieldError('otp', `Verification failed: ${result.error.message}`);
-            setTimeout(() => {
-                setFieldError('otp', '');
-            }, 5000);
             return;
         }
         
@@ -254,7 +241,5 @@
     
     const resetState = () => {
         otp_input.value = [];
-        setFieldError('email', '');
-        setFieldError('otp', '');
     };
 </script>
