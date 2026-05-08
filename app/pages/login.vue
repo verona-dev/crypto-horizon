@@ -1,5 +1,5 @@
 <template>
-    <div class='page'>
+    <div class='page p-0'>
         <section class='absolute inset-0 h-screen w-screen'>
             <SnowfallBg
                 v-if='dark_mode'
@@ -35,7 +35,7 @@
                     />
                 </NuxtImg>
                 
-                <div class='flex flex-col w-full gap-8'>
+                <div class='flex flex-col w-full gap-12'>
                     <div v-if='first_step' class='flex flex-col items-center gap-2'>
                         <FieldTitle class='text-3xl font-bold'>Welcome</FieldTitle>
                         <FieldDescription>Don’t have an account? <NuxtLink to='/register'>Register</NuxtLink></FieldDescription>
@@ -58,7 +58,7 @@
                 >
                     <Field @click='onToggleSignupMode'>
                         <Button
-                            variant='ghost'
+                            variant='link'
                             size='lg'
                         >
                             <NuxtIcon

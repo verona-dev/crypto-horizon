@@ -1,5 +1,5 @@
 <template>
-    <div class='page'>
+    <div class='page p-0'>
         <section class='absolute inset-0 h-screen w-screen'>
             <SnowfallBg
                 v-if='dark_mode'
@@ -58,7 +58,7 @@
                 >
                     <Field @click='onToggleSignupMode'>
                         <Button
-                            variant='ghost'
+                            variant='link'
                             size='lg'
                         >
                             <NuxtIcon
