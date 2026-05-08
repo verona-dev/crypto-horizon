@@ -2,6 +2,7 @@
 @import '@fontsource-variable/montserrat';
 @import '@fontsource/metropolis';
 @import '@fontsource-variable/work-sans';
+@reference "tailwindcss";
 
 @layer base {
     @font-face {
@@ -53,7 +54,7 @@
     }
     
     .page {
-        @apply flex flex-col justify-center items-center w-screen min-h-[calc(100vh-6rem)] relative p-12 md:py-24 md:px-42;
+        @apply flex flex-col justify-center items-center w-screen md:max-w-[1920px] min-h-[calc(100vh-24rem)] relative p-12 md:py-24 md:px-42;
     }
     
     [data-slot='sidebar-wrapper'] {
