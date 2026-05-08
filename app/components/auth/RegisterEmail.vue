@@ -73,6 +73,7 @@
                                 </div>
                             </div>
                             
+                            <!--   Back button   -->
                             <Button
                                 variant='link'
                                 size='sm'
@@ -157,6 +158,7 @@
         }
         
         current_step.value = 2;
+        
         nextStep && nextTick(() => nextStep());
     };
     

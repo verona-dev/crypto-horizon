@@ -91,6 +91,18 @@
                                     </FormControl>
                                 </FormItem>
                                 
+                                <Button
+                                    v-if='current_step === 2'
+                                    @click='onVerifyOtp(nextStep)'
+                                    :type='meta.valid ? "button" : "submit"'
+                                    class='w-full disabled:opacity-75'
+                                    size='lg'
+                                    :disabled='disabled_otp_input'
+                                >
+                                    <Spinner v-if='loading' class='animate-spin' />
+                                    <span>Continue</span>
+                                </Button>
+                                
                                 <!--   Resend email   -->
                                 <div class='flex flex-col gap-2 text-sm text-center text-muted-foreground w-full'>
                                     <span>Didn't get the email?&nbsp;</span>
@@ -107,13 +119,21 @@
                                 </div>
                             </FormField>
                             
+                            <!--   Back button   -->
                             <Button
                                 variant='link'
                                 size='sm'
                                 @click='current_step = 1'
                             >
-                               Back
+                                Back
                             </Button>
+                        </template>
+                        
+                        <!--  Step 3: Logged In  -->
+                        <template v-if='current_step === 3'>
+                            <p class='text-center mt-6'>
+                                Redirecting to your profile.
+                            </p>
                         </template>
                     </FieldGroup>
                 </div>
@@ -212,19 +232,23 @@
     
     // OTP
     const otp_input = ref([]);
+    const disabled_otp_input = computed(() => (otp_input.value.length < 8));
     
     const onVerifyOtp = async(nextStep:any) => {
         const joined_otp_input = otp_input.value?.join('');
-        const result = await verifyOtp({ email: email.value, token: joined_otp_input});
+        const { data, error } = await verifyOtp({ email: email.value, token: joined_otp_input});
         
-        if(result?.error) {
-            return;
+        if(error) {
+            return toast.error(error.message || "Verification failed");
         }
         
-        if(result?.data?.session?.access_token) {
+        if(data?.session?.access_token) {
+            current_step.value = 3;
+            
             setTimeout(() => {
                 onLoggedIn();
             }, 5000);
+            
             nextStep && nextTick(() => nextStep());
         }
     };

@@ -1,6 +1,6 @@
 <template>
     <Form
-        v-slot='{ meta, validate, setFieldError }'
+        v-slot='{ meta, validate }'
         as=''
         keep-values
         :validation-schema='validation_schema'
@@ -94,13 +94,22 @@
                             
                             <span v-if='remaining !== 0'>&nbsp;available in {{ remaining }}.</span>
                         </div>
+                        
+                        <!--   Back button   -->
+                        <Button
+                            variant='link'
+                            size='sm'
+                            @click='current_step = 1'
+                        >
+                            Back
+                        </Button>
                     </template>
                 </FieldGroup>
                 
                 <!--   Stepper Buttons   -->
                 <template v-if='step_index === 1'>
                     <Button
-                        @click='onCreateAccount(setFieldError, nextStep)'
+                        @click='onCreateAccount(nextStep)'
                         :type='meta.valid ? "button" : "submit"'
                         class='w-full dark:disabled:opacity-75'
                         size='lg'
@@ -123,6 +132,7 @@
     import { Input } from '@/components/ui/input';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper } from '@/components/ui/stepper';
+    import { toast } from 'vue-sonner';
     import { toTypedSchema } from '@vee-validate/zod';
     import { useCountdown } from '@vueuse/core';
     import VerificationSent from '@/components/auth/VerificationSent.vue';
@@ -164,18 +174,14 @@
     // Password
     const password = ref('');
     
-    const onCreateAccount = async(setFieldError: any, nextStep: any) => {
+    const onCreateAccount = async(nextStep: any) => {
         const { error } = await register({
             email: email.value,
             password: password.value
         });
         
         if(error) {
-            setFieldError('email', `${error.message}`);
-            setTimeout(() => {
-                setFieldError('email', '');
-            }, 5000);
-            return;
+            return toast.error(error.message);
         }
         
         nextStep && nextTick(() => nextStep());
@@ -183,7 +189,11 @@
     
     const onResendEmail = async() => {
         const { error } = await resendEmail(email.value);
-        if (error) return;
+        
+        if (error) {
+            return toast.error(error.message);
+        }
+        
         startCountdown();
     };
     

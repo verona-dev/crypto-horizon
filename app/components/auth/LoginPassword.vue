@@ -1,6 +1,6 @@
 <template>
     <Form
-        v-slot='{ meta, validate, setFieldError }'
+        v-slot='{ meta, validate }'
         as=''
         keep-values
         :validation-schema='validation_schema'
@@ -75,7 +75,7 @@
                 <!--   Stepper Buttons   -->
                 <template v-if='step_index === 1'>
                     <Button
-                        @click='onLogin(setFieldError, nextStep)'
+                        @click='onLogin(nextStep)'
                         :type='meta.valid ? "button" : "submit"'
                         class='w-full dark:disabled:opacity-75'
                         size='lg'
@@ -98,6 +98,7 @@
     import { Input } from '@/components/ui/input';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper } from '@/components/ui/stepper';
+    import { toast } from 'vue-sonner';
     import { toTypedSchema } from '@vee-validate/zod';
     
     // AuthStore
@@ -141,18 +142,14 @@
     // Password
     const password = ref('');
     
-    const onLogin = async(setFieldError: any, nextStep: any) => {
+    const onLogin = async(nextStep: any) => {
         const { data, error } = await loginPassword({
             email: email.value,
             password: password.value
         });
         
         if(error) {
-            setFieldError('email', `${error.message}`);
-            setTimeout(() => {
-                setFieldError('email', '');
-            }, 5000);
-            return;
+            return toast.error(error.message);
         }
         
         if(data?.session?.access_token) {

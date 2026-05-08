@@ -147,6 +147,8 @@ export const useAuthStore = defineStore('AuthStore', {
             const ProfileStore = useProfileStore();
             
             try {
+                this.loading = true;
+                
                 const { data, error } = await $fetch('/api/supabase/auth/verify-otp', {
                     method: 'POST',
                     body: payload,
@@ -158,9 +160,11 @@ export const useAuthStore = defineStore('AuthStore', {
                     await ProfileStore.getProfile();
                 }
                 
-                return { data, error };
+                return { data, error: null };
             } catch(error) {
+                this.loading = false;
                 console.error(error);
+                return { data: null, error };
             }
         },
         
