@@ -1,5 +1,5 @@
 <template>
-    <div class='page'>
+    <div class='page p-0'>
         <section class='absolute inset-0 h-screen w-screen'>
             <SnowfallBg
                 v-if='dark_mode'
@@ -41,7 +41,7 @@
                         <FieldDescription>Already have an account? <NuxtLink to="/login">Login</NuxtLink></FieldDescription>
                     </div>
                     
-                    <RegisterOtp
+                    <RegisterEmail
                         v-if='is_otp_default'
                         @otp-step-change='onOtpStepChange'
                     />
@@ -58,14 +58,14 @@
                 >
                     <Field @click='onToggleSignupMode'>
                         <Button
-                            variant='ghost'
+                            variant='link'
                             size='lg'
                         >
                             <NuxtIcon
                                 name='ph:arrows-left-right'
                                 size='18'
                             />
-                            {{ is_otp_default ? 'Register with password' : 'Use OTP registration instead' }}
+                            {{ is_otp_default ? 'Register with password' : 'Use email registration instead' }}
                         </Button>
                     </Field>
                     
@@ -90,7 +90,7 @@
     import { Card, CardContent } from '~/components/ui/card';
     import { Field, FieldDescription, FieldSeparator, FieldTitle } from '@/components/ui/field/index';
     import RegisterPassword from '@/components/auth/RegisterPassword.vue';
-    import RegisterOtp from '@/components/auth/RegisterOtp.vue';
+    import RegisterEmail from '@/components/auth/RegisterEmail.vue';
     import LoginOAuth from '@/components/auth/LoginOAuth.vue';
     import { Skeleton } from '@/components/ui/skeleton/index';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';

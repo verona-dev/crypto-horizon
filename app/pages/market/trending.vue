@@ -1,5 +1,5 @@
 <template>
-    <div class='trending page gap-60'>
+    <div class='page gap-60'>
         <TrendingCoinsCarousel
             v-if='trending_coins'
             :coins='trending_coins'

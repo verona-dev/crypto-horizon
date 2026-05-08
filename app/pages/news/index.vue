@@ -1,5 +1,5 @@
 <template>
-    <div class='news page'>
+    <div class='page'>
         <div v-if='!dark_mode' class='h-[450px]'>
             <div class='h-[350px] flex items-center'>
                 <h1 class='page-title'>{{ page_title }}</h1>

@@ -1,5 +1,5 @@
 <template>
-    <div class='page'>
+    <div class='page p-0'>
         <section class='absolute inset-0 h-screen w-screen'>
             <SnowfallBg
                 v-if='dark_mode'
@@ -12,7 +12,7 @@
             />
         </section>
         
-        <Card class='bg-card-dark p-8 w-full md:w-150 flex flex-col items-center border-none shadow-none'>
+        <Card class='bg-card-dark md:p-8 w-full md:w-150 flex flex-col items-center border-none shadow-none'>
             <CardContent class='w-full flex flex-col items-center justify-center gap-4'>
                 <!--  Logo  -->
                 <NuxtImg
@@ -35,7 +35,7 @@
                     />
                 </NuxtImg>
                 
-                <div class='flex flex-col w-full gap-8'>
+                <div class='flex flex-col w-full gap-12'>
                     <div v-if='first_step' class='flex flex-col items-center gap-2'>
                         <FieldTitle class='text-3xl font-bold'>Welcome</FieldTitle>
                         <FieldDescription>Don’t have an account? <NuxtLink to='/register'>Register</NuxtLink></FieldDescription>
@@ -58,7 +58,7 @@
                 >
                     <Field @click='onToggleSignupMode'>
                         <Button
-                            variant='ghost'
+                            variant='link'
                             size='lg'
                         >
                             <NuxtIcon
