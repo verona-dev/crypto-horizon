@@ -7,7 +7,7 @@
     >
         <Stepper
             v-slot='{ nextStep, modelValue }'
-            v-model='step_index'
+            v-model='current_step'
             class='block'
         >
             <form
@@ -21,7 +21,7 @@
                         :key='step.step'
                     >
                         <div
-                            v-if='step_index === step.step'
+                            v-if='current_step === step.step'
                             class='flex flex-col items-center gap-2'
                         >
                             <FieldTitle class='text-3xl font-bold' v-html='step.title'></FieldTitle>
@@ -30,9 +30,9 @@
                     </div>
                     
                     <!--   Stepper Body   -->
-                    <FieldGroup :class='{ "mx-auto gap-10" : step_index === 2}'>
+                    <FieldGroup :class='{ "mx-auto gap-10" : current_step === 2}'>
                         <!--  Step 1: Email input  -->
-                        <template v-if='step_index === 1'>
+                        <template v-if='current_step === 1'>
                             <FormField
                                 v-slot='{ componentField }'
                                 v-model='email'
@@ -52,14 +52,12 @@
                                             required
                                         />
                                     </FormControl>
-                                    
-                                    <FormMessage />
                                 </FormItem>
                             </FormField>
                         </template>
                         
                         <!--   Resend email   -->
-                        <template v-if='step_index === 2'>
+                        <template v-if='current_step === 2'>
                             <VerificationSent @vue:mounted='startCountdown' />
                             
                             <div class='flex flex-col gap-2 text-sm text-center text-muted-foreground'>
@@ -74,12 +72,20 @@
                                     <span v-if='remaining !== 0'>&nbsp;{{ remaining }}s</span>
                                 </div>
                             </div>
+                            
+                            <Button
+                                variant='link'
+                                size='sm'
+                                @click='current_step = 1'
+                            >
+                                Back
+                            </Button>
                         </template>
                     </FieldGroup>
                 </div>
                 
                 <!--   Stepper Buttons   -->
-                <template v-if='step_index === 1'>
+                <template v-if='current_step === 1'>
                     <Button
                         @click='onCreateAccount(nextStep)'
                         :type='meta.valid ? "button" : "submit"'
@@ -100,7 +106,7 @@
     import * as z from 'zod';
     import { Button } from '@/components/ui/button';
     import { FieldTitle, FieldDescription, FieldGroup } from '@/components/ui/field';
-    import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
+    import { Form, FormControl, FormField, FormLabel, FormItem } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
     import { toTypedSchema } from '@vee-validate/zod';
     import { Spinner } from '@/components/ui/spinner';
@@ -123,9 +129,9 @@
         })
     );
     
-    const step_index = ref(1);
+    const current_step = ref(1);
     const emit = defineEmits(['otpStepChange']);
-    watch(step_index, () => emit('otpStepChange', step_index.value));
+    watch(current_step, () => emit('otpStepChange', current_step.value));
     
     const steps = [
         {
@@ -150,7 +156,7 @@
             return toast.error(error.message);
         }
         
-        step_index.value = 2;
+        current_step.value = 2;
         nextStep && nextTick(() => nextStep());
     };
     
@@ -162,9 +168,7 @@
             return toast.error(error.message);
         };
         
-        if(!error) {
-            startCountdown();
-        }
+        startCountdown();
     };
     
     // Countdown
