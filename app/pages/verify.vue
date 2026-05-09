@@ -15,7 +15,6 @@
             
             <NuxtLink to='/profile'>
                 <Button variant='outline' size='lg' class='w-42'>Profile</Button>
-            
             </NuxtLink>
         </div>
     </div>
@@ -33,5 +32,11 @@
         middleware: 'verify',
     });
     
-    onMounted(async() => await getProfile());
+    onMounted(() => {
+        getProfile();
+        
+        setTimeout(() => {
+            navigateTo('/market')
+        }, 5000);
+    });
 </script>
