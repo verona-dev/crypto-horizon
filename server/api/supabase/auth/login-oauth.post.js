@@ -1,7 +1,7 @@
 import { serverSupabaseClient } from '#supabase/server';
 
 export default defineEventHandler(async(event) => {
-    const client = await serverSupabaseClient(event);
+    const supabase = await serverSupabaseClient(event);
     const body = await readBody(event);
     const { provider } = body;
     
@@ -13,8 +13,11 @@ export default defineEventHandler(async(event) => {
     }
     
     try {
-        const { data, error } = await client.auth.signInWithOAuth({
+        const { data, error } = await supabase.auth.signInWithOAuth({
             provider,
+            options: {
+                redirectTo: 'https://oqnuuqvoiolgpdpkhyby.supabase.co/auth/v1/callback',
+            }
         });
         
         if(error) {
