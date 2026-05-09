@@ -32,8 +32,8 @@
         middleware: 'verify',
     });
     
-    onMounted(() => {
-        getProfile();
+    onMounted(async() => {
+        await getProfile();
         
         setTimeout(() => {
             navigateTo('/market')
