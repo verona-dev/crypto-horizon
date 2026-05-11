@@ -7,7 +7,7 @@
     >
         <Stepper
             v-slot='{ nextStep, modelValue }'
-            v-model='step_index'
+            v-model='current_step'
             class='block'
         >
             <form
@@ -17,7 +17,7 @@
                 <!--   Stepper Body   -->
                 <FieldGroup>
                     <!--  Step 1: Email input  -->
-                    <template v-if='step_index === 1'>
+                    <template v-if='current_step === 1'>
                         <FormField
                             v-slot='{ componentField }'
                             v-model='email'
@@ -37,8 +37,6 @@
                                         required
                                     />
                                 </FormControl>
-                                
-                                <FormMessage />
                             </FormItem>
                         </FormField>
                         
@@ -65,15 +63,13 @@
                                         Must be at least 8 characters long.
                                     </FieldDescription>
                                 </FormControl>
-                                
-                                <FormMessage />
                             </FormItem>
                         </FormField>
                     </template>
                 </FieldGroup>
                 
                 <!--   Stepper Buttons   -->
-                <template v-if='step_index === 1'>
+                <template v-if='current_step === 1'>
                     <Button
                         @click='onLogin(nextStep)'
                         :type='meta.valid ? "button" : "submit"'
@@ -94,7 +90,7 @@
     import * as z from 'zod';
     import { Button } from '@/components/ui/button';
     import { FieldDescription, FieldGroup} from '@/components/ui/field';
-    import { Form, FormControl, FormField, FormLabel, FormItem, FormMessage } from '@/components/ui/form';
+    import { Form, FormControl, FormField, FormLabel, FormItem } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
     import { Spinner } from '@/components/ui/spinner';
     import { Stepper } from '@/components/ui/stepper';
@@ -121,9 +117,9 @@
     );
     
     // Stepper
-    const step_index = ref(1);
+    const current_step = ref(1);
     const emit = defineEmits(['passwordStepChange']);
-    watch(step_index, () => emit('passwordStepChange', step_index.value));
+    watch(current_step, () => emit('passwordStepChange', current_step.value));
     const steps = [
         {
             step: 1,
