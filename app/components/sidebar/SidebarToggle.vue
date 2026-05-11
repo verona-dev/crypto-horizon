@@ -25,10 +25,7 @@
 </script>
 
 <template>
-    <SidebarMenu
-        class='h-14'
-        :class='{ "px-1" :  open }'
-    >
+    <SidebarMenu>
         <SidebarMenuItem
             :class='[
                 { "flex items-center w-full h-full p-2" : open },
@@ -38,7 +35,7 @@
             <SidebarMenuButton
                 @click='toggleSidebar'
                 :tooltip='TooltipContent'
-                class='sidebar-menu-button'
+                class='sidebar-menu-button button-hover'
                 :class='{ "flex gap-3.5" :  open }'
             >
                 <NuxtIcon

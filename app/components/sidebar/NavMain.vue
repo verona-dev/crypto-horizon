@@ -30,7 +30,6 @@
             :class='[
                 isMobile ? "gap-8 items-stretch" : "gap-3",
                 { "flex items-center": !open && !isMobile },
-                { "px-1" :  open }
             ]'
         >
             <!--  Open Desktop + Mobile  -->
@@ -44,11 +43,11 @@
                         <SidebarMenuItem>
                             <SidebarMenuButton
                                 tooltip='Launch Pad'
-                                class='sidebar-menu-button'
+                                class='sidebar-menu-button button-hover'
                             >
                                 <NuxtIcon
                                     :name='item.icon'
-                                    class='h-4 w-4 dark:text-green-shamrock/75'
+                                    class='h-4 w-4 dark:text-blue-pacific/75'
                                     :class='{ "animate-rocket" : !isMobile }'
                                 />
                                 <span>{{ item.title }}</span>
@@ -58,7 +57,7 @@
                                         v-for='planet in item.planets'
                                         :key='planet'
                                         :name='planet'
-                                        class='h-full w-full dark:text-green-shamrock/75 absolute'
+                                        class='h-full w-full dark:text-blue-pacific/75 absolute'
                                         :class='{ "animate-planet" : !isMobile }'
                                     />
                                 </div>
@@ -79,7 +78,7 @@
                                 <template v-if='isMobile'>
                                     <SidebarMenuButton
                                         :tooltip='item.title'
-                                        :class='{ "!bg-transparent dark:!text-green-shamrock" : item.isActive }'
+                                        :class='{ "!bg-transparent dark:!text-blue-pacific" : item.isActive }'
                                     >
                                         <component :is='item.icon' v-if='item.icon' />
                                         <span>{{ item.title }}</span>
@@ -92,8 +91,8 @@
                                     <SidebarMenuButton
                                         :tooltip='item.title'
                                         :is-active='item.isActive'
-                                        class='sidebar-menu-button'
-                                        :class='{ "!bg-transparent dark:!text-green-shamrock" : item.isActive}'
+                                        class='sidebar-menu-button button-hover'
+                                        :class='{ "!bg-transparent dark:!text-blue-pacific dark:border-border-hover" : item.isActive}'
                                     >
                                         <NuxtIcon
                                             :name='item.isActive ? item.activeIcon : item.icon'
@@ -111,10 +110,10 @@
                                         <SidebarMenuSubButton
                                             as-child
                                             :is-active='subItem.isActive'
-                                            class='sidebar-menu-button'
-                                            :class='{ "!bg-muted/50 dark:!text-green-shamrock" : subItem.isActive }'
+                                            class='sidebar-menu-button hover:bg-muted'
+                                            :class='{ "!bg-muted/50 dark:!text-blue-pacific" : subItem.isActive }'
                                         >
-                                            <NuxtLink :to='subItem.url' class='pl-3'>
+                                            <NuxtLink :to='subItem.url' class='pl-3 !hover:bg-red-400'>
                                                 <!--  &#183;  -->
                                                 <span>{{ subItem.title }}</span>
                                             </NuxtLink>
@@ -138,14 +137,14 @@
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             :tooltip='item.title'
-                            class='sidebar-menu-button'
+                            class='sidebar-menu-button button-hover'
                             :class='{ "bg-muted" : item.isActive}'
                         >
                             <NuxtIcon
                                 v-if='item.icon'
                                 :name='item.isActive ? item.activeIcon : item.icon'
                                 class='h-4 w-4'
-                                :class='{ "text-secondary-foreground dark:text-green-shamrock" : item.isActive }'
+                                :class='{ "text-secondary-foreground dark:text-blue-pacific" : item.isActive }'
                             />
                         </SidebarMenuButton>
                     </SidebarMenuItem>

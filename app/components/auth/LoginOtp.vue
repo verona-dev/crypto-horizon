@@ -176,13 +176,13 @@
     const { loginOtp, verifyOtp } = AuthStore;
     const { loading } = storeToRefs(AuthStore);
     
-    // Stepper
     const validation_schema = toTypedSchema(
         z.object({
             email: z.string().email(),
         })
     );
     
+    // Stepper
     const current_step = ref(1);
     const emit = defineEmits(['otpStepChange']);
     watch(current_step, () => emit('otpStepChange', current_step.value));

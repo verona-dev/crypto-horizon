@@ -10,11 +10,11 @@
         
         <div class='flex gap-8'>
             <NuxtLink to='/'>
-                <Button variant='outline' size='lg' class='w-42'>Go Home</Button>
+                <Button variant='outline' size='lg' class='w-42 button-hover'>Home</Button>
             </NuxtLink>
             
             <NuxtLink to='/profile'>
-                <Button variant='outline' size='lg' class='w-42'>Profile</Button>
+                <Button variant='outline' size='lg' class='w-42 button-hover'>Profile</Button>
             </NuxtLink>
         </div>
     </div>

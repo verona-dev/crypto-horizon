@@ -153,7 +153,7 @@
                         </HoverCard>
                         
                         <!--  Read more  -->
-                        <Button variant='outline' class='read-more'>
+                        <Button variant='outline'>
                             <NuxtLink
                                 :to="{
                                     path: `/news/${encodeURIComponent(article.guid)}`,
@@ -286,11 +286,3 @@
         await getNews({ limit: 10 });
     });
 </script>
-
-<style scoped>
-    button.read-more {
-        &:hover {
-            border: 1px solid var(--green-shamrock) !important;
-        }
-    }
-</style>
