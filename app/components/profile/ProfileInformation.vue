@@ -117,7 +117,6 @@
     const onHandleDrawer = bool => show_drawer.value = bool;
     
     const onDeleteAccount = async() => {
-        console.log('deleted');
         await deleteProfile();
     };
 </script>
