@@ -28,15 +28,15 @@
     const ProfileStore = useProfileStore();
     const { getProfile } = ProfileStore;
     
-    // definePageMeta({
-    //     middleware: 'verify',
-    // });
+    definePageMeta({
+        middleware: 'verify',
+    });
     
     onMounted(async() => {
         await getProfile();
         
-        // setTimeout(() => {
-        //     navigateTo('/market')
-        // }, 5000);
+        setTimeout(() => {
+            navigateTo('/market')
+        }, 5000);
     });
 </script>
