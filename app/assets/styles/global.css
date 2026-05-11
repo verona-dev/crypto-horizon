@@ -124,7 +124,11 @@
     }
     
     button {
-        @apply cursor-pointer;
+        @apply cursor-pointer border border-transparent;
+        
+        &:hover:not([data-sidebar='rail']) {
+            border: 1px solid var(--border-hover) !important;
+        }
     }
     
     .font-great {
