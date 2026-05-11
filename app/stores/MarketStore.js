@@ -70,6 +70,7 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         
         async getCoinsMarkets(options, tag) {
+            this.coins = [];
             const table = tag === 'table';
             const list = tag === 'list';
             this.loading = true;

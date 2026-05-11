@@ -1,6 +1,6 @@
 import { createError, getQuery } from 'h3';
 
-export default defineCachedEventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
     const { coingecko_api_key } = useRuntimeConfig();
     
     const route = event.context.params?.route || '';
@@ -37,4 +37,4 @@ export default defineCachedEventHandler(async (event) => {
             });
         }
     }
-}, { maxAge: 60 * 10 });
+});
