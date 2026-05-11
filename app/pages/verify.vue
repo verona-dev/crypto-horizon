@@ -10,7 +10,7 @@
         
         <div class='flex gap-8'>
             <NuxtLink to='/'>
-                <Button variant='outline' size='lg' class='w-42'>Go Home</Button>
+                <Button variant='outline' size='lg' class='w-42'>Home</Button>
             </NuxtLink>
             
             <NuxtLink to='/profile'>
@@ -28,15 +28,15 @@
     const ProfileStore = useProfileStore();
     const { getProfile } = ProfileStore;
     
-    definePageMeta({
-        middleware: 'verify',
-    });
+    // definePageMeta({
+    //     middleware: 'verify',
+    // });
     
     onMounted(async() => {
         await getProfile();
         
-        setTimeout(() => {
-            navigateTo('/market')
-        }, 5000);
+        // setTimeout(() => {
+        //     navigateTo('/market')
+        // }, 5000);
     });
 </script>
