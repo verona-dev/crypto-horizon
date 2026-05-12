@@ -50,9 +50,10 @@ export const useAuthStore = defineStore('AuthStore', {
                     throw error;
                 }
                 
-                return { error };
+                return { error: null };
             } catch(error) {
                 console.error(error);
+                return { error };
             } finally {
                 this.loading = false;
             }
