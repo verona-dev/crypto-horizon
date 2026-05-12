@@ -1,10 +1,10 @@
 import { serverSupabaseClient } from '#supabase/server';
 
 export default defineEventHandler(async (event) => {
-    const client = await serverSupabaseClient(event);
+    const supabase = await serverSupabaseClient(event);
     
     try {
-        const { data, error } = await client.auth.signInAnonymously();
+        const { data, error } = await supabase.auth.signInAnonymously();
         
         if (error) {
             console.error('Anonymous login error:', error);
