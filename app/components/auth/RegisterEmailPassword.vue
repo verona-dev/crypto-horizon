@@ -69,7 +69,7 @@
                         
                         <!--  Step 2: Verify your account -->
                         <template v-if='current_step === 2'>
-                            <VerificationSent />
+                            <VerificationSent @vue:mounted='startCountdown' />
                             
                             <!--   Resend email   -->
                             <div class='flex flex-col gap-2 text-sm text-center text-muted-foreground w-full'>
