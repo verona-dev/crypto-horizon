@@ -1,10 +1,10 @@
 import { serverSupabaseClient } from '#supabase/server';
 
 export default defineEventHandler(async(event) => {
-    const client = await serverSupabaseClient(event);
+    const supabase = await serverSupabaseClient(event);
     
     try {
-        const { error } = await client.auth.signOut();
+        const { error } = await supabase.auth.signOut();
         
         if(error) {
             throw error;
