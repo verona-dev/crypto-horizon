@@ -18,23 +18,30 @@
             </Button>
         </CardHeader>
         
-        <CardContent class='space-y-2 flex justify-between flex-wrap'>
-            <div
-                v-for='item in profile'
-                :key='item.name'
-                class='flex flex-col p-2 h-16 w-full md:w-1/2 xl:w-64'
-            >
-                <span class='text-sm text-muted-foreground'>{{ item.label }}</span>
-                
-                <div v-if='item.name === "country"' class='flex items-center gap-2'>
-                    <ProfileCountryFlag :country='item.value' size='w-4 h-4' />
-                    <span>{{ item.value?.name }}</span>
+        <CardContent>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-1 w-full">
+                <div
+                    v-for='item in profile'
+                    :key='item.name'
+                    class='p-2'
+                >
+                    <span class='text-sm text-muted-foreground'>{{ item.label }}</span>
+                    
+                    <div v-if='item.name === "country"' class='flex items-center gap-2'>
+                        <ProfileCountryFlag :country='item.value' size='w-4 h-4' />
+                        <span>{{ item.value?.name }}</span>
+                    </div>
+                    
+                    <div v-else-if='item.name === "timezone"' class='w-fit'>
+                        <span>{{ item.value?.timezone }}</span>&nbsp;
+                        <span>{{ item.value?.utc }}</span>
+                    </div>
+                    
+                    <template v-else>
+                        <span v-if='item.name === "dob"' class='mt-1 block'>{{ dayjs(item.value).format('DD.MM.YYYY') }}</span>
+                        <span v-else class='block' :class='{ "capitalize" : item.name === "astronaut_type" }'>{{ item.value }}</span>
+                    </template>
                 </div>
-                
-                <template v-else>
-                    <span v-if='item.name === "dob"'>{{ dayjs(item.value).format('DD.MM.YYYY') }}</span>
-                    <span v-else :class='{ "capitalize" : item.name === "astronaut_type" }'>{{ item.value }}</span>
-                </template>
             </div>
         </CardContent>
         

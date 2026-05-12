@@ -12,61 +12,74 @@
         >
             <form
                 @submit.prevent='() => validate()'
-                class='flex flex-col gap-4'
+                class='flex flex-col gap-8'
             >
-                <!--   Stepper Body   -->
-                <FieldGroup>
-                    <!--  Step 1: Email input  -->
-                    <template v-if='current_step === 1'>
-                        <FormField
-                            v-slot='{ componentField }'
-                            v-model='email'
-                            name='email'
-                            :validateOnBlur='false'
-                            :validateOnChange='false'
-                        >
-                            <FormItem>
-                                <FormLabel>Email</FormLabel>
-                                
-                                <FormControl>
-                                    <Input
-                                        v-bind='componentField'
-                                        type='email'
-                                        placeholder='name@example.com'
-                                        class='dark:bg-blue-bunker/75'
-                                        required
-                                    />
-                                </FormControl>
-                            </FormItem>
-                        </FormField>
+                <div
+                    class='flex flex-col'
+                    :class='{"gap-6" : current_step === 2}'
+                >
+                    <!--   Stepper Body   -->
+                    <FieldGroup>
+                        <!--  Step 1: Email input  -->
+                        <template v-if='current_step === 1'>
+                            <FormField
+                                v-slot='{ componentField }'
+                                v-model='email'
+                                name='email'
+                                :validateOnBlur='false'
+                                :validateOnChange='false'
+                            >
+                                <FormItem>
+                                    <FormLabel>Email</FormLabel>
+                                    
+                                    <FormControl>
+                                        <Input
+                                            v-bind='componentField'
+                                            type='email'
+                                            placeholder='name@example.com'
+                                            class='dark:bg-blue-bunker/75'
+                                            required
+                                        />
+                                    </FormControl>
+                                </FormItem>
+                            </FormField>
+                            
+                            <!--   Password   -->
+                            <FormField
+                                v-slot='{ componentField }'
+                                v-model='password'
+                                name='password'
+                            >
+                                <FormItem>
+                                    <FormLabel>Password</FormLabel>
+                                    
+                                    <FormControl>
+                                        <Input
+                                            v-bind='componentField'
+                                            id='password'
+                                            type='password'
+                                            class='dark:bg-blue-bunker/75'
+                                            :validateOnBlur='false'
+                                            :validateOnChange='false'
+                                            required
+                                        />
+                                        <FieldDescription>
+                                            Must be at least 8 characters long.
+                                        </FieldDescription>
+                                    </FormControl>
+                                </FormItem>
+                            </FormField>
+                        </template>
                         
-                        <!--   Password   -->
-                        <FormField
-                            v-slot='{ componentField }'
-                            v-model='password'
-                            name='password'
-                        >
-                            <FormItem>
-                                <FormLabel>Password</FormLabel>
-                                
-                                <FormControl>
-                                    <Input
-                                        v-bind='componentField'
-                                        id='password'
-                                        type='password'
-                                        class='dark:bg-blue-bunker/75'
-                                        :validateOnBlur='false'
-                                        :validateOnChange='false'
-                                        required
-                                    />
-                                    <FieldDescription>
-                                        Must be at least 8 characters long.
-                                    </FieldDescription>
-                                </FormControl>
-                            </FormItem>
-                        </FormField>
-                    </template>
-                </FieldGroup>
+                        <!--  Step 2: Welcome back  -->
+                        <template v-if='current_step === 2'>
+                            <div class='flex flex-col items-center gap-2'>
+                                <FieldTitle class='text-3xl font-bold'>Welcome back!</FieldTitle>
+                                <FieldDescription>You are being redirected.</FieldDescription>
+                            </div>
+                        </template>
+                    </FieldGroup>
+                </div>
                 
                 <!--   Stepper Buttons   -->
                 <template v-if='current_step === 1'>
@@ -89,7 +102,7 @@
 <script setup lang='ts'>
     import * as z from 'zod';
     import { Button } from '@/components/ui/button';
-    import { FieldDescription, FieldGroup} from '@/components/ui/field';
+    import {FieldDescription, FieldGroup, FieldTitle} from '@/components/ui/field';
     import { Form, FormControl, FormField, FormLabel, FormItem } from '@/components/ui/form';
     import { Input } from '@/components/ui/input';
     import { Spinner } from '@/components/ui/spinner';
@@ -120,18 +133,6 @@
     const current_step = ref(1);
     const emit = defineEmits(['passwordStepChange']);
     watch(current_step, () => emit('passwordStepChange', current_step.value));
-    const steps = [
-        {
-            step: 1,
-            title: '',
-            description: '',
-        },
-        {
-            step: 2,
-            title: 'Welcome back!',
-            description: 'You are now logged in.',
-        },
-    ];
     
     // Email
     const email = ref('');
@@ -148,9 +149,11 @@
             return toast.error(error.message);
         }
         
+        current_step.value = 2;
+        
         if(data?.session?.access_token) {
             const { error } = await getProfile();
-            
+
             if(!error) {
                 reloadNuxtApp();
                 nextStep && nextTick(() => nextStep());
