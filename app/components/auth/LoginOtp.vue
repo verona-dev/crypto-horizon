@@ -115,7 +115,6 @@
                                         
                                         <span v-if='remaining !== 0'>&nbsp;{{ remaining }}s</span>
                                     </div>
-                                
                                 </div>
                             </FormField>
                             
@@ -259,7 +258,7 @@
     };
     
     // Countdown
-    const countdown_seconds = ref(60);
+    const countdown_seconds = ref(59);
     const { remaining, start } = useCountdown(countdown_seconds);
     const startCountdown = () => start(countdown_seconds);
     

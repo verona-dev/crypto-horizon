@@ -1,13 +1,13 @@
 import { serverSupabaseClient } from '#supabase/server';
 
 export default defineEventHandler(async(event) => {
-    const client = await serverSupabaseClient(event);
+    const supabase = await serverSupabaseClient(event);
     const body = await readBody(event);
     const { email, password } = body;
     // console.log(body);
     
     try {
-        const { data, error } = await client.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
             email,
             password,
         });

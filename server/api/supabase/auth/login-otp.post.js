@@ -1,7 +1,7 @@
 import { serverSupabaseClient } from '#supabase/server';
 
 export default defineEventHandler(async(event) => {
-    const client = await serverSupabaseClient(event);
+    const supabase = await serverSupabaseClient(event);
     const body = await readBody(event);
     const { email } = body;
     
@@ -13,7 +13,7 @@ export default defineEventHandler(async(event) => {
     }
     
     try {
-        const { data, error } = await client.auth.signInWithOtp({
+        const { data, error } = await supabase.auth.signInWithOtp({
             email,
         });
         
