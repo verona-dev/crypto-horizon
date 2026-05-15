@@ -282,7 +282,7 @@ html.light {
 .dark {
     /* Cosmic Night */
     --background: #14161f;
-    --foreground: #ffffff;
+    --foreground: var(--white-ivory);
     --card: var(--popover);
     --card-dark: var(--blue-bunker);
     /*--card: var(--blue-bunker;*/
