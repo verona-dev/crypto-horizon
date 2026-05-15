@@ -1,11 +1,11 @@
 <template>
-    <Card class='bg-popover p-6 w-full md:w-4/5 xl:w-full border'>
+    <Card class='w-screen border-4'>
         <VMap
-            :zoom='2'
+            :zoom='4'
             :max-bounds='worldBounds'
             :min-zoom='1'
             :center='coordinates'
-            style='height: 400px'
+            style='height: 600px'
             class='rounded-xl shadow-2xl !bg-popover'
         >
             <VMapArcGisAeroTileLayer />
@@ -35,7 +35,7 @@
     });
     
     const worldBounds = [
-        [-90, -180],
-        [90, 180],
+        [-90, -Infinity],
+        [90, Infinity],
     ];
 </script>
