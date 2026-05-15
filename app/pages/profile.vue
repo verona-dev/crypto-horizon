@@ -1,7 +1,7 @@
 <template>
     <div class='profile page'>
         <div class='flex flex-col items-center gap-6'>
-            <div class='xl:h-140 h-full w-3/5 md:w-4/5 xl:w-full flex flex-col xl:flex-row items-center justify-center gap-6'>
+            <div class='xl:h-140 h-full w-3/5 md:w-4/5 xl:w-fit flex flex-col xl:flex-row items-center justify-center gap-6'>
                 <ProfileAvatar
                     :username='username'
                     :astronaut-type='astronaut_type'
