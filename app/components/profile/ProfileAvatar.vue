@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-popover h-full w-full md:w-4/5 xl:w-fit flex flex-col items-center p-6 gap-4 !shadow-none relative'>
+    <Card class='bg-popover h-full w-1/2 md:w-4/5 xl:w-fit flex flex-col items-center p-6 gap-4 !shadow-none relative'>
         <CardHeader class='items-center gap-2'>
             <CardTitle class='text-3xl'>{{ username }}</CardTitle>
             <CardDescription class='text-lg capitalize'>&#8226; {{ astronautType }} &#8226;</CardDescription>

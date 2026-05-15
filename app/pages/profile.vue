@@ -1,5 +1,5 @@
 <template>
-    <div class='profile page gap-12 flex-col'>
+    <div class='profile page'>
         <div class='flex flex-col items-center gap-6'>
             <div class='xl:h-140 h-full w-full flex flex-col xl:flex-row items-center justify-center gap-6'>
                 <ProfileAvatar
