@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-popover h-full w-3/5 md:w-4/5 xl:w-160 flex flex-col !justify-around p-5 gap-4 !shadow-none'>
+    <Card class='bg-popover h-full w-full flex flex-col !justify-around p-5 gap-4 !shadow-none'>
         <CardHeader class='flex-row justify-between'>
             <CardTitle class='text-3xl'>Personal Information</CardTitle>
             
