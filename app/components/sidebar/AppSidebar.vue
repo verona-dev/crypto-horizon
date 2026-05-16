@@ -1,22 +1,24 @@
 <script setup lang="ts">
-    import {type SidebarProps, useSidebar} from '@/components/ui/sidebar';
+    import type { SidebarProps } from "@/components/ui/sidebar"
+    import { User, GraduationCap, Landmark, Newspaper, ChartCandlestick } from "lucide-vue-next"
+    
     import NavMain from './NavMain.vue';
     import NavUser from './NavUser.vue';
     import SidebarToggle from './SidebarToggle.vue';
     import SidebarLogo from './SidebarLogo.vue';
     import ColorMode from '@/components/sidebar/ColorMode.vue';
-    import { Sidebar, SidebarContent, SidebarHeader, SidebarFooter, SidebarRail } from '@/components/ui/sidebar';
+    
+    import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar"
+    
+    const props = withDefaults(defineProps<SidebarProps>(), {
+        collapsible: "icon",
+    })
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
     const { profile } = storeToRefs(ProfileStore);
     const logged_in = computed(() => profile.value);
-    
-    const props = withDefaults(defineProps<SidebarProps>(), {
-        collapsible: 'icon',
-    });
-    
     const route = useRoute()
     
     const isParentActive = (item_url: string, items: never[]) => {
@@ -27,23 +29,12 @@
         return route.path === item_url;
     };
     
-    const nav_data = computed(() => {
+    const data = computed(() => {
         const navMain = [
-            {
-                title: 'Launch Pad',
-                url: '/',
-                icon: 'ph:rocket-launch',
-                planets: [
-                    'ph:planet-light',
-                    'ph:planet',
-                    'ph:planet-duotone',
-                    'ph:planet-fill'
-                ],
-            },
             {
                 title: 'Market',
                 url: '/market',
-                icon: 'ph:chart-line-up',
+                icon: ChartCandlestick,
                 activeIcon: 'ph:chart-line-up-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
@@ -82,7 +73,7 @@
             {
                 title: 'News',
                 url: '/news',
-                icon: 'ph:book-open-text',
+                icon: Newspaper,
                 activeIcon: 'ph:book-open-text-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
@@ -107,7 +98,7 @@
             {
                 title: 'Defi',
                 url: '/defi',
-                icon: 'ph:piggy-bank',
+                icon: Landmark,
                 activeIcon: 'ph:piggy-bank-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
@@ -132,7 +123,7 @@
             {
                 title: 'Academy',
                 url: '/academy',
-                icon: 'ph:lightbulb-filament',
+                icon: GraduationCap,
                 activeIcon: 'ph:lightbulb-filament-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
@@ -160,7 +151,7 @@
             navMain.push({
                 title: 'Profile',
                 url: '/profile',
-                icon: 'ph:user',
+                icon: User,
                 activeIcon: 'ph:user-fill',
                 get isActive() {
                     return isParentActive(this.url, this.items);
@@ -179,25 +170,21 @@
         
         return navMain;
     });
-    
-    const { isMobile } = useSidebar();
 </script>
 
 <template>
-    <Sidebar v-bind='props' class='sidebar'>
-        <SidebarHeader class='h-20 flex items-center justify-center border-b'>
+    <Sidebar v-bind="props">
+        <SidebarHeader>
             <SidebarLogo />
         </SidebarHeader>
         
-        <SidebarContent :class='{ "flex-initial" : isMobile }'>
-            <NavMain :items='nav_data' />
+        <SidebarContent>
+            <NavMain :items="data" />
         </SidebarContent>
         
-        <SidebarFooter class='px-0'>
+        <SidebarFooter>
             <ColorMode />
-
             <NavUser />
-
             <SidebarToggle />
         </SidebarFooter>
         
