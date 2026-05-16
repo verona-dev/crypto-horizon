@@ -108,7 +108,7 @@
     }
     
     ul {
-        @apply flex justify-center w-full;
+        /*@apply flex justify-center w-full;*/
     }
     
     p {
