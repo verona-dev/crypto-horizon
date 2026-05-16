@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import {type SidebarProps, useSidebar} from '@/components/ui/sidebar';
     import NavMain from './NavMain.vue';
-    import NavUser from '../NavUser.vue';
+    import NavUser from './NavUser.vue';
     import SidebarToggle from './SidebarToggle.vue';
     import SidebarLogo from './SidebarLogo.vue';
     import ColorMode from '@/components/sidebar/ColorMode.vue';
