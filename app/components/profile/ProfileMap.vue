@@ -1,12 +1,12 @@
 <template>
-    <Card class='w-screen border-4'>
+    <Card class='rounded-none'>
         <VMap
             :zoom='4'
             :max-bounds='worldBounds'
             :min-zoom='1'
             :center='coordinates'
-            style='height: 600px'
-            class='rounded-xl shadow-2xl !bg-popover'
+            style='height: 500px'
+            class='rounded-none shadow-2xl !bg-popover'
         >
             <VMapArcGisAeroTileLayer />
             

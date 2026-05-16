@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-popover p-6 w-full md:w-4/5 xl:w-full'>
+    <Card class='p-6 rounded-none rounded-bl-md rounded-br-md'>
         <CardHeader class='items-center gap-2'>
             <CardTitle class='text-3xl'>
                 Watchlist
@@ -14,7 +14,7 @@
             <Table>
                 <!--   <TableCaption>A list of your watchlist coins.</TableCaption>  -->
                 <TableHeader>
-                    <TableRow class='h-18 sticky top-0 bg-popover *:whitespace-nowrap after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-border after:content-[""] z-10'>
+                    <TableRow class='h-18 sticky top-0 bg-popover *:whitespace-nowrap after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-border after:content-[""]'>
                         <TableHead class='w-10 text-center'>
                             &#35;
                         </TableHead>
