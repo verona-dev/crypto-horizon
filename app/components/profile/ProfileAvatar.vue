@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-popover h-full w-full md:w-4/5 xl:w-fit flex flex-col items-center p-6 gap-4 !shadow-none relative'>
+    <Card class='h-full flex flex-col items-center p-6 gap-4'>
         <CardHeader class='items-center gap-2'>
             <CardTitle class='text-3xl'>{{ username }}</CardTitle>
             <CardDescription class='text-lg capitalize'>&#8226; {{ astronautType }} &#8226;</CardDescription>
@@ -96,9 +96,7 @@
         </CardContent>
         
         <CardContent>
-            <Badge
-                class='bg-emerald-600/10 dark:bg-emerald-600/20 hover:bg-emerald-600/10 text-emerald-500 shadow-none rounded-full'
-            >
+            <Badge class='bg-emerald-600/10 dark:bg-emerald-600/20 hover:bg-emerald-600/10 text-emerald-500 shadow-none rounded-full'>
                 <div class='h-1.5 w-1.5 rounded-full bg-emerald-500 mr-1' />
                 <span class='text-xxs'>Connected</span>
             </Badge>

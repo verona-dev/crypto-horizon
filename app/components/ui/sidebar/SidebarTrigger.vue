@@ -15,7 +15,7 @@
 <template>
     <SidebarMenuButton
         v-if='isMobile'
-        class=' mobile-nav bg-background w-full flex items-center h-20 p-6 rounded-none fixed top-0 left-0 z-50'
+        class=' mobile-nav bg-background hover:bg-background active:bg-background w-full flex items-center h-20 p-6 rounded-none fixed top-0 left-0 z-50'
         :class='isMobile ? "gap-8" : "justify-between"'
     >
         <NuxtIcon

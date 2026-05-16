@@ -1,32 +1,43 @@
 <template>
-    <div class='profile page gap-12 flex-col'>
+    <div class='profile page'>
         <div class='flex flex-col items-center gap-6'>
-            <div class='xl:h-140 h-full w-full flex flex-col xl:flex-row items-center justify-center gap-6'>
-                <ProfileAvatar
-                    :username='username'
-                    :astronaut-type='astronaut_type'
-                />
+            <div class='grid grid-cols-1 md::grid-cols-2'>
+                <div class='xl:h-140 h-full flex flex-col xl:flex-row items-center justify-center'>
+                    <ProfileAvatar
+                        :username='username'
+                        :astronaut-type='astronaut_type'
+                        class='w-full'
+                    />
+                    
+                    <ProfileInformation
+                        :profile='profile_formatted'
+                        class='w-full xl:min-w-160'
+                    />
+                </div>
                 
-                <ProfileInformation :profile='profile_formatted' />
+                <client-only>
+                    <ProfileMap
+                        :coordinates='coordinates'
+                        class=''
+                    />
+                </client-only>
+                
+                <ProfileWatchlist />
+                
             </div>
             
-            <client-only>
-                <ProfileMap :coordinates='coordinates' />
-            </client-only>
-            
-            <ProfileWatchlist />
         </div>
-        
-        <div class='absolute inset-0 h-screen w-screen'>
-            <SnowfallBg
-                v-if='dark_mode'
-                color='eee8a9'
-                class='absolute inset-0'
-                :min-radius='0.2'
-                :max-radius='4'
-                :speed='0.5'
-            />
-        </div>
+    </div>
+    
+    <div class='absolute inset-0 h-screen w-screen'>
+        <SnowfallBg
+            v-if='dark_mode'
+            color='eee8a9'
+            class='absolute inset-0'
+            :min-radius='0.2'
+            :max-radius='4'
+            :speed='0.5'
+        />
     </div>
 </template>
 
