@@ -26,12 +26,7 @@
 
 <template>
     <SidebarMenu>
-        <SidebarMenuItem
-            :class='[
-                { "flex items-center w-full h-full p-2" : open },
-                { "pl-2" : !isMobile }
-            ]'
-        >
+        <SidebarMenuItem>
             <SidebarMenuButton
                 @click='toggleSidebar'
                 :tooltip='TooltipContent'
