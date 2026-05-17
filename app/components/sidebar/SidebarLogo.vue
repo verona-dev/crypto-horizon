@@ -10,22 +10,13 @@
 <template>
     <SidebarMenu>
         <SidebarMenuItem>
-            <SidebarMenuButton>
-<!--                <img-->
-<!--                    src='assets/logo/btc-planet.png'-->
-<!--                    alt='crypto horizon logo'-->
-<!--                    width='35'-->
-<!--                    height='35'-->
-<!--                    preload-->
-<!--                />-->
-                
+            <SidebarMenuButton class='h-full !py-0 !my-0 hover:bg-transparent'>
                 <Rocket />
-                <span>Crypto Horizon</span>
                 
-<!--                <div class='flex flex-col font-great select-none'>-->
-<!--                    <h5>Crypto</h5>-->
-<!--                    <h5 class='ml-5'>Horizon</h5>-->
-<!--                </div>-->
+                <div class='flex flex-col font-great'>
+                    <span class='text-lg font-great'>Crypto</span>
+                    <span class='text-lg font-great ml-5'>Horizon</span>
+                </div>
             </SidebarMenuButton>
         </SidebarMenuItem>
     </SidebarMenu>
