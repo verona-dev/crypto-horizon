@@ -43,7 +43,7 @@
                                 :tooltip="item.title"
                                 :is-active="item.isActive"
                                 :class="[
-                                  'sidebar-menu-button hover:bg-muted !hover:rounded-xl',
+                                  'sidebar-menu-button hover:bg-muted !hover:rounded-2xl',
                                   { 'dark:!text-blue-pacific': !open && item.isActive },
                                   { '!bg-transparent': open && item.isActive },
                                 ]"
@@ -60,7 +60,7 @@
                             :tooltip='item.title'
                             :is-active='item.isActive'
                             :class='[
-                                "sidebar-menu-button hover:bg-muted !hover:rounded-xl",
+                                "sidebar-menu-button hover:bg-muted !hover:rounded-2xl !h-9",
                                 { "border-blue-pacific/50 dark:!text-blue-pacific": !open && item.isActive },
                                 { "!bg-transparent dark:!text-blue-pacific": open && item.isActive },
                             ]'
@@ -72,17 +72,20 @@
                     </CollapsibleTrigger>
                     
                     <CollapsibleContent>
-                        <SidebarMenuSub class='pl-6 mb-3'>
+                        <SidebarMenuSub class='pl-3 mb-3'>
                             <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title">
                                 <SidebarMenuSubButton
                                     as-child
                                     :is-active='subItem.isActive'
                                     :class='[
-                                            "sidebar-menu-button",
+                                            "sidebar-menu-button pl-3",
                                             {"!bg-transparent dark:!text-blue-pacific" : subItem.isActive },
                                         ]'
                                 >
-                                    <NuxtLink :to="subItem.url">
+                                    <NuxtLink
+                                        :to="subItem.url"
+                                        class='!h-9'
+                                    >
                                         <span>{{ subItem.title }}</span>
                                     </NuxtLink>
                                 </SidebarMenuSubButton>

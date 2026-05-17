@@ -174,7 +174,7 @@
 
 <template>
     <Sidebar v-bind="props">
-        <SidebarHeader>
+        <SidebarHeader class='h-20 border-b'>
             <SidebarLogo />
         </SidebarHeader>
         
