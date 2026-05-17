@@ -1,22 +1,8 @@
 <script setup lang="ts">
     import type { LucideIcon } from "lucide-vue-next"
     import { ChevronRight } from "lucide-vue-next"
-    import {
-        Collapsible,
-        CollapsibleContent,
-        CollapsibleTrigger,
-    } from "@/components/ui/collapsible"
-    import {
-        SidebarGroup,
-        SidebarGroupLabel,
-        SidebarMenu,
-        SidebarMenuButton,
-        SidebarMenuItem,
-        SidebarMenuSub,
-        SidebarMenuSubButton,
-        SidebarMenuSubItem,
-        useSidebar
-    } from "@/components/ui/sidebar"
+    import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+    import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, useSidebar } from "@/components/ui/sidebar"
     
     defineProps<{
         items: {
@@ -57,7 +43,7 @@
                                 :tooltip="item.title"
                                 :is-active="item.isActive"
                                 :class="[
-                                  'sidebar-menu-button hover:bg-muted',
+                                  'sidebar-menu-button hover:bg-muted !hover:rounded-xl',
                                   { 'dark:!text-blue-pacific': !open && item.isActive },
                                   { '!bg-transparent': open && item.isActive },
                                 ]"
@@ -74,9 +60,9 @@
                             :tooltip='item.title'
                             :is-active='item.isActive'
                             :class='[
-                                "sidebar-menu-button hover:bg-muted",
+                                "sidebar-menu-button hover:bg-muted !hover:rounded-xl",
                                 { "border-blue-pacific/50 dark:!text-blue-pacific": !open && item.isActive },
-                                { "!bg-transparent": open && item.isActive },
+                                { "!bg-transparent dark:!text-blue-pacific": open && item.isActive },
                             ]'
                         >
                             <component :is="item.icon" v-if="item.icon" />
@@ -86,7 +72,7 @@
                     </CollapsibleTrigger>
                     
                     <CollapsibleContent>
-                        <SidebarMenuSub>
+                        <SidebarMenuSub class='pl-6 mb-3'>
                             <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title">
                                 <SidebarMenuSubButton
                                     as-child
