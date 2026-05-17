@@ -1,5 +1,5 @@
 <script setup lang="ts">
-     import type { LucideIcon } from "lucide-vue-next"
+    import type { LucideIcon } from "lucide-vue-next"
     import { ChevronRight } from "lucide-vue-next"
     import {
         Collapsible,
@@ -45,44 +45,65 @@
                 :default-open="item.isActive"
                 class="group/collapsible"
             >
-                <NuxtLink
-                    :to='item.url'
-                >
-                    <SidebarMenuItem>
-                        <CollapsibleTrigger as-child>
+                <SidebarMenuItem>
+                    <CollapsibleTrigger as-child>
+                        <!--   Closed Menu  -->
+                        <NuxtLink
+                            v-if="!open"
+                            :to="item.url"
+                            @click.prevent="!item.items?.length"
+                        >
                             <SidebarMenuButton
-                                :tooltip='item.title'
-                                :is-active='item.isActive'
-                                :class='[
-                                "sidebar-menu-button button-hover",
-                                {"!bg-transparent dark:!text-blue-pacific" : item.isActive},
-                                { "border-blue-pacific/50": !open && !isMobile && item.isActive },
-                            ]'
+                                :tooltip="item.title"
+                                :is-active="item.isActive"
+                                :class="[
+                                  'sidebar-menu-button hover:bg-muted',
+                                  { 'dark:!text-blue-pacific': !open && item.isActive },
+                                  { '!bg-transparent': open && item.isActive },
+                                ]"
                             >
                                 <component :is="item.icon" v-if="item.icon" />
                                 <span>{{ item.title }}</span>
                                 <ChevronRight class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                             </SidebarMenuButton>
-                        </CollapsibleTrigger>
+                        </NuxtLink>
                         
-                        <CollapsibleContent>
-                            <SidebarMenuSub>
-                                <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title">
-                                    <SidebarMenuSubButton
-                                        as-child
-                                        :is-active='subItem.isActive'
-                                        class='sidebar-menu-button hover:bg-muted'
-                                        :class='{ "!bg-muted dark:!text-blue-pacific" : subItem.isActive }'
-                                    >
-                                        <NuxtLink :to="subItem.url">
-                                            <span>{{ subItem.title }}</span>
-                                        </NuxtLink>
-                                    </SidebarMenuSubButton>
-                                </SidebarMenuSubItem>
-                            </SidebarMenuSub>
-                        </CollapsibleContent>
-                    </SidebarMenuItem>
-                </NuxtLink>
+                        <!--   Open Menu  -->
+                        <SidebarMenuButton
+                            v-else
+                            :tooltip='item.title'
+                            :is-active='item.isActive'
+                            :class='[
+                                "sidebar-menu-button hover:bg-muted",
+                                { "border-blue-pacific/50 dark:!text-blue-pacific": !open && item.isActive },
+                                { "!bg-transparent": open && item.isActive },
+                            ]'
+                        >
+                            <component :is="item.icon" v-if="item.icon" />
+                            <span>{{ item.title }}</span>
+                            <ChevronRight class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                        </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    
+                    <CollapsibleContent>
+                        <SidebarMenuSub>
+                            <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title">
+                                <SidebarMenuSubButton
+                                    as-child
+                                    :is-active='subItem.isActive'
+                                    :class='[
+                                            "sidebar-menu-button",
+                                            {"!bg-transparent dark:!text-blue-pacific" : subItem.isActive },
+                                        ]'
+                                >
+                                    <NuxtLink :to="subItem.url">
+                                        <span>{{ subItem.title }}</span>
+                                    </NuxtLink>
+                                </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                        </SidebarMenuSub>
+                    </CollapsibleContent>
+                </SidebarMenuItem>
             </Collapsible>
         </SidebarMenu>
     </SidebarGroup>
