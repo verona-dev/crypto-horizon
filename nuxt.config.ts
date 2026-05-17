@@ -5,7 +5,6 @@ import tailwindcss from '@tailwindcss/vite';
 const site_name = 'Crypto Horizon';
 
 export default defineNuxtConfig({
-   $development: undefined, $env: undefined, $meta: undefined, $production: undefined, $test: undefined,
    devtools: { enabled: true },
 
    site: {

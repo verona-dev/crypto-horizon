@@ -1,40 +1,29 @@
 <script setup lang='ts'>
     import { useSidebar } from '../ui/sidebar/utils';
     import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '~/components/ui/sidebar';
-    const { open, isMobile } = useSidebar();
+    const { open } = useSidebar();
+    
+    import { Rocket } from "lucide-vue-next"
+
 </script>
 
 <template>
-    <SidebarMenu>
-        <SidebarMenuItem :class='{ "h-full" : open }'>
-            <!--  Open  -->
-            <template v-if='open || isMobile'>
-                <SidebarMenuButton class=' full h-full justify-evenly select-none hover:cursor-default hover:bg-transparent active:bg-transparent'>
-                    <img
-                        src='assets/logo/btc-planet.png'
-                        alt='crypto horizon logo'
-                        width='40'
-                        height='40'
-                        preload
-                    />
+    <SidebarMenu class='!items-center'>
+        <SidebarMenuItem class='h-full w-full'>
+            <SidebarMenuButton
+                :class='{ "h-full hover:bg-transparent" : open }'
+                :tooltip="!open ? 'Home' : undefined"
+            >
+                <NuxtLink to='/' :class='{ "flex items-center" : open }'>
+                    <Rocket :class='{ "w-4 h-4 shrink-0" : !open }' />
                     
-                    <div class='flex flex-col font-great select-none'>
-                        <h5>Crypto</h5>
-                        <h5 class='ml-5'>Horizon</h5>
+                    <div v-if='open' class='flex flex-col font-great'>
+                        <span class='text-lg font-great'>Crypto</span>
+                        <span class='text-lg font-great ml-5'>Horizon</span>
                     </div>
-                </SidebarMenuButton>
-            </template>
-            
-            <!--  Close  -->
-            <template v-else>
-                <img
-                    src='assets/logo/btc-planet.png'
-                    alt='crypto horizon logo'
-                    width='40'
-                    height='40'
-                    preload
-                />
-            </template>
+                </NuxtLink>
+            </SidebarMenuButton>
         </SidebarMenuItem>
     </SidebarMenu>
 </template>
+

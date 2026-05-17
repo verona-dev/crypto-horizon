@@ -43,6 +43,7 @@ const { isMobile, state, openMobile, setOpenMobile, setOpen } = useSidebar()
   </Sheet>
 
     <!--
+    Sidebar on hover
     @mouseenter="setOpen(true)"
     @mouseleave="setOpen(false)"
     -->
