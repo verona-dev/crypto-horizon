@@ -107,9 +107,11 @@
         @apply text-lg text-left;
     }
     
+    /*
     ul {
-        /*@apply flex justify-center w-full;*/
+        @apply flex justify-center items-center w-full;
     }
+    */
     
     p {
         @apply text-sm sm:text-base leading-5;
