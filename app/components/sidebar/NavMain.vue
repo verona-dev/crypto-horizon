@@ -26,7 +26,7 @@
         <SidebarMenu>
             <Collapsible
                 v-for="item in items"
-                :key="item.title"
+                :key="`${item.title}-${open}`"
                 as-child
                 :default-open="item.isActive"
                 class="group/collapsible"
@@ -43,9 +43,8 @@
                                 :tooltip="item.title"
                                 :is-active="item.isActive"
                                 :class="[
-                                  'sidebar-menu-button hover:bg-muted !hover:rounded-2xl',
-                                  { 'dark:!text-blue-pacific': !open && item.isActive },
-                                  { '!bg-transparent': open && item.isActive },
+                                  'sidebar-menu-button hover:bg-muted !hover:rounded-2xl my-1',
+                                  { 'dark:!text-blue-pacific': item.isActive },
                                 ]"
                             >
                                 <component :is="item.icon" v-if="item.icon" />
@@ -61,8 +60,7 @@
                             :is-active='item.isActive'
                             :class='[
                                 "sidebar-menu-button hover:bg-muted !hover:rounded-2xl !h-9",
-                                { "border-blue-pacific/50 dark:!text-blue-pacific": !open && item.isActive },
-                                { "!bg-transparent dark:!text-blue-pacific": open && item.isActive },
+                                { "!bg-transparent dark:!text-blue-pacific": item.isActive },
                             ]'
                         >
                             <component :is="item.icon" v-if="item.icon" />
