@@ -26,7 +26,7 @@
         <SidebarMenu>
             <Collapsible
                 v-for="item in items"
-                :key="item.title"
+                :key="`${item.title}-${open}`"
                 as-child
                 :default-open="item.isActive"
                 class="group/collapsible"
