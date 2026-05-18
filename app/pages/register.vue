@@ -1,19 +1,7 @@
 <template>
-    <div class='page p-0'>
-        <section class='absolute inset-0 h-screen w-screen'>
-            <SnowfallBg
-                v-if='dark_mode'
-                color='7393bc'
-                class='absolute inset-0 !z-0'
-                :min-radius='0.2'
-                :max-radius='2'
-                :speed='0.1'
-                :quantity='150'
-            />
-        </section>
-        
-        <Card class='bg-card-dark p-8 w-full md:w-150 flex flex-col items-center border-none shadow-none'>
-            <CardContent class='w-full flex flex-col items-center justify-center gap-4'>
+    <div class='grid min-h-svh min-w-svw lg:grid-cols-2'>
+        <Card class='bg-transparent flex justify-center items-center !rounded-none border-t-none border-l-none border-b-none border-r-muted hover:border-muted'>
+            <CardContent class='w-full max-w-lg flex flex-col items-center justify-center gap-4 pb-16'>
                 <!--  Logo  -->
                 <NuxtImg
                     src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
@@ -82,6 +70,8 @@
                 </div>
             </CardContent>
         </Card>
+        
+        <AuthHero />
     </div>
 </template>
 
@@ -93,10 +83,7 @@
     import RegisterEmail from '@/components/auth/RegisterEmail.vue';
     import LoginOAuth from '@/components/auth/LoginOAuth.vue';
     import { Skeleton } from '@/components/ui/skeleton/index';
-    import { SnowfallBg } from '~/components/ui/snowfall-bg';
-    
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
+    import AuthHero from '~/components/auth/AuthHero.vue';
     
     const is_otp_default = ref(true);
     const onToggleSignupMode = () => is_otp_default.value = !is_otp_default.value;
