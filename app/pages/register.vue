@@ -1,19 +1,7 @@
 <template>
-    <div class='page p-0'>
-        <section class='absolute inset-0 h-screen w-screen'>
-            <SnowfallBg
-                v-if='dark_mode'
-                color='7393bc'
-                class='absolute inset-0 !z-0'
-                :min-radius='0.2'
-                :max-radius='2'
-                :speed='0.1'
-                :quantity='150'
-            />
-        </section>
-        
-        <Card class='bg-card-dark p-8 w-full md:w-150 flex flex-col items-center border-none shadow-none'>
-            <CardContent class='w-full flex flex-col items-center justify-center gap-4'>
+    <div class='grid min-h-svh min-w-svw lg:grid-cols-2'>
+        <Card class='bg-transparent flex justify-center items-center !rounded-none border-t-none border-l-none border-b-none border-r-muted hover:border-muted'>
+            <CardContent class='w-full max-w-lg flex flex-col items-center justify-center gap-4 pb-16'>
                 <!--  Logo  -->
                 <NuxtImg
                     src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
@@ -82,6 +70,35 @@
                 </div>
             </CardContent>
         </Card>
+        
+        <div class='relative hidden lg:flex w-full h-full flex-col items-center justify-center overflow-hidden'>
+            <div class='flex w-full items-center justify-center'>
+                <TextGlitch
+                    :speed='3.5'
+                    :enable-shadows='true'
+                    text='Crypto Horizon'
+                    :enableOnHover='true'
+                    class='!z-10'
+                />
+            </div>
+            
+            <div class='grid place-content-center'>
+                <IconCloud
+                    :images='imageUrls'
+                    class='cursor-grab !z-10'
+                />
+            </div>
+            
+            <SnowfallBg
+                v-if='dark_mode'
+                color="#e4d9e2"
+                class='absolute inset-0 !min-h-lvh !min-w-full !z-0'
+                :min-radius='0.1'
+                :max-radius='2'
+                :speed='0.2'
+                :quantity='50'
+            />
+        </div>
     </div>
 </template>
 
@@ -94,9 +111,36 @@
     import LoginOAuth from '@/components/auth/LoginOAuth.vue';
     import { Skeleton } from '@/components/ui/skeleton/index';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
+    import { IconCloud } from '~/components/ui/icon-cloud';
+    import TextGlitch from '~/components/ui/text-glitch/TextGlitch.vue';
     
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
+    
+    const chains = [
+        "bitcoin",
+        "ethereum",
+        "cardano",
+        "polkadot",
+        "polygon",
+        "solana",
+        "tron",
+        "base",
+        "bnbchain",
+        "arbitrum",
+        "avalanche",
+        "optimism",
+        "stellar",
+        "near",
+        "kava",
+        "hedera",
+        "xrp",
+        "internetcomputer",
+        "litecoin",
+        "dogecoin",
+    ];
+    
+    const imageUrls = chains.map((slug) => `https://cdn.simpleicons.org/${slug}/${slug}`);
     
     const is_otp_default = ref(true);
     const onToggleSignupMode = () => is_otp_default.value = !is_otp_default.value;
