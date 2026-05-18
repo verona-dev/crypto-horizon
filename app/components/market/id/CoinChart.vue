@@ -39,51 +39,6 @@
                 <label for='sniper_mode' class='text-xxs cursor-pointer'>Sniper Mode</label>
             </div>
             
-            <!--  Supply Drawer  -->
-            <Tabs>
-                <TabsList>
-                    <template v-if='dark_mode'>
-                        <RainbowButton
-                            @click='show_drawer = true'
-                            class='text-xs w-24 flex gap-2 rounded-md'
-                        >
-                            <NuxtIcon
-                                name='ph:chart-pie-slice-light'
-                                size='15'
-                            />
-                            <span>Supply</span>
-                        </RainbowButton>
-                    </template>
-                    
-                    <template v-else>
-                        <div
-                            @click='show_drawer = true'
-                            class='rainbow-button group relative h-fit cursor-pointer items-center justify-center rounded-xl border-0 px-3 py-1 font-medium text-foreground transition-colors [background-clip:padding-box,border-box,border-box] [background-origin:border-box] [border:calc(0.08*1rem)_solid_transparent] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 before:absolute before:bottom-[-20%] before:left-1/2 before:z-0 before:h-1/5 before:w-3/5 before:-translate-x-1/2 before:bg-[linear-gradient(90deg,var(--color-1),var(--color-5),var(--color-3),var(--color-4),var(--color-2))] before:bg-[length:200%] before:[filter:blur(calc(0.8*1rem))] dark:bg-background text-xs w-24 flex gap-2'
-                        >
-                            <NuxtIcon
-                                name='ph:chart-pie-slice-light'
-                                size='15'
-                            />
-                            <span>Supply</span>
-                        </div>
-                    </template>
-                    
-                    <!--
-                    <TabsTrigger
-                        @click='show_drawer = true'
-                        value='supply'
-                        class='py-1.5 px-1.5 text-xs flex gap-1 bg-transparent'
-                    >
-                        <NuxtIcon
-                            name='mdi-light:chart-pie'
-                            size='15'
-                        />
-                        <span>Supply</span>
-                    </TabsTrigger>
-                    -->
-                </TabsList>
-            </Tabs>
-            
             <!--  Timeframe  -->
             <Tabs v-model='timeframe'>
                 <TabsList>
@@ -124,12 +79,7 @@
                 />
             </div>
             
-            <CoinSupply
-                v-if='show_drawer'
-                :coin='coin'
-                :showDrawer='show_drawer'
-                @handleDrawer='onHandleDrawer'
-            />
+<!--            <CoinSupply :coin='coin' />-->
         </div>
     </Card>
 </template>
@@ -141,7 +91,6 @@
     import { Spinner } from '~/components/ui/spinner/index.js';
     import { Switch } from '@/components/ui/switch';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
-    import CoinSupply from '@/components/market/id/CoinSupply.vue';
     
     // Dayjs
     import dayjs from 'dayjs';
@@ -514,16 +463,6 @@
             },
             options,
         };
-    });
-    
-    // Drawer
-    const show_drawer = ref(false);
-    const onHandleDrawer = bool => show_drawer.value = bool;
-    watch(show_drawer, () => {
-        // Switch to the price type once the supply drawer is closed
-        if(valuation_tab.value === 'supply' && !show_drawer.value) {
-            nextTick(() => valuation_tab.value = 'price');
-        }
     });
 </script>
 
