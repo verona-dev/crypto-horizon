@@ -43,9 +43,8 @@
                                 :tooltip="item.title"
                                 :is-active="item.isActive"
                                 :class="[
-                                  'sidebar-menu-button hover:bg-muted !hover:rounded-2xl',
+                                  'sidebar-menu-button hover:bg-muted !hover:rounded-2xl my-1',
                                   { 'dark:!text-blue-pacific': !open && item.isActive },
-                                  { '!bg-transparent': open && item.isActive },
                                 ]"
                             >
                                 <component :is="item.icon" v-if="item.icon" />
