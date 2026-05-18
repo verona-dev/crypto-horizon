@@ -75,7 +75,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
     import { Button } from '@/components/ui/button/index';
     import { Card, CardContent } from '~/components/ui/card';
     import { Field, FieldDescription, FieldSeparator, FieldTitle } from '@/components/ui/field/index';
