@@ -1,5 +1,8 @@
 <template>
     <CardContent class='coin-body animate-fadeIn-2000'>
+        <!-- Supply -->
+        <CoinSupply :coin='coin' />
+        
         <div class='grid grid-cols-1 xl:grid-cols-6 gap-6'>
             <!-- Left -->
             <div class='lg:col-span-2 xl:col-span-2 space-y-6'>
@@ -32,6 +35,7 @@
     import CoinDelta from '@/components/market/id/CoinDelta.vue';
     import CoinDescription from '@/components/market/id/CoinDescription.vue';
     import { CardContent } from '~/components/ui/card';
+    import CoinSupply from '@/components/market/id/CoinSupply.vue';
     
     const props = defineProps({
         coin: {
