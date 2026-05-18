@@ -30,7 +30,7 @@
             <SidebarMenuButton
                 @click='toggleSidebar'
                 :tooltip='TooltipContent'
-                class='sidebar-menu-button button-hover'
+                class='sidebar-menu-button'
                 :class='{ "flex gap-3.5" :  open }'
             >
                 <NuxtIcon

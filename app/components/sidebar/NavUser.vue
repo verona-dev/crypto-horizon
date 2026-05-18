@@ -62,7 +62,7 @@
                     <SidebarMenuButton
                         size='lg'
                         class='h-10'
-                        :class='open ? "px-1 button-hover flex gap-2.5 rounded-md" : "ml-1 hover:bg-transparent active:bg-transparent"'
+                        :class='open ? "px-1 flex gap-2.5 rounded-md" : "ml-1 hover:bg-transparent active:bg-transparent"'
                     >
                         <Avatar class='h-6 w-6 rounded-lg'>
                             <AvatarImage :src='avatar' alt='avatar' />
@@ -80,7 +80,7 @@
                 
                 <!--  Dropdown  -->
                 <DropdownMenuContent
-                    class='w-[--reka-dropdown-menu-trigger-width] min-w-56'
+                    class='font-satoshi w-[--reka-dropdown-menu-trigger-width] min-w-56'
                     :side='isMobile ? "bottom" : "right"'
                     align='end'
                     :side-offset='open ? 16 : 8'

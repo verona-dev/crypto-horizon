@@ -4,7 +4,7 @@
             <SidebarMenuButton
                 @click='toggleMode'
                 :tooltip='active_mode.label'
-                class='sidebar-menu-button button-hover'
+                class='sidebar-menu-button'
                 :class='{ "flex gap-3.5" :  open }'
             >
                 <NuxtIcon
