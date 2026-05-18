@@ -1,7 +1,7 @@
 <template>
     <Card
         v-if='chart.prices'
-        class='coin-chart bg-background flex flex-col gap-6 p-8'
+        class='coin-chart bg-background flex flex-col gap-6 p-8 border-none shadow-none'
         :class='{ "bg-popover/50" : sniper_mode }'
     >
         <!--  Tabs  -->
