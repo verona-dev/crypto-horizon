@@ -14,6 +14,7 @@
 
 <script setup>
     import 'vue-sonner/style.css';
+    import Toaster from 'vue-sonner';
     
     const route = useRoute();
     const config = useRuntimeConfig();
