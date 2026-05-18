@@ -1,19 +1,7 @@
 <template>
-    <div class='page p-0'>
-        <section class='absolute inset-0 h-screen w-screen'>
-            <SnowfallBg
-                v-if='dark_mode'
-                color='7393bc'
-                class='absolute inset-0 !z-0'
-                :min-radius='0.2'
-                :max-radius='2'
-                :speed='0.1'
-                :quantity='150'
-            />
-        </section>
-        
-        <Card class='dark:bg-card-dark md:p-8 w-full md:w-150 flex flex-col items-center border-none shadow-none'>
-            <CardContent class='w-full flex flex-col items-center justify-center gap-4'>
+    <div class='grid min-h-svh min-w-svw max-w-5xl lg:grid-cols-2'>
+        <Card class='bg-card-dark flex justify-center items-center !rounded-none !shadow-none border-t-none border-l-none border-b-none border-r-muted hover:border-muted'>
+            <CardContent class='w-full max-w-lg flex flex-col items-center justify-center gap-4 pb-16'>
                 <!--  Logo  -->
                 <NuxtImg
                     src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766403245/astronaut-cartoon_tnp9t4.gif'
@@ -82,10 +70,30 @@
                 </div>
             </CardContent>
         </Card>
+        
+        <div class='relative hidden lg:flex w-full h-full flex-col items-center justify-center overflow-hidden'>
+             <hspan class="text-8xl w-full select-none pointer-events-none bg-linear-to-b from-black to-gray-300/80 bg-clip-text text-center leading-none font-semibold whitespace-pre-wrap text-transparent dark:from-white dark:to-slate-900/10">
+                 Crypto Horizon
+             </hspan>
+            
+            <div class="grid place-content-center p-6 w-full">
+                <IconCloud :images="imageUrls" />
+            </div>
+            
+            <SnowfallBg
+                v-if='dark_mode'
+                color='7393bc'
+                class='absolute inset-0 !min-h-lvh !min-w-full'
+                :min-radius='0.2'
+                :max-radius='2'
+                :speed='0.1'
+                :quantity='150'
+            />
+        </div>
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
     import { Button } from '@/components/ui/button/index';
     import { Card, CardContent } from '~/components/ui/card';
     import { Field, FieldDescription, FieldSeparator, FieldTitle } from '@/components/ui/field/index';
@@ -94,6 +102,32 @@
     import LoginOAuth from '@/components/auth/LoginOAuth.vue';
     import { Skeleton } from '@/components/ui/skeleton/index';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
+    import { IconCloud } from '~/components/ui/icon-cloud';
+    
+    const slugs = [
+        "bitcoin",
+        "ethereum",
+        "cardano",
+        "polkadot",
+        "polygon",
+        "solana",
+        "tron",
+        "base",
+        "bnbchain",
+        "arbitrum",
+        "avalanche",
+        "optimism",
+        "stellar",
+        "near",
+        "kava",
+        "hedera",
+        "xrp",
+        "internetcomputer",
+        "litecoin",
+        "dogecoin",
+    ];
+    
+    const imageUrls = slugs.map((slug) => `https://cdn.simpleicons.org/${slug}/${slug}`);
     
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
@@ -110,5 +144,6 @@
     
     definePageMeta({
         middleware: 'auth',
+        // layout: false,
     });
 </script>
