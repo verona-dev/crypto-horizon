@@ -72,13 +72,13 @@
         </Card>
         
         <div class='relative hidden lg:flex w-full h-full flex-col items-center justify-center overflow-hidden'>
-            <div class='flex w-full items-center justify-center'>
+            <div class='flex w-full items-center justify-center mr-6'>
                 <TextGlitch
                     :speed='3.5'
                     :enable-shadows='true'
                     text='Crypto Horizon'
                     :enableOnHover='true'
-                    class='!z-10'
+                    class='font-great !z-10'
                 />
             </div>
             
