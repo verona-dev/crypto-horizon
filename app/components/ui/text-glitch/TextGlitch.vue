@@ -34,7 +34,7 @@ const hoverClass = computed(() => (enableOnHover ? "enable-on-hover" : ""));
 <style scoped>
 .glitch {
   color: #fff;
-  font-size: clamp(2rem, 6vw, 6rem);
+  font-size: clamp(2rem, 3.5vw, 5rem);
   white-space: nowrap;
   font-weight: 900;
   position: relative;
