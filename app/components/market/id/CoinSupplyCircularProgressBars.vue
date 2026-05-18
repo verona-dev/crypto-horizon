@@ -1,5 +1,5 @@
 <template>
-    <div class='coin-supply-progress-bars xl:w-[1200px] mx-auto my-10'>
+    <div class='mx-auto my-10'>
         <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center'>
             <!--  Market Cap  -->
             <div v-if='market_cap' class='item-container'>
@@ -253,41 +253,25 @@
 </script>
 
 <style>
-    .coin-supply-progress-bars {
-        .item-container {
+    .item-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        
+        @media (min-width: 768px) {
+            width: 200px;
+        }
+        
+        /* Desktop */
+        @media (min-width: 1024px) {
+            width: 250px;
+        }
+        
+        .label-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
-            
-            @media (min-width: 768px) {
-                width: 300px;
-            }
-            
-            /* Desktop */
-            @media (min-width: 1024px) {
-                width: 350px;
-            }
-            
-            @media (min-width: 1280px) {
-                width: 400px;
-            }
-            
-            .label-container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
         }
-        
-        /*
-        [data-slot='drawer-content'] {
-            margin-top: 0 !important;
-            
-            @media (min-width: 768px) {
-                margin-top: calc(var(--spacing) * 24);
-            }
-        }
-        */
     }
 </style>
