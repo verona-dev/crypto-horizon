@@ -3,9 +3,9 @@
         <!-- Supply -->
         <CoinSupply :coin='coin' />
         
-        <div class='grid grid-cols-1 xl:grid-cols-6 gap-6'>
-            <!-- Left -->
-            <div class='lg:col-span-2 xl:col-span-2 space-y-6'>
+        <div class='grid grid-cols-1 lg:grid-cols-8 gap-6'>
+            <!-- Left Panel -->
+            <div class='lg:col-span-3 xl:col-span-2 space-y-6'>
                 <!-- Overview -->
                 <CoinOverview :coin='coin' />
                 
@@ -13,8 +13,8 @@
                 <CoinInsights :coin='coin' />
             </div>
             
-            <!-- Right -->
-            <div class='lg:col-span-2 xl:col-span-4 space-y-6'>
+            <!-- Right Panel -->
+            <div class='lg:col-span-5 xl:col-span-6 space-y-6'>
                 <!-- Chart -->
                 <CoinChart :coin='coin' />
                 
