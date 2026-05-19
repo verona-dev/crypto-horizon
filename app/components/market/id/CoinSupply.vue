@@ -1,5 +1,5 @@
 <template>
-    <Card class='coin-overview bg-background flex flex-col gap-16 p-10 w-full border-none shadow-none'>
+    <Card class='coin-overview bg-background flex flex-col gap-24 p-10 mb-12 xl:mb-36 w-full border-none shadow-none'>
         <!--  Title container  -->
         <div class='flex flex-col items-center gap-4'>
             <Select v-model='selected' default-value='progress-bars'>
@@ -17,7 +17,7 @@
             </Select>
         </div>
         
-        <div class='mt-6 overflow-y-auto select-text'>
+        <div class='overflow-y-auto select-text'>
             <CoinSupplyCircularProgressBars
                 v-if='selected === "progress-bars"'
                 :coin='coin'
