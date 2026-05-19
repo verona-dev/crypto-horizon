@@ -1,8 +1,8 @@
 <template>
-    <CardFooter>
+    <section>
         <!-- News -->
         <CoinNews :coin='coin' />
-    </CardFooter>
+    </section>
 </template>
 <script setup lang='ts'>
     import CoinNews from '@/components/market/id/CoinNews.vue';

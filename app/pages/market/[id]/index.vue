@@ -19,7 +19,8 @@
                 
                 <CoinBody :coin='coin'/>
             </Card>
-                <CoinFooter :coin='coin' />
+            
+            <CoinFooter :coin='coin' />
         </div>
         
         <!--
