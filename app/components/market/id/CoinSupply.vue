@@ -1,11 +1,7 @@
 <template>
-    <div>
+    <Card class='coin-overview bg-background flex flex-col gap-16 p-10 w-full border-none shadow-none'>
         <!--  Title container  -->
         <div class='flex flex-col items-center gap-4'>
-            <div class='text-4xl'>Coin Supply</div>
-            
-            <div>Exploring Key Metrics</div>
-            
             <Select v-model='selected' default-value='progress-bars'>
                 <SelectTrigger class='w-56 h-13 mt-4 pl-4 hover:bg-popover focus:ring-0 rounded-lg' data-size='default'>
                     <SelectValue />
@@ -41,7 +37,7 @@
                 <h6>Something went wrong. Please refresh the page and try again.</h6>
             </div>
         </div>
-    </div>
+    </Card>
 </template>
 
 <script setup>
@@ -49,6 +45,7 @@
     import CoinSupplyDoughnutChart from '@/components/market/id/CoinSupplyDoughnutChart.vue';
     import CoinSupplyStackedBars from '@/components/market/id/CoinSupplyStackedBars.vue';
     import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
+    import { Card } from '~/components/ui/card';
     
     const props = defineProps({
         coin: {
