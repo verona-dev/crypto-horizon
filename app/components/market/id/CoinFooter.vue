@@ -1,12 +1,10 @@
 <template>
     <section>
-        <!-- News -->
         <CoinNews :coin='coin' />
     </section>
 </template>
 <script setup lang='ts'>
     import CoinNews from '@/components/market/id/CoinNews.vue';
-    import { CardFooter } from '~/components/ui/card';
     
     const props = defineProps({
         coin: {
