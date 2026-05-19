@@ -1,8 +1,8 @@
 <template>
-    <div class='page'>
-        <LoadingSpinner v-if='loading' />
+    <div>
+        <LoadingLogo v-if='!loading' />
         
-        <div v-else class='z-10'>
+        <div v-else class='page'>
             <Card
                 v-if='coin'
                 class='bg-transparent border-none shadow-none flex flex-col items-center'
@@ -15,6 +15,7 @@
             <CoinFooter :coin='coin' />
         </div>
     </div>
+
 </template>
 
 <script setup>
@@ -22,7 +23,7 @@
     import CoinHeader from '@/components/market/id/CoinHeader.vue';
     import CoinBody from '@/components/market/id/CoinBody.vue';
     import CoinFooter from '@/components/market/id/CoinFooter.vue';
-    import LoadingSpinner from '~/components/LoadingSpinner.vue';
+    import LoadingLogo from '~/components/LoadingLogo';
     
     // Router
     const route = useRoute();
