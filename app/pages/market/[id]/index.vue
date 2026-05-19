@@ -14,17 +14,6 @@
             
             <CoinFooter :coin='coin' />
         </div>
-        
-        <!--
-        <div v-if='dark_mode' class='absolute top-0 right-0 w-full h-full overflow-visible'>
-            <StarsBackground
-                class='pl-[1200px]'
-                :factor='0.25'
-                :speed='150'
-                star-color='#fff'
-            />
-        </div>
-        -->
     </div>
 </template>
 
@@ -34,7 +23,6 @@
     import CoinBody from '@/components/market/id/CoinBody.vue';
     import CoinFooter from '@/components/market/id/CoinFooter.vue';
     import LoadingSpinner from '~/components/LoadingSpinner.vue';
-    // import { StarsBackground } from '~/components/ui/bg-stars';
     
     // Router
     const route = useRoute();
