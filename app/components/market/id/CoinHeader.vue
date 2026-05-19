@@ -1,152 +1,142 @@
 <template>
     <CardHeader v-if='coin' class='coin-header flex w-full animate-fadeIn'>
-        <Card class='bg-background flex flex-col items-center justify-center relative border-none'>
-            <GlowBorder
-                v-if='dark_mode'
-                :color='["#A07CFE", "#FE8FB5", "#FFBE7B"]'
-                :border-radius='6'
-                :duration='75'
-                :borderWidth='1'
+        <!--  Go back -->
+        <!--
+        <NuxtLink
+            @click='goBack(router, "/market")'
+            to=''
+            class='alert-go-back absolute top-0 left-0 h-full w-20 flex items-center justify-center px-2 border border-r-accent hover:bg-muted hover:cursor-pointer'
+        >
+            <NuxtIcon
+                name='mdi-light:arrow-left'
+                size='50'
             />
-            
-            <!--  Go back -->
-            <!--
-            <NuxtLink
-                @click='goBack(router, "/market")'
-                to=''
-                class='alert-go-back absolute top-0 left-0 h-full w-20 flex items-center justify-center px-2 border border-r-accent hover:bg-muted hover:cursor-pointer'
-            >
-                <NuxtIcon
-                    name='mdi-light:arrow-left'
-                    size='50'
-                />
-            </NuxtLink>
-            -->
-            
-            <div class='flex flex-col items-center gap-12 p-10'>
-                <div class='flex flex-col justify-center items-center gap-4'>
-                    <!-- Logo + Name  -->
-                    <div class='flex justify-center items-center gap-6'>
-                        <NuxtImg
-                            v-if='coingecko?.image?.large'
-                            :src='coin.coingecko.image.large'
-                            alt='symbol'
-                            width='80'
-                            height='80'
-                        />
-                        
-                        <h2>{{ coingecko.name }}</h2>
-                    </div>
+        </NuxtLink>
+        -->
+        
+        <div class='flex flex-col items-center gap-12 p-10'>
+            <div class='flex flex-col justify-center items-center gap-4'>
+                <!-- Logo + Name  -->
+                <div class='flex justify-center items-center gap-6'>
+                    <NuxtImg
+                        v-if='coingecko?.image?.large'
+                        :src='coin.coingecko.image.large'
+                        alt='symbol'
+                        width='80'
+                        height='80'
+                    />
                     
-                    <CardDescription class='flex items-center gap-4'>
-                        <!--  Rank  -->
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger>
-                                <Badge class='h-12 py-2 px-4 text-lg text-muted-foreground' variant='outline'>
-                                    &#35;{{ coingecko.market_cap_rank }}
-                                </Badge>
-                            </HoverCardTrigger>
-                            
-                            <HoverCardContent>Ranked {{ coingecko.market_cap_rank }} by market cap out of all active cryptocurrencies listed on CoinGecko.</HoverCardContent>
-                        </HoverCard>
-                        
-                        <!-- Symbol  -->
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='symbol flex items-center gap-4'>
-                                <h2 class='text-xl'>{{ coin.symbol }}</h2>
-                                <h2 v-if='livecoinwatch_symbol' class='text-xl'>{{ livecoinwatch_symbol }}</h2>
-                            </HoverCardTrigger>
-                            
-                            <!--  Ico Description -->
-                            <HoverCardContent v-if='ico_description'>{{ ico_description }}.</HoverCardContent>
-                        </HoverCard>
-                        
-                        <!--  Portfolio watchlist  -->
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger>
-                                <Badge class='h-12 py-2 px-4 flex items-center gap-2 text-lg text-muted-foreground' variant='outline'>
-                                    <NuxtIcon
-                                        @click.prevent='updateWatchlist({ coin: coin_id })'
-                                        :name='isCoinInWatchlist ? "ph:star-fill" : "ph:star-duotone"'
-                                        class='hover:cursor-pointer'
-                                        :class='isCoinInWatchlist ? "text-yellow-selective" : "text-yellow-selective/75"'
-                                        size='28'
-                                    />
-                                    {{ coingecko_watchlists }}
-                                </Badge>
-                            </HoverCardTrigger>
-                            <HoverCardContent>{{ coingecko_watchlists }} watchlists on Coingecko include {{ coin.symbol }}.</HoverCardContent>
-                        </HoverCard>
-                    </CardDescription>
+                    <h2>{{ coingecko.name }}</h2>
                 </div>
                 
-                <!--  Price  -->
-                <div class='flex flex-col xl:flex-row gap-10 xl:gap-24'>
-                    <!--  Price in USD  -->
-                    <div class='flex flex-col items-center gap-2 text-green-dollar'>
-                        <h2 class='text-3xl md:text-5xl'>{{ current_price_label }}</h2>
+                <CardDescription class='flex items-center gap-4'>
+                    <!--  Rank  -->
+                    <HoverCard :openDelay='200'>
+                        <HoverCardTrigger>
+                            <Badge class='h-12 py-2 px-4 text-lg text-muted-foreground' variant='outline'>
+                                &#35;{{ coingecko.market_cap_rank }}
+                            </Badge>
+                        </HoverCardTrigger>
                         
-                        <!--  Price change % in USD $  -->
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='flex items-center gap-1'>
-                                <NuxtIcon
-                                    :name='getTrendIcon(price_change_percentage)'
-                                    size='15'
-                                    :class='getTrendClass(price_change_percentage)'
-                                />
-                                
-                                <p
-                                    :class='getTrendClass(price_change_percentage)'
-                                    class='flex items-center text-sm'
-                                >
-                                    {{ price_change_percentage_label }}
-                                    <span class='ml-1'>&#40;{{ timeframe_label }}&#41;</span>
-                                </p>
-                            </HoverCardTrigger>
-                            
-                            <HoverCardContent>Current coin price in &#65284;USD and price change percentage.</HoverCardContent>
-                        </HoverCard>
-                    </div>
+                        <HoverCardContent>Ranked {{ coingecko.market_cap_rank }} by market cap out of all active cryptocurrencies listed on CoinGecko.</HoverCardContent>
+                    </HoverCard>
                     
-                    <!--  Price in BTC  -->
-                    <div class='flex flex-col items-center gap-2 text-orange-bitcoin' v-if='not_bitcoin'>
-                        <div class='flex items-center gap-2'>
+                    <!-- Symbol  -->
+                    <HoverCard :openDelay='200'>
+                        <HoverCardTrigger class='symbol flex items-center gap-4'>
+                            <h2 class='text-xl'>{{ coin.symbol }}</h2>
+                            <h2 v-if='livecoinwatch_symbol' class='text-xl'>{{ livecoinwatch_symbol }}</h2>
+                        </HoverCardTrigger>
+                        
+                        <!--  Ico Description -->
+                        <HoverCardContent v-if='ico_description'>{{ ico_description }}.</HoverCardContent>
+                    </HoverCard>
+                    
+                    <!--  Portfolio watchlist  -->
+                    <HoverCard :openDelay='200'>
+                        <HoverCardTrigger>
+                            <Badge class='h-12 py-2 px-4 flex items-center gap-2 text-lg text-muted-foreground' variant='outline'>
+                                <NuxtIcon
+                                    @click.prevent='updateWatchlist({ coin: coin_id })'
+                                    :name='isCoinInWatchlist ? "ph:star-fill" : "ph:star-duotone"'
+                                    class='hover:cursor-pointer'
+                                    :class='isCoinInWatchlist ? "text-yellow-selective" : "text-yellow-selective/75"'
+                                    size='28'
+                                />
+                                {{ coingecko_watchlists }}
+                            </Badge>
+                        </HoverCardTrigger>
+                        <HoverCardContent>{{ coingecko_watchlists }} watchlists on Coingecko include {{ coin.symbol }}.</HoverCardContent>
+                    </HoverCard>
+                </CardDescription>
+            </div>
+            
+            <!--  Price  -->
+            <div class='flex flex-col xl:flex-row gap-10 xl:gap-24'>
+                <!--  Price in USD  -->
+                <div class='flex flex-col items-center gap-2 text-green-dollar'>
+                    <h2 class='text-3xl md:text-5xl'>{{ current_price_label }}</h2>
+                    
+                    <!--  Price change % in USD $  -->
+                    <HoverCard :openDelay='200'>
+                        <HoverCardTrigger class='flex items-center gap-1'>
                             <NuxtIcon
-                                name='logos:bitcoin'
-                                class='mb-0.5'
-                                size='45'
+                                :name='getTrendIcon(price_change_percentage)'
+                                size='15'
+                                :class='getTrendClass(price_change_percentage)'
                             />
                             
-                            <h2 class='text-3xl md:text-5xl'>{{ current_price_in_btc_label }}</h2>
-                        </div>
+                            <p
+                                :class='getTrendClass(price_change_percentage)'
+                                class='flex items-center text-sm'
+                            >
+                                {{ price_change_percentage_label }}
+                                <span class='ml-1'>&#40;{{ timeframe_label }}&#41;</span>
+                            </p>
+                        </HoverCardTrigger>
                         
-                        <!--  Price change % in BTC  -->
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger class='flex items-center gap-1'>
-                                <NuxtIcon
-                                    :name='getTrendIcon(price_change_percentage_btc)'
-                                    size='15'
-                                    :class='getTrendClass(price_change_percentage_btc)'
-                                />
-                                
-                                <p
-                                    :class='[getTrendClass(price_change_percentage_btc)]'
-                                    class='flex items-center text-sm'
-                                >
-                                    {{ price_change_percentage_btc_label }}
-                                    <span class='ml-1'>&#40;{{ timeframe_label }}&#41;</span>
-                                </p>
-                            </HoverCardTrigger>
-                            
-                            <HoverCardContent>Current coin price in BTC and {{ coin.symbol }}'s price change percentage compared to Bitcoin&#40;BTC&#41;.</HoverCardContent>
-                        </HoverCard>
-                    </div>
+                        <HoverCardContent>Current coin price in &#65284;USD and price change percentage.</HoverCardContent>
+                    </HoverCard>
                 </div>
                 
-                <!--  Public Notice  -->
-                <CoinPublicNotice :public-notice='coingecko.public_notice' />
+                <!--  Price in BTC  -->
+                <div class='flex flex-col items-center gap-2 text-orange-bitcoin' v-if='not_bitcoin'>
+                    <div class='flex items-center gap-2'>
+                        <NuxtIcon
+                            name='logos:bitcoin'
+                            class='mb-0.5'
+                            size='45'
+                        />
+                        
+                        <h2 class='text-3xl md:text-5xl'>{{ current_price_in_btc_label }}</h2>
+                    </div>
+                    
+                    <!--  Price change % in BTC  -->
+                    <HoverCard :openDelay='200'>
+                        <HoverCardTrigger class='flex items-center gap-1'>
+                            <NuxtIcon
+                                :name='getTrendIcon(price_change_percentage_btc)'
+                                size='15'
+                                :class='getTrendClass(price_change_percentage_btc)'
+                            />
+                            
+                            <p
+                                :class='[getTrendClass(price_change_percentage_btc)]'
+                                class='flex items-center text-sm'
+                            >
+                                {{ price_change_percentage_btc_label }}
+                                <span class='ml-1'>&#40;{{ timeframe_label }}&#41;</span>
+                            </p>
+                        </HoverCardTrigger>
+                        
+                        <HoverCardContent>Current coin price in BTC and {{ coin.symbol }}'s price change percentage compared to Bitcoin&#40;BTC&#41;.</HoverCardContent>
+                    </HoverCard>
+                </div>
             </div>
-        </Card>
+            
+            <!--  Public Notice  -->
+            <CoinPublicNotice :public-notice='coingecko.public_notice' />
+        </div>
     </CardHeader>
 </template>
 
@@ -154,13 +144,9 @@
     import { formatNumber, goBack } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import { Badge } from '~/components/ui/badge';
-    import { Card, CardTitle, CardDescription, CardHeader } from '~/components/ui/card';
+    import { Card, CardDescription, CardHeader } from '~/components/ui/card';
     import CoinPublicNotice from '~/components/market/id/CoinPublicNotice.vue';
-    import { GlowBorder } from '~/components/ui/glow-border';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
-    
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
     
     // MarketStore
     import { storeToRefs } from 'pinia';
