@@ -6,45 +6,15 @@
                 :enable-shadows='true'
                 text='Crypto Horizon'
                 :enableOnHover='true'
-                class='font-great animate-pulse !z-10'
+                class='project-name font-great !z-10'
             />
         </div>
         
-        <div class='grid place-content-center'>
-            <IconCloud
-                :images='imageUrls'
-                class='cursor-grab !z-10'
-            />
-        </div>
+        <ChainsCloud />
     </div>
 </template>
 
 <script setup>
-    import { IconCloud } from '~/components/ui/icon-cloud';
-    import TextGlitch from '@/components/ui/text-glitch/TextGlitch.vue';
-    
-    const chains = [
-        "bitcoin",
-        "ethereum",
-        "cardano",
-        "polkadot",
-        "polygon",
-        "solana",
-        "tron",
-        "base",
-        "bnbchain",
-        "arbitrum",
-        "avalanche",
-        "optimism",
-        "stellar",
-        "near",
-        "kava",
-        "hedera",
-        "xrp",
-        "internetcomputer",
-        "litecoin",
-        "dogecoin",
-    ];
-    
-    const imageUrls = chains.map((slug) => `https://cdn.simpleicons.org/${slug}/${slug}`);
+    import ChainsCloud  from '~/components/ChainsCloud.vue';
+    import TextGlitch from '~/components/ui/text-glitch/TextGlitch.vue';
 </script>
