@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-transparent flex flex-col gap-24 mb-12 xl:mb-36 w-full !border-none !shadow-none !rounded-none'>
+    <Card class='bg-transparent flex flex-col gap-24 mb-12 xl:mb-36 w-full mx-auto max-w-7xl !border-none !shadow-none !rounded-none'>
         <!--  Selector container  -->
         <div class='flex flex-col items-center gap-4'>
             <Select v-model='selected' default-value='progress-bars'>

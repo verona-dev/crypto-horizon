@@ -1,20 +1,12 @@
 <template>
-    <div class='page'>
-        <LoadingSpinner v-if='loading' />
+    <div class='w-full'>
+        <LoadingContent v-if='loading' />
         
-        <div v-else class='z-10'>
+        <div v-else class='page'>
             <Card
                 v-if='coin'
                 class='bg-transparent border-none shadow-none flex flex-col items-center'
             >
-                <GlowBorder
-                    v-if='dark_mode'
-                    :color='["#A07CFE", "#FE8FB5", "#FFBE7B"]'
-                    :border-radius='6'
-                    :duration='75'
-                    :borderWidth='1'
-                />
-                
                 <CoinHeader :coin='coin' />
                 
                 <CoinBody :coin='coin'/>
@@ -22,17 +14,6 @@
             
             <CoinFooter :coin='coin' />
         </div>
-        
-        <!--
-        <div v-if='dark_mode' class='absolute top-0 right-0 w-full h-full overflow-visible'>
-            <StarsBackground
-                class='pl-[1200px]'
-                :factor='0.25'
-                :speed='150'
-                star-color='#fff'
-            />
-        </div>
-        -->
     </div>
 </template>
 
@@ -41,12 +22,7 @@
     import CoinHeader from '@/components/market/id/CoinHeader.vue';
     import CoinBody from '@/components/market/id/CoinBody.vue';
     import CoinFooter from '@/components/market/id/CoinFooter.vue';
-    import LoadingSpinner from '~/components/LoadingSpinner.vue';
-    import { GlowBorder } from '~/components/ui/glow-border';
-    // import { StarsBackground } from '~/components/ui/bg-stars';
-    
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
+    import LoadingContent from '@/components/LoadingContent.vue';
     
     // Router
     const route = useRoute();

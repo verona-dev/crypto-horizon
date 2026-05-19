@@ -57,7 +57,6 @@
 </template>
 
 <script setup>
-    import { capitalize } from '@/utils/formatUtils.js';
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle } from '@/components/ui/card/index.ts';
     import NewTabIcon from '@/components/NewTabIcon.vue';
@@ -92,7 +91,7 @@
         
         toast.promise(() => new Promise((resolve) => setTimeout(resolve, 750)), {
             loading: 'Copying...',
-            success: () => `${capitalize(name)} link copied to clipboard.`,
+            success: () => `${src} copied to clipboard.`,
             error: () => 'Error',
             class: '!flex !gap-3',
         });

@@ -1,5 +1,5 @@
 <template>
-    <div class='grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-12 justify-items-center'>
+    <div class='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-24 justify-items-center'>
         <!--  Market Cap  -->
         <div v-if='market_cap' class='item-container'>
             <MazCircularProgressBar
