@@ -378,14 +378,13 @@
                         },
                         label: function(context) {
                             const index = context.dataIndex;
-                            const amount = formatNumber(context.parsed.y, {
-                                truncate: true,
-                            });
+                            const price = formatNumber(prices.value[index]);
                             const volume = formatNumber(volumes.value[index]);
-                            const label = valuation_tab.value === 'price' ? 'Price' : 'Market Cap';
+                            const m_cap = formatNumber(m_caps.value[index]);
                             
                             return [
-                                `${label}: ${amount}`,
+                                `Price: ${price}`,
+                                `Market Cap: ${m_cap}`,
                                 `Vol: ${volume}`,
                             ];
                         }
