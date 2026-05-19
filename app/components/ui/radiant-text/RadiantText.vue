@@ -27,7 +27,7 @@ const styleVar = computed(() => {
     :style="styleVar"
     :class="
       cn(
-        `radiant-animation mx-auto bg-linear-to-r from-transparent via-black via-50% to-transparent bg-size-[var(--radiant-width)_100%] bg-clip-text bg-position-[0_0] bg-no-repeat text-neutral-600/70 [transition:background-position_1s_cubic-bezier(.6,.6,0,1)_infinite] dark:via-white dark:text-neutral-400/70`,
+        `radiant-animation mx-auto bg-linear-to-r from-transparent via-black via-50% to-transparent bg-size-[var(--radiant-width)_100%] bg-clip-text bg-position-[0_0] bg-no-repeat text-blue-cove 7transition:background-position_1s_cubic-bezier(.6,.6,0,1)_infinite] dark:via-white dark:text-blue-cove/80`,
         $props.class,
       )
     "
