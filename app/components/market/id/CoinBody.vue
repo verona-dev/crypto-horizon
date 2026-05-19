@@ -25,6 +25,12 @@
                 <CoinDescription :coin='coin' />
             </div>
         </div>
+        
+        <!-- Links -->
+        <CoinLinks
+            :links='links'
+            :symbol='symbol'
+        />
     </CardContent>
 </template>
 
@@ -36,6 +42,7 @@
     import CoinDescription from '@/components/market/id/CoinDescription.vue';
     import { CardContent } from '~/components/ui/card';
     import CoinSupply from '@/components/market/id/CoinSupply.vue';
+    import CoinLinks from '@/components/market/id/CoinLinks.vue';
     
     const props = defineProps({
         coin: {
@@ -47,4 +54,6 @@
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
     const market_data = computed(() => coingecko.value?.market_data);
+    const links = computed(() => coin.value?.links);
+    const symbol = toRef(coin.value?.symbol);
 </script>
