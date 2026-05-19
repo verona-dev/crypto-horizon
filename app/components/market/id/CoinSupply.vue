@@ -1,91 +1,59 @@
 <template>
-    <Drawer v-model:open='isOpen'>
-        <DrawerContent>
-            <DrawerHeader class='border-b select-text'>
-                <div class='my-6 flex items-start justify-between px-4 relative'>
-                    <!--  Spacer  -->
-                    <div class='w-12'></div>
-                    
-                    <!--  Title container  -->
-                    <div class='flex flex-col items-center gap-4'>
-                        <DrawerTitle class='text-4xl'>Coin Supply</DrawerTitle>
-                        
-                        <DrawerDescription>Exploring Key Metrics</DrawerDescription>
-                        
-                        <Select v-model='selected' default-value='progress-bars'>
-                            <SelectTrigger class='w-56 h-13 mt-4 pl-4 hover:bg-popover focus:ring-0 rounded-lg' data-size='default'>
-                                <SelectValue />
-                            </SelectTrigger>
-                            
-                            <SelectContent class='w-56 rounded-lg'>
-                                <SelectGroup>
-                                    <SelectItem value='progress-bars' class='h-12 rounded-lg'>Progress Bars</SelectItem>
-                                    <SelectItem value='doughnut-chart' class='h-12 rounded-lg'>Doughnut Chart</SelectItem>
-                                    <SelectItem value='stacked-bars' class='h-12 rounded-lg'>Stacked Bars</SelectItem>
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    
-                    <!--  Close button  -->
-                    <DrawerClose class='w-12 flex justify-end'>
-                        <NuxtIcon
-                            name='ph:caret-double-down-light'
-                            size='35'
-                        />
-                    </DrawerClose>
-                </div>
-            </DrawerHeader>
+    <Card class='bg-transparent flex flex-col gap-24 mb-12 xl:mb-36 w-full !border-none !shadow-none !rounded-none'>
+        <!--  Selector container  -->
+        <div class='flex flex-col items-center gap-4'>
+            <Select v-model='selected' default-value='progress-bars'>
+                <SelectTrigger class='w-56 h-13 pl-4 focus:ring-0' data-size='default'>
+                    <SelectValue />
+                </SelectTrigger>
+                
+                <SelectContent class='bg-background w-56'>
+                    <SelectGroup>
+                        <SelectItem value='progress-bars' class='h-12 rounded-lg'>Progress Bars</SelectItem>
+                        <SelectItem value='doughnut-chart' class='h-12 rounded-lg'>Doughnut Chart</SelectItem>
+                        <SelectItem value='stacked-bars' class='h-12 rounded-lg'>Stacked Bars</SelectItem>
+                    </SelectGroup>
+                </SelectContent>
+            </Select>
+        </div>
+        
+        <div class='overflow-y-auto select-text'>
+            <CoinSupplyCircularProgressBars
+                v-if='selected === "progress-bars"'
+                :coin='coin'
+            />
             
-            <DrawerFooter class='mt-6 overflow-y-auto select-text'>
-                <CoinSupplyCircularProgressBars
-                    v-if='selected === "progress-bars"'
-                    :coin='coin'
-                />
-                
-                <CoinSupplyDoughnutChart
-                    v-else-if='selected === "doughnut-chart"'
-                    :coin='coin'
-                />
-                
-                <CoinSupplyStackedBars
-                    v-else-if='selected === "stacked-bars"'
-                    :coin='coin'
-                />
-                
-                <div v-else>
-                    <h6>Something went wrong. Please refresh the page and try again.</h6>
-                </div>
-            </DrawerFooter>
-        </DrawerContent>
-    </Drawer>
+            <CoinSupplyDoughnutChart
+                v-else-if='selected === "doughnut-chart"'
+                :coin='coin'
+            />
+            
+            <CoinSupplyStackedBars
+                v-else-if='selected === "stacked-bars"'
+                :coin='coin'
+            />
+            
+            <div v-else>
+                <h6>Something went wrong. Please refresh the page and try again.</h6>
+            </div>
+        </div>
+    </Card>
 </template>
 
 <script setup>
     import CoinSupplyCircularProgressBars from '@/components/market/id/CoinSupplyCircularProgressBars.vue';
     import CoinSupplyDoughnutChart from '@/components/market/id/CoinSupplyDoughnutChart.vue';
     import CoinSupplyStackedBars from '@/components/market/id/CoinSupplyStackedBars.vue';
-    
-    import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
     import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
+    import { Card } from '~/components/ui/card';
     
     const props = defineProps({
         coin: {
             type: Object,
             required: true,
         },
-        showDrawer: Boolean,
     });
     
-    const { coin, showDrawer } = toRefs(props);
+    const { coin } = toRefs(props);
     const selected = ref('progress-bars');
-    const isOpen = ref(showDrawer.value);
-    const emit = defineEmits(['handleDrawer']);
-    watch(isOpen, bool => emit('handleDrawer', bool));
 </script>
-
-<style>
-    [data-vaul-drawer-direction='bottom'] {
-        min-height: 50vh !important;
-    }
-</style>

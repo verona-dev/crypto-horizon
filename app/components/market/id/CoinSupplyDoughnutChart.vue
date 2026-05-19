@@ -1,4 +1,3 @@
-
 <template>
     <div class='my-10 flex-col lg:flex-row flex items-center justify-center gap-16'>
         <div class='w-52 lg:w-[450px] h-52 lg:h-[450px]'>

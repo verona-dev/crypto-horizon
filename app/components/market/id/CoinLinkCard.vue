@@ -2,7 +2,7 @@
     <Card
         v-if='link'
         class='!bg-background w-52 2xl:min-w-76 p-12 2xl:pl-4 2xl:pr-2 2xl:py-3 flex flex-col 2xl:flex-row gap-6 2xl:gap-3 rounded-lg
-                hover:border-green-shamrock/75 hover:shadow-2xl transition-all duration-500 ease-out border-border/50 shadow-md'
+                border-transparent shadow-none hover:border-green-shamrock/75 transition-all duration-500 ease-out'
     >
         <!--  Logo + Name  -->
         <div class='flex flex-1 flex-col 2xl:flex-row items-center gap-2 2xl:gap-3 w-full'>
@@ -12,7 +12,7 @@
                 class='mt-0.5'
             />
             
-            <CardTitle class='text-lg font-satoshi flex-1 capitalize'>{{ name }}</CardTitle>
+            <CardTitle class='text-lg flex-1 capitalize'>{{ name }}</CardTitle>
         </div>
         
         <!--  Copy + Open link -->

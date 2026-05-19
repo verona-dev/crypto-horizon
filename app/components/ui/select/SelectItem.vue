@@ -24,7 +24,7 @@ const forwardedProps = useForwardProps(delegatedProps)
     v-bind="forwardedProps"
     :class="
       cn(
-        `cursor-pointer relative flex w-full select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none
+        `group cursor-pointer relative flex w-full select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none
         hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50`,
         props.class,
       )
@@ -32,12 +32,12 @@ const forwardedProps = useForwardProps(delegatedProps)
   >
     <span class="absolute right-2 flex h-3.5 w-3.5 items-center justify-center">
       <SelectItemIndicator>
-        <Check class="h-4 w-4" />
+        <Check class="h-4 w-4 text-green-shamrock" />
       </SelectItemIndicator>
     </span>
-
-    <SelectItemText>
-      <slot />
-    </SelectItemText>
-  </SelectItem>
+        
+        <SelectItemText class="group-data-[state=checked]:text-green-shamrock">
+            <slot />
+        </SelectItemText>
+    </SelectItem>
 </template>

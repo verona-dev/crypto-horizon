@@ -1,188 +1,186 @@
 <template>
-    <div class='coin-supply-progress-bars xl:w-[1200px] mx-auto my-10'>
-        <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center'>
-            <!--  Market Cap  -->
-            <div v-if='market_cap' class='item-container'>
-                <MazCircularProgressBar
-                    :percentage='100'
-                    :duration='2000'
-                    size='125px'
-                >
-                    <template #default>
-                        <p>{{ market_cap_compact }}</p>
-                    </template>
-                </MazCircularProgressBar>
-                
-                <div class='label-container'>
-                    <div class='flex items-center gap-2'>
-                        <h5>{{ glossary.market_cap.label }}</h5>
-                        
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger>
-                                <InfoIcon size='20' />
-                            </HoverCardTrigger>
-                            <HoverCardContent>{{ glossary.market_cap.description }}</HoverCardContent>
-                        </HoverCard>
-                    </div>
-                    
-                    <span class='mt-2'>{{ market_cap_value }}</span>
-                </div>
-            </div>
+    <div class='grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-12 justify-items-center'>
+        <!--  Market Cap  -->
+        <div v-if='market_cap' class='item-container'>
+            <MazCircularProgressBar
+                :percentage='100'
+                :duration='2000'
+                size='125px'
+            >
+                <template #default>
+                    <p>{{ market_cap_compact }}</p>
+                </template>
+            </MazCircularProgressBar>
             
-            <!--  Fully Diluted Valuation  -->
-            <div v-if='fully_diluted_valuation' class='item-container'>
-                <MazCircularProgressBar
-                    :percentage='100'
-                    :duration='2500'
-                    size='125px'
-                >
-                    <template #default>
-                        <p>{{ fully_diluted_valuation_compact }}</p>
-                    </template>
-                </MazCircularProgressBar>
-                
-                <div class='label-container'>
-                    <div class='flex items-center gap-2'>
-                        <h5>{{ glossary.fully_diluted_valuation.label }}</h5>
-                        
-                        <HoverCard :openDelay='200'>
-                            <HoverCardTrigger>
-                                <InfoIcon size='20' />
-                            </HoverCardTrigger>
-                            <HoverCardContent>{{ glossary.fully_diluted_valuation.description }}</HoverCardContent>
-                        </HoverCard>
-                    </div>
+            <div class='label-container'>
+                <div class='flex items-center gap-2'>
+                    <h5>{{ glossary.market_cap.label }}</h5>
                     
-                    <span class='mt-2'>{{ fully_diluted_valuation_value }}</span>
+                    <HoverCard :openDelay='200'>
+                        <HoverCardTrigger>
+                            <InfoIcon size='20' />
+                        </HoverCardTrigger>
+                        <HoverCardContent>{{ glossary.market_cap.description }}</HoverCardContent>
+                    </HoverCard>
                 </div>
+                
+                <span class='mt-2'>{{ market_cap_value }}</span>
             </div>
+        </div>
+        
+        <!--  Fully Diluted Valuation  -->
+        <div v-if='fully_diluted_valuation' class='item-container'>
+            <MazCircularProgressBar
+                :percentage='100'
+                :duration='2500'
+                size='125px'
+            >
+                <template #default>
+                    <p>{{ fully_diluted_valuation_compact }}</p>
+                </template>
+            </MazCircularProgressBar>
             
-            <!--  Volume 24h  -->
-            <div v-if='volume' class='item-container'>
-                <MazCircularProgressBar
-                    :percentage='100'
-                    :duration='3000'
-                    size='125px'
-                >
-                    <template #default>
-                        <p>{{ volume_compact }}</p>
-                    </template>
-                </MazCircularProgressBar>
-                
-                <div class='label-container'>
-                    <div class='flex items-center gap-2'>
-                        <h5>{{ glossary.volume.label }}</h5>
-                        
-                        <HoverCard
-                            :openDelay='200'
-                            class='flex'
-                        >
-                            <HoverCardTrigger>
-                                <InfoIcon size='20' />
-                            </HoverCardTrigger>
-                            <HoverCardContent>{{ glossary.volume.description }}</HoverCardContent>
-                        </HoverCard>
-                    </div>
+            <div class='label-container'>
+                <div class='flex items-center gap-2'>
+                    <h5>{{ glossary.fully_diluted_valuation.label }}</h5>
                     
-                    <span class='mt-2'>{{ volume_value }}</span>
+                    <HoverCard :openDelay='200'>
+                        <HoverCardTrigger>
+                            <InfoIcon size='20' />
+                        </HoverCardTrigger>
+                        <HoverCardContent>{{ glossary.fully_diluted_valuation.description }}</HoverCardContent>
+                    </HoverCard>
                 </div>
+                
+                <span class='mt-2'>{{ fully_diluted_valuation_value }}</span>
             </div>
+        </div>
+        
+        <!--  Volume 24h  -->
+        <div v-if='volume' class='item-container'>
+            <MazCircularProgressBar
+                :percentage='100'
+                :duration='3000'
+                size='125px'
+            >
+                <template #default>
+                    <p>{{ volume_compact }}</p>
+                </template>
+            </MazCircularProgressBar>
             
-            <!--  Circulating Supply  -->
-            <div v-if='circulating_supply' class='item-container'>
-                <MazCircularProgressBar
-                    :percentage='circulating_supply_percentage'
-                    :duration='2000'
-                    suffix='%'
-                    size='125px'
-                >
-                    <template #default>
-                        <p v-if='max_supply'>{{ Math.floor(circulating_supply_percentage) }}&#37;</p>
-                        <p v-else>{{ circulating_supply_compact }}</p>
-                    </template>
-                </MazCircularProgressBar>
-                
-                <div class='label-container'>
-                    <div class='flex items-center gap-2'>
-                        <h5>{{ glossary.circulating_supply.label }}</h5>
-                        
-                        <HoverCard
-                            :openDelay='200'
-                            class='flex'
-                        >
-                            <HoverCardTrigger>
-                                <InfoIcon size='20' />
-                            </HoverCardTrigger>
-                            <HoverCardContent>{{ glossary.circulating_supply.description }}</HoverCardContent>
-                        </HoverCard>
-                    </div>
+            <div class='label-container'>
+                <div class='flex items-center gap-2'>
+                    <h5>{{ glossary.volume.label }}</h5>
                     
-                    <span class='mt-2'>{{ circulating_supply_value }} {{ symbol }}</span>
+                    <HoverCard
+                        :openDelay='200'
+                        class='flex'
+                    >
+                        <HoverCardTrigger>
+                            <InfoIcon size='20' />
+                        </HoverCardTrigger>
+                        <HoverCardContent>{{ glossary.volume.description }}</HoverCardContent>
+                    </HoverCard>
                 </div>
+                
+                <span class='mt-2'>{{ volume_value }}</span>
             </div>
+        </div>
+        
+        <!--  Circulating Supply  -->
+        <div v-if='circulating_supply' class='item-container'>
+            <MazCircularProgressBar
+                :percentage='circulating_supply_percentage'
+                :duration='2000'
+                suffix='%'
+                size='125px'
+            >
+                <template #default>
+                    <p v-if='max_supply'>{{ Math.floor(circulating_supply_percentage) }}&#37;</p>
+                    <p v-else>{{ circulating_supply_compact }}</p>
+                </template>
+            </MazCircularProgressBar>
             
-            <!--  Total Supply  -->
-            <div v-if='total_supply' class='item-container'>
-                <MazCircularProgressBar
-                    :percentage='total_supply_percentage'
-                    :duration='2500'
-                    suffix='%'
-                    size='125px'
-                >
-                    <template #default>
-                        <p v-if='max_supply'>{{ total_supply_percentage }}&#37;</p>
-                        <p v-else>{{ total_supply_compact }}</p>
-                    </template>
-                </MazCircularProgressBar>
-                
-                <div class='label-container'>
-                    <div class='flex items-center gap-2'>
-                        <h5>{{ glossary.total_supply.label }}</h5>
-                        
-                        <HoverCard
-                            :openDelay='200'
-                            class='flex'
-                        >
-                            <HoverCardTrigger>
-                                <InfoIcon size='20' />
-                            </HoverCardTrigger>
-                            <HoverCardContent>{{ glossary.total_supply.description }}</HoverCardContent>
-                        </HoverCard>
-                    </div>
+            <div class='label-container'>
+                <div class='flex items-center gap-2'>
+                    <h5>{{ glossary.circulating_supply.label }}</h5>
                     
-                    <span class='mt-2'>{{ total_supply_value }} {{ symbol }}</span>
+                    <HoverCard
+                        :openDelay='200'
+                        class='flex'
+                    >
+                        <HoverCardTrigger>
+                            <InfoIcon size='20' />
+                        </HoverCardTrigger>
+                        <HoverCardContent>{{ glossary.circulating_supply.description }}</HoverCardContent>
+                    </HoverCard>
                 </div>
+                
+                <span class='mt-2'>{{ circulating_supply_value }} {{ symbol }}</span>
             </div>
+        </div>
+        
+        <!--  Total Supply  -->
+        <div v-if='total_supply' class='item-container'>
+            <MazCircularProgressBar
+                :percentage='total_supply_percentage'
+                :duration='2500'
+                suffix='%'
+                size='125px'
+            >
+                <template #default>
+                    <p v-if='max_supply'>{{ total_supply_percentage }}&#37;</p>
+                    <p v-else>{{ total_supply_compact }}</p>
+                </template>
+            </MazCircularProgressBar>
             
-            <!--  Max Supply  -->
-            <div v-if='max_supply' class='item-container'>
-                <MazCircularProgressBar
-                    :percentage='100'
-                    :duration='3000'
-                    size='125px'
-                >
-                    <template #default>
-                        <p>{{ max_supply_compact }}</p>
-                    </template>
-                </MazCircularProgressBar>
-                
-                <div class='label-container'>
-                    <div class='flex items-center gap-2'>
-                        <h5>{{ glossary.max_supply.label }}</h5>
-                        
-                        <HoverCard
-                            :openDelay='200'
-                            class='flex'
-                        >
-                            <HoverCardTrigger>
-                                <InfoIcon size='20' />
-                            </HoverCardTrigger>
-                            <HoverCardContent>{{ glossary.max_supply.description }}</HoverCardContent>
-                        </HoverCard>
-                    </div>
+            <div class='label-container'>
+                <div class='flex items-center gap-2'>
+                    <h5>{{ glossary.total_supply.label }}</h5>
                     
-                    <span class='mt-2'>{{ max_supply_value }} {{ symbol }}</span>
+                    <HoverCard
+                        :openDelay='200'
+                        class='flex'
+                    >
+                        <HoverCardTrigger>
+                            <InfoIcon size='20' />
+                        </HoverCardTrigger>
+                        <HoverCardContent>{{ glossary.total_supply.description }}</HoverCardContent>
+                    </HoverCard>
                 </div>
+                
+                <span class='mt-2'>{{ total_supply_value }} {{ symbol }}</span>
+            </div>
+        </div>
+        
+        <!--  Max Supply  -->
+        <div v-if='max_supply' class='item-container'>
+            <MazCircularProgressBar
+                :percentage='100'
+                :duration='3000'
+                size='125px'
+            >
+                <template #default>
+                    <p>{{ max_supply_compact }}</p>
+                </template>
+            </MazCircularProgressBar>
+            
+            <div class='label-container'>
+                <div class='flex items-center gap-2'>
+                    <h5>{{ glossary.max_supply.label }}</h5>
+                    
+                    <HoverCard
+                        :openDelay='200'
+                        class='flex'
+                    >
+                        <HoverCardTrigger>
+                            <InfoIcon size='20' />
+                        </HoverCardTrigger>
+                        <HoverCardContent>{{ glossary.max_supply.description }}</HoverCardContent>
+                    </HoverCard>
+                </div>
+                
+                <span class='mt-2'>{{ max_supply_value }} {{ symbol }}</span>
             </div>
         </div>
     </div>
@@ -253,41 +251,25 @@
 </script>
 
 <style>
-    .coin-supply-progress-bars {
-        .item-container {
+    .item-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        
+        @media (min-width: 768px) {
+            width: 200px;
+        }
+        
+        /* Desktop */
+        @media (min-width: 1024px) {
+            width: 250px;
+        }
+        
+        .label-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
-            
-            @media (min-width: 768px) {
-                width: 300px;
-            }
-            
-            /* Desktop */
-            @media (min-width: 1024px) {
-                width: 350px;
-            }
-            
-            @media (min-width: 1280px) {
-                width: 400px;
-            }
-            
-            .label-container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
         }
-        
-        /*
-        [data-slot='drawer-content'] {
-            margin-top: 0 !important;
-            
-            @media (min-width: 768px) {
-                margin-top: calc(var(--spacing) * 24);
-            }
-        }
-        */
     }
 </style>

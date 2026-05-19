@@ -1,29 +1,31 @@
 <template>
-    <ClientOnly>
-        <SidebarProvider :default-open='false'>
-            <AppSidebar />
-            
-            <SidebarInset class='flex justify-between items-center min-h-svh'>
-                <!--
-                <MarketBar />
-                <Breadcrumb />
-                -->
+    <div>
+        <ClientOnly>
+            <SidebarProvider :default-open='false'>
+                <AppSidebar />
                 
-                <!--  Mobile Trigger  -->
-                <MobileSidebarTrigger />
-                
-                <!--
-                <h1 v-if='title' class='page-title'>{{ title }}</h1>
-                -->
-                
-                <slot />
-                
-                <CoingeckoAttribution />
-                
-                <ScrollToTop />
-            </SidebarInset>
-        </SidebarProvider>
-    </ClientOnly>
+                <SidebarInset class='flex justify-between items-center min-h-svh'>
+                    <!--
+                    <MarketBar />
+                    <Breadcrumb />
+                    -->
+                    
+                    <!--  Mobile Trigger  -->
+                    <MobileSidebarTrigger />
+                    
+                    <!--
+                    <h1 v-if='title' class='page-title'>{{ title }}</h1>
+                    -->
+                    
+                    <slot />
+                    
+                    <CoingeckoAttribution />
+                    
+                    <ScrollToTop />
+                </SidebarInset>
+            </SidebarProvider>
+        </ClientOnly>
+    </div>
 </template>
 
 <script setup>

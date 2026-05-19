@@ -79,7 +79,7 @@
                                             <PinInputGroup class='gap-1 w-full justify-between'>
                                                 <template v-for='(id, index) in 8' :key='id'>
                                                     <PinInputSlot
-                                                        class='h-12 xl:h-14 w-10 xl:w-12 text-sm xl:text-xl font-bold font-satoshi rounded-md border'
+                                                        class='h-12 xl:h-14 w-10 xl:w-12 text-sm xl:text-xl font-bold rounded-md border'
                                                         :index='index'
                                                     />
                                                     <template v-if='index !== 7'>

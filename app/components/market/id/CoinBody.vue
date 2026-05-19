@@ -1,8 +1,11 @@
 <template>
-    <CardContent class='coin-body animate-fadeIn-2000'>
-        <div class='grid grid-cols-1 xl:grid-cols-6 gap-6'>
-            <!-- Left -->
-            <div class='lg:col-span-2 xl:col-span-2 space-y-6'>
+    <CardContent class='coin-body animate-fadeIn-2000 relative'>
+        <!-- Supply -->
+        <CoinSupply :coin='coin' />
+        
+        <div class='grid grid-cols-1 xl:grid-cols-8 gap-6'>
+            <!-- Left Panel -->
+            <div class='xl:col-span-3 2xl:col-span-2 space-y-6'>
                 <!-- Overview -->
                 <CoinOverview :coin='coin' />
                 
@@ -10,8 +13,8 @@
                 <CoinInsights :coin='coin' />
             </div>
             
-            <!-- Right -->
-            <div class='lg:col-span-2 xl:col-span-4 space-y-6'>
+            <!-- Right Panel -->
+            <div class='xl:col-span-5 2xl:col-span-6 space-y-6'>
                 <!-- Chart -->
                 <CoinChart :coin='coin' />
                 
@@ -22,6 +25,12 @@
                 <CoinDescription :coin='coin' />
             </div>
         </div>
+        
+        <!-- Links -->
+        <CoinLinks
+            :links='links'
+            :symbol='symbol'
+        />
     </CardContent>
 </template>
 
@@ -32,6 +41,8 @@
     import CoinDelta from '@/components/market/id/CoinDelta.vue';
     import CoinDescription from '@/components/market/id/CoinDescription.vue';
     import { CardContent } from '~/components/ui/card';
+    import CoinSupply from '@/components/market/id/CoinSupply.vue';
+    import CoinLinks from '@/components/market/id/CoinLinks.vue';
     
     const props = defineProps({
         coin: {
@@ -43,4 +54,6 @@
     const { coin } = toRefs(props);
     const coingecko = toRef(coin.value?.coingecko);
     const market_data = computed(() => coingecko.value?.market_data);
+    const links = computed(() => coin.value?.links);
+    const symbol = toRef(coin.value?.symbol);
 </script>
