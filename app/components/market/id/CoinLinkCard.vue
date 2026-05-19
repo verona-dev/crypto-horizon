@@ -12,7 +12,7 @@
                 class='mt-0.5'
             />
             
-            <CardTitle class='text-lg font-satoshi flex-1 capitalize'>{{ name }}</CardTitle>
+            <CardTitle class='text-lg flex-1 capitalize'>{{ name }}</CardTitle>
         </div>
         
         <!--  Copy + Open link -->
