@@ -22,8 +22,8 @@
                         v-if='coingecko?.image?.large'
                         :src='coin.coingecko.image.large'
                         alt='symbol'
-                        width='80'
-                        height='80'
+                        :width='125'
+                        :height='125'
                     />
                     
                     <h2>{{ coingecko.name }}</h2>
@@ -75,20 +75,20 @@
             <div class='flex flex-col xl:flex-row gap-10 xl:gap-24'>
                 <!--  Price in USD  -->
                 <div class='flex flex-col items-center gap-2 text-green-dollar'>
-                    <h2 class='text-3xl md:text-5xl'>{{ current_price_label }}</h2>
+                    <h2 class='text-5xl md:text-7xl'>{{ current_price_label }}</h2>
                     
                     <!--  Price change % in USD $  -->
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger class='flex items-center gap-1'>
                             <NuxtIcon
                                 :name='getTrendIcon(price_change_percentage)'
-                                size='15'
+                                size='20'
                                 :class='getTrendClass(price_change_percentage)'
                             />
                             
                             <p
                                 :class='getTrendClass(price_change_percentage)'
-                                class='flex items-center text-sm'
+                                class='flex items-center'
                             >
                                 {{ price_change_percentage_label }}
                                 <span class='ml-1'>&#40;{{ timeframe_label }}&#41;</span>
@@ -105,10 +105,10 @@
                         <NuxtIcon
                             name='logos:bitcoin'
                             class='mb-0.5'
-                            size='45'
+                            size='55'
                         />
                         
-                        <h2 class='text-3xl md:text-5xl'>{{ current_price_in_btc_label }}</h2>
+                        <h2 class='text-5xl md:text-7xl'>{{ current_price_in_btc_label }}</h2>
                     </div>
                     
                     <!--  Price change % in BTC  -->
