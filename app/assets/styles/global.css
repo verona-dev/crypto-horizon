@@ -54,7 +54,7 @@
     }
     
     .page {
-        @apply flex flex-col justify-center items-center w-screen md:max-w-[2560px] min-h-[calc(100vh-24rem)] relative p-12 md:py-24 md:px-36;
+        @apply flex flex-col justify-center items-center w-full md:max-w-[2560px] min-h-[calc(100vh-24rem)] relative py-8 md:px-36 mx-auto;
     }
     
     [data-slot='sidebar-wrapper'] {
