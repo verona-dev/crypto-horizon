@@ -74,19 +74,16 @@
                     :key='`chart-${timeframe.value}`'
                     :data='chart_config.data'
                     :options='chart_config.options'
-                    :height='400'
+                    :height='600'
                     :type='"customLineChart"'
                 />
             </div>
-            
-<!--            <CoinSupply :coin='coin' />-->
         </div>
     </Card>
 </template>
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
-    import { RainbowButton } from '~/components/ui/rainbow-button';
     import { Card } from '~/components/ui/card';
     import { Spinner } from '~/components/ui/spinner/index.js';
     import { Switch } from '@/components/ui/switch';
