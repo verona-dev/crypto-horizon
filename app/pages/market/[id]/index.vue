@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <LoadingLogo v-if='!loading' />
+    <div class='w-full'>
+        <LoadingContent v-if='loading' />
         
         <div v-else class='page'>
             <Card
@@ -15,7 +15,6 @@
             <CoinFooter :coin='coin' />
         </div>
     </div>
-
 </template>
 
 <script setup>
@@ -23,7 +22,7 @@
     import CoinHeader from '@/components/market/id/CoinHeader.vue';
     import CoinBody from '@/components/market/id/CoinBody.vue';
     import CoinFooter from '@/components/market/id/CoinFooter.vue';
-    import LoadingLogo from '~/components/LoadingLogo';
+    import LoadingContent from '@/components/LoadingContent.vue';
     
     // Router
     const route = useRoute();
