@@ -1,13 +1,13 @@
 <template>
-    <Card class='coin-overview bg-background flex flex-col gap-24 p-10 mb-12 xl:mb-36 w-full border-none shadow-none'>
-        <!--  Title container  -->
+    <Card class='bg-transparent flex flex-col gap-24 mb-12 xl:mb-36 w-full !border-none !shadow-none !rounded-none'>
+        <!--  Selector container  -->
         <div class='flex flex-col items-center gap-4'>
             <Select v-model='selected' default-value='progress-bars'>
-                <SelectTrigger class='w-56 h-13 mt-4 pl-4 hover:bg-popover focus:ring-0 rounded-lg' data-size='default'>
+                <SelectTrigger class='w-56 h-13 pl-4 focus:ring-0' data-size='default'>
                     <SelectValue />
                 </SelectTrigger>
                 
-                <SelectContent class='rounded-lg'>
+                <SelectContent class='bg-background w-56'>
                     <SelectGroup>
                         <SelectItem value='progress-bars' class='h-12 rounded-lg'>Progress Bars</SelectItem>
                         <SelectItem value='doughnut-chart' class='h-12 rounded-lg'>Doughnut Chart</SelectItem>
