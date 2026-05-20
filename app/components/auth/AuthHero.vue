@@ -18,6 +18,6 @@
     import ChainsCloud  from '~/components/ChainsCloud.vue';
     import TextGlitch from '~/components/ui/text-glitch/TextGlitch.vue';
     
-    const siteConfig = useSiteConfig();
+    const siteConfig = useSiteConfig()
     const site_name = ref(siteConfig?.name || '');
 </script>
