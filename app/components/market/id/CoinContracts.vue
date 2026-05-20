@@ -21,6 +21,7 @@
                     :src='platformImageMap.find(platform => platform.name === platforms[0].name).image'
                     width='20'
                     height='20'
+                    alt='platform image'
                 />
                 
                 <p class='capitalize text-sm'>{{platforms[0].value.slice(0, 5) + '...' + platforms[0].value.slice(-5) }}</p>
@@ -66,6 +67,7 @@
                                             :src='platformImageMap.find(platform => platform.name === contract.name).image'
                                             width='20'
                                             height='20'
+                                            alt='platform logo'
                                         />
                                         
                                         <NuxtIcon

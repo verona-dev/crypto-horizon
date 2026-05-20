@@ -5,7 +5,7 @@
             <NuxtImg
                 src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545830/bitcoin-3396302_1920_ll5chx.jpg'
                 class='w-full h-full'
-                alt='alt'
+                alt='bitcoin logo'
                 :custom='true'
                 v-slot='{ src, isLoaded, imgAttrs }'
                 preload
@@ -44,7 +44,7 @@
                 :src='slide.src'
                 class='w-full h-full text-[60px] image'
                 ref='image'
-                alt='alt'
+                alt='animation'
                 v-slot='{ src, isLoaded, imgAttrs }'
                 preload
             >
@@ -67,7 +67,7 @@
             <NuxtImg
                 src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1753545829/bitcoin-7678812_b86ffi.jpg'
                 class='w-full h-full'
-                alt='alt'
+                alt='animation'
                 :custom='true'
                 v-slot='{ src, isLoaded, imgAttrs }'
                 preload
