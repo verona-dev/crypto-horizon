@@ -1,7 +1,9 @@
 
 export default defineNuxtPlugin(() => {
    const route = useRoute();
-   const site_title = 'Crypto Horizon';
+   const siteConfig = useSiteConfig();
+   const site_name = ref(siteConfig?.name || '');
+
    const site_image = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1766068749/crypto-horizon_-_logo-12_yutbki.png';
    const head = useRequestURL();
    const current_url = computed(() => head.href);
@@ -13,7 +15,7 @@ export default defineNuxtPlugin(() => {
       // titleTemplate: (pageTitle?: string) => {
       //    return pageTitle ? `${pageTitle} | ${site_name}` : site_name;
       // },
-      titleTemplate: `%s | ${site_title}`,
+      titleTemplate: `%s | ${site_name}`,
       title: page_title,
       meta: [
          { name: 'description', content: page_description },
