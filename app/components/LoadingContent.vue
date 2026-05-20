@@ -29,12 +29,13 @@
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
     import ChainsCloud  from '~/components/ChainsCloud.vue';
     import { RadiantText } from '~/components/ui/radiant-text';
-    const siteConfig = useSiteConfig()
+    
+    const siteConfig = useSiteConfig();
+    const site_name = ref(siteConfig?.name || '');
     
     const siteConfig = useSiteConfig();
     const site_name = ref(siteConfig?.name || '');
     
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
-    const site_name = ref(siteConfig?.name || '');
 </script>
