@@ -32,6 +32,7 @@
     const description = 'Discover the most talked-about cryptocurrencies and NFTs right now. Track real-time trends, price surges, and viral projects in the crypto space.';
     
     definePageMeta({
+        layout: 'market',
         title,
         description,
     });
