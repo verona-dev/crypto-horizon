@@ -4,7 +4,7 @@
             <TextGlitch
                 :speed='3.5'
                 :enable-shadows='true'
-                text='Crypto Horizon'
+                :text='site_name'
                 :enableOnHover='true'
                 class='project-name font-great !z-10'
             />
@@ -17,4 +17,7 @@
 <script setup>
     import ChainsCloud  from '~/components/ChainsCloud.vue';
     import TextGlitch from '~/components/ui/text-glitch/TextGlitch.vue';
+    
+    const siteConfig = useSiteConfig()
+    const site_name = ref(siteConfig?.name || '');
 </script>
