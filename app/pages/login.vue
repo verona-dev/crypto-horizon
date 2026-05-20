@@ -101,6 +101,10 @@
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     
+    // SEO
+    const title = 'Login to Crypto Horizon | Track & Manage Your Crypto Portfolio';
+    const description = 'Log in to Crypto Horizon to access your personalized crypto watchlist, track real-time prices, and manage your portfolio with secure and fast authentication.';
+    
     const is_otp_default = ref(true);
     const onToggleSignupMode = () => is_otp_default.value = !is_otp_default.value;
     
@@ -113,6 +117,8 @@
     
     definePageMeta({
         middleware: 'auth',
+        title,
+        description,
         // layout: false,
     });
 </script>
