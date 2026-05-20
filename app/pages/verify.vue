@@ -34,8 +34,6 @@
     
     definePageMeta({
         middleware: 'verify',
-        title,
-        description,
     });
     
     onMounted(async() => {
