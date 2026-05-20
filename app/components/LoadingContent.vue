@@ -1,7 +1,7 @@
 <template>
     <div class='relative xl:w-screen h-screen flex justify-center items-center'>
         <div class='flex flex-col items-center justify-center gap-16 pb-8'>
-            <h1 class='font-great text-4xl lg:text-6xl xl:text-8xl'>Crypto Horizon</h1>
+            <h1 class='font-great text-4xl lg:text-6xl xl:text-8xl'>{{ site_name }}</h1>
             
             <ChainsCloud />
             
@@ -29,7 +29,9 @@
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
     import ChainsCloud  from '~/components/ChainsCloud.vue';
     import { RadiantText } from '~/components/ui/radiant-text';
+    const siteConfig = useSiteConfig()
     
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
+    const site_name = ref(siteConfig?.name || '');
 </script>
