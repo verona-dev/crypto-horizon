@@ -16,6 +16,7 @@
     const description = 'Live cryptocurrency prices, market cap, volume, circulating supply, and price charts for 10,000+ coins. Track Bitcoin, Ethereum, and 10,000+ altcoins in real time.';
     
     definePageMeta({
+        layout: 'market',
         title,
         description,
     });
