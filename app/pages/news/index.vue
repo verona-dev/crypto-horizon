@@ -1,9 +1,7 @@
 <template>
     <div class='page'>
-        <div v-if='!dark_mode' class='h-[450px]'>
-            <div class='h-[350px] flex items-center'>
-                <h1 class='page-title'>{{ page_title }}</h1>
-            </div>
+        <div v-if='!dark_mode' class='h-[450px] flex items-center'>
+            <Title tag='h1' class='page-title'>{{ page_title }}</Title>
         </div>
         
         <div v-else class='w-fit xl:w-[900px] h-[450px] mx-auto'>
@@ -175,6 +173,8 @@
 
 <script setup>
     import NewTabIcon from '~/components/NewTabIcon.vue';
+    import Title from '~/components/Title.vue';
+    
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
     
