@@ -76,7 +76,7 @@
 
 @layer components {
     h1 {
-        @apply text-7xl xl:text-9xl tracking-widest break-words;
+        @apply text-6xl md:text-7xl xl:text-9xl tracking-widest break-words;
     }
     
     h2 {
