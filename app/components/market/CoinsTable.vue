@@ -1,7 +1,9 @@
 <template>
     <Card class='bg-background flex flex-col gap-12 xl:gap-20 border-none shadow-none w-full h-full z-10'>
-        <h3 class='flex flex-col items-start [gap:clamp(0.5rem,4vw,4rem)]'>
-            <Title :tag='1' :level='3'>Leading Cryptocurrencies by</Title>
+        <h3 class='title w-screen flex flex-col items-start [gap:clamp(0.5rem,4vw,4rem)]'>
+            <Title tag='h1' level='h3'>
+                Leading Cryptocurrencies by
+            </Title>
             
             <Text3d
                 class='[font-size:clamp(1.4rem,4vw,4rem)] font-black uppercase'
@@ -328,48 +330,46 @@
     import { h } from 'vue';
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendClass } from '~/utils/styleUtils.js';
-    import { valueUpdater } from '~/components/ui/table/utils.ts';
     import { Button } from '~/components/ui/button';
     import { Card } from '~/components/ui/card';
     import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger  } from '@/components/ui/dropdown-menu';
     import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index';
+    import InfoIcon from '@/components/InfoIcon.vue';
     import { Input } from '~/components/ui/input';
     import { Spinner } from '~/components/ui/spinner';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { Text3d } from '~/components/ui/text-3d';
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel, getFilteredRowModel } from '@tanstack/vue-table';
+    import { valueUpdater } from '~/components/ui/table/utils.ts';
     import glossary from '~/assets/data/market/glossary.json';
-    import InfoIcon from '@/components/InfoIcon.vue';
+    
+    import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Tooltip } from 'chart.js';
     import Title from '~/components/Title.vue';
     
-    // Chartjs
-    import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Tooltip } from 'chart.js';
-    import { Line } from 'vue-chartjs';
-    ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Tooltip, Legend);
-    
-    // Dayjs
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
-    dayjs.extend(relativeTime, { rounding: Math.floor });
     
     // MarketStore
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
-    const MarketStore = useMarketStore();
-    const { getCoinsMarkets } = MarketStore;
+    import { Line } from 'vue-chartjs';
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
-    const ProfileStore = useProfileStore();
-    const { updateWatchlist } = ProfileStore;
+    ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Tooltip, Legend);
+    dayjs.extend(relativeTime, { rounding: Math.floor });
     
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
+    const MarketStore = useMarketStore();
+    const { getCoinsMarkets } = MarketStore;
+    const ProfileStore = useProfileStore();
+    const { watchlist } = storeToRefs(ProfileStore);
+    const { updateWatchlist } = ProfileStore;
     
     // State
     const { coins } = storeToRefs(MarketStore);
-    const { watchlist } = storeToRefs(ProfileStore);
     
     // Watchlist
     const isCoinInWatchlist = computed(() => {
@@ -697,6 +697,6 @@
     });
     
     onMounted(() => {
-        // getCoinsMarkets({}, 'table');
+        getCoinsMarkets({}, 'table');
     });
 </script>
