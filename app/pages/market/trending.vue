@@ -1,6 +1,6 @@
 <template>
     <div class='page gap-60'>
-        <div class='flex flex-col items-center justify-center gap-24'>
+        <div class='flex flex-col items-center justify-center gap-16'>
             <Title tag='h1' class='page-title'>Trending Coins</Title>
             
             <TrendingCoinsCarousel
