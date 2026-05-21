@@ -1,21 +1,30 @@
 <template>
     <div class='page gap-60'>
-        <TrendingCoinsCarousel
-            v-if='trending_coins'
-            :coins='trending_coins'
-        />
+        <div class='flex flex-col items-center justify-center gap-24'>
+            <Title tag='h1' class='page-title'>Trending Coins</Title>
+            
+            <TrendingCoinsCarousel
+                v-if='trending_coins'
+                :coins='trending_coins'
+            />
+        </div>
         
-        <TrendingNftsCarousel
-            v-if='trending_nfts'
-            :nfts='trending_nfts'
-            id='trending-nfts'
-        />
+        <div class='flex flex-col items-center justify-center gap-24'>
+            <Title tag='h1' class='page-title'>Trending Nft's</Title>
+            
+            <TrendingNftsCarousel
+                v-if='trending_nfts'
+                :nfts='trending_nfts'
+                id='trending-nfts'
+            />
+        </div>
     </div>
 </template>
 
 <script setup>
     import TrendingCoinsCarousel from '@/components/market/trending/TrendingCoinsCarousel.vue';
     import TrendingNftsCarousel from '@/components/market/trending/TrendingNftsCarousel.vue';
+    import Title from '~/components/Title.vue';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
