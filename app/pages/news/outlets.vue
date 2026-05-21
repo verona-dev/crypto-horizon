@@ -1,12 +1,13 @@
 <template>
-    <div class='page'>
-        <LoadingSpinner v-if='loading' />
+    <div class='w-full'>
+        <LoadingContent v-if='loading' />
         
+        <!--  Margin top because of market bar in markets  -->
         <div
             v-else
-            class='flex flex-col items-center gap-20'
+            class='page mt-20'
         >
-            <h1 class='page-title'>News Outlets</h1>
+            <Title tag='h1' class='page-title'>News Outlets</Title>
             
             <div v-if='newsOutlets' class='flex flex-wrap justify-center gap-6 xl:gap-20'>
                 <OutletCard
@@ -20,8 +21,10 @@
 </template>
 
 <script setup>
-    import OutletCard from '~/components/news/OutletCard.vue';
+    import LoadingContent from '@/components/LoadingContent.vue';
     import LoadingSpinner from '~/components/LoadingSpinner.vue';
+    import OutletCard from '~/components/news/OutletCard.vue';
+    import Title from '~/components/Title.vue';
     
     // NewsStore
     import { storeToRefs } from 'pinia';
