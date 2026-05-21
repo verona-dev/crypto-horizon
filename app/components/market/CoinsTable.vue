@@ -1,10 +1,12 @@
 <template>
     <Card class='bg-background flex flex-col gap-12 xl:gap-20 border-none shadow-none w-full h-full z-10'>
         <h3 class='title w-screen flex flex-col items-start [gap:clamp(0.5rem,4vw,4rem)]'>
-            <span class='[font-size:clamp(1.5rem,5vw,3rem)]'>Leading Cryptocurrencies by</span>
-
+            <Title tag='h1' level='h3'>
+                Leading Cryptocurrencies by
+            </Title>
+            
             <Text3d
-                class='[font-size:clamp(1.4rem,5vw,5rem)] font-black uppercase'
+                class='[font-size:clamp(1.4rem,4vw,4rem)] font-black uppercase'
                 :animate='false'
                 :stroke-size='4'
                 :letter-spacing='0.15'
@@ -342,7 +344,8 @@
     import { valueUpdater } from '~/components/ui/table/utils.ts';
     import glossary from '~/assets/data/market/glossary.json';
     
-    import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Title, Tooltip } from 'chart.js';
+    import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Tooltip } from 'chart.js';
+    import Title from '~/components/Title.vue';
     
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
@@ -354,7 +357,7 @@
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
-    ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Title, Tooltip, Legend);
+    ChartJS.register(CustomLineChart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Tooltip, Legend);
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
     const colorMode = useColorMode();
