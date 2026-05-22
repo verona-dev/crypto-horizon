@@ -1,5 +1,5 @@
 <template>
-    <Card v-if='source' class='news-source-card flex flex-col items-center w-md h-[650px] gap-0 cursor-text'>
+    <Card v-if='source' class='news-source-card flex flex-col items-center w-md h-[650px] gap-0 cursor-text !hover:border-blue-pacific/25'>
         <h3 class='mt-24 mb-4 hover-underline text-wrap'>{{ name }}</h3>
         
         <div class='card-container h-full w-full animate-fadeIn'>
@@ -9,7 +9,7 @@
                     <NuxtImg
                         :src='img_url'
                         alt='article image'
-                        class='main-image rounded-md'
+                        class='main-image rounded-2xl h-36 w-36'
                         :custom='true'
                         v-slot='{ src, isLoaded, imgAttrs }'
                         preload
@@ -158,15 +158,6 @@
             height: 375px;
             flex-direction: column;
             transform: rotateY(180deg);
-        }
-        
-        img.main-image {
-            height: 200px;
-            width: 200px;
-        }
-        
-        &:hover {
-            border: 1px solid var(--primary);
         }
         
         &:hover .card-inner {

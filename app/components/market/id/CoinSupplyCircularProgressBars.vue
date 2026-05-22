@@ -14,7 +14,7 @@
             
             <div class='label-container'>
                 <div class='flex items-center gap-2'>
-                    <h5>{{ glossary.market_cap.label }}</h5>
+                    <h5 class='!min-w-full'>{{ glossary.market_cap.label }}</h5>
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
@@ -42,7 +42,7 @@
             
             <div class='label-container'>
                 <div class='flex items-center gap-2'>
-                    <h5>{{ glossary.fully_diluted_valuation.label }}</h5>
+                    <h5 class='!min-w-full'>{{ glossary.fully_diluted_valuation.label }}</h5>
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
@@ -70,7 +70,7 @@
             
             <div class='label-container'>
                 <div class='flex items-center gap-2'>
-                    <h5>{{ glossary.volume.label }}</h5>
+                    <h5 class='!min-w-full'>{{ glossary.volume.label }}</h5>
                     
                     <HoverCard
                         :openDelay='200'
@@ -103,7 +103,7 @@
             
             <div class='label-container'>
                 <div class='flex items-center gap-2'>
-                    <h5>{{ glossary.circulating_supply.label }}</h5>
+                    <h5 class='!min-w-full'>{{ glossary.circulating_supply.label }}</h5>
                     
                     <HoverCard
                         :openDelay='200'
@@ -136,7 +136,7 @@
             
             <div class='label-container'>
                 <div class='flex items-center gap-2'>
-                    <h5>{{ glossary.total_supply.label }}</h5>
+                    <h5 class='!min-w-full'>{{ glossary.total_supply.label }}</h5>
                     
                     <HoverCard
                         :openDelay='200'
@@ -167,7 +167,7 @@
             
             <div class='label-container'>
                 <div class='flex items-center gap-2'>
-                    <h5>{{ glossary.max_supply.label }}</h5>
+                    <h5 class='!min-w-full'>{{ glossary.max_supply.label }}</h5>
                     
                     <HoverCard
                         :openDelay='200'

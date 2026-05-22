@@ -7,8 +7,8 @@
 @layer base {
     @font-face {
         font-family: 'Great';
-        font-display: swap;
         src: url(../fonts/Great.ttf);
+        font-display: swap;
     }
     
     @font-face {
@@ -27,6 +27,20 @@
         font-display: swap;
     }
     
+    @font-face {
+        font-family: 'Automata';
+        src: url(../fonts/Automata.ttf) format('truetype');
+        font-style: normal;
+        font-display: swap;
+    }
+    
+    @font-face {
+        font-family: 'Spaced';
+        src: url(../fonts/Spaced.ttf) format('truetype');
+        font-style: normal;
+        font-display: swap;
+    }
+    
     * {
         @apply m-0;
     }
@@ -36,7 +50,7 @@
     }
     
     body {
-        @apply font-metropolis bg-background text-foreground overflow-x-hidden overflow-y-scroll;
+        @apply font-spaced bg-background text-foreground overflow-x-hidden overflow-y-scroll;
     }
     
     .homepage {
@@ -51,18 +65,6 @@
     
     main {
         @apply w-dvw mx-auto overflow-hidden;
-    }
-    
-    .page {
-        @apply flex flex-col justify-center items-center w-full md:max-w-[2560px] min-h-[calc(100vh-24rem)] relative py-16 md:px-36 mx-auto;
-    }
-    
-    [data-slot='sidebar-wrapper'] {
-        /*@apply my-20 md:my-6;*/
-    }
-    
-    [data-slot='sidebar-inset'] {
-        @apply w-dvw;
     }
     
     section {
@@ -80,15 +82,11 @@
     }
     
     h2 {
-        @apply text-7xl xl:text-9xl;
-        
-        &.page-title {
-            @apply my-6 sm:my-10 xl:my-20;
-        }
+        @apply text-6xl xl:text-8xl tracking-wider;
     }
     
     h3 {
-        @apply text-2xl xl:text-5xl !leading-8;
+        @apply text-4xl xl:text-6xl !leading-8 tracking-wider;
         
         .text-3d {
             @apply font-satoshi;
@@ -96,47 +94,57 @@
     }
     
     h4 {
-        @apply text-lg xl:text-2xl;
+        @apply text-2xl xl:text-3xl tracking-wider;
     }
     
     h5 {
-        @apply text-xl;
+        @apply text-2xl tracking-wider;
     }
     
     h6 {
-        @apply text-lg text-left;
+        @apply text-xl text-left tracking-wider;
     }
-    
-    /*
-    ul {
-        @apply flex justify-center items-center w-full;
-    }
-    */
     
     p {
-        @apply text-sm sm:text-base leading-5;
+        @apply text-base leading-5 tracking-widest;
     }
     
     span {
-        @apply text-inherit;
+        @apply font-spaced text-inherit tracking-widest;
+    }
+    
+    div {
+        @apply font-spaced;
     }
     
     a {
-        @apply cursor-pointer text-center;
+        @apply font-spaced cursor-pointer text-center;
     }
     
     button {
-        @apply cursor-pointer border border-transparent;
+        @apply !text-sm cursor-pointer border border-transparent;
     }
     
     .font-great {
         @apply font-great truncate tracking-[0.4rem];
     }
+    
+    .page {
+        @apply flex flex-col justify-center items-center gap-16 w-full md:max-w-[2560px] min-h-[calc(100vh-24rem)] relative py-16 md:px-36 mx-auto;
+    }
+    
+    .sidebar * {
+        @apply font-spaced text-base;
+    }
+    
+    [data-slot='sidebar-inset'] {
+        @apply w-dvw;
+    }
 }
 
 @layer utilities {
-    .title {
-        @apply text-3xl md:text-4xl lg:text-5xl font-medium tracking-wide leading-[1.3] [word-spacing:0.1em] animate-fadeIn;
+    .page-title {
+        @apply my-6 sm:my-10 xl:my-20;
     }
     
     .custom-flex {
@@ -153,18 +161,6 @@
         span:not(.iconify) {
             @apply text-sky;
         }
-        
-        /*
-        & [data-content] {
-            @apply ml-12;
-        }
-        */
-        
-        /*
-        @media (max-width: 1020px) {
-            width: 90% !important;
-        }
-        */
     }
     
     .ghost-link-as-button {

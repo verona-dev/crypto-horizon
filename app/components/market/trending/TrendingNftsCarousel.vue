@@ -1,35 +1,31 @@
 <template>
-    <div class='flex flex-col items-center gap-20'>
-        <h2 class='page-title'>Trending Nft's</h2>
+    <div class='flex flex-col items-center gap-20 animate-fadeIn'>
+        <Skeleton
+            v-if='!nfts'
+            class='w-full h-full'
+        />
         
-        <div class='flex animate-fadeIn'>
-            <Skeleton
-                v-if='!nfts'
-                class='w-full h-full'
-            />
-            
-            <div v-else class='flex flex-col items-start justify-center max-w-7xl h-full'>
-                <Carousel
-                    class='w-full cursor-grab'
-                    :plugins='[autoScroll]'
-                    :opts='{
+        <div v-else class='flex flex-col items-start justify-center max-w-7xl h-full'>
+            <Carousel
+                class='w-full cursor-grab'
+                :plugins='[autoScroll]'
+                :opts='{
                         align: "center",
                         loop: true,
                         startIndex: 1,
                         skipSnaps: true,
                     }'
-                >
-                    <CarouselContent class='ml-3'>
-                        <CarouselItem
-                            v-for='nft in nfts'
-                            :key='nft.id'
-                            class='md:basis-1/2 lg:basis-1/3'
-                        >
-                            <TrendingNftsCarouselItem :nft='nft' />
-                        </CarouselItem>
-                    </CarouselContent>
-                </Carousel>
-            </div>
+            >
+                <CarouselContent class='ml-3'>
+                    <CarouselItem
+                        v-for='nft in nfts'
+                        :key='nft.id'
+                        class='md:basis-1/2 lg:basis-1/3'
+                    >
+                        <TrendingNftsCarouselItem :nft='nft' />
+                    </CarouselItem>
+                </CarouselContent>
+            </Carousel>
         </div>
     </div>
 </template>

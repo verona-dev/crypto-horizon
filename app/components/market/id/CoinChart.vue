@@ -47,7 +47,7 @@
                         :value='interval.timeframe'
                         class='py-1.5 px-1.5 text-xs w-10'
                     >
-                        {{ interval.label.toUpperCase() }}
+                        {{ interval.label }}
                     </TabsTrigger>
                 </TabsList>
             </Tabs>

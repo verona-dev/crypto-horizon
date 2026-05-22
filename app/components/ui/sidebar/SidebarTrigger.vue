@@ -10,6 +10,9 @@
     }>()
     
     const { toggleSidebar, isMobile } = useSidebar()
+    
+    const siteConfig = useSiteConfig()
+    const site_name = ref(siteConfig?.name || '')
 </script>
 
 <template>
@@ -30,7 +33,7 @@
         </NuxtIcon>
         
         <NuxtLink to='/'>
-            <p class='font-great'>Crypto Horizon</p>
+            <p class='font-great'>{{ site_name }}</p>
         </NuxtLink>
     </SidebarMenuButton>
 </template>

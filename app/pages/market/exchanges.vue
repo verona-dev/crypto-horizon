@@ -10,6 +10,7 @@
     const description = 'Compare crypto exchanges by trading volume, trust score, supported coins, fees, and more. Find the best CEX and DEX platforms for trading Bitcoin, Ethereum, and altcoins.';
     
     definePageMeta({
+        layout: 'market',
         title,
         description,
     });

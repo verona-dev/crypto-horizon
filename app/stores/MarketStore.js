@@ -73,6 +73,7 @@ export const useMarketStore = defineStore('MarketStore', {
             this.coins = [];
             const table = tag === 'table';
             const list = tag === 'list';
+            
             this.loading = true;
             
             try {
@@ -120,24 +121,32 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         
         async getCoin(slug) {
+            this.loading = true;
             const NewsStore = useNewsStore();
             
-            await this.getCoingeckoCoin(slug);
+            try {
+                await this.getCoingeckoCoin(slug);
+                
+                this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
+                this.coin.name = this.coin?.coingecko?.name;
+                
+                const { data, error } = await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
+                
+                if(data || error) {
+                    // data or error because waiting for livecoinwatch api before formatting the links
+                    await this.formatCoinLinks();
+                }
+                
+                await NewsStore.getNews( {
+                    category: this.coin.symbol,
+                    limit: 6,
+                });
+            } catch(error) {
             
-            this.coin.symbol = this.coin?.coingecko?.symbol?.toUpperCase() || '';
-            this.coin.name = this.coin?.coingecko?.name;
-            
-            const { data, error } = await this.getLiveCoinWatch('coins/single', { code: this.coin.symbol, meta: true });
-            
-            if(data || error) {
-                // data or error because waiting for livecoinwatch api before formatting the links
-                await this.formatCoinLinks();
             }
-            
-            await NewsStore.getNews( {
-                category: this.coin.symbol,
-                limit: 6,
-            });
+            finally {
+                this.loading = false;
+            }
         },
         
         async getCoingeckoCoin(slug) {

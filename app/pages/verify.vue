@@ -28,8 +28,14 @@
     const ProfileStore = useProfileStore();
     const { getProfile } = ProfileStore;
     
+    // SEO
+    const title = 'Verify Your Email to complete the Account Setup';
+    const description = 'Complete your Crypto Horizon registration by verifying your email. Secure your account and start monitoring cryptocurrency markets instantly.';
+    
     definePageMeta({
         middleware: 'verify',
+        title,
+        description,
     });
     
     onMounted(async() => {

@@ -26,7 +26,7 @@
                         :height='125'
                     />
                     
-                    <h2>{{ coingecko.name }}</h2>
+                    <Title>{{ coingecko.name }}</Title>
                 </div>
                 
                 <CardDescription class='flex items-center gap-4'>
@@ -88,9 +88,9 @@
                             
                             <p
                                 :class='getTrendClass(price_change_percentage)'
-                                class='flex items-center'
+                                class='!text-base flex items-center'
                             >
-                                {{ price_change_percentage_label }}
+                                <span>{{ price_change_percentage_label }}</span>
                                 <span class='ml-1'>&#40;{{ timeframe_label }}&#41;</span>
                             </p>
                         </HoverCardTrigger>
@@ -122,9 +122,9 @@
                             
                             <p
                                 :class='[getTrendClass(price_change_percentage_btc)]'
-                                class='flex items-center text-sm'
+                                class='!text-base flex items-center text-sm'
                             >
-                                {{ price_change_percentage_btc_label }}
+                                <span>{{ price_change_percentage_btc_label }}</span>
                                 <span class='ml-1'>&#40;{{ timeframe_label }}&#41;</span>
                             </p>
                         </HoverCardTrigger>
@@ -144,9 +144,10 @@
     import { formatNumber, goBack } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import { Badge } from '~/components/ui/badge';
-    import { Card, CardDescription, CardHeader } from '~/components/ui/card';
+    import { CardDescription, CardHeader } from '~/components/ui/card';
     import CoinPublicNotice from '~/components/market/id/CoinPublicNotice.vue';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    import Title from '~/components/Title.vue';
     
     // MarketStore
     import { storeToRefs } from 'pinia';

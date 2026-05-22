@@ -1,17 +1,24 @@
 <template>
-    <div class='defi' v-if='globalDefi'>
+    <LoadingContent v-if='loading' />
+    
+    <div v-else class='page'>
+        <Title class='page-title'>What is Defi?</Title>
+        
         <GlobalDefi />
     </div>
 </template>
 
 <script setup>
     import GlobalDefi from '~/components/market/GlobalDefi.vue';
+    import LoadingContent from '@/components/LoadingContent.vue';
+    import Title from '~/components/Title.vue';
     
+    // MarketStore
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
-    const { globalDefi } = storeToRefs(MarketStore);
+    const { loading } = storeToRefs(MarketStore);
     const { getCoingeckoGlobalDefi } = MarketStore;
     
     // SEO

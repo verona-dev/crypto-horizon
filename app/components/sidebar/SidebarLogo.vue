@@ -24,7 +24,7 @@
                             height='60'
                         />
                         
-                        <div v-if='open' class='flex flex-col font-great flex-1'>
+                        <div v-if='open' class='flex flex-col flex-1'>
                             <span class='text-lg font-great'>Crypto</span>
                             <span class='text-lg font-great'>Horizon</span>
                         </div>
