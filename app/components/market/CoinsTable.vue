@@ -1,9 +1,7 @@
 <template>
     <Card class='bg-background flex flex-col gap-12 xl:gap-20 border-none shadow-none w-full h-full z-10'>
-        <h3 class='title w-screen flex flex-col items-start [gap:clamp(0.5rem,4vw,4rem)]'>
-            <Title tag='h1' level='h3'>
-                Leading Cryptocurrencies by
-            </Title>
+        <h3 class='flex flex-col items-start [gap:clamp(0.5rem,4vw,4rem)]'>
+            <Title tag='h1' level='h3'>Leading Cryptocurrencies by</Title>
             
             <Text3d
                 class='[font-size:clamp(1.4rem,4vw,4rem)] font-black uppercase'
