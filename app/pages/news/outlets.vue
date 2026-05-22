@@ -7,7 +7,7 @@
             v-else
             class='page mt-20'
         >
-            <Title tag='h1' class='page-title'>News Outlets</Title>
+            <Title class='page-title'>News Outlets</Title>
             
             <div v-if='newsOutlets' class='flex flex-wrap justify-center gap-6 xl:gap-20'>
                 <OutletCard
