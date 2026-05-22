@@ -26,7 +26,7 @@
                         :height='125'
                     />
                     
-                    <h2>{{ coingecko.name }}</h2>
+                    <h1>{{ coingecko.name }}</h1>
                 </div>
                 
                 <CardDescription class='flex items-center gap-4'>
