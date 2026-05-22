@@ -7,8 +7,8 @@
 @layer base {
     @font-face {
         font-family: 'Great';
-        font-display: swap;
         src: url(../fonts/Great.ttf);
+        font-display: swap;
     }
     
     @font-face {
@@ -51,18 +51,6 @@
     
     main {
         @apply w-dvw mx-auto overflow-hidden;
-    }
-    
-    .page {
-        @apply flex flex-col justify-center items-center gap-16 w-full md:max-w-[2560px] min-h-[calc(100vh-24rem)] relative py-16 md:px-36 mx-auto;
-    }
-    
-    [data-slot='sidebar-wrapper'] {
-        /*@apply my-20 md:my-6;*/
-    }
-    
-    [data-slot='sidebar-inset'] {
-        @apply w-dvw;
     }
     
     section {
@@ -127,6 +115,22 @@
     
     .font-great {
         @apply font-great truncate tracking-[0.4rem];
+    }
+    
+    .page {
+        @apply flex flex-col justify-center items-center gap-16 w-full md:max-w-[2560px] min-h-[calc(100vh-24rem)] relative py-16 md:px-36 mx-auto;
+    }
+    
+    .sidebar {
+        @apply font-satoshi;
+    }
+    
+    [data-slot='sidebar-wrapper'] {
+        /*@apply my-20 md:my-6;*/
+    }
+    
+    [data-slot='sidebar-inset'] {
+        @apply w-dvw;
     }
 }
 
