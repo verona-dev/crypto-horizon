@@ -67,7 +67,7 @@
                             <div class='flex flex-col items-end'>
                                 <span>{{ ath_price }}</span>
                                 
-                                <div class='ml-2 flex items-center text-xxs'>
+                                <div class='ml-2 flex items-center'>
                                     <NuxtIcon
                                         :name='getTrendIcon(ath_change_percentage)'
                                         size='10'
@@ -81,7 +81,7 @@
                             
                             <!--  ATH Date -->
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='text-muted-foreground text-xxs'>{{ ath_date_label }}</HoverCardTrigger>
+                                <HoverCardTrigger class='text-muted-foreground'>{{ ath_date_label }}</HoverCardTrigger>
                                 <HoverCardContent>{{ ath_date_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
@@ -105,7 +105,7 @@
                             <div class='flex flex-col items-end'>
                                 <span>{{ atl_price }}</span>
                                 
-                                <div class='ml-2 flex items-center text-xxs'>
+                                <div class='ml-2 flex items-center'>
                                     
                                     <NuxtIcon
                                         :name='getTrendIcon(atl_change_percentage)'
@@ -120,7 +120,7 @@
                             
                             <!--  ATL Date -->
                             <HoverCard :openDelay='200'>
-                                <HoverCardTrigger class='text-muted-foreground text-xxs'>{{ atl_date_label }}</HoverCardTrigger>
+                                <HoverCardTrigger class='text-muted-foreground'>{{ atl_date_label }}</HoverCardTrigger>
                                 <HoverCardContent>{{ atl_date_from_now }}</HoverCardContent>
                             </HoverCard>
                         </TableCell>
