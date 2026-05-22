@@ -1,205 +1,205 @@
 <template>
-    <div class='news page'>
-        <!--  <Breadcrumb />  -->
+    <div class='w-full'>
+        <LoadingContent v-if='loading' />
         
-        <div v-if='loading' class='flex items-center h-[50vh]'>
-            <Spinner class='size-10 text-green-shamrock' />
-        </div>
-        
-        <Card v-else class='bg-transparent border-none shadow-none max-w-7xl pt-0 pb-10 mx-auto'>
-            <!--  Article not available  -->
-            <CardContent
-                v-if='error?.statusCode'
-                class='flex flex-col justify-center items-center gap-8 w-[60vh] h-[60vh]'
-            >
-                <NuxtIcon
-                    name='my-icons:server'
-                    class='w-40 h-40 xl:w-100 xl:h-100'
-                />
-                
-                <h1 v-if='errorCode'>{{ errorCode }}</h1>
-                
-                <h2 v-if='errorMessage' class='tracking-wide'>{{ errorMessage }}</h2>
-                
-                <h4 class='mb-3'>Sorry, the article is not available at the moment.</h4>
-                
-                <Button variant='link'>
-                    <NuxtLink @click='goBack(router, "/news")' to=''>Go back</NuxtLink>
-                </Button>
-            </CardContent>
+        <div v-else class='news page'>
+            <!--  <Breadcrumb />  -->
             
-            <div v-else-if='article && !error?.statusCode'>
-                <!--  Title + Categories + Author -->
-                <CardHeader class='flex flex-col gap-10'>
-                    <!--  Title  -->
-                    <CardTitle v-if='title' class='article-title'>{{ title }}</CardTitle>
+            <Card class='bg-transparent border-none shadow-none max-w-7xl pt-0 pb-10 mx-auto'>
+                <!--  Article not available  -->
+                <CardContent
+                    v-if='error?.statusCode'
+                    class='flex flex-col justify-center items-center gap-8 w-[60vh] h-[60vh]'
+                >
+                    <NuxtIcon
+                        name='my-icons:server'
+                        class='w-40 h-40 xl:w-100 xl:h-100'
+                    />
                     
-                    <!--  Subtitle  -->
-                    <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
+                    <h1 v-if='errorCode'>{{ errorCode }}</h1>
                     
-                    <!--  Categories  -->
-                    <div v-if='categories' class='flex flex-wrap items-center gap-2'>
-                        <Badge
-                            v-for='category in categories'
-                            :key='category'
-                            class='!px-4 !py-1.5 text-muted-foreground border border-sky/50 font-extralight tracking-widest'
-                            variant='outline'
-                        >
-                            {{ category.NAME }}
-                        </Badge>
-                    </div>
+                    <h2 v-if='errorMessage' class='tracking-wide'>{{ errorMessage }}</h2>
                     
-                    <!--  Author + Updated + Reading duration  -->
-                    <div class='flex flex-wrap items-center gap-2 md:gap-8 xl:gap-16'>
-                        <div class='author flex items-center gap-6'>
-                            <Avatar class='rounded-lg'>
-                                <AvatarImage v-if='source_avatar' :src='source_avatar' alt='avatar' />
-                                <AvatarFallback class='rounded-full'>S</AvatarFallback>
-                            </Avatar>
-                            
-                            <div class='flex flex-col gap-1'>
-                                <p v-if='author'>By {{ author }}</p>
-                                <span v-if='published_on' class='text-muted-foreground'>{{ published_on_label }} UTC</span>
-                            </div>
-                        </div>
-                        
-                        <div class='vertical-separator' />
-                        
-                        <div v-if='reading_duration > 0' class='flex items-center gap-2 text-muted-foreground font-bold'>
-                            <NuxtIcon name='ph:timer' size='18' />
-                            <span>{{ reading_duration }} min read</span>
-                        </div>
-                        
-                        <div class='vertical-separator' />
-                        
-                        <div v-if='updated_on_label' class='flex flex-col items-center gap-1 text-muted-foreground'>
-                            <span>Last updated:</span>
-                            <span class='font-bold'>{{ updated_on_label }}</span>
-                        </div>
-                    </div>
-                </CardHeader>
-                
-                <!--  Image  -->
-                <CardContent class='my-8'>
-                    <NuxtImg
-                        v-if='image_url'
-                        :src='image_url'
-                        alt='article image'
-                        class='w-140 h-100 rounded-lg'
-                        :custom='true'
-                        v-slot='{ src, isLoaded, imgAttrs }'
-                        preload
-                    >
-                        <img
-                            v-if='isLoaded'
-                            v-bind='imgAttrs'
-                            :src='src'
-                            alt='article image'
-                        >
-                        
-                        <Skeleton
-                            v-else
-                            class='w-140 h-100 rounded-lg'
-                        />
-                    </NuxtImg>
+                    <h4 class='mb-3'>Sorry, the article is not available at the moment.</h4>
+                    
+                    <Button variant='link'>
+                        <NuxtLink @click='goBack(router, "/news")' to=''>Go back</NuxtLink>
+                    </Button>
                 </CardContent>
                 
-                <!--  Content  -->
-                <CardContent v-if='body' class='article-body'>
-                    <p v-for='(par, index) in body_formatted' :key='index'>
-                        {{ par }}
-                    </p>
-                </CardContent>
-                
-                <!--  Sentiment + Article Link + Keywords  -->
-                <CardFooter class='py-12 xl:py-24 flex flex-col !items-start gap-48'>
-                    <div class='flex flex-wrap justify-between gap-16 w-full'>
-                        <!--  Sentiment  -->
-                        <Card
-                            v-if='sentiment'
-                            class='bg-background border-border shadow-none hover:shadow-2xl flex flex-col items-center justify-between gap-8 p-16 md:w-110 mx-auto'
-                        >
-                            <div class='flex items-center gap-3'>
-                                <h4>Article sentiment</h4>
-                                
-                                <HoverCard :openDelay='200'>
-                                    <HoverCardTrigger>
-                                        <InfoIcon />
-                                    </HoverCardTrigger>
-                                    
-                                    <HoverCardContent class='flex-col gap-6'>
-                                        The sentiment polarity of this article. We compute this using ChatGPT.
-                                    </HoverCardContent>
-                                </HoverCard>
-                            </div>
-                            
-                            <NuxtIcon :name='sentiment?.icon' size='100' :class='sentiment?.class' />
-                            
-                            <h5 class='uppercase'>{{ sentiment?.label }}</h5>
-                        </Card>
+                <div v-else-if='article && !error?.statusCode'>
+                    <!--  Title + Categories + Author -->
+                    <CardHeader class='flex flex-col gap-10'>
+                        <!--  Title  -->
+                        <CardTitle v-if='title' class='article-title'>{{ title }}</CardTitle>
                         
-                        <!--  Article Link  -->
-                        <Card
-                            v-if='article_url'
-                            class='bg-background border-border shadow-none hover:shadow-2xl flex flex-col items-center justify-between gap-8 p-16 md:w-110 mx-auto'
-                        >
-                            <div class='flex items-center gap-3'>
-                                <h4>Original Source</h4>
-                                
-                                <HoverCard :openDelay='200'>
-                                    <HoverCardTrigger>
-                                        <InfoIcon />
-                                    </HoverCardTrigger>
-                                    
-                                    <HoverCardContent class='flex-col gap-6'>
-                                        The web address that directs to the specific content or article on a source website.
-                                    </HoverCardContent>
-                                </HoverCard>
-                            </div>
-                            
-                            <NuxtIcon name='ph:read-cv-logo-thin' size='100' class='' />
-                            
-                            <Button variant='link' class='!pb-0'>
-                                <NuxtLink
-                                    :to='article_url'
-                                    target='_blank'
-                                    class='flex items-center gap-1 uppercase text-foreground'
-                                    external
-                                >
-                                    <h5>Visit Article</h5>
-                                    
-                                    <NewTabIcon />
-                                </NuxtLink>
-                            </Button>
-                        </Card>
-                    </div>
-                    
-                    <!--  Keywords  -->
-                    <div v-if='show_keywords' class='flex flex-col items-start gap-8'>
-                        <h5 class='underline'>Keywords</h5>
+                        <!--  Subtitle  -->
+                        <CardDescription v-if='subtitle'>{{ subtitle }}</CardDescription>
                         
-                        <div class='flex flex-wrap items-center gap-3'>
+                        <!--  Categories  -->
+                        <div v-if='categories' class='flex flex-wrap items-center gap-2'>
                             <Badge
-                                v-for='keyword in keywords_computed'
-                                :key='keyword'
-                                class='hover:bg-primary'
+                                v-for='category in categories'
+                                :key='category'
+                                class='!px-4 !py-1.5 text-muted-foreground border border-sky/50 font-extralight tracking-widest'
+                                variant='outline'
                             >
-                                {{ keyword }}
+                                {{ category.NAME }}
                             </Badge>
                         </div>
-                    </div>
-                </CardFooter>
-            </div>
-        </Card>
-        
-        <!-- Reading/Scroll progress bar -->
-        <template v-if='show_progress_bar'>
-            <div class='progress-container'>
-                <div class='bar-container'>
-                    <div class='progress-bar' :style='{ width: `${progress * 100}%` }'></div>
+                        
+                        <!--  Author + Updated + Reading duration  -->
+                        <div class='flex flex-wrap items-center gap-2 md:gap-8 xl:gap-16'>
+                            <div class='author flex items-center gap-6'>
+                                <Avatar class='rounded-lg'>
+                                    <AvatarImage v-if='source_avatar' :src='source_avatar' alt='avatar' />
+                                    <AvatarFallback class='rounded-full'>S</AvatarFallback>
+                                </Avatar>
+                                
+                                <div class='flex flex-col gap-1'>
+                                    <p v-if='author'>By {{ author }}</p>
+                                    <span v-if='published_on' class='text-muted-foreground'>{{ published_on_label }} UTC</span>
+                                </div>
+                            </div>
+                            
+                            <div class='vertical-separator' />
+                            
+                            <div v-if='reading_duration > 0' class='flex items-center gap-2 text-muted-foreground font-bold'>
+                                <NuxtIcon name='ph:timer' size='18' />
+                                <span>{{ reading_duration }} min read</span>
+                            </div>
+                            
+                            <div class='vertical-separator' />
+                            
+                            <div v-if='updated_on_label' class='flex flex-col items-center gap-1 text-muted-foreground'>
+                                <span>Last updated:</span>
+                                <span class='font-bold'>{{ updated_on_label }}</span>
+                            </div>
+                        </div>
+                    </CardHeader>
+                    
+                    <!--  Image  -->
+                    <CardContent class='my-8'>
+                        <NuxtImg
+                            v-if='image_url'
+                            :src='image_url'
+                            alt='article image'
+                            class='w-140 h-100 rounded-lg'
+                            :custom='true'
+                            v-slot='{ src, isLoaded, imgAttrs }'
+                            preload
+                        >
+                            <img
+                                v-if='isLoaded'
+                                v-bind='imgAttrs'
+                                :src='src'
+                                alt='article image'
+                            >
+                            
+                            <Skeleton
+                                v-else
+                                class='w-140 h-100 rounded-lg'
+                            />
+                        </NuxtImg>
+                    </CardContent>
+                    
+                    <!--  Content  -->
+                    <CardContent v-if='body' class='article-body'>
+                        <p v-for='(par, index) in body_formatted' :key='index'>
+                            {{ par }}
+                        </p>
+                    </CardContent>
+                    
+                    <!--  Sentiment + Article Link + Keywords  -->
+                    <CardFooter class='py-12 xl:py-24 flex flex-col !items-start gap-48'>
+                        <div class='flex flex-wrap justify-between gap-16 w-full'>
+                            <!--  Sentiment  -->
+                            <Card
+                                v-if='sentiment'
+                                class='bg-background border-border shadow-none hover:shadow-2xl flex flex-col items-center justify-between gap-8 p-16 md:w-110 mx-auto'
+                            >
+                                <div class='flex items-center gap-3'>
+                                    <h4>Article sentiment</h4>
+                                    
+                                    <HoverCard :openDelay='200'>
+                                        <HoverCardTrigger>
+                                            <InfoIcon />
+                                        </HoverCardTrigger>
+                                        
+                                        <HoverCardContent class='flex-col gap-6'>
+                                            The sentiment polarity of this article. We compute this using ChatGPT.
+                                        </HoverCardContent>
+                                    </HoverCard>
+                                </div>
+                                
+                                <NuxtIcon :name='sentiment?.icon' size='100' :class='sentiment?.class' />
+                                
+                                <h5 class='uppercase'>{{ sentiment?.label }}</h5>
+                            </Card>
+                            
+                            <!--  Article Link  -->
+                            <Card
+                                v-if='article_url'
+                                class='bg-background border-border shadow-none hover:shadow-2xl flex flex-col items-center justify-between gap-8 p-16 md:w-110 mx-auto'
+                            >
+                                <div class='flex items-center gap-3'>
+                                    <h4>Original Source</h4>
+                                    
+                                    <HoverCard :openDelay='200'>
+                                        <HoverCardTrigger>
+                                            <InfoIcon />
+                                        </HoverCardTrigger>
+                                        
+                                        <HoverCardContent class='flex-col gap-6'>
+                                            The web address that directs to the specific content or article on a source website.
+                                        </HoverCardContent>
+                                    </HoverCard>
+                                </div>
+                                
+                                <NuxtIcon name='ph:read-cv-logo-thin' size='100' class='' />
+                                
+                                <Button variant='link' class='!pb-0'>
+                                    <NuxtLink
+                                        :to='article_url'
+                                        target='_blank'
+                                        class='flex items-center gap-1 uppercase text-foreground'
+                                        external
+                                    >
+                                        <h5>Visit Article</h5>
+                                        
+                                        <NewTabIcon />
+                                    </NuxtLink>
+                                </Button>
+                            </Card>
+                        </div>
+                        
+                        <!--  Keywords  -->
+                        <div v-if='show_keywords' class='flex flex-col items-start gap-8'>
+                            <h5 class='underline'>Keywords</h5>
+                            
+                            <div class='flex flex-wrap items-center gap-3'>
+                                <Badge
+                                    v-for='keyword in keywords_computed'
+                                    :key='keyword'
+                                    class='hover:bg-primary'
+                                >
+                                    {{ keyword }}
+                                </Badge>
+                            </div>
+                        </div>
+                    </CardFooter>
                 </div>
-            </div>
-        </template>
+            </Card>
+            
+            <!-- Reading/Scroll progress bar -->
+            <template v-if='show_progress_bar'>
+                <div class='progress-container'>
+                    <div class='bar-container'>
+                        <div class='progress-bar' :style='{ width: `${progress * 100}%` }'></div>
+                    </div>
+                </div>
+            </template>
+        </div>
         
         <!--
                 <div class='header-nav flex items-center justify-start gap-8'>
@@ -223,25 +223,25 @@
 <script setup>
     import { goBack } from '~/utils/formatUtils.js';
     import { useReadingTime } from 'maz-ui/composables';
-    import Breadcrumb from '~/components/Breadcrumb.vue';
-    import NewTabIcon from '~/components/NewTabIcon.vue';
-    
-    import dayjs from 'dayjs';
-    import relativeTime from 'dayjs/plugin/relativeTime';
-    dayjs.extend(relativeTime, { rounding: Math.floor });
-    
-    import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_ICON, useSidebar } from '~/components/ui/sidebar/utils.js';
-    const { open } = useSidebar();
-    
-    // Components
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
     import { Badge } from '~/components/ui/badge';
+    // import Breadcrumb from '~/components/Breadcrumb.vue';
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
+    import LoadingContent from '@/components/LoadingContent.vue';
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     import { Skeleton } from '~/components/ui/skeleton';
-    import { Spinner } from '~/components/ui/spinner';
+    
+    // Dayjs
+    import dayjs from 'dayjs';
+    import relativeTime from 'dayjs/plugin/relativeTime';
+    dayjs.extend(relativeTime, { rounding: Math.floor });
+    
+    // Sidebar
+    import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_ICON, useSidebar } from '~/components/ui/sidebar/utils.js';
+    const { open } = useSidebar();
     
     // Router
     const route = useRoute();
