@@ -71,15 +71,15 @@
 
 @layer components {
     h1 {
-        @apply text-6xl md:text-7xl xl:text-9xl tracking-[0.2em] break-words;
+        @apply text-7xl xl:text-9xl tracking-widest break-words;
     }
     
     h2 {
-        @apply text-5xl xl:text-7xl tracking-wider;
+        @apply text-6xl xl:text-8xl tracking-wider;
     }
     
     h3 {
-        @apply text-3xl xl:text-5xl !leading-8 tracking-wider;
+        @apply text-4xl xl:text-6xl !leading-8 tracking-wider;
         
         .text-3d {
             @apply font-satoshi;
@@ -87,23 +87,23 @@
     }
     
     h4 {
-        @apply text-xl xl:text-2xl tracking-wider;
+        @apply text-2xl xl:text-3xl tracking-wider;
     }
     
     h5 {
-        @apply text-xl tracking-wider;
+        @apply text-2xl tracking-wider;
     }
     
     h6 {
-        @apply text-lg text-left tracking-wider;
+        @apply text-xl text-left tracking-wider;
     }
     
     p {
-        @apply text-sm sm:text-base leading-5 tracking-wider;
+        @apply text-base leading-5 tracking-widest;
     }
     
     span {
-        @apply text-inherit;
+        @apply text-inherit tracking-widest;
     }
     
     div {
@@ -115,7 +115,7 @@
     }
     
     button {
-        @apply cursor-pointer border border-transparent;
+        @apply !text-sm cursor-pointer border border-transparent;
     }
     
     .font-great {
@@ -127,7 +127,7 @@
     }
     
     .sidebar * {
-        @apply font-megatrans;
+        @apply font-megatrans text-base;
     }
     
     [data-slot='sidebar-inset'] {
