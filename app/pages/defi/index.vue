@@ -2,7 +2,7 @@
     <LoadingContent v-if='loading' />
     
     <div v-else class='page'>
-        <Title level='h3' class='page-title'>What is Defi?</Title>
+        <Title class='page-title'>What is Defi?</Title>
         
         <GlobalDefi />
     </div>

@@ -1,7 +1,7 @@
 <template>
     <div class='page'>
         <div v-if='!dark_mode' class='h-[450px] flex items-center'>
-            <Title tag='h1' class='page-title'>{{ page_title }}</Title>
+            <Title class='page-title'>{{ page_title }}</Title>
         </div>
         
         <div v-else class='w-fit xl:w-[900px] h-[450px] mx-auto'>
