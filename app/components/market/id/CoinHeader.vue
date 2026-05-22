@@ -88,9 +88,9 @@
                             
                             <p
                                 :class='getTrendClass(price_change_percentage)'
-                                class='flex items-center'
+                                class='!text-base flex items-center'
                             >
-                                {{ price_change_percentage_label }}
+                                <span>{{ price_change_percentage_label }}</span>
                                 <span class='ml-1'>&#40;{{ timeframe_label }}&#41;</span>
                             </p>
                         </HoverCardTrigger>
@@ -122,9 +122,9 @@
                             
                             <p
                                 :class='[getTrendClass(price_change_percentage_btc)]'
-                                class='flex items-center text-sm'
+                                class='!text-base flex items-center text-sm'
                             >
-                                {{ price_change_percentage_btc_label }}
+                                <span>{{ price_change_percentage_btc_label }}</span>
                                 <span class='ml-1'>&#40;{{ timeframe_label }}&#41;</span>
                             </p>
                         </HoverCardTrigger>
