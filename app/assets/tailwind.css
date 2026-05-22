@@ -92,6 +92,7 @@ html.light {
     --font-satoshi: Satoshi, sans-serif;
     --font-work-sans: Work Sans Variable, sans-serif;
     --font-automata: Automata, sans-serif;
+    --font-spaced: Spaced, sans-serif;
     
     --color-progress: var(--progress);
     --color-sky: var(--sky);
