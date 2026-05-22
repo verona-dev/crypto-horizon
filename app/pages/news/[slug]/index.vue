@@ -59,20 +59,20 @@
                             
                             <div class='flex flex-col gap-1'>
                                 <p v-if='author'>By {{ author }}</p>
-                                <span v-if='published_on' class='text-muted-foreground text-sm'>{{ published_on_label }} UTC</span>
+                                <span v-if='published_on' class='text-muted-foreground'>{{ published_on_label }} UTC</span>
                             </div>
                         </div>
                         
                         <div class='vertical-separator' />
                         
-                        <div v-if='reading_duration > 0' class='flex items-center gap-2 text-muted-foreground text-sm font-bold'>
+                        <div v-if='reading_duration > 0' class='flex items-center gap-2 text-muted-foreground font-bold'>
                             <NuxtIcon name='ph:timer' size='18' />
                             <span>{{ reading_duration }} min read</span>
                         </div>
                         
                         <div class='vertical-separator' />
                         
-                        <div v-if='updated_on_label' class='flex flex-col items-center gap-1 text-muted-foreground text-sm'>
+                        <div v-if='updated_on_label' class='flex flex-col items-center gap-1 text-muted-foreground'>
                             <span>Last updated:</span>
                             <span class='font-bold'>{{ updated_on_label }}</span>
                         </div>
