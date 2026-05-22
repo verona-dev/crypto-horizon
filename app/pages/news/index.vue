@@ -1,157 +1,77 @@
 <template>
-    <div class='page'>
-        <div v-if='!dark_mode' class='h-[450px] flex items-center'>
-            <Title class='page-title'>{{ page_title }}</Title>
-        </div>
+    <div class='w-full'>
+        <LoadingContent v-if='loading' />
         
-        <div v-else class='w-fit xl:w-[900px] h-[450px] mx-auto'>
-            <ParticleImage
-                :image-src='titleImage'
-                :responsive-width='true'
-                canvasWidth='900'
-                canvasHeight='400'
-                :noise='5'
-                gravity='0.1'
-                mouseForce='7'
-            />
-        </div>
-        
-        <BentoGrid class='xl:gap-6'>
-            <BentoGridItem
-                v-for='(article, index) in articles'
-                :key='article.id'
-                class='!bg-card lg:row-span-2 !border-border/50 w-full mx-auto'
-                :class='index === 3 || index === 6 ? "xl:col-span-2" : ""'
-            >
-                <!--  Image + Categories  -->
-                <template #header>
-                    <NuxtImg
-                        v-if='article.image_url'
-                        :src='article.image_url'
-                        alt='article image'
-                        class='h-1/2 w-full object-cover rounded-md'
-                        :custom='true'
-                        v-slot='{ src, isLoaded, imgAttrs }'
-                        preload
-                    >
-                        <img
-                            v-if='isLoaded'
-                            v-bind='imgAttrs'
-                            :src='src'
+        <div v-else class='page'>
+            <div v-if='!dark_mode' class='h-[450px] flex items-center'>
+                <Title class='page-title'>{{ page_title }}</Title>
+            </div>
+            
+            <div v-else class='w-fit xl:w-[900px] h-[450px] mx-auto'>
+                <ParticleImage
+                    :image-src='titleImage'
+                    :responsive-width='true'
+                    canvasWidth='900'
+                    canvasHeight='400'
+                    :noise='5'
+                    gravity='0.1'
+                    mouseForce='7'
+                />
+            </div>
+            
+            <BentoGrid class='xl:gap-6'>
+                <BentoGridItem
+                    v-for='(article, index) in articles'
+                    :key='article.id'
+                    class='!bg-card lg:row-span-2 !border-border/50 w-full mx-auto'
+                    :class='index === 3 || index === 6 ? "xl:col-span-2" : ""'
+                >
+                    <!--  Image + Categories  -->
+                    <template #header>
+                        <NuxtImg
+                            v-if='article.image_url'
+                            :src='article.image_url'
                             alt='article image'
+                            class='h-1/2 w-full object-cover rounded-md'
+                            :custom='true'
+                            v-slot='{ src, isLoaded, imgAttrs }'
+                            preload
                         >
-                        
-                        <Skeleton
-                            v-else
-                            class='h-full w-full rounded-md'
-                        />
-                    </NuxtImg>
-                    
-                    <!--  Categories / Tags + Reading duration  -->
-                    <div class='flex items-center justify-between px-2'>
-                        <div class='flex items-center gap-2'>
-                            <Badge
-                                v-for='category in article.categories.slice(0, 3)'
-                                class='py-1 px-1.5 text-muted-foreground border text-[10px] font-extralight tracking-widest'
-                                variant='outline'
+                            <img
+                                v-if='isLoaded'
+                                v-bind='imgAttrs'
+                                :src='src'
+                                alt='article image'
                             >
-                                {{ category.NAME }}
-                            </Badge>
-                        </div>
-                        
-                        <div v-if='article.reading_duration > 1' class='text-muted-foreground flex items-center gap-1'>
-                            <NuxtIcon name='ph:timer-light' size='18' />
-                            <span class='text-xxs'>{{ article.reading_duration }}m</span>
-                        </div>
-                    </div>
-                </template>
-                
-                <!--  Title  -->
-                <template #title>
-                    <div class='px-2'>
-                        <NuxtLink
-                            :to="{
-                                    path: `/news/${encodeURIComponent(article.guid)}`,
-                                    query: {
-                                        source_key: article.source_key,
-                                        guid: article.guid,
-                                    }
-                                }"
-                            class='hover:underline'
-                        >
-                            <h6>{{ article.title }}</h6>
-                        </NuxtLink>
-                    </div>
-                </template>
-                
-                <!--  Author + Source + Publish date + Read more  -->
-                <template #description>
-                    <div class='flex items-center justify-between px-2'>
-                        <HoverCard>
-                            <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
-                                <!--  Avatar  -->
-                                <Avatar class='h-12 w-12 rounded-full'>
-                                    <AvatarImage :src='article.source_avatar' alt='avatar' />
-                                    <AvatarFallback class='rounded-lg'>S</AvatarFallback>
-                                </Avatar>
-                                
-                                <!--  Author  -->
-                                <div class='flex flex-col items-start text-left'>
-                                    <!--  <p class='truncate text-md'>{{ article.authors }}</p>  -->
-                                    <span class='text-sm capitalize'>{{ article.source_name }}</span>
-                                    
-                                    <!--  Publish date  -->
-                                    <div class='flex gap-1 text-muted-foreground'>
-                                        <!--  <NuxtIcon name='ph:calendar-blank-light' size='18' /> . -->
-                                        <span class='pt-0.5 text-xs'>{{ article.published_date }}</span>
-                                    </div>
-                                </div>
-                            </HoverCardTrigger>
                             
-                            <!--  Source  -->
-                            <HoverCardContent class='flex !justify-between !content-between !items-between !border-border/50 gap-6 w-fit'>
-                                <NuxtImg
-                                    v-if='article.source_avatar'
-                                    :src='article.source_avatar'
-                                    alt='source avatar'
-                                    class='rounded-md m-auto'
-                                    height='150px'
-                                    width='150px'
-                                />
-                                
-                                <div class='flex flex-col justify-between gap-2'>
-                                    <h6 class='underline mb-2' v-if='article.source_name'>{{ article.source_name }}</h6>
-                                    
-                                    <span v-if='article.source_score > 0'>Score: {{ article.source_score }}</span>
-                                    
-                                    <span v-if='article.source_launch_date'>Launch date: {{ article.source_launch_date }}</span>
-                                    
-                                    <div v-if='article.source_lang' class='flex items-center gap-2'>
-                                        <span>Language:</span>
-                                        <span>{{ article.source_lang }}</span>
-                                        <NuxtIcon
-                                            :name="`circle-flags:lang-${article.source_lang.toLowerCase()}`"
-                                            size='20px' class='self-center'
-                                        />
-                                    </div>
-                                    
-                                    <NuxtLink
-                                        v-if='article.source_url'
-                                        :to='article.source_url'
-                                        external
-                                        target='_blank'
-                                        class='self-start hover:underline flex items-center gap-1'
-                                    >
-                                        <span>Website</span>
-                                        
-                                        <NewTabIcon />
-                                    </NuxtLink>
-                                </div>
-                            </HoverCardContent>
-                        </HoverCard>
+                            <Skeleton
+                                v-else
+                                class='h-full w-full rounded-md'
+                            />
+                        </NuxtImg>
                         
-                        <!--  Read more  -->
-                        <Button variant='outline'>
+                        <!--  Categories / Tags + Reading duration  -->
+                        <div class='flex items-center justify-between px-2'>
+                            <div class='flex items-center gap-2'>
+                                <Badge
+                                    v-for='category in article.categories.slice(0, 3)'
+                                    class='py-1 px-1.5 text-muted-foreground border text-[10px] font-extralight tracking-widest'
+                                    variant='outline'
+                                >
+                                    {{ category.NAME }}
+                                </Badge>
+                            </div>
+                            
+                            <div v-if='article.reading_duration > 1' class='text-muted-foreground flex items-center gap-1'>
+                                <NuxtIcon name='ph:timer-light' size='18' />
+                                <span class='text-xxs'>{{ article.reading_duration }}m</span>
+                            </div>
+                        </div>
+                    </template>
+                    
+                    <!--  Title  -->
+                    <template #title>
+                        <div class='px-2'>
                             <NuxtLink
                                 :to="{
                                     path: `/news/${encodeURIComponent(article.guid)}`,
@@ -160,20 +80,105 @@
                                         guid: article.guid,
                                     }
                                 }"
+                                class='hover:underline'
                             >
-                                Read More
+                                <h6>{{ article.title }}</h6>
                             </NuxtLink>
-                        </Button>
-                    </div>
-                </template>
-            </BentoGridItem>
-        </BentoGrid>
+                        </div>
+                    </template>
+                    
+                    <!--  Author + Source + Publish date + Read more  -->
+                    <template #description>
+                        <div class='flex items-center justify-between px-2'>
+                            <HoverCard>
+                                <HoverCardTrigger class='flex items-center gap-4 cursor-pointer'>
+                                    <!--  Avatar  -->
+                                    <Avatar class='h-12 w-12 rounded-full'>
+                                        <AvatarImage :src='article.source_avatar' alt='avatar' />
+                                        <AvatarFallback class='rounded-lg'>S</AvatarFallback>
+                                    </Avatar>
+                                    
+                                    <!--  Author  -->
+                                    <div class='flex flex-col items-start text-left'>
+                                        <!--  <p class='truncate text-md'>{{ article.authors }}</p>  -->
+                                        <span class='text-sm capitalize'>{{ article.source_name }}</span>
+                                        
+                                        <!--  Publish date  -->
+                                        <div class='flex gap-1 text-muted-foreground'>
+                                            <!--  <NuxtIcon name='ph:calendar-blank-light' size='18' /> . -->
+                                            <span class='pt-0.5 text-xs'>{{ article.published_date }}</span>
+                                        </div>
+                                    </div>
+                                </HoverCardTrigger>
+                                
+                                <!--  Source  -->
+                                <HoverCardContent class='flex !justify-between !content-between !items-between !border-border/50 gap-6 w-fit'>
+                                    <NuxtImg
+                                        v-if='article.source_avatar'
+                                        :src='article.source_avatar'
+                                        alt='source avatar'
+                                        class='rounded-md m-auto'
+                                        height='150px'
+                                        width='150px'
+                                    />
+                                    
+                                    <div class='flex flex-col justify-between gap-2'>
+                                        <h6 class='underline mb-2' v-if='article.source_name'>{{ article.source_name }}</h6>
+                                        
+                                        <span v-if='article.source_score > 0'>Score: {{ article.source_score }}</span>
+                                        
+                                        <span v-if='article.source_launch_date'>Launch date: {{ article.source_launch_date }}</span>
+                                        
+                                        <div v-if='article.source_lang' class='flex items-center gap-2'>
+                                            <span>Language:</span>
+                                            <span>{{ article.source_lang }}</span>
+                                            <NuxtIcon
+                                                :name="`circle-flags:lang-${article.source_lang.toLowerCase()}`"
+                                                size='20px' class='self-center'
+                                            />
+                                        </div>
+                                        
+                                        <NuxtLink
+                                            v-if='article.source_url'
+                                            :to='article.source_url'
+                                            external
+                                            target='_blank'
+                                            class='self-start hover:underline flex items-center gap-1'
+                                        >
+                                            <span>Website</span>
+                                            
+                                            <NewTabIcon />
+                                        </NuxtLink>
+                                    </div>
+                                </HoverCardContent>
+                            </HoverCard>
+                            
+                            <!--  Read more  -->
+                            <Button variant='outline'>
+                                <NuxtLink
+                                    :to="{
+                                    path: `/news/${encodeURIComponent(article.guid)}`,
+                                    query: {
+                                        source_key: article.source_key,
+                                        guid: article.guid,
+                                    }
+                                }"
+                                >
+                                    Read More
+                                </NuxtLink>
+                            </Button>
+                        </div>
+                    </template>
+                </BentoGridItem>
+            </BentoGrid>
+        </div>
     </div>
 </template>
 
 <script setup>
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import Title from '~/components/Title.vue';
+    import LoadingContent from '@/components/LoadingContent.vue';
     
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
@@ -197,7 +202,7 @@
     import { useReadingTime } from 'maz-ui/composables';
     const NewsStore = useNewsStore();
     
-    const { news } = storeToRefs(NewsStore);
+    const { loading, news } = storeToRefs(NewsStore);
     const { getNews } = NewsStore;
     const articles = ref([]);
     const page_title = 'Latest News';
