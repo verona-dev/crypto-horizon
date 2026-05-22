@@ -1,29 +1,32 @@
-<script setup>
+<script setup lang='ts'>
     import { cn } from '@/lib/utils';
     
-    const props = defineProps({
-        tag: { type: String },
-        level: { type: String },
-        class: { type: String },
-    });
+    interface Props {
+        tag?: 1 | 2 | 3 | 4 | 5 | 6
+        level?: 1 | 2 | 3 | 4 | 5 | 6
+        class?: string
+    }
     
-    const tag = computed(() => props.tag ?? props.level ?? 'h1');
-    const level = computed(() => props.level ?? props.tag ?? 'h1');
+    const props = defineProps<Props>();
     
-    const styleClasses = {
-        'h1': 'text-6xl md:text-7xl xl:text-9xl tracking-widest break-words',
-        'h2': 'text-5xl xl:text-7xl',
-        'h3': 'text-3xl xl:text-5xl !leading-8',
-        'h4': 'text-xl xl:text-2xl',
-        'h5': 'text-xl',
-        'h6': 'text-lg text-left',
+    const validate = (value:number) => value === undefined ? 1 : value >= 1 && value <= 6 ? value : 1;
+    const tag = computed(() => `h${validate(props.tag ?? props.level ?? 1)}`);
+    const level = computed(() => validate(props.level ?? props.tag ?? 1));
+    
+    const styles: Record<number, string>   = {
+        1: 'text-6xl md:text-7xl xl:text-9xl tracking-widest break-words',
+        2: 'text-5xl xl:text-7xl',
+        3: 'text-3xl xl:text-5xl !leading-8',
+        4: 'text-xl xl:text-2xl',
+        5: 'text-xl',
+        6: 'text-lg text-left',
     };
 </script>
 
 <template>
     <component
         :is='tag'
-        :class='cn(styleClasses[level], props.class)'
+        :class='cn(styles[level], props.class)'
         v-bind='$attrs'
     >
         <slot />
