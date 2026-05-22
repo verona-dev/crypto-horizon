@@ -69,7 +69,7 @@
                             <AvatarFallback class='rounded-lg'>G</AvatarFallback>
                         </Avatar>
                         
-                        <div class='flex flex-col flex-1 text-left text-sm leading-tight'>
+                        <div class='flex flex-col flex-1 text-left leading-tight'>
                             <span class='truncate font-medium'>{{ username }}</span>
                             <span class='truncate text-xs'>{{ user_email }}</span>
                         </div>
@@ -86,7 +86,7 @@
                     :side-offset='open ? 16 : 8'
                 >
                     <DropdownMenuLabel class='p-0 font-normal'>
-                        <div class='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
+                        <div class='flex items-center gap-2 px-1 py-1.5 text-left'>
                             <Avatar class='h-16 w-16 rounded-lg'>
                                 <AvatarImage :src='avatar' alt='avatar' />
                                 <AvatarFallback class='rounded-lg'>
@@ -94,7 +94,7 @@
                                 </AvatarFallback>
                             </Avatar>
                             
-                            <div class='grid flex-1 text-left text-sm leading-tight'>
+                            <div class='grid flex-1 text-left'>
                                 <span class='truncate font-semibold'>{{ username }}</span>
                                 <span class='truncate text-xs'>{{ user_email }}</span>
                             </div>
