@@ -28,8 +28,8 @@
     }
     
     @font-face {
-        font-family: 'Megatrans';
-        src: url(../fonts/Megatrans.ttf) format('truetype');
+        font-family: 'Automata';
+        src: url(../fonts/Automata.ttf) format('truetype');
         font-style: normal;
         font-display: swap;
     }
@@ -43,7 +43,7 @@
     }
     
     body {
-        @apply font-megatrans bg-background text-foreground overflow-x-hidden overflow-y-scroll;
+        @apply font-automata bg-background text-foreground overflow-x-hidden overflow-y-scroll;
     }
     
     .homepage {
@@ -103,15 +103,15 @@
     }
     
     span {
-        @apply text-inherit tracking-widest;
+        @apply font-automata text-inherit tracking-widest;
     }
     
     div {
-        @apply font-megatrans;
+        @apply font-automata;
     }
     
     a {
-        @apply font-megatrans cursor-pointer text-center;
+        @apply font-automata cursor-pointer text-center;
     }
     
     button {
@@ -127,7 +127,7 @@
     }
     
     .sidebar * {
-        @apply font-megatrans text-base;
+        @apply font-automata text-base;
     }
     
     [data-slot='sidebar-inset'] {
