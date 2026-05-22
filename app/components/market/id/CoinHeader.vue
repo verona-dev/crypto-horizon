@@ -26,7 +26,7 @@
                         :height='125'
                     />
                     
-                    <Title>{{ coingecko.name }}</Title>
+                    <Title class='font-great'>{{ coingecko.name }}</Title>
                 </div>
                 
                 <CardDescription class='flex items-center gap-4'>
@@ -122,7 +122,7 @@
                             
                             <p
                                 :class='[getTrendClass(price_change_percentage_btc)]'
-                                class='!text-base flex items-center text-sm'
+                                class='flex items-center'
                             >
                                 <span>{{ price_change_percentage_btc_label }}</span>
                                 <span class='ml-1'>&#40;{{ timeframe_label }}&#41;</span>
