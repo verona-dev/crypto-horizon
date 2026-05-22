@@ -52,7 +52,7 @@
                     
                     <!--  Description  -->
                     <div class='flex items-center gap-2 text-muted-foreground'>
-                        <span class='truncate text-muted-foreground w-full text-center text-sm'>{{ symbol }}</span>
+                        <span class='truncate text-muted-foreground w-full text-center'>{{ symbol }}</span>
                         
                         <HoverCard v-if='description' :openDelay='200'>
                             <HoverCardTrigger>
@@ -104,7 +104,7 @@
                     
                     <!--  Floor Price + Trend  -->
                     <div class='flex flex-col items-center gap-1'>
-                        <p class='uppercase text-muted-foreground text-sm'>Floor Price</p>
+                        <p class='uppercase text-muted-foreground'>Floor Price</p>
                         
                         <div class='flex items-center gap-3'>
                             <h6>{{ floor_price }}</h6>
@@ -115,9 +115,9 @@
                                     size='15'
                                 />
                                 
-                                <span class='flex items-center text-sm'>{{ price_change_percentage_1d_label }}</span>
+                                <span class='flex items-center'>{{ price_change_percentage_1d_label }}</span>
                                 
-                                <span class='text-sm'>&#40;24h&#41;</span>
+                                <span class=''>&#40;24h&#41;</span>
                             </div>
                         </div>
                     
@@ -126,13 +126,13 @@
                     <!--  Sale Price + Volume 24h  -->
                     <div class='flex items-center justify-around'>
                         <div class='flex flex-col items-center gap-1'>
-                            <p class='uppercase text-muted-foreground text-sm'>Average sale price</p>
+                            <p class='uppercase text-muted-foreground'>Average sale price</p>
                             
                             <h6>{{ average_sale_price_24h }}</h6>
                         </div>
                         
                         <div class='flex flex-col items-center gap-1'>
-                            <p class='uppercase text-muted-foreground text-sm'>Volume 24h</p>
+                            <p class='uppercase text-muted-foreground'>Volume 24h</p>
                             
                             <h6>{{ volume_24h }}</h6>
                         </div>
