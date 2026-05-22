@@ -34,6 +34,13 @@
         font-display: swap;
     }
     
+    @font-face {
+        font-family: 'Spaced';
+        src: url(../fonts/Spaced.ttf) format('truetype');
+        font-style: normal;
+        font-display: swap;
+    }
+    
     * {
         @apply m-0;
     }
@@ -43,7 +50,7 @@
     }
     
     body {
-        @apply font-automata bg-background text-foreground overflow-x-hidden overflow-y-scroll;
+        @apply font-spaced bg-background text-foreground overflow-x-hidden overflow-y-scroll;
     }
     
     .homepage {
@@ -103,15 +110,15 @@
     }
     
     span {
-        @apply font-automata text-inherit tracking-widest;
+        @apply font-spaced text-inherit tracking-widest;
     }
     
     div {
-        @apply font-automata;
+        @apply font-spaced;
     }
     
     a {
-        @apply font-automata cursor-pointer text-center;
+        @apply font-spaced cursor-pointer text-center;
     }
     
     button {
@@ -127,7 +134,7 @@
     }
     
     .sidebar * {
-        @apply font-automata text-base;
+        @apply font-spaced text-base;
     }
     
     [data-slot='sidebar-inset'] {
