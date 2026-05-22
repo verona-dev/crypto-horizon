@@ -1,15 +1,23 @@
 <template>
-    <div class='page'>
-        <CoinsTable />
+    <div class='w-full'>
+        <LoadingContent v-if='loading' />
+        
+        <div v-else class='page'>
+            <CoinsTable />
+        </div>
     </div>
 </template>
 
 <script setup>
     import CoinsTable from '~/components/market/CoinsTable.vue';
+    import LoadingContent from '@/components/LoadingContent.vue';
     
+    // MarketStore
+    import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    const { resetCoin } = MarketStore;
+    const { loading } = storeToRefs(MarketStore);
+    const { getCoinsMarkets, resetCoin } = MarketStore;
     
     // SEO
     const title = 'Cryptocurrency Prices, Charts, and Market Capitalization';
@@ -22,6 +30,7 @@
     });
     
     onMounted(() => {
+        getCoinsMarkets({}, 'table');
         resetCoin();
     });
 </script>
