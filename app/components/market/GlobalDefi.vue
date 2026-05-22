@@ -3,7 +3,7 @@
         v-if='globalDefi'
         class='!w-fit flex flex-col gap-4 p-6'
     >
-        <Title :tag='2' :level='5'>Defi Stats</Title>
+        <Title tag='h4'>Defi Stats</Title>
         
         <CardContent>
             Dominance:
