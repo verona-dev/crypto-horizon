@@ -33,9 +33,6 @@
     const siteConfig = useSiteConfig();
     const site_name = ref(siteConfig?.name || '');
     
-    const siteConfig = useSiteConfig();
-    const site_name = ref(siteConfig?.name || '');
-    
     const colorMode = useColorMode();
     const dark_mode = computed(() => colorMode.value === 'dark');
 </script>
