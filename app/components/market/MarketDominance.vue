@@ -146,7 +146,7 @@
                                 </HoverCard>
                             </div>
                             
-                            <p class='text-sm lg:text-xl font-bold'>{{ item.label }}</p>
+                            <p class='lg:text-xl font-bold'>{{ item.label }}</p>
                         </div>
                     </div>
                     
