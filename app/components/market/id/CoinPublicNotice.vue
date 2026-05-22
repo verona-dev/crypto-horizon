@@ -12,7 +12,7 @@
         </div>
         
         <div class='notice-content flex flex-col gap-2 border-l border-warning/25 p-6'>
-            <AlertTitle class='uppercase underline text-warning text-sm'>Public notice</AlertTitle>
+            <AlertTitle class='uppercase underline text-warning'>Public notice</AlertTitle>
             <AlertDescription v-html='publicNoticeFormatted' class='text-xs' />
         </div>
     </Alert>
