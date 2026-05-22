@@ -53,8 +53,8 @@
         @apply font-spaced bg-background text-foreground overflow-x-hidden overflow-y-scroll;
     }
     
-    .homepage {
-        /*@apply font-great;*/
+    .homepage * {
+        @apply font-great;
     }
     
     #__nuxt {
@@ -110,10 +110,10 @@
     }
     
     span {
-        @apply font-spaced text-inherit;
+        @apply text-inherit;
     }
     
-    td, tr, label {
+    td, tr, label, input {
         @apply text-base;
     }
     
@@ -122,11 +122,11 @@
     }
     
     a {
-        @apply font-spaced cursor-pointer text-center;
+        @apply cursor-pointer text-center;
     }
     
     button {
-        @apply text-base cursor-pointer border border-transparent;
+        @apply cursor-pointer border border-transparent;
     }
     
     .font-great {
@@ -137,8 +137,8 @@
         @apply flex flex-col justify-center items-center gap-16 w-full md:max-w-[2560px] min-h-[calc(100vh-24rem)] relative py-16 md:px-36 mx-auto;
     }
     
-    .sidebar * {
-        @apply font-spaced tracking-wider;
+    .sidebar {
+        /*@apply tracking-normal;*/
     }
     
     [data-slot='sidebar-inset'] {
