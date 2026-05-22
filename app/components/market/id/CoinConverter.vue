@@ -14,7 +14,7 @@
         <div>
             <!-- $COIN Input -->
             <div class='relative h-12'>
-                <Label for='coin' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-sm text-muted-foreground'>
+                <Label for='coin' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground'>
                     {{ coin_symbol }}
                 </Label>
                 
@@ -31,7 +31,7 @@
             
             <!-- $USD Input -->
             <div class='relative h-12'>
-                <Label for='usd' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-sm text-muted-foreground'>
+                <Label for='usd' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground'>
                     USD
                 </Label>
                 

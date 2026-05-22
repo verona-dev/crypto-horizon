@@ -19,7 +19,7 @@
                     />
                 </CardContent>
                 
-                <CardContent class='py-2 text-sm'>{{ formatNumber(delta, { style: 'percent' }) }}</CardContent>
+                <CardContent class='py-2'>{{ formatNumber(delta, { style: 'percent' }) }}</CardContent>
             </Card>
         </HoverCardTrigger>
         
