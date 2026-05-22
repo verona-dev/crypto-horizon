@@ -26,7 +26,7 @@
                         :height='125'
                     />
                     
-                    <h1>{{ coingecko.name }}</h1>
+                    <Title>{{ coingecko.name }}</Title>
                 </div>
                 
                 <CardDescription class='flex items-center gap-4'>
@@ -144,9 +144,10 @@
     import { formatNumber, goBack } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import { Badge } from '~/components/ui/badge';
-    import { Card, CardDescription, CardHeader } from '~/components/ui/card';
+    import { CardDescription, CardHeader } from '~/components/ui/card';
     import CoinPublicNotice from '~/components/market/id/CoinPublicNotice.vue';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    import Title from '~/components/Title.vue';
     
     // MarketStore
     import { storeToRefs } from 'pinia';
