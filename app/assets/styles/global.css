@@ -106,8 +106,12 @@
         @apply text-inherit;
     }
     
+    div {
+        @apply font-megatrans;
+    }
+    
     a {
-        @apply cursor-pointer text-center;
+        @apply font-megatrans cursor-pointer text-center;
     }
     
     button {
@@ -120,6 +124,10 @@
     
     .page {
         @apply flex flex-col justify-center items-center gap-16 w-full md:max-w-[2560px] min-h-[calc(100vh-24rem)] relative py-16 md:px-36 mx-auto;
+    }
+    
+    .sidebar * {
+        @apply font-megatrans;
     }
     
     [data-slot='sidebar-inset'] {
