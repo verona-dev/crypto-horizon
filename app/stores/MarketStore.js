@@ -73,6 +73,7 @@ export const useMarketStore = defineStore('MarketStore', {
             this.coins = [];
             const table = tag === 'table';
             const list = tag === 'list';
+            
             this.loading = true;
             
             try {
