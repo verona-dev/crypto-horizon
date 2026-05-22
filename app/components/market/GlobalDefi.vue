@@ -1,6 +1,9 @@
 <template>
-    <Card class='!w-fit flex flex-col gap-4 p-6' v-if='globalDefi'>
-        <h4>Defi</h4>
+    <Card
+        v-if='globalDefi'
+        class='!w-fit flex flex-col gap-4 p-6'
+    >
+        <Title tag='h4'>Defi Stats</Title>
         
         <CardContent>
             Dominance:
@@ -36,16 +39,16 @@
             Trading Volume (24h):
             <span>{{ trading_volume_24h }}</span>
         </CardContent>
-        
     </Card>
 </template>
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
+    import Title from '~/components/Title.vue';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
-    import { Card } from '~/components/ui/card';
+    import { Card, CardContent } from '~/components/ui/card';
     const MarketStore = useMarketStore();
     
     const { globalDefi } = storeToRefs(MarketStore);
@@ -70,11 +73,3 @@
         compact: true,
     }));
 </script>
-
-<style scoped>
-    [data-slot='card-content'] {
-        //display: flex !important;
-        //flex-direction: column !important;
-        //align-items: center !important;
-    }
-</style>
