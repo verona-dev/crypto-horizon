@@ -82,7 +82,7 @@
                                 }"
                                 class='hover:underline'
                             >
-                                <h6>{{ article.title }}</h6>
+                                <h6 class='text-left'>{{ article.title }}</h6>
                             </NuxtLink>
                         </div>
                     </template>
