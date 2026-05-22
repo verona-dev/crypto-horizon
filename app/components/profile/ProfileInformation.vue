@@ -25,7 +25,7 @@
                     :key='item.name'
                     class='p-2'
                 >
-                    <span class='text-sm text-muted-foreground'>{{ item.label }}</span>
+                    <span class='text-muted-foreground'>{{ item.label }}</span>
                     
                     <div v-if='item.name === "country"' class='flex items-center gap-2'>
                         <ProfileCountryFlag :country='item.value' size='w-4 h-4' />

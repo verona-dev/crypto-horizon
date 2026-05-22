@@ -21,7 +21,6 @@
                                     name='username'
                                     type='text'
                                     placeholder='Type username here'
-                                    class='text-sm'
                                 />
                             </div>
                             
@@ -122,7 +121,7 @@
                         <!--  Edit Bio  -->
                         <div class='grid gap-2 w-full'>
                             <Label for='bio' class='font-semibold tracking-tight'>Bio</Label>
-                            <Textarea v-model='selected_bio' id='bio' class='text-sm' />
+                            <Textarea v-model='selected_bio' id='bio' />
                         </div>
                     </div>
                     
@@ -167,7 +166,7 @@
                                                 
                                                 <div class='md:space-y-1'>
                                                     <h4 class='font-semibold'>{{ option.title }}</h4>
-                                                    <p class='text-sm text-muted-foreground'>
+                                                    <p class='text-muted-foreground'>
                                                         {{ option.description }}
                                                     </p>
                                                 </div>
