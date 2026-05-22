@@ -173,7 +173,7 @@
 </script>
 
 <template>
-    <Sidebar v-bind='props' class='sidebar z-50'>
+    <Sidebar v-bind='props' class='z-50'>
         <SidebarHeader class='h-20 border-b justify-center'>
             <SidebarLogo />
         </SidebarHeader>

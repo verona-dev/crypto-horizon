@@ -27,6 +27,13 @@
         font-display: swap;
     }
     
+    @font-face {
+        font-family: 'Megatrans';
+        src: url(../fonts/Megatrans.ttf) format('truetype');
+        font-style: normal;
+        font-display: swap;
+    }
+    
     * {
         @apply m-0;
     }
@@ -36,7 +43,7 @@
     }
     
     body {
-        @apply font-metropolis bg-background text-foreground overflow-x-hidden overflow-y-scroll;
+        @apply font-megatrans bg-background text-foreground overflow-x-hidden overflow-y-scroll;
     }
     
     .homepage {
@@ -64,15 +71,15 @@
 
 @layer components {
     h1 {
-        @apply text-6xl md:text-7xl xl:text-9xl tracking-widest break-words;
+        @apply text-6xl md:text-7xl xl:text-9xl tracking-[0.2em] break-words;
     }
     
     h2 {
-        @apply text-5xl xl:text-7xl;
+        @apply text-5xl xl:text-7xl tracking-wider;
     }
     
     h3 {
-        @apply text-3xl xl:text-5xl !leading-8;
+        @apply text-3xl xl:text-5xl !leading-8 tracking-wider;
         
         .text-3d {
             @apply font-satoshi;
@@ -80,25 +87,19 @@
     }
     
     h4 {
-        @apply text-xl xl:text-2xl;
+        @apply text-xl xl:text-2xl tracking-wider;
     }
     
     h5 {
-        @apply text-xl;
+        @apply text-xl tracking-wider;
     }
     
     h6 {
-        @apply text-lg text-left;
+        @apply text-lg text-left tracking-wider;
     }
-    
-    /*
-    ul {
-        @apply flex justify-center items-center w-full;
-    }
-    */
     
     p {
-        @apply text-sm sm:text-base leading-5;
+        @apply text-sm sm:text-base leading-5 tracking-wider;
     }
     
     span {
@@ -119,14 +120,6 @@
     
     .page {
         @apply flex flex-col justify-center items-center gap-16 w-full md:max-w-[2560px] min-h-[calc(100vh-24rem)] relative py-16 md:px-36 mx-auto;
-    }
-    
-    .sidebar {
-        @apply font-satoshi;
-    }
-    
-    [data-slot='sidebar-wrapper'] {
-        /*@apply my-20 md:my-6;*/
     }
     
     [data-slot='sidebar-inset'] {
@@ -153,18 +146,6 @@
         span:not(.iconify) {
             @apply text-sky;
         }
-        
-        /*
-        & [data-content] {
-            @apply ml-12;
-        }
-        */
-        
-        /*
-        @media (max-width: 1020px) {
-            width: 90% !important;
-        }
-        */
     }
     
     .ghost-link-as-button {
