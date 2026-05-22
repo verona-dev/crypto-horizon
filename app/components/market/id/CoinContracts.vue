@@ -24,7 +24,7 @@
                     alt='platform image'
                 />
                 
-                <p class='capitalize text-sm'>{{platforms[0].value.slice(0, 5) + '...' + platforms[0].value.slice(-5) }}</p>
+                <p class='capitalize'>{{platforms[0].value.slice(0, 5) + '...' + platforms[0].value.slice(-5) }}</p>
                 
                 <NuxtIcon
                     name='ph:copy'

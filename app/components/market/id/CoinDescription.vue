@@ -21,7 +21,7 @@
                 <p
                     v-for='paragraph in description_formatted'
                     :key='paragraph'
-                    class='text-sm text-foreground'
+                    class='text-foreground'
                 >
                     {{ paragraph }}
                 </p>

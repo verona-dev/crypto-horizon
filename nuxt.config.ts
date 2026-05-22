@@ -53,6 +53,13 @@ export default defineNuxtConfig({
    icon: {
       componentName: 'NuxtIcon',
       cssLayer: 'base',
+      collections: [
+         'ph',
+         'lucide',
+         'logos',
+         'circle-flags',
+         'my-icons'
+      ],
       customCollections: [
          {
             prefix: 'my-icons',

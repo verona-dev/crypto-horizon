@@ -14,7 +14,7 @@
         <div>
             <!-- $COIN Input -->
             <div class='relative h-12'>
-                <Label for='coin' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-sm text-muted-foreground'>
+                <Label for='coin' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground'>
                     {{ coin_symbol }}
                 </Label>
                 
@@ -22,7 +22,7 @@
                     :modelValue='coin_input'
                     type='text'
                     id='coin'
-                    class='coin-input !bg-background h-full pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-bl-none rounded-br-none'
+                    class='!bg-background h-full pl-18 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-bl-none rounded-br-none'
                     :defaultValue='coin_price'
                     @input='(e: Event) => onInput("coin", e)'
                     @change='resetOnInvalidNumber'
@@ -31,7 +31,7 @@
             
             <!-- $USD Input -->
             <div class='relative h-12'>
-                <Label for='usd' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-sm text-muted-foreground'>
+                <Label for='usd' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground'>
                     USD
                 </Label>
                 
@@ -39,7 +39,7 @@
                     :modelValue='usd_input'
                     type='text'
                     id='usd'
-                    class='usd-input !bg-background h-full pl-14 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-tl-none rounded-tr-none'
+                    class='!bg-background h-full pl-18 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-tl-none rounded-tr-none'
                     :defaultValue='coin_input'
                     @input='(e: Event) => onInput("usd", e)'
                     @change='resetOnInvalidNumber'

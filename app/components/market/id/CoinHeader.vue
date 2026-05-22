@@ -17,7 +17,7 @@
         <div class='flex flex-col items-center gap-12 p-10'>
             <div class='flex flex-col justify-center items-center gap-4'>
                 <!-- Logo + Name  -->
-                <div class='flex justify-center items-center gap-6'>
+                <div class='flex flex-col xl:flex-row justify-center items-center gap-6'>
                     <NuxtImg
                         v-if='coingecko?.image?.large'
                         :src='coin.coingecko.image.large'
@@ -26,7 +26,7 @@
                         :height='125'
                     />
                     
-                    <Title>{{ coingecko.name }}</Title>
+                    <Title class='font-great text-4xl md:text-5xl xl:text-7xl'>{{ coingecko.name }}</Title>
                 </div>
                 
                 <CardDescription class='flex items-center gap-4'>
@@ -122,7 +122,7 @@
                             
                             <p
                                 :class='[getTrendClass(price_change_percentage_btc)]'
-                                class='!text-base flex items-center text-sm'
+                                class='flex items-center'
                             >
                                 <span>{{ price_change_percentage_btc_label }}</span>
                                 <span class='ml-1'>&#40;{{ timeframe_label }}&#41;</span>

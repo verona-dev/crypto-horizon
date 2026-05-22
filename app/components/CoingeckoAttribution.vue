@@ -6,7 +6,7 @@
             class='flex items-center gap-3 hover:underline'
             external
         >
-            <p class='text-sm'>Data powered by</p>
+            <p>Data powered by</p>
             
             <NuxtImg
                 src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1759342218/CGAPI-Lockup-1_ysyezi.svg'

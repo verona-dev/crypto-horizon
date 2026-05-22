@@ -13,14 +13,14 @@
                 <TabsList>
                     <TabsTrigger
                         value='price'
-                        class='py-1.5 px-1.5 text-xs w-16'
+                        class='py-1.5 px-1.5 w-16'
                     >
                         Price
                     </TabsTrigger>
                     
                     <TabsTrigger
                         value='mcap'
-                        class='py-1.5 px-1.5 text-xs w-24'
+                        class='py-1.5 px-1.5 w-24'
                     >
                         Market Cap
                     </TabsTrigger>
@@ -28,14 +28,14 @@
             </Tabs>
             
             <!--  Switch  -->
-            <div class='flex items-center space-x-1'>
+            <div class='flex items-center space-x-2'>
                 <Switch
                     id='sniper_mode'
                     :model-value='sniper_mode'
                     @update:model-value='onToggleSniper'
                     :class='{ "shadow-none" : !dark_mode }'
                 />
-                <label for='sniper_mode' class='text-xxs cursor-pointer'>Sniper Mode</label>
+                <label for='sniper_mode' class='cursor-pointer'>Sniper Mode</label>
             </div>
             
             <!--  Timeframe  -->
@@ -45,7 +45,7 @@
                         v-for='interval in timeframes'
                         :key='interval.timeframe'
                         :value='interval.timeframe'
-                        class='py-1.5 px-1.5 text-xs w-10'
+                        class='py-1.5 px-1.5 w-10'
                     >
                         {{ interval.label }}
                     </TabsTrigger>
@@ -61,7 +61,7 @@
                     
                     <div class='flex flex-col items-center gap-1'>
                         <span class='text-lg'>Loading data</span>
-                        <span class='text-sm text-foreground/75'>Please wait a moment.</span>
+                        <span class='text-foreground/75'>Please wait a moment.</span>
                     </div>
                 </div>
             </div>

@@ -64,7 +64,7 @@
                             
                             <div v-if='article.reading_duration > 1' class='text-muted-foreground flex items-center gap-1'>
                                 <NuxtIcon name='ph:timer-light' size='18' />
-                                <span class='text-xxs'>{{ article.reading_duration }}m</span>
+                                <span>{{ article.reading_duration }}m</span>
                             </div>
                         </div>
                     </template>
@@ -82,7 +82,7 @@
                                 }"
                                 class='hover:underline'
                             >
-                                <h6>{{ article.title }}</h6>
+                                <h6 class='text-left'>{{ article.title }}</h6>
                             </NuxtLink>
                         </div>
                     </template>
@@ -101,7 +101,7 @@
                                     <!--  Author  -->
                                     <div class='flex flex-col items-start text-left'>
                                         <!--  <p class='truncate text-md'>{{ article.authors }}</p>  -->
-                                        <span class='text-sm capitalize'>{{ article.source_name }}</span>
+                                        <span class='capitalize'>{{ article.source_name }}</span>
                                         
                                         <!--  Publish date  -->
                                         <div class='flex gap-1 text-muted-foreground'>
