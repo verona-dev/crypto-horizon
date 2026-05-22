@@ -9,7 +9,7 @@
     
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    const { getTrendingSearchList, resetCoin } = MarketStore;
+    const { resetCoin } = MarketStore;
     
     // SEO
     const title = 'Cryptocurrency Prices, Charts, and Market Capitalization';
@@ -22,7 +22,6 @@
     });
     
     onMounted(() => {
-        getTrendingSearchList();
         resetCoin();
     });
 </script>
