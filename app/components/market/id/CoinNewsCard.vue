@@ -69,7 +69,7 @@
                     </Avatar>
                     
                     <!--  Author  -->
-                    <div class='flex flex-col items-start text-left text-sm gap-1'>
+                    <div class='flex flex-col items-start text-left gap-1'>
                         <span class='truncate capitalize'>{{ author_label }}</span>
                         <span class='text-muted-foreground capitalize'>{{ source_name_label }}</span>
                     </div>
@@ -115,13 +115,13 @@
                 <!--  Publish date  -->
                 <div :openDelay='200' class='flex items-center gap-1'>
                     <NuxtIcon name='ph:calendar-blank-light' size='14px' class='mb-0.5' />
-                    <span class='text-xxs truncate'>{{ published_date_from_now }}</span>
+                    <span class='text-sm truncate'>{{ published_date_from_now }}</span>
                 </div>
                 
                 <!--  Reading duration  -->
                 <div v-if='show_reading_duration' class='flex items-center gap-1'>
                     <NuxtIcon name='ph:timer-light' size='14' class='mb-0.5' />
-                    <span class='text-xxs'>{{ reading_duration }}m read</span>
+                    <span class='text-sm'>{{ reading_duration }}m read</span>
                 </div>
             </div>
         </CardFooter>
