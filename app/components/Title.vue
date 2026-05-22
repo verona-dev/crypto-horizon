@@ -14,12 +14,12 @@
     const level = computed(() => validate(props.level ?? props.tag ?? 1));
     
     const styles: Record<number, string>   = {
-        1: 'text-6xl md:text-7xl xl:text-9xl tracking-widest break-words',
-        2: 'text-5xl xl:text-7xl',
-        3: 'text-3xl xl:text-5xl !leading-8',
-        4: 'text-xl xl:text-2xl',
-        5: 'text-xl',
-        6: 'text-lg text-left',
+        1: 'text-8xl xl:text-9xl',
+        2: 'text-6xl xl:text-8xl',
+        3: 'text-4xl xl:text-6xl',
+        4: 'text-2xl xl:text-3xl',
+        5: 'text-2xl',
+        6: 'text-xl',
     };
 </script>
 
