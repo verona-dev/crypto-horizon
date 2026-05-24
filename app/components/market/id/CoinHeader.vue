@@ -75,7 +75,7 @@
             <div class='flex flex-col xl:flex-row gap-10 xl:gap-24'>
                 <!--  Price in USD  -->
                 <div class='flex flex-col items-center gap-2 text-green-dollar'>
-                    <h2 class='text-5xl md:text-7xl'>{{ current_price_label }}</h2>
+                    <Title :tag='2'>{{ current_price_label }}</Title>
                     
                     <!--  Price change % in USD $  -->
                     <HoverCard :openDelay='200'>
