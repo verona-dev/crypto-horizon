@@ -1,20 +1,20 @@
 <template>
-    <div v-if='coin_price' class='coin-converter flex flex-col gap-4'>
+    <div v-if='coin_price' class='flex flex-col gap-8'>
         <!-- Converter Title -->
-        <div class='flex items-center gap-3'>
+        <div class='text-primary flex items-center gap-3'>
             <NuxtIcon
                 name='ph:calculator'
-                size='20'
+                size='48'
                 class='mt-0.5'
             />
             
-            <h4>{{ coin_symbol }} converter</h4>
+            <Title :tag='3'>{{ coin_symbol }} converter</Title>
         </div>
         
         <div>
             <!-- $COIN Input -->
             <div class='relative h-12'>
-                <Label for='coin' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground'>
+                <Label for='coin' class='absolute left-3 top-1/2 transform -translate-y-1/2'>
                     {{ coin_symbol }}
                 </Label>
                 
@@ -22,7 +22,7 @@
                     :modelValue='coin_input'
                     type='text'
                     id='coin'
-                    class='!bg-background h-full pl-18 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-bl-none rounded-br-none'
+                    class='bg-muted/50 h-full pl-18 focus-visible:border-primary focus-visible:ring-[0px] rounded-bl-none rounded-br-none'
                     :defaultValue='coin_price'
                     @input='(e: Event) => onInput("coin", e)'
                     @change='resetOnInvalidNumber'
@@ -31,7 +31,7 @@
             
             <!-- $USD Input -->
             <div class='relative h-12'>
-                <Label for='usd' class='absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground'>
+                <Label for='usd' class='absolute left-3 top-1/2 transform -translate-y-1/2'>
                     USD
                 </Label>
                 
@@ -39,7 +39,7 @@
                     :modelValue='usd_input'
                     type='text'
                     id='usd'
-                    class='!bg-background h-full pl-18 focus-visible:border-blue-hippie focus-visible:ring-[0px] rounded-tl-none rounded-tr-none'
+                    class='bg-muted/50 h-full pl-18 focus-visible:border-primary focus-visible:ring-[0px] rounded-tl-none rounded-tr-none'
                     :defaultValue='coin_input'
                     @input='(e: Event) => onInput("usd", e)'
                     @change='resetOnInvalidNumber'
@@ -53,6 +53,7 @@
 <script lang='ts' setup>
     import { Input } from '~/components/ui/input';
     import { Label } from '~/components/ui/label';
+    import Title from '~/components/Title.vue';
     
     const props = defineProps({
         coin: {
@@ -115,17 +116,3 @@
         usd_input.value = String(coin_price.value);
     };
 </script>
-
-<style>
-    .coin-converter {
-        input[type="text"]::-webkit-outer-spin-button,
-        input[type="text"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        
-        input {
-            -moz-appearance: textfield;
-        }
-    }
-</style>
