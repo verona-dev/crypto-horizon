@@ -11,7 +11,7 @@
         </div>
         
         <div class='flex items-center justify-between'>
-            <Item variant='outline' size='sm' class='rounded-tr-none rounded-br-none' as-child>
+            <Item variant='muted' size='sm' class='rounded-tr-none rounded-br-none' as-child>
                 <NuxtLink
                     :to='main_explorer_link'
                     external
@@ -40,10 +40,10 @@
                 <DropdownMenuTrigger as-child>
                     <Button
                         variant='ghost'
-                        class='group h-13 rounded-tl-none rounded-bl-none border-border'
+                        class='bg-muted/50 group h-13 rounded-tl-none rounded-bl-none border-l-border'
                         :data-state='open ? "open" : "closed"'
                     >
-                        <ChevronDown class='ml-auto transition-transform duration-400 group-data-[state=open]:rotate-180' />
+                        <ChevronDown class='!w-5 !h-5 ml-auto transition-transform duration-400 group-data-[state=open]:rotate-180' />
                     </Button>
                 </DropdownMenuTrigger>
                 

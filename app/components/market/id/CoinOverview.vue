@@ -1,5 +1,5 @@
 <template>
-    <Card class='flex flex-col gap-24 p-12'>
+    <Card class='flex flex-col gap-24 py-12 px-9'>
         <!--  Overview  -->
         <div class='flex flex-col gap-8'>
             <!--  Overview Title  -->
@@ -22,7 +22,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.genesis.description }}</HoverCardContent>
                             </HoverCard>
@@ -42,7 +42,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.country_origin.description }}</HoverCardContent>
                             </HoverCard>
@@ -57,7 +57,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.ath.description }}</HoverCardContent>
                             </HoverCard>
@@ -95,7 +95,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.atl.description }}</HoverCardContent>
                             </HoverCard>
@@ -134,7 +134,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.markets.description }}</HoverCardContent>
                             </HoverCard>
@@ -149,7 +149,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.pairs.description }}</HoverCardContent>
                             </HoverCard>
@@ -164,7 +164,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.exchanges.description }}</HoverCardContent>
                             </HoverCard>
@@ -179,7 +179,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.hashing_algorithm.description }}</HoverCardContent>
                             </HoverCard>
@@ -194,7 +194,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.ico_start.description }}</HoverCardContent>
                             </HoverCard>
@@ -214,7 +214,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.ico_end.description }}</HoverCardContent>
                             </HoverCard>
@@ -246,8 +246,8 @@
             <Table>
                 <TableBody>
                     <!--  Github Forks  -->
-                    <TableRow v-if='github_forks_label'>
-                        <TableCell class='gap-1'>
+                    <TableRow v-if='github_forks_label' class='!flex !items-center'>
+                        <TableCell class='gap-2.5'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
@@ -261,12 +261,13 @@
                             
                             Forks
                         </TableCell>
+                        
                         <TableCell>{{ github_forks_label }}</TableCell>
                     </TableRow>
                     
                     <!--  Github Stars  -->
-                    <TableRow v-if='github_stars_label'>
-                        <TableCell class='gap-1'>
+                    <TableRow v-if='github_stars_label' class='!flex !items-center'>
+                        <TableCell class='gap-2.5'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
@@ -284,8 +285,8 @@
                     </TableRow>
                     
                     <!--  Github Issues  -->
-                    <TableRow v-if='github_issues_label'>
-                        <TableCell class='gap-1'>
+                    <TableRow v-if='github_issues_label' class='!flex !items-center'>
+                        <TableCell class='gap-2.5'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
@@ -303,8 +304,8 @@
                     </TableRow>
                     
                     <!--  Github Commits  -->
-                    <TableRow v-if='github_commits_label'>
-                        <TableCell class='gap-1'>
+                    <TableRow v-if='github_commits_label' class='!flex !items-center'>
+                        <TableCell class='gap-2.5'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
@@ -322,8 +323,8 @@
                     </TableRow>
                     
                     <!--  Github Contributors  -->
-                    <TableRow v-if='github_contributors_label'>
-                        <TableCell class='gap-1'>
+                    <TableRow v-if='github_contributors_label' class='!flex !items-center'>
+                        <TableCell class='gap-2.5'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
@@ -431,12 +432,16 @@
 </script>
 
 <style scoped>
-    tr{
+    tr {
         align-items: baseline;
         display: flex;
         justify-content: space-between;
         font-size: 12px;
         gap: 32px;
+        
+        &:hover {
+            background: var(--background);
+        }
     }
     td {
         display: flex;

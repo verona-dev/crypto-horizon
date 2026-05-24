@@ -114,7 +114,7 @@
     }
     
     td, tr, label, input {
-        @apply text-base;
+        @apply text-base px-3;
     }
     
     div {
