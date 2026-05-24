@@ -1,7 +1,7 @@
 <template>
-    <CardContent class='coin-body animate-fadeIn-2000'>
+    <CardContent class='coin-body animate-fadeIn-2000 grid gap-16 xl:gap-32'>
         <!-- Supply -->
-        <CoinSupply :coin='coin' />
+        <CoinSupply :coin='coin' class='mt-6' />
         
         <div class='grid grid-cols-1 xl:grid-cols-9'>
             <!-- Left Panel -->
