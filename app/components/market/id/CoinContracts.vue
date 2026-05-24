@@ -1,5 +1,5 @@
 <template>
-    <div v-if='platforms_list.length' class='coin-contracts flex flex-col gap-4'>
+    <div v-if='platforms_list.length' class='coin-contracts flex flex-col gap-8'>
         <!--  Contracts Title  -->
         <div class='text-primary flex items-center gap-3'>
             <NuxtIcon
@@ -10,38 +10,40 @@
             <Title :tag='3'>Contracts</Title>
         </div>
         
-        <div class='h-12 flex items-center justify-between border rounded-lg'>
+        <div class='flex items-center justify-between'>
             <!--  Main Contract  -->
-            <div
-                class='flex items-center justify-evenly w-full h-full cursor-pointer'
-                @click='onCopyLink(platforms[0])'
-            >
-                <NuxtImg
-                    v-if='platformImageMap.find(platform => platform.name === platforms[0].name)?.image'
-                    :src='platformImageMap.find(platform => platform.name === platforms[0].name).image'
-                    width='20'
-                    height='20'
-                    alt='platform image'
-                />
-                
-                <p class='capitalize'>{{platforms[0].value.slice(0, 5) + '...' + platforms[0].value.slice(-5) }}</p>
-                
-                <NuxtIcon
-                    name='ph:copy'
-                    size='15'
-                    class='ml-1'
-                />
-            </div>
+            <Item variant='muted' size='sm' class='rounded-tr-none rounded-br-none' as-child>
+                <div
+                    class='h-13 flex items-center justify-evenly w-full cursor-pointer'
+                    @click='onCopyLink(platforms[0])'
+                >
+                    <NuxtImg
+                        v-if='platformImageMap.find(platform => platform.name === platforms[0].name)?.image'
+                        :src='platformImageMap.find(platform => platform.name === platforms[0].name).image'
+                        width='20'
+                        height='20'
+                        alt='platform image'
+                    />
+                    
+                    <p class='capitalize'>{{platforms[0].value.slice(0, 8) + '...' + platforms[0].value.slice(-5) }}</p>
+                    
+                    <NuxtIcon
+                        name='ph:copy'
+                        size='15'
+                        class='ml-1'
+                    />
+                </div>
+            </Item>
             
             <!--  All Contracts - Dropdown menu  -->
             <DropdownMenu v-model:open='open' :modal=false>
                 <DropdownMenuTrigger as-child :disabled='disable_dropdown'>
                     <Button
                         variant='ghost'
-                        class='group !h-full rounded-tl-none rounded-bl-none border-l border-border'
+                        class='bg-muted/50 group !h-13 rounded-tl-none rounded-bl-none border-l border-border'
                         :data-state='open ? "open" : "closed"'
                     >
-                        <ChevronDown class='text-primary ml-auto transition-transform duration-400 group-data-[state=open]:rotate-180' />
+                        <ChevronDown class='ml-auto transition-transform duration-400 group-data-[state=open]:rotate-180' />
                     </Button>
                 </DropdownMenuTrigger>
                 
