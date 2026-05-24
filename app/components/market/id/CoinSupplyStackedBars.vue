@@ -1,5 +1,5 @@
 <template>
-    <div class='my-10 flex-col xl:flex-row flex items-center justify-center gap-16 '>
+    <div class='flex-col xl:flex-row flex items-center justify-center gap-16 p-6 !h-full'>
         <div class='w-full xl:w-[450px] h-96 xl:h-[450px]'>
             <Bar
                 v-if='market_data_computed'
