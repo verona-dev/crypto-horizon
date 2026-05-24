@@ -1,20 +1,20 @@
 <template>
-    <Card class='coin-description bg-background flex flex-col gap-20 p-16' v-if='coingecko'>
+    <Card class='flex flex-col gap-24 p-16' v-if='coingecko'>
         <div
             v-if='description_formatted'
-            class='description flex flex-col gap-6'
+            class='text-primary flex flex-col gap-6'
         >
             <CardTitle class='flex items-center gap-2'>
                 <NuxtIcon
                     name='ph:info-light'
-                    class='block text-foreground'
-                    size='30'
+                    class='block'
+                    size='36'
                 />
                 
-                <h6 class='flex items-center gap-2'>
+                <Title :tag='3'>
                     What is {{ coingecko.name }}
                     <span class='mt-0.5'>&#40;{{ coin.symbol }}&#41;</span>
-                </h6>
+                </Title>
             </CardTitle>
             
             <CardDescription class='flex flex-col gap-6'>
@@ -31,15 +31,16 @@
         <!--  Categories  -->
         <div
             v-if='coingecko.categories'
-            class='categories flex flex-col gap-6'
+            class='flex flex-col gap-6'
         >
-            <CardTitle class='flex items-center gap-2'>
+            <CardTitle class='text-primary flex items-center gap-2'>
                 <NuxtIcon
                     name='ph:hash-light'
                     class='block'
-                    size='30'
+                    size='36'
                 />
-                <h6>Categories</h6>
+                
+                <Title :tag='3'>Categories</Title>
             </CardTitle>
             
             <div>
@@ -59,6 +60,7 @@
 <script setup>
     import { Badge } from '~/components/ui/badge';
     import { Card, CardTitle, CardDescription } from '~/components/ui/card';
+    import Title from '~/components/Title.vue';
     
     const props = defineProps({
         coin: {

@@ -18,11 +18,11 @@
                 <!-- Chart -->
                 <CoinChart :coin='coin' />
                 
-                <!-- Delta -->
-                <CoinDelta v-if='market_data' :marketData='market_data' />
-                
                 <!-- Description -->
                 <CoinDescription :coin='coin' />
+                
+                <!-- Delta -->
+                <CoinDelta v-if='market_data' :marketData='market_data' />
             </div>
         </div>
         
