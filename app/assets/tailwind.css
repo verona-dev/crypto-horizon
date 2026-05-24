@@ -41,6 +41,9 @@ html.light {
     --font-automata: Automata, sans-serif;
     --font-spaced: Spaced, sans-serif;
     
+    --text-xxs: 11px;
+    --text-md: 14px;
+    
     --progress: #00bc7d;
     --sky: #0ea5e9;
     --green-dollar: #27ae60;
@@ -147,9 +150,6 @@ html.light {
     --shadow-lg: var(--shadow-lg);
     --shadow-xl: var(--shadow-xl);
     --shadow-2xl: var(--shadow-2xl);
-    
-    --text-xxs: 11px;
-    --text-md: 14px;
     
     --color-progress: var(--progress);
     --color-sky: var(--sky);
