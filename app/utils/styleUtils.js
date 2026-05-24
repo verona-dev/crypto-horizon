@@ -1,9 +1,9 @@
 
 export const getTrendClass = change => {
     if(Math.sign(change) === -1) {
-        return '!text-red-400';
+        return '!text-destructive';
     } else if(Math.sign(change) === 0 || change === undefined) {
-        return '!text-gray-500';
+        return '!text-muted-foreground';
     } else {
         return '!text-progress';
     }
@@ -11,11 +11,11 @@ export const getTrendClass = change => {
 
 export const getBorderClass = change => {
     if (Math.sign(change) === -1) {
-        return '!border-red-400';
+        return '!border-destructive';
     } else if (Math.sign(change) === 0) {
-        return '!border-gray-500';
+        return '!border-muted-foreground';
     } else {
-        return '!border-emerald-400';
+        return '!border-progress';
     }
 };
 

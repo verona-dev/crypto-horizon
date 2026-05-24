@@ -1,5 +1,6 @@
 <template>
     <CardContent class='coin-body animate-fadeIn-2000 grid gap-6 !px-0'>
+        <!-- Top -->
         <!-- Supply -->
         <CoinSupply :coin='coin' />
         
@@ -20,17 +21,21 @@
                 
                 <!-- Description -->
                 <CoinDescription :coin='coin' />
-                
-                <!-- Delta -->
-                <CoinDelta v-if='market_data' :marketData='market_data' />
             </div>
         </div>
         
-        <!-- Links -->
-        <CoinLinks
-            :links='links'
-            :symbol='symbol'
-        />
+        <!-- Bottom -->
+        <div class='grid gap-6'>
+            <!-- Delta -->
+            <CoinDelta v-if='market_data' :marketData='market_data' />
+            
+            <!-- Links -->
+            <CoinLinks
+                :links='links'
+                :symbol='symbol'
+            />
+        </div>
+    
     </CardContent>
 </template>
 
