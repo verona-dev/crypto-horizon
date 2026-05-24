@@ -11,6 +11,7 @@
         </div>
         
         <div class='flex items-center justify-between'>
+            <!--  Main Explorer  -->
             <Item variant='muted' size='sm' class='rounded-tr-none rounded-br-none' as-child>
                 <NuxtLink
                     :to='main_explorer_link'
@@ -79,11 +80,11 @@
 </template>
 
 <script setup>
-    import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
     import { ChevronDown } from 'lucide-vue-next';
+    import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
     import NewTabIcon from '~/components/NewTabIcon.vue';
+    import { Item, ItemActions, ItemContent, ItemMedia, ItemTitle } from '@/components/ui/item';
     import Title from '~/components/Title.vue';
-    import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui/item';
     
     const props = defineProps({
         links: {
