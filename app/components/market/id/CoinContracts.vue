@@ -1,13 +1,13 @@
 <template>
     <div v-if='platforms_list.length' class='coin-contracts flex flex-col gap-4'>
         <!--  Contracts Title  -->
-        <div class='flex items-center gap-3'>
+        <div class='text-primary flex items-center gap-3'>
             <NuxtIcon
                 name='ph:note-pencil'
-                size='20'
-                class='mt-0.5'
+                size='48'
             />
-            <h4>Contracts</h4>
+
+            <Title :tag='3'>Contracts</Title>
         </div>
         
         <div class='h-12 flex items-center justify-between border rounded-lg'>
@@ -103,6 +103,9 @@
     import { h, resolveComponent } from 'vue';
     import { capitalize } from '~/utils/formatUtils.js';
     import { ChevronDown } from 'lucide-vue-next';
+    import { Item, ItemActions, ItemContent, ItemMedia, ItemTitle } from '~/components/ui/item';
+    import Title from '~/components/Title.vue';
+    
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
     import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';

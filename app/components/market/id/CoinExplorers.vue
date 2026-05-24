@@ -83,7 +83,7 @@
     import { ChevronDown } from 'lucide-vue-next';
     import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
     import NewTabIcon from '~/components/NewTabIcon.vue';
-    import { Item, ItemActions, ItemContent, ItemMedia, ItemTitle } from '@/components/ui/item';
+    import { Item, ItemActions, ItemContent, ItemMedia, ItemTitle } from '~/components/ui/item';
     import Title from '~/components/Title.vue';
     
     const props = defineProps({
