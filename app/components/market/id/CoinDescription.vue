@@ -6,7 +6,7 @@
         >
             <CardTitle class='flex items-center gap-2'>
                 <NuxtIcon
-                    name='ph:info-light'
+                    name='ph:info-fill'
                     class='block'
                     size='36'
                 />
@@ -35,7 +35,7 @@
         >
             <CardTitle class='text-primary flex items-center gap-2'>
                 <NuxtIcon
-                    name='ph:hash-light'
+                    name='ph:hash-fill'
                     class='block'
                     size='36'
                 />
