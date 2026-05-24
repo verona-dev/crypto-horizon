@@ -5,7 +5,7 @@
         <div v-else class='page'>
             <Card
                 v-if='coin'
-                class='bg-transparent border-none shadow-none flex flex-col items-center'
+                class='flex flex-col items-center'
             >
                 <CoinHeader :coin='coin' />
                 

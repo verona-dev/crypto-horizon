@@ -1,5 +1,5 @@
 <template>
-    <CardHeader v-if='coin' class='flex w-full animate-fadeIn'>
+    <CardHeader v-if='coin' class='flex animate-fadeIn'>
         <!--  Go back -->
         <!--
         <NuxtLink
@@ -43,7 +43,7 @@
                     
                     <!-- Symbol  -->
                     <HoverCard :openDelay='200'>
-                        <HoverCardTrigger class='flex items-center gap-4'>
+                        <HoverCardTrigger class='flex items-center gap-4 cursor-default'>
                             <h3>{{ coin.symbol }}</h3>
                             <h3 v-if='livecoinwatch_symbol' class=''>{{ livecoinwatch_symbol }}</h3>
                         </HoverCardTrigger>

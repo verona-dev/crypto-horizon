@@ -1,5 +1,5 @@
 <template>
-    <CardContent class='coin-body animate-fadeIn-2000 relative'>
+    <CardContent class='coin-body animate-fadeIn-2000'>
         <!-- Supply -->
         <CoinSupply :coin='coin' />
         
