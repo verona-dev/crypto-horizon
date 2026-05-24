@@ -3,7 +3,7 @@
         <!--  Overview  -->
         <div class='flex flex-col gap-8'>
             <!--  Overview Title  -->
-            <div class='flex items-center gap-3'>
+            <div class='text-primary flex items-center gap-3'>
                 <NuxtIcon
                     name='ph:squares-four-light'
                     size='48'
@@ -233,7 +233,7 @@
         <!--  Github  -->
         <div v-if='show_github_table' class='flex flex-col gap-8'>
             <!--  Github Title  -->
-            <div class='flex items-center gap-3'>
+            <div class='text-primary flex items-center gap-3'>
                 <NuxtIcon
                     name='ph:github-logo-light'
                     size='48'
