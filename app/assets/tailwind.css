@@ -31,6 +31,55 @@ html.light {
     }
 }
 
+:root {
+    --progress: #00bc7d;
+    --sky: #0ea5e9;
+    --green-dollar: #27ae60;
+    --green-patina: #6a9a8b;
+    --green-shamrock: #1cd1a1;
+    --snowy-mint: #c3e8c8;
+    --pink-cabaret: #E91E63;
+    --green-deco: #cbe58e;
+    --teal-blue: #014760;
+    --blue-victoria: #4a478a;
+    --pink-blush: #da8a8b;
+    --blue-bunker: #0d1217;
+    --blue-steele: #1f2230;
+    --blue-hippie: #5591a9;
+    --red-brick: #c9374c;
+    --gray-mine: #333136;
+    --gray-dove: #6f6d72;
+    --ebony-clay: #1f2b37;
+    --orange-bitcoin: #f7931a;
+    --yellow-selective: #ffb900;
+    --warning: oklch(83.7% 0.128 66.29);
+    
+    --blue-cove: #7393bc;
+    --blue-fountain: #50b8b1;
+    --blue-oxford: #3d4756;
+    --blue-pacific: #00b1bc;
+    --blue-sky: #0069a8;
+    --gray-dull: #edeade;
+    --gray-gull: #a1acbd;
+    --green-aquamarine: #77fac7;
+    --green-feijoa: #93e883;
+    --green-fern: #6eae62;
+    --green-haze: #00a566;
+    --green-lochinvar: #288c84;
+    --green-niagara: #16a085;
+    --green-deep: #008a5e;
+    --magenta-hopbush: #d65fa3;
+    --pink-rouge: #a04668;
+    --purple-wisteria: #9866b7;
+    --red-carmine: #b33a3c;
+    --teal: #008080;
+    --yellow-colonial: #eee8a9;
+    --yellow-manz: #ecec6d;
+    --yellow-daisy: #f9f871;
+    --white-ivory: #faf9f6;
+    --white-sand: #f4f4f5;
+}
+
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
@@ -43,7 +92,6 @@ html.light {
     --color-primary-foreground: var(--primary-foreground);
     --color-secondary: var(--secondary);
     --color-secondary-foreground: var(--secondary-foreground);
-    --color-tertiary: var(--tertiary);
     --color-muted: var(--muted);
     --color-muted-foreground: var(--muted-foreground);
     --color-accent: var(--accent);
@@ -232,53 +280,6 @@ html.light {
     --shadow-2xl: 0px 2px 0px 0px hsl(0 0% 20% / 0.38);
     --tracking-normal: 0em;
     --spacing: 0.25rem;
-    
-    --progress: #00bc7d;
-    --sky: #0ea5e9;
-    --green-dollar: #27ae60;
-    --green-patina: #6a9a8b;
-    --green-shamrock: #1cd1a1;
-    --snowy-mint: #c3e8c8;
-    --pink-cabaret: #E91E63;
-    --green-deco: #cbe58e;
-    --teal-blue: #014760;
-    --blue-victoria: #4a478a;
-    --pink-blush: #da8a8b;
-    --blue-bunker: #0d1217;
-    --blue-steele: #1f2230;
-    --blue-hippie: #5591a9;
-    --red-brick: #c9374c;
-    --gray-mine: #333136;
-    --gray-dove: #6f6d72;
-    --ebony-clay: #1f2b37;
-    --orange-bitcoin: #f7931a;
-    --yellow-selective: #ffb900;
-    --warning: oklch(83.7% 0.128 66.29);
-    
-    --blue-cove: #7393bc;
-    --blue-fountain: #50b8b1;
-    --blue-oxford: #3d4756;
-    --blue-pacific: #00b1bc;
-    --blue-sky: #0069a8;
-    --gray-dull: #edeade;
-    --gray-gull: #a1acbd;
-    --green-aquamarine: #77fac7;
-    --green-feijoa: #93e883;
-    --green-fern: #6eae62;
-    --green-haze: #00a566;
-    --green-lochinvar: #288c84;
-    --green-niagara: #16a085;
-    --green-deep: #008a5e;
-    --magenta-hopbush: #d65fa3;
-    --pink-rouge: #a04668;
-    --purple-wisteria: #9866b7;
-    --red-carmine: #b33a3c;
-    --teal: #008080;
-    --yellow-colonial: #eee8a9;
-    --yellow-manz: #ecec6d;
-    --yellow-daisy: #f9f871;
-    --white-ivory: #faf9f6;
-    --white-sand: #f4f4f5;
 }
 
 .dark {
