@@ -1,6 +1,6 @@
 <template>
     <section v-if='articles' class='news'>
-        <h3 class='mt-10 mb-24 underline'>Latest {{ symbol }} related News</h3>
+        <h3 class='mb-24 underline'>Latest {{ symbol }} related News</h3>
         
         <div class='flex flex-wrap gap-y-12 lg:gap-y-28 2xl:gap-y-12'>
             <CoinNewsCard
