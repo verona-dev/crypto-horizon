@@ -69,28 +69,32 @@ export const useProfileStore = defineStore('ProfileStore', {
         },
         
         async updateWatchlist(payload) {
-            try {
-                const { data, error } = await $fetch('/api/supabase/user/profile/watchlist/update', {
-                    method: 'PATCH',
-                    headers: useRequestHeaders(['cookie']),
-                    body: JSON.stringify(payload),
-                });
-                
-                if(error) {
-                    displayToast('There was an issue updating your watchlist.');
+            const user = useSupabaseUser()
+            
+            if(user) {
+                try {
+                    const { data, error } = await $fetch('/api/supabase/user/profile/watchlist/update', {
+                        method: 'PATCH',
+                        headers: useRequestHeaders(['cookie']),
+                        body: JSON.stringify(payload),
+                    });
+                    
+                    if(error) {
+                        displayToast('There was an issue updating your watchlist.');
+                        throw error;
+                    };
+                    
+                    if(data && data[0]) {
+                        this.watchlist = data[0]?.watchlist;
+                        await this.getWatchlistData();
+                        displayToast('Your watchlist was updated successfully.');
+                    }
+                    
+                    return { data, error };
+                } catch(error) {
+                    console.error(error);
                     throw error;
-                };
-                
-                if(data && data[0]) {
-                    this.watchlist = data[0]?.watchlist;
-                    await this.getWatchlistData();
-                    displayToast('Your watchlist was updated successfully.');
                 }
-                
-                return { data, error };
-            } catch(error) {
-                console.error(error);
-                throw error;
             }
         },
         
