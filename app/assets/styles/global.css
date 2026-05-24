@@ -50,7 +50,7 @@
     }
     
     body {
-        @apply font-spaced bg-background text-foreground overflow-x-hidden overflow-y-scroll;
+        @apply font-metropolis bg-background text-foreground overflow-x-hidden overflow-y-scroll;
     }
     
     .homepage * {

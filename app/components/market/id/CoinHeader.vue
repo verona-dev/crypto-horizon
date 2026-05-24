@@ -1,5 +1,5 @@
 <template>
-    <CardHeader v-if='coin' class='coin-header flex w-full animate-fadeIn'>
+    <CardHeader v-if='coin' class='flex w-full animate-fadeIn'>
         <!--  Go back -->
         <!--
         <NuxtLink
@@ -26,14 +26,14 @@
                         :height='125'
                     />
                     
-                    <Title class='font-great text-4xl md:text-5xl xl:text-7xl'>{{ coingecko.name }}</Title>
+                    <Title class='font-great'>{{ coingecko.name }}</Title>
                 </div>
                 
                 <CardDescription class='flex items-center gap-4'>
                     <!--  Rank  -->
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
-                            <Badge class='h-12 py-2 px-4 text-lg text-muted-foreground' variant='outline'>
+                            <Badge class='h-12 py-2 px-4 text-lg border-primary' variant='outline'>
                                 &#35;{{ coingecko.market_cap_rank }}
                             </Badge>
                         </HoverCardTrigger>
@@ -43,9 +43,9 @@
                     
                     <!-- Symbol  -->
                     <HoverCard :openDelay='200'>
-                        <HoverCardTrigger class='symbol flex items-center gap-4'>
-                            <h2 class='text-xl'>{{ coin.symbol }}</h2>
-                            <h2 v-if='livecoinwatch_symbol' class='text-xl'>{{ livecoinwatch_symbol }}</h2>
+                        <HoverCardTrigger class='flex items-center gap-4'>
+                            <h3>{{ coin.symbol }}</h3>
+                            <h3 v-if='livecoinwatch_symbol' class=''>{{ livecoinwatch_symbol }}</h3>
                         </HoverCardTrigger>
                         
                         <!--  Ico Description -->
@@ -55,7 +55,7 @@
                     <!--  Portfolio watchlist  -->
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
-                            <Badge class='h-12 py-2 px-4 flex items-center gap-2 text-lg text-muted-foreground' variant='outline'>
+                            <Badge class='h-12 py-2 px-4 flex items-center gap-2 text-lg border-primary' variant='outline'>
                                 <NuxtIcon
                                     @click.prevent='updateWatchlist({ coin: coin_id })'
                                     :name='isCoinInWatchlist ? "ph:star-fill" : "ph:star-duotone"'
@@ -88,7 +88,7 @@
                             
                             <p
                                 :class='getTrendClass(price_change_percentage)'
-                                class='!text-base flex items-center'
+                                class='flex items-center'
                             >
                                 <span>{{ price_change_percentage_label }}</span>
                                 <span class='ml-1'>&#40;{{ timeframe_label }}&#41;</span>

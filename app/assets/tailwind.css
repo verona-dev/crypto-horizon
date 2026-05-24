@@ -315,8 +315,8 @@ html.light {
     --muted-foreground: #888888;
     --accent: #333333;
     --accent-foreground: #c1c1c1;
-    --destructive: #5f8787;
-    --destructive-foreground: #121113;
+    /*--destructive: #5f8787;*/
+    /*--destructive-foreground: #121113;*/
     --border: #222222;
     --input: #222222;
     --ring: #e78a53;
