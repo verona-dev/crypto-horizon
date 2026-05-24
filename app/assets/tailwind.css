@@ -32,6 +32,15 @@ html.light {
 }
 
 :root {
+    --font-great: Great, sans-serif;
+    --font-metropolis: Metropolis, sans-serif;
+    --font-montserrat: Montserrat Variable, sans-serif;
+    --font-roboto: Roboto, monospace;
+    --font-satoshi: Satoshi, sans-serif;
+    --font-work-sans: Work Sans Variable, sans-serif;
+    --font-automata: Automata, sans-serif;
+    --font-spaced: Spaced, sans-serif;
+    
     --progress: #00bc7d;
     --sky: #0ea5e9;
     --green-dollar: #27ae60;
@@ -81,6 +90,15 @@ html.light {
 }
 
 @theme inline {
+    --font-great: var(--font-great);
+    --font-metropolis: var(--font-metropolis);
+    --font-montserrat: var(--font-montserrat);
+    --font-roboto: var(--font-roboto);
+    --font-satoshi: var(--font-satoshi);
+    --font-work-sans: var(--font-work-sans);
+    --font-automata: var(--font-automata);
+    --font-spaced: var(--font-spaced);
+    
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --color-card: var(--card);
@@ -132,15 +150,6 @@ html.light {
     
     --text-xxs: 11px;
     --text-md: 14px;
-    
-    --font-great: Great, sans-serif;
-    --font-metropolis: Metropolis, sans-serif;
-    --font-montserrat: Montserrat Variable, sans-serif;
-    --font-roboto: Roboto, monospace;
-    --font-satoshi: Satoshi, sans-serif;
-    --font-work-sans: Work Sans Variable, sans-serif;
-    --font-automata: Automata, sans-serif;
-    --font-spaced: Spaced, sans-serif;
     
     --color-progress: var(--progress);
     --color-sky: var(--sky);
