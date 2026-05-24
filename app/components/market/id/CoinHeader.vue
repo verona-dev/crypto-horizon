@@ -1,5 +1,5 @@
 <template>
-    <CardHeader v-if='coin' class='flex animate-fadeIn'>
+    <CardHeader v-if='coin' class='flex animate-fadeIn border !w-full rounded-xl'>
         <!--  Go back -->
         <!--
         <NuxtLink
@@ -14,7 +14,7 @@
         </NuxtLink>
         -->
         
-        <div class='flex flex-col items-center gap-12 p-10'>
+        <div class='flex flex-col items-center gap-12 p-16'>
             <div class='flex flex-col justify-center items-center gap-4'>
                 <!-- Logo + Name  -->
                 <div class='flex flex-col xl:flex-row justify-center items-center gap-6'>
