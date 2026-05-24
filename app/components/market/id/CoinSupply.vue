@@ -1,23 +1,22 @@
 <template>
-    <Card class='bg-transparent flex flex-col gap-24 mb-12 xl:mb-36 w-full mx-auto max-w-7xl !border-none !shadow-none !rounded-none'>
-        <!--  Selector container  -->
-        <div class='flex flex-col items-center gap-4'>
-            <Select v-model='selected' default-value='progress-bars'>
-                <SelectTrigger class='w-56 h-13 pl-4 focus:ring-0' data-size='default'>
-                    <SelectValue />
-                </SelectTrigger>
-                
-                <SelectContent class='bg-background w-56'>
-                    <SelectGroup>
-                        <SelectItem value='progress-bars' class='h-12 rounded-lg'>Progress Bars</SelectItem>
-                        <SelectItem value='doughnut-chart' class='h-12 rounded-lg'>Doughnut Chart</SelectItem>
-                        <SelectItem value='stacked-bars' class='h-12 rounded-lg'>Stacked Bars</SelectItem>
-                    </SelectGroup>
-                </SelectContent>
-            </Select>
-        </div>
+    <Card class='flex flex-col gap-16 border-none'>
+        <!--  Selector  -->
+        <Select v-model='selected' default-value='progress-bars'>
+            <SelectTrigger class='w-56 h-13 pl-4 mx-auto' data-size='default'>
+                <SelectValue />
+            </SelectTrigger>
+            
+            <SelectContent class='w-56'>
+                <SelectGroup>
+                    <SelectItem value='progress-bars' class='h-11 cursor-pointer'>Progress Bars</SelectItem>
+                    <SelectItem value='doughnut-chart' class='h-11 cursor-pointer'>Doughnut Chart</SelectItem>
+                    <SelectItem value='stacked-bars' class='h-11 cursor-pointer'>Stacked Bars</SelectItem>
+                </SelectGroup>
+            </SelectContent>
+        </Select>
         
-        <div class='overflow-y-auto select-text'>
+        <!--  Content  -->
+        <div>
             <CoinSupplyCircularProgressBars
                 v-if='selected === "progress-bars"'
                 :coin='coin'
@@ -41,11 +40,11 @@
 </template>
 
 <script setup>
+    import { Card } from '~/components/ui/card';
     import CoinSupplyCircularProgressBars from '@/components/market/id/CoinSupplyCircularProgressBars.vue';
     import CoinSupplyDoughnutChart from '@/components/market/id/CoinSupplyDoughnutChart.vue';
     import CoinSupplyStackedBars from '@/components/market/id/CoinSupplyStackedBars.vue';
     import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
-    import { Card } from '~/components/ui/card';
     
     const props = defineProps({
         coin: {
