@@ -1,7 +1,5 @@
 <template>
-    <section>
-        <CoinNews :coin='coin' />
-    </section>
+    <CoinNews :coin='coin' />
 </template>
 <script setup lang='ts'>
     import CoinNews from '@/components/market/id/CoinNews.vue';

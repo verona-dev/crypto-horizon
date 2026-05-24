@@ -1,7 +1,7 @@
 <template>
     <Card
         v-if='chart.prices'
-        class='coin-chart bg-background flex flex-col gap-6 p-8 border-none shadow-none'
+        class='flex flex-col gap-6 p-10'
     >
         <!--  Tabs  -->
         <div class='tabs-container flex flex-col md:flex-row gap-12 md:gap-0 items-center justify-between'>

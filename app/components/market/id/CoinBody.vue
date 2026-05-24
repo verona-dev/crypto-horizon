@@ -1,11 +1,11 @@
 <template>
-    <CardContent class='coin-body animate-fadeIn-2000 grid gap-16 xl:gap-32'>
+    <CardContent class='coin-body animate-fadeIn-2000 grid gap-12 !px-0'>
         <!-- Supply -->
-        <CoinSupply :coin='coin' class='mt-6' />
+        <CoinSupply :coin='coin' />
         
         <div class='grid grid-cols-1 xl:grid-cols-9'>
             <!-- Left Panel -->
-            <div class='xl:col-span-3 space-y-6'>
+            <div class='xl:col-span-3 space-y-12'>
                 <!-- Overview -->
                 <CoinOverview :coin='coin' />
                 
@@ -14,7 +14,7 @@
             </div>
             
             <!-- Right Panel -->
-            <div class='xl:col-span-6 space-y-6'>
+            <div class='xl:col-span-6 space-y-12'>
                 <!-- Chart -->
                 <CoinChart :coin='coin' />
                 
