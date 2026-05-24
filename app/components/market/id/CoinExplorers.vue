@@ -3,7 +3,7 @@
         <!--  Explorers Title  -->
         <div class='text-primary flex items-center gap-3'>
             <NuxtIcon
-                name='ph:codepen-logo'
+                name='ph:codepen-logo-fill'
                 size='48'
             />
             
