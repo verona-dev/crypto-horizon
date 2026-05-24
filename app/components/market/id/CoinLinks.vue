@@ -1,5 +1,5 @@
 <template>
-    <Card class='coin-links flex flex-col 2xl:flex-row gap-12 p-16 w-full justify-between'>
+    <Card class='coin-links flex flex-col 2xl:flex-row gap-12 p-16 w-full justify-evenly'>
         <CardContent
             v-if='links.main?.length'
             class='card-content'
