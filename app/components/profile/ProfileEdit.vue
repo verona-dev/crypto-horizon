@@ -142,7 +142,7 @@
                                         <Card
                                             :class='cn(
                                           "py-0 xl:py-4 px-2 relative transition-all shadow-none hover:shadow-xl h-full w-full",
-                                                  selected_astronaut_type === option.value && "border-primary/75 shadow-2xl",
+                                                  selected_astronaut_type === option.value && "border-primary/50 shadow-2xl",
                                             )'
                                         >
                                             <CircleCheck
