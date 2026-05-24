@@ -4,7 +4,7 @@
         <!--  Price Title  -->
         <div class='text-primary flex items-center gap-3'>
             <NuxtIcon
-                name='ph:speedometer'
+                name='ph:speedometer-fill'
                 size='48'
             />
 
