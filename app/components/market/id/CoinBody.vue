@@ -3,7 +3,7 @@
         <!-- Supply -->
         <CoinSupply :coin='coin' />
         
-        <div class='grid grid-cols-1 xl:grid-cols-9'>
+        <div class='grid grid-cols-1 xl:grid-cols-9 gap-12'>
             <!-- Left Panel -->
             <div class='xl:col-span-3 space-y-12'>
                 <!-- Overview -->
