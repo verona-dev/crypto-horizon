@@ -1,5 +1,5 @@
 <template>
-    <Card class='flex flex-col gap-16 border-none'>
+    <Card class='flex flex-col gap-16 p-16 !w-full'>
         <!--  Selector  -->
         <Select v-model='selected' default-value='progress-bars'>
             <SelectTrigger class='w-56 h-13 pl-4 mx-auto' data-size='default'>
