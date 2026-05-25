@@ -5,7 +5,7 @@
             class='card-content'
         >
             <!-- Project -->
-            <Title :tag='3' class='text-primary'>Project</Title>
+            <Title :tag='3' class='text-primary mx-auto'>Project</Title>
             
             <div class='cards-container'>
                 <CoinLinkCard
@@ -21,7 +21,7 @@
             class='card-content'
         >
             <!-- Socials -->
-            <Title :tag='3' class='text-primary'>Socials</Title>
+            <Title :tag='3' class='text-primary mx-auto'>Socials</Title>
             
             
             <div class='cards-container'>
@@ -40,7 +40,7 @@
             class='card-content'
         >
             <!-- Github -->
-            <Title :tag='3' class='text-primary'>Github</Title>
+            <Title :tag='3' class='text-primary mx-auto'>Github</Title>
             
             <div class='cards-container'>
                 <CoinLinkCard
