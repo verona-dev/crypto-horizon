@@ -5,7 +5,7 @@
             class='card-content'
         >
             <!-- Project -->
-            <h3>Project</h3>
+            <Title :tag='3' class='text-primary'>Project</Title>
             
             <div class='cards-container'>
                 <CoinLinkCard
@@ -21,7 +21,8 @@
             class='card-content'
         >
             <!-- Socials -->
-            <h3>Socials</h3>
+            <Title :tag='3' class='text-primary'>Socials</Title>
+            
             
             <div class='cards-container'>
                 <CoinLinkCard
@@ -39,7 +40,7 @@
             class='card-content'
         >
             <!-- Github -->
-            <h3>Github</h3>
+            <Title :tag='3' class='text-primary'>Github</Title>
             
             <div class='cards-container'>
                 <CoinLinkCard
@@ -57,6 +58,7 @@
 <script setup>
     import { Card, CardContent } from '~/components/ui/card';
     import CoinLinkCard from '@/components/market/id/CoinLinkCard.vue';
+    import Title from '~/components/Title.vue';
     
     const props = defineProps({
         links: {
