@@ -42,10 +42,7 @@
                             <SidebarMenuButton
                                 :tooltip="item.title"
                                 :is-active="item.isActive"
-                                :class="[
-                                  'my-1',
-                                  { 'dark:!text-primary': item.isActive },
-                                ]"
+                                :class="{ 'dark:!text-primary': item.isActive }"
                             >
                                 <component :is="item.icon" v-if="item.icon" />
                             </SidebarMenuButton>
