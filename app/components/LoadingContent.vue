@@ -1,7 +1,7 @@
 <template>
     <div class='relative xl:w-screen h-screen flex justify-center items-center'>
         <div class='flex flex-col items-center justify-center gap-16 pb-8'>
-            <h1 class='font-great text-4xl lg:text-6xl xl:text-8xl'>{{ site_name }}</h1>
+            <h1 class='font-great text-primary text-4xl lg:text-6xl xl:text-8xl'>{{ site_name }}</h1>
             
             <ChainsCloud />
             
@@ -9,7 +9,7 @@
                 class='!r inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400'
                 :duration='5'
             >
-                <span class="font-great text-3xl lg:text-5xl xl:text-7xl">Loading...</span>
+                <span class="font-great text-primary text-3xl lg:text-5xl xl:text-7xl">Loading...</span>
             </RadiantText>
         </div>
         

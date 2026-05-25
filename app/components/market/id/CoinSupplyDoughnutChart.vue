@@ -1,6 +1,6 @@
 <template>
-    <div class='my-10 flex-col lg:flex-row flex items-center justify-center gap-16'>
-        <div class='w-52 lg:w-[450px] h-52 lg:h-[450px]'>
+    <div class='flex-col lg:flex-row flex items-center justify-center gap-16 p-6 !h-full'>
+        <div class='w-full xl:w-[450px] h-96 xl:h-[450px]'>
             <Doughnut
                 v-if='market_data_computed'
                 :data='data'

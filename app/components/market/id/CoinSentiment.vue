@@ -1,37 +1,36 @@
 <template>
-    <div v-if='sentimentUp' class='coin-sentiment flex flex-col gap-4'>
+    <div v-if='sentimentUp' class='flex flex-col gap-8'>
         <!--  Sentiment Title  -->
-        <div class='flex items-center gap-3'>
+        <div class='text-primary flex items-center gap-3'>
             <NuxtIcon
-                name='ph:users-three'
-                size='22'
+                name='ph:users-three-fill'
+                size='48'
             />
-            <h4>Community sentiment</h4>
+            
+            <Title :tag='3'>Community sentiment</Title>
         </div>
         
         <HoverCard :openDelay='200'>
             <HoverCardTrigger>
                 <div class='flex items-center justify-between'>
-                    <div class='flex items-center gap-2 text-progress'>
+                    <div class='flex items-center gap-3 text-progress'>
                         <NuxtIcon
                             name='ph:trend-up-light'
-                            size='20'
-                            class='mt-0.5'
+                            size='32'
                         />
-                        <p>{{ sentiment_up_label }}</p>
+                        <h6>{{ sentiment_up_label }}</h6>
                     </div>
                     
                     <Progress
                         v-model='sentimentUp'
-                        class='h-3 mx-4 bg-destructive'
+                        class='progress-indicator h-3 mx-4'
                     />
                     
-                    <div class='flex items-center gap-2 text-destructive'>
-                        <p>{{ sentiment_down_label }}</p>
+                    <div class='flex items-center gap-3 text-destructive'>
+                        <h6>{{ sentiment_down_label }}</h6>
                         <NuxtIcon
                             name='ph:trend-down-light'
-                            size='20'
-                            class='mt-0.5'
+                            size='32'
                         />
                     </div>
                 </div>
@@ -43,8 +42,9 @@
 </template>
 
 <script setup>
-    import { Progress } from '~/components/ui/progress';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    import { Progress } from '~/components/ui/progress';
+    import Title from '~/components/Title.vue';
     
     const props = defineProps({
         sentimentUp: {
@@ -71,10 +71,9 @@
     });
 </script>
 
-<style>
-    .coin-sentiment {
-        .progress-indicator {
-            background-color: var(--color-progress) !important;
+<style scoped>
+    /*   .progress-indicator {
+           background-color: var(--color-progress) !important;
         }
-    }
+   */
 </style>

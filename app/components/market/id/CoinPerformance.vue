@@ -1,14 +1,14 @@
 <template>
     <!--  Price Performance 24h -->
-    <div class='coin-performance flex flex-col gap-4'>
+    <div class='flex flex-col gap-8'>
         <!--  Price Title  -->
-        <div class='flex items-center gap-3'>
+        <div class='text-primary flex items-center gap-3'>
             <NuxtIcon
-                name='ph:speedometer'
-                size='22'
-                class='mt-0.5'
+                name='ph:speedometer-fill'
+                size='48'
             />
-            <h4>Price Performance</h4>
+
+            <Title :tag='3'>Price Performance</Title>
         </div>
         
         <!--  Price Data -->
@@ -36,11 +36,14 @@
 </template>
 
 <script setup>
+    import { Progress } from '~/components/ui/progress';
+    import { formatNumber } from '~/utils/formatUtils.js';
+    import Title from '~/components/Title.vue';
+    
+    // Dayjs
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
-    import { Progress } from '~/components/ui/progress';
-    import { formatNumber } from '~/utils/formatUtils.js';
     
     const props = defineProps({
         coin: {

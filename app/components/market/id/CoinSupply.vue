@@ -1,23 +1,34 @@
 <template>
-    <Card class='bg-transparent flex flex-col gap-24 mb-12 xl:mb-36 w-full mx-auto max-w-7xl !border-none !shadow-none !rounded-none'>
-        <!--  Selector container  -->
-        <div class='flex flex-col items-center gap-4'>
+    <Card class='flex flex-col gap-24 py-16'>
+        <div class='flex flex-col items-center gap-8 relative'>
+            <!--  Title  -->
+            <div class='text-primary flex items-center gap-3'>
+                <NuxtIcon
+                    name='ph:chart-donut-fill'
+                    size='48'
+                />
+                
+                <Title :tag='3'>Supply </Title>
+            </div>
+            
+            <!--  Selector  -->
             <Select v-model='selected' default-value='progress-bars'>
-                <SelectTrigger class='w-56 h-13 pl-4 focus:ring-0' data-size='default'>
+                <SelectTrigger class='w-56 h-13 pl-4 border-primary/50 absolute top-0 right-20' data-size='default'>
                     <SelectValue />
                 </SelectTrigger>
                 
-                <SelectContent class='bg-background w-56'>
+                <SelectContent class='w-56'>
                     <SelectGroup>
-                        <SelectItem value='progress-bars' class='h-12 rounded-lg'>Progress Bars</SelectItem>
-                        <SelectItem value='doughnut-chart' class='h-12 rounded-lg'>Doughnut Chart</SelectItem>
-                        <SelectItem value='stacked-bars' class='h-12 rounded-lg'>Stacked Bars</SelectItem>
+                        <SelectItem value='progress-bars' class='h-11 cursor-pointer'>Progress Bars</SelectItem>
+                        <SelectItem value='doughnut-chart' class='h-11 cursor-pointer'>Doughnut Chart</SelectItem>
+                        <SelectItem value='stacked-bars' class='h-11 cursor-pointer'>Stacked Bars</SelectItem>
                     </SelectGroup>
                 </SelectContent>
             </Select>
         </div>
         
-        <div class='overflow-y-auto select-text'>
+        <!--  Content  -->
+        <div class='min-h-160'>
             <CoinSupplyCircularProgressBars
                 v-if='selected === "progress-bars"'
                 :coin='coin'
@@ -41,11 +52,12 @@
 </template>
 
 <script setup>
+    import { Card } from '~/components/ui/card';
     import CoinSupplyCircularProgressBars from '@/components/market/id/CoinSupplyCircularProgressBars.vue';
     import CoinSupplyDoughnutChart from '@/components/market/id/CoinSupplyDoughnutChart.vue';
     import CoinSupplyStackedBars from '@/components/market/id/CoinSupplyStackedBars.vue';
     import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
-    import { Card } from '~/components/ui/card';
+    import Title from '~/components/Title.vue';
     
     const props = defineProps({
         coin: {

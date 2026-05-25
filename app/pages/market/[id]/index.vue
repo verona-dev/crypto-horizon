@@ -5,14 +5,12 @@
         <div v-else class='page'>
             <Card
                 v-if='coin'
-                class='bg-transparent border-none shadow-none flex flex-col items-center'
+                class='flex flex-col items-center border-none gap-6'
             >
                 <CoinHeader :coin='coin' />
                 
                 <CoinBody :coin='coin'/>
             </Card>
-            
-            <CoinFooter :coin='coin' />
         </div>
     </div>
 </template>
@@ -21,7 +19,6 @@
     import { Card  } from '~/components/ui/card';
     import CoinHeader from '@/components/market/id/CoinHeader.vue';
     import CoinBody from '@/components/market/id/CoinBody.vue';
-    import CoinFooter from '@/components/market/id/CoinFooter.vue';
     import LoadingContent from '@/components/LoadingContent.vue';
     
     // Router

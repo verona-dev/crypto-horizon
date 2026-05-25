@@ -1,69 +1,75 @@
 <template>
-    <div v-if='links?.blockchain_site' class='coin-explorers flex flex-col gap-4'>
+    <div v-if='links?.blockchain_site' class='flex flex-col gap-8'>
         <!--  Explorers Title  -->
-        <div class='flex items-center gap-3'>
+        <div class='text-primary flex items-center gap-3'>
             <NuxtIcon
-                name='ph:codepen-logo'
-                size='22'
-                class='mt-0.5'
+                name='ph:codepen-logo-fill'
+                size='48'
             />
-            <h4>Explorers</h4>
+            
+            <Title :tag='3'>Explorers</Title>
         </div>
         
-        <div class='h-12 flex items-center justify-between border rounded-lg'>
+        <div class='flex items-center justify-between'>
             <!--  Main Explorer  -->
-            <NuxtLink
-                :to='main_explorer_link'
-                external
-                target='_blank'
-                class='flex justify-around items-center w-full px-2'
-            >
-                <NuxtIcon
-                    name='ph:codesandbox-logo-fill'
-                    size='20'
-                />
-                
-                <p>{{ main_explorer_name }}</p>
-                
-                <NewTabIcon />
-            </NuxtLink>
+            <Item variant='muted' size='sm' class='rounded-tr-none rounded-br-none' as-child>
+                <NuxtLink
+                    :to='main_explorer_link'
+                    external
+                    target='_blank'
+                    class='w-full h-13 border flex items-center'
+                >
+                    <ItemMedia>
+                        <NuxtIcon
+                            name='ph:codesandbox-logo-fill'
+                            size='20'
+                        />
+                    </ItemMedia>
+                    
+                    <ItemContent>
+                        <ItemTitle class='text-lg mx-auto'>{{ main_explorer_name }}</ItemTitle>
+                    </ItemContent>
+                    
+                    <ItemActions>
+                        <NewTabIcon />
+                    </ItemActions>
+                </NuxtLink>
+            </Item>
             
             <!--  All Explorers - Dropdown menu  -->
             <DropdownMenu v-model:open='open' :modal='false'>
                 <DropdownMenuTrigger as-child>
                     <Button
                         variant='ghost'
-                        class='group !h-full rounded-tl-none rounded-bl-none border-l border-border'
+                        class='bg-muted/50 group h-13 rounded-tl-none rounded-bl-none border-l-border'
                         :data-state='open ? "open" : "closed"'
                     >
-                        <ChevronDown class='text-primary ml-auto transition-transform duration-400 group-data-[state=open]:rotate-180' />
+                        <ChevronDown class='!w-5 !h-5 ml-auto transition-transform duration-400 group-data-[state=open]:rotate-180' />
                     </Button>
                 </DropdownMenuTrigger>
                 
-                <DropdownMenuContent class='min-w-62 rounded-lg' align='end'>
-                    <DropdownMenuLabel class='text-lg px-4 py-4 my-1'>Explorers</DropdownMenuLabel>
+                <DropdownMenuContent class='min-w-62' align='end'>
+                    <DropdownMenuLabel class='text-xl p-4'>Explorers</DropdownMenuLabel>
                     
                     <DropdownMenuSeparator />
                     
-                    <DropdownMenuGroup class='px-1'>
+                    <DropdownMenuGroup>
                         <DropdownMenuItem
                             v-for='explorer in explorers'
                             :key='explorer'
-                            class='h-12 !px-0 rounded-lg my-2'
+                            class='h-13'
                         >
                             <NuxtLink
                                 :to='explorer.href'
                                 external
                                 target='_blank'
-                                class='w-full h-12 px-3 rounded-lg'
+                                class='w-full h-13 pl-1.5 flex items-center gap-3'
                             >
-                                <div class='flex items-center gap-3 h-full'>
-                                    <NuxtIcon
-                                        name='ph:codesandbox-logo-fill'
-                                        size='20'
-                                    />
-                                    {{ explorer.name }}
-                                </div>
+                                <NuxtIcon
+                                    name='ph:codesandbox-logo-fill'
+                                    size='20'
+                                />
+                                {{ explorer.name }}
                             </NuxtLink>
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
@@ -74,9 +80,11 @@
 </template>
 
 <script setup>
-    import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
     import { ChevronDown } from 'lucide-vue-next';
+    import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
     import NewTabIcon from '~/components/NewTabIcon.vue';
+    import { Item, ItemActions, ItemContent, ItemMedia, ItemTitle } from '~/components/ui/item';
+    import Title from '~/components/Title.vue';
     
     const props = defineProps({
         links: {

@@ -1,11 +1,10 @@
 <template>
-    <div class='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-24 justify-items-center'>
+    <div class='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-24 justify-items-center p-6 !h-full'>
         <!--  Market Cap  -->
         <div v-if='market_cap' class='item-container'>
             <MazCircularProgressBar
                 :percentage='100'
                 :duration='2000'
-                size='125px'
             >
                 <template #default>
                     <p>{{ market_cap_compact }}</p>
@@ -18,7 +17,7 @@
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
-                            <InfoIcon size='20' />
+                            <InfoIcon size='28' />
                         </HoverCardTrigger>
                         <HoverCardContent>{{ glossary.market_cap.description }}</HoverCardContent>
                     </HoverCard>
@@ -33,7 +32,6 @@
             <MazCircularProgressBar
                 :percentage='100'
                 :duration='2500'
-                size='125px'
             >
                 <template #default>
                     <p>{{ fully_diluted_valuation_compact }}</p>
@@ -46,7 +44,7 @@
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
-                            <InfoIcon size='20' />
+                            <InfoIcon size='28' />
                         </HoverCardTrigger>
                         <HoverCardContent>{{ glossary.fully_diluted_valuation.description }}</HoverCardContent>
                     </HoverCard>
@@ -61,7 +59,6 @@
             <MazCircularProgressBar
                 :percentage='100'
                 :duration='3000'
-                size='125px'
             >
                 <template #default>
                     <p>{{ volume_compact }}</p>
@@ -77,7 +74,7 @@
                         class='flex'
                     >
                         <HoverCardTrigger>
-                            <InfoIcon size='20' />
+                            <InfoIcon size='28' />
                         </HoverCardTrigger>
                         <HoverCardContent>{{ glossary.volume.description }}</HoverCardContent>
                     </HoverCard>
@@ -93,7 +90,6 @@
                 :percentage='circulating_supply_percentage'
                 :duration='2000'
                 suffix='%'
-                size='125px'
             >
                 <template #default>
                     <p v-if='max_supply'>{{ Math.floor(circulating_supply_percentage) }}&#37;</p>
@@ -105,12 +101,9 @@
                 <div class='flex items-center'>
                     <h6 class='!min-w-full'>{{ glossary.circulating_supply.label }}</h6>
                     
-                    <HoverCard
-                        :openDelay='200'
-                        class='flex'
-                    >
+                    <HoverCard :openDelay='200' class='flex'>
                         <HoverCardTrigger>
-                            <InfoIcon size='20' />
+                            <InfoIcon size='28' />
                         </HoverCardTrigger>
                         <HoverCardContent>{{ glossary.circulating_supply.description }}</HoverCardContent>
                     </HoverCard>
@@ -126,7 +119,6 @@
                 :percentage='total_supply_percentage'
                 :duration='2500'
                 suffix='%'
-                size='125px'
             >
                 <template #default>
                     <p v-if='max_supply'>{{ total_supply_percentage }}&#37;</p>
@@ -143,7 +135,7 @@
                         class='flex'
                     >
                         <HoverCardTrigger>
-                            <InfoIcon size='20' />
+                            <InfoIcon size='28' />
                         </HoverCardTrigger>
                         <HoverCardContent>{{ glossary.total_supply.description }}</HoverCardContent>
                     </HoverCard>
@@ -158,7 +150,6 @@
             <MazCircularProgressBar
                 :percentage='100'
                 :duration='3000'
-                size='125px'
             >
                 <template #default>
                     <p>{{ max_supply_compact }}</p>
@@ -174,7 +165,7 @@
                         class='flex'
                     >
                         <HoverCardTrigger>
-                            <InfoIcon size='20' />
+                            <InfoIcon size='28' />
                         </HoverCardTrigger>
                         <HoverCardContent>{{ glossary.max_supply.description }}</HoverCardContent>
                     </HoverCard>

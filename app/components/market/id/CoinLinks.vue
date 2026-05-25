@@ -1,11 +1,11 @@
 <template>
-    <Card class='coin-links bg-background flex flex-col 2xl:flex-row gap-16 p-10 lg:py-20 lg:px-12 w-full border-none shadow-none'>
+    <Card class='coin-links flex flex-col 2xl:flex-row gap-12 p-16 w-full justify-evenly'>
         <CardContent
             v-if='links.main?.length'
             class='card-content'
         >
             <!-- Project -->
-            <h3>Project</h3>
+            <Title :tag='3' class='text-primary mx-auto'>Project</Title>
             
             <div class='cards-container'>
                 <CoinLinkCard
@@ -21,7 +21,8 @@
             class='card-content'
         >
             <!-- Socials -->
-            <h3>Socials</h3>
+            <Title :tag='3' class='text-primary mx-auto'>Socials</Title>
+            
             
             <div class='cards-container'>
                 <CoinLinkCard
@@ -39,7 +40,7 @@
             class='card-content'
         >
             <!-- Github -->
-            <h3>Github</h3>
+            <Title :tag='3' class='text-primary mx-auto'>Github</Title>
             
             <div class='cards-container'>
                 <CoinLinkCard
@@ -57,6 +58,7 @@
 <script setup>
     import { Card, CardContent } from '~/components/ui/card';
     import CoinLinkCard from '@/components/market/id/CoinLinkCard.vue';
+    import Title from '~/components/Title.vue';
     
     const props = defineProps({
         links: {

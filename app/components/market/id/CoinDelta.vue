@@ -1,8 +1,8 @@
 <template>
-    <Card class='coin-delta bg-background flex flex-col items-center justify-center p-10 border-none shadow-none'>
-        <h6 class='mb-6'>Rate of Change</h6>
+    <Card class='flex flex-col items-center justify-center gap-16 py-16 px-12 !w-full'>
+        <Title :tag='3' class='text-primary'>Rate of Change</Title>
         
-        <div class='flex flex-wrap items-center'>
+        <div class='flex flex-wrap xl:items-center gap-8 xl:justify-between w-full'>
             <!--  1h  -->
             <CoinDeltaItem
                 :delta='delta1h'
@@ -44,6 +44,7 @@
 <script setup>
     import CoinDeltaItem from '@/components/market/id/CoinDeltaItem.vue';
     import { Card } from '~/components/ui/card';
+    import Title from '~/components/Title.vue';
     
     const props = defineProps({
         marketData: {

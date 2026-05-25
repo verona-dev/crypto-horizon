@@ -1,14 +1,15 @@
 <template>
-    <Card class='bg-background flex flex-col gap-16 p-10 w-full border-none shadow-none'>
+    <Card class='flex flex-col gap-24 py-12 px-9'>
         <!--  Overview  -->
-        <div class='flex flex-col gap-4'>
+        <div class='flex flex-col gap-8'>
             <!--  Overview Title  -->
-            <div class='flex items-center gap-3'>
+            <div class='text-primary flex items-center gap-3'>
                 <NuxtIcon
-                    name='ph:squares-four-light'
-                    size='22'
+                    name='ph:squares-four-fill'
+                    size='48'
                 />
-                <h4>Overview</h4>
+                
+                <Title :tag='3'>Overview</Title>
             </div>
             
             <!--  Overview Table  -->
@@ -21,7 +22,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.genesis.description }}</HoverCardContent>
                             </HoverCard>
@@ -41,7 +42,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.country_origin.description }}</HoverCardContent>
                             </HoverCard>
@@ -56,7 +57,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.ath.description }}</HoverCardContent>
                             </HoverCard>
@@ -94,7 +95,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.atl.description }}</HoverCardContent>
                             </HoverCard>
@@ -133,7 +134,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.markets.description }}</HoverCardContent>
                             </HoverCard>
@@ -148,7 +149,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.pairs.description }}</HoverCardContent>
                             </HoverCard>
@@ -163,7 +164,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.exchanges.description }}</HoverCardContent>
                             </HoverCard>
@@ -178,7 +179,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.hashing_algorithm.description }}</HoverCardContent>
                             </HoverCard>
@@ -193,7 +194,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.ico_start.description }}</HoverCardContent>
                             </HoverCard>
@@ -213,7 +214,7 @@
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
-                                    <InfoIcon />
+                                    <InfoIcon size='20' />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.ico_end.description }}</HoverCardContent>
                             </HoverCard>
@@ -230,110 +231,112 @@
         </div>
         
         <!--  Github  -->
-        <div v-if='show_github_table' class='flex flex-col gap-6'>
+        <div v-if='show_github_table' class='flex flex-col gap-8'>
             <!--  Github Title  -->
-            <div class='flex items-center gap-3'>
+            <div class='text-primary flex items-center gap-3'>
                 <NuxtIcon
-                    name='ph:github-logo-light'
-                    size='22'
+                    name='ph:github-logo-fill'
+                    size='48'
                 />
-                <h4>Github</h4>
+                
+                <Title :tag='3'>Github</Title>
             </div>
             
             <!--  Github Table  -->
             <Table>
                 <TableBody>
                     <!--  Github Forks  -->
-                    <TableRow v-if='github_forks_label'>
-                        <TableCell>
-                            Forks
-                            
+                    <TableRow v-if='github_forks_label' class='!flex !items-center'>
+                        <TableCell class='gap-2.5'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
                                         name='ph:git-fork-light'
-                                        size='17'
-                                        class='flex ml-2 text-yellow-selective'
+                                        size='24'
+                                        class='text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.github.forks }}</HoverCardContent>
                             </HoverCard>
+                            
+                            Forks
                         </TableCell>
+                        
                         <TableCell>{{ github_forks_label }}</TableCell>
                     </TableRow>
                     
                     <!--  Github Stars  -->
-                    <TableRow v-if='github_stars_label'>
-                        <TableCell>
-                            Stars
-                            
+                    <TableRow v-if='github_stars_label' class='!flex !items-center'>
+                        <TableCell class='gap-2.5'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
                                         name='ph:star-light'
-                                        size='17'
-                                        class='flex ml-2 text-yellow-selective'
+                                        size='24'
+                                        class='text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.github.stars }}</HoverCardContent>
                             </HoverCard>
+                            
+                            Stars
                         </TableCell>
                         <TableCell>{{ github_stars_label }}</TableCell>
                     </TableRow>
                     
                     <!--  Github Issues  -->
-                    <TableRow v-if='github_issues_label'>
-                        <TableCell>
-                            Issues
-                            
+                    <TableRow v-if='github_issues_label' class='!flex !items-center'>
+                        <TableCell class='gap-2.5'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
                                         name='ph:git-diff-light'
-                                        size='17'
-                                        class='flex ml-2 text-yellow-selective'
+                                        size='24'
+                                        class='text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.github.issues }}</HoverCardContent>
                             </HoverCard>
+                            
+                            Issues
                         </TableCell>
                         <TableCell>{{ github_issues_label }}</TableCell>
                     </TableRow>
                     
                     <!--  Github Commits  -->
-                    <TableRow v-if='github_commits_label'>
-                        <TableCell>
-                            Commits
-                            
+                    <TableRow v-if='github_commits_label' class='!flex !items-center'>
+                        <TableCell class='gap-2.5'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
                                         name='ph:git-commit-light'
-                                        size='17'
-                                        class='flex ml-2 text-yellow-selective'
+                                        size='24'
+                                        class='text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.github.commits }} in the last 30 days.</HoverCardContent>
                             </HoverCard>
+                            
+                            Commits
                         </TableCell>
                         <TableCell>{{ github_commits_label }}</TableCell>
                     </TableRow>
                     
                     <!--  Github Contributors  -->
-                    <TableRow v-if='github_contributors_label'>
-                        <TableCell>
-                            Contributors
-                            
+                    <TableRow v-if='github_contributors_label' class='!flex !items-center'>
+                        <TableCell class='gap-2.5'>
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger class='flex items-center'>
                                     <NuxtIcon
                                         name='ph:users-light'
-                                        size='17'
-                                        class='flex ml-2 text-yellow-selective'
+                                        size='24'
+                                        class='text-yellow-selective'
                                     />
                                 </HoverCardTrigger>
                                 <HoverCardContent>{{ glossary.github.contributors }}</HoverCardContent>
                             </HoverCard>
+                            
+                            Contributors
                         </TableCell>
                         <TableCell>{{ github_contributors_label }}</TableCell>
                     </TableRow>
@@ -351,6 +354,7 @@
     import InfoIcon from '~/components/InfoIcon.vue';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.ts';
+    import Title from '~/components/Title.vue';
     
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
@@ -428,12 +432,16 @@
 </script>
 
 <style scoped>
-    tr{
+    tr {
         align-items: baseline;
         display: flex;
         justify-content: space-between;
         font-size: 12px;
         gap: 32px;
+        
+        &:hover {
+            background: var(--background);
+        }
     }
     td {
         display: flex;
