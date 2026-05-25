@@ -1,5 +1,5 @@
 <template>
-    <Card class='news w-full lg:w-2/5 transition shadow-none hover:shadow-2xl duration-200 mx-auto' v-if='article'>
+    <Card class='news transition duration-200 w-full xl:max-w-140' v-if='article'>
         <!--  Image + Categories  -->
         <CardHeader class='gap-4'>
             <!--  Image  -->
@@ -30,7 +30,7 @@
                 <Badge
                     v-for='category in categories_computed.slice(0, 4)'
                     :key='category'
-                    class='py-1 px-1.5 capitalize text-sky text-[10px] border-border/50 line-clamp-1'
+                    class='capitalize text-primary line-clamp-1'
                     variant='outline'
                 >
                     {{ category.NAME }}
