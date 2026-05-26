@@ -7,7 +7,7 @@
                 :duration='2000'
             >
                 <template #default>
-                    <h4>{{ market_cap_compact }}</h4>
+                    <h5>{{ market_cap_compact }}</h5>
                 </template>
             </MazCircularProgressBar>
             
@@ -34,7 +34,7 @@
                 :duration='2500'
             >
                 <template #default>
-                    <h4>{{ fully_diluted_valuation_compact }}</h4>
+                    <h5>{{ fully_diluted_valuation_compact }}</h5>
                 </template>
             </MazCircularProgressBar>
             
@@ -61,7 +61,7 @@
                 :duration='3000'
             >
                 <template #default>
-                    <h4>{{ volume_compact }}</h4>
+                    <h5>{{ volume_compact }}</h5>
                 </template>
             </MazCircularProgressBar>
             
@@ -92,8 +92,8 @@
                 suffix='%'
             >
                 <template #default>
-                    <h4 v-if='max_supply'>{{ Math.floor(circulating_supply_percentage) }}&#37;</h4>
-                    <h4 v-else>{{ circulating_supply_compact }}</h4>
+                    <h5 v-if='max_supply'>{{ Math.floor(circulating_supply_percentage) }}&#37;</h5>
+                    <h5 v-else>{{ circulating_supply_compact }}</h5>
                 </template>
             </MazCircularProgressBar>
             
@@ -121,8 +121,8 @@
                 suffix='%'
             >
                 <template #default>
-                    <h4 v-if='max_supply'>{{ total_supply_percentage }}&#37;</h4>
-                    <h4 v-else>{{ total_supply_compact }}</h4>
+                    <h5 v-if='max_supply'>{{ total_supply_percentage }}&#37;</h5>
+                    <h5 v-else>{{ total_supply_compact }}</h5>
                 </template>
             </MazCircularProgressBar>
             
@@ -152,7 +152,7 @@
                 :duration='3000'
             >
                 <template #default>
-                    <h4>{{ max_supply_compact }}</h4>
+                    <h5>{{ max_supply_compact }}</h5>
                 </template>
             </MazCircularProgressBar>
             
