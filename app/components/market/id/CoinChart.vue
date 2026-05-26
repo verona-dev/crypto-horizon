@@ -2,40 +2,42 @@
     <Card
         v-if='chart.prices'
         class='flex flex-col gap-6 p-10'
+        :class='{ "" : sniper_mode }'
     >
         <!--  Tabs  -->
-        <div class='tabs-container flex flex-col md:flex-row gap-12 md:gap-0 items-center justify-between'>
+        <div class='flex flex-col md:flex-row gap-12 md:gap-0 items-center justify-between'>
             <!--  Price + Market Cap  -->
             <Tabs
                 v-model='valuation_tab'
                 default-value='price'
             >
-                <TabsList>
+                <TabsList class='gap-1'>
                     <TabsTrigger
                         value='price'
-                        class='py-1.5 px-1.5 w-16'
+                        class='data-[state=active]:text-primary data-[state=active]:border-primary'
                     >
                         Price
                     </TabsTrigger>
                     
                     <TabsTrigger
                         value='mcap'
-                        class='py-1.5 px-1.5 w-24'
+                        class='data-[state=active]:text-primary data-[state=active]:border-primary'
                     >
                         Market Cap
                     </TabsTrigger>
                 </TabsList>
             </Tabs>
             
-            <!--  Switch  -->
-            <div class='flex items-center space-x-2'>
+            <!--  Sniper Mode  -->
+            <div class='flex items-center'>
                 <Switch
                     id='sniper_mode'
                     :model-value='sniper_mode'
                     @update:model-value='onToggleSniper'
-                    :class='{ "shadow-none" : !dark_mode }'
+                    class='data-[state=unchecked]:bg-primary/50'
+                    :class='{ "" : !dark_mode }'
                 />
-                <label for='sniper_mode' class='cursor-pointer'>Sniper Mode</label>
+                <label for='sniper_mode' class='cursor-pointer select-none'>Sniper Mode</label>
             </div>
             
             <!--  Timeframe  -->
@@ -45,7 +47,7 @@
                         v-for='interval in timeframes'
                         :key='interval.timeframe'
                         :value='interval.timeframe'
-                        class='py-1.5 px-1.5 w-10'
+                        class='data-[state=active]:text-primary data-[state=active]:border-primary'
                     >
                         {{ interval.label }}
                     </TabsTrigger>
@@ -60,7 +62,7 @@
                     <Spinner class='size-8' />
                     
                     <div class='flex flex-col items-center gap-1'>
-                        <span class='text-lg'>Loading data</span>
+                        <span class='text-xl'>Loading data</span>
                         <span class='text-foreground/75'>Please wait a moment.</span>
                     </div>
                 </div>
@@ -462,16 +464,12 @@
 </script>
 
 <style scoped>
-    button[data-state='checked'] {
-        background-color: var(--green-shamrock);
-    }
-    
     .chart-container {
         position: relative;
         
         .spinner-container {
             backdrop-filter: blur(3px);
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.25);
             position: absolute;
             top: 0;
             left: 0;
