@@ -13,7 +13,7 @@
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
-                            <InfoIcon />
+                            <InfoIcon size='28'/>
                         </HoverCardTrigger>
                         
                         <HoverCardContent class='flex-col gap-6'>
@@ -52,9 +52,7 @@
                             <div class='flex h-8'>
                                 <!--  Btc, Eth  -->
                                 <div v-if='!item.displayInfo && !item.stablecoins' class='flex items-center space-x-1'>
-                                    <span
-                                        class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'
-                                    ></span>
+                                    <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                                     <span class='text-muted-foreground text-xs'>{{ item.name }}</span>
                                 </div>
                                 
@@ -75,26 +73,29 @@
                                             <InfoIcon />
                                         </HoverCardTrigger>
                                         
-                                        <HoverCardContent class='flex flex-col justify-stretch gap-4'>
-                                            <span class='underline text-base'>Stablecoins</span>
+                                        <HoverCardContent class='flex flex-col items-center gap-4'>
+                                            <h5 class='underline'>Stablecoins</h5>
                                             
                                             <Table class='w-60'>
                                                 <TableHeader>
                                                     <TableRow>
                                                         <TableHead>Asset</TableHead>
-                                                        <TableHead class='flex flex-col justify-center !items-end'>
-                                                            Today
-                                                        </TableHead>
+                                                        <TableHead class='flex flex-col justify-center !items-end'>Dominance</TableHead>
                                                     </TableRow>
                                                 </TableHeader>
                                                 
                                                 <TableBody>
-                                                    <TableRow v-for='item in stablecoins_array' class='text-xs'>
-                                                        <TableCell>{{ item.name }}</TableCell>
-                                                        <TableCell class='flex flex-col !items-end'>{{
+                                                    <TableRow v-for='item in stablecoins_array'>
+                                                        <TableCell class='text-sm'>{{ item.name }}</TableCell>
+                                                        <TableCell class='text-sm flex flex-col !items-end'>{{
                                                                 item.value
                                                                                                     }}
                                                         </TableCell>
+                                                    </TableRow>
+                                                    
+                                                    <TableRow class='text-secondary'>
+                                                        <TableCell class='text-base'>Total</TableCell>
+                                                        <TableCell class='text-base flex flex-col !items-end'>{{ stablecoins_label }}</TableCell>
                                                     </TableRow>
                                                 </TableBody>
                                             </Table>
@@ -113,30 +114,35 @@
                                             :style='{ backgroundColor: item.backgroundColor }'
                                         ></span>
                                         
-                                        <span class='text-xs'>{{ item.name }}</span>
+                                        <span class='text-muted-foreground text-xs'>{{ item.name }}</span>
                                         
                                         <InfoIcon />
                                     </HoverCardTrigger>
                                     
-                                    <HoverCardContent class='flex flex-col justify-stretch gap-4'>
-                                        <span class='underline text-base'>Other Assets</span>
+                                    <HoverCardContent class='flex flex-col items-center gap-4'>
+                                        <h5 class='underline'>Other Assets</h5>
                                         
                                         <Table class='w-60'>
                                             <TableHeader>
                                                 <TableRow>
                                                     <TableHead>Asset</TableHead>
-                                                    <TableHead class='flex flex-col justify-center !items-end'>Today
+                                                    <TableHead class='flex flex-col justify-center !items-end'>Dominance
                                                     </TableHead>
                                                 </TableRow>
                                             </TableHeader>
                                             
                                             <TableBody>
-                                                <TableRow v-for='item in others_array' class='text-xs'>
-                                                    <TableCell>{{ item.name }}</TableCell>
-                                                    <TableCell class='flex flex-col !items-end'>{{
+                                                <TableRow v-for='item in others_array'>
+                                                    <TableCell class='text-sm'>{{ item.name }}</TableCell>
+                                                    <TableCell class='text-sm flex flex-col !items-end'>{{
                                                             item.value
                                                                                                 }}
                                                     </TableCell>
+                                                </TableRow>
+                                                
+                                                <TableRow class='text-secondary'>
+                                                    <TableCell class='text-base'>Total</TableCell>
+                                                    <TableCell class='text-base flex flex-col !items-end'>{{ others_dominance_label }}</TableCell>
                                                 </TableRow>
                                             </TableBody>
                                             
