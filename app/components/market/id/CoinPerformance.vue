@@ -2,10 +2,10 @@
     <!--  Price Performance 24h -->
     <div class='flex flex-col gap-8'>
         <!--  Price Title  -->
-        <div class='text-primary flex items-center gap-3'>
+        <div class='text-primary flex items-center gap-2'>
             <NuxtIcon
                 name='ph:speedometer-duotone'
-                size='48'
+                size='36'
             />
 
             <Title :tag='3'>Price Performance</Title>
