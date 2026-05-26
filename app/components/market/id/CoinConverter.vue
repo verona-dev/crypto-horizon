@@ -1,10 +1,10 @@
 <template>
     <div v-if='coin_price' class='flex flex-col gap-8'>
         <!-- Converter Title -->
-        <div class='text-primary flex items-center gap-3'>
+        <div class='text-primary flex items-center gap-2'>
             <NuxtIcon
                 name='ph:calculator-duotone'
-                size='48'
+                size='36'
             />
             
             <Title :tag='3'>{{ coin_symbol }} converter</Title>

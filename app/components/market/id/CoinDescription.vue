@@ -8,7 +8,7 @@
                 <NuxtIcon
                     name='ph:info-duotone'
                     class='block'
-                    size='48'
+                    size='36'
                 />
                 
                 <Title :tag='3'>
