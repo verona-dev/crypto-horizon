@@ -14,14 +14,14 @@
                 <TabsList class='gap-1'>
                     <TabsTrigger
                         value='price'
-                        class='data-[state=active]:text-primary data-[state=active]:border-primary'
+                        class='data-[state=active]:text-primary data-[state=active]:border-primary/50'
                     >
                         Price
                     </TabsTrigger>
                     
                     <TabsTrigger
                         value='mcap'
-                        class='data-[state=active]:text-primary data-[state=active]:border-primary'
+                        class='data-[state=active]:text-primary data-[state=active]:border-primary/50'
                     >
                         Market Cap
                     </TabsTrigger>
@@ -29,15 +29,14 @@
             </Tabs>
             
             <!--  Sniper Mode  -->
-            <div class='flex items-center'>
+            <div class='flex items-center justify-center bg-background size-full rounded-xl px-3 h-full'>
                 <Switch
                     id='sniper_mode'
                     :model-value='sniper_mode'
                     @update:model-value='onToggleSniper'
-                    class='data-[state=unchecked]:bg-primary/50'
-                    :class='{ "" : !dark_mode }'
+                    class='data-[state=unchecked]:bg-primary/25 data-[state=checked]:bg-primary'
                 />
-                <label for='sniper_mode' class='cursor-pointer select-none'>Sniper Mode</label>
+                <label for='sniper_mode' class='text-sm cursor-pointer select-none'>Sniper Mode</label>
             </div>
             
             <!--  Timeframe  -->
@@ -47,7 +46,7 @@
                         v-for='interval in timeframes'
                         :key='interval.timeframe'
                         :value='interval.timeframe'
-                        class='data-[state=active]:text-primary data-[state=active]:border-primary'
+                        class='data-[state=active]:text-primary data-[state=active]:border-primary/50'
                     >
                         {{ interval.label }}
                     </TabsTrigger>
@@ -177,7 +176,7 @@
     
     watch(chart_data, () => {
         const chart_instance = chart_ref.value?.chart;
-
+        
         if (chart_instance) {
             chart_instance.update();
         }
