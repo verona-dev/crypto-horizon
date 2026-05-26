@@ -1,10 +1,10 @@
 <template>
     <div v-if='platforms_list.length' class='coin-contracts flex flex-col gap-8'>
         <!--  Contracts Title  -->
-        <div class='text-primary flex items-center gap-3'>
+        <div class='text-primary flex items-center gap-2'>
             <NuxtIcon
                 name='ph:note-pencil-duotone'
-                size='48'
+                size='36'
             />
 
             <Title :tag='3'>Contracts</Title>
