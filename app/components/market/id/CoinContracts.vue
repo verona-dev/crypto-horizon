@@ -3,7 +3,7 @@
         <!--  Contracts Title  -->
         <div class='text-primary flex items-center gap-3'>
             <NuxtIcon
-                name='ph:note-pencil'
+                name='ph:note-pencil-duotone'
                 size='48'
             />
 

@@ -3,7 +3,7 @@
         <!-- Converter Title -->
         <div class='text-primary flex items-center gap-3'>
             <NuxtIcon
-                name='ph:calculator-fill'
+                name='ph:calculator-duotone'
                 size='48'
             />
             
