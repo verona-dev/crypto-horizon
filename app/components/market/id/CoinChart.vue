@@ -38,7 +38,7 @@
                 ]'
             >
                 <GlowBorder
-                    v-if='!sniper_mode'
+                    v-if='dark_mode && !sniper_mode'
                     :color='["#A07CFE", "#FE8FB5", "#FFBE7B"]'
                     :duration='20'
                     :border-width='1'
@@ -228,7 +228,15 @@
                 padding: 6,
             },
             custom_line: {
-                color: dark_mode.value ? '#9ca3af' : '#2a2f46',
+                color: () => {
+                    if(dark_mode.value) {
+                        if(sniper_mode.value) {
+                            return '#e78a53'; // --primary
+                        }
+                        return '#9ca3af';
+                    }
+                    return '#2a2f46';
+                },
                 dash_length: 1,
                 dash_gap: 6,
                 width: 1,
@@ -260,7 +268,7 @@
                 borderWidth: sniper_mode.value ? 0 : 1,
                 pointHoverRadius: sniper_mode.value ? 16 : 5,
                 pointStyle: sniper_mode.value ? 'crossRot' : 'circle',
-                pointBorderColor: sniper_mode.value ? 'oklch(0.985 0 0)' : '',
+                pointBorderColor: sniper_mode.value ? '#e78a53' : '', // --primary
                 pointBorderWidth: sniper_mode.value ? 2 : 0,
             },
             elements: {
@@ -285,18 +293,15 @@
             },
             tooltip: {
                 body: {
-                    size: sniper_mode.value ? 16 : 14,
+                    size: sniper_mode.value ? 17 : 14,
                     weight: 'bolder',
                 },
-                bodySpacing: sniper_mode.value ? 0 : 8,
                 caretSize: sniper_mode.value ? 0 : 8,
-                padding: {
-                    top: sniper_mode.value ? 12 : 20,
-                    right: sniper_mode.value ? 16 : 24,
-                    bottom: sniper_mode.value ? 12 : 20,
-                    left: sniper_mode.value ? 16 : 24,
-                },
                 position: sniper_mode.value ? 'fixed_tooltip' : 'average',
+                titleFont:  {
+                    size: sniper_mode.value ? 15 : 14,
+                    weight: 'normal',
+                },
             },
         };
         
@@ -389,9 +394,10 @@
                 },
                 tooltip: {
                     enabled: true,
-                    backgroundColor: '#1f2230', // --popover
+                    backgroundColor: '#222222',
                     bodyFont: computed_styles.tooltip.body,
-                    borderColor: '#393e56', // --border
+                    borderColor: '#333333', // --border
+                    bodySpacing: 8,
                     borderWidth: 1,
                     callbacks: {
                         title: function(context) {
@@ -414,12 +420,14 @@
                     caretSize: computed_styles.tooltip.caretSize,
                     cornerRadius: 8,
                     displayColors: false, // disable the color box
-                    padding: computed_styles.tooltip.padding,
-                    position: computed_styles.tooltip.position,
-                    titleFont:  {
-                        size: 14,
-                        weight: 'normal',
+                    padding: {
+                        top: 20,
+                        right: 24,
+                        bottom: 20,
+                        left: 24,
                     },
+                    position: computed_styles.tooltip.position,
+                    titleFont:  computed_styles.tooltip.titleFont,
                     titleMarginBottom: 14,
                 },
                 legend: {
