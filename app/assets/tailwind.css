@@ -106,6 +106,7 @@ html.light {
     --color-foreground: var(--foreground);
     --color-card: var(--card);
     --color-card-foreground: var(--card-foreground);
+    --color-card-dark: var(--card-dark);
     --color-popover: var(--popover);
     --color-popover-foreground: var(--popover-foreground);
     --color-primary: var(--primary);
@@ -119,6 +120,7 @@ html.light {
     --color-destructive: var(--destructive);
     --color-destructive-foreground: var(--destructive-foreground);
     --color-border: var(--border);
+    --color-border-hover: var(--border-hover);
     --color-input: var(--input);
     --color-ring: var(--ring);
     --color-chart-1: var(--chart-1);
@@ -249,6 +251,7 @@ html.light {
     --foreground: #111827;
     --card: #ffffff;
     --card-foreground: #111827;
+    --card-dark: var(--blue-bunker);
     --popover: #ffffff;
     --popover-foreground: #111827;
     --primary: #d87943;
@@ -262,6 +265,7 @@ html.light {
     --destructive: #ef4444;
     --destructive-foreground: #fafafa;
     --border: #e5e7eb;
+    --border-hover: var(--blue-pacific);
     --input: #e5e7eb;
     --ring: #d87943;
     --chart-1: #5f8787;
@@ -277,9 +281,11 @@ html.light {
     --sidebar-accent-foreground: #111827;
     --sidebar-border: #e5e7eb;
     --sidebar-ring: #d87943;
+    
     --font-sans: Geist Mono, ui-monospace, monospace;
     --font-serif: serif;
     --font-mono: JetBrains Mono, monospace;
+    
     --radius: 0.75rem;
     --shadow-x: 0px;
     --shadow-y: 1px;
@@ -315,8 +321,6 @@ html.light {
     --muted-foreground: #888888;
     --accent: #333333;
     --accent-foreground: #c1c1c1;
-    /*--destructive: #5f8787;*/
-    /*--destructive-foreground: #121113;*/
     --border: #222222;
     --input: #222222;
     --ring: #e78a53;
@@ -333,22 +337,4 @@ html.light {
     --sidebar-accent-foreground: #c1c1c1;
     --sidebar-border: #222222;
     --sidebar-ring: #e78a53;
-    --font-sans: Geist Mono, ui-monospace, monospace;
-    --font-serif: serif;
-    --font-mono: JetBrains Mono, monospace;
-    --radius: 0.75rem;
-    --shadow-x: 0px;
-    --shadow-y: 1px;
-    --shadow-blur: 4px;
-    --shadow-spread: 0px;
-    --shadow-opacity: 0.05;
-    --shadow-color: #000000;
-    --shadow-2xs: 0px 1px 4px 0px hsl(0 0% 0% / 0.03);
-    --shadow-xs: 0px 1px 4px 0px hsl(0 0% 0% / 0.03);
-    --shadow-sm: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 1px 2px -1px hsl(0 0% 0% / 0.05);
-    --shadow: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 1px 2px -1px hsl(0 0% 0% / 0.05);
-    --shadow-md: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 2px 4px -1px hsl(0 0% 0% / 0.05);
-    --shadow-lg: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 4px 6px -1px hsl(0 0% 0% / 0.05);
-    --shadow-xl: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 8px 10px -1px hsl(0 0% 0% / 0.05);
-    --shadow-2xl: 0px 1px 4px 0px hsl(0 0% 0% / 0.13);
 }
