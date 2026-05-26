@@ -1,14 +1,14 @@
 <template>
-    <Card class='flex flex-col gap-24 py-16'>
+    <Card class='flex flex-col gap-24 py-20'>
         <div class='flex flex-col items-center gap-8 relative'>
             <!--  Title  -->
             <div class='text-primary flex items-center gap-3'>
                 <NuxtIcon
-                    name='ph:chart-donut-fill'
-                    size='48'
+                    name='ph:chart-donut-duotone'
+                    size='72'
                 />
                 
-                <Title :tag='3'>Supply </Title>
+                <Title :tag='2'>Supply </Title>
             </div>
             
             <!--  Selector  -->

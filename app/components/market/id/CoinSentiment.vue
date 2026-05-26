@@ -3,7 +3,7 @@
         <!--  Sentiment Title  -->
         <div class='text-primary flex items-center gap-3'>
             <NuxtIcon
-                name='ph:users-three-fill'
+                name='ph:users-three-duotone'
                 size='48'
             />
             
