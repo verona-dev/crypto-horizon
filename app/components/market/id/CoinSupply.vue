@@ -13,7 +13,7 @@
             
             <!--  Selector  -->
             <Select v-model='selected' default-value='progress-bars'>
-                <SelectTrigger class='w-56 h-13 pl-4 border-primary/50 absolute top-0 right-20' data-size='default'>
+                <SelectTrigger class='w-56 h-13 pl-4 border-primary/50 xl:absolute xl:top-0 xl:right-20' data-size='default'>
                     <SelectValue />
                 </SelectTrigger>
                 
