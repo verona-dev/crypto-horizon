@@ -5,7 +5,7 @@
             <!--  Overview Title  -->
             <div class='text-primary flex items-center gap-3'>
                 <NuxtIcon
-                    name='ph:squares-four-fill'
+                    name='ph:squares-four-duotone'
                     size='48'
                 />
                 
@@ -235,7 +235,7 @@
             <!--  Github Title  -->
             <div class='text-primary flex items-center gap-3'>
                 <NuxtIcon
-                    name='ph:github-logo-fill'
+                    name='ph:github-logo-duotone'
                     size='48'
                 />
                 
