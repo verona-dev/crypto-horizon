@@ -29,15 +29,35 @@
             </Tabs>
             
             <!--  Sniper Mode  -->
-            <div class='flex items-center justify-center bg-background size-full rounded-xl px-3 h-full'>
-                <Switch
-                    id='sniper_mode'
-                    :model-value='sniper_mode'
-                    @update:model-value='onToggleSniper'
-                    class='data-[state=unchecked]:bg-primary/25 data-[state=checked]:bg-primary'
+            <Button
+                @click='onToggleSniper'
+                variant='outline'
+                :class='[
+                    "h-9.5 relative overflow-hidden hover:bg-transparent",
+                     { "text-primary border-primary/50 hover:text-primary" : sniper_mode },
+                ]'
+            >
+                <GlowBorder
+                    v-if='!sniper_mode'
+                    :color='["#A07CFE", "#FE8FB5", "#FFBE7B"]'
+                    :duration='20'
+                    :border-width='1'
                 />
-                <label for='sniper_mode' class='text-sm cursor-pointer select-none'>Sniper Mode</label>
-            </div>
+                
+                <div class='flex items-center gap-2'>
+                    <NuxtIcon
+                        name='ph:crosshair-simple-duotone'
+                        :size='20'
+                        :class='[
+                            "text-muted-foreground transition-transform duration-500 ease-in-out will-change-transform",
+                             sniper_mode ? "text-primary rotate-180" : "rotate-0",
+                        ]'
+                    />
+                    
+                    <span :class='sniper_mode ? "text-primary" : "text-muted-foreground"'>Sniper Mode
+                    </span>
+                </div>
+            </Button>
             
             <!--  Timeframe  -->
             <Tabs v-model='timeframe'>
@@ -84,9 +104,10 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
+    import { Button } from '@/components/ui/button'
     import { Card } from '~/components/ui/card';
+    import { GlowBorder } from '~/components/ui/glow-border';
     import { Spinner } from '~/components/ui/spinner/index.js';
-    import { Switch } from '@/components/ui/switch';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     
     // Dayjs
