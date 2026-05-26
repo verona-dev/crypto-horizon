@@ -16,7 +16,7 @@
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
-                            <InfoIcon />
+                            <InfoIcon size='28'/>
                         </HoverCardTrigger>
                         
                         <HoverCardContent class='flex-col gap-6'>
@@ -52,8 +52,8 @@
                 
                 <!--  Fear and Greed labels  -->
                 <div class='labels-container flex flex-col items-center gap-4'>
-                    <h2 class='text-7xl'>{{ fear_and_greed_data }}</h2>
-                    <h3 class='text-3xl font-montserrat uppercase tracking-wider text-ring'>{{ fear_and_greed_label }}</h3>
+                    <h2>{{ fear_and_greed_data }}</h2>
+                    <h3 class='uppercase tracking-widest text-primary'>{{ fear_and_greed_label }}</h3>
                 </div>
             </CardContent>
             
@@ -153,7 +153,7 @@
         const circleY = -outerRadius - 5;
         ctx.fillStyle = 'white';
         // Dot bg
-        ctx.strokeStyle = '#1f2230'; // tailwind.css from --card style
+        ctx.strokeStyle = '#121212'; // from tailwind.css --card style
         ctx.lineWidth = 8;
         
         ctx.beginPath();
