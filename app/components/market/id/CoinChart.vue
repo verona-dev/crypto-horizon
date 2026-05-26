@@ -293,8 +293,10 @@
             },
             tooltip: {
                 body: {
-                    size: sniper_mode.value ? 17 : 14,
-                    weight: 'bolder',
+                    bodyFont: {
+                        size: sniper_mode.value ? 17 : 14,
+                        weight: 'bolder',
+                    },
                 },
                 caretSize: sniper_mode.value ? 0 : 8,
                 position: sniper_mode.value ? 'fixed_tooltip' : 'average',
@@ -302,6 +304,7 @@
                     size: sniper_mode.value ? 15 : 14,
                     weight: 'normal',
                 },
+                titleColor: sniper_mode.value ? '#c9374c' : '#00bc7d',
             },
         };
         
@@ -395,7 +398,8 @@
                 tooltip: {
                     enabled: true,
                     backgroundColor: '#222222',
-                    bodyFont: computed_styles.tooltip.body,
+                    bodyFont: computed_styles.tooltip.body.bodyFont,
+                    bodyColor: '#f3f4f6', // light--muted
                     borderColor: '#333333', // --border
                     bodySpacing: 8,
                     borderWidth: 1,
@@ -428,6 +432,7 @@
                     },
                     position: computed_styles.tooltip.position,
                     titleFont:  computed_styles.tooltip.titleFont,
+                    titleColor: '#c1c1c1', // --muted-foreground
                     titleMarginBottom: 14,
                 },
                 legend: {
