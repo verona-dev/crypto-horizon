@@ -20,7 +20,7 @@ const forwardedProps = useForwardProps(delegatedProps)
       props.class,
     )"
   >
-    <span class="truncate">
+    <span class="truncate flex items-center">
       <slot />
     </span>
   </TabsTrigger>
