@@ -5,7 +5,7 @@
     >
         <HoverCardTrigger>
             <Card
-                class='w-48 py-4 flex flex-col items-center gap-2 rounded-lg shadow-2xl shadow-red-500'
+                class='w-36 py-4 flex flex-col items-center gap-2 rounded-xl shadow-2xl shadow-destructive'
                 :class="[getTrendClass(delta), getBorderClass(delta)]"
             >
                 <CardTitle class='flex flex-col items-center'>
@@ -15,7 +15,7 @@
                 <CardContent class='flex justify-center py-2'>
                     <NuxtIcon
                         name='ph:chart-scatter-duotone'
-                        size='64'
+                        size='56'
                     />
                 </CardContent>
                 
