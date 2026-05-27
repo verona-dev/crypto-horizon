@@ -1,6 +1,6 @@
 <template>
     <div class='market page'>
-        <Title :tag='1' :level='2' class='mt-6 sm:mt-10 xl:mt-20'>Cryptocurrency Prices by  {{ label }}</Title>
+        <Title :tag='1' :level='2'>Cryptocurrencies by  {{ label }}</Title>
         
         <CoinsTable @update-label='onUpdateLabel' />
     </div>
