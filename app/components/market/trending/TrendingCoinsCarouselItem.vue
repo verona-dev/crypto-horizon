@@ -1,5 +1,5 @@
 <template>
-    <Card class='h-72 w-100 !rounded-2xl hover:border-blue-pacific/25'>
+    <Card class='h-72 w-130 !rounded-xl hover:border-primary/50'>
         <Skeleton
             v-if='!coin'
             class='w-full h-full'
@@ -11,12 +11,10 @@
             class='h-72 p-2 flex flex-col justify-between animate-fadeIn'
         >
             <!--  Logo + Name + Info  -->
-            <CardHeader class='card-header'>
-                <div class='flex items-center gap-4'>
-                    <!--
-                    <Badge variant='outline'>{{ rank }}</Badge>
-                    -->
-                    
+            <CardHeader class='card-header flex flex-row justify-between items-center'>
+                <Badge variant='outline' class='text-base text-primary'>#{{ mcap_rank }}</Badge>
+                
+                <div class='flex items-center gap-3'>
                     <!--  Logo  -->
                     <NuxtImg
                         v-if='image'
@@ -40,14 +38,15 @@
                         />
                     </NuxtImg>
                     
-                    <CardTitle class='name'>{{ name }}</CardTitle>
+                    <!--  Name  -->
+                    <Title :tag='4'>{{ name }}</Title>
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
-                            <InfoIcon />
+                            <InfoIcon size='20'/>
                         </HoverCardTrigger>
                         
-                        <HoverCardContent class='flex flex-col !items-start !gap-3'>
+                        <HoverCardContent :avoidCollisions='true' class='flex flex-col !items-start !gap-3'>
                             <div class='flex items-center gap-3 text-lg font-bold'>
                                 <span v-if='symbol'>{{ symbol }}</span>
                                 <span v-if='mcap_rank'>&#35;{{ mcap_rank }}</span>
@@ -110,7 +109,7 @@
                         >
                             <NuxtIcon
                                 :name='getTrendIcon(price_change_percentage_1d)'
-                                size='12'
+                                size='24'
                             />
                             
                             <h5>{{ price_change_percentage_1d_label }}</h5>
@@ -131,10 +130,11 @@
     import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import InfoIcon from '~/components/InfoIcon.vue';
     import { Alert } from '~/components/ui/alert';
-    // import { Badge } from '~/components/ui/badge';
+    import { Badge } from '~/components/ui/badge';
     import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
+    import Title from '~/components/Title.vue';
     
     const props = defineProps({
         coin: {
@@ -145,7 +145,7 @@
     const { coin } = toRefs(props);
     
     const slug = coin.value?.slug;
-    // const rank = id.value?.score + 1;
+    const rank = coin.value.id.score + 1;
     const image = coin.value?.large;
     const mcap_rank = coin.value?.market_cap_rank;
     const name = coin.value?.name;
@@ -160,13 +160,3 @@
     const title = coin.value?.data?.content?.title;
     const description = coin.value?.data?.content?.description;
 </script>
-
-<style scoped>
-    a {
-        &:hover {
-            .name {
-                text-decoration: underline;
-            }
-        }
-    }
-</style>
