@@ -26,7 +26,7 @@
                         :height='125'
                     />
                     
-                    <Title class='font-great'>{{ coingecko.name }}</Title>
+                    <Title class='font-great text-7xl xl:text-9xl'>{{ coingecko.name }}</Title>
                 </div>
                 
                 <CardDescription class='flex items-center gap-4'>
