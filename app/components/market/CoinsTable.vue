@@ -189,16 +189,16 @@
                                             :class='{ "flex justify-end": cell.column.id === "sparkline_in_7d" }'>
                                             <!--   Name  -->
                                             <template v-if='cell.column.id === "name"'>
-                                                <div class='flex items-center gap-4 w-88 py-3'>
+                                                <div class='flex items-center gap-4 w-72'>
                                                     <NuxtImg
                                                         :src='cell.row.original.image'
-                                                        width='56'
+                                                        width='44'
                                                         alt='coin logo'
                                                     />
                                                     
                                                     <div class='flex flex-col items-start truncate'>
-                                                        <p class='font-medium text-xl'>{{ cell.getValue() }}</p>
-                                                        <span class='uppercase text-primary/75 mx-autop'>{{ cell.row.original.symbol }}</span>
+                                                        <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
+                                                        <span class='uppercase text-sm text-primary/75 mx-autop'>{{ cell.row.original.symbol }}</span>
                                                     </div>
                                                 </div>
                                             </template>
