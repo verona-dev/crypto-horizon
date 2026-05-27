@@ -1,8 +1,8 @@
 <template>
     <div class='market page'>
-        <Title :tag='1' :level='2' class='mt-6 sm:mt-10 xl:mt-20'>Cryptocurrency Prices by</Title>
+        <Title :tag='1' :level='2' class='mt-6 sm:mt-10 xl:mt-20'>Cryptocurrency Prices by  {{ label }}</Title>
         
-        <CoinsTable />
+        <CoinsTable @update-label='onUpdateLabel' />
     </div>
 </template>
 
@@ -18,6 +18,9 @@
     // SEO
     const title = 'Cryptocurrency Prices, Charts, and Market Capitalization';
     const description = 'Live cryptocurrency prices, market cap, volume, circulating supply, and price charts for 10,000+ coins. Track Bitcoin, Ethereum, and 10,000+ altcoins in real time.';
+    
+    const label = ref('Market Cap');
+    const onUpdateLabel = updateLabel => label.value = updateLabel;
     
     definePageMeta({
         layout: 'market',

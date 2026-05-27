@@ -1,9 +1,8 @@
 <template>
-    <Card class='bg-background flex flex-col items-center gap-12 xl:gap-20 border-none shadow-none w-full h-full z-10'>
-        <Title :tag='2'> {{ sortingLabel }}</Title>
-        
+    <Card class='bg-background w-full h-full shadow-2xl'>
         <div class='w-full flex flex-col gap-12'>
-            <div class='flex items-center py-4'>
+            <!--  Search + Filter  -->
+            <div class='flex items-center p-10'>
                 <!--   Search   -->
                 <Input
                     class='max-w-sm'
@@ -55,16 +54,16 @@
             </div>
             
             <!--   Table   -->
-            <div class='border-t border-b rounded-none flex flex-col shadow-b-2xl overflow-auto'>
-                <Table class='!border-none'>
+            <div class='border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
+                <Table class='!border-none !py-12'>
                     <TableHeader
-                        class='bg-background h-24'
+                        class='h-24'
                         :class='{ "shadow-2xl" : dark_mode }'
                     >
                         <TableRow
                             v-for='headerGroup in table.getHeaderGroups()'
                             :key='headerGroup.id'
-                            class='hover:bg-background h-16'
+                            class='!hover:bg-background h-16'
                         >
                             <TableHead
                                 v-for='header in headerGroup.headers'
@@ -379,6 +378,8 @@
         header.column.toggleSorting(header.column.getIsSorted() === 'asc');
         sortingLabel.value = header.column.columnDef.pageTitle || header.column.columnDef.label;
     };
+    const emit = defineEmits(['updateLabel']);
+    watch(sortingLabel, () => emit('updateLabel', sortingLabel.value));
     
     const columnFilters = ref([]);
     const columnVisibility = ref({
