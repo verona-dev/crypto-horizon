@@ -1,6 +1,6 @@
 <template>
     <div class='market page'>
-        <Title :tag='1' :level='2' class='page-title inline'>Cryptocurrency Prices by</Title>
+        <Title :tag='1' :level='2' class='mt-6 sm:mt-10 xl:mt-20'>Cryptocurrency Prices by</Title>
         
         <CoinsTable />
     </div>

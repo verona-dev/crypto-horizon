@@ -1,6 +1,6 @@
 <template>
-    <Card class='bg-background flex flex-col gap-12 xl:gap-20 border-none shadow-none w-full h-full z-10'>
-        <Title :tag='2' class='page-title inline'> {{ sortingLabel }}</Title>
+    <Card class='bg-background flex flex-col items-center gap-12 xl:gap-20 border-none shadow-none w-full h-full z-10'>
+        <Title :tag='2'> {{ sortingLabel }}</Title>
         
         <div class='w-full flex flex-col gap-12'>
             <div class='flex items-center py-4'>
