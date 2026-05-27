@@ -1,11 +1,14 @@
 <template>
-    <div class='market page gap-24 xl:gap-48'>
+    <div class='market page'>
+        <Title :tag='1' :level='2' class='page-title inline'>Cryptocurrency Prices by</Title>
+        
         <CoinsTable />
     </div>
 </template>
 
 <script setup>
     import CoinsTable from '~/components/market/CoinsTable.vue';
+    import Title from '~/components/Title.vue';
     
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';

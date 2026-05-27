@@ -1,7 +1,7 @@
 <template>
     <div class='market page gap-24 xl:gap-48'>
         <div class='flex flex-col items-center justify-center gap-16 z-10'>
-            <Title class='page-title'>Global Market</Title>
+            <Title :tag='1' :level='2' class='page-title'>Global Market</Title>
             
             <div class='flex flex-col flex-wrap xl:flex-row items-center xl:items-start justify-center gap-6 w-screen max-w-7xl'>
                 <MarketFearGreed />
