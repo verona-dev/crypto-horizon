@@ -1,14 +1,11 @@
 <template>
     <div class='market page'>
-        <Title :tag='1' :level='2'>Cryptocurrencies by  {{ label }}</Title>
-        
         <CoinsTable @update-label='onUpdateLabel' />
     </div>
 </template>
 
 <script setup>
     import CoinsTable from '~/components/market/CoinsTable.vue';
-    import Title from '~/components/Title.vue';
     
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
