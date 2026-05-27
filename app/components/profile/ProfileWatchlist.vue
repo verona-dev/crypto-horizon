@@ -1,13 +1,9 @@
 <template>
     <Card class='p-6 rounded-none rounded-bl-md rounded-br-md'>
         <CardHeader class='items-center gap-2'>
-            <CardTitle class='text-3xl'>
-                Watchlist
-            </CardTitle>
+            <CardTitle class='text-3xl'>Watchlist</CardTitle>
 
-            <CardDescription class='text-lg'>
-                A list of your saved coins
-            </CardDescription>
+            <CardDescription class='text-lg'>A list of your saved coins</CardDescription>
         </CardHeader>
         
         <CardContent class='[&>div]:max-h-120'>
@@ -21,13 +17,9 @@
 
                         <TableHead>Name</TableHead>
 
-                        <TableHead class='text-center'>
-                            Price
-                        </TableHead>
+                        <TableHead class='text-center'>Price</TableHead>
 
-                        <TableHead class='text-center'>
-                            24h &#37;
-                        </TableHead>
+                        <TableHead class='text-center'>24h &#37;</TableHead>
 
                         <TableHead class='w-32 text-center'>
                             <HoverCard :open-delay='200'>
@@ -65,13 +57,9 @@
                             </HoverCard>
                         </TableHead>
 
-                        <TableHead class='text-center'>
-                            Details
-                        </TableHead>
+                        <TableHead class='text-center'>Details</TableHead>
 
-                        <TableHead class='text-center'>
-                            Action
-                        </TableHead>
+                        <TableHead class='text-center'>Action</TableHead>
                     </TableRow>
                 </TableHeader>
                 
@@ -93,13 +81,9 @@
                             />
                             
                             <div class='flex items-center gap-2 truncate'>
-                                <p class='font-medium'>
-                                    {{ coin.name }}
-                                </p>
+                                <p class='font-medium'>{{ coin.name }}</p>
 
-                                <p class='uppercase text-muted-foreground'>
-                                    {{ coin.symbol }}
-                                </p>
+                                <p class='uppercase text-muted-foreground'>{{ coin.symbol }}</p>
                             </div>
                         </TableCell>
                         
@@ -124,13 +108,10 @@
                         <TableCell>{{ formatNumber(coin.atl, { compact: true, decimals: 2 }) }}</TableCell>
                         
                         <TableCell>
-                            <Button
-                                class='w-fit h-fit px-0'
-                                variant='link'
-                                size='sm'
-                                @click='navigateTo(`/market/${coin.id}`)'
-                            >
-                                View Coin
+                            <Button variant='link' size='sm'>
+                                <NuxtLink :to='`/market/${coin.id}`' target='_blank'>
+                                    View Coin
+                                </NuxtLink>
                             </Button>
                         </TableCell>
                         
@@ -152,11 +133,11 @@
 
 <script setup>
     import { Button } from '~/components/ui/button';
-    import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
+    import { Card, CardTitle, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendClass, getTrendIcon } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
-    import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+    import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
     
     // ProfileStore
     import { storeToRefs } from 'pinia';
