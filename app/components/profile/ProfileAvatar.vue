@@ -1,98 +1,96 @@
 <template>
-    <Card class='h-full flex flex-col items-center p-6 gap-4'>
+    <Card class='h-full flex flex-col items-center p-6 gap-4 rounded-none !rounded-tl-xl !border-b-0'>
         <CardHeader class='items-center gap-2'>
             <CardTitle class='text-3xl'>{{ username }}</CardTitle>
             <CardDescription class='text-lg capitalize'>&#8226; {{ astronautType }} &#8226;</CardDescription>
         </CardHeader>
         
         <CardContent>
-            <div class='p-2 rounded-full shadow-lg'>
-                <TooltipProvider :delayDuration='150'>
-                    <Tooltip>
-                        <TooltipTrigger
-                            @mouseenter='show_tooltip = true'
-                            @mouseleave='show_tooltip = false'
+            <TooltipProvider :delayDuration='150'>
+                <Tooltip>
+                    <TooltipTrigger
+                        @mouseenter='show_tooltip = true'
+                        @mouseleave='show_tooltip = false'
+                    >
+                        <Avatar
+                            @click='toggleDrawer'
+                            class='h-52 w-52 rounded-full ring-offset-background ring-10 ring-blue-oxford hover:ring-primary hover:cursor-pointer'
                         >
-                            <Avatar
-                                @click='toggleDrawer'
-                                class='h-52 w-52 rounded-full ring-offset-background ring-10 ring-secondary hover:cursor-pointer hover:ring-border-hover'
-                            >
-                                <AvatarImage
-                                    v-if='profile_avatar'
-                                    :src='profile_avatar'
-                                    alt='avatar'
-                                />
-                                <AvatarFallback class='rounded-full'>A</AvatarFallback>
-                            </Avatar>
-                        </TooltipTrigger>
+                            <AvatarImage
+                                v-if='profile_avatar'
+                                :src='profile_avatar'
+                                alt='avatar'
+                            />
+                            <AvatarFallback class='rounded-full'>A</AvatarFallback>
+                        </Avatar>
+                    </TooltipTrigger>
+                    
+                    <TooltipContent v-if='show_tooltip' :side-offset='15' side='left'>
+                        <p class='text-xs'>Change Avatar</p>
+                    </TooltipContent>
+                </Tooltip>
+            </TooltipProvider>
+            
+            <!--  Avatar Change  -->
+            <Drawer v-model:open='drawer_visibility'>
+                <DrawerContent>
+                    <div class='mx-auto w-full max-w-sm lg:max-w-lg'>
+                        <DrawerHeader class='my-6'>
+                            <DrawerTitle class='text-3xl'>Choose an avatar</DrawerTitle>
+                            <DrawerDescription class='text-md'>Click to select your profile avatar.</DrawerDescription>
+                        </DrawerHeader>
                         
-                        <TooltipContent v-if='show_tooltip' :side-offset='15' side='left'>
-                            <p class='text-xs'>Change Avatar</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
-                
-                <!--  Avatar Change  -->
-                <Drawer v-model:open='drawer_visibility'>
-                    <DrawerContent>
-                        <div class='mx-auto w-full max-w-sm lg:max-w-lg'>
-                            <DrawerHeader class='my-6'>
-                                <DrawerTitle class='text-3xl'>Choose an avatar</DrawerTitle>
-                                <DrawerDescription class='text-md'>Click to select your profile avatar.</DrawerDescription>
-                            </DrawerHeader>
-                            
-                            <ToggleGroup
-                                v-model='selected_avatar'
-                                @update:model-value='handleAvatarSelection'
-                                type='single'
-                                class='flex flex-wrap my-12 xl:h-64 p-4'
-                            >
-                                <div v-if='!avatars' class='flex flex-wrap justify-evenly'>
-                                    <template v-for='n in 8' :key='n'>
-                                        <Skeleton class='w-20 h-20 m-3.5 rounded-lg' />
-                                    </template>
-                                </div>
-                                
-                                <template v-else>
-                                    <template v-for='avatar in avatars' :key='avatar'>
-                                        <ToggleGroupItem
-                                            v-slot='{ pressed }'
-                                            :value='avatar'
-                                            class='w-24 h-24 m-2 relative rounded-lg border border-transparent data-[state=on]:bg-transparent'
-                                        >
-                                            <Avatar class='rounded-lg w-fit h-fit'>
-                                                <AvatarImage :src='avatar' alt='avatar image' />
-                                                <AvatarFallback>Av</AvatarFallback>
-                                            </Avatar>
-                                            
-                                            <CircleCheck
-                                                v-if='pressed'
-                                                class='absolute bottom-0 right-0 size-5 rounded-full fill-card text-primary/75'
-                                            />
-                                        </ToggleGroupItem>
-                                    </template>
+                        <ToggleGroup
+                            v-model='selected_avatar'
+                            @update:model-value='handleAvatarSelection'
+                            type='single'
+                            class='flex flex-wrap mb-12 p-4'
+                        >
+                            <div v-if='!avatars' class='flex flex-wrap justify-evenly'>
+                                <template v-for='n in 8' :key='n'>
+                                    <Skeleton class='w-20 h-20 m-3.5 rounded-lg' />
                                 </template>
-                            </ToggleGroup>
+                            </div>
                             
-                            <DrawerFooter class='mb-16 gap-4'>
-                                <DrawerClose as-child>
-                                    <Button
-                                        @click='onSubmit'
-                                        :disabled='is_current_avatar_selected || !selected_avatar'
-                                        class='disabled:pointer-events-auto disabled:cursor-not-allowed'
+                            <template v-else>
+                                <template v-for='avatar in avatars' :key='avatar'>
+                                    <ToggleGroupItem
+                                        v-slot='{ pressed }'
+                                        :value='avatar'
+                                        class='w-24 h-24 m-2 relative rounded-lg border border-transparent data-[state=on]:bg-transparent'
                                     >
-                                        {{ button_label }}
-                                    </Button>
-                                </DrawerClose>
-                                
-                                <DrawerClose as-child>
-                                    <Button variant='outline'>Cancel</Button>
-                                </DrawerClose>
-                            </DrawerFooter>
-                        </div>
-                    </DrawerContent>
-                </Drawer>
-            </div>
+                                        <Avatar class='rounded-lg w-fit h-fit'>
+                                            <AvatarImage :src='avatar' alt='avatar image' />
+                                            <AvatarFallback>Av</AvatarFallback>
+                                        </Avatar>
+                                        
+                                        <CircleCheck
+                                            v-if='pressed'
+                                            class='absolute bottom-0 right-0 size-5 rounded-full fill-card text-primary/75'
+                                        />
+                                    </ToggleGroupItem>
+                                </template>
+                            </template>
+                        </ToggleGroup>
+                        
+                        <DrawerFooter class='mb-16 gap-4'>
+                            <DrawerClose as-child>
+                                <Button
+                                    @click='onSubmit'
+                                    :disabled='is_current_avatar_selected || !selected_avatar'
+                                    class='disabled:pointer-events-auto disabled:cursor-not-allowed'
+                                >
+                                    {{ button_label }}
+                                </Button>
+                            </DrawerClose>
+                            
+                            <DrawerClose as-child>
+                                <Button variant='outline'>Cancel</Button>
+                            </DrawerClose>
+                        </DrawerFooter>
+                    </div>
+                </DrawerContent>
+            </Drawer>
         </CardContent>
         
         <CardContent>

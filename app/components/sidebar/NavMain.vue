@@ -10,9 +10,11 @@
             url: string
             icon?: LucideIcon
             isActive?: boolean
+            disabled?: boolean
             items?: {
                 title: string
                 url: string
+                disabled?: boolean
             }[]
         }[]
     }>()
@@ -76,8 +78,9 @@
                                         ]'
                                 >
                                     <NuxtLink
-                                        :to="subItem.url"
+                                        :to="subItem.disabled ? undefined : subItem.url"
                                         class='!h-9'
+                                        :class='subItem.disabled ? "!text-muted-foreground" : ""'
                                     >
                                         <span>{{ subItem.title }}</span>
                                     </NuxtLink>

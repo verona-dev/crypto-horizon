@@ -16,9 +16,9 @@
         setup() {
             return () =>
                 h('KbdGroup', { class: 'flex items-center gap-2' }, [
-                    h('Kbd', { class: 'border rounded-md py-0.5 px-2' }, '⌘'),
+                    h('Kbd', { class: 'border rounded-sm py-0.5 px-2' }, '⌘'),
                     h('span', {}, '+'),
-                    h('Kbd', { class: 'border rounded-md py-0.5 px-2' }, 'E')
+                    h('Kbd', { class: 'border rounded-sm py-0.5 px-2' }, 'E')
                 ])
         }
     })

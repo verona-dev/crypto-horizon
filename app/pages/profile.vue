@@ -23,7 +23,6 @@
                 </client-only>
                 
                 <ProfileWatchlist />
-                
             </div>
             
         </div>
@@ -33,7 +32,7 @@
         <SnowfallBg
             v-if='dark_mode'
             color='eee8a9'
-            class='absolute inset-0'
+            class='absolute inset-0 !z-0'
             :min-radius='0.2'
             :max-radius='4'
             :speed='0.5'
@@ -64,8 +63,8 @@
     dayjs.extend(relativeTime);
     dayjs.extend(utc);
     
-    const username = ref(profile.value?.username || '');
-    const astronaut_type = ref(profile.value?.astronaut_type || '');
+    const username = computed(() => profile.value?.username || '');
+    const astronaut_type = computed(() => profile.value?.astronaut_type || '');
     
     const profile_formatted = computed(() => [
         { name: 'username', label: 'Username', value: profile.value?.username },

@@ -1,103 +1,95 @@
 <template>
-    <Card class='bg-background flex flex-col gap-12 xl:gap-20 border-none shadow-none w-full h-full z-10'>
-        <h3 class='flex flex-col items-start [gap:clamp(0.5rem,4vw,4rem)]'>
-            <Title :tag='1' :level='3'>Leading Cryptocurrencies by</Title>
-            
-            <Text3d
-                class='[font-size:clamp(1.4rem,4vw,4rem)] font-black uppercase'
-                :animate='false'
-                :stroke-size='4'
-                :letter-spacing='0.15'
-                :shadow-color='dark_mode ? "yellow" : "transparent"'
-            >
-                {{ sortingLabel }}
-            </Text3d>
-        </h3>
-
-        <div class='w-full flex flex-col gap-12'>
-            <div class='flex items-center py-4'>
-                <!--   Search   -->
-                <Input
-                    class='max-w-sm'
-                    placeholder='Search Coins...'
-                    :model-value='table.getColumn("name")?.getFilterValue()'
-                    @update:model-value='table.getColumn("name")?.setFilterValue($event)'
-                />
-                <!--   Filter Columns   -->
-                <DropdownMenu :modal='false'>
-                    <DropdownMenuTrigger
-                        as-child
-                        class='flex items-center gap-4'
-                    >
-                        <Button
-                            variant='outline'
-                            class='ml-auto p-5 gap-2'
-                        >
-                            <div class='pt-1.5'>
-                                <NuxtIcon
-                                    name='ph:table-thin'
-                                    size='20'
-                                />
-                            </div>
-                            
-                            <span>Columns</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    
-                    <DropdownMenuContent
-                        align='end'
-                        class='w-56 p-1 pb-0'
-                    >
-                        <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>
-                            Columns
-                        </DropdownMenuLabel>
+    <Card class='w-full h-full !shadow-2xl'>
+        <div class='w-full flex flex-col'>
+            <div class='flex flex-col items-center justify-center gap-8 p-14'>
+                <Title :tag='1' :level='3'>Cryptocurrencies by  {{ sortingLabel }}</Title>
+                
+                <!--  Search + Filter  -->
+                <div class='flex items-center gap-4'>
+                    <!--   Search   -->
+                    <div class='relative'>
+                        <Input
+                            class='w-lg pl-8'
+                            placeholder='Search Coin...'
+                            :model-value='table.getColumn("name")?.getFilterValue()'
+                            @update:model-value='table.getColumn("name")?.setFilterValue($event)'
+                        />
                         
-                        <DropdownMenuCheckboxItem
-                            v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
-                            :key='column.id'
-                            :model-value='column.getIsVisible()'
-                            class='checkbox-item capitalize h-10 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-foreground/85'
-                            @update:model-value='(value) => column.toggleVisibility(!!value)'
-                            @select='event => event.preventDefault()'
+                        <NuxtIcon
+                            name='ph:magnifying-glass-duotone'
+                            size='16'
+                            class='absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground'
+                        />
+                    </div>
+                    
+                    <!--   Filter Columns   -->
+                    <DropdownMenu :modal='false'>
+                        <DropdownMenuTrigger
+                            as-child
+                            class='flex items-center gap-4'
                         >
-                            {{ column.columnDef.label }}
-                        </DropdownMenuCheckboxItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                            <Button variant='outline' class='gap-2'>
+                                <div class='pt-1.5'>
+                                    <NuxtIcon
+                                        name='ph:layout-light'
+                                        size='20'
+                                    />
+                                </div>
+                                
+                                <span>Columns</span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        
+                        <DropdownMenuContent align='end' class='w-56 p-1 pb-0'>
+                            <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Columns</DropdownMenuLabel>
+                            
+                            <DropdownMenuCheckboxItem
+                                v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
+                                :key='column.id'
+                                :model-value='column.getIsVisible()'
+                                class='checkbox-item capitalize h-10 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-foreground/85'
+                                @update:model-value='(value) => column.toggleVisibility(!!value)'
+                                @select='event => event.preventDefault()'
+                            >
+                                {{ column.columnDef.label }}
+                            </DropdownMenuCheckboxItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
             </div>
             
             <!--   Table   -->
-            <div class='border-t border-b rounded-none flex flex-col shadow-b-2xl overflow-auto'>
+            <div class='border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
                 <Table class='!border-none'>
                     <TableHeader
-                        class='bg-background h-24'
+                        class='h-24'
                         :class='{ "shadow-2xl" : dark_mode }'
                     >
                         <TableRow
                             v-for='headerGroup in table.getHeaderGroups()'
                             :key='headerGroup.id'
-                            class='hover:bg-background h-16'
                         >
                             <TableHead
                                 v-for='header in headerGroup.headers'
                                 :key='header.id'
-                                class='h-full font-bolder text-foreground'
                                 :class='[headerWidths[header.column.id]]'
                             >
                                 <template v-if='!header.isPlaceholder'>
                                     <div
-                                        class='flex justify-end'
-                                        :class='{
-                                            "hover:cursor-pointer" : header.column.columnDef.isSortable,
-                                            "!justify-center items-center": header.column.id === "checkbox",
-                                            "!justify-center": header.column.id === "market_cap_rank",
-                                            "justify-start": header.column.id === "name",
-                                        }'
+                                        :class='[
+                                            "flex justify-end",
+                                            { "hover:cursor-pointer" : header.column.columnDef.isSortable },
+                                            { "!justify-center items-center": header.column.id === "checkbox" },
+                                            { "!justify-center": header.column.id === "market_cap_rank" },
+                                            { "justify-start": header.column.id === "name" },
+                                        ]'
                                         @click='onSort(header)'
                                     >
                                         <div
-                                            class='flex items-center gap-1'
-                                            :class='{ "flex flex-row-reverse !justify-end" : header.column.id === "name" }'
+                                            :class='[
+                                                "flex items-center gap-1",
+                                               { "flex flex-row-reverse !justify-end" : header.column.id === "name" },
+                                            ]'
                                         >
                                             <div
                                                 v-if='header.column.columnDef.isSortable'
@@ -108,7 +100,7 @@
                                                     name='ph:caret-down-fill'
                                                     size='12'
                                                 />
-
+                                                
                                                 <NuxtIcon
                                                     v-else-if='header.column.getIsSorted() === "asc"'
                                                     name='ph:caret-up-fill'
@@ -130,10 +122,8 @@
                                                 <HoverCardTrigger>
                                                     <InfoIcon />
                                                 </HoverCardTrigger>
-
-                                                <HoverCardContent>
-                                                    {{ header.column.columnDef.description }}
-                                                </HoverCardContent>
+                                                
+                                                <HoverCardContent>{{ header.column.columnDef.description }}</HoverCardContent>
                                             </HoverCard>
                                         </div>
                                     </div>
@@ -158,14 +148,10 @@
                                             >
                                                 <Spinner class='size-8 text-green-shamrock' />
                                             </EmptyMedia>
-
-                                            <EmptyTitle>
-                                                Loading coins...
-                                            </EmptyTitle>
-
-                                            <EmptyDescription>
-                                                Synchronizing with the crypto market, hold on tight!
-                                            </EmptyDescription>
+                                            
+                                            <EmptyTitle>Loading coins...</EmptyTitle>
+                                            
+                                            <EmptyDescription>Synchronizing with the crypto market, hold on tight!</EmptyDescription>
                                         </EmptyHeader>
                                     </Empty>
                                 </TableCell>
@@ -178,7 +164,7 @@
                                 <TableRow
                                     v-for='row in table.getRowModel().rows'
                                     :key='row.id'
-                                    class='hover:bg-muted/50 hover:cursor-pointer border-t-0 !px-6 animate-fadeIn'
+                                    class='hover:cursor-pointer border-t-0 !px-6 animate-fadeIn'
                                 >
                                     <!--   Checkbox / Favourites  -->
                                     <TableCell class='h-20 text-center'>
@@ -200,26 +186,19 @@
                                         <TableCell
                                             v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "checkbox")'
                                             :key='cell.id'
-                                            class='h-20'
-                                            :class='{
-                                                "flex justify-end": cell.column.id === "sparkline_in_7d",
-                                            }'
-                                        >
+                                            :class='{ "flex justify-end": cell.column.id === "sparkline_in_7d" }'>
                                             <!--   Name  -->
                                             <template v-if='cell.column.id === "name"'>
-                                                <div class='flex items-center gap-4 w-88'>
+                                                <div class='flex items-center gap-4 w-72'>
                                                     <NuxtImg
                                                         :src='cell.row.original.image'
-                                                        width='40'
+                                                        width='44'
                                                         alt='coin logo'
                                                     />
                                                     
-                                                    <div class='flex flex-col items-start gap-1 truncate'>
-                                                        <p class='font-medium'>
-                                                            {{ cell.getValue() }}
-                                                        </p>
-
-                                                        <span class='uppercase text-xs text-muted-foreground'>{{ cell.row.original.symbol }}</span>
+                                                    <div class='flex flex-col items-start truncate'>
+                                                        <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
+                                                        <span class='uppercase text-sm text-primary/75 mx-autop'>{{ cell.row.original.symbol }}</span>
                                                     </div>
                                                 </div>
                                             </template>
@@ -270,40 +249,24 @@
                             <!--   No results   -->
                             <template v-else>
                                 <TableRow>
-                                    <TableCell
-                                        :colspan='columns.length'
-                                        class='p-0'
-                                    >
+                                    <TableCell :colspan='columns.length' class='p-0'>
                                         <Empty class='from-muted/25 to-background h-130 bg-gradient-to-b from-50%'>
                                             <EmptyHeader class='gap-3'>
-                                                <EmptyMedia
-                                                    variant='icon'
-                                                    class='w-24 h-24'
-                                                >
-                                                    <NuxtIcon
-                                                        name='ph:notches-thin'
-                                                        size='60'
-                                                    />
+                                                <EmptyMedia variant='icon' class='w-24 h-24'>
+                                                    <NuxtIcon name='ph:notches-thin' size='60' />
                                                 </EmptyMedia>
-
-                                                <EmptyTitle>
-                                                    No data available
-                                                </EmptyTitle>
-
-                                                <EmptyDescription>
-                                                    No data found. Check back later for updates.
-                                                </EmptyDescription>
+                                                
+                                                <EmptyTitle>No data available</EmptyTitle>
+                                                
+                                                <EmptyDescription>No data found. Check back later for updates.</EmptyDescription>
                                             </EmptyHeader>
-
+                                            
                                             <EmptyContent>
                                                 <Button
                                                     variant='outline'
                                                     @click='getCoinsMarkets({}, "table")'
                                                 >
-                                                    <NuxtIcon
-                                                        name='ph:repeat-thin'
-                                                        size='20'
-                                                    />
+                                                    <NuxtIcon name='ph:repeat-thin' size='20' />
                                                     Retry
                                                 </Button>
                                             </EmptyContent>
@@ -317,8 +280,13 @@
             </div>
             
             <!--   Update status   -->
-            <div class='flex items-center justify-center'>
-                <span class='text-xs'>Market data updated {{ lastApiUpdate }}</span>
+            <div v-if='!loading' class='text-muted-foreground flex items-center justify-center gap-1.5 p-4'>
+                <NuxtIcon
+                    name='ph:hexagon-duotone'
+                    size='16'
+                    class=''
+                />
+                <span class='text-sm'>Market data updated {{ lastApiUpdate }}</span>
             </div>
         </div>
     </Card>
@@ -337,11 +305,10 @@
     import { Input } from '~/components/ui/input';
     import { Spinner } from '~/components/ui/spinner';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
-    import { Text3d } from '~/components/ui/text-3d';
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel, getFilteredRowModel } from '@tanstack/vue-table';
     import glossary from '~/assets/data/market/glossary.json';
     import InfoIcon from '@/components/InfoIcon.vue';
-    import Title from '~/components/Title.vue';
+    import Title from '@/components/Title.vue';
     
     // Chartjs
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Tooltip } from 'chart.js';
@@ -361,6 +328,7 @@
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
+    import { SidebarMenuButton } from '@/components/ui/sidebar/index.ts';
     const ProfileStore = useProfileStore();
     const { updateWatchlist } = ProfileStore;
     
@@ -392,6 +360,8 @@
         header.column.toggleSorting(header.column.getIsSorted() === 'asc');
         sortingLabel.value = header.column.columnDef.pageTitle || header.column.columnDef.label;
     };
+    const emit = defineEmits(['updateLabel']);
+    watch(sortingLabel, () => emit('updateLabel', sortingLabel.value));
     
     const columnFilters = ref([]);
     const columnVisibility = ref({

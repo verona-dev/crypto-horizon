@@ -26,7 +26,7 @@
                 <div class='flex flex-col w-full gap-12'>
                     <div v-if='first_step' class='flex flex-col items-center gap-2'>
                         <FieldTitle class='text-3xl font-bold'>Welcome</FieldTitle>
-                        <FieldDescription>Don’t have an account? <NuxtLink to='/register'>Register</NuxtLink></FieldDescription>
+                        <FieldDescription>Don’t have an account? <NuxtLink to='/register' class='text-primary'>Register</NuxtLink></FieldDescription>
                     </div>
                     
                     <LoginOtp
@@ -48,6 +48,8 @@
                         <Button
                             variant='link'
                             size='lg'
+                            class='text-foreground'
+                        
                         >
                             <NuxtIcon
                                 name='ph:arrows-left-right'

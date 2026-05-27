@@ -3,7 +3,7 @@
         <!--  Explorers Title  -->
         <div class='text-primary flex items-center gap-2'>
             <NuxtIcon
-                name='ph:codepen-logo-duotone'
+                name='ph:stack-duotone'
                 size='36'
             />
             
@@ -21,7 +21,7 @@
                 >
                     <ItemMedia>
                         <NuxtIcon
-                            name='ph:codesandbox-logo-fill'
+                            name='ph:stack-simple-fill'
                             size='20'
                         />
                     </ItemMedia>
@@ -66,7 +66,7 @@
                                 class='w-full h-13 pl-1.5 flex items-center gap-3'
                             >
                                 <NuxtIcon
-                                    name='ph:codesandbox-logo-fill'
+                                    name='ph:stack-simple-fill'
                                     size='20'
                                 />
                                 {{ explorer.name }}
