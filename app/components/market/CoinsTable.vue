@@ -1,25 +1,31 @@
 <template>
     <Card class='bg-background w-full h-full shadow-2xl'>
-        <div class='w-full flex flex-col gap-12'>
+        <div class='w-full flex flex-col'>
             <!--  Search + Filter  -->
-            <div class='flex items-center p-10'>
+            <div class='flex items-center gap-4 p-10'>
                 <!--   Search   -->
-                <Input
-                    class='max-w-sm'
-                    placeholder='Search Coins...'
-                    :model-value='table.getColumn("name")?.getFilterValue()'
-                    @update:model-value='table.getColumn("name")?.setFilterValue($event)'
-                />
+                <div class='relative'>
+                    <Input
+                        class='w-lg pl-8'
+                        placeholder='Search Coins...'
+                        :model-value='table.getColumn("name")?.getFilterValue()'
+                        @update:model-value='table.getColumn("name")?.setFilterValue($event)'
+                    />
+                    
+                    <NuxtIcon
+                        name='ph:magnifying-glass-duotone'
+                        size='16'
+                        class='absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground'
+                    />
+                </div>
+                
                 <!--   Filter Columns   -->
                 <DropdownMenu :modal='false'>
                     <DropdownMenuTrigger
                         as-child
                         class='flex items-center gap-4'
                     >
-                        <Button
-                            variant='outline'
-                            class='ml-auto p-5 gap-2'
-                        >
+                        <Button variant='outline' class='gap-2'>
                             <div class='pt-1.5'>
                                 <NuxtIcon
                                     name='ph:table-thin'
@@ -27,17 +33,12 @@
                                 />
                             </div>
                             
-                            <span>Filter</span>
+                            <span>Filters</span>
                         </Button>
                     </DropdownMenuTrigger>
                     
-                    <DropdownMenuContent
-                        align='end'
-                        class='w-56 p-1 pb-0'
-                    >
-                        <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>
-                            Filter
-                        </DropdownMenuLabel>
+                    <DropdownMenuContent align='end' class='w-56 p-1 pb-0'>
+                        <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Filters</DropdownMenuLabel>
                         
                         <DropdownMenuCheckboxItem
                             v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
@@ -327,7 +328,6 @@
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel, getFilteredRowModel } from '@tanstack/vue-table';
     import glossary from '~/assets/data/market/glossary.json';
     import InfoIcon from '@/components/InfoIcon.vue';
-    import Title from '~/components/Title.vue';
     
     // Chartjs
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Tooltip } from 'chart.js';
