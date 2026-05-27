@@ -83,7 +83,7 @@
     }
     
     h2 {
-        @apply text-7xl xl:text-8xl;
+        @apply text-6xl xl:text-8xl;
     }
     
     h3 {
@@ -135,7 +135,12 @@
     }
     
     .page {
-        @apply flex flex-col justify-center items-center gap-12 w-full md:max-w-[2560px] min-h-[calc(100vh-24rem)] relative py-16 px-12 mx-auto;
+        @apply mt-20 relative px-6 mx-auto w-full;
+        
+        /* Desktop */
+        @media (min-width: 1024px) {
+            @apply mt-0 flex flex-col justify-center items-center gap-12 w-full max-w-[2560px] min-h-[calc(100vh-24rem)] py-16 px-12 mx-auto;
+        }
     }
     
     .sidebar {
