@@ -21,7 +21,7 @@
                 >
                     <ItemMedia>
                         <NuxtIcon
-                            name='ph:stack-simple-duotone'
+                            name='ph:stack-simple-fill'
                             size='20'
                         />
                     </ItemMedia>
@@ -66,7 +66,7 @@
                                 class='w-full h-13 pl-1.5 flex items-center gap-3'
                             >
                                 <NuxtIcon
-                                    name='ph:stack-simple-duotone'
+                                    name='ph:stack-simple-fill'
                                     size='20'
                                 />
                                 {{ explorer.name }}
