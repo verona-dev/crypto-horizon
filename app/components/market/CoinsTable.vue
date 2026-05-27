@@ -28,17 +28,17 @@
                         <Button variant='outline' class='gap-2'>
                             <div class='pt-1.5'>
                                 <NuxtIcon
-                                    name='ph:table-thin'
+                                    name='ph:funnel-simple'
                                     size='20'
                                 />
                             </div>
                             
-                            <span>Filters</span>
+                            <span>Filter</span>
                         </Button>
                     </DropdownMenuTrigger>
                     
                     <DropdownMenuContent align='end' class='w-56 p-1 pb-0'>
-                        <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Filters</DropdownMenuLabel>
+                        <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Filter</DropdownMenuLabel>
                         
                         <DropdownMenuCheckboxItem
                             v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
