@@ -14,14 +14,14 @@
                 <TabsList class='gap-1'>
                     <TabsTrigger
                         value='price'
-                        class='data-[state=active]:text-primary data-[state=active]:border-primary/50'
+                        class='data-[state=active]:bg-primary data-[state=active]:text-background'
                     >
                         Price
                     </TabsTrigger>
                     
                     <TabsTrigger
                         value='mcap'
-                        class='data-[state=active]:text-primary data-[state=active]:border-primary/50'
+                        class='data-[state=active]:bg-primary data-[state=active]:text-background'
                     >
                         Market Cap
                     </TabsTrigger>
@@ -66,7 +66,7 @@
                         v-for='interval in timeframes'
                         :key='interval.timeframe'
                         :value='interval.timeframe'
-                        class='data-[state=active]:text-primary data-[state=active]:border-primary/50'
+                        class='data-[state=active]:bg-primary data-[state=active]:text-background'
                     >
                         {{ interval.label }}
                     </TabsTrigger>
