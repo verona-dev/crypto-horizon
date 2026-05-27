@@ -63,8 +63,8 @@
     dayjs.extend(relativeTime);
     dayjs.extend(utc);
     
-    const username = ref(profile.value?.username || '');
-    const astronaut_type = ref(profile.value?.astronaut_type || '');
+    const username = computed(() => profile.value?.username || '');
+    const astronaut_type = computed(() => profile.value?.astronaut_type || '');
     
     const profile_formatted = computed(() => [
         { name: 'username', label: 'Username', value: profile.value?.username },
