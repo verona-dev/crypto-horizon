@@ -14,7 +14,7 @@
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
-                            <InfoIcon />
+                            <InfoIcon size='28'/>
                         </HoverCardTrigger>
                         
                         <HoverCardContent>

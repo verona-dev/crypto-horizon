@@ -1,10 +1,10 @@
 <template>
     <div v-if='links?.blockchain_site' class='flex flex-col gap-8'>
         <!--  Explorers Title  -->
-        <div class='text-primary flex items-center gap-3'>
+        <div class='text-primary flex items-center gap-2'>
             <NuxtIcon
-                name='ph:codepen-logo-fill'
-                size='48'
+                name='ph:codepen-logo-duotone'
+                size='36'
             />
             
             <Title :tag='3'>Explorers</Title>

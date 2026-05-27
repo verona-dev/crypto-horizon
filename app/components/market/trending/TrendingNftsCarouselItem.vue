@@ -2,7 +2,7 @@
     <FlipCard
         v-if='nft'
         rotate='x'
-        class='w-130 h-150 md:w-96 md:min-h-130 md:h-full'
+        class='w-130 md:w-120 h-150 md:min-h-130 md:h-full'
     
     >
         <!--  Card Front  -->
@@ -13,7 +13,7 @@
                     <NuxtImg
                         :src='image'
                         alt='trending nft logo'
-                        class='bg-card size-full rounded-full p-2 border-2 border-border/50'
+                        class='bg-card size-full rounded-full p-2 border-2 border-primary/50'
                         :custom='true'
                         v-slot='{ src, isLoaded, imgAttrs, alt }'
                         preload

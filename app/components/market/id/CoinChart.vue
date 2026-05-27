@@ -2,41 +2,62 @@
     <Card
         v-if='chart.prices'
         class='flex flex-col gap-6 p-10'
+        :class='{ "" : sniper_mode }'
     >
         <!--  Tabs  -->
-        <div class='tabs-container flex flex-col md:flex-row gap-12 md:gap-0 items-center justify-between'>
+        <div class='flex flex-col md:flex-row gap-12 md:gap-0 items-center justify-between'>
             <!--  Price + Market Cap  -->
             <Tabs
                 v-model='valuation_tab'
                 default-value='price'
             >
-                <TabsList>
+                <TabsList class='gap-1'>
                     <TabsTrigger
                         value='price'
-                        class='py-1.5 px-1.5 w-16'
+                        class='data-[state=active]:text-primary data-[state=active]:border-primary/50'
                     >
                         Price
                     </TabsTrigger>
                     
                     <TabsTrigger
                         value='mcap'
-                        class='py-1.5 px-1.5 w-24'
+                        class='data-[state=active]:text-primary data-[state=active]:border-primary/50'
                     >
                         Market Cap
                     </TabsTrigger>
                 </TabsList>
             </Tabs>
             
-            <!--  Switch  -->
-            <div class='flex items-center space-x-2'>
-                <Switch
-                    id='sniper_mode'
-                    :model-value='sniper_mode'
-                    @update:model-value='onToggleSniper'
-                    :class='{ "shadow-none" : !dark_mode }'
+            <!--  Sniper Mode  -->
+            <Button
+                @click='onToggleSniper'
+                variant='outline'
+                :class='[
+                    "h-9.5 relative overflow-hidden hover:bg-transparent",
+                     { "text-primary border-primary/50 hover:text-primary" : sniper_mode },
+                ]'
+            >
+                <GlowBorder
+                    v-if='dark_mode && !sniper_mode'
+                    :color='["#A07CFE", "#FE8FB5", "#FFBE7B"]'
+                    :duration='20'
+                    :border-width='1'
                 />
-                <label for='sniper_mode' class='cursor-pointer'>Sniper Mode</label>
-            </div>
+                
+                <div class='flex items-center gap-2'>
+                    <NuxtIcon
+                        name='ph:crosshair-simple-duotone'
+                        :size='20'
+                        :class='[
+                            "text-muted-foreground transition-transform duration-500 ease-in-out will-change-transform",
+                             sniper_mode ? "text-primary rotate-180" : "rotate-0",
+                        ]'
+                    />
+                    
+                    <span :class='sniper_mode ? "text-primary" : "text-muted-foreground"'>Sniper Mode
+                    </span>
+                </div>
+            </Button>
             
             <!--  Timeframe  -->
             <Tabs v-model='timeframe'>
@@ -45,7 +66,7 @@
                         v-for='interval in timeframes'
                         :key='interval.timeframe'
                         :value='interval.timeframe'
-                        class='py-1.5 px-1.5 w-10'
+                        class='data-[state=active]:text-primary data-[state=active]:border-primary/50'
                     >
                         {{ interval.label }}
                     </TabsTrigger>
@@ -60,7 +81,7 @@
                     <Spinner class='size-8' />
                     
                     <div class='flex flex-col items-center gap-1'>
-                        <span class='text-lg'>Loading data</span>
+                        <span class='text-xl'>Loading data</span>
                         <span class='text-foreground/75'>Please wait a moment.</span>
                     </div>
                 </div>
@@ -83,9 +104,10 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
+    import { Button } from '@/components/ui/button'
     import { Card } from '~/components/ui/card';
+    import { GlowBorder } from '~/components/ui/glow-border';
     import { Spinner } from '~/components/ui/spinner/index.js';
-    import { Switch } from '@/components/ui/switch';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     
     // Dayjs
@@ -175,7 +197,7 @@
     
     watch(chart_data, () => {
         const chart_instance = chart_ref.value?.chart;
-
+        
         if (chart_instance) {
             chart_instance.update();
         }
@@ -206,7 +228,15 @@
                 padding: 6,
             },
             custom_line: {
-                color: dark_mode.value ? '#9ca3af' : '#2a2f46',
+                color: () => {
+                    if(dark_mode.value) {
+                        if(sniper_mode.value) {
+                            return '#e78a53'; // --primary
+                        }
+                        return '#9ca3af';
+                    }
+                    return '#2a2f46';
+                },
                 dash_length: 1,
                 dash_gap: 6,
                 width: 1,
@@ -238,7 +268,7 @@
                 borderWidth: sniper_mode.value ? 0 : 1,
                 pointHoverRadius: sniper_mode.value ? 16 : 5,
                 pointStyle: sniper_mode.value ? 'crossRot' : 'circle',
-                pointBorderColor: sniper_mode.value ? 'oklch(0.985 0 0)' : '',
+                pointBorderColor: sniper_mode.value ? '#e78a53' : '', // --primary
                 pointBorderWidth: sniper_mode.value ? 2 : 0,
             },
             elements: {
@@ -263,18 +293,18 @@
             },
             tooltip: {
                 body: {
-                    size: sniper_mode.value ? 16 : 14,
-                    weight: 'bolder',
+                    bodyFont: {
+                        size: sniper_mode.value ? 17 : 14,
+                        weight: 'bolder',
+                    },
                 },
-                bodySpacing: sniper_mode.value ? 0 : 8,
                 caretSize: sniper_mode.value ? 0 : 8,
-                padding: {
-                    top: sniper_mode.value ? 12 : 20,
-                    right: sniper_mode.value ? 16 : 24,
-                    bottom: sniper_mode.value ? 12 : 20,
-                    left: sniper_mode.value ? 16 : 24,
-                },
                 position: sniper_mode.value ? 'fixed_tooltip' : 'average',
+                titleFont:  {
+                    size: sniper_mode.value ? 15 : 14,
+                    weight: 'normal',
+                },
+                titleColor: sniper_mode.value ? '#c9374c' : '#00bc7d',
             },
         };
         
@@ -367,9 +397,11 @@
                 },
                 tooltip: {
                     enabled: true,
-                    backgroundColor: '#1f2230', // --popover
-                    bodyFont: computed_styles.tooltip.body,
-                    borderColor: '#393e56', // --border
+                    backgroundColor: '#222222',
+                    bodyFont: computed_styles.tooltip.body.bodyFont,
+                    bodyColor: '#f3f4f6', // light--muted
+                    borderColor: '#333333', // --border
+                    bodySpacing: 8,
                     borderWidth: 1,
                     callbacks: {
                         title: function(context) {
@@ -392,12 +424,15 @@
                     caretSize: computed_styles.tooltip.caretSize,
                     cornerRadius: 8,
                     displayColors: false, // disable the color box
-                    padding: computed_styles.tooltip.padding,
-                    position: computed_styles.tooltip.position,
-                    titleFont:  {
-                        size: 14,
-                        weight: 'normal',
+                    padding: {
+                        top: 20,
+                        right: 24,
+                        bottom: 20,
+                        left: 24,
                     },
+                    position: computed_styles.tooltip.position,
+                    titleFont:  computed_styles.tooltip.titleFont,
+                    titleColor: '#c1c1c1', // --muted-foreground
                     titleMarginBottom: 14,
                 },
                 legend: {
@@ -462,16 +497,12 @@
 </script>
 
 <style scoped>
-    button[data-state='checked'] {
-        background-color: var(--green-shamrock);
-    }
-    
     .chart-container {
         position: relative;
         
         .spinner-container {
             backdrop-filter: blur(3px);
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.25);
             position: absolute;
             top: 0;
             left: 0;

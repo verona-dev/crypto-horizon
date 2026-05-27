@@ -15,8 +15,8 @@
     
     const styles: Record<number, string>   = {
         1: 'text-8xl xl:text-9xl',
-        2: 'text-6xl xl:text-8xl',
-        3: 'text-3xl xl:text-5xl',
+        2: 'text-6xl xl:text-7xl',
+        3: 'text-3xl xl:text-4xl',
         4: 'text-2xl xl:text-3xl',
         5: 'text-2xl',
         6: 'text-xl',

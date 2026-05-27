@@ -1,10 +1,10 @@
 <template>
     <div v-if='sentimentUp' class='flex flex-col gap-8'>
         <!--  Sentiment Title  -->
-        <div class='text-primary flex items-center gap-3'>
+        <div class='text-primary flex items-center gap-2'>
             <NuxtIcon
-                name='ph:users-three-fill'
-                size='48'
+                name='ph:users-three-duotone'
+                size='36'
             />
             
             <Title :tag='3'>Community sentiment</Title>

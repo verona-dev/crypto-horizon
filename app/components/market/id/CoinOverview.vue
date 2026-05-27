@@ -3,10 +3,10 @@
         <!--  Overview  -->
         <div class='flex flex-col gap-8'>
             <!--  Overview Title  -->
-            <div class='text-primary flex items-center gap-3'>
+            <div class='text-primary flex items-center gap-2'>
                 <NuxtIcon
-                    name='ph:squares-four-fill'
-                    size='48'
+                    name='ph:squares-four-duotone'
+                    size='36'
                 />
                 
                 <Title :tag='3'>Overview</Title>
@@ -233,10 +233,10 @@
         <!--  Github  -->
         <div v-if='show_github_table' class='flex flex-col gap-8'>
             <!--  Github Title  -->
-            <div class='text-primary flex items-center gap-3'>
+            <div class='text-primary flex items-center gap-2'>
                 <NuxtIcon
-                    name='ph:github-logo-fill'
-                    size='48'
+                    name='ph:github-logo-duotone'
+                    size='36'
                 />
                 
                 <Title :tag='3'>Github</Title>

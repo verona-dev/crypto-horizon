@@ -20,7 +20,7 @@
                     <CarouselItem
                         v-for='coin in coins'
                         :key='coin.item.id'
-                        class='md:ml-10 basis-1/2 lg:basis-1/3'
+                        class='md:ml-40 basis-1/2 lg:basis-1/3'
                     >
                         <TrendingCoinsCarouselItem :coin='coin.item' />
                     </CarouselItem>

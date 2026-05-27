@@ -1,19 +1,19 @@
 <template>
-    <Card class='flex flex-col gap-24 py-16'>
+    <Card class='flex flex-col gap-24 py-20'>
         <div class='flex flex-col items-center gap-8 relative'>
             <!--  Title  -->
             <div class='text-primary flex items-center gap-3'>
                 <NuxtIcon
-                    name='ph:chart-donut-fill'
-                    size='48'
+                    name='ph:chart-donut-duotone'
+                    size='72'
                 />
                 
-                <Title :tag='3'>Supply </Title>
+                <Title :tag='2'>Supply </Title>
             </div>
             
             <!--  Selector  -->
             <Select v-model='selected' default-value='progress-bars'>
-                <SelectTrigger class='w-56 h-13 pl-4 border-primary/50 absolute top-0 right-20' data-size='default'>
+                <SelectTrigger class='w-56 h-13 pl-4 border-primary/50 xl:absolute xl:top-0 xl:right-20' data-size='default'>
                     <SelectValue />
                 </SelectTrigger>
                 

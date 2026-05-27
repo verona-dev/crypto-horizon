@@ -7,13 +7,13 @@
                 :duration='2000'
             >
                 <template #default>
-                    <p>{{ market_cap_compact }}</p>
+                    <h5>{{ market_cap_compact }}</h5>
                 </template>
             </MazCircularProgressBar>
             
             <div class='label-container'>
-                <div class='flex items-center'>
-                    <h6 class='!min-w-full'>{{ glossary.market_cap.label }}</h6>
+                <div class='flex items-center.5'>
+                    <Title :tag='5' class='!min-w-full'>{{ glossary.market_cap.label }}</Title>
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
@@ -34,13 +34,13 @@
                 :duration='2500'
             >
                 <template #default>
-                    <p>{{ fully_diluted_valuation_compact }}</p>
+                    <h5>{{ fully_diluted_valuation_compact }}</h5>
                 </template>
             </MazCircularProgressBar>
             
             <div class='label-container'>
                 <div class='flex items-center'>
-                    <h6 class='!min-w-full'>{{ glossary.fully_diluted_valuation.label }}</h6>
+                    <Title :tag='5' class='!min-w-full'>{{ glossary.fully_diluted_valuation.label }}</Title>
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
@@ -61,13 +61,13 @@
                 :duration='3000'
             >
                 <template #default>
-                    <p>{{ volume_compact }}</p>
+                    <h5>{{ volume_compact }}</h5>
                 </template>
             </MazCircularProgressBar>
             
             <div class='label-container'>
                 <div class='flex items-center'>
-                    <h6 class='!min-w-full'>{{ glossary.volume.label }}</h6>
+                    <Title :tag='5' class='!min-w-full'>{{ glossary.volume.label }}</Title>
                     
                     <HoverCard
                         :openDelay='200'
@@ -92,14 +92,14 @@
                 suffix='%'
             >
                 <template #default>
-                    <p v-if='max_supply'>{{ Math.floor(circulating_supply_percentage) }}&#37;</p>
-                    <p v-else>{{ circulating_supply_compact }}</p>
+                    <h5 v-if='max_supply'>{{ Math.floor(circulating_supply_percentage) }}&#37;</h5>
+                    <h5 v-else>{{ circulating_supply_compact }}</h5>
                 </template>
             </MazCircularProgressBar>
             
             <div class='label-container'>
                 <div class='flex items-center'>
-                    <h6 class='!min-w-full'>{{ glossary.circulating_supply.label }}</h6>
+                    <Title :tag='5' class='!min-w-full'>{{ glossary.circulating_supply.label }}</Title>
                     
                     <HoverCard :openDelay='200' class='flex'>
                         <HoverCardTrigger>
@@ -121,14 +121,14 @@
                 suffix='%'
             >
                 <template #default>
-                    <p v-if='max_supply'>{{ total_supply_percentage }}&#37;</p>
-                    <p v-else>{{ total_supply_compact }}</p>
+                    <h5 v-if='max_supply'>{{ total_supply_percentage }}&#37;</h5>
+                    <h5 v-else>{{ total_supply_compact }}</h5>
                 </template>
             </MazCircularProgressBar>
             
             <div class='label-container'>
                 <div class='flex items-center'>
-                    <h6 class='!min-w-full'>{{ glossary.total_supply.label }}</h6>
+                    <Title :tag='5' class='!min-w-full'>{{ glossary.total_supply.label }}</Title>
                     
                     <HoverCard
                         :openDelay='200'
@@ -152,13 +152,13 @@
                 :duration='3000'
             >
                 <template #default>
-                    <p>{{ max_supply_compact }}</p>
+                    <h5>{{ max_supply_compact }}</h5>
                 </template>
             </MazCircularProgressBar>
             
             <div class='label-container'>
                 <div class='flex items-center'>
-                    <h6 class='!min-w-full'>{{ glossary.max_supply.label }}</h6>
+                    <Title :tag='5' class='!min-w-full'>{{ glossary.max_supply.label }}</Title>
                     
                     <HoverCard
                         :openDelay='200'
@@ -182,6 +182,7 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
     import glossary from '~/assets/data/market/glossary.json';
+    import Title from '~/components/Title.vue';
     
     const props = defineProps({
         coin: {

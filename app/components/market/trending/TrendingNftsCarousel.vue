@@ -20,7 +20,7 @@
                     <CarouselItem
                         v-for='nft in nfts'
                         :key='nft.id'
-                        class='md:basis-1/2 lg:basis-1/3'
+                        class='md:ml-30 md:basis-1/2 lg:basis-1/3'
                     >
                         <TrendingNftsCarouselItem :nft='nft' />
                     </CarouselItem>
