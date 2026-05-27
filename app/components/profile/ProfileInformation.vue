@@ -1,13 +1,12 @@
 <template>
-    <Card class='h-full flex flex-col !justify-around p-5 gap-4'>
+    <Card class='h-full flex flex-col !justify-around p-5 gap-4 rounded-none !rounded-tr-xl !border-l-0 !border-b-0'>
         <CardHeader class='flex-row justify-between'>
             <CardTitle class='text-3xl'>Personal Information</CardTitle>
             
             <Button
                 @click='onHandleDrawer(true)'
                 class='w-fit'
-                variant='ghost'
-                size='sm'
+                variant='outline'
             >
                 <NuxtIcon
                     name='ph:pencil-simple-line'

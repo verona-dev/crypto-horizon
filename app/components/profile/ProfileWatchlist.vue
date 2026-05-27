@@ -1,5 +1,5 @@
 <template>
-    <Card class='p-6 rounded-none rounded-bl-md rounded-br-md'>
+    <Card class='p-6 rounded-none !rounded-bl-xl !rounded-br-xl'>
         <CardHeader class='items-center gap-2'>
             <CardTitle class='text-3xl'>Watchlist</CardTitle>
 
