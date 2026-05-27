@@ -1,6 +1,5 @@
 <template>
-    <Card class='bg-background w-full h-full shadow-2xl'>
-        
+    <Card class='w-full h-full !shadow-2xl'>
         <div class='w-full flex flex-col'>
             <div class='flex flex-col items-center justify-center gap-6 p-12'>
                 <Title :tag='1' :level='3'>Cryptocurrencies by  {{ sortingLabel }}</Title>
@@ -124,9 +123,7 @@
                                                     <InfoIcon />
                                                 </HoverCardTrigger>
                                                 
-                                                <HoverCardContent>
-                                                    {{ header.column.columnDef.description }}
-                                                </HoverCardContent>
+                                                <HoverCardContent>{{ header.column.columnDef.description }}</HoverCardContent>
                                             </HoverCard>
                                         </div>
                                     </div>
@@ -152,13 +149,9 @@
                                                 <Spinner class='size-8 text-green-shamrock' />
                                             </EmptyMedia>
                                             
-                                            <EmptyTitle>
-                                                Loading coins...
-                                            </EmptyTitle>
+                                            <EmptyTitle>Loading coins...</EmptyTitle>
                                             
-                                            <EmptyDescription>
-                                                Synchronizing with the crypto market, hold on tight!
-                                            </EmptyDescription>
+                                            <EmptyDescription>Synchronizing with the crypto market, hold on tight!</EmptyDescription>
                                         </EmptyHeader>
                                     </Empty>
                                 </TableCell>
@@ -171,7 +164,7 @@
                                 <TableRow
                                     v-for='row in table.getRowModel().rows'
                                     :key='row.id'
-                                    class='hover:bg-muted/50 hover:cursor-pointer border-t-0 !px-6 animate-fadeIn'
+                                    class='hover:cursor-pointer border-t-0 !px-6 animate-fadeIn'
                                 >
                                     <!--   Checkbox / Favourites  -->
                                     <TableCell class='h-20 text-center'>
@@ -193,26 +186,19 @@
                                         <TableCell
                                             v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "checkbox")'
                                             :key='cell.id'
-                                            class='h-20'
-                                            :class='{
-                                                "flex justify-end": cell.column.id === "sparkline_in_7d",
-                                            }'
-                                        >
+                                            :class='{ "flex justify-end": cell.column.id === "sparkline_in_7d" }'>
                                             <!--   Name  -->
                                             <template v-if='cell.column.id === "name"'>
-                                                <div class='flex items-center gap-4 w-88'>
+                                                <div class='flex items-center gap-4 w-88 py-3'>
                                                     <NuxtImg
                                                         :src='cell.row.original.image'
-                                                        width='40'
+                                                        width='56'
                                                         alt='coin logo'
                                                     />
                                                     
-                                                    <div class='flex flex-col items-start gap-1 truncate'>
-                                                        <p class='font-medium'>
-                                                            {{ cell.getValue() }}
-                                                        </p>
-                                                        
-                                                        <span class='uppercase text-xs text-muted-foreground'>{{ cell.row.original.symbol }}</span>
+                                                    <div class='flex flex-col items-start truncate'>
+                                                        <p class='font-medium text-xl'>{{ cell.getValue() }}</p>
+                                                        <span class='uppercase text-primary/75 mx-autop'>{{ cell.row.original.symbol }}</span>
                                                     </div>
                                                 </div>
                                             </template>
@@ -263,29 +249,16 @@
                             <!--   No results   -->
                             <template v-else>
                                 <TableRow>
-                                    <TableCell
-                                        :colspan='columns.length'
-                                        class='p-0'
-                                    >
+                                    <TableCell :colspan='columns.length' class='p-0'>
                                         <Empty class='from-muted/25 to-background h-130 bg-gradient-to-b from-50%'>
                                             <EmptyHeader class='gap-3'>
-                                                <EmptyMedia
-                                                    variant='icon'
-                                                    class='w-24 h-24'
-                                                >
-                                                    <NuxtIcon
-                                                        name='ph:notches-thin'
-                                                        size='60'
-                                                    />
+                                                <EmptyMedia variant='icon' class='w-24 h-24'>
+                                                    <NuxtIcon name='ph:notches-thin' size='60' />
                                                 </EmptyMedia>
                                                 
-                                                <EmptyTitle>
-                                                    No data available
-                                                </EmptyTitle>
+                                                <EmptyTitle>No data available</EmptyTitle>
                                                 
-                                                <EmptyDescription>
-                                                    No data found. Check back later for updates.
-                                                </EmptyDescription>
+                                                <EmptyDescription>No data found. Check back later for updates.</EmptyDescription>
                                             </EmptyHeader>
                                             
                                             <EmptyContent>
@@ -293,10 +266,7 @@
                                                     variant='outline'
                                                     @click='getCoinsMarkets({}, "table")'
                                                 >
-                                                    <NuxtIcon
-                                                        name='ph:repeat-thin'
-                                                        size='20'
-                                                    />
+                                                    <NuxtIcon name='ph:repeat-thin' size='20' />
                                                     Retry
                                                 </Button>
                                             </EmptyContent>
@@ -310,8 +280,13 @@
             </div>
             
             <!--   Update status   -->
-            <div class='flex items-center justify-center'>
-                <span class='text-xs'>Market data updated {{ lastApiUpdate }}</span>
+            <div class='text-muted-foreground flex items-center justify-center gap-1.5 p-4'>
+                <NuxtIcon
+                    name='ph:hexagon-duotone'
+                    size='16'
+                    class=''
+                />
+                <span class='text-sm'>Market data updated {{ lastApiUpdate }}</span>
             </div>
         </div>
     </Card>
