@@ -1,7 +1,7 @@
 <template>
     <div class='page gap-60'>
         <div class='flex flex-col items-center justify-center gap-16'>
-            <Title class='page-title'>Trending Coins</Title>
+            <Title :tag='1' :level='2' class='page-title'>Trending Coins</Title>
             
             <TrendingCoinsCarousel
                 v-if='trending_coins'
@@ -10,7 +10,7 @@
         </div>
         
         <div class='flex flex-col items-center justify-center gap-24'>
-            <Title class='page-title'>Trending Nft's</Title>
+            <Title :tag='1' :level='2' class='page-title'>Trending Nft's</Title>
             
             <TrendingNftsCarousel
                 v-if='trending_nfts'
