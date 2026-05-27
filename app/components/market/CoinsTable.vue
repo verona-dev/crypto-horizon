@@ -27,7 +27,7 @@
                                 />
                             </div>
                             
-                            <span>Columns</span>
+                            <span>Filter</span>
                         </Button>
                     </DropdownMenuTrigger>
                     
@@ -36,7 +36,7 @@
                         class='w-56 p-1 pb-0'
                     >
                         <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>
-                            Columns
+                            Filter
                         </DropdownMenuLabel>
                         
                         <DropdownMenuCheckboxItem
@@ -55,7 +55,7 @@
             
             <!--   Table   -->
             <div class='border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
-                <Table class='!border-none !py-12'>
+                <Table class='!border-none'>
                     <TableHeader
                         class='h-24'
                         :class='{ "shadow-2xl" : dark_mode }'
@@ -63,28 +63,28 @@
                         <TableRow
                             v-for='headerGroup in table.getHeaderGroups()'
                             :key='headerGroup.id'
-                            class='!hover:bg-background h-16'
                         >
                             <TableHead
                                 v-for='header in headerGroup.headers'
                                 :key='header.id'
-                                class='h-full font-bolder text-foreground'
                                 :class='[headerWidths[header.column.id]]'
                             >
                                 <template v-if='!header.isPlaceholder'>
                                     <div
-                                        class='flex justify-end'
-                                        :class='{
-                                            "hover:cursor-pointer" : header.column.columnDef.isSortable,
-                                            "!justify-center items-center": header.column.id === "checkbox",
-                                            "!justify-center": header.column.id === "market_cap_rank",
-                                            "justify-start": header.column.id === "name",
-                                        }'
+                                        :class='[
+                                            "flex justify-end",
+                                            { "hover:cursor-pointer" : header.column.columnDef.isSortable },
+                                            { "!justify-center items-center": header.column.id === "checkbox" },
+                                            { "!justify-center": header.column.id === "market_cap_rank" },
+                                            { "justify-start": header.column.id === "name" },
+                                        ]'
                                         @click='onSort(header)'
                                     >
                                         <div
-                                            class='flex items-center gap-1'
-                                            :class='{ "flex flex-row-reverse !justify-end" : header.column.id === "name" }'
+                                            :class='[
+                                                "flex items-center gap-1",
+                                               { "flex flex-row-reverse !justify-end" : header.column.id === "name" },
+                                            ]'
                                         >
                                             <div
                                                 v-if='header.column.columnDef.isSortable'
@@ -95,7 +95,7 @@
                                                     name='ph:caret-down-fill'
                                                     size='12'
                                                 />
-
+                                                
                                                 <NuxtIcon
                                                     v-else-if='header.column.getIsSorted() === "asc"'
                                                     name='ph:caret-up-fill'
@@ -117,7 +117,7 @@
                                                 <HoverCardTrigger>
                                                     <InfoIcon />
                                                 </HoverCardTrigger>
-
+                                                
                                                 <HoverCardContent>
                                                     {{ header.column.columnDef.description }}
                                                 </HoverCardContent>
@@ -145,11 +145,11 @@
                                             >
                                                 <Spinner class='size-8 text-green-shamrock' />
                                             </EmptyMedia>
-
+                                            
                                             <EmptyTitle>
                                                 Loading coins...
                                             </EmptyTitle>
-
+                                            
                                             <EmptyDescription>
                                                 Synchronizing with the crypto market, hold on tight!
                                             </EmptyDescription>
@@ -205,7 +205,7 @@
                                                         <p class='font-medium'>
                                                             {{ cell.getValue() }}
                                                         </p>
-
+                                                        
                                                         <span class='uppercase text-xs text-muted-foreground'>{{ cell.row.original.symbol }}</span>
                                                     </div>
                                                 </div>
@@ -272,16 +272,16 @@
                                                         size='60'
                                                     />
                                                 </EmptyMedia>
-
+                                                
                                                 <EmptyTitle>
                                                     No data available
                                                 </EmptyTitle>
-
+                                                
                                                 <EmptyDescription>
                                                     No data found. Check back later for updates.
                                                 </EmptyDescription>
                                             </EmptyHeader>
-
+                                            
                                             <EmptyContent>
                                                 <Button
                                                     variant='outline'
@@ -347,6 +347,7 @@
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
+    import { SidebarMenuButton } from '@/components/ui/sidebar/index.ts';
     const ProfileStore = useProfileStore();
     const { updateWatchlist } = ProfileStore;
     
