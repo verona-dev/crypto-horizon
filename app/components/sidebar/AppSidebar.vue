@@ -66,7 +66,8 @@
                         url: '/market/exchanges',
                         get isActive() {
                             return isChildActive(this.url);
-                        }
+                        },
+                        disabled: true,
                     },
                 ],
             },
@@ -109,14 +110,15 @@
                         url: '/defi',
                         get isActive() {
                             return isChildActive(this.url);
-                        }
+                        },
                     },
                     {
                         title: 'Platforms',
                         url: '/defi/platforms',
                         get isActive() {
                             return isChildActive(this.url);
-                        }
+                        },
+                        disabled: true,
                     },
                 ],
             },
@@ -134,14 +136,16 @@
                         url: '/academy',
                         get isActive() {
                             return isChildActive(this.url);
-                        }
+                        },
+                        disabled: true,
                     },
                     {
                         title: 'Dyor',
                         url: '/academy/dyor',
                         get isActive() {
                             return isChildActive(this.url);
-                        }
+                        },
+                        disabled: true,
                     },
                 ],
             },
