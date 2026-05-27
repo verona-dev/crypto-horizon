@@ -1,62 +1,67 @@
 <template>
     <Card class='bg-background w-full h-full shadow-2xl'>
+        
         <div class='w-full flex flex-col'>
-            <!--  Search + Filter  -->
-            <div class='flex items-center gap-4 p-10'>
-                <!--   Search   -->
-                <div class='relative'>
-                    <Input
-                        class='w-lg pl-8'
-                        placeholder='Search Coins...'
-                        :model-value='table.getColumn("name")?.getFilterValue()'
-                        @update:model-value='table.getColumn("name")?.setFilterValue($event)'
-                    />
-                    
-                    <NuxtIcon
-                        name='ph:magnifying-glass-duotone'
-                        size='16'
-                        class='absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground'
-                    />
-                </div>
+            <div class='flex flex-col items-center justify-center gap-6 p-12'>
+                <Title :tag='1' :level='3'>Cryptocurrencies by  {{ sortingLabel }}</Title>
                 
-                <!--   Filter Columns   -->
-                <DropdownMenu :modal='false'>
-                    <DropdownMenuTrigger
-                        as-child
-                        class='flex items-center gap-4'
-                    >
-                        <Button variant='outline' class='gap-2'>
-                            <div class='pt-1.5'>
-                                <NuxtIcon
-                                    name='ph:layout-light'
-                                    size='20'
-                                />
-                            </div>
-                            
-                            <span>Columns</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    
-                    <DropdownMenuContent align='end' class='w-56 p-1 pb-0'>
-                        <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Columns</DropdownMenuLabel>
+                <!--  Search + Filter  -->
+                <div class='flex items-center gap-4'>
+                    <!--   Search   -->
+                    <div class='relative'>
+                        <Input
+                            class='w-lg pl-8'
+                            placeholder='Search Coin...'
+                            :model-value='table.getColumn("name")?.getFilterValue()'
+                            @update:model-value='table.getColumn("name")?.setFilterValue($event)'
+                        />
                         
-                        <DropdownMenuCheckboxItem
-                            v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
-                            :key='column.id'
-                            :model-value='column.getIsVisible()'
-                            class='checkbox-item capitalize h-10 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-foreground/85'
-                            @update:model-value='(value) => column.toggleVisibility(!!value)'
-                            @select='event => event.preventDefault()'
+                        <NuxtIcon
+                            name='ph:magnifying-glass-duotone'
+                            size='16'
+                            class='absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground'
+                        />
+                    </div>
+                    
+                    <!--   Filter Columns   -->
+                    <DropdownMenu :modal='false'>
+                        <DropdownMenuTrigger
+                            as-child
+                            class='flex items-center gap-4'
                         >
-                            {{ column.columnDef.label }}
-                        </DropdownMenuCheckboxItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                            <Button variant='outline' class='gap-2'>
+                                <div class='pt-1.5'>
+                                    <NuxtIcon
+                                        name='ph:layout-light'
+                                        size='20'
+                                    />
+                                </div>
+                                
+                                <span>Columns</span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        
+                        <DropdownMenuContent align='end' class='w-56 p-1 pb-0'>
+                            <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Columns</DropdownMenuLabel>
+                            
+                            <DropdownMenuCheckboxItem
+                                v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
+                                :key='column.id'
+                                :model-value='column.getIsVisible()'
+                                class='checkbox-item capitalize h-10 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-foreground/85'
+                                @update:model-value='(value) => column.toggleVisibility(!!value)'
+                                @select='event => event.preventDefault()'
+                            >
+                                {{ column.columnDef.label }}
+                            </DropdownMenuCheckboxItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
             </div>
             
             <!--   Table   -->
             <div class='border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
-                <Table class='!border-none'>
+                <Table class='!border-none !min-h-screen'>
                     <TableHeader
                         class='h-24'
                         :class='{ "shadow-2xl" : dark_mode }'
@@ -328,6 +333,7 @@
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel, getFilteredRowModel } from '@tanstack/vue-table';
     import glossary from '~/assets/data/market/glossary.json';
     import InfoIcon from '@/components/InfoIcon.vue';
+    import Title from '@/components/Title.vue';
     
     // Chartjs
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Tooltip } from 'chart.js';
