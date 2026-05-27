@@ -3,7 +3,7 @@
         <!--  Contracts Title  -->
         <div class='text-primary flex items-center gap-2'>
             <NuxtIcon
-                name='ph:note-pencil-duotone'
+                name='ph:note-duotone'
                 size='36'
             />
 
@@ -74,7 +74,7 @@
                                         
                                         <NuxtIcon
                                             v-else
-                                            name='ph:codesandbox-logo-fill'
+                                            name='ph:note-fill'
                                             size='25'
                                             class='self-start'
                                         />
