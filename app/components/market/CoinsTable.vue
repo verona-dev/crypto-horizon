@@ -1,7 +1,7 @@
 <template>
     <Card class='w-full h-full !shadow-2xl'>
         <div class='w-full flex flex-col'>
-            <div class='flex flex-col items-center justify-center gap-6 p-12'>
+            <div class='flex flex-col items-center justify-center gap-8 p-14'>
                 <Title :tag='1' :level='3'>Cryptocurrencies by  {{ sortingLabel }}</Title>
                 
                 <!--  Search + Filter  -->
@@ -60,7 +60,7 @@
             
             <!--   Table   -->
             <div class='border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
-                <Table class='!border-none !min-h-screen'>
+                <Table class='!border-none'>
                     <TableHeader
                         class='h-24'
                         :class='{ "shadow-2xl" : dark_mode }'
@@ -280,7 +280,7 @@
             </div>
             
             <!--   Update status   -->
-            <div class='text-muted-foreground flex items-center justify-center gap-1.5 p-4'>
+            <div v-if='!loading' class='text-muted-foreground flex items-center justify-center gap-1.5 p-4'>
                 <NuxtIcon
                     name='ph:hexagon-duotone'
                     size='16'
