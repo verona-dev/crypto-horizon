@@ -1,9 +1,9 @@
 <template>
-    <Card class='bg-sidebar h-20 w-screen flex items-center justify-center hover:border-border/50 p-3.5 z-25'>
+    <Card class='h-20 w-screen flex items-center justify-center hover:border-border/50 p-3.5 z-25'>
         <NuxtLink
             to='https://www.coingecko.com/en/api/'
             target='_blank'
-            class='flex items-center gap-3 hover:underline'
+            class='flex items-center gap-3 hover:text-primary'
             external
         >
             <p>Data powered by</p>
@@ -24,7 +24,7 @@
                 
                 <Skeleton
                     v-else
-                    class='w-[150px] rounded-lg'
+                    class='w-[150px] rounded-xl'
                 />
             </NuxtImg>
             
