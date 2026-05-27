@@ -7,7 +7,7 @@
     import { storeToRefs } from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
-    const { loginAnonymous, logOut } = AuthStore;
+    const { logOut } = AuthStore;
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
@@ -64,9 +64,9 @@
                         class='h-10'
                         :class='open ? "px-1 flex gap-2.5 rounded-md" : "ml-1 hover:bg-transparent active:bg-transparent"'
                     >
-                        <Avatar class='h-6 w-6 rounded-lg'>
+                        <Avatar class='h-6 w-6 rounded-xl'>
                             <AvatarImage :src='avatar' alt='avatar' />
-                            <AvatarFallback class='rounded-lg'>G</AvatarFallback>
+                            <AvatarFallback class='rounded-xl'>G</AvatarFallback>
                         </Avatar>
                         
                         <div class='flex flex-col flex-1 text-left leading-tight'>
@@ -87,9 +87,9 @@
                 >
                     <DropdownMenuLabel class='p-0 font-normal'>
                         <div class='flex items-center gap-2 px-1 py-1.5 text-left'>
-                            <Avatar class='h-16 w-16 rounded-lg'>
+                            <Avatar class='h-16 w-16 rounded-xl'>
                                 <AvatarImage :src='avatar' alt='avatar' />
-                                <AvatarFallback class='rounded-lg'>
+                                <AvatarFallback class='rounded-xl'>
                                     G
                                 </AvatarFallback>
                             </Avatar>
@@ -107,7 +107,7 @@
                     <DropdownMenuGroup v-if='authenticated'>
                         <!--  Profile  -->
                         <DropdownMenuItem
-                            class='py-3 mb-1 cursor-pointer rounded-lg'
+                            class='py-3 mb-1 cursor-pointer'
                             as-child
                         >
                             <NuxtLink to='/profile'>
@@ -121,7 +121,7 @@
                         <!--  Logout  -->
                         <DropdownMenuItem
                             @click='onLogOut'
-                            class='py-3 mt-1 cursor-pointer rounded-lg'
+                            class='py-3 mt-1 cursor-pointer'
                         >
                             <NuxtIcon name='ph:sign-out' size='18' />
                             LogOut
@@ -132,7 +132,7 @@
                     <DropdownMenuGroup v-else>
                         <!--  Login  -->
                         <DropdownMenuItem
-                            class='py-3 mt-1 cursor-pointer rounded-lg'
+                            class='py-3 mt-1 cursor-pointer'
                             as-child
                         >
                             <NuxtLink to='/login' class=''>
@@ -143,7 +143,7 @@
                         
                         <!--  Register  -->
                         <DropdownMenuItem
-                            class='py-3 mt-1 cursor-pointer rounded-lg'
+                            class='py-3 mt-1 cursor-pointer'
                             as-child
                         >
                             <NuxtLink to='/register' class=''>
