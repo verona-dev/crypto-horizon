@@ -9,7 +9,7 @@
                         :class='{ "flex gap-3.5" :  open }'
                     >
                         <NuxtIcon
-                            name='ph:paint-brush-broad-duotone'
+                            name='ph:paint-brush-household-duotone'
                             class='h-4 w-4'
                         />
                         
@@ -53,7 +53,7 @@
                         </div>
                         
                         <div>
-                            Current theme: <b>{{ $colorMode.preference }}</b>
+                            Current theme: <b>{{ current_theme }}</b>
                             <span v-if="$colorMode.preference === 'system'">&nbsp;(<i>{{ $colorMode.value }}</i> mode detected)</span>
                             <span v-if="$colorMode.forced">&nbsp;(<i>{{ $colorMode.value }}</i> forced)</span>
                         </div>
@@ -73,6 +73,7 @@
     
     const { open, isMobile } = useSidebar();
     const colorMode = useColorMode();
+    const current_theme = ref();
     
     const themes = [
         { value: 'system', label: 'System', icon: 'ph-laptop' },
@@ -83,10 +84,22 @@
     ];
     
     const setTheme = theme => {
+        current_theme.value = theme.label;
         colorMode.preference = theme.value;
         
         toast.success(`${theme.label} theme selected.`, {
             class: '!flex !gap-3',
         });
     };
+    
+    const checkCurrentTheme = () => {
+        const match = themes.find(theme => theme.value === colorMode.preference);
+        if(match) {
+            current_theme.value = match.label;
+        }
+    };
+    
+    onMounted(() => {
+        checkCurrentTheme();
+    })
 </script>
