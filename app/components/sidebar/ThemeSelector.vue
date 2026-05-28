@@ -36,7 +36,7 @@
                                 :key='theme'
                             >
                                 <Button
-                                    @click="setTheme(theme.value)"
+                                    @click="setTheme(theme)"
                                     variant='outline'
                                     class="!h-full border border-primary/25 transition-all duration-200 ease-in-out hover:-top-1"
                                     :class='{
@@ -69,6 +69,7 @@
     import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
     import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
     import { useSidebar } from '~/components/ui/sidebar/utils.ts';
+    import { toast } from 'vue-sonner';
     
     const { open, isMobile } = useSidebar();
     const colorMode = useColorMode();
@@ -82,6 +83,10 @@
     ];
     
     const setTheme = theme => {
-        colorMode.preference = theme;
+        colorMode.preference = theme.value;
+        
+        toast.success(`${theme.label} theme selected.`, {
+            class: '!flex !gap-3',
+        });
     };
 </script>
