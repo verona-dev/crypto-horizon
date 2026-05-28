@@ -6,7 +6,7 @@
             <ChainsCloud />
             
             <RadiantText
-                class='!r inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400'
+                class='!r inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:text-neutral-400'
                 :duration='5'
             >
                 <span class="font-great text-primary text-3xl lg:text-5xl xl:text-7xl">Loading...</span>

@@ -48,7 +48,7 @@
                                 v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.columnDef.isFilterable)'
                                 :key='column.id'
                                 :model-value='column.getIsVisible()'
-                                class='checkbox-item capitalize h-10 my-1 pl-10 rounded-lg hover:cursor-pointer dark:text-foreground/50 dark:data-[state=checked]:text-foreground/85'
+                                class='checkbox-item capitalize h-10 my-1 pl-10 rounded-lg hover:cursor-pointer text-foreground/50 data-[state=checked]:text-foreground/85'
                                 @update:model-value='(value) => column.toggleVisibility(!!value)'
                                 @select='event => event.preventDefault()'
                             >
