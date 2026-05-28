@@ -6,6 +6,7 @@
             <NuxtPage />
             <Toaster
                 position='top-center'
+                :closeButton='true'
                 :expand='true'
             />
         </NuxtLayout>
