@@ -6,6 +6,7 @@
             <NuxtPage />
             <Toaster
                 position='top-center'
+                :closeButton='true'
                 :expand='true'
             />
         </NuxtLayout>
@@ -14,7 +15,6 @@
 
 <script setup>
     import 'vue-sonner/style.css';
-    // import Toaster from 'vue-sonner';
     import { Toaster } from 'vue-sonner'
     
     const route = useRoute();

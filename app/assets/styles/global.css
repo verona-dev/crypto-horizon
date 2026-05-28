@@ -45,10 +45,6 @@
         @apply m-0;
     }
     
-    html {
-        @apply scheme-light dark:scheme-dark;
-    }
-    
     body {
         @apply font-metropolis bg-background text-foreground overflow-x-hidden overflow-y-scroll;
     }
@@ -155,18 +151,6 @@
 @layer utilities {
     .custom-flex {
         @apply flex flex-col sm:flex-row justify-center items-center;
-    }
-    
-    [data-sonner-toast] {
-        /*@apply !bg-popover-foreground dark:!bg-popover !text-background dark:!text-foreground !border-border;*/
-        
-        button {
-            /*@apply !bg-background dark:!bg-foreground !text-foreground dark:!text-background;*/
-        }
-        
-        span:not(.iconify) {
-            @apply text-sky;
-        }
     }
     
     .ghost-link-as-button {

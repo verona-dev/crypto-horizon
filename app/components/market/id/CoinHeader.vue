@@ -1,5 +1,8 @@
 <template>
-    <CardHeader v-if='coin' class='flex animate-fadeIn border !w-full rounded-xl'>
+    <CardHeader
+        v-if='coin'
+        class='bg-card flex animate-fadeIn border !w-full rounded-xl'
+    >
         <!--  Go back -->
         <!--
         <NuxtLink
@@ -75,7 +78,7 @@
             <div class='flex flex-col xl:flex-row gap-10 xl:gap-24'>
                 <!--  Price in USD  -->
                 <div class='flex flex-col items-center gap-2 text-green-dollar'>
-                    <Title :tag='2'>{{ current_price_label }}</Title>
+                    <Title :tag='2' class='text-5xl xl:text-7xl'>{{ current_price_label }}</Title>
                     
                     <!--  Price change % in USD $  -->
                     <HoverCard :openDelay='200'>
@@ -108,7 +111,7 @@
                             size='55'
                         />
                         
-                        <h2 class='text-5xl md:text-7xl'>{{ current_price_in_btc_label }}</h2>
+                        <Title :tag='2' class='text-5xl xl:text-7xl'>{{ current_price_in_btc_label }}</Title>
                     </div>
                     
                     <!--  Price change % in BTC  -->
@@ -116,7 +119,7 @@
                         <HoverCardTrigger class='flex items-center gap-1'>
                             <NuxtIcon
                                 :name='getTrendIcon(price_change_percentage_btc)'
-                                size='15'
+                                size='20'
                                 :class='getTrendClass(price_change_percentage_btc)'
                             />
                             

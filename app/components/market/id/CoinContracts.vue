@@ -102,10 +102,10 @@
 
 <script setup>
     import { toast } from 'vue-sonner';
-    import { h, resolveComponent } from 'vue';
+    import { h } from 'vue';
     import { capitalize } from '~/utils/formatUtils.js';
     import { ChevronDown } from 'lucide-vue-next';
-    import { Item, ItemActions, ItemContent, ItemMedia, ItemTitle } from '~/components/ui/item';
+    import { Item } from '~/components/ui/item';
     import Title from '~/components/Title.vue';
     
     // MarketStore

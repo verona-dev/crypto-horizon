@@ -44,7 +44,7 @@
                             <SidebarMenuButton
                                 :tooltip="item.title"
                                 :is-active="item.isActive"
-                                :class="{ 'dark:!text-primary': item.isActive }"
+                                :class="{ '!text-primary': item.isActive }"
                             >
                                 <component :is="item.icon" v-if="item.icon" />
                             </SidebarMenuButton>
@@ -57,7 +57,7 @@
                             :is-active='item.isActive'
                             :class='[
                                 "!h-9",
-                                { "!bg-transparent dark:!text-primary": item.isActive },
+                                { "!bg-transparent !text-primary": item.isActive },
                             ]'
                         >
                             <component :is="item.icon" v-if="item.icon" />
@@ -74,7 +74,7 @@
                                     :is-active='subItem.isActive'
                                     :class='[
                                             "pl-3",
-                                            {"!bg-transparent dark:!text-primary" : subItem.isActive },
+                                            {"!bg-transparent !text-primary" : subItem.isActive },
                                         ]'
                                 >
                                     <NuxtLink

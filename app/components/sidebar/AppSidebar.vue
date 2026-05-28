@@ -6,7 +6,7 @@
     import NavUser from './NavUser.vue';
     import SidebarToggle from './SidebarToggle.vue';
     import SidebarLogo from './SidebarLogo.vue';
-    import ColorMode from '@/components/sidebar/ColorMode.vue';
+    import ThemeSelector from '@/components/sidebar/ThemeSelector.vue';
     
     import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar"
     
@@ -178,7 +178,7 @@
 
 <template>
     <Sidebar v-bind='props' class='sidebar z-50'>
-        <SidebarHeader class='h-20 border-b justify-center'>
+        <SidebarHeader class='h-24 border-b justify-center'>
             <SidebarLogo />
         </SidebarHeader>
         
@@ -186,8 +186,8 @@
             <NavMain :items="data" />
         </SidebarContent>
         
-        <SidebarFooter>
-            <ColorMode />
+        <SidebarFooter class='h-44 mb-2 justify-around'>
+            <ThemeSelector />
             <NavUser />
             <SidebarToggle />
         </SidebarFooter>
