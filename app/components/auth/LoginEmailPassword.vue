@@ -37,7 +37,7 @@
                                             v-bind='componentField'
                                             type='email'
                                             placeholder='name@example.com'
-                                            class='dark:bg-blue-bunker/75'
+                                            class='bg-blue-bunker/75'
                                             required
                                         />
                                     </FormControl>
@@ -58,7 +58,7 @@
                                             v-bind='componentField'
                                             id='password'
                                             type='password'
-                                            class='dark:bg-blue-bunker/75'
+                                            class='bg-blue-bunker/75'
                                             :validateOnBlur='false'
                                             :validateOnChange='false'
                                             required
@@ -86,7 +86,7 @@
                     <Button
                         @click='onLogin(nextStep)'
                         :type='meta.valid ? "button" : "submit"'
-                        class='w-full dark:disabled:opacity-75'
+                        class='w-full disabled:opacity-75'
                         size='lg'
                         :disabled='!meta.valid'
                     >
