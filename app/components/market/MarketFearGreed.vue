@@ -52,7 +52,7 @@
                 
                 <!--  Fear and Greed labels  -->
                 <div class='labels-container flex flex-col items-center gap-4'>
-                    <h2>{{ fear_and_greed_data }}</h2>
+                    <h2 class='text-5xl xl:text-7xl'>{{ fear_and_greed_data }}</h2>
                     <h3 class='uppercase tracking-widest text-primary'>{{ fear_and_greed_label }}</h3>
                 </div>
             </CardContent>
