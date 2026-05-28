@@ -80,9 +80,9 @@
                 
                 <!--  Dropdown  -->
                 <DropdownMenuContent
-                    class='font-satoshi w-[--reka-dropdown-menu-trigger-width] min-w-56'
+                    class='font-satoshi w-[--reka-dropdown-menu-trigger-width] min-w-56 border-primary/25'
                     :side='isMobile ? "bottom" : "right"'
-                    align='end'
+                    align='center'
                     :side-offset='open ? 16 : 8'
                 >
                     <DropdownMenuLabel class='p-0 font-normal'>
