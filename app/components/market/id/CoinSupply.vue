@@ -5,10 +5,10 @@
             <div class='h-13 text-primary flex items-center gap-3'>
                 <NuxtIcon
                     name='ph:chart-donut-duotone'
-                    size='36'
+                    size='64'
                 />
                 
-                <Title :tag='3'>Supply </Title>
+                <Title :tag='1' class='text-5xl xl:text-7xl'>Supply </Title>
             </div>
             
             <!--  Selector  -->
