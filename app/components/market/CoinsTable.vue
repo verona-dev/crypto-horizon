@@ -1,6 +1,7 @@
 <template>
     <Card class='w-full h-full !shadow-2xl'>
         <div class='w-full flex flex-col'>
+            <!--   Header   -->
             <div class='flex flex-col items-center justify-center gap-8 p-14'>
                 <Title :tag='1' :level='3'>Cryptocurrencies by  {{ sortingLabel }}</Title>
                 
@@ -61,13 +62,11 @@
             <!--   Table   -->
             <div class='border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
                 <Table class='!border-none'>
-                    <TableHeader
-                        class='h-24'
-                        :class='{ "shadow-2xl" : dark_mode }'
-                    >
+                    <TableHeader :class='[ "h-24", { "shadow-2xl" : dark_mode } ]'>
                         <TableRow
                             v-for='headerGroup in table.getHeaderGroups()'
                             :key='headerGroup.id'
+                            class='hover:bg-background'
                         >
                             <TableHead
                                 v-for='header in headerGroup.headers'
@@ -76,6 +75,7 @@
                             >
                                 <template v-if='!header.isPlaceholder'>
                                     <div
+                                        @click='onSort(header)'
                                         :class='[
                                             "flex justify-end",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
@@ -83,7 +83,6 @@
                                             { "!justify-center": header.column.id === "market_cap_rank" },
                                             { "justify-start": header.column.id === "name" },
                                         ]'
-                                        @click='onSort(header)'
                                     >
                                         <div
                                             :class='[
@@ -146,7 +145,7 @@
                                                 variant='icon'
                                                 class='w-16 h-16'
                                             >
-                                                <Spinner class='size-8 text-green-shamrock' />
+                                                <Spinner class='size-8 text-primary' />
                                             </EmptyMedia>
                                             
                                             <EmptyTitle>Loading coins...</EmptyTitle>
@@ -280,11 +279,11 @@
             </div>
             
             <!--   Update status   -->
-            <div v-if='!loading' class='text-muted-foreground flex items-center justify-center gap-1.5 p-4'>
+            <div v-if='isTableReady && !loading' class='bg-muted rounded-bl-xl rounded-br-xl text-muted-foreground flex items-center justify-center gap-1.5 p-4'>
                 <NuxtIcon
                     name='ph:hexagon-duotone'
                     size='16'
-                    class=''
+                    class='text-primary/50'
                 />
                 <span class='text-sm'>Market data updated {{ lastApiUpdate }}</span>
             </div>
