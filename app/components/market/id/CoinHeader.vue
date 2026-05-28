@@ -1,5 +1,8 @@
 <template>
-    <CardHeader v-if='coin' class='flex animate-fadeIn border !w-full rounded-xl'>
+    <CardHeader
+        v-if='coin'
+        class='bg-card flex animate-fadeIn border !w-full rounded-xl'
+    >
         <!--  Go back -->
         <!--
         <NuxtLink

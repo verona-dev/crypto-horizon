@@ -38,7 +38,7 @@
                 ]'
             >
                 <GlowBorder
-                    v-if='dark_mode && !sniper_mode'
+                    v-if='!sniper_mode'
                     :color='["#A07CFE", "#FE8FB5", "#FFBE7B"]'
                     :duration='20'
                     :border-width='1'
