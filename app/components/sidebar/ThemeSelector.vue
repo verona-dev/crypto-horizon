@@ -99,20 +99,26 @@
         },
         {
             value: 'dark',
-            label: 'Dark',
+            label: 'Dark Matter',
             icon: 'ph-moon',
             description: 'Dark theme'
         },
         {
             value: 'caffeine-light',
             label: 'Caffeine Light',
-            icon: 'ph-acorn',
+            icon: 'ph-sun',
             description: 'Light theme'
         },
         {
             value: 'caffeine-dark',
             label: 'Caffeine Dark',
-            icon: 'ph-coffee',
+            icon: 'ph-moon',
+            description: 'Dark theme'
+        },
+        {
+            value: 'amethyst',
+            label: 'Amethyst',
+            icon: 'ph-moon',
             description: 'Dark theme'
         },
     ];
