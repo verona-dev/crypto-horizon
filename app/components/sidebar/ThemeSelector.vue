@@ -104,20 +104,20 @@
             description: 'Dark theme'
         },
         {
-            value: 'caffeine-light',
-            label: 'Caffeine Light',
-            icon: 'ph-sun',
-            description: 'Light theme'
-        },
-        {
             value: 'caffeine-dark',
-            label: 'Caffeine Dark',
+            label: 'Caffeine',
             icon: 'ph-moon',
             description: 'Dark theme'
         },
         {
-            value: 'amethyst',
-            label: 'Amethyst',
+            value: 'amethyst-light',
+            label: 'Amethyst Light',
+            icon: 'ph-sun',
+            description: 'Light theme'
+        },
+        {
+            value: 'amethyst-dark',
+            label: 'Amethyst Dark',
             icon: 'ph-moon',
             description: 'Dark theme'
         },
