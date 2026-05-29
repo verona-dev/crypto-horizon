@@ -44,6 +44,7 @@
                             <SidebarMenuButton
                                 :tooltip="item.title"
                                 :is-active="item.isActive"
+                                :class="{ '!bg-primary !text-primary-foreground': item.isActive }"
                             >
                                 <component :is="item.icon" v-if="item.icon" />
                             </SidebarMenuButton>
@@ -54,7 +55,10 @@
                             v-else
                             :tooltip='item.title'
                             :is-active='item.isActive'
-                            class='!h-9'
+                            :class='[
+                                "!h-9",
+                                { "!bg-primary !text-primary-foreground": item.isActive },
+                            ]'
                         >
                             <component :is="item.icon" v-if="item.icon" />
                             <span>{{ item.title }}</span>
@@ -68,11 +72,15 @@
                                 <SidebarMenuSubButton
                                     as-child
                                     :is-active='subItem.isActive'
-                                    class='pl-3'
+                                    :class='[
+                                            "pl-3",
+                                            {"!bg-transparent !text-primary" : subItem.isActive },
+                                        ]'
                                 >
                                     <NuxtLink
                                         :to="subItem.disabled ? undefined : subItem.url"
-                                        :class='[ "!h-9",  subItem.disabled ? "!text-muted-foreground/75" : "" ]'
+                                        class='!h-9'
+                                        :class='subItem.disabled ? "!text-muted-foreground" : ""'
                                     >
                                         <span>{{ subItem.title }}</span>
                                     </NuxtLink>

@@ -30,13 +30,13 @@
                             <p class='text-sm text-muted-foreground'>Select a theme.</p>
                         </div>
                         
-                        <div class='flex flex-wrap gap-4 w-150'>
+                        <div class='flex flex-wrap justify-center gap-4 w-160'>
                             <Card
                                 v-for='theme of themes'
                                 :key='theme'
                                 @click="setTheme(theme)"
                                 :class='[
-                                    "flex flex-col flex-wrap items-center justify-around cursor-pointer !w-44 select-none !p-0",
+                                    "flex flex-col flex-wrap items-center justify-around cursor-pointer !w-48 select-none !p-0",
                                     { "border-progress": !$colorMode.unknown && theme.value === $colorMode.preference },
                                 ]'
                             >
