@@ -22,34 +22,41 @@
                     align='center'
                     :side-offset='open ? 16 : 12'
                     :avoid-collisions='true'
-                    class='min-w-120 p-8 border-primary/25'
+                    class='!w-fit p-8 border-primary/25'
                 >
-                    <div class='flex flex-col items-around gap-10'>
+                    <div class='flex flex-col items-around gap-12'>
                         <div class='grid gap-2'>
-                            <h4 class='font-medium leading-none'>Theme Selector</h4>
+                            <Title :tag='1' :level='4'>Theme Selector</Title>
                             <p class='text-sm text-muted-foreground'>Select a theme.</p>
                         </div>
                         
-                        <div class='flex justify-around'>
-                            <div
+                        <div class='flex flex-wrap gap-4 w-150'>
+                            <Card
                                 v-for='theme of themes'
                                 :key='theme'
+                                @click="setTheme(theme)"
+                                :class='[
+                                    "flex flex-col flex-wrap items-center justify-around cursor-pointer !w-44 select-none !p-0",
+                                    { "border-progress": !$colorMode.unknown && theme.value === $colorMode.preference },
+                                ]'
                             >
-                                <Button
-                                    @click="setTheme(theme)"
-                                    variant='outline'
-                                    class="!h-full border border-primary/25 transition-all duration-200 ease-in-out hover:-top-1"
-                                    :class='{
-                                      "border-emerald-600": !$colorMode.unknown && theme.value === $colorMode.preference,
-                                      "text-emerald-600": !$colorMode.unknown && theme.value === $colorMode.value,
-                                    }'
-                                >
-                                    <NuxtIcon
-                                        :name='theme.icon'
-                                        class='size-6'
-                                    />
-                                </Button>
-                            </div>
+                                <CardHeader>
+                                    <Title :tag='1' :level='6' :class='{ "text-progress": !$colorMode.unknown && theme.value === $colorMode.value }'>{{ theme.label }}</Title>
+                                    <CardDescription>{{ theme.description }}</CardDescription>
+                                </CardHeader>
+                                
+                                <CardContent>
+                                    <Button
+                                        variant='outline'
+                                        class="!h-full border border-primary/25 transition-all duration-200 ease-in-out hover:bg-transparent"
+                                    >
+                                        <NuxtIcon
+                                            :name='theme.icon'
+                                            class='size-6'
+                                        />
+                                    </Button>
+                                </CardContent>
+                            </Card>
                         </div>
                         
                         <div>
@@ -66,21 +73,48 @@
 
 <script setup>
     import { Button } from '~/components/ui/button';
+    import { Card, CardDescription, CardContent, CardHeader, CardTitle, CardFooter} from '~/components/ui/card';
     import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
     import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
-    import { useSidebar } from '~/components/ui/sidebar/utils.ts';
     import { toast } from 'vue-sonner';
+    import Title from '~/components/Title.vue';
+    import { useSidebar } from '~/components/ui/sidebar/utils.ts';
     
     const { open, isMobile } = useSidebar();
     const colorMode = useColorMode();
     const current_theme = ref();
     
     const themes = [
-        { value: 'system', label: 'System', icon: 'ph-laptop' },
-        { value: 'light', label: 'Light', icon: 'ph-sun' },
-        { value: 'dark', label: 'Dark', icon: 'ph-moon' },
-        { value: 'caffeine-light', label: 'Caffeine Light', icon: 'ph-acorn' },
-        { value: 'caffeine-dark', label: 'Caffeine Dark', icon: 'ph-coffee' },
+        {
+            value: 'system',
+            label: 'System',
+            icon: 'ph-laptop',
+            description: 'System theme'
+        },
+        {
+            value: 'light',
+            label: 'Light',
+            icon: 'ph-sun',
+            description: 'Light theme'
+        },
+        {
+            value: 'dark',
+            label: 'Dark',
+            icon: 'ph-moon',
+            description: 'Dark theme'
+        },
+        {
+            value: 'caffeine-light',
+            label: 'Caffeine Light',
+            icon: 'ph-acorn',
+            description: 'Light theme'
+        },
+        {
+            value: 'caffeine-dark',
+            label: 'Caffeine Dark',
+            icon: 'ph-coffee',
+            description: 'Dark theme'
+        },
     ];
     
     const setTheme = theme => {
