@@ -321,6 +321,10 @@
     
     /* Dark Matter */
     .dark {
+        --font-sans: Geist Mono, ui-monospace, monospace;
+        --font-serif: serif;
+        --font-mono: JetBrains Mono, monospace;
+        
         --background: #121113;
         --foreground: #c1c1c1;
         --card: #121212;
@@ -335,6 +339,8 @@
         --muted-foreground: #888888;
         --accent: #333333;
         --accent-foreground: #c1c1c1;
+        --destructive: #5f8787;
+        --destructive-foreground: #121113;
         --border: #222222;
         --input: #222222;
         --ring: #e78a53;
@@ -351,67 +357,23 @@
         --sidebar-accent-foreground: #c1c1c1;
         --sidebar-border: #222222;
         --sidebar-ring: #e78a53;
-    }
-    
-    /* Caffeine Light Theme */
-    .amethyst-light {
-        --font-sans: Geist, sans-serif;
-        --font-serif: "Lora", Georgia, serif;
-        --font-mono: "Fira Code", "Courier New", monospace;
         
-        --background: #f8f7fa;
-        --foreground: #3d3c4f;
-        --card: #ffffff;
-        --card-foreground: #3d3c4f;
-        --popover: #ffffff;
-        --popover-foreground: #3d3c4f;
-        --primary: #8a79ab;
-        --primary-foreground: #f8f7fa;
-        --secondary: #dfd9ec;
-        --secondary-foreground: #3d3c4f;
-        --muted: #dcd9e3;
-        --muted-foreground: #6b6880;
-        --accent: #e6a5b8;
-        --accent-foreground: #4b2e36;
-        --destructive: #d95c5c;
-        --destructive-foreground: #f8f7fa;
-        --border: #cec9d9;
-        --input: #eae7f0;
-        --ring: #8a79ab;
+        --radius: 0.75rem;
         
-        --chart-1: #8a79ab;
-        --chart-2: #e6a5b8;
-        --chart-3: #77b8a1;
-        --chart-4: #f0c88d;
-        --chart-5: #a0bbe3;
-        
-        --sidebar: #f1eff5;
-        --sidebar-foreground: #3d3c4f;
-        --sidebar-primary: #8a79ab;
-        --sidebar-primary-foreground: #f8f7fa;
-        --sidebar-accent: #e6a5b8;
-        --sidebar-accent-foreground: #4b2e36;
-        --sidebar-border: #d7d2e0;
-        --sidebar-ring: #8a79ab;
-        
-        --radius: 0.5rem;
-        
-        --shadow-x: 1px;
-        --shadow-y: 2px;
-        --shadow-blur: 5px;
-        --shadow-spread: 1px;
-        --shadow-opacity: 0.06;
-        --shadow-color: hsl(0 0% 0%);
-        --shadow-2xs: 1px 2px 5px 1px hsl(0 0% 0% / 0.03);
-        --shadow-xs: 1px 2px 5px 1px hsl(0 0% 0% / 0.03);
-        --shadow-sm: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 1px 2px 0px hsl(0 0% 0% / 0.06);
-        --shadow: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 1px 2px 0px hsl(0 0% 0% / 0.06);
-        --shadow-md: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 2px 4px 0px hsl(0 0% 0% / 0.06);
-        --shadow-lg: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 4px 6px 0px hsl(0 0% 0% / 0.06);
-        --shadow-xl: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 8px 10px 0px hsl(0 0% 0% / 0.06);
-        --shadow-2xl: 1px 2px 5px 1px hsl(0 0% 0% / 0.15);
-        --tracking-normal: 0em;
-        --spacing: 0.25rem;
+        --shadow-x: 0px;
+        --shadow-y: 1px;
+        --shadow-blur: 4px;
+        --shadow-spread: 0px;
+        --shadow-opacity: 0.05;
+        --shadow-color: #000000;
+        --shadow-2xs: 0px 1px 4px 0px hsl(0 0% 0% / 0.03);
+        --shadow-xs: 0px 1px 4px 0px hsl(0 0% 0% / 0.03);
+        --shadow-sm: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 1px 2px -1px hsl(0 0% 0% / 0.05);
+        --shadow: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 1px 2px -1px hsl(0 0% 0% / 0.05);
+        --shadow-md: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 2px 4px -1px hsl(0 0% 0% / 0.05);
+        --shadow-lg: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 4px 6px -1px hsl(0 0% 0% / 0.05);
+        --shadow-xl: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 8px 10px -1px hsl(0 0% 0% / 0.05);
+        --shadow-2xl: 0px 1px 4px 0px hsl(0 0% 0% / 0.13);
     }
     
     /* Caffeine Dark Theme */
@@ -471,6 +433,67 @@
         --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
         --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
         --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+    }
+    
+    /* Amethyst-light Light Theme */
+    .amethyst-light {
+        --font-sans: Geist, sans-serif;
+        --font-serif: "Lora", Georgia, serif;
+        --font-mono: "Fira Code", "Courier New", monospace;
+        
+        --background: #f8f7fa;
+        --foreground: #3d3c4f;
+        --card: #ffffff;
+        --card-foreground: #3d3c4f;
+        --popover: #ffffff;
+        --popover-foreground: #3d3c4f;
+        --primary: #8a79ab;
+        --primary-foreground: #f8f7fa;
+        --secondary: #dfd9ec;
+        --secondary-foreground: #3d3c4f;
+        --muted: #dcd9e3;
+        --muted-foreground: #6b6880;
+        --accent: #e6a5b8;
+        --accent-foreground: #4b2e36;
+        --destructive: #d95c5c;
+        --destructive-foreground: #f8f7fa;
+        --border: #cec9d9;
+        --input: #eae7f0;
+        --ring: #8a79ab;
+        
+        --chart-1: #8a79ab;
+        --chart-2: #e6a5b8;
+        --chart-3: #77b8a1;
+        --chart-4: #f0c88d;
+        --chart-5: #a0bbe3;
+        
+        --sidebar: #f1eff5;
+        --sidebar-foreground: #3d3c4f;
+        --sidebar-primary: #8a79ab;
+        --sidebar-primary-foreground: #f8f7fa;
+        --sidebar-accent: #e6a5b8;
+        --sidebar-accent-foreground: #4b2e36;
+        --sidebar-border: #d7d2e0;
+        --sidebar-ring: #8a79ab;
+        
+        --radius: 0.5rem;
+        
+        --shadow-x: 1px;
+        --shadow-y: 2px;
+        --shadow-blur: 5px;
+        --shadow-spread: 1px;
+        --shadow-opacity: 0.06;
+        --shadow-color: hsl(0 0% 0%);
+        --shadow-2xs: 1px 2px 5px 1px hsl(0 0% 0% / 0.03);
+        --shadow-xs: 1px 2px 5px 1px hsl(0 0% 0% / 0.03);
+        --shadow-sm: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 1px 2px 0px hsl(0 0% 0% / 0.06);
+        --shadow: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 1px 2px 0px hsl(0 0% 0% / 0.06);
+        --shadow-md: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 2px 4px 0px hsl(0 0% 0% / 0.06);
+        --shadow-lg: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 4px 6px 0px hsl(0 0% 0% / 0.06);
+        --shadow-xl: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 8px 10px 0px hsl(0 0% 0% / 0.06);
+        --shadow-2xl: 1px 2px 5px 1px hsl(0 0% 0% / 0.15);
+        --tracking-normal: 0em;
+        --spacing: 0.25rem;
     }
     
     /* Amethyst Dark Theme */
