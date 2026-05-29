@@ -10,6 +10,7 @@
 @custom-variant dark (&:where(.dark *));
 @custom-variant caffeine-dark (&:where(.caffeine-dark, .caffeine-dark *));
 @custom-variant caffeine-light (&:where(.caffeine-light, .caffeine-light *));
+@custom-variant amethyst (&:where(.amethyst, .amethyst *));
 
 @layer base {
     * {
@@ -314,8 +315,8 @@
         --spacing: 0.25rem;
     }
     
+    /* Dark Matter */
     .dark {
-        /* Dark Matter */
         --background: #121113;
         --foreground: #c1c1c1;
         --card: #121212;
@@ -348,8 +349,8 @@
         --sidebar-ring: #e78a53;
     }
     
+    /* Caffeine Light Theme */
     .caffeine-light {
-        /* Caffeine Light Theme */
         --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
         --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
         --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -388,7 +389,7 @@
         --sidebar-accent-foreground: #343434;
         --sidebar-border: #ebebeb;
         --sidebar-ring: #b5b5b5;
-
+        
         --radius: 0.5rem;
         
         --shadow-x: 0;
@@ -409,8 +410,8 @@
         --spacing: 0.25rem;
     }
     
+    /* Caffeine Dark Theme */
     .caffeine-dark {
-        /* Caffeine Dark Theme */
         --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
         --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
         --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -449,7 +450,7 @@
         --sidebar-accent-foreground: #f4f4f5;
         --sidebar-border: #27272a;
         --sidebar-ring: #d4d4d8;
-
+        
         --radius: 0.5rem;
         
         --shadow-x: 0;
@@ -466,5 +467,59 @@
         --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
         --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
         --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+    }
+    
+    /* Amethyst Dark Theme */
+    .amethyst {
+        --background: #1a1823;
+        --foreground: #e0ddef;
+        --card: #232030;
+        --card-foreground: #e0ddef;
+        --popover: #232030;
+        --popover-foreground: #e0ddef;
+        --primary: #a995c9;
+        --primary-foreground: #1a1823;
+        --secondary: #5a5370;
+        --secondary-foreground: #e0ddef;
+        --muted: #242031;
+        --muted-foreground: #a09aad;
+        --accent: #372e3f;
+        --accent-foreground: #f2b8c6;
+        --destructive: #e57373;
+        --destructive-foreground: #1a1823;
+        --border: #302c40;
+        --input: #2a273a;
+        --ring: #a995c9;
+        --chart-1: #a995c9;
+        --chart-2: #f2b8c6;
+        --chart-3: #77b8a1;
+        --chart-4: #f0c88d;
+        --chart-5: #a0bbe3;
+        --sidebar: #16141e;
+        --sidebar-foreground: #e0ddef;
+        --sidebar-primary: #a995c9;
+        --sidebar-primary-foreground: #1a1823;
+        --sidebar-accent: #372e3f;
+        --sidebar-accent-foreground: #f2b8c6;
+        --sidebar-border: #2a273a;
+        --sidebar-ring: #a995c9;
+        --font-sans: Geist, sans-serif;
+        --font-serif: "Lora", Georgia, serif;
+        --font-mono: "Fira Code", "Courier New", monospace;
+        --radius: 0.5rem;
+        --shadow-x: 1px;
+        --shadow-y: 2px;
+        --shadow-blur: 5px;
+        --shadow-spread: 1px;
+        --shadow-opacity: 0.06;
+        --shadow-color: hsl(0 0% 0%);
+        --shadow-2xs: 1px 2px 5px 1px hsl(0 0% 0% / 0.03);
+        --shadow-xs: 1px 2px 5px 1px hsl(0 0% 0% / 0.03);
+        --shadow-sm: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 1px 2px 0px hsl(0 0% 0% / 0.06);
+        --shadow: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 1px 2px 0px hsl(0 0% 0% / 0.06);
+        --shadow-md: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 2px 4px 0px hsl(0 0% 0% / 0.06);
+        --shadow-lg: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 4px 6px 0px hsl(0 0% 0% / 0.06);
+        --shadow-xl: 1px 2px 5px 1px hsl(0 0% 0% / 0.06), 1px 8px 10px 0px hsl(0 0% 0% / 0.06);
+        --shadow-2xl: 1px 2px 5px 1px hsl(0 0% 0% / 0.15);
     }
 }
