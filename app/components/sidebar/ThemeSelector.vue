@@ -41,7 +41,14 @@
                                 ]'
                             >
                                 <CardHeader class='items-center'>
-                                    <Title :tag='1' :level='6' :class='{ "text-progress": !$colorMode.unknown && theme.value === $colorMode.value }'>{{ theme.label }}</Title>
+                                    <Title
+                                        :tag='1'
+                                        :level='6'
+                                        :class='{ "text-progress": !$colorMode.unknown && theme.value === $colorMode.value }'
+                                    >
+                                        {{ theme.label }}
+                                    </Title>
+                                    
                                     <div class='flex items-center gap-1.5'>
                                         <NuxtIcon
                                             :name='theme.icon'
@@ -53,13 +60,23 @@
                                 </CardHeader>
                                 
                                 <CardContent class='m-4'>
-                                    <div class='flex items-center gap-2 h-10'>
-                                        <div v-if='theme.colors.background' class='flex justify-stretch gap-1.5 h-full'>
-                                            <div class='w-4 h-full rounded-xs border border-muted-foreground/50' :class='theme.colors.background'></div>
-                                            <div class='w-4 h-full rounded-xs' :class='theme.colors.primary'></div>
-                                            <div class='w-4 h-full rounded-xs' :class='theme.colors.secondary'></div>
-                                            <div class='w-4 h-full rounded-xs' :class='theme.colors.mutedForeground'></div>
-                                        </div>
+                                    <div class='flex flex-col items-center h-10'>
+                                        <template v-if='theme.value === "system"'>
+                                            <template v-if='$colorMode.preference === "system"'>
+                                                <p class=''>Detected</p>
+                                                
+                                                <span class='text-muted-foreground italic capitalize text-sm'>{{ $colorMode.value }} mode</span>
+                                            </template>
+                                        </template>
+                                        
+                                        <template v-else>
+                                            <div class='flex justify-stretch gap-1.5 h-full'>
+                                                <div class='w-4 h-full rounded-xs border border-muted-foreground/50' :class='theme.colors.background'></div>
+                                                <div class='w-4 h-full rounded-xs' :class='theme.colors.primary'></div>
+                                                <div class='w-4 h-full rounded-xs' :class='theme.colors.secondary'></div>
+                                                <div class='w-4 h-full rounded-xs' :class='theme.colors.mutedForeground'></div>
+                                            </div>
+                                        </template>
                                     </div>
                                 </CardContent>
                             </Card>
@@ -87,7 +104,7 @@
     
     const { open, isMobile } = useSidebar();
     const colorMode = useColorMode();
-    const current_theme = ref();
+    const current_theme = ref('');
     
     const themes = [
         {
