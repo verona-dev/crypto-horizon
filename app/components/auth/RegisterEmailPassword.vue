@@ -35,7 +35,6 @@
                                             v-bind='componentField'
                                             type='email'
                                             placeholder='name@example.com'
-                                            class='bg-blue-bunker/75'
                                             required
                                         />
                                     </FormControl>
@@ -56,7 +55,6 @@
                                             v-bind='componentField'
                                             id='password'
                                             type='password'
-                                            class='bg-blue-bunker/75'
                                             required
                                         />
                                         <FieldDescription>
