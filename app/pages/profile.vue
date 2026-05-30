@@ -57,8 +57,6 @@
     const { profile } = storeToRefs(ProfileStore);
     const { getProfile } = ProfileStore;
     
-    const colorMode = useColorMode();
-    
     dayjs.extend(relativeTime);
     dayjs.extend(utc);
     

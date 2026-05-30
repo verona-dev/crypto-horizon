@@ -131,7 +131,7 @@
     }
     
     .page {
-        @apply animate-fadeIn-2000 mt-20 relative px-6 mx-auto w-full;
+        @apply mt-20 relative px-6 mx-auto w-full;
         
         /* Desktop */
         @media (min-width: 1024px) {

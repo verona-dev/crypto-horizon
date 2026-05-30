@@ -3,7 +3,7 @@
         <LoadingContent v-if='loading' />
         
         <div v-else class='page'>
-            <div v-if='!dark_mode' class='h-[450px] flex items-center'>
+            <div v-if='!isThemeDark()' class='h-[450px] flex items-center'>
                 <Title :tag='1' :level='2'>{{ page_title }}</Title>
             </div>
             
@@ -176,17 +176,6 @@
 </template>
 
 <script setup>
-    import NewTabIcon from '~/components/NewTabIcon.vue';
-    import Title from '~/components/Title.vue';
-    import LoadingContent from '@/components/LoadingContent.vue';
-    
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
-    
-    import dayjs from 'dayjs';
-    import relativeTime from 'dayjs/plugin/relativeTime';
-    dayjs.extend(relativeTime, { rounding: Math.floor });
-    
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
     import { Badge } from '~/components/ui/badge';
     import { BentoGrid, BentoGridItem } from '~/components/ui/bento-grid';
@@ -195,6 +184,15 @@
     import { ParticleImage } from '~/components/ui/particle-image';
     import { Skeleton } from '~/components/ui/skeleton';
     import titleImage from '~/assets/images/latest-news.png';
+    import { isThemeDark } from '@/utils/styleUtils.js';
+    import NewTabIcon from '~/components/NewTabIcon.vue';
+    import Title from '~/components/Title.vue';
+    import LoadingContent from '@/components/LoadingContent.vue';
+    
+    // Dayjs
+    import dayjs from 'dayjs';
+    import relativeTime from 'dayjs/plugin/relativeTime';
+    dayjs.extend(relativeTime, { rounding: Math.floor });
     
     // NewsStore
     import { storeToRefs } from 'pinia';
