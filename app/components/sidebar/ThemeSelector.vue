@@ -30,13 +30,13 @@
                             <p class='text-sm text-muted-foreground'>Select a theme.</p>
                         </div>
                         
-                        <div class='flex flex-wrap justify-center gap-4 w-160'>
+                        <div class='flex flex-wrap justify-center gap-4 w-180'>
                             <Card
                                 v-for='theme of themes'
                                 :key='theme'
                                 @click="setTheme(theme)"
                                 :class='[
-                                    "!w-48 flex flex-col flex-wrap items-center justify-around cursor-pointer select-none border-2",
+                                    "!w-56 flex flex-col flex-wrap items-center justify-around cursor-pointer select-none border-2",
                                     { "bg-muted/50 border-foreground": !$colorMode.unknown && theme.value === $colorMode.preference },
                                 ]'
                             >
@@ -76,9 +76,22 @@
                                                 <div class='w-4 h-full rounded-xs' :class='theme.colors.secondary'></div>
                                                 <div class='w-4 h-full rounded-xs' :class='theme.colors.mutedForeground'></div>
                                             </div>
+                                        
+                                        
                                         </template>
                                     </div>
                                 </CardContent>
+                                
+                                <CardFooter v-if='theme.value !== "system" && theme.fonts.length > 0' class='flex flex-col gap-2'>
+                                    <Badge
+                                        v-for='font in theme.fonts'
+                                        :key='font'
+                                        variant='outline'
+                                        class='bg-accent'
+                                    >
+                                        {{ font }}
+                                    </Badge>
+                                </CardFooter>
                             </Card>
                         </div>
                         
@@ -95,7 +108,8 @@
 </template>
 
 <script setup>
-    import { Card, CardDescription, CardContent, CardHeader } from '~/components/ui/card';
+    import { Badge } from '@/components/ui/badge';
+    import { Card, CardDescription, CardContent, CardHeader, CardFooter } from '~/components/ui/card';
     import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
     import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
     import { toast } from 'vue-sonner';
@@ -130,6 +144,10 @@
                 secondary: 'bg-[#527575]',
                 mutedForeground: 'bg-[#6b7280]',
             },
+            fonts: [
+                "JetBrains Mono",
+                "Geist Mono",
+            ],
         },
         {
             value: 'dark',
@@ -142,6 +160,10 @@
                 secondary: 'bg-[#5f8787]',
                 mutedForeground: 'bg-[#888888]',
             },
+            fonts: [
+                "JetBrains Mono",
+                "Geist Mono",
+            ],
         },
         {
             value: 'caffeine-dark',
@@ -154,6 +176,10 @@
                 secondary: 'bg-[#393028]',
                 mutedForeground: 'bg-[#b4b4b4]',
             },
+            fonts: [
+                "JetBrains Mono",
+                "Geist Mono",
+            ],
         },
         {
             value: 'amethyst-light',
@@ -166,6 +192,10 @@
                 secondary: 'bg-[#dfd9ec]',
                 mutedForeground: 'bg-[#6b6880]',
             },
+            fonts: [
+                "Fira Code",
+                "Geist",
+            ],
         },
         {
             value: 'amethyst-dark',
@@ -178,6 +208,10 @@
                 secondary: 'bg-[#5a5370]',
                 mutedForeground: 'bg-[#a09aad]',
             },
+            fonts: [
+                "Fira Code",
+                "Geist",
+            ],
         },
     ];
     
