@@ -22,7 +22,7 @@
                     align='center'
                     :side-offset='open ? 16 : 12'
                     :avoid-collisions='true'
-                    class='!w-fit p-8 border-primary/25'
+                    class='animate-fadeIn !w-fit p-8 border-primary/25'
                 >
                     <div class='flex flex-col items-around gap-12'>
                         <div class='grid gap-2'>
@@ -60,7 +60,7 @@
                                 <CardFooter>
                                     <div class='flex items-center gap-2 h-10'>
                                         <div v-if='theme.colors.background' class='flex justify-stretch gap-2 h-full'>
-                                            <div class='w-4 h-full rounded-xs border border-muted-foreground/25 hover:-top-1' :class='theme.colors.background'></div>
+                                            <div class='w-4 h-full rounded-xs border border-muted-foreground/50' :class='theme.colors.background'></div>
                                             <div class='w-4 h-full rounded-xs' :class='theme.colors.primary'></div>
                                             <div class='w-4 h-full rounded-xs' :class='theme.colors.secondary'></div>
                                             <div class='w-4 h-full rounded-xs' :class='theme.colors.mutedForeground'></div>
