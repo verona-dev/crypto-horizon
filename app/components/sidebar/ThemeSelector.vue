@@ -37,7 +37,7 @@
                                 @click="setTheme(theme)"
                                 :class='[
                                     "!w-48 flex flex-col flex-wrap items-center justify-around cursor-pointer select-none border-2",
-                                    { "border-progress": !$colorMode.unknown && theme.value === $colorMode.preference },
+                                    { "bg-muted/50 border-foreground": !$colorMode.unknown && theme.value === $colorMode.preference },
                                 ]'
                             >
                                 <CardHeader class='items-center'>
