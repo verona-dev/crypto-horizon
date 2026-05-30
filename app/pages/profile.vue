@@ -24,18 +24,17 @@
                 
                 <ProfileWatchlist />
             </div>
-            
         </div>
-    </div>
-    
-    <div class='absolute inset-0 min-h-screen w-screen'>
-        <SnowfallBg
-            color='eee8a9'
-            class='absolute inset-0 !z-0'
-            :min-radius='0.2'
-            :max-radius='4'
-            :speed='0.5'
-        />
+        
+        <div class='absolute inset-0 min-h-screen w-screen'>
+            <SnowfallBg
+                color='eee8a9'
+                class='absolute inset-0 !z-0'
+                :min-radius='0.2'
+                :max-radius='4'
+                :speed='0.5'
+            />
+        </div>
     </div>
 </template>
 
