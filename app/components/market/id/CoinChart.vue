@@ -285,7 +285,7 @@
                 borderWidth: sniper_mode.value ? 0 : 1,
                 pointHoverRadius: sniper_mode.value ? 16 : 5,
                 pointStyle: sniper_mode.value ? 'crossRot' : 'circle',
-                pointBorderColor: sniper_mode.value ? '#e78a53' : '', // --primary
+                pointBorderColor: sniper_mode.value ? primary.value : '', // --primary
                 pointBorderWidth: sniper_mode.value ? 2 : 0,
             },
             elements: {
