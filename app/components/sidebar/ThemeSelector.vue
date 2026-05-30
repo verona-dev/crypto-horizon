@@ -71,10 +71,10 @@
                                         
                                         <template v-else>
                                             <div class='flex justify-stretch gap-1.5 h-full'>
-                                                <div class='w-4 h-full rounded-xs border border-muted-foreground/50' :class='theme.colors.background'></div>
-                                                <div class='w-4 h-full rounded-xs' :class='theme.colors.primary'></div>
-                                                <div class='w-4 h-full rounded-xs' :class='theme.colors.secondary'></div>
-                                                <div class='w-4 h-full rounded-xs' :class='theme.colors.mutedForeground'></div>
+                                                <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors.background'></div>
+                                                <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors.primary'></div>
+                                                <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors.accent'></div>
+                                                <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors.mutedForeground'></div>
                                             </div>
                                         
                                         
@@ -129,7 +129,7 @@
             colors: {
                 background: '',
                 primary: '',
-                secondary: '',
+                accent: '',
                 mutedForeground: '',
             },
         },
@@ -141,7 +141,7 @@
             colors: {
                 background: 'bg-[#ffffff]',
                 primary: 'bg-[#d87943]',
-                secondary: 'bg-[#527575]',
+                accent: 'bg-[#c0c0c0]',
                 mutedForeground: 'bg-[#6b7280]',
             },
             fonts: [
@@ -157,7 +157,7 @@
             colors: {
                 background: 'bg-[#121113]',
                 primary: 'bg-[#e78a53]',
-                secondary: 'bg-[#5f8787]',
+                accent: 'bg-[#333333]',
                 mutedForeground: 'bg-[#888888]',
             },
             fonts: [
@@ -173,7 +173,7 @@
             colors: {
                 background: 'bg-[#111111]',
                 primary: 'bg-[#ffe0c2]',
-                secondary: 'bg-[#393028]',
+                accent: 'bg-[#2a2a2a]',
                 mutedForeground: 'bg-[#b4b4b4]',
             },
             fonts: [
@@ -189,7 +189,7 @@
             colors: {
                 background: 'bg-[#f8f7fa]',
                 primary: 'bg-[#8a79ab]',
-                secondary: 'bg-[#dfd9ec]',
+                accent: 'bg-[#e6a5b8]',
                 mutedForeground: 'bg-[#6b6880]',
             },
             fonts: [
@@ -205,7 +205,7 @@
             colors: {
                 background: 'bg-[#1a1823]',
                 primary: 'bg-[#a995c9]',
-                secondary: 'bg-[#5a5370]',
+                accent: 'bg-[#372e3f]',
                 mutedForeground: 'bg-[#a09aad]',
             },
             fonts: [
