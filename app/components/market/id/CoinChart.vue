@@ -63,7 +63,7 @@
                     </TooltipTrigger>
                     
                     <TooltipContent :side-offset='10'>
-                        <p>Click to activate Sniper mode</p>
+                        <p>Click to toggle Sniper mode</p>
                     </TooltipContent>
                 </UITooltip>
             </TooltipProvider>
