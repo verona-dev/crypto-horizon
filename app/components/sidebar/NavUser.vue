@@ -80,7 +80,7 @@
                 
                 <!--  Dropdown  -->
                 <DropdownMenuContent
-                    class='font-satoshi w-[--reka-dropdown-menu-trigger-width] min-w-56 border-primary/25'
+                    class='animate-fadeIn w-[--reka-dropdown-menu-trigger-width] min-w-56 border-primary/25'
                     :side='isMobile ? "bottom" : "right"'
                     align='center'
                     :side-offset='open ? 16 : 8'

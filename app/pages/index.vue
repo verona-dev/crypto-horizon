@@ -1,14 +1,14 @@
 <template>
     <div class='homepage flex flex-col items-center gap-8 2xl:gap-32 px-20 pb-20 2xl:pb-10 relative'>
         <FluidCursor
-            v-if='dark_mode'
+            v-if='isThemeDark()'
             :densityDissipation='5.5'
             :velocityDissipation='3'
             class='z-1'
         />
         
         <ParticlesBg
-            v-if='dark_mode'
+            v-if='isThemeDark()'
             class='absolute inset-0'
             :quantity='100'
             :ease='100'
@@ -36,8 +36,7 @@
     import { FluidCursor } from '~/components/ui/fluid-cursor';
     import { ParticlesBg } from '~/components/ui/particles-bg';
     import WelcomeItem from '~/components/WelcomeItem.vue';
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
+    import {isThemeDark} from '@/utils/styleUtils';
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';

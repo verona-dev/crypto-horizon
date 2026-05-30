@@ -29,35 +29,44 @@
             </Tabs>
             
             <!--  Sniper Mode  -->
-            <Button
-                @click='onToggleSniper'
-                variant='outline'
-                :class='[
-                    "h-9.5 relative overflow-hidden hover:bg-transparent",
-                     { "text-primary border-primary/50 hover:text-primary" : sniper_mode },
-                ]'
-            >
-                <GlowBorder
-                    v-if='!sniper_mode'
-                    :color='["#A07CFE", "#FE8FB5", "#FFBE7B"]'
-                    :duration='20'
-                    :border-width='1'
-                />
-                
-                <div class='flex items-center gap-2'>
-                    <NuxtIcon
-                        name='ph:crosshair-simple-duotone'
-                        :size='20'
-                        :class='[
-                            "text-muted-foreground transition-transform duration-500 ease-in-out will-change-transform",
-                             sniper_mode ? "text-primary rotate-180" : "rotate-0",
-                        ]'
-                    />
+            <TooltipProvider>
+                <UITooltip>
+                    <TooltipTrigger as-child>
+                        <Button
+                            @click='onToggleSniper'
+                            variant='outline'
+                            :class='[
+                                "h-9.5 relative overflow-hidden hover:bg-transparent",
+                                 { "text-primary border-primary/50 hover:text-primary" : sniper_mode },
+                            ]'
+                        >
+                            <GlowBorder
+                                v-if='!sniper_mode'
+                                :color='["#A07CFE", "#FE8FB5", "#FFBE7B"]'
+                                :duration='20'
+                                :border-width='1'
+                            />
+                            
+                            <div class='flex items-center gap-2'>
+                                <NuxtIcon
+                                    name='ph:crosshair-simple-duotone'
+                                    :size='20'
+                                    :class='[
+                                        "text-muted-foreground transition-transform duration-500 ease-in-out will-change-transform",
+                                         sniper_mode ? "text-primary rotate-180" : "rotate-0",
+                                    ]'
+                                />
+                                
+                                <span :class='sniper_mode ? "text-primary" : "text-muted-foreground"'>Sniper Mode</span>
+                            </div>
+                        </Button>
+                    </TooltipTrigger>
                     
-                    <span :class='sniper_mode ? "text-primary" : "text-muted-foreground"'>Sniper Mode
-                    </span>
-                </div>
-            </Button>
+                    <TooltipContent :side-offset='10'>
+                        <p>Click to toggle Sniper mode</p>
+                    </TooltipContent>
+                </UITooltip>
+            </TooltipProvider>
             
             <!--  Timeframe  -->
             <Tabs v-model='timeframe'>
@@ -109,7 +118,7 @@
     import { GlowBorder } from '~/components/ui/glow-border';
     import { Spinner } from '~/components/ui/spinner/index.js';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
-    
+    import { Tooltip as UITooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
     // Dayjs
     import dayjs from 'dayjs';
     import customParseFormat from 'dayjs/plugin/customParseFormat';
@@ -175,6 +184,17 @@
     const chart_data = computed(() => valuation_tab.value === 'price' ? prices.value : m_caps.value);
     const starting_valuation = computed(() => chart_data.value[0]);
     
+    const root = document.documentElement;
+    const chart1 = ref('');
+    const chart2 = ref('');
+    const primary = ref('');
+    const accent_foreground = ref('');
+    chart1.value = getComputedStyle(root).getPropertyValue('--chart-1').trim();
+    chart2.value = getComputedStyle(root).getPropertyValue('--chart-2').trim();
+    primary.value = getComputedStyle(root).getPropertyValue('--primary').trim();
+    accent_foreground.value = getComputedStyle(root).getPropertyValue('--accent-foreground').trim();
+    
+    
     // Current
     const current_price = computed(() => getCoinPrice.value);
     const current_m_cap = computed(() => chart_data.value[chart_data.value.length - 1]);
@@ -229,13 +249,10 @@
             },
             custom_line: {
                 color: () => {
-                    if(dark_mode.value) {
-                        if(sniper_mode.value) {
-                            return '#e78a53'; // --primary
-                        }
-                        return '#9ca3af';
+                    if(sniper_mode.value) {
+                        return primary.value;
                     }
-                    return '#2a2f46';
+                    return accent_foreground.value;
                 },
                 dash_length: 1,
                 dash_gap: 6,
@@ -268,7 +285,7 @@
                 borderWidth: sniper_mode.value ? 0 : 1,
                 pointHoverRadius: sniper_mode.value ? 16 : 5,
                 pointStyle: sniper_mode.value ? 'crossRot' : 'circle',
-                pointBorderColor: sniper_mode.value ? '#e78a53' : '', // --primary
+                pointBorderColor: sniper_mode.value ? primary.value : '', // --primary
                 pointBorderWidth: sniper_mode.value ? 2 : 0,
             },
             elements: {

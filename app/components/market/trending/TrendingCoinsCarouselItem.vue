@@ -1,5 +1,5 @@
 <template>
-    <Card class='h-72 w-130 !rounded-xl hover:border-primary/50'>
+    <Card class='h-72 w-130 !rounded-xl hover:border-primary/25'>
         <Skeleton
             v-if='!coin'
             class='w-full h-full'

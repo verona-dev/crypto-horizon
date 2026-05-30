@@ -2,7 +2,7 @@
     <Card
         v-if='link'
         class='w-52 2xl:min-w-76 p-12 2xl:pl-4 2xl:pr-2 2xl:py-3 flex flex-col 2xl:flex-row gap-6 2xl:gap-3 rounded-lg
-                border-transparent shadow-none hover:border-primary/50 transition-all duration-500 ease-out'
+                border-transparent shadow-none hover:border-primary/25 transition-all duration-500 ease-out'
     >
         <!--  Logo + Name  -->
         <div class='flex flex-1 flex-col 2xl:flex-row items-center gap-2 2xl:gap-3 w-full'>

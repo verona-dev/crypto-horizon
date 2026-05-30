@@ -44,7 +44,7 @@
                             <SidebarMenuButton
                                 :tooltip="item.title"
                                 :is-active="item.isActive"
-                                :class="{ '!text-primary': item.isActive }"
+                                :class="{ '!bg-primary !text-primary-foreground': item.isActive }"
                             >
                                 <component :is="item.icon" v-if="item.icon" />
                             </SidebarMenuButton>
@@ -57,7 +57,7 @@
                             :is-active='item.isActive'
                             :class='[
                                 "!h-9",
-                                { "!bg-transparent !text-primary": item.isActive },
+                                { "!bg-primary !text-primary-foreground": item.isActive },
                             ]'
                         >
                             <component :is="item.icon" v-if="item.icon" />

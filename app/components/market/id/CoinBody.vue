@@ -1,41 +1,33 @@
 <template>
     <CardContent class='coin-body animate-fadeIn-2000 grid gap-6 !px-0'>
         <!-- Top -->
-        <!-- Supply -->
         <CoinSupply :coin='coin' />
         
         <div class='grid grid-cols-1 xl:grid-cols-9 gap-6'>
             <!-- Left Panel -->
             <div class='xl:col-span-3 space-y-6'>
-                <!-- Overview -->
                 <CoinOverview :coin='coin' />
                 
-                <!-- Insights -->
                 <CoinInsights :coin='coin' />
             </div>
             
             <!-- Right Panel -->
             <div class='xl:col-span-6 space-y-6'>
-                <!-- Chart -->
                 <CoinChart :coin='coin' />
                 
-                <!-- Description -->
                 <CoinDescription :coin='coin' />
             </div>
         </div>
         
         <!-- Bottom -->
         <div class='grid gap-6'>
-            <!-- Delta -->
             <CoinDelta v-if='market_data' :marketData='market_data' />
             
-            <!-- Links -->
             <CoinLinks
                 :links='links'
                 :symbol='symbol'
             />
             
-            <!-- News -->
             <CoinNews :coin='coin' />
         </div>
     

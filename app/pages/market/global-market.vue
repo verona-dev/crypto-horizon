@@ -14,7 +14,7 @@
             </div>
         </div>
         
-        <Meteors v-if='dark_mode' :count='30' />
+        <Meteors v-if='isThemeDark()' :count='30' />
     </div>
 </template>
 
@@ -25,13 +25,11 @@
     import TopTrendingCoins from '~/components/market/TopTrendingCoins.vue';
     import TopTrendingNfts from '~/components/market/TopTrendingNfts.vue';
     import { Meteors } from '~/components/ui/meteors';
+    import {isThemeDark} from '@/utils/styleUtils';
     
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     const { getTrendingSearchList } = MarketStore;
-    
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
     
     // SEO
     const title = 'Global Market Dashboard: Fear & Greed, BTC Dominance, Trending Coins & NFTs';

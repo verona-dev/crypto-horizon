@@ -41,7 +41,7 @@
                             <Badge
                                 v-for='category in categories'
                                 :key='category'
-                                class='!px-4 !py-1.5 text-muted-foreground border border-sky/50 font-extralight tracking-widest'
+                                class='!px-4 !py-1.5 text-muted-foreground border font-extralight tracking-widest'
                                 variant='outline'
                             >
                                 {{ category.NAME }}

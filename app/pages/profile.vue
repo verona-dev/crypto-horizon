@@ -24,19 +24,18 @@
                 
                 <ProfileWatchlist />
             </div>
-            
         </div>
-    </div>
-    
-    <div class='absolute inset-0 h-screen w-screen'>
-        <SnowfallBg
-            v-if='dark_mode'
-            color='eee8a9'
-            class='absolute inset-0 !z-0'
-            :min-radius='0.2'
-            :max-radius='4'
-            :speed='0.5'
-        />
+        
+        <div class='absolute inset-0 min-h-screen w-screen'>
+            <SnowfallBg
+                v-if='isThemeDark()'
+                color='eee8a9'
+                class='absolute inset-0 !z-0'
+                :min-radius='0.2'
+                :max-radius='4'
+                :speed='0.5'
+            />
+        </div>
     </div>
 </template>
 
@@ -46,6 +45,7 @@
     import ProfileMap from '~/components/profile/ProfileMap.vue';
     import ProfileWatchlist from '~/components/profile/ProfileWatchlist.vue';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
+    import { isThemeDark } from '~/utils/styleUtils.js';
     
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
@@ -56,9 +56,6 @@
     const ProfileStore = useProfileStore();
     const { profile } = storeToRefs(ProfileStore);
     const { getProfile } = ProfileStore;
-    
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
     
     dayjs.extend(relativeTime);
     dayjs.extend(utc);
