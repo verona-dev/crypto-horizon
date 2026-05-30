@@ -28,9 +28,8 @@
         </div>
     </div>
     
-    <div class='absolute inset-0 h-screen w-screen'>
+    <div class='absolute inset-0 min-h-screen w-screen'>
         <SnowfallBg
-            v-if='dark_mode'
             color='eee8a9'
             class='absolute inset-0 !z-0'
             :min-radius='0.2'
@@ -58,7 +57,6 @@
     const { getProfile } = ProfileStore;
     
     const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
     
     dayjs.extend(relativeTime);
     dayjs.extend(utc);
