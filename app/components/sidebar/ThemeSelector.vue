@@ -40,7 +40,7 @@
                                     { "border-progress": !$colorMode.unknown && theme.value === $colorMode.preference },
                                 ]'
                             >
-                                <CardHeader>
+                                <CardHeader class='items-center'>
                                     <Title :tag='1' :level='6' :class='{ "text-progress": !$colorMode.unknown && theme.value === $colorMode.value }'>{{ theme.label }}</Title>
                                     <CardDescription>{{ theme.description }}</CardDescription>
                                 </CardHeader>
@@ -48,7 +48,7 @@
                                 <CardContent>
                                     <Button
                                         variant='outline'
-                                        class="!h-full border border-primary/25 transition-all duration-200 ease-in-out hover:bg-transparent"
+                                        class="bg-transparent !h-full border-none shadow-none transition-all duration-200 ease-in-out hover:bg-transparent"
                                     >
                                         <NuxtIcon
                                             :name='theme.icon'
@@ -56,6 +56,19 @@
                                         />
                                     </Button>
                                 </CardContent>
+                                
+                                <CardFooter>
+                                    <div class='flex items-center gap-2 h-10'>
+                                        <div v-if='theme.colors' class='flex justify-stretch gap-2 h-full'>
+                                            <div class='w-4 h-full rounded-xs border border-muted-foreground/25 hover:-top-1' :class='theme.colors.background'></div>
+                                            <div class='w-4 h-full rounded-xs' :class='theme.colors.primary'></div>
+                                            <div class='w-4 h-full rounded-xs' :class='theme.colors.secondary'></div>
+                                            <div class='w-4 h-full rounded-xs' :class='theme.colors.mutedForeground'></div>
+                                        </div>
+                                        
+                                        <span v-if='theme.colors'>Color Palette</span>
+                                    </div>
+                                </CardFooter>
                             </Card>
                         </div>
                         
@@ -73,7 +86,7 @@
 
 <script setup>
     import { Button } from '~/components/ui/button';
-    import { Card, CardDescription, CardContent, CardHeader, CardTitle, CardFooter} from '~/components/ui/card';
+    import { Card, CardDescription, CardContent, CardHeader, CardFooter} from '~/components/ui/card';
     import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
     import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
     import { toast } from 'vue-sonner';
@@ -89,37 +102,67 @@
             value: 'system',
             label: 'System',
             icon: 'ph-laptop',
-            description: 'System theme'
+            description: 'System theme',
         },
         {
             value: 'light',
-            label: 'Light',
+            label: 'Light Theme',
             icon: 'ph-sun',
-            description: 'Light theme'
+            description: 'Light',
+            colors: {
+                background: 'bg-[#ffffff]',
+                primary: 'bg-[#d87943]',
+                secondary: 'bg-[#527575]',
+                mutedForeground: 'bg-[#6b7280]',
+            },
         },
         {
             value: 'dark',
             label: 'Dark Matter',
             icon: 'ph-moon',
-            description: 'Dark theme'
+            description: 'Dark',
+            colors: {
+                background: 'bg-[#121113]',
+                primary: 'bg-[#e78a53]',
+                secondary: 'bg-[#5f8787]',
+                mutedForeground: 'bg-[#888888]',
+            },
         },
         {
             value: 'caffeine-dark',
             label: 'Caffeine',
             icon: 'ph-moon',
-            description: 'Dark theme'
+            description: 'Dark',
+            colors: {
+                background: 'bg-[#111111]',
+                primary: 'bg-[#ffe0c2]',
+                secondary: 'bg-[#393028]',
+                mutedForeground: 'bg-[#b4b4b4]',
+            },
         },
         {
             value: 'amethyst-light',
             label: 'Amethyst Light',
             icon: 'ph-sun',
-            description: 'Light theme'
+            description: 'Light',
+            colors: {
+                background: 'bg-[#f8f7fa]',
+                primary: 'bg-[#8a79ab]',
+                secondary: 'bg-[#dfd9ec]',
+                mutedForeground: 'bg-[#6b6880]',
+            },
         },
         {
             value: 'amethyst-dark',
             label: 'Amethyst Dark',
             icon: 'ph-moon',
-            description: 'Dark theme'
+            description: 'Dark',
+            colors: {
+                background: 'bg-[#1a1823]',
+                primary: 'bg-[#a995c9]',
+                secondary: 'bg-[#5a5370]',
+                mutedForeground: 'bg-[#a09aad]',
+            },
         },
     ];
     
