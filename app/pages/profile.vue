@@ -28,6 +28,7 @@
         
         <div class='absolute inset-0 min-h-screen w-screen'>
             <SnowfallBg
+                v-if='isThemeDark()'
                 color='eee8a9'
                 class='absolute inset-0 !z-0'
                 :min-radius='0.2'
@@ -44,6 +45,7 @@
     import ProfileMap from '~/components/profile/ProfileMap.vue';
     import ProfileWatchlist from '~/components/profile/ProfileWatchlist.vue';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
+    import { isThemeDark } from '~/utils/styleUtils.js';
     
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
