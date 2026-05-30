@@ -175,6 +175,19 @@
     const chart_data = computed(() => valuation_tab.value === 'price' ? prices.value : m_caps.value);
     const starting_valuation = computed(() => chart_data.value[0]);
     
+    const root = document.documentElement;
+    const chart1 = ref('');
+    const chart2 = ref('');
+    const primary = ref('');
+    const secondary = ref('');
+    const accent_foreground = ref('');
+    chart1.value = getComputedStyle(root).getPropertyValue('--chart-1').trim();
+    chart2.value = getComputedStyle(root).getPropertyValue('--chart-2').trim();
+    primary.value = getComputedStyle(root).getPropertyValue('--primary').trim();
+    secondary.value = getComputedStyle(root).getPropertyValue('--secondary').trim();
+    accent_foreground.value = getComputedStyle(root).getPropertyValue('--accent-foreground').trim();
+    
+    
     // Current
     const current_price = computed(() => getCoinPrice.value);
     const current_m_cap = computed(() => chart_data.value[chart_data.value.length - 1]);
@@ -229,13 +242,10 @@
             },
             custom_line: {
                 color: () => {
-                    if(dark_mode.value) {
-                        if(sniper_mode.value) {
-                            return '#e78a53'; // --primary
-                        }
-                        return '#9ca3af';
+                    if(sniper_mode.value) {
+                        return primary.value;
                     }
-                    return '#2a2f46';
+                    return accent_foreground.value;
                 },
                 dash_length: 1,
                 dash_gap: 6,
