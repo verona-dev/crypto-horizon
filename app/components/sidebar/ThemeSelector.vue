@@ -113,6 +113,7 @@
     import Title from '~/components/Title.vue';
     import { useSidebar } from '~/components/ui/sidebar/utils.ts';
     import { CircleCheck } from 'lucide-vue-next';
+    import themes from '~/assets/data/themes.json';
     
     const { open, isMobile } = useSidebar();
     const colorMode = useColorMode();
@@ -120,101 +121,6 @@
         label: '',
         value: '',
     });
-    
-    const themes = [
-        {
-            value: 'system',
-            label: 'System',
-            icon: 'ph-laptop',
-            description: 'System theme',
-            colors: {
-                background: '',
-                primary: '',
-                accent: '',
-                mutedForeground: '',
-            },
-        },
-        {
-            value: 'light',
-            label: 'Light',
-            icon: 'ph-sun',
-            description: 'Light theme',
-            colors: {
-                background: 'bg-[#ffffff]',
-                primary: 'bg-[#d87943]',
-                accent: 'bg-[#c0c0c0]',
-                mutedForeground: 'bg-[#6b7280]',
-            },
-            fonts: [
-                "JetBrains Mono",
-                "Geist Mono",
-            ],
-        },
-        {
-            value: 'dark',
-            label: 'Dark Matter',
-            icon: 'ph-moon',
-            description: 'Dark theme',
-            colors: {
-                background: 'bg-[#121113]',
-                primary: 'bg-[#e78a53]',
-                accent: 'bg-[#333333]',
-                mutedForeground: 'bg-[#888888]',
-            },
-            fonts: [
-                "JetBrains Mono",
-                "Geist Mono",
-            ],
-        },
-        {
-            value: 'caffeine-dark',
-            label: 'Caffeine',
-            icon: 'ph-moon',
-            description: 'Dark theme',
-            colors: {
-                background: 'bg-[#111111]',
-                primary: 'bg-[#ffe0c2]',
-                accent: 'bg-[#2a2a2a]',
-                mutedForeground: 'bg-[#b4b4b4]',
-            },
-            fonts: [
-                "JetBrains Mono",
-                "Geist Mono",
-            ],
-        },
-        {
-            value: 'amethyst-light',
-            label: 'Amethyst Light',
-            icon: 'ph-sun',
-            description: 'Light theme',
-            colors: {
-                background: 'bg-[#f8f7fa]',
-                primary: 'bg-[#8a79ab]',
-                accent: 'bg-[#e6a5b8]',
-                mutedForeground: 'bg-[#6b6880]',
-            },
-            fonts: [
-                "Fira Code",
-                "Geist",
-            ],
-        },
-        {
-            value: 'amethyst-dark',
-            label: 'Amethyst Dark',
-            icon: 'ph-moon',
-            description: 'Dark theme',
-            colors: {
-                background: 'bg-[#1a1823]',
-                primary: 'bg-[#a995c9]',
-                accent: 'bg-[#372e3f]',
-                mutedForeground: 'bg-[#a09aad]',
-            },
-            fonts: [
-                "Fira Code",
-                "Geist",
-            ],
-        },
-    ];
     
     const setTheme = theme => {
         current_theme.value = theme;
