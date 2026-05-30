@@ -10,7 +10,7 @@
                     <!--   Search   -->
                     <div class='relative'>
                         <Input
-                            class='w-lg pl-8'
+                            class='w-lg pl-8 border-primary/50'
                             placeholder='Search Coin...'
                             :model-value='table.getColumn("name")?.getFilterValue()'
                             @update:model-value='table.getColumn("name")?.setFilterValue($event)'
@@ -279,13 +279,15 @@
             </div>
             
             <!--   Update status   -->
-            <div v-if='isTableReady && !loading' class='bg-muted rounded-bl-xl rounded-br-xl text-muted-foreground flex items-center justify-center gap-1.5 p-4'>
-                <NuxtIcon
-                    name='ph:hexagon-duotone'
-                    size='16'
-                    class='text-primary/50'
-                />
-                <span class='text-sm'>Market data updated {{ lastApiUpdate }}</span>
+            <div class='bg-muted rounded-bl-xl rounded-br-xl text-muted-foreground h-14'>
+                <div v-if='!loading' class='flex items-center justify-center gap-1.5 p-4'>
+                    <NuxtIcon
+                        name='ph:hexagon-duotone'
+                        size='16'
+                        class='text-primary/50'
+                    />
+                    <span class='text-sm'>Market data updated {{ lastApiUpdate }}</span>
+                </div>
             </div>
         </div>
     </Card>
