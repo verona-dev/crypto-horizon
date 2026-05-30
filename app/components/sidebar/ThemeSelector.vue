@@ -36,37 +36,32 @@
                                 :key='theme'
                                 @click="setTheme(theme)"
                                 :class='[
-                                    "flex flex-col flex-wrap items-center justify-around cursor-pointer !w-48 select-none !p-0",
+                                    "!w-48 flex flex-col flex-wrap items-center justify-around cursor-pointer select-none border-2",
                                     { "border-progress": !$colorMode.unknown && theme.value === $colorMode.preference },
                                 ]'
                             >
                                 <CardHeader class='items-center'>
                                     <Title :tag='1' :level='6' :class='{ "text-progress": !$colorMode.unknown && theme.value === $colorMode.value }'>{{ theme.label }}</Title>
-                                    <CardDescription>{{ theme.description }}</CardDescription>
-                                </CardHeader>
-                                
-                                <CardContent>
-                                    <Button
-                                        variant='outline'
-                                        class="bg-transparent !h-full border-none shadow-none transition-all duration-200 ease-in-out hover:bg-transparent"
-                                    >
+                                    <div class='flex items-center gap-1.5'>
                                         <NuxtIcon
                                             :name='theme.icon'
-                                            class='size-6'
+                                            class='size-4'
                                         />
-                                    </Button>
-                                </CardContent>
+                                        
+                                        <CardDescription>{{ theme.description }}</CardDescription>
+                                    </div>
+                                </CardHeader>
                                 
-                                <CardFooter>
+                                <CardContent class='m-4'>
                                     <div class='flex items-center gap-2 h-10'>
-                                        <div v-if='theme.colors.background' class='flex justify-stretch gap-2 h-full'>
+                                        <div v-if='theme.colors.background' class='flex justify-stretch gap-1.5 h-full'>
                                             <div class='w-4 h-full rounded-xs border border-muted-foreground/50' :class='theme.colors.background'></div>
                                             <div class='w-4 h-full rounded-xs' :class='theme.colors.primary'></div>
                                             <div class='w-4 h-full rounded-xs' :class='theme.colors.secondary'></div>
                                             <div class='w-4 h-full rounded-xs' :class='theme.colors.mutedForeground'></div>
                                         </div>
                                     </div>
-                                </CardFooter>
+                                </CardContent>
                             </Card>
                         </div>
                         
@@ -83,8 +78,7 @@
 </template>
 
 <script setup>
-    import { Button } from '~/components/ui/button';
-    import { Card, CardDescription, CardContent, CardHeader, CardFooter} from '~/components/ui/card';
+    import { Card, CardDescription, CardContent, CardHeader } from '~/components/ui/card';
     import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
     import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
     import { toast } from 'vue-sonner';
@@ -110,9 +104,9 @@
         },
         {
             value: 'light',
-            label: 'Light Theme',
+            label: 'Light',
             icon: 'ph-sun',
-            description: 'Light',
+            description: 'Light theme',
             colors: {
                 background: 'bg-[#ffffff]',
                 primary: 'bg-[#d87943]',
@@ -124,7 +118,7 @@
             value: 'dark',
             label: 'Dark Matter',
             icon: 'ph-moon',
-            description: 'Dark',
+            description: 'Dark theme',
             colors: {
                 background: 'bg-[#121113]',
                 primary: 'bg-[#e78a53]',
@@ -136,7 +130,7 @@
             value: 'caffeine-dark',
             label: 'Caffeine',
             icon: 'ph-moon',
-            description: 'Dark',
+            description: 'Dark theme',
             colors: {
                 background: 'bg-[#111111]',
                 primary: 'bg-[#ffe0c2]',
@@ -148,7 +142,7 @@
             value: 'amethyst-light',
             label: 'Amethyst Light',
             icon: 'ph-sun',
-            description: 'Light',
+            description: 'Light theme',
             colors: {
                 background: 'bg-[#f8f7fa]',
                 primary: 'bg-[#8a79ab]',
@@ -160,7 +154,7 @@
             value: 'amethyst-dark',
             label: 'Amethyst Dark',
             icon: 'ph-moon',
-            description: 'Dark',
+            description: 'Dark theme',
             colors: {
                 background: 'bg-[#1a1823]',
                 primary: 'bg-[#a995c9]',
