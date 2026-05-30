@@ -13,7 +13,7 @@
                     <NuxtImg
                         :src='image'
                         alt='trending nft logo'
-                        class='bg-card size-full rounded-full p-2 border-2 border-primary/50'
+                        class='bg-card size-full rounded-full p-2 border-2 border-primary/25'
                         :custom='true'
                         v-slot='{ src, isLoaded, imgAttrs, alt }'
                         preload
