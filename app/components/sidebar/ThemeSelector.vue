@@ -59,14 +59,12 @@
                                 
                                 <CardFooter>
                                     <div class='flex items-center gap-2 h-10'>
-                                        <div v-if='theme.colors' class='flex justify-stretch gap-2 h-full'>
+                                        <div v-if='theme.colors.background' class='flex justify-stretch gap-2 h-full'>
                                             <div class='w-4 h-full rounded-xs border border-muted-foreground/25 hover:-top-1' :class='theme.colors.background'></div>
                                             <div class='w-4 h-full rounded-xs' :class='theme.colors.primary'></div>
                                             <div class='w-4 h-full rounded-xs' :class='theme.colors.secondary'></div>
                                             <div class='w-4 h-full rounded-xs' :class='theme.colors.mutedForeground'></div>
                                         </div>
-                                        
-                                        <span v-if='theme.colors'>Color Palette</span>
                                     </div>
                                 </CardFooter>
                             </Card>
@@ -103,6 +101,12 @@
             label: 'System',
             icon: 'ph-laptop',
             description: 'System theme',
+            colors: {
+                background: '',
+                primary: '',
+                secondary: '',
+                mutedForeground: '',
+            },
         },
         {
             value: 'light',
