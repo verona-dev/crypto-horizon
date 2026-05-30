@@ -36,10 +36,15 @@
                                 :key='theme'
                                 @click="setTheme(theme)"
                                 :class='[
-                                    "!w-56 flex flex-col flex-wrap items-center justify-around cursor-pointer select-none border-2",
+                                    "!w-56 relative flex flex-col flex-wrap items-center justify-around cursor-pointer select-none border-2",
                                     { "bg-muted/50 border-foreground": !$colorMode.unknown && theme.value === $colorMode.preference },
                                 ]'
                             >
+                                <CircleCheck
+                                    v-if='theme.value === $colorMode.preference'
+                                    class='absolute -top-3 -right-3 size-8 rounded-full fill-card'
+                                />
+                                
                                 <CardHeader class='items-center'>
                                     <Title
                                         :tag='1'
@@ -76,8 +81,6 @@
                                                 <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors.accent'></div>
                                                 <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors.mutedForeground'></div>
                                             </div>
-                                        
-                                        
                                         </template>
                                     </div>
                                 </CardContent>
@@ -94,12 +97,6 @@
                                 </CardFooter>
                             </Card>
                         </div>
-                        
-                        <div>
-                            Current theme: <b>{{ current_theme }}</b>
-                            <span v-if="$colorMode.preference === 'system'">&nbsp;(<i>{{ $colorMode.value }}</i> mode detected)</span>
-                            <span v-if="$colorMode.forced">&nbsp;(<i>{{ $colorMode.value }}</i> forced)</span>
-                        </div>
                     </div>
                 </PopoverContent>
             </Popover>
@@ -115,10 +112,14 @@
     import { toast } from 'vue-sonner';
     import Title from '~/components/Title.vue';
     import { useSidebar } from '~/components/ui/sidebar/utils.ts';
+    import { CircleCheck } from 'lucide-vue-next';
     
     const { open, isMobile } = useSidebar();
     const colorMode = useColorMode();
-    const current_theme = ref('');
+    const current_theme = ref({
+        label: '',
+        value: '',
+    });
     
     const themes = [
         {
@@ -216,18 +217,15 @@
     ];
     
     const setTheme = theme => {
-        current_theme.value = theme.label;
+        current_theme.value = theme;
         colorMode.preference = theme.value;
-        
-        toast.success(`${theme.label} theme selected.`, {
-            class: '!flex !gap-3',
-        });
+        toast.success(`${theme.label} theme selected.`, { class: '!flex !gap-3' });
     };
     
     const checkCurrentTheme = () => {
         const match = themes.find(theme => theme.value === colorMode.preference);
         if(match) {
-            current_theme.value = match.label;
+            current_theme.value.label = match.label;
         }
     };
     
