@@ -181,7 +181,7 @@
         }
         
         .card-header {
-            @apply flex flex-col xl:flex-row items-center p-8 border-b border-border/50 relative;
+            @apply flex flex-col xl:flex-row items-center p-8 border-b border-border relative;
         }
         
         .card-title {
