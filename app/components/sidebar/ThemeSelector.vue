@@ -107,12 +107,12 @@
 <script setup>
     import { Badge } from '@/components/ui/badge';
     import { Card, CardDescription, CardContent, CardHeader, CardFooter } from '~/components/ui/card';
+    import { CircleCheck } from 'lucide-vue-next';
     import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
     import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
-    import { toast } from 'vue-sonner';
     import Title from '~/components/Title.vue';
+    import { toast } from 'vue-sonner';
     import { useSidebar } from '~/components/ui/sidebar/utils.ts';
-    import { CircleCheck } from 'lucide-vue-next';
     import themes from '~/assets/data/themes.json';
     
     const { open, isMobile } = useSidebar();
