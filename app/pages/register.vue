@@ -76,7 +76,7 @@
             <AuthHero />
             
             <SnowfallBg
-                v-if='dark_mode'
+                v-if='darkThemes'
                 color="#e4d9e2"
                 class='absolute inset-0 !min-h-lvh !min-w-full !z-0'
                 :min-radius='0.1'
@@ -89,18 +89,19 @@
 </template>
 
 <script setup>
+    import AuthHero from '~/components/auth/AuthHero.vue';
     import { Button } from '@/components/ui/button/index';
     import { Card, CardContent } from '~/components/ui/card';
     import { Field, FieldDescription, FieldSeparator, FieldTitle } from '@/components/ui/field/index';
+    import LoginOAuth from '@/components/auth/LoginOAuth.vue';
     import RegisterEmailPassword from '@/components/auth/RegisterEmailPassword.vue';
     import RegisterEmail from '@/components/auth/RegisterEmail.vue';
-    import LoginOAuth from '@/components/auth/LoginOAuth.vue';
     import { Skeleton } from '@/components/ui/skeleton/index';
-    import AuthHero from '~/components/auth/AuthHero.vue';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
     
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
+    // Theme
+    import { checkTheme } from '@/composables/checkTheme.js';
+    const { darkThemes } = checkTheme();
     
     // SEO
     const title = 'Sign Up to Track Crypto Prices';

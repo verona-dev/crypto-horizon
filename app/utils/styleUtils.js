@@ -24,11 +24,4 @@ export const getTrendIcon = number => {
     return number > 0 ? 'ph:caret-up-duotone' : 'ph:caret-down-duotone';
 };
 
-export const isThemeDark = () => {
-    const darkThemes = ['dark', 'caffeine-dark','amethyst-dark'];
-    const colorMode = useColorMode();
-    return darkThemes.includes(colorMode.value);
-};
-
-
 // export const getIcon = symbol => `cryptocurrency-color:${symbol?.toLowerCase()}`;
