@@ -28,7 +28,7 @@
         
         <div class='absolute inset-0 min-h-screen w-screen'>
             <SnowfallBg
-                v-if='isThemeDark()'
+                v-if='isDarkTheme'
                 color='eee8a9'
                 class='absolute inset-0 !z-0'
                 :min-radius='0.2'
@@ -45,20 +45,23 @@
     import ProfileMap from '~/components/profile/ProfileMap.vue';
     import ProfileWatchlist from '~/components/profile/ProfileWatchlist.vue';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
-    import { isThemeDark } from '~/utils/styleUtils.js';
     
+    // Theme
+    import { useTheme } from '~/composables/useTheme.js';
+    const { isDarkTheme } = useTheme();
+    
+    //Dayjs
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     import utc from 'dayjs/plugin/utc';
+    dayjs.extend(relativeTime);
+    dayjs.extend(utc);
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
     const ProfileStore = useProfileStore();
     const { profile } = storeToRefs(ProfileStore);
     const { getProfile } = ProfileStore;
-    
-    dayjs.extend(relativeTime);
-    dayjs.extend(utc);
     
     const username = computed(() => profile.value?.username || '');
     const astronaut_type = computed(() => profile.value?.astronaut_type || '');
