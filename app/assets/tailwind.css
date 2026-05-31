@@ -50,6 +50,10 @@
     --font-work-sans: var(--font-work-sans);
     --font-automata: var(--font-automata);
     --font-spaced: var(--font-spaced);
+    --font-geist: var(--font-geist);
+    --font-jetbrains: var(--font-jetbrains);
+    --font-lora: var(--font-lora);
+    
     --font-sans: var(--font-sans);
     --font-mono: var(--font-mono);
     --font-serif: var(--font-serif);
@@ -213,6 +217,10 @@
         --font-work-sans: Work Sans Variable, sans-serif;
         --font-automata: Automata, sans-serif;
         --font-spaced: Spaced, sans-serif;
+        --font-geist: Geist Mono Variable, ui-monospace, monospace;
+        --font-jetbrains: JetBrains Mono Variable, monospace;
+        --font-lora: Lora Variable, Georgia, serif;
+        
         --font-sans: Geist Mono Variable, ui-monospace, monospace;
         --font-serif: serif;
         --font-mono: JetBrains Mono Variable, monospace;
@@ -376,10 +384,6 @@
     
     /* Caffeine Dark Theme */
     .caffeine-dark {
-        --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-        --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-        --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        
         --background: #111111;
         --foreground: #eeeeee;
         --card: #191919;
@@ -435,8 +439,8 @@
     
     /* Amethyst-light Light Theme */
     .amethyst-light {
-        --font-sans: Geist, sans-serif;
-        --font-serif: "Lora", Georgia, serif;
+        --font-sans: Geist Mono Variable, ui-monospace, monospace;
+        --font-serif: Lora Variable, Georgia, serif;
         --font-mono: "Fira Code", "Courier New", monospace;
         
         --background: #f8f7fa;
