@@ -219,7 +219,6 @@
         --font-jetbrains: JetBrains Mono Variable, monospace;
         --font-lora: Lora Variable, Georgia, serif;
         --font-fira: Fira Code Variable, monospace;
-        --font-sans: Geist Mono Variable, ui-monospace, monospace;
         
         --progress: #00bc7d;
         --sky: #0ea5e9;
@@ -379,6 +378,8 @@
     
     /* Caffeine Dark Theme */
     .caffeine-dark {
+        --font-sans: Lora Variable, Georgia, serif;
+        
         --background: #111111;
         --foreground: #eeeeee;
         --card: #191919;
