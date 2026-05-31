@@ -14,7 +14,7 @@
             </div>
         </div>
         
-        <Meteors v-if='isDarkTheme' :count='30' />
+        <Meteors v-if='darkThemes' :count='30' />
     </div>
 </template>
 
@@ -28,7 +28,7 @@
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
-    const { isDarkTheme } = checkTheme();
+    const { darkThemes } = checkTheme();
     
     // Market Store
     import { useMarketStore } from '~/stores/MarketStore.js';

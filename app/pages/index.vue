@@ -1,14 +1,14 @@
 <template>
     <div class='homepage flex flex-col items-center gap-8 2xl:gap-32 px-20 pb-20 2xl:pb-10 relative'>
         <FluidCursor
-            v-if='isDarkTheme'
+            v-if='darkThemes'
             :densityDissipation='5.5'
             :velocityDissipation='3'
             class='z-1'
         />
         
         <ParticlesBg
-            v-if='isDarkTheme'
+            v-if='darkThemes'
             class='absolute inset-0'
             :quantity='100'
             :ease='100'
@@ -39,7 +39,7 @@
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
-    const { isDarkTheme } = checkTheme();
+    const { darkThemes } = checkTheme();
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';

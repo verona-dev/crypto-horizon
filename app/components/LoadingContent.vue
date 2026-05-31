@@ -14,7 +14,7 @@
         </div>
         
         <SnowfallBg
-            v-if='isDarkTheme'
+            v-if='darkThemes'
             color="#e4d9e2"
             class='absolute inset-0 !min-h-lvh !min-w-full !z-0'
             :min-radius='0.1'
@@ -35,5 +35,5 @@
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
-    const { isDarkTheme } = checkTheme();
+    const { darkThemes } = checkTheme();
 </script>

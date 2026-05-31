@@ -3,7 +3,7 @@
         <LoadingContent v-if='loading' />
         
         <div v-else class='page'>
-            <div v-if='!isDarkTheme' class='h-[450px] flex items-center'>
+            <div v-if='!darkThemes' class='h-[450px] flex items-center'>
                 <Title :tag='1' :level='2'>{{ page_title }}</Title>
             </div>
             
@@ -190,7 +190,7 @@
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
-    const { isDarkTheme } = checkTheme();
+    const { darkThemes } = checkTheme();
     
     // Dayjs
     import dayjs from 'dayjs';
