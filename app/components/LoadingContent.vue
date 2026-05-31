@@ -14,7 +14,7 @@
         </div>
         
         <SnowfallBg
-            v-if='dark_mode'
+            v-if='isDarkTheme'
             color="#e4d9e2"
             class='absolute inset-0 !min-h-lvh !min-w-full !z-0'
             :min-radius='0.1'
@@ -33,6 +33,7 @@
     const siteConfig = useSiteConfig();
     const site_name = ref(siteConfig?.name || '');
     
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
+    // Theme
+    import { useTheme } from '~/composables/useTheme.js';
+    const { isDarkTheme } = useTheme();
 </script>
