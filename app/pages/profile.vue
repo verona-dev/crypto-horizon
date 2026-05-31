@@ -47,8 +47,8 @@
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
     
     // Theme
-    import { useTheme } from '~/composables/useTheme.js';
-    const { isDarkTheme } = useTheme();
+    import { checkTheme } from '@/composables/checkTheme.js';
+    const { isDarkTheme } = checkTheme();
     
     //Dayjs
     import dayjs from 'dayjs';

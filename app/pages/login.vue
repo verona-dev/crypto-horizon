@@ -101,8 +101,8 @@
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
     
     // Theme
-    import { useTheme } from '~/composables/useTheme.js';
-    const { isDarkTheme } = useTheme();
+    import { checkTheme } from '@/composables/checkTheme.js';
+    const { isDarkTheme } = checkTheme();
     
     // SEO
     const title = 'Login to Track & Manage Your Crypto Portfolio';
