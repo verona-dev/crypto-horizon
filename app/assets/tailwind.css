@@ -54,9 +54,7 @@
     --font-jetbrains: var(--font-jetbrains);
     --font-lora: var(--font-lora);
     --font-fira: var(--font-fira);
-    
     --font-sans: var(--font-sans);
-    --font-mono: var(--font-mono);
     
     /* Text sizes */
     --text-xxs: 11px;
@@ -221,9 +219,7 @@
         --font-jetbrains: JetBrains Mono Variable, monospace;
         --font-lora: Lora Variable, Georgia, serif;
         --font-fira: Fira Code Variable, monospace;
-        
         --font-sans: Geist Mono Variable, ui-monospace, monospace;
-        --font-mono: JetBrains Mono Variable, monospace;
         
         --progress: #00bc7d;
         --sky: #0ea5e9;
@@ -328,8 +324,7 @@
     
     /* Dark Matter */
     .dark {
-        --font-sans: Geist Mono Variable, ui-monospace, monospace;
-        --font-mono: JetBrains Mono Variable, monospace;
+        --font-sans: JetBrains Mono Variable, monospace;
         
         --background: #121113;
         --foreground: #c1c1c1;
@@ -440,7 +435,7 @@
     /* Amethyst-light Light Theme */
     .amethyst-light {
         --font-sans: Lora Variable, Georgia, serif;
-        --font-mono: Fira Code Variable, monospace;
+        /* Fira Code Variable, monospace; */
         
         --background: #f8f7fa;
         --foreground: #3d3c4f;
@@ -500,7 +495,6 @@
     /* Amethyst Dark Theme */
     .amethyst-dark {
         --font-sans: Fira Code Variable, monospace;
-        --font-mono: Fira Code Variable, monospace;
         
         --background: #1a1823;
         --foreground: #e0ddef;
