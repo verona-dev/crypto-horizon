@@ -61,7 +61,7 @@
             
             <!--   Table   -->
             <div class='border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
-                <Table class='!border-none'>
+                <Table class='!border-none font-mono'>
                     <TableHeader :class='[ "h-24", { "shadow-2xl" : isDarkTheme } ]'>
                         <TableRow
                             v-for='headerGroup in table.getHeaderGroups()'
