@@ -18,7 +18,7 @@
 </div>
 
 ---
-## 🌔 Features
+## Features
 
 - Real-time cryptocurrency market data: Track live prices, market cap, and 24h volume for thousands of coins
 - Single coin insights: Detailed stats for each cryptocurrency, including price history, contracts, and blockchain data
@@ -28,7 +28,7 @@
 - DeFi analytics: Track DeFi protocols, TVL (Total Value Locked), and yield farming opportunities
 - Crypto Academy: Learn the basics of blockchain, trading, and decentralized finance
 
-## 📡 Tech Stack
+## Tech Stack
 
 - **Frontend**: Vue 3 + Nuxt 4
 - **Backend/Database**: Nuxt Server API + Supabase
@@ -37,14 +37,14 @@
 - **Animation**: GSAP + Motion
 - **Icons**: Phosphor, Lucide
 
-## 🛸 Api Integration
+## Api Integration
 
 - [Coingecko](https://docs.coingecko.com/): Real-time cryptocurrency prices, market data, and historical trends
 - [Livecoinwatch](http://livecoinwatch.github.io/lcw-api-docs/): Cryptocurrency social links and market data
 - [Coinmarketcap](https://coinmarketcap.com/api/documentation/v1/): Cryptocurrency fear and greed data
 - [CoinDesk](https://developers.coindesk.com/documentation/data-api/news): Latest cryptocurrency news, analysis, and market insights
 
-## 📷 Screenshots
+## Screenshots
 
 |                                                   Market                                                    |                                                 Coin Details                                                  |
 |:-----------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------:|
@@ -56,7 +56,7 @@
 | ![Coins](https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1765824732/1._global-market_whxstf.png)  | ![News](https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1765890837/4._coin-news_i3891v.png)  |
 |                   Monitor Bitcoin dominance, Fear & Greed Index, and macro trends in one place.                    |                     Stay updated with the latest crypto news and coin-specific headlines.                     |
 
-## 🛩️ Getting Started
+##  Getting Started
 
 #### Prerequisites
 - Node.js v22.16.0 LTS
@@ -77,7 +77,7 @@ npm run dev
 
 ---
 
-## 👨‍🚀 Authors
+## Authors
 
 [![forthebadge](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=MADE+BY&secondaryLabel=VERONA-DEV&primaryBGColor=%23000000&secondaryBGColor=%2300DC82&primaryTextColor=%23FFFFFF&primaryFontSize=12&primaryFontWeight=600&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryTextColor=%23444444&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase&secondaryIcon=github&secondaryIconColor=%23444444&secondaryIconSize=16&secondaryIconPosition=right)](https://github.com/verona-dev)
 
@@ -87,7 +87,7 @@ npm run dev
 
 ---
 
-## 📜 License
+## License
 
 This project is licensed under the [MIT License](https://opensource.org/license/mit/) – free for personal and non-commercial use only.
 
