@@ -34,6 +34,6 @@
     const site_name = ref(siteConfig?.name || '');
     
     // Theme
-    import { useTheme } from '~/composables/useTheme.js';
-    const { isDarkTheme } = useTheme();
+    import { checkTheme } from '@/composables/checkTheme.js';
+    const { isDarkTheme } = checkTheme();
 </script>

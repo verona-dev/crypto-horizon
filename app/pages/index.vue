@@ -38,8 +38,8 @@
     import WelcomeItem from '~/components/WelcomeItem.vue';
     
     // Theme
-    import { useTheme } from '~/composables/useTheme.js';
-    const { isDarkTheme } = useTheme();
+    import { checkTheme } from '@/composables/checkTheme.js';
+    const { isDarkTheme } = checkTheme();
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
