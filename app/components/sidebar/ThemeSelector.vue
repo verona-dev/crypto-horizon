@@ -79,10 +79,10 @@
                                         <!--  Themes palette -->
                                         <template v-else>
                                             <div class='flex justify-stretch gap-1.5 h-full'>
-                                                <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors.background'></div>
-                                                <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors.primary'></div>
-                                                <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors.accent'></div>
-                                                <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors.mutedForeground'></div>
+                                                <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors?.background'></div>
+                                                <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors?.primary'></div>
+                                                <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors?.accent'></div>
+                                                <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors?.mutedForeground'></div>
                                             </div>
                                         </template>
                                     </div>
@@ -95,8 +95,9 @@
                                         :key='font'
                                         variant='outline'
                                         class='bg-accent'
+                                        :style='{ "font-family": `var(--font-${font.value})` }'
                                     >
-                                        {{ font }}
+                                        {{ font.label }}
                                     </Badge>
                                 </CardFooter>
                             </Card>

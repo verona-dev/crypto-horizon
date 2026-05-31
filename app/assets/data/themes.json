@@ -23,7 +23,10 @@
             "mutedForeground":"bg-[#6b7280]"
         },
         "fonts":[
-            "Metropolis"
+            {
+                "label": "Metropolis",
+                "value": "metropolis"
+            }
         ]
     },
     {
@@ -38,8 +41,14 @@
             "mutedForeground":"bg-[#888888]"
         },
         "fonts":[
-            "Metropolis",
-            "Fira Code"
+            {
+                "label": "Metropolis",
+                "value": "metropolis"
+            },
+            {
+                "label": "Fira Code",
+                "value": "fira"
+            }
         ]
     },
     {
@@ -54,8 +63,14 @@
             "mutedForeground":"bg-[#b4b4b4]"
         },
         "fonts":[
-            "Lora",
-            "Fira Code"
+            {
+                "label": "Lora",
+                "value": "lora"
+            },
+            {
+                "label": "Fira Code",
+                "value": "fira"
+            }
         ]
     },
     {
@@ -70,8 +85,14 @@
             "mutedForeground":"bg-[#6b6880]"
         },
         "fonts":[
-            "Metropolis",
-            "Spaced"
+            {
+                "label": "Metropolis",
+                "value": "metropolis"
+            },
+            {
+                "label": "Spaced",
+                "value": "spaced"
+            }
         ]
     },
     {
@@ -86,7 +107,10 @@
             "mutedForeground":"bg-[#a09aad]"
         },
         "fonts":[
-            "Spaced"
+            {
+                "label": "Spaced",
+                "value": "spaced"
+            }
         ]
     }
 ]
