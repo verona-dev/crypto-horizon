@@ -32,6 +32,7 @@
         "vue-tsc": "^1.6.4"
     },
     "dependencies": {
+        "@fontsource-variable/fira-code": "5.2.7",
         "@fontsource-variable/geist-mono": "5.2.8",
         "@fontsource-variable/jetbrains-mono": "5.2.8",
         "@fontsource-variable/lora": "5.2.8",
