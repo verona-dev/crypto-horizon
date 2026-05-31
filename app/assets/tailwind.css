@@ -213,9 +213,9 @@
         --font-work-sans: Work Sans Variable, sans-serif;
         --font-automata: Automata, sans-serif;
         --font-spaced: Spaced, sans-serif;
-        --font-sans: Geist Mono, ui-monospace, monospace;
+        --font-sans: Geist Mono Variable, ui-monospace, monospace;
         --font-serif: serif;
-        --font-mono: JetBrains Mono, monospace;
+        --font-mono: JetBrains Mono Variable, monospace;
         
         --progress: #00bc7d;
         --sky: #0ea5e9;
@@ -320,9 +320,8 @@
     
     /* Dark Matter */
     .dark {
-        --font-sans: Geist Mono, ui-monospace, monospace;
-        --font-serif: serif;
-        --font-mono: JetBrains Mono, monospace;
+        --font-sans: Geist Mono Variable, ui-monospace, monospace;
+        --font-mono: JetBrains Mono Variable, monospace;
         
         --background: #121113;
         --foreground: #c1c1c1;
