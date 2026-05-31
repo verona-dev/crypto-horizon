@@ -23,8 +23,7 @@
             "mutedForeground":"bg-[#6b7280]"
         },
         "fonts":[
-            "JetBrains Mono",
-            "Geist Mono"
+            "Metropolis"
         ]
     },
     {
@@ -39,8 +38,8 @@
             "mutedForeground":"bg-[#888888]"
         },
         "fonts":[
-            "JetBrains Mono",
-            "Geist Mono"
+            "Metropolis",
+            "Fira Code"
         ]
     },
     {
@@ -55,8 +54,8 @@
             "mutedForeground":"bg-[#b4b4b4]"
         },
         "fonts":[
-            "JetBrains Mono",
-            "Geist Mono"
+            "Lora",
+            "Fira Code"
         ]
     },
     {
@@ -71,8 +70,8 @@
             "mutedForeground":"bg-[#6b6880]"
         },
         "fonts":[
-            "Fira Code",
-            "Geist"
+            "Metropolis",
+            "Spaced"
         ]
     },
     {
@@ -87,8 +86,7 @@
             "mutedForeground":"bg-[#a09aad]"
         },
         "fonts":[
-            "Fira Code",
-            "Geist"
+            "Spaced"
         ]
     }
 ]

@@ -45,6 +45,7 @@
                                     class='absolute -top-3 -right-3 size-8 rounded-full fill-card'
                                 />
                                 
+                                <!--  Theme name  -->
                                 <CardHeader class='items-center'>
                                     <Title
                                         :tag='1'
@@ -66,6 +67,7 @@
                                 
                                 <CardContent class='m-4'>
                                     <div class='flex flex-col items-center h-10'>
+                                        <!--  System theme  -->
                                         <template v-if='theme.value === "system"'>
                                             <template v-if='$colorMode.preference === "system"'>
                                                 <p class=''>Detected</p>
@@ -74,6 +76,7 @@
                                             </template>
                                         </template>
                                         
+                                        <!--  Themes palette -->
                                         <template v-else>
                                             <div class='flex justify-stretch gap-1.5 h-full'>
                                                 <div class='w-4 h-full rounded-xs border border-muted-foreground/25' :class='theme.colors.background'></div>
@@ -85,7 +88,8 @@
                                     </div>
                                 </CardContent>
                                 
-                                <CardFooter v-if='theme.value !== "system" && theme.fonts.length > 0' class='flex flex-col gap-2'>
+                                <!--  Themes fonts -->
+                                <CardFooter v-if='theme.value !== "system" && theme.fonts.length > 0' class='flex flex-col gap-2 h-20'>
                                     <Badge
                                         v-for='font in theme.fonts'
                                         :key='font'

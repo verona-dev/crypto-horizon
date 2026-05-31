@@ -220,7 +220,7 @@
         
         /* Default font for light mode */
         --font-sans: var(--font-metropolis);
-        --font-mono: var(--font-satoshi);
+        --font-mono: var(--font-metropolis);
         
         --progress: #00bc7d;
         --sky: #0ea5e9;
