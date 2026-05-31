@@ -220,8 +220,9 @@
         --font-lora: Lora Variable, Georgia, serif;
         --font-fira: Fira Code Variable, monospace;
         
-        --font-sans: Geist Mono Variable, ui-monospace, monospace;
-        --font-mono: JetBrains Mono Variable, monospace;
+        /* Default font for light mode */
+        --font-sans: var(--font-satoshi);
+        --font-mono: var(--font-satoshi);
         
         --progress: #00bc7d;
         --sky: #0ea5e9;
@@ -326,8 +327,8 @@
     
     /* Dark Matter */
     .dark {
-        --font-sans: JetBrains Mono Variable, monospace;
-        --font-mono: JetBrains Mono Variable, monospace;
+        --font-sans: var(--font-metropolis);
+        --font-mono: var(--font-fira);
         
         --background: #121113;
         --foreground: #c1c1c1;
@@ -382,8 +383,8 @@
     
     /* Caffeine Dark Theme */
     .caffeine-dark {
-        --font-sans: Lora Variable, Georgia, serif;
-        --font-mono: Fira Code Variable, monospace;
+        --font-sans: var(--font-lora);
+        --font-mono: var(--font-fira);
         
         --background: #111111;
         --foreground: #eeeeee;
@@ -440,8 +441,8 @@
     
     /* Amethyst-light Light Theme */
     .amethyst-light {
-        --font-sans: Spaced, sans-serif;
-        --font-mono: Fira Code Variable, monospace;
+        --font-sans: var(--font-spaced);
+        --font-mono: var(--font-fira);
         
         --background: #f8f7fa;
         --foreground: #3d3c4f;
@@ -500,8 +501,8 @@
     
     /* Amethyst Dark Theme */
     .amethyst-dark {
-        --font-sans: Spaced, sans-serif;
-        --font-mono: Fira Code Variable, monospace;
+        --font-sans: var(--font-spaced);
+        --font-mono: var(--font-spaced);
         
         --background: #1a1823;
         --foreground: #e0ddef;

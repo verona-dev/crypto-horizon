@@ -13,7 +13,7 @@
     },
     {
         "value":"light",
-        "label":"Light",
+        "label":"Light Graphite",
         "icon":"ph-sun",
         "description":"Light theme",
         "colors":{
