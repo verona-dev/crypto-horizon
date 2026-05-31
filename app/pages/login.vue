@@ -77,7 +77,7 @@
             <AuthHero />
             
             <SnowfallBg
-                v-if='dark_mode'
+                v-if='isDarkTheme'
                 color="#e4d9e2"
                 class='absolute inset-0 !min-h-lvh !min-w-full !z-0'
                 :min-radius='0.1'
@@ -100,8 +100,9 @@
     import AuthHero from '~/components/auth/AuthHero.vue';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
     
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
+    // Theme
+    import { useTheme } from '~/composables/useTheme.js';
+    const { isDarkTheme } = useTheme();
     
     // SEO
     const title = 'Login to Track & Manage Your Crypto Portfolio';
