@@ -312,8 +312,8 @@
     import Title from '@/components/Title.vue';
     
     // Theme
-    import { useTheme } from '~/composables/useTheme.js';
-    const { isDarkTheme } = useTheme();
+    import { checkTheme } from '@/composables/checkTheme.js';
+    const { isDarkTheme } = checkTheme();
     
     // Chartjs
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Tooltip } from 'chart.js';

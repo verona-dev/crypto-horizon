@@ -1,5 +1,5 @@
 
-export const useTheme = () => {
+export const checkTheme = () => {
     const darkThemes = ['dark', 'caffeine-dark', 'amethyst-dark'];
     const colorMode = useColorMode();
 

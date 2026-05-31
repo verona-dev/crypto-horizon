@@ -121,8 +121,8 @@
     import { Tooltip as UITooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
     
     // Theme
-    import { useTheme } from '~/composables/useTheme.js';
-    const { isDarkTheme } = useTheme();
+    import { checkTheme } from '@/composables/checkTheme.js';
+    const { isDarkTheme } = checkTheme();
     
     // Dayjs
     import dayjs from 'dayjs';

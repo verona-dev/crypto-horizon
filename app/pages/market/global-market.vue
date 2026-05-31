@@ -27,8 +27,8 @@
     import { Meteors } from '~/components/ui/meteors';
     
     // Theme
-    import { useTheme } from '~/composables/useTheme.js';
-    const { isDarkTheme } = useTheme();
+    import { checkTheme } from '@/composables/checkTheme.js';
+    const { isDarkTheme } = checkTheme();
     
     // Market Store
     import { useMarketStore } from '~/stores/MarketStore.js';
