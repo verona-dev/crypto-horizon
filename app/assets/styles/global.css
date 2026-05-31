@@ -4,6 +4,7 @@
 @import '@fontsource-variable/work-sans';
 @import '@fontsource-variable/geist-mono';
 @import '@fontsource-variable/jetbrains-mono/wght.css';
+@import '@fontsource-variable/lora/wght.css';
 @reference "tailwindcss";
 
 @layer base {
