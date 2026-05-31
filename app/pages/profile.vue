@@ -28,7 +28,7 @@
         
         <div class='absolute inset-0 min-h-screen w-screen'>
             <SnowfallBg
-                v-if='isDarkTheme'
+                v-if='darkThemes'
                 color='eee8a9'
                 class='absolute inset-0 !z-0'
                 :min-radius='0.2'
@@ -48,7 +48,7 @@
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
-    const { isDarkTheme } = checkTheme();
+    const { darkThemes } = checkTheme();
     
     //Dayjs
     import dayjs from 'dayjs';
