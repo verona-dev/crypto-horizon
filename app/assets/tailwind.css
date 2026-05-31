@@ -48,7 +48,6 @@
     --font-roboto: var(--font-roboto);
     --font-satoshi: var(--font-satoshi);
     --font-work-sans: var(--font-work-sans);
-    --font-automata: var(--font-automata);
     --font-spaced: var(--font-spaced);
     --font-geist: var(--font-geist);
     --font-jetbrains: var(--font-jetbrains);
@@ -215,7 +214,6 @@
         --font-roboto: Roboto, monospace;
         --font-satoshi: Satoshi, sans-serif;
         --font-work-sans: Work Sans Variable, sans-serif;
-        --font-automata: Automata, sans-serif;
         --font-spaced: Spaced, sans-serif;
         --font-geist: Geist Mono Variable, ui-monospace, monospace;
         --font-jetbrains: JetBrains Mono Variable, monospace;
@@ -328,7 +326,7 @@
     
     /* Dark Matter */
     .dark {
-        --font-sans: Geist Mono Variable, ui-monospace, monospace;
+        --font-sans: JetBrains Mono Variable, monospace;
         --font-mono: JetBrains Mono Variable, monospace;
         
         --background: #121113;
@@ -442,7 +440,7 @@
     
     /* Amethyst-light Light Theme */
     .amethyst-light {
-        --font-sans: Lora Variable, Georgia, serif;
+        --font-sans: Spaced, sans-serif;
         --font-mono: Fira Code Variable, monospace;
         
         --background: #f8f7fa;
@@ -502,7 +500,7 @@
     
     /* Amethyst Dark Theme */
     .amethyst-dark {
-        --font-sans: Fira Code Variable, monospace;
+        --font-sans: Spaced, sans-serif;
         --font-mono: Fira Code Variable, monospace;
         
         --background: #1a1823;

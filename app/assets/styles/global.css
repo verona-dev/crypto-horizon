@@ -32,13 +32,6 @@
     }
     
     @font-face {
-        font-family: 'Automata';
-        src: url(../fonts/Automata.ttf) format('truetype');
-        font-style: normal;
-        font-display: swap;
-    }
-    
-    @font-face {
         font-family: 'Spaced';
         src: url(../fonts/Spaced.ttf) format('truetype');
         font-style: normal;
