@@ -219,7 +219,7 @@
         --font-fira: Fira Code Variable, monospace;
         
         /* Default font for light mode */
-        --font-sans: var(--font-satoshi);
+        --font-sans: var(--font-metropolis);
         --font-mono: var(--font-satoshi);
         
         --progress: #00bc7d;
@@ -439,8 +439,8 @@
     
     /* Amethyst-light Light Theme */
     .amethyst-light {
-        --font-sans: var(--font-spaced);
-        --font-mono: var(--font-fira);
+        --font-sans: var(--font-metropolis);
+        --font-mono: var(--font-spaced);
         
         --background: #f8f7fa;
         --foreground: #3d3c4f;
