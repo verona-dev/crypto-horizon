@@ -14,7 +14,7 @@
             </div>
         </div>
         
-        <Meteors v-if='isThemeDark()' :count='30' />
+        <Meteors v-if='isDarkTheme' :count='30' />
     </div>
 </template>
 
@@ -25,8 +25,12 @@
     import TopTrendingCoins from '~/components/market/TopTrendingCoins.vue';
     import TopTrendingNfts from '~/components/market/TopTrendingNfts.vue';
     import { Meteors } from '~/components/ui/meteors';
-    import {isThemeDark} from '@/utils/styleUtils';
     
+    // Theme
+    import { useTheme } from '~/composables/useTheme.js';
+    const { isDarkTheme } = useTheme();
+    
+    // Market Store
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     const { getTrendingSearchList } = MarketStore;
