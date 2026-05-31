@@ -12,6 +12,7 @@
         >
             <form
                 @submit.prevent='() => validate()'
+                @keyup.enter='onLogin(nextStep)'
                 class='flex flex-col gap-8'
             >
                 <div
