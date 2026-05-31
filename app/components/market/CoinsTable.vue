@@ -62,7 +62,7 @@
             <!--   Table   -->
             <div class='border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
                 <Table class='!border-none'>
-                    <TableHeader :class='[ "h-24", { "shadow-2xl" : dark_mode } ]'>
+                    <TableHeader :class='[ "h-24", { "shadow-2xl" : isDarkTheme } ]'>
                         <TableRow
                             v-for='headerGroup in table.getHeaderGroups()'
                             :key='headerGroup.id'
@@ -311,6 +311,10 @@
     import InfoIcon from '@/components/InfoIcon.vue';
     import Title from '@/components/Title.vue';
     
+    // Theme
+    import { useTheme } from '~/composables/useTheme.js';
+    const { isDarkTheme } = useTheme();
+    
     // Chartjs
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Tooltip } from 'chart.js';
     import { Line } from 'vue-chartjs';
@@ -332,9 +336,6 @@
     import { SidebarMenuButton } from '@/components/ui/sidebar/index.ts';
     const ProfileStore = useProfileStore();
     const { updateWatchlist } = ProfileStore;
-    
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
     
     // State
     const { coins } = storeToRefs(MarketStore);
