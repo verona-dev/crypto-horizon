@@ -119,6 +119,11 @@
     import { Spinner } from '~/components/ui/spinner/index.js';
     import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs/index.js';
     import { Tooltip as UITooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
+    
+    // Theme
+    import { useTheme } from '~/composables/useTheme.js';
+    const { isDarkTheme } = useTheme();
+    
     // Dayjs
     import dayjs from 'dayjs';
     import customParseFormat from 'dayjs/plugin/customParseFormat';
@@ -133,12 +138,8 @@
     ChartJS.register(annotationPlugin, CategoryScale, CustomLineChart, Filler, Legend, LinearScale, LineController, LineElement, PointElement, TimeScale, Title, Tooltip );
     
     // MarketStore
-    import { useMarketStore } from '~/stores/MarketStore.js';
     import { storeToRefs } from 'pinia';
-    
-    const colorMode = useColorMode();
-    const dark_mode = computed(() => colorMode.value === 'dark');
-    
+    import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     const { setChartTimeframe, getCoinChart } = MarketStore;
     
@@ -228,7 +229,7 @@
         const computed_styles = {
             annotation: {
                 starting_valuation_tooltip: {
-                    backgroundColor: dark_mode.value ? '#606060' : '#353958', //  light-mode-primary : --secondary
+                    backgroundColor: isDarkTheme.value ? '#606060' : '#353958', //  light-mode-primary : --secondary
                     content: valuation_tab.value === 'price' ? formatNumber(starting_valuation.value, {
                         style: 'decimal',
                     }) : formatNumber(starting_valuation.value, {
