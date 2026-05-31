@@ -53,6 +53,7 @@
     --font-geist: var(--font-geist);
     --font-jetbrains: var(--font-jetbrains);
     --font-lora: var(--font-lora);
+    --font-fira: var(--font-fira);
     
     --font-sans: var(--font-sans);
     --font-mono: var(--font-mono);
@@ -220,6 +221,7 @@
         --font-geist: Geist Mono Variable, ui-monospace, monospace;
         --font-jetbrains: JetBrains Mono Variable, monospace;
         --font-lora: Lora Variable, Georgia, serif;
+        --font-fira: Fira Code Variable, monospace;
         
         --font-sans: Geist Mono Variable, ui-monospace, monospace;
         --font-serif: serif;
@@ -441,7 +443,7 @@
     .amethyst-light {
         --font-sans: Geist Mono Variable, ui-monospace, monospace;
         --font-serif: Lora Variable, Georgia, serif;
-        --font-mono: "Fira Code", "Courier New", monospace;
+        --font-mono: Fira Code Variable, monospace;
         
         --background: #f8f7fa;
         --foreground: #3d3c4f;
@@ -500,9 +502,9 @@
     
     /* Amethyst Dark Theme */
     .amethyst-dark {
-        --font-sans: Geist, sans-serif;
-        --font-serif: "Lora", Georgia, serif;
-        --font-mono: "Fira Code", "Courier New", monospace;
+        --font-sans: Geist Mono Variable, ui-monospace, monospace;
+        --font-serif: Lora Variable, Georgia, serif;
+        --font-mono: Fira Code Variable, monospace;
         
         --background: #1a1823;
         --foreground: #e0ddef;
