@@ -9,7 +9,7 @@
             <p>Data powered by</p>
             
             <NuxtImg
-                src='https://res.cloudinary.com/dgcyv1ehi/image/upload/v1759342218/CGAPI-Lockup-1_ysyezi.svg'
+                :src='!isDarkTheme ? dark_mode_url : light_mode_url'
                 alt='coingecko logo'
                 v-slot='{ src, isLoaded, imgAttrs, alt }'
                 width='150'
@@ -37,4 +37,11 @@
     import { Card } from '~/components/ui/card';
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import { Skeleton } from '~/components/ui/skeleton';
+    
+    // Theme
+    import { checkTheme } from '@/composables/checkTheme.js';
+    const { isDarkTheme } = checkTheme();
+    
+    const light_mode_url = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1759342218/CGAPI-Lockup-1_ysyezi.svg';
+    const dark_mode_url = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1780268682/CGAPI-Lockup_2x_meqgo3.png';
 </script>
