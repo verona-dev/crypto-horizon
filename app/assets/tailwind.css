@@ -57,7 +57,6 @@
     
     --font-sans: var(--font-sans);
     --font-mono: var(--font-mono);
-    --font-serif: var(--font-serif);
     
     /* Text sizes */
     --text-xxs: 11px;
@@ -224,7 +223,6 @@
         --font-fira: Fira Code Variable, monospace;
         
         --font-sans: Geist Mono Variable, ui-monospace, monospace;
-        --font-serif: serif;
         --font-mono: JetBrains Mono Variable, monospace;
         
         --progress: #00bc7d;
@@ -441,8 +439,7 @@
     
     /* Amethyst-light Light Theme */
     .amethyst-light {
-        --font-sans: Geist Mono Variable, ui-monospace, monospace;
-        --font-serif: Lora Variable, Georgia, serif;
+        --font-sans: Lora Variable, Georgia, serif;
         --font-mono: Fira Code Variable, monospace;
         
         --background: #f8f7fa;
@@ -502,8 +499,7 @@
     
     /* Amethyst Dark Theme */
     .amethyst-dark {
-        --font-sans: Geist Mono Variable, ui-monospace, monospace;
-        --font-serif: Lora Variable, Georgia, serif;
+        --font-sans: Fira Code Variable, monospace;
         --font-mono: Fira Code Variable, monospace;
         
         --background: #1a1823;
