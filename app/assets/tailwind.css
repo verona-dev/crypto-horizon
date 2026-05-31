@@ -8,6 +8,7 @@
 @import '../assets/styles/transitions.css';
 
 @custom-variant dark (&:where(.dark *));
+@custom-variant light (&:where(.light *));
 @custom-variant caffeine-dark (&:where(.caffeine-dark, .caffeine-dark *));
 @custom-variant amethyst-light (&:where(.amethyst-light, .amethyst-light *));
 @custom-variant amethyst-dark (&:where(.amethyst-dark, .amethyst-dark *));

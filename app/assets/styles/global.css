@@ -45,6 +45,12 @@
         @apply m-0;
     }
     
+    /*
+    html {
+        @apply scheme-light dark:scheme-dark;
+    }
+    */
+    
     body {
         @apply bg-background text-foreground overflow-x-hidden overflow-y-scroll;
     }
