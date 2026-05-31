@@ -62,7 +62,7 @@
             <!--   Table   -->
             <div class='border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
                 <Table class='!border-none font-mono'>
-                    <TableHeader :class='[ "h-24", { "shadow-2xl" : isDarkTheme } ]'>
+                    <TableHeader :class='[ "h-24", { "shadow-2xl" : darkThemes } ]'>
                         <TableRow
                             v-for='headerGroup in table.getHeaderGroups()'
                             :key='headerGroup.id'
@@ -313,7 +313,7 @@
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
-    const { isDarkTheme } = checkTheme();
+    const { darkThemes } = checkTheme();
     
     // Chartjs
     import { Chart as ChartJS, CategoryScale, Filler, Legend, LinearScale, LineController, LineElement, PointElement, Tooltip } from 'chart.js';

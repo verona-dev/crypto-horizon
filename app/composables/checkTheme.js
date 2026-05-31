@@ -1,9 +1,9 @@
 
 export const checkTheme = () => {
-    const darkThemes = ['dark', 'caffeine-dark', 'amethyst-dark'];
+    const themes = ['dark', 'caffeine-dark', 'amethyst-dark'];
     const colorMode = useColorMode();
 
-    const isDarkTheme = computed(() => darkThemes.includes(colorMode.value));
+    const darkThemes = computed(() => themes.includes(colorMode.value));
     
-    return { isDarkTheme };
+    return { darkThemes };
 };

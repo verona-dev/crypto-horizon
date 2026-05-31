@@ -122,7 +122,7 @@
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
-    const { isDarkTheme } = checkTheme();
+    const { darkThemes } = checkTheme();
     
     // Dayjs
     import dayjs from 'dayjs';
@@ -229,7 +229,7 @@
         const computed_styles = {
             annotation: {
                 starting_valuation_tooltip: {
-                    backgroundColor: isDarkTheme.value ? '#606060' : '#353958', //  light-mode-primary : --secondary
+                    backgroundColor: darkThemes.value ? '#606060' : '#353958', //  light-mode-primary : --secondary
                     content: valuation_tab.value === 'price' ? formatNumber(starting_valuation.value, {
                         style: 'decimal',
                     }) : formatNumber(starting_valuation.value, {
