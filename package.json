@@ -11,9 +11,6 @@
         "lint": "eslint .",
         "lint:fix": "eslint . --fix"
     },
-    "engines": {
-        "node": "22.x"
-    },
     "devDependencies": {
         "@nuxt/eslint": "1.14.0",
         "@nuxt/icon": "1.15.0",
