@@ -45,6 +45,7 @@
                             external
                             target='_blank'
                             class='ghost-link-as-button'
+                            :aria-label='name'
                         >
                             <NewTabIcon size='20' />
                         </NuxtLink>
