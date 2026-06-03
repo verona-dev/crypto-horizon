@@ -16,9 +16,9 @@
                     <div class='flex items-center gap-3 text-progress'>
                         <NuxtIcon
                             name='ph:trend-up-light'
-                            size='32'
+                            size='24'
                         />
-                        <h6>{{ sentiment_up_label }}</h6>
+                        <p>{{ sentiment_up_label }}</p>
                     </div>
                     
                     <Progress
@@ -27,10 +27,10 @@
                     />
                     
                     <div class='flex items-center gap-3 text-destructive'>
-                        <h6>{{ sentiment_down_label }}</h6>
+                        <p>{{ sentiment_down_label }}</p>
                         <NuxtIcon
                             name='ph:trend-down-light'
-                            size='32'
+                            size='24'
                         />
                     </div>
                 </div>
