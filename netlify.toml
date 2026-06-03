@@ -14,11 +14,14 @@
   X-XSS-Protection = "1; mode=block"
 
   # Clickjacking Protection
-  X-Frame-Options = "SAMEORIGIN"
+  X-Frame-Options = "DENY"
 
   # Referrer Policy
   Referrer-Policy = "strict-origin-when-cross-origin"
   Feature-Policy = "geolocation 'none'; camera 'none';"
+
+  Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+  Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data: https:; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https:; font-src 'self' https:; upgrade-insecure-requests"
 
 
 [[redirects]]
