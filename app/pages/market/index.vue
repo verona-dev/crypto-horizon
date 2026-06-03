@@ -13,7 +13,7 @@
     const { getCoinsMarkets, resetCoin } = MarketStore;
     
     // SEO
-    const title = 'Cryptocurrency Prices, Charts, and Market Capitalization';
+    const title = 'Cryptocurrency Prices, Charts & Market Cap';
     const description = 'Live cryptocurrency prices, market cap, volume, circulating supply, and price charts for 10,000+ coins. Track Bitcoin, Ethereum, and 10,000+ altcoins in real time.';
     
     const label = ref('Market Cap');
