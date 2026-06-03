@@ -19,7 +19,11 @@
             <TooltipProvider :delayDuration='250'>
                 <Tooltip>
                     <TooltipTrigger>
-                        <Button variant='ghost' @click='onCopy(name, src)'>
+                        <Button
+                            variant='ghost'
+                            @click='onCopy(name, src)'
+                            aria-label='Copy'
+                        >
                             <NuxtIcon
                                 name='ph:copy'
                                 size='20'
