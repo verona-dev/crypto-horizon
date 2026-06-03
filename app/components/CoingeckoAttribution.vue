@@ -42,6 +42,6 @@
     import { checkTheme } from '@/composables/checkTheme.js';
     const { darkThemes } = checkTheme();
     
-    const light_mode_url = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1759342218/CGAPI-Lockup-1_ysyezi.svg';
-    const dark_mode_url = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1780268682/CGAPI-Lockup_2x_meqgo3.png';
+    const light_mode_url = 'CGAPI-Lockup-1.svg';
+    const dark_mode_url = 'CGAPI-Lockup.svg';
 </script>

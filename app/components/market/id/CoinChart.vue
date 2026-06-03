@@ -1,9 +1,5 @@
 <template>
-    <Card
-        v-if='chart.prices'
-        class='flex flex-col gap-6 p-10'
-        :class='{ "" : sniper_mode }'
-    >
+    <Card v-if='chart.prices' class='flex flex-col gap-6 p-10'>
         <!--  Tabs  -->
         <div class='flex flex-col md:flex-row gap-12 md:gap-0 items-center justify-between'>
             <!--  Price + Market Cap  -->

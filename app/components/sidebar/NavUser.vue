@@ -19,7 +19,7 @@
     
     const authenticated = computed(() => profile.value);
     
-    const guest_avatar = 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_256/v1767535202/astronaut-3_oauvzn.png';
+    const guest_avatar = 'astronaut-3.png';
     const avatar = computed(() => {
         if(authenticated.value) {
             return profile.value?.avatar_url || guest_avatar;
