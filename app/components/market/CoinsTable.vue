@@ -333,7 +333,6 @@
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
-    import { SidebarMenuButton } from '@/components/ui/sidebar/index.ts';
     const ProfileStore = useProfileStore();
     const { updateWatchlist } = ProfileStore;
     

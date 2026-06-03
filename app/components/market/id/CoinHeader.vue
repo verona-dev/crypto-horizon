@@ -47,8 +47,8 @@
                     <!-- Symbol  -->
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger class='flex items-center gap-4 cursor-default'>
-                            <h3>{{ coin.symbol }}</h3>
-                            <h3 v-if='livecoinwatch_symbol' class=''>{{ livecoinwatch_symbol }}</h3>
+                            <Title :tag='2' :level='3'>{{ coin.symbol }}</Title>
+                            <Title v-if='livecoinwatch_symbol' :tag='2' :level='3'>{{ livecoinwatch_symbol }}</Title>
                         </HoverCardTrigger>
                         
                         <!--  Ico Description -->

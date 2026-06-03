@@ -13,7 +13,7 @@
             
             <div class='label-container'>
                 <div class='flex items-center.5'>
-                    <Title :tag='5' class='!min-w-full'>{{ glossary.market_cap.label }}</Title>
+                    <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.market_cap.label }}</Title>
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
@@ -40,7 +40,7 @@
             
             <div class='label-container'>
                 <div class='flex items-center'>
-                    <Title :tag='5' class='!min-w-full'>{{ glossary.fully_diluted_valuation.label }}</Title>
+                    <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.fully_diluted_valuation.label }}</Title>
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
@@ -67,7 +67,7 @@
             
             <div class='label-container'>
                 <div class='flex items-center'>
-                    <Title :tag='5' class='!min-w-full'>{{ glossary.volume.label }}</Title>
+                    <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.volume.label }}</Title>
                     
                     <HoverCard
                         :openDelay='200'
@@ -99,7 +99,7 @@
             
             <div class='label-container'>
                 <div class='flex items-center'>
-                    <Title :tag='5' class='!min-w-full'>{{ glossary.circulating_supply.label }}</Title>
+                    <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.circulating_supply.label }}</Title>
                     
                     <HoverCard :openDelay='200' class='flex'>
                         <HoverCardTrigger>
@@ -128,7 +128,7 @@
             
             <div class='label-container'>
                 <div class='flex items-center'>
-                    <Title :tag='5' class='!min-w-full'>{{ glossary.total_supply.label }}</Title>
+                    <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.total_supply.label }}</Title>
                     
                     <HoverCard
                         :openDelay='200'
@@ -158,7 +158,7 @@
             
             <div class='label-container'>
                 <div class='flex items-center'>
-                    <Title :tag='5' class='!min-w-full'>{{ glossary.max_supply.label }}</Title>
+                    <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.max_supply.label }}</Title>
                     
                     <HoverCard
                         :openDelay='200'

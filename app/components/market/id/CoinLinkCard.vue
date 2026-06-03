@@ -19,7 +19,11 @@
             <TooltipProvider :delayDuration='250'>
                 <Tooltip>
                     <TooltipTrigger>
-                        <Button variant='ghost' @click='onCopy(name, src)'>
+                        <Button
+                            variant='ghost'
+                            @click='onCopy(name, src)'
+                            aria-label='Copy'
+                        >
                             <NuxtIcon
                                 name='ph:copy'
                                 size='20'
@@ -41,6 +45,7 @@
                             external
                             target='_blank'
                             class='ghost-link-as-button'
+                            :aria-label='name'
                         >
                             <NewTabIcon size='20' />
                         </NuxtLink>

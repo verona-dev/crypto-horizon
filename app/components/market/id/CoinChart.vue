@@ -39,6 +39,7 @@
                                 "h-9.5 relative overflow-hidden hover:bg-transparent",
                                  { "text-primary border-primary/50 hover:text-primary" : sniper_mode },
                             ]'
+                            aria-label='Sniper mode'
                         >
                             <GlowBorder
                                 v-if='!sniper_mode'
