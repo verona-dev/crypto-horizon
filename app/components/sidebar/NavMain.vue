@@ -1,8 +1,8 @@
-<script setup lang="ts">
-    import type { LucideIcon } from "lucide-vue-next"
-    import { ChevronRight } from "lucide-vue-next"
-    import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-    import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, useSidebar } from "@/components/ui/sidebar"
+<script setup lang='ts'>
+    import type { LucideIcon } from 'lucide-vue-next'
+    import { ChevronRight } from 'lucide-vue-next'
+    import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
+    import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, useSidebar } from '@/components/ui/sidebar'
     
     defineProps<{
         items: {
@@ -27,26 +27,27 @@
         <SidebarGroupLabel>Menu</SidebarGroupLabel>
         <SidebarMenu>
             <Collapsible
-                v-for="item in items"
-                :key="`${item.title}-${open}`"
+                v-for='item in items'
+                :key='`${item.title}-${open}`'
                 as-child
-                :default-open="item.isActive"
-                class="group/collapsible"
+                :default-open='item.isActive'
+                class='group/collapsible'
             >
                 <SidebarMenuItem>
                     <CollapsibleTrigger as-child>
                         <!--   Closed Menu  -->
                         <NuxtLink
-                            v-if="!open"
-                            :to="item.url"
-                            @click.prevent="!item.items?.length"
+                            v-if='!open'
+                            :to='item.url'
+                            @click.prevent='!item.items?.length'
                         >
                             <SidebarMenuButton
-                                :tooltip="item.title"
-                                :is-active="item.isActive"
-                                :class="{ '!bg-primary !text-primary-foreground': item.isActive }"
+                                :tooltip='item.title'
+                                :is-active='item.isActive'
+                                :class='{ "!bg-primary !text-primary-foreground": item.isActive }'
+                                :aria-label='item.title'
                             >
-                                <component :is="item.icon" v-if="item.icon" />
+                                <component :is='item.icon' v-if='item.icon' />
                             </SidebarMenuButton>
                         </NuxtLink>
                         
@@ -60,25 +61,26 @@
                                 { "!bg-primary !text-primary-foreground": item.isActive },
                             ]'
                         >
-                            <component :is="item.icon" v-if="item.icon" />
+                            <component :is='item.icon' v-if='item.icon' />
                             <span>{{ item.title }}</span>
-                            <ChevronRight class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                            <ChevronRight class='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
                         </SidebarMenuButton>
                     </CollapsibleTrigger>
                     
                     <CollapsibleContent>
                         <SidebarMenuSub class='pl-3 mb-3'>
-                            <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title">
+                            <SidebarMenuSubItem v-for='subItem in item.items' :key='subItem.title'>
                                 <SidebarMenuSubButton
                                     as-child
                                     :is-active='subItem.isActive'
                                     :class='[
                                             "pl-3",
                                             {"!bg-transparent !text-primary" : subItem.isActive },
-                                        ]'
+                                    ]'
+                                    :aria-label='subItem.title'
                                 >
                                     <NuxtLink
-                                        :to="subItem.disabled ? undefined : subItem.url"
+                                        :to='subItem.disabled ? undefined : subItem.url'
                                         class='!h-9'
                                         :class='subItem.disabled ? "!text-muted-foreground" : ""'
                                     >
