@@ -21,11 +21,22 @@
   Feature-Policy = "geolocation 'none'; camera 'none';"
 
   Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
-  Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data: https:; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https:; font-src 'self' https:; upgrade-insecure-requests"
-
+  Content-Security-Policy = """
+      default-src 'self';
+      base-uri 'self';
+      object-src 'none';
+      frame-ancestors 'none';
+      form-action 'self';
+      img-src 'self' data: https:;
+      script-src 'self';
+      style-src 'self' 'unsafe-inline';
+      connect-src 'self' https:;
+      font-src 'self' https:;
+      upgrade-insecure-requests
+    """
 
 [[redirects]]
-from = "https://crypto-horizon-app.netlify.app/*"
+from = "https://www.crypto-horizon-app.netlify.app/*"
 to = "https://crypto-horizon-app.netlify.app/:splat"
 status = 301
 force = true
