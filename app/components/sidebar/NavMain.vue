@@ -40,6 +40,7 @@
                             v-if='!open'
                             :to='item.url'
                             @click.prevent='!item.items?.length'
+                            :aria-label='item.title'
                         >
                             <SidebarMenuButton
                                 :tooltip='item.title'
@@ -83,6 +84,7 @@
                                         :to='subItem.disabled ? undefined : subItem.url'
                                         class='!h-9'
                                         :class='subItem.disabled ? "!text-muted-foreground" : ""'
+                                        :aria-label='subItem.title'
                                     >
                                         <span>{{ subItem.title }}</span>
                                     </NuxtLink>
