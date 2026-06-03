@@ -96,7 +96,7 @@
     });
     
     // SEO
-    const title = 'The Crypto Universe Gateway';
+    const title = 'The Gateway to the Crypto Universe';
     const description = 'Track real-time cryptocurrency prices, charts, latest news, market capitalization, DeFi analytics, and educational resources. Your ultimate crypto dashboard.';
     
     definePageMeta({
