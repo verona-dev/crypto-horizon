@@ -25,7 +25,7 @@
 
 
 [[redirects]]
-from = "https://crypto-horizon-app.netlify.app/*"
+from = "https://www.crypto-horizon-app.netlify.app/*"
 to = "https://crypto-horizon-app.netlify.app/:splat"
 status = 301
 force = true
