@@ -1,11 +1,11 @@
 <template>
     <div class='page'>
-        <Title>Learn</Title>
-        <h6>Coming Soon...</h6>
+        <Glossary />
     </div>
 </template>
 
 <script setup>
+    import Glossary from '~/components/academy/Glossary.vue';
     import Title from '~/components/Title.vue';
     
     // SEO
