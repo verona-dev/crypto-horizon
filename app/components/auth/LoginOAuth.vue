@@ -7,6 +7,7 @@
             variant='outline'
             type='button'
             class='flex-1 mx-2.5 h-10 rounded-lg'
+            :aria-label='provider.name'
         >
             <NuxtIcon
                 :name='provider.icon'
