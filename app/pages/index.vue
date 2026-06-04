@@ -49,28 +49,28 @@
     const baseItems = ref([
         {
             title: 'Market',
-            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1755195826/cyberpunk-bitcoin-illustration-2_u6fytd.webp',
+            src: '/cyberpunk-bitcoin-illustration-2.webp',
             alt: 'market image',
             to: '/market',
             color: 'green-shamrock',
         },
         {
             title: 'News',
-            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1753545835/ai-generated-8517436_1920_vk0pnk.png',
+            src: '/bitcoin-9193579.webp',
             alt: 'news image',
             to: '/news',
             color: 'orange-bitcoin',
         },
         {
             title: 'Defi',
-            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1755195953/cyberpunk-bitcoin-illustration_jejcnb.webp',
+            src: '/cyberpunk-bitcoin-illustration-resized.webp',
             alt: 'defi image',
             to: '/defi',
             color: 'sky',
         },
         {
             title: 'Academy',
-            src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/c_scale,w_800/v1755194748/andre-francois-mckenzie-uw3VwkDHiMI-unsplash_hs9t15.jpg',
+            src: '/andre-francois-mckenzie-uw3VwkDHiMI-unsplash.webp',
             alt: 'academy image',
             to: '/academy',
             color: 'green-deco',
@@ -79,7 +79,7 @@
     
     const profileItem = {
         title: 'Profile',
-        src: 'https://res.cloudinary.com/dgcyv1ehi/image/upload/v1757869845/ai-generated-9248643_rvsgge.jpg',
+        src: '/serafin-reyna-CqYcY3xJHz0-unsplash.webp',
         alt: 'profile image',
         to: '/profile',
         color: 'sky',
@@ -96,7 +96,7 @@
     });
     
     // SEO
-    const title = 'The Gateway to the Crypto Universe';
+    const title = 'The Gateway to the Crypto Universe - A Space Odyssey';
     const description = 'Track real-time cryptocurrency prices, charts, latest news, market capitalization, DeFi analytics, and educational resources. Your ultimate crypto dashboard.';
     
     definePageMeta({
