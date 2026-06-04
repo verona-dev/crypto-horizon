@@ -88,6 +88,7 @@
                         class='w-full disabled:opacity-75'
                         size='lg'
                         :disabled='!meta.valid'
+                        aria-label='submit'
                     >
                         <Spinner v-if='loading' class='animate-spin' />
                         <span>Login</span>

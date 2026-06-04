@@ -63,6 +63,7 @@
                         size='lg'
                         class='h-10'
                         :class='open ? "px-1 flex gap-2.5 rounded-md" : "ml-1 hover:bg-transparent active:bg-transparent"'
+                        aria-label='user data'
                     >
                         <Avatar class='h-6 w-6 rounded-xl'>
                             <AvatarImage :src='avatar' alt='avatar' />

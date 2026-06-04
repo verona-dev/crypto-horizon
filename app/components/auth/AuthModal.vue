@@ -8,6 +8,7 @@
                 <Button
                     variant='ghost'
                     class='absolute top-4 right-4'
+                    aria-label='close'
                 >
                     <X class='size-5' />
                 </Button>
@@ -89,7 +90,8 @@
                                             size='icon'
                                             class='z-10 rounded-full shrink-0'
                                             :class='[state === "active" && "ring-2 ring-ring ring-offset-2 ring-offset-background"]'
-                                            :disabled="index >= (modelValue || 0)"
+                                            :disabled='index >= (modelValue || 0)'
+                                            aria-label='stepper'
                                         >
                                             <Check v-if='state === "completed"' class='size-5' />
                                             <Mail v-if='state === "active" && step_index === 1' />

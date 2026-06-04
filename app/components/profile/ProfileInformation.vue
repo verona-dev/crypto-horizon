@@ -8,6 +8,7 @@
                 variant='outline'
                 size='lg'
                 class='border-primary/25 hover:border-primary/50 hover:bg-muted/50'
+                aria-label='edit profile'
             >
                 <NuxtIcon
                     name='ph:pencil-simple-line'

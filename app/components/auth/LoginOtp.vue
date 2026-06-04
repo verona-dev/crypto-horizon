@@ -98,6 +98,7 @@
                                     class='w-full disabled:opacity-75'
                                     size='lg'
                                     :disabled='disabled_otp_input'
+                                    aria-label='verify otp'
                                 >
                                     <Spinner v-if='loading' class='animate-spin' />
                                     <span>Continue</span>
@@ -123,6 +124,7 @@
                                 variant='link'
                                 size='sm'
                                 @click='current_step = 1'
+                                aria-label='back'
                             >
                                 Back
                             </Button>
@@ -145,6 +147,7 @@
                         class='w-full disabled:opacity-75'
                         size='lg'
                         :disabled='!meta.valid'
+                        aria-label='login'
                     >
                         <Spinner v-if='loading' class='animate-spin' />
                         <span>Send Verification Code</span>

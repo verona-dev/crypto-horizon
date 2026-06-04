@@ -29,7 +29,7 @@
                             as-child
                             class='flex items-center gap-4'
                         >
-                            <Button variant='outline' class='gap-2'>
+                            <Button variant='outline' class='gap-2' aria-label='filter'>
                                 <div class='pt-1.5'>
                                     <NuxtIcon
                                         name='ph:layout-light'
@@ -264,6 +264,7 @@
                                                 <Button
                                                     variant='outline'
                                                     @click='getCoinsMarkets({}, "table")'
+                                                    aria-label='get market'
                                                 >
                                                     <NuxtIcon name='ph:repeat-thin' size='20' />
                                                     Retry

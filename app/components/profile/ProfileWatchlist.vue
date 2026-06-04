@@ -108,7 +108,7 @@
                         <TableCell>{{ formatNumber(coin.atl, { compact: true, decimals: 2 }) }}</TableCell>
                         
                         <TableCell>
-                            <Button variant='link' size='sm'>
+                            <Button variant='link' size='sm' aria-label='view coin'>
                                 <NuxtLink :to='`/market/${coin.id}`' target='_blank'>
                                     View Coin
                                 </NuxtLink>
@@ -120,6 +120,7 @@
                                 variant='destructive'
                                 size='sm'
                                 @click='updateWatchlist({ coin: coin.id })'
+                                aria-label='update watchlist'
                             >
                                 Remove
                             </Button>

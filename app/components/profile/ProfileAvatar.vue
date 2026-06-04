@@ -79,6 +79,7 @@
                                     @click='onSubmit'
                                     :disabled='is_current_avatar_selected || !selected_avatar'
                                     class='disabled:pointer-events-auto disabled:cursor-not-allowed'
+                                    aria-label='change avatar'
                                 >
                                     {{ button_label }}
                                 </Button>

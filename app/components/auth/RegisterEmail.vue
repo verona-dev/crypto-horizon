@@ -78,6 +78,7 @@
                                 variant='link'
                                 size='sm'
                                 @click='current_step = 1'
+                                aria-label='back'
                             >
                                 Back
                             </Button>
@@ -93,6 +94,7 @@
                         class='w-full disabled:opacity-75'
                         size='lg'
                         :disabled='!meta.valid'
+                        aria-label='create account'
                     >
                         <Spinner v-if='loading' class='animate-spin' />
                         <span>Create Account</span>

@@ -22,8 +22,8 @@
                     
                     <h4 class='mb-3'>Sorry, the article is not available at the moment.</h4>
                     
-                    <Button variant='link'>
-                        <NuxtLink @click='goBack(router, "/news")' to=''>Go back</NuxtLink>
+                    <Button variant='link' aria-label='go back'>
+                        <NuxtLink @click='goBack(router, "/news")' to='' aria-label='go back'>Go back</NuxtLink>
                     </Button>
                 </CardContent>
                 
@@ -158,7 +158,7 @@
                                 
                                 <NuxtIcon name='ph:read-cv-logo-thin' size='100' class='' />
                                 
-                                <Button variant='link' class='!pb-0'>
+                                <Button variant='link' class='!pb-0' aria-label='visit article'>
                                     <NuxtLink
                                         :to='article_url'
                                         target='_blank'
