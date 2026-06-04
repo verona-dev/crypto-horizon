@@ -4,6 +4,7 @@
         @click='scrollOnClick'
         variant='outline'
         class='scroll-to-top !bg-popover fixed bottom-28 right-12 transition-all duration-100 ease-linear py-5 rounded-md hover:cursor-pointer shadow-2xl z-50'
+        aria-label='scroll to top'
     >
         <NuxtIcon
             name='ph:caret-double-up-light'
