@@ -123,7 +123,7 @@ export default defineNuxtConfig({
       groups: [
          {
             userAgent: '*',
-            disallow: ['/market/exchanges', '/defi', '/defi/platforms', '/academy', '/academy/dyor', '/profile', '/animations'],
+            disallow: ['/market/exchanges', '/defi', '/defi/platforms', '/academy/dyor', '/profile', '/animations'],
          },
          {
             userAgent: 'facebookexternalhit',
