@@ -1,11 +1,12 @@
 <template>
     <div class='page'>
-        <Glossary />
+        <Title>Glossary</Title>
+        <Encyclopedia />
     </div>
 </template>
 
 <script setup>
-    import Glossary from '~/components/academy/Glossary.vue';
+    import Encyclopedia from '@/components/academy/Encyclopedia.vue';
     import Title from '~/components/Title.vue';
     
     // SEO
