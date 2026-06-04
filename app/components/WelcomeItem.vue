@@ -4,6 +4,7 @@
         class='link-item w-[450px] xl:w-1/3 flex flex-col items-center justify-center rounded-lg z-10 cursor-pointer'
         @mouseenter='isHovered = true'
         @mouseleave='isHovered = false'
+        :aria-label='alt'
     >
         <div class='rounded-lg border border-muted flex items-center justify-center'>
             <NuxtImg
@@ -29,17 +30,20 @@
             </NuxtImg>
         </div>
         
-        <h3
+        <Title
+            :tag='2'
+            :level='3'
             class='my-10'
             :style='isHovered && { color: `var(--${color})` }'
         >
             {{ title }}
-        </h3>
+        </Title>
     </NuxtLink>
 </template>
 
 <script setup>
     import { Skeleton } from '~/components/ui/skeleton';
+    import Title from '@/components/Title.vue';
     
     const props = defineProps({
         item: {
