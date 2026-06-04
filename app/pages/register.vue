@@ -49,6 +49,7 @@
                             variant='link'
                             size='lg'
                             class='text-foreground'
+                            aria-label='toggle signup mode'
                         >
                             <NuxtIcon
                                 name='ph:arrows-left-right'
