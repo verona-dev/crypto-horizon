@@ -5,5 +5,17 @@ export const useAcademyStore = defineStore('AcademyStore', {
         encyclopedia: [],
     }),
     
-    actions: {},
+    actions: {
+        async getEncyclopedia() {
+            try {
+                const data = await $fetch('/api/supabase/academy/encyclopedia');
+                
+                if(!data) return;
+                
+                this.encyclopedia = data;
+            } catch(error) {
+                console.error(error);
+            }
+        },
+    },
 });
