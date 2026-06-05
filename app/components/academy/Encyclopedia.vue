@@ -47,21 +47,21 @@
 
 <script setup>
     import { Button } from '@/components/ui/button/index.ts';
-    import Title from '@/components/Title'
-    import { Item, ItemDescription, ItemContent } from '~/components/ui/item'
-    import { useAcademyStore } from '@/stores/AcademyStore.js'
+    import Title from '@/components/Title';
+    import { Item, ItemDescription, ItemContent } from '~/components/ui/item';
+    import { useAcademyStore } from '@/stores/AcademyStore.js';
     
     // Academy Store
-    import { storeToRefs } from 'pinia'
-    const store = useAcademyStore()
-    const { encyclopedia } = storeToRefs(store)
-    const { getEncyclopedia } = store
+    import { storeToRefs } from 'pinia';
+    const store = useAcademyStore();
+    const { encyclopedia } = storeToRefs(store);
+    const { getEncyclopedia } = store;
     
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
     const letterRefs = reactive({});
     
     const groupedEncyclopedia = computed(() => {
-        const groups = {}
+        const groups = {};
         for (const item of encyclopedia.value) {
             const letter = item.title[0].toUpperCase();
             (groups[letter] ??= []).push(item);
@@ -70,10 +70,10 @@
     })
     
     const scrollToLetter = (letter) => {
-        letterRefs[letter]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        letterRefs[letter]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
     
     onMounted(() => {
-        if (!encyclopedia.value.length) getEncyclopedia()
+        if (!encyclopedia.value.length) getEncyclopedia();
     })
 </script>
