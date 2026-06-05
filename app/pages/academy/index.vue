@@ -1,12 +1,12 @@
 <template>
     <div class='page'>
-        <Title>Learn</Title>
-        <h6>Coming Soon...</h6>
+        <Encyclopedia />
     </div>
 </template>
 
 <script setup>
-    import Title from '~/components/Title.vue';
+    import Encyclopedia from '@/components/academy/Encyclopedia.vue';
+    // import Title from '~/components/Title.vue';
     
     // SEO
     const title = 'Crypto & DeFi Academy: Learn Blockchain & Cryptocurrency';
