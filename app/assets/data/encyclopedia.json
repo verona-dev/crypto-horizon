@@ -3,7 +3,7 @@
         "id": "51-percent-attack",
         "title": "51% Attack",
         "description": "Also known as a majority attack. When one or a group of miners control greater than 50% of the network's mining hashrate or computational power.",
-        "letter": "5"
+        "letter": "#"
     },
     {
         "id": "absolute-advantage",
