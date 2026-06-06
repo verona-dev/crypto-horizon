@@ -1,5 +1,5 @@
 <template>
-    <div class='glossary max-w-5xl flex flex-col gap-8'>
+    <div class='max-w-5xl flex flex-col gap-8'>
         <div class='flex flex-col gap-24'>
             <Title>Glossary</Title>
             
@@ -9,7 +9,7 @@
                     v-for='letter in letters'
                     :key='letter'
                     @click='scrollToLetter(letter)'
-                    class='hover:bg-muted/50 hover:text-primary hover:border-primary/25 font-bold text-4xl w-16 h-16'
+                    class='font-mono text-3xl hover:bg-muted/50 hover:text-primary hover:border-primary/25 font-bold w-16 h-16'
                     variant='outline'
                 >
                     {{ letter }}
@@ -24,7 +24,7 @@
             class='flex flex-col gap-8 py-12'
         >
             <!--  Letter Group  -->
-            <h2 class='text-2xl font-bold capitalize py-4'>{{ letter }}</h2>
+            <Title :tag='3' class='font-mono font-bold capitalize pt-8 xl:pt-4'>{{ letter }}</Title>
             
             <!--  Glossary Content  -->
             <Item
