@@ -26,6 +26,10 @@
             {
                 "label": "Metropolis",
                 "value": "metropolis"
+            },
+            {
+                "label": "Jetbrains Mono",
+                "value": "jetbrains"
             }
         ]
     },

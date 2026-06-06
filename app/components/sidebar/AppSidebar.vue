@@ -182,7 +182,7 @@
         </SidebarHeader>
         
         <SidebarContent>
-            <NavMain :items="data" />
+            <NavMain :items='data' />
         </SidebarContent>
         
         <SidebarFooter class='h-44 mb-2 justify-around'>
