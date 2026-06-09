@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-card xl:h-130 xl:w-130 p-4 !rounded-xl hover:border-primary/25'>
+    <Card class='bg-card h-130 w-130 p-6 !rounded-xl hover:border-primary/25 flex flex-col justify-between'>
         <Skeleton
             v-if='!coin'
             class='w-full h-full'
@@ -7,7 +7,7 @@
         
         <template v-else>
             <!--  Logo + Name + Info  -->
-            <CardHeader class='card-header flex flex-row justify-between items-center'>
+            <CardHeader class='flex flex-row justify-between items-center'>
                 <!--                <Badge variant='outline' class='text-base text-primary'>#{{ mcap_rank }}</Badge>-->
                 
                 <!--  Logo  -->
