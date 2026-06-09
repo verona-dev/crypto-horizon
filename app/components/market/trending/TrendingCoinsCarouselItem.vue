@@ -1,22 +1,18 @@
 <template>
-    <Card class='bg-muted/50 p-2 !rounded-xl hover:border-primary/25'>
+    <Card class='bg-card xl:h-130 xl:w-130 p-4 !rounded-xl hover:border-primary/25'>
         <Skeleton
             v-if='!coin'
             class='w-full h-full'
         />
         
-        <NuxtLink
-            v-else
-            :to='`/market/${slug}`'
-            class='h-72 p-2 flex flex-col justify-between animate-fadeIn'
-        >
+        <template v-else>
             <!--  Logo + Name + Info  -->
             <CardHeader class='card-header flex flex-row justify-between items-center'>
                 <!--                <Badge variant='outline' class='text-base text-primary'>#{{ mcap_rank }}</Badge>-->
                 
+                <!--  Logo  -->
                 <HoverCard :openDelay='200'>
-                    <HoverCardTrigger class='flex gap-12'>
-                        <!--  Logo  -->
+                    <HoverCardTrigger>
                         <Button
                             variant='outline'
                             size='icon-lg'
@@ -45,26 +41,6 @@
                                 />
                             </NuxtImg>
                         </Button>
-                        
-                        <!--  Symbol + Name  -->
-                        <div class='flex flex-col items-center'>
-                            <p class='text-muted-foreground'>{{ symbol }}</p>
-                            
-                            <Title :tag='5'>{{ name }}</Title>
-                        </div>
-                        
-                        <!--  Action  -->
-                        <Button
-                            variant='outline'
-                            size='icon-lg'
-                            aria-label='logo'
-                            class='w-16 h-16 rounded-xl bg-muted'
-                        >
-                            <NuxtIcon
-                                name='ph:dots-three-vertical-light'
-                                class='w-10 h-10'
-                            />
-                        </Button>
                     </HoverCardTrigger>
                     
                     <HoverCardContent :avoidCollisions='true' class='flex flex-col !items-start !gap-3'>
@@ -79,7 +55,26 @@
                         </div>
                     </HoverCardContent>
                 </HoverCard>
-            
+                
+                <!--  Symbol + Name  -->
+                <div class='flex flex-col items-center'>
+                    <p class='text-muted-foreground'>{{ symbol }}</p>
+                    
+                    <Title :tag='4'>{{ name }}</Title>
+                </div>
+                
+                <!--  Action  -->
+                <Button
+                    variant='outline'
+                    size='icon-lg'
+                    aria-label='logo'
+                    class='w-16 h-16 rounded-xl bg-muted'
+                >
+                    <NuxtIcon
+                        name='ph:dots-three-vertical'
+                        class='w-10 h-10'
+                    />
+                </Button>
             </CardHeader>
             
             <!--  Price + Percentage change  -->
@@ -142,7 +137,7 @@
                     </div>
                 </Alert>
             </CardFooter>
-        </NuxtLink>
+        </template>
     </Card>
 </template>
 
