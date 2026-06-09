@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-card-dark h-72 w-130 !rounded-xl hover:border-primary/25'>
+    <Card class='bg-muted/50 p-2 !rounded-xl hover:border-primary/25'>
         <Skeleton
             v-if='!coin'
             class='w-full h-full'
@@ -12,60 +12,74 @@
         >
             <!--  Logo + Name + Info  -->
             <CardHeader class='card-header flex flex-row justify-between items-center'>
-<!--                <Badge variant='outline' class='text-base text-primary'>#{{ mcap_rank }}</Badge>-->
+                <!--                <Badge variant='outline' class='text-base text-primary'>#{{ mcap_rank }}</Badge>-->
                 
-                <div class='flex items-center gap-3'>
-                    <!--  Logo  -->
-                    <Button
-                        variant='outline'
-                        size='icon-lg'
-                        aria-label='logo'
-                        class='w-16 h-16 rounded-xl bg-primary/15'
-                    >
-                        <NuxtImg
-                            v-if='image'
-                            :src='image'
-                            alt='trending coin logo'
-                            class='w-10 h-10 rounded-full select-none'
-                            :custom='true'
-                            v-slot='{ src, isLoaded, imgAttrs, alt }'
-                            preload
+                <HoverCard :openDelay='200'>
+                    <HoverCardTrigger class='flex gap-12'>
+                        <!--  Logo  -->
+                        <Button
+                            variant='outline'
+                            size='icon-lg'
+                            aria-label='logo'
+                            class='w-16 h-16 rounded-xl bg-primary/15'
                         >
-                            <img
-                                v-if='isLoaded'
-                                v-bind='imgAttrs'
-                                :src='src'
-                                :alt='alt'
+                            <NuxtImg
+                                v-if='image'
+                                :src='image'
+                                alt='trending coin logo'
+                                class='w-10 h-10 rounded-full select-none'
+                                :custom='true'
+                                v-slot='{ src, isLoaded, imgAttrs, alt }'
+                                preload
                             >
-                            
-                            <Skeleton
-                                v-else
-                                class='w-10 h-10 rounded-full'
-                            />
-                        </NuxtImg>
-                    </Button>
-                    
-                    <!--  Name  -->
-                    <Title :tag='4'>{{ name }}</Title>
-                    
-                    <HoverCard :openDelay='200'>
-                        <HoverCardTrigger>
-                            <InfoIcon size='20'/>
-                        </HoverCardTrigger>
+                                <img
+                                    v-if='isLoaded'
+                                    v-bind='imgAttrs'
+                                    :src='src'
+                                    :alt='alt'
+                                >
+                                
+                                <Skeleton
+                                    v-else
+                                    class='w-10 h-10 rounded-full'
+                                />
+                            </NuxtImg>
+                        </Button>
                         
-                        <HoverCardContent :avoidCollisions='true' class='flex flex-col !items-start !gap-3'>
-                            <div class='flex items-center gap-3 text-lg font-bold'>
-                                <span v-if='symbol'>{{ symbol }}</span>
-                                <span v-if='mcap_rank'>&#35;{{ mcap_rank }}</span>
-                            </div>
+                        <!--  Symbol + Name  -->
+                        <div class='flex flex-col items-center'>
+                            <p class='text-muted-foreground'>{{ symbol }}</p>
                             
-                            <div v-if='description' class='flex flex-col gap-3'>
-                                <span>{{ title }}</span>
-                                <span class='text-muted-foreground'>{{ description }}</span>
-                            </div>
-                        </HoverCardContent>
-                    </HoverCard>
-                </div>
+                            <Title :tag='5'>{{ name }}</Title>
+                        </div>
+                        
+                        <!--  Action  -->
+                        <Button
+                            variant='outline'
+                            size='icon-lg'
+                            aria-label='logo'
+                            class='w-16 h-16 rounded-xl bg-muted'
+                        >
+                            <NuxtIcon
+                                name='ph:dots-three-vertical-light'
+                                class='w-10 h-10'
+                            />
+                        </Button>
+                    </HoverCardTrigger>
+                    
+                    <HoverCardContent :avoidCollisions='true' class='flex flex-col !items-start !gap-3'>
+                        <div class='flex items-center gap-3 text-lg font-bold'>
+                            <span v-if='symbol'>{{ symbol }}</span>
+                            <span v-if='mcap_rank'>&#35;{{ mcap_rank }}</span>
+                        </div>
+                        
+                        <div v-if='description' class='flex flex-col gap-3'>
+                            <span>{{ title }}</span>
+                            <span class='text-muted-foreground'>{{ description }}</span>
+                        </div>
+                    </HoverCardContent>
+                </HoverCard>
+            
             </CardHeader>
             
             <!--  Price + Percentage change  -->
@@ -151,6 +165,7 @@
     });
     
     const { coin } = toRefs(props);
+    console.log(coin.value);
     
     const slug = coin.value?.slug;
     const rank = coin.value.id.score + 1;
