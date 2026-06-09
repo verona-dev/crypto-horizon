@@ -79,7 +79,10 @@
             
             <!--  Price + Percentage change  -->
             <CardContent class='flex justify-between items-center'>
-                <h5>{{ price_label }}</h5>
+                <div class='flex flex-col gap-4 border-l-2 border-l-primary pl-6'>
+                    <Title :tag='5' class='text-muted-foreground'>Price</Title>
+                    <Title :tag='2'>{{ price_label }}</Title>
+                </div>
                 
                 <!--  Trend  -->
                 <HoverCard :openDelay='200'>
@@ -160,7 +163,6 @@
     });
     
     const { coin } = toRefs(props);
-    console.log(coin.value);
     
     const slug = coin.value?.slug;
     const rank = coin.value.id.score + 1;
