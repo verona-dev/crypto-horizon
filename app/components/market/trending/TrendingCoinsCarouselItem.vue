@@ -1,5 +1,5 @@
 <template>
-    <Card class='h-72 w-130 !rounded-xl hover:border-primary/25'>
+    <Card class='bg-card-dark h-72 w-130 !rounded-xl hover:border-primary/25'>
         <Skeleton
             v-if='!coin'
             class='w-full h-full'
@@ -12,31 +12,38 @@
         >
             <!--  Logo + Name + Info  -->
             <CardHeader class='card-header flex flex-row justify-between items-center'>
-                <Badge variant='outline' class='text-base text-primary'>#{{ mcap_rank }}</Badge>
+<!--                <Badge variant='outline' class='text-base text-primary'>#{{ mcap_rank }}</Badge>-->
                 
                 <div class='flex items-center gap-3'>
                     <!--  Logo  -->
-                    <NuxtImg
-                        v-if='image'
-                        :src='image'
-                        alt='trending coin logo'
-                        class='w-10 h-10 rounded-full select-none'
-                        :custom='true'
-                        v-slot='{ src, isLoaded, imgAttrs, alt }'
-                        preload
+                    <Button
+                        variant='outline'
+                        size='icon-lg'
+                        aria-label='logo'
+                        class='w-16 h-16 rounded-xl bg-primary/15'
                     >
-                        <img
-                            v-if='isLoaded'
-                            v-bind='imgAttrs'
-                            :src='src'
-                            :alt='alt'
+                        <NuxtImg
+                            v-if='image'
+                            :src='image'
+                            alt='trending coin logo'
+                            class='w-10 h-10 rounded-full select-none'
+                            :custom='true'
+                            v-slot='{ src, isLoaded, imgAttrs, alt }'
+                            preload
                         >
-                        
-                        <Skeleton
-                            v-else
-                            class='w-10 h-10 rounded-full'
-                        />
-                    </NuxtImg>
+                            <img
+                                v-if='isLoaded'
+                                v-bind='imgAttrs'
+                                :src='src'
+                                :alt='alt'
+                            >
+                            
+                            <Skeleton
+                                v-else
+                                class='w-10 h-10 rounded-full'
+                            />
+                        </NuxtImg>
+                    </Button>
                     
                     <!--  Name  -->
                     <Title :tag='4'>{{ name }}</Title>
@@ -61,8 +68,34 @@
                 </div>
             </CardHeader>
             
+            <!--  Price + Percentage change  -->
+            <CardContent class='flex justify-between items-center'>
+                <h5>{{ price_label }}</h5>
+                
+                <!--  Trend  -->
+                <HoverCard :openDelay='200'>
+                    <HoverCardTrigger>
+                        <div
+                            class='flex items-center gap-1'
+                            :class='getTrendClass(price_change_percentage_1d)'
+                        >
+                            <NuxtIcon
+                                :name='getTrendIcon(price_change_percentage_1d)'
+                                size='24'
+                            />
+                            
+                            <h5>{{ price_change_percentage_1d_label }}</h5>
+                        </div>
+                    </HoverCardTrigger>
+                    
+                    <HoverCardContent class='flex flex-col !gap-3'>
+                        <p class='text-xs'>Price Percentage Change 24h</p>
+                    </HoverCardContent>
+                </HoverCard>
+            </CardContent>
+            
             <!--  Sparkline  -->
-            <CardContent class='flex items-center justify-center'>
+            <CardFooter class='flex items-center justify-center'>
                 <Alert class='bg-transparent w-4/5 h-16 p-0 flex items-center justify-center select-none border-none'>
                     <NuxtImg
                         v-if='sparkline'
@@ -94,32 +127,6 @@
                         <p class='text-xs'>No sparkline available</p>
                     </div>
                 </Alert>
-            </CardContent>
-            
-            <!--  Price + Percentage change  -->
-            <CardFooter class='flex justify-between items-center'>
-                <h5>{{ price_label }}</h5>
-                
-                <!--  Trend  -->
-                <HoverCard :openDelay='200'>
-                    <HoverCardTrigger>
-                        <div
-                            class='flex items-center gap-1'
-                            :class='getTrendClass(price_change_percentage_1d)'
-                        >
-                            <NuxtIcon
-                                :name='getTrendIcon(price_change_percentage_1d)'
-                                size='24'
-                            />
-                            
-                            <h5>{{ price_change_percentage_1d_label }}</h5>
-                        </div>
-                    </HoverCardTrigger>
-                    
-                    <HoverCardContent class='flex flex-col !gap-3'>
-                        <p class='text-xs'>Price Percentage Change 24h</p>
-                    </HoverCardContent>
-                </HoverCard>
             </CardFooter>
         </NuxtLink>
     </Card>
@@ -128,6 +135,7 @@
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
+    import { Button } from '~/components/ui/button';
     import InfoIcon from '~/components/InfoIcon.vue';
     import { Alert } from '~/components/ui/alert';
     import { Badge } from '~/components/ui/badge';
