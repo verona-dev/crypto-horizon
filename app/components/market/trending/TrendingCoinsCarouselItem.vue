@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-card h-130 w-130 p-6 !rounded-xl hover:border-primary/25 flex flex-col justify-between'>
+    <Card class='bg-card h-130 w-130 p-4 !rounded-xl hover:border-primary/25 flex flex-col justify-between select-none'>
         <Skeleton
             v-if='!coin'
             class='w-full h-full'
@@ -80,30 +80,23 @@
             <!--  Price + Percentage change  -->
             <CardContent class='flex justify-between items-center'>
                 <div class='flex flex-col gap-4 border-l-2 border-l-primary pl-6'>
+                    
                     <Title :tag='5' class='text-muted-foreground'>Price</Title>
                     <Title :tag='2'>{{ price_label }}</Title>
-                </div>
-                
-                <!--  Trend  -->
-                <HoverCard :openDelay='200'>
-                    <HoverCardTrigger>
-                        <div
-                            class='flex items-center gap-1'
-                            :class='getTrendClass(price_change_percentage_1d)'
-                        >
-                            <NuxtIcon
-                                :name='getTrendIcon(price_change_percentage_1d)'
-                                size='24'
-                            />
-                            
-                            <h5>{{ price_change_percentage_1d_label }}</h5>
-                        </div>
-                    </HoverCardTrigger>
                     
-                    <HoverCardContent class='flex flex-col !gap-3'>
-                        <p class='text-xs'>Price Percentage Change 24h</p>
-                    </HoverCardContent>
-                </HoverCard>
+                    <!--  Trend  -->
+                    <Badge
+                        class='flex items-center gap-1 bg-muted w-fit p-2 px-3 rounded-full'
+                        :class='getTrendClass(price_change_percentage_1d)'
+                    >
+                        <NuxtIcon
+                            :name='getTrendIcon(price_change_percentage_1d)'
+                            size='18'
+                        />
+                        
+                        <p>{{ price_change_percentage_1d_label }}</p>
+                    </Badge>
+                </div>
             </CardContent>
             
             <!--  Sparkline  -->
