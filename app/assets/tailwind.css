@@ -330,7 +330,7 @@
         
         --background: #121113;
         --foreground: #c1c1c1;
-        --card: #121212;
+        --card: var(--blue-bunker);
         --card-foreground: #c1c1c1;
         --popover: #121113;
         --popover-foreground: #c1c1c1;
