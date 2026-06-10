@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-muted/50 h-140 w-130 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
+    <Card class='bg-muted/50 w-130 gap-10 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
         <Skeleton
             v-if='!coin'
             class='w-full h-full'
@@ -65,17 +65,45 @@
                 </div>
                 
                 <!--  Action  -->
-                <Button
-                    variant='outline'
-                    size='icon-lg'
-                    aria-label='logo'
-                    class='w-16 h-16 rounded-xl bg-muted'
-                >
-                    <NuxtIcon
-                        name='ph:dots-three-vertical'
-                        class='w-10 h-10'
-                    />
-                </Button>
+                <DropdownMenu>
+                    <DropdownMenuTrigger>
+                        <Button
+                            variant='outline'
+                            size='icon-lg'
+                            aria-label='logo'
+                            class='w-16 h-16 rounded-xl bg-muted'
+                        >
+                            <NuxtIcon
+                                name='ph:dots-three-vertical'
+                                class='w-10 h-10'
+                            />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    
+                    <DropdownMenuContent
+                        class='animate-fadeIn w-[--reka-dropdown-menu-trigger-width]'
+                        side='right'
+                        :avoid-collisions='true'
+                        align='start'
+                    >
+                        <DropdownMenuLabel class='p-3'>Options</DropdownMenuLabel>
+                        
+                        <DropdownMenuSeparator />
+                        
+                        <DropdownMenuItem class='p-3 mb-1 cursor-pointer' as-child>
+                            <NuxtLink to='/login' target='_blank'>
+                                <NuxtIcon name='ph:arrow-line-up-right' size='20' />
+                                View Coin Page
+                            </NuxtLink>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem class='p-3 mb-1 cursor-pointer' as-child>
+                            <NuxtLink to='/login'>
+                                <NuxtIcon name='ph:star' size='20' />
+                                Add Coin to Watchlist
+                            </NuxtLink>
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
             </CardHeader>
             
             <!--  Price + Percentage change  -->
@@ -99,7 +127,7 @@
             </CardContent>
             
             <!--  Sparkline  -->
-            <CardFooter class='flex items-center justify-center'>
+            <CardFooter class='flex items-center justify-center pb-8'>
                 <Card class='bg-transparent w-full h-24 flex items-center justify-center select-none border-none'>
                     <NuxtImg
                         v-if='sparkline'
@@ -142,6 +170,7 @@
     import { Button } from '~/components/ui/button';
     import { Badge } from '~/components/ui/badge';
     import { Card, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
+    import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
     import Title from '~/components/Title.vue';
