@@ -7,7 +7,7 @@
         
         <template v-else>
             <!--  Logo + Name + Info  -->
-            <CardHeader class='flex flex-row justify-between items-center'>
+            <CardHeader class='flex flex-row justify-between'>
                 <!--                <Badge variant='outline' class='text-base text-primary'>#{{ mcap_rank }}</Badge>-->
                 
                 <div class='flex gap-4 items-center'>
@@ -24,7 +24,7 @@
                                     v-if='image'
                                     :src='image'
                                     alt='trending coin logo'
-                                    class='w-14 h-14 rounded-full select-none'
+                                    class='w-12 h-12 rounded-full select-none'
                                     :custom='true'
                                     v-slot='{ src, isLoaded, imgAttrs, alt }'
                                     preload
@@ -71,11 +71,11 @@
                             variant='outline'
                             size='icon-lg'
                             aria-label='logo'
-                            class='w-16 h-16 rounded-xl bg-muted'
+                            class='w-14 h-14 rounded-xl bg-muted'
                         >
                             <NuxtIcon
                                 name='ph:dots-three-vertical'
-                                class='w-10 h-10'
+                                class='w-8 h-8'
                             />
                         </Button>
                     </DropdownMenuTrigger>
@@ -91,15 +91,15 @@
                         <DropdownMenuSeparator />
                         
                         <DropdownMenuItem class='p-3 mb-1 cursor-pointer' as-child>
-                            <NuxtLink to='/login' target='_blank'>
+                            <NuxtLink :to='`/market/${slug}`' target='_blank'>
                                 <NuxtIcon name='ph:arrow-line-up-right' size='20' />
-                                View Coin Page
+                                View Page
                             </NuxtLink>
                         </DropdownMenuItem>
                         <DropdownMenuItem class='p-3 mb-1 cursor-pointer' as-child>
                             <NuxtLink to='/login'>
                                 <NuxtIcon name='ph:star' size='20' />
-                                Add Coin to Watchlist
+                                Add to Watchlist
                             </NuxtLink>
                         </DropdownMenuItem>
                     </DropdownMenuContent>
