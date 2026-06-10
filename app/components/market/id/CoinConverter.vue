@@ -7,7 +7,7 @@
                 size='36'
             />
             
-            <Title :tag='3'>{{ coin_symbol }} converter</Title>
+            <Title :tag='4'>{{ coin_symbol }} converter</Title>
         </div>
         
         <div>
