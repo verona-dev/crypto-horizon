@@ -4,10 +4,10 @@
         <div class='text-primary flex items-center gap-2'>
             <NuxtIcon
                 name='ph:stack-duotone'
-                size='36'
+                size='32'
             />
             
-            <Title :tag='3'>Explorers</Title>
+            <Title :tag='4'>Explorers</Title>
         </div>
         
         <div class='flex items-center justify-between'>

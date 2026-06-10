@@ -6,10 +6,10 @@
             <div class='text-primary flex items-center gap-2'>
                 <NuxtIcon
                     name='ph:squares-four-duotone'
-                    size='36'
+                    size='32'
                 />
                 
-                <Title :tag='3'>Overview</Title>
+                <Title :tag='4'>Overview</Title>
             </div>
             
             <!--  Overview Table  -->
@@ -236,10 +236,10 @@
             <div class='text-primary flex items-center gap-2'>
                 <NuxtIcon
                     name='ph:github-logo-duotone'
-                    size='36'
+                    size='32'
                 />
                 
-                <Title :tag='3'>Github</Title>
+                <Title :tag='4'>Github</Title>
             </div>
             
             <!--  Github Table  -->
