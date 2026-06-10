@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-muted/50 w-130 gap-10 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
+    <Card class='bg-muted/25 w-130 gap-10 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
         <Skeleton
             v-if='!coin'
             class='w-full h-full'
@@ -91,14 +91,25 @@
                         <DropdownMenuSeparator />
                         
                         <DropdownMenuItem class='p-3 mb-1 cursor-pointer' as-child>
-                            <NuxtLink :to='`/market/${slug}`' target='_blank'>
+                            <NuxtLink
+                                :to='`/market/${slug}`'
+                                target='_blank'
+                            >
                                 <NuxtIcon name='ph:arrow-line-up-right' size='20' />
                                 View Page
                             </NuxtLink>
                         </DropdownMenuItem>
-                        <DropdownMenuItem class='p-3 mb-1 cursor-pointer' as-child>
-                            <NuxtLink to='/login'>
-                                <NuxtIcon name='ph:star' size='20' />
+                        
+                        <DropdownMenuItem
+                            class='p-3 cursor-pointer' as-child
+                            @click.prevent='updateWatchlist({ coin: id })'
+                        >
+                            <NuxtLink to='' as-child>
+                                <NuxtIcon
+                                    :name='isCoinInWatchlist() ? "ph:star-fill" : "ph:star"'
+                                    :class='isCoinInWatchlist() ? "text-yellow-selective" : "text-muted-foreground"'
+                                    size='20'
+                                />
                                 Add to Watchlist
                             </NuxtLink>
                         </DropdownMenuItem>
@@ -170,7 +181,7 @@
     import { Button } from '~/components/ui/button';
     import { Badge } from '~/components/ui/badge';
     import { Card, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
-    import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
+    import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
     import Title from '~/components/Title.vue';
@@ -181,8 +192,14 @@
         }
     });
     
-    const { coin } = toRefs(props);
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    import { storeToRefs } from 'pinia';
+    const ProfileStore = useProfileStore();
+    const { updateWatchlist } = ProfileStore;
     
+    const { coin } = toRefs(props);
+    const id = coin.value?.id;
     const slug = coin.value?.slug;
     const rank = coin.value.id.score + 1;
     const image = coin.value?.large;
@@ -198,4 +215,13 @@
     const sparkline = coin.value?.data?.sparkline;
     const title = coin.value?.data?.content?.title;
     const description = coin.value?.data?.content?.description;
+    
+    // Watchlist
+    const { watchlist } = storeToRefs(ProfileStore);
+    
+    const isCoinInWatchlist = computed(() => {
+        return () => {
+            return watchlist.value?.includes(id);
+        };
+    });
 </script>
