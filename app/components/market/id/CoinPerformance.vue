@@ -8,7 +8,7 @@
                 size='36'
             />
 
-            <Title :tag='3'>Price Performance</Title>
+            <Title :tag='4'>Price Performance</Title>
         </div>
         
         <!--  Price Data -->

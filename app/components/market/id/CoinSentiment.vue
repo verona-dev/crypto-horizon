@@ -7,7 +7,7 @@
                 size='36'
             />
             
-            <Title :tag='3'>Community sentiment</Title>
+            <Title :tag='4'>Community sentiment</Title>
         </div>
         
         <HoverCard :openDelay='200'>
