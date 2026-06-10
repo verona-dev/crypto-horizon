@@ -132,10 +132,7 @@
                     <!--  Public user  -->
                     <DropdownMenuGroup v-else>
                         <!--  Login  -->
-                        <DropdownMenuItem
-                            class='py-3 mt-1 cursor-pointer'
-                            as-child
-                        >
+                        <DropdownMenuItem class='py-3 mt-1 cursor-pointer' as-child>
                             <NuxtLink to='/login' class=''>
                                 <NuxtIcon name='ph:sign-in' size='20' />
                                 Login
@@ -143,10 +140,7 @@
                         </DropdownMenuItem>
                         
                         <!--  Register  -->
-                        <DropdownMenuItem
-                            class='py-3 mt-1 cursor-pointer'
-                            as-child
-                        >
+                        <DropdownMenuItem class='py-3 mt-1 cursor-pointer' as-child>
                             <NuxtLink to='/register' class=''>
                                 <NuxtIcon name='ph:user-plus' size='20' />
                                 Register
