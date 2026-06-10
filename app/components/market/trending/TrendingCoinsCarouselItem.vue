@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-muted/50 h-130 w-130 p-4 !rounded-xl hover:border-primary/25 flex flex-col justify-between select-none'>
+    <Card class='bg-muted/50 h-140 w-130 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
         <Skeleton
             v-if='!coin'
             class='w-full h-full'
@@ -18,13 +18,13 @@
                                 variant='outline'
                                 size='icon-lg'
                                 aria-label='logo'
-                                class='w-16 h-16 rounded-xl bg-primary/15'
+                                class='w-20 h-20 rounded-xl bg-primary/15'
                             >
                                 <NuxtImg
                                     v-if='image'
                                     :src='image'
                                     alt='trending coin logo'
-                                    class='w-10 h-10 rounded-full select-none'
+                                    class='w-14 h-14 rounded-full select-none'
                                     :custom='true'
                                     v-slot='{ src, isLoaded, imgAttrs, alt }'
                                     preload
@@ -38,7 +38,7 @@
                                     
                                     <Skeleton
                                         v-else
-                                        class='w-10 h-10 rounded-full'
+                                        class='w-14 h-14 rounded-full'
                                     />
                                 </NuxtImg>
                             </Button>
@@ -80,12 +80,13 @@
             
             <!--  Price + Percentage change  -->
             <CardContent class='flex flex-col gap-4'>
-                <Title :tag='4' class='text-muted-foreground border-l-2 border-l-primary pl-4'>Price</Title>
+                <Title :tag='4' class='text-muted-foreground pl-1 rounded-xs'>Price</Title>
+                
                 <Title :tag='3'>{{ price_label }}</Title>
                 
                 <!--  Trend  -->
                 <Badge
-                    class='flex items-center gap-1 bg-muted w-fit p-2 px-3 rounded-full hover:bg-muted'
+                    class='flex items-center gap-1 bg-muted-foreground/25 w-fit p-2 px-3 rounded-full hover:bg-muted-foreground/25'
                     :class='getTrendClass(price_change_percentage_1d)'
                 >
                     <NuxtIcon
@@ -99,7 +100,7 @@
             
             <!--  Sparkline  -->
             <CardFooter class='flex items-center justify-center'>
-                <Alert class='bg-transparent w-full h-24 p-0 flex items-center justify-center select-none border-none'>
+                <Card class='bg-transparent w-full h-24 flex items-center justify-center select-none border-none'>
                     <NuxtImg
                         v-if='sparkline'
                         :src='sparkline'
@@ -129,7 +130,7 @@
                         
                         <p class='text-xs'>No sparkline available</p>
                     </div>
-                </Alert>
+                </Card>
             </CardFooter>
         </template>
     </Card>
@@ -139,10 +140,8 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
     import { Button } from '~/components/ui/button';
-    import InfoIcon from '~/components/InfoIcon.vue';
-    import { Alert } from '~/components/ui/alert';
     import { Badge } from '~/components/ui/badge';
-    import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
+    import { Card, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
     import Title from '~/components/Title.vue';
