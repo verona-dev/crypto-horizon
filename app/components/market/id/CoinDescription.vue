@@ -37,7 +37,7 @@
                 <NuxtIcon
                     name='ph:hash-duotone'
                     class='block'
-                    size='32'
+                    size='36'
                 />
                 
                 <Title :tag='4'>Categories</Title>
