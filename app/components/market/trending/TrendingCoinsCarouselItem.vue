@@ -106,8 +106,8 @@
                         >
                             <NuxtLink to='' as-child>
                                 <NuxtIcon
-                                    :name='isCoinInWatchlist() ? "ph:star-fill" : "ph:star"'
-                                    :class='isCoinInWatchlist() ? "text-yellow-selective" : "text-muted-foreground"'
+                                    :name='isInWatchlist ? "ph:star-fill" : "ph:star"'
+                                    :class='isInWatchlist ? "text-yellow-selective" : "text-muted-foreground"'
                                     size='20'
                                 />
                                 Add to Watchlist
@@ -219,9 +219,5 @@
     // Watchlist
     const { watchlist } = storeToRefs(ProfileStore);
     
-    const isCoinInWatchlist = computed(() => {
-        return () => {
-            return watchlist.value?.includes(id);
-        };
-    });
+    const isInWatchlist = computed(() => ProfileStore.isCoinInWatchlist(coin.id));
 </script>
