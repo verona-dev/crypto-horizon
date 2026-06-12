@@ -8,8 +8,6 @@
         <template v-else>
             <!--  Logo + Name + Info  -->
             <CardHeader class='flex flex-row justify-between'>
-                <!--                <Badge variant='outline' class='text-base text-primary'>#{{ mcap_rank }}</Badge>-->
-                
                 <div class='flex gap-4 items-center'>
                     <!--  Logo  -->
                     <HoverCard :openDelay='200'>
@@ -59,7 +57,11 @@
                     
                     <!--  Symbol + Name  -->
                     <div class='flex flex-col'>
-                        <Title :tag='4' class='text-primary'>{{ name }}</Title>
+                        <div class='flex items-center gap-2'>
+                            <Title :tag='4' class='text-primary'>{{ name }}</Title>
+                            <Badge variant='outline' class='text-lg text-primary'>#{{ mcap_rank }}</Badge>
+                        </div>
+                        
                         <p class='text-muted-foreground pl-0.5'>{{ symbol }} / USDC</p>
                     </div>
                 </div>
