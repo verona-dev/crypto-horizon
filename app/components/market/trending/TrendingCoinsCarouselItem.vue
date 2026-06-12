@@ -106,8 +106,8 @@
                         >
                             <NuxtLink to='' as-child>
                                 <NuxtIcon
-                                    :name='isInWatchlist ? "ph:star-fill" : "ph:star"'
-                                    :class='isInWatchlist ? "text-yellow-selective" : "text-muted-foreground"'
+                                    :name='isCoinInWatchlist(id) ? "ph:star-fill" : "ph:star"'
+                                    :class='isCoinInWatchlist(id) ? "text-yellow-selective" : "text-muted-foreground"'
                                     size='20'
                                 />
                                 Add to Watchlist
@@ -194,9 +194,8 @@
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';
-    import { storeToRefs } from 'pinia';
     const ProfileStore = useProfileStore();
-    const { updateWatchlist } = ProfileStore;
+    const { isCoinInWatchlist, updateWatchlist } = ProfileStore;
     
     const { coin } = toRefs(props);
     const id = coin.value?.id;
@@ -215,9 +214,4 @@
     const sparkline = coin.value?.data?.sparkline;
     const title = coin.value?.data?.content?.title;
     const description = coin.value?.data?.content?.description;
-    
-    // Watchlist
-    const { watchlist } = storeToRefs(ProfileStore);
-    
-    const isInWatchlist = computed(() => ProfileStore.isCoinInWatchlist(coin.id));
 </script>
