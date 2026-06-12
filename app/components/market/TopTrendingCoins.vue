@@ -10,11 +10,11 @@
             <CardHeader class='card-header'>
                 <!--  Title  -->
                 <div class='card-title'>
-                    <CardTitle>Top Trending Coins</CardTitle>
+                    <Title :tag='2' :level='4'>Top Trending Coins</Title>
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
-                            <InfoIcon size='28'/>
+                            <InfoIcon size='20'/>
                         </HoverCardTrigger>
                         
                         <HoverCardContent>
@@ -136,6 +136,7 @@
     import { ChevronRight } from 'lucide-vue-next';
     import { useSidebar } from '~/components/ui/sidebar';
     const { isMobile } = useSidebar();
+    import Title from '~/components/Title.vue';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';

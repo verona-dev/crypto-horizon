@@ -9,11 +9,11 @@
             <CardHeader class='card-header'>
                 <!--  Title  -->
                 <div class='card-title'>
-                    <CardTitle>Bitcoin Dominance</CardTitle>
+                    <Title :tag='2' :level='4'>Bitcoin Dominance</Title>
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
-                            <InfoIcon size='28'/>
+                            <InfoIcon size='20'/>
                         </HoverCardTrigger>
                         
                         <HoverCardContent class='flex-col gap-6'>
@@ -193,6 +193,7 @@
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import { Table, TableHeader, TableHead, TableBody, TableCell, TableRow, TableCaption } from '~/components/ui/table/index.js';
     import { Skeleton } from '~/components/ui/skeleton';
+    import Title from '~/components/Title.vue';
     
     import dayjs from 'dayjs';
     

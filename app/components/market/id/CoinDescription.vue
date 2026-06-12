@@ -11,7 +11,7 @@
                     size='36'
                 />
                 
-                <Title :tag='3'>
+                <Title :tag='4'>
                     What is {{ coingecko.name }}
                     <span class='mt-0.5'>&#40;{{ coin.symbol }}&#41;</span>
                 </Title>
@@ -37,10 +37,10 @@
                 <NuxtIcon
                     name='ph:hash-duotone'
                     class='block'
-                    size='48'
+                    size='36'
                 />
                 
-                <Title :tag='3'>Categories</Title>
+                <Title :tag='4'>Categories</Title>
             </CardTitle>
             
             <div>

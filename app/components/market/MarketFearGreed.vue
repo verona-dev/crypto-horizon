@@ -12,11 +12,11 @@
             <CardHeader class='card-header'>
                 <!--  Title  -->
                 <div class='card-title'>
-                    <CardTitle>Crypto Fear and Greed Index</CardTitle>
+                    <Title :tag='2' :level='4'>Crypto Fear and Greed Index</Title>
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
-                            <InfoIcon size='28'/>
+                            <InfoIcon size='20'/>
                         </HoverCardTrigger>
                         
                         <HoverCardContent class='flex-col gap-6'>
@@ -52,8 +52,9 @@
                 
                 <!--  Fear and Greed labels  -->
                 <div class='labels-container flex flex-col items-center gap-4'>
-                    <h2 class='text-5xl xl:text-7xl'>{{ fear_and_greed_data }}</h2>
-                    <h3 class='uppercase tracking-widest text-primary'>{{ fear_and_greed_label }}</h3>
+                    <Title :tag='3'>{{ fear_and_greed_data }}</Title>
+                    
+                    <Title :tag='4' :level='5' class='uppercase tracking-wider'>{{ fear_and_greed_label }}</Title>
                 </div>
             </CardContent>
             
@@ -82,6 +83,7 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import InfoIcon from '~/components/InfoIcon.vue';
+    import Title from '~/components/Title.vue';
     
     import dayjs from 'dayjs';
     

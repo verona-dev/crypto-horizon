@@ -1,49 +1,45 @@
 <template>
-    <Card class='h-72 w-130 !rounded-xl hover:border-primary/25'>
+    <Card class='bg-muted/25 w-130 gap-10 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
         <Skeleton
             v-if='!coin'
             class='w-full h-full'
         />
         
-        <NuxtLink
-            v-else
-            :to='`/market/${slug}`'
-            class='h-72 p-2 flex flex-col justify-between animate-fadeIn'
-        >
+        <template v-else>
             <!--  Logo + Name + Info  -->
-            <CardHeader class='card-header flex flex-row justify-between items-center'>
-                <Badge variant='outline' class='text-base text-primary'>#{{ mcap_rank }}</Badge>
-                
-                <div class='flex items-center gap-3'>
+            <CardHeader class='flex flex-row justify-between'>
+                <div class='flex gap-4 items-center'>
                     <!--  Logo  -->
-                    <NuxtImg
-                        v-if='image'
-                        :src='image'
-                        alt='trending coin logo'
-                        class='w-10 h-10 rounded-full select-none'
-                        :custom='true'
-                        v-slot='{ src, isLoaded, imgAttrs, alt }'
-                        preload
-                    >
-                        <img
-                            v-if='isLoaded'
-                            v-bind='imgAttrs'
-                            :src='src'
-                            :alt='alt'
-                        >
-                        
-                        <Skeleton
-                            v-else
-                            class='w-10 h-10 rounded-full'
-                        />
-                    </NuxtImg>
-                    
-                    <!--  Name  -->
-                    <Title :tag='4'>{{ name }}</Title>
-                    
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
-                            <InfoIcon size='20'/>
+                            <Button
+                                variant='outline'
+                                size='icon-lg'
+                                aria-label='logo'
+                                class='w-20 h-20 rounded-xl bg-primary/15'
+                            >
+                                <NuxtImg
+                                    v-if='image'
+                                    :src='image'
+                                    alt='trending coin logo'
+                                    class='w-12 h-12 rounded-full select-none'
+                                    :custom='true'
+                                    v-slot='{ src, isLoaded, imgAttrs, alt }'
+                                    preload
+                                >
+                                    <img
+                                        v-if='isLoaded'
+                                        v-bind='imgAttrs'
+                                        :src='src'
+                                        :alt='alt'
+                                    >
+                                    
+                                    <Skeleton
+                                        v-else
+                                        class='w-14 h-14 rounded-full'
+                                    />
+                                </NuxtImg>
+                            </Button>
                         </HoverCardTrigger>
                         
                         <HoverCardContent :avoidCollisions='true' class='flex flex-col !items-start !gap-3'>
@@ -58,12 +54,94 @@
                             </div>
                         </HoverCardContent>
                     </HoverCard>
+                    
+                    <!--  Symbol + Name  -->
+                    <div class='flex flex-col'>
+                        <div class='flex items-center gap-2'>
+                            <Title :tag='4' class='text-primary'>{{ name }}</Title>
+                            <Badge variant='outline' class='text-lg text-primary'>#{{ mcap_rank }}</Badge>
+                        </div>
+                        
+                        <p class='text-muted-foreground pl-0.5'>{{ symbol }} / USDC</p>
+                    </div>
                 </div>
+                
+                <!--  Action  -->
+                <DropdownMenu>
+                    <DropdownMenuTrigger>
+                        <Button
+                            variant='outline'
+                            size='icon-lg'
+                            aria-label='logo'
+                            class='w-14 h-14 rounded-xl bg-muted'
+                        >
+                            <NuxtIcon
+                                name='ph:dots-three-vertical'
+                                class='w-8 h-8'
+                            />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    
+                    <DropdownMenuContent
+                        class='animate-fadeIn w-[--reka-dropdown-menu-trigger-width]'
+                        side='right'
+                        :avoid-collisions='true'
+                        align='start'
+                    >
+                        <DropdownMenuLabel class='p-3'>Options</DropdownMenuLabel>
+                        
+                        <DropdownMenuSeparator />
+                        
+                        <DropdownMenuItem class='p-3 mb-1 cursor-pointer' as-child>
+                            <NuxtLink
+                                :to='`/market/${slug}`'
+                                target='_blank'
+                            >
+                                <NuxtIcon name='ph:arrow-line-up-right' size='20' />
+                                View Page
+                            </NuxtLink>
+                        </DropdownMenuItem>
+                        
+                        <DropdownMenuItem
+                            class='p-3 cursor-pointer' as-child
+                            @click.prevent='updateWatchlist({ coin: id })'
+                        >
+                            <NuxtLink to='' as-child>
+                                <NuxtIcon
+                                    :name='isCoinInWatchlist(id) ? "ph:star-fill" : "ph:star"'
+                                    :class='isCoinInWatchlist(id) ? "text-yellow-selective" : "text-muted-foreground"'
+                                    size='20'
+                                />
+                                Add to Watchlist
+                            </NuxtLink>
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
             </CardHeader>
             
+            <!--  Price + Percentage change  -->
+            <CardContent class='flex flex-col gap-4'>
+                <Title :tag='4' class='text-muted-foreground pl-1 rounded-xs'>Price</Title>
+                
+                <Title :tag='3'>{{ price_label }}</Title>
+                
+                <!--  Trend  -->
+                <Badge
+                    class='flex items-center gap-1 bg-muted-foreground/25 w-fit p-2 px-3 rounded-full hover:bg-muted-foreground/25'
+                    :class='getTrendClass(price_change_percentage_1d)'
+                >
+                    <NuxtIcon
+                        :name='getTrendIcon(price_change_percentage_1d)'
+                        size='18'
+                    />
+                    
+                    <p>{{ price_change_percentage_1d_label }}</p>
+                </Badge>
+            </CardContent>
+            
             <!--  Sparkline  -->
-            <CardContent class='flex items-center justify-center'>
-                <Alert class='bg-transparent w-4/5 h-16 p-0 flex items-center justify-center select-none border-none'>
+            <CardFooter class='flex items-center justify-center pb-8'>
+                <Card class='bg-transparent w-full h-24 flex items-center justify-center select-none border-none'>
                     <NuxtImg
                         v-if='sparkline'
                         :src='sparkline'
@@ -93,45 +171,19 @@
                         
                         <p class='text-xs'>No sparkline available</p>
                     </div>
-                </Alert>
-            </CardContent>
-            
-            <!--  Price + Percentage change  -->
-            <CardFooter class='flex justify-between items-center'>
-                <h5>{{ price_label }}</h5>
-                
-                <!--  Trend  -->
-                <HoverCard :openDelay='200'>
-                    <HoverCardTrigger>
-                        <div
-                            class='flex items-center gap-1'
-                            :class='getTrendClass(price_change_percentage_1d)'
-                        >
-                            <NuxtIcon
-                                :name='getTrendIcon(price_change_percentage_1d)'
-                                size='24'
-                            />
-                            
-                            <h5>{{ price_change_percentage_1d_label }}</h5>
-                        </div>
-                    </HoverCardTrigger>
-                    
-                    <HoverCardContent class='flex flex-col !gap-3'>
-                        <p class='text-xs'>Price Percentage Change 24h</p>
-                    </HoverCardContent>
-                </HoverCard>
+                </Card>
             </CardFooter>
-        </NuxtLink>
+        </template>
     </Card>
 </template>
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendIcon, getTrendClass } from '~/utils/styleUtils.js';
-    import InfoIcon from '~/components/InfoIcon.vue';
-    import { Alert } from '~/components/ui/alert';
+    import { Button } from '~/components/ui/button';
     import { Badge } from '~/components/ui/badge';
-    import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
+    import { Card, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
+    import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/ui/dropdown-menu';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { Skeleton } from '~/components/ui/skeleton';
     import Title from '~/components/Title.vue';
@@ -142,8 +194,13 @@
         }
     });
     
-    const { coin } = toRefs(props);
+    // ProfileStore
+    import { useProfileStore } from '~/stores/ProfileStore.js';
+    const ProfileStore = useProfileStore();
+    const { isCoinInWatchlist, updateWatchlist } = ProfileStore;
     
+    const { coin } = toRefs(props);
+    const id = coin.value?.id;
     const slug = coin.value?.slug;
     const rank = coin.value.id.score + 1;
     const image = coin.value?.large;

@@ -7,7 +7,7 @@
                 size='36'
             />
 
-            <Title :tag='3'>Contracts</Title>
+            <Title :tag='4'>Contracts</Title>
         </div>
         
         <div class='flex items-center justify-between'>

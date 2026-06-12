@@ -148,4 +148,10 @@ export const useProfileStore = defineStore('ProfileStore', {
             }
         },
     },
+    
+    getters: {
+      isCoinInWatchlist: (state) => {
+          return (coinId) => state.watchlist.includes(coinId)
+      }
+    },
 });

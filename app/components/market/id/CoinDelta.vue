@@ -1,6 +1,6 @@
 <template>
     <Card class='flex flex-col items-center justify-center gap-16 py-16 px-12 xl:px-32 !w-full'>
-        <Title :tag='3' class='text-primary'>Rate of Change</Title>
+        <Title :tag='4' class='text-primary'>Rate of Change</Title>
         
         <div class='flex flex-wrap justify-center md:justify-between xl:items-center gap-8 w-full'>
             <!--  1h  -->

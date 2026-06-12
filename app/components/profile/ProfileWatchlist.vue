@@ -6,7 +6,7 @@
             <CardDescription class='text-lg'>A list of your saved coins</CardDescription>
         </CardHeader>
         
-        <CardContent class='[&>div]:max-h-120'>
+        <CardContent>
             <Table>
                 <!--   <TableCaption>A list of your watchlist coins.</TableCaption>  -->
                 <TableHeader>
