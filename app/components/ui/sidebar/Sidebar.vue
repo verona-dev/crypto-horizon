@@ -15,6 +15,16 @@ const props = withDefaults(defineProps<SidebarProps>(), {
 })
 
 const { isMobile, state, openMobile, setOpenMobile, setOpen } = useSidebar()
+
+const sidebarRef = ref<HTMLElement | null>(null)
+const handleClickOutside = (event: MouseEvent) => {
+    if (sidebarRef.value && !sidebarRef.value.contains(event.target as Node)) {
+        setOpen(false)
+    }
+}
+
+onMounted(() => document.addEventListener('click', handleClickOutside));
+onUnmounted(() => document.removeEventListener('click', handleClickOutside));
 </script>
 
 <template>
@@ -26,7 +36,12 @@ const { isMobile, state, openMobile, setOpenMobile, setOpen } = useSidebar()
     <slot />
   </div>
 
-  <Sheet v-else-if="isMobile" :open="openMobile" v-bind="$attrs" @update:open="setOpenMobile">
+  <Sheet
+      v-else-if="isMobile"
+      :open="openMobile"
+      v-bind="$attrs"
+      @update:open="setOpenMobile"
+  >
     <SheetContent
       data-sidebar="sidebar"
       data-mobile="true"
@@ -48,6 +63,7 @@ const { isMobile, state, openMobile, setOpenMobile, setOpen } = useSidebar()
     @mouseleave="setOpen(false)"
     -->
   <div
+    ref="sidebarRef"
     v-else class="group peer hidden md:block"
     :data-state="state"
     :data-collapsible="state === 'collapsed' ? collapsible : ''"
