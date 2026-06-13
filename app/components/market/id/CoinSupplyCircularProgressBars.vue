@@ -12,7 +12,7 @@
             </MazCircularProgressBar>
             
             <div class='label-container'>
-                <div class='flex items-center.5'>
+                <div class='flex items-center'>
                     <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.market_cap.label }}</Title>
                     
                     <HoverCard :openDelay='200'>
