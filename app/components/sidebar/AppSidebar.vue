@@ -106,7 +106,7 @@
                 },
                 items: [
                     {
-                        title: 'What is Defi',
+                        title: 'Global Defi',
                         url: '/defi',
                         get isActive() {
                             return isChildActive(this.url);
