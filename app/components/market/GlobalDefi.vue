@@ -68,21 +68,38 @@
                 </div>
             </Card>
             
-            <div>
-                Trading Volume (24h):
-                <span>{{ trading_volume_24h }}</span>
-            </div>
+            <!--  Eth Market Cap  -->
+            <Card v-if='defi_market_cap' class='item-container !w-fit p-12'>
+                <MazCircularProgressBar
+                    :percentage='100'
+                    :duration='2000'
+                >
+                    <template #default>
+                        <Title :tag='2' :level='5'>{{ eth_market_cap_compact }}</Title>
+                    </template>
+                </MazCircularProgressBar>
+                
+                <CardContent class='label-container'>
+                    <div class='flex items-center gap-1.5'>
+                        <Title :tag='3' :level='5'>ETH {{ glossary.market_cap.label }}</Title>
+                        
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger>
+                                <InfoIcon size='20' />
+                            </HoverCardTrigger>
+                            <HoverCardContent>{{ glossary.market_cap.description }}</HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <span class='mt-2'>{{ eth_market_cap_value }}</span>
+                </CardContent>
+            </Card>
         </div>
         
         <Card>
             <div>
                 Defi to ETH Ratio:
                 <span>{{ defi_to_eth_ratio }}</span>
-            </div>
-            
-            <div>
-                ETH Market Cap:
-                <span>{{ eth_market_cap }}</span>
             </div>
         </Card>
         
@@ -133,12 +150,15 @@
         compact: true, decimals: 1
     }));
     
-    const defi_to_eth_ratio = computed(() => formatNumber(globalDefi.value?.defi_to_eth_ratio, {
-        style: 'percent',
+    // Eth Market Cap
+    const eth_market_cap = computed(() => globalDefi.value?.eth_market_cap);
+    const eth_market_cap_value =formatNumber(eth_market_cap.value);
+    const eth_market_cap_compact = computed(() => formatNumber(eth_market_cap.value, {
+        compact: true, decimals: 1
     }));
     
-    const eth_market_cap = computed(() => formatNumber(globalDefi.value?.eth_market_cap, {
-        compact: true,
+    const defi_to_eth_ratio = computed(() => formatNumber(globalDefi.value?.defi_to_eth_ratio, {
+        style: 'percent',
     }));
     
     const top_coin_name = computed(() => globalDefi.value?.top_coin_name);
