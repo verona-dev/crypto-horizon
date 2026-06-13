@@ -2,7 +2,7 @@
     <LoadingContent v-if='loading' />
     
     <div v-else class='page'>
-        <Title>What is Defi?</Title>
+        <Title>DeFi Market Data</Title>
         
         <GlobalDefi />
     </div>
@@ -10,7 +10,7 @@
 
 <script setup>
     import GlobalDefi from '~/components/market/GlobalDefi.vue';
-    import LoadingContent from '@/components/LoadingContent.vue';
+    import LoadingContent from '~/components/LoadingContent.vue';
     import Title from '~/components/Title.vue';
     
     // MarketStore
@@ -18,7 +18,7 @@
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
-    const { loading } = storeToRefs(MarketStore);
+    const { loading, globalDefi } = storeToRefs(MarketStore);
     const { getCoingeckoGlobalDefi } = MarketStore;
     
     // SEO
