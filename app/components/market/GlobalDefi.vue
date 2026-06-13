@@ -1,54 +1,60 @@
 <template>
-    <Card
+    <div
         v-if='globalDefi'
-        class='!w-fit flex flex-col gap-4 p-6'
+        class='flex flex-col gap-4 p-6'
     >
         <Title :tag='2' :level='5'>Defi Stats</Title>
         
-        <CardContent>
-            Dominance:
-            <span>{{ defi_dominance }}</span>
-        </CardContent>
+        <Card>
+            <div>
+                Dominance:
+                <span>{{ defi_dominance }}</span>
+            </div>
+            
+            <div>
+                Market Cap:
+                <span>{{ defi_market_cap }}</span>
+            </div>
+            
+            <div>
+                Trading Volume (24h):
+                <span>{{ trading_volume_24h }}</span>
+            </div>
+        </Card>
         
-        <CardContent>
-            Market Cap:
-            <span>{{ defi_market_cap }}</span>
-        </CardContent>
+        <Card>
+            <div>
+                Defi to ETH Ratio:
+                <span>{{ defi_to_eth_ratio }}</span>
+            </div>
+            
+            <div>
+                ETH Market Cap:
+                <span>{{ eth_market_cap }}</span>
+            </div>
+        </Card>
         
-        <CardContent>
-            Defi to ETH Ratio:
-            <span>{{ defi_to_eth_ratio }}</span>
-        </CardContent>
-        
-        <CardContent>
-            ETH Market Cap:
-            <span>{{ eth_market_cap }}</span>
-        </CardContent>
-        
-        <CardContent>
-            Top Coin:
-            <span>{{ top_coin_name }}</span>
-        </CardContent>
-        
-        <CardContent>
-            Top Coin Dominance:
-            <span>{{ top_coin_defi_dominance }}</span>
-        </CardContent>
-        
-        <CardContent>
-            Trading Volume (24h):
-            <span>{{ trading_volume_24h }}</span>
-        </CardContent>
-    </Card>
+        <Card>
+            <div>
+                Top Coin:
+                <span>{{ top_coin_name }}</span>
+            </div>
+            
+            <div>
+                Top Coin Dominance:
+                <span>{{ top_coin_defi_dominance }}</span>
+            </div>
+        </Card>
+    </div>
 </template>
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
     import Title from '~/components/Title.vue';
+    import { Card, CardContent } from '~/components/ui/card';
     
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
-    import { Card, CardContent } from '~/components/ui/card';
     const MarketStore = useMarketStore();
     
     const { globalDefi } = storeToRefs(MarketStore);
@@ -72,4 +78,5 @@
     const trading_volume_24h = computed(() => formatNumber(globalDefi.value?.trading_volume_24h, {
         compact: true,
     }));
+    
 </script>
