@@ -5,12 +5,12 @@
     >
         <Title :tag='2' :level='5'>Defi Stats</Title>
         
-        <div class='flex flex-col gap-16'>
             <div>
                 Dominance:
                 <span>{{ defi_dominance }}</span>
             </div>
             
+        <div class='flex gap-16'>
             <!--  Market Cap  -->
             <Card v-if='defi_market_cap' class='item-container !w-fit p-12'>
                 <MazCircularProgressBar
@@ -36,6 +36,36 @@
                     
                     <span class='mt-2'>{{ market_cap_value }}</span>
                 </CardContent>
+            </Card>
+            
+            <!--  Volume 24h  -->
+            <Card v-if='trading_volume_24h' class='item-container !w-fit p-12'>
+                <MazCircularProgressBar
+                    :percentage='100'
+                    :duration='3000'
+                >
+                    <template #default>
+                        <h5>{{ trading_volume_compact }}</h5>
+                    </template>
+                </MazCircularProgressBar>
+                
+                <div class='label-container'>
+                    <div class='flex items-center'>
+                        <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.volume.label }}</Title>
+                        
+                        <HoverCard
+                            :openDelay='200'
+                            class='flex'
+                        >
+                            <HoverCardTrigger>
+                                <InfoIcon size='28' />
+                            </HoverCardTrigger>
+                            <HoverCardContent>{{ glossary.volume.description }}</HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <span class='mt-2'>{{ trading_volume_value }}</span>
+                </div>
             </Card>
             
             <div>
@@ -96,6 +126,13 @@
         compact: true, decimals: 1
     }));
     
+    // Trading Volume
+    const trading_volume_24h = computed(() => globalDefi.value?.trading_volume_24h);
+    const trading_volume_value = formatNumber(trading_volume_24h.value);
+    const trading_volume_compact = computed(() => formatNumber(trading_volume_24h.value, {
+        compact: true, decimals: 1
+    }));
+    
     const defi_to_eth_ratio = computed(() => formatNumber(globalDefi.value?.defi_to_eth_ratio, {
         style: 'percent',
     }));
@@ -107,10 +144,6 @@
     const top_coin_name = computed(() => globalDefi.value?.top_coin_name);
     const top_coin_defi_dominance = computed(() => formatNumber(globalDefi.value?.top_coin_defi_dominance, {
         style: 'percent',
-    }));
-    
-    const trading_volume_24h = computed(() => formatNumber(globalDefi.value?.trading_volume_24h, {
-        compact: true,
     }));
 </script>
 
