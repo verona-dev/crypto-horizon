@@ -4,12 +4,10 @@
         class='flex flex-col gap-24 max-w-6xl w-full'
     >
         <div class='flex flex-col gap-8'>
-            <Title class='self-center'>Global DeFi</Title>
-            
             <!--  Defi Dominance -->
-            <Card class='flex flex-col items-center justify-center p-12 gap-16 border-primary/25 !w-full'>
+            <Card class='flex flex-col items-center justify-center p-12 gap-24 border-primary/25 !w-full'>
                 <CardHeader class='items-center'>
-                    <Title :tag='3' class='mt-0'>Defi Dominance</Title>
+                    <Title :tag='1' :level='2' class='mt-0'>Defi Dominance</Title>
                     
                     <Progress
                         v-if='defi_dominance_ratio'
@@ -17,14 +15,14 @@
                         class='h-3'
                     />
                     
-                    <Title :tag='3' :level='4' class='!my-0 text-primary'>{{ defi_dominance_ratio_percent }}</Title>
+                    <Title :tag='2' :level='4' class='!my-0 text-primary'>{{ defi_dominance_ratio_percent }}</Title>
                 </CardHeader>
                 
                 <div class='flex justify-evenly w-full'>
                     <!--  Market Cap  -->
-                    <CardContent v-if='defi_market_cap' class='w-86 flex flex-col items-center justify-center border-primary/25'>
-                        <div class='flex items-center gap-1.5 border border-primary'>
-                            <Title :tag='3' :level='5'>Defi {{ glossary.market_cap.label }}</Title>
+                    <CardContent v-if='defi_market_cap' class='flex flex-col items-center justify-center gap-4 border-primary/25'>
+                        <div class='flex items-center gap-2'>
+                            <Title :tag='2' :level='4' class='!min-w-fit'>Defi {{ glossary.market_cap.label }}</Title>
                             
                             <HoverCard :openDelay='200'>
                                 <HoverCardTrigger>
@@ -34,27 +32,21 @@
                             </HoverCard>
                         </div>
                         
-                        <MazCircularProgressBar
-                            :percentage='100'
-                            :duration='2000'
-                        >
+                        <MazCircularProgressBar :percentage='100' :duration='2000'>
                             <template #default>
-                                <Title :tag='2' :level='5'>{{ market_cap_compact }}</Title>
+                                <Title :tag='3' :level='5'>{{ market_cap_compact }}</Title>
                             </template>
                         </MazCircularProgressBar>
                         
-                        <span class='mt-2 text-muted-foreground'>{{ market_cap_value }}</span>
+                        <Title :tag='3' :level='5' class='text-muted-foreground'>{{ market_cap_value }}</Title>
                     </CardContent>
                     
                     <!--  Volume 24h  -->
-                    <CardContent v-if='trading_volume_24h' class='w-86 flex flex-col items-center justify-center border-primary/25'>
-                        <div class='flex items-center gap-1.5'>
-                            <Title :tag='3' :level='5' class='!min-w-fit'>{{ glossary.volume.label }}</Title>
+                    <CardContent v-if='trading_volume_24h' class='flex flex-col items-center justify-center gap-4 border-primary/25'>
+                        <div class='flex items-center gap-2'>
+                            <Title :tag='2' :level='4' class='!min-w-fit'>{{ glossary.volume.label }}</Title>
                             
-                            <HoverCard
-                                :openDelay='200'
-                                class='flex'
-                            >
+                            <HoverCard :openDelay='200' class='flex'>
                                 <HoverCardTrigger>
                                     <InfoIcon size='20' />
                                 </HoverCardTrigger>
@@ -62,16 +54,13 @@
                             </HoverCard>
                         </div>
                         
-                        <MazCircularProgressBar
-                            :percentage='100'
-                            :duration='3000'
-                        >
+                        <MazCircularProgressBar :percentage='100' :duration='3000'>
                             <template #default>
-                                <h5>{{ trading_volume_compact }}</h5>
+                                <Title :tag='3' :level='5'>{{ trading_volume_compact }}</Title>
                             </template>
                         </MazCircularProgressBar>
                         
-                        <span class='mt-2 text-muted-foreground'>{{ trading_volume_value }}</span>
+                        <Title :tag='3' :level='5' class='text-muted-foreground'>{{ trading_volume_value }}</Title>
                     </CardContent>
                 </div>
             </Card>
