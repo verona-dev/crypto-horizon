@@ -5,14 +5,14 @@
     >
         <Title :tag='2' :level='5'>Defi Stats</Title>
         
-            <div>
-                Dominance:
-                <span>{{ defi_dominance }}</span>
-            </div>
-            
-        <div class='flex gap-16'>
+        <div>
+            Dominance:
+            <span>{{ defi_dominance }}</span>
+        </div>
+        
+        <div class='flex flex-wrap gap-16'>
             <!--  Market Cap  -->
-            <Card v-if='defi_market_cap' class='item-container !w-fit p-12'>
+            <Card v-if='defi_market_cap' class='item-container p-12'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2000'
@@ -39,7 +39,7 @@
             </Card>
             
             <!--  Volume 24h  -->
-            <Card v-if='trading_volume_24h' class='item-container !w-fit p-12'>
+            <Card v-if='trading_volume_24h' class='item-container p-12'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='3000'
@@ -69,7 +69,7 @@
             </Card>
             
             <!--  Eth Market Cap  -->
-            <Card v-if='defi_market_cap' class='item-container !w-fit p-12'>
+            <Card v-if='defi_market_cap' class='item-container p-12'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2000'
@@ -94,14 +94,18 @@
                     <span class='mt-2'>{{ eth_market_cap_value }}</span>
                 </CardContent>
             </Card>
+            
+            <!--  Defi to Eth ratio  -->
+            <Card class='item-container p-12 !gap-2'>
+                <Title :tag='3' :level='5'>Defi to Eth ratio {{ defi_to_eth_ratio_percent }}</Title>
+                
+                <Progress
+                    v-if='defi_to_eth_ratio'
+                    v-model='defi_to_eth_ratio'
+                    class='h-3'
+                />
+            </Card>
         </div>
-        
-        <Card>
-            <div>
-                Defi to ETH Ratio:
-                <span>{{ defi_to_eth_ratio }}</span>
-            </div>
-        </Card>
         
         <Card>
             <div>
@@ -124,6 +128,7 @@
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
     import glossary from '~/assets/data/market/glossary.json';
+    import { Progress } from '~/components/ui/progress';
     
     // Market Store
     import { storeToRefs } from 'pinia';
@@ -157,9 +162,16 @@
         compact: true, decimals: 1
     }));
     
-    const defi_to_eth_ratio = computed(() => formatNumber(globalDefi.value?.defi_to_eth_ratio, {
+    // Defi to Eth ratio
+    const defi_to_eth = computed(() => globalDefi.value?.defi_to_eth_ratio);
+    const defi_to_eth_ratio = computed(() => Number(defi_to_eth.value));
+    const defi_to_eth_ratio_percent = formatNumber(defi_to_eth.value, {
         style: 'percent',
-    }));
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+    }) || 0;
+    
+    
     
     const top_coin_name = computed(() => globalDefi.value?.top_coin_name);
     const top_coin_defi_dominance = computed(() => formatNumber(globalDefi.value?.top_coin_defi_dominance, {
@@ -173,6 +185,8 @@
         flex-direction: column;
         align-items: center;
         gap: 16px;
+        border: 0.1px solid var(--primary);
+        width: 360px !important;
         
         @media (min-width: 768px) {
             width: 200px;
