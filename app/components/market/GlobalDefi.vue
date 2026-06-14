@@ -90,32 +90,34 @@
         </div>
         
         <div class='flex flex-wrap justify-center gap-8'>
+            <!--  Defi Dominance -->
+            <Card class='item-container border-dashed border-primary/50 justify-between'>
+                <Title :tag='3' :level='5' class='mt-0'>Defi Dominance</Title>
+                
+                <Progress
+                    v-if='defi_dominance_ratio'
+                    v-model='defi_dominance_ratio'
+                    class='h-3'
+                />
+                
+                <Title :tag='3' :level='3' class='!my-0 text-primary'>{{ defi_dominance_ratio_percent }}</Title>
+            </Card>
+            
             <!--  Defi to Eth ratio  -->
             <Card class='item-container border-dashed border-primary/50'>
                 <Title :tag='3' :level='5' class='mt-0'>Defi to Eth ratio</Title>
                 
-                <div class='w-full flex flex-col gap-2 items-center'>
-                    <Progress
-                        v-if='defi_to_eth_ratio'
-                        v-model='defi_to_eth_ratio'
-                        class='h-3'
-                    />
-                    
-                    <span class='text-muted-foreground'>{{ defi_to_eth_ratio_percent }}</span>
-                </div>
+                <MazCircularProgressBar :percentage="defi_to_eth_ratio"  suffix="%" />
             </Card>
             
             <!--  Top coin dominance -->
-            <Card class='item-container border-dashed border-primary/50'>
+            <Card class='item-container border-dashed border-primary/50 justify-between'>
                 <Title :tag='3' :level='5' class='mt-0'>Top Coin Dominance</Title>
                 
-                <span class='text-muted-foreground'>{{ top_coin_name }} {{ top_coin_defi_dominance }}</span>
-            </Card>
-            
-            <Card class='item-container border-dashed border-primary/50'>
-                <Title :tag='3' :level='5' class='mt-0'>Defi Dominance</Title>
+                <Title :tag='3' :level='6' class='!my-0 uppercase'>{{ top_coin_name }}</Title>
                 
-                <Title :tag='3' :level='3' class='!my-0 text-primary'>{{ defi_dominance }}</Title :tag='3' :level='4' >
+                <Title :tag='3' :level='3' class='!my-0 text-primary'>{{ top_coin_defi_dominance }}</Title>
+            
             </Card>
         </div>
     </div>
@@ -129,6 +131,7 @@
     import InfoIcon from '~/components/InfoIcon.vue';
     import glossary from '~/assets/data/market/glossary.json';
     import { Progress } from '~/components/ui/progress';
+    import MazCircularProgressBar from 'maz-ui/components/MazCircularProgressBar';
     
     // Market Store
     import { storeToRefs } from 'pinia';
@@ -136,10 +139,6 @@
     const MarketStore = useMarketStore();
     
     const { globalDefi } = storeToRefs(MarketStore);
-    
-    const defi_dominance = computed(() => formatNumber(globalDefi.value?.defi_dominance, {
-        style: 'percent',
-    }));
     
     // Market Cap
     const defi_market_cap = computed(() => globalDefi.value?.defi_market_cap);
@@ -161,6 +160,16 @@
     const eth_market_cap_compact = computed(() => formatNumber(eth_market_cap.value, {
         compact: true, decimals: 1
     }));
+    
+    // Defi Dominance
+    const defi_dominance = computed(() => globalDefi.value?.defi_dominance);
+    console.log(defi_dominance.value);
+    const defi_dominance_ratio = computed(() => Number(defi_dominance.value));
+    const defi_dominance_ratio_percent = formatNumber(defi_dominance.value, {
+        style: 'percent',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
+    }) || 0;
     
     // Defi to Eth ratio
     const defi_to_eth = computed(() => globalDefi.value?.defi_to_eth_ratio);
