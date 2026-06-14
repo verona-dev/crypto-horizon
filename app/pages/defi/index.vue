@@ -1,7 +1,7 @@
 <template>
     <LoadingContent v-if='loading' />
     
-    <div v-else class='page max-w-6xl'>
+    <div v-else class='page'>
         <GlobalDefi />
     </div>
 </template>

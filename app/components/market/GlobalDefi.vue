@@ -1,7 +1,7 @@
 <template>
     <div
         v-if='globalDefi'
-        class='flex flex-col gap-24 w-full'
+        class='flex flex-col gap-24 max-w-5xl'
     >
         <div class='flex flex-col gap-8'>
             <Title class='self-center'>Global DeFi Stats</Title>
@@ -195,8 +195,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 16px;
-        width: 360px !important;
+        gap: 12px;
         padding: 48px !important;
         
         @media (min-width: 768px) {
