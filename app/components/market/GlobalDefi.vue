@@ -5,7 +5,7 @@
     >
         <div class='flex flex-wrap justify-center gap-8'>
             <!--  Market Cap  -->
-            <Card v-if='defi_market_cap' class='item-container border-dashed border-primary/50'>
+            <Card v-if='defi_market_cap' class='item-container border-primary/25'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2000'
@@ -32,7 +32,7 @@
             </Card>
             
             <!--  Volume 24h  -->
-            <Card v-if='trading_volume_24h' class='item-container border-dashed border-primary/50'>
+            <Card v-if='trading_volume_24h' class='item-container border-primary/25'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='3000'
@@ -62,7 +62,7 @@
             </Card>
             
             <!--  Eth Market Cap  -->
-            <Card v-if='defi_market_cap' class='item-container border-dashed border-primary/50'>
+            <Card v-if='defi_market_cap' class='item-container border-primary/25'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2000'
@@ -91,7 +91,7 @@
         
         <div class='flex flex-wrap justify-center gap-8'>
             <!--  Defi Dominance -->
-            <Card class='item-container border-dashed border-primary/50 justify-between'>
+            <Card class='item-container border-primary/25 justify-between'>
                 <Title :tag='3' :level='5' class='mt-0'>Defi Dominance</Title>
                 
                 <Progress
@@ -104,14 +104,14 @@
             </Card>
             
             <!--  Defi to Eth ratio  -->
-            <Card class='item-container border-dashed border-primary/50'>
+            <Card class='item-container border-primary/25'>
                 <Title :tag='3' :level='5' class='mt-0'>Defi to Eth ratio</Title>
                 
                 <MazCircularProgressBar :percentage="defi_to_eth_ratio"  suffix="%" />
             </Card>
             
             <!--  Top coin dominance -->
-            <Card class='item-container border-dashed border-primary/50 justify-between'>
+            <Card class='item-container border-primary/25 justify-between'>
                 <Title :tag='3' :level='5' class='mt-0'>Top Coin Dominance</Title>
                 
                 <Title :tag='3' :level='6' class='!my-0 uppercase'>{{ top_coin_name }}</Title>
