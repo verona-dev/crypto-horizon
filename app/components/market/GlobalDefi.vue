@@ -107,14 +107,15 @@
                 
                 <span class='text-muted-foreground'>{{ defi_to_eth_ratio_percent }}</span>
             </Card>
+            
+            <Card class='item-container p-12 !gap-2'>
+                <Title :tag='3' :level='5'>Top Coin</Title>
+                
+                <span class='text-muted-foreground'>{{ top_coin_name }}</span>
+            </Card>
         </div>
         
         <Card>
-            <div>
-                Top Coin:
-                <span>{{ top_coin_name }}</span>
-            </div>
-            
             <div>
                 Top Coin Dominance:
                 <span>{{ top_coin_defi_dominance }}</span>
