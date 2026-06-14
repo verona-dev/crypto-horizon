@@ -1,9 +1,7 @@
 <template>
     <LoadingContent v-if='loading' />
     
-    <div v-else class='page'>
-        <Title>Global DeFi Stats</Title>
-        
+    <div v-else class='page max-w-6xl'>
         <GlobalDefi />
     </div>
 </template>
@@ -11,14 +9,13 @@
 <script setup>
     import GlobalDefi from '~/components/market/GlobalDefi.vue';
     import LoadingContent from '~/components/LoadingContent.vue';
-    import Title from '~/components/Title.vue';
     
     // MarketStore
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
-    const { loading, globalDefi } = storeToRefs(MarketStore);
+    const { loading } = storeToRefs(MarketStore);
     const { getCoingeckoGlobalDefi } = MarketStore;
     
     // SEO
