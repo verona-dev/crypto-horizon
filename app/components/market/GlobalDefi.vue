@@ -58,7 +58,7 @@
                             class='flex'
                         >
                             <HoverCardTrigger>
-                                <InfoIcon size='28' />
+                                <InfoIcon size='20' />
                             </HoverCardTrigger>
                             <HoverCardContent>{{ glossary.volume.description }}</HoverCardContent>
                         </HoverCard>
