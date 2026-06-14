@@ -12,7 +12,7 @@
         
         <div class='flex flex-wrap gap-16'>
             <!--  Market Cap  -->
-            <Card v-if='defi_market_cap' class='item-container p-12'>
+            <Card v-if='defi_market_cap' class='item-container border-dashed border-primary/50'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2000'
@@ -39,7 +39,7 @@
             </Card>
             
             <!--  Volume 24h  -->
-            <Card v-if='trading_volume_24h' class='item-container p-12'>
+            <Card v-if='trading_volume_24h' class='item-container border-dashed border-primary/50'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='3000'
@@ -69,7 +69,7 @@
             </Card>
             
             <!--  Eth Market Cap  -->
-            <Card v-if='defi_market_cap' class='item-container p-12'>
+            <Card v-if='defi_market_cap' class='item-container border-dashed border-primary/50'>
                 <MazCircularProgressBar
                     :percentage='100'
                     :duration='2000'
@@ -94,9 +94,11 @@
                     <span class='mt-2 text-muted-foreground'>{{ eth_market_cap_value }}</span>
                 </CardContent>
             </Card>
-            
+        </div>
+        
+        <div class='flex flex-wrap gap-16'>
             <!--  Defi to Eth ratio  -->
-            <Card class='item-container p-12 !gap-2'>
+            <Card class='item-container border-dashed border-primary/50'>
                 <Title :tag='3' :level='5'>Defi to Eth ratio</Title>
                 
                 <Progress
@@ -108,19 +110,20 @@
                 <span class='text-muted-foreground'>{{ defi_to_eth_ratio_percent }}</span>
             </Card>
             
-            <Card class='item-container p-12 !gap-2'>
+            <!--  Top coin -->
+            <Card class='item-container border-dashed border-primary/50'>
                 <Title :tag='3' :level='5'>Top Coin</Title>
                 
                 <span class='text-muted-foreground'>{{ top_coin_name }}</span>
             </Card>
+            
+            <!--  Top coin dominance -->
+            <Card class='item-container border-dashed border-primary/50'>
+                <Title :tag='3' :level='5'>{{ top_coin_name }} Dominance</Title>
+                
+                <span class='text-muted-foreground'>{{ top_coin_defi_dominance }}</span>
+            </Card>
         </div>
-        
-        <Card>
-            <div>
-                Top Coin Dominance:
-                <span>{{ top_coin_defi_dominance }}</span>
-            </div>
-        </Card>
     </div>
 </template>
 
@@ -182,14 +185,14 @@
     }));
 </script>
 
-<style>
+<style scoped>
     .item-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 16px;
-        border: 0.1px solid var(--primary);
         width: 360px !important;
+        padding: 48px !important;
         
         @media (min-width: 768px) {
             width: 200px;
