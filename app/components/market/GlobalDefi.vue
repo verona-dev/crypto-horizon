@@ -7,8 +7,8 @@
             <Title class='self-center'>Global DeFi</Title>
             
             <!--  Defi Dominance -->
-            <Card class='flex flex-col items-evenly justify-center p-12 gap-16 border-primary/25 !w-full'>
-                <CardHeader>
+            <Card class='flex flex-col items-center justify-center p-12 gap-16 border-primary/25 !w-full'>
+                <CardHeader class='items-center'>
                     <Title :tag='3' class='mt-0'>Defi Dominance</Title>
                     
                     <Progress
@@ -17,13 +17,13 @@
                         class='h-3'
                     />
                     
-                    <Title :tag='3' :level='3' class='!my-0 text-primary'>{{ defi_dominance_ratio_percent }}</Title>
+                    <Title :tag='3' :level='4' class='!my-0 text-primary'>{{ defi_dominance_ratio_percent }}</Title>
                 </CardHeader>
                 
-                <div class='flex justify-evenly'>
+                <div class='flex justify-evenly w-full'>
                     <!--  Market Cap  -->
                     <CardContent v-if='defi_market_cap' class='w-86 flex flex-col items-center justify-center border-primary/25'>
-                        <div class='flex items-center gap-1.5'>
+                        <div class='flex items-center gap-1.5 border border-primary'>
                             <Title :tag='3' :level='5'>Defi {{ glossary.market_cap.label }}</Title>
                             
                             <HoverCard :openDelay='200'>
@@ -75,65 +75,6 @@
                     </CardContent>
                 </div>
             </Card>
-            
-            <div class='flex flex-wrap justify-center gap-8'>
-                <!--  Market Cap  -->
-                <Card v-if='defi_market_cap' class='item-container flex-1 border-primary/25'>
-                    <CardContent class='label-container'>
-                        <div class='flex items-center gap-1.5'>
-                            <Title :tag='3' :level='5'>Defi {{ glossary.market_cap.label }}</Title>
-                            
-                            <HoverCard :openDelay='200'>
-                                <HoverCardTrigger>
-                                    <InfoIcon size='20' />
-                                </HoverCardTrigger>
-                                <HoverCardContent>{{ glossary.market_cap.description }}</HoverCardContent>
-                            </HoverCard>
-                        </div>
-                    
-                    </CardContent>
-                    <MazCircularProgressBar
-                        :percentage='100'
-                        :duration='2000'
-                    >
-                        <template #default>
-                            <Title :tag='2' :level='5'>{{ market_cap_compact }}</Title>
-                        </template>
-                    </MazCircularProgressBar>
-                    <span class='mt-2 text-muted-foreground'>{{ market_cap_value }}</span>
-                
-                </Card>
-                
-                <!--  Volume 24h  -->
-                <Card v-if='trading_volume_24h' class='item-container flex-1 border-primary/25'>
-                    <MazCircularProgressBar
-                        :percentage='100'
-                        :duration='3000'
-                    >
-                        <template #default>
-                            <h5>{{ trading_volume_compact }}</h5>
-                        </template>
-                    </MazCircularProgressBar>
-                    
-                    <div class='label-container'>
-                        <div class='flex items-center'>
-                            <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.volume.label }}</Title>
-                            
-                            <HoverCard
-                                :openDelay='200'
-                                class='flex'
-                            >
-                                <HoverCardTrigger>
-                                    <InfoIcon size='20' />
-                                </HoverCardTrigger>
-                                <HoverCardContent>{{ glossary.volume.description }}</HoverCardContent>
-                            </HoverCard>
-                        </div>
-                        
-                        <span class='mt-2 text-muted-foreground'>{{ trading_volume_value }}</span>
-                    </div>
-                </Card>
-            </div>
         </div>
         
         <div class='flex flex-col gap-8'>

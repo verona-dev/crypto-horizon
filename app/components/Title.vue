@@ -26,7 +26,7 @@
 <template>
     <component
         :is='tag'
-        :class="['my-6', cn(styles[level], props.class), $attrs.class]"
+        :class="['my-4', cn(styles[level], props.class), $attrs.class]"
         v-bind='$attrs'
     >
         <slot />
