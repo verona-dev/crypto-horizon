@@ -34,7 +34,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ market_cap_value }}</span>
+                    <span class='mt-2 text-muted-foreground'>{{ market_cap_value }}</span>
                 </CardContent>
             </Card>
             
@@ -64,7 +64,7 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ trading_volume_value }}</span>
+                    <span class='mt-2 text-muted-foreground'>{{ trading_volume_value }}</span>
                 </div>
             </Card>
             
@@ -91,19 +91,21 @@
                         </HoverCard>
                     </div>
                     
-                    <span class='mt-2'>{{ eth_market_cap_value }}</span>
+                    <span class='mt-2 text-muted-foreground'>{{ eth_market_cap_value }}</span>
                 </CardContent>
             </Card>
             
             <!--  Defi to Eth ratio  -->
             <Card class='item-container p-12 !gap-2'>
-                <Title :tag='3' :level='5'>Defi to Eth ratio {{ defi_to_eth_ratio_percent }}</Title>
+                <Title :tag='3' :level='5'>Defi to Eth ratio</Title>
                 
                 <Progress
                     v-if='defi_to_eth_ratio'
                     v-model='defi_to_eth_ratio'
                     class='h-3'
                 />
+                
+                <span class='text-muted-foreground'>{{ defi_to_eth_ratio_percent }}</span>
             </Card>
         </div>
         
