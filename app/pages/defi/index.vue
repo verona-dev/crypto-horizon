@@ -2,7 +2,7 @@
     <LoadingContent v-if='loading' />
     
     <div v-else class='page'>
-        <Title>DeFi Market Data</Title>
+        <Title>Global DeFi Stats</Title>
         
         <GlobalDefi />
     </div>
