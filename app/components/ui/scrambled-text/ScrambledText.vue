@@ -21,7 +21,7 @@ const props = withDefaults(
 const el = ref<HTMLElement>();
 const charRefs = ref<(HTMLSpanElement | null)[]>([]);
 const originalChars = computed(() => props.text.split(''));
-const displayChars = ref(props.text.split(''));
+const displayChars = computed(() => props.text.split(''));
 
 const scrambleTimers = new Map<number, ReturnType<typeof setTimeout>>();
 
