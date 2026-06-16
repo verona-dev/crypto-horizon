@@ -23,7 +23,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
                 <SplitFlapDisplay
                     :rows='rows'
-                    :columns='24'
+                    :columns='columns'
                     size='sm'
                     accent-color='#00bc7d'
                     :show-indicators='true'
@@ -121,6 +121,11 @@
             
             return { label: item.label, value: item.value };
         });
+    });
+    
+    const columns = computed(() => {
+        if(!rows.value) return 24;
+        return Math.max(...rows.value.map(row => row.value.length));
     });
     
     const show_drawer = ref(false);
