@@ -25,7 +25,7 @@
                         </Avatar>
                     </TooltipTrigger>
                     
-                    <TooltipContent v-if='show_tooltip' :side-offset='15' side='left'>
+                    <TooltipContent v-if='show_tooltip' :side-offset='15' side='bottom'>
                         <p class='text-xs'>Change Avatar</p>
                     </TooltipContent>
                 </Tooltip>
@@ -95,8 +95,8 @@
         </CardContent>
         
         <CardContent>
-            <Badge class='bg-emerald-600/20  text-emerald-500 shadow-none rounded-full'>
-                <div class='h-1.5 w-1.5 rounded-full bg-emerald-500 mr-1' />
+            <Badge class='bg-progress/20 hover:bg-bg-progress/20 text-progress shadow-none rounded-full'>
+                <div class='h-1.5 w-1.5 rounded-full bg-progress mr-1' />
                 <span>Connected</span>
             </Badge>
         </CardContent>
