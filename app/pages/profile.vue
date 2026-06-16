@@ -2,11 +2,11 @@
     <div class='profile page'>
         <div class='flex flex-col items-center gap-6'>
             <div class='grid grid-cols-1 md::grid-cols-2'>
-                <div class='h-full flex flex-col xl:flex-row items-center justify-center'>
+                <div class='h-full flex flex-col 2xl:flex-row items-center justify-center'>
                     <ProfileAvatar
                         :username='username'
                         :astronaut-type='astronaut_type'
-                        class='w-fit'
+                        class='w-full 2xl:w-fit'
                     />
                     
                     <ProfileInformation
