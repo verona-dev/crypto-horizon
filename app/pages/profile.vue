@@ -2,7 +2,7 @@
     <div class='profile page'>
         <div class='flex flex-col items-center gap-6'>
             <div class='grid grid-cols-1 md::grid-cols-2'>
-                <div class='xl:h-140 h-full flex flex-col xl:flex-row items-center justify-center'>
+                <div class='h-full flex flex-col 2xl:flex-row items-center justify-center'>
                     <ProfileAvatar
                         :username='username'
                         :astronaut-type='astronaut_type'
@@ -11,14 +11,14 @@
                     
                     <ProfileInformation
                         :profile='profile_formatted'
-                        class='w-full xl:min-w-160'
+                        class='w-full'
                     />
                 </div>
                 
                 <client-only>
                     <ProfileMap
                         :coordinates='coordinates'
-                        class=''
+                        class='pt-12'
                     />
                 </client-only>
                 
