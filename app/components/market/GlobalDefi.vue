@@ -1,10 +1,10 @@
 <template>
     <div
         v-if='globalDefi'
-        class='flex flex-col gap-24 max-w-6xl w-full'
+        class='flex flex-col gap-12 max-w-6xl w-full'
     >
         <!--  Defi Dominance -->
-        <Card class='flex flex-col items-center justify-center p-12 gap-24 border-primary/25 !w-full'>
+        <Card class='flex flex-col items-center justify-center p-12 gap-24 border-primary/25'>
             <CardHeader class='items-center'>
                 <Title :tag='1' :level='2'>Defi Dominance</Title>
                 
@@ -65,7 +65,7 @@
         </Card>
         
         <!--  Top coin dominance -->
-        <Card class='flex flex-col items-center justify-center p-12 gap-24 border-primary/25 !w-full'>
+        <Card class='flex flex-col items-center justify-center p-12 gap-24 border-primary/25'>
             <CardHeader class='items-center'>
                 <Title :tag='1' :level='2'>Top Coin Dominance</Title>
                 
