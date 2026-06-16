@@ -1,8 +1,15 @@
 <template>
     <Card class='h-full flex flex-col !justify-around p-6 2xl:pl-0 gap-4 rounded-none !rounded-tr-xl !border-l-0 !border-b-0'>
         <CardHeader class='flex-row justify-between'>
-            <CardTitle class='text-3xl'>Personal Information</CardTitle>
-            
+            <CardTitle class='text-3xl'>
+                <ScrambledText
+                    text='Personal Information'
+                    :radius='100'
+                    :speed='10'
+                    class='font-inherit'
+                />
+            </CardTitle>
+           
             <Button
                 @click='onHandleDrawer(true)'
                 variant='outline'
@@ -78,12 +85,13 @@
 </template>
 
 <script setup lang='ts'>
+    // import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardHeader, CardFooter } from '~/components/ui/card';
-    import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-    // import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
-    import ProfileEdit from '~/components/profile/ProfileEdit.vue';
     import dayjs from 'dayjs';
+    import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+    import ProfileEdit from '~/components/profile/ProfileEdit.vue';
+    import ScrambledText from '~/components/ui/scrambled-text/ScrambledText.vue';
     import SplitFlapDisplay from '~/components/ui/split-flap-display/SplitFlapDisplay.vue';
     
     const props = defineProps({
