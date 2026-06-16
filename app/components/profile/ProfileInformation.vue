@@ -20,29 +20,16 @@
         </CardHeader>
         
         <CardContent>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-1 w-full">
-                <div
-                    v-for='item in profile'
-                    :key='item.name'
-                    class='p-2'
-                >
-                    <span class='text-muted-foreground'>{{ item.label }}</span>
-                    
-                    <div v-if='item.name === "country"' class='flex items-center gap-2'>
-                        <ProfileCountryFlag :country='item.value' size='w-4 h-4' />
-                        <span>{{ item.value?.name }}</span>
-                    </div>
-                    
-                    <div v-else-if='item.name === "timezone"' class='w-fit'>
-                        <span>{{ item.value?.timezone }}</span>&nbsp;
-                        <span>{{ item.value?.utc }}</span>
-                    </div>
-                    
-                    <template v-else>
-                        <span v-if='item.name === "dob"' class='mt-1 block'>{{ dayjs(item.value).format('DD.MM.YYYY') }}</span>
-                        <span v-else class='block' :class='{ "capitalize" : item.name === "astronaut_type" }'>{{ item.value }}</span>
-                    </template>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
+                <SplitFlapDisplay
+                    :rows='rows'
+                    :columns='24'
+                    size='sm'
+                    accent-color='#00bc7d'
+                    :show-indicators='true'
+                    :stagger-delay='30'
+                    :flip-speed='50'
+                />
             </div>
         </CardContent>
         
@@ -92,21 +79,14 @@
     </Card>
 </template>
 
-<script setup>
+<script setup lang='ts'>
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardHeader, CardFooter } from '~/components/ui/card';
-    import {
-        Dialog,
-        DialogContent,
-        DialogDescription,
-        DialogFooter,
-        DialogHeader,
-        DialogTitle,
-        DialogTrigger,
-    } from '@/components/ui/dialog'
+    import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
     import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
     import ProfileEdit from '~/components/profile/ProfileEdit.vue';
     import dayjs from 'dayjs';
+    import SplitFlapDisplay from '~/components/ui/split-flap-display/SplitFlapDisplay.vue';
     
     const props = defineProps({
         profile: {
@@ -121,6 +101,28 @@
     const { deleteProfile } = ProfileStore;
     
     const { profile } = toRefs(props);
+    console.log(profile.value);
+    
+    const rows = computed(() => {
+        return profile.value?.flatMap(item => {
+            if (item.name === 'timezone') {
+                return [
+                    { label: 'Timezone', value: item.value.timezone },
+                    { label: 'Offset', value: item.value.utc }
+                ];
+            }
+            if (item.name === 'country') {
+                return { label: item.label, value: item.value.name };
+            }
+            
+            if (item.name === 'dob') {
+                return { label: item.label, value: dayjs(item.value).format('DD.MM.YYYY') };
+            }
+            
+            return { label: item.label, value: item.value };
+        });
+    });
+    
     const show_drawer = ref(false);
     const onHandleDrawer = bool => show_drawer.value = bool;
     
