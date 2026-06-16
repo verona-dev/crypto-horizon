@@ -85,14 +85,14 @@
 </template>
 
 <script setup lang='ts'>
+    // import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardHeader, CardFooter } from '~/components/ui/card';
-    import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-    // import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
-    import ProfileEdit from '~/components/profile/ProfileEdit.vue';
     import dayjs from 'dayjs';
-    import SplitFlapDisplay from '~/components/ui/split-flap-display/SplitFlapDisplay.vue';
+    import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+    import ProfileEdit from '~/components/profile/ProfileEdit.vue';
     import ScrambledText from '~/components/ui/scrambled-text/ScrambledText.vue';
+    import SplitFlapDisplay from '~/components/ui/split-flap-display/SplitFlapDisplay.vue';
     
     const props = defineProps({
         profile: {

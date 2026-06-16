@@ -1,8 +1,24 @@
 <template>
     <Card class='h-full flex flex-col items-center justify-center py-6 px-16 gap-4 rounded-none !rounded-tl-xl !border-b-0'>
         <CardHeader class='items-center gap-2'>
-            <CardTitle class='text-3xl'>{{ username }}</CardTitle>
-            <CardDescription class='text-lg capitalize'>&#8226; {{ astronautType }} &#8226;</CardDescription>
+            <CardTitle class='text-3xl'>
+                <ScrambledText
+                    :text='username'
+                    :radius='50'
+                    :speed='10'
+                    class='font-inherit'
+                />
+            </CardTitle>
+            <CardDescription class='text-primary flex items-center gap-2'>
+                &#8226;
+                <ScrambledText
+                    :text='astronautType'
+                    :radius='50'
+                    :speed='10'
+                    class='text-lg'
+                />
+                &#8226;
+            </CardDescription>
         </CardHeader>
         
         <CardContent>
@@ -121,6 +137,7 @@
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
     import { displayToast } from '~/utils/toast.js';
     import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '~/components/ui/drawer';
+    import ScrambledText from '~/components/ui/scrambled-text/ScrambledText.vue';
     import { Skeleton } from '~/components/ui/skeleton';
     import { ToggleGroup, ToggleGroupItem } from '~/components/ui/toggle-group';
     import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip';
