@@ -1,5 +1,5 @@
 <template>
-    <Card class='h-full flex flex-col !justify-around p-6 gap-4 rounded-none !rounded-tr-xl !border-l-0 !border-b-0'>
+    <Card class='h-full flex flex-col !justify-around p-6 2xl:pl-0 gap-4 rounded-none !rounded-tr-xl !border-l-0 !border-b-0'>
         <CardHeader class='flex-row justify-between'>
             <CardTitle class='text-3xl'>Personal Information</CardTitle>
             
@@ -19,7 +19,7 @@
             </Button>
         </CardHeader>
         
-        <CardContent class='max-w-5xl'>
+        <CardContent class='max-w-5xl 2xl:px-0'>
             <SplitFlapDisplay
                 :rows='rows'
                 :columns='columns'
