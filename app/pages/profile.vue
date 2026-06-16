@@ -6,12 +6,12 @@
                     <ProfileAvatar
                         :username='username'
                         :astronaut-type='astronaut_type'
-                        class='w-full 2xl:w-fit'
+                        class='w-full'
                     />
                     
                     <ProfileInformation
                         :profile='profile_formatted'
-                        class='w-full xl:min-w-160'
+                        class='w-full'
                     />
                 </div>
                 
