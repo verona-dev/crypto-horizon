@@ -124,7 +124,7 @@
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
     import Title from '~/components/Title.vue';
-    import { Card, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
+    import { Card, CardHeader, CardContent } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
     import glossary from '~/assets/data/market/glossary.json';
@@ -135,7 +135,6 @@
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    
     const { globalDefi } = storeToRefs(MarketStore);
     
     // Market Cap
@@ -161,7 +160,6 @@
     
     // Defi Dominance
     const defi_dominance = computed(() => globalDefi.value?.defi_dominance);
-    console.log(defi_dominance.value);
     const defi_dominance_ratio = computed(() => Number(defi_dominance.value));
     const defi_dominance_ratio_percent = formatNumber(defi_dominance.value, {
         style: 'percent',
