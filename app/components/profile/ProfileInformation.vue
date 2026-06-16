@@ -81,7 +81,7 @@
     import { Button } from '~/components/ui/button';
     import { Card, CardTitle, CardContent, CardHeader, CardFooter } from '~/components/ui/card';
     import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-    import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
+    // import ProfileCountryFlag from '~/components/profile/ProfileCountryFlag.vue';
     import ProfileEdit from '~/components/profile/ProfileEdit.vue';
     import dayjs from 'dayjs';
     import SplitFlapDisplay from '~/components/ui/split-flap-display/SplitFlapDisplay.vue';
@@ -99,7 +99,6 @@
     const { deleteProfile } = ProfileStore;
     
     const { profile } = toRefs(props);
-    console.log(profile.value);
     
     const rows = computed(() => {
         return profile.value?.flatMap((item:any) => {
