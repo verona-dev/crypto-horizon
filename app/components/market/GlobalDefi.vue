@@ -1,75 +1,180 @@
 <template>
-    <Card
+    <div
         v-if='globalDefi'
-        class='!w-fit flex flex-col gap-4 p-6'
+        class='flex flex-col gap-12 max-w-6xl w-full'
     >
-        <Title :tag='2' :level='5'>Defi Stats</Title>
+        <!--  Defi Dominance -->
+        <Card class='flex flex-col items-center justify-center p-12 gap-24 border-primary/25'>
+            <CardHeader class='items-center'>
+                <Title :tag='1' :level='2'>Defi Dominance</Title>
+                
+                <Progress
+                    v-if='defi_dominance_ratio'
+                    v-model='defi_dominance_ratio'
+                    class='h-3'
+                />
+                
+                <Title :tag='2' :level='4' class='text-primary'>{{ defi_dominance_ratio_percent }}</Title>
+            </CardHeader>
+            
+            <div class='flex justify-evenly w-full'>
+                <!--  Market Cap  -->
+                <CardContent v-if='defi_market_cap' class='flex flex-col items-center justify-center gap-4 border-primary/25'>
+                    <div class='flex items-center gap-2'>
+                        <Title :tag='3' :level='4' class='!min-w-fit'>Defi {{ glossary.market_cap.label }}</Title>
+                        
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger>
+                                <InfoIcon size='20' />
+                            </HoverCardTrigger>
+                            <HoverCardContent>{{ glossary.market_cap.description }}</HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <MazCircularProgressBar :percentage='100' :duration='2000'>
+                        <template #default>
+                            <Title :tag='4' :level='5'>{{ market_cap_compact }}</Title>
+                        </template>
+                    </MazCircularProgressBar>
+                    
+                    <Title :tag='3' :level='5' class='text-muted-foreground'>{{ market_cap_value }}</Title>
+                </CardContent>
+                
+                <!--  Volume 24h  -->
+                <CardContent v-if='trading_volume_24h' class='flex flex-col items-center justify-center gap-4 border-primary/25'>
+                    <div class='flex items-center gap-2'>
+                        <Title :tag='3' :level='4' class='!min-w-fit'>{{ glossary.volume.label }}</Title>
+                        
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger>
+                                <InfoIcon size='20' />
+                            </HoverCardTrigger>
+                            <HoverCardContent>{{ glossary.volume.description }}</HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <MazCircularProgressBar :percentage='100' :duration='3000'>
+                        <template #default>
+                            <Title :tag='4' :level='5'>{{ trading_volume_compact }}</Title>
+                        </template>
+                    </MazCircularProgressBar>
+                    
+                    <Title :tag='3' :level='5' class='text-muted-foreground'>{{ trading_volume_value }}</Title>
+                </CardContent>
+            </div>
+        </Card>
         
-        <CardContent>
-            Dominance:
-            <span>{{ defi_dominance }}</span>
-        </CardContent>
-        
-        <CardContent>
-            Market Cap:
-            <span>{{ defi_market_cap }}</span>
-        </CardContent>
-        
-        <CardContent>
-            Defi to ETH Ratio:
-            <span>{{ defi_to_eth_ratio }}</span>
-        </CardContent>
-        
-        <CardContent>
-            ETH Market Cap:
-            <span>{{ eth_market_cap }}</span>
-        </CardContent>
-        
-        <CardContent>
-            Top Coin:
-            <span>{{ top_coin_name }}</span>
-        </CardContent>
-        
-        <CardContent>
-            Top Coin Dominance:
-            <span>{{ top_coin_defi_dominance }}</span>
-        </CardContent>
-        
-        <CardContent>
-            Trading Volume (24h):
-            <span>{{ trading_volume_24h }}</span>
-        </CardContent>
-    </Card>
+        <!--  Top coin dominance -->
+        <Card class='flex flex-col items-center justify-center p-12 gap-24 border-primary/25'>
+            <CardHeader class='items-center'>
+                <Title :tag='1' :level='2'>Top Coin Dominance</Title>
+                
+                <div class='flex items-center gap-3 text-primary'>
+                    <Title :tag='2' :level='4' class='uppercase'>{{ top_coin_name }}</Title>
+                    <Title :tag='2' :level='4' class='!my-0'>{{ top_coin_defi_dominance }}</Title>
+                </div>
+            </CardHeader>
+            
+            <div class='flex justify-evenly w-full'>
+                <!--  Defi to Eth ratio  -->
+                <CardContent v-if='defi_to_eth_ratio' class='flex flex-col items-center justify-center gap-4 border-primary/25'>
+                    <div class='flex items-center gap-2'>
+                        <Title :tag='3' :level='4' class='mt-0'>Defi to Eth ratio</Title>
+                    </div>
+                    
+                    <MazCircularProgressBar :percentage="defi_to_eth_ratio" suffix="%">
+                        <template #default>
+                            <Title :tag='4' :level='5'>{{ defi_to_eth_ratio_percent }}</Title>
+                        </template>
+                    </MazCircularProgressBar>
+                    
+                    <div class='h-10'></div>
+                </CardContent>
+                
+                <!--  Eth Market Cap  -->
+                <CardContent v-if='eth_market_cap' class='flex flex-col items-center justify-center gap-4 border-primary/25'>
+                    <div class='flex items-center gap-2'>
+                        <Title :tag='3' :level='4' class='!min-w-fit'>ETH {{ glossary.market_cap.label }}</Title>
+                        
+                        <HoverCard :openDelay='200'>
+                            <HoverCardTrigger>
+                                <InfoIcon size='20' />
+                            </HoverCardTrigger>
+                            <HoverCardContent>{{ glossary.market_cap.description }}</HoverCardContent>
+                        </HoverCard>
+                    </div>
+                    
+                    <MazCircularProgressBar :percentage='100' :duration='2000'>
+                        <template #default>
+                            <Title :tag='4' :level='5'>{{ eth_market_cap_compact }}</Title>
+                        </template>
+                    </MazCircularProgressBar>
+                    
+                    <Title :tag='3' :level='5' class='text-muted-foreground'>{{ eth_market_cap_value }}</Title>
+                </CardContent>
+            </div>
+        </Card>
+    </div>
 </template>
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
     import Title from '~/components/Title.vue';
+    import { Card, CardHeader, CardContent } from '~/components/ui/card';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    import InfoIcon from '~/components/InfoIcon.vue';
+    import glossary from '~/assets/data/market/glossary.json';
+    import { Progress } from '~/components/ui/progress';
+    import MazCircularProgressBar from 'maz-ui/components/MazCircularProgressBar';
     
+    // Market Store
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
-    import { Card, CardContent } from '~/components/ui/card';
     const MarketStore = useMarketStore();
-    
     const { globalDefi } = storeToRefs(MarketStore);
     
-    const defi_dominance = computed(() => formatNumber(globalDefi.value?.defi_dominance, {
+    // Defi Dominance
+    const defi_dominance = computed(() => globalDefi.value?.defi_dominance);
+    const defi_dominance_ratio = computed(() => Number(defi_dominance.value));
+    const defi_dominance_ratio_percent = formatNumber(defi_dominance.value, {
         style: 'percent',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
+    }) || 0;
+    
+    // Market Cap
+    const defi_market_cap = computed(() => globalDefi.value?.defi_market_cap);
+    const market_cap_value =formatNumber(defi_market_cap.value);
+    const market_cap_compact = computed(() => formatNumber(defi_market_cap.value, {
+        compact: true, decimals: 1
     }));
-    const defi_market_cap = computed(() => formatNumber(globalDefi.value?.defi_market_cap, {
-        compact: true,
+    
+    // Trading Volume
+    const trading_volume_24h = computed(() => globalDefi.value?.trading_volume_24h);
+    const trading_volume_value = formatNumber(trading_volume_24h.value);
+    const trading_volume_compact = computed(() => formatNumber(trading_volume_24h.value, {
+        compact: true, decimals: 1
     }));
-    const defi_to_eth_ratio = computed(() => formatNumber(globalDefi.value?.defi_to_eth_ratio, {
+    
+    // Defi to Eth ratio
+    const defi_to_eth = computed(() => globalDefi.value?.defi_to_eth_ratio);
+    const defi_to_eth_ratio = computed(() => Number(defi_to_eth.value));
+    const defi_to_eth_ratio_percent = formatNumber(defi_to_eth.value, {
         style: 'percent',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+    }) || 0;
+    
+    // Eth Market Cap
+    const eth_market_cap = computed(() => globalDefi.value?.eth_market_cap);
+    const eth_market_cap_value =formatNumber(eth_market_cap.value);
+    const eth_market_cap_compact = computed(() => formatNumber(eth_market_cap.value, {
+        compact: true, decimals: 1
     }));
-    const eth_market_cap = computed(() => formatNumber(globalDefi.value?.eth_market_cap, {
-        compact: true,
-    }));
+    
+    // Top Coin
     const top_coin_name = computed(() => globalDefi.value?.top_coin_name);
     const top_coin_defi_dominance = computed(() => formatNumber(globalDefi.value?.top_coin_defi_dominance, {
         style: 'percent',
-    }));
-    const trading_volume_24h = computed(() => formatNumber(globalDefi.value?.trading_volume_24h, {
-        compact: true,
     }));
 </script>

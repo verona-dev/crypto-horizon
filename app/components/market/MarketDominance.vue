@@ -87,13 +87,10 @@
                                                 <TableBody>
                                                     <TableRow v-for='item in stablecoins_array'>
                                                         <TableCell class='text-sm'>{{ item.name }}</TableCell>
-                                                        <TableCell class='text-sm flex flex-col !items-end'>{{
-                                                                item.value
-                                                                                                    }}
-                                                        </TableCell>
+                                                        <TableCell class='text-sm flex flex-col !items-end'>{{ item.value }}</TableCell>
                                                     </TableRow>
                                                     
-                                                    <TableRow class='text-secondary'>
+                                                    <TableRow class='text-primary'>
                                                         <TableCell class='text-base'>Total</TableCell>
                                                         <TableCell class='text-base flex flex-col !items-end'>{{ stablecoins_label }}</TableCell>
                                                     </TableRow>
@@ -109,10 +106,7 @@
                                     :openDelay='200'
                                 >
                                     <HoverCardTrigger class='flex items-center space-x-1'>
-                                        <span
-                                            class='w-3 h-3 rounded-full'
-                                            :style='{ backgroundColor: item.backgroundColor }'
-                                        ></span>
+                                        <span class='w-3 h-3 rounded-full' :style='{ backgroundColor: item.backgroundColor }'></span>
                                         
                                         <span class='text-muted-foreground text-xs'>{{ item.name }}</span>
                                         
@@ -126,21 +120,17 @@
                                             <TableHeader>
                                                 <TableRow>
                                                     <TableHead>Asset</TableHead>
-                                                    <TableHead class='flex flex-col justify-center !items-end'>Dominance
-                                                    </TableHead>
+                                                    <TableHead class='flex flex-col justify-center !items-end'>Dominance</TableHead>
                                                 </TableRow>
                                             </TableHeader>
                                             
                                             <TableBody>
                                                 <TableRow v-for='item in others_array'>
                                                     <TableCell class='text-sm'>{{ item.name }}</TableCell>
-                                                    <TableCell class='text-sm flex flex-col !items-end'>{{
-                                                            item.value
-                                                                                                }}
-                                                    </TableCell>
+                                                    <TableCell class='text-sm flex flex-col !items-end'>{{ item.value }}</TableCell>
                                                 </TableRow>
                                                 
-                                                <TableRow class='text-secondary'>
+                                                <TableRow class='text-primary'>
                                                     <TableCell class='text-base'>Total</TableCell>
                                                     <TableCell class='text-base flex flex-col !items-end'>{{ others_dominance_label }}</TableCell>
                                                 </TableRow>
@@ -175,7 +165,7 @@
                     class='hover:underline text-primary flex items-center gap-1'
                 >
                     Coingecko
-                   
+                    
                     <NewTabIcon />
                 </NuxtLink>
                 <span>on {{ updated_at }}</span>
@@ -187,7 +177,7 @@
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
     import { Bar } from 'vue-chartjs';
-    import { Card, CardTitle, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
+    import { Card, CardHeader, CardContent, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
     import NewTabIcon from '~/components/NewTabIcon.vue';

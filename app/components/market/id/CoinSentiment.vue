@@ -23,7 +23,7 @@
                     
                     <Progress
                         v-model='sentimentUp'
-                        class='progress-indicator h-3 mx-4'
+                        class='h-3 mx-4'
                     />
                     
                     <div class='flex items-center gap-3 text-destructive'>
@@ -70,10 +70,3 @@
         maximumFractionDigits: 0,
     });
 </script>
-
-<style scoped>
-    /*   .progress-indicator {
-           background-color: var(--color-progress) !important;
-        }
-   */
-</style>

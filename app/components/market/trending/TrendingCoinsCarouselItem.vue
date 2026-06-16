@@ -58,7 +58,7 @@
                     <!--  Symbol + Name  -->
                     <div class='flex flex-col'>
                         <div class='flex items-center gap-2'>
-                            <Title :tag='4' class='text-primary'>{{ name }}</Title>
+                            <Title :tag='5' class='text-primary'>{{ name }}</Title>
                             <Badge variant='outline' class='text-lg text-primary'>#{{ mcap_rank }}</Badge>
                         </div>
                         
