@@ -33,7 +33,7 @@
                     
                     <MazCircularProgressBar :percentage='100' :duration='2000'>
                         <template #default>
-                            <Title :tag='3' :level='5'>{{ market_cap_compact }}</Title>
+                            <Title :tag='4' :level='5'>{{ market_cap_compact }}</Title>
                         </template>
                     </MazCircularProgressBar>
                     
@@ -43,7 +43,7 @@
                 <!--  Volume 24h  -->
                 <CardContent v-if='trading_volume_24h' class='flex flex-col items-center justify-center gap-4 border-primary/25'>
                     <div class='flex items-center gap-2'>
-                        <Title :tag='2' :level='4' class='!min-w-fit'>{{ glossary.volume.label }}</Title>
+                        <Title :tag='3' :level='4' class='!min-w-fit'>{{ glossary.volume.label }}</Title>
                         
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
@@ -55,7 +55,7 @@
                     
                     <MazCircularProgressBar :percentage='100' :duration='3000'>
                         <template #default>
-                            <Title :tag='3' :level='5'>{{ trading_volume_compact }}</Title>
+                            <Title :tag='4' :level='5'>{{ trading_volume_compact }}</Title>
                         </template>
                     </MazCircularProgressBar>
                     
@@ -94,7 +94,7 @@
                 <!--  Eth Market Cap  -->
                 <CardContent v-if='eth_market_cap' class='flex flex-col items-center justify-center gap-4 border-primary/25'>
                     <div class='flex items-center gap-2'>
-                        <Title :tag='2' :level='4' class='!min-w-fit'>ETH {{ glossary.market_cap.label }}</Title>
+                        <Title :tag='3' :level='4' class='!min-w-fit'>ETH {{ glossary.market_cap.label }}</Title>
                         
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
