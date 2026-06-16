@@ -14,14 +14,14 @@
                     class='h-3'
                 />
                 
-                <Title :tag='2' :level='4' class='!my-0 text-primary'>{{ defi_dominance_ratio_percent }}</Title>
+                <Title :tag='2' :level='4' class='text-primary'>{{ defi_dominance_ratio_percent }}</Title>
             </CardHeader>
             
             <div class='flex justify-evenly w-full'>
                 <!--  Market Cap  -->
                 <CardContent v-if='defi_market_cap' class='flex flex-col items-center justify-center gap-4 border-primary/25'>
                     <div class='flex items-center gap-2'>
-                        <Title :tag='2' :level='4' class='!min-w-fit'>Defi {{ glossary.market_cap.label }}</Title>
+                        <Title :tag='3' :level='4' class='!min-w-fit'>Defi {{ glossary.market_cap.label }}</Title>
                         
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
@@ -67,22 +67,22 @@
         <!--  Top coin dominance -->
         <Card class='flex flex-col items-center justify-center p-12 gap-24 border-primary/25 !w-full'>
             <CardHeader class='items-center'>
-                <Title :tag='3'>Top Coin Dominance</Title>
-                <Title :tag='3' :level='6' class='!my-0 uppercase'>{{ top_coin_name }}</Title>
-                <Title :tag='3' class='!my-0 text-primary'>{{ top_coin_defi_dominance }}</Title>
+                <Title :tag='1' :level='2'>Top Coin Dominance</Title>
+                
+                <div class='flex items-center gap-3 text-primary'>
+                    <Title :tag='2' :level='4' class='uppercase'>{{ top_coin_name }}</Title>
+                    <Title :tag='2' :level='4' class='!my-0'>{{ top_coin_defi_dominance }}</Title>
+                </div>
             </CardHeader>
             
             <div class='flex justify-evenly w-full'>
                 <!--  Defi to Eth ratio  -->
                 <CardContent v-if='defi_to_eth_ratio' class='flex flex-col items-center justify-center gap-4 border-primary/25'>
                     <div class='flex items-center gap-2'>
-                        <Title :tag='2' :level='4' class='mt-0'>Defi to Eth ratio</Title>
+                        <Title :tag='3' :level='4' class='mt-0'>Defi to Eth ratio</Title>
                     </div>
                     
-                    <MazCircularProgressBar
-                        :percentage="defi_to_eth_ratio"
-                        suffix="%"
-                    >
+                    <MazCircularProgressBar :percentage="defi_to_eth_ratio" suffix="%">
                         <template #default>
                             <Title :tag='4' :level='5'>{{ defi_to_eth_ratio_percent }}</Title>
                         </template>
@@ -94,7 +94,7 @@
                 <!--  Eth Market Cap  -->
                 <CardContent v-if='eth_market_cap' class='flex flex-col items-center justify-center gap-4 border-primary/25'>
                     <div class='flex items-center gap-2'>
-                        <Title :tag='2' :level='4'>ETH {{ glossary.market_cap.label }}</Title>
+                        <Title :tag='2' :level='4' class='!min-w-fit'>ETH {{ glossary.market_cap.label }}</Title>
                         
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
@@ -104,10 +104,7 @@
                         </HoverCard>
                     </div>
                     
-                    <MazCircularProgressBar
-                        :percentage='100'
-                        :duration='2000'
-                    >
+                    <MazCircularProgressBar :percentage='100' :duration='2000'>
                         <template #default>
                             <Title :tag='4' :level='5'>{{ eth_market_cap_compact }}</Title>
                         </template>
@@ -135,7 +132,15 @@
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     const { globalDefi } = storeToRefs(MarketStore);
-    console.log(globalDefi.value);
+    
+    // Defi Dominance
+    const defi_dominance = computed(() => globalDefi.value?.defi_dominance);
+    const defi_dominance_ratio = computed(() => Number(defi_dominance.value));
+    const defi_dominance_ratio_percent = formatNumber(defi_dominance.value, {
+        style: 'percent',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
+    }) || 0;
     
     // Market Cap
     const defi_market_cap = computed(() => globalDefi.value?.defi_market_cap);
@@ -151,22 +156,6 @@
         compact: true, decimals: 1
     }));
     
-    // Eth Market Cap
-    const eth_market_cap = computed(() => globalDefi.value?.eth_market_cap);
-    const eth_market_cap_value =formatNumber(eth_market_cap.value);
-    const eth_market_cap_compact = computed(() => formatNumber(eth_market_cap.value, {
-        compact: true, decimals: 1
-    }));
-    
-    // Defi Dominance
-    const defi_dominance = computed(() => globalDefi.value?.defi_dominance);
-    const defi_dominance_ratio = computed(() => Number(defi_dominance.value));
-    const defi_dominance_ratio_percent = formatNumber(defi_dominance.value, {
-        style: 'percent',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2,
-    }) || 0;
-    
     // Defi to Eth ratio
     const defi_to_eth = computed(() => globalDefi.value?.defi_to_eth_ratio);
     const defi_to_eth_ratio = computed(() => Number(defi_to_eth.value));
@@ -175,6 +164,13 @@
         minimumFractionDigits: 0,
         maximumFractionDigits: 0,
     }) || 0;
+    
+    // Eth Market Cap
+    const eth_market_cap = computed(() => globalDefi.value?.eth_market_cap);
+    const eth_market_cap_value =formatNumber(eth_market_cap.value);
+    const eth_market_cap_compact = computed(() => formatNumber(eth_market_cap.value, {
+        compact: true, decimals: 1
+    }));
     
     // Top Coin
     const top_coin_name = computed(() => globalDefi.value?.top_coin_name);
