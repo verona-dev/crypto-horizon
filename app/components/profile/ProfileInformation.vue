@@ -104,10 +104,8 @@
     console.log(profile.value);
     
     const rows = computed(() => {
-        return profile.value?.flatMap(item => {
-            if (item.name === 'bio') {
-                return [];
-            }
+        return profile.value?.flatMap((item:any) => {
+            if (item.name === 'bio') return [];
             
             if (item.name === 'timezone') {
                 return [
