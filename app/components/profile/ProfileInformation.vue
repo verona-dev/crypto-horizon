@@ -19,21 +19,19 @@
             </Button>
         </CardHeader>
         
-        <CardContent>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
-                <SplitFlapDisplay
-                    :rows='rows'
-                    :columns='columns'
-                    size='sm'
-                    accent-color='#00bc7d'
-                    :show-indicators='true'
-                    :stagger-delay='30'
-                    :flip-speed='50'
-                />
-            </div>
+        <CardContent class='grid grid-cols-1 md:grid-cols-2 gap-1 max-w-5xl'>
+            <SplitFlapDisplay
+                :rows='rows'
+                :columns='columns'
+                size='sm'
+                accent-color='#00bc7d'
+                :show-indicators='true'
+                :stagger-delay='30'
+                :flip-speed='50'
+            />
         </CardContent>
         
-        <CardFooter>
+        <CardFooter class='mb-12'>
             <Dialog>
                 <DialogTrigger class='w-full'>
                     <Button variant='destructive' class='w-full'>
@@ -128,7 +126,7 @@
     
     const columns = computed(() => {
         if(!rows.value) return 24;
-        return Math.max(...rows.value.map(row => row.value.length));
+        return Math.max(...rows.value.map(row => row.value.length)) + 1;
     });
     
     const show_drawer = ref(false);

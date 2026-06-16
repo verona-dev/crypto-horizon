@@ -32,7 +32,7 @@ const displayRows = computed<SplitFlapRow[]>(() => {
 
 <template>
   <div
-    :class="cn('inline-flex flex-col gap-2 rounded-xl p-8 w-fit', props.class)"
+    :class="cn('inline-flex flex-col gap-4 rounded-xl p-8 w-fit', props.class)"
     :style="{
       background: 'linear-gradient(145deg, #0c0c0c, #080808)',
       boxShadow:
