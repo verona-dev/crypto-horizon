@@ -105,12 +105,17 @@
     
     const rows = computed(() => {
         return profile.value?.flatMap(item => {
+            if (item.name === 'bio') {
+                return [];
+            }
+            
             if (item.name === 'timezone') {
                 return [
                     { label: 'Timezone', value: item.value.timezone },
                     { label: 'Offset', value: item.value.utc }
                 ];
             }
+            
             if (item.name === 'country') {
                 return { label: item.label, value: item.value.name };
             }
