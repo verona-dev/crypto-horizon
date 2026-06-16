@@ -25,7 +25,7 @@
                         </Avatar>
                     </TooltipTrigger>
                     
-                    <TooltipContent v-if='show_tooltip' :side-offset='15' side='bottom'>
+                    <TooltipContent v-if='show_tooltip' :side-offset='15' side='left'>
                         <p class='text-xs'>Change Avatar</p>
                     </TooltipContent>
                 </Tooltip>
