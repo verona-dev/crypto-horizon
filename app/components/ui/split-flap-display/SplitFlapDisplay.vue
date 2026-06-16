@@ -35,10 +35,9 @@
     <div
         :class="cn('inline-flex flex-col gap-4 rounded-xl p-8 w-fit', props.class)"
         :style="{
-      background: 'linear-gradient(145deg, #0c0c0c, #080808)',
-      boxShadow:
-        '0 4px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
-    }"
+          background: 'linear-gradient(145deg, #0c0c0c, #080808)',
+          boxShadow: '0 4px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+        }"
     >
         <div
             v-for="(row, rowIndex) in displayRows"
@@ -50,9 +49,9 @@
                 v-if="row.label"
                 class="font-mono text-xs uppercase tracking-widest"
                 :style="{
-          color: props.accentColor,
-          paddingLeft: props.showIndicators ? '12px' : '0',
-        }"
+                  color: props.accentColor,
+                  paddingLeft: props.showIndicators ? '12px' : '0',
+                }"
             >
         {{ row.label }}
       </span>
