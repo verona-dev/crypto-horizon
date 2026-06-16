@@ -45,7 +45,7 @@
                     <div class='flex items-center gap-2'>
                         <Title :tag='2' :level='4' class='!min-w-fit'>{{ glossary.volume.label }}</Title>
                         
-                        <HoverCard :openDelay='200' class='flex'>
+                        <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
                                 <InfoIcon size='20' />
                             </HoverCardTrigger>
@@ -76,10 +76,17 @@
                 <!--  Defi to Eth ratio  -->
                 <CardContent v-if='defi_to_eth_ratio' class='flex flex-col items-center justify-center gap-4 border-primary/25'>
                     <div class='flex items-center gap-2'>
-                        <Title :tag='3' :level='5' class='mt-0'>Defi to Eth ratio</Title>
+                        <Title :tag='2' :level='4' class='mt-0'>Defi to Eth ratio</Title>
                     </div>
                     
-                    <MazCircularProgressBar :percentage="defi_to_eth_ratio"  suffix="%" />
+                    <MazCircularProgressBar
+                        :percentage="defi_to_eth_ratio"
+                        suffix="%"
+                    >
+                        <template #default>
+                            <Title :tag='4' :level='5'>{{ defi_to_eth_ratio_percent }}</Title>
+                        </template>
+                    </MazCircularProgressBar>
                     
                     <div class='h-10'></div>
                 </CardContent>
@@ -87,7 +94,7 @@
                 <!--  Eth Market Cap  -->
                 <CardContent v-if='eth_market_cap' class='flex flex-col items-center justify-center gap-4 border-primary/25'>
                     <div class='flex items-center gap-2'>
-                        <Title :tag='3' :level='5'>ETH {{ glossary.market_cap.label }}</Title>
+                        <Title :tag='2' :level='4'>ETH {{ glossary.market_cap.label }}</Title>
                         
                         <HoverCard :openDelay='200'>
                             <HoverCardTrigger>
@@ -102,12 +109,11 @@
                         :duration='2000'
                     >
                         <template #default>
-                            <Title :tag='2' :level='5'>{{ eth_market_cap_compact }}</Title>
+                            <Title :tag='4' :level='5'>{{ eth_market_cap_compact }}</Title>
                         </template>
                     </MazCircularProgressBar>
                     
                     <Title :tag='3' :level='5' class='text-muted-foreground'>{{ eth_market_cap_value }}</Title>
-                
                 </CardContent>
             </div>
         </Card>
@@ -129,6 +135,7 @@
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     const { globalDefi } = storeToRefs(MarketStore);
+    console.log(globalDefi.value);
     
     // Market Cap
     const defi_market_cap = computed(() => globalDefi.value?.defi_market_cap);
@@ -163,6 +170,11 @@
     // Defi to Eth ratio
     const defi_to_eth = computed(() => globalDefi.value?.defi_to_eth_ratio);
     const defi_to_eth_ratio = computed(() => Number(defi_to_eth.value));
+    const defi_to_eth_ratio_percent = formatNumber(defi_to_eth.value, {
+        style: 'percent',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+    }) || 0;
     
     // Top Coin
     const top_coin_name = computed(() => globalDefi.value?.top_coin_name);
