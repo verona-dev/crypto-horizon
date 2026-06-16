@@ -1,8 +1,15 @@
 <template>
     <Card class='h-full flex flex-col !justify-around p-6 2xl:pl-0 gap-4 rounded-none !rounded-tr-xl !border-l-0 !border-b-0'>
         <CardHeader class='flex-row justify-between'>
-            <CardTitle class='text-3xl'>Personal Information</CardTitle>
-            
+            <CardTitle class='text-3xl'>
+                <ScrambledText
+                    text='Personal Information'
+                    :radius='100'
+                    :speed='10'
+                    class='font-inherit'
+                />
+            </CardTitle>
+           
             <Button
                 @click='onHandleDrawer(true)'
                 variant='outline'
@@ -85,6 +92,7 @@
     import ProfileEdit from '~/components/profile/ProfileEdit.vue';
     import dayjs from 'dayjs';
     import SplitFlapDisplay from '~/components/ui/split-flap-display/SplitFlapDisplay.vue';
+    import ScrambledText from '~/components/ui/scrambled-text/ScrambledText.vue';
     
     const props = defineProps({
         profile: {
