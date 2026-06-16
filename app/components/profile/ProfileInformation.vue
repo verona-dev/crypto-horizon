@@ -31,7 +31,7 @@
             />
         </CardContent>
         
-        <CardFooter class='mb-12'>
+        <CardFooter>
             <Dialog>
                 <DialogTrigger class='w-full'>
                     <Button variant='destructive' class='w-full'>

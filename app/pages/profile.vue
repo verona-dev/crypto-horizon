@@ -18,7 +18,7 @@
                 <client-only>
                     <ProfileMap
                         :coordinates='coordinates'
-                        class=''
+                        class='pt-12'
                     />
                 </client-only>
                 
