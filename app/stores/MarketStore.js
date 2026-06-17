@@ -105,21 +105,6 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getWatchlistCoins(payload) {
-            try {
-                const response = await useFetchCoingecko('coins/markets', {
-                    params: {
-                        ids: payload,
-                        vs_currency: 'usd',
-                    },
-                });
-                
-                return response;
-            } catch(error) {
-                console.error(error);
-            }
-        },
-        
         async getCoin(slug) {
             this.loading = true;
             const NewsStore = useNewsStore();

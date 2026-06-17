@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { displayToast } from '~/utils/toast.js';
+import { useFetchCoingecko } from '~/composables/apiCoingecko';
 
 export const useProfileStore = defineStore('ProfileStore', {
     state: () => ({
@@ -99,8 +100,6 @@ export const useProfileStore = defineStore('ProfileStore', {
         },
         
         async getWatchlistData() {
-            const MarketStore = useMarketStore();
-            
             try {
                 const { data, error } = await $fetch('/api/supabase/user/profile/watchlist', {
                     method: 'PATCH',
@@ -111,12 +110,27 @@ export const useProfileStore = defineStore('ProfileStore', {
                 if(error) throw error;
                 
                 if(data && data.watchlist) {
-                    const response = await MarketStore.getWatchlistCoins(data.watchlist);
+                    const response = await this.getWatchlistCoins(data.watchlist);
                     
                     if(response) {
                         this.watchlistData = response;
                     }
                 }
+            } catch(error) {
+                console.error(error);
+            }
+        },
+        
+        async getWatchlistCoins(payload) {
+            try {
+                const response = await useFetchCoingecko('coins/markets', {
+                    params: {
+                        ids: payload,
+                        vs_currency: 'usd',
+                    },
+                });
+                
+                return response;
             } catch(error) {
                 console.error(error);
             }
