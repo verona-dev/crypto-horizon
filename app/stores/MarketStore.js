@@ -24,6 +24,7 @@ export const useMarketStore = defineStore('MarketStore', {
             ],
         },
         cmcStatus: {},
+        exchanges: [],
         fearAndGreed: {},
         globalDefi: {},
         globalMarket: {},
@@ -271,7 +272,7 @@ export const useMarketStore = defineStore('MarketStore', {
               
               if(response) {
                   this.exchanges = response;
-                  console.log(this.exchanges);
+                  console.log(this.exchanges[0]);
               }
           } catch(error) {
               console.error(error);
