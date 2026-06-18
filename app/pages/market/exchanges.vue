@@ -9,15 +9,15 @@
             :key='exchange.id'
         >
             <p>{{ exchange.id }}</p>
+            <p>{{ exchange.name }}</p>
             <p>{{ exchange.country }}</p>
+            <p>{{ exchange.year_established }}</p>
             <p>{{ exchange.description }}</p>
             <p>{{ exchange.image }}</p>
-            <p>{{ exchange.name }}</p>
-            <p>{{ exchange.trade_volume_24h_btc }}</p>
-            <p>{{ exchange.trust_score }}</p>
-            <p>{{ exchange.trust_score_rank }}</p>
+            <p>Trade vol: {{ exchange.trade_volume_24h_btc }}</p>
+            <p>Trust score: {{ exchange.trust_score }}</p>
+            <p>Trust score rank: {{ exchange.trust_score_rank }}</p>
             <p>{{ exchange.url }}</p>
-            <p>{{ exchange.year_established }}</p>
         </div>
     </div>
 </template>
