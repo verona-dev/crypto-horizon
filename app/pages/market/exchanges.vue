@@ -7,7 +7,7 @@
                 v-for='exchange in exchanges'
                 :key='exchange.id'
             >
-                <Card class='bg-muted/25 w-100 min-h-150 gap-10 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
+                <Card class='bg-muted/25 w-100 min-h-160 gap-10 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
                     <CardHeader>
                         <div class='flex justify-between items-center'>
                             <div class='flex items-center gap-3'>
@@ -47,11 +47,8 @@
                     </CardContent>
                     
                     <CardFooter class='flex-col gap-4'>
-                        <p>Trust score: {{ exchange.trust_score }}</p>
-<!--                        <p>Trust score rank: #{{ exchange.trust_score_rank }}</p>-->
-                        
-                        <Badge variant='outline' class='text-lg text-primary'>#{{ exchange.trust_score_rank }}</Badge>
-                    
+                        <Badge variant='outline' class='text-lg flex justify-center text-primary w-20 h-12'>#{{ exchange.trust_score_rank }}</Badge>
+                        <Badge variant='outline' class='text-lg text-progress/75 w-full py-3 flex justify-center'>Trust Score: {{ exchange.trust_score }}</Badge>
                     </CardFooter>
                 </Card>
             </div>
