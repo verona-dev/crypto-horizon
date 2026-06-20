@@ -2,35 +2,48 @@
     <LoadingContent v-if='loading' />
     
     <div v-else class='page'>
-        <h6>Coming Soon...</h6>
-        
-        <div
-            v-for='exchange in exchanges'
-            :key='exchange.id'
-        >
-            <Card>
-                <CardHeader>
-                    <CardTitle>{{ exchange.name }}</CardTitle>
+        <div class='flex justify-around flex-wrap'>
+            <div
+                v-for='exchange in exchanges'
+                :key='exchange.id'
+            >
+                <Card class='bg-muted/25 w-150 gap-10 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
+                    <CardHeader>
+                        <div class='flex justify-between'>
+                            <div class='flex items-center gap-3'>
+                                <NuxtImg
+                                    :src='exchange.image'
+                                    width='64'
+                                    alt='exchange logo'
+                                />
+                                
+                                <div class='flex flex-col gap-1.5'>
+                                    <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ exchange.name }}</Title>
+                                    <CardDescription>{{ exchange.country }}</CardDescription>
+                                </div>
+                            </div>
+                            
+                            <Button variant="link">
+                                Visit
+                            </Button>
+                        </div>
+                    </CardHeader>
                     
-                    <CardDescription>{{ exchange.country }}</CardDescription>
+                    <CardContent>
+                        <CardTitle>{{ exchange.name }}</CardTitle>
+                        <p>{{ exchange.year_established }}</p>
+                        <p>{{ exchange.description }}</p>
+                        <p>Trade vol: {{ exchange.trade_volume_24h_btc }}</p>
+                        <p>Trust score: {{ exchange.trust_score }}</p>
+                        <p>Trust score rank: {{ exchange.trust_score_rank }}</p>
+                        <p>{{ exchange.url }}</p>
+                    </CardContent>
                     
-                    <CardDescription>
-                        <Button variant="link">
-                            Visit
-                        </Button>
-                    </CardDescription>
-                </CardHeader>
-                
-                <CardContent>
-                    <p>{{ exchange.year_established }}</p>
-                    <p>{{ exchange.description }}</p>
-                    <p>{{ exchange.image }}</p>
-                    <p>Trade vol: {{ exchange.trade_volume_24h_btc }}</p>
-                    <p>Trust score: {{ exchange.trust_score }}</p>
-                    <p>Trust score rank: {{ exchange.trust_score_rank }}</p>
-                    <p>{{ exchange.url }}</p>
-                </CardContent>
-            </Card>
+                    <CardFooter>
+                    
+                    </CardFooter>
+                </Card>
+            </div>
         </div>
     </div>
 </template>
@@ -39,6 +52,7 @@
     import { Button } from '~/components/ui/button';
     import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '~/components/ui/card';
     import LoadingContent from '~/components/LoadingContent.vue';
+    import Title from '~/components/Title.vue';
     
     // MarketStore
     import { storeToRefs } from 'pinia';
