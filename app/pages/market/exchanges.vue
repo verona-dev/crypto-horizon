@@ -2,14 +2,14 @@
     <LoadingContent v-if='loading' />
     
     <div v-else class='page'>
-        <div class='flex justify-around flex-wrap'>
+        <div class='flex flex-wrap gap-16 justify-center'>
             <div
                 v-for='exchange in exchanges'
                 :key='exchange.id'
             >
-                <Card class='bg-muted/25 w-150 gap-10 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
+                <Card class='bg-muted/25 w-100 min-h-150 gap-10 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
                     <CardHeader>
-                        <div class='flex justify-between'>
+                        <div class='flex justify-between items-center'>
                             <div class='flex items-center gap-3'>
                                 <NuxtImg
                                     :src='exchange.image'
@@ -17,21 +17,29 @@
                                     alt='exchange logo'
                                 />
                                 
-                                <div class='flex flex-col gap-1.5'>
+                                <div class='flex flex-col'>
                                     <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ exchange.name }}</Title>
-                                    <CardDescription>{{ exchange.country }}</CardDescription>
+                                    <CardDescription class='ml-0.5'>{{ exchange.country }}</CardDescription>
                                 </div>
                             </div>
                             
-                            <Button variant="link">
-                                Visit
-                            </Button>
+                            <NuxtLink
+                                :to='exchange.url'
+                                class=''
+                                target='_blank'
+                                aria-label='exchange link'
+                            >
+                                <NuxtIcon
+                                    name='ph:arrow-circle-up-right'
+                                    size='48'
+                                    class='bg-muted-foreground/50 hover:bg-primary/75'
+                                />
+                            </NuxtLink>
                         </div>
                     </CardHeader>
                     
                     <CardContent>
-                        <CardTitle>{{ exchange.name }}</CardTitle>
-                        <p>{{ exchange.year_established }}</p>
+                        <CardDescription>{{ exchange.year_established }}</CardDescription>
                         <p>{{ exchange.description }}</p>
                         <p>Trade vol: {{ exchange.trade_volume_24h_btc }}</p>
                         <p>Trust score: {{ exchange.trust_score }}</p>
