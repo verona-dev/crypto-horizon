@@ -25,7 +25,6 @@
                             
                             <NuxtLink
                                 :to='exchange.url'
-                                class=''
                                 target='_blank'
                                 aria-label='exchange link'
                             >
@@ -41,13 +40,17 @@
                     <CardContent>
                         <CardDescription>{{ exchange.year_established }}</CardDescription>
                         <p>{{ exchange.description }}</p>
-                        <p>Trade vol: {{ exchange.trade_volume_24h_btc }}</p>
-                        <p>Trust score: {{ exchange.trust_score }}</p>
-                        <p>Trust score rank: {{ exchange.trust_score_rank }}</p>
-                        <p>{{ exchange.url }}</p>
                     </CardContent>
                     
-                    <CardFooter>
+                    <CardContent>
+                        <p>Trade vol: {{ exchange.trade_volume_24h_btc }}</p>
+                    </CardContent>
+                    
+                    <CardFooter class='flex-col gap-4'>
+                        <p>Trust score: {{ exchange.trust_score }}</p>
+<!--                        <p>Trust score rank: #{{ exchange.trust_score_rank }}</p>-->
+                        
+                        <Badge variant='outline' class='text-lg text-primary'>#{{ exchange.trust_score_rank }}</Badge>
                     
                     </CardFooter>
                 </Card>
@@ -57,6 +60,7 @@
 </template>
 
 <script setup>
+    import { Badge } from '~/components/ui/badge';
     import { Button } from '~/components/ui/button';
     import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '~/components/ui/card';
     import LoadingContent from '~/components/LoadingContent.vue';
