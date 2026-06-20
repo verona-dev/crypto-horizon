@@ -23,14 +23,15 @@ export const useMarketStore = defineStore('MarketStore', {
                 { name: 'Year', label: '1y', timeframe: 365 },
             ],
         },
+        cmcStatus: {},
+        exchanges: [],
+        fearAndGreed: {},
+        globalDefi: {},
+        globalMarket: {},
         loading: false,
         platformsSummary : [],
-        globalMarket: {},
-        fearAndGreed: {},
-        cmcStatus: {},
         trendingCoins: [],
         trendingNfts: [],
-        globalDefi: {},
     }),
     
     actions: {
@@ -102,21 +103,6 @@ export const useMarketStore = defineStore('MarketStore', {
             }
             finally {
                 this.loading = false;
-            }
-        },
-        
-        async getWatchlistCoins(payload) {
-            try {
-                const response = await useFetchCoingecko('coins/markets', {
-                    params: {
-                        ids: payload,
-                        vs_currency: 'usd',
-                    },
-                });
-                
-                return response;
-            } catch(error) {
-                console.error(error);
             }
         },
         
@@ -276,6 +262,23 @@ export const useMarketStore = defineStore('MarketStore', {
             } finally {
                 this.loading = false;
             }
+        },
+        
+        async getExchanges() {
+          this.loading = true;
+          
+          try {
+              const response = await useFetchCoingecko('/exchanges');
+              
+              if(response) {
+                  this.exchanges = response;
+                  console.log(this.exchanges[0]);
+              }
+          } catch(error) {
+              console.error(error);
+          } finally {
+              this.loading = false;
+          }
         },
     },
     

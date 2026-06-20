@@ -27,5 +27,5 @@
         description,
     });
     
-    onMounted(() => getCoingeckoGlobalDefi());
+    onMounted(async() => await getCoingeckoGlobalDefi());
 </script>
