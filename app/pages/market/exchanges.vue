@@ -7,7 +7,7 @@
                 v-for='exchange in exchanges'
                 :key='exchange.id'
             >
-                <Card class='w-150 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between'>
+                <Card class='w-150 min-h-90 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between'>
                     <CardHeader>
                         <div class='flex justify-between'>
                             <div class='flex items-center gap-3'>
@@ -19,7 +19,10 @@
                                 
                                 <!--  Name + Rank + Country  -->
                                 <div class='flex flex-col'>
-                                    <Title :tag='4' class='font-semibold leading-none tracking-tight'>#{{ exchange.trust_score_rank }} {{ exchange.name }}</Title>
+                                    <div class='flex items-center gap-3'>
+                                        <Title :tag='4' class='text-2xl xl:text-3xl font-semibold leading-none tracking-tight'>{{ exchange.name }}</Title>
+                                        <p class='text-muted-foreground text-xl mt-0.5'>#{{ exchange.trust_score_rank }}</p>
+                                    </div>
                                     <CardDescription class='ml-0.5'>{{ exchange.country }} since {{ exchange.year_established }}</CardDescription>
                                 </div>
                             </div>
