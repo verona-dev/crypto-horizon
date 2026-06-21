@@ -41,7 +41,7 @@
                 <DropdownMenuTrigger as-child>
                     <Button
                         variant='ghost'
-                        class='bg-muted/50 group h-13 rounded-tl-none rounded-bl-none border-l-border'
+                        class='bg-muted group h-13 rounded-tl-none rounded-bl-none border-l-border'
                         :data-state='open ? "open" : "closed"'
                     >
                         <ChevronDown class='!w-5 !h-5 ml-auto transition-transform duration-400 group-data-[state=open]:rotate-180' />

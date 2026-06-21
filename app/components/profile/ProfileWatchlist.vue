@@ -67,7 +67,7 @@
                     <TableRow
                         v-for='coin in watchlistData'
                         :key='coin.id'
-                        class='hover:bg-muted/50 text-center'
+                        class='hover:bg-muted text-center'
                     >
                         <TableCell class='h-16 text-center'>
                             {{ coin.market_cap_rank }}
