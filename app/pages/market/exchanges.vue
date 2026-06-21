@@ -42,18 +42,26 @@
                         </div>
                     </CardHeader>
                     
-                    <!--  Trade Volume 24h  -->
-                    <CardContent class='my-6'>
-                        <CardDescription>Trade Volume 24h in BTC: </CardDescription>
-                        
-                        <div class='flex items-center gap-2'>
-                            <NuxtIcon
-                                name='logos:bitcoin'
-                                class='mb-0.5'
-                                size='30'
-                            />
+                    <CardContent class='my-3 flex items-center justify-between'>
+                        <!--  Trade Volume 24h  -->
+                        <div>
+                            <CardDescription>Trade Volume 24h in BTC:</CardDescription>
                             
-                            <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ formatNumber(exchange.trade_volume_24h_btc, { style: 'decimal', maximumFractionDigits: 5 }) }}</Title>
+                            <div class='flex items-center gap-2'>
+                                <NuxtIcon
+                                    name='logos:bitcoin'
+                                    class='mb-0.5'
+                                    size='36'
+                                />
+                                
+                                <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ formatNumber(exchange.trade_volume_24h_btc, { style: 'decimal', maximumFractionDigits: 5 }) }}</Title>
+                            </div>
+                        </div>
+                        
+                        <!--  Trust Score  -->
+                        <div class='flex-1 text-center'>
+                            <CardDescription>Trust Score:</CardDescription>
+                            <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ exchange.trust_score }}</Title>
                         </div>
                     </CardContent>
                     
@@ -62,11 +70,6 @@
                         <CardDescription>{{ exchange.year_established }}</CardDescription>
                         <p>{{ exchange.description }}</p>
                     </CardContent>
-                    
-                    <!--  Trust Score  -->
-                    <CardFooter class='flex-col gap-4'>
-                        <Badge variant='outline' class='text-lg text-progress/75 w-full py-3 flex justify-center'>Trust Score: {{ exchange.trust_score }}</Badge>
-                    </CardFooter>
                 </Card>
             </div>
         </div>
