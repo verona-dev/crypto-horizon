@@ -42,7 +42,7 @@
                             >
                                 <CircleCheck
                                     v-if='theme.value === $colorMode.preference'
-                                    class='absolute -top-3 -right-3 size-8 rounded-full fill-card'
+                                    class='bg-background absolute -top-3 -right-3 size-8 rounded-full fill-card'
                                 />
                                 
                                 <!--  Theme name  -->
