@@ -7,7 +7,7 @@
                 v-for='exchange in exchanges'
                 :key='exchange.id'
             >
-                <Card class='w-150 min-h-100 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
+                <Card class='w-160 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
                     <CardHeader>
                         <div class='flex justify-between items-center'>
                             <div class='flex items-center gap-3'>
@@ -21,10 +21,10 @@
                                 <div class='flex flex-col'>
                                     <div class='flex items-center gap-4'>
                                         <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ exchange.name }}</Title>
-                                        <p class='text-2xl text-primary font-bold'>#{{ exchange.trust_score_rank }}</p>
+                                        <p class='text-2xl mt-0.5 font-bold'>#{{ exchange.trust_score_rank }}</p>
                                     </div>
                                     
-                                    <CardDescription class='ml-0.5'>{{ exchange.country }}</CardDescription>
+                                    <CardDescription class='ml-0.5'>{{ exchange.country }} since {{ exchange.year_established }}</CardDescription>
                                 </div>
                             </div>
                             
@@ -34,11 +34,15 @@
                                 target='_blank'
                                 aria-label='exchange link'
                             >
-                                <NuxtIcon
-                                    name='ph:arrow-circle-up-right'
-                                    size='48'
-                                    class='bg-muted-foreground/50 hover:bg-primary/75'
-                                />
+                                <Button variant='link'>
+                                    Visit
+                                    
+                                    <NuxtIcon
+                                        name='ph:arrow-up-right-light'
+                                        size='16'
+                                        class='bg-primary'
+                                    />
+                                </Button>
                             </NuxtLink>
                         </div>
                     </CardHeader>
@@ -55,7 +59,7 @@
                                     size='36'
                                 />
                                 
-                                <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ formatNumber(exchange.trade_volume_24h_btc, { style: 'decimal', maximumFractionDigits: 5 }) }}</Title>
+                                <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ formatNumber(exchange.trade_volume_24h_btc, { style: 'decimal', maximumFractionDigits: 3 }) }}</Title>
                             </div>
                         </div>
                         
@@ -74,7 +78,6 @@
                     
                     <!--  Description  -->
                     <CardContent>
-                        <CardDescription>{{ exchange.year_established }}</CardDescription>
                         <p>{{ exchange.description }}</p>
                     </CardContent>
                 </Card>
@@ -84,6 +87,7 @@
 </template>
 
 <script setup>
+    import { Button } from '~/components/ui/button';
     import { Card, CardHeader, CardDescription, CardContent } from '~/components/ui/card';
     import { formatNumber } from '~/utils/formatUtils.js';
     import LoadingContent from '~/components/LoadingContent.vue';
