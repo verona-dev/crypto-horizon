@@ -7,7 +7,7 @@
                 v-for='exchange in exchanges'
                 :key='exchange.id'
             >
-                <Card class='w-150 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
+                <Card class='w-150 min-h-100 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
                     <CardHeader>
                         <div class='flex justify-between items-center'>
                             <div class='flex items-center gap-3'>
@@ -17,6 +17,7 @@
                                     alt='exchange logo'
                                 />
                                 
+                                <!--  Name + Rank + Country  -->
                                 <div class='flex flex-col'>
                                     <div class='flex items-center gap-4'>
                                         <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ exchange.name }}</Title>
@@ -42,10 +43,10 @@
                         </div>
                     </CardHeader>
                     
-                    <CardContent class='my-3 flex items-center justify-between'>
+                    <CardContent class='my-4 flex items-center justify-between'>
                         <!--  Trade Volume 24h  -->
                         <div>
-                            <CardDescription>Trade Volume 24h in BTC:</CardDescription>
+                            <CardDescription>Trade Volume 24h in BTC</CardDescription>
                             
                             <div class='flex items-center gap-2'>
                                 <NuxtIcon
@@ -60,8 +61,14 @@
                         
                         <!--  Trust Score  -->
                         <div class='flex-1 text-center'>
-                            <CardDescription>Trust Score:</CardDescription>
-                            <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ exchange.trust_score }}</Title>
+                            <CardDescription>Trust Score</CardDescription>
+                            <Title
+                                :tag='4'
+                                class='font-semibold leading-none tracking-tight'
+                                :class='trustScoreStyle(exchange.trust_score)'
+                            >
+                                {{ exchange.trust_score }}
+                            </Title>
                         </div>
                     </CardContent>
                     
@@ -77,8 +84,7 @@
 </template>
 
 <script setup>
-    import { Badge } from '~/components/ui/badge';
-    import { Card, CardHeader, CardDescription, CardContent, CardFooter } from '~/components/ui/card';
+    import { Card, CardHeader, CardDescription, CardContent } from '~/components/ui/card';
     import { formatNumber } from '~/utils/formatUtils.js';
     import LoadingContent from '~/components/LoadingContent.vue';
     import Title from '~/components/Title.vue';
@@ -89,8 +95,13 @@
     const MarketStore = useMarketStore();
     
     const { loading, exchanges } = storeToRefs(MarketStore);
-    console.log(JSON.parse(JSON.stringify(exchanges.value)));
     const { getExchanges } = MarketStore;
+    
+    const trustScoreStyle = (number) => {
+        if(number >= 7 && number <= 10) return '!text-progress';
+        if(number >= 5 && number <= 6) return '!text-warning';
+        return '!text-destructive';
+    };
     
     // SEO
     const title = 'Crypto Exchanges: Ranked by Volume & Trust Score';
