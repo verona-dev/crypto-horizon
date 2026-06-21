@@ -7,8 +7,10 @@
                 v-for='exchange in exchanges'
                 :key='exchange.id'
             >
-                <Card class='w-100 min-h-130 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
+                <Card class='w-150 min-h-150 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
                     <CardHeader>
+                        <Badge variant='outline' class='rounded-full w-12 h-12 mx-auto text-lg flex justify-center text-primary'>#{{ exchange.trust_score_rank }}</Badge>
+                        
                         <div class='flex justify-between items-center'>
                             <div class='flex items-center gap-3'>
                                 <NuxtImg
@@ -21,8 +23,10 @@
                                     <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ exchange.name }}</Title>
                                     <CardDescription class='ml-0.5'>{{ exchange.country }}</CardDescription>
                                 </div>
+                            
                             </div>
                             
+                            <!--  Visit  -->
                             <NuxtLink
                                 :to='exchange.url'
                                 target='_blank'
@@ -38,7 +42,7 @@
                     </CardHeader>
                     
                     <CardContent>
-                        <Badge variant='outline' class='rounded-full w-fit mx-auto text-lg flex justify-center text-primary'>#{{ exchange.trust_score_rank }}</Badge>
+                        <Badge variant='outline' class='rounded-full w-12 h-12 mx-auto text-lg flex justify-center text-primary'>#{{ exchange.trust_score_rank }}</Badge>
                     </CardContent>
                     
                     <CardContent>
