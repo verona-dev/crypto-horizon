@@ -22,6 +22,7 @@
                                         <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ exchange.name }}</Title>
                                         <p class='text-2xl text-primary font-bold'>#{{ exchange.trust_score_rank }}</p>
                                     </div>
+                                    
                                     <CardDescription class='ml-0.5'>{{ exchange.country }}</CardDescription>
                                 </div>
                             </div>
@@ -41,15 +42,28 @@
                         </div>
                     </CardHeader>
                     
+                    <!--  Trade Volume 24h  -->
+                    <CardContent class='my-6'>
+                        <CardDescription>Trade Volume 24h in BTC: </CardDescription>
+                        
+                        <div class='flex items-center gap-2'>
+                            <NuxtIcon
+                                name='logos:bitcoin'
+                                class='mb-0.5'
+                                size='30'
+                            />
+                            
+                            <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ formatNumber(exchange.trade_volume_24h_btc, { style: 'decimal', maximumFractionDigits: 5 }) }}</Title>
+                        </div>
+                    </CardContent>
+                    
+                    <!--  Description  -->
                     <CardContent>
                         <CardDescription>{{ exchange.year_established }}</CardDescription>
                         <p>{{ exchange.description }}</p>
                     </CardContent>
                     
-                    <CardContent>
-                        <p>Trade vol: {{ exchange.trade_volume_24h_btc }}</p>
-                    </CardContent>
-                    
+                    <!--  Trust Score  -->
                     <CardFooter class='flex-col gap-4'>
                         <Badge variant='outline' class='text-lg text-progress/75 w-full py-3 flex justify-center'>Trust Score: {{ exchange.trust_score }}</Badge>
                     </CardFooter>
@@ -61,8 +75,8 @@
 
 <script setup>
     import { Badge } from '~/components/ui/badge';
-    import { Button } from '~/components/ui/button';
-    import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '~/components/ui/card';
+    import { Card, CardHeader, CardDescription, CardContent, CardFooter } from '~/components/ui/card';
+    import { formatNumber } from '~/utils/formatUtils.js';
     import LoadingContent from '~/components/LoadingContent.vue';
     import Title from '~/components/Title.vue';
     
@@ -72,6 +86,7 @@
     const MarketStore = useMarketStore();
     
     const { loading, exchanges } = storeToRefs(MarketStore);
+    console.log(JSON.parse(JSON.stringify(exchanges.value)));
     const { getExchanges } = MarketStore;
     
     // SEO
