@@ -7,23 +7,19 @@
                 v-for='exchange in exchanges'
                 :key='exchange.id'
             >
-                <Card class='w-160 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
+                <Card class='w-150 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between'>
                     <CardHeader>
-                        <div class='flex justify-between items-center'>
+                        <div class='flex justify-between'>
                             <div class='flex items-center gap-3'>
                                 <NuxtImg
                                     :src='exchange.image'
-                                    width='64'
+                                    width='54'
                                     alt='exchange logo'
                                 />
                                 
                                 <!--  Name + Rank + Country  -->
                                 <div class='flex flex-col'>
-                                    <div class='flex items-center gap-4'>
-                                        <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ exchange.name }}</Title>
-                                        <p class='text-2xl mt-0.5 font-bold'>#{{ exchange.trust_score_rank }}</p>
-                                    </div>
-                                    
+                                    <Title :tag='4' class='font-semibold leading-none tracking-tight'>#{{ exchange.trust_score_rank }} {{ exchange.name }}</Title>
                                     <CardDescription class='ml-0.5'>{{ exchange.country }} since {{ exchange.year_established }}</CardDescription>
                                 </div>
                             </div>
@@ -33,6 +29,7 @@
                                 :to='exchange.url'
                                 target='_blank'
                                 aria-label='exchange link'
+                                class='mt-1.5'
                             >
                                 <Button variant='link'>
                                     Visit
@@ -56,10 +53,10 @@
                                 <NuxtIcon
                                     name='logos:bitcoin'
                                     class='mb-0.5'
-                                    size='36'
+                                    size='24'
                                 />
                                 
-                                <Title :tag='4' class='font-semibold leading-none tracking-tight'>{{ formatNumber(exchange.trade_volume_24h_btc, { style: 'decimal', maximumFractionDigits: 3 }) }}</Title>
+                                <Title :tag='5' class='font-semibold leading-none tracking-tight'>{{ formatNumber(exchange.trade_volume_24h_btc, { style: 'decimal', maximumFractionDigits: 3 }) }}</Title>
                             </div>
                         </div>
                         
@@ -67,7 +64,7 @@
                         <div class='flex-1 text-center'>
                             <CardDescription>Trust Score</CardDescription>
                             <Title
-                                :tag='4'
+                                :tag='5'
                                 class='font-semibold leading-none tracking-tight'
                                 :class='trustScoreStyle(exchange.trust_score)'
                             >
