@@ -37,7 +37,7 @@
                                 @click="setTheme(theme)"
                                 :class='[
                                     "!w-56 relative flex flex-col flex-wrap items-center justify-around cursor-pointer select-none border-2",
-                                    { "bg-muted/50 border-foreground": !$colorMode.unknown && theme.value === $colorMode.preference },
+                                    { "bg-muted border-foreground": !$colorMode.unknown && theme.value === $colorMode.preference },
                                 ]'
                             >
                                 <CircleCheck
