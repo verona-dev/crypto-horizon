@@ -40,7 +40,7 @@
                 <DropdownMenuTrigger as-child :disabled='disable_dropdown'>
                     <Button
                         variant='ghost'
-                        class='bg-muted/50 group !h-13 rounded-tl-none rounded-bl-none border-l border-border'
+                        class='bg-muted group !h-13 rounded-tl-none rounded-bl-none border-l border-border'
                         :data-state='open ? "open" : "closed"'
                     >
                         <ChevronDown class='ml-auto transition-transform duration-400 group-data-[state=open]:rotate-180' />

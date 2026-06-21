@@ -270,9 +270,8 @@ export const useMarketStore = defineStore('MarketStore', {
           try {
               const response = await useFetchCoingecko('/exchanges');
               
-              if(response) {
+              if(response && !this.exchanges.length) {
                   this.exchanges = response;
-                  console.log(this.exchanges[0]);
               }
           } catch(error) {
               console.error(error);

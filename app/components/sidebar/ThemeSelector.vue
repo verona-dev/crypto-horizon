@@ -37,12 +37,12 @@
                                 @click="setTheme(theme)"
                                 :class='[
                                     "!w-56 relative flex flex-col flex-wrap items-center justify-around cursor-pointer select-none border-2",
-                                    { "bg-muted/50 border-foreground": !$colorMode.unknown && theme.value === $colorMode.preference },
+                                    { "bg-muted border-foreground": !$colorMode.unknown && theme.value === $colorMode.preference },
                                 ]'
                             >
                                 <CircleCheck
                                     v-if='theme.value === $colorMode.preference'
-                                    class='absolute -top-3 -right-3 size-8 rounded-full fill-card'
+                                    class='bg-background absolute -top-3 -right-3 size-8 rounded-full fill-card'
                                 />
                                 
                                 <!--  Theme name  -->

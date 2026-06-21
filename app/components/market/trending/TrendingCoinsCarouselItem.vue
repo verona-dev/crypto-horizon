@@ -1,5 +1,5 @@
 <template>
-    <Card class='bg-muted/25 w-130 gap-10 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
+    <Card class='w-130 gap-10 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
         <Skeleton
             v-if='!coin'
             class='w-full h-full'
