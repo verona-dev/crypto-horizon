@@ -7,7 +7,7 @@
                 v-for='exchange in exchanges'
                 :key='exchange.id'
             >
-                <Card class='bg-muted/25 w-100 min-h-160 gap-10 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
+                <Card class='w-100 min-h-160 gap-10 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between select-none'>
                     <CardHeader>
                         <div class='flex justify-between items-center'>
                             <div class='flex items-center gap-3'>
