@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-    import ChainsCloud  from '~/components/ChainsCloud.vue';
     import GradientText from '~/components/ui/gradient-text/GradientText.vue';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
     
