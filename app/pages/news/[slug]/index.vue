@@ -1,8 +1,8 @@
 <template>
-    <div class='w-full'>
+    <div class='page'>
         <LoadingContent v-if='loading' />
         
-        <div v-else class='news page'>
+        <div v-else class='news flex flex-wrap gap-16 justify-center'>
             <!--  <Breadcrumb />  -->
             
             <Card class='bg-transparent border-none shadow-none max-w-7xl pt-0 pb-10 mx-auto'>
