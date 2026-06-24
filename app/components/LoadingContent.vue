@@ -1,17 +1,11 @@
 <template>
-    <div class='relative xl:w-screen h-screen flex justify-center items-center'>
-        <div class='flex flex-col items-center justify-center gap-16 pb-8'>
-            <h1 class='font-great text-primary text-4xl lg:text-6xl xl:text-8xl'>{{ site_name }}</h1>
-            
-            <ChainsCloud />
-            
-            <RadiantText
-                class='!r inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:text-neutral-400'
-                :duration='5'
-            >
-                <span class="font-great text-primary text-3xl lg:text-5xl xl:text-7xl">Loading...</span>
-            </RadiantText>
-        </div>
+    <div class='relative w-screen h-full flex justify-center items-center'>
+        <GradientText
+            :colors="['#5227FF', '#FF9FFC', '#B19EEF']"
+            :animation-speed="8"
+        >
+            <h1 class='font-great text-4xl lg:text-6xl xl:text-8xl'>{{ site_name }}</h1>
+        </GradientText>
         
         <SnowfallBg
             v-if='darkThemes'
@@ -26,9 +20,10 @@
 </template>
 
 <script setup>
-    import { SnowfallBg } from '~/components/ui/snowfall-bg';
     import ChainsCloud  from '~/components/ChainsCloud.vue';
+    import GradientText from '~/components/ui/gradient-text/GradientText.vue';
     import { RadiantText } from '~/components/ui/radiant-text';
+    import { SnowfallBg } from '~/components/ui/snowfall-bg';
     
     const siteConfig = useSiteConfig();
     const site_name = ref(siteConfig?.name || '');
