@@ -28,7 +28,7 @@
                     </NuxtImg>
                 </div>
                 
-                <div class='card-back bg-card'>
+                <div class='card-back bg-popover'>
                     <CardContent class='w-4/5 px-0'>
                         <Table>
                             <TableBody>

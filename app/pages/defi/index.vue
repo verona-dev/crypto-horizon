@@ -1,8 +1,8 @@
 <template>
-    <LoadingContent v-if='loading' />
-    
-    <div v-else class='page'>
-        <GlobalDefi />
+    <div class='page'>
+        <LoadingContent v-if='loading' />
+        
+        <GlobalDefi v-else />
     </div>
 </template>
 
@@ -19,7 +19,7 @@
     const { getCoingeckoGlobalDefi } = MarketStore;
     
     // SEO
-    const title = 'Global DeFi? Your Complete Guide to Decentralized Finance';
+    const title = 'Global DeFi - Your Complete Guide to Decentralized Finance';
     const description = 'Learn what Decentralized Finance (DeFi) is, how it works, key use cases like lending, borrowing, and yield farming, and why it’s transforming finance without banks.';
     
     definePageMeta({

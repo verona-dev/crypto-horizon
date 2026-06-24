@@ -1,8 +1,8 @@
 <template>
-    <LoadingContent v-if='loading' />
-    
-    <div v-else class='page'>
-        <div class='flex flex-wrap gap-16 justify-center'>
+    <div class='page'>
+        <LoadingContent v-if='loading' />
+        
+        <div v-else class='flex flex-wrap gap-16 justify-center'>
             <div
                 v-for='exchange in exchanges'
                 :key='exchange.id'

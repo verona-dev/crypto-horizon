@@ -10,12 +10,12 @@
             />
         </div>
         
-        <ChainsCloud />
+        <LoadingChains />
     </div>
 </template>
 
 <script setup>
-    import ChainsCloud  from '~/components/ChainsCloud.vue';
+    import LoadingChains  from '@/components/LoadingChains.vue';
     import TextGlitch from '~/components/ui/text-glitch/TextGlitch.vue';
     
     const siteConfig = useSiteConfig();

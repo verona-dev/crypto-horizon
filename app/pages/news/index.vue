@@ -1,8 +1,8 @@
 <template>
-    <div class='w-full'>
+    <div class='page'>
         <LoadingContent v-if='loading' />
         
-        <div v-else class='page'>
+        <div v-else class='flex flex-wrap gap-16 justify-center'>
             <div v-if='!darkThemes' class='h-[450px] flex items-center'>
                 <Title :tag='1' :level='2'>{{ page_title }}</Title>
             </div>
