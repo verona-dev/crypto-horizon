@@ -1,12 +1,9 @@
 <template>
-    <div class='w-full'>
+    <div class='page'>
         <LoadingContent v-if='loading' />
         
         <!--  Margin top because of market bar in markets  -->
-        <div
-            v-else
-            class='page mt-20'
-        >
+        <div v-else class='flex flex-wrap gap-16 justify-center'>
             <Title :tag='1' :level='2'>News Outlets</Title>
             
             <div v-if='newsOutlets' class='flex flex-wrap justify-center gap-6 xl:gap-20'>
@@ -22,7 +19,6 @@
 
 <script setup>
     import LoadingContent from '@/components/LoadingContent.vue';
-    import LoadingSpinner from '~/components/LoadingSpinner.vue';
     import OutletCard from '~/components/news/OutletCard.vue';
     import Title from '~/components/Title.vue';
     
