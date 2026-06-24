@@ -1,8 +1,8 @@
 <template>
-    <LoadingContent v-if='loading' />
-    
-    <div v-else class='page'>
-        <GlobalDefi />
+    <div class='page'>
+        <LoadingContent v-if='loading' />
+        
+        <GlobalDefi v-else />
     </div>
 </template>
 
