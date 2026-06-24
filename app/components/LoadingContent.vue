@@ -1,6 +1,6 @@
 <template>
     <div class='w-screen'>
-        <div class='h-full flex flex-col justify-center items-center gap-8 pt-16'>
+        <div class='h-full flex flex-col justify-center items-center gap-8 pt-36'>
             <GradientText
                 :colors='["#5227FF", "#FF9FFC", "#B19EEF"]'
                 :animation-speed='8'
