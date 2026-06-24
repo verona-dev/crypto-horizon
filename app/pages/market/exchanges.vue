@@ -1,6 +1,6 @@
 <template>
     <div class='page'>
-        <LoadingContent v-if='!loading' />
+        <LoadingContent v-if='loading' />
         
         <div v-else class='flex flex-wrap gap-16 justify-center'>
             <div
