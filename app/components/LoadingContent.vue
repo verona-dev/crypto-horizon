@@ -22,7 +22,6 @@
 <script setup>
     import ChainsCloud  from '~/components/ChainsCloud.vue';
     import GradientText from '~/components/ui/gradient-text/GradientText.vue';
-    import { RadiantText } from '~/components/ui/radiant-text';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
     
     const siteConfig = useSiteConfig();
