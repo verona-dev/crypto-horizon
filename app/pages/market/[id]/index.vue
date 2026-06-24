@@ -1,8 +1,8 @@
 <template>
-    <div class='w-full'>
+    <div class='page'>
         <LoadingContent v-if='loading' />
         
-        <div v-else class='page'>
+        <template v-else>
             <Card
                 v-if='coin'
                 class='bg-transparent flex flex-col items-center border-none gap-6'
@@ -11,7 +11,7 @@
                 
                 <CoinBody :coin='coin'/>
             </Card>
-        </div>
+        </template>
     </div>
 </template>
 
