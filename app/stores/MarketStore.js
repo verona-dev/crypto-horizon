@@ -285,11 +285,17 @@ export const useMarketStore = defineStore('MarketStore', {
             this.loading = true;
             
             try {
-                const response = await useFetchCoingecko('entities/list');
+                const responseList = await useFetchCoingecko('entities/list', {
+                    params: {
+                        per_page: 5 },
+                });
                 
-                if(response) {
-                    this.publicTreasury = response;
-                    console.log(JSON.parse(JSON.stringify(this.publicTreasury)));
+                if(responseList && responseList.length) {
+                    const treasuries = responseList.map(entity => useFetchCoingecko(`public_treasury/${entity.id}`));
+                    
+                    const promises = await Promise.all(treasuries);
+                    
+                    this.publicTreasury = promises.filter(result => result !== null && result !== undefined);
                 }
                 
             } catch (error) {
