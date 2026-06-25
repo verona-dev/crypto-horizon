@@ -30,6 +30,7 @@ export const useMarketStore = defineStore('MarketStore', {
         globalMarket: {},
         loading: false,
         platformsSummary : [],
+        publicTreasury: [],
         trendingCoins: [],
         trendingNfts: [],
     }),
@@ -265,19 +266,37 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         
         async getExchanges() {
-          this.loading = true;
-          
-          try {
-              const response = await useFetchCoingecko('/exchanges');
-              
-              if(response && !this.exchanges.length) {
-                  this.exchanges = response;
-              }
-          } catch(error) {
-              console.error(error);
-          } finally {
-              this.loading = false;
-          }
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko('/exchanges');
+                
+                if(response && !this.exchanges.length) {
+                    this.exchanges = response;
+                }
+            } catch(error) {
+                console.error(error);
+            } finally {
+                this.loading = false;
+            }
+        },
+        
+        async getPublicTreasury() {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko('entities/list');
+                
+                if(response) {
+                    this.publicTreasury = response;
+                    console.log(JSON.parse(JSON.stringify(this.publicTreasury)));
+                }
+                
+            } catch (error) {
+                console.error(error);
+            } finally {
+                this.loading = false;
+            }
         },
     },
     
