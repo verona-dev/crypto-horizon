@@ -3,8 +3,8 @@
         <LoadingContent v-if='loading' />
         
         <div v-else class='flex flex-wrap gap-16 justify-center'>
-            <Table>
-                <TableCaption>A list of your recent invoices.</TableCaption>
+            <Table class='font-mono'>
+                <TableCaption>A list of Public treasury entities.</TableCaption>
                 <TableHeader>
                     <TableRow>
                         <TableHead class=''>Company Name</TableHead>
@@ -13,8 +13,9 @@
                         <TableHead>Type</TableHead>
                         <TableHead>Current Value</TableHead>
                         <TableHead>Unrealised PNL</TableHead>
+                        
                         <TableHead class='flex items-center gap-1'>
-                            <span>mNAV</span>
+                            <span>{{ glossary.m_nav.label}}</span>
                             
                             <HoverCard :open-delay='200' class='flex'>
                                 <HoverCardTrigger>
@@ -24,7 +25,20 @@
                                 <HoverCardContent>{{ glossary.m_nav.description}}</HoverCardContent>
                             </HoverCard>
                         </TableHead>
-                        <TableHead class="text-right">Total asset value per share</TableHead>
+                        
+                        <TableHead class='text-right'>
+                            <div class='flex items-center gap-1'>
+                                <span>{{ glossary.total_value_asset.label }}</span>
+                                
+                                <HoverCard :open-delay='200' class='flex'>
+                                    <HoverCardTrigger>
+                                        <InfoIcon />
+                                    </HoverCardTrigger>
+                                    
+                                    <HoverCardContent>{{ glossary.total_value_asset.description }}</HoverCardContent>
+                                </HoverCard>
+                            </div>
+                        </TableHead>
                     </TableRow>
                 </TableHeader>
                 
