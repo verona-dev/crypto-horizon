@@ -49,7 +49,10 @@
                     >
                         <TableCell class="font-medium">{{ entity.name || '-' }}</TableCell>
                         <TableCell>{{ entity.symbol || '-' }}</TableCell>
-                        <TableCell>{{ entity.country || '-' }}</TableCell>
+                        <TableCell>
+                            <span v-if='entity.country === "NO"'>-</span>
+                            <span v-else>{{ entity.country }}</span>
+                        </TableCell>
                         <TableCell>{{ entity.type || '-' }}</TableCell>
                         <TableCell>{{ entity.total_treasury_value_usd || '-' }}</TableCell>
                         <TableCell>{{ entity.unrealized_pnl || '-' }}</TableCell>
