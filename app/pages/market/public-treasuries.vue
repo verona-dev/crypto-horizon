@@ -11,6 +11,7 @@
                         <TableHead>Ticker</TableHead>
                         <TableHead class='text-center'>Country</TableHead>
                         <TableHead>Type</TableHead>
+                        <TableHead>Holdings</TableHead>
                         <TableHead>Current Value</TableHead>
                         <TableHead>Unrealised PNL</TableHead>
                         
@@ -57,6 +58,21 @@
                         <TableCell>
                             <Badge v-if='entity.type === "company"'>{{ entity.type || '-' }}</Badge>
                             <Badge v-else variant='secondary'>{{ entity.type || '-' }}</Badge>
+                        </TableCell>
+                        
+                        <TableCell class='flex items-center gap-2'>
+                            <template
+                                v-for='coin in entity.holdings'
+                                :key='coin.coin_id'
+                            >
+                                <div class='flex items-center justify-center gap-1'>
+                                    <NuxtIcon
+                                        v-if='coin.coin_id'
+                                        :name='`token-branded:${coin.coin_id}`'
+                                        size='24'
+                                    />
+                                </div>
+                            </template>
                         </TableCell>
                         
                         <TableCell>{{ entity.total_treasury_value_usd || '-' }}</TableCell>
