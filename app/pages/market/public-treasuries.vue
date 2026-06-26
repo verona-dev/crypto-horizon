@@ -13,7 +13,17 @@
                         <TableHead>Type</TableHead>
                         <TableHead>Current Value</TableHead>
                         <TableHead>Unrealised PNL</TableHead>
-                        <TableHead>Market to Net asset value</TableHead>
+                        <TableHead class='flex items-center gap-1'>
+                            <span>mNAV</span>
+                            
+                            <HoverCard :open-delay='200' class='flex'>
+                                <HoverCardTrigger>
+                                    <InfoIcon />
+                                </HoverCardTrigger>
+                                
+                                <HoverCardContent>{{ glossary.m_nav.description}}</HoverCardContent>
+                            </HoverCard>
+                        </TableHead>
                         <TableHead class="text-right">Total asset value per share</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -29,7 +39,8 @@
                         <TableCell>{{ entity.type || '-' }}</TableCell>
                         <TableCell>{{ entity.total_treasury_value_usd || '-' }}</TableCell>
                         <TableCell>{{ entity.unrealized_pnl || '-' }}</TableCell>
-                        <TableCell>{{ entity.m_nav || '-' }}</TableCell>
+                        <TableCell>{{ entity.m_nav || '-' }}<span v-if='entity.m_nav'>x</span>
+                        </TableCell>
                         <TableCell class="text-right">{{ entity.total_asset_value_per_share_usd || '-' }}</TableCell>
                     </TableRow>
                 </TableBody>
@@ -40,11 +51,13 @@
 
 <script setup>
     import { Button } from '~/components/ui/button';
-    import { Card, CardHeader, CardDescription, CardContent } from '~/components/ui/card';
     import { formatNumber } from '~/utils/formatUtils.js';
+    import glossary from '~/assets/data/market/glossary.json';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index.ts';
+    import InfoIcon from '@/components/InfoIcon.vue';
     import LoadingContent from '~/components/LoadingContent.vue';
-    import Title from '~/components/Title.vue';
     import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+    import Title from '~/components/Title.vue';
     
     // MarketStore
     import { storeToRefs } from 'pinia';
