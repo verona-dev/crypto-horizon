@@ -7,10 +7,13 @@
                 <TableCaption>A list of your recent invoices.</TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead class="w-[100px]">Company Name</TableHead>
+                        <TableHead class=''>Company Name</TableHead>
                         <TableHead>Ticker</TableHead>
                         <TableHead>Country</TableHead>
-                        <TableHead class="text-right">Holdings</TableHead>
+                        <TableHead>Type</TableHead>
+                        <TableHead>Current Value</TableHead>
+                        <TableHead>Unrealised PNL</TableHead>
+                        <TableHead class="text-right">Market to Net asset value</TableHead>
                     </TableRow>
                 </TableHeader>
                 
@@ -20,9 +23,12 @@
                         :key='entity.id'
                     >
                         <TableCell class="font-medium">{{ entity.name }}</TableCell>
-                        <TableCell>Paid</TableCell>
-                        <TableCell>Credit Card</TableCell>
-                        <TableCell class="text-right">$250.00</TableCell>
+                        <TableCell>{{ entity.symbol }}</TableCell>
+                        <TableCell>{{ entity.country }}</TableCell>
+                        <TableCell>{{ entity.type }}</TableCell>
+                        <TableCell>{{ entity.total_treasury_value_usd }}</TableCell>
+                        <TableCell>{{ entity.unrealized_pnl }}</TableCell>
+                        <TableCell class="text-right">{{ entity.m_nav }}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
