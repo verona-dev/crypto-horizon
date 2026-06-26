@@ -3,21 +3,29 @@
         <LoadingContent v-if='loading' />
         
         <div v-else class='flex flex-wrap gap-16 justify-center'>
-            <div
-                v-if='publicTreasury.length'
-                v-for='entity in publicTreasury'
-                :key='entity.id'
-            >
-                <Card class='w-150 min-h-90 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between'>
-                    <CardHeader>
-                        {{ entity.id }}
-                    </CardHeader>
-                    
-                    <CardContent>
-                    
-                    </CardContent>
-                </Card>
-            </div>
+            <Table>
+                <TableCaption>A list of your recent invoices.</TableCaption>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead class="w-[100px]">Company Name</TableHead>
+                        <TableHead>Ticker</TableHead>
+                        <TableHead>Country</TableHead>
+                        <TableHead class="text-right">Holdings</TableHead>
+                    </TableRow>
+                </TableHeader>
+                
+                <TableBody>
+                    <TableRow
+                        v-for='entity in publicTreasury'
+                        :key='entity.id'
+                    >
+                        <TableCell class="font-medium">{{ entity.name }}</TableCell>
+                        <TableCell>Paid</TableCell>
+                        <TableCell>Credit Card</TableCell>
+                        <TableCell class="text-right">$250.00</TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
         </div>
     </div>
 </template>
@@ -28,6 +36,7 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import LoadingContent from '~/components/LoadingContent.vue';
     import Title from '~/components/Title.vue';
+    import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
     
     // MarketStore
     import { storeToRefs } from 'pinia';
@@ -42,7 +51,7 @@
     const description = 'Find the most transparent crypto treasuries. See how projects manage their funds, from Bitcoin to Ethereum and beyond, with verified on-chain metrics.';
     
     onMounted(async() => {
-        await getPublicTreasury();
+        if(!publicTreasury.length) await getPublicTreasury();
     })
     
     definePageMeta({
