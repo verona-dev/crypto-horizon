@@ -13,7 +13,8 @@
                         <TableHead>Type</TableHead>
                         <TableHead>Current Value</TableHead>
                         <TableHead>Unrealised PNL</TableHead>
-                        <TableHead class="text-right">Market to Net asset value</TableHead>
+                        <TableHead>Market to Net asset value</TableHead>
+                        <TableHead class="text-right">Total asset value per share</TableHead>
                     </TableRow>
                 </TableHeader>
                 
@@ -22,13 +23,14 @@
                         v-for='entity in publicTreasury'
                         :key='entity.id'
                     >
-                        <TableCell class="font-medium">{{ entity.name }}</TableCell>
-                        <TableCell>{{ entity.symbol }}</TableCell>
-                        <TableCell>{{ entity.country }}</TableCell>
-                        <TableCell>{{ entity.type }}</TableCell>
-                        <TableCell>{{ entity.total_treasury_value_usd }}</TableCell>
-                        <TableCell>{{ entity.unrealized_pnl }}</TableCell>
-                        <TableCell class="text-right">{{ entity.m_nav }}</TableCell>
+                        <TableCell class="font-medium">{{ entity.name || '-' }}</TableCell>
+                        <TableCell>{{ entity.symbol || '-' }}</TableCell>
+                        <TableCell>{{ entity.country || '-' }}</TableCell>
+                        <TableCell>{{ entity.type || '-' }}</TableCell>
+                        <TableCell>{{ entity.total_treasury_value_usd || '-' }}</TableCell>
+                        <TableCell>{{ entity.unrealized_pnl || '-' }}</TableCell>
+                        <TableCell>{{ entity.m_nav || '-' }}</TableCell>
+                        <TableCell class="text-right">{{ entity.total_asset_value_per_share_usd || '-' }}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
