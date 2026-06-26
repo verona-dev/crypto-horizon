@@ -7,9 +7,9 @@
                 <TableCaption>A list of Public treasury entities.</TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead class=''>Company Name</TableHead>
+                        <TableHead>Company Name</TableHead>
                         <TableHead>Ticker</TableHead>
-                        <TableHead>Country</TableHead>
+                        <TableHead class='text-center'>Country</TableHead>
                         <TableHead>Type</TableHead>
                         <TableHead>Current Value</TableHead>
                         <TableHead>Unrealised PNL</TableHead>
@@ -49,15 +49,19 @@
                     >
                         <TableCell class="font-medium">{{ entity.name || '-' }}</TableCell>
                         <TableCell>{{ entity.symbol || '-' }}</TableCell>
-                        <TableCell>
+                        <TableCell class='text-center'>
                             <span v-if='entity.country === "NO"'>-</span>
                             <span v-else>{{ entity.country }}</span>
                         </TableCell>
-                        <TableCell>{{ entity.type || '-' }}</TableCell>
+                        
+                        <TableCell>
+                            <Badge v-if='entity.type === "company"'>{{ entity.type || '-' }}</Badge>
+                            <Badge v-else variant='secondary'>{{ entity.type || '-' }}</Badge>
+                        </TableCell>
+                        
                         <TableCell>{{ entity.total_treasury_value_usd || '-' }}</TableCell>
                         <TableCell>{{ entity.unrealized_pnl || '-' }}</TableCell>
-                        <TableCell>{{ entity.m_nav || '-' }}<span v-if='entity.m_nav'>x</span>
-                        </TableCell>
+                        <TableCell>{{ entity.m_nav || '-' }}<span v-if='entity.m_nav'>x</span></TableCell>
                         <TableCell class="text-right">{{ entity.total_asset_value_per_share_usd || '-' }}</TableCell>
                     </TableRow>
                 </TableBody>
@@ -67,6 +71,7 @@
 </template>
 
 <script setup>
+    import { Badge } from '~/components/ui/badge';
     import { Button } from '~/components/ui/button';
     import { formatNumber } from '~/utils/formatUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
