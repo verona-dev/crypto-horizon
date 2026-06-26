@@ -30,6 +30,7 @@ export const useMarketStore = defineStore('MarketStore', {
         globalMarket: {},
         loading: false,
         platformsSummary : [],
+        publicTreasury: [],
         trendingCoins: [],
         trendingNfts: [],
     }),
@@ -265,19 +266,43 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         
         async getExchanges() {
-          this.loading = true;
-          
-          try {
-              const response = await useFetchCoingecko('/exchanges');
-              
-              if(response && !this.exchanges.length) {
-                  this.exchanges = response;
-              }
-          } catch(error) {
-              console.error(error);
-          } finally {
-              this.loading = false;
-          }
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko('/exchanges');
+                
+                if(response && !this.exchanges.length) {
+                    this.exchanges = response;
+                }
+            } catch(error) {
+                console.error(error);
+            } finally {
+                this.loading = false;
+            }
+        },
+        
+        async getPublicTreasury() {
+            this.loading = true;
+            
+            try {
+                const responseList = await useFetchCoingecko('entities/list', {
+                    params: {
+                        per_page: 5 },
+                });
+                
+                if(responseList && responseList.length) {
+                    const treasuries = responseList.map(entity => useFetchCoingecko(`public_treasury/${entity.id}`));
+                    
+                    const promises = await Promise.all(treasuries);
+                    
+                    this.publicTreasury = promises.filter(result => result !== null && result !== undefined);
+                }
+                
+            } catch (error) {
+                console.error(error);
+            } finally {
+                this.loading = false;
+            }
         },
     },
     

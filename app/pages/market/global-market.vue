@@ -33,7 +33,7 @@
     // Market Store
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    const { getTrendingSearchList } = MarketStore;
+    const { getTrendingSearchList, getPublicTreasury } = MarketStore;
     
     // SEO
     const title = 'Global Market Dashboard: Fear & Greed, BTC Dominance, Trending Coins & NFTs';
@@ -47,5 +47,6 @@
     
     onMounted(() => {
         getTrendingSearchList();
+        getPublicTreasury();
     });
 </script>

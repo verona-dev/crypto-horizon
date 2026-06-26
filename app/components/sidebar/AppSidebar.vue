@@ -68,6 +68,13 @@
                             return isChildActive(this.url);
                         },
                     },
+                    {
+                        title: 'Public Treasuries',
+                        url: '/market/public-treasuries',
+                        get isActive() {
+                            return isChildActive(this.url);
+                        },
+                    },
                 ],
             },
             {
