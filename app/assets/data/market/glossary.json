@@ -79,7 +79,7 @@
         "description": "Total Supply = Onchain supply - burned tokens \n\n The amount of coins that have already been created, minus any coins that have been burned (removed from circulation).\n\n It is comparable to outstanding shares in the stock market."
     },
     "total_value_asset": {
-        "label": "Current Value(USD)",
+        "label": "Total Value(USD)",
         "description": "Total Value Asset Per share. \n\n The total value of all assets held in the treasury, divided by the number of shares or tokens outstanding, expressed in USD."
     },
     "volume": {
