@@ -15,7 +15,7 @@ const formatNumber = (value, {
 ) => {
     if (value == null || isNaN(value)) return '-';
     
-    let num = Math.abs(Number(value));
+    let num = Number(value);
     
     if (style === 'percent') {
         num = num / 100;
