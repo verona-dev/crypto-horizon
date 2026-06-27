@@ -84,11 +84,23 @@
                                         :key='coin.coin_id'
                                     >
                                         <div class='flex items-center justify-center gap-1'>
-                                            <NuxtIcon
-                                                v-if='coin.coin_id'
-                                                :name='`token-branded:${coin.coin_id}`'
-                                                size='24'
-                                            />
+                                            <HoverCard :open-delay='200' class='flex'>
+                                                <HoverCardTrigger>
+                                                    <NuxtIcon
+                                                        v-if='coin.coin_id'
+                                                        :name='`token-branded:${coin.coin_id}`'
+                                                        size='24'
+                                                    />
+                                                </HoverCardTrigger>
+                                                
+                                                <HoverCardContent>
+                                                    <Title :tag='3' :level='6' class='capitalize'>{{ coin.coin_id }}</Title>
+                                                    <p>Holdings: {{ coin.amount }}</p>
+                                                    <p>Total entry value USD: {{ coin.total_entry_value_usd }}</p>
+                                                    <p>Current value USD: {{ coin.current_value_usd }}</p>
+                                                    <p>Unrealised PNL: {{ coin.unrealized_pnl }}</p>
+                                                </HoverCardContent>
+                                            </HoverCard>
                                         </div>
                                     </template>
                                 </TableCell>
