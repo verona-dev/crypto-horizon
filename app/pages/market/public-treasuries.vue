@@ -114,7 +114,10 @@
                                                         </span>
                                                     </p>
                                                     <p class='text-muted-foreground'>Unrealised PNL:
-                                                        <span class='text-foreground'>{{
+                                                        <span
+                                                            class='text-foreground'
+                                                            :class='getTrendClass(coin.unrealized_pnl)'
+                                                        >{{
                                                                 formatNumber(coin.unrealized_pnl, {
                                                                     compact: true,
                                                                     decimals: 2
@@ -141,7 +144,7 @@
                                 </TableCell>
                                 
                                 <!--  Unrealised PNL  -->
-                                <TableCell>{{ formatNumber(entity.unrealized_pnl, { compact: true, decimals: 2 }) || '-' }}</TableCell>
+                                <TableCell :class='getTrendClass(entity.unrealized_pnl)'>{{ formatNumber(entity.unrealized_pnl, { compact: true, decimals: 2 }) || '-' }}</TableCell>
                                 
                                 <!--  nNav  -->
                                 <TableCell>{{ entity.m_nav || '-' }}<span v-if='entity.m_nav'>x</span></TableCell>
@@ -162,6 +165,7 @@
     import { Button } from '~/components/ui/button';
     import { Card } from '~/components/ui/card';
     import { formatNumber } from '~/utils/formatUtils.js';
+    import { getTrendClass } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index.ts';
     import InfoIcon from '@/components/InfoIcon.vue';
