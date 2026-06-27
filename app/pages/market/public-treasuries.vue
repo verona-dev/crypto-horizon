@@ -4,103 +4,115 @@
         
         <Card
             v-else
-            class='flex flex-wrap gap-16 justify-center w-full h-full !shadow-2x'
+            class='w-full h-full !shadow-2xl'
         >
-            <div class='flex flex-col items-center justify-center gap-8 p-14'>
-                <Title :tag='1' :level='3'>Crypto Treasury Holdings</Title>
-            </div>
-            
-            <Table class='font-mono'>
-                <TableCaption>A list of Public treasury entities.</TableCaption>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead>Company Name</TableHead>
-                        <TableHead>Ticker</TableHead>
-                        <TableHead class='text-center'>Country</TableHead>
-                        <TableHead>Type</TableHead>
-                        <TableHead>Holdings</TableHead>
-                        <TableHead>Total Treasury</TableHead>
-                        <TableHead>Unrealised PNL</TableHead>
-                        
-                        <TableHead class='flex items-center gap-1'>
-                            <span>{{ glossary.m_nav.label}}</span>
-                            
-                            <HoverCard :open-delay='200' class='flex'>
-                                <HoverCardTrigger>
-                                    <InfoIcon />
-                                </HoverCardTrigger>
-                                
-                                <HoverCardContent>{{ glossary.m_nav.description}}</HoverCardContent>
-                            </HoverCard>
-                        </TableHead>
-                        
-                        <TableHead class='text-right'>
-                            <div class='flex items-center gap-1'>
-                                <span>{{ glossary.total_value_asset_per_share.label }}</span>
-                                
-                                <HoverCard :open-delay='200' class='flex'>
-                                    <HoverCardTrigger>
-                                        <InfoIcon />
-                                    </HoverCardTrigger>
-                                    
-                                    <HoverCardContent>{{ glossary.total_value_asset_per_share.description }}</HoverCardContent>
-                                </HoverCard>
-                            </div>
-                        </TableHead>
-                    </TableRow>
-                </TableHeader>
+            <div class='w-full flex flex-col'>
+                <!--   Header   -->
+                <div class='flex flex-col items-center justify-center gap-8 p-14'>
+                    <Title :tag='1' :level='3' class='mt-12'>Crypto Treasury Holdings</Title>
+                </div>
                 
-                <TableBody>
-                    <TableRow
-                        v-for='entity in publicTreasury'
-                        :key='entity.id'
-                    >
-                        <TableCell class="font-medium">{{ entity.name || '-' }}</TableCell>
+                <!--   Table   -->
+                <div>
+                    <Table class='m-8 font-mono'>
+                        <TableCaption>A list of Public treasury entities.</TableCaption>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>Company Name</TableHead>
+                                <TableHead>Ticker</TableHead>
+                                <TableHead class='text-center'>Country</TableHead>
+                                <TableHead>Type</TableHead>
+                                <TableHead>Holdings</TableHead>
+                                <TableHead>Total Treasury</TableHead>
+                                <TableHead>Unrealised PNL</TableHead>
+                                
+                                <TableHead class='flex items-center gap-1'>
+                                    <span>{{ glossary.m_nav.label }}</span>
+                                    
+                                    <HoverCard :open-delay='200' class='flex'>
+                                        <HoverCardTrigger>
+                                            <InfoIcon />
+                                        </HoverCardTrigger>
+                                        
+                                        <HoverCardContent>{{ glossary.m_nav.description }}</HoverCardContent>
+                                    </HoverCard>
+                                </TableHead>
+                                
+                                <TableHead class='text-right'>
+                                    <div class='flex items-center gap-1'>
+                                        <span>{{ glossary.total_value_asset_per_share.label }}</span>
+                                        
+                                        <HoverCard :open-delay='200' class='flex'>
+                                            <HoverCardTrigger>
+                                                <InfoIcon />
+                                            </HoverCardTrigger>
+                                            
+                                            <HoverCardContent>{{
+                                                    glossary.total_value_asset_per_share.description
+                                                              }}
+                                            </HoverCardContent>
+                                        </HoverCard>
+                                    </div>
+                                </TableHead>
+                            </TableRow>
+                        </TableHeader>
                         
-                        <TableCell>{{ entity.symbol || '-' }}</TableCell>
-                        
-                        <!--  Country  -->
-                        <TableCell class='text-center'>
-                            <span v-if='entity.country === "NO"'>-</span>
-                            <span v-else>{{ entity.country }}</span>
-                        </TableCell>
-                        
-                        <!--  Type  -->
-                        <TableCell>
-                            <Badge v-if='entity.type === "company"'>{{ entity.type || '-' }}</Badge>
-                            <Badge v-else variant='secondary'>{{ entity.type || '-' }}</Badge>
-                        </TableCell>
-                        
-                        <!--  Holdings  -->
-                        <TableCell class='flex items-center gap-2'>
-                            <template
-                                v-for='coin in entity.holdings'
-                                :key='coin.coin_id'
+                        <TableBody>
+                            <TableRow
+                                v-for='entity in publicTreasury'
+                                :key='entity.id'
                             >
-                                <div class='flex items-center justify-center gap-1'>
-                                    <NuxtIcon
-                                        v-if='coin.coin_id'
-                                        :name='`token-branded:${coin.coin_id}`'
-                                        size='24'
-                                    />
-                                </div>
-                            </template>
-                        </TableCell>
-                        
-                        <!--  Total Treasury Value  -->
-                        <TableCell>{{ entity.total_treasury_value_usd || '-' }}</TableCell>
-                        
-                        <!--  Unrealised PNL  -->
-                        <TableCell>{{ entity.unrealized_pnl || '-' }}</TableCell>
-                        
-                        <!--  nNav  -->
-                        <TableCell>{{ entity.m_nav || '-' }}<span v-if='entity.m_nav'>x</span></TableCell>
-                        
-                        <!--  Total asset value per share  -->
-                        <TableCell class="text-right">{{ entity.total_asset_value_per_share_usd || '-' }}</TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
+                                <TableCell class="font-medium">{{ entity.name || '-' }}</TableCell>
+                                
+                                <TableCell>{{ entity.symbol || '-' }}</TableCell>
+                                
+                                <!--  Country  -->
+                                <TableCell class='text-center'>
+                                    <span v-if='entity.country === "NO"'>-</span>
+                                    <span v-else>{{ entity.country }}</span>
+                                </TableCell>
+                                
+                                <!--  Type  -->
+                                <TableCell>
+                                    <Badge v-if='entity.type === "company"'>{{ entity.type || '-' }}</Badge>
+                                    <Badge v-else variant='secondary'>{{ entity.type || '-' }}</Badge>
+                                </TableCell>
+                                
+                                <!--  Holdings  -->
+                                <TableCell class='flex items-center gap-2'>
+                                    <template
+                                        v-for='coin in entity.holdings'
+                                        :key='coin.coin_id'
+                                    >
+                                        <div class='flex items-center justify-center gap-1'>
+                                            <NuxtIcon
+                                                v-if='coin.coin_id'
+                                                :name='`token-branded:${coin.coin_id}`'
+                                                size='24'
+                                            />
+                                        </div>
+                                    </template>
+                                </TableCell>
+                                
+                                <!--  Total Treasury Value  -->
+                                <TableCell>{{ entity.total_treasury_value_usd || '-' }}</TableCell>
+                                
+                                <!--  Unrealised PNL  -->
+                                <TableCell>{{ entity.unrealized_pnl || '-' }}</TableCell>
+                                
+                                <!--  nNav  -->
+                                <TableCell>{{ entity.m_nav || '-' }}<span v-if='entity.m_nav'>x</span></TableCell>
+                                
+                                <!--  Total asset value per share  -->
+                                <TableCell class="text-right">{{
+                                        entity.total_asset_value_per_share_usd || '-'
+                                                              }}
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </div>
+            </div>
         </Card>
     </div>
 </template>
