@@ -96,9 +96,10 @@
                                                 <HoverCardContent>
                                                     <Title :tag='3' :level='6' class='capitalize'>{{ coin.coin_id }}</Title>
                                                     <p>Holdings: {{ coin.amount }}</p>
-                                                    <p>Total entry value USD: {{ coin.total_entry_value_usd }}</p>
-                                                    <p>Current value USD: {{ coin.current_value_usd }}</p>
-                                                    <p>Unrealised PNL: {{ coin.unrealized_pnl }}</p>
+                                                    <p>Total entry value: {{ formatNumber(coin.total_entry_value_usd, { compact: true, decimals: 2 }) }}</p>
+                                                    <p>Current value: {{ formatNumber(coin.current_value_usd, { compact: true, decimals: 2 }) }}</p>
+                                                    <p>Unrealised PNL: {{ formatNumber(coin.unrealized_pnl, { compact: true, decimals: 2 }) }}</p>
+                                                    <p>% of total supply: {{ formatNumber(coin.percentage_of_total_supply, { style: 'percent', decimals: 5 }) }}</p>
                                                 </HoverCardContent>
                                             </HoverCard>
                                         </div>
@@ -111,13 +112,13 @@
                                 </TableCell>
                                 
                                 <!--  Unrealised PNL  -->
-                                <TableCell>{{ formatNumber(entity.unrealized_pnl, { compact: true, decimals: 3 }) || '-' }}</TableCell>
+                                <TableCell>{{ formatNumber(entity.unrealized_pnl, { compact: true, decimals: 2 }) || '-' }}</TableCell>
                                 
                                 <!--  nNav  -->
                                 <TableCell>{{ entity.m_nav || '-' }}<span v-if='entity.m_nav'>x</span></TableCell>
                                 
                                 <!--  Total asset value per share in USD -->
-                                <TableCell>{{ formatNumber(entity.total_asset_value_per_share_usd, { compact: true, decimals: 3 }) || '-' }}</TableCell>
+                                <TableCell>{{ formatNumber(entity.total_asset_value_per_share_usd, { compact: true, decimals: 2 }) || '-' }}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
