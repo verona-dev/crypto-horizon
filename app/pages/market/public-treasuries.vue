@@ -16,7 +16,7 @@
                 <div>
                     <Table class='m-8 font-mono'>
                         <TableCaption>A list of Public treasury entities.</TableCaption>
-                        <TableHeader>
+                        <TableHeader class='border-t-2 border-b-2'>
                             <TableRow>
                                 <TableHead>Company Name</TableHead>
                                 <TableHead>Ticker</TableHead>
@@ -47,10 +47,7 @@
                                                 <InfoIcon />
                                             </HoverCardTrigger>
                                             
-                                            <HoverCardContent>{{
-                                                    glossary.total_value_asset_per_share.description
-                                                              }}
-                                            </HoverCardContent>
+                                            <HoverCardContent>{{ glossary.total_value_asset_per_share.description }}</HoverCardContent>
                                         </HoverCard>
                                     </div>
                                 </TableHead>
@@ -62,8 +59,10 @@
                                 v-for='entity in publicTreasury'
                                 :key='entity.id'
                             >
+                                <!--  Name  -->
                                 <TableCell class="font-medium">{{ entity.name || '-' }}</TableCell>
                                 
+                                <!--  Ticker  -->
                                 <TableCell>{{ entity.symbol || '-' }}</TableCell>
                                 
                                 <!--  Country  -->
@@ -95,19 +94,18 @@
                                 </TableCell>
                                 
                                 <!--  Total Treasury Value  -->
-                                <TableCell>{{ entity.total_treasury_value_usd || '-' }}</TableCell>
+                                <TableCell>
+                                    {{ formatNumber(entity.total_treasury_value_usd, { compact: true, decimals: 2 }) || '-' }}
+                                </TableCell>
                                 
                                 <!--  Unrealised PNL  -->
-                                <TableCell>{{ entity.unrealized_pnl || '-' }}</TableCell>
+                                <TableCell>{{ formatNumber(entity.unrealized_pnl, { compact: true, decimals: 3 }) || '-' }}</TableCell>
                                 
                                 <!--  nNav  -->
                                 <TableCell>{{ entity.m_nav || '-' }}<span v-if='entity.m_nav'>x</span></TableCell>
                                 
-                                <!--  Total asset value per share  -->
-                                <TableCell class="text-right">{{
-                                        entity.total_asset_value_per_share_usd || '-'
-                                                              }}
-                                </TableCell>
+                                <!--  Total asset value per share in USD -->
+                                <TableCell class="text-right">{{ entity.total_asset_value_per_share_usd || '-' }}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
