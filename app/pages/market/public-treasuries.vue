@@ -38,7 +38,7 @@
                                     </HoverCard>
                                 </TableHead>
                                 
-                                <TableHead class='text-right'>
+                                <TableHead>
                                     <div class='flex items-center gap-1'>
                                         <span>{{ glossary.total_value_asset_per_share.label }}</span>
                                         
@@ -105,7 +105,7 @@
                                 <TableCell>{{ entity.m_nav || '-' }}<span v-if='entity.m_nav'>x</span></TableCell>
                                 
                                 <!--  Total asset value per share in USD -->
-                                <TableCell class="text-right">{{ entity.total_asset_value_per_share_usd || '-' }}</TableCell>
+                                <TableCell>{{ formatNumber(entity.total_asset_value_per_share_usd, { compact: true, decimals: 3 }) || '-' }}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
