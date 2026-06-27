@@ -3,7 +3,7 @@
         <div class='w-full flex flex-col'>
             <!--   Header   -->
             <div class='flex flex-col items-center justify-center gap-8 p-14'>
-                <Title :tag='1' :level='3'>Cryptocurrencies by  {{ sortingLabel }}</Title>
+                <Title :tag='1' :level='3'>Cryptocurrencies by {{ sortingLabel }}</Title>
                 
                 <!--  Search + Filter  -->
                 <div class='flex items-center gap-4'>
