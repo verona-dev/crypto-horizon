@@ -94,12 +94,41 @@
                                                 </HoverCardTrigger>
                                                 
                                                 <HoverCardContent>
-                                                    <Title :tag='3' :level='6' class='capitalize'>{{ coin.coin_id }}</Title>
-                                                    <p>Holdings: {{ coin.amount }}</p>
-                                                    <p>Total entry value: {{ formatNumber(coin.total_entry_value_usd, { compact: true, decimals: 2 }) }}</p>
-                                                    <p>Current value: {{ formatNumber(coin.current_value_usd, { compact: true, decimals: 2 }) }}</p>
-                                                    <p>Unrealised PNL: {{ formatNumber(coin.unrealized_pnl, { compact: true, decimals: 2 }) }}</p>
-                                                    <p>% of total supply: {{ formatNumber(coin.percentage_of_total_supply, { style: 'percent', decimals: 5 }) }}</p>
+                                                    <Title :tag='3' :level='5' class='capitalize'>{{ coin.coin_id }}</Title>
+                                                    
+                                                    <p class='text-muted-foreground'>Holdings: <span class='text-foreground'>{{ coin.amount }}</span></p>
+                                                    <p class='text-muted-foreground'>Total entry value:
+                                                        <span class='text-foreground'>{{
+                                                                formatNumber(coin.total_entry_value_usd, {
+                                                                    compact: true,
+                                                                    decimals: 2
+                                                                })}}
+                                                        </span>
+                                                    </p>
+                                                    <p class='text-muted-foreground'>Current value:
+                                                        <span class='text-foreground'>{{
+                                                                formatNumber(coin.current_value_usd, {
+                                                                    compact: true,
+                                                                    decimals: 2
+                                                                })}}
+                                                        </span>
+                                                    </p>
+                                                    <p class='text-muted-foreground'>Unrealised PNL:
+                                                        <span class='text-foreground'>{{
+                                                                formatNumber(coin.unrealized_pnl, {
+                                                                    compact: true,
+                                                                    decimals: 2
+                                                                })}}
+                                                        </span>
+                                                    </p>
+                                                    <p class='text-muted-foreground'>% of total supply:
+                                                        <span class='text-foreground'>{{
+                                                                formatNumber(coin.percentage_of_total_supply, {
+                                                                    style: 'percent',
+                                                                    decimals: 2
+                                                                })}}
+                                                        </span>
+                                                    </p>
                                                 </HoverCardContent>
                                             </HoverCard>
                                         </div>
