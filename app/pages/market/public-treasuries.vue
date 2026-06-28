@@ -9,24 +9,26 @@
             <div class='w-full flex flex-col'>
                 <!--   Header   -->
                 <div class='flex flex-col items-center justify-center gap-8 p-14'>
-                    <Title :tag='1' :level='3' class='mt-6'>Crypto Treasury Holdings</Title>
+                    <Title :tag='1' :level='3'>Crypto Treasury Holdings</Title>
                 </div>
                 
                 <!--   Table   -->
                 <div>
-                    <Table class='font-mono w-[95%] mx-auto'>
+                    <Table class='font-mono w-[97%] mx-auto'>
                         <TableCaption class='py-6'>A list of public treasury entities.</TableCaption>
                         
                         <TableHeader class='border-t-2 border-b-2'>
                             <TableRow>
                                 <TableHead>Company Name</TableHead>
                                 <TableHead>Ticker</TableHead>
-                                <TableHead class='text-center'>Country</TableHead>
+                                <TableHead class='text-center min-w-32'>Country</TableHead>
                                 <TableHead>Type</TableHead>
-                                <TableHead class='text-center min-w-48'>Holdings</TableHead>
+                                <TableHead class='text-center min-w-32'>Holdings</TableHead>
                                 <TableHead>Today Value</TableHead>
                                 <TableHead>Unrealised PNL</TableHead>
                                 
+                                <!--  mNav  -->
+                                <!--
                                 <TableHead class='flex items-center gap-1'>
                                     <span>{{ glossary.m_nav.label }}</span>
                                     
@@ -38,8 +40,9 @@
                                         <HoverCardContent>{{ glossary.m_nav.description }}</HoverCardContent>
                                     </HoverCard>
                                 </TableHead>
+                                -->
                                 
-                                <TableHead>
+                                <TableHead class='text-right'>
                                     <div class='flex items-center gap-1'>
                                         <span>{{ glossary.total_value_asset_per_share.label }}</span>
                                         
@@ -68,7 +71,7 @@
                                 <TableCell>{{ entity.symbol || '-' }}</TableCell>
                                 
                                 <!--  Country  -->
-                                <TableCell class='text-center'>
+                                <TableCell class='flex justify-center'>
                                     <div v-if='entity.country === "NO"'>-</div>
                                     <div v-else class='flex items-center gap-2'>
                                         <NuxtIcon
@@ -155,10 +158,12 @@
                                 <TableCell :class='getTrendClass(entity.unrealized_pnl)'>{{ formatNumber(entity.unrealized_pnl, { compact: true, decimals: 2 }) || '-' }}</TableCell>
                                 
                                 <!--  nNav  -->
+                                <!--
                                 <TableCell>{{ entity.m_nav || '-' }}<span v-if='entity.m_nav'>x</span></TableCell>
+                                -->
                                 
                                 <!--  Total asset value per share in USD -->
-                                <TableCell>{{ formatNumber(entity.total_asset_value_per_share_usd, { compact: true, decimals: 2 }) || '-' }}</TableCell>
+                                <TableCell class='text-right'>{{ formatNumber(entity.total_asset_value_per_share_usd, { compact: true, decimals: 2 }) || '-' }}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
