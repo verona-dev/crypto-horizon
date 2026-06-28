@@ -9,13 +9,14 @@
             <div class='w-full flex flex-col'>
                 <!--   Header   -->
                 <div class='flex flex-col items-center justify-center gap-8 p-14'>
-                    <Title :tag='1' :level='3' class='mt-12'>Crypto Treasury Holdings</Title>
+                    <Title :tag='1' :level='3' class='mt-6'>Crypto Treasury Holdings</Title>
                 </div>
                 
                 <!--   Table   -->
                 <div>
-                    <Table class='m-8 font-mono'>
-                        <TableCaption>A list of Public treasury entities.</TableCaption>
+                    <Table class='font-mono w-[95%] mx-auto'>
+                        <TableCaption class='py-6'>A list of public treasury entities.</TableCaption>
+                        
                         <TableHeader class='border-t-2 border-b-2'>
                             <TableRow>
                                 <TableHead>Company Name</TableHead>
@@ -23,7 +24,7 @@
                                 <TableHead class='text-center'>Country</TableHead>
                                 <TableHead>Type</TableHead>
                                 <TableHead>Holdings</TableHead>
-                                <TableHead>Total Treasury</TableHead>
+                                <TableHead>Today Value</TableHead>
                                 <TableHead>Unrealised PNL</TableHead>
                                 
                                 <TableHead class='flex items-center gap-1'>
@@ -60,7 +61,7 @@
                                 :key='entity.id'
                             >
                                 <!--  Name  -->
-                                <TableCell class="font-medium">{{ entity.name || '-' }}</TableCell>
+                                <TableCell class='font-medium'>{{ entity.name || '-' }}</TableCell>
                                 
                                 <!--  Ticker  -->
                                 <TableCell>{{ entity.symbol || '-' }}</TableCell>
