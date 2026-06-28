@@ -23,7 +23,7 @@
                                 <TableHead>Ticker</TableHead>
                                 <TableHead class='text-center'>Country</TableHead>
                                 <TableHead>Type</TableHead>
-                                <TableHead>Holdings</TableHead>
+                                <TableHead class='text-center min-w-48'>Holdings</TableHead>
                                 <TableHead>Today Value</TableHead>
                                 <TableHead>Unrealised PNL</TableHead>
                                 
@@ -69,8 +69,15 @@
                                 
                                 <!--  Country  -->
                                 <TableCell class='text-center'>
-                                    <span v-if='entity.country === "NO"'>-</span>
-                                    <span v-else>{{ entity.country }}</span>
+                                    <div v-if='entity.country === "NO"'>-</div>
+                                    <div v-else class='flex items-center gap-2'>
+                                        <NuxtIcon
+                                            :name="`circle-flags:${entity.country.toLowerCase()}`"
+                                            size='18px' class='self-center'
+                                        />
+                                        
+                                        <span>{{ entity.country }}</span>
+                                    </div>
                                 </TableCell>
                                 
                                 <!--  Type  -->
@@ -80,7 +87,7 @@
                                 </TableCell>
                                 
                                 <!--  Holdings  -->
-                                <TableCell class='flex items-center justify-evenly gap-2 min-h-12'>
+                                <TableCell class='flex items-center justify-center gap-4 min-h-12'>
                                     <HoverCard
                                         v-for='coin in entity.holdings'
                                         :key='coin.coin_id'
