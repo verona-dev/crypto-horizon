@@ -89,7 +89,7 @@
                                                 <HoverCardTrigger>
                                                     <NuxtIcon
                                                         v-if='coin.coin_id'
-                                                        :name='`token-branded:${coin.coin_id}`'
+                                                        :name='`simple-icons:${coin.coin_id}`'
                                                         size='24'
                                                     />
                                                 </HoverCardTrigger>
