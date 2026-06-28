@@ -59,6 +59,7 @@
                             <TableRow
                                 v-for='entity in publicTreasury'
                                 :key='entity.id'
+                                class='min-h-12'
                             >
                                 <!--  Name  -->
                                 <TableCell class='font-medium'>{{ entity.name || '-' }}</TableCell>
@@ -79,64 +80,63 @@
                                 </TableCell>
                                 
                                 <!--  Holdings  -->
-                                <TableCell class='flex items-center gap-2'>
-                                    <template
+                                <TableCell class='flex items-center justify-evenly gap-2 min-h-12'>
+                                    <HoverCard
                                         v-for='coin in entity.holdings'
                                         :key='coin.coin_id'
+                                        :open-delay='200'
                                     >
-                                        <div class='flex items-center justify-center gap-1'>
-                                            <HoverCard :open-delay='200' class='flex'>
-                                                <HoverCardTrigger>
-                                                    <NuxtIcon
-                                                        v-if='coin.coin_id'
-                                                        :name='`simple-icons:${coin.coin_id}`'
-                                                        size='24'
-                                                    />
-                                                </HoverCardTrigger>
-                                                
-                                                <HoverCardContent>
-                                                    <Title :tag='3' :level='5' class='capitalize'>{{ coin.coin_id }}</Title>
-                                                    
-                                                    <p class='text-muted-foreground'>Holdings: <span class='text-foreground'>{{ coin.amount }}</span></p>
-                                                    <p class='text-muted-foreground'>Total entry value:
-                                                        <span class='text-foreground'>{{
-                                                                formatNumber(coin.total_entry_value_usd, {
-                                                                    compact: true,
-                                                                    decimals: 2
-                                                                })}}
+                                        <HoverCardTrigger class='flex items-center justify-center'>
+                                            <Button variant='outline' class='!w-16'>
+                                                <NuxtIcon
+                                                    v-if='coin.coin_id'
+                                                    :name='`simple-icons:${coin.coin_id}`'
+                                                    size='24'
+                                                />
+                                            </Button>
+                                        </HoverCardTrigger>
+                                        
+                                        <HoverCardContent>
+                                            <Title :tag='3' :level='5' class='capitalize'>{{ coin.coin_id }}</Title>
+                                            
+                                            <p class='text-muted-foreground'>Holdings: <span class='text-foreground'>{{ coin.amount }}</span></p>
+                                            <p class='text-muted-foreground'>Total entry value:
+                                                <span class='text-foreground'>{{
+                                                        formatNumber(coin.total_entry_value_usd, {
+                                                            compact: true,
+                                                            decimals: 2
+                                                        })}}
                                                         </span>
-                                                    </p>
-                                                    <p class='text-muted-foreground'>Current value:
-                                                        <span class='text-foreground'>{{
-                                                                formatNumber(coin.current_value_usd, {
-                                                                    compact: true,
-                                                                    decimals: 2
-                                                                })}}
+                                            </p>
+                                            <p class='text-muted-foreground'>Current value:
+                                                <span class='text-foreground'>{{
+                                                        formatNumber(coin.current_value_usd, {
+                                                            compact: true,
+                                                            decimals: 2
+                                                        })}}
                                                         </span>
-                                                    </p>
-                                                    <p class='text-muted-foreground'>Unrealised PNL:
-                                                        <span
-                                                            class='text-foreground'
-                                                            :class='getTrendClass(coin.unrealized_pnl)'
-                                                        >{{
-                                                                formatNumber(coin.unrealized_pnl, {
-                                                                    compact: true,
-                                                                    decimals: 2
-                                                                })}}
+                                            </p>
+                                            <p class='text-muted-foreground'>Unrealised PNL:
+                                                <span
+                                                    class='text-foreground'
+                                                    :class='getTrendClass(coin.unrealized_pnl)'
+                                                >{{
+                                                        formatNumber(coin.unrealized_pnl, {
+                                                            compact: true,
+                                                            decimals: 2
+                                                        })}}
                                                         </span>
-                                                    </p>
-                                                    <p class='text-muted-foreground'>% of total supply:
-                                                        <span class='text-foreground'>{{
-                                                                formatNumber(coin.percentage_of_total_supply, {
-                                                                    style: 'percent',
-                                                                    decimals: 2
-                                                                })}}
+                                            </p>
+                                            <p class='text-muted-foreground'>% of total supply:
+                                                <span class='text-foreground'>{{
+                                                        formatNumber(coin.percentage_of_total_supply, {
+                                                            style: 'percent',
+                                                            decimals: 2
+                                                        })}}
                                                         </span>
-                                                    </p>
-                                                </HoverCardContent>
-                                            </HoverCard>
-                                        </div>
-                                    </template>
+                                            </p>
+                                        </HoverCardContent>
+                                    </HoverCard>
                                 </TableCell>
                                 
                                 <!--  Total Treasury Value  -->
