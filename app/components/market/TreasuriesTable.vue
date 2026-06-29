@@ -1,5 +1,5 @@
 <template>
-    <Table v-if='data.length' class='font-mono w-[97%] mx-auto'>
+    <Table v-if='data.length'>
         <TableCaption class='py-6'>A list of public treasury entities.</TableCaption>
         
         <TableHeader class='border-t-2 border-b-2'>
@@ -27,7 +27,7 @@
                 </TableHead>
                 -->
                 
-                <TableHead class='text-right'>
+                <TableHead>
                     <div class='flex items-center gap-1'>
                         <span>{{ glossary.total_value_asset_per_share.label }}</span>
                         
@@ -148,7 +148,7 @@
                 -->
                 
                 <!--  Total asset value per share in USD -->
-                <TableCell class='text-right'>{{ formatNumber(entity.total_asset_value_per_share_usd, { compact: true, decimals: 2 }) || '-' }}</TableCell>
+                <TableCell>{{ formatNumber(entity.total_asset_value_per_share_usd, { compact: true, decimals: 2 }) || '-' }}</TableCell>
             </TableRow>
         </TableBody>
     </Table>
