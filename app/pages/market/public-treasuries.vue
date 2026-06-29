@@ -13,9 +13,7 @@
                 </div>
                 
                 <!--   Table   -->
-                <div>
-                    <TreasuriesTable :data='publicTreasury' class='font-mono w-[97%] mx-auto' />
-                </div>
+                <TreasuriesTable :data='publicTreasury' class='font-mono w-[97%] mx-auto' />
             </div>
         </Card>
     </div>
