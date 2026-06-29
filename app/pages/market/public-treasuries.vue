@@ -71,7 +71,7 @@
                                 <TableCell>{{ entity.symbol || '-' }}</TableCell>
                                 
                                 <!--  Country  -->
-                                <TableCell class='flex justify-center'>
+                                <TableCell class='flex justify-center h-full'>
                                     <div v-if='entity.country === "NO"'>-</div>
                                     <div v-else class='flex items-center gap-2'>
                                         <NuxtIcon
@@ -90,14 +90,14 @@
                                 </TableCell>
                                 
                                 <!--  Holdings  -->
-                                <TableCell class='flex items-center justify-center gap-4 min-h-12'>
+                                <TableCell class='flex items-center justify-center flex-wrap gap-4 h-full'>
                                     <HoverCard
                                         v-for='coin in entity.holdings'
                                         :key='coin.coin_id'
                                         :open-delay='200'
                                     >
                                         <HoverCardTrigger class='flex items-center justify-center'>
-                                            <Button variant='outline' class='!w-16'>
+                                            <Button variant='outline' class='!w-12 !h-12 !p-2'>
                                                 <NuxtIcon
                                                     v-if='coin.coin_id'
                                                     :name='`simple-icons:${coin.coin_id}`'
