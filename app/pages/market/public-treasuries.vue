@@ -22,16 +22,8 @@
 </template>
 
 <script setup>
-    import { Badge } from '~/components/ui/badge';
-    import { Button } from '~/components/ui/button';
     import { Card } from '~/components/ui/card';
-    import { formatNumber } from '~/utils/formatUtils.js';
-    import { getTrendClass } from '~/utils/styleUtils.js';
-    import glossary from '~/assets/data/market/glossary.json';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index.ts';
-    import InfoIcon from '@/components/InfoIcon.vue';
     import LoadingContent from '~/components/LoadingContent.vue';
-    import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
     import Title from '~/components/Title.vue';
     import TreasuriesTable from '~/components/market/TreasuriesTable.vue';
     
