@@ -15,7 +15,7 @@ export const useMarketStore = defineStore('MarketStore', {
             chart: {},
             links: {},
             name: '',
-            publicTreasury: null,
+            companyTreasury: {},
             timeframe: 1,
             timeframes: [
                 { name: 'Day', label: '24h', timeframe: 1 },
@@ -321,8 +321,7 @@ export const useMarketStore = defineStore('MarketStore', {
                 });
                 
                 if(response) {
-                    this.coin.publicTreasury = response;
-                    // console.log(JSON.parse(JSON.stringify(this.coin.publicTreasury)));
+                    this.coin.companyTreasury = response;
                 }
             } catch(error) {
             
