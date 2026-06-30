@@ -13,7 +13,7 @@
                 </div>
                 
                 <!--   Table   -->
-                <TreasuriesTable :data='publicTreasury' class='font-mono w-[97%] mx-auto' />
+                <PublicTreasuriesTable :data='publicTreasury' class='font-mono w-[97%] mx-auto' />
             </div>
         </Card>
     </div>
@@ -23,7 +23,7 @@
     import { Card } from '~/components/ui/card';
     import LoadingContent from '~/components/LoadingContent.vue';
     import Title from '~/components/Title.vue';
-    import TreasuriesTable from '~/components/market/TreasuriesTable.vue';
+    import PublicTreasuriesTable from '@/components/market/PublicTreasuriesTable.vue';
     
     // MarketStore
     import { storeToRefs } from 'pinia';
