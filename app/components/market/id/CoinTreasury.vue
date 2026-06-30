@@ -1,5 +1,9 @@
 <template>
-    <TreasuriesTable v-if='coinTreasury' :data='coinTreasury.companies' class='font-mono w-[97%] mx-auto' />
+    <TreasuriesTable
+        v-if='coinTreasury'
+        :data='coinTreasury'
+        class='font-mono w-[97%] mx-auto'
+    />
 </template>
 
 <script setup>
@@ -13,5 +17,5 @@
     });
     
     const { coin } = toRefs(props);
-    const coinTreasury = computed(() => coin.value?.publicTreasury || null);
+    const coinTreasury = computed(() => coin.value?.publicTreasury?.companies || null);
 </script>

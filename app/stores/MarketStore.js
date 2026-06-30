@@ -322,7 +322,7 @@ export const useMarketStore = defineStore('MarketStore', {
                 
                 if(response) {
                     this.coin.publicTreasury = response;
-                    console.log(JSON.parse(JSON.stringify(this.coin.publicTreasury)));
+                    // console.log(JSON.parse(JSON.stringify(this.coin.publicTreasury)));
                 }
             } catch(error) {
             
