@@ -21,7 +21,9 @@
         
         <!-- Bottom -->
         <div class='grid gap-6'>
-            <CoinDelta v-if='market_data' :marketData='market_data' />
+            <CoinTreasury :coin='coin' />
+            
+            <CoinDelta v-if='market_data' :market-data='market_data' />
             
             <CoinLinks
                 :links='links'
@@ -44,6 +46,7 @@
     import CoinSupply from '@/components/market/id/CoinSupply.vue';
     import CoinLinks from '@/components/market/id/CoinLinks.vue';
     import CoinNews from '@/components/market/id/CoinNews.vue';
+    import CoinTreasury from '~/components/market/id/CoinTreasury.vue';
     
     const props = defineProps({
         coin: {
