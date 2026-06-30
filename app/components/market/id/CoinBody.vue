@@ -21,7 +21,7 @@
         
         <!-- Bottom -->
         <div class='grid gap-6'>
-            <CoinTreasury :coin='coin' />
+            <CoinTreasury :data='treasuries' />
             
             <CoinDelta v-if='market_data' :market-data='market_data' />
             
@@ -60,4 +60,5 @@
     const market_data = computed(() => coingecko.value?.market_data);
     const links = computed(() => coin.value?.links);
     const symbol = toRef(coin.value?.symbol);
+    const treasuries = computed(() => coin.value?.companyTreasury);
 </script>
