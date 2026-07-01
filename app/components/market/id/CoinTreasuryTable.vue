@@ -5,7 +5,32 @@
             <div class='flex flex-col items-center justify-center gap-8 p-14'>
                 <Title :tag='4' class='text-primary'>Treasury Holdings</Title>
                 
-                <div class='flex items-center justify-evenly w-3/4'>
+                <div class='flex items-center justify-evenly w-5/6'>
+                    <!--  Market Cap Dominance  -->
+                    <div v-if='market_cap_dominance' class='item-container'>
+                        <MazCircularProgressBar :percentage='market_cap_dominance_formatted' :duration='2000' suffix='%'>
+                            <template #default>
+                                <Title :tag='4' :level='5'>{{ market_cap_dominance_formatted }}&#37;</Title>
+                            </template>
+                        </MazCircularProgressBar>
+                        
+                        <div class='label-container'>
+                            <div class='flex items-center border !min-w-fit'>
+                                <Title :tag='3' :level='5' class='!min-w-96'>{{ glossary.market_cap_dominance.label }}</Title>
+                                
+                                <HoverCard
+                                    :openDelay='200'
+                                    class='flex'
+                                >
+                                    <HoverCardTrigger>
+                                        <InfoIcon size='28' />
+                                    </HoverCardTrigger>
+                                    <HoverCardContent>{{ glossary.market_cap_dominance.description }}</HoverCardContent>
+                                </HoverCard>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!--  Total Value USD  -->
                     <div v-if='total_value_usd' class='item-container'>
                         <MazCircularProgressBar
@@ -32,32 +57,6 @@
                             <span class='mt-2'>{{ total_value_usd_formatted }}</span>
                         </div>
                     </div>
-                    
-                    <!--  Market Cap Dominance  -->
-                    <div v-if='market_cap_dominance' class='item-container'>
-                        <MazCircularProgressBar :percentage='market_cap_dominance_formatted' :duration='2000' suffix='%'>
-                            <template #default>
-                                <Title :tag='4' :level='5'>{{ market_cap_dominance_formatted }}&#37;</Title>
-                            </template>
-                        </MazCircularProgressBar>
-                        
-                        <div class='label-container'>
-                            <div class='flex items-center'>
-                                <Title :tag='3' :level='5' class='!min-w-fit'>{{ glossary.market_cap_dominance.label }}</Title>
-                                
-                                <HoverCard
-                                    :openDelay='200'
-                                    class='flex'
-                                >
-                                    <HoverCardTrigger>
-                                        <InfoIcon size='28' />
-                                    </HoverCardTrigger>
-                                    <HoverCardContent>{{ glossary.market_cap_dominance.description }}</HoverCardContent>
-                                </HoverCard>
-                            </div>
-                        </div>
-                    </div>
-                
                 </div>
             </div>
             
