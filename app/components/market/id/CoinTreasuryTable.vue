@@ -9,6 +9,7 @@
                 <TableHead class='text-center min-w-32'>Country</TableHead>
                 <TableHead>Today Value</TableHead>
                 <TableHead>Supply %</TableHead>
+                <TableHead>Holdings</TableHead>
             </TableRow>
         </TableHeader>
         
@@ -43,9 +44,19 @@
                 
                 <!--  Supply Percentage  -->
                 <TableCell>{{ formatNumber(entity.percentage_of_total_supply, {
-                        style: 'percent',
-                        decimals: 2
-                    })}}
+                    style: 'percent',
+                    decimals: 2
+                })}}
+                </TableCell>
+                
+                <!--  Total Holdings  -->
+                <TableCell class='border flex items-center gap-1.5'>
+                    <NuxtIcon
+                        :name='`logos:${id}`'
+                        size='20'
+                    />
+                    
+                    <span>{{ formatNumber(entity.total_holdings, { style: 'decimal' }) }}</span>
                 </TableCell>
             </TableRow>
         </TableBody>
@@ -57,6 +68,9 @@
     import Title from '@/components/Title.vue';
     import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table/index.ts';
     
+    const route = useRoute();
+    const id = route.params.id;
+    console.log(id);
     const props = defineProps({
         data: {
             type: Object,
