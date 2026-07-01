@@ -5,7 +5,7 @@
             <div class='flex flex-col items-center justify-center gap-8 p-14'>
                 <Title :tag='4' class='text-primary'>Treasury Holdings</Title>
                 
-                <div>
+                <div class='flex items-center justify-evenly w-full'>
                     <!--  Total Value USD  -->
                     <div v-if='total_value_usd' class='item-container'>
                         <MazCircularProgressBar
@@ -33,7 +33,31 @@
                         </div>
                     </div>
                     
-                    <p>Market cap dominance: {{ data.market_cap_dominance }}</p>
+                    <!--  Market Cap Dominance  -->
+                    <div v-if='market_cap_dominance' class='item-container'>
+                        <MazCircularProgressBar :percentage='market_cap_dominance' suffix='%'>
+                            <template #default>
+                                <Title :tag='4' :level='5'>{{ Math.floor(market_cap_dominance).toFixed(0) }}</Title>
+                            </template>
+                        </MazCircularProgressBar>
+                        
+                        <div class='label-container'>
+                            <div class='flex items-center'>
+                                <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.market_cap_dominance.label }}</Title>
+                                
+                                <HoverCard
+                                    :openDelay='200'
+                                    class='flex'
+                                >
+                                    <HoverCardTrigger>
+                                        <InfoIcon size='28' />
+                                    </HoverCardTrigger>
+                                    <HoverCardContent>{{ glossary.market_cap_dominance.description }}</HoverCardContent>
+                                </HoverCard>
+                            </div>
+                        </div>
+                    </div>
+                
                 </div>
             </div>
             
@@ -138,8 +162,16 @@
     });
     
     const { data } = toRefs(props);
-    console.log(data.value);
+    // console.log(data.value);
     
+    // Market Cap Dominance
+    const market_cap_dominance = computed(() =>  data.value?.market_cap_dominance);
+    const market_cap_dominance_formatted = computed(() => Math.floor(market_cap_dominance.value));
+    
+    console.log(market_cap_dominance.value);
+    console.log(market_cap_dominance_formatted.value);
+    
+    // Total Value USD
     const total_value_usd = computed(() => data.value?.total_value_usd);
     const total_value_usd_formatted =formatNumber(total_value_usd.value);
     const total_value_usd_compact = computed(() => formatNumber(total_value_usd.value, {
@@ -148,3 +180,27 @@
     
     const companies = computed(() => data?.value?.companies);
 </script>
+
+<style scoped>
+    .item-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        
+        @media (min-width: 768px) {
+            width: 200px;
+        }
+        
+        /* Desktop */
+        @media (min-width: 1024px) {
+            width: 250px;
+        }
+        
+        .label-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
