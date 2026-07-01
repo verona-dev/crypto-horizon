@@ -1,6 +1,8 @@
 <template>
+    <Title :tag='4' class='text-primary'>Treasury</Title>
+    
     <Table v-if='data && data.market_cap_dominance'>
-        <TableCaption class='py-6'>A list of public treasury entities.</TableCaption>
+        <TableCaption class='py-6'>A list of private treasury entities.</TableCaption>
         
         <TableHeader class='border-t-2 border-b-2'>
             <TableRow>
@@ -8,7 +10,8 @@
                 <TableHead>Ticker</TableHead>
                 <TableHead class='text-center min-w-32'>Country</TableHead>
                 <TableHead>Today Value</TableHead>
-                <TableHead>Supply %</TableHead>
+                <TableHead>Entry Value</TableHead>
+                <TableHead>Total Supply %</TableHead>
                 <TableHead>Holdings</TableHead>
             </TableRow>
         </TableHeader>
@@ -39,8 +42,11 @@
                     </div>
                 </TableCell>
                 
-                <!--  Total Treasury Value  -->
+                <!--  Today Value  -->
                 <TableCell>{{ formatNumber(entity.total_current_value_usd, { compact: true, decimals: 2 }) || '-' }}</TableCell>
+                
+                <!--  Entry Value  -->
+                <TableCell>{{ formatNumber(entity.total_entry_value_usd, { compact: true, decimals: 2 }) || '-' }}</TableCell>
                 
                 <!--  Supply Percentage  -->
                 <TableCell>{{ formatNumber(entity.percentage_of_total_supply, {
