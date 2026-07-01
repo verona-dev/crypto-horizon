@@ -5,7 +5,7 @@
             <div class='flex flex-col items-center justify-center gap-8 p-14'>
                 <Title :tag='4' class='text-primary'>Treasury Holdings</Title>
                 
-                <div class='flex items-center justify-evenly w-full'>
+                <div class='flex items-center justify-evenly w-3/4'>
                     <!--  Total Value USD  -->
                     <div v-if='total_value_usd' class='item-container'>
                         <MazCircularProgressBar
@@ -35,15 +35,15 @@
                     
                     <!--  Market Cap Dominance  -->
                     <div v-if='market_cap_dominance' class='item-container'>
-                        <MazCircularProgressBar :percentage='market_cap_dominance' suffix='%'>
+                        <MazCircularProgressBar :percentage='market_cap_dominance_formatted' :duration='2000' suffix='%'>
                             <template #default>
-                                <Title :tag='4' :level='5'>{{ Math.floor(market_cap_dominance).toFixed(0) }}</Title>
+                                <Title :tag='4' :level='5'>{{ market_cap_dominance_formatted }}&#37;</Title>
                             </template>
                         </MazCircularProgressBar>
                         
                         <div class='label-container'>
                             <div class='flex items-center'>
-                                <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.market_cap_dominance.label }}</Title>
+                                <Title :tag='3' :level='5' class='!min-w-fit'>{{ glossary.market_cap_dominance.label }}</Title>
                                 
                                 <HoverCard
                                     :openDelay='200'
@@ -64,7 +64,7 @@
             <!--   Table   -->
             <div class='border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
                 <Table>
-                    <TableCaption class='py-6'>A list of private treasury entities.</TableCaption>
+                    <TableCaption class='pt-10 pb-6'>A list of private treasury entities.</TableCaption>
                     
                     <TableHeader class='border-t-2 border-b-2'>
                         <TableRow>
@@ -166,14 +166,15 @@
     
     // Market Cap Dominance
     const market_cap_dominance = computed(() =>  data.value?.market_cap_dominance);
-    const market_cap_dominance_formatted = computed(() => Math.floor(market_cap_dominance.value));
+    const market_cap_dominance_formatted = computed(() => Math.floor(market_cap_dominance.value).toFixed(0));
     
     console.log(market_cap_dominance.value);
     console.log(market_cap_dominance_formatted.value);
     
+    
     // Total Value USD
     const total_value_usd = computed(() => data.value?.total_value_usd);
-    const total_value_usd_formatted =formatNumber(total_value_usd.value);
+    const total_value_usd_formatted = formatNumber(total_value_usd.value);
     const total_value_usd_compact = computed(() => formatNumber(total_value_usd.value, {
         compact: true, decimals: 2
     }));
