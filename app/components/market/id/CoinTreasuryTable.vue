@@ -5,10 +5,36 @@
             <div class='flex flex-col items-center justify-center gap-8 p-14'>
                 <Title :tag='4' class='text-primary'>Treasury Holdings</Title>
                 
-                <p>Market cap dominance: {{ data.market_cap_dominance }}</p>
-                <p>Total value: {{ formatNumber(data.total_value_usd, {
-                    compact: true, decimals: 2
-                }) }}</p>
+                <div>
+                    <!--  Total Value USD  -->
+                    <div v-if='total_value_usd' class='item-container'>
+                        <MazCircularProgressBar
+                            :percentage='100'
+                            :duration='2000'
+                        >
+                            <template #default>
+                                <h5>{{ total_value_usd_compact }}</h5>
+                            </template>
+                        </MazCircularProgressBar>
+                        
+                        <div class='label-container'>
+                            <div class='flex items-center'>
+                                <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.total_value.label }}</Title>
+                                
+                                <HoverCard :openDelay='200'>
+                                    <HoverCardTrigger>
+                                        <InfoIcon size='28' />
+                                    </HoverCardTrigger>
+                                    <HoverCardContent>{{ glossary.total_value.description }}</HoverCardContent>
+                                </HoverCard>
+                            </div>
+                            
+                            <span class='mt-2'>{{ total_value_usd_formatted }}</span>
+                        </div>
+                    </div>
+                    
+                    <p>Market cap dominance: {{ data.market_cap_dominance }}</p>
+                </div>
             </div>
             
             <!--   Table   -->
@@ -95,6 +121,9 @@
 <script setup>
     import { Card } from '~/components/ui/card';
     import { formatNumber } from '@/utils/formatUtils.js';
+    import glossary from '~/assets/data/market/glossary.json';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
+    import InfoIcon from '~/components/InfoIcon.vue';
     import Title from '@/components/Title.vue';
     import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table/index.ts';
     
@@ -110,5 +139,12 @@
     
     const { data } = toRefs(props);
     console.log(data.value);
+    
+    const total_value_usd = computed(() => data.value?.total_value_usd);
+    const total_value_usd_formatted =formatNumber(total_value_usd.value);
+    const total_value_usd_compact = computed(() => formatNumber(total_value_usd.value, {
+        compact: true, decimals: 2
+    }));
+    
     const companies = computed(() => data?.value?.companies);
 </script>
