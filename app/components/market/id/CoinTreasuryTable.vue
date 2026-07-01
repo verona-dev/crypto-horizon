@@ -1,75 +1,94 @@
 <template>
-    <Title :tag='4' class='text-primary'>Treasury</Title>
-    
-    <Table v-if='data && data.market_cap_dominance'>
-        <TableCaption class='py-6'>A list of private treasury entities.</TableCaption>
-        
-        <TableHeader class='border-t-2 border-b-2'>
-            <TableRow>
-                <TableHead>Company Name</TableHead>
-                <TableHead>Ticker</TableHead>
-                <TableHead class='text-center min-w-32'>Country</TableHead>
-                <TableHead>Today Value</TableHead>
-                <TableHead>Entry Value</TableHead>
-                <TableHead>Total Supply %</TableHead>
-                <TableHead>Holdings</TableHead>
-            </TableRow>
-        </TableHeader>
-        
-        <TableBody>
-            <TableRow
-                v-for='entity in companies'
-                :key='entity.id'
-                class='min-h-12'
-            >
-                <!--  Name  -->
-                <TableCell class='font-medium'>{{ entity.name || '-' }}</TableCell>
-                
-                <!--  Ticker  -->
-                <TableCell>{{ entity.symbol || '-' }}</TableCell>
-                
-                <!--  Country  -->
-                <TableCell class='flex justify-center h-full'>
-                    <div v-if='entity.country === "NO"'>-</div>
+    <Card class='flex flex-col items-center justify-center gap-16 px-12 xl:px-6 w-full h-full'>
+        <div class='w-full flex flex-col'>
+            <!--   Header   -->
+            <div class='flex flex-col items-center justify-center p-14'>
+                <Title :tag='4' class='text-primary'>Treasury Holdings</Title>
+            </div>
+            
+            <!--   Table   -->
+            <div class='border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
+                <Table v-if='data'>
+                    <TableCaption class='py-6'>A list of private treasury entities.</TableCaption>
                     
-                    <div v-else class='flex items-center gap-2'>
-                        <NuxtIcon
-                            :name="`circle-flags:${entity?.country?.toLowerCase()}`"
-                            size='18px' class='self-center'
-                        />
-                        
-                        <span>{{ entity.country }}</span>
-                    </div>
-                </TableCell>
-                
-                <!--  Today Value  -->
-                <TableCell>{{ formatNumber(entity.total_current_value_usd, { compact: true, decimals: 2 }) || '-' }}</TableCell>
-                
-                <!--  Entry Value  -->
-                <TableCell>{{ formatNumber(entity.total_entry_value_usd, { compact: true, decimals: 2 }) || '-' }}</TableCell>
-                
-                <!--  Supply Percentage  -->
-                <TableCell>{{ formatNumber(entity.percentage_of_total_supply, {
-                    style: 'percent',
-                    decimals: 2
-                })}}
-                </TableCell>
-                
-                <!--  Total Holdings  -->
-                <TableCell class='border flex items-center gap-1.5'>
-                    <NuxtIcon
-                        :name='`logos:${id}`'
-                        size='20'
-                    />
+                    <TableHeader class='border-t-2 border-b-2'>
+                        <TableRow>
+                            <TableHead>Company Name</TableHead>
+                            <TableHead>Ticker</TableHead>
+                            <TableHead class='text-center min-w-32'>Country</TableHead>
+                            <TableHead>Today Value</TableHead>
+                            <TableHead>Entry Value</TableHead>
+                            <TableHead>Total Supply %</TableHead>
+                            <TableHead>Holdings</TableHead>
+                        </TableRow>
+                    </TableHeader>
                     
-                    <span>{{ formatNumber(entity.total_holdings, { style: 'decimal' }) }}</span>
-                </TableCell>
-            </TableRow>
-        </TableBody>
-    </Table>
+                    <TableBody>
+                        <TableRow
+                            v-for='entity in companies'
+                            :key='entity.id'
+                            class='min-h-12'
+                        >
+                            <!--  Name  -->
+                            <TableCell class='font-medium'>{{ entity.name || '-' }}</TableCell>
+                            
+                            <!--  Ticker  -->
+                            <TableCell>{{ entity.symbol || '-' }}</TableCell>
+                            
+                            <!--  Country  -->
+                            <TableCell class='flex justify-center h-full'>
+                                <div v-if='entity.country === "NO"'>-</div>
+                                
+                                <div v-else class='flex items-center gap-2'>
+                                    <NuxtIcon
+                                        :name="`circle-flags:${entity?.country?.toLowerCase()}`"
+                                        size='18px' class='self-center'
+                                    />
+                                    
+                                    <span>{{ entity.country }}</span>
+                                </div>
+                            </TableCell>
+                            
+                            <!--  Today Value  -->
+                            <TableCell>{{
+                                    formatNumber(entity.total_current_value_usd, { compact: true, decimals: 2 }) || '-'
+                                       }}
+                            </TableCell>
+                            
+                            <!--  Entry Value  -->
+                            <TableCell>{{
+                                    formatNumber(entity.total_entry_value_usd, { compact: true, decimals: 2 }) || '-'
+                                       }}
+                            </TableCell>
+                            
+                            <!--  Supply Percentage  -->
+                            <TableCell>{{
+                                    formatNumber(entity.percentage_of_total_supply, {
+                                        style: 'percent',
+                                        decimals: 2
+                                    })
+                                       }}
+                            </TableCell>
+                            
+                            <!--  Total Holdings  -->
+                            <TableCell class='flex items-center gap-1.5'>
+                                <NuxtIcon
+                                    :name='`logos:${id}`'
+                                    size='20'
+                                />
+                                
+                                <span>{{ formatNumber(entity.total_holdings, { style: 'decimal' }) }}</span>
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </div>
+        </div>
+    </Card>
 </template>
 
 <script setup>
+    import { Card } from '~/components/ui/card';
     import { formatNumber } from '@/utils/formatUtils.js';
     import Title from '@/components/Title.vue';
     import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table/index.ts';
