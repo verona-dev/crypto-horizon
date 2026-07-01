@@ -1,14 +1,19 @@
 <template>
-    <Card class='flex flex-col items-center justify-center gap-16 px-12 xl:px-6 w-full h-full'>
+    <Card v-if='data' class='flex flex-col items-center justify-center gap-16 px-12 xl:px-6 w-full h-full'>
         <div class='w-full flex flex-col'>
             <!--   Header   -->
-            <div class='flex flex-col items-center justify-center p-14'>
+            <div class='flex flex-col items-center justify-center gap-8 p-14'>
                 <Title :tag='4' class='text-primary'>Treasury Holdings</Title>
+                
+                <p>Market cap dominance: {{ data.market_cap_dominance }}</p>
+                <p>Total value: {{ formatNumber(data.total_value_usd, {
+                    compact: true, decimals: 2
+                }) }}</p>
             </div>
             
             <!--   Table   -->
             <div class='border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
-                <Table v-if='data'>
+                <Table>
                     <TableCaption class='py-6'>A list of private treasury entities.</TableCaption>
                     
                     <TableHeader class='border-t-2 border-b-2'>
@@ -95,7 +100,7 @@
     
     const route = useRoute();
     const id = route.params.id;
-    console.log(id);
+    
     const props = defineProps({
         data: {
             type: Object,
