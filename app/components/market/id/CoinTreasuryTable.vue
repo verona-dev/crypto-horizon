@@ -8,6 +8,7 @@
                 <TableHead>Ticker</TableHead>
                 <TableHead class='text-center min-w-32'>Country</TableHead>
                 <TableHead>Today Value</TableHead>
+                <TableHead>Supply %</TableHead>
             </TableRow>
         </TableHeader>
         
@@ -38,8 +39,13 @@
                 </TableCell>
                 
                 <!--  Total Treasury Value  -->
-                <TableCell>
-                    {{ formatNumber(entity.total_current_value_usd, { compact: true, decimals: 2 }) || '-' }}
+                <TableCell>{{ formatNumber(entity.total_current_value_usd, { compact: true, decimals: 2 }) || '-' }}</TableCell>
+                
+                <!--  Supply Percentage  -->
+                <TableCell>{{ formatNumber(entity.percentage_of_total_supply, {
+                        style: 'percent',
+                        decimals: 2
+                    })}}
                 </TableCell>
             </TableRow>
         </TableBody>
