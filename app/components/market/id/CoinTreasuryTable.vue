@@ -47,24 +47,9 @@
 </template>
 
 <script setup>
-    import PublicTreasuriesTable from '@/components/market/PublicTreasuriesTable.vue';
-    import { getTrendClass } from '@/utils/styleUtils.js';
-    import glossary from '@/assets/data/market/glossary.json';
     import { formatNumber } from '@/utils/formatUtils.js';
     import Title from '@/components/Title.vue';
-    import {
-        Table,
-        TableBody,
-        TableCaption,
-        TableCell,
-        TableHead,
-        TableHeader,
-        TableRow
-    } from '@/components/ui/table/index.ts';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index.ts';
-    import { Button } from '@/components/ui/button/index.ts';
-    import InfoIcon from '@/components/InfoIcon.vue';
-    import { Badge } from '@/components/ui/badge/index.ts';
+    import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table/index.ts';
     
     const props = defineProps({
         data: {
@@ -76,5 +61,4 @@
     const { data } = toRefs(props);
     console.log(data.value);
     const companies = computed(() => data?.value?.companies);
-    // const data = computed(() => coin.value?.publicTreasury?.companies || null);
 </script>
