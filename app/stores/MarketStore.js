@@ -15,6 +15,7 @@ export const useMarketStore = defineStore('MarketStore', {
             chart: {},
             links: {},
             name: '',
+            companyTreasury: {},
             timeframe: 1,
             timeframes: [
                 { name: 'Day', label: '24h', timeframe: 1 },
@@ -128,8 +129,9 @@ export const useMarketStore = defineStore('MarketStore', {
                     category: this.coin.symbol,
                     limit: 6,
                 });
-            } catch(error) {
-            
+            }
+            catch(error) {
+                console.error(error);
             }
             finally {
                 this.loading = false;
@@ -158,6 +160,8 @@ export const useMarketStore = defineStore('MarketStore', {
                 if (chartResponse) {
                     this.coin.chart = chartResponse;
                 }
+                
+                await this.getPublicTreasuryByCoin(slug);
             }
             catch(error) {
                 console.error(error);
@@ -287,7 +291,8 @@ export const useMarketStore = defineStore('MarketStore', {
             try {
                 const responseList = await useFetchCoingecko('entities/list', {
                     params: {
-                        per_page: 5 },
+                        per_page: 15
+                    },
                 });
                 
                 if(responseList && responseList.length) {
@@ -302,6 +307,24 @@ export const useMarketStore = defineStore('MarketStore', {
                 console.error(error);
             } finally {
                 this.loading = false;
+            }
+        },
+        
+        async getPublicTreasuryByCoin(coin) {
+            this.loading = true;
+            
+            try {
+                const response = await useFetchCoingecko(`companies/public_treasury/${coin}`, {
+                    params: {
+                        per_page: 15
+                    },
+                });
+                
+                if(response) {
+                    this.coin.companyTreasury = response;
+                }
+            } catch(error) {
+            
             }
         },
     },

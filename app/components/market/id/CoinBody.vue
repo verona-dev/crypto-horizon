@@ -21,7 +21,9 @@
         
         <!-- Bottom -->
         <div class='grid gap-6'>
-            <CoinDelta v-if='market_data' :marketData='market_data' />
+            <CoinTreasuryTable :data='treasuries' />
+            
+            <CoinDelta v-if='market_data' :market-data='market_data' />
             
             <CoinLinks
                 :links='links'
@@ -44,6 +46,7 @@
     import CoinSupply from '@/components/market/id/CoinSupply.vue';
     import CoinLinks from '@/components/market/id/CoinLinks.vue';
     import CoinNews from '@/components/market/id/CoinNews.vue';
+    import CoinTreasuryTable from '@/components/market/id/CoinTreasuryTable.vue';
     
     const props = defineProps({
         coin: {
@@ -57,4 +60,5 @@
     const market_data = computed(() => coingecko.value?.market_data);
     const links = computed(() => coin.value?.links);
     const symbol = toRef(coin.value?.symbol);
+    const treasuries = computed(() => coin.value?.companyTreasury);
 </script>
