@@ -3,7 +3,7 @@
         <div class='w-full flex flex-col'>
             <!--   Header   -->
             <div class='flex flex-col items-center justify-center gap-16 p-14'>
-                <Title :tag='4' class='text-primary'>Treasury Holdings</Title>
+                <Title :tag='4' class='text-primary'>Companies Treasury Holdings</Title>
                 
                 <div class='flex flex-col xl:flex-row gap-8 items-center justify-evenly w-5/6'>
                     <!--  Market Cap Dominance  -->
@@ -14,7 +14,7 @@
                             </template>
                         </MazCircularProgressBar>
                         
-                        <div class='label-container'>
+                        <div class='flex flex-col'>
                             <div class='flex items-center gap-2'>
                                 <Title :tag='3' :level='6'>{{ glossary.market_cap_dominance.label }}</Title>
                                 
@@ -44,9 +44,9 @@
                             </template>
                         </MazCircularProgressBar>
                         
-                        <div class='label-container'>
+                        <div class='flex flex-col'>
                             <div class='flex items-center gap-2'>
-                                <Title :tag='3' :level='6' class='!min-w-full'>{{ glossary.total_value.label }}</Title>
+                                <Title :tag='3' :level='6'>{{ glossary.total_value.label }}</Title>
                                 
                                 <HoverCard :openDelay='200'>
                                     <HoverCardTrigger>
@@ -197,12 +197,6 @@
         /* Desktop */
         @media (min-width: 1024px) {
             width: 250px;
-        }
-        
-        .label-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
     }
 </style>
