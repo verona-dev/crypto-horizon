@@ -16,8 +16,8 @@
     }
     
     .atom-spinner {
-        height: 120px;
-        width: 120px;
+        height: 80px;
+        width: 80px;
         overflow: hidden;
     }
     
@@ -32,7 +32,7 @@
         display: block;
         position: absolute;
         color: var(--red-radical);
-        font-size: calc(120px * 0.24);
+        font-size: calc(80px * 0.24);
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -43,8 +43,8 @@
         width: 100%;
         height: 100%;
         border-radius: 50%;
-        border-left-width: calc(120px / 25);
-        border-top-width: calc(120px / 25);
+        border-left-width: calc(80px / 25);
+        border-top-width: calc(80px / 25);
         border-left-color: var(--red-radical);
         border-left-style: solid;
         border-top-style: solid;
