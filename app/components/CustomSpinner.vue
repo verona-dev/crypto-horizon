@@ -52,17 +52,17 @@
     }
     
     .atom-spinner .spinner-line:nth-child(1) {
-        animation: atom-spinner-animation-1 2s linear infinite;
+        animation: atom-spinner-animation-1 3s linear infinite;
         transform: rotateZ(120deg) rotateX(66deg) rotateZ(0deg);
     }
     
     .atom-spinner .spinner-line:nth-child(2) {
-        animation: atom-spinner-animation-2 2s linear infinite;
+        animation: atom-spinner-animation-2 3s linear infinite;
         transform: rotateZ(240deg) rotateX(66deg) rotateZ(0deg);
     }
     
     .atom-spinner .spinner-line:nth-child(3) {
-        animation: atom-spinner-animation-3 2s linear infinite;
+        animation: atom-spinner-animation-3 3s linear infinite;
         transform: rotateZ(360deg) rotateX(66deg) rotateZ(0deg);
     }
     
