@@ -1,6 +1,6 @@
 <template>
     <div class='page'>
-        <LoadingContent v-if='loading' />
+        <PageLoadingSpinner v-if='loading' />
         
         <template v-else>
             <Card
@@ -19,7 +19,7 @@
     import { Card  } from '~/components/ui/card';
     import CoinHeader from '@/components/market/id/CoinHeader.vue';
     import CoinBody from '@/components/market/id/CoinBody.vue';
-    import LoadingContent from '@/components/LoadingContent.vue';
+    import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     
     // Router
     const route = useRoute();

@@ -1,6 +1,6 @@
 <template>
     <div class='page'>
-        <LoadingContent v-if='loading' />
+        <PageLoadingSpinner v-if='loading' />
         
         <div v-else class='flex flex-wrap gap-16 justify-center'>
             <div
@@ -90,7 +90,7 @@
     import { Button } from '~/components/ui/button';
     import { Card, CardHeader, CardDescription, CardContent } from '~/components/ui/card';
     import { formatNumber } from '~/utils/formatUtils.js';
-    import LoadingContent from '~/components/LoadingContent.vue';
+    import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     import Title from '~/components/Title.vue';
     
     // MarketStore

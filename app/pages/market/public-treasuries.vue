@@ -1,6 +1,6 @@
 <template>
     <div class='page'>
-        <LoadingContent v-if='loading' />
+        <PageLoadingSpinner v-if='loading' />
         
         <Card
             v-else
@@ -21,7 +21,7 @@
 
 <script setup>
     import { Card } from '~/components/ui/card';
-    import LoadingContent from '~/components/LoadingContent.vue';
+    import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     import Title from '~/components/Title.vue';
     import PublicTreasuriesTable from '@/components/market/PublicTreasuriesTable.vue';
     
