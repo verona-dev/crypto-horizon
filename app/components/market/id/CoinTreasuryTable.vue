@@ -1,11 +1,11 @@
 <template>
-    <Card v-if='data' class='flex flex-col items-center justify-center gap-16 px-12 xl:px-6 w-full h-full'>
+    <Card v-if='data' class='flex flex-col items-center justify-center gap-16'>
         <div class='w-full flex flex-col'>
             <!--   Header   -->
-            <div class='flex flex-col items-center justify-center gap-8 p-14'>
+            <div class='flex flex-col items-center justify-center gap-16 p-14'>
                 <Title :tag='4' class='text-primary'>Treasury Holdings</Title>
                 
-                <div class='flex items-center justify-evenly w-5/6'>
+                <div class='flex flex-col xl:flex-row gap-8 items-center justify-evenly w-5/6'>
                     <!--  Market Cap Dominance  -->
                     <div v-if='market_cap_dominance' class='item-container'>
                         <MazCircularProgressBar :percentage='market_cap_dominance_formatted' :duration='2000' suffix='%'>
@@ -15,8 +15,8 @@
                         </MazCircularProgressBar>
                         
                         <div class='label-container'>
-                            <div class='flex items-center border !min-w-fit'>
-                                <Title :tag='3' :level='5' class='!min-w-96'>{{ glossary.market_cap_dominance.label }}</Title>
+                            <div class='flex items-center gap-2'>
+                                <Title :tag='3' :level='6'>{{ glossary.market_cap_dominance.label }}</Title>
                                 
                                 <HoverCard
                                     :openDelay='200'
@@ -28,6 +28,8 @@
                                     <HoverCardContent>{{ glossary.market_cap_dominance.description }}</HoverCardContent>
                                 </HoverCard>
                             </div>
+                            
+                            <span class='h-8'></span>
                         </div>
                     </div>
                     
@@ -43,8 +45,8 @@
                         </MazCircularProgressBar>
                         
                         <div class='label-container'>
-                            <div class='flex items-center'>
-                                <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.total_value.label }}</Title>
+                            <div class='flex items-center gap-2'>
+                                <Title :tag='3' :level='6' class='!min-w-full'>{{ glossary.total_value.label }}</Title>
                                 
                                 <HoverCard :openDelay='200'>
                                     <HoverCardTrigger>
@@ -61,7 +63,7 @@
             </div>
             
             <!--   Table   -->
-            <div class='border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
+            <div class='px-12 xl:px-6 border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
                 <Table>
                     <TableCaption class='pt-10 pb-6'>A list of private treasury entities.</TableCaption>
                     
