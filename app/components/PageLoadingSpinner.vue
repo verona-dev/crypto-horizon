@@ -1,14 +1,17 @@
 <template>
     <div class='w-screen'>
-        <div class='h-full flex flex-col justify-center items-center gap-8 pt-36'>
+        <div class='h-full flex justify-center items-center gap-8 pt-36'>
+            <CustomSpinner />
+            
+<!--            <Spinner class='size-28 text-[#B19EEF]' />-->
+            
             <GradientText
                 :colors='["#5227FF", "#FF9FFC", "#B19EEF"]'
                 :animation-speed='8'
             >
-                <h1 class='font-great text-4xl lg:text-6xl xl:text-8xl'>{{ site_name }}</h1>
+                <h1 class='font-great text-4xl lg:text-5xl xl:text-7xl'>{{ site_name }}</h1>
             </GradientText>
-            
-            <Spinner class='size-28 text-[#B19EEF]' />
+        
         </div>
     </div>
     
@@ -24,6 +27,7 @@
 </template>
 
 <script setup>
+    import CustomSpinner from '~/components/CustomSpinner.vue';
     import GradientText from '~/components/ui/gradient-text/GradientText.vue';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
     import { Spinner } from '@/components/ui/spinner/index.js';
