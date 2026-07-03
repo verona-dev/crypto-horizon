@@ -1,19 +1,19 @@
 <template>
-    <div class='w-screen h-full flex justify-center items-center gap-8 pt-36'>
+    <div class='w-screen h-full flex flex-col xl:flex-row justify-center items-center gap-8 pt-36'>
         <CustomSpinner />
         
         <GradientText
             :colors='["#00C2FF", "#10B981", "#D946EF", "#E91E63"]'
             :animation-speed='24'
         >
-            <Title :tag='1' :level='3' class='font-great select-none'>{{ site_name }}</Title>
+            <Title :tag='1' :level='3' class='font-great select-none text-3xl lg:text-5xl xl:text-7xl'>{{ site_name }}</Title>
         
         </GradientText>
     </div>
     
     <SnowfallBg
         v-if='darkThemes'
-        color="#e4d9e2"
+        color='#e4d9e2'
         class='absolute inset-0 !min-h-lvh !min-w-full !z-0'
         :min-radius='0.1'
         :max-radius='2'
