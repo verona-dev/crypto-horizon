@@ -1,16 +1,14 @@
 <template>
-    <div class='w-screen'>
-        <div class='h-full flex justify-center items-center gap-8 pt-36'>
-            <CustomSpinner />
-            
-            <GradientText
-                :colors='["#818CF8", "#A78BFA", "#F0ABFC", "#E91E63"]'
-                :animation-speed='8'
-            >
-                <h1 class='font-great text-4xl lg:text-5xl xl:text-7xl'>{{ site_name }}</h1>
-            </GradientText>
+    <div class='w-screen h-full flex justify-center items-center gap-8 pt-36'>
+        <CustomSpinner />
         
-        </div>
+        <GradientText
+            :colors='["#00C2FF", "#10B981", "#D946EF", "#E91E63"]'
+            :animation-speed='24'
+        >
+            <Title :tag='1' :level='3' class='font-great select-none'>{{ site_name }}</Title>
+        
+        </GradientText>
     </div>
     
     <SnowfallBg
@@ -28,6 +26,7 @@
     import CustomSpinner from '~/components/CustomSpinner.vue';
     import GradientText from '~/components/ui/gradient-text/GradientText.vue';
     import { SnowfallBg } from '~/components/ui/snowfall-bg';
+    import Title from '@/components/Title.vue';
     
     const siteConfig = useSiteConfig();
     const site_name = ref(siteConfig?.name || '');
