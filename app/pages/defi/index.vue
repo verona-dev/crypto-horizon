@@ -1,6 +1,6 @@
 <template>
     <div class='page'>
-        <LoadingContent v-if='loading' />
+        <PageLoadingSpinner v-if='!loading' />
         
         <GlobalDefi v-else />
     </div>
@@ -8,7 +8,7 @@
 
 <script setup>
     import GlobalDefi from '~/components/market/GlobalDefi.vue';
-    import LoadingContent from '~/components/LoadingContent.vue';
+    import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     
     // MarketStore
     import { storeToRefs } from 'pinia';

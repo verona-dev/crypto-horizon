@@ -1,6 +1,6 @@
 <template>
     <div class='page'>
-        <LoadingContent v-if='loading' />
+        <PageLoadingSpinner v-if='loading' />
         
         <div v-else class='news flex flex-wrap gap-16 justify-center'>
             <!--  <Breadcrumb />  -->
@@ -230,7 +230,7 @@
     import { Card, CardTitle, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
-    import LoadingContent from '@/components/LoadingContent.vue';
+    import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import { Skeleton } from '~/components/ui/skeleton';
     

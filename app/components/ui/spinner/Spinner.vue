@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import type { HTMLAttributes } from "vue"
+    import { Loader2Icon } from "lucide-vue-next"
     import { cn } from "@/lib/utils"
     
     const props = defineProps<{
@@ -8,11 +9,9 @@
 </script>
 
 <template>
-    <NuxtIcon
+    <Loader2Icon
         role="status"
         aria-label="Loading"
-        :class="cn('size-4 animate-pulse', props.class)"
-        name='ph:flying-saucer-duotone'
-        size='26'
+        :class="cn('size-4 animate-spin', props.class)"
     />
 </template>

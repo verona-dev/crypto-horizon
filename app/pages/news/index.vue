@@ -1,6 +1,6 @@
 <template>
     <div class='page'>
-        <LoadingContent v-if='loading' />
+        <PageLoadingSpinner v-if='loading' />
         
         <div v-else class='flex flex-wrap gap-16 justify-center'>
             <div v-if='!darkThemes' class='h-[450px] flex items-center'>
@@ -186,7 +186,7 @@
     import titleImage from '~/assets/images/latest-news.png';
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import Title from '~/components/Title.vue';
-    import LoadingContent from '@/components/LoadingContent.vue';
+    import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';

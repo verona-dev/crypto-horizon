@@ -1,6 +1,6 @@
 <template>
     <div class='page'>
-        <LoadingContent v-if='loading' />
+        <PageLoadingSpinner v-if='loading' />
         
         <!--  Margin top because of market bar in markets  -->
         <div v-else class='flex flex-wrap gap-16 justify-center'>
@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-    import LoadingContent from '@/components/LoadingContent.vue';
+    import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     import OutletCard from '~/components/news/OutletCard.vue';
     import Title from '~/components/Title.vue';
     

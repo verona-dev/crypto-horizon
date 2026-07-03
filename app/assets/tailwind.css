@@ -134,6 +134,7 @@
     --color-blue-bunker: var(--blue-bunker);
     --color-blue-steele: var(--blue-steele);
     --color-red-brick: var(--red-brick);
+    --color-red-radical: var(--red-radical);
     --color-gray-mine: var(--gray-mine);
     --color-gray-dove: var(--gray-dove);
     --color-ebony-clay: var(--ebony-clay);
@@ -237,6 +238,7 @@
         --blue-steele: #1f2230;
         --blue-hippie: #5591a9;
         --red-brick: #c9374c;
+        --red-radical: #ff1d5e;
         --gray-mine: #333136;
         --gray-dove: #6f6d72;
         --ebony-clay: #1f2b37;
