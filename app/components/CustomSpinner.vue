@@ -31,7 +31,7 @@
     .atom-spinner .spinner-circle {
         display: block;
         position: absolute;
-        color: var(--red-radical);
+        color: #00C2FF;
         font-size: calc(80px * 0.24);
         top: 50%;
         left: 50%;
@@ -45,7 +45,7 @@
         border-radius: 50%;
         border-left-width: calc(80px / 25);
         border-top-width: calc(80px / 25);
-        border-left-color: var(--red-radical);
+        border-left-color: #00C2FF;
         border-left-style: solid;
         border-top-style: solid;
         border-top-color: transparent;
