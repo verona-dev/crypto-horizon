@@ -1,6 +1,6 @@
 <template>
     <div class='page'>
-        <PageLoadingSpinner v-if='!loading' />
+        <PageLoadingSpinner v-if='loading' />
         
         <GlobalDefi v-else />
     </div>
@@ -14,9 +14,12 @@
     import { storeToRefs } from 'pinia';
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    
-    const { loading } = storeToRefs(MarketStore);
     const { getCoingeckoGlobalDefi } = MarketStore;
+    
+    // LoadingStore
+    import { useLoadingStore } from '~/stores/LoadingStore.js';
+    const LoadingStore = useLoadingStore();
+    const { loading } = storeToRefs(LoadingStore);
     
     // SEO
     const title = 'Global DeFi - Your Complete Guide to Decentralized Finance';
