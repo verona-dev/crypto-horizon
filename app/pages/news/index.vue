@@ -197,14 +197,19 @@
     import relativeTime from 'dayjs/plugin/relativeTime';
     dayjs.extend(relativeTime, { rounding: Math.floor });
     
-    // NewsStore
+    // LoadingStore
     import { storeToRefs } from 'pinia';
+    import { useLoadingStore } from '~/stores/LoadingStore.js';
+    const LoadingStore = useLoadingStore();
+    const { loading } = storeToRefs(LoadingStore);
+    
+    // NewsStore
     import { useNewsStore } from '~/stores/NewsStore.js';
     import { useReadingTime } from 'maz-ui/composables';
     const NewsStore = useNewsStore();
-    
-    const { loading, news } = storeToRefs(NewsStore);
+    const { news } = storeToRefs(NewsStore);
     const { getNews } = NewsStore;
+    
     const articles = ref([]);
     const page_title = 'Latest News';
     
