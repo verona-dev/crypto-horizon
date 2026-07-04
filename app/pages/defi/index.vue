@@ -10,16 +10,16 @@
     import GlobalDefi from '~/components/market/GlobalDefi.vue';
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     
-    // MarketStore
-    import { storeToRefs } from 'pinia';
-    import { useMarketStore } from '~/stores/MarketStore.js';
-    const MarketStore = useMarketStore();
-    const { getCoingeckoGlobalDefi } = MarketStore;
-    
     // LoadingStore
+    import { storeToRefs } from 'pinia';
     import { useLoadingStore } from '~/stores/LoadingStore.js';
     const LoadingStore = useLoadingStore();
     const { loading } = storeToRefs(LoadingStore);
+    
+    // MarketStore
+    import { useMarketStore } from '~/stores/MarketStore.js';
+    const MarketStore = useMarketStore();
+    const { getCoingeckoGlobalDefi } = MarketStore;
     
     // SEO
     const title = 'Global DeFi - Your Complete Guide to Decentralized Finance';

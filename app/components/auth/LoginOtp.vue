@@ -171,12 +171,16 @@
     import { toTypedSchema } from '@vee-validate/zod';
     import { useCountdown } from '@vueuse/core';
     
-    // AuthStore
+    // LoadingStore
     import { storeToRefs } from 'pinia';
+    import { useLoadingStore } from '~/stores/LoadingStore.js';
+    const LoadingStore = useLoadingStore();
+    const { loading } = storeToRefs(LoadingStore);
+    
+    // AuthStore
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
     const { loginOtp, verifyOtp } = AuthStore;
-    const { loading } = storeToRefs(AuthStore);
     
     const validation_schema = toTypedSchema(
         z.object({
