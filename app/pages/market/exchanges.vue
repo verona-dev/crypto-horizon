@@ -93,12 +93,17 @@
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     import Title from '~/components/Title.vue';
     
-    // MarketStore
+    // LoadingStore
     import { storeToRefs } from 'pinia';
+    import { useLoadingStore } from '~/stores/LoadingStore.js';
+    const LoadingStore = useLoadingStore();
+    const { loading } = storeToRefs(LoadingStore);
+    
+    // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     
-    const { loading, exchanges } = storeToRefs(MarketStore);
+    const { exchanges } = storeToRefs(MarketStore);
     const { getExchanges } = MarketStore;
     
     const trustScoreStyle = (number) => {
