@@ -113,7 +113,8 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         
         async getCoin(slug) {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             const NewsStore = useNewsStore();
             
             try {
@@ -138,7 +139,7 @@ export const useMarketStore = defineStore('MarketStore', {
                 console.error(error);
             }
             finally {
-                this.loading = false;
+                LoadingStore.setLoading(true);
             }
         },
         
