@@ -4,6 +4,7 @@ import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 import { useFetchCmc } from '~/composables/apiCmc.js';
 import { formatLinks } from '~/utils/formatUtils.js';
 import { useNewsStore } from '~/stores/NewsStore.js';
+import { useLoadingStore } from '~/stores/LoadingStore.js';
 
 export const useMarketStore = defineStore('MarketStore', {
     state: () => ({
@@ -38,7 +39,8 @@ export const useMarketStore = defineStore('MarketStore', {
     
     actions: {
         async getFearAndGreed() {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const response = await useFetchCmc('v3/fear-and-greed/latest');
@@ -50,7 +52,7 @@ export const useMarketStore = defineStore('MarketStore', {
             } catch(error) {
                 console.error(error);
             } finally {
-                this.loading = false;
+                LoadingStore.setLoading(true);
             }
         },
         
