@@ -11,7 +11,8 @@
 </template>
 
 <style scoped>
-    .atom-spinner, .atom-spinner * {
+    .atom-spinner,
+    .atom-spinner * {
         box-sizing: border-box;
     }
     
