@@ -12,8 +12,8 @@
             </MazCircularProgressBar>
             
             <div class='label-container'>
-                <div class='flex items-center'>
-                    <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.market_cap.label }}</Title>
+                <div class='flex items-center gap-2'>
+                    <Title :tag='3' :level='5'>{{ glossary.market_cap.label }}</Title>
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
@@ -39,8 +39,8 @@
             </MazCircularProgressBar>
             
             <div class='label-container'>
-                <div class='flex items-center'>
-                    <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.fully_diluted_valuation.label }}</Title>
+                <div class='flex items-center gap-2'>
+                    <Title :tag='3' :level='5'>{{ glossary.fully_diluted_valuation.label }}</Title>
                     
                     <HoverCard :openDelay='200'>
                         <HoverCardTrigger>
@@ -248,6 +248,7 @@
         flex-direction: column;
         align-items: center;
         gap: 16px;
+        width: 300px !important;
         
         @media (min-width: 768px) {
             width: 200px;
