@@ -52,12 +52,13 @@ export const useMarketStore = defineStore('MarketStore', {
             } catch(error) {
                 console.error(error);
             } finally {
-                LoadingStore.setLoading(true);
+                LoadingStore.setLoading(false);
             }
         },
         
         async getGlobalMarket() {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const response = await useFetchCoingecko('global', {
@@ -70,7 +71,7 @@ export const useMarketStore = defineStore('MarketStore', {
             } catch(error) {
                 console.error(error);
             } finally {
-                this.loading = false;
+                LoadingStore.setLoading(true);
             }
         },
         
