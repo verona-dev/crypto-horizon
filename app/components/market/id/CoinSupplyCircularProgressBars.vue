@@ -66,8 +66,8 @@
             </MazCircularProgressBar>
             
             <div class='label-container'>
-                <div class='flex items-center'>
-                    <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.volume.label }}</Title>
+                <div class='flex items-center gap-2'>
+                    <Title :tag='3' :level='5'>{{ glossary.volume.label }}</Title>
                     
                     <HoverCard
                         :openDelay='200'
@@ -98,8 +98,8 @@
             </MazCircularProgressBar>
             
             <div class='label-container'>
-                <div class='flex items-center'>
-                    <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.circulating_supply.label }}</Title>
+                <div class='flex items-center gap-2'>
+                    <Title :tag='3' :level='5'>{{ glossary.circulating_supply.label }}</Title>
                     
                     <HoverCard :openDelay='200' class='flex'>
                         <HoverCardTrigger>
@@ -127,8 +127,8 @@
             </MazCircularProgressBar>
             
             <div class='label-container'>
-                <div class='flex items-center'>
-                    <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.total_supply.label }}</Title>
+                <div class='flex items-center gap-2'>
+                    <Title :tag='3' :level='5'>{{ glossary.total_supply.label }}</Title>
                     
                     <HoverCard
                         :openDelay='200'
@@ -157,8 +157,8 @@
             </MazCircularProgressBar>
             
             <div class='label-container'>
-                <div class='flex items-center'>
-                    <Title :tag='3' :level='5' class='!min-w-full'>{{ glossary.max_supply.label }}</Title>
+                <div class='flex items-center gap-2'>
+                    <Title :tag='3' :level='5'>{{ glossary.max_supply.label }}</Title>
                     
                     <HoverCard
                         :openDelay='200'
