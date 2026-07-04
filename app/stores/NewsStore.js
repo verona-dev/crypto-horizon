@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { useFetchCoindesk } from '~/composables/apiCoindesk.js';
+import { useLoadingStore } from '~/stores/LoadingStore.js';
 
 export const useNewsStore = defineStore('NewsStore', {
     state: () => ({
@@ -16,7 +17,8 @@ export const useNewsStore = defineStore('NewsStore', {
     
     actions: {
         async getNews({ category = null, limit  }) {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 let params = {
@@ -45,12 +47,13 @@ export const useNewsStore = defineStore('NewsStore', {
                 this.errorFetch = error;
             }
             finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
         async getArticle(source_key, guid) {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const { data, error } = await useFetchCoindesk('news/v1/article/get', {
@@ -70,12 +73,13 @@ export const useNewsStore = defineStore('NewsStore', {
                 this.errorFetch = error;
             }
             finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
         async getNewsOutlets() {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const { data, error } = await useFetchCoindesk('news/v1/source/list');
@@ -93,7 +97,7 @@ export const useNewsStore = defineStore('NewsStore', {
                 this.errorFetch = error;
             }
             finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
     }
