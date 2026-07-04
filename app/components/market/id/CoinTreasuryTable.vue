@@ -28,8 +28,6 @@
                                     <HoverCardContent>{{ glossary.market_cap_dominance.description }}</HoverCardContent>
                                 </HoverCard>
                             </div>
-                            
-                            <span class='h-8'></span>
                         </div>
                     </div>
                     
@@ -189,6 +187,8 @@
         flex-direction: column;
         align-items: center;
         gap: 16px;
+        height: 250px;
+        width: 300px !important;
         
         @media (min-width: 768px) {
             width: 200px;
