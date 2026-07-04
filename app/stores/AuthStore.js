@@ -3,10 +3,6 @@ import { useProfileStore } from '~/stores/ProfileStore.js';
 import { useLoadingStore } from '~/stores/LoadingStore.js';
 
 export const useAuthStore = defineStore('AuthStore', {
-    state: () => ({
-        loading: false,
-    }),
-    
     getters: {
         isAuthenticated: () => {
             const user = useSupabaseUser();

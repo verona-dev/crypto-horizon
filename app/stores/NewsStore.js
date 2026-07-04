@@ -8,7 +8,6 @@ export const useNewsStore = defineStore('NewsStore', {
         newsOutlets: {},
         article: {},
         coinNews : [],
-        loading: false,
         errorFetch: {
             statusCode: null,
             statusMessage: null,

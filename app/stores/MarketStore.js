@@ -30,7 +30,6 @@ export const useMarketStore = defineStore('MarketStore', {
         fearAndGreed: {},
         globalDefi: {},
         globalMarket: {},
-        loading: false,
         platformsSummary : [],
         publicTreasury: [],
         trendingCoins: [],
