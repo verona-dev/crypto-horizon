@@ -24,14 +24,19 @@
     // Router
     const route = useRoute();
     
-    // MarketStore
+    // LoadingStore
     import { storeToRefs } from 'pinia';
+    import { useLoadingStore } from '~/stores/LoadingStore.js';
+    const LoadingStore = useLoadingStore();
+    const { loading } = storeToRefs(LoadingStore);
+    
+    // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
     const { getCoin } = MarketStore;
     
     // State
-    const { coin, loading } = storeToRefs(MarketStore);
+    const { coin } = storeToRefs(MarketStore);
     const id = computed(() => route.params?.id);
     
     // SEO
