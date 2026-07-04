@@ -1,11 +1,8 @@
 import { defineStore } from 'pinia';
 import { useProfileStore } from '~/stores/ProfileStore.js';
+import { useLoadingStore } from '~/stores/LoadingStore.js';
 
 export const useAuthStore = defineStore('AuthStore', {
-    state: () => ({
-        loading: false,
-    }),
-    
     getters: {
         isAuthenticated: () => {
             const user = useSupabaseUser();
@@ -15,9 +12,10 @@ export const useAuthStore = defineStore('AuthStore', {
     
     actions: {
         async register(payload) {
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
+            
             try {
-                this.loading = true;
-                
                 const { data, error } = await $fetch('/api/supabase/auth/register', {
                     method: 'POST',
                     body: payload
@@ -33,14 +31,15 @@ export const useAuthStore = defineStore('AuthStore', {
                 
                 return { data: null, error };
             } finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
         async resendEmail(email) {
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
+            
             try {
-                this.loading = true;
-                
                 const { error } = await $fetch('/api/supabase/auth/resend-email', {
                     method: 'POST',
                     body: email
@@ -55,36 +54,38 @@ export const useAuthStore = defineStore('AuthStore', {
                 console.error(error);
                 return { error };
             } finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
         async loginPassword(payload) {
-          try {
-              this.loading = true;
-              
-              const { data, error } = await $fetch('/api/supabase/auth/login', {
-                  method: 'POST',
-                  body: payload
-              });
-              
-              if(error) {
-                  throw error;
-              }
-              
-              return { data, error };
-          } catch(error) {
-              console.error(error);
-              return { error };
-          } finally {
-              this.loading = false;
-          }
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
+            
+            try {
+                const { data, error } = await $fetch('/api/supabase/auth/login', {
+                    method: 'POST',
+                    body: payload
+                });
+                
+                if(error) {
+                    throw error;
+                }
+                
+                return { data, error };
+            } catch(error) {
+                console.error(error);
+                return { error };
+            } finally {
+                LoadingStore.setLoading(false);
+            }
         },
         
         async loginOtp(email) {
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
+            
             try {
-                this.loading = true;
-                
                 const { data, error } = await $fetch('/api/supabase/auth/login-otp', {
                     method: 'POST',
                     body: { email },
@@ -100,13 +101,15 @@ export const useAuthStore = defineStore('AuthStore', {
                 
                 return { data: null, error };
             } finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
         async loginOAuth(provider) {
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
+            
             try {
-                this.loading = true;
                 
                 const { data, error } = await $fetch('/api/supabase/auth/login-oauth', {
                     method: 'POST',
@@ -123,7 +126,7 @@ export const useAuthStore = defineStore('AuthStore', {
                 
                 return { data: null, error };
             } finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
@@ -147,9 +150,10 @@ export const useAuthStore = defineStore('AuthStore', {
         
         async verifyOtp(payload) {
             const ProfileStore = useProfileStore();
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
-                this.loading = true;
                 
                 const { data, error } = await $fetch('/api/supabase/auth/verify-otp', {
                     method: 'POST',
@@ -164,7 +168,7 @@ export const useAuthStore = defineStore('AuthStore', {
                 
                 return { data, error: null };
             } catch(error) {
-                this.loading = false;
+                LoadingStore.setLoading(false);
                 console.error(error);
                 return { data: null, error };
             }

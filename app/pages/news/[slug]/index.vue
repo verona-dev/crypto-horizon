@@ -252,7 +252,12 @@
     import { useNewsStore } from '~/stores/NewsStore';
     const NewsStore = useNewsStore();
     
-    const { article, loading, errorFetch } = storeToRefs(NewsStore);
+    // LoadingStore
+    import { useLoadingStore } from '~/stores/LoadingStore.js';
+    const LoadingStore = useLoadingStore();
+    const { loading } = storeToRefs(LoadingStore);
+    
+    const { article, errorFetch } = storeToRefs(NewsStore);
     const { getArticle } = NewsStore;
     
     const error = computed(() => errorFetch.value);

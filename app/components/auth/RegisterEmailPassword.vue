@@ -129,12 +129,16 @@
     import { useCountdown } from '@vueuse/core';
     import VerificationSent from '@/components/auth/VerificationSent.vue';
     
+    // LoadingStore
+    import { storeToRefs } from 'pinia';
+    import { useLoadingStore } from '~/stores/LoadingStore.js';
+    const LoadingStore = useLoadingStore();
+    const { loading } = storeToRefs(LoadingStore);
+    
     // AuthStore
-    import {storeToRefs} from 'pinia';
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
     const { register, resendEmail } = AuthStore;
-    const { loading } = storeToRefs(AuthStore);
     
     const validation_schema = toTypedSchema(
         z.object({

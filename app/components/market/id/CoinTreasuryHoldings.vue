@@ -28,8 +28,6 @@
                                     <HoverCardContent>{{ glossary.market_cap_dominance.description }}</HoverCardContent>
                                 </HoverCard>
                             </div>
-                            
-                            <span class='h-8'></span>
                         </div>
                     </div>
                     
@@ -44,7 +42,7 @@
                             </template>
                         </MazCircularProgressBar>
                         
-                        <div class='flex flex-col'>
+                        <div class='flex flex-col items-center'>
                             <div class='flex items-center gap-2'>
                                 <Title :tag='3' :level='6'>{{ glossary.total_value.label }}</Title>
                                 
@@ -163,15 +161,10 @@
     });
     
     const { data } = toRefs(props);
-    // console.log(data.value);
     
     // Market Cap Dominance
     const market_cap_dominance = computed(() =>  data.value?.market_cap_dominance);
     const market_cap_dominance_formatted = computed(() => Math.floor(market_cap_dominance.value).toFixed(0));
-    
-    console.log(market_cap_dominance.value);
-    console.log(market_cap_dominance_formatted.value);
-    
     
     // Total Value USD
     const total_value_usd = computed(() => data.value?.total_value_usd);
@@ -189,6 +182,8 @@
         flex-direction: column;
         align-items: center;
         gap: 16px;
+        height: 250px;
+        width: 300px !important;
         
         @media (min-width: 768px) {
             width: 200px;

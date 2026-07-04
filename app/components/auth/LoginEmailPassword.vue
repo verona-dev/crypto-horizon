@@ -110,12 +110,16 @@
     import { toast } from 'vue-sonner';
     import { toTypedSchema } from '@vee-validate/zod';
     
-    // AuthStore
+    // LoadingStore
     import { storeToRefs } from 'pinia';
+    import { useLoadingStore } from '~/stores/LoadingStore.js';
+    const LoadingStore = useLoadingStore();
+    const { loading } = storeToRefs(LoadingStore);
+    
+    // AuthStore
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
     const { loginPassword } = AuthStore;
-    const { loading } = storeToRefs(AuthStore);
     
     // ProfileStore
     import { useProfileStore } from '~/stores/ProfileStore.js';

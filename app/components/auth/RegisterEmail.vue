@@ -118,12 +118,16 @@
     import { useCountdown } from '@vueuse/core';
     import VerificationSent from '@/components/auth/VerificationSent.vue';
     
-    // AuthStore
+    // LoadingStore
     import { storeToRefs } from 'pinia';
+    import { useLoadingStore } from '~/stores/LoadingStore.js';
+    const LoadingStore = useLoadingStore();
+    const { loading } = storeToRefs(LoadingStore);
+    
+    // AuthStore
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
     const { loginOtp } = AuthStore;
-    const { loading } = storeToRefs(AuthStore);
     
     // Stepper
     const validation_schema = toTypedSchema(

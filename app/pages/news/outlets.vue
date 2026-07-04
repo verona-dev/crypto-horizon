@@ -22,12 +22,17 @@
     import OutletCard from '~/components/news/OutletCard.vue';
     import Title from '~/components/Title.vue';
     
-    // NewsStore
+    // LoadingStore
     import { storeToRefs } from 'pinia';
+    import { useLoadingStore } from '~/stores/LoadingStore.js';
+    const LoadingStore = useLoadingStore();
+    const { loading } = storeToRefs(LoadingStore);
+    
+    // NewsStore
     import { useNewsStore } from '~/stores/NewsStore.js';
     const NewsStore = useNewsStore();
     
-    const { newsOutlets, loading } = storeToRefs(NewsStore);
+    const { newsOutlets } = storeToRefs(NewsStore);
     const { getNewsOutlets } = NewsStore;
     
     // SEO

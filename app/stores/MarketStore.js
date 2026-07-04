@@ -4,6 +4,7 @@ import { useFetchLiveCoinWatch } from '~/composables/apiLiveCoinWatch.js';
 import { useFetchCmc } from '~/composables/apiCmc.js';
 import { formatLinks } from '~/utils/formatUtils.js';
 import { useNewsStore } from '~/stores/NewsStore.js';
+import { useLoadingStore } from '~/stores/LoadingStore.js';
 
 export const useMarketStore = defineStore('MarketStore', {
     state: () => ({
@@ -29,7 +30,6 @@ export const useMarketStore = defineStore('MarketStore', {
         fearAndGreed: {},
         globalDefi: {},
         globalMarket: {},
-        loading: false,
         platformsSummary : [],
         publicTreasury: [],
         trendingCoins: [],
@@ -38,7 +38,8 @@ export const useMarketStore = defineStore('MarketStore', {
     
     actions: {
         async getFearAndGreed() {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const response = await useFetchCmc('v3/fear-and-greed/latest');
@@ -50,12 +51,13 @@ export const useMarketStore = defineStore('MarketStore', {
             } catch(error) {
                 console.error(error);
             } finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
         async getGlobalMarket() {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const response = await useFetchCoingecko('global', {
@@ -68,7 +70,7 @@ export const useMarketStore = defineStore('MarketStore', {
             } catch(error) {
                 console.error(error);
             } finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
@@ -77,7 +79,8 @@ export const useMarketStore = defineStore('MarketStore', {
             const table = tag === 'table';
             const list = tag === 'list';
             
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const response = await useFetchCoingecko('coins/markets', {
@@ -104,12 +107,13 @@ export const useMarketStore = defineStore('MarketStore', {
                 console.error(error)
             }
             finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
         async getCoin(slug) {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             const NewsStore = useNewsStore();
             
             try {
@@ -134,12 +138,13 @@ export const useMarketStore = defineStore('MarketStore', {
                 console.error(error);
             }
             finally {
-                this.loading = false;
+                LoadingStore.setLoading(true);
             }
         },
         
         async getCoingeckoCoin(slug) {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const [ coinResponse, chartResponse ] = await Promise.all([
@@ -167,7 +172,7 @@ export const useMarketStore = defineStore('MarketStore', {
                 console.error(error);
             }
             finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
@@ -176,7 +181,8 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         
         async getLiveCoinWatch(route, options) {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const { data, error } = await useFetchLiveCoinWatch(route, options);
@@ -193,7 +199,7 @@ export const useMarketStore = defineStore('MarketStore', {
                 console.error(error);
                 return { data: null, error };
             } finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
@@ -240,7 +246,8 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         
         async getTrendingSearchList() {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const response = await useFetchCoingecko('search/trending');
@@ -250,11 +257,14 @@ export const useMarketStore = defineStore('MarketStore', {
                 }
             } catch(error) {
                 console.error(error);
+            } finally {
+                LoadingStore.setLoading(false);
             }
         },
         
         async getCoingeckoGlobalDefi() {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const response = await useFetchCoingecko('global/decentralized_finance_defi');
@@ -265,12 +275,13 @@ export const useMarketStore = defineStore('MarketStore', {
             } catch(error) {
                 console.error(error);
             } finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
         async getExchanges() {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const response = await useFetchCoingecko('/exchanges');
@@ -281,12 +292,13 @@ export const useMarketStore = defineStore('MarketStore', {
             } catch(error) {
                 console.error(error);
             } finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
         async getPublicTreasury() {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const responseList = await useFetchCoingecko('entities/list', {
@@ -306,12 +318,13 @@ export const useMarketStore = defineStore('MarketStore', {
             } catch (error) {
                 console.error(error);
             } finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
         async getPublicTreasuryByCoin(coin) {
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const response = await useFetchCoingecko(`companies/public_treasury/${coin}`, {

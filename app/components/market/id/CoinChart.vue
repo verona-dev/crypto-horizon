@@ -32,8 +32,8 @@
                             @click='onToggleSniper'
                             variant='outline'
                             :class='[
-                                "h-9.5 relative overflow-hidden hover:bg-transparent",
-                                 { "text-primary border-primary/50 hover:text-primary" : sniper_mode },
+                                "h-9.5 relative overflow-hidden hover:bg-transparent !rounded-lg",
+                                 sniper_mode ? "text-primary border-primary/50 hover:text-primary" : "border-none"
                             ]'
                             aria-label='Sniper mode'
                         >
@@ -42,6 +42,7 @@
                                 :color='["#A07CFE", "#FE8FB5", "#FFBE7B"]'
                                 :duration='20'
                                 :border-width='1'
+                                class='!rounded-lg'
                             />
                             
                             <div class='flex items-center gap-2'>

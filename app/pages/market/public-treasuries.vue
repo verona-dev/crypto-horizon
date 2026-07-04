@@ -25,12 +25,16 @@
     import Title from '~/components/Title.vue';
     import PublicTreasuriesTable from '@/components/market/PublicTreasuriesTable.vue';
     
-    // MarketStore
+    // LoadingStore
     import { storeToRefs } from 'pinia';
+    import { useLoadingStore } from '~/stores/LoadingStore.js';
+    const LoadingStore = useLoadingStore();
+    const { loading } = storeToRefs(LoadingStore);
+    
+    // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    
-    const { loading, publicTreasury } = storeToRefs(MarketStore);
+    const { publicTreasury } = storeToRefs(MarketStore);
     const { getPublicTreasury } = MarketStore;
     
     // SEO

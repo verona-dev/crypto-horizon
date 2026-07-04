@@ -1,6 +1,6 @@
 <template>
     <div class='page'>
-        <PageLoadingSpinner v-if='!loading' />
+        <PageLoadingSpinner v-if='loading' />
         
         <GlobalDefi v-else />
     </div>
@@ -10,12 +10,15 @@
     import GlobalDefi from '~/components/market/GlobalDefi.vue';
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     
-    // MarketStore
+    // LoadingStore
     import { storeToRefs } from 'pinia';
+    import { useLoadingStore } from '~/stores/LoadingStore.js';
+    const LoadingStore = useLoadingStore();
+    const { loading } = storeToRefs(LoadingStore);
+    
+    // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
     const MarketStore = useMarketStore();
-    
-    const { loading } = storeToRefs(MarketStore);
     const { getCoingeckoGlobalDefi } = MarketStore;
     
     // SEO
