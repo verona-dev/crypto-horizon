@@ -161,15 +161,10 @@
     });
     
     const { data } = toRefs(props);
-    // console.log(data.value);
     
     // Market Cap Dominance
     const market_cap_dominance = computed(() =>  data.value?.market_cap_dominance);
     const market_cap_dominance_formatted = computed(() => Math.floor(market_cap_dominance.value).toFixed(0));
-    
-    console.log(market_cap_dominance.value);
-    console.log(market_cap_dominance_formatted.value);
-    
     
     // Total Value USD
     const total_value_usd = computed(() => data.value?.total_value_usd);
