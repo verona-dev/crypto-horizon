@@ -258,8 +258,12 @@
     import { useAuthStore } from '~/stores/AuthStore.js';
     const AuthStore = useAuthStore();
     const { loginOtp, verifyOtp } = AuthStore;
-    const { loading } = storeToRefs(AuthStore);
     const authModal = ref(false);
+    
+    // LoadingStore
+    import { useLoadingStore } from '~/stores/LoadingStore.js';
+    const LoadingStore = useLoadingStore();
+    const { loading } = storeToRefs(LoadingStore);
     
     // Stepper
     const validation_schema = [
