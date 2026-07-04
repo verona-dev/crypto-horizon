@@ -80,7 +80,8 @@ export const useMarketStore = defineStore('MarketStore', {
             const table = tag === 'table';
             const list = tag === 'list';
             
-            this.loading = true;
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
             
             try {
                 const response = await useFetchCoingecko('coins/markets', {
@@ -107,7 +108,7 @@ export const useMarketStore = defineStore('MarketStore', {
                 console.error(error)
             }
             finally {
-                this.loading = false;
+                LoadingStore.setLoading(false);
             }
         },
         
