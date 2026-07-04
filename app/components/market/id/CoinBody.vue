@@ -21,7 +21,7 @@
         
         <!-- Bottom -->
         <div class='grid gap-6'>
-            <CoinTreasuryTable :data='treasuries' />
+            <CoinTreasuryHoldings :data='treasuries' />
             
             <CoinDelta v-if='market_data' :market-data='market_data' />
             
@@ -46,7 +46,7 @@
     import CoinSupply from '@/components/market/id/CoinSupply.vue';
     import CoinLinks from '@/components/market/id/CoinLinks.vue';
     import CoinNews from '@/components/market/id/CoinNews.vue';
-    import CoinTreasuryTable from '@/components/market/id/CoinTreasuryTable.vue';
+    import CoinTreasuryHoldings from '@/components/market/id/CoinTreasuryHoldings.vue';
     
     const props = defineProps({
         coin: {
