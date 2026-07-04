@@ -42,7 +42,7 @@
                             </template>
                         </MazCircularProgressBar>
                         
-                        <div class='flex flex-col'>
+                        <div class='flex flex-col items-center'>
                             <div class='flex items-center gap-2'>
                                 <Title :tag='3' :level='6'>{{ glossary.total_value.label }}</Title>
                                 
