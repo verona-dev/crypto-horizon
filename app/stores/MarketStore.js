@@ -114,7 +114,7 @@ export const useMarketStore = defineStore('MarketStore', {
         async getCoin(slug) {
             const LoadingStore = useLoadingStore();
             LoadingStore.setLoading(true);
-            const NewsStore = useNewsStore();
+            // const NewsStore = useNewsStore();
             
             try {
                 await this.getCoingeckoCoin(slug);
@@ -129,16 +129,18 @@ export const useMarketStore = defineStore('MarketStore', {
                     await this.formatCoinLinks();
                 }
                 
+                /*
                 await NewsStore.getNews( {
                     category: this.coin.symbol,
                     limit: 6,
                 });
+                */
             }
             catch(error) {
                 console.error(error);
             }
             finally {
-                LoadingStore.setLoading(true);
+                LoadingStore.setLoading(false);
             }
         },
         
