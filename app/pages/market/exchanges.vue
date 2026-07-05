@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
                                 
-                                <!--  Visit  -->
+                                <!--  Website  -->
                                 <NuxtLink
                                     :to='exchange.url'
                                     target='_blank'
@@ -38,7 +38,7 @@
                                     class='mt-1.5'
                                 >
                                     <Button variant='link'>
-                                        Visit
+                                        Website
                                         
                                         <NuxtIcon
                                             name='ph:arrow-up-right-light'
