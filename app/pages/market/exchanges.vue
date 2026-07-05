@@ -7,7 +7,7 @@
                 v-for='exchange in exchanges'
                 :key='exchange.id'
             >
-                <Card class='w-150 min-h-90 p-4 !rounded-xl hover:border-foreground/15 flex flex-col justify-between'>
+                <Card class='w-150 min-h-90 p-4 !rounded-xl border-secondary/25 hover:border-foreground/15 flex flex-col justify-between'>
                     <CardHeader>
                         <div class='flex justify-between'>
                             <div class='flex items-center gap-3'>
@@ -49,30 +49,43 @@
                     
                     <CardContent class='my-4 flex items-center justify-between'>
                         <!--  Trade Volume 24h  -->
-                        <div>
+                        <div class='flex-1 flex flex-col gap-1.5'>
                             <CardDescription>Trade Volume 24h in BTC</CardDescription>
                             
-                            <div class='flex items-center gap-2'>
-                                <NuxtIcon
-                                    name='logos:bitcoin'
-                                    class='mb-0.5'
-                                    size='24'
-                                />
-                                
-                                <Title :tag='5' class='font-semibold leading-none tracking-tight'>{{ formatNumber(exchange.trade_volume_24h_btc, { style: 'decimal', maximumFractionDigits: 3 }) }}</Title>
-                            </div>
+                            
+                            <Badge variant='outline' class='py-1.5 px-3.5 shadow-lg w-fit' :class='trustScoreStyle(exchange.trust_score)'>
+                                <div class='flex items-center gap-2'>
+                                    <NuxtIcon
+                                        name='logos:bitcoin'
+                                        class='mb-0.5'
+                                        size='24'
+                                    />
+                                    
+                                    <Title :tag='5' class='font-semibold leading-none tracking-tight'>
+                                        {{
+                                            formatNumber(exchange.trade_volume_24h_btc, {
+                                                style: 'decimal',
+                                                maximumFractionDigits: 3
+                                            })
+                                        }}
+                                    </Title>
+                                </div>
+                            </Badge>
                         </div>
                         
                         <!--  Trust Score  -->
-                        <div class='flex-1 text-center'>
+                        <div class='flex-1 text-center flex flex-col items-center gap-1.5'>
                             <CardDescription>Trust Score</CardDescription>
-                            <Title
-                                :tag='5'
-                                class='font-semibold leading-none tracking-tight'
-                                :class='trustScoreStyle(exchange.trust_score)'
-                            >
-                                {{ exchange.trust_score }}
-                            </Title>
+                            
+                            <Badge variant='outline' class='py-1.5 px-3.5 shadow-lg' :class='trustScoreStyle(exchange.trust_score)'>
+                                <Title
+                                    :tag='5'
+                                    class='font-semibold leading-none tracking-tight'
+                                    :class='trustScoreStyle(exchange.trust_score)'
+                                >
+                                    {{ exchange.trust_score }}/10
+                                </Title>
+                            </Badge>
                         </div>
                     </CardContent>
                     
@@ -87,6 +100,7 @@
 </template>
 
 <script setup>
+    import { Badge } from '~/components/ui/badge';
     import { Button } from '~/components/ui/button';
     import { Card, CardHeader, CardDescription, CardContent } from '~/components/ui/card';
     import { formatNumber } from '~/utils/formatUtils.js';
