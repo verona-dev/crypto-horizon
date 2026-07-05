@@ -30,7 +30,9 @@
                 :symbol='symbol'
             />
             
+            <!--
             <CoinNews :coin='coin' />
+            -->
         </div>
     
     </CardContent>
@@ -45,7 +47,7 @@
     import { CardContent } from '~/components/ui/card';
     import CoinSupply from '@/components/market/id/CoinSupply.vue';
     import CoinLinks from '@/components/market/id/CoinLinks.vue';
-    import CoinNews from '@/components/market/id/CoinNews.vue';
+    // import CoinNews from '@/components/market/id/CoinNews.vue';
     import CoinTreasuryHoldings from '@/components/market/id/CoinTreasuryHoldings.vue';
     
     const props = defineProps({
