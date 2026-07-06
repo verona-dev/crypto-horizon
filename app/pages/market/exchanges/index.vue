@@ -30,23 +30,32 @@
                                     </div>
                                 </div>
                                 
-                                <!--  Website  -->
-                                <NuxtLink
-                                    :to='exchange.url'
-                                    target='_blank'
-                                    aria-label='exchange link'
-                                    class='mt-1.5'
-                                >
-                                    <Button variant='link'>
-                                        Website
-                                        
-                                        <NuxtIcon
-                                            name='ph:arrow-up-right-light'
-                                            size='16'
-                                            class='bg-primary'
-                                        />
-                                    </Button>
-                                </NuxtLink>
+                                <div>
+                                    <!--  Visit Page  -->
+                                    <NuxtLink
+                                        :to='`/market/exchanges/${exchange.id}`'
+                                        aria-label='exchange link'
+                                    >
+                                        <Button variant=''>Visit</Button>
+                                    </NuxtLink>
+                                    
+                                    <!--  Website  -->
+                                    <NuxtLink
+                                        :to='exchange.url'
+                                        target='_blank'
+                                        aria-label='exchange website'
+                                    >
+                                        <Button variant='link'>
+                                            Website
+                                            
+                                            <NuxtIcon
+                                                name='ph:arrow-up-right-light'
+                                                size='16'
+                                                class='bg-primary'
+                                            />
+                                        </Button>
+                                    </NuxtLink>
+                                </div>
                             </div>
                         </CardHeader>
                         
