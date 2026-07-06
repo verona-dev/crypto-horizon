@@ -36,7 +36,7 @@
                                         :to='`/market/exchanges/${exchange.id}`'
                                         aria-label='exchange link'
                                     >
-                                        <Button variant=''>Visit</Button>
+                                        <Button>Open</Button>
                                     </NuxtLink>
                                     
                                     <!--  Website  -->
