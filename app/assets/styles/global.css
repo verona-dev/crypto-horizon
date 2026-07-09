@@ -211,6 +211,28 @@
             @apply self-center;
         }
         
+        .progress-bar-item-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            width: 300px !important;
+            
+            @media (min-width: 768px) {
+                width: 200px;
+            }
+            
+            /* Desktop */
+            @media (min-width: 1024px) {
+                width: 250px;
+            }
+            
+            .label-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     }
     
     .coin-links {

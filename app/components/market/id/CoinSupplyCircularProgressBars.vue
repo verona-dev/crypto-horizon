@@ -179,9 +179,9 @@
 
 <script setup>
     import { formatNumber } from '~/utils/formatUtils.js';
+    import glossary from '~/assets/data/market/glossary.json';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
-    import glossary from '~/assets/data/market/glossary.json';
     import Title from '~/components/Title.vue';
     
     const props = defineProps({
