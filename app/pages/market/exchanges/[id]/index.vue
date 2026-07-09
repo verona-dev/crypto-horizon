@@ -108,6 +108,32 @@
                 </CardContent>
             </Card>
             
+            <!--  Notice card  -->
+            <Alert
+                v-if='exchange.public_notice || exchange.alert_notice'
+                class='my-6 px-0 w-3/4 flex items-center animate-fadeIn border border-warning/25'
+            >
+                <div class='flex px-8'>
+                    <NuxtIcon
+                        name='ph:shield-warning-light'
+                        size='30'
+                        class='text-warning'
+                    />
+                </div>
+                
+                <div class='flex flex-col gap-2 border-l border-warning/25 p-6'>
+                    <div v-if='exchange.public_notice'>
+                        <AlertTitle class='uppercase underline text-warning'>Public notice</AlertTitle>
+                        <AlertDescription v-html='exchange.public_notice || "Public notice description"' class='text-xs' />
+                    </div>
+                    
+                    <div v-if='exchange.alert_notice'>
+                        <AlertTitle class='uppercase underline text-warning'>Alert notice</AlertTitle>
+                        <AlertDescription v-html='exchange.alert_notice || "Alert notice description"' class='text-xs' />
+                    </div>
+                </div>
+            </Alert>
+            
             <div class='flex flex-col'>
                 <!--  Socials  -->
                 <p>{{ exchange?.facebook_url }}</p>
@@ -117,14 +143,6 @@
                 <p>{{ exchange?.other_url_2 }}</p>
                 <p>{{ exchange?.twitter_handle }}</p>
                 
-                <!--  Notice card  -->
-                <p>{{ exchange?.public_notice }}</p>
-                <p>{{ exchange?.alert_notice }}</p>
-                
-                <!--  Score card  -->
-                <p>{{ exchange?.trust_score }}</p>
-                <p>{{ exchange?.trust_score_rank }}</p>
-                
                 <!--  Trade Volume card  -->
                 <p>{{ exchange?.trade_volume_24h_btc }}</p>
             </div>
@@ -133,6 +151,7 @@
 </template>
 
 <script setup>
+    import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert';
     import { Badge } from '~/components/ui/badge';
     import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
     import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
