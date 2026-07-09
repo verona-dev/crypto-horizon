@@ -10,16 +10,56 @@
                 </CardHeader>
                 
                 <CardContent>
-                    <p>Card Content</p>
+                    <Table>
+                        <TableBody>
+                            <!--  Website  -->
+                            <TableRow>
+                                <TableCell class='font-medium'>Website</TableCell>
+                                <TableCell class='text-right'>{{ exchange?.url }}</TableCell>
+                            </TableRow>
+                            
+                            <!--  Community  -->
+                            <TableRow>
+                                <TableCell class='font-medium'>Community</TableCell>
+                                <TableCell class='text-right'>{{ exchange?.url }}</TableCell>
+                            </TableRow>
+                            
+                            <!--  API Id  -->
+                            <TableRow>
+                                <TableCell class='font-medium'>API Id</TableCell>
+                                <TableCell class='text-right'>{{ exchange?.url }}</TableCell>
+                            </TableRow>
+                            
+                            <!--  Address  -->
+                            <TableRow>
+                                <TableCell class='font-medium'>Address</TableCell>
+                                <TableCell class='text-right'>{{ exchange?.url }}</TableCell>
+                            </TableRow>
+                            
+                            <!--  Coins  -->
+                            <TableRow>
+                                <TableCell class='font-medium'>Coins</TableCell>
+                                <TableCell class='text-right'>{{ exchange?.url }}</TableCell>
+                            </TableRow>
+                            
+                            <!--  Pairs  -->
+                            <TableRow>
+                                <TableCell class='font-medium'>Pairs</TableCell>
+                                <TableCell class='text-right'>{{ exchange?.url }}</TableCell>
+                            </TableRow>
+                            
+                            <!--  Year Established  -->
+                            <TableRow>
+                                <TableCell class='font-medium'>Year Established</TableCell>
+                                <TableCell class='text-right'>{{ exchange?.year_established }}</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
                 </CardContent>
             </Card>
             
             <div class='flex flex-col'>
-<!--                <p>{{ exchange?.name }}</p>-->
-                <p>{{ exchange?.year_established }}</p>
                 <p>{{ exchange?.country }}</p>
-<!--                <p>{{ exchange?.description }}</p>-->
-                <p>{{ exchange?.url }}</p>
                 <p>{{ exchange?.image }}</p>
                 
                 <p>{{ exchange?.facebook_url }}</p>
@@ -46,8 +86,9 @@
 </template>
 
 <script setup>
-    import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card';
-    import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
+    import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
+    import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
+    import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import Title from '~/components/Title.vue';
     
     // Router
