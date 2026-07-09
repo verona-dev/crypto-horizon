@@ -6,9 +6,9 @@
             <div class='flex items-center gap-4 self-start'>
                 <NuxtImg
                     :src='exchange.image'
-                    width='48'
+                    width='52'
                     alt='exchange logo'
-                    class='inline'
+                    class='inline mb-1'
                 />
                 
                 <Title :tag='1' :level='3'>{{ exchange.name }}</Title>
@@ -47,40 +47,31 @@
                 
                 <!--  Trading Volume 24h in BTC  -->
                 <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container flex-1 p-6'>
-                    <MazCircularProgressBar
-                        :percentage='100'
-                        :duration='3000'
-                    >
-                        <template #default>
-                            <h5>{{ volume_compact }}</h5>
-                        </template>
-                    </MazCircularProgressBar>
+                    <CardHeader>
+                        <Title :tag='4'>{{ glossary.volume.label }}</Title>
+                        <CardDescription>{{ glossary.volume.description }}</CardDescription>
+                    </CardHeader>
                     
-                    <div class='label-container'>
-                        <div class='flex items-center gap-2'>
-                            <Title :tag='3' :level='5'>{{ glossary.volume.label }}</Title>
-                            
-                            <HoverCard
-                                :openDelay='200'
-                                class='flex'
-                            >
-                                <HoverCardTrigger class='mb-0.5'>
-                                    <InfoIcon size='28' />
-                                </HoverCardTrigger>
-                                <HoverCardContent>{{ glossary.volume.description }}</HoverCardContent>
-                            </HoverCard>
-                        </div>
+                    <CardContent class='flex flex-col gap-4'>
+                        <MazCircularProgressBar
+                            :percentage='100'
+                            :duration='3000'
+                        >
+                            <template #default>
+                                <h5>{{ volume_compact }}</h5>
+                            </template>
+                        </MazCircularProgressBar>
+                    </CardContent>
+                    
+                    <CardContent class='flex items-center gap-2'>
+                        <NuxtIcon
+                            name='logos:bitcoin'
+                            size='32'
+                            class='mb-0.5'
+                        />
                         
-                        <div class='flex items-center gap-2'>
-                            <NuxtIcon
-                                name='logos:bitcoin'
-                                size='32'
-                                class='mb-0.5'
-                            />
-                            
-                            <Title :tag='4'>{{ volume_value }}</Title>
-                        </div>
-                    </div>
+                        <Title :tag='4'>{{ volume_value }}</Title>
+                    </CardContent>
                 </div>
             </Card>
             
