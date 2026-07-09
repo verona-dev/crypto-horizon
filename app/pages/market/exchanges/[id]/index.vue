@@ -4,7 +4,7 @@
         
         <template v-else>
             <!--  Info Table  -->
-            <Card>
+            <Card class=''>
                 <CardHeader>
                     <Title :tag='4' class='flex items-center gap-2'>
                         <span>What is</span>
@@ -89,8 +89,8 @@
             </Card>
             
             <!--  Trust Score  -->
-            <Card>
-                <div class='flex-1'>
+            <Card class='flex items-center'>
+                <div class='flex-1 border-r border-r-muted-foreground/25 py-8 px-4'>
                     <CardHeader>
                         <Title :tag='4'>{{ exchange?.name }} Trust Score</Title>
                         <CardDescription>Trust Score is a rating algorithm developed by CoinGecko to evaluate the
@@ -117,7 +117,7 @@
                 </div>
                 
                 <!--  Trading Volume 24h in BTC  -->
-                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container'>
+                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container flex-1 py-12 px-4'>
                     <MazCircularProgressBar
                         :percentage='100'
                         :duration='3000'
@@ -145,11 +145,11 @@
                         <div class='flex items-center gap-2'>
                             <NuxtIcon
                                 name='logos:bitcoin'
-                                size='42'
-                                class='mb-1'
+                                size='32'
+                                class='mb-0.5'
                             />
                             
-                            <Title :tag='3' class=''>{{ volume_value }}</Title>
+                            <Title :tag='4'>{{ volume_value }}</Title>
                         </div>
                     </div>
                 </div>
