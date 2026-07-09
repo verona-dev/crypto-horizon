@@ -64,14 +64,25 @@
                                 <TableCell class='font-medium'>Year Established</TableCell>
                                 <TableCell class='text-right'>{{ exchange?.year_established }}</TableCell>
                             </TableRow>
+                            
+                            <!--  Exchange Type  -->
+                            <TableRow>
+                                <TableCell class='font-medium'>Exchange Type</TableCell>
+                                <TableCell class='text-right'>{{ exchange_type }}</TableCell>
+                            </TableRow>
+                            
+                            <!--  Trading Incentive  -->
+                            <TableRow>
+                                <TableCell class='font-medium'>Trading Incentive</TableCell>
+                                <TableCell class='text-right'>{{ exchange?.has_trading_incentive }}</TableCell>
+                            </TableRow>
                         </TableBody>
                     </Table>
                 </CardContent>
             </Card>
             
             <div class='flex flex-col'>
-                <p>{{ exchange?.image }}</p>
-                
+                <!--  Socials  -->
                 <p>{{ exchange?.facebook_url }}</p>
                 <p>{{ exchange?.reddit_url }}</p>
                 <p>{{ exchange?.telegram_url }}</p>
@@ -79,14 +90,15 @@
                 <p>{{ exchange?.other_url_2 }}</p>
                 <p>{{ exchange?.twitter_handle }}</p>
                 
-                <p>{{ exchange?.centralized }}</p>
-                
+                <!--  Notice card  -->
                 <p>{{ exchange?.public_notice }}</p>
                 <p>{{ exchange?.alert_notice }}</p>
                 
+                <!--  Score card  -->
                 <p>{{ exchange?.trust_score }}</p>
                 <p>{{ exchange?.trust_score_rank }}</p>
                 
+                <!--  Trade Volume card  -->
                 <p>{{ exchange?.trade_volume_24h_btc }}</p>
             </div>
         </template>
@@ -117,6 +129,10 @@
     const { exchange } = storeToRefs(MarketStore);
     console.log(JSON.parse(JSON.stringify(exchange.value)));
     const id = computed(() => route.params?.id);
+    const exchange_type = computed(() => {
+        if(exchange.value.centralized) return 'Centralised';
+        return '-';
+    });
     
     onMounted(async() => {
         await getExchange(id.value);
