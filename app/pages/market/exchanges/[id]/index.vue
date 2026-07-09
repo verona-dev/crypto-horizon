@@ -1,10 +1,10 @@
 <template>
-    <div class='page market'>
+    <div class='page market border border-primary'>
         <PageLoadingSpinner v-if='loading' />
         
         <template v-else>
             <!--  Info Table  -->
-            <Card class=''>
+            <Card class='w-full xl:max-w-5xl'>
                 <CardHeader>
                     <Title :tag='4' class='flex items-center gap-2'>
                         <span>What is</span>
@@ -89,8 +89,8 @@
             </Card>
             
             <!--  Trust Score  -->
-            <Card class='flex items-center'>
-                <div class='flex-1 border-r border-r-muted-foreground/25 py-8 px-4'>
+            <Card class='flex flex-col xl:flex-row items-center'>
+                <div class='flex-1 xl:border-r xl:border-r-muted-foreground/25 py-8 px-4'>
                     <CardHeader>
                         <Title :tag='4'>{{ exchange?.name }} Trust Score</Title>
                         <CardDescription>Trust Score is a rating algorithm developed by CoinGecko to evaluate the
