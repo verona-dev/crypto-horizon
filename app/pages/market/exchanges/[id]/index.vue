@@ -17,9 +17,10 @@
             </div>
             
             
-            <!--  Trust Score  -->
-            <Card class='w-full flex flex-col xl:flex-row items-center'>
-                <div class='flex-1 xl:border-r xl:border-r-muted-foreground/25 py-8 px-4'>
+            <!--  Trust Score + Trading Volume  -->
+            <Card class='w-full flex flex-col xl:flex-row items-center p-6'>
+                <!--  Trust Score  -->
+                <div class='flex-1 xl:border-r xl:border-r-muted-foreground/25 p-6'>
                     <CardHeader>
                         <Title :tag='4'>{{ exchange?.name }} Trust Score</Title>
                         <CardDescription>Trust Score is a rating algorithm developed by CoinGecko to evaluate the
@@ -46,7 +47,7 @@
                 </div>
                 
                 <!--  Trading Volume 24h in BTC  -->
-                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container flex-1 py-12 px-4'>
+                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container flex-1 p-6'>
                     <MazCircularProgressBar
                         :percentage='100'
                         :duration='3000'
@@ -85,7 +86,7 @@
             </Card>
             
             <!--  Info Table  -->
-            <Card class='w-full'>
+            <Card class='w-full p-12 flex flex-col gap-8'>
                 <CardHeader>
                     <Title :tag='4' class='flex items-center gap-2'>
                         <span>What is</span>
