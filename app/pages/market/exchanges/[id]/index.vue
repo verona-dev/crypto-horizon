@@ -24,6 +24,12 @@
                 <CardContent>
                     <Table>
                         <TableBody>
+                            <!--  Rank  -->
+                            <TableRow>
+                                <TableCell class='font-medium'>Rank</TableCell>
+                                <TableCell class='text-right'>&#35;{{ exchange?.trust_score_rank }}</TableCell>
+                            </TableRow>
+                            
                             <!--  Website  -->
                             <TableRow>
                                 <TableCell class='font-medium'>Website</TableCell>
@@ -92,7 +98,7 @@
                 <CardContent>
                     <Badge variant='outline' class='py-1.5 px-3.5 shadow-lg' :class='getTrustScoreStyle(exchange.trust_score)'>
                         <Title
-                            :tag='5'
+                            :tag='3'
                             class='font-semibold leading-none tracking-tight'
                             :class='getTrustScoreStyle(exchange.trust_score)'
                         >
