@@ -16,7 +16,6 @@
                 <Badge variant='outline' class='py-2 px-3 shadow-lg bg-muted text-foreground/75 text-sm'>{{ exchange_type }} exchange</Badge>
             </div>
             
-            
             <!--  Trust Score + Trading Volume  -->
             <Card class='w-full flex flex-col xl:flex-row items-center p-6'>
                 <!--  Trust Score  -->
@@ -88,18 +87,7 @@
             <!--  Info Table  -->
             <Card class='w-full p-12 flex flex-col gap-8'>
                 <CardHeader>
-                    <Title :tag='4' class='flex items-center gap-2'>
-                        <span>What is</span>
-                        
-                        <NuxtImg
-                            :src='exchange.image'
-                            width='32'
-                            alt='exchange logo'
-                            class='inline'
-                        />
-                        
-                        <span>{{ exchange?.name }} exchange?</span>
-                    </Title>
+                    <Title :tag='4' class='flex items-center gap-2'>What is {{ exchange?.name }} exchange?</Title>
                     <CardDescription>{{ exchange?.description }}</CardDescription>
                 </CardHeader>
                 
