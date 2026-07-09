@@ -5,7 +5,18 @@
         <template v-else>
             <Card>
                 <CardHeader>
-                    <Title :tag='4'>What is {{ exchange?.name }} exchange?</Title>
+                    <Title :tag='4' class='flex items-center gap-2'>
+                        <span>What is</span>
+                        
+                        <NuxtImg
+                            :src='exchange.image'
+                            width='32'
+                            alt='exchange logo'
+                            class='inline'
+                        />
+                        
+                        <span>{{ exchange?.name }} exchange?</span>
+                    </Title>
                     <CardDescription>{{ exchange?.description }}</CardDescription>
                 </CardHeader>
                 
@@ -21,31 +32,31 @@
                             <!--  Community  -->
                             <TableRow>
                                 <TableCell class='font-medium'>Community</TableCell>
-                                <TableCell class='text-right'>{{ exchange?.url }}</TableCell>
+                                <TableCell class='text-right'>{{ exchange?.facebook_url }}</TableCell>
                             </TableRow>
                             
                             <!--  API Id  -->
                             <TableRow>
                                 <TableCell class='font-medium'>API Id</TableCell>
-                                <TableCell class='text-right'>{{ exchange?.url }}</TableCell>
+                                <TableCell class='text-right'>{{ id }}</TableCell>
                             </TableRow>
                             
-                            <!--  Address  -->
+                            <!--  Country  -->
                             <TableRow>
-                                <TableCell class='font-medium'>Address</TableCell>
-                                <TableCell class='text-right'>{{ exchange?.url }}</TableCell>
+                                <TableCell class='font-medium'>Country</TableCell>
+                                <TableCell class='text-right'>{{ exchange?.country }}</TableCell>
                             </TableRow>
                             
                             <!--  Coins  -->
                             <TableRow>
                                 <TableCell class='font-medium'>Coins</TableCell>
-                                <TableCell class='text-right'>{{ exchange?.url }}</TableCell>
+                                <TableCell class='text-right'>{{ exchange?.coins }}</TableCell>
                             </TableRow>
                             
                             <!--  Pairs  -->
                             <TableRow>
                                 <TableCell class='font-medium'>Pairs</TableCell>
-                                <TableCell class='text-right'>{{ exchange?.url }}</TableCell>
+                                <TableCell class='text-right'>{{ exchange?.pairs }}</TableCell>
                             </TableRow>
                             
                             <!--  Year Established  -->
@@ -59,7 +70,6 @@
             </Card>
             
             <div class='flex flex-col'>
-                <p>{{ exchange?.country }}</p>
                 <p>{{ exchange?.image }}</p>
                 
                 <p>{{ exchange?.facebook_url }}</p>
@@ -77,8 +87,6 @@
                 <p>{{ exchange?.trust_score }}</p>
                 <p>{{ exchange?.trust_score_rank }}</p>
                 
-                <p>{{ exchange?.coins }}</p>
-                <p>{{ exchange?.pairs }}</p>
                 <p>{{ exchange?.trade_volume_24h_btc }}</p>
             </div>
         </template>
@@ -107,6 +115,7 @@
     
     // State
     const { exchange } = storeToRefs(MarketStore);
+    console.log(JSON.parse(JSON.stringify(exchange.value)));
     const id = computed(() => route.params?.id);
     
     onMounted(async() => {
