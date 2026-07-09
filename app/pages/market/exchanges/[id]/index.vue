@@ -1,5 +1,5 @@
 <template>
-    <div class='page'>
+    <div class='page market'>
         <PageLoadingSpinner v-if='loading' />
         
         <template v-else>
@@ -90,22 +90,69 @@
             
             <!--  Trust Score  -->
             <Card>
-                <CardHeader>
-                    <Title :tag='4'>{{ exchange?.name }} Trust Score</Title>
-                    <CardDescription>Trust Score is a rating algorithm developed by CoinGecko to evaluate the legitimacy of an exchange’s trading volume. Trust Score is calculated on a range of metrics such as liquidity, scale of operations, cybersecurity score, and more.</CardDescription>
-                </CardHeader>
-                
-                <CardContent>
-                    <Badge variant='outline' class='py-1.5 px-3.5 shadow-lg' :class='getTrustScoreStyle(exchange.trust_score)'>
-                        <Title
-                            :tag='3'
-                            class='font-semibold leading-none tracking-tight'
+                <div class='flex-1'>
+                    <CardHeader>
+                        <Title :tag='4'>{{ exchange?.name }} Trust Score</Title>
+                        <CardDescription>Trust Score is a rating algorithm developed by CoinGecko to evaluate the
+                                         legitimacy of an exchange’s trading volume. Trust Score is calculated on a
+                                         range of metrics such as liquidity, scale of operations, cybersecurity score,
+                                         and more.
+                        </CardDescription>
+                    </CardHeader>
+                    
+                    <CardContent>
+                        <Badge
+                            variant='outline' class='py-1.5 px-3.5 shadow-lg'
                             :class='getTrustScoreStyle(exchange.trust_score)'
                         >
-                            {{ exchange.trust_score }}/10
-                        </Title>
-                    </Badge>
-                </CardContent>
+                            <Title
+                                :tag='3'
+                                class='font-semibold leading-none tracking-tight'
+                                :class='getTrustScoreStyle(exchange.trust_score)'
+                            >
+                                {{ exchange.trust_score }}/10
+                            </Title>
+                        </Badge>
+                    </CardContent>
+                </div>
+                
+                <!--  Trading Volume 24h in BTC  -->
+                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container'>
+                    <MazCircularProgressBar
+                        :percentage='100'
+                        :duration='3000'
+                    >
+                        <template #default>
+                            <h5>{{ volume_compact }}</h5>
+                        </template>
+                    </MazCircularProgressBar>
+                    
+                    <div class='label-container'>
+                        <div class='flex items-center gap-2'>
+                            <Title :tag='3' :level='5'>{{ glossary.volume.label }}</Title>
+                            
+                            <HoverCard
+                                :openDelay='200'
+                                class='flex'
+                            >
+                                <HoverCardTrigger>
+                                    <InfoIcon size='28' />
+                                </HoverCardTrigger>
+                                <HoverCardContent>{{ glossary.volume.description }}</HoverCardContent>
+                            </HoverCard>
+                        </div>
+                        
+                        <div class='flex items-center gap-2'>
+                            <NuxtIcon
+                                name='logos:bitcoin'
+                                size='42'
+                                class='mb-1'
+                            />
+                            
+                            <Title :tag='3' class=''>{{ volume_value }}</Title>
+                        </div>
+                    </div>
+                </div>
             </Card>
             
             <!--  Notice card  -->
@@ -142,9 +189,6 @@
                 <p>{{ exchange?.other_url_1 }}</p>
                 <p>{{ exchange?.other_url_2 }}</p>
                 <p>{{ exchange?.twitter_handle }}</p>
-                
-                <!--  Trade Volume card  -->
-                <p>{{ exchange?.trade_volume_24h_btc }}</p>
             </div>
         </template>
     </div>
@@ -154,10 +198,12 @@
     import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert';
     import { Badge } from '~/components/ui/badge';
     import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
+    import { getTrustScoreStyle } from '~/utils/styleUtils.js';
+    import glossary from '~/assets/data/market/glossary.json';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
     import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table';
     import Title from '~/components/Title.vue';
-    import { getTrustScoreStyle } from '~/utils/styleUtils.js';
     
     // Router
     const route = useRoute();
@@ -170,6 +216,8 @@
     
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
+    import InfoIcon from '@/components/InfoIcon.vue';
+    import { formatNumber } from '@/utils/formatUtils.js';
     const MarketStore = useMarketStore();
     const { getExchange } = MarketStore;
     
@@ -181,6 +229,14 @@
         if(exchange.value.centralized) return 'Centralised';
         return '-';
     });
+    
+    const trading_volume = computed(() => exchange.value?.trade_volume_24h_btc);
+    const volume_value = formatNumber(trading_volume.value, {
+        style: 'decimal',
+    });
+    const volume_compact = computed(() => formatNumber(trading_volume.value, {
+        compact: true, decimals: 1
+    }));
     
     onMounted(async() => {
         await getExchange(id.value);
