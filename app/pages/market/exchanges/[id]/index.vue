@@ -1,10 +1,91 @@
 <template>
-    <div class='page market border border-primary'>
+    <div class='page market w-full xl:max-w-7xl'>
         <PageLoadingSpinner v-if='loading' />
         
         <template v-else>
+            <div class='flex items-center gap-4 self-start'>
+                <NuxtImg
+                    :src='exchange.image'
+                    width='48'
+                    alt='exchange logo'
+                    class='inline'
+                />
+                
+                <Title :tag='1' :level='3'>{{ exchange.name }}</Title>
+                
+                <Badge variant='outline' class='py-2 px-3 shadow-lg bg-muted text-foreground/75 text-sm'>{{ exchange_type }} exchange</Badge>
+            </div>
+            
+            
+            <!--  Trust Score  -->
+            <Card class='w-full flex flex-col xl:flex-row items-center'>
+                <div class='flex-1 xl:border-r xl:border-r-muted-foreground/25 py-8 px-4'>
+                    <CardHeader>
+                        <Title :tag='4'>{{ exchange?.name }} Trust Score</Title>
+                        <CardDescription>Trust Score is a rating algorithm developed by CoinGecko to evaluate the
+                                         legitimacy of an exchange’s trading volume. Trust Score is calculated on a
+                                         range of metrics such as liquidity, scale of operations, cybersecurity score,
+                                         and more.
+                        </CardDescription>
+                    </CardHeader>
+                    
+                    <CardContent>
+                        <Badge
+                            variant='outline' class='py-1.5 px-3.5 shadow-lg'
+                            :class='getTrustScoreStyle(exchange.trust_score)'
+                        >
+                            <Title
+                                :tag='3'
+                                class='font-semibold leading-none tracking-tight'
+                                :class='getTrustScoreStyle(exchange.trust_score)'
+                            >
+                                {{ exchange.trust_score }}/10
+                            </Title>
+                        </Badge>
+                    </CardContent>
+                </div>
+                
+                <!--  Trading Volume 24h in BTC  -->
+                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container flex-1 py-12 px-4'>
+                    <MazCircularProgressBar
+                        :percentage='100'
+                        :duration='3000'
+                    >
+                        <template #default>
+                            <h5>{{ volume_compact }}</h5>
+                        </template>
+                    </MazCircularProgressBar>
+                    
+                    <div class='label-container'>
+                        <div class='flex items-center gap-2'>
+                            <Title :tag='3' :level='5'>{{ glossary.volume.label }}</Title>
+                            
+                            <HoverCard
+                                :openDelay='200'
+                                class='flex'
+                            >
+                                <HoverCardTrigger class='mb-0.5'>
+                                    <InfoIcon size='28' />
+                                </HoverCardTrigger>
+                                <HoverCardContent>{{ glossary.volume.description }}</HoverCardContent>
+                            </HoverCard>
+                        </div>
+                        
+                        <div class='flex items-center gap-2'>
+                            <NuxtIcon
+                                name='logos:bitcoin'
+                                size='32'
+                                class='mb-0.5'
+                            />
+                            
+                            <Title :tag='4'>{{ volume_value }}</Title>
+                        </div>
+                    </div>
+                </div>
+            </Card>
+            
             <!--  Info Table  -->
-            <Card class='w-full xl:max-w-5xl'>
+            <Card class='w-full'>
                 <CardHeader>
                     <Title :tag='4' class='flex items-center gap-2'>
                         <span>What is</span>
@@ -86,73 +167,6 @@
                         </TableBody>
                     </Table>
                 </CardContent>
-            </Card>
-            
-            <!--  Trust Score  -->
-            <Card class='flex flex-col xl:flex-row items-center'>
-                <div class='flex-1 xl:border-r xl:border-r-muted-foreground/25 py-8 px-4'>
-                    <CardHeader>
-                        <Title :tag='4'>{{ exchange?.name }} Trust Score</Title>
-                        <CardDescription>Trust Score is a rating algorithm developed by CoinGecko to evaluate the
-                                         legitimacy of an exchange’s trading volume. Trust Score is calculated on a
-                                         range of metrics such as liquidity, scale of operations, cybersecurity score,
-                                         and more.
-                        </CardDescription>
-                    </CardHeader>
-                    
-                    <CardContent>
-                        <Badge
-                            variant='outline' class='py-1.5 px-3.5 shadow-lg'
-                            :class='getTrustScoreStyle(exchange.trust_score)'
-                        >
-                            <Title
-                                :tag='3'
-                                class='font-semibold leading-none tracking-tight'
-                                :class='getTrustScoreStyle(exchange.trust_score)'
-                            >
-                                {{ exchange.trust_score }}/10
-                            </Title>
-                        </Badge>
-                    </CardContent>
-                </div>
-                
-                <!--  Trading Volume 24h in BTC  -->
-                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container flex-1 py-12 px-4'>
-                    <MazCircularProgressBar
-                        :percentage='100'
-                        :duration='3000'
-                    >
-                        <template #default>
-                            <h5>{{ volume_compact }}</h5>
-                        </template>
-                    </MazCircularProgressBar>
-                    
-                    <div class='label-container'>
-                        <div class='flex items-center gap-2'>
-                            <Title :tag='3' :level='5'>{{ glossary.volume.label }}</Title>
-                            
-                            <HoverCard
-                                :openDelay='200'
-                                class='flex'
-                            >
-                                <HoverCardTrigger>
-                                    <InfoIcon size='28' />
-                                </HoverCardTrigger>
-                                <HoverCardContent>{{ glossary.volume.description }}</HoverCardContent>
-                            </HoverCard>
-                        </div>
-                        
-                        <div class='flex items-center gap-2'>
-                            <NuxtIcon
-                                name='logos:bitcoin'
-                                size='32'
-                                class='mb-0.5'
-                            />
-                            
-                            <Title :tag='4'>{{ volume_value }}</Title>
-                        </div>
-                    </div>
-                </div>
             </Card>
             
             <!--  Notice card  -->
