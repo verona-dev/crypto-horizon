@@ -65,7 +65,7 @@
                                 <CardDescription>Trade Volume 24h in BTC</CardDescription>
                                 
                                 
-                                <Badge variant='outline' class='py-1.5 px-3.5 shadow-lg w-fit' :class='trustScoreStyle(exchange.trust_score)'>
+                                <Badge variant='outline' class='py-1.5 px-3.5 shadow-lg w-fit' :class='getTrustScoreStyle(exchange.trust_score)'>
                                     <div class='flex items-center gap-2'>
                                         <NuxtIcon
                                             name='logos:bitcoin'
@@ -89,11 +89,11 @@
                             <div class='flex-1 text-center flex flex-col items-center gap-1.5'>
                                 <CardDescription>Trust Score</CardDescription>
                                 
-                                <Badge variant='outline' class='py-1.5 px-3.5 shadow-lg' :class='trustScoreStyle(exchange.trust_score)'>
+                                <Badge variant='outline' class='py-1.5 px-3.5 shadow-lg' :class='getTrustScoreStyle(exchange.trust_score)'>
                                     <Title
                                         :tag='5'
                                         class='font-semibold leading-none tracking-tight'
-                                        :class='trustScoreStyle(exchange.trust_score)'
+                                        :class='getTrustScoreStyle(exchange.trust_score)'
                                     >
                                         {{ exchange.trust_score }}/10
                                     </Title>
@@ -117,6 +117,7 @@
     import { Button } from '~/components/ui/button';
     import { Card, CardHeader, CardDescription, CardContent } from '~/components/ui/card';
     import { formatNumber } from '~/utils/formatUtils.js';
+    import { getTrustScoreStyle } from '~/utils/styleUtils.js';
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     import Title from '~/components/Title.vue';
     
@@ -132,12 +133,6 @@
     
     const { exchanges } = storeToRefs(MarketStore);
     const { getExchanges } = MarketStore;
-    
-    const trustScoreStyle = (number) => {
-        if(number >= 7 && number <= 10) return '!text-progress';
-        if(number >= 5 && number <= 6) return '!text-warning';
-        return '!text-destructive';
-    };
     
     // SEO
     const title = 'Crypto Exchanges: Ranked by Volume & Trust Score';
