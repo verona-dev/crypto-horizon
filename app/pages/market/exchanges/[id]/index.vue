@@ -3,6 +3,7 @@
         <PageLoadingSpinner v-if='loading' />
         
         <template v-else>
+            <!--  Info Table  -->
             <Card>
                 <CardHeader>
                     <Title :tag='4' class='flex items-center gap-2'>
@@ -74,10 +75,30 @@
                             <!--  Trading Incentive  -->
                             <TableRow>
                                 <TableCell class='font-medium'>Trading Incentive</TableCell>
-                                <TableCell class='text-right'>{{ exchange?.has_trading_incentive }}</TableCell>
+                                <TableCell class='text-right capitalize'>{{ exchange?.has_trading_incentive }}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
+                </CardContent>
+            </Card>
+            
+            <!--  Trust Score  -->
+            <Card>
+                <CardHeader>
+                    <Title :tag='4'>{{ exchange?.name }} Trust Score</Title>
+                    <CardDescription>Trust Score is a rating algorithm developed by CoinGecko to evaluate the legitimacy of an exchange’s trading volume. Trust Score is calculated on a range of metrics such as liquidity, scale of operations, cybersecurity score, and more.</CardDescription>
+                </CardHeader>
+                
+                <CardContent>
+                    <Badge variant='outline' class='py-1.5 px-3.5 shadow-lg' :class='getTrustScoreStyle(exchange.trust_score)'>
+                        <Title
+                            :tag='5'
+                            class='font-semibold leading-none tracking-tight'
+                            :class='getTrustScoreStyle(exchange.trust_score)'
+                        >
+                            {{ exchange.trust_score }}/10
+                        </Title>
+                    </Badge>
                 </CardContent>
             </Card>
             
@@ -106,10 +127,12 @@
 </template>
 
 <script setup>
+    import { Badge } from '~/components/ui/badge';
     import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
     import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
-    import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '~/components/ui/table';
+    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table';
     import Title from '~/components/Title.vue';
+    import { getTrustScoreStyle } from '~/utils/styleUtils.js';
     
     // Router
     const route = useRoute();
