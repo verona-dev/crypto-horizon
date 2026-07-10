@@ -7,7 +7,7 @@
                 
                 <div class='flex flex-col xl:flex-row gap-8 items-center justify-evenly w-5/6'>
                     <!--  Market Cap Dominance  -->
-                    <div v-if='market_cap_dominance' class='item-container'>
+                    <div v-if='market_cap_dominance' class='progress-bar-item-container'>
                         <MazCircularProgressBar :percentage='market_cap_dominance_formatted' :duration='2000' suffix='%'>
                             <template #default>
                                 <Title :tag='4' :level='5'>{{ market_cap_dominance_formatted }}&#37;</Title>
@@ -32,7 +32,7 @@
                     </div>
                     
                     <!--  Total Value USD  -->
-                    <div v-if='total_value_usd' class='item-container'>
+                    <div v-if='total_value_usd' class='progress-bar-item-container'>
                         <MazCircularProgressBar
                             :percentage='100'
                             :duration='2000'
@@ -175,23 +175,3 @@
     
     const companies = computed(() => data?.value?.companies);
 </script>
-
-<style scoped>
-    .item-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        height: 250px;
-        width: 300px !important;
-        
-        @media (min-width: 768px) {
-            width: 200px;
-        }
-        
-        /* Desktop */
-        @media (min-width: 1024px) {
-            width: 250px;
-        }
-    }
-</style>

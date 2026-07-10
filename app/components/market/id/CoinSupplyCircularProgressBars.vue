@@ -1,7 +1,7 @@
 <template>
     <div class='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-24 justify-items-center p-6 !h-full'>
         <!--  Market Cap  -->
-        <div v-if='market_cap' class='item-container'>
+        <div v-if='market_cap' class='progress-bar-item-container'>
             <MazCircularProgressBar
                 :percentage='100'
                 :duration='2000'
@@ -28,7 +28,7 @@
         </div>
         
         <!--  Fully Diluted Valuation  -->
-        <div v-if='fully_diluted_valuation' class='item-container'>
+        <div v-if='fully_diluted_valuation' class='progress-bar-item-container'>
             <MazCircularProgressBar
                 :percentage='100'
                 :duration='2500'
@@ -55,7 +55,7 @@
         </div>
         
         <!--  Volume 24h  -->
-        <div v-if='volume' class='item-container'>
+        <div v-if='volume' class='progress-bar-item-container'>
             <MazCircularProgressBar
                 :percentage='100'
                 :duration='3000'
@@ -85,7 +85,7 @@
         </div>
         
         <!--  Circulating Supply  -->
-        <div v-if='circulating_supply' class='item-container'>
+        <div v-if='circulating_supply' class='progress-bar-item-container'>
             <MazCircularProgressBar
                 :percentage='circulating_supply_percentage'
                 :duration='2000'
@@ -114,7 +114,7 @@
         </div>
         
         <!--  Total Supply  -->
-        <div v-if='total_supply' class='item-container'>
+        <div v-if='total_supply' class='progress-bar-item-container'>
             <MazCircularProgressBar
                 :percentage='total_supply_percentage'
                 :duration='2500'
@@ -146,7 +146,7 @@
         </div>
         
         <!--  Max Supply  -->
-        <div v-if='max_supply' class='item-container'>
+        <div v-if='max_supply' class='progress-bar-item-container'>
             <MazCircularProgressBar
                 :percentage='100'
                 :duration='3000'
@@ -241,28 +241,3 @@
     
     const symbol = computed(() => coin.value?.symbol || coin.value?.name);
 </script>
-
-<style>
-    .item-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        width: 300px !important;
-        
-        @media (min-width: 768px) {
-            width: 200px;
-        }
-        
-        /* Desktop */
-        @media (min-width: 1024px) {
-            width: 250px;
-        }
-        
-        .label-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-    }
-</style>
