@@ -1,5 +1,5 @@
 <template>
-    <div class='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-24 justify-items-center p-6 !h-full'>
+    <div class='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-24 xl:gap-y-36 justify-items-center px-6 py-12 !h-full'>
         <!--  Market Cap  -->
         <div v-if='market_cap' class='progress-bar-item-container'>
             <MazCircularProgressBar
@@ -196,7 +196,7 @@
     const market_data = computed(() => coin.value?.coingecko?.market_data);
     
     const market_cap = computed(() => market_data.value?.market_cap?.usd);
-    const market_cap_value =formatNumber(market_cap.value);
+    const market_cap_value = formatNumber(market_cap.value);
     const market_cap_compact = computed(() => formatNumber(market_cap.value, {
         compact: true, decimals: 1
     }));
