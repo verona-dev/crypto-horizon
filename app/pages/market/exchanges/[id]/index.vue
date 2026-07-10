@@ -176,15 +176,21 @@
                 </div>
             </Alert>
             
-            <div class='flex flex-col'>
-                <!--  Socials  -->
-                <p>{{ exchange?.facebook_url }}</p>
-                <p>{{ exchange?.reddit_url }}</p>
-                <p>{{ exchange?.telegram_url }}</p>
-                <p>{{ exchange?.other_url_1 }}</p>
-                <p>{{ exchange?.other_url_2 }}</p>
-                <p>{{ exchange?.twitter_handle }}</p>
-            </div>
+            <Card class='w-full p-12 flex flex-col gap-8'>
+                <CardHeader>
+                    <Title :tag='4'>Social Links</Title>
+                </CardHeader>
+                
+                <CardContent>
+                    <!--  Socials  -->
+                    <p>{{ exchange?.facebook_url }}</p>
+                    <p>{{ exchange?.reddit_url }}</p>
+                    <p>{{ exchange?.telegram_url }}</p>
+                    <p>{{ exchange?.other_url_1 }}</p>
+                    <p>{{ exchange?.other_url_2 }}</p>
+                    <p>{{ exchange?.twitter_handle }}</p>
+                </CardContent>
+            </Card>
         </template>
     </div>
 </template>
