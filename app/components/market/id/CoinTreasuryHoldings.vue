@@ -104,24 +104,16 @@
                             </TableCell>
                             
                             <!--  Today Value  -->
-                            <TableCell>{{
-                                    formatNumber(entity.total_current_value_usd, { compact: true, decimals: 2 }) || '-'
-                                       }}
-                            </TableCell>
+                            <TableCell>{{ formatNumber(entity.total_current_value_usd, { compact: true, decimals: 2 }) || '-'}}</TableCell>
                             
                             <!--  Entry Value  -->
-                            <TableCell>{{
-                                    formatNumber(entity.total_entry_value_usd, { compact: true, decimals: 2 }) || '-'
-                                       }}
-                            </TableCell>
+                            <TableCell>{{ formatNumber(entity.total_entry_value_usd, { compact: true, decimals: 2 }) || '-'}}</TableCell>
                             
                             <!--  Supply Percentage  -->
-                            <TableCell>{{
-                                    formatNumber(entity.percentage_of_total_supply, {
-                                        style: 'percent',
-                                        decimals: 2
-                                    })
-                                       }}
+                            <TableCell>{{ formatNumber(entity.percentage_of_total_supply, {
+                                style: 'percent',
+                                decimals: 2
+                            })}}
                             </TableCell>
                             
                             <!--  Total Holdings  -->
