@@ -17,15 +17,16 @@
             </div>
             
             <!--  Trust Score + Trading Volume  -->
-            <Card class='w-full flex flex-col xl:flex-row items-center p-6'>
+            <Card class='w-full flex flex-col xl:flex-row p-6'>
                 <!--  Trust Score  -->
-                <div class='flex-1 xl:border-r xl:border-r-muted-foreground/25 p-6'>
+                <div class='flex-1 xl:border-r xl:border-r-muted-foreground/25'>
                     <CardHeader>
                         <Title :tag='4'>{{ exchange?.name }} Trust Score</Title>
-                        <CardDescription>Trust Score is a rating algorithm developed by CoinGecko to evaluate the
-                                         legitimacy of an exchange’s trading volume. Trust Score is calculated on a
-                                         range of metrics such as liquidity, scale of operations, cybersecurity score,
-                                         and more.
+                        <CardDescription>
+                            Trust Score is a rating algorithm developed by CoinGecko to evaluate the
+                            legitimacy of an exchange’s trading volume. Trust Score is calculated on a
+                            range of metrics such as liquidity, scale of operations, cybersecurity score,
+                            and more.
                         </CardDescription>
                     </CardHeader>
                     
@@ -46,13 +47,13 @@
                 </div>
                 
                 <!--  Trading Volume 24h in BTC  -->
-                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container flex-1 p-6'>
+                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container flex-1'>
                     <CardHeader>
                         <Title :tag='4'>{{ glossary.volume.label }}</Title>
                         <CardDescription>{{ glossary.volume.description }}</CardDescription>
                     </CardHeader>
                     
-                    <CardContent class='flex flex-col gap-4'>
+                    <CardContent class='flex gap-4'>
                         <MazCircularProgressBar
                             :percentage='100'
                             :duration='3000'
@@ -61,16 +62,16 @@
                                 <h5>{{ volume_compact }}</h5>
                             </template>
                         </MazCircularProgressBar>
-                    </CardContent>
-                    
-                    <CardContent class='flex items-center gap-2'>
-                        <NuxtIcon
-                            name='logos:bitcoin'
-                            size='32'
-                            class='mb-0.5'
-                        />
                         
-                        <Title :tag='4'>{{ volume_value }}</Title>
+                        <div class='flex items-center gap-2'>
+                            <NuxtIcon
+                                name='logos:bitcoin'
+                                size='32'
+                                class='mb-0.5'
+                            />
+                            
+                            <Title :tag='4'>{{ volume_value }}</Title>
+                        </div>
                     </CardContent>
                 </div>
             </Card>
