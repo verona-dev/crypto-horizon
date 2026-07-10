@@ -1,5 +1,5 @@
 <template>
-    <div class='page market w-full xl:max-w-7xl'>
+    <div class='page market w-full xl:max-w-8xl'>
         <PageLoadingSpinner v-if='loading' />
         
         <template v-else>
@@ -17,9 +17,9 @@
             </div>
             
             <!--  Trust Score + Trading Volume  -->
-            <Card class='w-full flex flex-col xl:flex-row'>
+            <Card class='max-w-full flex flex-col xl:flex-row py-4 gap-6'>
                 <!--  Trust Score  -->
-                <div class='flex-1 xl:border-r xl:border-r-muted-foreground/25 p-6'>
+                <div class='flex-1 xl:border-r xl:border-r-muted-foreground/25 xl:px-6 xl:py-2'>
                     <CardHeader>
                         <Title :tag='4'>{{ exchange?.name }} Trust Score</Title>
                         <CardDescription>
@@ -47,7 +47,7 @@
                 </div>
                 
                 <!--  Trading Volume 24h in BTC  -->
-                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container flex-1 p-6'>
+                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container flex-1 xl:px-6 xl:py-2'>
                     <CardHeader>
                         <Title :tag='4'>{{ glossary.volume.label }}</Title>
                         <CardDescription>{{ glossary.volume.description }}</CardDescription>
