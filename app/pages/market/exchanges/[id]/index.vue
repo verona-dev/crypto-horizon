@@ -47,7 +47,7 @@
                 </div>
                 
                 <!--  Trading Volume 24h in BTC  -->
-                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container flex-1 xl:px-6 xl:py-2'>
+                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container !items-start flex-1 xl:px-6 xl:py-2'>
                     <CardHeader>
                         <Title :tag='4'>{{ glossary.volume.label }}</Title>
                         <CardDescription>{{ glossary.volume.description }}</CardDescription>
