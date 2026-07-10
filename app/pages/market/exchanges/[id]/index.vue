@@ -59,7 +59,7 @@
                             :duration='3000'
                         >
                             <template #default>
-                                <h5>{{ volume_compact }}</h5>
+                                <h5>{{ trading_volume_compact }}</h5>
                             </template>
                         </MazCircularProgressBar>
                         
@@ -70,7 +70,7 @@
                                 class='mb-0.5'
                             />
                             
-                            <Title :tag='4'>{{ volume_value }}</Title>
+                            <Title :tag='4'>{{ trading_volume_formatted }}</Title>
                         </div>
                     </CardContent>
                 </div>
@@ -195,7 +195,6 @@
     import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
     import { getTrustScoreStyle } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
     import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table';
     import Title from '~/components/Title.vue';
@@ -211,14 +210,12 @@
     
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
-    import InfoIcon from '@/components/InfoIcon.vue';
     import { formatNumber } from '@/utils/formatUtils.js';
     const MarketStore = useMarketStore();
     const { getExchange } = MarketStore;
     
     // State
     const { exchange } = storeToRefs(MarketStore);
-    console.log(JSON.parse(JSON.stringify(exchange.value)));
     const id = computed(() => route.params?.id);
     const exchange_type = computed(() => {
         if(exchange.value.centralized) return 'Centralised';
@@ -226,15 +223,14 @@
     });
     
     const trading_volume = computed(() => exchange.value?.trade_volume_24h_btc);
-    const volume_value = formatNumber(trading_volume.value, {
+    const trading_volume_formatted = computed(() => formatNumber(trading_volume.value, {
         style: 'decimal',
-    });
-    const volume_compact = computed(() => formatNumber(trading_volume.value, {
+    }));
+    const trading_volume_compact = computed(() => formatNumber(trading_volume.value, {
         compact: true, decimals: 1
     }));
     
     onMounted(async() => {
         await getExchange(id.value);
-        console.log(id.value);
     });
 </script>

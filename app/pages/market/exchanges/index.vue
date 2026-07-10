@@ -23,14 +23,15 @@
                                     <!--  Name + Rank + Country  -->
                                     <div class='flex flex-col'>
                                         <div class='flex items-center gap-3'>
-                                            <Title :tag='4' class='text-2xl xl:text-3xl font-semibold leading-none tracking-tight'>{{ exchange.name }}</Title>
-                                            <p class='text-muted-foreground text-xl mt-0.5'>#{{ exchange.trust_score_rank }}</p>
+                                            <Title :tag='4' class='text-2xl xl:text-3xl font-semibold leading-none tracking-tight'>{{ exchange.name }}
+                                                <span class='text-muted-foreground text-xl mt-0.5'>#{{ exchange.trust_score_rank }}</span>
+                                            </Title>
                                         </div>
                                         <CardDescription class='ml-0.5'>{{ exchange.country }} since {{ exchange.year_established }}</CardDescription>
                                     </div>
                                 </div>
                                 
-                                <div>
+                                <div class='flex items-center gap-4'>
                                     <!--  Visit Page  -->
                                     <NuxtLink
                                         :to='`/market/exchanges/${exchange.id}`'
