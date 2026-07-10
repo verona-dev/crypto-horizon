@@ -24,4 +24,11 @@ export const getTrendIcon = number => {
     return number > 0 ? 'ph:caret-up-duotone' : 'ph:caret-down-duotone';
 };
 
+
+export const getTrustScoreStyle = number => {
+    if(number >= 7 && number <= 10) return '!text-progress';
+    if(number >= 5 && number <= 6) return '!text-warning';
+    return '!text-destructive';
+};
+
 // export const getIcon = symbol => `cryptocurrency-color:${symbol?.toLowerCase()}`;

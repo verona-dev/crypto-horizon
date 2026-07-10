@@ -27,6 +27,7 @@ export const useMarketStore = defineStore('MarketStore', {
         },
         cmcStatus: {},
         exchanges: [],
+        exchange: [],
         fearAndGreed: {},
         globalDefi: {},
         globalMarket: {},
@@ -290,6 +291,23 @@ export const useMarketStore = defineStore('MarketStore', {
                 
                 if(response && !this.exchanges.length) {
                     this.exchanges = response;
+                }
+            } catch(error) {
+                console.error(error);
+            } finally {
+                LoadingStore.setLoading(false);
+            }
+        },
+        
+        async getExchange(exchangeId) {
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
+            
+            try {
+                const response = await useFetchCoingecko(`/exchanges/${exchangeId}`);
+                
+                if(response) {
+                    this.exchange = response;
                 }
             } catch(error) {
                 console.error(error);
