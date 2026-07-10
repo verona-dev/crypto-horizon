@@ -17,9 +17,9 @@
             </div>
             
             <!--  Trust Score + Trading Volume  -->
-            <Card class='w-full flex flex-col xl:flex-row p-6'>
+            <Card class='w-full flex flex-col xl:flex-row'>
                 <!--  Trust Score  -->
-                <div class='flex-1 xl:border-r xl:border-r-muted-foreground/25'>
+                <div class='flex-1 xl:border-r xl:border-r-muted-foreground/25 p-6'>
                     <CardHeader>
                         <Title :tag='4'>{{ exchange?.name }} Trust Score</Title>
                         <CardDescription>
@@ -47,7 +47,7 @@
                 </div>
                 
                 <!--  Trading Volume 24h in BTC  -->
-                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container flex-1'>
+                <div v-if='exchange.trade_volume_24h_btc' class='progress-bar-item-container flex-1 p-6'>
                     <CardHeader>
                         <Title :tag='4'>{{ glossary.volume.label }}</Title>
                         <CardDescription>{{ glossary.volume.description }}</CardDescription>
@@ -59,7 +59,7 @@
                             :duration='3000'
                         >
                             <template #default>
-                                <h5>{{ trading_volume_compact }}</h5>
+                                <h5>{{ trading_volume_in_usd }}</h5>
                             </template>
                         </MazCircularProgressBar>
                         
@@ -77,7 +77,7 @@
             </Card>
             
             <!--  Info Table  -->
-            <Card class='w-full p-12 flex flex-col gap-8'>
+            <Card class='w-full p-6 flex flex-col gap-8'>
                 <CardHeader>
                     <Title :tag='4' class='flex items-center gap-2'>What is {{ exchange?.name }} exchange?</Title>
                     <CardDescription>{{ exchange?.description }}</CardDescription>
@@ -176,7 +176,7 @@
                 </div>
             </Alert>
             
-            <Card class='w-full p-12 flex flex-col gap-8'>
+            <Card class='w-full p-6 flex flex-col gap-8'>
                 <CardHeader>
                     <Title :tag='4'>Social Links</Title>
                 </CardHeader>
@@ -218,10 +218,10 @@
     import { useMarketStore } from '~/stores/MarketStore.js';
     import { formatNumber } from '@/utils/formatUtils.js';
     const MarketStore = useMarketStore();
-    const { getExchange } = MarketStore;
+    const { getExchange, getCoingeckoCoin } = MarketStore;
     
     // State
-    const { exchange } = storeToRefs(MarketStore);
+    const { exchange, coin } = storeToRefs(MarketStore);
     const id = computed(() => route.params?.id);
     const exchange_type = computed(() => {
         if(exchange.value.centralized) return 'Centralised';
@@ -232,11 +232,14 @@
     const trading_volume_formatted = computed(() => formatNumber(trading_volume.value, {
         style: 'decimal',
     }));
-    const trading_volume_compact = computed(() => formatNumber(trading_volume.value, {
-        compact: true, decimals: 1
-    }));
+    const trading_volume_in_usd = computed(() => {
+        return formatNumber(coin.value?.coingecko?.market_data?.current_price?.usd * trading_volume.value , {
+            compact: true, decimals: 2
+        });
+    });
     
     onMounted(async() => {
         await getExchange(id.value);
+        await getCoingeckoCoin('bitcoin');
     });
 </script>
