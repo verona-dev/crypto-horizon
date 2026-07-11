@@ -176,19 +176,20 @@
                 </div>
             </Alert>
             
+            <!--  Connect  -->
             <Card class='w-full p-6 flex flex-col gap-8'>
                 <CardHeader>
-                    <Title :tag='4'>Social Links</Title>
+                    <Title :tag='4'>Connect</Title>
                 </CardHeader>
                 
                 <CardContent>
                     <!--  Socials  -->
-                    <p>{{ exchange?.facebook_url }}</p>
-                    <p>{{ exchange?.reddit_url }}</p>
-                    <p>{{ exchange?.telegram_url }}</p>
-                    <p>{{ exchange?.other_url_1 }}</p>
-                    <p>{{ exchange?.other_url_2 }}</p>
-                    <p>{{ exchange?.twitter_handle }}</p>
+                    <p>{{ facebook_url }}</p>
+                    <p>{{ reddit_url }}</p>
+                    <p>{{ telegram_url }}</p>
+                    <p>{{ other_url_1 }}</p>
+                    <p>{{ other_url_2 }}</p>
+                    <p>{{ twitter_handle }}</p>
                 </CardContent>
             </Card>
         </template>
@@ -227,6 +228,14 @@
         if(exchange.value.centralized) return 'Centralised';
         return '-';
     });
+    
+    // Connect
+    const facebook_url = computed(() => exchange.value?.facebook_url);
+    const reddit_url = computed(() => exchange.value?.reddit_url);
+    const telegram_url = computed(() => exchange.value?.telegram_url);
+    const other_url_1 = computed(() => exchange.value?.other_url_1);
+    const other_url_2 = computed(() => exchange.value?.other_url_2);
+    const twitter_handle = computed(() => exchange.value?.twitter_handle);
     
     const trading_volume = computed(() => exchange.value?.trade_volume_24h_btc);
     const trading_volume_formatted = computed(() => formatNumber(trading_volume.value, {
