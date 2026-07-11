@@ -92,18 +92,6 @@
                                 <TableCell class='text-right'>&#35;{{ exchange?.trust_score_rank }}</TableCell>
                             </TableRow>
                             
-                            <!--  Website  -->
-                            <TableRow>
-                                <TableCell class='font-medium'>Website</TableCell>
-                                <TableCell class='text-right'>{{ exchange?.url }}</TableCell>
-                            </TableRow>
-                            
-                            <!--  Community  -->
-                            <TableRow>
-                                <TableCell class='font-medium'>Community</TableCell>
-                                <TableCell class='text-right'>{{ exchange?.facebook_url }}</TableCell>
-                            </TableRow>
-                            
                             <!--  API Id  -->
                             <TableRow>
                                 <TableCell class='font-medium'>API Id</TableCell>
@@ -182,14 +170,21 @@
                     <Title :tag='4'>Connect</Title>
                 </CardHeader>
                 
+                <!--  Socials  -->
                 <CardContent>
-                    <!--  Socials  -->
-                    <p>{{ facebook_url }}</p>
+                    <!--  Website  -->
+                    <div>
+                        {{ website }}
+                    </div>
+                    <!--  Facebook  -->
+                    <div>
+                        {{ facebook_url }}
+                    </div>
                     <p>{{ reddit_url }}</p>
                     <p>{{ telegram_url }}</p>
                     <p>{{ other_url_1 }}</p>
                     <p>{{ other_url_2 }}</p>
-                    <p>{{ twitter_handle }}</p>
+                    <p>{{ twitter_url }}</p>
                 </CardContent>
             </Card>
         </template>
@@ -230,12 +225,14 @@
     });
     
     // Connect
+    const website = computed(() => exchange.value?.url);
     const facebook_url = computed(() => exchange.value?.facebook_url);
     const reddit_url = computed(() => exchange.value?.reddit_url);
     const telegram_url = computed(() => exchange.value?.telegram_url);
     const other_url_1 = computed(() => exchange.value?.other_url_1);
     const other_url_2 = computed(() => exchange.value?.other_url_2);
     const twitter_handle = computed(() => exchange.value?.twitter_handle);
+    const twitter_url = computed(() => `https://x.com/${twitter_handle.value}`);
     
     const trading_volume = computed(() => exchange.value?.trade_volume_24h_btc);
     const trading_volume_formatted = computed(() => formatNumber(trading_volume.value, {
