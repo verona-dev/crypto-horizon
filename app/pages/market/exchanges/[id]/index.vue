@@ -171,16 +171,18 @@
                 </CardHeader>
                 
                 <CardContent>
-                    <div class='flex justify-center xl:justify-evenly items-center gap-8 flex-wrap'>
+                    <div class='flex items-center flex-wrap gap-8'>
                         <template
                             v-for='item in connects'
                             :key='item.url'
                         >
                             <Card>
-                                <CardHeader>{{ item.label }}</CardHeader>
+                                <CardHeader>
+                                    <Title :tag='6'>{{ item.label }}</Title>
+                                </CardHeader>
                                 
-                                <CardContent class=''>
-                                    <Button variant='link'>
+                                <CardContent class='pl-4'>
+                                    <Button variant='outline'>
                                         {{ item.url }}
                                     </Button>
                                 </CardContent>
@@ -226,7 +228,7 @@
         if(exchange.value.centralized) return 'Centralised';
         return '-';
     });
-    
+    9
     // Connect
     const website = computed(() => exchange.value?.url);
     const facebook_url = computed(() => exchange.value?.facebook_url);
@@ -235,7 +237,6 @@
     const other_url_1 = computed(() => exchange.value?.other_url_1);
     const other_url_2 = computed(() => exchange.value?.other_url_2);
     const twitter_handle = computed(() => exchange.value?.twitter_handle);
-    const twitter_url = computed(() => `https://x.com/${twitter_handle.value}`);
     
     const connects = computed(() =>
         [
