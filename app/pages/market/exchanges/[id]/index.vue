@@ -170,21 +170,23 @@
                     <Title :tag='4'>Connect</Title>
                 </CardHeader>
                 
-                <!--  Socials  -->
                 <CardContent>
-                    <!--  Website  -->
-                    <div>
-                        {{ website }}
+                    <div class='flex justify-center xl:justify-evenly items-center gap-8 flex-wrap'>
+                        <template
+                            v-for='item in connects'
+                            :key='item.url'
+                        >
+                            <Card>
+                                <CardHeader>{{ item.label }}</CardHeader>
+                                
+                                <CardContent class=''>
+                                    <Button variant='link'>
+                                        {{ item.url }}
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        </template>
                     </div>
-                    <!--  Facebook  -->
-                    <div>
-                        {{ facebook_url }}
-                    </div>
-                    <p>{{ reddit_url }}</p>
-                    <p>{{ telegram_url }}</p>
-                    <p>{{ other_url_1 }}</p>
-                    <p>{{ other_url_2 }}</p>
-                    <p>{{ twitter_url }}</p>
                 </CardContent>
             </Card>
         </template>
@@ -194,7 +196,9 @@
 <script setup>
     import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert';
     import { Badge } from '~/components/ui/badge';
+    import { Button } from '~/components/ui/button';
     import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
+    import { formatNumber } from '@/utils/formatUtils.js';
     import { getTrustScoreStyle } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
     import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
@@ -212,11 +216,10 @@
     
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
-    import { formatNumber } from '@/utils/formatUtils.js';
     const MarketStore = useMarketStore();
     const { getExchange, getCoingeckoCoin } = MarketStore;
     
-    // State
+    // Exchange
     const { exchange, coin } = storeToRefs(MarketStore);
     const id = computed(() => route.params?.id);
     const exchange_type = computed(() => {
@@ -233,6 +236,18 @@
     const other_url_2 = computed(() => exchange.value?.other_url_2);
     const twitter_handle = computed(() => exchange.value?.twitter_handle);
     const twitter_url = computed(() => `https://x.com/${twitter_handle.value}`);
+    
+    const connects = computed(() =>
+        [
+            { url: website.value, label: 'Website' },
+            { url: facebook_url.value, label: 'Facebook' },
+            { url: reddit_url.value, label: 'Reddit' },
+            { url: telegram_url.value, label: 'Telegram' },
+            { url: other_url_1.value, label: 'Other Url 1' },
+            { url: other_url_2.value, label: 'Other Url 2' },
+            { url: twitter_handle.value ? `https://x.com/${twitter_handle.value}` : null, label: 'Twitter' },
+        ].filter(item => item.url)
+    );
     
     const trading_volume = computed(() => exchange.value?.trade_volume_24h_btc);
     const trading_volume_formatted = computed(() => formatNumber(trading_volume.value, {
