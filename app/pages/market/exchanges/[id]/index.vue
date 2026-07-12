@@ -177,7 +177,14 @@
                             :key='item.url'
                         >
                             <Card>
-                                <CardHeader>
+                                <CardHeader class='flex flex-row items-center gap-2'>
+                                    <NuxtIcon
+                                        v-if='item.icon'
+                                        :name=item.icon
+                                        class='text-foreground'
+                                        size='18'
+                                    />
+                                    
                                     <Title :tag='6'>{{ item.label }}</Title>
                                 </CardHeader>
                                 
@@ -228,7 +235,7 @@
         if(exchange.value.centralized) return 'Centralised';
         return '-';
     });
-    9
+    
     // Connect
     const website = computed(() => exchange.value?.url);
     const facebook_url = computed(() => exchange.value?.facebook_url);
@@ -241,12 +248,12 @@
     const connects = computed(() =>
         [
             { url: website.value, label: 'Website' },
-            { url: facebook_url.value, label: 'Facebook' },
-            { url: reddit_url.value, label: 'Reddit' },
-            { url: telegram_url.value, label: 'Telegram' },
+            { url: facebook_url.value, label: 'Facebook', icon: 'logos:facebook' },
+            { url: reddit_url.value, label: 'Reddit', icon: 'logos:reddit-icon' },
+            { url: telegram_url.value, label: 'Telegram', icon: 'logos:telegram' },
             { url: other_url_1.value, label: 'Other Url 1' },
             { url: other_url_2.value, label: 'Other Url 2' },
-            { url: twitter_handle.value ? `https://x.com/${twitter_handle.value}` : null, label: 'Twitter' },
+            { url: twitter_handle.value ? `https://x.com/${twitter_handle.value}` : null, label: 'Twitter', icon: 'logos:twitter' },
         ].filter(item => item.url)
     );
     
