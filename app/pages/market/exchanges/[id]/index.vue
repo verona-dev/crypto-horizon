@@ -17,56 +17,6 @@
                 <Badge variant='outline' class='py-2 px-3 shadow-lg bg-muted text-foreground/75 text-sm'>{{ exchange_type }} exchange</Badge>
             </div>
             
-            <!--  Spot Markets Table  -->
-            <Card class='w-full p-6 flex flex-col gap-8'>
-                <CardHeader>
-                    <Title :tag='4' class='flex items-center gap-2'>Spot Markets</Title>
-                    <CardDescription>Spot markets allow you to buy or sell digital assets directly, with immediate settlement. No contracts, no delays, just real-time trading of coins like BTC, ETH, and USDC against stablecoins or fiat pairs. Ideal for beginners and pros alike.</CardDescription>
-                </CardHeader>
-                
-                <CardContent class='h-130 overflow-y-auto'>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead class='w-[100px]'>#</TableHead>
-                                <TableHead>Coin</TableHead>
-                                <TableHead>Pair</TableHead>
-                                <TableHead>Price</TableHead>
-                                <TableHead>Coin Market Cap</TableHead>
-                                <TableHead class='text-right'>Pair 24h Volume</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        
-                        <TableBody>
-                            <TableRow v-for='(coin, index) in exchange.tickers'>
-                                <TableCell>{{ index + 1 }}</TableCell>
-                                <TableCell>{{ coin.base }}</TableCell>
-                                <TableCell class='flex items-center gap-2'>
-                                    <span>{{ coin.base }}/{{ coin.target }}</span>
-                                    
-                                    <NuxtLink
-                                        :to='coin.trade_url'
-                                        target='_blank'
-                                        aria-label='Pair trade link'
-                                        external
-                                    >
-                                        <NuxtIcon
-                                            name='ph:arrow-square-out-bold'
-                                            size='20'
-                                            class='mt-0.5'
-                                        />
-                                    </NuxtLink>
-                                
-                                </TableCell>
-                                <TableCell>{{ formatNumber(coin.last) }}</TableCell>
-                                <TableCell>{{ formatNumber(coin.coin_mcap_usd, { compact: true, decimals: 2 }) }}</TableCell>
-                                <TableCell class='text-right'>{{ formatNumber(coin.converted_volume.usd) }}</TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
-                </CardContent>
-            </Card>
-            
             <!--  Trust Score + Trading Volume  -->
             <Card class='max-w-full flex flex-col xl:flex-row py-4 gap-6'>
                 <!--  Trust Score  -->
@@ -191,6 +141,56 @@
                             <TableRow>
                                 <TableCell class='font-medium'>Trading Incentive</TableCell>
                                 <TableCell class='text-right capitalize'>{{ exchange?.has_trading_incentive }}</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </CardContent>
+            </Card>
+            
+            <!--  Spot Markets Table  -->
+            <Card class='w-full p-6 flex flex-col gap-8'>
+                <CardHeader>
+                    <Title :tag='4' class='flex items-center gap-2'>Spot Markets</Title>
+                    <CardDescription>Spot markets allow you to buy or sell digital assets directly, with immediate settlement. No contracts, no delays, just real-time trading of coins like BTC, ETH, and USDC against stablecoins or fiat pairs. Ideal for beginners and pros alike.</CardDescription>
+                </CardHeader>
+                
+                <CardContent class='h-130 overflow-y-auto'>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead class='w-[100px]'>#</TableHead>
+                                <TableHead>Coin</TableHead>
+                                <TableHead>Pair</TableHead>
+                                <TableHead>Price</TableHead>
+                                <TableHead>Coin Market Cap</TableHead>
+                                <TableHead class='text-right'>Pair 24h Volume</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        
+                        <TableBody>
+                            <TableRow v-for='(coin, index) in exchange.tickers'>
+                                <TableCell>{{ index + 1 }}</TableCell>
+                                <TableCell>{{ coin.base }}</TableCell>
+                                <TableCell class='flex items-center gap-2'>
+                                    <span>{{ coin.base }}/{{ coin.target }}</span>
+                                    
+                                    <NuxtLink
+                                        :to='coin.trade_url'
+                                        target='_blank'
+                                        aria-label='Pair trade link'
+                                        external
+                                    >
+                                        <NuxtIcon
+                                            name='ph:arrow-square-out-bold'
+                                            size='20'
+                                            class='mt-0.5'
+                                        />
+                                    </NuxtLink>
+                                
+                                </TableCell>
+                                <TableCell>{{ formatNumber(coin.last) }}</TableCell>
+                                <TableCell>{{ formatNumber(coin.coin_mcap_usd, { compact: true, decimals: 2 }) }}</TableCell>
+                                <TableCell class='text-right'>{{ formatNumber(coin.converted_volume.usd) }}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
