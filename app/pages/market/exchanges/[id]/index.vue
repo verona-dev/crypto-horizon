@@ -1,8 +1,9 @@
 <template>
-    <div class='page market w-full xl:max-w-8xl'>
+    <div class='page market w-full'>
         <PageLoadingSpinner v-if='loading' />
         
         <template v-else>
+            <!--  Page Title  -->
             <div class='flex items-center gap-4 self-start'>
                 <NuxtImg
                     :src='exchange.image'
@@ -15,38 +16,6 @@
                 
                 <Badge variant='outline' class='py-2 px-3 shadow-lg bg-muted text-foreground/75 text-sm'>{{ exchange_type }} exchange</Badge>
             </div>
-            
-            <!--  Connect  -->
-            <Card class='w-full p-6 flex flex-col'>
-                <CardHeader>
-                    <Title :tag='4'>Connect</Title>
-                </CardHeader>
-                
-                <CardContent class='flex flex-wrap gap-8'>
-                    <template
-                        v-for='item in connects'
-                        :key='item.url'
-                    >
-                        <NuxtLink :to='item.url' target='_blank'>
-                            <PixelCard variant='blue' class='flex flex-row items-center !min-w-120 !h-40 hover:border-blue-sky/50'>
-                                <CardHeader>
-                                    <NuxtIcon
-                                        v-if='item.icon'
-                                        :name=item.icon
-                                        size='64'
-                                    />
-                                </CardHeader>
-                                
-                                <CardContent class='w-full flex flex-col items-start pt-6 pl-0'>
-                                    <Title :tag='5'>{{ item.label }}</Title>
-                                    
-                                    <CardDescription>{{ item.url }}</CardDescription>
-                                </CardContent>
-                            </PixelCard>
-                        </NuxtLink>
-                    </template>
-                </CardContent>
-            </Card>
             
             <!--  Trust Score + Trading Volume  -->
             <Card class='max-w-full flex flex-col xl:flex-row py-4 gap-6'>
@@ -167,6 +136,38 @@
                             </TableRow>
                         </TableBody>
                     </Table>
+                </CardContent>
+            </Card>
+            
+            <!--  Connect  -->
+            <Card class='w-full p-6 flex flex-col'>
+                <CardHeader>
+                    <Title :tag='4'>Connect</Title>
+                </CardHeader>
+                
+                <CardContent class='flex flex-wrap gap-8'>
+                    <template
+                        v-for='item in connects'
+                        :key='item.url'
+                    >
+                        <NuxtLink :to='item.url' target='_blank' class='w-full 2xl:!w-130 !h-40'>
+                            <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                <CardHeader>
+                                    <NuxtIcon
+                                        v-if='item.icon'
+                                        :name=item.icon
+                                        size='64'
+                                    />
+                                </CardHeader>
+                                
+                                <CardContent class='w-full flex flex-col items-start pt-6 pl-0'>
+                                    <Title :tag='5'>{{ item.label }}</Title>
+                                    
+                                    <CardDescription>{{ item.url }}</CardDescription>
+                                </CardContent>
+                            </PixelCard>
+                        </NuxtLink>
+                    </template>
                 </CardContent>
             </Card>
             
