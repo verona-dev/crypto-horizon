@@ -28,9 +28,7 @@
                         :key='item.url'
                     >
                         <NuxtLink :to='item.url' target='_blank'>
-                            <Card
-                                class='p-6 flex flex-row items-center w-full xl:w-140 hover:bg-muted'
-                            >
+                            <PixelCard variant='blue' class='flex flex-row items-center !min-w-120 !h-40 hover:border-blue-sky/50'>
                                 <CardHeader>
                                     <NuxtIcon
                                         v-if='item.icon'
@@ -44,7 +42,7 @@
                                     
                                     <CardDescription>{{ item.url }}</CardDescription>
                                 </CardContent>
-                            </Card>
+                            </PixelCard>
                         </NuxtLink>
                     </template>
                 </CardContent>
@@ -209,6 +207,7 @@
     import { getTrustScoreStyle } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
     import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
+    import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
     import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table';
     import Title from '~/components/Title.vue';
     
