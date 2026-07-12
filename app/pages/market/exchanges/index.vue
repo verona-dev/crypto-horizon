@@ -23,7 +23,7 @@
                                     <!--  Name + Rank + Country  -->
                                     <div class='flex flex-col'>
                                         <div class='flex items-center gap-3'>
-                                            <Title :tag='4' class='text-2xl xl:text-3xl font-semibold leading-none tracking-tight'>{{ exchange.name }}
+                                            <Title :tag='2' :level='4' class='text-2xl xl:text-3xl font-semibold leading-none tracking-tight'>{{ exchange.name }}
                                                 <span class='text-muted-foreground text-xl mt-0.5'>#{{ exchange.trust_score_rank }}</span>
                                             </Title>
                                         </div>
@@ -74,7 +74,7 @@
                                             size='24'
                                         />
                                         
-                                        <Title :tag='5' class='font-semibold leading-none tracking-tight'>
+                                        <Title :tag='3' :level='5' class='font-semibold leading-none tracking-tight'>
                                             {{
                                                 formatNumber(exchange.trade_volume_24h_btc, {
                                                     style: 'decimal',
@@ -92,7 +92,7 @@
                                 
                                 <Badge variant='outline' class='py-1.5 px-3.5 shadow-lg' :class='getTrustScoreStyle(exchange.trust_score)'>
                                     <Title
-                                        :tag='5'
+                                        :tag='3' :level='5'
                                         class='font-semibold leading-none tracking-tight'
                                         :class='getTrustScoreStyle(exchange.trust_score)'
                                     >
