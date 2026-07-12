@@ -7,6 +7,7 @@
                         tooltip='Theme Selector'
                         class='sidebar-menu-button'
                         :class='{ "flex gap-3.5" :  open }'
+                        aria-label='sidebar menu'
                     >
                         <NuxtIcon
                             name='ph:paint-brush-household-duotone'
