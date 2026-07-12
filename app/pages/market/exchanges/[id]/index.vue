@@ -22,12 +22,12 @@
                     <Title :tag='4'>Connect</Title>
                 </CardHeader>
                 
-                <CardContent class='border border-blue-sky/50 grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-8'>
+                <CardContent class='flex flex-wrap gap-8'>
                     <template
                         v-for='item in connects'
                         :key='item.url'
                     >
-                        <Card class='flex flex-row items-center w-fit xl:w-110 hover:bg-muted hover:cursor-pointer'>
+                        <Card class='p-6 flex flex-row items-center w-full xl:w-120 hover:bg-muted hover:cursor-pointer'>
                             <CardHeader class=''>
                                 <NuxtIcon
                                     v-if='item.icon'
@@ -36,8 +36,8 @@
                                 />
                             </CardHeader>
                             
-                            <CardContent class='w-full flex flex-col pt-6'>
-                                <Title :tag='5' class=''>{{ item.label }}</Title>
+                            <CardContent class='w-full flex flex-col pt-6 pl-0'>
+                                <Title :tag='5'>{{ item.label }}</Title>
                                 
                                 <CardDescription>{{ item.url }}</CardDescription>
                             </CardContent>
