@@ -51,12 +51,13 @@
                         <Button variant='link'>
                             <NuxtLink
                                 to='https://support.coingecko.com/hc/en-us/articles/36442561461657-Trust-Score-Methodology'
-                                class='flex items-center gap-1'
+                                class='flex items-center gap-2'
                                 target='_blank'
                                 aria-label='Trust score methodology link'
                                 external
                             >
-                                <span>View methodology</span> <ChevronRight />
+                                <span>View methodology</span>
+                                <ChevronRight />
                             </NuxtLink>
                         </Button>
                     </CardFooter>
