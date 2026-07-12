@@ -24,7 +24,7 @@
                     <CardDescription>Spot markets allow you to buy or sell digital assets directly, with immediate settlement. No contracts, no delays, just real-time trading of coins like BTC, ETH, and USDC against stablecoins or fiat pairs. Ideal for beginners and pros alike.</CardDescription>
                 </CardHeader>
                 
-                <CardContent>
+                <CardContent class='h-130 overflow-y-auto'>
                     <Table>
                         <TableHeader>
                             <TableRow>
@@ -32,8 +32,8 @@
                                 <TableHead>Coin</TableHead>
                                 <TableHead>Pair</TableHead>
                                 <TableHead>Price</TableHead>
-                                <TableHead>Volume</TableHead>
-                                <TableHead>Converted Volume</TableHead>
+                                <TableHead>Coin Market Cap</TableHead>
+                                <TableHead class='text-right'>Pair 24h Volume</TableHead>
                             </TableRow>
                         </TableHeader>
                         
@@ -59,8 +59,8 @@
                                 
                                 </TableCell>
                                 <TableCell>{{ formatNumber(coin.last) }}</TableCell>
-                                <TableCell>{{ formatNumber(coin.volume) }}</TableCell>
-                                <TableCell>{{ formatNumber(coin.converted_volume.usd) }}</TableCell>
+                                <TableCell>{{ formatNumber(coin.coin_mcap_usd, { compact: true, decimals: 2 }) }}</TableCell>
+                                <TableCell class='text-right'>{{ formatNumber(coin.converted_volume.usd) }}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
