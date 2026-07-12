@@ -27,21 +27,25 @@
                         v-for='item in connects'
                         :key='item.url'
                     >
-                        <Card class='p-6 flex flex-row items-center w-full xl:w-140 hover:bg-muted hover:cursor-pointer'>
-                            <CardHeader>
-                                <NuxtIcon
-                                    v-if='item.icon'
-                                    :name=item.icon
-                                    size='42'
-                                />
-                            </CardHeader>
-                            
-                            <CardContent class='w-full flex flex-col pt-6 pl-0'>
-                                <Title :tag='5'>{{ item.label }}</Title>
+                        <NuxtLink :to='item.url' target='_blank'>
+                            <Card
+                                class='p-6 flex flex-row items-center w-full xl:w-140 hover:bg-muted'
+                            >
+                                <CardHeader>
+                                    <NuxtIcon
+                                        v-if='item.icon'
+                                        :name=item.icon
+                                        size='64'
+                                    />
+                                </CardHeader>
                                 
-                                <CardDescription>{{ item.url }}</CardDescription>
-                            </CardContent>
-                        </Card>
+                                <CardContent class='w-full flex flex-col items-start pt-6 pl-0'>
+                                    <Title :tag='5'>{{ item.label }}</Title>
+                                    
+                                    <CardDescription>{{ item.url }}</CardDescription>
+                                </CardContent>
+                            </Card>
+                        </NuxtLink>
                     </template>
                 </CardContent>
             </Card>
@@ -200,7 +204,6 @@
 <script setup>
     import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert';
     import { Badge } from '~/components/ui/badge';
-    import { Button } from '~/components/ui/button';
     import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrustScoreStyle } from '~/utils/styleUtils.js';
