@@ -246,7 +246,7 @@ onBeforeUnmount(() => cancelAnimationFrame(animationId));
     @blur.self="onLeave"
   >
     <canvas ref="canvasRef" class="block size-full"></canvas>
-    <div class="absolute inset-0 z-10 grid place-items-center">
+    <div class="absolute inset-0 z-10 flex items-center p-6">
       <slot></slot>
     </div>
   </div>
