@@ -17,6 +17,51 @@
                 <Badge variant='outline' class='py-2 px-3 shadow-lg bg-muted text-foreground/75 text-sm'>{{ exchange_type }} exchange</Badge>
             </div>
             
+            <!--  Spot Markets Table  -->
+            <Card class='w-full p-6 flex flex-col gap-8'>
+                <CardHeader>
+                    <Title :tag='4' class='flex items-center gap-2'>Spot Markets</Title>
+                    <CardDescription>Spot markets allow you to buy or sell digital assets directly, with immediate settlement. No contracts, no delays—just real-time trading of coins like BTC, ETH, and USDC against stablecoins or fiat pairs. Ideal for beginners and pros alike.</CardDescription>
+                </CardHeader>
+                
+                <CardContent>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead class='w-[100px]'>#</TableHead>
+                                <TableHead>Coin</TableHead>
+                                <TableHead>Pair</TableHead>
+                                <TableHead>Price</TableHead>
+                                <TableHead>Volume</TableHead>
+                                <TableHead>Converted Volume</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        
+                        <TableBody>
+                            <TableRow v-for='(pair, index) in exchange.tickers'>
+                                <TableCell>{{ index + 1 }}</TableCell>
+                                <TableCell>{{ pair.base }}</TableCell>
+                                <TableCell class='flex items-center gap-2'>
+                                    <span>{{ pair.base }}/{{ pair.target }}</span>
+                                    
+                                    <div>
+                                        <NuxtIcon
+                                            name='ph:arrow-square-out-bold'
+                                            size='20'
+                                            class='mt-0.5'
+                                        />
+                                    </div>
+                                    
+                                </TableCell>
+                                <TableCell>{{ pair.converted_last.usd }}</TableCell>
+                                <TableCell>{{ pair.volume }}</TableCell>
+                                <TableCell>{{ pair.converted_volume.usd }}</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </CardContent>
+            </Card>
+            
             <!--  Trust Score + Trading Volume  -->
             <Card class='max-w-full flex flex-col xl:flex-row py-4 gap-6'>
                 <!--  Trust Score  -->
@@ -223,9 +268,10 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrustScoreStyle } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
     import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
-    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table';
+    import { Table, TableBody, TableCell, TableRow, TableHead, TableHeader } from '~/components/ui/table';
     import Title from '~/components/Title.vue';
     
     // Router
