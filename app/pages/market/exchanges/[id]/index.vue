@@ -27,8 +27,8 @@
                         v-for='item in connects'
                         :key='item.url'
                     >
-                        <Card class='p-6 flex flex-row items-center w-full xl:w-120 hover:bg-muted hover:cursor-pointer'>
-                            <CardHeader class=''>
+                        <Card class='p-6 flex flex-row items-center w-full xl:w-140 hover:bg-muted hover:cursor-pointer'>
+                            <CardHeader>
                                 <NuxtIcon
                                     v-if='item.icon'
                                     :name=item.icon
@@ -242,13 +242,13 @@
     
     const connects = computed(() =>
         [
-            { url: website.value, label: 'Website', icon: 'ph:link' },
-            { url: facebook_url.value, label: 'Facebook', icon: 'logos:facebook' },
-            { url: reddit_url.value, label: 'Reddit', icon: 'logos:reddit-icon' },
+            { url: website.value, label: 'Website', icon: 'ph:house-line-fill' },
+            { url: facebook_url.value, label: 'Facebook', icon: 'ph:facebook-logo-fill' },
+            { url: reddit_url.value, label: 'Reddit', icon: 'ph:reddit-logo-fill' },
             { url: telegram_url.value, label: 'Telegram', icon: 'logos:telegram' },
-            { url: other_url_1.value, label: 'Other 1', icon: 'ph:link' },
-            { url: other_url_2.value, label: 'Other 2', icon: 'ph:link' },
-            { url: twitter_handle.value ? `https://x.com/${twitter_handle.value}` : null, label: 'Twitter', icon: 'logos:twitter' },
+            { url: other_url_1.value, label: 'Other 1', icon: 'ph:link-bold' },
+            { url: other_url_2.value, label: 'Other 2', icon: 'ph:link-bold' },
+            { url: twitter_handle.value ? `https://x.com/${twitter_handle.value}` : null, label: 'Twitter', icon: 'ph:twitter-logo-fill' },
         ].filter(item => item.url)
     );
     
