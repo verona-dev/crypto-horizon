@@ -107,10 +107,10 @@
                                 <TableCell class='text-right'>&#35;{{ exchange?.trust_score_rank }}</TableCell>
                             </TableRow>
                             
-                            <!--  API Id  -->
+                            <!--  Year Established  -->
                             <TableRow>
-                                <TableCell class='font-medium'>API Id</TableCell>
-                                <TableCell class='text-right'>{{ id }}</TableCell>
+                                <TableCell class='font-medium'>Year Established</TableCell>
+                                <TableCell class='text-right'>{{ exchange?.year_established }}</TableCell>
                             </TableRow>
                             
                             <!--  Country  -->
@@ -129,12 +129,6 @@
                             <TableRow>
                                 <TableCell class='font-medium'>Pairs</TableCell>
                                 <TableCell class='text-right'>{{ exchange?.pairs }}</TableCell>
-                            </TableRow>
-                            
-                            <!--  Year Established  -->
-                            <TableRow>
-                                <TableCell class='font-medium'>Year Established</TableCell>
-                                <TableCell class='text-right'>{{ exchange?.year_established }}</TableCell>
                             </TableRow>
                             
                             <!--  Exchange Type  -->
@@ -250,6 +244,7 @@
     
     // Exchange
     const { exchange, coin } = storeToRefs(MarketStore);
+    console.log(JSON.parse(JSON.stringify(exchange.value)));
     const id = computed(() => route.params?.id);
     const exchange_type = computed(() => {
         if(exchange.value?.centralized) return 'Centralised';
