@@ -45,6 +45,20 @@
                             </Title>
                         </Badge>
                     </CardContent>
+                    
+                    <CardFooter>
+                        <Button variant='link'>
+                            <NuxtLink
+                                to='https://support.coingecko.com/hc/en-us/articles/36442561461657-Trust-Score-Methodology'
+                                class='flex items-center gap-1'
+                                target='_blank'
+                                aria-label='Trust score methodology link'
+                                external
+                            >
+                                <span>View methodology</span> <ChevronRight />
+                            </NuxtLink>
+                        </Button>
+                    </CardFooter>
                 </div>
                 
                 <!--  Trading Volume 24h in BTC  -->
@@ -150,7 +164,13 @@
                         v-for='item in connects'
                         :key='item.url'
                     >
-                        <NuxtLink :to='item.url' target='_blank' class='w-full 2xl:!w-130 !h-40'>
+                        <NuxtLink
+                            :to='item.url'
+                            target='_blank'
+                            class='w-full 2xl:!w-130 !h-40'
+                            aria-label='exchange social link'
+                            external
+                        >
                             <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
                                 <CardHeader>
                                     <NuxtIcon
@@ -203,7 +223,9 @@
 <script setup>
     import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert';
     import { Badge } from '~/components/ui/badge';
-    import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
+    import { Button } from '@/components/ui/button/index';
+    import { Card, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
+    import { ChevronRight } from 'lucide-vue-next';
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrustScoreStyle } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
