@@ -265,6 +265,42 @@
         });
     });
     
+    // SEO
+    const title = computed(() =>
+        exchange.value?.name
+            ? `${exchange.value?.name} Exchange | Rank #${exchange.value?.trust_score_rank} | Volume & Trust Score`
+            : 'Exchange page.'
+    );
+    
+    const description = computed(() =>
+        exchange.value?.exchange
+            ? `Explore ${exchange.value?.exchange} exchange and check its trading volume, trust score, and socials.`
+            : 'Exchange description.'
+    );
+    
+    const path = computed(() => route.fullPath);
+    
+    useHead({
+        title: title,
+        meta: [
+            { name: 'description', content: description },
+            { property: 'og:title', content: title },
+            { property: 'og:description', content: description },
+            { property: 'og:url', content: path },
+            { name: 'robots', content: 'index, follow' },
+        ],
+    });
+    
+    useSeoMeta({
+        title: title,
+        description: description,
+        ogTitle: title,
+        ogDescription: description,
+        twitterTitle: title,
+        twitterDescription: description,
+        ogUrl: path,
+    });
+    
     onMounted(async() => {
         await getExchange(id.value);
         await getCoingeckoCoin('bitcoin');
