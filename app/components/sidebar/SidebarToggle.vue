@@ -31,6 +31,7 @@
                 @click='toggleSidebar'
                 :tooltip='TooltipContent'
                 :class='{ "flex gap-3.5" :  open }'
+                aria-label='toggle sidebar'
             >
                 <NuxtIcon
                     :name='open? "ph:caret-double-left": "ph:caret-double-right"'

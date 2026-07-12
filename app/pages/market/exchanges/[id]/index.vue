@@ -22,7 +22,7 @@
                 <!--  Trust Score  -->
                 <div class='flex-1 xl:border-r xl:border-r-muted-foreground/25 xl:px-6 xl:py-2'>
                     <CardHeader>
-                        <Title :tag='4'>{{ exchange?.name }} Trust Score</Title>
+                        <Title :tag='1' :level='4'>{{ exchange?.name }} Trust Score</Title>
                         <CardDescription>
                             Trust Score is a rating algorithm developed by CoinGecko to evaluate the
                             legitimacy of an exchange’s trading volume. Trust Score is calculated on a
@@ -37,7 +37,8 @@
                             :class='getTrustScoreStyle(exchange.trust_score)'
                         >
                             <Title
-                                :tag='3'
+                                :tag='2'
+                                :level='3'
                                 class='font-semibold leading-none tracking-tight'
                                 :class='getTrustScoreStyle(exchange.trust_score)'
                             >
@@ -50,12 +51,13 @@
                         <Button variant='link'>
                             <NuxtLink
                                 to='https://support.coingecko.com/hc/en-us/articles/36442561461657-Trust-Score-Methodology'
-                                class='flex items-center gap-1'
+                                class='flex items-center gap-2'
                                 target='_blank'
                                 aria-label='Trust score methodology link'
                                 external
                             >
-                                <span>View methodology</span> <ChevronRight />
+                                <span>View methodology</span>
+                                <ChevronRight />
                             </NuxtLink>
                         </Button>
                     </CardFooter>
@@ -294,7 +296,6 @@
     
     // Exchange
     const { exchange, coin } = storeToRefs(MarketStore);
-    console.log(JSON.parse(JSON.stringify(exchange.value)));
     const id = computed(() => route.params?.id);
     const exchange_type = computed(() => {
         if(exchange.value?.centralized) return 'Centralised';
