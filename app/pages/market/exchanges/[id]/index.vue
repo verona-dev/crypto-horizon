@@ -16,6 +16,36 @@
                 <Badge variant='outline' class='py-2 px-3 shadow-lg bg-muted text-foreground/75 text-sm'>{{ exchange_type }} exchange</Badge>
             </div>
             
+            <!--  Connect  -->
+            <Card class='w-full p-6 flex flex-col'>
+                <CardHeader>
+                    <Title :tag='4'>Connect</Title>
+                </CardHeader>
+                
+                <CardContent class='border border-blue-sky/50 grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-8'>
+                    <template
+                        v-for='item in connects'
+                        :key='item.url'
+                    >
+                        <Card class='flex flex-row items-center w-fit xl:w-110 hover:bg-muted hover:cursor-pointer'>
+                            <CardHeader class=''>
+                                <NuxtIcon
+                                    v-if='item.icon'
+                                    :name=item.icon
+                                    size='42'
+                                />
+                            </CardHeader>
+                            
+                            <CardContent class='w-full flex flex-col pt-6'>
+                                <Title :tag='5' class=''>{{ item.label }}</Title>
+                                
+                                <CardDescription>{{ item.url }}</CardDescription>
+                            </CardContent>
+                        </Card>
+                    </template>
+                </CardContent>
+            </Card>
+            
             <!--  Trust Score + Trading Volume  -->
             <Card class='max-w-full flex flex-col xl:flex-row py-4 gap-6'>
                 <!--  Trust Score  -->
@@ -163,41 +193,6 @@
                     </div>
                 </div>
             </Alert>
-            
-            <!--  Connect  -->
-            <Card class='w-full p-6 flex flex-col gap-8'>
-                <CardHeader>
-                    <Title :tag='4'>Connect</Title>
-                </CardHeader>
-                
-                <CardContent>
-                    <div class='flex items-center flex-wrap gap-8'>
-                        <template
-                            v-for='item in connects'
-                            :key='item.url'
-                        >
-                            <Card>
-                                <CardHeader class='flex flex-row items-center gap-2'>
-                                    <NuxtIcon
-                                        v-if='item.icon'
-                                        :name=item.icon
-                                        class='text-foreground'
-                                        size='18'
-                                    />
-                                    
-                                    <Title :tag='6'>{{ item.label }}</Title>
-                                </CardHeader>
-                                
-                                <CardContent class='pl-4'>
-                                    <Button variant='outline'>
-                                        {{ item.url }}
-                                    </Button>
-                                </CardContent>
-                            </Card>
-                        </template>
-                    </div>
-                </CardContent>
-            </Card>
         </template>
     </div>
 </template>
@@ -251,8 +246,8 @@
             { url: facebook_url.value, label: 'Facebook', icon: 'logos:facebook' },
             { url: reddit_url.value, label: 'Reddit', icon: 'logos:reddit-icon' },
             { url: telegram_url.value, label: 'Telegram', icon: 'logos:telegram' },
-            { url: other_url_1.value, label: 'Other Url 1', icon: 'ph:link' },
-            { url: other_url_2.value, label: 'Other Url 2', icon: 'ph:link' },
+            { url: other_url_1.value, label: 'Other 1', icon: 'ph:link' },
+            { url: other_url_2.value, label: 'Other 2', icon: 'ph:link' },
             { url: twitter_handle.value ? `https://x.com/${twitter_handle.value}` : null, label: 'Twitter', icon: 'logos:twitter' },
         ].filter(item => item.url)
     );
