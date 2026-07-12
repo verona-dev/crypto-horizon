@@ -207,7 +207,7 @@
     import { Badge } from '~/components/ui/badge';
     import { Button } from '~/components/ui/button';
     import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
-    import { formatNumber } from '@/utils/formatUtils.js';
+    import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrustScoreStyle } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
     import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
@@ -232,7 +232,7 @@
     const { exchange, coin } = storeToRefs(MarketStore);
     const id = computed(() => route.params?.id);
     const exchange_type = computed(() => {
-        if(exchange.value.centralized) return 'Centralised';
+        if(exchange.value?.centralized) return 'Centralised';
         return '-';
     });
     
@@ -247,12 +247,12 @@
     
     const connects = computed(() =>
         [
-            { url: website.value, label: 'Website' },
+            { url: website.value, label: 'Website', icon: 'ph:link' },
             { url: facebook_url.value, label: 'Facebook', icon: 'logos:facebook' },
             { url: reddit_url.value, label: 'Reddit', icon: 'logos:reddit-icon' },
             { url: telegram_url.value, label: 'Telegram', icon: 'logos:telegram' },
-            { url: other_url_1.value, label: 'Other Url 1' },
-            { url: other_url_2.value, label: 'Other Url 2' },
+            { url: other_url_1.value, label: 'Other Url 1', icon: 'ph:link' },
+            { url: other_url_2.value, label: 'Other Url 2', icon: 'ph:link' },
             { url: twitter_handle.value ? `https://x.com/${twitter_handle.value}` : null, label: 'Twitter', icon: 'logos:twitter' },
         ].filter(item => item.url)
     );
