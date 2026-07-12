@@ -21,7 +21,7 @@
             <Card class='w-full p-6 flex flex-col gap-8'>
                 <CardHeader>
                     <Title :tag='4' class='flex items-center gap-2'>Spot Markets</Title>
-                    <CardDescription>Spot markets allow you to buy or sell digital assets directly, with immediate settlement. No contracts, no delays—just real-time trading of coins like BTC, ETH, and USDC against stablecoins or fiat pairs. Ideal for beginners and pros alike.</CardDescription>
+                    <CardDescription>Spot markets allow you to buy or sell digital assets directly, with immediate settlement. No contracts, no delays, just real-time trading of coins like BTC, ETH, and USDC against stablecoins or fiat pairs. Ideal for beginners and pros alike.</CardDescription>
                 </CardHeader>
                 
                 <CardContent>
@@ -38,24 +38,29 @@
                         </TableHeader>
                         
                         <TableBody>
-                            <TableRow v-for='(pair, index) in exchange.tickers'>
+                            <TableRow v-for='(coin, index) in exchange.tickers'>
                                 <TableCell>{{ index + 1 }}</TableCell>
-                                <TableCell>{{ pair.base }}</TableCell>
+                                <TableCell>{{ coin.base }}</TableCell>
                                 <TableCell class='flex items-center gap-2'>
-                                    <span>{{ pair.base }}/{{ pair.target }}</span>
+                                    <span>{{ coin.base }}/{{ coin.target }}</span>
                                     
-                                    <div>
+                                    <NuxtLink
+                                        :to='coin.trade_url'
+                                        target='_blank'
+                                        aria-label='Pair trade link'
+                                        external
+                                    >
                                         <NuxtIcon
                                             name='ph:arrow-square-out-bold'
                                             size='20'
                                             class='mt-0.5'
                                         />
-                                    </div>
-                                    
+                                    </NuxtLink>
+                                
                                 </TableCell>
-                                <TableCell>{{ pair.converted_last.usd }}</TableCell>
-                                <TableCell>{{ pair.volume }}</TableCell>
-                                <TableCell>{{ pair.converted_volume.usd }}</TableCell>
+                                <TableCell>{{ formatNumber(coin.last) }}</TableCell>
+                                <TableCell>{{ formatNumber(coin.volume) }}</TableCell>
+                                <TableCell>{{ formatNumber(coin.converted_volume.usd) }}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
@@ -268,7 +273,6 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrustScoreStyle } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
-    import NewTabIcon from '~/components/NewTabIcon.vue';
     import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
     import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
     import { Table, TableBody, TableCell, TableRow, TableHead, TableHeader } from '~/components/ui/table';
