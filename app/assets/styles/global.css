@@ -134,7 +134,7 @@
     }
     
     .page {
-        @apply w-full flex flex-col items-center justify-center h-full min-h-[calc(100vh-48rem)] relative xl:px-6;
+        @apply w-full flex flex-col items-center justify-center h-full min-h-[calc(100vh-48rem)] relative xl:px-6 z-10;
         
         /* Desktop */
         @media (min-width: 1024px) {
