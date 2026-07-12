@@ -1,8 +1,9 @@
 <template>
-    <div class='page market w-full xl:max-w-8xl'>
+    <div class='page market w-full'>
         <PageLoadingSpinner v-if='loading' />
         
         <template v-else>
+            <!--  Page Title  -->
             <div class='flex items-center gap-4 self-start'>
                 <NuxtImg
                     :src='exchange.image'
@@ -44,6 +45,20 @@
                             </Title>
                         </Badge>
                     </CardContent>
+                    
+                    <CardFooter>
+                        <Button variant='link'>
+                            <NuxtLink
+                                to='https://support.coingecko.com/hc/en-us/articles/36442561461657-Trust-Score-Methodology'
+                                class='flex items-center gap-1'
+                                target='_blank'
+                                aria-label='Trust score methodology link'
+                                external
+                            >
+                                <span>View methodology</span> <ChevronRight />
+                            </NuxtLink>
+                        </Button>
+                    </CardFooter>
                 </div>
                 
                 <!--  Trading Volume 24h in BTC  -->
@@ -92,22 +107,10 @@
                                 <TableCell class='text-right'>&#35;{{ exchange?.trust_score_rank }}</TableCell>
                             </TableRow>
                             
-                            <!--  Website  -->
+                            <!--  Year Established  -->
                             <TableRow>
-                                <TableCell class='font-medium'>Website</TableCell>
-                                <TableCell class='text-right'>{{ exchange?.url }}</TableCell>
-                            </TableRow>
-                            
-                            <!--  Community  -->
-                            <TableRow>
-                                <TableCell class='font-medium'>Community</TableCell>
-                                <TableCell class='text-right'>{{ exchange?.facebook_url }}</TableCell>
-                            </TableRow>
-                            
-                            <!--  API Id  -->
-                            <TableRow>
-                                <TableCell class='font-medium'>API Id</TableCell>
-                                <TableCell class='text-right'>{{ id }}</TableCell>
+                                <TableCell class='font-medium'>Year Established</TableCell>
+                                <TableCell class='text-right'>{{ exchange?.year_established }}</TableCell>
                             </TableRow>
                             
                             <!--  Country  -->
@@ -128,12 +131,6 @@
                                 <TableCell class='text-right'>{{ exchange?.pairs }}</TableCell>
                             </TableRow>
                             
-                            <!--  Year Established  -->
-                            <TableRow>
-                                <TableCell class='font-medium'>Year Established</TableCell>
-                                <TableCell class='text-right'>{{ exchange?.year_established }}</TableCell>
-                            </TableRow>
-                            
                             <!--  Exchange Type  -->
                             <TableRow>
                                 <TableCell class='font-medium'>Exchange Type</TableCell>
@@ -147,6 +144,94 @@
                             </TableRow>
                         </TableBody>
                     </Table>
+                </CardContent>
+            </Card>
+            
+            <!--  Spot Markets Table  -->
+            <Card class='w-full p-6 flex flex-col gap-8'>
+                <CardHeader>
+                    <Title :tag='4' class='flex items-center gap-2'>Spot Markets</Title>
+                    <CardDescription>Spot markets allow you to buy or sell digital assets directly, with immediate settlement. No contracts, no delays, just real-time trading of coins like BTC, ETH, and USDC against stablecoins or fiat pairs. Ideal for beginners and pros alike.</CardDescription>
+                </CardHeader>
+                
+                <CardContent class='h-130 overflow-y-auto'>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead class='w-[100px]'>#</TableHead>
+                                <TableHead>Coin</TableHead>
+                                <TableHead>Pair</TableHead>
+                                <TableHead>Price</TableHead>
+                                <TableHead>Coin Market Cap</TableHead>
+                                <TableHead class='text-right'>Pair 24h Volume</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        
+                        <TableBody>
+                            <TableRow v-for='(coin, index) in exchange.tickers'>
+                                <TableCell>{{ index + 1 }}</TableCell>
+                                <TableCell>{{ coin.base }}</TableCell>
+                                <TableCell class='flex items-center gap-2'>
+                                    <span>{{ coin.base }}/{{ coin.target }}</span>
+                                    
+                                    <NuxtLink
+                                        :to='coin.trade_url'
+                                        target='_blank'
+                                        aria-label='Pair trade link'
+                                        external
+                                    >
+                                        <NuxtIcon
+                                            name='ph:arrow-square-out-bold'
+                                            size='20'
+                                            class='mt-0.5'
+                                        />
+                                    </NuxtLink>
+                                
+                                </TableCell>
+                                <TableCell>{{ formatNumber(coin.last) }}</TableCell>
+                                <TableCell>{{ formatNumber(coin.coin_mcap_usd, { compact: true, decimals: 2 }) }}</TableCell>
+                                <TableCell class='text-right'>{{ formatNumber(coin.converted_volume.usd) }}</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </CardContent>
+            </Card>
+            
+            <!--  Connect  -->
+            <Card class='w-full p-6 flex flex-col'>
+                <CardHeader>
+                    <Title :tag='4'>Connect</Title>
+                </CardHeader>
+                
+                <CardContent class='flex flex-wrap gap-8'>
+                    <template
+                        v-for='item in connects'
+                        :key='item.url'
+                    >
+                        <NuxtLink
+                            :to='item.url'
+                            target='_blank'
+                            class='w-full 2xl:!w-130 !h-40'
+                            aria-label='exchange social link'
+                            external
+                        >
+                            <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                <CardHeader>
+                                    <NuxtIcon
+                                        v-if='item.icon'
+                                        :name=item.icon
+                                        size='64'
+                                    />
+                                </CardHeader>
+                                
+                                <CardContent class='w-full flex flex-col items-start pt-6 pl-0'>
+                                    <Title :tag='5'>{{ item.label }}</Title>
+                                    
+                                    <CardDescription>{{ item.url }}</CardDescription>
+                                </CardContent>
+                            </PixelCard>
+                        </NuxtLink>
+                    </template>
                 </CardContent>
             </Card>
             
@@ -175,22 +260,6 @@
                     </div>
                 </div>
             </Alert>
-            
-            <Card class='w-full p-6 flex flex-col gap-8'>
-                <CardHeader>
-                    <Title :tag='4'>Social Links</Title>
-                </CardHeader>
-                
-                <CardContent>
-                    <!--  Socials  -->
-                    <p>{{ exchange?.facebook_url }}</p>
-                    <p>{{ exchange?.reddit_url }}</p>
-                    <p>{{ exchange?.telegram_url }}</p>
-                    <p>{{ exchange?.other_url_1 }}</p>
-                    <p>{{ exchange?.other_url_2 }}</p>
-                    <p>{{ exchange?.twitter_handle }}</p>
-                </CardContent>
-            </Card>
         </template>
     </div>
 </template>
@@ -198,11 +267,15 @@
 <script setup>
     import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert';
     import { Badge } from '~/components/ui/badge';
-    import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
+    import { Button } from '@/components/ui/button/index';
+    import { Card, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
+    import { ChevronRight } from 'lucide-vue-next';
+    import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrustScoreStyle } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
     import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
-    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table';
+    import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
+    import { Table, TableBody, TableCell, TableRow, TableHead, TableHeader } from '~/components/ui/table';
     import Title from '~/components/Title.vue';
     
     // Router
@@ -216,17 +289,38 @@
     
     // MarketStore
     import { useMarketStore } from '~/stores/MarketStore.js';
-    import { formatNumber } from '@/utils/formatUtils.js';
     const MarketStore = useMarketStore();
     const { getExchange, getCoingeckoCoin } = MarketStore;
     
-    // State
+    // Exchange
     const { exchange, coin } = storeToRefs(MarketStore);
+    console.log(JSON.parse(JSON.stringify(exchange.value)));
     const id = computed(() => route.params?.id);
     const exchange_type = computed(() => {
-        if(exchange.value.centralized) return 'Centralised';
+        if(exchange.value?.centralized) return 'Centralised';
         return '-';
     });
+    
+    // Connect
+    const website = computed(() => exchange.value?.url);
+    const facebook_url = computed(() => exchange.value?.facebook_url);
+    const reddit_url = computed(() => exchange.value?.reddit_url);
+    const telegram_url = computed(() => exchange.value?.telegram_url);
+    const other_url_1 = computed(() => exchange.value?.other_url_1);
+    const other_url_2 = computed(() => exchange.value?.other_url_2);
+    const twitter_handle = computed(() => exchange.value?.twitter_handle);
+    
+    const connects = computed(() =>
+        [
+            { url: website.value, label: 'Website', icon: 'ph:house-line-fill' },
+            { url: facebook_url.value, label: 'Facebook', icon: 'ph:facebook-logo-fill' },
+            { url: reddit_url.value, label: 'Reddit', icon: 'ph:reddit-logo-fill' },
+            { url: telegram_url.value, label: 'Telegram', icon: 'logos:telegram' },
+            { url: other_url_1.value, label: 'Other 1', icon: 'ph:link-bold' },
+            { url: other_url_2.value, label: 'Other 2', icon: 'ph:link-bold' },
+            { url: twitter_handle.value ? `https://x.com/${twitter_handle.value}` : null, label: 'Twitter', icon: 'ph:twitter-logo-fill' },
+        ].filter(item => item.url)
+    );
     
     const trading_volume = computed(() => exchange.value?.trade_volume_24h_btc);
     const trading_volume_formatted = computed(() => formatNumber(trading_volume.value, {
@@ -236,6 +330,42 @@
         return formatNumber(coin.value?.coingecko?.market_data?.current_price?.usd * trading_volume.value , {
             compact: true, decimals: 2
         });
+    });
+    
+    // SEO
+    const title = computed(() =>
+        exchange.value?.name
+            ? `${exchange.value?.name} Exchange | Rank #${exchange.value?.trust_score_rank} | Volume & Trust Score`
+            : 'Exchange page.'
+    );
+    
+    const description = computed(() =>
+        exchange.value?.exchange
+            ? `Explore ${exchange.value?.exchange} exchange and check its trading volume, trust score, and socials.`
+            : 'Exchange description.'
+    );
+    
+    const path = computed(() => route.fullPath);
+    
+    useHead({
+        title: title,
+        meta: [
+            { name: 'description', content: description },
+            { property: 'og:title', content: title },
+            { property: 'og:description', content: description },
+            { property: 'og:url', content: path },
+            { name: 'robots', content: 'index, follow' },
+        ],
+    });
+    
+    useSeoMeta({
+        title: title,
+        description: description,
+        ogTitle: title,
+        ogDescription: description,
+        twitterTitle: title,
+        twitterDescription: description,
+        ogUrl: path,
     });
     
     onMounted(async() => {
