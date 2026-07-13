@@ -136,6 +136,12 @@ export default defineNuxtConfig({
       ],
    },
 
+   routeRules: {
+      '/': {
+         redirect: '/market'
+      }
+   },
+
    runtimeConfig: {
       public: {
          site_url: process.env.SITE_URL,
