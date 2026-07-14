@@ -188,28 +188,6 @@
     import Title from '~/components/Title.vue';
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     
-    interface Props {
-        imageUrl?: string;
-        patternScale?: number;
-        refraction?: number;
-        edge?: number;
-        patternBlur?: number;
-        liquid?: number;
-        speed?: number;
-        showProcessing?: boolean;
-    }
-    
-    const props = withDefaults(defineProps<Props>(), {
-        imageUrl: "https://static.vecteezy.com/system/resources/previews/020/364/871/non_2x/rocket-icon-vector.jpg",
-        patternScale: 2,
-        refraction: 0.015,
-        edge: 0.4,
-        patternBlur: 0.005,
-        liquid: 0.07,
-        speed: 0.3,
-        showProcessing: true,
-    });
-    
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
     const { darkThemes } = checkTheme();
