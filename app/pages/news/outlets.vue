@@ -44,7 +44,9 @@
         description,
     });
     
+    /*
     onMounted(async() => {
         await getNewsOutlets();
     });
+    */
 </script>
