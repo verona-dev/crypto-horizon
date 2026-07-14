@@ -7,19 +7,17 @@
                 <Title :tag='1' :level='2'>{{ page_title }}</Title>
             </div>
             
-<!--            <div v-else class='w-fit xl:w-[900px] h-[450px] mx-auto'>-->
-<!--                <ParticleImage-->
-<!--                    :image-src='titleImage'-->
-<!--                    :responsive-width='true'-->
-<!--                    canvasWidth='900'-->
-<!--                    canvasHeight='400'-->
-<!--                    :noise='5'-->
-<!--                    gravity='0.1'-->
-<!--                    mouseForce='7'-->
-<!--                />-->
-<!--            </div>-->
-            
-            
+            <div v-else class='w-fit xl:w-[900px] h-[450px] mx-auto'>
+                <ParticleImage
+                    :image-src='titleImage'
+                    :responsive-width='true'
+                    canvasWidth='900'
+                    canvasHeight='400'
+                    :noise='5'
+                    gravity='0.1'
+                    mouseForce='7'
+                />
+            </div>
             
             <BentoGrid v-if='articles.length' class='xl:gap-6'>
                 <BentoGridItem
@@ -184,7 +182,6 @@
     import { Button } from '~/components/ui/button';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { ParticleImage } from '~/components/ui/particle-image';
-    import { LiquidLogo } from '~/components/ui/liquid-logo';
     import { Skeleton } from '~/components/ui/skeleton';
     import titleImage from '~/assets/images/latest-news.png';
     import NewTabIcon from '~/components/NewTabIcon.vue';
