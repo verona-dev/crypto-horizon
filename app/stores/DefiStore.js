@@ -6,7 +6,7 @@ import { useLoadingStore } from '@/stores/LoadingStore.js';
 export const useDefiStore = defineStore('DefiStore', {
     state: () => ({
         globalDefi: {},
-        protocols: null,
+        protocols: [],
     }),
     
     actions: {
