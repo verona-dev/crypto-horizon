@@ -2,13 +2,18 @@
     <div class='page'>
         <PageLoadingSpinner v-if='loading' />
         
-        <GlobalDefi v-else />
+        <template v-else>
+            <div v-if='protocols.length'>
+                <Title>Defi Protocols</Title>
+                <h6>Coming Soon...</h6>
+            </div>
+        </template>
     </div>
 </template>
 
 <script setup>
-    import GlobalDefi from '~/components/market/GlobalDefi.vue';
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
+    import Title from '~/components/Title.vue';
     
     // LoadingStore
     import { storeToRefs } from 'pinia';
@@ -19,16 +24,17 @@
     // DefiStore
     import { useDefiStore } from '~/stores/DefiStore.js';
     const DefiStore = useDefiStore();
-    const { getCoingeckoGlobalDefi } = DefiStore;
+    const { getDefillamaProtocols } = DefiStore;
+    const { protocols } = storeToRefs(DefiStore);
     
     // SEO
-    const title = 'Global DeFi - Your Complete Guide to Decentralized Finance';
-    const description = 'Learn what Decentralized Finance (DeFi) is, how it works, key use cases like lending, borrowing, and yield farming, and why it’s transforming finance without banks.';
+    const title = 'DeFi Platforms: Lending, DEXs & Yield Aggregators';
+    const description = 'Compare DeFi platforms by TVL, yields, risks, and chain support. Discover leading protocols like Aave, Uniswap, Compound, and emerging DeFi apps.';
     
     definePageMeta({
         title,
         description,
     });
     
-    onMounted(async() => await getCoingeckoGlobalDefi());
+    onMounted(async() => await getDefillamaProtocols());
 </script>

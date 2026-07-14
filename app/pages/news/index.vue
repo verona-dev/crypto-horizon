@@ -7,19 +7,17 @@
                 <Title :tag='1' :level='2'>{{ page_title }}</Title>
             </div>
             
-<!--            <div v-else class='w-fit xl:w-[900px] h-[450px] mx-auto'>-->
-<!--                <ParticleImage-->
-<!--                    :image-src='titleImage'-->
-<!--                    :responsive-width='true'-->
-<!--                    canvasWidth='900'-->
-<!--                    canvasHeight='400'-->
-<!--                    :noise='5'-->
-<!--                    gravity='0.1'-->
-<!--                    mouseForce='7'-->
-<!--                />-->
-<!--            </div>-->
-            
-            
+            <div v-else class='w-fit xl:w-[900px] h-[450px] mx-auto'>
+                <ParticleImage
+                    :image-src='titleImage'
+                    :responsive-width='true'
+                    canvasWidth='900'
+                    canvasHeight='400'
+                    :noise='5'
+                    gravity='0.1'
+                    mouseForce='7'
+                />
+            </div>
             
             <BentoGrid v-if='articles.length' class='xl:gap-6'>
                 <BentoGridItem
@@ -184,34 +182,11 @@
     import { Button } from '~/components/ui/button';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import { ParticleImage } from '~/components/ui/particle-image';
-    import { LiquidLogo } from '~/components/ui/liquid-logo';
     import { Skeleton } from '~/components/ui/skeleton';
     import titleImage from '~/assets/images/latest-news.png';
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import Title from '~/components/Title.vue';
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
-    
-    interface Props {
-        imageUrl?: string;
-        patternScale?: number;
-        refraction?: number;
-        edge?: number;
-        patternBlur?: number;
-        liquid?: number;
-        speed?: number;
-        showProcessing?: boolean;
-    }
-    
-    const props = withDefaults(defineProps<Props>(), {
-        imageUrl: "https://static.vecteezy.com/system/resources/previews/020/364/871/non_2x/rocket-icon-vector.jpg",
-        patternScale: 2,
-        refraction: 0.015,
-        edge: 0.4,
-        patternBlur: 0.005,
-        liquid: 0.07,
-        speed: 0.3,
-        showProcessing: true,
-    });
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
