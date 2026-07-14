@@ -1,6 +1,6 @@
 <template>
     <div class='page'>
-        <Title>Defi Platforms</Title>
+        <Title>Defi Protocols</Title>
         <h6>Coming Soon...</h6>
     </div>
 </template>
@@ -11,7 +11,7 @@
     // DefiStore
     import { useDefiStore } from '~/stores/DefiStore.js';
     const DefiStore = useDefiStore();
-    const { getCoingeckoGlobalDefi } = DefiStore;
+    const { getDefillamaProtocols } = DefiStore;
     
     // SEO
     const title = 'DeFi Platforms: Lending, DEXs & Yield Aggregators';
@@ -21,4 +21,6 @@
         title,
         description,
     });
+    
+    onMounted(async() => await getDefillamaProtocols());
 </script>
