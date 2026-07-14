@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-    import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
+    import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
     import Title from '~/components/Title.vue';
     
     // LoadingStore
