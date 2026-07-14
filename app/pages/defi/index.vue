@@ -16,10 +16,11 @@
     const LoadingStore = useLoadingStore();
     const { loading } = storeToRefs(LoadingStore);
     
-    // MarketStore
-    import { useMarketStore } from '~/stores/MarketStore.js';
-    const MarketStore = useMarketStore();
-    const { getCoingeckoGlobalDefi } = MarketStore;
+    // DefiStore
+    import { useDefiStore } from '~/stores/DefiStore.js';
+    const DefiStore = useDefiStore();
+    const { getCoingeckoGlobalDefi } = DefiStore;
+    
     
     // SEO
     const title = 'Global DeFi - Your Complete Guide to Decentralized Finance';
