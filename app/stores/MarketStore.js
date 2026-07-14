@@ -265,23 +265,6 @@ export const useMarketStore = defineStore('MarketStore', {
             }
         },
         
-        async getCoingeckoGlobalDefi() {
-            const LoadingStore = useLoadingStore();
-            LoadingStore.setLoading(true);
-            
-            try {
-                const response = await useFetchCoingecko('global/decentralized_finance_defi');
-                
-                if(response && response.data) {
-                    this.globalDefi = response.data;
-                }
-            } catch(error) {
-                console.error(error);
-            } finally {
-                LoadingStore.setLoading(false);
-            }
-        },
-        
         async getExchanges() {
             const LoadingStore = useLoadingStore();
             LoadingStore.setLoading(true);
