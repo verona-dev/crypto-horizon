@@ -21,7 +21,6 @@
     const DefiStore = useDefiStore();
     const { getCoingeckoGlobalDefi } = DefiStore;
     
-    
     // SEO
     const title = 'Global DeFi - Your Complete Guide to Decentralized Finance';
     const description = 'Learn what Decentralized Finance (DeFi) is, how it works, key use cases like lending, borrowing, and yield farming, and why it’s transforming finance without banks.';

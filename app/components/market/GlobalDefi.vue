@@ -127,11 +127,12 @@
     import { Progress } from '~/components/ui/progress';
     import MazCircularProgressBar from 'maz-ui/components/MazCircularProgressBar';
     
-    // Market Store
+    // DefiStore
     import { storeToRefs } from 'pinia';
-    import { useMarketStore } from '~/stores/MarketStore.js';
-    const MarketStore = useMarketStore();
-    const { globalDefi } = storeToRefs(MarketStore);
+    import { useDefiStore } from '~/stores/DefiStore.js';
+    const DefiStore = useDefiStore();
+    const { getCoingeckoGlobalDefi } = DefiStore;
+    const { globalDefi } = storeToRefs(DefiStore);
     
     // Defi Dominance
     const defi_dominance = computed(() => globalDefi.value?.defi_dominance);
