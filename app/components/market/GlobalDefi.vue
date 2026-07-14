@@ -131,7 +131,6 @@
     import { storeToRefs } from 'pinia';
     import { useDefiStore } from '~/stores/DefiStore.js';
     const DefiStore = useDefiStore();
-    const { getCoingeckoGlobalDefi } = DefiStore;
     const { globalDefi } = storeToRefs(DefiStore);
     
     // Defi Dominance
