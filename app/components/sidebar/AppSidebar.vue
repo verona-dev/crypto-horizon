@@ -124,7 +124,6 @@
                         get isActive() {
                             return isChildActive(this.url);
                         },
-                        disabled: true,
                     },
                 ],
             },
