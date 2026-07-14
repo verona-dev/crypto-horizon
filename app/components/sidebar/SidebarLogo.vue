@@ -2,9 +2,6 @@
     import { useSidebar } from '../ui/sidebar/utils';
     import {SidebarMenu, SidebarMenuButton, SidebarMenuItem} from '~/components/ui/sidebar';
     const { open, isMobile } = useSidebar();
-    
-    import { Rocket } from "lucide-vue-next"
-
 </script>
 
 <template>
