@@ -101,7 +101,7 @@
                                     class='hover:cursor-pointer border-t-0 !px-6 animate-fadeIn'
                                 >
                                     <NuxtLink
-                                        :to='`/defi/protocols/prrrrotocol`'
+                                        :to='`/defi/protocols/${row.original.slug}`'
                                         class='contents'
                                     >
                                         <TableCell
@@ -200,7 +200,7 @@
     const sorting = ref([]);
     const sortingLabel = ref('Market Cap');
     const onSort = header => {
-        // if(header.column.id === 'checkbox' || header.column.id === 'market_cap_rank' || header.column.id === 'sparkline_in_7d') return;
+        if(header.column.id === 'name') return;
         header.column.toggleSorting(header.column.getIsSorted() === 'asc');
         sortingLabel.value = header.column.columnDef.pageTitle || header.column.columnDef.label;
     };
@@ -209,248 +209,35 @@
     
     const columnFilters = ref([]);
     const columnVisibility = ref({
-        price_change_percentage_30d_in_currency: false,
-        max_supply: false,
-        // total_volume: false,
-        circulating_supply: false,
-        total_supply: false,
-        fully_diluted_valuation: false,
-        // sparkline_in_7d: false,
-        ath_change_percentage: false,
-        atl_change_percentage: false,
+        name: true,
     });
     
     const headerWidths = {
         name: 'w-32',
-        current_price: 'min-w-20',
-        price_change_percentage_1h_in_currency: 'min-w-18',
-        price_change_percentage_24h: 'min-w-20',
-        price_change_percentage_7d_in_currency: 'min-w-20',
-        price_change_percentage_30d_in_currency: 'min-w-20',
-        market_cap: 'min-w-28',
-        total_volume: 'min-w-30',
-        max_supply: 'min-w-30',
-        circulating_supply: 'min-w-38',
-        total_supply: 'min-w-38',
-        fully_diluted_valuation: 'min-w-20',
-        ath_change_percentage: 'min-w-20',
-        atl_change_percentage: 'min-w-20',
     };
     
     const columns = computed(() => [
-        // {
-        //     id: 'market_cap_rank',
-        //     label: '#',
-        //     accessorKey: 'market_cap_rank',
-        //     cell: cell => h('div', { class: 'text-center' }, cell.getValue()),
-        // },
         {
             label: 'Name',
             accessorKey: 'name',
             isSortable: true,
             meta: { useSlot: true },
         },
-        {
-            label: 'Price',
-            accessorKey: 'current_price',
-            cell: cell => {
-                const current_price = formatNumber(cell.getValue(), {
-                    maximumFractionDigits: 4,
-                });
-                return h('div', { class: 'text-right' }, current_price);
-            },
-            isFilterable: true,
-            isSortable: true,
-        },
-        {
-            id: 'price_change_percentage_1h_in_currency',
-            label: '1h %',
-            pageTitle: 'Last hour % change',
-            accessorKey: 'price_change_percentage_1h_in_currency',
-            cell: cell => {
-                const price_change_percentage_1h = formatNumber(cell.getValue(), {
-                    style: 'percent',
-                });
-                const trend = getTrendClass(cell.getValue());
-                return h('div', { class: `text-right ${trend}` }, price_change_percentage_1h);
-            },
-            isFilterable: true,
-            isSortable: true,
-        },
-        {
-            id: 'price_change_percentage_24h',
-            label: '24h %',
-            pageTitle: 'Last day % change',
-            accessorKey: 'price_change_percentage_24h',
-            cell: cell => {
-                const price_change_percentage_24h = formatNumber(cell.getValue(), {
-                    style: 'percent',
-                });
-                const trend = getTrendClass(cell.getValue());
-                return h('div', { class: `text-right ${trend}` }, price_change_percentage_24h);
-            },
-            isFilterable: true,
-            isSortable: true,
-        },
-        {
-            id: 'price_change_percentage_7d_in_currency',
-            label: '7d %',
-            pageTitle: 'Last week % change',
-            accessorKey: 'price_change_percentage_7d_in_currency',
-            cell: cell => {
-                const price_change_percentage_7d = formatNumber(cell.getValue(), {
-                    style: 'percent',
-                });
-                const trend = getTrendClass(cell.getValue());
-                return h('div', { class: `text-right ${trend}` }, price_change_percentage_7d);
-            },
-            isFilterable: true,
-            isSortable: true,
-        },
-        {
-            label: '30d %',
-            pageTitle: 'Last month % change',
-            accessorKey: 'price_change_percentage_30d_in_currency',
-            cell: cell => {
-                const price_change_percentage_30d = formatNumber(cell.getValue(), {
-                    style: 'percent',
-                });
-                const trend = getTrendClass(cell.getValue());
-                return h('div', { class: `text-right ${trend}` }, price_change_percentage_30d);
-            },
-            isFilterable: true,
-            isSortable: true,
-        },
-        {
-            id: 'market_cap',
-            label: glossary.market_cap.label,
-            accessorKey: 'market_cap',
-            description: glossary.market_cap.description,
-            cell: cell => {
-                const market_cap = formatNumber(cell.getValue(), {
-                    compact: true, decimals: 2,
-                });
-                return h('div', { class: 'text-right' }, market_cap);
-            },
-            isFilterable: true,
-            isSortable: true,
-        },
-        {
-            label: glossary.volume.label_short,
-            pageTitle: glossary.volume.label,
-            accessorKey: 'total_volume',
-            description: glossary.volume.description,
-            cell: cell => {
-                const total_volume = formatNumber(cell.getValue(), {
-                    compact: true, decimals: 2,
-                }) ;
-                return h('div', { class: 'text-right' }, total_volume);
-            },
-            isFilterable: true,
-            isSortable: true,
-        },
-        {
-            label: glossary.max_supply.label,
-            accessorKey: 'max_supply',
-            description: glossary.max_supply.description,
-            cell: cell => {
-                const max_supply = formatNumber(cell.getValue(), {
-                    compact: true, style: 'decimal',
-                });
-                const symbol = cell.row?.original?.symbol?.toUpperCase();
-                const label = () => cell.getValue() ? `${max_supply} ${symbol.toUpperCase()}` : max_supply;
-                return h('div', { class: 'text-right' }, label());
-            },
-            isFilterable: true,
-            isSortable: true,
-        },
-        {
-            label: glossary.circulating_supply.label,
-            accessorKey: 'circulating_supply',
-            description: glossary.circulating_supply.description,
-            cell: cell => {
-                const circulating_supply = formatNumber(cell.getValue(), {
-                    compact: true, style: 'decimal', decimals: 2,
-                });
-                const symbol = cell.row?.original?.symbol?.toUpperCase();
-                const label = () => cell.getValue() ? `${circulating_supply} ${symbol.toUpperCase()}` : circulating_supply;
-                return h('div', { class: 'text-right' }, label());
-            },
-            isFilterable: true,
-            isSortable: true,
-        },
-        {
-            label: glossary.total_supply.label,
-            accessorKey: 'total_supply',
-            description: glossary.total_supply.description,
-            cell: cell => {
-                const total_supply = formatNumber(cell.getValue(), {
-                    compact: true, style: 'decimal', decimals: 2,
-                });
-                const symbol = cell.row?.original?.symbol?.toUpperCase();
-                const label = () => cell.getValue() ? `${total_supply} ${symbol.toUpperCase()}` : total_supply;
-                return h('div', { class: 'text-right' }, label());
-            },
-            isFilterable: true,
-            isSortable: true,
-        },
-        {
-            label: glossary.fully_diluted_valuation.acronym,
-            pageTitle: glossary.fully_diluted_valuation.label,
-            accessorKey: 'fully_diluted_valuation',
-            description: glossary.fully_diluted_valuation.description,
-            cell: cell => {
-                const fully_diluted_valuation = formatNumber(cell.getValue(), {
-                    compact: true, decimals: 1,
-                });
-                return h('div', { class: 'text-right' }, fully_diluted_valuation);
-            },
-            isFilterable: true,
-            isSortable: true,
-        },
-        {
-            label: 'From ATH',
-            pageTitle: 'From All Time High',
-            accessorKey: 'ath_change_percentage',
-            cell: cell => {
-                const ath_change_percentage = formatNumber(cell.getValue(), {
-                    style: 'percent', minimumFractionDigits: 0, maximumFractionDigits: 0,
-                });
-                const trend = getTrendClass(cell.getValue());
-                return h('div', { class: `text-right ${trend}` }, ath_change_percentage);
-            },
-            isFilterable: true,
-            isSortable: true,
-        },
-        {
-            label: 'From ATL',
-            pageTitle: 'From All Time Low',
-            accessorKey: 'atl_change_percentage',
-            cell: cell => {
-                const atl_change_percentage = formatNumber(cell.getValue(), {
-                    style: 'percent', minimumFractionDigits: 0, maximumFractionDigits: 0,
-                });
-                const trend = getTrendClass(cell.getValue());
-                return h('div', { class: `text-right ${trend}` }, atl_change_percentage);
-            },
-            isFilterable: true,
-            isSortable: true,
-        },
     ]);
     
     const table = useVueTable({
-        get data() { return protocols.value; },
+        get data() { return protocols.value.slice(0, 10); },
         get columns() { return columns.value; },
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
         onSortingChange: updaterOrValue => valueUpdater(updaterOrValue, sorting),
         onColumnFiltersChange: updaterOrValue => valueUpdater(updaterOrValue, columnFilters),
         getFilteredRowModel: getFilteredRowModel(),
-        // onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, columnVisibility),
+        onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, columnVisibility),
         state: {
             get sorting() { return sorting.value; },
             get columnFilters() { return columnFilters.value; },
-            // get columnVisibility() { return columnVisibility.value; },
+            get columnVisibility() { return columnVisibility.value; },
         },
     });
     
