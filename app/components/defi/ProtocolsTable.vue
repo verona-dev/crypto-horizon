@@ -28,12 +28,10 @@
                                     <div
                                         @click='onSort(header)'
                                         :class='[
-                                            "",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
                                         ]'
                                     >
-                                        <div :class='[""]'
-                                        >
+                                        <div>
                                             <div v-if='header.column.columnDef.isSortable' class='pt-1 w-3'>
                                                 <NuxtIcon
                                                     v-if='header.column.getIsSorted() === "desc"'
@@ -92,7 +90,7 @@
                                 <TableRow
                                     v-for='row in table.getRowModel().rows'
                                     :key='row.id'
-                                    class='hover:cursor-pointer border-t-0 !px-6 animate-fadeIn'
+                                    class='hover:cursor-pointer border-t-0 !px-6 animate-fadeIn h-20'
                                 >
                                     <NuxtLink
                                         :to='`/defi/protocols/${row.original.slug}`'
@@ -101,11 +99,29 @@
                                         <TableCell
                                             v-for='cell in row.getVisibleCells()'
                                             :key='cell.id'
+                                            class=''
                                         >
-                                            <FlexRender
-                                                :render='cell.column.columnDef.cell'
-                                                :props='cell.getContext()'
-                                            />
+                                            <template v-if='cell.column.id === "name"'>
+                                                <div class='flex items-center gap-4 w-72'>
+                                                    <NuxtImg
+                                                        :src='cell.row.original.logo'
+                                                        width='44'
+                                                        alt='platform logo'
+                                                    />
+                                                    
+                                                    <div class='flex flex-col items-start truncate'>
+                                                        <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
+                                                        <span class='text-primary/75'>{{ cell.row.original.chains.length }} chains</span>
+                                                    </div>
+                                                </div>
+                                            </template>
+                                            
+                                            <template v-else>
+                                                <FlexRender
+                                                    :render='cell.column.columnDef.cell'
+                                                    :props='cell.getContext()'
+                                                />
+                                            </template>
                                         </TableCell>
                                     </NuxtLink>
                                 </TableRow>
@@ -218,12 +234,14 @@
     
     const columns = computed(() => [
         {
+            id: 'name',
             label: 'Name',
             accessorKey: 'name',
             isSortable: true,
             meta: { useSlot: true },
         },
         {
+            id: 'category',
             label: 'Category',
             accessorKey: 'category',
             isSortable: true,
