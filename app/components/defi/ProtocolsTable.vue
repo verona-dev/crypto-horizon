@@ -121,7 +121,7 @@
                                             </template>
                                             
                                             <!--   Category  -->
-                                            <template v-if='cell.column.id === "category"'>
+                                            <template v-else-if='cell.column.id === "category"'>
                                                 <Badge
                                                     class='py-1 px-3'
                                                 >
