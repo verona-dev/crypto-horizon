@@ -36,7 +36,6 @@ export const useDefiStore = defineStore('DefiStore', {
                 
                 if(response) {
                     this.protocols = response;
-                    console.log(JSON.parse(JSON.stringify(this.protocols)));
                 }
             } catch(error) {
                 console.error(error);
