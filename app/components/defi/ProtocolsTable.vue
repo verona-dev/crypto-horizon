@@ -95,7 +95,7 @@
                                 <TableRow
                                     v-for='row in table.getRowModel().rows'
                                     :key='row.id'
-                                    class='hover:cursor-pointer border-t-0 !px-6 animate-fadeIn h-20'
+                                    class='hover:cursor-pointer border-t-0 animate-fadeIn h-20'
                                 >
                                     <NuxtLink
                                         :to='`/defi/protocols/${row.original.slug}`'
@@ -104,7 +104,7 @@
                                         <TableCell
                                             v-for='cell in row.getVisibleCells()'
                                             :key='cell.id'
-                                            class=''
+                                            class='text-left'
                                         >
                                             <!--   Rank  -->
                                             <template v-if='cell.column.id === "rank"'>
@@ -262,7 +262,7 @@
             id: 'rank',
             label: '#',
             isSortable: true,
-            cell: ({ row }) => h('div', { class: '' }, row.index + 1),
+            cell: ({ row }) => h('div', { class: 'text-center' }, row.index + 1),
         },
         {
             id: 'name',
