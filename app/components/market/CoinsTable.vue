@@ -194,6 +194,7 @@
                                                         :src='cell.row.original.image'
                                                         width='44'
                                                         alt='coin logo'
+                                                        class='rounded-full'
                                                     />
                                                     
                                                     <div class='flex flex-col items-start justify-start truncate'>
