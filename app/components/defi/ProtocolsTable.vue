@@ -142,7 +142,7 @@
                                             <template v-else-if='cell.column.id === "openSource"'>
                                                 <NuxtIcon
                                                     v-if='cell.getValue()'
-                                                    name='ph:check-circle-fill'
+                                                    name='ph:check-circle'
                                                     class='text-foreground'
                                                     size='24'
                                                 />
@@ -245,7 +245,7 @@
     const { getDefillamaProtocols } = DefiStore;
     
     const { protocols } = toRefs(props);
-    console.log(JSON.parse(JSON.stringify(protocols.value)));
+    // console.log(JSON.parse(JSON.stringify(protocols.value)));
     
     // Sorting + Filtering
     const sorting = ref([]);
@@ -347,6 +347,13 @@
             accessorKey: 'openSource',
             isSortable: true,
             cell: cell => h('div', { class: 'text-center' }, cell.getValue()),
+        },
+        {
+            id: 'chain',
+            label: 'Chain',
+            accessorKey: 'chain',
+            isSortable: true,
+            meta: { useSlot: true },
         },
     ]);
     
