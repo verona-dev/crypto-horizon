@@ -28,19 +28,13 @@
                                     <div
                                         @click='onSort(header)'
                                         :class='[
-                                            "flex justify-end",
+                                            "",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
                                         ]'
                                     >
-                                        <div
-                                            :class='[
-                                                "flex items-center gap-1",
-                                            ]'
+                                        <div :class='[""]'
                                         >
-                                            <div
-                                                v-if='header.column.columnDef.isSortable'
-                                                class='pt-1 w-3'
-                                            >
+                                            <div v-if='header.column.columnDef.isSortable' class='pt-1 w-3'>
                                                 <NuxtIcon
                                                     v-if='header.column.getIsSorted() === "desc"'
                                                     name='ph:caret-down-fill'
@@ -57,7 +51,7 @@
                                             <FlexRender
                                                 :render='() => h("span", header.column.columnDef.label)'
                                                 :props='header.getContext()'
-                                                class='text-md truncate'
+                                                class='truncate'
                                             />
                                         </div>
                                     </div>
@@ -102,7 +96,7 @@
                                 >
                                     <NuxtLink
                                         :to='`/defi/protocols/${row.original.slug}`'
-                                        class='contents'
+                                        class='contents text-left'
                                     >
                                         <TableCell
                                             v-for='cell in row.getVisibleCells()'
@@ -188,6 +182,12 @@
         },
     });
     
+    // LoadingStore
+    import { storeToRefs } from 'pinia';
+    import { useLoadingStore } from '~/stores/LoadingStore.js';
+    const LoadingStore = useLoadingStore();
+    const { loading } = storeToRefs(LoadingStore);
+    
     // DefiStore
     import { useDefiStore } from '~/stores/DefiStore.js';
     const DefiStore = useDefiStore();
@@ -204,8 +204,6 @@
         header.column.toggleSorting(header.column.getIsSorted() === 'asc');
         sortingLabel.value = header.column.columnDef.pageTitle || header.column.columnDef.label;
     };
-    const emit = defineEmits(['updateLabel']);
-    watch(sortingLabel, () => emit('updateLabel', sortingLabel.value));
     
     const columnFilters = ref([]);
     const columnVisibility = ref({
@@ -226,7 +224,7 @@
     ]);
     
     const table = useVueTable({
-        get data() { return protocols.value.slice(0, 10); },
+        get data() { return protocols.value; },
         get columns() { return columns.value; },
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
@@ -242,11 +240,13 @@
     });
     
     // Loading state
-    const loading = ref(true);
+    const table_loading = ref(true);
     const isTableReady = computed(() => table.getRowModel().rows);
     watch(() => isTableReady.value, rows => {
         if(rows.length > 0) {
-            loading.value = false;
+            table_loading.value = false;
         }
     }, { immediate: true });
+    
+    // onMounted(() => getDefillamaProtocols());
 </script>
