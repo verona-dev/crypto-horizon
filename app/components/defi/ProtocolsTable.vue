@@ -30,10 +30,18 @@
                                     <div
                                         @click='onSort(header)'
                                         :class='[
+                                            "",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
+                                            { "justify-end": header.column.id === "rank" },
                                         ]'
                                     >
-                                        <div>
+                                        <div class='flex items-center gap-1'>
+                                            <FlexRender
+                                                :render='() => h("span", header.column.columnDef.label)'
+                                                :props='header.getContext()'
+                                                class='truncate'
+                                            />
+                                            
                                             <div v-if='header.column.columnDef.isSortable' class='pt-1 w-3'>
                                                 <NuxtIcon
                                                     v-if='header.column.getIsSorted() === "desc"'
@@ -47,12 +55,6 @@
                                                     size='12'
                                                 />
                                             </div>
-                                            
-                                            <FlexRender
-                                                :render='() => h("span", header.column.columnDef.label)'
-                                                :props='header.getContext()'
-                                                class='truncate'
-                                            />
                                         </div>
                                     </div>
                                 </template>
@@ -258,9 +260,9 @@
         {
             id: 'rank',
             label: '#',
-            accessorKey: 'rank',
             isSortable: true,
-            cell: ({ row }) => row.index + 1,
+            cell: ({ row }) => h('span', { class: 'text-center' }, row.index + 1),
+            
         },
         {
             id: 'name',
