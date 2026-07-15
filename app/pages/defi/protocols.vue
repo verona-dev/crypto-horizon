@@ -3,9 +3,10 @@
         <PageLoadingSpinner v-if='loading' />
         
         <template v-else>
-            <div v-if='protocols.length'>
-                <Title>Defi Protocols</Title>
-                <h6>Coming Soon...</h6>
+            <div>
+<!--                <Title>Defi Protocols</Title>-->
+                
+                <ProtocolsTable :protocols='protocols'/>
             </div>
         </template>
     </div>
@@ -13,6 +14,7 @@
 
 <script setup>
     import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
+    import ProtocolsTable from '~/components/defi/ProtocolsTable.vue';
     import Title from '~/components/Title.vue';
     
     // LoadingStore
