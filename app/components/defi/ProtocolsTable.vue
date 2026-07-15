@@ -31,9 +31,10 @@
                                     <div
                                         @click='onSort(header)'
                                         :class='[
-                                            "flex",
+                                            "flex justify-center",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
-                                            { "text-center justify-end pr-1": header.column.id === "rank" },
+                                            { "justify-end pr-1": header.column.id === "rank" },
+                                            { "justify-start": header.column.id === "name" },
                                         ]'
                                     >
                                         <div class='flex items-center gap-1'>
@@ -104,7 +105,7 @@
                                         <TableCell
                                             v-for='cell in row.getVisibleCells()'
                                             :key='cell.id'
-                                            class='text-left'
+                                            class='text-center'
                                         >
                                             <!--   Rank  -->
                                             <template v-if='cell.column.id === "rank"'>
@@ -135,6 +136,18 @@
                                                 >
                                                     <span class='text-sm'>{{ cell.getValue() }}</span>
                                                 </Badge>
+                                            </template>
+                                            
+                                            <!--   Open Source  -->
+                                            <template v-else-if='cell.column.id === "openSource"'>
+                                                <NuxtIcon
+                                                    v-if='cell.getValue()'
+                                                    name='ph:check-circle-fill'
+                                                    class='text-foreground'
+                                                    size='24'
+                                                />
+                                                
+                                                <span v-else class='text-muted-foreground'>-</span>
                                             </template>
                                             
                                             <template v-else>
@@ -255,6 +268,7 @@
         name: '',
         category: '',
         tvl: '',
+        openSource: 'text-center',
     };
     
     const columns = computed(() => [
@@ -326,6 +340,13 @@
                 const trend = getTrendClass(cell.getValue());
                 return h('div', { class: `${trend}` }, change_7d);
             },
+        },
+        {
+            id: 'openSource',
+            label: 'Open Source',
+            accessorKey: 'openSource',
+            isSortable: true,
+            cell: cell => h('div', { class: 'text-center' }, cell.getValue()),
         },
     ]);
     
