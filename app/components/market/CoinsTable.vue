@@ -196,9 +196,9 @@
                                                         alt='coin logo'
                                                     />
                                                     
-                                                    <div class='flex flex-col items-start truncate'>
+                                                    <div class='flex flex-col items-start justify-start truncate'>
                                                         <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
-                                                        <span class='uppercase text-sm text-primary/75 mx-auto'>{{ cell.row.original.symbol }}</span>
+                                                        <span class='uppercase text-sm text-primary/75'>{{ cell.row.original.symbol }}</span>
                                                     </div>
                                                 </div>
                                             </template>
