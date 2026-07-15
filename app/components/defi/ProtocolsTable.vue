@@ -13,6 +13,8 @@
             <!--   Table   -->
             <div class='border-t border-b rounded-none flex flex-col shadow-2xl overflow-auto'>
                 <Table class='!border-none font-mono'>
+                    <TableCaption class='py-6'>A list of Defi protocols.</TableCaption>
+                    
                     <TableHeader :class='[ "h-24", { "shadow-2xl" : darkThemes } ]'>
                         <TableRow
                             v-for='headerGroup in table.getHeaderGroups()'
@@ -101,12 +103,14 @@
                                             :key='cell.id'
                                             class=''
                                         >
+                                            <!--   Name  -->
                                             <template v-if='cell.column.id === "name"'>
                                                 <div class='flex items-center gap-4 w-72'>
                                                     <NuxtImg
                                                         :src='cell.row.original.logo'
                                                         width='44'
                                                         alt='platform logo'
+                                                        class='rounded-full'
                                                     />
                                                     
                                                     <div class='flex flex-col items-start truncate'>
@@ -114,6 +118,15 @@
                                                         <span class='text-primary/75'>{{ cell.row.original.chains.length }} chains</span>
                                                     </div>
                                                 </div>
+                                            </template>
+                                            
+                                            <!--   Category  -->
+                                            <template v-if='cell.column.id === "category"'>
+                                                <Badge
+                                                    class='py-1 px-3'
+                                                >
+                                                    <span class='text-sm'>{{ cell.getValue() }}</span>
+                                                </Badge>
                                             </template>
                                             
                                             <template v-else>
@@ -177,7 +190,7 @@
     import InfoIcon from '@/components/InfoIcon.vue';
     import { Input } from '~/components/ui/input';
     import { h } from 'vue';
-    import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
+    import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { Spinner } from '~/components/ui/spinner';
     import Title from '~/components/Title.vue';
     import { valueUpdater } from '~/components/ui/table/utils.ts';
@@ -206,6 +219,7 @@
     
     // DefiStore
     import { useDefiStore } from '~/stores/DefiStore.js';
+    import { Badge } from '@/components/ui/badge/index.ts';
     const DefiStore = useDefiStore();
     const { getDefillamaProtocols } = DefiStore;
     
