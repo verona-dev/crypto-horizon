@@ -303,7 +303,7 @@
         },
         {
             id: 'change_1d',
-            label: '1d %',
+            label: '24h %',
             accessorKey: 'change_1d',
             isSortable: true,
             cell: cell => {
@@ -314,7 +314,19 @@
                 return h('div', { class: `${trend}` }, change_1d);
             },
         },
-        
+        {
+            id: 'change_7d',
+            label: '7d %',
+            accessorKey: 'change_7d',
+            isSortable: true,
+            cell: cell => {
+                const change_7d = formatNumber(cell.getValue(), {
+                    style: 'percent',
+                });
+                const trend = getTrendClass(cell.getValue());
+                return h('div', { class: `${trend}` }, change_7d);
+            },
+        },
     ]);
     
     const table = useVueTable({
