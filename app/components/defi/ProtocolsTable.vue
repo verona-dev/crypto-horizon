@@ -104,8 +104,13 @@
                                             class=''
                                         >
                                             <!--   Name  -->
+                                            <template v-if='cell.column.id === "rank"'>
+                                                <div>{{ cell.getValue() }}</div>
+                                            </template>
+                                            
+                                            <!--   Name  -->
                                             <template v-if='cell.column.id === "name"'>
-                                                <div class='flex items-center gap-4 w-72'>
+                                                <div class='flex items-center gap-4'>
                                                     <NuxtImg
                                                         :src='cell.row.original.logo'
                                                         width='44'
@@ -244,11 +249,19 @@
     
     const headerWidths = {
         name: '',
-        category: 'min-w-10',
+        category: '',
         tvl: '',
+        rank: '',
     };
     
     const columns = computed(() => [
+        {
+            id: 'rank',
+            label: '#',
+            accessorKey: 'rank',
+            isSortable: true,
+            cell: ({ row }) => row.index + 1,
+        },
         {
             id: 'name',
             label: 'Name',
@@ -256,6 +269,7 @@
             isSortable: true,
             meta: { useSlot: true },
         },
+        
         {
             id: 'category',
             label: 'Category',
