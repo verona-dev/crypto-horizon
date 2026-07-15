@@ -25,14 +25,15 @@
                             <TableHead
                                 v-for='header in headerGroup.headers'
                                 :key='header.id'
+                                :class='[headerWidths[header.column.id]]'
                             >
                                 <template v-if='!header.isPlaceholder'>
                                     <div
                                         @click='onSort(header)'
                                         :class='[
-                                            "",
+                                            "flex",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
-                                            { "justify-end": header.column.id === "rank" },
+                                            { "text-center justify-end pr-1": header.column.id === "rank" },
                                         ]'
                                     >
                                         <div class='flex items-center gap-1'>
@@ -98,14 +99,14 @@
                                 >
                                     <NuxtLink
                                         :to='`/defi/protocols/${row.original.slug}`'
-                                        class='contents text-left'
+                                        class='contents'
                                     >
                                         <TableCell
                                             v-for='cell in row.getVisibleCells()'
                                             :key='cell.id'
                                             class=''
                                         >
-                                            <!--   Name  -->
+                                            <!--   Rank  -->
                                             <template v-if='cell.column.id === "rank"'>
                                                 <div>{{ cell.getValue() }}</div>
                                             </template>
@@ -250,10 +251,10 @@
     });
     
     const headerWidths = {
+        rank: 'w-16 border',
         name: '',
         category: '',
         tvl: '',
-        rank: '',
     };
     
     const columns = computed(() => [
@@ -261,8 +262,7 @@
             id: 'rank',
             label: '#',
             isSortable: true,
-            cell: ({ row }) => h('span', { class: 'text-center' }, row.index + 1),
-            
+            cell: ({ row }) => h('div', { class: '' }, row.index + 1),
         },
         {
             id: 'name',
