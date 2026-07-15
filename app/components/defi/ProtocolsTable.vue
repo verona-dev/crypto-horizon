@@ -243,8 +243,9 @@
     });
     
     const headerWidths = {
-        name: 'w-32',
+        name: '',
         category: 'min-w-10',
+        tvl: '',
     };
     
     const columns = computed(() => [
@@ -268,7 +269,7 @@
             accessorKey: 'tvl',
             isSortable: true,
             meta: { useSlot: true },
-            cell: cell => h('div', { class: 'text-center' }, formatNumber(cell.getValue(),{
+            cell: cell => h('div', formatNumber(cell.getValue(),{
                 compact: true, decimals: 2,
             })),
         },
