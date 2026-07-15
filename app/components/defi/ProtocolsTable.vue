@@ -239,6 +239,7 @@
     const columnVisibility = ref({
         name: true,
         category: true,
+        tvl: true,
     });
     
     const headerWidths = {
@@ -261,7 +262,16 @@
             isSortable: true,
             meta: { useSlot: true },
         },
-        
+        {
+            id: 'tvl',
+            label: 'Tvl',
+            accessorKey: 'tvl',
+            isSortable: true,
+            meta: { useSlot: true },
+            cell: cell => h('div', { class: 'text-center' }, formatNumber(cell.getValue(),{
+                compact: true, decimals: 2,
+            })),
+        },
     ]);
     
     const table = useVueTable({
