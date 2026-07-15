@@ -208,10 +208,12 @@
     const columnFilters = ref([]);
     const columnVisibility = ref({
         name: true,
+        category: true,
     });
     
     const headerWidths = {
         name: 'w-32',
+        category: 'min-w-10',
     };
     
     const columns = computed(() => [
@@ -221,6 +223,13 @@
             isSortable: true,
             meta: { useSlot: true },
         },
+        {
+            label: 'Category',
+            accessorKey: 'category',
+            isSortable: true,
+            meta: { useSlot: true },
+        },
+        
     ]);
     
     const table = useVueTable({
