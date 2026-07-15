@@ -271,7 +271,6 @@
             isSortable: true,
             meta: { useSlot: true },
         },
-        
         {
             id: 'category',
             label: 'Category',
@@ -288,6 +287,19 @@
             cell: cell => h('div', formatNumber(cell.getValue(),{
                 compact: true, decimals: 2,
             })),
+        },
+        {
+            id: 'change_1d',
+            label: '1d %',
+            accessorKey: 'change_1d',
+            isSortable: true,
+            cell: cell => {
+                const change_1d = formatNumber(cell.getValue(), {
+                    style: 'percent',
+                });
+                const trend = getTrendClass(cell.getValue());
+                return h('div', { class: `${trend}` }, change_1d);
+            },
         },
     ]);
     
