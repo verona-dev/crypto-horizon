@@ -185,7 +185,8 @@
                                         <TableCell
                                             v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "checkbox")'
                                             :key='cell.id'
-                                            :class='{ "flex justify-end": cell.column.id === "sparkline_in_7d" }'>
+                                            :class='{ "flex justify-end": cell.column.id === "sparkline_in_7d" }'
+                                        >
                                             <!--   Name  -->
                                             <template v-if='cell.column.id === "name"'>
                                                 <div class='flex items-center gap-4 w-72'>
@@ -197,7 +198,7 @@
                                                     
                                                     <div class='flex flex-col items-start truncate'>
                                                         <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
-                                                        <span class='uppercase text-sm text-primary/75 mx-autop'>{{ cell.row.original.symbol }}</span>
+                                                        <span class='uppercase text-sm text-primary/75 mx-auto'>{{ cell.row.original.symbol }}</span>
                                                     </div>
                                                 </div>
                                             </template>
