@@ -124,16 +124,31 @@
                                                     
                                                     <div class='flex flex-col items-start truncate'>
                                                         <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
-                                                        <span class='text-primary/75'>{{ cell.row.original.chains.length }} chains</span>
+                                                        
+                                                        <HoverCard
+                                                            v-if='cell.row.original.description'
+                                                            :open-delay='200'
+                                                            class='flex'
+                                                        >
+                                                            <HoverCardTrigger>
+                                                                <span class='text-primary/75'>{{ cell.row.original.chains.length }} chains</span>
+                                                            </HoverCardTrigger>
+                                                            
+                                                            <HoverCardContent>
+                                                                <Title :tag='6' class='mb-4 underline'>Chains</Title>
+                                                                
+                                                                <p v-for='(item, index) in cell.row.original.chains' :key='item'>
+                                                                    {{ index + 1 }}. {{ item }}
+                                                                </p>
+                                                            </HoverCardContent>
+                                                        </HoverCard>
                                                     </div>
                                                 </div>
                                             </template>
                                             
                                             <!--   Category  -->
                                             <template v-else-if='cell.column.id === "category"'>
-                                                <Badge
-                                                    class='py-1 px-3'
-                                                >
+                                                <Badge class='py-1 px-3' variant='outline'>
                                                     <span class='text-sm'>{{ cell.getValue() }}</span>
                                                 </Badge>
                                             </template>
