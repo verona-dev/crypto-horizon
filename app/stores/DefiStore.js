@@ -35,8 +35,7 @@ export const useDefiStore = defineStore('DefiStore', {
                 const response = await useFetchDefillama('protocols');
                 
                 if(response) {
-                    this.protocols = response;
-                    console.log(JSON.parse(JSON.stringify(this.protocols)));
+                    this.protocols = response.slice(0, 10);
                 }
             } catch(error) {
                 console.error(error);

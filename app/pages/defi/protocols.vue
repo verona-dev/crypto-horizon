@@ -1,18 +1,14 @@
 <template>
     <div class='page'>
-        <PageLoadingSpinner v-if='loading' />
+<!--        <PageLoadingSpinner v-if='loading' />-->
         
-        <template v-else>
-            <div v-if='protocols.length'>
-                <Title>Defi Protocols</Title>
-                <h6>Coming Soon...</h6>
-            </div>
-        </template>
+            <ProtocolsTable :protocols='protocols'/>
     </div>
 </template>
 
 <script setup>
-    import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
+    import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
+    import ProtocolsTable from '~/components/defi/ProtocolsTable.vue';
     import Title from '~/components/Title.vue';
     
     // LoadingStore
