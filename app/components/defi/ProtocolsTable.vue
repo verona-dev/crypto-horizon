@@ -126,7 +126,6 @@
                                                         <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
                                                         
                                                         <HoverCard
-                                                            v-if='cell.row.original.description'
                                                             :open-delay='200'
                                                             class='flex'
                                                         >
@@ -151,6 +150,52 @@
                                                 <Badge class='py-1 px-3' variant='outline'>
                                                     <span class='text-sm'>{{ cell.getValue() }}</span>
                                                 </Badge>
+                                            </template>
+                                            
+                                            <!--   Tvl  -->
+                                            <template v-if='cell.column.id === "tvl"'>
+                                                <HoverCard
+                                                    v-if='cell.row.original.chainTvls'
+                                                    :open-delay='200'
+                                                    class='flex'
+                                                >
+                                                    <HoverCardTrigger>
+                                                        {{
+                                                            formatNumber(cell.getValue(), {
+                                                                compact: true, decimals: 2,
+                                                            })
+                                                        }}
+                                                    </HoverCardTrigger>
+                                                    
+                                                    <HoverCardContent class='flex flex-col gap-4'>
+                                                        <Title :tag='6' class='underline'>Tvl Breakdown</Title>
+                                                        
+                                                        <Table class='!p-12 !w-60'>
+                                                            <TableHeader>
+                                                                <TableRow>
+                                                                    <TableHead>Asset</TableHead>
+                                                                    <TableHead class='flex flex-col justify-center !items-end'>Quantity</TableHead>
+                                                                </TableRow>
+                                                            </TableHeader>
+                                                            
+                                                            <TableBody class='!mt-6'>
+                                                                <TableRow v-for='(tvl, chain) in cell.row.original.chainTvls'>
+                                                                    <TableCell class='text-sm'>{{ chain }}</TableCell>
+                                                                    <TableCell class='text-sm flex flex-col !items-end'>
+                                                                        {{ formatNumber(tvl, { compact: true, decimals: 2 }) }}
+                                                                    </TableCell>
+                                                                </TableRow>
+                                                                
+                                                                <TableRow class='text-primary'>
+                                                                    <TableCell class='text-base'>Total</TableCell>
+                                                                    <TableCell class='text-base flex flex-col !items-end'>
+                                                                        {{ formatNumber(cell.getValue(), { compact: true, decimals: 2 }) }}
+                                                                    </TableCell>
+                                                                </TableRow>
+                                                            </TableBody>
+                                                        </Table>
+                                                    </HoverCardContent>
+                                                </HoverCard>
                                             </template>
                                             
                                             <!--   Open Source  -->
@@ -313,9 +358,6 @@
             accessorKey: 'tvl',
             isSortable: true,
             meta: { useSlot: true },
-            cell: cell => h('div', formatNumber(cell.getValue(),{
-                compact: true, decimals: 2,
-            })),
         },
         {
             id: 'change_1h',
