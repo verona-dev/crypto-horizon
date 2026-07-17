@@ -106,11 +106,6 @@
                                             :key='cell.id'
                                             class='text-center'
                                         >
-                                            <!--   Rank  -->
-                                            <template v-if='cell.column.id === "rank"'>
-                                                <div>{{ cell.getValue() }}</div>
-                                            </template>
-                                            
                                             <!--   Name + Chains  -->
                                             <template v-if='cell.column.id === "name"'>
                                                 <div class='flex items-center gap-4'>
@@ -122,7 +117,7 @@
                                                     />
                                                     
                                                     <div class='flex flex-col items-start truncate'>
-                                                        <p class='font-medium text-lg'>{{ cell.getValue() }}</p>65
+                                                        <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
                                                         
                                                         <HoverCard
                                                             :open-delay='200'
@@ -145,15 +140,8 @@
                                                 </div>
                                             </template>
                                             
-                                            <!--   Category  -->
-                                            <template v-else-if='cell.column.id === "category"'>
-                                                <Badge class='py-1 px-3' variant='outline'>
-                                                    <span class='text-sm'>{{ cell.getValue() }}</span>
-                                                </Badge>
-                                            </template>
-                                            
                                             <!--   Tvl  -->
-                                            <template v-if='cell.column.id === "tvl"'>
+                                            <template v-else-if='cell.column.id === "tvl"'>
                                                 <HoverCard
                                                     v-if='cell.row.original.chainTvls'
                                                     :open-delay='200'
@@ -328,7 +316,7 @@
     });
     
     const headerWidths = {
-        rank: 'w-16 border',
+        rank: 'w-16',
         name: '',
         category: '',
         tvl: '',
