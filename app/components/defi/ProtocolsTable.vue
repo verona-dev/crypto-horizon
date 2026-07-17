@@ -246,12 +246,15 @@
                                                     <HoverCardContent class='max-w-140'>
                                                         <Stepper v-if='cell.row.original.hallmarks.length' orientation='vertical' class='mx-auto flex w-full max-w-md flex-col justify-start gap-10'>
                                                             <StepperItem
-                                                                v-for='(hallmark, index) in cell.getValue()'
+                                                                v-for='(hallmark, index) in [...cell.getValue()].reverse()'
                                                                 :key='index'
                                                                 class='relative flex w-full items-center gap-6'
                                                                 :step='1'
                                                             >
-                                                                <StepperSeparator class='absolute left-[70px] top-[30px] block h-[105%] w-0.5 rounded-full bg-muted' />
+                                                                <StepperSeparator
+                                                                    v-if='index < cell.getValue().length - 1'
+                                                                    class='absolute left-[70px] top-[30px] block h-[105%] w-0.5 rounded-full bg-muted'
+                                                                />
                                                                 
                                                                 <StepperTrigger as-child>
                                                                     <StepperTitle class='text-sm text-muted-foreground font-semibold transition lg:text-base flex-row'>
@@ -385,16 +388,6 @@
     
     const { protocols } = toRefs(props);
     // console.log(JSON.parse(JSON.stringify(protocols.value)));
-    
-    const hallmarks = [
-        [1610496000, "Start of incentives for curve pool"],
-        [1651881600, "UST depeg"],
-        [1654819200, "stETH depeg"],
-        [1667865600, "FTX collapse"],
-        [1684108800, "ETH Withdrawal Activation"],
-    ];
-    
-    console.log(hallmarks);
     
     // Sorting + Filtering
     const sorting = ref([]);
