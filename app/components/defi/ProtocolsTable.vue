@@ -215,6 +215,19 @@
                                                 <span v-else class='text-muted-foreground'>-</span>
                                             </template>
                                             
+                                            <template v-else-if='cell.column.id === "audit_links"'>
+                                                <Button
+                                                    v-for='audit in cell.row.original.audit_links'
+                                                    :key='audit'
+                                                    variant='link'
+                                                    aria-label='protocol audit'
+                                                    class='font-normal'
+                                                >
+                                                    <NuxtLink :to='audit' aria-label='protocol audit link' external>Visit Audit</NuxtLink>
+                                                    <NewTabIcon />
+                                                </Button>
+                                            </template>
+                                            
                                             <template v-else>
                                                 <FlexRender
                                                     :render='cell.column.columnDef.cell'
@@ -272,10 +285,11 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendClass } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
+    import { h } from 'vue';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index';
     import InfoIcon from '@/components/InfoIcon.vue';
     import { Input } from '~/components/ui/input';
-    import { h } from 'vue';
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { Spinner } from '~/components/ui/spinner';
     import Title from '~/components/Title.vue';
@@ -348,14 +362,12 @@
             label: 'Name',
             accessorKey: 'name',
             isSortable: true,
-            meta: { useSlot: true },
         },
         {
             id: 'category',
             label: 'Category',
             accessorKey: 'category',
             isSortable: true,
-            meta: { useSlot: true },
         },
         {
             id: 'tvl',
@@ -363,7 +375,6 @@
             description: glossary.tvl.description,
             accessorKey: 'tvl',
             isSortable: true,
-            meta: { useSlot: true },
         },
         {
             id: 'change_1h',
@@ -410,13 +421,17 @@
             description: glossary.open_source.description,
             accessorKey: 'openSource',
             isSortable: true,
-            meta: { useSlot: true },
         },
         {
             id: 'chain',
             label: 'Chain',
             accessorKey: 'chain',
             isSortable: true,
+        },
+        {
+            id: 'audit_links',
+            label: 'Audit',
+            accessorKey: 'audit_links',
             meta: { useSlot: true },
         },
     ]);
