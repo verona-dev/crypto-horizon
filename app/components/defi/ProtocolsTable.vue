@@ -148,15 +148,30 @@
                                                                 
                                                                 <p v-if='cell.row.original.description'>{{ cell.row.original.description }}</p>
                                                                 
-                                                                <Button v-if='cell.row.original.twitter' variant='outline' class='w-fit'>
-                                                                    <NuxtIcon
-                                                                        name='ph:twitter-logo-fill'
-                                                                        size='24'
-                                                                        class='text-blue-sky'
-                                                                    />
+                                                                <div>
+                                                                    <Button v-if='cell.row.original.url' variant='outline' class='w-fit' aria-label='website link'>
+                                                                        <NuxtLink :to='cell.row.original.url' target='_blank' aria-label='link' class='flex items-center gap-2' external>
+                                                                            <NuxtIcon
+                                                                                name='ph:house-line-fill'
+                                                                                size='20'
+                                                                            />
+                                                                            
+                                                                            <span>Website</span>
+                                                                        </NuxtLink>
+                                                                    </Button>
                                                                     
-                                                                    <span>https://x.com/{{ cell.row.original.twitter }}</span>
-                                                                </Button>
+                                                                    <Button v-if='cell.row.original.twitter' variant='outline' class='w-fit'>
+                                                                        <NuxtLink :to='`https://x.com/${cell.row.original.twitter}`' target='_blank' aria-label='link' class='flex items-center gap-2' external>
+                                                                            <NuxtIcon
+                                                                                name='ph:twitter-logo-fill'
+                                                                                size='24'
+                                                                                class='text-blue-sky'
+                                                                            />
+                                                                            
+                                                                            <span>Twitter</span>
+                                                                        </NuxtLink>
+                                                                    </Button>
+                                                                </div>
                                                                
                                                                 <div class='flex flex-col gap-4'>
                                                                     <Title :tag='6' class='mb-4 underline'>Chains</Title>
@@ -165,11 +180,6 @@
                                                                         {{ index + 1 }}. {{ item }}
                                                                     </p>
                                                                 </div>
-                                                                
-                                                                <div v-if='cell.row.original.url'>
-                                                                   Website {{ cell.row.original.url }}
-                                                                </div>
-                                                         
                                                             </HoverCardContent>
                                                         </HoverCard>
                                                         
@@ -250,7 +260,7 @@
                                             <template v-else-if='cell.column.id === "hallmarks"'>
                                                 <HoverCard :open-delay='200' class='flex'>
                                                     <HoverCardTrigger class='text-gray-dull/75'>
-                                                        <NuxtIcon v-if='cell.row.original.hallmarks?.length' name='ph:calendar-thin' size='34' />
+                                                        <NuxtIcon v-if='cell.row.original.hallmarks?.length' name='ph:calendar-thin' size='24' />
                                                         <span v-else class='text-muted-foreground'>-</span>
                                                     </HoverCardTrigger>
                                                     
@@ -290,7 +300,7 @@
                                             <template v-else-if='cell.column.id === "oraclesBreakdown"'>
                                                 <HoverCard :open-delay='200' class='flex'>
                                                     <HoverCardTrigger class='text-gray-dull/75'>
-                                                        <NuxtIcon v-if='cell.row.original.oraclesBreakdown?.length' name='ph:stack' size='34' />
+                                                        <NuxtIcon v-if='cell.row.original.oraclesBreakdown?.length' name='ph:stack' size='24' />
                                                         <span v-else class='text-muted-foreground'>-</span>
                                                     </HoverCardTrigger>
                                                     
@@ -429,6 +439,7 @@
     // DefiStore
     import { useDefiStore } from '~/stores/DefiStore.js';
     import { Badge } from '@/components/ui/badge/index.ts';
+    import { ChevronRight } from 'lucide-vue-next';
     const DefiStore = useDefiStore();
     const { getDefillamaProtocols } = DefiStore;
     
