@@ -38,3 +38,6 @@ remote_images = [
     "https://images.cryptocompare.com/.*",
     "https://www.coingecko.com/.*",
 ]
+
+[build.environment]
+NODE_OPTIONS = "--max-old-space-size=4096"
