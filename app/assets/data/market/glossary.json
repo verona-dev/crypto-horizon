@@ -90,6 +90,11 @@
         "label": "Value per Share",
         "description": "Total Value Asset Per share. \n\n The total value of all assets held in the treasury, divided by the number of shares or tokens outstanding, expressed in USD."
     },
+    "tvl": {
+        "acronym": "TVL",
+        "label": "Total Value Locked",
+        "description": "Total value locked (TVL) is a cryptocurrency metric used to measure the total value of digital assets locked or staked on a particular decentralized finance (DeFi) platform or decentralized application (dApp). \n\n These assets can include cryptocurrencies like Bitcoin (BTC), Ethereum (ETH), or stablecoins like Tether USD (USDT). TVL is usually expressed in US dollars, for easy comparisons across different blockchain platforms or protocols."
+    },
     "volume": {
         "label_short": "Volume (24h)",
         "label": "Trading Volume 24h",
