@@ -139,7 +139,11 @@
                                                                 <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
                                                             </HoverCardTrigger>
                                                             
-                                                            <HoverCardContent>{{ cell.row.original.description }}</HoverCardContent>
+                                                            <HoverCardContent class='max-w-140'>
+                                                                <p v-if='cell.row.original.address'>Address:
+                                                                    <span class='text-secondary'>{{ cell.row.original.address }}</span></p>
+                                                                <p>{{ cell.row.original.description }}</p>
+                                                            </HoverCardContent>
                                                         </HoverCard>
                                                         
                                                         <HoverCard :open-delay='200' class='flex'>
