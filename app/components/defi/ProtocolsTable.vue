@@ -165,24 +165,15 @@
                                                                         {{ index + 1 }}. {{ item }}
                                                                     </p>
                                                                 </div>
+                                                                
+                                                                <div v-if='cell.row.original.url'>
+                                                                   Website {{ cell.row.original.url }}
+                                                                </div>
                                                          
                                                             </HoverCardContent>
                                                         </HoverCard>
                                                         
-                                                        <HoverCard :open-delay='200' class='flex'>
-                                                            <HoverCardTrigger class='flex items-center gap-1'>
-                                                                <span class='text-primary/75'>{{ cell.row.original.chains.length }} chains</span>
-                                                                <InfoIcon />
-                                                            </HoverCardTrigger>
-                                                            
-                                                            <HoverCardContent>
-                                                                <Title :tag='6' class='mb-4 underline'>Chains</Title>
-                                                                
-                                                                <p v-for='(item, index) in cell.row.original.chains' :key='item'>
-                                                                    {{ index + 1 }}. {{ item }}
-                                                                </p>
-                                                            </HoverCardContent>
-                                                        </HoverCard>
+                                                        <span class='text-primary/75'>{{ cell.row.original.chains.length }} chains</span>
                                                     </div>
                                                 </div>
                                             </template>
@@ -299,7 +290,7 @@
                                             <template v-else-if='cell.column.id === "oraclesBreakdown"'>
                                                 <HoverCard :open-delay='200' class='flex'>
                                                     <HoverCardTrigger class='text-gray-dull/75'>
-                                                        <NuxtIcon v-if='cell.row.original.oraclesBreakdown?.length' name='ph:network' size='34' />
+                                                        <NuxtIcon v-if='cell.row.original.oraclesBreakdown?.length' name='ph:stack' size='34' />
                                                         <span v-else class='text-muted-foreground'>-</span>
                                                     </HoverCardTrigger>
                                                     
