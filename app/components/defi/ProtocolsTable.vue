@@ -21,7 +21,6 @@
                             :key='headerGroup.id'
                             class='hover:bg-background'
                         >
-                            <!--  :class='[headerWidths[header.column.id]]'  -->
                             <TableHead
                                 v-for='header in headerGroup.headers'
                                 :key='header.id'
@@ -112,7 +111,7 @@
                                                 <div>{{ cell.getValue() }}</div>
                                             </template>
                                             
-                                            <!--   Name  -->
+                                            <!--   Name + Chains  -->
                                             <template v-if='cell.column.id === "name"'>
                                                 <div class='flex items-center gap-4'>
                                                     <NuxtImg
@@ -123,14 +122,15 @@
                                                     />
                                                     
                                                     <div class='flex flex-col items-start truncate'>
-                                                        <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
+                                                        <p class='font-medium text-lg'>{{ cell.getValue() }}</p>65
                                                         
                                                         <HoverCard
                                                             :open-delay='200'
                                                             class='flex'
                                                         >
-                                                            <HoverCardTrigger>
+                                                            <HoverCardTrigger class='flex items-center gap-1'>
                                                                 <span class='text-primary/75'>{{ cell.row.original.chains.length }} chains</span>
+                                                                <InfoIcon />
                                                             </HoverCardTrigger>
                                                             
                                                             <HoverCardContent>
@@ -159,12 +159,16 @@
                                                     :open-delay='200'
                                                     class='flex'
                                                 >
-                                                    <HoverCardTrigger>
-                                                        {{
-                                                            formatNumber(cell.getValue(), {
-                                                                compact: true, decimals: 2,
-                                                            })
-                                                        }}
+                                                    <HoverCardTrigger class='flex items-center gap-1'>
+                                                        <span>
+                                                            {{
+                                                                formatNumber(cell.getValue(), {
+                                                                    compact: true, decimals: 2,
+                                                                })
+                                                            }}
+                                                        </span>
+                                                        
+                                                        <InfoIcon />
                                                     </HoverCardTrigger>
                                                     
                                                     <HoverCardContent class='flex flex-col gap-4'>
