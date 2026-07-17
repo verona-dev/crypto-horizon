@@ -240,7 +240,8 @@
                                             <template v-else-if='cell.column.id === "hallmarks"'>
                                                 <HoverCard :open-delay='200' class='flex'>
                                                     <HoverCardTrigger class='text-gray-dull/75'>
-                                                        <NuxtIcon name='ph:calendar-thin' size='34' />
+                                                        <NuxtIcon v-if='cell.row.original.hallmarks?.length' name='ph:calendar-thin' size='34' />
+                                                        <span v-else class='text-muted-foreground'>-</span>
                                                     </HoverCardTrigger>
                                                     
                                                     <HoverCardContent class='max-w-140'>
