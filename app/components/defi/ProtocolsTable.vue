@@ -130,10 +130,7 @@
                                                     />
                                                     
                                                     <div class='flex flex-col items-start truncate'>
-                                                        <HoverCard
-                                                            :open-delay='200'
-                                                            class='flex'
-                                                        >
+                                                        <HoverCard :open-delay='200' class='flex'>
                                                             <HoverCardTrigger class='flex items-center gap-1'>
                                                                 <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
                                                             </HoverCardTrigger>
@@ -141,11 +138,7 @@
                                                             <HoverCardContent>{{ cell.row.original.description }}</HoverCardContent>
                                                         </HoverCard>
                                                         
-                                                        
-                                                        <HoverCard
-                                                            :open-delay='200'
-                                                            class='flex'
-                                                        >
+                                                        <HoverCard :open-delay='200' class='flex'>
                                                             <HoverCardTrigger class='flex items-center gap-1'>
                                                                 <span class='text-primary/75'>{{ cell.row.original.chains.length }} chains</span>
                                                                 <InfoIcon />
