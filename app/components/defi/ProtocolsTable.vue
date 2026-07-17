@@ -115,9 +115,9 @@
                                         class='contents'
                                     >
                                         <TableCell
-                                            v-for='cell in row.getVisibleCells()'
+                                            v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "audit_links")'
                                             :key='cell.id'
-                                            class=''
+                                            :class='{ "flex justify-end": cell.column.id === "sparkline_in_7d" }'
                                         >
                                             <!--   Name + Chains  -->
                                             <template v-if='cell.column.id === "name"'>
@@ -218,20 +218,6 @@
                                                 <span v-else class='text-muted-foreground'>-</span>
                                             </template>
                                             
-                                            <!--   Audit  -->
-                                            <template v-else-if='cell.column.id === "audit_links"'>
-                                                <Button
-                                                    v-for='audit in cell.row.original.audit_links'
-                                                    :key='audit'
-                                                    variant='link'
-                                                    aria-label='protocol audit'
-                                                    class='font-normal'
-                                                >
-                                                    <NuxtLink :to='audit' aria-label='protocol audit link' external>Visit Audit</NuxtLink>
-                                                    <NewTabIcon />
-                                                </Button>
-                                            </template>
-                                            
                                             <template v-else>
                                                 <FlexRender
                                                     :render='cell.column.columnDef.cell'
@@ -240,6 +226,24 @@
                                             </template>
                                         </TableCell>
                                     </NuxtLink>
+                                    
+                                    <!--   Audit  -->
+                                    <TableCell class='h-20 text-center'>
+                                        <div class='pt-1'>
+                                            <Button
+                                                v-for='audit in row.original.audit_links'
+                                                :key='audit'
+                                                variant='link'
+                                                aria-label='protocol audit'
+                                                class='font-normal'
+                                            >
+                                                <NuxtLink :to='audit' aria-label='protocol audit link' external>Visit
+                                                                                                                Audit
+                                                </NuxtLink>
+                                                <NewTabIcon />
+                                            </Button>
+                                        </div>
+                                    </TableCell>
                                 </TableRow>
                             </template>
                             
