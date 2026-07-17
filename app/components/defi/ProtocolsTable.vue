@@ -130,7 +130,17 @@
                                                     />
                                                     
                                                     <div class='flex flex-col items-start truncate'>
-                                                        <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
+                                                        <HoverCard
+                                                            :open-delay='200'
+                                                            class='flex'
+                                                        >
+                                                            <HoverCardTrigger class='flex items-center gap-1'>
+                                                                <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
+                                                            </HoverCardTrigger>
+                                                            
+                                                            <HoverCardContent>{{ cell.row.original.description }}</HoverCardContent>
+                                                        </HoverCard>
+                                                        
                                                         
                                                         <HoverCard
                                                             :open-delay='200'
@@ -215,6 +225,7 @@
                                                 <span v-else class='text-muted-foreground'>-</span>
                                             </template>
                                             
+                                            <!--   Audit  -->
                                             <template v-else-if='cell.column.id === "audit_links"'>
                                                 <Button
                                                     v-for='audit in cell.row.original.audit_links'
