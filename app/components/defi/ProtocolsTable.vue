@@ -37,12 +37,6 @@
                                         ]'
                                     >
                                         <div class='flex items-center gap-1'>
-                                            <FlexRender
-                                                :render='() => h("span", header.column.columnDef.label)'
-                                                :props='header.getContext()'
-                                                class='truncate'
-                                            />
-                                            
                                             <div v-if='header.column.columnDef.isSortable' class='pt-1 w-3'>
                                                 <NuxtIcon
                                                     v-if='header.column.getIsSorted() === "desc"'
@@ -56,6 +50,24 @@
                                                     size='12'
                                                 />
                                             </div>
+                                            
+                                            <FlexRender
+                                                :render='() => h("span", header.column.columnDef.label)'
+                                                :props='header.getContext()'
+                                                class='text-md truncate'
+                                            />
+                                            
+                                            <HoverCard
+                                                v-if='header.column.columnDef.description'
+                                                :open-delay='200'
+                                                class='flex'
+                                            >
+                                                <HoverCardTrigger>
+                                                    <InfoIcon />
+                                                </HoverCardTrigger>
+                                                
+                                                <HoverCardContent>{{ header.column.columnDef.description }}</HoverCardContent>
+                                            </HoverCard>
                                         </div>
                                     </div>
                                 </template>
@@ -160,7 +172,7 @@
                                                     </HoverCardTrigger>
                                                     
                                                     <HoverCardContent class='flex flex-col gap-4'>
-                                                        <Title :tag='6' class='underline'>Tvl Breakdown</Title>
+                                                        <Title :tag='6' class='underline'>{{ glossary.tvl.acronym }} Breakdown</Title>
                                                         
                                                         <Table class='!p-12 !w-60'>
                                                             <TableHeader>
@@ -346,7 +358,8 @@
         },
         {
             id: 'tvl',
-            label: 'Tvl',
+            label: glossary.tvl.acronym,
+            description: glossary.tvl.description,
             accessorKey: 'tvl',
             isSortable: true,
             meta: { useSlot: true },
