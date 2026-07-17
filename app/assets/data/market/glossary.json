@@ -70,6 +70,10 @@
         "label": "mNav",
         "description": "Market-value Net Asset Value (mNAV) – Calculated as Enterprise Value (Market Cap + Total Debt - Cash & Cash Equivalents) divided by the current value of the entity's entire crypto holdings."
     },
+    "open_source" : {
+        "label": "Open Source",
+        "description": "Open source software is software with source code that anyone can inspect, modify, and enhance. Open source software is developed in a decentralized and collaborative way, relying on peer review and community production. Open source software is often cheaper, more flexible, and has more longevity than its proprietary peers because it is developed by communities rather than a single author or company."
+    },
     "pairs": {
         "label": "Pairs",
         "description" : "The number of unique markets the coin is present at."
@@ -89,6 +93,11 @@
     "total_value_asset_per_share": {
         "label": "Value per Share",
         "description": "Total Value Asset Per share. \n\n The total value of all assets held in the treasury, divided by the number of shares or tokens outstanding, expressed in USD."
+    },
+    "tvl": {
+        "acronym": "TVL",
+        "label": "Total Value Locked",
+        "description": "Total value locked (TVL) is a cryptocurrency metric used to measure the total value of digital assets locked or staked on a particular decentralized finance (DeFi) platform or decentralized application (dApp). \n\n These assets can include cryptocurrencies like Bitcoin (BTC), Ethereum (ETH), or stablecoins like Tether USD (USDT). TVL is usually expressed in US dollars, for easy comparisons across different blockchain platforms or protocols."
     },
     "volume": {
         "label_short": "Volume (24h)",

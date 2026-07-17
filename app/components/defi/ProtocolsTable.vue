@@ -21,7 +21,6 @@
                             :key='headerGroup.id'
                             class='hover:bg-background'
                         >
-                            <!--  :class='[headerWidths[header.column.id]]'  -->
                             <TableHead
                                 v-for='header in headerGroup.headers'
                                 :key='header.id'
@@ -31,19 +30,17 @@
                                     <div
                                         @click='onSort(header)'
                                         :class='[
-                                            "flex justify-center",
+                                            "flex",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
-                                            { "justify-end pr-1": header.column.id === "rank" },
-                                            { "justify-start": header.column.id === "name" },
+                                            { "pr-1": header.column.id === "rank" },
+                                            { "": header.column.id === "name" },
+                                            { "justify-center": header.column.id === "listedAt" },
+                                            { "justify-center": header.column.id === "openSource" },
+                                            { "justify-center": header.column.id === "hallmarks" },
+                                            { "justify-center": header.column.id === "audit_links" },
                                         ]'
                                     >
                                         <div class='flex items-center gap-1'>
-                                            <FlexRender
-                                                :render='() => h("span", header.column.columnDef.label)'
-                                                :props='header.getContext()'
-                                                class='truncate'
-                                            />
-                                            
                                             <div v-if='header.column.columnDef.isSortable' class='pt-1 w-3'>
                                                 <NuxtIcon
                                                     v-if='header.column.getIsSorted() === "desc"'
@@ -57,6 +54,24 @@
                                                     size='12'
                                                 />
                                             </div>
+                                            
+                                            <FlexRender
+                                                :render='() => h("span", header.column.columnDef.label)'
+                                                :props='header.getContext()'
+                                                class='text-md truncate'
+                                            />
+                                            
+                                            <HoverCard
+                                                v-if='header.column.columnDef.description'
+                                                :open-delay='200'
+                                                class='flex'
+                                            >
+                                                <HoverCardTrigger>
+                                                    <InfoIcon />
+                                                </HoverCardTrigger>
+                                                
+                                                <HoverCardContent>{{ header.column.columnDef.description }}</HoverCardContent>
+                                            </HoverCard>
                                         </div>
                                     </div>
                                 </template>
@@ -103,16 +118,16 @@
                                         class='contents'
                                     >
                                         <TableCell
-                                            v-for='cell in row.getVisibleCells()'
+                                            v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "audit_links")'
                                             :key='cell.id'
-                                            class='text-center'
+                                            :class='[
+                                                { "text-center": cell.column.id === "listedAt" },
+                                                { "text-left": cell.column.id === "category" },
+                                                { "text-left": cell.column.id === "chain" },
+                                                { "text-center": cell.column.id === "hallmarks" },
+                                            ]'
                                         >
-                                            <!--   Rank  -->
-                                            <template v-if='cell.column.id === "rank"'>
-                                                <div>{{ cell.getValue() }}</div>
-                                            </template>
-                                            
-                                            <!--   Name  -->
+                                            <!--   Name + Chains  -->
                                             <template v-if='cell.column.id === "name"'>
                                                 <div class='flex items-center gap-4'>
                                                     <NuxtImg
@@ -123,52 +138,85 @@
                                                     />
                                                     
                                                     <div class='flex flex-col items-start truncate'>
-                                                        <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
-                                                        
-                                                        <HoverCard
-                                                            :open-delay='200'
-                                                            class='flex'
-                                                        >
-                                                            <HoverCardTrigger>
-                                                                <span class='text-primary/75'>{{ cell.row.original.chains.length }} chains</span>
+                                                        <HoverCard :open-delay='200' class='flex'>
+                                                            <HoverCardTrigger class='flex items-center gap-1'>
+                                                                <p class='font-medium text-lg'>{{ cell.getValue() }}</p>
                                                             </HoverCardTrigger>
                                                             
-                                                            <HoverCardContent>
-                                                                <Title :tag='6' class='mb-4 underline'>Chains</Title>
+                                                            <HoverCardContent class='max-w-140 flex flex-col gap-2'>
+                                                                <Title :tag='4'>{{ cell.getValue() }}</Title>
                                                                 
-                                                                <p v-for='(item, index) in cell.row.original.chains' :key='item'>
-                                                                    {{ index + 1 }}. {{ item }}
-                                                                </p>
+                                                                <p v-if='cell.row.original.description' class='text-muted-foreground'>{{ cell.row.original.description }}</p>
+                                                                
+                                                                <p v-if='cell.row.original.address'>Address: <span class='text-secondary'>{{ cell.row.original.address }}</span></p>
+                                                                
+                                                                <div>
+                                                                    <Button v-if='cell.row.original.url' variant='outline' class='w-fit' aria-label='website link'>
+                                                                        <NuxtLink :to='cell.row.original.url' target='_blank' aria-label='link' class='flex items-center gap-2' external>
+                                                                            <NuxtIcon
+                                                                                name='ph:house-line-fill'
+                                                                                size='20'
+                                                                            />
+                                                                            
+                                                                            <span>Website</span>
+                                                                        </NuxtLink>
+                                                                    </Button>
+                                                                    
+                                                                    <Button v-if='cell.row.original.twitter' variant='outline' class='w-fit'>
+                                                                        <NuxtLink :to='`https://x.com/${cell.row.original.twitter}`' target='_blank' aria-label='link' class='flex items-center gap-2' external>
+                                                                            <NuxtIcon
+                                                                                name='ph:twitter-logo-fill'
+                                                                                size='24'
+                                                                                class='text-blue-sky'
+                                                                            />
+                                                                            
+                                                                            <span>Twitter</span>
+                                                                        </NuxtLink>
+                                                                    </Button>
+                                                                </div>
+                                                               
+                                                                <div class='flex flex-col gap-4'>
+                                                                    <Title :tag='6' class='mb-4 underline'>Chains</Title>
+                                                                    
+                                                                    <p v-for='(item, index) in cell.row.original.chains' :key='item'>
+                                                                        {{ index + 1 }}. {{ item }}
+                                                                    </p>
+                                                                </div>
                                                             </HoverCardContent>
                                                         </HoverCard>
+                                                        
+                                                        <span class='text-primary/75'>{{ cell.row.original.chains.length }} chains</span>
                                                     </div>
                                                 </div>
                                             </template>
                                             
-                                            <!--   Category  -->
-                                            <template v-else-if='cell.column.id === "category"'>
-                                                <Badge class='py-1 px-3' variant='outline'>
-                                                    <span class='text-sm'>{{ cell.getValue() }}</span>
-                                                </Badge>
+                                            <!--   Launch Date  -->
+                                            <template v-else-if='cell.column.id === "listedAt"'>
+                                                <span v-if='cell.getValue()'>{{ dayjs.unix(cell.getValue()).format('MMM YYYY') }}</span>
+                                                <span v-else class='text-muted-foreground'>-</span>
                                             </template>
                                             
                                             <!--   Tvl  -->
-                                            <template v-if='cell.column.id === "tvl"'>
+                                            <template v-else-if='cell.column.id === "tvl"'>
                                                 <HoverCard
                                                     v-if='cell.row.original.chainTvls'
                                                     :open-delay='200'
                                                     class='flex'
                                                 >
-                                                    <HoverCardTrigger>
-                                                        {{
-                                                            formatNumber(cell.getValue(), {
-                                                                compact: true, decimals: 2,
-                                                            })
-                                                        }}
+                                                    <HoverCardTrigger class='flex items-center gap-1'>
+                                                        <span>
+                                                            {{
+                                                                formatNumber(cell.getValue(), {
+                                                                    compact: true, decimals: 2,
+                                                                })
+                                                            }}
+                                                        </span>
+                                                        
+                                                        <InfoIcon />
                                                     </HoverCardTrigger>
                                                     
                                                     <HoverCardContent class='flex flex-col gap-4'>
-                                                        <Title :tag='6' class='underline'>Tvl Breakdown</Title>
+                                                        <Title :tag='6' class='underline'>{{ glossary.tvl.acronym }} Breakdown</Title>
                                                         
                                                         <Table class='!p-12 !w-60'>
                                                             <TableHeader>
@@ -203,11 +251,86 @@
                                                 <NuxtIcon
                                                     v-if='cell.getValue()'
                                                     name='ph:check-circle'
-                                                    class='text-foreground'
+                                                    class='text-gray-dull/75'
                                                     size='24'
                                                 />
                                                 
                                                 <span v-else class='text-muted-foreground'>-</span>
+                                            </template>
+                                            
+                                            <!--   Hallmarks  -->
+                                            <template v-else-if='cell.column.id === "hallmarks"'>
+                                                <HoverCard :open-delay='200' class='flex'>
+                                                    <HoverCardTrigger class='text-gray-dull/75'>
+                                                        <NuxtIcon v-if='cell.row.original.hallmarks?.length' name='ph:calendar' size='24' />
+                                                        <span v-else class='text-muted-foreground'>-</span>
+                                                    </HoverCardTrigger>
+                                                    
+                                                    <HoverCardContent class='max-w-140'>
+                                                        <Stepper v-if='cell.row.original.hallmarks.length' orientation='vertical' class='mx-auto flex w-full max-w-md flex-col justify-start gap-10'>
+                                                            <StepperItem
+                                                                v-for='(hallmark, index) in [...cell.getValue()].reverse()'
+                                                                :key='index'
+                                                                class='relative flex w-full items-center gap-6'
+                                                                :step='1'
+                                                            >
+                                                                <StepperSeparator
+                                                                    v-if='index < cell.getValue().length - 1'
+                                                                    class='absolute left-[70px] top-[30px] block h-[105%] w-0.5 rounded-full bg-muted'
+                                                                />
+                                                                
+                                                                <StepperTrigger as-child>
+                                                                    <StepperTitle class='text-sm text-muted-foreground font-semibold transition lg:text-base flex-row'>
+                                                                        <NuxtIcon name='ph:calendar-dot' size='20' class='mb-0.5' />
+                                                                        
+                                                                        {{ dayjs.unix(hallmark[0]).format('MMM D, YYYY')}}
+                                                                    </StepperTitle>
+                                                                </StepperTrigger>
+                                                                
+                                                                <div class='flex flex-col gap-1'>
+                                                                    <StepperDescription class='sr-only text-xs text-foreground transition md:not-sr-only lg:text-sm'>
+                                                                        {{ hallmark[1] }}
+                                                                    </StepperDescription>
+                                                                </div>
+                                                            </StepperItem>
+                                                        </Stepper>
+                                                    </HoverCardContent>
+                                                </HoverCard>
+                                            </template>
+                                            
+                                            <!--   Oracles  -->
+                                            <template v-else-if='cell.column.id === "oraclesBreakdown"'>
+                                                <HoverCard :open-delay='200' class='flex'>
+                                                    <HoverCardTrigger class='text-gray-dull/75'>
+                                                        <NuxtIcon v-if='cell.row.original.oraclesBreakdown?.length' name='ph:stack' size='24' />
+                                                        <span v-else class='text-muted-foreground'>-</span>
+                                                    </HoverCardTrigger>
+                                                    
+                                                    <HoverCardContent class='flex flex-col gap-4'>
+                                                        <Title :tag='6' class='underline'>Oracles Breakdown</Title>
+                                                        
+                                                        <Table class='!p-12 !w-60'>
+                                                            <TableHeader>
+                                                                <TableRow>
+                                                                    <TableHead>Name</TableHead>
+                                                                    <TableHead class='flex flex-col justify-center !items-end'>Type</TableHead>
+                                                                </TableRow>
+                                                            </TableHeader>
+                                                            
+                                                            <TableBody class='!mt-6'>
+                                                                <TableRow
+                                                                    v-for='oracle in cell.row.original.oraclesBreakdown'
+                                                                    :key='oracle.name'
+                                                                >
+                                                                    <TableCell class='text-sm'>{{ oracle.name }}</TableCell>
+                                                                    <TableCell class='text-sm flex flex-col !items-end'>
+                                                                        {{ oracle.type }}
+                                                                    </TableCell>
+                                                                </TableRow>
+                                                            </TableBody>
+                                                        </Table>
+                                                    </HoverCardContent>
+                                                </HoverCard>
                                             </template>
                                             
                                             <template v-else>
@@ -218,6 +341,20 @@
                                             </template>
                                         </TableCell>
                                     </NuxtLink>
+                                    
+                                    <!--   Audit  -->
+                                    <TableCell class='text-center'>
+                                        <Button
+                                            v-for='audit in row.original.audit_links'
+                                            :key='audit'
+                                            variant='link'
+                                            aria-label='protocol audit'
+                                            class='font-normal'
+                                        >
+                                            <NuxtLink :to='audit' aria-label='protocol audit link' external>Visit Audit</NuxtLink>
+                                            <NewTabIcon />
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>
                             </template>
                             
@@ -267,14 +404,17 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendClass } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
+    import { h } from 'vue';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index';
     import InfoIcon from '@/components/InfoIcon.vue';
     import { Input } from '~/components/ui/input';
-    import { h } from 'vue';
+    import NewTabIcon from '~/components/NewTabIcon.vue';
     import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { Spinner } from '~/components/ui/spinner';
     import Title from '~/components/Title.vue';
     import { valueUpdater } from '~/components/ui/table/utils.ts';
+    import { Stepper, StepperDescription, StepperIndicator, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
+    import { Check, Circle, Dot } from '@lucide/vue'
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
@@ -301,6 +441,7 @@
     // DefiStore
     import { useDefiStore } from '~/stores/DefiStore.js';
     import { Badge } from '@/components/ui/badge/index.ts';
+    import { ChevronRight } from 'lucide-vue-next';
     const DefiStore = useDefiStore();
     const { getDefillamaProtocols } = DefiStore;
     
@@ -324,11 +465,12 @@
     });
     
     const headerWidths = {
-        rank: 'w-16 border',
-        name: '',
+        rank: 'w-16',
+        name: 'min-w-78',
+        listedAt: 'min-w-48',
         category: '',
         tvl: '',
-        openSource: 'text-center',
+        openSource: '',
     };
     
     const columns = computed(() => [
@@ -336,13 +478,18 @@
             id: 'rank',
             label: '#',
             isSortable: true,
-            cell: ({ row }) => h('div', { class: 'text-center' }, row.index + 1),
+            cell: ({ row }) => h('div', { class: '' }, row.index + 1),
         },
         {
             id: 'name',
             label: 'Name',
             accessorKey: 'name',
             isSortable: true,
+        },
+        {
+            id: 'listedAt',
+            label: 'Launch Date',
+            accessorKey: 'listedAt',
             meta: { useSlot: true },
         },
         {
@@ -350,14 +497,13 @@
             label: 'Category',
             accessorKey: 'category',
             isSortable: true,
-            meta: { useSlot: true },
         },
         {
             id: 'tvl',
-            label: 'Tvl',
+            label: glossary.tvl.acronym,
+            description: glossary.tvl.description,
             accessorKey: 'tvl',
             isSortable: true,
-            meta: { useSlot: true },
         },
         {
             id: 'change_1h',
@@ -400,16 +546,31 @@
         },
         {
             id: 'openSource',
-            label: 'Open Source',
+            label: glossary.open_source.label,
+            description: glossary.open_source.description,
             accessorKey: 'openSource',
             isSortable: true,
-            cell: cell => h('div', { class: 'text-center' }, cell.getValue()),
         },
         {
             id: 'chain',
             label: 'Chain',
             accessorKey: 'chain',
             isSortable: true,
+        },
+        {
+            id: 'hallmarks',
+            label: 'Hallmarks',
+            accessorKey: 'hallmarks',
+        },
+        {
+            id: 'oraclesBreakdown',
+            label: 'Oracle',
+            accessorKey: 'oracleBreakdown',
+        },
+        {
+            id: 'audit_links',
+            label: 'Audit',
+            accessorKey: 'audit_links',
             meta: { useSlot: true },
         },
     ]);

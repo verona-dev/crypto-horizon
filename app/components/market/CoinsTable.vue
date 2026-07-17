@@ -90,10 +90,7 @@
                                                { "flex flex-row-reverse !justify-end" : header.column.id === "name" },
                                             ]'
                                         >
-                                            <div
-                                                v-if='header.column.columnDef.isSortable'
-                                                class='pt-1 w-3'
-                                            >
+                                            <div v-if='header.column.columnDef.isSortable' class='pt-1 w-3'>
                                                 <NuxtIcon
                                                     v-if='header.column.getIsSorted() === "desc"'
                                                     name='ph:caret-down-fill'
