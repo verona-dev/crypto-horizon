@@ -234,6 +234,47 @@
                                                 <span v-else class='text-muted-foreground'>-</span>
                                             </template>
                                             
+                                            <!--   Hallmarks  -->
+                                            <template v-else-if='cell.column.id === "hallmarks"'>
+                                                <HoverCard :open-delay='200' class='flex'>
+                                                    <HoverCardTrigger class='flex items-center gap-1 text-secondary'>
+                                                        <NuxtIcon name='ph:calendar' size='34' />
+                                                    </HoverCardTrigger>
+                                                    
+                                                    <HoverCardContent class='max-w-140'>
+                                                        <Stepper v-if='cell.row.original.hallmarks.length' orientation='vertical' class='mx-auto flex w-full max-w-md flex-col justify-start gap-10'>
+                                                            <StepperItem
+                                                                v-for="(hallmark, index) in cell.getValue()"
+                                                                :key="index"
+                                                                v-slot='{ state }'
+                                                                class='relative flex w-full items-start gap-6'
+                                                                :step='1'
+                                                            >
+                                                                <StepperSeparator
+                                                                    class='absolute left-[18px] top-[38px] block h-[105%] w-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
+                                                                />
+                                                                <StepperTrigger as-child>
+                                                                    <Button size='icon' variant='' class='z-10 rounded-full shrink-0 bg-muted p-2 h-12 w-12'>
+                                                                        <NuxtIcon name='ph:calendar-dot-thin' size='34' class='text-foreground' />
+                                                                    </Button>
+                                                                </StepperTrigger>
+                                                                <div class='flex flex-col gap-1'>
+                                                                    <StepperTitle
+                                                                        class='text-sm font-semibold transition lg:text-base'
+                                                                    >
+                                                                        {{ new Date(hallmark[0] * 1000).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) }}
+                                                                    </StepperTitle>
+                                                                    
+                                                                    <StepperDescription class='sr-only text-xs text-muted-foreground transition md:not-sr-only lg:text-sm'>
+                                                                        {{ hallmark[1] }}
+                                                                    </StepperDescription>
+                                                                </div>
+                                                            </StepperItem>
+                                                        </Stepper>
+                                                    </HoverCardContent>
+                                                </HoverCard>
+                                            </template>
+                                            
                                             <template v-else>
                                                 <FlexRender
                                                     :render='cell.column.columnDef.cell'
@@ -314,6 +355,7 @@
     import { Spinner } from '~/components/ui/spinner';
     import Title from '~/components/Title.vue';
     import { valueUpdater } from '~/components/ui/table/utils.ts';
+    import { Stepper, StepperDescription, StepperIndicator, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
@@ -454,6 +496,11 @@
             label: 'Chain',
             accessorKey: 'chain',
             isSortable: true,
+        },
+        {
+            id: 'hallmarks',
+            label: 'Hallmarks',
+            accessorKey: 'hallmarks',
         },
         {
             id: 'audit_links',
