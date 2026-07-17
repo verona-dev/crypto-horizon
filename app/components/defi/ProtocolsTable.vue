@@ -30,10 +30,11 @@
                                     <div
                                         @click='onSort(header)'
                                         :class='[
-                                            "flex justify-center",
+                                            "flex",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
-                                            { "justify-end pr-1": header.column.id === "rank" },
-                                            { "justify-start": header.column.id === "name" },
+                                            { "pr-1": header.column.id === "rank" },
+                                            { "": header.column.id === "name" },
+                                            { "justify-center": header.column.id === "openSource" },
                                         ]'
                                     >
                                         <div class='flex items-center gap-1'>
@@ -116,7 +117,7 @@
                                         <TableCell
                                             v-for='cell in row.getVisibleCells()'
                                             :key='cell.id'
-                                            class='text-center'
+                                            class=''
                                         >
                                             <!--   Name + Chains  -->
                                             <template v-if='cell.column.id === "name"'>
@@ -332,7 +333,7 @@
         name: '',
         category: '',
         tvl: '',
-        openSource: 'text-center',
+        openSource: '',
     };
     
     const columns = computed(() => [
@@ -340,7 +341,7 @@
             id: 'rank',
             label: '#',
             isSortable: true,
-            cell: ({ row }) => h('div', { class: 'text-center' }, row.index + 1),
+            cell: ({ row }) => h('div', { class: '' }, row.index + 1),
         },
         {
             id: 'name',
