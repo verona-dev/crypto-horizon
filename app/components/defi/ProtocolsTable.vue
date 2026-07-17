@@ -145,7 +145,9 @@
                                                             
                                                             <HoverCardContent class='max-w-140 flex flex-col gap-2'>
                                                                 <p v-if='cell.row.original.address'>Address: <span class='text-secondary'>{{ cell.row.original.address }}</span></p>
+                                                                
                                                                 <p v-if='cell.row.original.description'>{{ cell.row.original.description }}</p>
+                                                                
                                                                 <Button v-if='cell.row.original.twitter' variant='outline' class='w-fit'>
                                                                     <NuxtIcon
                                                                         name='ph:twitter-logo-fill'
@@ -155,6 +157,15 @@
                                                                     
                                                                     <span>https://x.com/{{ cell.row.original.twitter }}</span>
                                                                 </Button>
+                                                               
+                                                                <div class='flex flex-col gap-4'>
+                                                                    <Title :tag='6' class='mb-4 underline'>Chains</Title>
+                                                                    
+                                                                    <p v-for='(item, index) in cell.row.original.chains' :key='item'>
+                                                                        {{ index + 1 }}. {{ item }}
+                                                                    </p>
+                                                                </div>
+                                                         
                                                             </HoverCardContent>
                                                         </HoverCard>
                                                         
