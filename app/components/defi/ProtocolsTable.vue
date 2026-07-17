@@ -144,9 +144,11 @@
                                                             </HoverCardTrigger>
                                                             
                                                             <HoverCardContent class='max-w-140 flex flex-col gap-2'>
-                                                                <p v-if='cell.row.original.address'>Address: <span class='text-secondary'>{{ cell.row.original.address }}</span></p>
+                                                                <Title :tag='4'>{{ cell.getValue() }}</Title>
                                                                 
-                                                                <p v-if='cell.row.original.description'>{{ cell.row.original.description }}</p>
+                                                                <p v-if='cell.row.original.description' class='text-muted-foreground'>{{ cell.row.original.description }}</p>
+                                                                
+                                                                <p v-if='cell.row.original.address'>Address: <span class='text-secondary'>{{ cell.row.original.address }}</span></p>
                                                                 
                                                                 <div>
                                                                     <Button v-if='cell.row.original.url' variant='outline' class='w-fit' aria-label='website link'>
@@ -260,7 +262,7 @@
                                             <template v-else-if='cell.column.id === "hallmarks"'>
                                                 <HoverCard :open-delay='200' class='flex'>
                                                     <HoverCardTrigger class='text-gray-dull/75'>
-                                                        <NuxtIcon v-if='cell.row.original.hallmarks?.length' name='ph:calendar-thin' size='24' />
+                                                        <NuxtIcon v-if='cell.row.original.hallmarks?.length' name='ph:calendar' size='24' />
                                                         <span v-else class='text-muted-foreground'>-</span>
                                                     </HoverCardTrigger>
                                                     
