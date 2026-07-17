@@ -405,10 +405,11 @@
         },
         {
             id: 'openSource',
-            label: 'Open Source',
+            label: glossary.open_source.label,
+            description: glossary.open_source.description,
             accessorKey: 'openSource',
             isSortable: true,
-            cell: cell => h('div', { class: 'text-center' }, cell.getValue()),
+            meta: { useSlot: true },
         },
         {
             id: 'chain',
