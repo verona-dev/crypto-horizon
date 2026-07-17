@@ -35,6 +35,7 @@
                                             { "pr-1": header.column.id === "rank" },
                                             { "": header.column.id === "name" },
                                             { "justify-center": header.column.id === "openSource" },
+                                            { "justify-center": header.column.id === "audit_links" },
                                         ]'
                                     >
                                         <div class='flex items-center gap-1'>
@@ -117,7 +118,10 @@
                                         <TableCell
                                             v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "audit_links")'
                                             :key='cell.id'
-                                            :class='{ "text-left": cell.column.id === "category" }'
+                                            :class='[
+                                                { "text-left": cell.column.id === "category" },
+                                                { "text-left": cell.column.id === "chain" },
+                                            ]'
                                         >
                                             <!--   Name + Chains  -->
                                             <template v-if='cell.column.id === "name"'>
@@ -228,7 +232,7 @@
                                     </NuxtLink>
                                     
                                     <!--   Audit  -->
-                                    <TableCell>
+                                    <TableCell class='text-center'>
                                         <Button
                                             v-for='audit in row.original.audit_links'
                                             :key='audit'
@@ -236,9 +240,7 @@
                                             aria-label='protocol audit'
                                             class='font-normal'
                                         >
-                                            <NuxtLink :to='audit' aria-label='protocol audit link' external>Visit
-                                                                                                            Audit
-                                            </NuxtLink>
+                                            <NuxtLink :to='audit' aria-label='protocol audit link' external>Visit Audit</NuxtLink>
                                             <NewTabIcon />
                                         </Button>
                                     </TableCell>
