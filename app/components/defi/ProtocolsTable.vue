@@ -276,6 +276,41 @@
                                                 </HoverCard>
                                             </template>
                                             
+                                            <!--   Oracles  -->
+                                            <template v-else-if='cell.column.id === "oraclesBreakdown"'>
+                                                <HoverCard :open-delay='200' class='flex'>
+                                                    <HoverCardTrigger class='text-gray-dull/75'>
+                                                        <NuxtIcon v-if='cell.row.original.oraclesBreakdown?.length' name='ph:network' size='34' />
+                                                        <span v-else class='text-muted-foreground'>-</span>
+                                                    </HoverCardTrigger>
+                                                    
+                                                    <HoverCardContent class='flex flex-col gap-4'>
+                                                        <Title :tag='6' class='underline'>Oracles Breakdown</Title>
+                                                        
+                                                        <Table class='!p-12 !w-60'>
+                                                            <TableHeader>
+                                                                <TableRow>
+                                                                    <TableHead>Name</TableHead>
+                                                                    <TableHead class='flex flex-col justify-center !items-end'>Type</TableHead>
+                                                                </TableRow>
+                                                            </TableHeader>
+                                                            
+                                                            <TableBody class='!mt-6'>
+                                                                <TableRow
+                                                                    v-for='oracle in cell.row.original.oraclesBreakdown'
+                                                                    :key='oracle.name'
+                                                                >
+                                                                    <TableCell class='text-sm'>{{ oracle.name }}</TableCell>
+                                                                    <TableCell class='text-sm flex flex-col !items-end'>
+                                                                        {{ oracle.type }}
+                                                                    </TableCell>
+                                                                </TableRow>
+                                                            </TableBody>
+                                                        </Table>
+                                                    </HoverCardContent>
+                                                </HoverCard>
+                                            </template>
+                                            
                                             <template v-else>
                                                 <FlexRender
                                                     :render='cell.column.columnDef.cell'
@@ -503,6 +538,11 @@
             id: 'hallmarks',
             label: 'Hallmarks',
             accessorKey: 'hallmarks',
+        },
+        {
+            id: 'oraclesBreakdown',
+            label: 'Oracle',
+            accessorKey: 'oracleBreakdown',
         },
         {
             id: 'audit_links',
