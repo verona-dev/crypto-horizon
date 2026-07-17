@@ -34,6 +34,7 @@
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
                                             { "pr-1": header.column.id === "rank" },
                                             { "": header.column.id === "name" },
+                                            { "justify-center": header.column.id === "listedAt" },
                                             { "justify-center": header.column.id === "openSource" },
                                             { "justify-center": header.column.id === "audit_links" },
                                         ]'
@@ -121,6 +122,7 @@
                                             :class='[
                                                 { "text-left": cell.column.id === "category" },
                                                 { "text-left": cell.column.id === "chain" },
+                                                { "text-center": cell.column.id === "listedAt" },
                                             ]'
                                         >
                                             <!--   Name + Chains  -->
@@ -162,6 +164,12 @@
                                                         </HoverCard>
                                                     </div>
                                                 </div>
+                                            </template>
+                                            
+                                            <!--   Launch Date  -->
+                                            <template v-else-if='cell.column.id === "listedAt"'>
+                                                <span v-if='cell.getValue()'>{{ dayjs.unix(cell.getValue()).format('MMM YYYY') }}</span>
+                                                <span v-else class='text-muted-foreground'>-</span>
                                             </template>
                                             
                                             <!--   Tvl  -->
@@ -356,7 +364,8 @@
     
     const headerWidths = {
         rank: 'w-16',
-        name: '',
+        name: 'min-w-78',
+        listedAt: 'min-w-48',
         category: '',
         tvl: '',
         openSource: '',
@@ -374,6 +383,12 @@
             label: 'Name',
             accessorKey: 'name',
             isSortable: true,
+        },
+        {
+            id: 'listedAt',
+            label: 'Launch Date',
+            accessorKey: 'listedAt',
+            meta: { useSlot: true },
         },
         {
             id: 'category',
