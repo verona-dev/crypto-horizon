@@ -117,7 +117,7 @@
                                         <TableCell
                                             v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "audit_links")'
                                             :key='cell.id'
-                                            :class='{ "flex justify-end": cell.column.id === "sparkline_in_7d" }'
+                                            :class='{ "text-left": cell.column.id === "category" }'
                                         >
                                             <!--   Name + Chains  -->
                                             <template v-if='cell.column.id === "name"'>
@@ -228,21 +228,19 @@
                                     </NuxtLink>
                                     
                                     <!--   Audit  -->
-                                    <TableCell class='h-20 text-center'>
-                                        <div class='pt-1'>
-                                            <Button
-                                                v-for='audit in row.original.audit_links'
-                                                :key='audit'
-                                                variant='link'
-                                                aria-label='protocol audit'
-                                                class='font-normal'
-                                            >
-                                                <NuxtLink :to='audit' aria-label='protocol audit link' external>Visit
-                                                                                                                Audit
-                                                </NuxtLink>
-                                                <NewTabIcon />
-                                            </Button>
-                                        </div>
+                                    <TableCell>
+                                        <Button
+                                            v-for='audit in row.original.audit_links'
+                                            :key='audit'
+                                            variant='link'
+                                            aria-label='protocol audit'
+                                            class='font-normal'
+                                        >
+                                            <NuxtLink :to='audit' aria-label='protocol audit link' external>Visit
+                                                                                                            Audit
+                                            </NuxtLink>
+                                            <NewTabIcon />
+                                        </Button>
                                     </TableCell>
                                 </TableRow>
                             </template>
