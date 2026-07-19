@@ -144,14 +144,14 @@
                                                         </div>
                                                     </HoverCardTrigger>
                                                     
-                                                    <HoverCardContent class='max-w-140 flex flex-col gap-2'>
-                                                        <Title :tag='4' class='text-primary'>{{ cell.getValue() }}</Title>
+                                                    <HoverCardContent class='max-w-140 flex flex-col gap-6'>
+                                                        <Title :tag='4' class='text-primary self-center'>{{ cell.getValue() }}</Title>
                                                         
                                                         <p v-if='cell.row.original.description' class='text-muted-foreground'>{{ cell.row.original.description }}</p>
                                                         
                                                         <p v-if='cell.row.original.address'>Address: <span class='text-secondary'>{{ cell.row.original.address }}</span></p>
                                                         
-                                                        <div>
+                                                        <div class='border w-full flex justify-center gap-8'>
                                                             <Button v-if='cell.row.original.url' variant='outline' class='w-fit' aria-label='website link'>
                                                                 <NuxtLink :to='cell.row.original.url' target='_blank' aria-label='link' class='flex items-center gap-2' external>
                                                                     <NuxtIcon
