@@ -183,23 +183,23 @@
                                                         <p v-if='cell.row.original.address'>Address: <span class='text-secondary'>{{ cell.row.original.address }}</span></p>
                                                         
                                                         <!--   Chains  -->
-                                                        <div class='flex flex-col gap-4'>
-                                                            <Title :tag='6' class='underline'>Oracles Breakdown</Title>
+                                                        <div class='bg-muted/50 flex flex-col gap-4 w-fit max-h-80 border border-muted rounded-md !py-4 !px-6'>
+                                                            <Title :tag='6' class='underline'>Chains Breakdown</Title>
                                                             
-                                                            <Table class='!p-12 !w-60'>
+                                                            <Table>
                                                                 <TableHeader>
                                                                     <TableRow>
-                                                                        <TableHead>#</TableHead>
-                                                                        <TableHead>Chain</TableHead>
+                                                                        <TableHead class='w-6 text-center'>#</TableHead>
+                                                                        <TableHead class=''>Chain</TableHead>
                                                                     </TableRow>
                                                                 </TableHeader>
                                                                 
-                                                                <TableBody class='!mt-6'>
+                                                                <TableBody class=''>
                                                                     <TableRow
                                                                         v-for='(item, index) in cell.row.original.chains'
                                                                         :key='item'
                                                                     >
-                                                                        <TableCell class='text-sm'>{{ index + 1 }}</TableCell>
+                                                                        <TableCell class='w-6 text-sm text-center !px-0'>{{ index + 1 }}.</TableCell>
                                                                         <TableCell class='text-sm flex flex-col'>{{ item }}</TableCell>
                                                                     </TableRow>
                                                                 </TableBody>
