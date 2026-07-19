@@ -516,9 +516,10 @@
     
     const columnFilters = ref([]);
     const columnVisibility = ref({
-        name: true,
-        category: true,
-        tvl: true,
+        openSource: false,
+        hallmarks: false,
+        oraclesBreakdown: false,
+        chain: false,
     });
     
     const headerWidths = {
