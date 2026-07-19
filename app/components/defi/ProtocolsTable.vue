@@ -146,66 +146,69 @@
                                                         </div>
                                                     </HoverCardTrigger>
                                                     
-                                                    <HoverCardContent class='max-w-140 flex flex-col gap-6'>
-                                                        <!--   Title  -->
-                                                        <Title :tag='4' class='text-primary self-center'>{{ cell.getValue() }}</Title>
-                                                        
-                                                        <!--   Links  -->
-                                                        <div class='w-full flex justify-center gap-8'>
-                                                            <Button v-if='cell.row.original.url' variant='outline' class='w-fit' aria-label='website link'>
-                                                                <NuxtLink :to='cell.row.original.url' target='_blank' aria-label='link' class='flex items-center gap-2' external>
-                                                                    <NuxtIcon
-                                                                        name='ph:house-line-fill'
-                                                                        size='20'
-                                                                    />
-                                                                    
-                                                                    <span>Website</span>
-                                                                </NuxtLink>
-                                                            </Button>
-                                                            
-                                                            <Button v-if='cell.row.original.twitter' variant='outline' class='w-fit'>
-                                                                <NuxtLink :to='`https://x.com/${cell.row.original.twitter}`' target='_blank' aria-label='link' class='flex items-center gap-2' external>
-                                                                    <NuxtIcon
-                                                                        name='ph:twitter-logo-fill'
-                                                                        size='24'
-                                                                        class='text-blue-sky'
-                                                                    />
-                                                                    
-                                                                    <span>Twitter</span>
-                                                                </NuxtLink>
-                                                            </Button>
-                                                        </div>
-                                                        
-                                                        <!--   Description  -->
-                                                        <p v-if='cell.row.original.description' class='text-muted-foreground'>{{ cell.row.original.description }}</p>
-                                                        
-                                                        <!--   Address  -->
-                                                        <p v-if='cell.row.original.address'>Address: <span class='text-secondary'>{{ cell.row.original.address }}</span></p>
-                                                        
-                                                        <!--   Chains  -->
-                                                        <div class='bg-muted/50 flex flex-col gap-4 w-fit max-h-80 border border-muted rounded-md !py-4 !px-6'>
-                                                            <Title :tag='6' class='underline'>Chains Breakdown</Title>
-                                                            
-                                                            <Table>
-                                                                <TableHeader>
-                                                                    <TableRow>
-                                                                        <TableHead class='w-6 text-center'>#</TableHead>
-                                                                        <TableHead class=''>Chain</TableHead>
-                                                                    </TableRow>
-                                                                </TableHeader>
+                                                    <HoverCardContent class='max-w-140 !p-0'>
+                                                        <div class='bg-card flex flex-col gap-10 p-6'>
+                                                            <div class='flex flex-col items-center gap-2'>
+                                                                <!--   Title  -->
+                                                                <Title :tag='4' class='text-primary'>{{ cell.getValue() }}</Title>
                                                                 
-                                                                <TableBody class=''>
-                                                                    <TableRow
-                                                                        v-for='(item, index) in cell.row.original.chains'
-                                                                        :key='item'
-                                                                    >
-                                                                        <TableCell class='w-6 text-sm text-center !px-0'>{{ index + 1 }}.</TableCell>
-                                                                        <TableCell class='text-sm flex flex-col'>{{ item }}</TableCell>
-                                                                    </TableRow>
-                                                                </TableBody>
-                                                            </Table>
+                                                                <!--   Description  -->
+                                                                <p v-if='cell.row.original.description' class='text-muted-foreground text-center'>{{ cell.row.original.description }}</p>
+                                                            </div>
+                                                            
+                                                            <!--   Links  -->
+                                                            <div class='w-full flex justify-center gap-8'>
+                                                                <Button v-if='cell.row.original.url' variant='outline' class='w-fit' aria-label='website link'>
+                                                                    <NuxtLink :to='cell.row.original.url' target='_blank' aria-label='link' class='flex items-center gap-2' external>
+                                                                        <NuxtIcon
+                                                                            name='ph:house-line-fill'
+                                                                            size='20'
+                                                                        />
+                                                                        
+                                                                        <span>Website</span>
+                                                                    </NuxtLink>
+                                                                </Button>
+                                                                
+                                                                <Button v-if='cell.row.original.twitter' variant='outline' class='w-fit'>
+                                                                    <NuxtLink :to='`https://x.com/${cell.row.original.twitter}`' target='_blank' aria-label='link' class='flex items-center gap-2' external>
+                                                                        <NuxtIcon
+                                                                            name='ph:twitter-logo-fill'
+                                                                            size='24'
+                                                                            class='text-blue-sky'
+                                                                        />
+                                                                        
+                                                                        <span>Twitter</span>
+                                                                    </NuxtLink>
+                                                                </Button>
+                                                            </div>
+                                                            
+                                                            <!--   Address  -->
+                                                            <p v-if='cell.row.original.address'>Address: <span class='text-secondary'>{{ cell.row.original.address }}</span></p>
+                                                            
+                                                            <!--   Chains  -->
+                                                            <div class='flex flex-col gap-4 max-h-80 border border-muted rounded-md !py-4 !px-6'>
+                                                                <Title :tag='6' class='underline'>Chains Breakdown</Title>
+                                                                
+                                                                <Table class=''>
+                                                                    <TableHeader>
+                                                                        <TableRow>
+                                                                            <TableHead class='w-6 text-center'>#</TableHead>
+                                                                            <TableHead class=''>Chain</TableHead>
+                                                                        </TableRow>
+                                                                    </TableHeader>
+                                                                    
+                                                                    <TableBody class=''>
+                                                                        <TableRow
+                                                                            v-for='(item, index) in cell.row.original.chains'
+                                                                            :key='item'
+                                                                        >
+                                                                            <TableCell class='w-6 text-sm text-center !px-0'>{{ index + 1 }}.</TableCell>
+                                                                            <TableCell class='text-sm flex flex-col'>{{ item }}</TableCell>
+                                                                        </TableRow>
+                                                                    </TableBody>
+                                                                </Table>
+                                                            </div>
                                                         </div>
-                                                        
                                                     </HoverCardContent>
                                                 </HoverCard>
                                             </template>
