@@ -131,6 +131,7 @@
                                             <template v-if='cell.column.id === "name"'>
                                                 <HoverCard :open-delay='200' class='flex'>
                                                     <HoverCardTrigger class='flex items-center gap-4'>
+                                                        <!--   Logo  -->
                                                         <NuxtImg
                                                             :src='cell.row.original.logo'
                                                             width='44'
@@ -138,6 +139,7 @@
                                                             class='rounded-full'
                                                         />
                                                         
+                                                        <!--   Chains  -->
                                                         <div class='flex flex-col items-start'>
                                                             <p class='font-medium text-lg'>{{cell.getValue()}}</p>
                                                             <p class='text-primary/75'>{{ cell.row.original.chains.length }} chains</p>
@@ -145,13 +147,11 @@
                                                     </HoverCardTrigger>
                                                     
                                                     <HoverCardContent class='max-w-140 flex flex-col gap-6'>
+                                                        <!--   Title  -->
                                                         <Title :tag='4' class='text-primary self-center'>{{ cell.getValue() }}</Title>
                                                         
-                                                        <p v-if='cell.row.original.description' class='text-muted-foreground'>{{ cell.row.original.description }}</p>
-                                                        
-                                                        <p v-if='cell.row.original.address'>Address: <span class='text-secondary'>{{ cell.row.original.address }}</span></p>
-                                                        
-                                                        <div class='border w-full flex justify-center gap-8'>
+                                                        <!--   Links  -->
+                                                        <div class='w-full flex justify-center gap-8'>
                                                             <Button v-if='cell.row.original.url' variant='outline' class='w-fit' aria-label='website link'>
                                                                 <NuxtLink :to='cell.row.original.url' target='_blank' aria-label='link' class='flex items-center gap-2' external>
                                                                     <NuxtIcon
@@ -176,13 +176,36 @@
                                                             </Button>
                                                         </div>
                                                         
+                                                        <!--   Description  -->
+                                                        <p v-if='cell.row.original.description' class='text-muted-foreground'>{{ cell.row.original.description }}</p>
+                                                        
+                                                        <!--   Address  -->
+                                                        <p v-if='cell.row.original.address'>Address: <span class='text-secondary'>{{ cell.row.original.address }}</span></p>
+                                                        
+                                                        <!--   Chains  -->
                                                         <div class='flex flex-col gap-4'>
-                                                            <Title :tag='6' class='mb-4 underline'>Chains</Title>
+                                                            <Title :tag='6' class='underline'>Oracles Breakdown</Title>
                                                             
-                                                            <p v-for='(item, index) in cell.row.original.chains' :key='item'>
-                                                                {{ index + 1 }}. {{ item }}
-                                                            </p>
+                                                            <Table class='!p-12 !w-60'>
+                                                                <TableHeader>
+                                                                    <TableRow>
+                                                                        <TableHead>#</TableHead>
+                                                                        <TableHead>Chain</TableHead>
+                                                                    </TableRow>
+                                                                </TableHeader>
+                                                                
+                                                                <TableBody class='!mt-6'>
+                                                                    <TableRow
+                                                                        v-for='(item, index) in cell.row.original.chains'
+                                                                        :key='item'
+                                                                    >
+                                                                        <TableCell class='text-sm'>{{ index + 1 }}</TableCell>
+                                                                        <TableCell class='text-sm flex flex-col'>{{ item }}</TableCell>
+                                                                    </TableRow>
+                                                                </TableBody>
+                                                            </Table>
                                                         </div>
+                                                        
                                                     </HoverCardContent>
                                                 </HoverCard>
                                             </template>
