@@ -146,7 +146,7 @@
                                                         </div>
                                                     </HoverCardTrigger>
                                                     
-                                                    <HoverCardContent class='max-w-140 !p-0'>
+                                                    <HoverCardContent class='min-w-150 !p-0'>
                                                         <div class='bg-card flex flex-col gap-10 p-6'>
                                                             <div class='flex flex-col items-center gap-2'>
                                                                 <!--   Title  -->
