@@ -7,6 +7,40 @@
                 
                 <!--  Search + Filter  -->
                 <div class='flex items-center gap-4'>
+                    
+                    <!--   Filter Columns   -->
+                    <DropdownMenu :modal='false'>
+                        <DropdownMenuTrigger
+                            as-child
+                            class='flex items-center gap-4'
+                        >
+                            <Button variant='outline' class='gap-2' aria-label='filter'>
+                                <div class='pt-1.5'>
+                                    <NuxtIcon
+                                        name='ph:layout-light'
+                                        size='20'
+                                    />
+                                </div>
+                                
+                                <span>Columns</span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        
+                        <DropdownMenuContent align='end' class='w-56 p-1 pb-0'>
+                            <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Columns</DropdownMenuLabel>
+                            
+                            <DropdownMenuCheckboxItem
+                                v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.id !== "rank" && column.id !== "name")'
+                                :key='column.id'
+                                :model-value='column.getIsVisible()'
+                                class='checkbox-item capitalize h-10 my-1 pl-10 rounded-lg hover:cursor-pointer text-foreground/50 data-[state=checked]:text-foreground/85'
+                                @update:model-value='(value) => column.toggleVisibility(!!value)'
+                                @select='event => event.preventDefault()'
+                            >
+                                {{ column.columnDef.label }}
+                            </DropdownMenuCheckboxItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
             </div>
             
