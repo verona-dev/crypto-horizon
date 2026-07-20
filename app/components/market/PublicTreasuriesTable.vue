@@ -12,21 +12,6 @@
                 <TableHead>Today Value</TableHead>
                 <TableHead>Unrealised PNL</TableHead>
                 
-                <!--  mNav  -->
-                <!--
-                <TableHead class='flex items-center gap-1'>
-                    <span>{{ glossary.m_nav.label }}</span>
-                    
-                    <HoverCard :open-delay='200' class='flex'>
-                        <HoverCardTrigger>
-                            <InfoIcon />
-                        </HoverCardTrigger>
-                        
-                        <HoverCardContent>{{ glossary.m_nav.description }}</HoverCardContent>
-                    </HoverCard>
-                </TableHead>
-                -->
-                
                 <TableHead>
                     <div class='flex items-center gap-1'>
                         <span>{{ glossary.total_value_asset_per_share.label }}</span>

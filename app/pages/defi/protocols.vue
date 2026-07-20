@@ -9,7 +9,6 @@
 <script setup>
     import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
     import ProtocolsTable from '~/components/defi/ProtocolsTable.vue';
-    import Title from '~/components/Title.vue';
     
     // LoadingStore
     import { storeToRefs } from 'pinia';
