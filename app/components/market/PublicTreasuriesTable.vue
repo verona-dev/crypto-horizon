@@ -94,8 +94,8 @@
                         <HoverCardContent>
                             <Title :tag='3' :level='6' class='capitalize underline'>{{ coin.coin_id }}</Title>
                             
-                            <Table class='!p-12 !w-80'>
-                                <TableBody class='!mt-6'>
+                            <Table class='!p-12 !w-80 !mt-4'>
+                                <TableBody>
                                     <TableRow>
                                         <TableCell class='text-muted-foreground'>Holdings</TableCell>
                                         <TableCell class='flex flex-col !items-end'>{{ coin.amount }}</TableCell>
