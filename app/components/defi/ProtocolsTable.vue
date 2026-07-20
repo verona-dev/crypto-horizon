@@ -184,7 +184,7 @@
                                                         </div>
                                                     </HoverCardTrigger>
                                                     
-                                                    <HoverCardContent class='w-110 !p-0'>
+                                                    <HoverCardContent class='min-w-140 !p-0'>
                                                         <div class='bg-card flex flex-col items-center gap-10 p-6'>
                                                             <div class='flex flex-col items-center gap-2'>
                                                                 <!--   Title  -->
@@ -200,7 +200,8 @@
                                                             </div>
                                                             
                                                             <!--   Links  -->
-                                                            <div class='w-full flex justify-center gap-8'>
+                                                            <div class='w-full flex flex-col gap-8'>
+                                                                <!--
                                                                 <Button v-if='cell.row.original.url' variant='outline' class='w-fit' aria-label='website link'>
                                                                     <NuxtLink :to='cell.row.original.url' target='_blank' aria-label='link' class='flex items-center gap-2' external>
                                                                         <NuxtIcon
@@ -211,7 +212,36 @@
                                                                         <span>Website</span>
                                                                     </NuxtLink>
                                                                 </Button>
+                                                                -->
+                                                                <template v-if='cell.row.original.url'>
+                                                                    <NuxtLink
+                                                                        :to='cell.row.original.url'
+                                                                        target='_blank'
+                                                                        class='!w-1/2 h-40'
+                                                                        aria-label='platform website link'
+                                                                        external
+                                                                    >
+                                                                        <PixelCard
+                                                                            variant='blue'
+                                                                            class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
+                                                                        >
+                                                                            <CardHeader>
+                                                                                <NuxtIcon
+                                                                                    name='ph:house-line-fill'
+                                                                                    size='36'
+                                                                                />
+                                                                            </CardHeader>
+                                                                            
+                                                                            <CardContent class='flex flex-col items-start pt-6 pl-0'>
+                                                                                <Title :tag='5'>Website</Title>
+                                                                                
+                                                                                <CardDescription>{{ cell.row.original.url }}</CardDescription>
+                                                                            </CardContent>
+                                                                        </PixelCard>
+                                                                    </NuxtLink>
+                                                                </template>
                                                                 
+                                                                <!--
                                                                 <Button v-if='cell.row.original.twitter' variant='outline' class='w-fit'>
                                                                     <NuxtLink :to='`https://x.com/${cell.row.original.twitter}`' target='_blank' aria-label='link' class='flex items-center gap-2' external>
                                                                         <NuxtIcon
@@ -223,6 +253,7 @@
                                                                         <span>Twitter</span>
                                                                     </NuxtLink>
                                                                 </Button>
+                                                                -->
                                                             </div>
                                                             
                                                             <!--   Chains Table  -->
@@ -458,7 +489,7 @@
 <script setup>
     import { Badge } from '~/components/ui/badge';
     import { Button } from '~/components/ui/button';
-    import { Card } from '~/components/ui/card';
+    import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
     import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger  } from '~/components/ui/dropdown-menu';
     import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel, getFilteredRowModel } from '@tanstack/vue-table';
@@ -470,6 +501,7 @@
     import InfoIcon from '@/components/InfoIcon.vue';
     import { Input } from '~/components/ui/input';
     import NewTabIcon from '~/components/NewTabIcon.vue';
+    import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
     import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { Spinner } from '~/components/ui/spinner';
     import Title from '~/components/Title.vue';
