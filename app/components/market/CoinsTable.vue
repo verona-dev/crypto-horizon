@@ -2,15 +2,15 @@
     <Card class='w-full h-full !shadow-2xl'>
         <div class='w-full flex flex-col'>
             <!--   Header   -->
-            <div class='flex flex-col items-center justify-center gap-8 p-14'>
+            <div class='flex flex-col items-center justify-center gap-16 xl:gap-8 p-14'>
                 <Title :tag='1' :level='3'>Cryptocurrencies by {{ sortingLabel }}</Title>
                 
                 <!--  Search + Filter  -->
-                <div class='flex items-center gap-4'>
+                <div class='flex flex-col xl:flex-row items-center gap-8 xl:gap-4 w-full xl:w-1/2'>
                     <!--   Search   -->
-                    <div class='relative'>
+                    <div class='relative w-full'>
                         <Input
-                            class='w-lg h-12 xl:h-9 pl-8 border-primary/50 hover:border-primary/75 focus-visible:bg-muted'
+                            class='w-full h-12 xl:h-9 pl-8 border-primary/50 hover:border-primary/75 focus-visible:bg-muted'
                             placeholder='Search Coin...'
                             :model-value='table.getColumn("name")?.getFilterValue()'
                             @update:model-value='table.getColumn("name")?.setFilterValue($event)'
@@ -29,7 +29,7 @@
                             as-child
                             class='flex items-center gap-4'
                         >
-                            <Button variant='outline' class='w-full h-12 xl:h-9 gap-2 border border-primary/50 hover:bg-transparent hover:border-primary/75 data-[state=open]:bg-muted data-[state=open]:border-primary/75' aria-label='filter button'>
+                            <Button variant='outline' class='h-12 xl:h-9 gap-2 border border-primary/50 hover:bg-transparent hover:border-primary/75 data-[state=open]:bg-muted data-[state=open]:border-primary/75' aria-label='filter button'>
                                 <div class='pt-1.5'>
                                     <NuxtIcon
                                         name='ph:layout-light'
