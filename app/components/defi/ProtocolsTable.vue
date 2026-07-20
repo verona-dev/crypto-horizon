@@ -430,16 +430,22 @@
                                     </NuxtLink>
                                     
                                     <!--   Audit  -->
-                                    <TableCell class='text-center'>
+                                    <TableCell v-if='table.getColumn("audit_links")?.getIsVisible()' class='text-center !w-24'>
                                         <Button
                                             v-for='audit in row.original.audit_links'
                                             :key='audit'
-                                            variant='link'
+                                            variant='outline'
                                             aria-label='protocol audit'
-                                            class='font-normal'
+                                            class='font-normal !p-0'
                                         >
-                                            <NuxtLink :to='audit' aria-label='protocol audit link' external>Visit Audit</NuxtLink>
-                                            <NewTabIcon />
+                                            <NuxtLink
+                                                :to='audit'
+                                                target='_blank'
+                                                aria-label='protocol audit link'
+                                                class='flex justify-center items-center h-9 px-4 py-2'
+                                                external>
+                                                <NewTabIcon :size='16' />
+                                            </NuxtLink>
                                         </Button>
                                     </TableCell>
                                 </TableRow>
@@ -549,9 +555,8 @@
     const columnFilters = ref([]);
     const columnVisibility = ref({
         openSource: false,
-        hallmarks: false,
-        oraclesBreakdown: false,
         chain: false,
+        audit_links: false,
     });
     
     const columns = computed(() => [
