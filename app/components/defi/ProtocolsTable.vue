@@ -229,7 +229,7 @@
                                                                 <!--   Twitter  -->
                                                                 <template v-if='cell.row.original.twitter'>
                                                                     <NuxtLink
-                                                                        :to='cell.row.original.twitter'
+                                                                        :to='`https://x.com/${cell.row.original.twitter}`'
                                                                         target='_blank'
                                                                         class='!w-full h-40'
                                                                         aria-label='platform twitter link'
