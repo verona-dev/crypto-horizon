@@ -206,7 +206,7 @@
                                                                     <NuxtLink
                                                                         :to='cell.row.original.url'
                                                                         target='_blank'
-                                                                        class='!w-1/2 h-40'
+                                                                        class='!w-full h-40'
                                                                         aria-label='platform website link'
                                                                         external
                                                                     >
@@ -214,15 +214,11 @@
                                                                             variant='blue'
                                                                             class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
                                                                         >
-                                                                            <CardHeader class='!pl-0'>
+                                                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-3'>
                                                                                 <NuxtIcon
                                                                                     name='ph:house-line-fill'
                                                                                     size='36'
                                                                                 />
-                                                                            </CardHeader>
-                                                                            
-                                                                            <CardContent class='flex flex-col items-start pt-6 pl-0'>
-                                                                                <Title :tag='5'>Website</Title>
                                                                                 
                                                                                 <CardDescription>{{ cell.row.original.url }}</CardDescription>
                                                                             </CardContent>
@@ -235,25 +231,21 @@
                                                                     <NuxtLink
                                                                         :to='cell.row.original.twitter'
                                                                         target='_blank'
-                                                                        class='!w-1/2 h-40'
-                                                                        aria-label='platform website link'
+                                                                        class='!w-full h-40'
+                                                                        aria-label='platform twitter link'
                                                                         external
                                                                     >
                                                                         <PixelCard
                                                                             variant='blue'
                                                                             class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
                                                                         >
-                                                                            <CardHeader class='!pl-0'>
+                                                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-3'>
                                                                                 <NuxtIcon
                                                                                     name='ph:twitter-logo-fill'
                                                                                     size='36'
                                                                                 />
-                                                                            </CardHeader>
-                                                                            
-                                                                            <CardContent class='flex flex-col pt-6 pl-0'>
-                                                                                <Title :tag='5'>Twitter</Title>
                                                                                 
-                                                                                <CardDescription>{{ cell.row.original.twitter }}</CardDescription>
+                                                                                <CardDescription>@{{ cell.row.original.twitter }}</CardDescription>
                                                                             </CardContent>
                                                                         </PixelCard>
                                                                     </NuxtLink>
