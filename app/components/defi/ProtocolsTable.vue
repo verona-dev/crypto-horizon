@@ -214,7 +214,7 @@
                                                                             variant='blue'
                                                                             class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
                                                                         >
-                                                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-3'>
+                                                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
                                                                                 <NuxtIcon
                                                                                     name='ph:house-line-fill'
                                                                                     size='36'
@@ -239,7 +239,7 @@
                                                                             variant='blue'
                                                                             class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
                                                                         >
-                                                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-3'>
+                                                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
                                                                                 <NuxtIcon
                                                                                     name='ph:twitter-logo-fill'
                                                                                     size='36'
@@ -250,20 +250,6 @@
                                                                         </PixelCard>
                                                                     </NuxtLink>
                                                                 </template>
-                                                                
-                                                                <!--
-                                                                <Button v-if='cell.row.original.twitter' variant='outline' class='w-fit'>
-                                                                    <NuxtLink :to='`https://x.com/${cell.row.original.twitter}`' target='_blank' aria-label='link' class='flex items-center gap-2' external>
-                                                                        <NuxtIcon
-                                                                            name='ph:twitter-logo-fill'
-                                                                            size='24'
-                                                                            class='text-blue-sky'
-                                                                        />
-                                                                        
-                                                                        <span>Twitter</span>
-                                                                    </NuxtLink>
-                                                                </Button>
-                                                                -->
                                                             </div>
                                                             
                                                             <!--   Chains Table  -->
