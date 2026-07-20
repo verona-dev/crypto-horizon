@@ -184,11 +184,16 @@
                                                         </div>
                                                     </HoverCardTrigger>
                                                     
-                                                    <HoverCardContent class='min-w-150 !p-0'>
-                                                        <div class='bg-card flex flex-col gap-10 p-6'>
+                                                    <HoverCardContent class='w-110 !p-0'>
+                                                        <div class='bg-card flex flex-col items-center gap-10 p-6'>
                                                             <div class='flex flex-col items-center gap-2'>
                                                                 <!--   Title  -->
                                                                 <Title :tag='4' class='text-primary'>{{ cell.getValue() }}</Title>
+                                                                
+                                                                <!--   Address  -->
+                                                                <div v-if='cell.row.original.address' class='flex items-center gap-2'>
+                                                                    <Badge>{{ cell.row.original.address }}</Badge>
+                                                                </div>
                                                                 
                                                                 <!--   Description  -->
                                                                 <p v-if='cell.row.original.description' class='text-muted-foreground text-center'>{{ cell.row.original.description }}</p>
@@ -220,26 +225,20 @@
                                                                 </Button>
                                                             </div>
                                                             
-                                                            <!--   Address  -->
-                                                            <p v-if='cell.row.original.address'>Address: <span class='text-secondary'>{{ cell.row.original.address }}</span></p>
-                                                            
-                                                            <!--   Chains  -->
-                                                            <div class='flex flex-col gap-4 max-h-80 border border-muted rounded-md !py-4 !px-6'>
+                                                            <!--   Chains Table  -->
+                                                            <div class='self-start w-full flex flex-col gap-4 max-h-80 border border-muted rounded-md !py-4 !px-6'>
                                                                 <Title :tag='6' class='underline'>Chains Breakdown</Title>
                                                                 
-                                                                <Table class=''>
+                                                                <Table>
                                                                     <TableHeader>
                                                                         <TableRow>
                                                                             <TableHead class='w-6 text-center'>#</TableHead>
-                                                                            <TableHead class=''>Chain</TableHead>
+                                                                            <TableHead>Chain</TableHead>
                                                                         </TableRow>
                                                                     </TableHeader>
                                                                     
-                                                                    <TableBody class=''>
-                                                                        <TableRow
-                                                                            v-for='(item, index) in cell.row.original.chains'
-                                                                            :key='item'
-                                                                        >
+                                                                    <TableBody>
+                                                                        <TableRow v-for='(item, index) in cell.row.original.chains' :key='item'>
                                                                             <TableCell class='w-6 text-sm text-center !px-0'>{{ index + 1 }}.</TableCell>
                                                                             <TableCell class='text-sm flex flex-col'>{{ item }}</TableCell>
                                                                         </TableRow>
@@ -457,6 +456,7 @@
 </template>
 
 <script setup>
+    import { Badge } from '~/components/ui/badge';
     import { Button } from '~/components/ui/button';
     import { Card } from '~/components/ui/card';
     import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger  } from '~/components/ui/dropdown-menu';
@@ -474,8 +474,7 @@
     import { Spinner } from '~/components/ui/spinner';
     import Title from '~/components/Title.vue';
     import { valueUpdater } from '~/components/ui/table/utils.ts';
-    import { Stepper, StepperDescription, StepperIndicator, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
-    import { Check, Circle, Dot } from '@lucide/vue'
+    import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
@@ -501,8 +500,6 @@
     
     // DefiStore
     import { useDefiStore } from '~/stores/DefiStore.js';
-    import { Badge } from '@/components/ui/badge/index.ts';
-    import { ChevronRight } from 'lucide-vue-next';
     const DefiStore = useDefiStore();
     const { getDefillamaProtocols } = DefiStore;
     
