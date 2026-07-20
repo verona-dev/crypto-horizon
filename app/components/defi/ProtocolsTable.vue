@@ -192,7 +192,7 @@
                                                                 
                                                                 <!--   Address  -->
                                                                 <div v-if='cell.row.original.address' class='flex items-center gap-2'>
-                                                                    <Badge>{{ cell.row.original.address }}</Badge>
+                                                                    <Badge variant='outline' class='py-3 px-5'>{{ cell.row.original.address }}</Badge>
                                                                 </div>
                                                                 
                                                                 <!--   Description  -->
