@@ -7,6 +7,21 @@
                 
                 <!--  Search + Filter  -->
                 <div class='flex items-center gap-4'>
+                    <!--   Search   -->
+                    <div class='relative'>
+                        <Input
+                            class='w-lg pl-8 border-primary/50'
+                            placeholder='Search Platform...'
+                            :model-value='table.getColumn("name")?.getFilterValue()'
+                            @update:model-value='table.getColumn("name")?.setFilterValue($event)'
+                        />
+                        
+                        <NuxtIcon
+                            name='ph:magnifying-glass-duotone'
+                            size='16'
+                            class='absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground'
+                        />
+                    </div>
                     
                     <!--   Filter Columns   -->
                     <DropdownMenu :modal='false'>
