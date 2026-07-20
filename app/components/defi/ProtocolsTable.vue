@@ -177,7 +177,7 @@
                                                             class='rounded-full'
                                                         />
                                                         
-                                                        <!--   Chains  -->
+                                                        <!--   Chains Caption  -->
                                                         <div class='flex flex-col items-start'>
                                                             <p class='font-medium text-lg'>{{cell.getValue()}}</p>
                                                             <p class='text-primary/75'>{{ cell.row.original.chains.length }} chains</p>

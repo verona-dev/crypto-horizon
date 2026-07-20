@@ -94,7 +94,7 @@
                         <HoverCardContent>
                             <Title :tag='3' :level='6' class='capitalize underline'>{{ coin.coin_id }}</Title>
                             
-                            <Table class='!p-12 !w-60'>
+                            <Table class='!p-12 !w-80'>
                                 <TableBody class='!mt-6'>
                                     <TableRow>
                                         <TableCell class='text-muted-foreground'>Holdings</TableCell>
@@ -124,45 +124,32 @@
                                             }}
                                         </TableCell>
                                     </TableRow>
+                                    
+                                    <TableRow>
+                                        <TableCell class='text-muted-foreground'>Unrealised PNL</TableCell>
+                                        <TableCell class='flex flex-col !items-end'>
+                                            {{
+                                                formatNumber(coin.unrealized_pnl, {
+                                                    compact: true,
+                                                    decimals: 2
+                                                })
+                                            }}
+                                        </TableCell>
+                                    </TableRow>
+                                    
+                                    <TableRow>
+                                        <TableCell class='text-muted-foreground'>Total supply %</TableCell>
+                                        <TableCell class='flex flex-col !items-end'>
+                                            {{
+                                                formatNumber(coin.percentage_of_total_supply, {
+                                                    style: 'percent',
+                                                    decimals: 4
+                                                })
+                                            }}
+                                        </TableCell>
+                                    </TableRow>
                                 </TableBody>
                             </Table>
-                            
-                            <p class='text-muted-foreground'>Holdings: <span class='text-foreground'>{{ coin.amount }}</span></p>
-                            <p class='text-muted-foreground'>Total entry value:
-                                <span class='text-foreground'>{{
-                                        formatNumber(coin.total_entry_value_usd, {
-                                            compact: true,
-                                            decimals: 2
-                                        })}}
-                                                        </span>
-                            </p>
-                            <p class='text-muted-foreground'>Current value:
-                                <span class='text-foreground'>{{
-                                        formatNumber(coin.current_value_usd, {
-                                            compact: true,
-                                            decimals: 2
-                                        })}}
-                                                        </span>
-                            </p>
-                            <p class='text-muted-foreground'>Unrealised PNL:
-                                <span
-                                    class='text-foreground'
-                                    :class='getTrendClass(coin.unrealized_pnl)'
-                                >{{
-                                        formatNumber(coin.unrealized_pnl, {
-                                            compact: true,
-                                            decimals: 2
-                                        })}}
-                                                        </span>
-                            </p>
-                            <p class='text-muted-foreground'>% of total supply:
-                                <span class='text-foreground'>{{
-                                        formatNumber(coin.percentage_of_total_supply, {
-                                            style: 'percent',
-                                            decimals: 2
-                                        })}}
-                                                        </span>
-                            </p>
                         </HoverCardContent>
                     </HoverCard>
                 </TableCell>
