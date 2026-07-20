@@ -1,15 +1,14 @@
 <template>
-    <div class='page'>
-<!--        <PageLoadingSpinner v-if='loading' />-->
+    <div class='page market'>
+        <PageLoadingSpinner v-if='loading' />
         
-            <ProtocolsTable :protocols='protocols'/>
+        <ProtocolsTable v-else :protocols='protocols'/>
     </div>
 </template>
 
 <script setup>
     import PageLoadingSpinner from '~/components/PageLoadingSpinner.vue';
     import ProtocolsTable from '~/components/defi/ProtocolsTable.vue';
-    import Title from '~/components/Title.vue';
     
     // LoadingStore
     import { storeToRefs } from 'pinia';
@@ -24,8 +23,8 @@
     const { protocols } = storeToRefs(DefiStore);
     
     // SEO
-    const title = 'DeFi Platforms: Lending, DEXs & Yield Aggregators';
-    const description = 'Compare DeFi platforms by TVL, yields, risks, and chain support. Discover leading protocols like Aave, Uniswap, Compound, and emerging DeFi apps.';
+    const title = 'DeFi Protocols: Lending, DEXs & Yield Aggregators, Live TVL Data & Chain-Specific Metrics';
+    const description = 'Compare DeFi protocols by TVL, yields, risks, and chain support. Stay updated on the fastest-growing projects in decentralized finance like Aave, Uniswap, Compound, and emerging DeFi apps.';
     
     definePageMeta({
         title,

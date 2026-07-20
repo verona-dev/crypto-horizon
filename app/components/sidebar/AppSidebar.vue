@@ -119,7 +119,7 @@
                         },
                     },
                     {
-                        title: 'Platforms',
+                        title: 'Protocols',
                         url: '/defi/protocols',
                         get isActive() {
                             return isChildActive(this.url);

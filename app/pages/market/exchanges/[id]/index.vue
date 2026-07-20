@@ -217,7 +217,10 @@
                             aria-label='exchange social link'
                             external
                         >
-                            <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                            <PixelCard
+                                variant='blue'
+                                class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
+                            >
                                 <CardHeader>
                                     <NuxtIcon
                                         v-if='item.icon'

@@ -2,11 +2,60 @@
     <Card class='w-full h-full !shadow-2xl'>
         <div class='w-full flex flex-col'>
             <!--   Header   -->
-            <div class='flex flex-col items-center justify-center gap-8 p-14'>
+            <div class='flex flex-col items-center justify-center gap-16 xl:gap-8 p-14'>
                 <Title :tag='1' :level='3'>Defi Protocols</Title>
                 
                 <!--  Search + Filter  -->
-                <div class='flex items-center gap-4'>
+                <div class='flex flex-col xl:flex-row items-center gap-8 xl:gap-4 w-full xl:w-1/2'>
+                    <!--   Search   -->
+                    <div class='relative w-full'>
+                        <Input
+                            class='w-full h-12 xl:h-9 pl-8 border-primary/50 hover:border-primary/75 focus-visible:bg-muted'
+                            placeholder='Search Protocol...'
+                            :model-value='table.getColumn("name")?.getFilterValue()'
+                            @update:model-value='table.getColumn("name")?.setFilterValue($event)'
+                        />
+                        
+                        <NuxtIcon
+                            name='ph:magnifying-glass-duotone'
+                            size='16'
+                            class='absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground'
+                        />
+                    </div>
+                    
+                    <!--   Filter Columns   -->
+                    <DropdownMenu :modal='false'>
+                        <DropdownMenuTrigger
+                            as-child
+                            class='flex items-center gap-4'
+                        >
+                            <Button variant='outline' class='h-12 xl:h-9 gap-2 border border-primary/50 hover:bg-transparent hover:border-primary/75 data-[state=open]:bg-muted data-[state=open]:border-primary/75' aria-label='filter button'>
+                                <div class='pt-1.5'>
+                                    <NuxtIcon
+                                        name='ph:layout-light'
+                                        size='20'
+                                    />
+                                </div>
+                                
+                                <span>Columns</span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        
+                        <DropdownMenuContent align='end' class='w-56 p-1 pb-0'>
+                            <DropdownMenuLabel class='text-xl py-4 px-5 border-b'>Columns</DropdownMenuLabel>
+                            
+                            <DropdownMenuCheckboxItem
+                                v-for='column in table.getAllColumns().filter((column) => column.getCanHide() && column.id !== "rank" && column.id !== "name")'
+                                :key='column.id'
+                                :model-value='column.getIsVisible()'
+                                class='checkbox-item capitalize h-10 my-1 pl-10 rounded-lg hover:cursor-pointer text-foreground/50 data-[state=checked]:text-foreground/85'
+                                @update:model-value='(value) => column.toggleVisibility(!!value)'
+                                @select='event => event.preventDefault()'
+                            >
+                                {{ column.columnDef.label }}
+                            </DropdownMenuCheckboxItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
             </div>
             
@@ -24,20 +73,14 @@
                             <TableHead
                                 v-for='header in headerGroup.headers'
                                 :key='header.id'
-                                :class='[headerWidths[header.column.id]]'
                             >
                                 <template v-if='!header.isPlaceholder'>
                                     <div
                                         @click='onSort(header)'
                                         :class='[
-                                            "flex",
+                                            "flex justify-center",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
-                                            { "pr-1": header.column.id === "rank" },
-                                            { "": header.column.id === "name" },
-                                            { "justify-center": header.column.id === "listedAt" },
-                                            { "justify-center": header.column.id === "openSource" },
-                                            { "justify-center": header.column.id === "hallmarks" },
-                                            { "justify-center": header.column.id === "audit_links" },
+                                            { "justify-start": header.column.id === "name" },
                                         ]'
                                     >
                                         <div class='flex items-center gap-1'>
@@ -120,12 +163,7 @@
                                         <TableCell
                                             v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "audit_links")'
                                             :key='cell.id'
-                                            :class='[
-                                                { "text-center": cell.column.id === "listedAt" },
-                                                { "text-left": cell.column.id === "category" },
-                                                { "text-left": cell.column.id === "chain" },
-                                                { "text-center": cell.column.id === "hallmarks" },
-                                            ]'
+                                            class='text-center'
                                         >
                                             <!--   Name + Chains  -->
                                             <template v-if='cell.column.id === "name"'>
@@ -139,69 +177,95 @@
                                                             class='rounded-full'
                                                         />
                                                         
-                                                        <!--   Chains  -->
+                                                        <!--   Chains Caption  -->
                                                         <div class='flex flex-col items-start'>
                                                             <p class='font-medium text-lg'>{{cell.getValue()}}</p>
                                                             <p class='text-primary/75'>{{ cell.row.original.chains.length }} chains</p>
                                                         </div>
                                                     </HoverCardTrigger>
                                                     
-                                                    <HoverCardContent class='min-w-150 !p-0'>
-                                                        <div class='bg-card flex flex-col gap-10 p-6'>
+                                                    <HoverCardContent v-if='!isMobile' class='min-w-140 !p-0'>
+                                                        <div class='bg-card flex flex-col items-center gap-10 p-6'>
                                                             <div class='flex flex-col items-center gap-2'>
                                                                 <!--   Title  -->
                                                                 <Title :tag='4' class='text-primary'>{{ cell.getValue() }}</Title>
+                                                                
+                                                                <!--   Address  -->
+                                                                <div v-if='cell.row.original.address' class='flex items-center gap-2'>
+                                                                    <Badge variant='outline' class='py-3 px-5 hover:border-blue-sky/50'>{{ cell.row.original.address }}</Badge>
+                                                                </div>
                                                                 
                                                                 <!--   Description  -->
                                                                 <p v-if='cell.row.original.description' class='text-muted-foreground text-center'>{{ cell.row.original.description }}</p>
                                                             </div>
                                                             
                                                             <!--   Links  -->
-                                                            <div class='w-full flex justify-center gap-8'>
-                                                                <Button v-if='cell.row.original.url' variant='outline' class='w-fit' aria-label='website link'>
-                                                                    <NuxtLink :to='cell.row.original.url' target='_blank' aria-label='link' class='flex items-center gap-2' external>
-                                                                        <NuxtIcon
-                                                                            name='ph:house-line-fill'
-                                                                            size='20'
-                                                                        />
-                                                                        
-                                                                        <span>Website</span>
+                                                            <div class='w-full flex gap-8'>
+                                                                <!--   Website  -->
+                                                                <template v-if='cell.row.original.url'>
+                                                                    <NuxtLink
+                                                                        :to='cell.row.original.url'
+                                                                        target='_blank'
+                                                                        class='!w-full h-40'
+                                                                        aria-label='platform website link'
+                                                                        external
+                                                                    >
+                                                                        <PixelCard
+                                                                            variant='blue'
+                                                                            class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
+                                                                        >
+                                                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
+                                                                                <NuxtIcon
+                                                                                    name='ph:house-line-fill'
+                                                                                    size='36'
+                                                                                />
+                                                                                
+                                                                                <CardDescription>{{ cell.row.original.url }}</CardDescription>
+                                                                            </CardContent>
+                                                                        </PixelCard>
                                                                     </NuxtLink>
-                                                                </Button>
+                                                                </template>
                                                                 
-                                                                <Button v-if='cell.row.original.twitter' variant='outline' class='w-fit'>
-                                                                    <NuxtLink :to='`https://x.com/${cell.row.original.twitter}`' target='_blank' aria-label='link' class='flex items-center gap-2' external>
-                                                                        <NuxtIcon
-                                                                            name='ph:twitter-logo-fill'
-                                                                            size='24'
-                                                                            class='text-blue-sky'
-                                                                        />
-                                                                        
-                                                                        <span>Twitter</span>
+                                                                <!--   Twitter  -->
+                                                                <template v-if='cell.row.original.twitter'>
+                                                                    <NuxtLink
+                                                                        :to='`https://x.com/${cell.row.original.twitter}`'
+                                                                        target='_blank'
+                                                                        class='!w-full h-40'
+                                                                        aria-label='platform twitter link'
+                                                                        external
+                                                                    >
+                                                                        <PixelCard
+                                                                            variant='blue'
+                                                                            class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
+                                                                        >
+                                                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
+                                                                                <NuxtIcon
+                                                                                    name='ph:twitter-logo-fill'
+                                                                                    size='36'
+                                                                                />
+                                                                                
+                                                                                <CardDescription>@{{ cell.row.original.twitter }}</CardDescription>
+                                                                            </CardContent>
+                                                                        </PixelCard>
                                                                     </NuxtLink>
-                                                                </Button>
+                                                                </template>
                                                             </div>
                                                             
-                                                            <!--   Address  -->
-                                                            <p v-if='cell.row.original.address'>Address: <span class='text-secondary'>{{ cell.row.original.address }}</span></p>
-                                                            
-                                                            <!--   Chains  -->
-                                                            <div class='flex flex-col gap-4 max-h-80 border border-muted rounded-md !py-4 !px-6'>
+                                                            <!--   Chains Table  -->
+                                                            <div class='self-start w-full flex flex-col gap-4 max-h-80 border border-muted rounded-md !py-4 !px-6'>
                                                                 <Title :tag='6' class='underline'>Chains Breakdown</Title>
                                                                 
-                                                                <Table class=''>
+                                                                <Table>
                                                                     <TableHeader>
                                                                         <TableRow>
                                                                             <TableHead class='w-6 text-center'>#</TableHead>
-                                                                            <TableHead class=''>Chain</TableHead>
+                                                                            <TableHead>Chain</TableHead>
                                                                         </TableRow>
                                                                     </TableHeader>
                                                                     
-                                                                    <TableBody class=''>
-                                                                        <TableRow
-                                                                            v-for='(item, index) in cell.row.original.chains'
-                                                                            :key='item'
-                                                                        >
+                                                                    <TableBody>
+                                                                        <TableRow v-for='(item, index) in cell.row.original.chains' :key='item'>
                                                                             <TableCell class='w-6 text-sm text-center !px-0'>{{ index + 1 }}.</TableCell>
                                                                             <TableCell class='text-sm flex flex-col'>{{ item }}</TableCell>
                                                                         </TableRow>
@@ -226,7 +290,7 @@
                                                     :open-delay='200'
                                                     class='flex'
                                                 >
-                                                    <HoverCardTrigger class='flex items-center gap-1'>
+                                                    <HoverCardTrigger class='flex justify-center items-center gap-1'>
                                                         <span>
                                                             {{
                                                                 formatNumber(cell.getValue(), {
@@ -366,16 +430,22 @@
                                     </NuxtLink>
                                     
                                     <!--   Audit  -->
-                                    <TableCell class='text-center'>
+                                    <TableCell v-if='table.getColumn("audit_links")?.getIsVisible()' class='text-center !w-24'>
                                         <Button
                                             v-for='audit in row.original.audit_links'
                                             :key='audit'
-                                            variant='link'
+                                            variant='outline'
                                             aria-label='protocol audit'
-                                            class='font-normal'
+                                            class='font-normal !p-0'
                                         >
-                                            <NuxtLink :to='audit' aria-label='protocol audit link' external>Visit Audit</NuxtLink>
-                                            <NewTabIcon />
+                                            <NuxtLink
+                                                :to='audit'
+                                                target='_blank'
+                                                aria-label='protocol audit link'
+                                                class='flex justify-center items-center h-9 px-4 py-2'
+                                                external>
+                                                <NewTabIcon :size='16' />
+                                            </NuxtLink>
                                         </Button>
                                     </TableCell>
                                 </TableRow>
@@ -419,8 +489,9 @@
 </template>
 
 <script setup>
+    import { Badge } from '~/components/ui/badge';
     import { Button } from '~/components/ui/button';
-    import { Card } from '~/components/ui/card';
+    import { Card, CardContent, CardDescription } from '~/components/ui/card';
     import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger  } from '~/components/ui/dropdown-menu';
     import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel, getFilteredRowModel } from '@tanstack/vue-table';
@@ -432,16 +503,19 @@
     import InfoIcon from '@/components/InfoIcon.vue';
     import { Input } from '~/components/ui/input';
     import NewTabIcon from '~/components/NewTabIcon.vue';
+    import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
     import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { Spinner } from '~/components/ui/spinner';
     import Title from '~/components/Title.vue';
     import { valueUpdater } from '~/components/ui/table/utils.ts';
-    import { Stepper, StepperDescription, StepperIndicator, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
-    import { Check, Circle, Dot } from '@lucide/vue'
+    import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
+    import { useSidebar } from '~/components/ui/sidebar';
+    
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
     const { darkThemes } = checkTheme();
+    const { isMobile } = useSidebar();
     
     // Dayjs
     import dayjs from 'dayjs';
@@ -463,8 +537,6 @@
     
     // DefiStore
     import { useDefiStore } from '~/stores/DefiStore.js';
-    import { Badge } from '@/components/ui/badge/index.ts';
-    import { ChevronRight } from 'lucide-vue-next';
     const DefiStore = useDefiStore();
     const { getDefillamaProtocols } = DefiStore;
     
@@ -482,25 +554,15 @@
     
     const columnFilters = ref([]);
     const columnVisibility = ref({
-        name: true,
-        category: true,
-        tvl: true,
+        openSource: false,
+        chain: false,
+        audit_links: false,
     });
-    
-    const headerWidths = {
-        rank: 'w-16',
-        name: 'min-w-78',
-        listedAt: 'min-w-48',
-        category: '',
-        tvl: '',
-        openSource: '',
-    };
     
     const columns = computed(() => [
         {
             id: 'rank',
             label: '#',
-            isSortable: true,
             cell: ({ row }) => h('div', { class: '' }, row.index + 1),
         },
         {

@@ -12,21 +12,6 @@
                 <TableHead>Today Value</TableHead>
                 <TableHead>Unrealised PNL</TableHead>
                 
-                <!--  mNav  -->
-                <!--
-                <TableHead class='flex items-center gap-1'>
-                    <span>{{ glossary.m_nav.label }}</span>
-                    
-                    <HoverCard :open-delay='200' class='flex'>
-                        <HoverCardTrigger>
-                            <InfoIcon />
-                        </HoverCardTrigger>
-                        
-                        <HoverCardContent>{{ glossary.m_nav.description }}</HoverCardContent>
-                    </HoverCard>
-                </TableHead>
-                -->
-                
                 <TableHead>
                     <div class='flex items-center gap-1'>
                         <span>{{ glossary.total_value_asset_per_share.label }}</span>
@@ -92,44 +77,64 @@
                         </HoverCardTrigger>
                         
                         <HoverCardContent>
-                            <Title :tag='3' :level='5' class='capitalize'>{{ coin.coin_id }}</Title>
+                            <Title :tag='3' :level='6' class='capitalize underline'>{{ coin.coin_id }}</Title>
                             
-                            <p class='text-muted-foreground'>Holdings: <span class='text-foreground'>{{ coin.amount }}</span></p>
-                            <p class='text-muted-foreground'>Total entry value:
-                                <span class='text-foreground'>{{
-                                        formatNumber(coin.total_entry_value_usd, {
-                                            compact: true,
-                                            decimals: 2
-                                        })}}
-                                                        </span>
-                            </p>
-                            <p class='text-muted-foreground'>Current value:
-                                <span class='text-foreground'>{{
-                                        formatNumber(coin.current_value_usd, {
-                                            compact: true,
-                                            decimals: 2
-                                        })}}
-                                                        </span>
-                            </p>
-                            <p class='text-muted-foreground'>Unrealised PNL:
-                                <span
-                                    class='text-foreground'
-                                    :class='getTrendClass(coin.unrealized_pnl)'
-                                >{{
-                                        formatNumber(coin.unrealized_pnl, {
-                                            compact: true,
-                                            decimals: 2
-                                        })}}
-                                                        </span>
-                            </p>
-                            <p class='text-muted-foreground'>% of total supply:
-                                <span class='text-foreground'>{{
-                                        formatNumber(coin.percentage_of_total_supply, {
-                                            style: 'percent',
-                                            decimals: 2
-                                        })}}
-                                                        </span>
-                            </p>
+                            <Table class='!p-12 !w-80 !mt-4'>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell class='text-muted-foreground'>Holdings</TableCell>
+                                        <TableCell class='flex flex-col !items-end'>{{ coin.amount }}</TableCell>
+                                    </TableRow>
+                                    
+                                    <TableRow>
+                                        <TableCell class='text-muted-foreground'>Total entry value</TableCell>
+                                        <TableCell class='flex flex-col !items-end'>
+                                            {{
+                                                formatNumber(coin.total_entry_value_usd, {
+                                                    compact: true,
+                                                    decimals: 2
+                                                })
+                                            }}
+                                        </TableCell>
+                                    </TableRow>
+                                    
+                                    <TableRow>
+                                        <TableCell class='text-muted-foreground'>Current value</TableCell>
+                                        <TableCell class='flex flex-col !items-end'>
+                                            {{
+                                                formatNumber(coin.current_value_usd, {
+                                                    compact: true,
+                                                    decimals: 2
+                                                })
+                                            }}
+                                        </TableCell>
+                                    </TableRow>
+                                    
+                                    <TableRow>
+                                        <TableCell class='text-muted-foreground'>Unrealised PNL</TableCell>
+                                        <TableCell class='flex flex-col !items-end'>
+                                            {{
+                                                formatNumber(coin.unrealized_pnl, {
+                                                    compact: true,
+                                                    decimals: 2
+                                                })
+                                            }}
+                                        </TableCell>
+                                    </TableRow>
+                                    
+                                    <TableRow>
+                                        <TableCell class='text-muted-foreground'>Total supply %</TableCell>
+                                        <TableCell class='flex flex-col !items-end'>
+                                            {{
+                                                formatNumber(coin.percentage_of_total_supply, {
+                                                    style: 'percent',
+                                                    decimals: 4
+                                                })
+                                            }}
+                                        </TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
                         </HoverCardContent>
                     </HoverCard>
                 </TableCell>
@@ -160,9 +165,9 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendClass } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index.ts';
-    import InfoIcon from '@/components/InfoIcon.vue';
-    import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
+    import InfoIcon from '~/components/InfoIcon.vue';
+    import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import Title from '~/components/Title.vue';
     
     const props = defineProps({

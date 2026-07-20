@@ -35,7 +35,7 @@ export const useDefiStore = defineStore('DefiStore', {
                 const response = await useFetchDefillama('protocols');
                 
                 if(response) {
-                    this.protocols = response.slice(0, 10);
+                    this.protocols = response.filter(protocol => protocol.category !== 'CEX').slice(0, 200);
                 }
             } catch(error) {
                 console.error(error);
