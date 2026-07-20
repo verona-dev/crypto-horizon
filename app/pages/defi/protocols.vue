@@ -1,5 +1,5 @@
 <template>
-    <div class='page'>
+    <div class='page market'>
         <PageLoadingSpinner v-if='loading' />
         
         <ProtocolsTable v-else :protocols='protocols'/>
