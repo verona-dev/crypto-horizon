@@ -11,7 +11,7 @@
                     <div class='relative'>
                         <Input
                             class='w-lg pl-8 border-primary/50'
-                            placeholder='Search Platform...'
+                            placeholder='Search Protocol...'
                             :model-value='table.getColumn("name")?.getFilterValue()'
                             @update:model-value='table.getColumn("name")?.setFilterValue($event)'
                         />
