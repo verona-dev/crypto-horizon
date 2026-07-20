@@ -65,12 +65,7 @@
                                         :class='[
                                             "flex justify-center",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
-                                            { "": header.column.id === "rank" },
                                             { "justify-start": header.column.id === "name" },
-                                            { "": header.column.id === "listedAt" },
-                                            { "": header.column.id === "openSource" },
-                                            { "": header.column.id === "hallmarks" },
-                                            { "": header.column.id === "audit_links" },
                                         ]'
                                     >
                                         <div class='flex items-center gap-1'>
@@ -153,13 +148,7 @@
                                         <TableCell
                                             v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "audit_links")'
                                             :key='cell.id'
-                                            :class='[
-                                                "text-center",
-                                                { "": cell.column.id === "listedAt" },
-                                                { "": cell.column.id === "category" },
-                                                { "text-left": cell.column.id === "chain" },
-                                                { "": cell.column.id === "hallmarks" },
-                                            ]'
+                                            class='text-center'
                                         >
                                             <!--   Name + Chains  -->
                                             <template v-if='cell.column.id === "name"'>
@@ -260,7 +249,7 @@
                                                     :open-delay='200'
                                                     class='flex'
                                                 >
-                                                    <HoverCardTrigger class='flex items-center gap-1'>
+                                                    <HoverCardTrigger class='flex justify-center items-center gap-1'>
                                                         <span>
                                                             {{
                                                                 formatNumber(cell.getValue(), {
