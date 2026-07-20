@@ -184,7 +184,7 @@
                                                         </div>
                                                     </HoverCardTrigger>
                                                     
-                                                    <HoverCardContent class='min-w-140 !p-0'>
+                                                    <HoverCardContent v-if='!isMobile' class='min-w-140 !p-0'>
                                                         <div class='bg-card flex flex-col items-center gap-10 p-6'>
                                                             <div class='flex flex-col items-center gap-2'>
                                                                 <!--   Title  -->
@@ -499,7 +499,7 @@
 <script setup>
     import { Badge } from '~/components/ui/badge';
     import { Button } from '~/components/ui/button';
-    import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
+    import { Card, CardContent, CardDescription } from '~/components/ui/card';
     import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger  } from '~/components/ui/dropdown-menu';
     import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
     import { FlexRender, getCoreRowModel, useVueTable, getSortedRowModel, getFilteredRowModel } from '@tanstack/vue-table';
@@ -517,10 +517,13 @@
     import Title from '~/components/Title.vue';
     import { valueUpdater } from '~/components/ui/table/utils.ts';
     import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
+    import { useSidebar } from '~/components/ui/sidebar';
+    
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
     const { darkThemes } = checkTheme();
+    const { isMobile } = useSidebar();
     
     // Dayjs
     import dayjs from 'dayjs';
