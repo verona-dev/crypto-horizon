@@ -200,19 +200,8 @@
                                                             </div>
                                                             
                                                             <!--   Links  -->
-                                                            <div class='w-full flex flex-col gap-8'>
-                                                                <!--
-                                                                <Button v-if='cell.row.original.url' variant='outline' class='w-fit' aria-label='website link'>
-                                                                    <NuxtLink :to='cell.row.original.url' target='_blank' aria-label='link' class='flex items-center gap-2' external>
-                                                                        <NuxtIcon
-                                                                            name='ph:house-line-fill'
-                                                                            size='20'
-                                                                        />
-                                                                        
-                                                                        <span>Website</span>
-                                                                    </NuxtLink>
-                                                                </Button>
-                                                                -->
+                                                            <div class='w-full flex gap-8'>
+                                                                <!--   Website  -->
                                                                 <template v-if='cell.row.original.url'>
                                                                     <NuxtLink
                                                                         :to='cell.row.original.url'
@@ -225,7 +214,7 @@
                                                                             variant='blue'
                                                                             class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
                                                                         >
-                                                                            <CardHeader>
+                                                                            <CardHeader class='!pl-0'>
                                                                                 <NuxtIcon
                                                                                     name='ph:house-line-fill'
                                                                                     size='36'
@@ -236,6 +225,35 @@
                                                                                 <Title :tag='5'>Website</Title>
                                                                                 
                                                                                 <CardDescription>{{ cell.row.original.url }}</CardDescription>
+                                                                            </CardContent>
+                                                                        </PixelCard>
+                                                                    </NuxtLink>
+                                                                </template>
+                                                                
+                                                                <!--   Twitter  -->
+                                                                <template v-if='cell.row.original.twitter'>
+                                                                    <NuxtLink
+                                                                        :to='cell.row.original.twitter'
+                                                                        target='_blank'
+                                                                        class='!w-1/2 h-40'
+                                                                        aria-label='platform website link'
+                                                                        external
+                                                                    >
+                                                                        <PixelCard
+                                                                            variant='blue'
+                                                                            class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
+                                                                        >
+                                                                            <CardHeader class='!pl-0'>
+                                                                                <NuxtIcon
+                                                                                    name='ph:twitter-logo-fill'
+                                                                                    size='36'
+                                                                                />
+                                                                            </CardHeader>
+                                                                            
+                                                                            <CardContent class='flex flex-col pt-6 pl-0'>
+                                                                                <Title :tag='5'>Twitter</Title>
+                                                                                
+                                                                                <CardDescription>{{ cell.row.original.twitter }}</CardDescription>
                                                                             </CardContent>
                                                                         </PixelCard>
                                                                     </NuxtLink>
