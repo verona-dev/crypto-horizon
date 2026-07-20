@@ -58,20 +58,19 @@
                             <TableHead
                                 v-for='header in headerGroup.headers'
                                 :key='header.id'
-                                :class='[headerWidths[header.column.id]]'
                             >
                                 <template v-if='!header.isPlaceholder'>
                                     <div
                                         @click='onSort(header)'
                                         :class='[
-                                            "flex",
+                                            "flex justify-center",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
-                                            { "pr-1": header.column.id === "rank" },
-                                            { "": header.column.id === "name" },
-                                            { "justify-center": header.column.id === "listedAt" },
-                                            { "justify-center": header.column.id === "openSource" },
-                                            { "justify-center": header.column.id === "hallmarks" },
-                                            { "justify-center": header.column.id === "audit_links" },
+                                            { "": header.column.id === "rank" },
+                                            { "justify-start": header.column.id === "name" },
+                                            { "": header.column.id === "listedAt" },
+                                            { "": header.column.id === "openSource" },
+                                            { "": header.column.id === "hallmarks" },
+                                            { "": header.column.id === "audit_links" },
                                         ]'
                                     >
                                         <div class='flex items-center gap-1'>
@@ -155,10 +154,11 @@
                                             v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "audit_links")'
                                             :key='cell.id'
                                             :class='[
-                                                { "text-center": cell.column.id === "listedAt" },
-                                                { "text-left": cell.column.id === "category" },
+                                                "text-center",
+                                                { "": cell.column.id === "listedAt" },
+                                                { "": cell.column.id === "category" },
                                                 { "text-left": cell.column.id === "chain" },
-                                                { "text-center": cell.column.id === "hallmarks" },
+                                                { "": cell.column.id === "hallmarks" },
                                             ]'
                                         >
                                             <!--   Name + Chains  -->
@@ -522,20 +522,10 @@
         chain: false,
     });
     
-    const headerWidths = {
-        rank: 'w-16',
-        name: 'min-w-78',
-        listedAt: 'min-w-48',
-        category: '',
-        tvl: '',
-        openSource: '',
-    };
-    
     const columns = computed(() => [
         {
             id: 'rank',
             label: '#',
-            isSortable: true,
             cell: ({ row }) => h('div', { class: '' }, row.index + 1),
         },
         {
