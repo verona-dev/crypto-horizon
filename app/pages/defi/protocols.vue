@@ -25,7 +25,7 @@
     
     // SEO
     const title = 'DeFi Platforms: Lending, DEXs & Yield Aggregators';
-    const description = 'Compare DeFi platforms by TVL, yields, risks, and chain support. Discover leading protocols like Aave, Uniswap, Compound, and emerging DeFi apps.';
+    const description = 'Compare DeFi protocols by TVL, yields, risks, and chain support. Discover leading protocols like Aave, Uniswap, Compound, and emerging DeFi apps.';
     
     definePageMeta({
         title,
