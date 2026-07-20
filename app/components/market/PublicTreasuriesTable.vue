@@ -92,7 +92,40 @@
                         </HoverCardTrigger>
                         
                         <HoverCardContent>
-                            <Title :tag='3' :level='5' class='capitalize'>{{ coin.coin_id }}</Title>
+                            <Title :tag='3' :level='6' class='capitalize underline'>{{ coin.coin_id }}</Title>
+                            
+                            <Table class='!p-12 !w-60'>
+                                <TableBody class='!mt-6'>
+                                    <TableRow>
+                                        <TableCell class='text-muted-foreground'>Holdings</TableCell>
+                                        <TableCell class='flex flex-col !items-end'>{{ coin.amount }}</TableCell>
+                                    </TableRow>
+                                    
+                                    <TableRow>
+                                        <TableCell class='text-muted-foreground'>Total entry value</TableCell>
+                                        <TableCell class='flex flex-col !items-end'>
+                                            {{
+                                                formatNumber(coin.total_entry_value_usd, {
+                                                    compact: true,
+                                                    decimals: 2
+                                                })
+                                            }}
+                                        </TableCell>
+                                    </TableRow>
+                                    
+                                    <TableRow>
+                                        <TableCell class='text-muted-foreground'>Current value</TableCell>
+                                        <TableCell class='flex flex-col !items-end'>
+                                            {{
+                                                formatNumber(coin.current_value_usd, {
+                                                    compact: true,
+                                                    decimals: 2
+                                                })
+                                            }}
+                                        </TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
                             
                             <p class='text-muted-foreground'>Holdings: <span class='text-foreground'>{{ coin.amount }}</span></p>
                             <p class='text-muted-foreground'>Total entry value:
@@ -160,9 +193,9 @@
     import { formatNumber } from '~/utils/formatUtils.js';
     import { getTrendClass } from '~/utils/styleUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
-    import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card/index.ts';
-    import InfoIcon from '@/components/InfoIcon.vue';
-    import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+    import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card/index.ts';
+    import InfoIcon from '~/components/InfoIcon.vue';
+    import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import Title from '~/components/Title.vue';
     
     const props = defineProps({
