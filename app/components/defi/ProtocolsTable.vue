@@ -29,7 +29,7 @@
                             as-child
                             class='flex items-center gap-4'
                         >
-                            <Button variant='outline' class='gap-2 border border-primary/50 hover:bg-muted hover:border-primary/75 data-[state=open]:bg-muted data-[state=open]:border-primary/75' aria-label='filter button'>
+                            <Button variant='outline' class='gap-2 border border-primary/50 hover:bg-transparent hover:border-primary/75 data-[state=open]:bg-muted data-[state=open]:border-primary/75' aria-label='filter button'>
                                 <div class='pt-1.5'>
                                     <NuxtIcon
                                         name='ph:layout-light'
