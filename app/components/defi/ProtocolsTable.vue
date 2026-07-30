@@ -297,7 +297,7 @@
                                                             </TableHeader>
                                                             
                                                             <TableBody class='!mt-6'>
-                                                                <TableRow v-for='(tvl, chain) in cell.row.original.chainTvls'>
+                                                                <TableRow v-for='(tvl, chain) in cell.row.original.chainTvls' :key='chain'>
                                                                     <TableCell class='text-sm'>{{ chain }}</TableCell>
                                                                     <TableCell class='text-sm flex flex-col !items-end'>
                                                                         {{ formatNumber(tvl, { compact: true, decimals: 2 }) }}

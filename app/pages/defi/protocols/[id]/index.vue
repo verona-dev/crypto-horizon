@@ -2,9 +2,9 @@
     <div class='page w-full'>
         <!--        <PageLoadingSpinner v-if='loading' />-->
         
-        <div class='flex flex-col xl:flex-row items-center w-full justify-evenly gap-6'>
+        <div class='flex flex-col 2xl:flex-row items-center w-full justify-evenly gap-6'>
             <!--   Name + Logo + Tvl  -->
-            <Card class='w-full xl:w-200 h-full p-6 flex flex-col gap-8'>
+            <Card class='w-full 2xl:w-200 h-full p-6 flex flex-col'>
                 <CardHeader>
                     <div class='flex items-center gap-4 self-start'>
                         <NuxtImg
@@ -19,16 +19,45 @@
                     </div>
                 </CardHeader>
                 
-                <CardContent>
-                    <Title :tag='6' class='flex items-center gap-2 text-muted-foreground'>{{ glossary.tvl.label }}</Title>
-                    <Title :tag='4' v-if='protocol.currentChainTvls' class='!text-5xl'>
-                        {{
-                            formatNumber(
-                                Object.values(protocol.currentChainTvls).reduce((sum, tvl) => sum + tvl, 0),
-                                { compact: true, decimals: 3 }
-                            )
-                        }}
-                    </Title>
+                <CardContent class='flex flex-col gap-8'>
+                    <!--   Tvl  -->
+                    <div class='flex flex-col'>
+                        <Title :tag='6' class='flex items-center gap-2 text-muted-foreground'>{{ glossary.tvl.label }}</Title>
+                        <Title :tag='4' v-if='protocol.currentChainTvls' class='!text-5xl'>
+                            {{
+                                formatNumber(
+                                    Object.values(protocol.currentChainTvls).reduce((sum, tvl) => sum + tvl, 0),
+                                    { compact: true, decimals: 3 }
+                                )
+                            }}
+                        </Title>
+                    </div>
+                    
+                    <!--   Tvl by Chain  -->
+                    <div class='flex flex-col gap-2'>
+                        <Title :tag='6' class='underline'>{{ glossary.tvl.acronym }} by Chain</Title>
+                        
+                        <Table class='!p-12 !w-60'>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Asset</TableHead>
+                                    <TableHead class='flex flex-col justify-center !items-end'>Quantity</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            
+                            <TableBody class='!mt-6'>
+                                <TableRow
+                                    v-for='[chain, tvl] in Object.entries(protocol.currentChainTvls).sort(([, a], [, b]) => b - a)'
+                                    :key='chain'
+                                >
+                                    <TableCell class='text-sm'>{{ chain }}</TableCell>
+                                    <TableCell class='text-sm flex flex-col !items-end'>
+                                        {{ formatNumber(tvl, { compact: true, decimals: 2 }) }}
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </div>
                 </CardContent>
             </Card>
             
@@ -140,7 +169,6 @@
                             </NuxtLink>
                         </template>
                     </div>
-                
                 </CardContent>
             </Card>
         </div>
@@ -158,7 +186,7 @@
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
-    import { Table, TableBody, TableCell, TableRow } from '~/components/ui/table/index.ts';
+    import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table/index.ts';
     import Title from '~/components/Title.vue';
     
     // LoadingStore
