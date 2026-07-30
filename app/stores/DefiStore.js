@@ -7,6 +7,7 @@ export const useDefiStore = defineStore('DefiStore', {
     state: () => ({
         globalDefi: {},
         protocols: [],
+        protocol: {},
     }),
     
     actions: {
@@ -36,6 +37,24 @@ export const useDefiStore = defineStore('DefiStore', {
                 
                 if(response) {
                     this.protocols = response.filter(protocol => protocol.category !== 'CEX').slice(0, 200);
+                }
+            } catch(error) {
+                console.error(error);
+            } finally {
+                LoadingStore.setLoading(false);
+            }
+        },
+        
+        async getDefillamaProtocol(protocol) {
+            const LoadingStore = useLoadingStore();
+            LoadingStore.setLoading(true);
+            
+            try {
+                const response = await useFetchDefillama(`protocol/${protocol}`);
+                
+                if(response) {
+                    this.protocol = response;
+                    console.log(JSON.parse(JSON.stringify(this.protocol)));
                 }
             } catch(error) {
                 console.error(error);

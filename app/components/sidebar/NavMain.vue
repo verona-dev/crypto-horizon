@@ -48,7 +48,7 @@
                                 :class='{ "!bg-primary !text-primary-foreground": item.isActive }'
                                 :aria-label='item.title'
                             >
-                                <component :is='item.icon' v-if='item.icon' />
+                                <component :is='item.icon' v-if='item.icon' class='!w-3.5' />
                             </SidebarMenuButton>
                         </NuxtLink>
                         

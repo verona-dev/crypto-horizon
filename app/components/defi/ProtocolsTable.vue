@@ -78,9 +78,13 @@
                                     <div
                                         @click='onSort(header)'
                                         :class='[
-                                            "flex justify-center",
+                                            "flex justify-center items-center min-w-16",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
-                                            { "justify-start": header.column.id === "name" },
+                                            { "!min-w-10": header.column.id === "rank" },
+                                            { "!min-w-84 justify-start": header.column.id === "name" },
+                                            { "!min-w-16": header.column.id === "hallmarks" },
+                                            { "!min-w-24": header.column.id === "oraclesBreakdown" },
+                                            { "!min-w-12 !justify-start": header.column.id === "audit_links" },
                                         ]'
                                     >
                                         <div class='flex items-center gap-1'>
@@ -163,7 +167,7 @@
                                         <TableCell
                                             v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "audit_links")'
                                             :key='cell.id'
-                                            class='text-center'
+                                            class='text-center text-md'
                                         >
                                             <!--   Name + Chains  -->
                                             <template v-if='cell.column.id === "name"'>
@@ -184,7 +188,7 @@
                                                         </div>
                                                     </HoverCardTrigger>
                                                     
-                                                    <HoverCardContent v-if='!isMobile' class='min-w-140 !p-0'>
+                                                    <HoverCardContent v-if='!isMobile' class='bg-blue-bunker min-w-140 border border-muted-foreground/50'>
                                                         <div class='bg-card flex flex-col items-center gap-10 p-6'>
                                                             <div class='flex flex-col items-center gap-2'>
                                                                 <!--   Title  -->
@@ -206,7 +210,7 @@
                                                                     <NuxtLink
                                                                         :to='cell.row.original.url'
                                                                         target='_blank'
-                                                                        class='!w-full h-40'
+                                                                        class='flex-1 h-40'
                                                                         aria-label='platform website link'
                                                                         external
                                                                     >
@@ -217,7 +221,7 @@
                                                                             <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
                                                                                 <NuxtIcon
                                                                                     name='ph:house-line-fill'
-                                                                                    size='36'
+                                                                                    size='28'
                                                                                 />
                                                                                 
                                                                                 <CardDescription>{{ cell.row.original.url }}</CardDescription>
@@ -231,7 +235,7 @@
                                                                     <NuxtLink
                                                                         :to='`https://x.com/${cell.row.original.twitter}`'
                                                                         target='_blank'
-                                                                        class='!w-full h-40'
+                                                                        class='flex-1 h-40'
                                                                         aria-label='platform twitter link'
                                                                         external
                                                                     >
@@ -242,7 +246,7 @@
                                                                             <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
                                                                                 <NuxtIcon
                                                                                     name='ph:twitter-logo-fill'
-                                                                                    size='36'
+                                                                                    size='28'
                                                                                 />
                                                                                 
                                                                                 <CardDescription>@{{ cell.row.original.twitter }}</CardDescription>
@@ -250,27 +254,6 @@
                                                                         </PixelCard>
                                                                     </NuxtLink>
                                                                 </template>
-                                                            </div>
-                                                            
-                                                            <!--   Chains Table  -->
-                                                            <div class='self-start w-full flex flex-col gap-4 max-h-80 border border-muted rounded-md !py-4 !px-6'>
-                                                                <Title :tag='6' class='underline'>Chains Breakdown</Title>
-                                                                
-                                                                <Table>
-                                                                    <TableHeader>
-                                                                        <TableRow>
-                                                                            <TableHead class='w-6 text-center'>#</TableHead>
-                                                                            <TableHead>Chain</TableHead>
-                                                                        </TableRow>
-                                                                    </TableHeader>
-                                                                    
-                                                                    <TableBody>
-                                                                        <TableRow v-for='(item, index) in cell.row.original.chains' :key='item'>
-                                                                            <TableCell class='w-6 text-sm text-center !px-0'>{{ index + 1 }}.</TableCell>
-                                                                            <TableCell class='text-sm flex flex-col'>{{ item }}</TableCell>
-                                                                        </TableRow>
-                                                                    </TableBody>
-                                                                </Table>
                                                             </div>
                                                         </div>
                                                     </HoverCardContent>
@@ -314,7 +297,7 @@
                                                             </TableHeader>
                                                             
                                                             <TableBody class='!mt-6'>
-                                                                <TableRow v-for='(tvl, chain) in cell.row.original.chainTvls'>
+                                                                <TableRow v-for='(tvl, chain) in cell.row.original.chainTvls' :key='chain'>
                                                                     <TableCell class='text-sm'>{{ chain }}</TableCell>
                                                                     <TableCell class='text-sm flex flex-col !items-end'>
                                                                         {{ formatNumber(tvl, { compact: true, decimals: 2 }) }}
@@ -345,10 +328,39 @@
                                                 <span v-else class='text-muted-foreground'>-</span>
                                             </template>
                                             
+                                            <!--   Chain  -->
+                                            <template v-else-if='cell.column.id === "chain"'>
+                                                <HoverCard :open-delay='200' class='flex'>
+                                                    <HoverCardTrigger class='text-gray-dull/75'>
+                                                        <span>{{ cell.getValue() }}</span>
+                                                    </HoverCardTrigger>
+                                                    
+                                                    <HoverCardContent class='w-full flex flex-col gap-4 max-h-90 border border-muted rounded-md !p-6'>
+                                                        <Title :tag='6' class='underline'>Chains Breakdown</Title>
+                                                        
+                                                        <Table>
+                                                            <TableHeader>
+                                                                <TableRow>
+                                                                    <TableHead class='w-6 text-center'>#</TableHead>
+                                                                    <TableHead>Chain</TableHead>
+                                                                </TableRow>
+                                                            </TableHeader>
+                                                            
+                                                            <TableBody>
+                                                                <TableRow v-for='(item, index) in cell.row.original.chains' :key='item'>
+                                                                    <TableCell class='w-6 text-sm text-center !px-0'>{{ index + 1 }}.</TableCell>
+                                                                    <TableCell class='text-sm flex flex-col'>{{ item }}</TableCell>
+                                                                </TableRow>
+                                                            </TableBody>
+                                                        </Table>
+                                                    </HoverCardContent>
+                                                </HoverCard>
+                                            </template>
+                                            
                                             <!--   Hallmarks  -->
                                             <template v-else-if='cell.column.id === "hallmarks"'>
                                                 <HoverCard :open-delay='200' class='flex'>
-                                                    <HoverCardTrigger class='text-gray-dull/75'>
+                                                    <HoverCardTrigger class='text-gray-dull/75 flex items-center justify-center'>
                                                         <NuxtIcon v-if='cell.row.original.hallmarks?.length' name='ph:calendar' size='24' />
                                                         <span v-else class='text-muted-foreground'>-</span>
                                                     </HoverCardTrigger>
@@ -367,7 +379,7 @@
                                                                 />
                                                                 
                                                                 <StepperTrigger as-child>
-                                                                    <StepperTitle class='text-sm text-muted-foreground font-semibold transition lg:text-base flex-row'>
+                                                                    <StepperTitle class='text-sm text-primary font-semibold transition flex-row'>
                                                                         <NuxtIcon name='ph:calendar-dot' size='20' class='mb-0.5' />
                                                                         
                                                                         {{ dayjs.unix(hallmark[0]).format('MMM D, YYYY')}}
@@ -375,7 +387,7 @@
                                                                 </StepperTrigger>
                                                                 
                                                                 <div class='flex flex-col gap-1'>
-                                                                    <StepperDescription class='sr-only text-xs text-foreground transition md:not-sr-only lg:text-sm'>
+                                                                    <StepperDescription class='sr-only text-sm text-foreground transition md:not-sr-only'>
                                                                         {{ hallmark[1] }}
                                                                     </StepperDescription>
                                                                 </div>
@@ -430,21 +442,21 @@
                                     </NuxtLink>
                                     
                                     <!--   Audit  -->
-                                    <TableCell v-if='table.getColumn("audit_links")?.getIsVisible()' class='text-center !w-24'>
+                                    <TableCell v-if='table.getColumn("audit_links")?.getIsVisible()' class='!w-20'>
                                         <Button
                                             v-for='audit in row.original.audit_links'
                                             :key='audit'
                                             variant='outline'
                                             aria-label='protocol audit'
-                                            class='font-normal !p-0'
+                                            class='font-normal !p-0 !h-9'
                                         >
                                             <NuxtLink
                                                 :to='audit'
                                                 target='_blank'
                                                 aria-label='protocol audit link'
-                                                class='flex justify-center items-center h-9 px-4 py-2'
+                                                class='flex justify-center items-center !h-full !w-9'
                                                 external>
-                                                <NewTabIcon :size='16' />
+                                                <NewTabIcon :size='12' />
                                             </NuxtLink>
                                         </Button>
                                     </TableCell>
@@ -510,7 +522,6 @@
     import { valueUpdater } from '~/components/ui/table/utils.ts';
     import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
     import { useSidebar } from '~/components/ui/sidebar';
-    
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
@@ -634,7 +645,6 @@
             label: glossary.open_source.label,
             description: glossary.open_source.description,
             accessorKey: 'openSource',
-            isSortable: true,
         },
         {
             id: 'chain',
