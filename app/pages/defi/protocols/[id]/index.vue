@@ -2,8 +2,9 @@
     <div class='page w-full'>
         <!--        <PageLoadingSpinner v-if='loading' />-->
         
-        <div class='flex flex-col xl:flex-row items-center w-full justify-evenly'>
-            <Card class='w-2/5 p-6 flex flex-col gap-8'>
+        <div class='flex flex-col xl:flex-row items-center w-full justify-evenly gap-6'>
+            <!--   Name + Logo + Tvl  -->
+            <Card class='w-200 h-full p-6 flex flex-col gap-8'>
                 <CardHeader>
                     <div class='flex items-center gap-4 self-start'>
                         <NuxtImg
@@ -31,9 +32,10 @@
                 </CardContent>
             </Card>
             
-            <Card class='w-1/2 h-full p-6 flex flex-col gap-8'>
+            <!--   Protocol Information  -->
+            <Card class='w-full h-full p-6 flex flex-col gap-8'>
                 <CardHeader>
-                    <Title :tag='4' class='flex items-center gap-2'>Protocol Information</Title>
+                    <Title :tag='2' :level='4' class='flex items-center gap-2'>Protocol Information</Title>
                     <CardDescription v-if='protocol.description'>{{ protocol.description }}</CardDescription>
                 </CardHeader>
                 
@@ -64,15 +66,15 @@
                                         variant='blue'
                                         class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
                                     >
-                                        <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
-                                            <div class='flex items-center gap-2 border p-4'>
+                                        <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
+                                            <div class='flex items-center gap-2'>
                                                 <NuxtIcon
                                                     name='ph:house-line-fill'
                                                     size='28'
-                                                    class='mb-0.5'
+                                                    class='mb-1'
                                                 />
                                                 
-                                                <p>Website</p>
+                                                <Title :tag='3' :level='6'>Website</Title>
                                             </div>
                                             
                                             <CardDescription>{{ protocol.url }}</CardDescription>
@@ -94,11 +96,15 @@
                                         variant='blue'
                                         class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
                                     >
-                                        <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
-                                            <NuxtIcon
-                                                name='ph:twitter-logo-fill'
-                                                size='28'
-                                            />
+                                        <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
+                                            <div class='flex items-center gap-2'>
+                                                <NuxtIcon
+                                                    name='ph:twitter-logo-fill'
+                                                    size='28'
+                                                />
+                                                
+                                                <Title :tag='3' :level='6'>Twitter</Title>
+                                            </div>
                                             
                                             <CardDescription>@{{ protocol.twitter }}</CardDescription>
                                         </CardContent>
@@ -119,20 +125,24 @@
                                         variant='blue'
                                         class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
                                     >
-                                        <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
-                                            <NuxtIcon
-                                                name='ph:bank-fill'
-                                                size='28'
-                                            />
+                                        <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
+                                            <div class='flex items-center gap-2'>
+                                                <NuxtIcon
+                                                    name='ph:bank-fill'
+                                                    size='28'
+                                                />
+                                                
+                                                <Title :tag='3' :level='6'>Treasury</Title>
+                                            </div>
                                             
-                                            <CardDescription v-if='protocol.treasury'>@{{ protocol.treasury }}</CardDescription>
+                                            <CardDescription v-if='protocol.treasury'>{{ protocol.treasury }}</CardDescription>
                                         </CardContent>
                                     </PixelCard>
                                 </NuxtLink>
                             </template>
                         </div>
                     </div>
-                    
+                
                 </CardContent>
             </Card>
         </div>
