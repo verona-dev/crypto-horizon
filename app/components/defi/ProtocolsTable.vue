@@ -78,10 +78,12 @@
                                     <div
                                         @click='onSort(header)'
                                         :class='[
-                                            "flex justify-center",
+                                            "flex justify-center min-w-16",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
                                             { "w-12": header.column.id === "rank" },
                                             { "justify-start": header.column.id === "name" },
+                                            { "w-48": header.column.id === "chain" },
+                                            { "w-18": header.column.id === "audit_links" },
                                         ]'
                                     >
                                         <div class='flex items-center gap-1'>
@@ -164,7 +166,7 @@
                                         <TableCell
                                             v-for='cell in row.getVisibleCells().filter(cell => cell.column.id !== "audit_links")'
                                             :key='cell.id'
-                                            class='text-center'
+                                            class='text-center text-md'
                                         >
                                             <!--   Name + Chains  -->
                                             <template v-if='cell.column.id === "name"'>
@@ -431,7 +433,7 @@
                                     </NuxtLink>
                                     
                                     <!--   Audit  -->
-                                    <TableCell v-if='table.getColumn("audit_links")?.getIsVisible()' class='text-center !w-24'>
+                                    <TableCell v-if='table.getColumn("audit_links")?.getIsVisible()' class='text-center !w-20'>
                                         <Button
                                             v-for='audit in row.original.audit_links'
                                             :key='audit'
