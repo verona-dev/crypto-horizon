@@ -188,7 +188,7 @@
                                                         </div>
                                                     </HoverCardTrigger>
                                                     
-                                                    <HoverCardContent v-if='!isMobile' class='min-w-140 !p-0'>
+                                                    <HoverCardContent v-if='!isMobile' class='bg-blue-bunker min-w-140 !p-0 border border-muted-foreground/50'>
                                                         <div class='bg-card flex flex-col items-center gap-10 p-6'>
                                                             <div class='flex flex-col items-center gap-2'>
                                                                 <!--   Title  -->
