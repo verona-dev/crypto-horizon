@@ -379,7 +379,7 @@
                                                                 />
                                                                 
                                                                 <StepperTrigger as-child>
-                                                                    <StepperTitle class='text-sm text-muted-foreground font-semibold transition lg:text-base flex-row'>
+                                                                    <StepperTitle class='text-sm text-primary font-semibold transition flex-row'>
                                                                         <NuxtIcon name='ph:calendar-dot' size='20' class='mb-0.5' />
                                                                         
                                                                         {{ dayjs.unix(hallmark[0]).format('MMM D, YYYY')}}
@@ -387,7 +387,7 @@
                                                                 </StepperTrigger>
                                                                 
                                                                 <div class='flex flex-col gap-1'>
-                                                                    <StepperDescription class='sr-only text-xs text-foreground transition md:not-sr-only lg:text-sm'>
+                                                                    <StepperDescription class='sr-only text-sm text-foreground transition md:not-sr-only'>
                                                                         {{ hallmark[1] }}
                                                                     </StepperDescription>
                                                                 </div>
