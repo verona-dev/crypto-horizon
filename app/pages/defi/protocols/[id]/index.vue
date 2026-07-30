@@ -9,9 +9,9 @@
                         <NuxtImg
                             v-if='protocol.logo'
                             :src='protocol.logo'
-                            width='52'
-                            alt='exchange logo'
-                            class='inline mb-1'
+                            width='60'
+                            alt='protocol logo'
+                            class='inline mb-1 rounded-full'
                         />
                         
                         <Title :tag='1' :level='3'>{{ protocol.name }} ({{ protocol.symbol }})</Title>
@@ -19,9 +19,7 @@
                 </CardHeader>
                 
                 <CardContent>
-                    <Title :tag='6' class='flex items-center gap-2 text-muted-foreground'>{{
-                            glossary.tvl.label
-                                                                                          }}</Title>
+                    <Title :tag='6' class='flex items-center gap-2 text-muted-foreground'>{{ glossary.tvl.label }}</Title>
                     <Title :tag='4' v-if='protocol.currentChainTvls' class='!text-5xl'>
                         {{
                             formatNumber(
@@ -40,11 +38,13 @@
                 </CardHeader>
                 
                 <CardContent>
-                    Category: <Badge
-                    v-if='protocol.category' variant='outline'
-                    class='py-2 px-3 shadow-lg bg-muted text-foreground/75 text-sm'
-                >{{ protocol.category }}
-                </Badge>
+                    Category:
+                    <Badge
+                        v-if='protocol.category' variant='outline'
+                        class='py-2 px-3 shadow-lg bg-muted text-foreground/75 text-sm'
+                    >
+                        {{ protocol.category }}
+                    </Badge>
                 </CardContent>
             </Card>
         </div>
