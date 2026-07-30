@@ -78,7 +78,7 @@
                                     <div
                                         @click='onSort(header)'
                                         :class='[
-                                            "flex justify-center items-center min-w-32",
+                                            "flex justify-center items-center min-w-16",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
                                             { "!min-w-10": header.column.id === "rank" },
                                             { "!min-w-84 justify-start": header.column.id === "name" },
@@ -255,27 +255,6 @@
                                                                     </NuxtLink>
                                                                 </template>
                                                             </div>
-                                                            
-                                                            <!--   Chains Table  -->
-                                                            <div class='self-start w-full flex flex-col gap-4 max-h-80 border border-muted rounded-md !py-4 !px-6'>
-                                                                <Title :tag='6' class='underline'>Chains Breakdown</Title>
-                                                                
-                                                                <Table>
-                                                                    <TableHeader>
-                                                                        <TableRow>
-                                                                            <TableHead class='w-6 text-center'>#</TableHead>
-                                                                            <TableHead>Chain</TableHead>
-                                                                        </TableRow>
-                                                                    </TableHeader>
-                                                                    
-                                                                    <TableBody>
-                                                                        <TableRow v-for='(item, index) in cell.row.original.chains' :key='item'>
-                                                                            <TableCell class='w-6 text-sm text-center !px-0'>{{ index + 1 }}.</TableCell>
-                                                                            <TableCell class='text-sm flex flex-col'>{{ item }}</TableCell>
-                                                                        </TableRow>
-                                                                    </TableBody>
-                                                                </Table>
-                                                            </div>
                                                         </div>
                                                     </HoverCardContent>
                                                 </HoverCard>
@@ -347,6 +326,35 @@
                                                 />
                                                 
                                                 <span v-else class='text-muted-foreground'>-</span>
+                                            </template>
+                                            
+                                            <!--   Chain  -->
+                                            <template v-else-if='cell.column.id === "chain"'>
+                                                <HoverCard :open-delay='200' class='flex'>
+                                                    <HoverCardTrigger class='text-gray-dull/75'>
+                                                        <span>{{ cell.getValue() }}</span>
+                                                    </HoverCardTrigger>
+                                                    
+                                                    <HoverCardContent class='w-full flex flex-col gap-4 max-h-90 border border-muted rounded-md !p-6'>
+                                                        <Title :tag='6' class='underline'>Chains Breakdown</Title>
+                                                        
+                                                        <Table>
+                                                            <TableHeader>
+                                                                <TableRow>
+                                                                    <TableHead class='w-6 text-center'>#</TableHead>
+                                                                    <TableHead>Chain</TableHead>
+                                                                </TableRow>
+                                                            </TableHeader>
+                                                            
+                                                            <TableBody>
+                                                                <TableRow v-for='(item, index) in cell.row.original.chains' :key='item'>
+                                                                    <TableCell class='w-6 text-sm text-center !px-0'>{{ index + 1 }}.</TableCell>
+                                                                    <TableCell class='text-sm flex flex-col'>{{ item }}</TableCell>
+                                                                </TableRow>
+                                                            </TableBody>
+                                                        </Table>
+                                                    </HoverCardContent>
+                                                </HoverCard>
                                             </template>
                                             
                                             <!--   Hallmarks  -->
@@ -638,7 +646,6 @@
             label: glossary.open_source.label,
             description: glossary.open_source.description,
             accessorKey: 'openSource',
-            isSortable: true,
         },
         {
             id: 'chain',
