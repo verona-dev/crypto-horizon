@@ -78,12 +78,13 @@
                                     <div
                                         @click='onSort(header)'
                                         :class='[
-                                            "flex justify-center min-w-16",
+                                            "flex justify-center items-center min-w-32",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
-                                            { "w-12": header.column.id === "rank" },
-                                            { "justify-start": header.column.id === "name" },
-                                            { "w-48": header.column.id === "chain" },
-                                            { "w-18": header.column.id === "audit_links" },
+                                            { "!min-w-10": header.column.id === "rank" },
+                                            { "!min-w-84 justify-start": header.column.id === "name" },
+                                            { "!min-w-16": header.column.id === "hallmarks" },
+                                            { "!min-w-24": header.column.id === "oraclesBreakdown" },
+                                            { "!min-w-12 !justify-start": header.column.id === "audit_links" },
                                         ]'
                                     >
                                         <div class='flex items-center gap-1'>
@@ -351,7 +352,7 @@
                                             <!--   Hallmarks  -->
                                             <template v-else-if='cell.column.id === "hallmarks"'>
                                                 <HoverCard :open-delay='200' class='flex'>
-                                                    <HoverCardTrigger class='text-gray-dull/75'>
+                                                    <HoverCardTrigger class='text-gray-dull/75 flex items-center justify-center'>
                                                         <NuxtIcon v-if='cell.row.original.hallmarks?.length' name='ph:calendar' size='24' />
                                                         <span v-else class='text-muted-foreground'>-</span>
                                                     </HoverCardTrigger>
@@ -433,19 +434,19 @@
                                     </NuxtLink>
                                     
                                     <!--   Audit  -->
-                                    <TableCell v-if='table.getColumn("audit_links")?.getIsVisible()' class='text-center !w-20'>
+                                    <TableCell v-if='table.getColumn("audit_links")?.getIsVisible()' class='!w-20'>
                                         <Button
                                             v-for='audit in row.original.audit_links'
                                             :key='audit'
                                             variant='outline'
                                             aria-label='protocol audit'
-                                            class='font-normal'
+                                            class='font-normal !p-0 !h-9'
                                         >
                                             <NuxtLink
                                                 :to='audit'
                                                 target='_blank'
                                                 aria-label='protocol audit link'
-                                                class='flex justify-center items-center'
+                                                class='flex justify-center items-center !h-full !w-9'
                                                 external>
                                                 <NewTabIcon :size='12' />
                                             </NuxtLink>
