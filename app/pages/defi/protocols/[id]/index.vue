@@ -37,7 +37,7 @@
                     <CardDescription v-if='protocol.description'>{{ protocol.description }}</CardDescription>
                 </CardHeader>
                 
-                <CardContent class='flex flex-col'>
+                <CardContent class='flex flex-col gap-12'>
                     <div class='flex items-center gap-2'>
                         <span>Category:</span>
                         <Badge
@@ -71,6 +71,31 @@
                                             />
                                             
                                             <CardDescription>{{ protocol.url }}</CardDescription>
+                                        </CardContent>
+                                    </PixelCard>
+                                </NuxtLink>
+                            </template>
+                            
+                            <!--   Twitter  -->
+                            <template v-if='protocol.twitter'>
+                                <NuxtLink
+                                    :to='`https://x.com/${protocol.twitter}`'
+                                    target='_blank'
+                                    class='flex-1 h-40'
+                                    aria-label='platform twitter link'
+                                    external
+                                >
+                                    <PixelCard
+                                        variant='blue'
+                                        class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
+                                    >
+                                        <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
+                                            <NuxtIcon
+                                                name='ph:twitter-logo-fill'
+                                                size='28'
+                                            />
+                                            
+                                            <CardDescription>@{{ protocol.twitter }}</CardDescription>
                                         </CardContent>
                                     </PixelCard>
                                 </NuxtLink>
