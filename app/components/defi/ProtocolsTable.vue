@@ -80,6 +80,7 @@
                                         :class='[
                                             "flex justify-center",
                                             { "hover:cursor-pointer" : header.column.columnDef.isSortable },
+                                            { "w-12": header.column.id === "rank" },
                                             { "justify-start": header.column.id === "name" },
                                         ]'
                                     >
@@ -436,15 +437,15 @@
                                             :key='audit'
                                             variant='outline'
                                             aria-label='protocol audit'
-                                            class='font-normal !p-0'
+                                            class='font-normal'
                                         >
                                             <NuxtLink
                                                 :to='audit'
                                                 target='_blank'
                                                 aria-label='protocol audit link'
-                                                class='flex justify-center items-center h-9 px-4 py-2'
+                                                class='flex justify-center items-center'
                                                 external>
-                                                <NewTabIcon :size='16' />
+                                                <NewTabIcon :size='12' />
                                             </NuxtLink>
                                         </Button>
                                     </TableCell>
