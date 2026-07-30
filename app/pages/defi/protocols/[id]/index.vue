@@ -21,23 +21,32 @@
                 
                 <CardContent class='flex flex-col gap-8'>
                     <!--   Tvl  -->
-                    <div class='flex flex-col'>
-                        <Title :tag='6' class='flex items-center gap-2 text-muted-foreground'>{{ glossary.tvl.label }}</Title>
-                        <Title :tag='4' v-if='protocol.currentChainTvls' class='!text-5xl'>
-                            {{
-                                formatNumber(
-                                    Object.values(protocol.currentChainTvls).reduce((sum, tvl) => sum + tvl, 0),
-                                    { compact: true, decimals: 3 }
-                                )
-                            }}
-                        </Title>
+                    <div class='flex items-center gap-4 w-full justify-between'>
+                        <div v-if='protocol.currentChainTvls' class='flex flex-col'>
+                            <Title :tag='3' :level='6' class='flex items-center gap-2 text-muted-foreground'>{{ glossary.tvl.label }}</Title>
+                            <Title :tag='4'>
+                                {{
+                                    formatNumber(
+                                        Object.values(protocol.currentChainTvls).reduce((sum, tvl) => sum + tvl, 0),
+                                        { compact: true, decimals: 2 }
+                                    )
+                                }}
+                            </Title>
+                        </div>
+                        
+                        <div v-if='protocol.mcap' class='flex flex-col'>
+                            <Title :tag='3' :level='6' class='flex items-center gap-2 text-muted-foreground'>{{ glossary.market_cap.label }}</Title>
+                            <Title :tag='4'>
+                                {{ formatNumber(protocol.mcap, { compact: true, decimals: 2 }) }}
+                            </Title>
+                        </div>
                     </div>
                     
                     <!--   Tvl by Chain  -->
                     <div class='flex flex-col gap-2'>
                         <Title :tag='6' class='underline'>{{ glossary.tvl.acronym }} by Chain</Title>
                         
-                        <Table class='!p-12 !w-60'>
+                        <Table>
                             <TableHeader>
                                 <TableRow>
                                     <TableHead>Asset</TableHead>
