@@ -142,10 +142,6 @@
         }
     }
     
-    .sidebar {
-        /*@apply tracking-normal;*/
-    }
-    
     [data-slot='sidebar-inset'] {
         @apply w-dvw;
     }
