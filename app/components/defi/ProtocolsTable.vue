@@ -188,7 +188,7 @@
                                                         </div>
                                                     </HoverCardTrigger>
                                                     
-                                                    <HoverCardContent v-if='!isMobile' class='bg-blue-bunker min-w-140 !p-0 border border-muted-foreground/50'>
+                                                    <HoverCardContent v-if='!isMobile' class='bg-blue-bunker min-w-140 border border-muted-foreground/50'>
                                                         <div class='bg-card flex flex-col items-center gap-10 p-6'>
                                                             <div class='flex flex-col items-center gap-2'>
                                                                 <!--   Title  -->
@@ -210,7 +210,7 @@
                                                                     <NuxtLink
                                                                         :to='cell.row.original.url'
                                                                         target='_blank'
-                                                                        class='!w-full h-40'
+                                                                        class='flex-1 h-40'
                                                                         aria-label='platform website link'
                                                                         external
                                                                     >
@@ -221,7 +221,7 @@
                                                                             <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
                                                                                 <NuxtIcon
                                                                                     name='ph:house-line-fill'
-                                                                                    size='36'
+                                                                                    size='28'
                                                                                 />
                                                                                 
                                                                                 <CardDescription>{{ cell.row.original.url }}</CardDescription>
@@ -235,7 +235,7 @@
                                                                     <NuxtLink
                                                                         :to='`https://x.com/${cell.row.original.twitter}`'
                                                                         target='_blank'
-                                                                        class='!w-full h-40'
+                                                                        class='flex-1 h-40'
                                                                         aria-label='platform twitter link'
                                                                         external
                                                                     >
@@ -246,7 +246,7 @@
                                                                             <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
                                                                                 <NuxtIcon
                                                                                     name='ph:twitter-logo-fill'
-                                                                                    size='36'
+                                                                                    size='28'
                                                                                 />
                                                                                 
                                                                                 <CardDescription>@{{ cell.row.original.twitter }}</CardDescription>
