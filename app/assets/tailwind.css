@@ -335,12 +335,12 @@
         --foreground: #c1c1c1;
         --card: rgba(34, 34, 34, 0.25); /* bg-muted/25 */
         --card-foreground: #c1c1c1;
-        --popover: #121113;
+        --popover: var(--blue-bunker);
         --popover-foreground: #c1c1c1;
         --primary: #e78a53;
-        --primary-foreground: #121113;
+        --primary-foreground: var(--blue-bunker);
         --secondary: #5f8787;
-        --secondary-foreground: #121113;
+        --secondary-foreground: var(--blue-bunker);
         --muted: #222222;
         --muted-foreground: #888888;
         --accent: #333333;
