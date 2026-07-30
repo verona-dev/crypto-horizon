@@ -56,7 +56,7 @@
                                 <NuxtLink
                                     :to='protocol.url'
                                     target='_blank'
-                                    class='flex-1 h-40'
+                                    class='flex-1 h-50'
                                     aria-label='platform website link'
                                     external
                                 >
@@ -65,10 +65,15 @@
                                         class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
                                     >
                                         <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
-                                            <NuxtIcon
-                                                name='ph:house-line-fill'
-                                                size='28'
-                                            />
+                                            <div class='flex items-center gap-2 border p-4'>
+                                                <NuxtIcon
+                                                    name='ph:house-line-fill'
+                                                    size='28'
+                                                    class='mb-0.5'
+                                                />
+                                                
+                                                <p>Website</p>
+                                            </div>
                                             
                                             <CardDescription>{{ protocol.url }}</CardDescription>
                                         </CardContent>
@@ -81,7 +86,7 @@
                                 <NuxtLink
                                     :to='`https://x.com/${protocol.twitter}`'
                                     target='_blank'
-                                    class='flex-1 h-40'
+                                    class='flex-1 h-50'
                                     aria-label='platform twitter link'
                                     external
                                 >
@@ -96,6 +101,31 @@
                                             />
                                             
                                             <CardDescription>@{{ protocol.twitter }}</CardDescription>
+                                        </CardContent>
+                                    </PixelCard>
+                                </NuxtLink>
+                            </template>
+                            
+                            <!--   Treasury  -->
+                            <template v-if='protocol.treasuryCodePath'>
+                                <NuxtLink
+                                    :to='protocol.treasuryCodePath'
+                                    target='_blank'
+                                    class='flex-1 h-50'
+                                    aria-label='platform twitter link'
+                                    external
+                                >
+                                    <PixelCard
+                                        variant='blue'
+                                        class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
+                                    >
+                                        <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
+                                            <NuxtIcon
+                                                name='ph:bank-fill'
+                                                size='28'
+                                            />
+                                            
+                                            <CardDescription v-if='protocol.treasury'>@{{ protocol.treasury }}</CardDescription>
                                         </CardContent>
                                     </PixelCard>
                                 </NuxtLink>
