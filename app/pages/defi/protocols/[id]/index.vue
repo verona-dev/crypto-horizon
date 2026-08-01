@@ -232,12 +232,52 @@
                     </Card>
                 </div>
                 
-                <!--   Methodology  -->
-                <Card v-if='protocol.methodology' class='w-full p-6'>
+                <!--   Methodology + Audit  -->
+                <Card v-if='protocol.methodology' class='w-full p-6 flex flex-col gap-12'>
                     <CardHeader>
                         <Title :tag='2' :level='4'>Methodology</Title>
                         <CardDescription class='text-foreground'>{{ protocol.methodology }}</CardDescription>
                     </CardHeader>
+                    
+                    <div>
+                        <template v-if='protocol.audit_links.length'>
+                            <CardHeader>
+                                <Title :tag='2' :level='4'>{{ glossary.audit.label }}</Title>
+                                <CardDescription class='text-foreground'>{{ glossary.audit.description }}</CardDescription>
+                            </CardHeader>
+                            
+                            <CardContent class='flex gap-4 flex-wrap md:flex-nowrap !py-0'>
+                                <NuxtLink
+                                    v-for='(audit, index) in protocol.audit_links'
+                                    :key='audit'
+                                    :to='audit'
+                                    target='_blank'
+                                    class='h-50 w-75'
+                                    aria-label='platform website link'
+                                    external
+                                >
+                                    <PixelCard
+                                        variant='blue'
+                                        class='flex flex-row items-center h-50 w-100 !flex-1 hover:border-blue-sky/50'
+                                    >
+                                        <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
+                                            <div class='flex items-center gap-2'>
+                                                <NuxtIcon
+                                                    name='ph:house-line-fill'
+                                                    size='28'
+                                                    class='mb-1'
+                                                />
+                                                
+                                                <Title :tag='3' :level='6'>Audit {{ index + 1 }}</Title>
+                                            </div>
+                                            
+                                            <CardDescription>{{ audit }}</CardDescription>
+                                        </CardContent>
+                                    </PixelCard>
+                                </NuxtLink>
+                            </CardContent>
+                        </template>
+                    </div>
                 </Card>
             </div>
         </template>
