@@ -17,7 +17,7 @@
                                     class='inline mb-1 rounded-full'
                                 />
                                 
-                                <Title :tag='1' :level='3'>{{ protocol.name }} ({{ protocol.symbol }})</Title>
+                                <Title :tag='1' :level='3'>{{ protocol.name }} <span v-if='protocol.symbol !== "-"'>({{ protocol.symbol }})</span></Title>
                             </div>
                         </CardHeader>
                         
@@ -85,10 +85,7 @@
                         <!--   Category  -->
                         <CardContent class='flex items-center gap-2'>
                             <span>Category:</span>
-                            <Badge
-                                v-if='protocol.category' variant='outline'
-                                class='py-2 px-3 shadow-lg text-sm'
-                            >
+                            <Badge v-if='protocol.category' variant='outline' class='py-2 px-3 shadow-lg text-sm'>
                                 {{ protocol.category }}
                             </Badge>
                         </CardContent>
@@ -233,14 +230,16 @@
                 </div>
                 
                 <!--   Methodology + Audit  -->
-                <Card v-if='protocol.methodology' class='w-full p-6 flex flex-col gap-12'>
-                    <CardHeader>
-                        <Title :tag='2' :level='4'>Methodology</Title>
-                        <CardDescription class='text-foreground'>{{ protocol.methodology }}</CardDescription>
-                    </CardHeader>
+                <Card class='w-full p-6 flex flex-col gap-12'>
+                    <template v-if='protocol.methodology'>
+                        <CardHeader>
+                            <Title :tag='2' :level='4'>Methodology</Title>
+                            <CardDescription class='text-foreground'>{{ protocol.methodology }}</CardDescription>
+                        </CardHeader>
+                    </template>
                     
-                    <div>
-                        <template v-if='protocol.audit_links.length'>
+                    <template v-if='protocol.audit_links.length'>
+                        <div class='flex flex-col gap-6'>
                             <CardHeader>
                                 <Title :tag='2' :level='4'>{{ glossary.audit.label }}</Title>
                                 <CardDescription class='text-foreground'>{{ glossary.audit.description }}</CardDescription>
@@ -256,11 +255,8 @@
                                     aria-label='platform website link'
                                     external
                                 >
-                                    <PixelCard
-                                        variant='blue'
-                                        class='flex flex-row items-center h-50 w-100 !flex-1 hover:border-blue-sky/50'
-                                    >
-                                        <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
+                                    <PixelCard variant='blue' class='flex flex-row items-center h-50 w-100 !flex-1 hover:border-blue-sky/50'>
+                                        <div class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
                                             <div class='flex items-center gap-2'>
                                                 <NuxtIcon
                                                     name='ph:house-line-fill'
@@ -272,12 +268,12 @@
                                             </div>
                                             
                                             <CardDescription>{{ audit }}</CardDescription>
-                                        </CardContent>
+                                        </div>
                                     </PixelCard>
                                 </NuxtLink>
                             </CardContent>
-                        </template>
-                    </div>
+                        </div>
+                    </template>
                 </Card>
             </div>
         </template>
