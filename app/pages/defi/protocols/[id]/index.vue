@@ -8,7 +8,7 @@
                     <div class='left flex flex-col gap-6 w-full 2xl:w-1/2 h-full'>
                         <!--   Name + Logo + Tvl  -->
                         <Card class='w-full h-fit p-6 flex flex-col gap-6'>
-                            <CardHeader>
+                            <CardHeader class='gap-4'>
                                 <div class='flex items-center gap-6'>
                                     <NuxtImg
                                         v-if='protocol.logo'
@@ -22,6 +22,19 @@
                                         <Title :tag='1' :level='3' class='text-primary'>{{ protocol.name }}</Title>
                                         <Title v-if='protocol.symbol !== "-"' :tag='2' :level='4' class='mb-2.5'>({{protocol.symbol}})</Title>
                                     </div>
+                                </div>
+                                
+                                <!--   Category  -->
+                                <div class='flex items-center gap-2'>
+                                    <Badge v-if='protocol.chain' variant='secondary' class='py-1.5 px-3 shadow-lg text-sm'>{{ protocol.chain }} Chain</Badge>
+                                    
+                                    <Badge v-if='protocol.category' variant='secondary' class='py-1.5 px-3 shadow-lg text-sm'>
+                                        {{ protocol.category }}
+                                    </Badge>
+                                    
+                                    <Badge v-if='protocol.openSource' variant='secondary' class='py-1.5 px-3 shadow-lg text-sm'>
+                                        Open Source
+                                    </Badge>
                                 </div>
                             </CardHeader>
                             
@@ -64,22 +77,6 @@
                                                                              }}
                                 </CardDescription>
                             </CardHeader>
-                            
-                            <!--   Category  -->
-                            <CardContent class='flex items-center gap-2'>
-                                <span>Category:</span>
-                                
-                                <Badge v-if='protocol.chain' variant='secondary' class='py-2 px-3 shadow-lg text-sm'>{{ protocol.chain }} Chain</Badge>
-                                
-                                <Badge v-if='protocol.category' variant='secondary' class='py-2 px-3 shadow-lg text-sm'>
-                                    {{ protocol.category }}
-                                </Badge>
-                                
-                                <Badge
-                                    v-if='protocol.openSource' variant='secondary' class='py-2 px-3 shadow-lg text-sm'
-                                >Open Source
-                                </Badge>
-                            </CardContent>
                             
                             <!--   Links  -->
                             <CardContent class='flex flex-col gap-4 flex-wrap'>
@@ -321,7 +318,10 @@
                                     </CardContent>
                                 </div>
                             </template>
-                            
+                        </Card>
+                        
+                        <!--  Hallmarks  -->
+                        <Card class='w-full h-fit p-6 flex flex-col gap-12'>
                             <template v-if='protocol.hallmarks.length'>
                                 <Stepper orientation="vertical" class="mx-auto flex w-full max-w-md flex-col justify-start gap-10">
                                     <StepperItem
@@ -365,9 +365,6 @@
                                 </Stepper>
                             </template>
                         </Card>
-                        
-                        <!--  Hallmarks  -->
-                    
                     </div>
                 </div>
             </div>
