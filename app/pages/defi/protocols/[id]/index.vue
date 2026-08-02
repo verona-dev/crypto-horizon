@@ -17,7 +17,7 @@
                                     class='inline mb-1 rounded-full'
                                 />
                                 
-                                <div class=''>
+                                <div>
                                     <Title :tag='1' :level='3'>{{ protocol.name }} <span v-if='protocol.symbol !== "-"'>({{ protocol.symbol }})</span></Title>
                                     <Badge v-if='protocol.chain' variant='secondary' class='py-2 px-3 shadow-lg text-sm'>{{ protocol.chain }} Chain</Badge>
                                 </div>
@@ -25,22 +25,33 @@
                         </CardHeader>
                         
                         <CardContent class='flex flex-col gap-8'>
-                            <!--   Tvl  -->
                             <div class='flex items-center gap-4 w-full justify-between'>
-                                <div v-if='protocol.currentChainTvls' class='flex flex-col'>
-                                    <Title :tag='3' :level='6' class='flex items-center gap-2 text-muted-foreground'>
-                                        {{ glossary.tvl.label }}</Title>
-                                    <Title :tag='4'>
-                                        {{
-                                            formatNumber(
-                                                Object.values(protocol.currentChainTvls).reduce((sum, tvl) => sum + tvl, 0),
-                                                { compact: true, decimals: 2 }
-                                            )
-                                        }}
-                                    </Title>
+                                <!--   Tvl  -->
+                                <div v-if='protocol.currentChainTvls' class='flex flex-col gap-6 border border-secondary'>
+                                    <div class='flex flex-col'>
+                                        <Title
+                                            :tag='3' :level='6' class='flex items-center gap-2 text-muted-foreground'
+                                        >
+                                            {{ glossary.tvl.label }}</Title>
+                                        <Title :tag='4'>
+                                            {{
+                                                formatNumber(Object.values(protocol.currentChainTvls).reduce((sum, tvl) => sum + tvl, 0))
+                                            }}
+                                        </Title>
+                                    </div>
+                                    
+                                    <MazCircularProgressBar
+                                        :percentage='100'
+                                        :duration='1500'
+                                    >
+                                        <template #default>
+                                            <h5>{{ formatNumber(Object.values(protocol.currentChainTvls).reduce((sum, tvl) => sum + tvl, 0), { compact: true, decimals: 2 }) }}</h5>
+                                        </template>
+                                    </MazCircularProgressBar>
                                 </div>
                                 
-                                <div v-if='protocol.mcap' class='flex flex-col'>
+                                <!--   Market Cap  -->
+                                <div v-if='protocol.mcap' class='flex flex-col border border-secondary'>
                                     <Title :tag='3' :level='6' class='flex items-center gap-2 text-muted-foreground'>
                                         {{ glossary.market_cap.label }}</Title>
                                     <Title :tag='4'>
