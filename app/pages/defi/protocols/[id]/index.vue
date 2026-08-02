@@ -140,7 +140,7 @@
                                         external
                                     >
                                         <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
-                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
+                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4 ml-1'>
                                                 <div class='flex items-center gap-2'>
                                                     <NuxtIcon
                                                         name='ph:house-line-fill'
@@ -167,7 +167,7 @@
                                         external
                                     >
                                         <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
-                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
+                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4 ml-1'>
                                                 <div class='flex items-center gap-2'>
                                                     <NuxtIcon
                                                         name='ph:twitter-logo-fill'
@@ -195,7 +195,7 @@
                                         external
                                     >
                                         <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
-                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
+                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4 ml-1'>
                                                 <div class='flex items-center gap-2'>
                                                     <NuxtIcon
                                                         name='ph:bank-fill'
@@ -226,7 +226,7 @@
                                         external
                                     >
                                         <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
-                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
+                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4 ml-1'>
                                                 <div class='flex items-center gap-2'>
                                                     <NuxtIcon
                                                         name='ph:github-logo-fill'
@@ -236,7 +236,7 @@
                                                     <Title :tag='3' :level='6'>Github</Title>
                                                 </div>
                                                 
-                                                <CardDescription>githuburl {{ link }}</CardDescription>
+                                                <CardDescription>https://github.com/{{ link }}</CardDescription>
                                             </CardContent>
                                         </PixelCard>
                                     </NuxtLink>
@@ -255,6 +255,7 @@
                         </CardHeader>
                     </template>
                     
+                    <!--  Audit  -->
                     <template v-if='protocol.audit_links.length'>
                         <div class='flex flex-col gap-6'>
                             <CardHeader>
