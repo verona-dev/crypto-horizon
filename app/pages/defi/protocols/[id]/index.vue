@@ -6,7 +6,7 @@
             <div v-if='protocol?.id' class='flex flex-col gap-6'>
                 <div class='flex flex-col 2xl:flex-row items-center w-full gap-6'>
                     <!--   Name + Logo + Tvl  -->
-                    <Card class='w-full 2xl:w-2/5 h-full p-6 flex flex-col'>
+                    <Card class='w-full 2xl:w-1/2 h-full p-6 flex flex-col gap-8'>
                         <CardHeader>
                             <div class='flex items-center gap-6'>
                                 <NuxtImg
@@ -24,8 +24,9 @@
                             </div>
                         </CardHeader>
                         
-                        <CardContent class='flex flex-col gap-8'>
-                            <div class='flex items-center gap-6'>
+                        <CardContent class='flex flex-col gap-16'>
+                            <!--   Tvl + Market Cap  -->
+                            <div class='flex flex-col md:flex-row items-center gap-6'>
                                 <!--   Tvl  -->
                                 <div v-if='protocol.currentChainTvls' class='flex flex-col items-center gap-6 flex-1'>
                                     <div class='flex flex-col'>
@@ -56,7 +57,17 @@
                                 <!--   Market Cap  -->
                                 <div v-if='protocol.mcap' class='flex flex-col items-center gap-6 flex-1'>
                                     <div class='flex flex-col'>
-                                        <Title :tag='3' :level='6' class='flex items-center justify-center gap-2 text-muted-foreground'>{{ glossary.market_cap.label }}</Title>
+                                        <Title :tag='3' :level='6' class='flex items-center justify-center gap-2 text-muted-foreground'>
+                                            {{ glossary.market_cap.label }}
+                                            
+                                            <HoverCard :open-delay='200' class='flex'>
+                                                <HoverCardTrigger>
+                                                    <InfoIcon />
+                                                </HoverCardTrigger>
+                                                
+                                                <HoverCardContent>{{ glossary.market_cap.description }}</HoverCardContent>
+                                            </HoverCard>
+                                        </Title>
                                         <Title :tag='4'>{{ formatNumber(protocol.mcap) }}</Title>
                                     </div>
                                     
@@ -101,7 +112,7 @@
                     </Card>
                     
                     <!--   Protocol Information  -->
-                    <Card class='w-full 2xl:w-3/5 h-full p-6 flex flex-col gap-6'>
+                    <Card class='w-full 2xl:w-1/2 h-full p-6 flex flex-col gap-6'>
                         <CardHeader>
                             <Title :tag='2' :level='4'>Protocol Information</Title>
                             <CardDescription v-if='protocol.description'>{{ protocol.description }}</CardDescription>
