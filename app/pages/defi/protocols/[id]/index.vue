@@ -29,7 +29,17 @@
                                 <!--   Tvl  -->
                                 <div v-if='protocol.currentChainTvls' class='flex flex-col items-center gap-6 flex-1'>
                                     <div class='flex flex-col'>
-                                        <Title :tag='3' :level='6' class='flex items-center justify-center gap-2 text-muted-foreground'>{{ glossary.tvl.label }}</Title>
+                                        <Title :tag='3' :level='6' class='flex items-center justify-center gap-2 text-muted-foreground'>
+                                            {{ glossary.tvl.label }}
+                                            
+                                            <HoverCard :open-delay='200' class='flex'>
+                                                <HoverCardTrigger>
+                                                    <InfoIcon />
+                                                </HoverCardTrigger>
+                                                
+                                                <HoverCardContent>{{ glossary.tvl.description }}</HoverCardContent>
+                                            </HoverCard>
+                                        </Title>
                                         <Title :tag='4'>{{ formatNumber(Object.values(protocol.currentChainTvls).reduce((sum, tvl) => sum + tvl, 0))}}</Title>
                                     </div>
                                     
