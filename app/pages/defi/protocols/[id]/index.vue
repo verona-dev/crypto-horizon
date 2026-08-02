@@ -25,19 +25,12 @@
                         </CardHeader>
                         
                         <CardContent class='flex flex-col gap-8'>
-                            <div class='flex items-center gap-4 w-full justify-between'>
+                            <div class='flex items-center gap-6'>
                                 <!--   Tvl  -->
-                                <div v-if='protocol.currentChainTvls' class='flex flex-col gap-6 border border-secondary'>
+                                <div v-if='protocol.currentChainTvls' class='flex flex-col items-center gap-6 flex-1'>
                                     <div class='flex flex-col'>
-                                        <Title
-                                            :tag='3' :level='6' class='flex items-center gap-2 text-muted-foreground'
-                                        >
-                                            {{ glossary.tvl.label }}</Title>
-                                        <Title :tag='4'>
-                                            {{
-                                                formatNumber(Object.values(protocol.currentChainTvls).reduce((sum, tvl) => sum + tvl, 0))
-                                            }}
-                                        </Title>
+                                        <Title :tag='3' :level='6' class='flex items-center justify-center gap-2 text-muted-foreground'>{{ glossary.tvl.label }}</Title>
+                                        <Title :tag='4'>{{ formatNumber(Object.values(protocol.currentChainTvls).reduce((sum, tvl) => sum + tvl, 0))}}</Title>
                                     </div>
                                     
                                     <MazCircularProgressBar
@@ -51,12 +44,20 @@
                                 </div>
                                 
                                 <!--   Market Cap  -->
-                                <div v-if='protocol.mcap' class='flex flex-col border border-secondary'>
-                                    <Title :tag='3' :level='6' class='flex items-center gap-2 text-muted-foreground'>
-                                        {{ glossary.market_cap.label }}</Title>
-                                    <Title :tag='4'>
-                                        {{ formatNumber(protocol.mcap, { compact: true, decimals: 2 }) }}
-                                    </Title>
+                                <div v-if='protocol.mcap' class='flex flex-col items-center gap-6 flex-1'>
+                                    <div class='flex flex-col'>
+                                        <Title :tag='3' :level='6' class='flex items-center justify-center gap-2 text-muted-foreground'>{{ glossary.market_cap.label }}</Title>
+                                        <Title :tag='4'>{{ formatNumber(protocol.mcap) }}</Title>
+                                    </div>
+                                    
+                                    <MazCircularProgressBar
+                                        :percentage='100'
+                                        :duration='2000'
+                                    >
+                                        <template #default>
+                                            <h5>{{ formatNumber(protocol.mcap, { compact: true, decimals: 2 }) }}</h5>
+                                        </template>
+                                    </MazCircularProgressBar>
                                 </div>
                             </div>
                             
@@ -117,13 +118,8 @@
                                         aria-label='platform website link'
                                         external
                                     >
-                                        <PixelCard
-                                            variant='blue'
-                                            class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                        >
-                                            <CardContent
-                                                class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'
-                                            >
+                                        <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
                                                 <div class='flex items-center gap-2'>
                                                     <NuxtIcon
                                                         name='ph:house-line-fill'
@@ -149,13 +145,8 @@
                                         aria-label='platform twitter link'
                                         external
                                     >
-                                        <PixelCard
-                                            variant='blue'
-                                            class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                        >
-                                            <CardContent
-                                                class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'
-                                            >
+                                        <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
                                                 <div class='flex items-center gap-2'>
                                                     <NuxtIcon
                                                         name='ph:twitter-logo-fill'
@@ -182,13 +173,8 @@
                                         aria-label='platform twitter link'
                                         external
                                     >
-                                        <PixelCard
-                                            variant='blue'
-                                            class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                        >
-                                            <CardContent
-                                                class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'
-                                            >
+                                        <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
                                                 <div class='flex items-center gap-2'>
                                                     <NuxtIcon
                                                         name='ph:bank-fill'
@@ -218,13 +204,8 @@
                                         aria-label='platform twitter link'
                                         external
                                     >
-                                        <PixelCard
-                                            variant='blue'
-                                            class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                        >
-                                            <CardContent
-                                                class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'
-                                            >
+                                        <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
                                                 <div class='flex items-center gap-2'>
                                                     <NuxtIcon
                                                         name='ph:github-logo-fill'
