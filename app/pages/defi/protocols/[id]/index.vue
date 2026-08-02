@@ -19,7 +19,7 @@
                                 
                                 <div class=''>
                                     <Title :tag='1' :level='3'>{{ protocol.name }} <span v-if='protocol.symbol !== "-"'>({{ protocol.symbol }})</span></Title>
-                                    <p class='text-muted-foreground'>{{ protocol.chain }} Chain</p>
+                                    <Badge v-if='protocol.chain' variant='secondary' class='py-2 px-3 shadow-lg text-sm'>{{ protocol.chain }} Chain</Badge>
                                 </div>
                             </div>
                         </CardHeader>
