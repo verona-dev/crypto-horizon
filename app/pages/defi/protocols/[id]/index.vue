@@ -256,7 +256,7 @@
                                     external
                                 >
                                     <PixelCard variant='blue' class='flex flex-row items-center h-50 w-100 !flex-1 hover:border-blue-sky/50'>
-                                        <div class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
+                                        <div class='!w-full !justify-center !flex !flex-col !items-center gap-2'>
                                             <div class='flex items-center gap-2'>
                                                 <NuxtIcon
                                                     name='ph:house-line-fill'
