@@ -171,93 +171,21 @@
                                         >
                                             <!--   Name + Chains  -->
                                             <template v-if='cell.column.id === "name"'>
-                                                <HoverCard :open-delay='200' class='flex'>
-                                                    <HoverCardTrigger class='flex items-center gap-4'>
-                                                        <!--   Logo  -->
-                                                        <NuxtImg
-                                                            :src='cell.row.original.logo'
-                                                            width='44'
-                                                            alt='platform logo'
-                                                            class='rounded-full'
-                                                        />
-                                                        
-                                                        <!--   Chains Caption  -->
-                                                        <div class='flex flex-col items-start'>
-                                                            <p class='font-medium text-lg'>{{cell.getValue()}}</p>
-                                                            <p class='text-primary/75'>{{ cell.row.original.chains.length }} chains</p>
-                                                        </div>
-                                                    </HoverCardTrigger>
+                                                <div class='flex items-center gap-4'>
+                                                    <!--   Logo  -->
+                                                    <NuxtImg
+                                                        :src='cell.row.original.logo'
+                                                        width='44'
+                                                        alt='platform logo'
+                                                        class='rounded-full'
+                                                    />
                                                     
-                                                    <HoverCardContent v-if='!isMobile' class='bg-blue-bunker min-w-140 border border-muted-foreground/50'>
-                                                        <div class='bg-card flex flex-col items-center gap-10 p-6'>
-                                                            <div class='flex flex-col items-center gap-2'>
-                                                                <!--   Title  -->
-                                                                <Title :tag='4' class='text-primary'>{{ cell.getValue() }}</Title>
-                                                                
-                                                                <!--   Address  -->
-                                                                <div v-if='cell.row.original.address' class='flex items-center gap-2'>
-                                                                    <Badge variant='outline' class='py-3 px-5 hover:border-blue-sky/50'>{{ cell.row.original.address }}</Badge>
-                                                                </div>
-                                                                
-                                                                <!--   Description  -->
-                                                                <p v-if='cell.row.original.description' class='text-muted-foreground text-center'>{{ cell.row.original.description }}</p>
-                                                            </div>
-                                                            
-                                                            <!--   Links  -->
-                                                            <div class='w-full flex gap-8'>
-                                                                <!--   Website  -->
-                                                                <template v-if='cell.row.original.url'>
-                                                                    <NuxtLink
-                                                                        :to='cell.row.original.url'
-                                                                        target='_blank'
-                                                                        class='flex-1 h-40'
-                                                                        aria-label='platform website link'
-                                                                        external
-                                                                    >
-                                                                        <PixelCard
-                                                                            variant='blue'
-                                                                            class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                                                        >
-                                                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
-                                                                                <NuxtIcon
-                                                                                    name='ph:house-line-fill'
-                                                                                    size='28'
-                                                                                />
-                                                                                
-                                                                                <CardDescription>{{ cell.row.original.url }}</CardDescription>
-                                                                            </CardContent>
-                                                                        </PixelCard>
-                                                                    </NuxtLink>
-                                                                </template>
-                                                                
-                                                                <!--   Twitter  -->
-                                                                <template v-if='cell.row.original.twitter'>
-                                                                    <NuxtLink
-                                                                        :to='`https://x.com/${cell.row.original.twitter}`'
-                                                                        target='_blank'
-                                                                        class='flex-1 h-40'
-                                                                        aria-label='platform twitter link'
-                                                                        external
-                                                                    >
-                                                                        <PixelCard
-                                                                            variant='blue'
-                                                                            class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                                                        >
-                                                                            <CardContent class='!w-full !justify-center !flex !flex-col !items-center gap-4 pt-6 ml-1'>
-                                                                                <NuxtIcon
-                                                                                    name='ph:twitter-logo-fill'
-                                                                                    size='28'
-                                                                                />
-                                                                                
-                                                                                <CardDescription>@{{ cell.row.original.twitter }}</CardDescription>
-                                                                            </CardContent>
-                                                                        </PixelCard>
-                                                                    </NuxtLink>
-                                                                </template>
-                                                            </div>
-                                                        </div>
-                                                    </HoverCardContent>
-                                                </HoverCard>
+                                                    <!--   Chains Caption  -->
+                                                    <div class='flex flex-col items-start'>
+                                                        <p class='font-medium text-lg'>{{cell.getValue()}}</p>
+                                                        <p class='text-primary/75'>{{ cell.row.original.chains.length }} chains</p>
+                                                    </div>
+                                                </div>
                                             </template>
                                             
                                             <!--   Launch Date  -->
@@ -382,7 +310,7 @@
                                                                     <StepperTitle class='text-sm text-primary font-semibold transition flex-row'>
                                                                         <NuxtIcon name='ph:calendar-dot' size='20' class='mb-0.5' />
                                                                         
-                                                                        {{ dayjs.unix(hallmark[0]).format('MMM D, YYYY')}}
+                                                                        {{ dayjs.unix(hallmark[0]).format('MMM D, YYYY') }}
                                                                     </StepperTitle>
                                                                 </StepperTrigger>
                                                                 
