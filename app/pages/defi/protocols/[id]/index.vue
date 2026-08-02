@@ -17,7 +17,10 @@
                                     class='inline mb-1 rounded-full'
                                 />
                                 
-                                <Title :tag='1' :level='3'>{{ protocol.name }} <span v-if='protocol.symbol !== "-"'>({{ protocol.symbol }})</span></Title>
+                                <div class=''>
+                                    <Title :tag='1' :level='3'>{{ protocol.name }} <span v-if='protocol.symbol !== "-"'>({{ protocol.symbol }})</span></Title>
+                                    <p class='text-muted-foreground'>{{ protocol.chain }} Chain</p>
+                                </div>
                             </div>
                         </CardHeader>
                         
