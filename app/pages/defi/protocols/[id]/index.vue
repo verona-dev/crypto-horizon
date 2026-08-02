@@ -102,7 +102,7 @@
                                                 class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
                                             >
                                                 <CardContent
-                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4 ml-1'
+                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
                                                 >
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
@@ -134,7 +134,7 @@
                                                 class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
                                             >
                                                 <CardContent
-                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4 ml-1'
+                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
                                                 >
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
@@ -167,7 +167,7 @@
                                                 class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
                                             >
                                                 <CardContent
-                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4 ml-1'
+                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
                                                 >
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
@@ -203,7 +203,7 @@
                                                 class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
                                             >
                                                 <CardContent
-                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4 ml-1'
+                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
                                                 >
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
@@ -307,31 +307,20 @@
                                         <CardDescription class='text-foreground'>{{ glossary.audit.description }}</CardDescription>
                                     </CardHeader>
                                     
-                                    <CardContent class='flex gap-4 flex-wrap md:flex-nowrap !py-0'>
+                                    <CardContent>
                                         <NuxtLink
-                                            v-for='(audit, index) in protocol.audit_links'
+                                            v-for='audit in protocol.audit_links'
                                             :key='audit'
                                             :to='audit'
                                             target='_blank'
                                             class='h-50 w-75'
-                                            aria-label='platform website link'
+                                            aria-label='platform audit link'
                                             external
                                         >
-                                            <PixelCard variant='blue' class='flex flex-row items-center h-50 w-100 !flex-1 hover:border-blue-sky/50'>
-                                                <div class='!w-full !justify-center !flex !flex-col !items-center gap-2'>
-                                                    <div class='flex items-center gap-2'>
-                                                        <NuxtIcon
-                                                            name='ph:house-line-fill'
-                                                            size='28'
-                                                            class='mb-1'
-                                                        />
-                                                        
-                                                        <Title :tag='3' :level='6'>Audit {{ index + 1 }}</Title>
-                                                    </div>
-                                                    
-                                                    <CardDescription>{{ audit }}</CardDescription>
-                                                </div>
-                                            </PixelCard>
+                                            <Button variant='outline' aria-label='audit link'>
+                                                {{ audit }}
+                                                <NewTabIcon class='mb-0.5' />
+                                            </Button>
                                         </NuxtLink>
                                     </CardContent>
                                 </div>
