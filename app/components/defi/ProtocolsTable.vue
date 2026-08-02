@@ -516,12 +516,12 @@
     import { Input } from '~/components/ui/input';
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
-    import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
     import { Spinner } from '~/components/ui/spinner';
-    import Title from '~/components/Title.vue';
-    import { valueUpdater } from '~/components/ui/table/utils.ts';
     import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
+    import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
+    import Title from '~/components/Title.vue';
     import { useSidebar } from '~/components/ui/sidebar';
+    import { valueUpdater } from '~/components/ui/table/utils.ts';
     
     // Theme
     import { checkTheme } from '@/composables/checkTheme.js';
