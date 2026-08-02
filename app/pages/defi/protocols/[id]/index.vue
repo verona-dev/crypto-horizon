@@ -88,9 +88,10 @@
                         <!--   Category  -->
                         <CardContent class='flex items-center gap-2'>
                             <span>Category:</span>
-                            <Badge v-if='protocol.category' variant='outline' class='py-2 px-3 shadow-lg text-sm'>
-                                {{ protocol.category }}
-                            </Badge>
+                            
+                            <Badge v-if='protocol.category' variant='secondary' class='py-2 px-3 shadow-lg text-sm'>{{ protocol.category }}</Badge>
+                            
+                            <Badge v-if='protocol.openSource' variant='secondary' class='py-2 px-3 shadow-lg text-sm'>Open Source</Badge>
                         </CardContent>
                         
                         <!--   Links  -->
