@@ -4,277 +4,367 @@
         
         <template v-else>
             <div v-if='protocol?.id' class='flex flex-col gap-6'>
-                <div class='flex flex-col 2xl:flex-row items-center w-full gap-6'>
-                    <!--   Name + Logo + Tvl  -->
-                    <Card class='w-full 2xl:w-2/5 h-full p-6 flex flex-col'>
-                        <CardHeader>
-                            <div class='flex items-center gap-6'>
-                                <NuxtImg
-                                    v-if='protocol.logo'
-                                    :src='protocol.logo'
-                                    width='96'
-                                    alt='protocol logo'
-                                    class='inline mb-1 rounded-full'
-                                />
-                                
-                                <Title :tag='1' :level='3'>{{ protocol.name }} <span v-if='protocol.symbol !== "-"'>({{ protocol.symbol }})</span></Title>
-                            </div>
-                        </CardHeader>
-                        
-                        <CardContent class='flex flex-col gap-8'>
-                            <!--   Tvl  -->
-                            <div class='flex items-center gap-4 w-full justify-between'>
-                                <div v-if='protocol.currentChainTvls' class='flex flex-col'>
-                                    <Title :tag='3' :level='6' class='flex items-center gap-2 text-muted-foreground'>
-                                        {{ glossary.tvl.label }}</Title>
-                                    <Title :tag='4'>
-                                        {{
-                                            formatNumber(
-                                                Object.values(protocol.currentChainTvls).reduce((sum, tvl) => sum + tvl, 0),
-                                                { compact: true, decimals: 2 }
-                                            )
-                                        }}
-                                    </Title>
-                                </div>
-                                
-                                <div v-if='protocol.mcap' class='flex flex-col'>
-                                    <Title :tag='3' :level='6' class='flex items-center gap-2 text-muted-foreground'>
-                                        {{ glossary.market_cap.label }}</Title>
-                                    <Title :tag='4'>
-                                        {{ formatNumber(protocol.mcap, { compact: true, decimals: 2 }) }}
-                                    </Title>
-                                </div>
-                            </div>
-                            
-                            <!--   Tvl by Chain  -->
-                            <div class='flex flex-col gap-2 max-h-80'>
-                                <Title :tag='6' class='underline'>{{ glossary.tvl.acronym }} by Chain</Title>
-                                
-                                <Table>
-                                    <TableHeader>
-                                        <TableRow>
-                                            <TableHead>Asset</TableHead>
-                                            <TableHead class='flex flex-col justify-center !items-end'>Quantity
-                                            </TableHead>
-                                        </TableRow>
-                                    </TableHeader>
+                <div class='flex flex-col 2xl:flex-row w-full gap-6'>
+                    <div class='left flex flex-col gap-6 w-full 2xl:w-1/2 h-full'>
+                        <!--   Name + Logo + Tvl  -->
+                        <Card class='w-full h-fit p-6 flex flex-col gap-6'>
+                            <CardHeader class='gap-4'>
+                                <div class='flex items-center gap-6'>
+                                    <NuxtImg
+                                        v-if='protocol.logo'
+                                        :src='protocol.logo'
+                                        width='64'
+                                        alt='protocol logo'
+                                        class='inline mb-1 rounded-full'
+                                    />
                                     
-                                    <TableBody class='!mt-6'>
-                                        <TableRow
-                                            v-for='[chain, tvl] in Object.entries(protocol.currentChainTvls).sort(([, a], [, b]) => b - a)'
-                                            :key='chain'
-                                        >
-                                            <TableCell class='text-sm'>{{ chain }}</TableCell>
-                                            <TableCell class='text-sm flex flex-col !items-end'>
-                                                {{ formatNumber(tvl, { compact: true, decimals: 2 }) }}
-                                            </TableCell>
-                                        </TableRow>
-                                    </TableBody>
-                                </Table>
-                            </div>
-                        </CardContent>
-                    </Card>
-                    
-                    <!--   Protocol Information  -->
-                    <Card class='w-full 2xl:w-3/5 h-full p-6 flex flex-col gap-6'>
-                        <CardHeader>
-                            <Title :tag='2' :level='4'>Protocol Information</Title>
-                            <CardDescription v-if='protocol.description'>{{ protocol.description }}</CardDescription>
-                        </CardHeader>
-                        
-                        <!--   Category  -->
-                        <CardContent class='flex items-center gap-2'>
-                            <span>Category:</span>
-                            <Badge v-if='protocol.category' variant='outline' class='py-2 px-3 shadow-lg text-sm'>
-                                {{ protocol.category }}
-                            </Badge>
-                        </CardContent>
-                        
-                        <!--   Links  -->
-                        <div class='flex flex-col gap-4 flex-wrap'>
-                            <CardContent class='flex gap-4 flex-wrap md:flex-nowrap !py-0'>
-                                <!--   Website  -->
-                                <template v-if='protocol.url'>
-                                    <NuxtLink
-                                        :to='protocol.url'
-                                        target='_blank'
-                                        class='h-50 w-full'
-                                        aria-label='platform website link'
-                                        external
-                                    >
-                                        <PixelCard
-                                            variant='blue'
-                                            class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                        >
-                                            <CardContent
-                                                class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'
-                                            >
-                                                <div class='flex items-center gap-2'>
-                                                    <NuxtIcon
-                                                        name='ph:house-line-fill'
-                                                        size='28'
-                                                        class='mb-1'
-                                                    />
-                                                    
-                                                    <Title :tag='3' :level='6'>Website</Title>
-                                                </div>
-                                                
-                                                <CardDescription>{{ protocol.url }}</CardDescription>
-                                            </CardContent>
-                                        </PixelCard>
-                                    </NuxtLink>
-                                </template>
+                                    <div class='flex items-end gap-2'>
+                                        <Title :tag='1' :level='3' class='text-primary'>{{ protocol.name }}</Title>
+                                        <Title v-if='protocol.symbol !== "-"' :tag='2' :level='4' class='mb-2.5'>({{protocol.symbol}})</Title>
+                                    </div>
+                                </div>
                                 
-                                <!--   Twitter  -->
-                                <template v-if='protocol.twitter'>
-                                    <NuxtLink
-                                        :to='`https://x.com/${protocol.twitter}`'
-                                        target='_blank'
-                                        class='h-50 w-full'
-                                        aria-label='platform twitter link'
-                                        external
-                                    >
-                                        <PixelCard
-                                            variant='blue'
-                                            class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                        >
-                                            <CardContent
-                                                class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'
-                                            >
-                                                <div class='flex items-center gap-2'>
-                                                    <NuxtIcon
-                                                        name='ph:twitter-logo-fill'
-                                                        size='28'
-                                                    />
-                                                    
-                                                    <Title :tag='3' :level='6'>Twitter</Title>
-                                                </div>
-                                                
-                                                <CardDescription>@{{ protocol.twitter }}</CardDescription>
-                                            </CardContent>
-                                        </PixelCard>
-                                    </NuxtLink>
-                                </template>
-                            </CardContent>
-                            
-                            <CardContent class='flex gap-4 flex-wrap md:flex-nowrap !py-0'>
-                                <!--   Treasury  -->
-                                <template v-if='protocol.treasuryCodePath'>
-                                    <NuxtLink
-                                        :to='protocol.treasuryCodePath'
-                                        target='_blank'
-                                        class='h-50 w-full'
-                                        aria-label='platform twitter link'
-                                        external
-                                    >
-                                        <PixelCard
-                                            variant='blue'
-                                            class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                        >
-                                            <CardContent
-                                                class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'
-                                            >
-                                                <div class='flex items-center gap-2'>
-                                                    <NuxtIcon
-                                                        name='ph:bank-fill'
-                                                        size='28'
-                                                    />
-                                                    
-                                                    <Title :tag='3' :level='6'>Treasury</Title>
-                                                </div>
-                                                
-                                                <CardDescription v-if='protocol.treasury'>{{
-                                                        protocol.treasury
-                                                                                          }}
-                                                </CardDescription>
-                                            </CardContent>
-                                        </PixelCard>
-                                    </NuxtLink>
-                                </template>
-                                
-                                <!--   Github  -->
-                                <template v-if='protocol.github && protocol.github.length'>
-                                    <NuxtLink
-                                        v-for='link in protocol.github'
-                                        :key='link'
-                                        :to='`https://github.com/${link}`'
-                                        target='_blank'
-                                        class='h-50 w-full'
-                                        aria-label='platform twitter link'
-                                        external
-                                    >
-                                        <PixelCard
-                                            variant='blue'
-                                            class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                        >
-                                            <CardContent
-                                                class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'
-                                            >
-                                                <div class='flex items-center gap-2'>
-                                                    <NuxtIcon
-                                                        name='ph:github-logo-fill'
-                                                        size='28'
-                                                    />
-                                                    
-                                                    <Title :tag='3' :level='6'>Github</Title>
-                                                </div>
-                                                
-                                                <CardDescription>githuburl {{ link }}</CardDescription>
-                                            </CardContent>
-                                        </PixelCard>
-                                    </NuxtLink>
-                                </template>
-                            </CardContent>
-                        </div>
-                    </Card>
-                </div>
-                
-                <!--   Methodology + Audit  -->
-                <Card class='w-full p-6 flex flex-col gap-12'>
-                    <template v-if='protocol.methodology'>
-                        <CardHeader>
-                            <Title :tag='2' :level='4'>Methodology</Title>
-                            <CardDescription class='text-foreground'>{{ protocol.methodology }}</CardDescription>
-                        </CardHeader>
-                    </template>
-                    
-                    <template v-if='protocol.audit_links.length'>
-                        <div class='flex flex-col gap-6'>
-                            <CardHeader>
-                                <Title :tag='2' :level='4'>{{ glossary.audit.label }}</Title>
-                                <CardDescription class='text-foreground'>{{ glossary.audit.description }}</CardDescription>
+                                <!--   Category  -->
+                                <div class='flex items-center gap-2'>
+                                    <Badge v-if='protocol.chain' variant='secondary' class='py-1.5 px-3 shadow-lg text-sm'>{{ protocol.chain }} Chain</Badge>
+                                    
+                                    <Badge v-if='protocol.category' variant='secondary' class='py-1.5 px-3 shadow-lg text-sm'>
+                                        {{ protocol.category }}
+                                    </Badge>
+                                    
+                                    <Badge v-if='protocol.openSource' variant='secondary' class='py-1.5 px-3 shadow-lg text-sm'>
+                                        Open Source
+                                    </Badge>
+                                </div>
                             </CardHeader>
                             
-                            <CardContent class='flex gap-4 flex-wrap md:flex-nowrap !py-0'>
-                                <NuxtLink
-                                    v-for='(audit, index) in protocol.audit_links'
-                                    :key='audit'
-                                    :to='audit'
-                                    target='_blank'
-                                    class='h-50 w-75'
-                                    aria-label='platform website link'
-                                    external
-                                >
-                                    <PixelCard variant='blue' class='flex flex-row items-center h-50 w-100 !flex-1 hover:border-blue-sky/50'>
-                                        <div class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-6 ml-1'>
-                                            <div class='flex items-center gap-2'>
-                                                <NuxtIcon
-                                                    name='ph:house-line-fill'
-                                                    size='28'
-                                                    class='mb-1'
-                                                />
-                                                
-                                                <Title :tag='3' :level='6'>Audit {{ index + 1 }}</Title>
-                                            </div>
-                                            
-                                            <CardDescription>{{ audit }}</CardDescription>
-                                        </div>
-                                    </PixelCard>
-                                </NuxtLink>
+                            <CardContent class='flex flex-col gap-16'>
+                                <!--   Tvl by Chain  -->
+                                <div class='flex flex-col gap-2 max-h-80'>
+                                    <Title :tag='6' class='underline'>{{ glossary.tvl.acronym }} by Chain</Title>
+                                    
+                                    <Table>
+                                        <TableHeader>
+                                            <TableRow>
+                                                <TableHead>Asset</TableHead>
+                                                <TableHead class='flex flex-col justify-center !items-end'>Quantity
+                                                </TableHead>
+                                            </TableRow>
+                                        </TableHeader>
+                                        
+                                        <TableBody class='!mt-6'>
+                                            <TableRow
+                                                v-for='[chain, tvl] in Object.entries(protocol.currentChainTvls).sort(([, a], [, b]) => b - a)'
+                                                :key='chain'
+                                            >
+                                                <TableCell class='text-sm'>{{ chain }}</TableCell>
+                                                <TableCell class='text-sm flex flex-col !items-end'>
+                                                    {{ formatNumber(tvl, { compact: true, decimals: 2 }) }}
+                                                </TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                    </Table>
+                                </div>
                             </CardContent>
-                        </div>
-                    </template>
-                </Card>
+                        </Card>
+                        
+                        <!--   Protocol Information  -->
+                        <Card class='w-full h-fit p-6 flex flex-col gap-6'>
+                            <CardHeader>
+                                <Title :tag='2' :level='4'>Protocol Information</Title>
+                                <CardDescription v-if='protocol.description'>{{
+                                        protocol.description
+                                                                             }}
+                                </CardDescription>
+                            </CardHeader>
+                            
+                            <!--   Links  -->
+                            <CardContent class='flex flex-col gap-4 flex-wrap'>
+                                <div class='flex gap-4 flex-wrap md:flex-nowrap !py-0'>
+                                    <!--   Website  -->
+                                    <template v-if='protocol.url'>
+                                        <NuxtLink
+                                            :to='protocol.url'
+                                            target='_blank'
+                                            class='h-50 w-full'
+                                            aria-label='platform website link'
+                                            external
+                                        >
+                                            <PixelCard
+                                                variant='blue'
+                                                class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
+                                            >
+                                                <CardContent
+                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
+                                                >
+                                                    <div class='flex items-center gap-2'>
+                                                        <NuxtIcon
+                                                            name='ph:house-line-fill'
+                                                            size='28'
+                                                            class='mb-1'
+                                                        />
+                                                        
+                                                        <Title :tag='3' :level='6'>Website</Title>
+                                                    </div>
+                                                    
+                                                    <CardDescription>{{ protocol.url }}</CardDescription>
+                                                </CardContent>
+                                            </PixelCard>
+                                        </NuxtLink>
+                                    </template>
+                                    
+                                    <!--   Twitter  -->
+                                    <template v-if='protocol.twitter'>
+                                        <NuxtLink
+                                            :to='`https://x.com/${protocol.twitter}`'
+                                            target='_blank'
+                                            class='h-50 w-full'
+                                            aria-label='platform twitter link'
+                                            external
+                                        >
+                                            <PixelCard
+                                                variant='blue'
+                                                class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
+                                            >
+                                                <CardContent
+                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
+                                                >
+                                                    <div class='flex items-center gap-2'>
+                                                        <NuxtIcon
+                                                            name='ph:twitter-logo-fill'
+                                                            size='28'
+                                                        />
+                                                        
+                                                        <Title :tag='3' :level='6'>Twitter</Title>
+                                                    </div>
+                                                    
+                                                    <CardDescription>@{{ protocol.twitter }}</CardDescription>
+                                                </CardContent>
+                                            </PixelCard>
+                                        </NuxtLink>
+                                    </template>
+                                </div>
+                                
+                                <div class='flex gap-4 flex-wrap md:flex-nowrap !py-0'>
+                                    <!--   Treasury  -->
+                                    <template v-if='protocol.treasuryCodePath'>
+                                        <NuxtLink
+                                            :to='protocol.treasuryCodePath'
+                                            target='_blank'
+                                            class='h-50 w-full'
+                                            aria-label='platform twitter link'
+                                            external
+                                        >
+                                            <PixelCard
+                                                variant='blue'
+                                                class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
+                                            >
+                                                <CardContent
+                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
+                                                >
+                                                    <div class='flex items-center gap-2'>
+                                                        <NuxtIcon
+                                                            name='ph:bank-fill'
+                                                            size='28'
+                                                        />
+                                                        
+                                                        <Title :tag='3' :level='6'>Treasury</Title>
+                                                    </div>
+                                                    
+                                                    <CardDescription v-if='protocol.treasury'>{{
+                                                            protocol.treasury
+                                                                                              }}
+                                                    </CardDescription>
+                                                </CardContent>
+                                            </PixelCard>
+                                        </NuxtLink>
+                                    </template>
+                                    
+                                    <!--   Github  -->
+                                    <template v-if='protocol.github && protocol.github.length'>
+                                        <NuxtLink
+                                            v-for='link in protocol.github'
+                                            :key='link'
+                                            :to='`https://github.com/${link}`'
+                                            target='_blank'
+                                            class='h-50 w-full'
+                                            aria-label='platform twitter link'
+                                            external
+                                        >
+                                            <PixelCard
+                                                variant='blue'
+                                                class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
+                                            >
+                                                <CardContent
+                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
+                                                >
+                                                    <div class='flex items-center gap-2'>
+                                                        <NuxtIcon
+                                                            name='ph:github-logo-fill'
+                                                            size='28'
+                                                        />
+                                                        
+                                                        <Title :tag='3' :level='6'>Github</Title>
+                                                    </div>
+                                                    
+                                                    <CardDescription>https://github.com/{{ link }}</CardDescription>
+                                                </CardContent>
+                                            </PixelCard>
+                                        </NuxtLink>
+                                    </template>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+                    
+                    <div class='right flex flex-col gap-6 w-full 2xl:w-1/2 h-full'>
+                        <!--   Stats -->
+                        <Card class='w-full h-fit p-6 flex flex-col gap-6'>
+                            <CardHeader>
+                                <Title :tag='2' :level='4'>Stats</Title>
+                            </CardHeader>
+                            
+                            <CardContent>
+                                <div class='flex flex-col md:flex-row items-center gap-6'>
+                                    <!--   Tvl  -->
+                                    <div v-if='protocol.currentChainTvls' class='flex flex-col items-center gap-6 flex-1'>
+                                        <div class='flex flex-col'>
+                                            <Title :tag='3' :level='6' class='flex items-center justify-center gap-2 text-muted-foreground'>
+                                                {{ glossary.tvl.label }}
+                                                
+                                                <HoverCard :open-delay='200' class='flex'>
+                                                    <HoverCardTrigger>
+                                                        <InfoIcon />
+                                                    </HoverCardTrigger>
+                                                    
+                                                    <HoverCardContent>{{ glossary.tvl.description }}</HoverCardContent>
+                                                </HoverCard>
+                                            </Title>
+                                            <Title :tag='4'>{{ formatNumber(Object.values(protocol.currentChainTvls).reduce((sum, tvl) => sum + tvl, 0))}}</Title>
+                                        </div>
+                                        
+                                        <MazCircularProgressBar
+                                            :percentage='100'
+                                            :duration='1500'
+                                        >
+                                            <template #default>
+                                                <h5>{{ formatNumber(Object.values(protocol.currentChainTvls).reduce((sum, tvl) => sum + tvl, 0), { compact: true, decimals: 2 }) }}</h5>
+                                            </template>
+                                        </MazCircularProgressBar>
+                                    </div>
+                                    
+                                    <!--   Market Cap  -->
+                                    <div v-if='protocol.mcap' class='flex flex-col items-center gap-6 flex-1'>
+                                        <div class='flex flex-col'>
+                                            <Title :tag='3' :level='6' class='flex items-center justify-center gap-2 text-muted-foreground'>
+                                                {{ glossary.market_cap.label }}
+                                                
+                                                <HoverCard :open-delay='200' class='flex'>
+                                                    <HoverCardTrigger>
+                                                        <InfoIcon />
+                                                    </HoverCardTrigger>
+                                                    
+                                                    <HoverCardContent>{{ glossary.market_cap.description }}</HoverCardContent>
+                                                </HoverCard>
+                                            </Title>
+                                            <Title :tag='4'>{{ formatNumber(protocol.mcap) }}</Title>
+                                        </div>
+                                        
+                                        <MazCircularProgressBar
+                                            :percentage='100'
+                                            :duration='2000'
+                                        >
+                                            <template #default>
+                                                <h5>{{ formatNumber(protocol.mcap, { compact: true, decimals: 2 }) }}</h5>
+                                            </template>
+                                        </MazCircularProgressBar>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                        
+                        <!--   Methodology + Audit  -->
+                        <Card v-if='protocol.methodology || protocol.audit_links?.length' class='w-full h-fit p-6 flex flex-col gap-12'>
+                            <template v-if='protocol.methodology'>
+                                <CardHeader>
+                                    <Title :tag='2' :level='4'>Methodology</Title>
+                                    <CardDescription class='text-foreground'>{{ protocol.methodology }}</CardDescription>
+                                </CardHeader>
+                            </template>
+                            
+                            <!--  Audit  -->
+                            <template v-if='protocol.audit_links?.length'>
+                                <div class='flex flex-col gap-6'>
+                                    <CardHeader>
+                                        <Title :tag='2' :level='4'>{{ glossary.audit.label }}</Title>
+                                        <CardDescription class='text-foreground'>{{ glossary.audit.description }}</CardDescription>
+                                    </CardHeader>
+                                    
+                                    <CardContent>
+                                        <NuxtLink
+                                            v-for='audit in protocol.audit_links'
+                                            :key='audit'
+                                            :to='audit'
+                                            target='_blank'
+                                            class='h-50 w-75'
+                                            aria-label='platform audit link'
+                                            external
+                                        >
+                                            <Button variant='outline' aria-label='audit link'>
+                                                {{ audit }}
+                                                <NewTabIcon class='mb-0.5' />
+                                            </Button>
+                                        </NuxtLink>
+                                    </CardContent>
+                                </div>
+                            </template>
+                        </Card>
+                        
+                        <!--  Hallmarks  -->
+                        <Card v-if='protocol.hallmarks?.length' class='w-full h-fit p-6 flex flex-col gap-12'>
+                            <Stepper orientation="vertical" class="mx-auto flex w-full max-w-md flex-col justify-start gap-10">
+                                <StepperItem
+                                    v-for='(step, index) in protocol.hallmarks.reverse()'
+                                    :key='step && step[0] && step[0]'
+                                    v-slot='{ state }'
+                                    class='relative flex w-full items-start gap-6'
+                                    :step='step.step'
+                                >
+                                    <StepperSeparator
+                                        v-if='index !== protocol.hallmarks?.length - 1'
+                                        class='absolute left-[18px] top-[38px] block h-[105%] w-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
+                                    />
+                                    <StepperTrigger as-child>
+                                        <Button
+                                            :variant="state === 'completed' || state === 'active' ? 'default' : 'outline'"
+                                            size="icon"
+                                            class="z-10 rounded-full shrink-0"
+                                            :class="[state === 'active' && 'ring-2 ring-ring ring-offset-2 ring-offset-background']"
+                                        >
+                                            <Check v-if="state === 'completed'" class="size-5" />
+                                            <Circle v-if="state === 'active'" />
+                                            <Dot v-if="state === 'inactive'" />
+                                        </Button>
+                                    </StepperTrigger>
+                                    <div class='flex flex-col gap-1'>
+                                        <StepperTitle
+                                            :class='[state === "active" && "text-primary"]'
+                                            class='text-sm font-semibold transition lg:text-base'
+                                        >
+                                            {{ dayjs.unix(step[0]).format('MMM D, YYYY') }}
+                                        </StepperTitle>
+                                        <StepperDescription
+                                            :class='[state === "active" && "text-primary"]'
+                                            class='sr-only text-xs text-muted-foreground transition md:not-sr-only lg:text-sm'
+                                        >
+                                            {{ step[1] }}
+                                        </StepperDescription>
+                                    </div>
+                                </StepperItem>
+                            </Stepper>
+                        </Card>
+                    </div>
+                </div>
             </div>
         </template>
     </div>
@@ -283,7 +373,7 @@
 <script setup>
     import { Badge } from '~/components/ui/badge';
     import { Button } from '@/components/ui/button/index';
-    import { Card, CardContent, CardDescription, CardHeader, CardFooter } from '~/components/ui/card';
+    import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
     import { formatNumber } from '~/utils/formatUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
@@ -291,8 +381,15 @@
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
+    import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table/index.ts';
     import Title from '~/components/Title.vue';
+    import { Check, Circle, Dot } from '@lucide/vue'
+    
+    // Dayjs
+    import dayjs from 'dayjs';
+    import relativeTime from 'dayjs/plugin/relativeTime';
+    dayjs.extend(relativeTime, { rounding: Math.floor });
     
     // LoadingStore
     import { storeToRefs } from 'pinia';
@@ -309,6 +406,26 @@
     // Router
     const route = useRoute();
     const id = computed(() => route.params?.id);
+    
+    const steps = [
+        {
+            step: 1,
+            title: 'Your details',
+            description:
+                'Provide your name and email address. We will use this information to create your account',
+        },
+        {
+            step: 2,
+            title: 'Company details',
+            description: 'A few details about your company will help us personalize your experience',
+        },
+        {
+            step: 3,
+            title: 'Invite your team',
+            description:
+                'Start collaborating with your team by inviting them to join your account. You can skip this step and invite them later',
+        },
+    ]
     
     onMounted(async() => await getDefillamaProtocol(id.value));
 </script>
