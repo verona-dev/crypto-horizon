@@ -324,7 +324,6 @@
                         <Card v-if='computed_protocol.hallmarks?.length' class='w-full h-fit p-6 flex flex-col gap-12'>
                             <CardHeader>
                                 <Title :tag='2' :level='4'>Hallmarks</Title>
-                                <CardDescription class='text-foreground'>Hallmarks description</CardDescription>
                             </CardHeader>
                             
                             <CardContent>
@@ -333,39 +332,31 @@
                                     class="mx-auto flex w-full max-w-md flex-col justify-start gap-10"
                                 >
                                     <StepperItem
-                                        v-for='(step, index) in computed_protocol.hallmarks'
+                                        v-for='(step, index) in computed_protocol.hallmarks.reverse()'
                                         :key='index'
-                                        v-slot='{ state }'
                                         class='relative flex w-full items-start gap-6'
                                         :step='computed_protocol.hallmarks.length - index'
+                                        :state='"completed"'
                                     >
                                         <StepperSeparator
                                             v-if='index !== computed_protocol.hallmarks?.length - 1'
                                             class='absolute left-[18px] top-[38px] block h-[105%] w-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
                                         />
-                                        <StepperTrigger as-child>
-                                            <Button
-                                                :variant="state === 'completed' || state === 'active' ? 'default' : 'outline'"
-                                                size="icon"
-                                                class="z-10 rounded-full shrink-0"
-                                                :class="[state === 'active' && 'ring-2 ring-ring ring-offset-2 ring-offset-background']"
-                                            >
-                                                <Check v-if="state === 'completed'" class="size-5" />
-                                                <Circle v-if="state === 'active'" />
-                                                <Dot v-if="state === 'inactive'" />
-                                            </Button>
-                                        </StepperTrigger>
+                                        
+                                        <div class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-warning/75 ring-2 ring-warning/50 ring-offset-2 ring-offset-background',>
+<!--                                            <Check class="size-5" />-->
+                                            <NuxtIcon
+                                                name='ph:warning-fill'
+                                                size='20'
+                                            />
+                                        </div>
+                                        
                                         <div class='flex flex-col gap-1'>
-                                            <StepperTitle
-                                                :class='[state === "active" && "text-primary"]'
-                                                class='text-sm font-semibold transition lg:text-base'
-                                            >
+                                            <StepperTitle class='text-sm font-semibold transition lg:text-base'>
                                                 {{ dayjs.unix(step[0]).format('MMM D, YYYY') }}
                                             </StepperTitle>
-                                            <StepperDescription
-                                                :class='[state === "active" && "text-primary"]'
-                                                class='sr-only text-xs text-muted-foreground transition md:not-sr-only lg:text-sm'
-                                            >
+                                            
+                                            <StepperDescription class='sr-only text-xs text-muted-foreground transition md:not-sr-only lg:text-sm'>
                                                 {{ step[1] }}
                                             </StepperDescription>
                                         </div>
