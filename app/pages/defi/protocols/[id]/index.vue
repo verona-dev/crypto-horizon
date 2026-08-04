@@ -288,7 +288,7 @@
                             <template v-if='computed_protocol.methodology'>
                                 <CardHeader>
                                     <Title :tag='2' :level='4'>Methodology</Title>
-                                    <CardDescription class='text-foreground'>{{ computed_protocol.methodology }}</CardDescription>
+                                    <CardDescription>{{ computed_protocol.methodology }}</CardDescription>
                                 </CardHeader>
                             </template>
                             
@@ -297,7 +297,7 @@
                                 <div class='flex flex-col gap-6'>
                                     <CardHeader>
                                         <Title :tag='2' :level='4'>{{ glossary.audit.label }}</Title>
-                                        <CardDescription class='text-foreground'>{{ glossary.audit.description }}</CardDescription>
+                                        <CardDescription>{{ glossary.audit.description }}</CardDescription>
                                     </CardHeader>
                                     
                                     <CardContent>
