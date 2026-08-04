@@ -42,6 +42,10 @@
         "stars": "Github stars."
 
     },
+    "hallmarks": {
+        "label": "Hallmarks",
+        "description":"Key events or milestones in the history of a protocol, project, or ecosystem, often marked by significant dates and descriptions (e.g., launches, upgrades, or incidents)."
+    },
     "hashing_algorithm": {
         "label": "Hashing Algorithm",
         "description":"Blockchain hashing algorithm."
