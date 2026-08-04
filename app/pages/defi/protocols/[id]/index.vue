@@ -6,53 +6,37 @@
             <div v-if='computed_protocol?.id' class='flex flex-col gap-6'>
                 <div class='flex flex-col 2xl:flex-row w-full gap-6'>
                     <!--  Hallmarks  -->
-                    <Card v-if='events && events?.length' class='w-full h-fit p-6 mb-4 flex flex-col gap-12'>
+                    <Card v-if='events && events?.length' class='w-full h-fit p-6 flex flex-col'>
                         <CardHeader>
-                            <Title :tag='2' :level='4'>Hallmarks</Title>
+                            <Title :tag='2' :level='4'>{{ glossary.hallmarks.label }}</Title>
+                            <CardDescription>{{ glossary.hallmarks.description }}</CardDescription>
                         </CardHeader>
                         
-                        <CardContent class='w-full max-w-3xl'>
+                        <CardContent>
                             <div
-                                v-for='(event, index) in events'
+                                v-for='(event, index) in events.reverse()'
                                 :key='event[0]'
-                                class='relative flex items-center gap-12'
+                                class='relative flex items-center gap-2'
                             >
                                 <!-- Timeline -->
-                                <div class='relative flex self-stretch justify-center'>
-                                    <div v-if='index > 0' class='absolute bottom-1/2 top-0 w-px bg-border' />
-                                    <div v-if='index < events.length - 1' class='absolute bottom-0 top-1/2 w-px bg-border' />
+                                <div class='relative h-32 min-w-40 flex self-stretch justify-center'>
+                                    <div v-if='index > 0' class='absolute bottom-1/2 top-0 w-px bg-primary/10' />
+                                    <div v-if='index < events.length - 1' class='absolute bottom-0 top-1/2 w-px bg-primary/10' />
                                     
-                                    <!-- Event dot -->
-                                    <div class='flex flex-col relative z-10 font-mono text-xs my-auto items-center gap-3'>
-                                        <div class='h-2.5 w-2.5 rounded-full border-2 border-background bg-primary ring-4 ring-primary/10' />
-                                        <p>{{ formatDate(event[0]) }}</p>
-                                    </div>
+                                    <Badge variant='outline' class='relative z-10 bg-popover border-primary/10 flex justify-center my-auto items-center gap-2 p-4'>
+                                        <NuxtIcon
+                                            name='ph:calendar-blank'
+                                            size='20'
+                                            class=''
+                                        />
+                                        
+                                        <p class='font-mono text-sm text-muted-foreground'>
+                                            {{ formatDate(event[0]) }}
+                                        </p>
+                                    </Badge>
                                 </div>
                                 
-                                <!-- Event card -->
-                                <div class='flex-1 pb-6'>
-                                    <Card class='rounded-xl border transition-all hover:border-primary/30 hover:shadow-md'>
-                                        <CardHeader class='flex flex-row items-center'>
-                                            <Badge variant='outline' class='font-mono text-xs'>
-                                                {{ formatDate(event[0]) }}
-                                            </Badge>
-                                            
-                                            <Separator class='flex-1' />
-                                            
-                                            <NuxtIcon
-                                                name='ph:warning-fill'
-                                                size='18'
-                                                class='shrink-0 text-primary'
-                                            />
-                                        </CardHeader>
-                                        
-                                        <CardContent>
-                                            <Title :tag='2' :level='5' class='px-2.5 py-0.5'>
-                                                {{ event[1] }}
-                                            </Title>
-                                        </CardContent>
-                                    </Card>
-                                </div>
+                                <Title :tag='2' :level='6' class='mb-1'>{{ event[1] }}</Title>
                             </div>
                         </CardContent>
                     </Card>
@@ -391,11 +375,7 @@
     import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table/index.ts';
     import Title from '~/components/Title.vue';
-    
-    // Dayjs
-    import dayjs from 'dayjs';
-    import relativeTime from 'dayjs/plugin/relativeTime';
-    dayjs.extend(relativeTime, { rounding: Math.floor });
+    import { formatDate } from '~/utils/formatUtils.js';
     
     // LoadingStore
     import { storeToRefs } from 'pinia';
@@ -421,14 +401,6 @@
         [1667865600, 'FTX collapse'],
         [1684108800, 'ETH Withdrawal Activation'],
     ];
-    
-    const formatDate = (timestamp) => {
-        return new Date(timestamp * 1000).toLocaleDateString('en-GB', {
-            day: '2-digit',
-            month: 'short',
-            year: 'numeric',
-        });
-    };
     
     onMounted(async() => await getDefillamaProtocol(id.value));
 </script>
