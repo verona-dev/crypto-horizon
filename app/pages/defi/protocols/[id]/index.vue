@@ -344,7 +344,6 @@
                                         />
                                         
                                         <div class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-warning/75 ring-2 ring-warning/50 ring-offset-2 ring-offset-background',>
-<!--                                            <Check class="size-5" />-->
                                             <NuxtIcon
                                                 name='ph:warning-fill'
                                                 size='20'
@@ -382,10 +381,9 @@
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
-    import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
+    import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle } from '~/components/ui/stepper';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table/index.ts';
     import Title from '~/components/Title.vue';
-    import { Check, Circle, Dot } from '@lucide/vue'
     
     // Dayjs
     import dayjs from 'dayjs';
