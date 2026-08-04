@@ -1,5 +1,6 @@
 import { CalendarDate } from '@internationalized/date';
 import { parseISO } from 'date-fns';
+import dayjs from 'dayjs';
 
 const formatNumber = (value, {
                           locale = 'en-US',
@@ -120,11 +121,16 @@ const parseDateStringToObject = (dateStr) => {
     return new CalendarDate(year, month, day);
 };
 
+const formatDate = (timestamp) => {
+    return dayjs.unix(timestamp).format('DD MMM YYYY');
+};
+
 export {
     formatNumber,
     formatLinks,
     capitalize,
     goBack,
     parseDateStringToObject,
+    formatDate,
 };
 
