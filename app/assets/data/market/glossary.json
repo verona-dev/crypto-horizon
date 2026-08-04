@@ -11,7 +11,7 @@
     },
     "audit": {
         "label": "Audit",
-        "description" : "An audit is a process where developers inspect the underlying code and/or algorithm that compose systems and applications, allowing them to spot potential bugs or points of failure before deployment.\n\n Audits are generally undertaken by third parties, which helps guarantee that the procedure is done in an unbiased and effective manner."
+        "description" : "A process where developers inspect the underlying code and/or algorithm that compose systems and applications, allowing them to spot potential bugs or points of failure before deployment.\n\n Audits are generally undertaken by third parties, which helps guarantee that the procedure is done in an unbiased and effective manner."
     },
     "circulating_supply": {
         "label": "Circulating Supply",
@@ -41,6 +41,10 @@
         "issues": "Github issues.",
         "stars": "Github stars."
 
+    },
+    "hallmarks": {
+        "label": "Hallmarks",
+        "description":"Key events or milestones in the history of a protocol, project, or ecosystem, often marked by significant dates and descriptions (e.g., launches, upgrades, or incidents)."
     },
     "hashing_algorithm": {
         "label": "Hashing Algorithm",

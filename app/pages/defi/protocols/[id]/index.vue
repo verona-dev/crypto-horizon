@@ -74,7 +74,7 @@
                                 <Title :tag='2' :level='4'>Protocol Information</Title>
                                 <CardDescription v-if='computed_protocol.description'>{{
                                         computed_protocol.description
-                                                                                     }}
+                                                                                      }}
                                 </CardDescription>
                             </CardHeader>
                             
@@ -173,7 +173,7 @@
                                                     
                                                     <CardDescription v-if='computed_protocol.treasury'>{{
                                                             computed_protocol.treasury
-                                                                                                      }}
+                                                                                                       }}
                                                     </CardDescription>
                                                 </CardContent>
                                             </PixelCard>
@@ -288,7 +288,7 @@
                             <template v-if='computed_protocol.methodology'>
                                 <CardHeader>
                                     <Title :tag='2' :level='4'>Methodology</Title>
-                                    <CardDescription class='text-foreground'>{{ computed_protocol.methodology }}</CardDescription>
+                                    <CardDescription>{{ computed_protocol.methodology }}</CardDescription>
                                 </CardHeader>
                             </template>
                             
@@ -297,7 +297,7 @@
                                 <div class='flex flex-col gap-6'>
                                     <CardHeader>
                                         <Title :tag='2' :level='4'>{{ glossary.audit.label }}</Title>
-                                        <CardDescription class='text-foreground'>{{ glossary.audit.description }}</CardDescription>
+                                        <CardDescription>{{ glossary.audit.description }}</CardDescription>
                                     </CardHeader>
                                     
                                     <CardContent>
@@ -321,47 +321,38 @@
                         </Card>
                         
                         <!--  Hallmarks  -->
-                        <Card v-if='computed_protocol.hallmarks?.length' class='w-full h-fit p-6 flex flex-col gap-12'>
+                        <Card v-if='computed_hallmarks?.length' class='w-full h-fit p-6 flex flex-col'>
                             <CardHeader>
-                                <Title :tag='2' :level='4'>Hallmarks</Title>
+                                <Title :tag='2' :level='4'>{{ glossary.hallmarks.label }}</Title>
+                                <CardDescription>{{ glossary.hallmarks.description }}</CardDescription>
                             </CardHeader>
                             
                             <CardContent>
-                                <Stepper
-                                    orientation="vertical"
-                                    class="mx-auto flex w-full max-w-md flex-col justify-start gap-10"
+                                <div
+                                    v-for='(event, index) in computed_hallmarks'
+                                    :key='event[0]'
+                                    class='relative flex items-center gap-2'
                                 >
-                                    <StepperItem
-                                        v-for='(step, index) in computed_protocol.hallmarks.reverse()'
-                                        :key='index'
-                                        class='relative flex w-full items-start gap-6'
-                                        :step='computed_protocol.hallmarks.length - index'
-                                        :state='"completed"'
-                                    >
-                                        <StepperSeparator
-                                            v-if='index !== computed_protocol.hallmarks?.length - 1'
-                                            class='absolute left-[18px] top-[38px] block h-[105%] w-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
-                                        />
+                                    <!-- Timeline -->
+                                    <div class='relative h-32 min-w-40 flex self-stretch justify-center'>
+                                        <div v-if='index > 0' class='absolute bottom-1/2 top-0 w-px bg-primary/10' />
+                                        <div v-if='index < computed_hallmarks.length - 1' class='absolute bottom-0 top-1/2 w-px bg-primary/10' />
                                         
-                                        <div class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-warning/75 ring-2 ring-warning/50 ring-offset-2 ring-offset-background',>
-<!--                                            <Check class="size-5" />-->
+                                        <Badge variant='outline' class='relative z-10 bg-popover border-primary/10 flex justify-center my-auto items-center gap-2 p-4'>
                                             <NuxtIcon
-                                                name='ph:warning-fill'
+                                                name='ph:calendar-blank'
                                                 size='20'
+                                                class=''
                                             />
-                                        </div>
-                                        
-                                        <div class='flex flex-col gap-1'>
-                                            <StepperTitle class='text-sm font-semibold transition lg:text-base'>
-                                                {{ dayjs.unix(step[0]).format('MMM D, YYYY') }}
-                                            </StepperTitle>
                                             
-                                            <StepperDescription class='sr-only text-xs text-muted-foreground transition md:not-sr-only lg:text-sm'>
-                                                {{ step[1] }}
-                                            </StepperDescription>
-                                        </div>
-                                    </StepperItem>
-                                </Stepper>
+                                            <p class='font-mono text-sm text-muted-foreground'>
+                                                {{ formatDate(event[0]) }}
+                                            </p>
+                                        </Badge>
+                                    </div>
+                                    
+                                    <Title :tag='2' :level='6' class='mb-1'>{{ event[1] }}</Title>
+                                </div>
                             </CardContent>
                         </Card>
                     </div>
@@ -375,22 +366,15 @@
     import { Badge } from '~/components/ui/badge';
     import { Button } from '@/components/ui/button/index';
     import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
-    import { formatNumber } from '~/utils/formatUtils.js';
+    import { formatNumber, formatDate } from '~/utils/formatUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
-    import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table/index.ts';
     import Title from '~/components/Title.vue';
-    import { Check, Circle, Dot } from '@lucide/vue'
-    
-    // Dayjs
-    import dayjs from 'dayjs';
-    import relativeTime from 'dayjs/plugin/relativeTime';
-    dayjs.extend(relativeTime, { rounding: Math.floor });
     
     // LoadingStore
     import { storeToRefs } from 'pinia';
@@ -404,6 +388,9 @@
     const { getDefillamaProtocol } = DefiStore;
     const { protocol } = storeToRefs(DefiStore);
     const computed_protocol = computed(() => protocol.value);
+    const computed_hallmarks = computed(() => {
+        return [...(protocol.value?.hallmarks ?? [])].reverse();
+    });
     
     // Router
     const route = useRoute();
