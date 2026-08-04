@@ -5,42 +5,6 @@
         <template v-else>
             <div v-if='computed_protocol?.id' class='flex flex-col gap-6'>
                 <div class='flex flex-col 2xl:flex-row w-full gap-6'>
-                    <!--  Hallmarks  -->
-                    <Card v-if='events && events?.length' class='w-full h-fit p-6 flex flex-col'>
-                        <CardHeader>
-                            <Title :tag='2' :level='4'>{{ glossary.hallmarks.label }}</Title>
-                            <CardDescription>{{ glossary.hallmarks.description }}</CardDescription>
-                        </CardHeader>
-                        
-                        <CardContent>
-                            <div
-                                v-for='(event, index) in events.reverse()'
-                                :key='event[0]'
-                                class='relative flex items-center gap-2'
-                            >
-                                <!-- Timeline -->
-                                <div class='relative h-32 min-w-40 flex self-stretch justify-center'>
-                                    <div v-if='index > 0' class='absolute bottom-1/2 top-0 w-px bg-primary/10' />
-                                    <div v-if='index < events.length - 1' class='absolute bottom-0 top-1/2 w-px bg-primary/10' />
-                                    
-                                    <Badge variant='outline' class='relative z-10 bg-popover border-primary/10 flex justify-center my-auto items-center gap-2 p-4'>
-                                        <NuxtIcon
-                                            name='ph:calendar-blank'
-                                            size='20'
-                                            class=''
-                                        />
-                                        
-                                        <p class='font-mono text-sm text-muted-foreground'>
-                                            {{ formatDate(event[0]) }}
-                                        </p>
-                                    </Badge>
-                                </div>
-                                
-                                <Title :tag='2' :level='6' class='mb-1'>{{ event[1] }}</Title>
-                            </div>
-                        </CardContent>
-                    </Card>
-                    
                     <div class='left flex flex-col gap-6 w-full 2xl:w-1/2 h-full'>
                         <!--   Name + Logo + Tvl  -->
                         <Card class='w-full h-fit p-6 flex flex-col gap-6'>
@@ -355,6 +319,42 @@
                                 </div>
                             </template>
                         </Card>
+                        
+                        <!--  Hallmarks  -->
+                        <Card v-if='computed_hallmarks?.length' class='w-full h-fit p-6 flex flex-col'>
+                            <CardHeader>
+                                <Title :tag='2' :level='4'>{{ glossary.hallmarks.label }}</Title>
+                                <CardDescription>{{ glossary.hallmarks.description }}</CardDescription>
+                            </CardHeader>
+                            
+                            <CardContent>
+                                <div
+                                    v-for='(event, index) in computed_hallmarks'
+                                    :key='event[0]'
+                                    class='relative flex items-center gap-2'
+                                >
+                                    <!-- Timeline -->
+                                    <div class='relative h-32 min-w-40 flex self-stretch justify-center'>
+                                        <div v-if='index > 0' class='absolute bottom-1/2 top-0 w-px bg-primary/10' />
+                                        <div v-if='index < computed_hallmarks.length - 1' class='absolute bottom-0 top-1/2 w-px bg-primary/10' />
+                                        
+                                        <Badge variant='outline' class='relative z-10 bg-popover border-primary/10 flex justify-center my-auto items-center gap-2 p-4'>
+                                            <NuxtIcon
+                                                name='ph:calendar-blank'
+                                                size='20'
+                                                class=''
+                                            />
+                                            
+                                            <p class='font-mono text-sm text-muted-foreground'>
+                                                {{ formatDate(event[0]) }}
+                                            </p>
+                                        </Badge>
+                                    </div>
+                                    
+                                    <Title :tag='2' :level='6' class='mb-1'>{{ event[1] }}</Title>
+                                </div>
+                            </CardContent>
+                        </Card>
                     </div>
                 </div>
             </div>
@@ -366,7 +366,7 @@
     import { Badge } from '~/components/ui/badge';
     import { Button } from '@/components/ui/button/index';
     import { Card, CardContent, CardDescription, CardHeader } from '~/components/ui/card';
-    import { formatNumber } from '~/utils/formatUtils.js';
+    import { formatNumber, formatDate } from '~/utils/formatUtils.js';
     import glossary from '~/assets/data/market/glossary.json';
     import { HoverCard, HoverCardContent, HoverCardTrigger } from '~/components/ui/hover-card';
     import InfoIcon from '~/components/InfoIcon.vue';
@@ -375,7 +375,6 @@
     import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table/index.ts';
     import Title from '~/components/Title.vue';
-    import { formatDate } from '~/utils/formatUtils.js';
     
     // LoadingStore
     import { storeToRefs } from 'pinia';
@@ -389,18 +388,13 @@
     const { getDefillamaProtocol } = DefiStore;
     const { protocol } = storeToRefs(DefiStore);
     const computed_protocol = computed(() => protocol.value);
+    const computed_hallmarks = computed(() => {
+        return [...(protocol.value?.hallmarks ?? [])].reverse();
+    });
     
     // Router
     const route = useRoute();
     const id = computed(() => route.params?.id);
-    
-    const events = [
-        [1610496000, 'Start of incentives for curve pool'],
-        [1651881600, 'UST depeg'],
-        [1654819200, 'stETH depeg'],
-        [1667865600, 'FTX collapse'],
-        [1684108800, 'ETH Withdrawal Activation'],
-    ];
     
     onMounted(async() => await getDefillamaProtocol(id.value));
 </script>
