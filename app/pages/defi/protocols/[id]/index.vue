@@ -5,6 +5,58 @@
         <template v-else>
             <div v-if='computed_protocol?.id' class='flex flex-col gap-6'>
                 <div class='flex flex-col 2xl:flex-row w-full gap-6'>
+                    <!--  Hallmarks  -->
+                    <Card v-if='events && events?.length' class='w-full h-fit p-6 mb-4 flex flex-col gap-12'>
+                        <CardHeader>
+                            <Title :tag='2' :level='4'>Hallmarks</Title>
+                        </CardHeader>
+                        
+                        <CardContent class='w-full max-w-3xl'>
+                            <div
+                                v-for='(event, index) in events'
+                                :key='event[0]'
+                                class='relative flex items-center gap-12'
+                            >
+                                <!-- Timeline -->
+                                <div class='relative flex self-stretch justify-center'>
+                                    <div v-if='index > 0' class='absolute bottom-1/2 top-0 w-px bg-border' />
+                                    <div v-if='index < events.length - 1' class='absolute bottom-0 top-1/2 w-px bg-border' />
+                                    
+                                    <!-- Event dot -->
+                                    <div class='flex flex-col relative z-10 font-mono text-xs my-auto items-center gap-3'>
+                                        <div class='h-2.5 w-2.5 rounded-full border-2 border-background bg-primary ring-4 ring-primary/10' />
+                                        <p>{{ formatDate(event[0]) }}</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Event card -->
+                                <div class='flex-1 pb-6'>
+                                    <Card class='rounded-xl border transition-all hover:border-primary/30 hover:shadow-md'>
+                                        <CardHeader class='flex flex-row items-center'>
+                                            <Badge variant='outline' class='font-mono text-xs'>
+                                                {{ formatDate(event[0]) }}
+                                            </Badge>
+                                            
+                                            <Separator class='flex-1' />
+                                            
+                                            <NuxtIcon
+                                                name='ph:warning-fill'
+                                                size='18'
+                                                class='shrink-0 text-primary'
+                                            />
+                                        </CardHeader>
+                                        
+                                        <CardContent>
+                                            <Title :tag='2' :level='5' class='px-2.5 py-0.5'>
+                                                {{ event[1] }}
+                                            </Title>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                    
                     <div class='left flex flex-col gap-6 w-full 2xl:w-1/2 h-full'>
                         <!--   Name + Logo + Tvl  -->
                         <Card class='w-full h-fit p-6 flex flex-col gap-6'>
@@ -74,7 +126,7 @@
                                 <Title :tag='2' :level='4'>Protocol Information</Title>
                                 <CardDescription v-if='computed_protocol.description'>{{
                                         computed_protocol.description
-                                                                                     }}
+                                                                                      }}
                                 </CardDescription>
                             </CardHeader>
                             
@@ -173,7 +225,7 @@
                                                     
                                                     <CardDescription v-if='computed_protocol.treasury'>{{
                                                             computed_protocol.treasury
-                                                                                                      }}
+                                                                                                       }}
                                                     </CardDescription>
                                                 </CardContent>
                                             </PixelCard>
@@ -319,50 +371,6 @@
                                 </div>
                             </template>
                         </Card>
-                        
-                        <!--  Hallmarks  -->
-                        <Card v-if='computed_protocol.hallmarks?.length' class='w-full h-fit p-6 flex flex-col gap-12'>
-                            <CardHeader>
-                                <Title :tag='2' :level='4'>Hallmarks</Title>
-                            </CardHeader>
-                            
-                            <CardContent>
-                                <Stepper
-                                    orientation="vertical"
-                                    class="mx-auto flex w-full max-w-md flex-col justify-start gap-10"
-                                >
-                                    <StepperItem
-                                        v-for='(step, index) in computed_protocol.hallmarks.reverse()'
-                                        :key='index'
-                                        class='relative flex w-full items-start gap-6'
-                                        :step='computed_protocol.hallmarks.length - index'
-                                        :state='"completed"'
-                                    >
-                                        <StepperSeparator
-                                            v-if='index !== computed_protocol.hallmarks?.length - 1'
-                                            class='absolute left-[18px] top-[38px] block h-[105%] w-0.5 shrink-0 rounded-full bg-muted group-data-[state=completed]:bg-primary'
-                                        />
-                                        
-                                        <div class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-warning/75 ring-2 ring-warning/50 ring-offset-2 ring-offset-background',>
-                                            <NuxtIcon
-                                                name='ph:warning-fill'
-                                                size='20'
-                                            />
-                                        </div>
-                                        
-                                        <div class='flex flex-col gap-1'>
-                                            <StepperTitle class='text-sm font-semibold transition lg:text-base'>
-                                                {{ dayjs.unix(step[0]).format('MMM D, YYYY') }}
-                                            </StepperTitle>
-                                            
-                                            <StepperDescription class='sr-only text-xs text-muted-foreground transition md:not-sr-only lg:text-sm'>
-                                                {{ step[1] }}
-                                            </StepperDescription>
-                                        </div>
-                                    </StepperItem>
-                                </Stepper>
-                            </CardContent>
-                        </Card>
                     </div>
                 </div>
             </div>
@@ -381,7 +389,6 @@
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
-    import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle } from '~/components/ui/stepper';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table/index.ts';
     import Title from '~/components/Title.vue';
     
@@ -406,6 +413,22 @@
     // Router
     const route = useRoute();
     const id = computed(() => route.params?.id);
+    
+    const events = [
+        [1610496000, 'Start of incentives for curve pool'],
+        [1651881600, 'UST depeg'],
+        [1654819200, 'stETH depeg'],
+        [1667865600, 'FTX collapse'],
+        [1684108800, 'ETH Withdrawal Activation'],
+    ];
+    
+    const formatDate = (timestamp) => {
+        return new Date(timestamp * 1000).toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+        });
+    };
     
     onMounted(async() => await getDefillamaProtocol(id.value));
 </script>
