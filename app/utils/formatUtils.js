@@ -121,9 +121,7 @@ const parseDateStringToObject = (dateStr) => {
     return new CalendarDate(year, month, day);
 };
 
-const formatDate = (timestamp) => {
-    return dayjs.unix(timestamp).format('DD MMM YYYY');
-};
+const formatDate = (timestamp) => dayjs.unix(timestamp).format('DD MMM YYYY');
 
 export {
     formatNumber,
