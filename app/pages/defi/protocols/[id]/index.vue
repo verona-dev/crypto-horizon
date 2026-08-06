@@ -4,6 +4,49 @@
         
         <template v-else>
             <div v-if='computed_protocol?.id' class='flex flex-col gap-6'>
+                
+                <!--  Hallmarks Timeline  -->
+                <Card v-if='computed_hallmarks?.length' class='w-full h-fit p-6 flex flex-col gap-6'>
+                    <CardHeader>
+                        <Title :tag='2' :level='4'>{{ glossary.hallmarks.label }}</Title>
+                        <CardDescription>{{ glossary.hallmarks.description }}</CardDescription>
+                    </CardHeader>
+                    
+                    <CardContent>
+                        <Stepper
+                            orientation='vertical'
+                            class='flex max-w-md flex-col gap-10'
+                        >
+                            <StepperItem
+                                v-for='(step, index) in computed_hallmarks'
+                                :key='index'
+                                class='relative flex w-full items-start gap-6'
+                                :step='computed_protocol.hallmarks.length - index'
+                                :state='"completed"'
+                            >
+                                <StepperSeparator
+                                    v-if='index !== computed_protocol.hallmarks?.length - 1'
+                                    class='absolute left-[19px] top-[44px] block h-[85%] w-0.5 shrink-0 rounded-full !bg-primary/25'
+                                />
+                                
+                                <div class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-primary/75 ring-2 ring-primary/25 ring-offset-2 ring-offset-background'>
+                                    <NuxtIcon name='ph:calendar-blank' size='18' class='text-primary' />
+                                </div>
+                                
+                                <div class='flex flex-col gap-1'>
+                                    <StepperTitle class='text-sm lg:text-base font-semibold transition text-muted-foreground'>
+                                        {{ formatDate(step[0]) }}
+                                    </StepperTitle>
+                                    
+                                    <StepperDescription class='sr-only text-xs lg:text-sm text-foreground transition md:not-sr-only'>
+                                        {{ step[1] }}
+                                    </StepperDescription>
+                                </div>
+                            </StepperItem>
+                        </Stepper>
+                    </CardContent>
+                </Card>
+                
                 <div class='flex flex-col 2xl:flex-row w-full gap-6'>
                     <div class='left flex flex-col gap-6 w-full 2xl:w-1/2 h-full'>
                         <!--   Name + Logo + Tvl  -->
@@ -316,37 +359,6 @@
                                 </div>
                             </template>
                         </Card>
-                        
-                        <!--  Hallmarks Timeline  -->
-                        <Card v-if='computed_hallmarks?.length' class='w-full h-fit p-6 flex flex-col'>
-                            <CardHeader>
-                                <Title :tag='2' :level='4'>{{ glossary.hallmarks.label }}</Title>
-                                <CardDescription>{{ glossary.hallmarks.description }}</CardDescription>
-                            </CardHeader>
-                            
-                            <CardContent>
-                                <div
-                                    v-for='(event, index) in computed_hallmarks'
-                                    :key='event[0]'
-                                    class='relative flex items-center gap-2'
-                                >
-                                    <!-- Timeline -->
-                                    <div class='relative py-6 min-w-40 flex self-stretch justify-center'>
-                                        <div v-if='index > 0' class='absolute bottom-1/2 top-0 w-px bg-primary/25' />
-                                        <div v-if='index < computed_hallmarks.length - 1' class='absolute bottom-0 top-1/2 w-px bg-primary/25' />
-                                        
-                                        <Badge variant='outline' class='relative z-10 bg-popover border-primary/25 flex justify-center my-auto items-center gap-3 py-2 px-3'>
-                                            <div class='relative z-10 my-auto h-3.5 w-3.5 shrink-0 rounded-full border-2 border-background bg-primary ring-4 ring-primary/10' />
-                                            <p class='font-mono text-sm text-muted-foreground'>
-                                                {{ formatDate(event[0]) }}
-                                            </p>
-                                        </Badge>
-                                    </div>
-                                    
-                                    <Title :tag='2' :level='6' class='text-lg'>{{ event[1] }}</Title>
-                                </div>
-                            </CardContent>
-                        </Card>
                     </div>
                 </div>
             </div>
@@ -365,6 +377,7 @@
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
+    import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table/index.ts';
     import Title from '~/components/Title.vue';
     
