@@ -72,10 +72,7 @@
                         <Card class='w-full h-fit p-6 flex flex-col gap-6'>
                             <CardHeader>
                                 <Title :tag='2' :level='4'>Protocol Information</Title>
-                                <CardDescription v-if='computed_protocol.description'>{{
-                                        computed_protocol.description
-                                                                                      }}
-                                </CardDescription>
+                                <CardDescription v-if='computed_protocol.description'>{{ computed_protocol.description }}</CardDescription>
                             </CardHeader>
                             
                             <!--   Links  -->
@@ -320,7 +317,7 @@
                             </template>
                         </Card>
                         
-                        <!--  Hallmarks  -->
+                        <!--  Hallmarks Timeline  -->
                         <Card v-if='computed_hallmarks?.length' class='w-full h-fit p-6 flex flex-col'>
                             <CardHeader>
                                 <Title :tag='2' :level='4'>{{ glossary.hallmarks.label }}</Title>
@@ -334,24 +331,19 @@
                                     class='relative flex items-center gap-2'
                                 >
                                     <!-- Timeline -->
-                                    <div class='relative h-32 min-w-40 flex self-stretch justify-center'>
-                                        <div v-if='index > 0' class='absolute bottom-1/2 top-0 w-px bg-primary/10' />
-                                        <div v-if='index < computed_hallmarks.length - 1' class='absolute bottom-0 top-1/2 w-px bg-primary/10' />
+                                    <div class='relative py-6 min-w-40 flex self-stretch justify-center'>
+                                        <div v-if='index > 0' class='absolute bottom-1/2 top-0 w-px bg-primary/25' />
+                                        <div v-if='index < computed_hallmarks.length - 1' class='absolute bottom-0 top-1/2 w-px bg-primary/25' />
                                         
-                                        <Badge variant='outline' class='relative z-10 bg-popover border-primary/10 flex justify-center my-auto items-center gap-2 p-4'>
-                                            <NuxtIcon
-                                                name='ph:calendar-blank'
-                                                size='20'
-                                                class=''
-                                            />
-                                            
+                                        <Badge variant='outline' class='relative z-10 bg-popover border-primary/25 flex justify-center my-auto items-center gap-3 py-2 px-3'>
+                                            <div class='relative z-10 my-auto h-3.5 w-3.5 shrink-0 rounded-full border-2 border-background bg-primary ring-4 ring-primary/10' />
                                             <p class='font-mono text-sm text-muted-foreground'>
                                                 {{ formatDate(event[0]) }}
                                             </p>
                                         </Badge>
                                     </div>
                                     
-                                    <Title :tag='2' :level='6' class='mb-1'>{{ event[1] }}</Title>
+                                    <Title :tag='2' :level='6' class='text-lg'>{{ event[1] }}</Title>
                                 </div>
                             </CardContent>
                         </Card>
