@@ -40,7 +40,10 @@
         "forks": "Github forks.",
         "issues": "Github issues.",
         "stars": "Github stars."
-
+    },
+    "hacks": {
+        "label": "Hacks",
+        "description":"Refers to the unauthorized exploitation of vulnerabilities in cryptocurrency systems, blockchain networks, or related digital assets to steal funds, manipulate data, or disrupt operations."
     },
     "hallmarks": {
         "label": "Hallmarks",
