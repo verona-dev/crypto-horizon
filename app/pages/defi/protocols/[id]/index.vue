@@ -48,7 +48,7 @@
                     </Card>
                     
                     <!--  Raises/Funding Rounds  -->
-                    <Card v-if='protocol.raises?.length' class='w-1/3 flex flex-col p-6 gap-6 border border-secondary'>
+                    <Card v-if='computed_raises?.length' class='w-1/3 flex flex-col p-6 gap-6 border border-secondary'>
                         <CardHeader>
                             <Title :tag='2' :level='4'>{{ glossary.funding_rounds.label }}</Title>
                             <CardDescription>{{ glossary.funding_rounds.description }}</CardDescription>
@@ -60,14 +60,38 @@
                                 class='flex max-w-md flex-col gap-10'
                             >
                                 <StepperItem
-                                    v-for='(event, index) in protocol.raises'
+                                    v-for='(event, index) in computed_raises'
                                     :key='index'
                                     class='relative flex w-full items-start gap-6'
-                                    :step='protocol.raises.length - index'
+                                    :step='computed_raises.length - index'
                                     :state='"completed"'
                                 >
+                                    <Card class='w-full border border-secondary'>
+                                        <CardHeader class='flex-row !w-full !justify-between items-center border-dashed border-b border-b-secondary p-4'>
+                                            <div class='flex flex-col gap-1'>
+                                                <StepperTitle class='font-semibold transition text-muted-foreground'>Date</StepperTitle>
+                                                <p class='text-lg'>{{ formatDate(event.date) }}</p>
+                                            </div>
+                                            
+                                            <div class='border-b-3 border-primary'>
+                                                ${{ event.amount }}M
+                                            </div>
+                                        </CardHeader>
+                                        
+                                        <CardContent class='p-4'>
+                                            <div>
+                                                Round: <span v-if='event.round'>{{ event.round }}</span>
+                                            </div>
+                                            
+                                            <div>
+                                                Lead Investors: <Badge v-for='investor in event.leadInvestors' :key='investor'>{{ investor }}</Badge>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                    
+                                    <!--
                                     <StepperSeparator
-                                        v-if='index !== protocol.raises?.length - 1'
+                                        v-if='index !== computed_raises?.length - 1'
                                         class='absolute left-[19px] top-[44px] block h-[85%] w-0.5 shrink-0 rounded-full !bg-primary/25'
                                     />
                                     
@@ -82,9 +106,9 @@
                                         
                                         <StepperDescription class='sr-only text-xs lg:text-sm text-foreground transition md:not-sr-only'>
                                             descr
-<!--                                            {{ step[1] }}-->
                                         </StepperDescription>
                                     </div>
+                                    -->
                                 </StepperItem>
                             </Stepper>
                         </CardContent>
@@ -517,6 +541,9 @@
     const computed_protocol = computed(() => protocol.value);
     const computed_hallmarks = computed(() => {
         return [...(protocol.value?.hallmarks ?? [])].reverse();
+    });
+    const computed_raises = computed(() => {
+        return [...(protocol.value?.raises ?? [])].reverse();
     });
     
     // Router
