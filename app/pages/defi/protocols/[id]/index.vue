@@ -68,13 +68,6 @@
                                 >
                                     <Card class='w-full border border-secondary'>
                                         <CardHeader class='!w-full border-dashed border-b border-b-secondary'>
-                                            <Title
-                                                :tag='3' :level='6'
-                                                class='text-primary text-center uppercase underline my-4'
-                                            >
-                                                {{ event.round || 'Round' }}
-                                            </Title>
-                                            
                                             <div class='flex justify-between items-center'>
                                                 <div class='flex flex-col gap-1'>
                                                     <StepperTitle class='font-semibold transition text-muted-foreground'>Date</StepperTitle>
@@ -82,26 +75,38 @@
                                                 </div>
                                                 
                                                 <p class='border-b-3 border-primary text-xl'>
-                                                    ${{ event.amount }}M
+                                                    &#36;{{ event.amount }}M
                                                 </p>
                                             </div>
                                         </CardHeader>
                                         
-                                        <CardContent class='p-6'>
-                                            <div>
-                                                Round: <span v-if='event.round'>{{ event.round }}</span>
-                                            </div>
+                                        <CardHeader class='flex flex-col items-center'>
+                                            <Title
+                                                :tag='3' :level='6'
+                                                class='uppercase underline'
+                                            >
+                                                {{ event.round || 'Round' }}
+                                            </Title>
                                             
-                                            <div v-if='event.leadInvestors?.length'>
-                                                Lead Investors: <Badge v-for='investor in event.leadInvestors' :key='investor'>{{ investor }}</Badge>
+                                            <Badge v-if='event.sector' variant='secondary' class=''>{{ event.sector }}</Badge>
+                                        </CardHeader>
+                                        
+                                        <CardContent class='p-6'>
+                                            
+                                            <div v-if='event.leadInvestors?.length' class='flex flex-col gap-1'>
+                                                <span>Lead Investors:</span>
+                                                
+                                                <div class='flex items-center gap-2'>
+                                                    <NuxtIcon name='ph:building-duotone' size='28' />
+                                                    
+                                                    <Title v-for='investor in event.leadInvestors' :key='investor' :tag='4' :level='6'>
+                                                        {{ investor }}
+                                                    </Title>
+                                                </div>
                                             </div>
                                             
                                             <div v-if='event.otherInvestors?.length'>
                                                 Other Investors: <Badge variant='secondary' v-for='investor in event.otherInvestors' :key='investor'>{{ investor }}</Badge>
-                                            </div>
-                                            
-                                            <div v-if='event.sector'>
-                                                Sector: <span>{{ event.sector }}</span>
                                             </div>
                                             
                                             <div v-if='event.valuation'>
