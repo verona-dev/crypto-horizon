@@ -5,60 +5,15 @@
         <template v-else>
             <div v-if='computed_protocol?.id' class='flex flex-col gap-6'>
                 <div class='w-full h-fit p-6 flex items-center gap-4'>
-                    <!--  Hallmarks Timeline  -->
-                    <Card v-if='computed_hallmarks?.length' class='w-1/3 flex flex-col p-6 gap-6 border border-secondary'>
-                        <CardHeader>
-                            <Title :tag='2' :level='4'>{{ glossary.hallmarks.label }}</Title>
-                            <CardDescription>{{ glossary.hallmarks.description }}</CardDescription>
-                        </CardHeader>
-                        
-                        <CardContent>
-                            <Stepper
-                                orientation='vertical'
-                                class='flex max-w-md flex-col gap-10'
-                            >
-                                <StepperItem
-                                    v-for='(step, index) in computed_hallmarks'
-                                    :key='index'
-                                    class='relative flex w-full items-start gap-6'
-                                    :step='computed_protocol.hallmarks.length - index'
-                                    :state='"completed"'
-                                >
-                                    <StepperSeparator
-                                        v-if='index !== computed_protocol.hallmarks?.length - 1'
-                                        class='absolute left-[19px] top-[44px] block h-[85%] w-0.5 shrink-0 rounded-full !bg-primary/25'
-                                    />
-                                    
-                                    <div class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-primary/75 ring-2 ring-primary/25 ring-offset-2 ring-offset-background'>
-                                        <NuxtIcon name='ph:calendar-blank' size='18' class='text-primary' />
-                                    </div>
-                                    
-                                    <div class='flex flex-col gap-1'>
-                                        <StepperTitle class='text-sm lg:text-base font-semibold transition text-muted-foreground'>
-                                            {{ formatDate(step[0]) }}
-                                        </StepperTitle>
-                                        
-                                        <StepperDescription class='sr-only text-xs lg:text-sm text-foreground transition md:not-sr-only'>
-                                            {{ step[1] }}
-                                        </StepperDescription>
-                                    </div>
-                                </StepperItem>
-                            </Stepper>
-                        </CardContent>
-                    </Card>
-                    
                     <!--  Raises/Funding Rounds  -->
-                    <Card v-if='computed_raises?.length' class='w-1/3 flex flex-col p-6 gap-6 border border-secondary'>
+                    <Card v-if='computed_raises?.length' class='w-full min-w-90 flex flex-col p-6 gap-6 border border-secondary'>
                         <CardHeader>
                             <Title :tag='2' :level='4'>{{ glossary.funding_rounds.label }}</Title>
                             <CardDescription>{{ glossary.funding_rounds.description }}</CardDescription>
                         </CardHeader>
                         
-                        <CardContent>
-                            <Stepper
-                                orientation='vertical'
-                                class='flex max-w-md flex-col gap-10'
-                            >
+                        <CardContent class='flex-row w-full'>
+                            <Stepper orientation='vertical' class='flex flex-wrap xl:flex-nowrap gap-10'>
                                 <StepperItem
                                     v-for='(event, index) in computed_raises'
                                     :key='index'
@@ -66,10 +21,10 @@
                                     :step='computed_raises.length - index'
                                     :state='"completed"'
                                 >
-                                    <Card class='w-full border border-secondary'>
+                                    <Card class='w-full !h-full border border-secondary'>
                                         <CardHeader class='!w-full border-dashed border-b border-b-secondary'>
                                             <div class='flex justify-between items-center'>
-                                                <div class='flex flex-col gap-1'>
+                                                <div class='flex flex-col'>
                                                     <StepperTitle class='font-semibold transition text-muted-foreground'>Date</StepperTitle>
                                                     <p class='text-lg'>{{ formatDate(event.date) }}</p>
                                                 </div>
@@ -81,61 +36,42 @@
                                         </CardHeader>
                                         
                                         <CardHeader class='flex flex-col items-center'>
-                                            <Title
-                                                :tag='3' :level='6'
-                                                class='uppercase underline'
-                                            >
-                                                {{ event.round || 'Round' }}
-                                            </Title>
+                                            <Title :tag='3' :level='6' class='uppercase underline'>{{ event.round || 'Round' }}</Title>
                                             
-                                            <Badge v-if='event.sector' variant='secondary' class=''>{{ event.sector }}</Badge>
+                                            <Badge v-if='event.sector' variant='outline' class=''>{{ event.sector }}</Badge>
                                         </CardHeader>
                                         
-                                        <CardContent class='p-6'>
+                                        <CardContent v-if='event.leadInvestors?.length' class='flex flex-col gap-1 justify-self-center p-6'>
+                                            <span>Lead Investors:</span>
                                             
-                                            <div v-if='event.leadInvestors?.length' class='flex flex-col gap-1'>
-                                                <span>Lead Investors:</span>
+                                            <div class='flex items-center gap-2'>
+                                                <NuxtIcon name='ph:building-duotone' size='28' />
                                                 
-                                                <div class='flex items-center gap-2'>
-                                                    <NuxtIcon name='ph:building-duotone' size='28' />
-                                                    
-                                                    <Title v-for='investor in event.leadInvestors' :key='investor' :tag='4' :level='6'>
-                                                        {{ investor }}
-                                                    </Title>
-                                                </div>
+                                                <Title v-for='investor in event.leadInvestors' :key='investor' :tag='4' :level='6'>
+                                                    {{ investor }}
+                                                </Title>
                                             </div>
-                                            
-                                            <div v-if='event.otherInvestors?.length'>
-                                                Other Investors: <Badge variant='secondary' v-for='investor in event.otherInvestors' :key='investor'>{{ investor }}</Badge>
+                                        </CardContent>
+                                        
+                                        <CardContent class='p-6'>
+                                            <div v-if='event.otherInvestors?.length' class='flex flex-col gap-2'>
+                                                <span>Other Investors:</span>
+                                                
+                                                <Badge
+                                                    variant='outline'
+                                                    v-for='investor in event.otherInvestors'
+                                                    :key='investor'
+                                                    class='border border-secondary w-fit'
+                                                >
+                                                    {{ investor }}
+                                                </Badge>
                                             </div>
                                             
                                             <div v-if='event.valuation'>
                                                 Valuation: <span>{{ event.valuation }}</span>
                                             </div>
-                                        
                                         </CardContent>
                                     </Card>
-                                    
-                                    <!--
-                                    <StepperSeparator
-                                        v-if='index !== computed_raises?.length - 1'
-                                        class='absolute left-[19px] top-[44px] block h-[85%] w-0.5 shrink-0 rounded-full !bg-primary/25'
-                                    />
-                                    
-                                    <div class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-primary/75 ring-2 ring-primary/25 ring-offset-2 ring-offset-background'>
-                                        <NuxtIcon name='ph:calendar-blank' size='18' class='text-primary' />
-                                    </div>
-                                    
-                                    <div class='flex flex-col gap-1'>
-                                        <StepperTitle class='text-sm lg:text-base font-semibold transition text-muted-foreground'>
-                                            {{ formatDate(event.date) }}
-                                        </StepperTitle>
-                                        
-                                        <StepperDescription class='sr-only text-xs lg:text-sm text-foreground transition md:not-sr-only'>
-                                            descr
-                                        </StepperDescription>
-                                    </div>
-                                    -->
                                 </StepperItem>
                             </Stepper>
                         </CardContent>
@@ -532,6 +468,48 @@
                                 </div>
                             </template>
                         </Card>
+                        
+                        <!--  Hallmarks Timeline  -->
+                        <Card v-if='computed_hallmarks?.length' class='w-1/3 flex flex-col p-6 gap-6 border border-secondary'>
+                            <CardHeader>
+                                <Title :tag='2' :level='4'>{{ glossary.hallmarks.label }}</Title>
+                                <CardDescription>{{ glossary.hallmarks.description }}</CardDescription>
+                            </CardHeader>
+                            
+                            <CardContent>
+                                <Stepper
+                                    orientation='vertical'
+                                    class='flex max-w-md flex-col gap-10'
+                                >
+                                    <StepperItem
+                                        v-for='(step, index) in computed_hallmarks'
+                                        :key='index'
+                                        class='relative flex w-full items-start gap-6'
+                                        :step='computed_protocol.hallmarks.length - index'
+                                        :state='"completed"'
+                                    >
+                                        <StepperSeparator
+                                            v-if='index !== computed_protocol.hallmarks?.length - 1'
+                                            class='absolute left-[19px] top-[44px] block h-[85%] w-0.5 shrink-0 rounded-full !bg-primary/25'
+                                        />
+                                        
+                                        <div class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-primary/75 ring-2 ring-primary/25 ring-offset-2 ring-offset-background'>
+                                            <NuxtIcon name='ph:calendar-blank' size='18' class='text-primary' />
+                                        </div>
+                                        
+                                        <div class='flex flex-col gap-1'>
+                                            <StepperTitle class='text-sm lg:text-base font-semibold transition text-muted-foreground'>
+                                                {{ formatDate(step[0]) }}
+                                            </StepperTitle>
+                                            
+                                            <StepperDescription class='sr-only text-xs lg:text-sm text-foreground transition md:not-sr-only'>
+                                                {{ step[1] }}
+                                            </StepperDescription>
+                                        </div>
+                                    </StepperItem>
+                                </Stepper>
+                            </CardContent>
+                        </Card>
                     </div>
                 </div>
             </div>
@@ -550,7 +528,7 @@
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
-    import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
+    import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle } from '~/components/ui/stepper';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table/index.ts';
     import Title from '~/components/Title.vue';
     
