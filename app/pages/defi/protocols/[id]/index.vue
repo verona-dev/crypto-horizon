@@ -67,25 +67,47 @@
                                     :state='"completed"'
                                 >
                                     <Card class='w-full border border-secondary'>
-                                        <CardHeader class='flex-row !w-full !justify-between items-center border-dashed border-b border-b-secondary p-4'>
-                                            <div class='flex flex-col gap-1'>
-                                                <StepperTitle class='font-semibold transition text-muted-foreground'>Date</StepperTitle>
-                                                <p class='text-lg'>{{ formatDate(event.date) }}</p>
-                                            </div>
+                                        <CardHeader class='!w-full border-dashed border-b border-b-secondary'>
+                                            <Title
+                                                :tag='3' :level='6'
+                                                class='text-primary text-center uppercase underline my-4'
+                                            >
+                                                {{ event.round || 'Round' }}
+                                            </Title>
                                             
-                                            <div class='border-b-3 border-primary'>
-                                                ${{ event.amount }}M
+                                            <div class='flex justify-between items-center'>
+                                                <div class='flex flex-col gap-1'>
+                                                    <StepperTitle class='font-semibold transition text-muted-foreground'>Date</StepperTitle>
+                                                    <p class='text-lg'>{{ formatDate(event.date) }}</p>
+                                                </div>
+                                                
+                                                <p class='border-b-3 border-primary text-xl'>
+                                                    ${{ event.amount }}M
+                                                </p>
                                             </div>
                                         </CardHeader>
                                         
-                                        <CardContent class='p-4'>
+                                        <CardContent class='p-6'>
                                             <div>
                                                 Round: <span v-if='event.round'>{{ event.round }}</span>
                                             </div>
                                             
-                                            <div>
+                                            <div v-if='event.leadInvestors?.length'>
                                                 Lead Investors: <Badge v-for='investor in event.leadInvestors' :key='investor'>{{ investor }}</Badge>
                                             </div>
+                                            
+                                            <div v-if='event.otherInvestors?.length'>
+                                                Other Investors: <Badge variant='secondary' v-for='investor in event.otherInvestors' :key='investor'>{{ investor }}</Badge>
+                                            </div>
+                                            
+                                            <div v-if='event.sector'>
+                                                Sector: <span>{{ event.sector }}</span>
+                                            </div>
+                                            
+                                            <div v-if='event.valuation'>
+                                                Valuation: <span>{{ event.valuation }}</span>
+                                            </div>
+                                        
                                         </CardContent>
                                     </Card>
                                     
