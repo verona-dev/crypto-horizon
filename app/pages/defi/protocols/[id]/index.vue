@@ -31,22 +31,16 @@
                                         class='absolute left-[19px] top-[44px] block h-[85%] w-0.5 shrink-0 rounded-full !bg-primary/25'
                                     />
                                     
-                                    <div
-                                        class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-primary/75 ring-2 ring-primary/25 ring-offset-2 ring-offset-background'
-                                    >
+                                    <div class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-primary/75 ring-2 ring-primary/25 ring-offset-2 ring-offset-background'>
                                         <NuxtIcon name='ph:calendar-blank' size='18' class='text-primary' />
                                     </div>
                                     
                                     <div class='flex flex-col gap-1'>
-                                        <StepperTitle
-                                            class='text-sm lg:text-base font-semibold transition text-muted-foreground'
-                                        >
+                                        <StepperTitle class='text-sm lg:text-base font-semibold transition text-muted-foreground'>
                                             {{ formatDate(step[0]) }}
                                         </StepperTitle>
                                         
-                                        <StepperDescription
-                                            class='sr-only text-xs lg:text-sm text-foreground transition md:not-sr-only'
-                                        >
+                                        <StepperDescription class='sr-only text-xs lg:text-sm text-foreground transition md:not-sr-only'>
                                             {{ step[1] }}
                                         </StepperDescription>
                                     </div>
@@ -81,12 +75,12 @@
                                     </div>
                                     
                                     <div class='flex flex-col gap-1'>
-                                        <StepperTitle class='text-sm lg:text-base font-semibold transition'>
+                                        <StepperTitle class='text-sm lg:text-base font-semibold transition text-muted-foreground'>
                                             {{ hack.name }} Hack
                                         </StepperTitle>
                                         
                                         <StepperDescription class='sr-only text-foreground transition md:not-sr-only'>
-                                            <Table class='!w-100 border border-primary'>
+                                            <Table>
                                                 <TableBody class='!mt-6'>
                                                     <TableRow v-if='hack.date'>
                                                         <TableHead>Date</TableHead>
