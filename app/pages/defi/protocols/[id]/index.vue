@@ -56,7 +56,7 @@
                     </div>
                     
                     <!--  Hacks  -->
-                    <div class='w-1/3 flex flex-col gap-6 border border-secondary'>
+                    <div v-if='protocol.hacks.length' class='w-fit flex flex-col gap-6 border border-secondary'>
                         <CardHeader>
                             <Title :tag='2' :level='4'>{{ glossary.hacks.label }}</Title>
                             <CardDescription>{{ glossary.hacks.description }}</CardDescription>
@@ -85,32 +85,32 @@
                                             {{ hack.name }} Hack
                                         </StepperTitle>
                                         
-                                        <StepperDescription class='sr-only text-xs lg:text-sm text-foreground transition md:not-sr-only'>
+                                        <StepperDescription class='sr-only text-foreground transition md:not-sr-only'>
                                             <Table class='!w-100 border border-primary'>
-                                                <TableBody class='!mt-6 !w-fit'>
-                                                    <TableRow v-if='hack.date' class='!w-fit'>
+                                                <TableBody class='!mt-6'>
+                                                    <TableRow v-if='hack.date'>
                                                         <TableHead>Date</TableHead>
-                                                        <TableCell class='text-sm !w-fit'>{{ formatDate(hack.date) }}</TableCell>
+                                                        <TableCell>{{ formatDate(hack.date) }}</TableCell>
                                                     </TableRow>
                                                     <TableRow v-if='hack.technique' class='!w-fit'>
                                                         <TableHead>Technique</TableHead>
-                                                        <TableCell class='text-sm !w-fit'>{{ hack.technique }}</TableCell>
+                                                        <TableCell>{{ hack.technique }}</TableCell>
                                                     </TableRow>
                                                     
                                                     <TableRow v-if='hack.amount'>
                                                         <TableHead>Amount</TableHead>
-                                                        <TableCell class='text-sm'>{{ formatNumber(hack.amount) }}</TableCell>
+                                                        <TableCell>{{ formatNumber(hack.amount) }}</TableCell>
                                                     </TableRow>
                                                     
                                                     <TableRow v-if='hack.returnedFunds'>
                                                         <TableHead>Returned</TableHead>
-                                                        <TableCell class='text-sm'>{{ formatNumber(hack.returnedFunds) }}</TableCell>
+                                                        <TableCell>{{ formatNumber(hack.returnedFunds) }}</TableCell>
                                                     </TableRow>
                                                     
                                                     <template v-if='hack.chain?.length'>
                                                         <TableRow>
                                                             <TableHead>Chain</TableHead>
-                                                            <TableCell class='text-sm'>
+                                                            <TableCell>
                                                                 <template v-for='chain in hack.chain' :key='chain' >
                                                                     {{ chain }}
                                                                     <span v-if='hack.chain.length > 1'>,</span>
@@ -121,17 +121,17 @@
                                                     
                                                     <TableRow v-if='hack.language'>
                                                         <TableHead>Language</TableHead>
-                                                        <TableCell class='text-sm'>{{ hack.language }}</TableCell>
+                                                        <TableCell>{{ hack.language }}</TableCell>
                                                     </TableRow>
                                                     
                                                     <TableRow>
-                                                        <TableHead class='!w-fit'>Bridge Hacked</TableHead>
-                                                        <TableCell class='text-sm'>{{ hack.bridgeHack ? 'YES' : 'NO' }}</TableCell>
+                                                        <TableHead>Bridge Hacked</TableHead>
+                                                        <TableCell>{{ hack.bridgeHack ? 'YES' : 'NO' }}</TableCell>
                                                     </TableRow>
                                                     
                                                     <TableRow v-if='hack.source'>
                                                         <TableHead>Source</TableHead>
-                                                        <TableCell class='text-sm'>{{ hack.source }}</TableCell>
+                                                        <TableCell>{{ hack.source }}</TableCell>
                                                     </TableRow>
                                                 </TableBody>
                                             </Table>
