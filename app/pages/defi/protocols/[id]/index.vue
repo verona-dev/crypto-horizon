@@ -4,11 +4,9 @@
         
         <template v-else>
             <div v-if='computed_protocol?.id' class='flex flex-col gap-6'>
-                
-                <!--  Hallmarks + Hacks  -->
-                <Card v-if='computed_hallmarks?.length' class='w-full h-fit p-6 flex items-center gap-4'>
+                <div class='w-full h-fit p-6 flex items-center gap-4'>
                     <!--  Hallmarks Timeline  -->
-                    <div class='w-1/3 flex flex-col gap-6 border border-secondary'>
+                    <Card v-if='computed_hallmarks?.length' class='w-1/3 flex flex-col p-6 gap-6 border border-secondary'>
                         <CardHeader>
                             <Title :tag='2' :level='4'>{{ glossary.hallmarks.label }}</Title>
                             <CardDescription>{{ glossary.hallmarks.description }}</CardDescription>
@@ -47,10 +45,53 @@
                                 </StepperItem>
                             </Stepper>
                         </CardContent>
-                    </div>
+                    </Card>
+                    
+                    <!--  Raises/Funding Rounds  -->
+                    <Card v-if='protocol.raises?.length' class='w-1/3 flex flex-col p-6 gap-6 border border-secondary'>
+                        <CardHeader>
+                            <Title :tag='2' :level='4'>{{ glossary.funding_rounds.label }}</Title>
+                            <CardDescription>{{ glossary.funding_rounds.description }}</CardDescription>
+                        </CardHeader>
+                        
+                        <CardContent>
+                            <Stepper
+                                orientation='vertical'
+                                class='flex max-w-md flex-col gap-10'
+                            >
+                                <StepperItem
+                                    v-for='(event, index) in protocol.raises'
+                                    :key='index'
+                                    class='relative flex w-full items-start gap-6'
+                                    :step='protocol.raises.length - index'
+                                    :state='"completed"'
+                                >
+                                    <StepperSeparator
+                                        v-if='index !== protocol.raises?.length - 1'
+                                        class='absolute left-[19px] top-[44px] block h-[85%] w-0.5 shrink-0 rounded-full !bg-primary/25'
+                                    />
+                                    
+                                    <div class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-primary/75 ring-2 ring-primary/25 ring-offset-2 ring-offset-background'>
+                                        <NuxtIcon name='ph:calendar-blank' size='18' class='text-primary' />
+                                    </div>
+                                    
+                                    <div class='flex flex-col gap-1'>
+                                        <StepperTitle class='text-sm lg:text-base font-semibold transition text-muted-foreground'>
+                                            {{ formatDate(event.date) }}
+                                        </StepperTitle>
+                                        
+                                        <StepperDescription class='sr-only text-xs lg:text-sm text-foreground transition md:not-sr-only'>
+                                            descr
+<!--                                            {{ step[1] }}-->
+                                        </StepperDescription>
+                                    </div>
+                                </StepperItem>
+                            </Stepper>
+                        </CardContent>
+                    </Card>
                     
                     <!--  Hacks  -->
-                    <div v-if='protocol.hacks.length' class='w-fit flex flex-col gap-6 border border-secondary'>
+                    <Card v-if='protocol.hacks.length' class='!w-fit flex flex-col p-6 gap-6 border border-secondary'>
                         <CardHeader>
                             <Title :tag='2' :level='4'>{{ glossary.hacks.label }}</Title>
                             <CardDescription>{{ glossary.hacks.description }}</CardDescription>
@@ -65,15 +106,6 @@
                                     :step='protocol.hacks.length - index'
                                     :state='"completed"'
                                 >
-                                    <StepperSeparator
-                                        v-if='index !== protocol.hacks?.length - 1'
-                                        class='absolute left-[19px] top-[44px] block h-[85%] w-0.5 shrink-0 rounded-full !bg-primary/25'
-                                    />
-                                    
-                                    <div class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-primary/75 ring-2 ring-primary/25 ring-offset-2 ring-offset-background'>
-                                        <NuxtIcon name='ph:calendar-blank' size='18' class='text-primary' />
-                                    </div>
-                                    
                                     <div class='flex flex-col gap-1'>
                                         <StepperTitle class='text-sm lg:text-base font-semibold transition text-muted-foreground'>
                                             {{ hack.name }} Hack
@@ -134,8 +166,8 @@
                                 </StepperItem>
                             </Stepper>
                         </CardContent>
-                    </div>
-                </Card>
+                    </Card>
+                </div>
                 
                 <div class='flex flex-col 2xl:flex-row w-full gap-6'>
                     <div class='left flex flex-col gap-6 w-full 2xl:w-1/2 h-full'>
