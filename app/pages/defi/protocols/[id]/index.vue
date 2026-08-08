@@ -440,9 +440,16 @@
                                             <!--  Date + Raise Amount  -->
                                             <CardHeader class='!w-full border-b'>
                                                 <div class='flex justify-between items-center'>
-                                                    <div class='flex flex-col'>
-                                                        <StepperTitle class='font-semibold transition text-muted-foreground'>Date</StepperTitle>
-                                                        <p>{{ formatDate(event.date) }}</p>
+                                                    <div class='flex items-center gap-2'>
+                                                        <NuxtIcon name='ph:calendar-blank-fill' size='28' class='mb-0.5' />
+                                                        
+                                                        <div class='flex flex-col'>
+                                                            <StepperTitle
+                                                                class='font-semibold transition text-muted-foreground'
+                                                            >Date
+                                                            </StepperTitle>
+                                                            <p>{{ formatDate(event.date) }}</p>
+                                                        </div>
                                                     </div>
                                                     
                                                     <p class='text-primary border-b-3 border-primary text-xl'>
@@ -461,7 +468,7 @@
                                                 <!--  Lead Investors  -->
                                                 <CardContent v-if='event.leadInvestors?.length' class='flex flex-col items-center gap-1'>
                                                     <div class='flex items-center gap-1 text-muted-foreground'>
-                                                        <NuxtIcon name='ph:trophy-fill' size='24' class='mb-0.5' />
+                                                        <NuxtIcon name='ph:trophy-fill' size='24' class='mb-1' />
                                                         <Title :tag='3' :level='6'>Lead Investors</Title>
                                                     </div>
                                                     
@@ -475,7 +482,7 @@
                                                 <!--  Other Investors  -->
                                                 <CardContent v-if='event.otherInvestors?.length' class='flex flex-col gap-2'>
                                                     <div class='flex items-center gap-1 text-muted-foreground'>
-                                                        <NuxtIcon name='ph:flame-fill' size='24' class='mb-0.5' />
+                                                        <NuxtIcon name='ph:flag-checkered-fill' size='24' class='mb-1' />
                                                         <Title :tag='3' :level='6'>Other Investors</Title>
                                                     </div>
                                                     
