@@ -144,7 +144,7 @@
                                             aria-label='platform twitter link'
                                             external
                                         >
-                                            <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                            <PixelCard variant='pink' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
                                                 <CardContent class='!w-full !justify-center !flex !flex-col !items-center pt-4'>
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
@@ -175,7 +175,7 @@
                                             aria-label='platform twitter link'
                                             external
                                         >
-                                            <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                            <PixelCard variant='pink' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
                                                 <CardContent class='!w-full !justify-center !flex !flex-col !items-center pt-4'>
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
