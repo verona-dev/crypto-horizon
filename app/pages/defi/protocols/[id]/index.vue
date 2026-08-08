@@ -428,20 +428,20 @@
                             </CardHeader>
                             
                             <CardContent>
-                                <Stepper orientation='vertical' class='flex justify-evenly flex-wrap gap-10'>
+                                <Stepper orientation='vertical' class='flex flex-col gap-10'>
                                     <StepperItem
                                         v-for='(event, index) in computed_raises'
                                         :key='index'
-                                        class='relative flex shrink-0 items-start gap-6'
+                                        class='relative flex items-start gap-6'
                                         :step='computed_raises.length - index'
                                         :state='"completed"'
                                     >
-                                        <Card class='w-100 2xl:w-100 shrink-0 !h-full'>
-                                            <CardHeader class='!w-full border-b border-b-secondary'>
+                                        <Card class='w-full !h-full flex-1'>
+                                            <CardHeader class='!w-full border-b'>
                                                 <div class='flex justify-between items-center'>
                                                     <div class='flex flex-col'>
                                                         <StepperTitle class='font-semibold transition text-muted-foreground'>Date</StepperTitle>
-                                                        <p class='text-lg'>{{ formatDate(event.date) }}</p>
+                                                        <p>{{ formatDate(event.date) }}</p>
                                                     </div>
                                                     
                                                     <p class='text-primary border-b-3 border-primary text-xl'>
@@ -451,53 +451,48 @@
                                             </CardHeader>
                                             
                                             <CardHeader class='flex flex-col items-center'>
-                                                <Title :tag='3' :level='6' class='uppercase underline'>{{ event.round || 'Funding Round' }}</Title>
-                                                
-                                                <Badge v-if='event.sector' variant='outline' class=''>{{ event.sector }}</Badge>
+                                                <Title :tag='3' :level='5' class='uppercase underline'>{{ event.round || 'Funding Round' }}</Title>
+                                                <Badge v-if='event.sector' variant='outline' class='text-muted-foreground'>{{ event.sector }}</Badge>
                                             </CardHeader>
                                             
-                                            <!--  Lead Investors  -->
-                                            <CardContent v-if='event.leadInvestors?.length' class='flex flex-col gap-1 justify-self-center p-6'>
-                                                <span>Lead Investors:</span>
-                                                
-                                                <Badge
-                                                    variant='outline'
-                                                    class='bg-transparent border border-primary/25 w-fit flex items-center gap-2'
-                                                >
-                                                    <NuxtIcon name='ph:building-duotone' size='24' />
+                                            <div class='flex justify-center gap-12'>
+                                                <!--  Lead Investors  -->
+                                                <CardContent v-if='event.leadInvestors?.length' class='flex flex-col gap-1 justify-self-center p-6'>
+                                                    <div class='flex items-center gap-1'>
+                                                        <NuxtIcon name='ph:trophy-duotone' size='24' class='mb-0.5' />
+                                                        <Title :tag='3' :level='6'>Lead Investors:</Title>
+                                                    </div>
                                                     
-                                                    <Title v-for='investor in event.leadInvestors' :key='investor' :tag='4' :level='6'>
+                                                    <Title
+                                                        v-for='investor in event.leadInvestors' :key='investor' :tag='4'
+                                                        :level='6' class='text-lg'
+                                                    >
                                                         {{ investor }}
                                                     </Title>
-                                                </Badge>
-                                            </CardContent>
-                                            
-                                            <!--  Other Investors  -->
-                                            <CardContent class='p-6'>
-                                                <div v-if='event.otherInvestors?.length' class='flex flex-col gap-2'>
-                                                    <span>Other Investors:</span>
-                                                    
-                                                    <div
-                                                        v-for='investor in event.otherInvestors'
-                                                        :key='investor'
-                                                        class='flex items-center gap-2'
-                                                    >
-                                                        
-                                                        <Badge
-                                                            variant='outline'
-                                                            class='border border-secondary/50 w-fit flex items-center gap-2'
-                                                        >
-                                                            <NuxtIcon name='ph:buildings-duotone' size='22' />
-                                                            
-                                                            <p>{{ investor }}</p>
-                                                        </Badge>
-                                                    </div>
-                                                </div>
+                                                </CardContent>
                                                 
-                                                <div v-if='event.valuation'>
-                                                    Valuation: <span>{{ event.valuation }}</span>
-                                                </div>
-                                            </CardContent>
+                                                <!--  Other Investors  -->
+                                                <CardContent v-if='event.otherInvestors?.length' class='p-6'>
+                                                    <div class='flex flex-col gap-2'>
+                                                        <Title :tag='3' :level='6'>Other Investors:</Title>
+                                                        
+                                                        <div
+                                                            v-for='investor in event.otherInvestors'
+                                                            :key='investor'
+                                                            class='flex items-center gap-1'
+                                                        >
+                                                            <Badge variant='outline' class='border border-secondary/50 w-fit flex items-center gap-2'>
+                                                                <NuxtIcon name='ph:buildings-duotone' size='18' />
+                                                                <p>{{ investor }}</p>
+                                                            </Badge>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div v-if='event.valuation'>
+                                                        Valuation: <span>{{ event.valuation }}</span>
+                                                    </div>
+                                                </CardContent>
+                                            </div>
                                         </Card>
                                     </StepperItem>
                                 </Stepper>
