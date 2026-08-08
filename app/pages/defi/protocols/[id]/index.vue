@@ -93,12 +93,12 @@
                                                 <CardContent class='!w-full !justify-center !flex !flex-col !items-center pt-4'>
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
-                                                            name='ph:house-line-fill'
-                                                            size='28'
+                                                            name='ph:house-fill'
+                                                            size='20'
                                                             class='mb-1'
                                                         />
                                                         
-                                                        <Title :tag='3' :level='6'>Website</Title>
+                                                        <Title :tag='3' :level='6' class='text-lg'>Website</Title>
                                                     </div>
                                                     
                                                     <CardDescription>{{ computed_protocol.url }}</CardDescription>
@@ -121,10 +121,10 @@
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
                                                             name='ph:twitter-logo-fill'
-                                                            size='28'
+                                                            size='20'
                                                         />
                                                         
-                                                        <Title :tag='3' :level='6'>Twitter</Title>
+                                                        <Title :tag='3' :level='6' class='text-lg'>Twitter</Title>
                                                     </div>
                                                     
                                                     <CardDescription>@{{ computed_protocol.twitter }}</CardDescription>
@@ -149,10 +149,10 @@
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
                                                             name='ph:bank-fill'
-                                                            size='28'
+                                                            size='20'
                                                         />
                                                         
-                                                        <Title :tag='3' :level='6'>Treasury</Title>
+                                                        <Title :tag='3' :level='6' class='text-lg'>Treasury</Title>
                                                     </div>
                                                     
                                                     <CardDescription v-if='computed_protocol.treasury'>{{
@@ -180,10 +180,10 @@
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
                                                             name='ph:github-logo-fill'
-                                                            size='28'
+                                                            size='20'
                                                         />
                                                         
-                                                        <Title :tag='3' :level='6'>Github</Title>
+                                                        <Title :tag='3' :level='6' class='text-lg'>Github</Title>
                                                     </div>
                                                     
                                                     <CardDescription>@{{ link }}</CardDescription>
