@@ -4,13 +4,10 @@
         
         <template v-else>
             <div v-if='computed_protocol?.id' class='flex flex-col gap-6'>
-                <div class='w-full h-fit p-6 flex items-center gap-4'>
-                
-                </div>
-                
                 <!--  Top  -->
                 <div class='top flex flex-col 2xl:flex-row w-full gap-6'>
-                    <div class='left flex flex-col gap-6 w-full 2xl:w-1/3 h-full'>
+                    <!--  Left Col  -->
+                    <div class='left flex flex-col gap-6 w-full 2xl:w-2/5 h-full'>
                         <!--   Name + Logo + Tvl  -->
                         <Card class='w-full h-fit p-6 flex flex-col gap-6'>
                             <CardHeader class='gap-4'>
@@ -88,17 +85,12 @@
                                         <NuxtLink
                                             :to='computed_protocol.url'
                                             target='_blank'
-                                            class='h-50 w-full'
+                                            class='h-36 flex-1'
                                             aria-label='platform website link'
                                             external
                                         >
-                                            <PixelCard
-                                                variant='blue'
-                                                class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                            >
-                                                <CardContent
-                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
-                                                >
+                                            <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                                <CardContent class='!w-full !justify-center !flex !flex-col !items-center pt-4'>
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
                                                             name='ph:house-line-fill'
@@ -120,17 +112,12 @@
                                         <NuxtLink
                                             :to='`https://x.com/${computed_protocol.twitter}`'
                                             target='_blank'
-                                            class='h-50 w-full'
+                                            class='h-36 flex-1'
                                             aria-label='platform twitter link'
                                             external
                                         >
-                                            <PixelCard
-                                                variant='blue'
-                                                class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                            >
-                                                <CardContent
-                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
-                                                >
+                                            <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                                <CardContent class='!w-full !justify-center !flex !flex-col !items-center pt-4'>
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
                                                             name='ph:twitter-logo-fill'
@@ -153,17 +140,12 @@
                                         <NuxtLink
                                             :to='computed_protocol.treasuryCodePath'
                                             target='_blank'
-                                            class='h-50 w-full'
+                                            class='h-36 flex-1'
                                             aria-label='platform twitter link'
                                             external
                                         >
-                                            <PixelCard
-                                                variant='blue'
-                                                class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                            >
-                                                <CardContent
-                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
-                                                >
+                                            <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                                <CardContent class='!w-full !justify-center !flex !flex-col !items-center pt-4'>
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
                                                             name='ph:bank-fill'
@@ -189,17 +171,12 @@
                                             :key='link'
                                             :to='`https://github.com/${link}`'
                                             target='_blank'
-                                            class='h-50 w-full'
+                                            class='h-36 flex-1'
                                             aria-label='platform twitter link'
                                             external
                                         >
-                                            <PixelCard
-                                                variant='blue'
-                                                class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                            >
-                                                <CardContent
-                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
-                                                >
+                                            <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                                <CardContent class='!w-full !justify-center !flex !flex-col !items-center pt-4'>
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
                                                             name='ph:github-logo-fill'
@@ -209,7 +186,7 @@
                                                         <Title :tag='3' :level='6'>Github</Title>
                                                     </div>
                                                     
-                                                    <CardDescription>https://github.com/{{ link }}</CardDescription>
+                                                    <CardDescription>@{{ link }}</CardDescription>
                                                 </CardContent>
                                             </PixelCard>
                                         </NuxtLink>
@@ -339,6 +316,7 @@
                         </Card>
                     </div>
                     
+                    <!--  Right Col  -->
                     <div class='right flex flex-col gap-6 w-full 2xl:w-2/3 h-full'>
                         <!--   Stats -->
                         <Card class='w-full h-fit p-6 flex flex-col gap-6'>
@@ -407,6 +385,7 @@
                         
                         <!--   Methodology + Audit  -->
                         <Card v-if='computed_protocol.methodology || computed_protocol.audit_links?.length' class='w-full h-fit p-6 flex flex-col gap-12'>
+                            <!--   Methodology  -->
                             <template v-if='computed_protocol.methodology'>
                                 <CardHeader>
                                     <Title :tag='2' :level='4'>Methodology</Title>
@@ -428,11 +407,10 @@
                                             :key='audit'
                                             :to='audit'
                                             target='_blank'
-                                            class='h-50 w-75'
                                             aria-label='platform audit link'
                                             external
                                         >
-                                            <Button variant='outline' aria-label='audit link'>
+                                            <Button variant='outline' aria-label='audit link button' size='lg' class='bg-accent hover:bg-accent/75'>
                                                 {{ audit }}
                                                 <NewTabIcon class='mb-0.5' />
                                             </Button>
@@ -449,8 +427,8 @@
                                 <CardDescription>{{ glossary.funding_rounds.description }}</CardDescription>
                             </CardHeader>
                             
-                            <CardContent class='flex-row w-full'>
-                                <Stepper orientation='vertical' class='flex flex-nowrap gap-10'>
+                            <CardContent>
+                                <Stepper orientation='vertical' class='flex justify-evenly flex-wrap gap-10'>
                                     <StepperItem
                                         v-for='(event, index) in computed_raises'
                                         :key='index'
@@ -526,93 +504,6 @@
                             </CardContent>
                         </Card>
                     </div>
-                </div>
-                
-                <!--  Bottom  -->
-                <div class='bottom flex flex-col gap-6 w-full h-full'>
-                    <!--  Raises/Funding Rounds  -->
-                    <Card v-if='computed_raises?.length' class='w-full !min-w-100 flex flex-col p-6 gap-6'>
-                        <CardHeader>
-                            <Title :tag='2' :level='4'>{{ glossary.funding_rounds.label }}</Title>
-                            <CardDescription>{{ glossary.funding_rounds.description }}</CardDescription>
-                        </CardHeader>
-                        
-                        <CardContent class='flex-row w-full'>
-                            <Stepper orientation='vertical' class='flex flex-wrap 2xl:flex-nowrap gap-10'>
-                                <StepperItem
-                                    v-for='(event, index) in computed_raises'
-                                    :key='index'
-                                    class='relative flex w-full items-start gap-6'
-                                    :step='computed_raises.length - index'
-                                    :state='"completed"'
-                                >
-                                    <Card class='w-full 2xl:!w-100 !h-full'>
-                                        <CardHeader class='!w-full border-b border-b-secondary'>
-                                            <div class='flex justify-between items-center'>
-                                                <div class='flex flex-col'>
-                                                    <StepperTitle class='font-semibold transition text-muted-foreground'>Date</StepperTitle>
-                                                    <p class='text-lg'>{{ formatDate(event.date) }}</p>
-                                                </div>
-                                                
-                                                <p class='text-primary border-b-3 border-primary text-xl'>
-                                                    &#36;{{ event.amount }}M
-                                                </p>
-                                            </div>
-                                        </CardHeader>
-                                        
-                                        <CardHeader class='flex flex-col items-center'>
-                                            <Title :tag='3' :level='6' class='uppercase underline'>{{ event.round || 'Funding Round' }}</Title>
-                                            
-                                            <Badge v-if='event.sector' variant='outline' class=''>{{ event.sector }}</Badge>
-                                        </CardHeader>
-                                        
-                                        <!--  Lead Investors  -->
-                                        <CardContent v-if='event.leadInvestors?.length' class='flex flex-col gap-1 justify-self-center p-6'>
-                                            <span>Lead Investors:</span>
-                                            
-                                            <Badge
-                                                variant='outline'
-                                                class='bg-transparent border border-primary/25 w-fit flex items-center gap-2'
-                                            >
-                                                <NuxtIcon name='ph:building-duotone' size='24' />
-                                                
-                                                <Title v-for='investor in event.leadInvestors' :key='investor' :tag='4' :level='6'>
-                                                    {{ investor }}
-                                                </Title>
-                                            </Badge>
-                                        </CardContent>
-                                        
-                                        <!--  Other Investors  -->
-                                        <CardContent class='p-6'>
-                                            <div v-if='event.otherInvestors?.length' class='flex flex-col gap-2'>
-                                                <span>Other Investors:</span>
-                                                
-                                                <div
-                                                    v-for='investor in event.otherInvestors'
-                                                    :key='investor'
-                                                    class='flex items-center gap-2'
-                                                >
-                                                    
-                                                    <Badge
-                                                        variant='outline'
-                                                        class='border border-secondary/50 w-fit flex items-center gap-2'
-                                                    >
-                                                        <NuxtIcon name='ph:buildings-duotone' size='22' />
-                                                        
-                                                        <p>{{ investor }}</p>
-                                                    </Badge>
-                                                </div>
-                                            </div>
-                                            
-                                            <div v-if='event.valuation'>
-                                                Valuation: <span>{{ event.valuation }}</span>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                </StepperItem>
-                            </Stepper>
-                        </CardContent>
-                    </Card>
                 </div>
             </div>
         </template>
