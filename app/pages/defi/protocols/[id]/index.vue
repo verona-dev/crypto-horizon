@@ -437,7 +437,7 @@
                                         :state='"completed"'
                                     >
                                         <Card class='w-full xl:w-80 !h-full flex-1 gap-8'>
-                                            <!--  Date + Raise Amount  -->
+                                            <!--  Date + Name + Raise Amount  -->
                                             <CardHeader class='!w-full border-b'>
                                                 <div class='flex justify-between items-center'>
                                                     <div class='flex items-center gap-2'>
@@ -452,16 +452,17 @@
                                                         </div>
                                                     </div>
                                                     
+                                                    <Title :tag='3' :level='5' class='underline'>{{ event.round || 'Funding Round' }}</Title>
+                                                    
                                                     <p class='text-primary border-b-3 border-primary text-xl'>
                                                         &#36;{{ event.amount }}M
                                                     </p>
                                                 </div>
                                             </CardHeader>
                                             
-                                            <!--  Name + Sector  -->
+                                            <!--  Sector  -->
                                             <CardHeader class='flex flex-col items-center'>
-                                                <Title :tag='3' :level='5' class='uppercase underline'>{{ event.round || 'Funding Round' }}</Title>
-                                                <Badge v-if='event.sector' variant='outline' class='text-muted-foreground'>{{ event.sector }}</Badge>
+                                                <Badge v-if='event.sector' variant='outline' class='text-muted-foreground border border-secondary py-2 px-3'>{{ event.sector }}</Badge>
                                             </CardHeader>
                                             
                                             <div class='flex justify-center gap-12 p-6'>
@@ -473,7 +474,7 @@
                                                     </div>
                                                     
                                                     <Badge variant='outline' class='border-accent py-2 px-3'>
-                                                        <Title v-for='investor in event.leadInvestors' :key='investor' :tag='4' :level='6'>
+                                                        <Title v-for='investor in event.leadInvestors' :key='investor' :tag='4' :level='6' class='text-md'>
                                                             {{ investor }}
                                                         </Title>
                                                     </Badge>
@@ -491,7 +492,7 @@
                                                         :key='investor'
                                                         class='flex items-center gap-1'
                                                     >
-                                                        <Badge variant='outline' class='border-accent'>{{ investor }}</Badge>
+                                                        <Badge variant='outline' class='border-accent py-1 px-2'>{{ investor }}</Badge>
                                                     </div>
                                                 </CardContent>
                                                 
