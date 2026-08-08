@@ -410,7 +410,7 @@
                                             aria-label='platform audit link'
                                             external
                                         >
-                                            <Button variant='outline' aria-label='audit link button' size='lg' class='bg-accent hover:bg-accent/75'>
+                                            <Button variant='outline' aria-label='audit link button' size='lg' class='w-full xl:w-auto bg-accent hover:bg-accent/75'>
                                                 {{ audit }}
                                                 <NewTabIcon class='mb-0.5' />
                                             </Button>
@@ -428,15 +428,15 @@
                             </CardHeader>
                             
                             <CardContent>
-                                <Stepper orientation='vertical' class='flex flex-wrap gap-10'>
+                                <Stepper orientation='vertical' class='flex flex-col xl:flex-row gap-8 xl:flex-wrap justify-evenly border border-red-400'>
                                     <StepperItem
                                         v-for='(event, index) in computed_raises'
                                         :key='index'
-                                        class='relative flex gap-6'
+                                        class='relative flex gap-6 border border-secondary'
                                         :step='computed_raises.length - index'
                                         :state='"completed"'
                                     >
-                                        <Card class='!w-100 !h-full flex-1 gap-8 border border-primary'>
+                                        <Card class='!w-full xl:!w-120 !h-full gap-8 border border-primary'>
                                             <!--  Date + Raise Amount  -->
                                             <CardHeader class='!w-full border-b'>
                                                 <div class='flex justify-between items-center'>
@@ -466,7 +466,7 @@
                                             
                                             <div class='flex justify-center gap-12 p-6'>
                                                 <!--  Lead Investors  -->
-                                                <CardContent v-if='event.leadInvestors?.length' class='flex flex-col items-center gap-2'>
+                                                <CardContent v-if='event.leadInvestors?.length' class='flex flex-col items-center gap-2 p-2'>
                                                     <div class='flex items-center gap-1 text-muted-foreground'>
                                                         <NuxtIcon name='ph:trophy-fill' size='24' class='mb-1' />
                                                         <Title :tag='3' :level='6'>Lead Investors</Title>
@@ -480,7 +480,7 @@
                                                 </CardContent>
                                                 
                                                 <!--  Other Investors  -->
-                                                <CardContent v-if='event.otherInvestors?.length' class='flex flex-col gap-2'>
+                                                <CardContent v-if='event.otherInvestors?.length' class='flex flex-col gap-2 p-2'>
                                                     <div class='flex items-center gap-1 text-muted-foreground'>
                                                         <NuxtIcon name='ph:flag-checkered-fill' size='24' class='mb-1' />
                                                         <Title :tag='3' :level='6'>Other Investors</Title>
