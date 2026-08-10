@@ -428,15 +428,15 @@
                             </CardHeader>
                             
                             <CardContent>
-                                <Stepper orientation='vertical' class='flex flex-col xl:flex-row gap-8 xl:flex-wrap justify-evenly border border-red-400'>
+                                <Stepper orientation='vertical' class='grid w-full min-w-0 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8'>
                                     <StepperItem
                                         v-for='(event, index) in computed_raises'
                                         :key='index'
-                                        class='relative flex gap-6 border border-secondary'
+                                        class='relative flex min-w-0 w-full gap-6 border border-secondary'
                                         :step='computed_raises.length - index'
                                         :state='"completed"'
                                     >
-                                        <Card class='!w-full xl:!w-120 !h-full gap-8 border border-primary'>
+                                        <Card class='!h-full !w-full min-w-0 gap-8 border border-primary xl:gap-16'>
                                             <!--  Date + Raise Amount  -->
                                             <CardHeader class='!w-full border-b'>
                                                 <div class='flex justify-between items-center'>
@@ -458,15 +458,15 @@
                                                 </div>
                                             </CardHeader>
                                             
-                                            <CardContent v-if='event.sector' class='flex flex-col items-center p-6'>
+                                            <!--  Round Name + Sector  -->
+                                            <CardContent v-if='event.sector' class='flex flex-col items-center justify-center gap-2 p-6 border border-orange-400 min-h-36'>
                                                 <Title :tag='3' :level='5'>{{ event.round || 'Funding Round' }}</Title>
-                                                
                                                 <Badge variant='outline' class='bg-accent'>{{ event.sector }}</Badge>
                                             </CardContent>
                                             
-                                            <div class='flex justify-center gap-12 p-6'>
+                                            <div class='flex justify-center gap-8 py-10 px-3'>
                                                 <!--  Lead Investors  -->
-                                                <CardContent v-if='event.leadInvestors?.length' class='flex flex-col items-center gap-2 p-2'>
+                                                <CardContent v-if='event.leadInvestors?.length' class='flex flex-col items-center gap-2'>
                                                     <div class='flex items-center gap-1 text-muted-foreground'>
                                                         <NuxtIcon name='ph:trophy-fill' size='24' class='mb-1' />
                                                         <Title :tag='3' :level='6'>Lead Investors</Title>
@@ -480,7 +480,7 @@
                                                 </CardContent>
                                                 
                                                 <!--  Other Investors  -->
-                                                <CardContent v-if='event.otherInvestors?.length' class='flex flex-col gap-2 p-2'>
+                                                <CardContent v-if='event.otherInvestors?.length' class='flex flex-col gap-2'>
                                                     <div class='flex items-center gap-1 text-muted-foreground'>
                                                         <NuxtIcon name='ph:flag-checkered-fill' size='24' class='mb-1' />
                                                         <Title :tag='3' :level='6'>Other Investors</Title>
