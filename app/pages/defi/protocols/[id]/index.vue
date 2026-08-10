@@ -193,6 +193,19 @@
                                     </template>
                                 </div>
                             </CardContent>
+                            
+                            <!--   Other Protocols  -->
+                            <CardContent
+                                v-if='protocol.otherProtocols'
+                                class='flex flex-col gap-4 overflow-hidden'
+                            >
+                                <Title :tag='3' :level='5'>Other Protocols</Title>
+                                <div class='flex items-center gap-3 flex-wrap' >
+                                    <Badge v-for='protocol in protocol.otherProtocols' :key='protocol' variant='outline' class='border-accent py-2 px-3 !w-fit'>
+                                        {{ protocol }}
+                                    </Badge>
+                                </div>
+                            </CardContent>
                         </Card>
                         
                         <!--  Hallmarks Timeline  -->
