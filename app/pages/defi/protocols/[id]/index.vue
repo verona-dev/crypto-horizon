@@ -59,7 +59,7 @@
                                                 v-for='[chain, tvl] in Object.entries(computed_protocol.currentChainTvls).sort(([, a], [, b]) => b - a)'
                                                 :key='chain'
                                             >
-                                                <TableCell class='text-sm'>{{ chain }}</TableCell>
+                                                <TableCell class='text-sm capitalize'>{{ chain }}</TableCell>
                                                 <TableCell class='text-sm flex flex-col !items-end'>
                                                     {{ formatNumber(tvl, { compact: true, decimals: 2 }) }}
                                                 </TableCell>
