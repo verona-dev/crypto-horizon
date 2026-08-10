@@ -428,7 +428,7 @@
                             </CardHeader>
                             
                             <CardContent>
-                                <Stepper orientation='vertical' class='grid w-full min-w-0 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8'>
+                                <Stepper orientation='vertical' class='grid w-full grid-cols-1 gap-8 xl:grid-cols-2 justify-content-evenly'>
                                     <StepperItem
                                         v-for='(event, index) in computed_raises'
                                         :key='index'
@@ -464,7 +464,7 @@
                                                 <Badge variant='outline' class='bg-accent'>{{ event.sector }}</Badge>
                                             </CardContent>
                                             
-                                            <div class='flex justify-between w-full xl:gap-8 py-10 px-3'>
+                                            <div class='flex justify-evenly w-full xl:gap-8 py-10 px-3'>
                                                 <!--  Lead Investors  -->
                                                 <CardContent v-if='event.leadInvestors?.length' class='flex flex-col items-center mx-auto gap-2 p-0 xl:p-6'>
                                                     <div class='flex items-center gap-1 text-muted-foreground'>
@@ -480,7 +480,7 @@
                                                 </CardContent>
                                                 
                                                 <!--  Other Investors  -->
-                                                <CardContent v-if='event.otherInvestors?.length' class='flex flex-col gap-2'>
+                                                <CardContent v-if='event.otherInvestors?.length' class='flex flex-col gap-2 mx-auto'>
                                                     <div class='flex items-center gap-1 text-muted-foreground'>
                                                         <NuxtIcon name='ph:flag-checkered-fill' size='24' class='mb-1' />
                                                         <Title :tag='3' :level='6'>Other Investors</Title>
