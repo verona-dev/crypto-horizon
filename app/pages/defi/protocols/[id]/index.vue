@@ -4,147 +4,10 @@
         
         <template v-else>
             <div v-if='computed_protocol?.id' class='flex flex-col gap-6'>
-                
-                <!--  Hallmarks + Hacks  -->
-                <Card v-if='computed_hallmarks?.length' class='w-full h-fit p-6 flex items-center gap-4'>
-                    <!--  Hallmarks Timeline  -->
-                    <div class='w-1/3 flex flex-col gap-6 border border-secondary'>
-                        <CardHeader>
-                            <Title :tag='2' :level='4'>{{ glossary.hallmarks.label }}</Title>
-                            <CardDescription>{{ glossary.hallmarks.description }}</CardDescription>
-                        </CardHeader>
-                        
-                        <CardContent>
-                            <Stepper
-                                orientation='vertical'
-                                class='flex max-w-md flex-col gap-10'
-                            >
-                                <StepperItem
-                                    v-for='(step, index) in computed_hallmarks'
-                                    :key='index'
-                                    class='relative flex w-full items-start gap-6'
-                                    :step='computed_protocol.hallmarks.length - index'
-                                    :state='"completed"'
-                                >
-                                    <StepperSeparator
-                                        v-if='index !== computed_protocol.hallmarks?.length - 1'
-                                        class='absolute left-[19px] top-[44px] block h-[85%] w-0.5 shrink-0 rounded-full !bg-primary/25'
-                                    />
-                                    
-                                    <div
-                                        class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-primary/75 ring-2 ring-primary/25 ring-offset-2 ring-offset-background'
-                                    >
-                                        <NuxtIcon name='ph:calendar-blank' size='18' class='text-primary' />
-                                    </div>
-                                    
-                                    <div class='flex flex-col gap-1'>
-                                        <StepperTitle
-                                            class='text-sm lg:text-base font-semibold transition text-muted-foreground'
-                                        >
-                                            {{ formatDate(step[0]) }}
-                                        </StepperTitle>
-                                        
-                                        <StepperDescription
-                                            class='sr-only text-xs lg:text-sm text-foreground transition md:not-sr-only'
-                                        >
-                                            {{ step[1] }}
-                                        </StepperDescription>
-                                    </div>
-                                </StepperItem>
-                            </Stepper>
-                        </CardContent>
-                    </div>
-                    
-                    <!--  Hacks  -->
-                    <div class='w-1/3 flex flex-col gap-6 border border-secondary'>
-                        <CardHeader>
-                            <Title :tag='2' :level='4'>{{ glossary.hacks.label }}</Title>
-                            <CardDescription>{{ glossary.hacks.description }}</CardDescription>
-                        </CardHeader>
-                        
-                        <CardContent>
-                            <Stepper orientation='vertical' class='flex max-w-md flex-col gap-10'>
-                                <StepperItem
-                                    v-for='(hack, index) in protocol.hacks'
-                                    :key='index'
-                                    class='relative flex w-full items-start gap-6'
-                                    :step='protocol.hacks.length - index'
-                                    :state='"completed"'
-                                >
-                                    <StepperSeparator
-                                        v-if='index !== protocol.hacks?.length - 1'
-                                        class='absolute left-[19px] top-[44px] block h-[85%] w-0.5 shrink-0 rounded-full !bg-primary/25'
-                                    />
-                                    
-                                    <div class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-primary/75 ring-2 ring-primary/25 ring-offset-2 ring-offset-background'>
-                                        <NuxtIcon name='ph:calendar-blank' size='18' class='text-primary' />
-                                    </div>
-                                    
-                                    <div class='flex flex-col gap-1'>
-                                        <StepperTitle class='text-sm lg:text-base font-semibold transition'>
-                                            {{ hack.name }} Hack
-                                        </StepperTitle>
-                                        
-                                        <StepperDescription class='sr-only text-xs lg:text-sm text-foreground transition md:not-sr-only'>
-                                            <Table class='!w-100 border border-primary'>
-                                                <TableBody class='!mt-6 !w-fit'>
-                                                    <TableRow v-if='hack.date' class='!w-fit'>
-                                                        <TableHead>Date</TableHead>
-                                                        <TableCell class='text-sm !w-fit'>{{ formatDate(hack.date) }}</TableCell>
-                                                    </TableRow>
-                                                    <TableRow v-if='hack.technique' class='!w-fit'>
-                                                        <TableHead>Technique</TableHead>
-                                                        <TableCell class='text-sm !w-fit'>{{ hack.technique }}</TableCell>
-                                                    </TableRow>
-                                                    
-                                                    <TableRow v-if='hack.amount'>
-                                                        <TableHead>Amount</TableHead>
-                                                        <TableCell class='text-sm'>{{ formatNumber(hack.amount) }}</TableCell>
-                                                    </TableRow>
-                                                    
-                                                    <TableRow v-if='hack.returnedFunds'>
-                                                        <TableHead>Returned</TableHead>
-                                                        <TableCell class='text-sm'>{{ formatNumber(hack.returnedFunds) }}</TableCell>
-                                                    </TableRow>
-                                                    
-                                                    <template v-if='hack.chain?.length'>
-                                                        <TableRow>
-                                                            <TableHead>Chain</TableHead>
-                                                            <TableCell class='text-sm'>
-                                                                <template v-for='chain in hack.chain' :key='chain' >
-                                                                    {{ chain }}
-                                                                    <span v-if='hack.chain.length > 1'>,</span>
-                                                                </template>
-                                                            </TableCell>
-                                                        </TableRow>
-                                                    </template>
-                                                    
-                                                    <TableRow v-if='hack.language'>
-                                                        <TableHead>Language</TableHead>
-                                                        <TableCell class='text-sm'>{{ hack.language }}</TableCell>
-                                                    </TableRow>
-                                                    
-                                                    <TableRow>
-                                                        <TableHead class='!w-fit'>Bridge Hacked</TableHead>
-                                                        <TableCell class='text-sm'>{{ hack.bridgeHack ? 'YES' : 'NO' }}</TableCell>
-                                                    </TableRow>
-                                                    
-                                                    <TableRow v-if='hack.source'>
-                                                        <TableHead>Source</TableHead>
-                                                        <TableCell class='text-sm'>{{ hack.source }}</TableCell>
-                                                    </TableRow>
-                                                </TableBody>
-                                            </Table>
-                                        </StepperDescription>
-                                    </div>
-                                </StepperItem>
-                            </Stepper>
-                        </CardContent>
-                    </div>
-                </Card>
-                
-                <div class='flex flex-col 2xl:flex-row w-full gap-6'>
-                    <div class='left flex flex-col gap-6 w-full 2xl:w-1/2 h-full'>
+                <!--  Top  -->
+                <div class='top flex flex-col 2xl:flex-row w-full gap-6'>
+                    <!--  Left Col  -->
+                    <div class='left flex flex-col gap-6 w-full 2xl:w-2/5 h-full'>
                         <!--   Name + Logo + Tvl  -->
                         <Card class='w-full h-fit p-6 flex flex-col gap-6'>
                             <CardHeader class='gap-4'>
@@ -152,14 +15,14 @@
                                     <NuxtImg
                                         v-if='computed_protocol.logo'
                                         :src='computed_protocol.logo'
-                                        width='64'
+                                        width='96'
                                         alt='computedProtocol logo'
                                         class='inline mb-1 rounded-full'
                                     />
                                     
-                                    <div class='flex items-end gap-2'>
+                                    <div class='flex flex-col'>
                                         <Title :tag='1' :level='3' class='text-primary'>{{ computed_protocol.name }}</Title>
-                                        <Title v-if='computed_protocol.symbol !== "-"' :tag='2' :level='4' class='mb-2.5'>({{computed_protocol.symbol}})</Title>
+                                        <Title v-if='computed_protocol.symbol !== "-"' :tag='2' :level='5'>({{computed_protocol.symbol}})</Title>
                                     </div>
                                 </div>
                                 
@@ -196,7 +59,7 @@
                                                 v-for='[chain, tvl] in Object.entries(computed_protocol.currentChainTvls).sort(([, a], [, b]) => b - a)'
                                                 :key='chain'
                                             >
-                                                <TableCell class='text-sm'>{{ chain }}</TableCell>
+                                                <TableCell class='text-sm capitalize'>{{ chain }}</TableCell>
                                                 <TableCell class='text-sm flex flex-col !items-end'>
                                                     {{ formatNumber(tvl, { compact: true, decimals: 2 }) }}
                                                 </TableCell>
@@ -222,25 +85,20 @@
                                         <NuxtLink
                                             :to='computed_protocol.url'
                                             target='_blank'
-                                            class='h-50 w-full'
+                                            class='h-36 flex-1'
                                             aria-label='platform website link'
                                             external
                                         >
-                                            <PixelCard
-                                                variant='blue'
-                                                class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                            >
-                                                <CardContent
-                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
-                                                >
+                                            <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                                <CardContent class='!w-full !justify-center !flex !flex-col !items-center pt-4'>
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
-                                                            name='ph:house-line-fill'
-                                                            size='28'
+                                                            name='ph:house-fill'
+                                                            size='20'
                                                             class='mb-1'
                                                         />
                                                         
-                                                        <Title :tag='3' :level='6'>Website</Title>
+                                                        <Title :tag='3' :level='6' class='text-lg'>Website</Title>
                                                     </div>
                                                     
                                                     <CardDescription>{{ computed_protocol.url }}</CardDescription>
@@ -254,24 +112,19 @@
                                         <NuxtLink
                                             :to='`https://x.com/${computed_protocol.twitter}`'
                                             target='_blank'
-                                            class='h-50 w-full'
+                                            class='h-36 flex-1'
                                             aria-label='platform twitter link'
                                             external
                                         >
-                                            <PixelCard
-                                                variant='blue'
-                                                class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                            >
-                                                <CardContent
-                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
-                                                >
+                                            <PixelCard variant='blue' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                                <CardContent class='!w-full !justify-center !flex !flex-col !items-center pt-4'>
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
                                                             name='ph:twitter-logo-fill'
-                                                            size='28'
+                                                            size='20'
                                                         />
                                                         
-                                                        <Title :tag='3' :level='6'>Twitter</Title>
+                                                        <Title :tag='3' :level='6' class='text-lg'>Twitter</Title>
                                                     </div>
                                                     
                                                     <CardDescription>@{{ computed_protocol.twitter }}</CardDescription>
@@ -287,24 +140,19 @@
                                         <NuxtLink
                                             :to='computed_protocol.treasuryCodePath'
                                             target='_blank'
-                                            class='h-50 w-full'
+                                            class='h-36 flex-1'
                                             aria-label='platform twitter link'
                                             external
                                         >
-                                            <PixelCard
-                                                variant='blue'
-                                                class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                            >
-                                                <CardContent
-                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
-                                                >
+                                            <PixelCard variant='pink' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                                <CardContent class='!w-full !justify-center !flex !flex-col !items-center pt-4'>
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
                                                             name='ph:bank-fill'
-                                                            size='28'
+                                                            size='20'
                                                         />
                                                         
-                                                        <Title :tag='3' :level='6'>Treasury</Title>
+                                                        <Title :tag='3' :level='6' class='text-lg'>Treasury</Title>
                                                     </div>
                                                     
                                                     <CardDescription v-if='computed_protocol.treasury'>{{
@@ -323,27 +171,22 @@
                                             :key='link'
                                             :to='`https://github.com/${link}`'
                                             target='_blank'
-                                            class='h-50 w-full'
+                                            class='h-36 flex-1'
                                             aria-label='platform twitter link'
                                             external
                                         >
-                                            <PixelCard
-                                                variant='blue'
-                                                class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'
-                                            >
-                                                <CardContent
-                                                    class='!w-full !justify-center !flex !flex-col !items-center gap-2 pt-4'
-                                                >
+                                            <PixelCard variant='pink' class='flex flex-row items-center !h-full !w-full !flex-1 hover:border-blue-sky/50'>
+                                                <CardContent class='!w-full !justify-center !flex !flex-col !items-center pt-4'>
                                                     <div class='flex items-center gap-2'>
                                                         <NuxtIcon
                                                             name='ph:github-logo-fill'
-                                                            size='28'
+                                                            size='20'
                                                         />
                                                         
-                                                        <Title :tag='3' :level='6'>Github</Title>
+                                                        <Title :tag='3' :level='6' class='text-lg'>Github</Title>
                                                     </div>
                                                     
-                                                    <CardDescription>https://github.com/{{ link }}</CardDescription>
+                                                    <CardDescription>@{{ link }}</CardDescription>
                                                 </CardContent>
                                             </PixelCard>
                                         </NuxtLink>
@@ -351,9 +194,130 @@
                                 </div>
                             </CardContent>
                         </Card>
+                        
+                        <!--  Hallmarks Timeline  -->
+                        <Card v-if='computed_hallmarks?.length' class='w-full flex flex-col p-6 gap-6'>
+                            <CardHeader>
+                                <Title :tag='2' :level='4'>{{ glossary.hallmarks.label }}</Title>
+                                <CardDescription>{{ glossary.hallmarks.description }}</CardDescription>
+                            </CardHeader>
+                            
+                            <CardContent>
+                                <Stepper
+                                    orientation='vertical'
+                                    class='flex max-w-md flex-col gap-10'
+                                >
+                                    <StepperItem
+                                        v-for='(step, index) in computed_hallmarks'
+                                        :key='index'
+                                        class='relative flex w-full items-start gap-6'
+                                        :step='computed_protocol.hallmarks.length - index'
+                                        :state='"completed"'
+                                    >
+                                        <StepperSeparator
+                                            v-if='index !== computed_protocol.hallmarks?.length - 1'
+                                            class='absolute left-[19px] top-[44px] block h-[85%] w-0.5 shrink-0 rounded-full !bg-primary/25'
+                                        />
+                                        
+                                        <div class='z-10 rounded-full shrink-0 flex items-center justify-center size-10 bg-transparent text-primary/75 ring-2 ring-primary/25 ring-offset-2 ring-offset-background'>
+                                            <NuxtIcon name='ph:calendar-blank' size='18' class='text-primary' />
+                                        </div>
+                                        
+                                        <div class='flex flex-col gap-1'>
+                                            <StepperTitle class='text-sm lg:text-base font-semibold transition text-muted-foreground'>
+                                                {{ formatDate(step[0]) }}
+                                            </StepperTitle>
+                                            
+                                            <StepperDescription class='sr-only text-xs lg:text-sm text-foreground transition md:not-sr-only'>
+                                                {{ step[1] }}
+                                            </StepperDescription>
+                                        </div>
+                                    </StepperItem>
+                                </Stepper>
+                            </CardContent>
+                        </Card>
+                        
+                        <!--  Hacks  -->
+                        <Card v-if='protocol.hacks.length' class='w-full flex flex-col p-6 gap-6'>
+                            <CardHeader>
+                                <Title :tag='2' :level='4'>{{ glossary.hacks.label }}</Title>
+                                <CardDescription>{{ glossary.hacks.description }}</CardDescription>
+                            </CardHeader>
+                            
+                            <CardContent>
+                                <Stepper orientation='vertical' class='flex max-w-md flex-col gap-10'>
+                                    <StepperItem
+                                        v-for='(hack, index) in protocol.hacks'
+                                        :key='index'
+                                        class='relative flex w-full items-start gap-6'
+                                        :step='protocol.hacks.length - index'
+                                        :state='"completed"'
+                                    >
+                                        <div class='flex flex-col gap-1'>
+                                            <StepperTitle class='text-sm lg:text-base font-semibold transition text-muted-foreground'>
+                                                {{ hack.name }} Hack
+                                            </StepperTitle>
+                                            
+                                            <StepperDescription class='sr-only text-foreground transition md:not-sr-only'>
+                                                <Table>
+                                                    <TableBody class='!mt-6'>
+                                                        <TableRow v-if='hack.date'>
+                                                            <TableHead>Date</TableHead>
+                                                            <TableCell>{{ formatDate(hack.date) }}</TableCell>
+                                                        </TableRow>
+                                                        <TableRow v-if='hack.technique' class='!w-fit'>
+                                                            <TableHead>Technique</TableHead>
+                                                            <TableCell>{{ hack.technique }}</TableCell>
+                                                        </TableRow>
+                                                        
+                                                        <TableRow v-if='hack.amount'>
+                                                            <TableHead>Amount</TableHead>
+                                                            <TableCell>{{ formatNumber(hack.amount) }}</TableCell>
+                                                        </TableRow>
+                                                        
+                                                        <TableRow v-if='hack.returnedFunds'>
+                                                            <TableHead>Returned</TableHead>
+                                                            <TableCell>{{ formatNumber(hack.returnedFunds) }}</TableCell>
+                                                        </TableRow>
+                                                        
+                                                        <template v-if='hack.chain?.length'>
+                                                            <TableRow>
+                                                                <TableHead>Chain</TableHead>
+                                                                <TableCell>
+                                                                    <template v-for='chain in hack.chain' :key='chain' >
+                                                                        {{ chain }}
+                                                                        <span v-if='hack.chain.length > 1'>,</span>
+                                                                    </template>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        </template>
+                                                        
+                                                        <TableRow v-if='hack.language'>
+                                                            <TableHead>Language</TableHead>
+                                                            <TableCell>{{ hack.language }}</TableCell>
+                                                        </TableRow>
+                                                        
+                                                        <TableRow>
+                                                            <TableHead>Bridge Hacked</TableHead>
+                                                            <TableCell>{{ hack.bridgeHack ? 'YES' : 'NO' }}</TableCell>
+                                                        </TableRow>
+                                                        
+                                                        <TableRow v-if='hack.source'>
+                                                            <TableHead>Source</TableHead>
+                                                            <TableCell>{{ hack.source }}</TableCell>
+                                                        </TableRow>
+                                                    </TableBody>
+                                                </Table>
+                                            </StepperDescription>
+                                        </div>
+                                    </StepperItem>
+                                </Stepper>
+                            </CardContent>
+                        </Card>
                     </div>
                     
-                    <div class='right flex flex-col gap-6 w-full 2xl:w-1/2 h-full'>
+                    <!--  Right Col  -->
+                    <div class='right flex flex-col gap-6 w-full 2xl:w-2/3 h-full'>
                         <!--   Stats -->
                         <Card class='w-full h-fit p-6 flex flex-col gap-6'>
                             <CardHeader>
@@ -421,6 +385,7 @@
                         
                         <!--   Methodology + Audit  -->
                         <Card v-if='computed_protocol.methodology || computed_protocol.audit_links?.length' class='w-full h-fit p-6 flex flex-col gap-12'>
+                            <!--   Methodology  -->
                             <template v-if='computed_protocol.methodology'>
                                 <CardHeader>
                                     <Title :tag='2' :level='4'>Methodology</Title>
@@ -442,11 +407,10 @@
                                             :key='audit'
                                             :to='audit'
                                             target='_blank'
-                                            class='h-50 w-75'
                                             aria-label='platform audit link'
                                             external
                                         >
-                                            <Button variant='outline' aria-label='audit link'>
+                                            <Button variant='outline' aria-label='audit link button' size='lg' class='w-full xl:w-auto bg-accent hover:bg-accent/75'>
                                                 {{ audit }}
                                                 <NewTabIcon class='mb-0.5' />
                                             </Button>
@@ -454,6 +418,106 @@
                                     </CardContent>
                                 </div>
                             </template>
+                        </Card>
+                        
+                        <!--  Raises/Funding Rounds  -->
+                        <Card v-if='computed_raises?.length' class='w-full !min-w-100 flex flex-col p-6 gap-6'>
+                            <CardHeader>
+                                <Title :tag='2' :level='4'>{{ glossary.funding_rounds.label }}</Title>
+                                <CardDescription>{{ glossary.funding_rounds.description }}</CardDescription>
+                            </CardHeader>
+                            
+                            <CardContent>
+                                <Stepper orientation='vertical' class='grid w-full grid-cols-1 gap-8 xl:grid-cols-2 justify-content-evenly'>
+                                    <StepperItem
+                                        v-for='(event, index) in computed_raises'
+                                        :key='index'
+                                        class='relative flex w-full gap-6'
+                                        :step='computed_raises.length - index'
+                                        :state='"completed"'
+                                    >
+                                        <Card class='!h-full !w-full gap-8'>
+                                            <!--  Date + Raise Amount  -->
+                                            <CardHeader class='!w-full border-b'>
+                                                <div class='flex justify-between items-center'>
+                                                    <div class='flex items-center gap-2'>
+                                                        <NuxtIcon name='ph:calendar-blank-fill' size='28' class='mb-0.5' />
+                                                        
+                                                        <div class='flex flex-col'>
+                                                            <StepperTitle
+                                                                class='font-semibold transition text-muted-foreground'
+                                                            >Date
+                                                            </StepperTitle>
+                                                            <p>{{ formatDate(event.date) }}</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <p class='text-primary border-b-3 border-primary text-xl'>
+                                                        &#36;{{ event.amount }}M
+                                                    </p>
+                                                </div>
+                                            </CardHeader>
+                                            
+                                            <!--  Round Name + Sector  -->
+                                            <CardContent v-if='event.sector' class='flex flex-col items-center justify-center p-6 min-h-48'>
+                                                <Title :tag='3' :level='5'>{{ event.round || 'Funding Round' }}</Title>
+                                                <Badge variant='outline' class='bg-accent text-xxs'>{{ event.sector }}</Badge>
+                                            </CardContent>
+                                            
+                                            <div class='flex w-full justify-between'>
+                                                <!--  Lead Investors  -->
+                                                <CardContent
+                                                    v-if='event.leadInvestors?.length'
+                                                    class='flex flex-col mx-auto'
+                                                >
+                                                    <div class='flex items-center gap-1 text-muted-foreground'>
+                                                        <NuxtIcon name='ph:trophy-fill' size='24' class='mb-1' />
+                                                        <Title :tag='3' :level='6' class='text-lg'>Lead Investors</Title>
+                                                    </div>
+                                                    
+                                                    <Badge
+                                                        variant='outline' class='border-accent justify-center py-2 px-3'
+                                                    >
+                                                        <Title
+                                                            v-for='investor in event.leadInvestors' :key='investor'
+                                                            :tag='4' :level='6' class='text-md'
+                                                        >
+                                                            {{ investor }}
+                                                        </Title>
+                                                    </Badge>
+                                                </CardContent>
+                                                
+                                                <!--  Other Investors  -->
+                                                <CardContent
+                                                    v-if='event.otherInvestors?.length'
+                                                    class='flex flex-col gap-2 mx-auto'
+                                                >
+                                                    <div class='flex items-center gap-1 text-muted-foreground'>
+                                                        <NuxtIcon
+                                                            name='ph:flag-checkered-fill' size='24' class='mb-1'
+                                                        />
+                                                        <Title :tag='3' :level='6' class='text-lg'>Other Investors</Title>
+                                                    </div>
+                                                    
+                                                    <div
+                                                        v-for='investor in event.otherInvestors'
+                                                        :key='investor'
+                                                        class='flex items-center gap-1'
+                                                    >
+                                                        <Badge variant='outline' class='border-accent py-2 px-3'>
+                                                            {{ investor }}
+                                                        </Badge>
+                                                    </div>
+                                                </CardContent>
+                                            </div>
+                                            
+                                            <CardContent v-if='event.valuation'>
+                                                <Title :tag='3' :level='6'>Valuation: {{ event.valuation }}</Title>
+                                            </CardContent>
+                                        </Card>
+                                    </StepperItem>
+                                </Stepper>
+                            </CardContent>
                         </Card>
                     </div>
                 </div>
@@ -473,7 +537,7 @@
     import NewTabIcon from '~/components/NewTabIcon.vue';
     import PageLoadingSpinner from '@/components/PageLoadingSpinner.vue';
     import PixelCard from '~/components/ui/pixel-card/PixelCard.vue';
-    import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle, StepperTrigger } from '~/components/ui/stepper';
+    import { Stepper, StepperDescription, StepperItem, StepperSeparator, StepperTitle } from '~/components/ui/stepper';
     import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table/index.ts';
     import Title from '~/components/Title.vue';
     
@@ -491,6 +555,9 @@
     const computed_protocol = computed(() => protocol.value);
     const computed_hallmarks = computed(() => {
         return [...(protocol.value?.hallmarks ?? [])].reverse();
+    });
+    const computed_raises = computed(() => {
+        return [...(protocol.value?.raises ?? [])].reverse();
     });
     
     // Router

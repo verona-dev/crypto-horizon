@@ -98,7 +98,7 @@
     }
     
     h5 {
-        @apply text-2xl;
+        @apply text-xl xl:text-2xl;
     }
     
     h6 {
