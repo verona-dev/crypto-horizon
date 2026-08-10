@@ -18,7 +18,7 @@
         2: 'text-6xl xl:text-8xl',
         3: 'text-5xl xl:text-6xl',
         4: 'text-3xl xl:text-4xl',
-        5: 'text-2xl',
+        5: 'text-xl xl:text-2xl',
         6: 'text-xl',
     };
 </script>
