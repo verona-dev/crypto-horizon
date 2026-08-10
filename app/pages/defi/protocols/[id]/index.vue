@@ -432,11 +432,11 @@
                                     <StepperItem
                                         v-for='(event, index) in computed_raises'
                                         :key='index'
-                                        class='relative flex min-w-0 w-full gap-6 border border-secondary'
+                                        class='relative flex min-w-0 w-full gap-6'
                                         :step='computed_raises.length - index'
                                         :state='"completed"'
                                     >
-                                        <Card class='!h-full !w-full min-w-0 gap-8 border border-primary xl:gap-16'>
+                                        <Card class='!h-full !w-full min-w-0 gap-8 xl:gap-16'>
                                             <!--  Date + Raise Amount  -->
                                             <CardHeader class='!w-full border-b'>
                                                 <div class='flex justify-between items-center'>
@@ -459,14 +459,14 @@
                                             </CardHeader>
                                             
                                             <!--  Round Name + Sector  -->
-                                            <CardContent v-if='event.sector' class='flex flex-col items-center justify-center gap-2 p-6 border border-orange-400 min-h-36'>
+                                            <CardContent v-if='event.sector' class='flex flex-col items-center justify-center gap-2 p-6  min-h-36'>
                                                 <Title :tag='3' :level='5'>{{ event.round || 'Funding Round' }}</Title>
                                                 <Badge variant='outline' class='bg-accent'>{{ event.sector }}</Badge>
                                             </CardContent>
                                             
-                                            <div class='flex justify-center gap-8 py-10 px-3'>
+                                            <div class='flex justify-between w-full xl:gap-8 py-10 px-3'>
                                                 <!--  Lead Investors  -->
-                                                <CardContent v-if='event.leadInvestors?.length' class='flex flex-col items-center gap-2'>
+                                                <CardContent v-if='event.leadInvestors?.length' class='flex flex-col items-center mx-auto gap-2 p-0 xl:p-6'>
                                                     <div class='flex items-center gap-1 text-muted-foreground'>
                                                         <NuxtIcon name='ph:trophy-fill' size='24' class='mb-1' />
                                                         <Title :tag='3' :level='6'>Lead Investors</Title>
